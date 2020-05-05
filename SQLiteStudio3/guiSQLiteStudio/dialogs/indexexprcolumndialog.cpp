@@ -44,7 +44,7 @@ void IndexExprColumnDialog::setOkEnabled(bool enabled)
 
 SqliteExpr* IndexExprColumnDialog::parseExpr()
 {
-    Parser parser(db->getDialect());
+    Parser parser;
     return parser.parseExpr(ui->sqlEditor->toPlainText());
 }
 

@@ -119,12 +119,12 @@ TokenList SqliteDelete::rebuildTokensFromContents()
 
     builder.withKeyword("DELETE").withSpace().withKeyword("FROM").withSpace();
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(table, dialect);
+    builder.withOther(table);
 
     if (indexedByKw)
-        builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy, dialect);
+        builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy);
     else if (notIndexedKw)
         builder.withSpace().withKeyword("NOT").withSpace().withKeyword("INDEXED");
 

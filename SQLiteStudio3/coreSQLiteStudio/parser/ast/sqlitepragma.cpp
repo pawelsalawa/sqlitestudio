@@ -53,7 +53,7 @@ QStringList SqlitePragma::getDatabasesInStatement()
 
 TokenList SqlitePragma::getDatabaseTokensInStatement()
 {
-    if (dialect == Dialect::Sqlite2 || database.isNull())
+    if (database.isNull())
         return TokenList();
 
     return getTokenListFromNamedKey("nm");
@@ -62,7 +62,7 @@ TokenList SqlitePragma::getDatabaseTokensInStatement()
 QList<SqliteStatement::FullObject> SqlitePragma::getFullObjectsInStatement()
 {
     QList<FullObject> result;
-    if (dialect == Dialect::Sqlite2 || database.isNull())
+    if (database.isNull())
         return result;
 
     // Db object
@@ -94,9 +94,9 @@ TokenList SqlitePragma::rebuildTokensFromContents()
     builder.withKeyword("PRAGMA").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(pragmaName, dialect);
+    builder.withOther(pragmaName);
 
     if (equalsOp)
         builder.withSpace().withOperator("=").withSpace().withLiteralValue(value);

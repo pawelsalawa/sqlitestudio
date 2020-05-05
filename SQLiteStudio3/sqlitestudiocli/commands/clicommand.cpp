@@ -147,14 +147,12 @@ QStringList CliCommand::getCompletionTables()
     if (!cli->getCurrentDb())
         return results;
 
-    Dialect dialect = Dialect::Sqlite3;
-
     SchemaResolver resolver(cli->getCurrentDb());
     resolver.setIgnoreSystemObjects(true);
-    results += wrapObjNamesIfNeeded(resolver.getTables(), dialect);
-    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTables("temp"), dialect));
+    results += wrapObjNamesIfNeeded(resolver.getTables());
+    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTables("temp")));
     for (const QString& database : resolver.getDatabases())
-        results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getTables(database), dialect));
+        results += prefixEach(wrapObjIfNeeded(database)+".", wrapObjNamesIfNeeded(resolver.getTables(database)));
 
     return results;
 }
@@ -165,14 +163,12 @@ QStringList CliCommand::getCompletionIndexes()
     if (!cli->getCurrentDb())
         return results;
 
-    Dialect dialect = Dialect::Sqlite3;
-
     SchemaResolver resolver(cli->getCurrentDb());
     resolver.setIgnoreSystemObjects(true);
-    results += wrapObjNamesIfNeeded(resolver.getIndexes(), dialect);
-    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getIndexes("temp"), dialect));
+    results += wrapObjNamesIfNeeded(resolver.getIndexes());
+    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getIndexes("temp")));
     for (const QString& database : resolver.getDatabases())
-        results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getIndexes(database), dialect));
+        results += prefixEach(wrapObjIfNeeded(database)+".", wrapObjNamesIfNeeded(resolver.getIndexes(database)));
 
     return results;
 }
@@ -183,14 +179,12 @@ QStringList CliCommand::getCompletionTriggers()
     if (!cli->getCurrentDb())
         return results;
 
-    Dialect dialect = Dialect::Sqlite3;
-
     SchemaResolver resolver(cli->getCurrentDb());
     resolver.setIgnoreSystemObjects(true);
-    results += wrapObjNamesIfNeeded(resolver.getTriggers(), dialect);
-    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTriggers("temp"), dialect));
+    results += wrapObjNamesIfNeeded(resolver.getTriggers());
+    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTriggers("temp")));
     for (const QString& database : resolver.getDatabases())
-        results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getTriggers(database), dialect));
+        results += prefixEach(wrapObjIfNeeded(database)+".", wrapObjNamesIfNeeded(resolver.getTriggers(database)));
 
     return results;
 }
@@ -201,14 +195,12 @@ QStringList CliCommand::getCompletionViews()
     if (!cli->getCurrentDb())
         return results;
 
-    Dialect dialect = Dialect::Sqlite3;
-
     SchemaResolver resolver(cli->getCurrentDb());
     resolver.setIgnoreSystemObjects(true);
-    results += wrapObjNamesIfNeeded(resolver.getViews(), dialect);
-    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getViews("temp"), dialect));
+    results += wrapObjNamesIfNeeded(resolver.getViews());
+    results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getViews("temp")));
     for (const QString& database : resolver.getDatabases())
-        results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getViews(database), dialect));
+        results += prefixEach(wrapObjIfNeeded(database)+".", wrapObjNamesIfNeeded(resolver.getViews(database)));
 
     return results;
 }

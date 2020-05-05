@@ -27,7 +27,7 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
     QString formatted = formatStmt->format();
     delete formatStmt;
 
-    QString formattedWithComments = applyComments(formatted, comments, query->dialect);
+    QString formattedWithComments = applyComments(formatted, comments);
     for (Comment* c : comments)
         delete c;
 
@@ -46,7 +46,7 @@ bool SqlEnterpriseFormatter::init()
                            ");");
     static_qstring(query4, "CREATE UNIQUE INDEX IF NOT EXISTS dbName.idx1 ON [messages column] (id COLLATE x ASC, lang DESC, description);");
 
-    Parser parser(Dialect::Sqlite3);
+    Parser parser;
 
     for (const QString& q : {query1, query2, query3, query4})
     {
@@ -271,14 +271,14 @@ void SqlEnterpriseFormatter::wrapComment(const TokenPtr &token, bool isAtLineEnd
         token->value = multiCommentTpl.arg(token->value);
 }
 
-QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<SqlEnterpriseFormatter::Comment*> comments, Dialect dialect)
+QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<SqlEnterpriseFormatter::Comment*> comments)
 {
     if (comments.size() == 0)
         return formatted;
 
     int currentCommentPosition = comments.first()->position;
 
-    TokenList allTokens = Lexer::tokenize(formatted, dialect);
+    TokenList allTokens = Lexer::tokenize(formatted);
     TokenList newTokens;
     int currentTokenPosition = 0;
     for (const TokenPtr& token : allTokens)

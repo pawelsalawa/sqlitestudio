@@ -81,7 +81,6 @@ class DbAttacherImpl : public DbAttacher
 
         QList<SqliteQueryPtr> queries;
         Db* db = nullptr;
-        Dialect dialect;
         BiStrHash dbNameToAttach;
         StrHash<Db*> nameToDbMap;
         bool mainDbNameUsed = false;

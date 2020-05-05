@@ -54,11 +54,8 @@ void ConstraintCheckPanel::constraintAvailable()
     if (constraint.isNull())
         return;
 
-    if (constraint->dialect == Dialect::Sqlite3)
-    {
-        ui->onConflictCheck->setVisible(false);
-        ui->onConflictCombo->setVisible(false);
-    }
+    ui->onConflictCheck->setVisible(false);
+    ui->onConflictCombo->setVisible(false);
 
     readConstraint();
     updateVirtualSql();
@@ -81,9 +78,6 @@ void ConstraintCheckPanel::storeConfiguration()
         name = ui->namedEdit->text();
 
     storeName(name);
-
-    if (constraint->dialect == Dialect::Sqlite2 && ui->onConflictCheck->isChecked())
-        storeConflictAlgo(sqliteConflictAlgo(ui->onConflictCombo->currentText()));
 }
 
 void ConstraintCheckPanel::init()
@@ -115,13 +109,6 @@ void ConstraintCheckPanel::readConstraint()
     {
         ui->namedCheck->setChecked(true);
         ui->namedEdit->setText(name);
-    }
-
-    SqliteConflictAlgo onConflict = readConflictAlgo();
-    if (constraint->dialect == Dialect::Sqlite2 && onConflict != SqliteConflictAlgo::null)
-    {
-        ui->onConflictCheck->setChecked(true);
-        ui->onConflictCombo->setCurrentText(sqliteConflictAlgo(onConflict));
     }
 }
 
@@ -157,7 +144,7 @@ void ConstraintCheckPanel::updateVirtualSql()
 
 SqliteExprPtr ConstraintCheckPanel::parseExpression(const QString& sql)
 {
-    Parser parser(db->getDialect());
+    Parser parser;
     SqliteExpr *expr = parser.parseExpr(sql);
     return SqliteExprPtr(expr);
 }

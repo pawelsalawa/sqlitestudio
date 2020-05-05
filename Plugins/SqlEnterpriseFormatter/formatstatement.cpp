@@ -156,12 +156,13 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteOrderBy, FormatOrderBy);
     FORMATTER_FACTORY_ENTRY(query, SqlitePragma, FormatPragma);
 
-    if (stmt)
-        stmt->dialect = query->dialect;
-    else if (query)
-        qWarning() << "Unhandled query passed to enterprise formatter!";
-    else
-        qWarning() << "Null query passed to enterprise formatter!";
+    if (!stmt)
+    {
+        if (query)
+            qWarning() << "Unhandled query passed to enterprise formatter!";
+        else
+            qWarning() << "Null query passed to enterprise formatter!";
+    }
 
     return stmt;
 }
@@ -372,7 +373,7 @@ FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QSt
     if (!stmt)
         return *this;
 
-    FormatStatement* formatStmt = forQuery(stmt, dialect, wrapper, cfg);
+    FormatStatement* formatStmt = forQuery(stmt, wrapper, cfg);
     if (!formatStmt)
         return *this;
 
@@ -570,7 +571,7 @@ QString FormatStatement::detokenize()
             case FormatToken::DATA_TYPE:
             {
                 applyIndent();
-                line += wrapObjIfNeeded(token->value.toString(), dialect, wrapper);
+                line += wrapObjIfNeeded(token->value.toString(), wrapper);
                 break;
             }
             case FormatToken::ID:
@@ -1082,17 +1083,16 @@ bool FormatStatement::willStartWithNewLine(FormatStatement::FormatToken* token)
 void FormatStatement::formatId(const QString& value)
 {
     if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
-        line += wrapObjName(value, dialect, true, wrapper);
+        line += wrapObjName(value, true, wrapper);
     else
-        line += wrapObjIfNeeded(value, dialect, true, wrapper);
+        line += wrapObjIfNeeded(value, true, wrapper);
 }
 
-FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg)
+FormatStatement* FormatStatement::forQuery(SqliteStatement* query, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg)
 {
     FormatStatement* formatStmt = forQuery(query);
     if (formatStmt)
     {
-        formatStmt->dialect = dialect;
         formatStmt->wrapper = wrapper;
         formatStmt->cfg = cfg;
     }

@@ -34,17 +34,11 @@ SqliteStatement*SqliteDropView::clone()
 
 QStringList SqliteDropView::getDatabasesInStatement()
 {
-    if (dialect == Dialect::Sqlite2)
-        return QStringList();
-
     return getStrListFromValue(database);
 }
 
 TokenList SqliteDropView::getDatabaseTokensInStatement()
 {
-    if (dialect == Dialect::Sqlite2)
-        return TokenList();
-
     return getDbTokenListFromFullname();
 }
 
@@ -77,7 +71,7 @@ TokenList SqliteDropView::rebuildTokensFromContents()
         builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
     builder.withOther(view).withOperator(";");
 

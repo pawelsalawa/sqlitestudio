@@ -78,7 +78,7 @@ void TablePrimaryKeyAndUniquePanel::buildColumn(SqliteCreateTable::Column* colum
     connect(check, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
 
     QComboBox* collation = nullptr;
-    if (!constraint.isNull() && constraint->dialect == Dialect::Sqlite3)
+    if (!constraint.isNull())
     {
         collation = new QComboBox();
         collation->setMaximumWidth(ui->colHdrCollation->width());
@@ -125,7 +125,7 @@ void TablePrimaryKeyAndUniquePanel::updateColumnState(int colIdx)
     item = columnsLayout->itemAtPosition(colIdx, 1)->widget();
     qobject_cast<QComboBox*>(item)->setEnabled(enable);
 
-    if (!constraint.isNull() && constraint->dialect == Dialect::Sqlite3)
+    if (!constraint.isNull())
     {
         item = columnsLayout->itemAtPosition(colIdx, 2)->widget();
         qobject_cast<QComboBox*>(item)->setEnabled(enable);
@@ -210,21 +210,13 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
 
         name = check->property(UI_PROP_COLUMN).toString();
 
-        if (constr->dialect == Dialect::Sqlite3)
-        {
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
-            collate = combo->currentText();
-            if (collate.isEmpty())
-                collate = QString();
+        combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
+        collate = combo->currentText();
+        if (collate.isEmpty())
+            collate = QString();
 
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 2)->widget());
-            sortOrder = sqliteSortOrder(combo->currentText());
-        }
-        else
-        {
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
-            sortOrder = sqliteSortOrder(combo->currentText());
-        }
+        combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 2)->widget());
+        sortOrder = sqliteSortOrder(combo->currentText());
 
         idxCol = new SqliteIndexedColumn(name, collate, sortOrder);
         idxCol->setParent(constr);
@@ -266,24 +258,11 @@ void TablePrimaryKeyAndUniquePanel::readConstraint()
         check = dynamic_cast<QCheckBox*>(columnsLayout->itemAtPosition(idx, 0)->widget());
         check->setChecked(true);
 
-        if (constr->dialect == Dialect::Sqlite3)
-        {
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 1)->widget());
-            combo->setCurrentText(idxCol->collate);
+        combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 1)->widget());
+        combo->setCurrentText(idxCol->collate);
 
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 2)->widget());
-            combo->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
-        }
-        else
-        {
-            combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 1)->widget());
-            combo->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
-        }
-    }
-
-    if (constr->dialect == Dialect::Sqlite2)
-    {
-        ui->colHdrCollation->setVisible(false);
+        combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 2)->widget());
+        combo->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
     }
 }
 

@@ -760,7 +760,7 @@ bool SelectResolver::parseOriginalQuery()
     if (originalQueryParsed)
         return true;
 
-    Parser parser(db->getDialect());
+    Parser parser;
     if (!parser.parse(query) || parser.getQueries().isEmpty())
     {
         qWarning() << "Could not parse query in SelectResolver:" << query;

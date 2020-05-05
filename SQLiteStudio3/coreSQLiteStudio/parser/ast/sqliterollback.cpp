@@ -50,7 +50,7 @@ TokenList SqliteRollback::rebuildTokensFromContents()
         if (savepointKw)
             builder.withKeyword("SAVEPOINT").withSpace();
 
-        builder.withOther(name, dialect);
+        builder.withOther(name);
     }
     builder.withOperator(";");
 

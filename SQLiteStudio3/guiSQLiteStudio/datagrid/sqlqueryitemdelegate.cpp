@@ -254,7 +254,6 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     QStringList fkConditionCols;
     QStringList srcCols;
     Db* db = item->getModel()->getDb();
-    Dialect dialect = db->getDialect();
     SchemaResolver resolver(db);
 
     QList<SqlQueryModelColumn::ConstraintFk*> fkList = item->getColumn()->getFkConstraints();
@@ -264,12 +263,12 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     QString col;
     for (SqlQueryModelColumn::ConstraintFk* fk : fkList)
     {
-        col = wrapObjIfNeeded(fk->foreignColumn, dialect);
-        src = wrapObjIfNeeded(fk->foreignTable, dialect);
+        col = wrapObjIfNeeded(fk->foreignColumn);
+        src = wrapObjIfNeeded(fk->foreignTable);
         if (i == 0)
         {
             selectedCols << dbColTpl.arg(src, col,
-                wrapObjIfNeeded(item->getColumn()->column, dialect));
+                wrapObjIfNeeded(item->getColumn()->column));
         }
 
         srcCols = resolver.getTableColumns(src);
@@ -278,8 +277,8 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
             if (fk->foreignColumn.compare(srcCol, Qt::CaseInsensitive) == 0)
                 continue; // Exclude matching column. We don't want the same column several times.
 
-            fullSrcCol = src + "." + wrapObjIfNeeded(srcCol, dialect);
-            selectedCols << srcColTpl.arg(cellLimitTpl.arg(CELL_LENGTH_LIMIT).arg(fullSrcCol), wrapObjName(fullSrcCol, dialect));
+            fullSrcCol = src + "." + wrapObjIfNeeded(srcCol);
+            selectedCols << srcColTpl.arg(cellLimitTpl.arg(CELL_LENGTH_LIMIT).arg(fullSrcCol), wrapObjName(fullSrcCol));
         }
 
         fkConditionCols << col;
@@ -289,12 +288,12 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     }
 
     QStringList conditions;
-    QString firstSrc = wrapObjIfNeeded(fkConfitionTables.first(), dialect);
-    QString firstCol = wrapObjIfNeeded(fkConditionCols.first(), dialect);
+    QString firstSrc = wrapObjIfNeeded(fkConfitionTables.first());
+    QString firstCol = wrapObjIfNeeded(fkConditionCols.first());
     for (i = 1; i < fkConfitionTables.size(); i++)
     {
-        src = wrapObjIfNeeded(fkConfitionTables[i], dialect);
-        col = wrapObjIfNeeded(fkConditionCols[i], dialect);
+        src = wrapObjIfNeeded(fkConfitionTables[i]);
+        col = wrapObjIfNeeded(fkConditionCols[i]);
         conditions << conditionTpl.arg(firstSrc, firstCol, src, col);
     }
 

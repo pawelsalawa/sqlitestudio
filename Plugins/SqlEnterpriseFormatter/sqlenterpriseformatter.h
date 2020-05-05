@@ -87,7 +87,7 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         };
 
         QList<Comment*> collectComments(const TokenList& tokens);
-        QString applyComments(const QString& formatted, QList<Comment *> comments, Dialect dialect);
+        QString applyComments(const QString& formatted, QList<Comment *> comments);
         QList<TokenList> tokensByLines(const TokenList& tokens, bool includeSpaces = false);
         TokenList adjustCommentsToEnd(const TokenList& inputTokens);
         TokenList wrapOnlyComments(const TokenList& inputTokens);

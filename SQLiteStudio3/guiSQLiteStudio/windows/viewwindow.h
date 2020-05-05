@@ -163,7 +163,6 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void moveColumnDown();
         void updateColumnButtons();
         void generateOutputColumns();
-        void updateDbRelatedUiElements();
         void updateTabsOrder();
         void triggerViewDoubleClicked(const QModelIndex& idx);
         void updateFont();

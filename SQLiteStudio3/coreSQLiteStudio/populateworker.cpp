@@ -25,14 +25,13 @@ void PopulateWorker::run()
         return;
     }
 
-    Dialect dialect = db->getDialect();
-    QString wrappedTable = wrapObjIfNeeded(table, dialect);
+    QString wrappedTable = wrapObjIfNeeded(table);
 
     QStringList cols;
     QStringList argList;
     for (const QString& column : columns)
     {
-        cols << wrapObjIfNeeded(column, dialect);
+        cols << wrapObjIfNeeded(column);
         argList << "?";
     }
 

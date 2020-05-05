@@ -889,7 +889,7 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
     if (!checkDbState())
         return false;
 
-    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite3, flags.testFlag(Db::Flag::NO_LOCK));
+    ReadWriteLocker locker(&(db->dbOperLock), query, flags.testFlag(Db::Flag::NO_LOCK));
     logSql(db.data(), query, args, flags);
 
     int res;
@@ -904,7 +904,7 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
     int maxParamIdx = args.size();
     if (!flags.testFlag(Db::Flag::SKIP_PARAM_COUNTING))
     {
-        QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite3);
+        QueryWithParamCount queryWithParams = getQueryWithParamCount(query);
         maxParamIdx = qMin(maxParamIdx, queryWithParams.second);
     }
 
@@ -932,10 +932,10 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     if (!checkDbState())
         return false;
 
-    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite3, flags.testFlag(Db::Flag::NO_LOCK));
+    ReadWriteLocker locker(&(db->dbOperLock), query, flags.testFlag(Db::Flag::NO_LOCK));
     logSql(db.data(), query, args, flags);
 
-    QueryWithParamNames queryWithParams = getQueryWithParamNames(query, Dialect::Sqlite3);
+    QueryWithParamNames queryWithParams = getQueryWithParamNames(query);
 
     int res;
     if (stmt)

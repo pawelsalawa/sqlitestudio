@@ -423,12 +423,10 @@ QString SqlQueryItem::loadFullData()
         return tr("Cannot load the data for a cell that refers to the already closed database.");
     }
 
-    Dialect dialect = db->getDialect();
-
     // Query
     QString query;
     QHash<QString,QVariant> queryArgs;
-    QString column = wrapObjIfNeeded(col->column, dialect);
+    QString column = wrapObjIfNeeded(col->column);
     if (col->editionForbiddenReason.size() > 0)
     {
         static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
@@ -441,13 +439,13 @@ QString SqlQueryItem::loadFullData()
         static_qstring(tpl, "SELECT %1 FROM %2 WHERE %3");
 
         // Db and table
-        QString source = wrapObjIfNeeded(col->table, dialect);
+        QString source = wrapObjIfNeeded(col->table);
         if (!col->database.isNull())
-            source.prepend(wrapObjIfNeeded(col->database, dialect)+".");
+            source.prepend(wrapObjIfNeeded(col->database)+".");
 
         // ROWID
         RowIdConditionBuilder rowIdBuilder;
-        rowIdBuilder.setRowId(getRowId(), dialect);
+        rowIdBuilder.setRowId(getRowId());
         QString rowId = rowIdBuilder.build();
         queryArgs = rowIdBuilder.getQueryArgs();
 

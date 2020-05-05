@@ -116,7 +116,7 @@ void SqlQuery::setArgs(const QHash<QString, QVariant>& args)
 }
 
 
-void RowIdConditionBuilder::setRowId(const RowId& rowId, Dialect dialect)
+void RowIdConditionBuilder::setRowId(const RowId& rowId)
 {
     static const QString argTempalate = QStringLiteral(":rowIdArg%1");
 
@@ -128,7 +128,7 @@ void RowIdConditionBuilder::setRowId(const RowId& rowId, Dialect dialect)
         it.next();
         arg = argTempalate.arg(i++);
         queryArgs[arg] = it.value();
-        conditions << wrapObjIfNeeded(it.key(), dialect) + " = " + arg;
+        conditions << wrapObjIfNeeded(it.key()) + " = " + arg;
     }
 }
 

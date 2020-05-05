@@ -23,7 +23,7 @@ bool QueryExecutorOrder::exec()
     static_qstring(selectTpl, "SELECT * FROM (%1) ORDER BY %2");
     QString newSelect = selectTpl.arg(select->detokenize(), tokens.detokenize());
 
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(newSelect) || parser.getQueries().size() == 0)
     {
         qWarning() << "Could not parse SELECt after applying order. Tried to parse query:\n" << newSelect;

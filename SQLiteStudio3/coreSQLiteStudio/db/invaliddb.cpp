@@ -27,11 +27,6 @@ quint8 InvalidDb::getVersion() const
     return 0;
 }
 
-Dialect InvalidDb::getDialect() const
-{
-    return Dialect::Sqlite3;
-}
-
 QString InvalidDb::getEncoding()
 {
     return QString();

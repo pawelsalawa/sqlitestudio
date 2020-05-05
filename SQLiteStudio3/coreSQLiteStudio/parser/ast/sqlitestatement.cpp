@@ -9,7 +9,7 @@ SqliteStatement::SqliteStatement()
 }
 
 SqliteStatement::SqliteStatement(const SqliteStatement& other) :
-    QObject(), tokens(other.tokens), tokensMap(other.tokensMap), dialect(other.dialect)
+    QObject(), tokens(other.tokens), tokensMap(other.tokensMap)
 {
 
 }
@@ -85,13 +85,6 @@ QList<SqliteStatement::FullObject> SqliteStatement::getContextFullObjects(bool c
     }
 
     return fullObjects;
-}
-
-void SqliteStatement::setSqliteDialect(Dialect dialect)
-{
-    this->dialect = dialect;
-    for (SqliteStatement* stmt : childStatements())
-        stmt->setSqliteDialect(dialect);
 }
 
 SqliteStatementPtr SqliteStatement::detach()
@@ -535,14 +528,6 @@ void SqliteStatement::rebuildTokens()
     // TODO rebuild tokensMap as well
     // It shouldn't be hard to write unit tests that parse a query, remembers it tokensMap, then rebuilds tokens from contents
     // and then compare new tokens map with previous one. This way we should be able to get all maps correctly.
-}
-
-void SqliteStatement::setParent(QObject* parent)
-{
-    QObject::setParent(parent);
-    SqliteStatement* stmt = qobject_cast<SqliteStatement*>(parent);
-    if (stmt)
-        dialect = stmt->dialect;
 }
 
 void SqliteStatement::attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach)

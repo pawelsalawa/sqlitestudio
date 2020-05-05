@@ -10,38 +10,15 @@ StatementTokenBuilder& StatementTokenBuilder::withKeyword(const QString& value)
 
 StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value)
 {
-    return with(Token::OTHER, value);
+    return with(Token::OTHER, wrapObjIfNeeded(value));
 }
 
-StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value, Dialect dialect)
-{
-    return withOther(wrapObjIfNeeded(value, dialect));
-}
-
-StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value, Dialect dialect)
+StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value)
 {
     if (value.contains("\""))
-        return withOther(wrapObjIfNeeded(value, dialect));
+        return withOther(wrapObjIfNeeded(value));
     else
         return withOther(wrapObjName(value, NameWrapper::DOUBLE_QUOTE));
-}
-
-StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, Dialect dialect, const QString& separator)
-{
-    bool first = true;
-    for (const QString& str : value)
-    {
-        if (!first)
-        {
-            if (!separator.isEmpty())
-                withOperator(separator);
-
-            withSpace();
-        }
-        withOther(str, dialect);
-        first = false;
-    }
-    return *this;
 }
 
 StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, const QString& separator)

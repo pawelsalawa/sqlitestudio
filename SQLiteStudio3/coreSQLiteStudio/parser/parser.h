@@ -2,7 +2,6 @@
 #define PARSER_H
 
 #include "token.h"
-#include "../dialect.h"
 #include "ast/sqlitequery.h"
 #include "ast/sqliteexpr.h"
 
@@ -18,7 +17,7 @@ class ParserError;
  *
  * Typical use case would be:
  * @code
- * Parser parser(db->getDialect());
+ * Parser parser();
  * if (parser.parse(queryString))
  * {
  *     QList<SqliteQueryPtr> queries = parser.getQueries();
@@ -47,9 +46,7 @@ class ParserError;
  * Finally, there is a parseExpr() to parse just a SQLite expression
  * (http://sqlite.org/lang_expr.html).
  *
- * Parser works basing on SQLite grammar defined in sqlite2.y and sqlite3.y files.
- * Since there are 2 completly separate grammar definitions, there are 2 dialects
- * that the parser works with.
+ * Parser works basing on SQLite grammar defined in sqlite3.y file.
  *
  * This is a high-level API to the Lemon Parser, the original SQLite parser.
  */
@@ -57,10 +54,9 @@ class API_EXPORT Parser
 {
     public:
         /**
-         * @brief Creates parser for given SQLite dialect.
-         * @param dialect SQLite dialect to use. Can be changed later with setDialect().
+         * @brief Creates parser for SQLite dialect.
          */
-        Parser(Dialect dialect);
+        Parser();
 
         /**
          * @brief Releases internal resources.
@@ -76,12 +72,6 @@ class API_EXPORT Parser
          * thinks that the query is incorrect, etc.
          */
         void setLemonDebug(bool enabled);
-
-        /**
-         * @brief Changes dialect used by parser.
-         * @param dialect Dialect to use.
-         */
-        void setDialect(Dialect dialect);
 
         /**
          * @brief Parses given query string.
@@ -125,7 +115,7 @@ class API_EXPORT Parser
          *
          * Example:
          * @code
-         * Parser parser(db->getDialect());
+         * Parser parser;
          * SqliteSelectPtr select = parser.parse<SelectPtr>(queryString);
          * if (!select)
          * {
@@ -257,14 +247,6 @@ class API_EXPORT Parser
         void cleanUp();
 
         /**
-         * @brief Propagates dialect to all AST objects.
-         *
-         * This is called after successful parsing to set the adequate SQLite dialect
-         * in all AST objects.
-         */
-        void fillSqliteDialect();
-
-        /**
          * @brief Creates Lemon parser.
          * @return Pointer to Lemon parser.
          */
@@ -324,11 +306,6 @@ class API_EXPORT Parser
          * This method is used to add spaces and comments to the Lemon's stack.
          */
         void  parseAddToken(void* other, TokenPtr token);
-
-        /**
-         * @brief Parser's dialect.
-         */
-        Dialect dialect;
 
         /**
          * @brief Flag indicating if the Lemon low-level debug messages are enabled.

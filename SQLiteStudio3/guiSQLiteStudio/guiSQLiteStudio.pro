@@ -168,7 +168,6 @@ SOURCES +=\
     uicustomicon.cpp \
     uiurlbutton.cpp \
     common/configcombobox.cpp \
-    dialogs/dbconverterdialog.cpp \
     dialogs/dbdialog.cpp \
     uidebug.cpp \
     debugconsole.cpp \
@@ -320,7 +319,6 @@ HEADERS  += mainwindow.h \
     uicustomicon.h \
     uiurlbutton.h \
     common/configcombobox.h \
-    dialogs/dbconverterdialog.h \
     dialogs/configdialog.h \
     dialogs/dbdialog.h \
     uidebug.h \
@@ -384,7 +382,6 @@ FORMS    += mainwindow.ui \
     dialogs/importdialog.ui \
     dialogs/populatedialog.ui \
     dialogs/populateconfigdialog.ui \
-    dialogs/dbconverterdialog.ui \
     dialogs/dbdialog.ui \
     debugconsole.ui \
     dialogs/aboutdialog.ui \

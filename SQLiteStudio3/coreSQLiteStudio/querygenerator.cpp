@@ -30,8 +30,7 @@ QString QueryGenerator::generateInsertToTable(Db* db, const QString& database, c
     static_qstring(tpl, "INSERT INTO %1 (%2) VALUES %3");
     static_qstring(rowTpl, "(%1)");
 
-    Dialect dialect = db->getDialect();
-    QString target = toFullObjectName(database, table, dialect);
+    QString target = toFullObjectName(database, table);
 
     // Get all table's columns
     SchemaResolver resolver(db);
@@ -41,7 +40,7 @@ QString QueryGenerator::generateInsertToTable(Db* db, const QString& database, c
     if (values.isEmpty())
     {
         QStringList valueList = wrapStrings(tableCols);
-        QStringList wrappedCols = wrapObjNamesIfNeeded(tableCols, dialect);
+        QStringList wrappedCols = wrapObjNamesIfNeeded(tableCols);
         return tpl.arg(target, wrappedCols.join(", "), rowTpl.arg(valueList.join(", ")));
     }
 
@@ -50,11 +49,11 @@ QString QueryGenerator::generateInsertToTable(Db* db, const QString& database, c
     sortWithReferenceList(valueCols, tableCols);
 
     // Group values into rows
-    QStringList valueSets = toValueSets(valueCols, values, dialect);
+    QStringList valueSets = toValueSets(valueCols, values);
     QString valueStr = rowTpl.arg(valueSets.join("), ("));
 
     // Wrap given column names
-    QStringList wrappedCols = wrapObjNamesIfNeeded(valueCols, dialect);
+    QStringList wrappedCols = wrapObjNamesIfNeeded(valueCols);
 
     return tpl.arg(target, wrappedCols.join(", "), valueStr);
 }
@@ -70,8 +69,7 @@ QString QueryGenerator::generateUpdateOfTable(Db* db, const QString& database, c
     static_qstring(tplWithWhere, "UPDATE %1 SET %2 WHERE %3");
     static_qstring(updateColTpl, "%1 = %2");
 
-    Dialect dialect = db->getDialect();
-    QString target = toFullObjectName(database, table, dialect);
+    QString target = toFullObjectName(database, table);
 
     // Get all columns of the table
     SchemaResolver resolver(db);
@@ -80,7 +78,7 @@ QString QueryGenerator::generateUpdateOfTable(Db* db, const QString& database, c
     // Create list of "column = 'column'"
     QStringList commonUpdateCols;
     for (const QString& col : tableCols)
-        commonUpdateCols << updateColTpl.arg(wrapObjIfNeeded(col, dialect), wrapString(col));
+        commonUpdateCols << updateColTpl.arg(wrapObjIfNeeded(col), wrapString(col));
 
     // Put it to comma spearated string
     QString commonColumnStr = commonUpdateCols.join(", ");
@@ -97,7 +95,7 @@ QString QueryGenerator::generateUpdateOfTable(Db* db, const QString& database, c
     sortWithReferenceList(valueCols, tableCols);
 
     // Conditions for WHERE clause
-    QString conditionStr = valuesToConditionStr(values, dialect);
+    QString conditionStr = valuesToConditionStr(values);
 
     return tpl.arg(target, commonColumnStr, conditionStr);
 }
@@ -113,8 +111,7 @@ QString QueryGenerator::generateDeleteFromTable(Db* db, const QString& database,
     static_qstring(tplWithWhere, "DELETE FROM %1 WHERE %2");
     static_qstring(conditionColTpl, "%1 = %2");
 
-    Dialect dialect = db->getDialect();
-    QString target = toFullObjectName(database, table, dialect);
+    QString target = toFullObjectName(database, table);
 
     // Get all columns of the table
     SchemaResolver resolver(db);
@@ -126,7 +123,7 @@ QString QueryGenerator::generateDeleteFromTable(Db* db, const QString& database,
         // Create list of "column = 'column'"
         QStringList conditionCols;
         for (const QString& col : tableCols)
-            conditionCols << conditionColTpl.arg(wrapObjIfNeeded(col, dialect), wrapString(col));
+            conditionCols << conditionColTpl.arg(wrapObjIfNeeded(col), wrapString(col));
 
         // Put it to comma spearated string
         QString conditionStr = conditionCols.join(" AND ");
@@ -139,7 +136,7 @@ QString QueryGenerator::generateDeleteFromTable(Db* db, const QString& database,
     sortWithReferenceList(valueCols, tableCols);
 
     // Conditions for WHERE clause
-    QString conditionStr = valuesToConditionStr(values, dialect);
+    QString conditionStr = valuesToConditionStr(values);
 
     return tpl.arg(target, conditionStr);
 }
@@ -160,8 +157,6 @@ QString QueryGenerator::generateSelectFromSelect(Db* db, const QString& initialS
 {
     static_qstring(tpl, "SELECT %1 FROM (%2)%3");
 
-    Dialect dialect = db->getDialect();
-
     // Resolve all columns of the select
     SelectResolver resolver(db, initialSelect, dbNameToAttach);
     QList<SelectResolver::Column> columns = resolver.resolveColumnsFromFirstCore();
@@ -169,10 +164,10 @@ QString QueryGenerator::generateSelectFromSelect(Db* db, const QString& initialS
     // Generate result columns
     QStringList resCols;
     for (const SelectResolver::Column& col : columns)
-        resCols << toResultColumnString(col, dialect);
+        resCols << toResultColumnString(col);
 
     // Generate conditions for WHERE clause
-    QString conditionStr = valuesToConditionStr(values, dialect);
+    QString conditionStr = valuesToConditionStr(values);
 
     return tpl.arg(resCols.join(", "), initialSelect, conditionStr);
 }
@@ -181,10 +176,8 @@ QString QueryGenerator::generateSelectFromTableOrView(Db* db, const QString& dat
 {
     static_qstring(tpl, "SELECT %1 FROM %2%3");
 
-    Dialect dialect = db->getDialect();
-
-    QString target = toFullObjectName(database, tableOrView, dialect);
-    QString conditionStr = valuesToConditionStr(values, dialect);
+    QString target = toFullObjectName(database, tableOrView);
+    QString conditionStr = valuesToConditionStr(values);
 
     return tpl.arg(columns.join(", "), target, conditionStr);
 }
@@ -208,7 +201,7 @@ QString QueryGenerator::getAlias(const QString& name, QSet<QString>& usedAliases
     return alias;
 }
 
-QStringList QueryGenerator::valuesToConditionList(const StrHash<QVariantList>& values, Dialect dialect)
+QStringList QueryGenerator::valuesToConditionList(const StrHash<QVariantList>& values)
 {
     static_qstring(conditionTpl0, "%1 IS NULL");
     static_qstring(conditionTpl1, "%1 = %2");
@@ -218,26 +211,26 @@ QStringList QueryGenerator::valuesToConditionList(const StrHash<QVariantList>& v
     QStringList conditionValues;
     for (const QString& col : values.keys())
     {
-        conditionValues = valueListToSqlList(values[col], dialect);
+        conditionValues = valueListToSqlList(values[col]);
         conditionValues.removeDuplicates();
         if (conditionValues.size() == 1)
         {
             if (conditionValues.first() == "NULL")
-                conditions << conditionTpl0.arg(wrapObjIfNeeded(col, dialect));
+                conditions << conditionTpl0.arg(wrapObjIfNeeded(col));
             else
-                conditions << conditionTpl1.arg(wrapObjIfNeeded(col, dialect), conditionValues.first());
+                conditions << conditionTpl1.arg(wrapObjIfNeeded(col), conditionValues.first());
         }
         else
-            conditions << conditionTpl2.arg(wrapObjIfNeeded(col, dialect), conditionValues.join(", "));
+            conditions << conditionTpl2.arg(wrapObjIfNeeded(col), conditionValues.join(", "));
     }
     return conditions;
 }
 
-QString QueryGenerator::valuesToConditionStr(const StrHash<QVariantList>& values, Dialect dialect)
+QString QueryGenerator::valuesToConditionStr(const StrHash<QVariantList>& values)
 {
     static_qstring(condTpl, " WHERE %1");
 
-    QStringList conditions = valuesToConditionList(values, dialect);
+    QStringList conditions = valuesToConditionList(values);
     QString conditionStr = "";
     if (conditions.size() > 0)
         conditionStr = condTpl.arg(conditions.join(" AND "));
@@ -245,26 +238,26 @@ QString QueryGenerator::valuesToConditionStr(const StrHash<QVariantList>& values
     return conditionStr;
 }
 
-QString QueryGenerator::toResultColumnString(const SelectResolver::Column& column, Dialect dialect)
+QString QueryGenerator::toResultColumnString(const SelectResolver::Column& column)
 {
-    return wrapObjIfNeeded(column.displayName, dialect);
+    return wrapObjIfNeeded(column.displayName);
 }
 
-QString QueryGenerator::toFullObjectName(const QString& database, const QString& object, Dialect dialect)
+QString QueryGenerator::toFullObjectName(const QString& database, const QString& object)
 {
     static_qstring(tpl, "%1%2");
 
     QString dbName = "";
     if (!database.isEmpty() && dbName.toLower() != "main")
-        dbName = wrapObjIfNeeded(database, dialect);
+        dbName = wrapObjIfNeeded(database);
 
     if (!dbName.isEmpty())
         dbName.append(".");
 
-    return tpl.arg(dbName, wrapObjIfNeeded(object, dialect));
+    return tpl.arg(dbName, wrapObjIfNeeded(object));
 }
 
-QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHash<QVariantList> values, Dialect dialect)
+QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHash<QVariantList> values)
 {
     QStringList rows;
     QVariantList rowValues;
@@ -276,7 +269,7 @@ QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHas
         for (const QString& col : columns)
             rowValues << values[col][i];
 
-        valueList = valueListToSqlList(rowValues, dialect);
+        valueList = valueListToSqlList(rowValues);
         rows << valueList.join(", ");
     }
 

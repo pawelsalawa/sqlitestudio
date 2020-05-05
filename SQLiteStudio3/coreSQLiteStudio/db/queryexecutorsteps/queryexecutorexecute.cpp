@@ -43,7 +43,6 @@ bool QueryExecutorExecute::executeQueries()
         flags |= Db::Flag::PRELOAD;
 
     QString queryStr;
-    int queryCount = context->parsedQueries.size();
     for (const SqliteQueryPtr& query : context->parsedQueries)
     {
         queryStr = query->detokenize();
@@ -51,10 +50,6 @@ bool QueryExecutorExecute::executeQueries()
         results = db->prepare(queryStr);
         results->setArgs(bindParamsForQuery);
         results->setFlags(flags);
-
-        queryCount--;
-        if (queryCount == 0) // last query?
-            setupSqlite2ColumnDataTypes(results);
 
         if (isBeginTransaction(query->queryType))
             rowsAffectedBeforeTransaction.push(context->rowsAffected);
@@ -131,44 +126,6 @@ QHash<QString, QVariant> QueryExecutorExecute::getBindParamsForQuery(SqliteQuery
             queryParams.insert(bindParam, context->queryParameters[bindParam]);
     }
     return queryParams;
-}
-
-void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
-{
-    Sqlite2ColumnDataTypeHelper* sqlite2Helper = dynamic_cast<Sqlite2ColumnDataTypeHelper*>(results.data());
-    if (!sqlite2Helper)
-        return;
-
-    Table key;
-    SqliteCreateTablePtr createTable;
-
-    SchemaResolver resolver(db);
-    QHash<Table,SqliteCreateTablePtr> tables;
-    for (QueryExecutor::SourceTablePtr tab : context->sourceTables)
-    {
-        if (tab->table.isNull())
-            continue;
-
-        key = Table(tab->database, tab->table);
-        createTable = resolver.getParsedObject(tab->database, tab->table, SchemaResolver::TABLE).dynamicCast<SqliteCreateTable>();
-        tables[key] = createTable;
-    }
-
-    sqlite2Helper->clearBinaryTypes();
-
-    SqliteCreateTable::Column* column = nullptr;
-    int idx = -1;
-    for (QueryExecutor::ResultColumnPtr resCol : context->resultColumns)
-    {
-        idx++;
-        key = Table(resCol->database, resCol->table);
-        if (!tables.contains(key))
-            continue;
-
-        column = tables[key]->getColumn(resCol->column);
-        if (column->type && DataType::isBinary(column->type->name))
-            sqlite2Helper->setBinaryType(idx);
-    }
 }
 
 bool QueryExecutorExecute::isBeginTransaction(SqliteQueryType queryType)

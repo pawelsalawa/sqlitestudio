@@ -39,7 +39,7 @@ TokenList SqliteCommitTrans::rebuildTokensFromContents()
     {
         builder.withSpace().withKeyword("TRANSACTION");
         if (!name.isNull())
-            builder.withSpace().withOther(name, dialect);
+            builder.withSpace().withOther(name);
     }
 
     builder.withOperator(";");

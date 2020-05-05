@@ -188,12 +188,12 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         builder.withKeyword("OR").withSpace().withKeyword(sqliteConflictAlgo(onConflict)).withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(table, dialect).withSpace();
+    builder.withOther(table).withSpace();
 
     if (indexedByKw)
-        builder.withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy, dialect).withSpace();
+        builder.withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy).withSpace();
     else if (notIndexedKw)
         builder.withKeyword("NOT").withSpace().withKeyword("INDEXED").withSpace();
 
@@ -206,9 +206,9 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
             builder.withOperator(",").withSpace();
 
         if (keyVal.first.type() == QVariant::StringList)
-            builder.withParLeft().withOtherList(keyVal.first.toStringList(), dialect).withParRight();
+            builder.withParLeft().withOtherList(keyVal.first.toStringList()).withParRight();
         else
-            builder.withOther(keyVal.first.toString(), dialect);
+            builder.withOther(keyVal.first.toString());
 
         builder.withSpace().withOperator("=").withStatement(keyVal.second);
         first = false;

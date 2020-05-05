@@ -94,9 +94,9 @@ TokenList SqliteUpsert::rebuildTokensFromContents()
                 builder.withOperator(",").withSpace();
 
             if (keyVal.first.type() == QVariant::StringList)
-                builder.withParLeft().withOtherList(keyVal.first.toStringList(), dialect).withParRight();
+                builder.withParLeft().withOtherList(keyVal.first.toStringList()).withParRight();
             else
-                builder.withOther(keyVal.first.toString(), dialect);
+                builder.withOther(keyVal.first.toString());
 
             builder.withSpace().withOperator("=").withStatement(keyVal.second);
             first = false;

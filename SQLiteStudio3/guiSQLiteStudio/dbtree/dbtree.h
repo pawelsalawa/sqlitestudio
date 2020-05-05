@@ -60,7 +60,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             DISCONNECT_FROM_DB,
             IMPORT_INTO_DB,
             EXPORT_DB,
-            CONVERT_DB,
             VACUUM_DB,
             INTEGRITY_CHECK,
             ADD_TABLE,
@@ -210,7 +209,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void addColumn();
         void editColumn();
         void delColumn();
-        void convertDb();
         void vacuumDb();
         void integrityCheck();
         void createSimilarTable();

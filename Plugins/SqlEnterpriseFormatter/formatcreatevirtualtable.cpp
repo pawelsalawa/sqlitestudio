@@ -27,7 +27,7 @@ void FormatCreateVirtualTable::formatInternal()
             if (i > 0)
                 withListComma();
 
-            for (const TokenPtr& tk : Lexer::tokenize(arg, Dialect::Sqlite3))
+            for (const TokenPtr& tk : Lexer::tokenize(arg))
                 handleToken(tk);
 
             i++;

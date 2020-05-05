@@ -76,7 +76,7 @@ SqliteStatement*SqliteWith::CommonTableExpression::clone()
 TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-    builder.withOther(table, dialect);
+    builder.withOther(table);
 
     if (indexedColumns.size() > 0)
         builder.withSpace().withParLeft().withStatementList(indexedColumns).withParRight();

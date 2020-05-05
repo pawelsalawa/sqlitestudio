@@ -106,7 +106,7 @@ TokenList SqliteAlterTable::rebuildTokensFromContents()
     builder.withKeyword("ALTER").withSpace().withKeyword("TABLE").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
     builder.withOther(table).withSpace();
 
@@ -120,7 +120,7 @@ TokenList SqliteAlterTable::rebuildTokensFromContents()
     }
     else if (!newName.isNull())
     {
-        builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName, dialect);
+        builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName);
     }
 
     builder.withOperator(";");

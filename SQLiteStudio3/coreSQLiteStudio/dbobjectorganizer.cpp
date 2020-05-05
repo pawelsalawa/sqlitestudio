@@ -4,7 +4,6 @@
 #include "datatype.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
-#include "dbversionconverter.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -30,12 +29,10 @@ DbObjectOrganizer::~DbObjectOrganizer()
 {
     safe_delete(srcResolver);
     safe_delete(dstResolver);
-    safe_delete(versionConverter);
 }
 
 void DbObjectOrganizer::init()
 {
-    versionConverter = new DbVersionConverter();
     connect(this, SIGNAL(preparetionFinished()), this, SLOT(processPreparationFinished()));
 }
 
@@ -102,7 +99,6 @@ void DbObjectOrganizer::reset()
     referencedTables.clear();
     diffListToConfirm.clear();
     errorsToConfirm.clear();
-    binaryColumns.clear();
     safe_delete(srcResolver);
     safe_delete(dstResolver);
     interrupted = false;
@@ -155,7 +151,6 @@ void DbObjectOrganizer::processPreparation()
         {
             case SchemaResolver::TABLE:
                 srcTables << srcName;
-                findBinaryColumns(srcName, allParsedObjects);
                 collectReferencedTables(srcName, allParsedObjects);
                 collectReferencedIndexes(srcName);
                 collectReferencedTriggersForTable(srcName);
@@ -182,8 +177,6 @@ void DbObjectOrganizer::processPreparation()
         collectReferencedIndexes(srcTable);
         collectReferencedTriggersForTable(srcTable);
     }
-
-    collectDiffs(details);
 
     emit preparetionFinished();
 }
@@ -396,7 +389,6 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
         ddl = srcResolver->getObjectDdl(table, SchemaResolver::TABLE);
     }
 
-    ddl = convertDdlToDstVersion(ddl);
     if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
@@ -439,9 +431,8 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 {
     QStringList srcColumns = srcResolver->getTableColumns(srcTable);
-    QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
+    QString wrappedSrcTable = wrapObjIfNeeded(srcTable);
     SqlQueryPtr results = srcDb->prepare("SELECT * FROM " + wrappedSrcTable);
-    setupSqlite2Helper(results, table, srcColumns);
     if (!results->execute())
     {
         notifyError(tr("Error while copying data for table %1: %2").arg(table).arg(results->getErrorText()));
@@ -452,7 +443,7 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
     for (int i = 0, total = srcColumns.size(); i < total; ++i)
         argPlaceholderList << "?";
 
-    QString wrappedDstTable = wrapObjIfNeeded(table, dstDb->getDialect());
+    QString wrappedDstTable = wrapObjIfNeeded(table);
     QString sql = "INSERT INTO " + wrappedDstTable + " VALUES (" + argPlaceholderList.join(", ") + ")";
     SqlQueryPtr insertQuery = dstDb->prepare(sql);
 
@@ -488,8 +479,8 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 
 bool DbObjectOrganizer::copyDataUsingAttach(const QString& table)
 {
-    QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
-    QString wrappedDstTable = wrapObjIfNeeded(table, srcDb->getDialect());
+    QString wrappedSrcTable = wrapObjIfNeeded(srcTable);
+    QString wrappedDstTable = wrapObjIfNeeded(table);
     SqlQueryPtr results = srcDb->exec("INSERT INTO " + attachName + "." + wrappedDstTable + " SELECT * FROM " + wrappedSrcTable);
     if (results->isError())
     {
@@ -497,23 +488,6 @@ bool DbObjectOrganizer::copyDataUsingAttach(const QString& table)
         return false;
     }
     return true;
-}
-
-void DbObjectOrganizer::setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames)
-{
-    Sqlite2ColumnDataTypeHelper* sqlite2Helper = dynamic_cast<Sqlite2ColumnDataTypeHelper*>(query.data());
-    if (sqlite2Helper && binaryColumns.contains(table))
-    {
-        int i = 0;
-        QStringList binCols = binaryColumns[table];
-        for (const QString& colName : colNames)
-        {
-            if (binCols.contains(colName))
-                sqlite2Helper->setBinaryType(i);
-
-            i++;
-        }
-    }
 }
 
 void DbObjectOrganizer::dropTable(const QString& table)
@@ -528,7 +502,7 @@ void DbObjectOrganizer::dropView(const QString& view)
 
 void DbObjectOrganizer::dropObject(const QString& name, const QString& type)
 {
-    QString wrappedSrcObj = wrapObjIfNeeded(name, srcDb->getDialect());
+    QString wrappedSrcObj = wrapObjIfNeeded(name);
     SqlQueryPtr results = srcDb->exec("DROP " + type + " " + wrappedSrcObj);
     if (results->isError())
     {
@@ -555,29 +529,28 @@ bool DbObjectOrganizer::copyTriggerToDb(const QString& trigger)
 bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage)
 {
     QString ddl = srcResolver->getObjectDdl(name, SchemaResolver::ANY);
-    QString convertedDdl = convertDdlToDstVersion(ddl);
-    if (convertedDdl.trimmed() == ";") // empty query, result of ignored errors in UI
+    if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
     SqlQueryPtr result;
 
     if (!attachName.isNull())
     {
-        convertedDdl = prefixSimpleObjectWithAttachName(name, convertedDdl);
-        if (convertedDdl.isNull())
+        ddl = prefixSimpleObjectWithAttachName(name, ddl);
+        if (ddl.isNull())
             return false;
 
-        result = srcDb->exec(convertedDdl);
+        result = srcDb->exec(ddl);
     }
     else
     {
-        result = dstDb->exec(convertedDdl);
+        result = dstDb->exec(ddl);
     }
 
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
-        qDebug() << "DDL that caused error in DbObjectOrganizer::copySimpleObjectToDb():" << ddl << "\nAfter converting:" << convertedDdl;
+        qDebug() << "DDL that caused error in DbObjectOrganizer::copySimpleObjectToDb():" << ddl;
         return false;
     }
 
@@ -592,45 +565,6 @@ QSet<QString> DbObjectOrganizer::resolveReferencedTables(const QString& table, c
 
     tables.remove(table); // if it appeared somewhere in the references - we still don't need it here, it's the table we asked by in the first place
     return tables;
-}
-
-void DbObjectOrganizer::collectDiffs(const StrHash<SchemaResolver::ObjectDetails>& details)
-{
-    if (srcDb->getVersion() == dstDb->getVersion())
-        return;
-
-
-    int dstVersion = dstDb->getVersion();
-    QSet<QString> names = srcTables + srcViews + referencedTables + srcIndexes + srcTriggers;
-    for (const QString& name : names)
-    {
-        if (!details.contains(name))
-        {
-            qCritical() << "Object named" << name << "not found in details when trying to prepare Diff for copying or moving object.";
-            continue;
-        }
-
-        versionConverter->reset();
-        if (dstVersion == 3)
-            versionConverter->convert2To3(details[name].ddl);
-        else
-            versionConverter->convert3To2(details[name].ddl);
-
-        diffListToConfirm += versionConverter->getDiffList();
-        if (!versionConverter->getErrors().isEmpty())
-            errorsToConfirm[name] = versionConverter->getErrors();
-    }
-}
-
-QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
-{
-    if (srcDb->getVersion() == dstDb->getVersion())
-        return ddl;
-
-    if (dstDb->getVersion() == 3)
-        return versionConverter->convert2To3(ddl);
-    else
-        return versionConverter->convert3To2(ddl);
 }
 
 void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects)
@@ -667,37 +601,8 @@ void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
     srcTriggers += srcResolver->getTriggersForView(view).toSet();
 }
 
-void DbObjectOrganizer::findBinaryColumns(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects)
-{
-    if (!allParsedObjects.contains(table))
-    {
-        qWarning() << "Parsed objects don't have table" << table << "in DbObjectOrganizer::findBinaryColumns()";
-        return;
-    }
-
-    SqliteQueryPtr query = allParsedObjects[table];
-    SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
-    if (!createTable)
-    {
-        qWarning() << "Not CreateTable in DbObjectOrganizer::findBinaryColumns()";
-        return;
-    }
-
-    for (SqliteCreateTable::Column* column : createTable->columns)
-    {
-        if (!column->type)
-            continue;
-
-        if (DataType::isBinary(column->type->name))
-            binaryColumns[table] << column->name;
-    }
-}
-
 bool DbObjectOrganizer::setFkEnabled(bool enabled)
 {
-    if (dstDb->getVersion() == 2)
-        return true;
-
     SqlQueryPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
     if (result->isError())
     {
@@ -766,7 +671,7 @@ bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& table
 
 QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl)
 {
-    Parser parser(srcDb->getDialect());
+    Parser parser;
     if (!parser.parse(ddl))
     {
         qDebug() << "Parsing error while copying or moving object:" << objName << ", details:" << parser.getErrorString();

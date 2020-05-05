@@ -219,10 +219,10 @@ TokenList SqliteCreateTable::rebuildTokensFromContents()
         builder.withSpace().withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS");
 
     builder.withSpace();
-    if (dialect == Dialect::Sqlite3 && !database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+    if (!database.isNull())
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(table, dialect);
+    builder.withOther(table);
 
     if (select)
         builder.withSpace().withKeyword("AS").withSpace().withStatement(select);
@@ -561,7 +561,7 @@ TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents()
     StatementTokenBuilder builder;
 
     if (!name.isNull())
-        builder.withKeyword("CONSTRAINT").withSpace().withOther(name, dialect).withSpace();
+        builder.withKeyword("CONSTRAINT").withSpace().withOther(name).withSpace();
 
     switch (type)
     {
@@ -707,7 +707,7 @@ TokenList SqliteCreateTable::Column::getColumnTokensInStatement()
 TokenList SqliteCreateTable::Column::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-    builder.withOther(name, dialect).withStatement(type).withStatementList(constraints, "");
+    builder.withOther(name).withStatement(type).withStatementList(constraints, "");
     return builder.build();
 }
 
@@ -715,7 +715,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
     if (!name.isNull())
-        builder.withKeyword("CONSTRAINT").withSpace().withOther(name, dialect).withSpace();
+        builder.withKeyword("CONSTRAINT").withSpace().withOther(name).withSpace();
 
     switch (type)
     {
@@ -746,7 +746,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
         {
             builder.withKeyword("DEFAULT").withSpace();
             if (!id.isNull())
-                builder.withOther(id, dialect);
+                builder.withOther(id);
             else if (!ctime.isNull())
                 builder.withKeyword(ctime.toUpper());
             else if (expr)
@@ -760,7 +760,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
         }
         case SqliteCreateTable::Column::Constraint::COLLATE:
         {
-            builder.withKeyword("COLLATE").withSpace().withOther(collationName, dialect);
+            builder.withKeyword("COLLATE").withSpace().withOther(collationName);
             break;
         }
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:

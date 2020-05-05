@@ -9,12 +9,11 @@
 DbAttacherImpl::DbAttacherImpl(Db* db)
 {
     this->db = db;
-    dialect = db->getDialect();
 }
 
 bool DbAttacherImpl::attachDatabases(const QString& query)
 {
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(query))
         return false;
 
@@ -89,7 +88,7 @@ QHash<QString, TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbToken
     QString strippedName;
     for (TokenPtr token : dbTokens)
     {
-        strippedName = stripObjName(token->value, dialect);
+        strippedName = stripObjName(token->value);
         if (!nameToDbMap.contains(strippedName, Qt::CaseInsensitive))
             continue;
 
@@ -129,7 +128,7 @@ QHash<TokenPtr, TokenPtr> DbAttacherImpl::getTokenMapping(const TokenList& dbTok
     TokenPtr dstToken;
     for (TokenPtr srcToken : dbTokens)
     {
-        strippedName = stripObjName(srcToken->value, dialect);
+        strippedName = stripObjName(srcToken->value);
         if (strippedName.compare("main", Qt::CaseInsensitive) == 0 ||
                 strippedName.compare("temp", Qt::CaseInsensitive) == 0)
             continue;

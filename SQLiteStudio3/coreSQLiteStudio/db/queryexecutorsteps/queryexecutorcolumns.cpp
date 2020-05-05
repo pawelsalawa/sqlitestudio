@@ -139,9 +139,9 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         colString = col.alias;
 
     if (!resultColumn->expression)
-        colString = wrapObjIfNeeded(colString, dialect);
+        colString = wrapObjIfNeeded(colString);
 
-    Parser parser(dialect);
+    Parser parser;
     SqliteExpr* expr = parser.parseExpr(colString);
     if (!expr)
     {
@@ -243,7 +243,7 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
                 colName = colNameTpl.arg(resCol->column, QString::number(i));
 
             columnNamesUsed << colName;
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(colName, dialect));
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(colName));
             outerColumns << TokenPtr::create(Token::SPACE, " ");
             outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
             outerColumns << TokenPtr::create(Token::SPACE, " ");

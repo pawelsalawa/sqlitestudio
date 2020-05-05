@@ -20,7 +20,7 @@ ExpiringCache<SchemaResolver::ObjectCacheKey,QVariant> SchemaResolver::cache;
 SchemaResolver::SchemaResolver(Db *db)
     : db(db)
 {
-    parser = new Parser(db->getDialect());
+    parser = new Parser();
 }
 
 SchemaResolver::~SchemaResolver()
@@ -106,7 +106,7 @@ bool SchemaResolver::isFilteredOut(const QString& value, const QString& type)
         if (type == "table" && isSystemTable(value))
             return true;
 
-        if (type == "index" && isSystemIndex(value, db->getDialect()))
+        if (type == "index" && isSystemIndex(value))
             return true;
     }
 
@@ -245,13 +245,12 @@ QList<SelectResolver::Column> SchemaResolver::getViewColumnObjects(const QString
 
 SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &database, const QString &table)
 {
-    Dialect dialect = db->getDialect();
-    QString strippedName = stripObjName(table, dialect);
-    QString dbName = getPrefixDb(database, dialect);
+    QString strippedName = stripObjName(table);
+    QString dbName = getPrefixDb(database);
 
     // Create temp table to see columns.
     QString newTable = db->getUniqueNewObjectName(strippedName);
-    QString origTable = wrapObjIfNeeded(strippedName, dialect);
+    QString origTable = wrapObjIfNeeded(strippedName);
     SqlQueryPtr tempTableRes = db->exec(QString("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;").arg(newTable, dbName, origTable), dbFlags);
     if (tempTableRes->isError())
         qWarning() << "Could not create temp table to identify virtual table columns of virtual table " << origTable << ". Error details:" << tempTableRes->getErrorText();
@@ -280,16 +279,15 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     if (name.isNull())
         return QString();
 
-    Dialect dialect = db->getDialect();
     // In case of sqlite_master or sqlite_temp_master we have static definitions
-    QString lowerName = stripObjName(name, dialect).toLower();
+    QString lowerName = stripObjName(name).toLower();
     if (lowerName == "sqlite_master")
         return getSqliteMasterDdl(false);
     else if (lowerName == "sqlite_temp_master")
         return getSqliteMasterDdl(true);
 
     // Prepare db prefix.
-    QString dbName = getPrefixDb(database, dialect);
+    QString dbName = getPrefixDb(database);
 
     // Standalone or temp table?
     QString targetTable = "sqlite_master";
@@ -397,7 +395,7 @@ QString SchemaResolver::getObjectDdlWithSimpleName(const QString &dbName, const 
 
 QStringList SchemaResolver::getColumnsFromDdlUsingPragma(const QString& ddl)
 {
-    Parser parser(db->getDialect());
+    Parser parser;
     if (!parser.parse(ddl) || parser.getQueries().isEmpty())
     {
         qWarning() << "Could not parse DDL for determinating columns using PRAGMA. The DDL was:\n" << ddl;
@@ -418,7 +416,7 @@ QStringList SchemaResolver::getColumnsFromDdlUsingPragma(const QString& ddl)
 QStringList SchemaResolver::getColumnsUsingPragma(const QString& tableOrView)
 {
     static_qstring(query, "PRAGMA table_info(%1)");
-    SqlQueryPtr results = db->exec(query.arg(wrapObjIfNeeded(tableOrView, db->getDialect())));
+    SqlQueryPtr results = db->exec(query.arg(wrapObjIfNeeded(tableOrView)));
     if (results->isError())
     {
         qWarning() << "Could not get column list using PRAGMA for table or view:" << tableOrView << ", error was:" << results->getErrorText();
@@ -453,7 +451,7 @@ QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateTable* createTable
     QStringList columns = getColumnsUsingPragma(name);
 
     static_qstring(dropSql, "DROP TABLE %1");
-    db->exec(dropSql.arg(wrapObjIfNeeded(name, db->getDialect())));
+    db->exec(dropSql.arg(wrapObjIfNeeded(name)));
 
     return columns;
 }
@@ -479,7 +477,7 @@ QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateView* createView)
     QStringList columns = getColumnsUsingPragma(name);
 
     static_qstring(dropSql, "DROP VIEW %1");
-    db->exec(dropSql.arg(wrapObjIfNeeded(name, db->getDialect())));
+    db->exec(dropSql.arg(wrapObjIfNeeded(name)));
 
     return columns;
 }
@@ -586,7 +584,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
         return cache.object(key, true)->toStringList();
 
     QStringList resList;
-    QString dbName = getPrefixDb(database, db->getDialect());
+    QString dbName = getPrefixDb(database);
 
     SqlQueryPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type}, dbFlags);
 
@@ -617,7 +615,7 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
         return cache.object(key, true)->toStringList();
 
     QStringList resList;
-    QString dbName = getPrefixDb(database, db->getDialect());
+    QString dbName = getPrefixDb(database);
 
     SqlQueryPtr results = db->exec(QString("SELECT name, type FROM %1.sqlite_master;").arg(dbName), dbFlags);
 
@@ -661,10 +659,6 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& table)
 
 QStringList SchemaResolver::getFkReferencingTables(const QString& database, const QString& table)
 {
-    Dialect dialect = db->getDialect();
-    if (dialect == Dialect::Sqlite2)
-        return QStringList();
-
     // Get all tables
     StrHash<SqliteCreateTablePtr> parsedTables = getAllParsedTables(database);
 
@@ -793,7 +787,7 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     }
     else
     {
-        SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database, db->getDialect())), dbFlags);
+        SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database)), dbFlags);
         if (results->isError())
         {
             qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
@@ -989,11 +983,10 @@ QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString&
 
 void SchemaResolver::filterSystemIndexes(QStringList& indexes)
 {
-    Dialect dialect = db->getDialect();
     QMutableListIterator<QString> it(indexes);
     while (it.hasNext())
     {
-        if (isSystemIndex(it.next(), dialect))
+        if (isSystemIndex(it.next()))
             it.remove();
     }
 }
@@ -1075,9 +1068,6 @@ QString SchemaResolver::getSqliteMasterDdl(bool temp)
 QStringList SchemaResolver::getCollations()
 {
     QStringList list;
-    if (db->getDialect() != Dialect::Sqlite3)
-        return list;
-
     SqlQueryPtr results = db->exec("PRAGMA collation_list", dbFlags);
     if (results->isError())
     {

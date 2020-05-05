@@ -4,7 +4,6 @@
 #include "expectedtoken.h"
 #include "schemaresolver.h"
 #include "selectresolver.h"
-#include "dialect.h"
 #include "completioncomparer.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/token.h"
@@ -103,7 +102,7 @@ class API_EXPORT CompletionHelper : public QObject
         QList<ExpectedTokenPtr> getColumns(const QString& prefixDb, const QString& prefixTable);
         QList<ExpectedTokenPtr> getFavoredColumns(const QList<ExpectedTokenPtr>& resultsSoFar);
 
-        QList<ExpectedTokenPtr> getPragmas(Dialect dialect);
+        QList<ExpectedTokenPtr> getPragmas();
         QList<ExpectedTokenPtr> getFunctions(Db* db);
         QList<ExpectedTokenPtr> getCollations();
         TokenPtr getPreviousDbOrTable(const TokenList& parsedTokens);

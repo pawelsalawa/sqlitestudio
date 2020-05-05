@@ -304,7 +304,7 @@ class API_EXPORT SqlQuery
 class API_EXPORT RowIdConditionBuilder
 {
     public:
-        void setRowId(const RowId& rowId, Dialect dialect);
+        void setRowId(const RowId& rowId);
         const QHash<QString,QVariant>& getQueryArgs();
         QString build();
 

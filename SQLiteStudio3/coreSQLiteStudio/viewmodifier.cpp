@@ -14,12 +14,11 @@ ViewModifier::ViewModifier(Db* db, const QString& view) :
 ViewModifier::ViewModifier(Db* db, const QString& database, const QString& view) :
     db(db), database(database), view(view)
 {
-    dialect = db->getDialect();
 }
 
 void ViewModifier::alterView(const QString& newView)
 {
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(newView) || parser.getQueries().size() == 0)
     {
         errors << QObject::tr("Could not parse DDL of the view to be created. Details: %1").arg(parser.getErrorString());
@@ -42,7 +41,7 @@ void ViewModifier::alterView(SqliteCreateViewPtr newView)
 {
     createView = newView;
 
-    addMandatorySql(QString("DROP VIEW %1").arg(wrapObjIfNeeded(view, dialect)));
+    addMandatorySql(QString("DROP VIEW %1").arg(wrapObjIfNeeded(view)));
     addMandatorySql(newView->detokenize());
 
     collectNewColumns();
@@ -57,7 +56,7 @@ void ViewModifier::handleTriggers()
     QList<SqliteCreateTriggerPtr> triggers = resolver.getParsedTriggersForView(view, true);
     for (SqliteCreateTriggerPtr trigger : triggers)
     {
-        addOptionalSql(QString("DROP TRIGGER %1").arg(wrapObjIfNeeded(trigger->trigger, dialect)));
+        addOptionalSql(QString("DROP TRIGGER %1").arg(wrapObjIfNeeded(trigger->trigger)));
 
         if (!handleNewColumns(trigger))
             continue;

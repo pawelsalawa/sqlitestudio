@@ -424,17 +424,12 @@ void EditorWindow::setupDefShortcuts()
 
 void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
 {
-    Dialect dialect = Dialect::Sqlite3;
-    Db* db = getCurrentDb();
-    if (db && db->isValid())
-        dialect = db->getDialect();
-
     QTextCursor cursor = ui->sqlEdit->textCursor();
     int pos = cursor.position();
     int queryStartPos;
     QString contents = ui->sqlEdit->toPlainText();
     QString query = getQueryWithPosition(contents, pos, &queryStartPos);
-    TokenList tokens = Lexer::tokenize(query, dialect);
+    TokenList tokens = Lexer::tokenize(query);
     tokens.trim();
     tokens.trimRight(Token::OPERATOR, ";");
 
@@ -445,7 +440,7 @@ void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
         if (pos > -1)
         {
             query = getQueryWithPosition(contents, pos, &queryStartPos);
-            tokens = Lexer::tokenize(query, dialect);
+            tokens = Lexer::tokenize(query);
             tokens.trim();
             tokens.trimRight(Token::OPERATOR, ";");
         }
@@ -504,14 +499,8 @@ void EditorWindow::explainQuery()
 
 bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& queryParams)
 {
-    // Determin dialect
-    Dialect dialect = Dialect::Sqlite3;
-    Db* db = getCurrentDb();
-    if (db && db->isValid())
-        dialect = db->getDialect();
-
     // Get all bind parameters from the query
-    TokenList tokens = Lexer::tokenize(sql, dialect);
+    TokenList tokens = Lexer::tokenize(sql);
     TokenList bindTokens = tokens.filter(Token::BIND_PARAM);
 
     // No bind tokens? Return fast.
@@ -730,7 +719,7 @@ void EditorWindow::exportResults()
     }
 
     QString query = lastSuccessfulQuery.isEmpty() ?  getQueryToExecute() : lastSuccessfulQuery;
-    QStringList queries = splitQueries(query, getCurrentDb()->getDialect(), false, true);
+    QStringList queries = splitQueries(query, false, true);
     if (queries.size() == 0)
     {
         qWarning() << "No queries after split in EditorWindow::exportResults()";

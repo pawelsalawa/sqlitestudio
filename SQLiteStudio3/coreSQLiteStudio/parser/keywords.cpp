@@ -1,24 +1,13 @@
 #include "keywords.h"
 #include "sqlite3_parse.h"
-#include "sqlite2_parse.h"
 #include <QDebug>
 #include <QList>
 
-QHash<QString,int> keywords2;
 QHash<QString,int> keywords3;
 QSet<QString> rowIdKeywords;
 QStringList joinKeywords;
 QStringList fkMatchKeywords;
 QStringList conflictAlgoKeywords;
-
-int getKeywordId2(const QString& str)
-{
-    QString upStr = str.toUpper();
-    if (keywords2.contains(upStr))
-        return keywords2[upStr];
-    else
-        return TK2_ID;
-}
 
 int getKeywordId3(const QString& str)
 {
@@ -32,11 +21,6 @@ int getKeywordId3(const QString& str)
 bool isRowIdKeyword(const QString& str)
 {
     return rowIdKeywords.contains(str.toUpper());
-}
-
-const QHash<QString,int>& getKeywords2()
-{
-    return keywords2;
 }
 
 const QHash<QString,int>& getKeywords3()
@@ -174,108 +158,6 @@ void initKeywords()
     keywords3["WITH"] = TK3_WITH;
     keywords3["RECURSIVE"] = TK3_RECURSIVE;
 
-    // SQLite 2
-    keywords2["ABORT"] = TK2_ABORT;
-    keywords2["AFTER"] = TK2_AFTER;
-    keywords2["ALL"] = TK2_ALL;
-    keywords2["AND"] = TK2_AND;
-    keywords2["AS"] = TK2_AS;
-    keywords2["ASC"] = TK2_ASC;
-    keywords2["ATTACH"] = TK2_ATTACH;
-    keywords2["BEFORE"] = TK2_BEFORE;
-    keywords2["BEGIN"] = TK2_BEGIN;
-    keywords2["BETWEEN"] = TK2_BETWEEN;
-    keywords2["BY"] = TK2_BY;
-    keywords2["CASCADE"] = TK2_CASCADE;
-    keywords2["CASE"] = TK2_CASE;
-    keywords2["CHECK"] = TK2_CHECK;
-    keywords2["CLUSTER"] = TK2_CLUSTER;
-    keywords2["COLLATE"] = TK2_COLLATE;
-    keywords2["COMMIT"] = TK2_COMMIT;
-    keywords2["CONFLICT"] = TK2_CONFLICT;
-    keywords2["CONSTRAINT"] = TK2_CONSTRAINT;
-    keywords2["COPY"] = TK2_COPY;
-    keywords2["CREATE"] = TK2_CREATE;
-    keywords2["CROSS"] = TK2_JOIN_KW;
-    keywords2["DATABASE"] = TK2_DATABASE;
-    keywords2["DEFAULT"] = TK2_DEFAULT;
-    keywords2["DEFERRED"] = TK2_DEFERRED;
-    keywords2["DEFERRABLE"] = TK2_DEFERRABLE;
-    keywords2["DELETE"] = TK2_DELETE;
-    keywords2["DELIMITERS"] = TK2_DELIMITERS;
-    keywords2["DESC"] = TK2_DESC;
-    keywords2["DETACH"] = TK2_DETACH;
-    keywords2["DISTINCT"] = TK2_DISTINCT;
-    keywords2["DROP"] = TK2_DROP;
-    keywords2["END"] = TK2_END;
-    keywords2["EACH"] = TK2_EACH;
-    keywords2["ELSE"] = TK2_ELSE;
-    keywords2["EXCEPT"] = TK2_EXCEPT;
-    keywords2["EXPLAIN"] = TK2_EXPLAIN;
-    keywords2["FAIL"] = TK2_FAIL;
-    keywords2["FOR"] = TK2_FOR;
-    keywords2["FOREIGN"] = TK2_FOREIGN;
-    keywords2["FROM"] = TK2_FROM;
-    keywords2["FULL"] = TK2_JOIN_KW;
-    keywords2["GLOB"] = TK2_GLOB;
-    keywords2["GROUP"] = TK2_GROUP;
-    keywords2["HAVING"] = TK2_HAVING;
-    keywords2["IGNORE"] = TK2_IGNORE;
-    keywords2["IMMEDIATE"] = TK2_IMMEDIATE;
-    keywords2["IN"] = TK2_IN;
-    keywords2["INDEX"] = TK2_INDEX;
-    keywords2["INITIALLY"] = TK2_INITIALLY;
-    keywords2["INNER"] = TK2_JOIN_KW;
-    keywords2["INSERT"] = TK2_INSERT;
-    keywords2["INSTEAD"] = TK2_INSTEAD;
-    keywords2["INTERSECT"] = TK2_INTERSECT;
-    keywords2["INTO"] = TK2_INTO;
-    keywords2["IS"] = TK2_IS;
-    keywords2["ISNULL"] = TK2_ISNULL;
-    keywords2["JOIN"] = TK2_JOIN;
-    keywords2["KEY"] = TK2_KEY;
-    keywords2["LEFT"] = TK2_JOIN_KW;
-    keywords2["LIKE"] = TK2_LIKE;
-    keywords2["LIMIT"] = TK2_LIMIT;
-    keywords2["MATCH"] = TK2_MATCH;
-    keywords2["NATURAL"] = TK2_JOIN_KW;
-    keywords2["NOT"] = TK2_NOT;
-    keywords2["NOTNULL"] = TK2_NOTNULL;
-    keywords2["NULL"] = TK2_NULL;
-    keywords2["OF"] = TK2_OF;
-    keywords2["OFFSET"] = TK2_OFFSET;
-    keywords2["ON"] = TK2_ON;
-    keywords2["OR"] = TK2_OR;
-    keywords2["ORDER"] = TK2_ORDER;
-    keywords2["OUTER"] = TK2_JOIN_KW;
-    keywords2["PRAGMA"] = TK2_PRAGMA;
-    keywords2["PRIMARY"] = TK2_PRIMARY;
-    keywords2["RAISE"] = TK2_RAISE;
-    keywords2["REFERENCES"] = TK2_REFERENCES;
-    keywords2["REPLACE"] = TK2_REPLACE;
-    keywords2["RESTRICT"] = TK2_RESTRICT;
-    keywords2["RIGHT"] = TK2_JOIN_KW;
-    keywords2["ROLLBACK"] = TK2_ROLLBACK;
-    keywords2["ROW"] = TK2_ROW;
-    keywords2["SELECT"] = TK2_SELECT;
-    keywords2["SET"] = TK2_SET;
-    keywords2["STATEMENT"] = TK2_STATEMENT;
-    keywords2["TABLE"] = TK2_TABLE;
-    keywords2["TEMP"] = TK2_TEMP;
-    keywords2["TEMPORARY"] = TK2_TEMP;
-    keywords2["THEN"] = TK2_THEN;
-    keywords2["TRANSACTION"] = TK2_TRANSACTION;
-    keywords2["TRIGGER"] = TK2_TRIGGER;
-    keywords2["UNION"] = TK2_UNION;
-    keywords2["UNIQUE"] = TK2_UNIQUE;
-    keywords2["UPDATE"] = TK2_UPDATE;
-    keywords2["USING"] = TK2_USING;
-    keywords2["VACUUM"] = TK2_VACUUM;
-    keywords2["VALUES"] = TK2_VALUES;
-    keywords2["VIEW"] = TK2_VIEW;
-    keywords2["WHEN"] = TK2_WHEN;
-    keywords2["WHERE"] = TK2_WHERE;
-
     rowIdKeywords << "_ROWID_"
                   << "ROWID"
                   << "OID";
@@ -307,17 +189,9 @@ bool isFkMatchKeyword(const QString &str)
     return fkMatchKeywords.contains(str);
 }
 
-
-bool isKeyword(const QString& str, Dialect dialect)
+bool isKeyword(const QString& str)
 {
-    switch (dialect)
-    {
-        case Dialect::Sqlite3:
-            return keywords3.contains(str.toUpper());
-        case Dialect::Sqlite2:
-            return keywords2.contains(str.toUpper());
-    }
-    return false;
+    return keywords3.contains(str.toUpper());
 }
 
 QStringList getConflictAlgorithms()

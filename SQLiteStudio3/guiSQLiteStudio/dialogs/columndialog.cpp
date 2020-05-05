@@ -296,15 +296,7 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
     }
 
     QString errMsg = tr("Correct the constraint's configuration.");
-    if (db->getDialect() == Dialect::Sqlite2 && isUnofficialSqlite2Constraint(constraint))
-    {
-        QString tooltip = tr("This constraint is not officially supported by SQLite 2,\nbut it's okay to use it.");
-        setValidStateWihtTooltip(toolButton, tooltip, result, errMsg);
-    }
-    else
-    {
-        setValidState(toolButton, result, errMsg);
-    }
+    setValidState(toolButton, result, errMsg);
 
     if (!result)
     {
@@ -363,26 +355,6 @@ QToolButton* ColumnDialog::getToolButtonForConstraint(SqliteCreateTable::Column:
             break;
     }
     return nullptr;
-}
-
-bool ColumnDialog::isUnofficialSqlite2Constraint(SqliteCreateTable::Column::Constraint* constraint)
-{
-    switch (constraint->type)
-    {
-        case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
-        case SqliteCreateTable::Column::Constraint::COLLATE:
-            return true;
-        case SqliteCreateTable::Column::Constraint::PRIMARY_KEY:
-        case SqliteCreateTable::Column::Constraint::NOT_NULL:
-        case SqliteCreateTable::Column::Constraint::UNIQUE:
-        case SqliteCreateTable::Column::Constraint::CHECK:
-        case SqliteCreateTable::Column::Constraint::DEFAULT:
-        case SqliteCreateTable::Column::Constraint::NULL_:
-        case SqliteCreateTable::Column::Constraint::NAME_ONLY:
-        case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
-            break;
-    }
-    return false;
 }
 
 void ColumnDialog::updateTypeValidations()

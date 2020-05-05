@@ -19,10 +19,9 @@ class API_EXPORT SqliteBeginTrans : public SqliteQuery
         SqliteBeginTrans();
         SqliteBeginTrans(const SqliteBeginTrans& other);
         SqliteBeginTrans(Type type, bool transactionKw, const QString& name);
-        SqliteBeginTrans(bool transactionKw, const QString& name, SqliteConflictAlgo onConflict);
+        SqliteBeginTrans(bool transactionKw, const QString& name);
         SqliteStatement* clone();
 
-        SqliteConflictAlgo onConflict = SqliteConflictAlgo::null; // sqlite2 only
         QString name; // in docs sqlite2 only, but in gramma it's also sqlite3
         bool transactionKw = false;
         Type type = Type::null; // sqlite3 only

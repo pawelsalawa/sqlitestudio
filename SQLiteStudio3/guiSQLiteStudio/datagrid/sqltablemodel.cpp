@@ -125,11 +125,9 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     if (rowId.isEmpty())
         return false;
 
-    Dialect dialect = db->getDialect();
-
     CommitDeleteQueryBuilder queryBuilder;
-    queryBuilder.setTable(wrapObjIfNeeded(table, dialect));
-    queryBuilder.setRowId(rowId, dialect);
+    queryBuilder.setTable(wrapObjIfNeeded(table));
+    queryBuilder.setRowId(rowId);
 
     QString sql = queryBuilder.build();
     QHash<QString, QVariant> args = queryBuilder.getQueryArgs();
@@ -157,10 +155,9 @@ void SqlTableModel::applyFilter(const QString& value, FilterValueProcessor value
         return;
     }
 
-    Dialect dialect = db->getDialect();
     QStringList conditions;
     for (SqlQueryModelColumnPtr column : columns)
-        conditions << wrapObjIfNeeded(column->column, dialect)+" "+valueProc(value);
+        conditions << wrapObjIfNeeded(column->column)+" "+valueProc(value);
 
     setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
     executeQuery();
@@ -182,14 +179,13 @@ void SqlTableModel::applyFilter(const QStringList& values, FilterValueProcessor 
         return;
     }
 
-    Dialect dialect = db->getDialect();
     QStringList conditions;
     for (int i = 0, total = columns.size(); i < total; ++i)
     {
         if (values[i].isEmpty())
             continue;
 
-        conditions << wrapObjIfNeeded(columns[i]->column, dialect)+" "+valueProc(values[i]);
+        conditions << wrapObjIfNeeded(columns[i]->column)+" "+valueProc(values[i]);
     }
 
     setQuery(sql.arg(getDataSource(), conditions.join(" AND ")));
@@ -286,12 +282,10 @@ QString SqlTableModel::generateDeleteQueryForItems(const QList<SqlQueryItem*>& i
 
 void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId)
 {
-    Dialect dialect = db->getDialect();
-
     // Update cells with data just like it was entered. Only DEFAULT and PRIMARY KEY AUTOINCREMENT will have special values.
     // If the DEFAULT is not an explicit literal, but an expression and db is SQLite3, we have to read the inserted value from DB.
     QHash<SqlQueryModelColumnPtr,SqlQueryItem*> columnsToReadFromDb;
-    Parser parser(dialect);
+    Parser parser;
     SqliteExpr* expr = nullptr;
     QHash<SqlQueryItem*,QVariant> values;
     SqlQueryItem* item = nullptr;
@@ -304,22 +298,19 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
         {
             if (modelColumn->isDefault())
             {
-                if (dialect == Dialect::Sqlite3)
+                expr = parser.parseExpr(modelColumn->getDefaultConstraint()->defaultValue);
+                if (expr && expr->mode != SqliteExpr::Mode::LITERAL_VALUE)
                 {
-                    expr = parser.parseExpr(modelColumn->getDefaultConstraint()->defaultValue);
-                    if (expr && expr->mode != SqliteExpr::Mode::LITERAL_VALUE)
+                    if (isWithOutRowIdTable && rowId.isEmpty())
                     {
-                        if (isWithOutRowIdTable && rowId.isEmpty())
-                        {
-                            qWarning() << "Inserted expression as DEFAULT value for table WITHOUT ROWID and actually no ROWID."
-                                       << "This is currently unsupported to refresh such cell value instantly.";
-                            values[item] = QVariant();
-                        }
-                        else
-                            columnsToReadFromDb[modelColumn] = item;
-
-                        continue;
+                        qWarning() << "Inserted expression as DEFAULT value for table WITHOUT ROWID and actually no ROWID."
+                                   << "This is currently unsupported to refresh such cell value instantly.";
+                        values[item] = QVariant();
                     }
+                    else
+                        columnsToReadFromDb[modelColumn] = item;
+
+                    continue;
                 }
                 values[item] = modelColumn->getDefaultConstraint()->defaultValue;
                 continue;
@@ -342,11 +333,11 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
         // Preparing query
         static_qstring(limitedColTpl, "substr(%1, 1, %2)");
         SelectColumnsQueryBuilder queryBuilder;
-        queryBuilder.setTable(wrapObjIfNeeded(table, dialect));
-        queryBuilder.setRowId(rowId, dialect);
+        queryBuilder.setTable(wrapObjIfNeeded(table));
+        queryBuilder.setRowId(rowId);
         QList<SqlQueryModelColumnPtr> columnKeys = columnsToReadFromDb.keys();
         for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-            queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column, dialect), QString::number(cellDataLengthLimit)));
+            queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column), QString::number(cellDataLengthLimit)));
 
         // Executing query
         SqlQueryPtr defColValues = db->exec(queryBuilder.build(), queryBuilder.getQueryArgs(), Db::Flag::PRELOAD);
@@ -406,27 +397,22 @@ QString SqlTableModel::getDatabasePrefix()
     if (database.isNull())
         return "main.";
 
-    return wrapObjIfNeeded(database, db->getDialect()) + ".";
+    return wrapObjIfNeeded(database) + ".";
 }
 
 QString SqlTableModel::getDataSource()
 {
-    return getDatabasePrefix() + wrapObjIfNeeded(table, db->getDialect());
+    return getDatabasePrefix() + wrapObjIfNeeded(table);
 }
 
 QString SqlTableModel::getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                     QStringList& sqlValues, QList<QVariant>& args)
 {
-    Dialect dialect = db->getDialect();
-
-    QString sql = "INSERT INTO "+wrapObjIfNeeded(table, dialect);
+    QString sql = "INSERT INTO "+wrapObjIfNeeded(table);
     if (colNameList.size() == 0)
     {
         // There are all null values passed to the query. We need to use Sqlite3 special syntax, or find at least one default value
-        if (dialect == Dialect::Sqlite2)
-            updateColumnsAndValuesWithDefaultValues(modelColumns, colNameList, sqlValues, args);
-        else // Sqlite3 has default values syntax for that case
-            sql += " DEFAULT VALUES";
+        sql += " DEFAULT VALUES";
     }
     else
         sql += " ("+colNameList.join(", ")+") VALUES ("+sqlValues.join(", ")+")";
@@ -437,8 +423,6 @@ QString SqlTableModel::getInsertSql(const QList<SqlQueryModelColumnPtr>& modelCo
 void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns,
                                            QStringList& colNameList, QStringList& sqlValues, QList<QVariant>& args)
 {
-    Dialect dialect = db->getDialect();
-
     SqlQueryItem* item = nullptr;
     int i = 0;
     for (SqlQueryModelColumnPtr modelColumn : modelColumns)
@@ -456,7 +440,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
                 continue;
         }
 
-        colNameList << wrapObjIfNeeded(modelColumn->column, dialect);
+        colNameList << wrapObjIfNeeded(modelColumn->column);
         sqlValues << ":arg" + QString::number(i);
         args << item->getFullValue();
     }
@@ -465,14 +449,12 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                                             QStringList& sqlValues, QList<QVariant>& args)
 {
-    Dialect dialect = db->getDialect();
-
     // First try to find the one with DEFAULT value
     for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
         if (modelColumn->isDefault())
         {
-            colNameList << wrapObjIfNeeded(modelColumn->column, dialect);
+            colNameList << wrapObjIfNeeded(modelColumn->column);
             sqlValues << ":defValue";
             args << modelColumn->getDefaultConstraint()->defaultValue;
             return;
@@ -484,15 +466,15 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
     {
         if (modelColumn->isPk() && modelColumn->isAutoIncr())
         {
-            QString colName = wrapObjIfNeeded(modelColumn->column, dialect);
-            QString tableName = wrapObjIfNeeded(table, dialect);
+            QString colName = wrapObjIfNeeded(modelColumn->column);
+            QString tableName = wrapObjIfNeeded(table);
             SqlQueryPtr results = db->exec("SELECT max("+colName+") FROM "+tableName);
             qint64 rowid = 0;
             QVariant cellValue = results->getSingleCell();
             if (!cellValue.isNull())
                 rowid = cellValue.toLongLong();
 
-            colNameList << wrapObjIfNeeded(modelColumn->column, dialect);
+            colNameList << wrapObjIfNeeded(modelColumn->column);
             sqlValues << ":defValue";
             args << rowid;
             return;
@@ -501,7 +483,7 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
 
     // No luck with AUTOINCR either, put NULL and if there's a NOT NULL in any column,
     // user will get the proper error message from Sqlite.
-    colNameList << wrapObjIfNeeded(modelColumns[0]->column, dialect);
+    colNameList << wrapObjIfNeeded(modelColumns[0]->column);
     sqlValues << ":defValue";
     args << QVariant();
 }

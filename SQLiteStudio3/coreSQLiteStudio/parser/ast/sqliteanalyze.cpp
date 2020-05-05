@@ -73,7 +73,7 @@ TokenList SqliteAnalyze::rebuildTokensFromContents()
     builder.withKeyword("ANALYZE").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
     builder.withOther(table).withOperator(";");
     return builder.build();

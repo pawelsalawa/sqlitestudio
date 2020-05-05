@@ -14,9 +14,7 @@
 #include <QDebug>
 
 QStringList sqlite3Pragmas;
-QStringList sqlite2Pragmas;
 QStringList sqlite3Functions;
-QStringList sqlite2Functions;
 
 bool CompletionHelper::enableLemonDebug = false;
 
@@ -51,12 +49,6 @@ void CompletionHelper::init()
                    << "temp_store" << "temp_store_directory" << "user_version"
                    << "wal_autocheckpoint" << "wal_checkpoint" << "writable_schema";
 
-    sqlite2Pragmas << "cache_size" << "count_changes" << "database_list" << "default_cache_size"
-                   << "default_synchronous" << "default_temp_store" << "empty_result_callbacks"
-                   << "foreign_key_list" << "full_column_names" << "index_info" << "index_list"
-                   << "integrity_check" << "parser_trace" << "show_datatypes" << "synchronous"
-                   << "table_info" << "temp_store";
-
     sqlite3Functions << "avg(X)" << "count(X)" << "count(*)" << "group_concat(X)"
                      << "group_concat(X,Y)" << "max(X)" << "min(X)" << "sum(X)" << "total(X)"
                      << "abs(X)" << "changes()" << "char(X1,X2,...,XN)" << "coalesce(X,Y,...)"
@@ -76,16 +68,7 @@ void CompletionHelper::init()
                      << "strftime(format,timestr,mod,mod,...)" << "likelihood(X,Y)"
                      << "likely(X)" << "unlikely(X)";
 
-    sqlite2Functions << "abs(X)" << "coalesce(X,Y,...)" << "glob(X,Y)" << "ifnull(X,Y)"
-                     << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "lower(X)"
-                     << "max(X,Y,...)" << "min(X,Y,...)" << "nullif(X,Y)" << "random(*)"
-                     << "round(X,)" << "round(X,Y)" << "soundex(X)" << "sqlite_version(*)"
-                     << "substr(X,Y,Z)" << "typeof(X)" << "upper(X)" << "avg(X)" << "count(X)"
-                     << "count(*)" << "max(X)" << "min(X)" << "sum(X)";
-
-    sqlite2Pragmas.sort();
     sqlite3Pragmas.sort();
-    sqlite2Functions.sort();
     sqlite3Functions.sort();
 }
 
@@ -126,7 +109,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
     adjustedSql = removeStartedToken(adjustedSql, finalFilter, wrappedFilter);
 
     // Parse SQL up to cursor position, get accepted tokens and tokens that were parsed.
-    Parser parser(db->getDialect());
+    Parser parser;
     TokenList tokens = parser.getNextTokenCandidates(adjustedSql);
     TokenList parsedTokens = parser.getParsedTokens();
 
@@ -239,7 +222,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             break;
         }
         case Token::CTX_PRAGMA:
-            results += getPragmas(db->getDialect());
+            results += getPragmas();
             break;
         case Token::CTX_ERROR_MESSAGE:
             results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Error message"));
@@ -281,17 +264,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
         }
         case Token::CTX_COLLATION:
         {
-            if (db->getDialect() == Dialect::Sqlite2)
-            {
-                // SQLite 2 doesn't really support collation. It has collations
-                // in grammar, but doesn't make use of them. There's no list
-                // of collations to be suggested.
-                results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Collation name"));
-            }
-            else
-            {
-                results += getCollations();
-            }
+            results += getCollations();
             break;
         }
         case Token::CTX_JOIN_OPTS:
@@ -494,15 +467,8 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
         results += getExpectedToken(ExpectedToken::DATABASE, dbName);
     }
 
-    Dialect dialect = db->getDialect();
-
     for (Db* otherDb : DBLIST->getValidDbList())
-    {
-        if (otherDb->getDialect() != dialect)
-            continue;
-
         results += getExpectedToken(ExpectedToken::DATABASE, otherDb->getName());
-    }
 
     return results;
 }
@@ -745,13 +711,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Db* db)
 {
     // TODO to do later - make function completion more verbose,
     // like what are arguments of the function, etc.
-    Dialect dialect = db->getDialect();
-
-    QStringList functions;
-    if (dialect == Dialect::Sqlite2)
-        functions = sqlite2Functions;
-    else
-        functions = sqlite3Functions;
+    QStringList functions = sqlite3Functions;
 
     for (FunctionManager::ScriptFunction* fn : FUNCTIONS->getScriptFunctionsForDatabase(db->getName()))
         functions << fn->toString();
@@ -766,16 +726,10 @@ QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Db* db)
     return expectedTokens;
 }
 
-QList<ExpectedTokenPtr> CompletionHelper::getPragmas(Dialect dialect)
+QList<ExpectedTokenPtr> CompletionHelper::getPragmas()
 {
-    QStringList pragmas;
-    if (dialect == Dialect::Sqlite2)
-        pragmas = sqlite2Pragmas;
-    else
-        pragmas = sqlite3Pragmas;
-
     QList<ExpectedTokenPtr> expectedTokens;
-    for (QString pragma : pragmas)
+    for (QString pragma : sqlite3Pragmas)
         expectedTokens += getExpectedToken(ExpectedToken::PRAGMA, pragma);
 
     return expectedTokens;
@@ -847,7 +801,7 @@ void CompletionHelper::attachDatabases()
 
     QString query = parsedQuery->detokenize();
 
-    Parser parser(db->getDialect());
+    Parser parser;
     if (parser.parse(query, true) && !parser.getQueries().isEmpty())
         parsedQuery = parser.getQueries().first();
 }
@@ -886,7 +840,7 @@ QString CompletionHelper::removeStartedToken(const QString& adjustedSql, QString
 {
     QString result = adjustedSql;
 
-    Lexer lexer(db->getDialect());
+    Lexer lexer;
     TokenList tokens = lexer.tokenize(adjustedSql);
     if (tokens.size() == 0)
         return result;
@@ -898,7 +852,7 @@ QString CompletionHelper::removeStartedToken(const QString& adjustedSql, QString
         result = Lexer::detokenize(tokens.mid(0, tokens.size()-1));
         finalFilter = lastToken->value;
 
-        if (finalFilter.length() > 0 && isWrapperChar(finalFilter[0], db->getDialect()))
+        if (finalFilter.length() > 0 && isWrapperChar(finalFilter[0]))
         {
             finalFilter = finalFilter.mid(1);
             wrappedFilter = true;
@@ -1027,15 +981,13 @@ bool CompletionHelper::isFilterType(Token::Type type)
 
 void CompletionHelper::parseFullSql()
 {
-    Dialect dialect = db->getDialect();
-
     QString sql = fullSql;
 
     // Selecting query at cursor position
     QString query = getQueryWithPosition(sql, cursorPosition);
 
     // Token list of the query. Also useful, not only parsed query.
-    queryTokens = Lexer::tokenize(query, dialect);
+    queryTokens = Lexer::tokenize(query);
     queryTokens.trim();
 
     // Completing query
@@ -1043,7 +995,7 @@ void CompletionHelper::parseFullSql()
         query += ";";
 
     // Parsing query
-    Parser parser(dialect);
+    Parser parser;
     parser.setLemonDebug(enableLemonDebug);
     if (tryToParse(&parser, query))
         return;
@@ -1077,12 +1029,10 @@ void CompletionHelper::sort(QList<ExpectedTokenPtr> &resultsSoFar)
 
 void CompletionHelper::extractPreviousIdTokens(const TokenList &parsedTokens)
 {
-    Dialect dialect = db->getDialect();
-
     // The previous ID token (if any) is being used in
     // getExpectedToken() and it's always the same token,
     // so here we find it just once and reuse it.
-    previousId = stripObjName(getPreviousDbOrTable(parsedTokens), dialect);
+    previousId = stripObjName(getPreviousDbOrTable(parsedTokens));
 
     // In case of column context we need to know if there was
     // up to two ID tokens before. If we had one above,
@@ -1092,7 +1042,7 @@ void CompletionHelper::extractPreviousIdTokens(const TokenList &parsedTokens)
     {
         int idx = parsedTokens.indexOf(previousId);
         TokenList parsedTokensSubSet = parsedTokens.mid(0, idx);
-        twoIdsBack = stripObjName(getPreviousDbOrTable(parsedTokensSubSet), dialect);
+        twoIdsBack = stripObjName(getPreviousDbOrTable(parsedTokensSubSet));
     }
 }
 

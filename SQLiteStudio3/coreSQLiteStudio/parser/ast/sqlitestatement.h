@@ -3,7 +3,6 @@
 
 #include "common/utils.h"
 #include "parser/token.h"
-#include "dialect.h"
 #include <QList>
 #include <QHash>
 #include <QObject>
@@ -50,7 +49,7 @@ typedef QSharedPointer<SqliteStatement> SqliteStatementPtr;
  *
  * There is also SqliteStatement::tokensMap, which is a table mapping grammar rule name
  * into  tokens used to fulfill that rule. To learn possible keys for each SqliteStatement,
- * you have to look into sqlite2.y and sqlite3.y files and see definition of the statement,
+ * you have to look into sqlite3.y file and see definition of the statement,
  * that you're examining SqliteStatement::tokensMap for.
  *
  * @note SqliteStatement::tokensMap is a low level API and it's not very predictible,
@@ -89,7 +88,7 @@ typedef QSharedPointer<SqliteStatement> SqliteStatementPtr;
  * This is how it's usually done:
  * @code
  * // STEP 1
- * Parser parser(db->getDialect());
+ * Parser parser;
  * if (!parser.parse("SELECT column FROM test WHERE value = 5") || parser.getQueries().size() == 0)
  * {
  *     // handle parsing error, or no queries parsed (which is also some kind of error)
@@ -152,7 +151,7 @@ typedef QSharedPointer<SqliteStatement> SqliteStatementPtr;
  *
  * Example:
  * @code
- * Parser parser(db->getDialect());
+ * Parser parser;
  * if (!parser.parse("SELECT column FROM test WHERE value = 5") || parser.getQueries().size() == 0)
  * {
  *     // handle parsing error, or no queries parsed (which is also some kind of error)
@@ -222,9 +221,7 @@ class API_EXPORT SqliteStatement : public QObject
         TokenList getContextTableTokens(bool checkParent = true, bool checkChilds = true);
         TokenList getContextDatabaseTokens(bool checkParent = true, bool checkChilds = true);
         QList<FullObject> getContextFullObjects(bool checkParent = true, bool checkChilds = true);
-        void setSqliteDialect(Dialect dialect);
         void rebuildTokens();
-        void setParent(QObject* parent);
         void attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach);
         SqliteStatementPtr detach();
         void processPostParsing();
@@ -283,8 +280,6 @@ class API_EXPORT SqliteStatement : public QObject
          *   value2 = {list of tokens from second value}
          */
         QHash<QString,TokenList> tokensMap;
-
-        Dialect dialect = Dialect::Sqlite3;
 
     protected:
         QStringList getContextColumns(SqliteStatement* caller, bool checkParent, bool checkChilds);

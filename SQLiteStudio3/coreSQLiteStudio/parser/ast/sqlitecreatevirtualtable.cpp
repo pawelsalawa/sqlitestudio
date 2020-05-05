@@ -97,9 +97,9 @@ TokenList SqliteCreateVirtualTable::rebuildTokensFromContents()
         builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
-    builder.withKeyword("USING").withSpace().withOther(module, dialect);
+    builder.withKeyword("USING").withSpace().withOther(module);
     if (!args.isEmpty())
     {
         builder.withSpace();
@@ -109,7 +109,7 @@ TokenList SqliteCreateVirtualTable::rebuildTokensFromContents()
             if (i > 0)
                 builder.withOperator(",").withSpace();
 
-            builder.withTokens(Lexer::tokenize(arg, Dialect::Sqlite3));
+            builder.withTokens(Lexer::tokenize(arg));
             i++;
         }
     }

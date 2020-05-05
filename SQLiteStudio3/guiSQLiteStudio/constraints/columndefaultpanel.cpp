@@ -152,7 +152,7 @@ void ColumnDefaultPanel::storeExpr(SqliteCreateTable::Column::Constraint* constr
         return;
     }
 
-    Parser parser(db->getDialect());
+    Parser parser;
     SqliteExpr* newExpr = parser.parseExpr(text);
     newExpr->setParent(constraint.data());
     constr->expr = newExpr;
@@ -162,7 +162,7 @@ void ColumnDefaultPanel::storeLiteral(SqliteCreateTable::Column::Constraint* con
 {
     QString text = ui->exprEdit->toPlainText();
 
-    Parser parser(db->getDialect());
+    Parser parser;
     SqliteCreateTablePtr createTable = parser.parse<SqliteCreateTable>("CREATE TABLE tab (col DEFAULT "+text+");");
     if (!createTable || createTable->columns.size() == 0 || createTable->columns.first()->constraints.size() == 0)
     {
@@ -240,7 +240,7 @@ void ColumnDefaultPanel::readConstraint()
     }
     else if (!constr->id.isNull())
     {
-        ui->exprEdit->setPlainText(wrapObjIfNeeded(constr->id, db->getDialect(), true));
+        ui->exprEdit->setPlainText(wrapObjIfNeeded(constr->id, true));
         currentMode = Mode::LITERAL;
     }
     else if (!constr->ctime.isNull())
@@ -265,7 +265,7 @@ void ColumnDefaultPanel::updateVirtualSql()
 {
     static QString sql = QStringLiteral("CREATE TABLE tab (col DEFAULT %1)");
     ui->exprEdit->setDb(db);
-    ui->exprEdit->setVirtualSqlExpression(sql.arg(db->getDialect() == Dialect::Sqlite3 ? "(%1)" : "%1"));
+    ui->exprEdit->setVirtualSqlExpression(sql.arg("(%1)"));
 }
 
 QString ColumnDefaultPanel::getTempTable()

@@ -1,23 +1,12 @@
 #ifndef KEYWORDS_H
 #define KEYWORDS_H
 
-#include "dialect.h"
 #include "coreSQLiteStudio_global.h"
 #include <QString>
 #include <QStringList>
 #include <QHash>
 
 /** @file */
-
-/**
- * @brief Translates keyword into it's Lemon token ID for SQLite 2 dialect.
- * @param str The keyword.
- * @return Lemon generated token ID, or TK2_ID value when the \p str parameter was not recognized as a valid SQLite 2 keyword.
- *
- * This method is used internally by the Lexer.
- * Comparision is done in case insensitive manner.
- */
-API_EXPORT int getKeywordId2(const QString& str);
 
 /**
  * @brief Translates keyword into it's Lemon token ID for SQLite 3 dialect.
@@ -30,14 +19,13 @@ API_EXPORT int getKeywordId2(const QString& str);
 API_EXPORT int getKeywordId3(const QString& str);
 
 /**
- * @brief Tests whether given string represents a keyword in given SQLite dialect.
+ * @brief Tests whether given string represents a keyword in SQLite dialect.
  * @param str String to test.
- * @param dialect SQLite dialect.
  * @return true if the string represents a keyword, or false otherwise.
  *
  * Comparision is done in case insensitive manner.
  */
-API_EXPORT bool isKeyword(const QString& str, Dialect dialect);
+API_EXPORT bool isKeyword(const QString& str);
 
 /**
  * @brief Tests whether given string representing any variation of ROWID.
@@ -48,12 +36,6 @@ API_EXPORT bool isKeyword(const QString& str, Dialect dialect);
  * Comparision is done in case insensitive manner.
  */
 API_EXPORT bool isRowIdKeyword(const QString& str);
-
-/**
- * @brief Provides map of SQLite 2 keywords and their Lemon token IDs.
- * @return Keyword-to-Lemon-ID hash map, keywords are uppercase.
- */
-API_EXPORT const QHash<QString,int>& getKeywords2();
 
 /**
  * @brief Provides map of SQLite 3 keywords and their Lemon token IDs.

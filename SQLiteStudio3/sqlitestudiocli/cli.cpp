@@ -197,12 +197,8 @@ bool CLI::isComplete(const QString& contents) const
     if (contents.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
         return true;
 
-    Dialect dialect = Dialect::Sqlite3;
-    if (getCurrentDb())
-        dialect = getCurrentDb()->getDialect();
-
     bool complete = true;
-    splitQueries(contents, dialect, true, false, &complete);
+    splitQueries(contents, true, false, &complete);
     return complete;
 }
 

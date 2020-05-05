@@ -3,7 +3,6 @@
 
 #include "parser/ast/sqliteselect.h"
 #include "common/bistrhash.h"
-#include "dialect.h"
 #include "expectedtoken.h"
 #include "parser/ast/sqlitewith.h"
 #include <QString>

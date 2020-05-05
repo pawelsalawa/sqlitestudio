@@ -34,7 +34,7 @@ class SqliteExtensionManager;
 
 /**
  * @mainpage
- * SQLiteStudio is SQLite 2 and 3 manager for Windows, MacOS X and Linux.
+ * SQLiteStudio is SQLite 3 manager for Windows, MacOS X and Linux.
  *
  * Global variables and macros:
  * <ul>

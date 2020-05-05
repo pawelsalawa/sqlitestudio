@@ -157,7 +157,7 @@ class FormatStatement
         template <class T>
         T* getFormatStatement(SqliteStatement* stmt)
         {
-            return dynamic_cast<T*>(forQuery(stmt, dialect, wrapper, cfg));
+            return dynamic_cast<T*>(forQuery(stmt, wrapper, cfg));
         }
 
     protected:
@@ -166,7 +166,6 @@ class FormatStatement
         virtual void formatInternal() = 0;
         virtual void resetInternal();
 
-        Dialect dialect = Dialect::Sqlite3;
         NameWrapper wrapper = NameWrapper::BRACKET;
         Cfg::SqlEnterpriseFormatterConfig* cfg = nullptr;
 
@@ -199,7 +198,7 @@ class FormatStatement
         void formatId(const QString& value);
         int getLineUpValue(const QString& lineUpName);
 
-        static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
+        static FormatStatement* forQuery(SqliteStatement *query, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
 
         QHash<QString,int> kwLineUpPosition;
         QHash<QString,int> namedIndents;

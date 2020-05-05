@@ -133,7 +133,7 @@ void DbTreeItemDelegate::paintSystemIndexLabel(QPainter* painter, const QStyleOp
     if (!db || !db->isValid())
         return;
 
-    if (!isSystemIndex(item->text(), db->getDialect()))
+    if (!isSystemIndex(item->text()))
         return;
 
     paintLabel(painter, option, index, item, tr("(system index)", "database tree label"));

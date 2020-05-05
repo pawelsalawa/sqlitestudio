@@ -21,7 +21,7 @@ void FormatCreateView::formatInternal()
     if (createView->ifNotExists)
         withKeyword("IF").withKeyword("NOT").withKeyword("EXISTS");
 
-    if (dialect == Dialect::Sqlite3 && !createView->database.isNull())
+    if (!createView->database.isNull())
         withId(createView->database).withIdDot();
 
     withId(createView->view);

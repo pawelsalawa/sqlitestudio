@@ -280,7 +280,7 @@ void TableModifierTest::init()
     db->open();
     db->exec(mainTableDdl);
 
-    Parser parser(db->getDialect());
+    Parser parser;
     Q_ASSERT(parser.parse(mainTableDdl));
     Q_ASSERT(parser.getQueries().size() > 0);
     createTable = parser.getQueries().first().dynamicCast<SqliteCreateTable>();

@@ -3,7 +3,6 @@
 
 #include "ast/sqlitequery.h"
 #include "parser.h"
-#include "../dialect.h"
 
 #include <QHash>
 #include <QList>
@@ -232,14 +231,6 @@ class ParserContext
          * See description of Parser::parse() for details.
          */
         bool ignoreMinorErrors = false;
-
-        /**
-         * @brief Dialect used for the parsing.
-         *
-         * This is used by the Lemon parser in various situations, like for example when it strips the object name
-         * from it's wrapping characters ([], "", ``) - that depends on the dialect.
-         */
-        Dialect dialect;
 
     private:
         /**

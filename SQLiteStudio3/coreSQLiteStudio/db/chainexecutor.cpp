@@ -45,7 +45,7 @@ void ChainExecutor::exec()
         return;
     }
 
-    if (disableForeignKeys && db->getDialect() == Dialect::Sqlite3)
+    if (disableForeignKeys)
     {
         SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
         if (result->isError())
@@ -198,7 +198,7 @@ Db::Flags ChainExecutor::getExecFlags() const
 
 void ChainExecutor::restoreFk()
 {
-    if (disableForeignKeys && db->getDialect() == Dialect::Sqlite3)
+    if (disableForeignKeys)
     {
         SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 1;");
         if (result->isError())

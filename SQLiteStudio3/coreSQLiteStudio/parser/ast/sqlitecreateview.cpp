@@ -67,10 +67,7 @@ QStringList SqliteCreateView::getDatabasesInStatement()
 
 TokenList SqliteCreateView::getDatabaseTokensInStatement()
 {
-    if (dialect == Dialect::Sqlite3)
-        return getDbTokenListFromFullname();
-    else
-        return TokenList();
+    return getDbTokenListFromFullname();
 }
 
 QList<SqliteStatement::FullObject> SqliteCreateView::getFullObjectsInStatement()
@@ -78,28 +75,17 @@ QList<SqliteStatement::FullObject> SqliteCreateView::getFullObjectsInStatement()
     QList<FullObject> result;
 
     // View object
-    FullObject fullObj;
-    if (dialect == Dialect::Sqlite3)
-        fullObj = getFullObjectFromFullname(FullObject::VIEW);
-    else
-    {
-        TokenList tokens = getTokenListFromNamedKey("nm");
-        if (tokens.size() > 0)
-            fullObj = getFullObject(FullObject::VIEW, TokenPtr(), tokens[0]);
-    }
+    FullObject fullObj = getFullObjectFromFullname(FullObject::VIEW);
 
     if (fullObj.isValid())
         result << fullObj;
 
     // Db object
-    if (dialect == Dialect::Sqlite3)
+    fullObj = getFirstDbFullObject();
+    if (fullObj.isValid())
     {
-        fullObj = getFirstDbFullObject();
-        if (fullObj.isValid())
-        {
-            result << fullObj;
-            dbTokenForFullObjects = fullObj.database;
-        }
+        result << fullObj;
+        dbTokenForFullObjects = fullObj.database;
     }
 
     return result;
@@ -119,10 +105,10 @@ TokenList SqliteCreateView::rebuildTokensFromContents()
     if (ifNotExists)
         builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();
 
-    if (dialect == Dialect::Sqlite3 && !database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+    if (!database.isNull())
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(view, dialect).withSpace();
+    builder.withOther(view).withSpace();
 
     if (columns.size() > 0)
         builder.withParLeft().withStatementList<SqliteIndexedColumn>(columns).withParRight().withSpace();

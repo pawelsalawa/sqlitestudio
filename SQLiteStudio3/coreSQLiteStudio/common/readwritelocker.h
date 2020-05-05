@@ -2,7 +2,6 @@
 #define READWRITELOCKER_H
 
 #include "coreSQLiteStudio_global.h"
-#include "dialect.h"
 
 class QReadLocker;
 class QWriteLocker;
@@ -31,7 +30,7 @@ class API_EXPORT ReadWriteLocker
         };
 
         ReadWriteLocker(QReadWriteLock* lock, Mode mode);
-        ReadWriteLocker(QReadWriteLock* lock, const QString& query, Dialect dialect, bool noLock);
+        ReadWriteLocker(QReadWriteLock* lock, const QString& query, bool noLock);
         virtual ~ReadWriteLocker();
 
         /**
@@ -53,7 +52,7 @@ class API_EXPORT ReadWriteLocker
          *
          * In case of WITH statement it filters out the "WITH clause" and then checks for SELECT keyword.
          */
-        static ReadWriteLocker::Mode getMode(const QString& query, Dialect dialect, bool noLock);
+        static ReadWriteLocker::Mode getMode(const QString& query, bool noLock);
 
     private:
         void init(QReadWriteLock* lock, Mode mode);

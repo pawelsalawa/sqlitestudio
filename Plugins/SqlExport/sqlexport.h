@@ -55,7 +55,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         void writeFkDisable();
         void writeFkEnable();
         QString formatQuery(const QString& sql);
-        QString getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect = Dialect::Sqlite3);
+        QString getNameForObject(const QString& database, const QString& name, bool wrapped);
         QStringList rowToArgList(SqlResultsRowPtr row);
 
         QString theTable;

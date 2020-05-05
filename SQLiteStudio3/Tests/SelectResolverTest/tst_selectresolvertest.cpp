@@ -188,7 +188,7 @@ void SelectResolverTest::testWithCommonTableExpression()
                   "      WHERE org.name IN works_for_alice";
 
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
@@ -206,7 +206,7 @@ void SelectResolverTest::testWithCte2()
                   "select * from m";
 
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
@@ -222,7 +222,7 @@ void SelectResolverTest::testStarWithJoinAndError()
 {
     QString sql = "SELECT t1.*, t2.* FROM test t1 JOIN test2 USING (col1)";
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
@@ -234,7 +234,7 @@ void SelectResolverTest::testTableFunction()
 {
     QString sql = "select * from json_tree(json_array(1, 2, 3))";
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     SqlQueryPtr versionResult = db->exec("select sqlite_version()");
@@ -255,7 +255,7 @@ void SelectResolverTest::test1()
 {
     QString sql = "SELECT * FROM (SELECT count(col1), col2 FROM test)";
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
@@ -270,7 +270,7 @@ void SelectResolverTest::testSubselectWithAlias()
 {
     QString sql = "SELECT * FROM (SELECT m.col1, m.col2, secm.col3 FROM test AS m LEFT OUTER JOIN test AS secm ON secm.col1 = m.col2) alias3;";
     SelectResolver resolver(db, sql);
-    Parser parser(db->getDialect());
+    Parser parser;
     QVERIFY(parser.parse(sql));
 
     QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());

@@ -46,7 +46,7 @@ QVariant TableConstraintsModel::data(const QModelIndex& index, int role) const
         case Columns::NAME:
         {
             if (role == Qt::DisplayRole)
-                return stripObjName(constr->name, createTable->dialect);
+                return stripObjName(constr->name);
 
             break;
         }

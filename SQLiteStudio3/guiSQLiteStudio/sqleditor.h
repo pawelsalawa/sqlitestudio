@@ -165,7 +165,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void refreshValidObjects();
         void checkForSyntaxErrors();
         void checkForValidObjects();
-        Dialect getDialect();
         void setObjectLinks(bool enabled);
         void addDbObject(int from, int to, const QString& dbName);
         void clearDbObjects();

@@ -26,7 +26,6 @@
 #include "windows/editorwindow.h"
 #include "uiconfig.h"
 #include "themetuner.h"
-#include "dialogs/dbconverterdialog.h"
 #include "querygenerator.h"
 #include "dialogs/execfromfiledialog.h"
 #include "dialogs/fileexecerrorsdialog.h"
@@ -144,7 +143,6 @@ void DbTree::createActions()
     createAction(DISCONNECT_FROM_DB, ICONS.DATABASE_DISCONNECT, tr("&Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
     createAction(IMPORT_INTO_DB, ICONS.IMPORT, tr("Import"), this, SLOT(import()), this);
     createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("&Export the database"), this, SLOT(exportDb()), this);
-    createAction(CONVERT_DB, ICONS.CONVERT_DB, tr("Con&vert database type"), this, SLOT(convertDb()), this);
     createAction(VACUUM_DB, ICONS.VACUUM_DB, tr("Vac&uum"), this, SLOT(vacuumDb()), this);
     createAction(INTEGRITY_CHECK, ICONS.INTEGRITY_CHECK, tr("&Integrity check"), this, SLOT(integrityCheck()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(addTable()), this);
@@ -207,7 +205,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             enabled << DELETE_DB << EDIT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
-                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA << CONVERT_DB
+                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA
                         << VACUUM_DB << INTEGRITY_CHECK;
                 isDbOpen = true;
             }
@@ -413,7 +411,6 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                     actions += ActionEntry(REFRESH_SCHEMA);
                     actions += ActionEntry(IMPORT_INTO_DB);
                     actions += ActionEntry(EXPORT_DB);
-                    actions += ActionEntry(CONVERT_DB);
                     actions += ActionEntry(VACUUM_DB);
                     actions += ActionEntry(INTEGRITY_CHECK);
                     actions += ActionEntry(EXEC_SQL_FROM_FILE);
@@ -1463,17 +1460,6 @@ void DbTree::delColumn()
     delColumn(item);
 }
 
-void DbTree::convertDb()
-{
-    Db* db = getSelectedDb();
-    if (!db || !db->isValid())
-        return;
-
-    DbConverterDialog dialog(this);
-    dialog.setDb(db);
-    dialog.exec();
-}
-
 void DbTree::vacuumDb()
 {
     Db* db = getSelectedDb();
@@ -1569,11 +1555,10 @@ void DbTree::eraseTableData()
         return;
 
     static_qstring(DELETE_SQL, "DELETE FROM %1;");
-    Dialect dialect = db->getDialect();
     SqlQueryPtr res;
     for (const QString& table : tables)
     {
-        res = db->exec(DELETE_SQL.arg(wrapObjIfNeeded(table, dialect)));
+        res = db->exec(DELETE_SQL.arg(wrapObjIfNeeded(table)));
         if (res->isError())
         {
             notifyError(tr("An error occurred while trying to delete data from table '%1': %2").arg(table, res->getErrorText()));

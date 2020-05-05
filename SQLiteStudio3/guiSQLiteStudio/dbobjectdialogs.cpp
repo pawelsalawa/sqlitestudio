@@ -161,8 +161,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
     static const QString dropSql2 = "DROP %1 %2;";
     static const QString dropSql3 = "DROP %1 %2.%3;";
 
-    Dialect dialect = db->getDialect();
-    QString dbName = wrapObjIfNeeded(database, dialect);
+    QString dbName = wrapObjIfNeeded(database);
 
     Type type = getObjectType(database, name);
     QString title;
@@ -206,11 +205,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
 
     SqlQueryPtr results;
 
-    QString finalSql;
-    if (dialect == Dialect::Sqlite3)
-        finalSql = dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name, dialect));
-    else
-        finalSql = dropSql2.arg(typeForSql, wrapObjIfNeeded(name, dialect));
+    QString finalSql = dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name));
 
     results = db->exec(finalSql);
     if (results->isError())
@@ -273,7 +268,6 @@ bool DbObjectDialogs::dropObjects(const QHash<QString, QStringList>& objects)
     static const QString dropSql2 = "DROP %1 IF EXISTS %2;";
     static const QString dropSql3 = "DROP %1 IF EXISTS %2.%3;";
 
-    Dialect dialect = db->getDialect();
     QStringList names = concat(objects.values());
     QHash<QString, QHash<QString, QStringList>> groupedObjects = groupObjects(objects);
 
@@ -298,16 +292,13 @@ bool DbObjectDialogs::dropObjects(const QHash<QString, QStringList>& objects)
     QHash<QString, QStringList> typeToNames;
     for (QHash<QString, QHash<QString, QStringList>>::const_iterator dbIt = groupedObjects.begin(); dbIt != groupedObjects.end(); ++dbIt)
     {
-        dbName = wrapObjIfNeeded(dbIt.key(), dialect);
+        dbName = wrapObjIfNeeded(dbIt.key());
         typeToNames = dbIt.value();
         for (QHash<QString, QStringList>::const_iterator typeIt = typeToNames.begin(); typeIt != typeToNames.end(); ++typeIt)
         {
             for (const QString& name : typeIt.value())
             {
-                if (dialect == Dialect::Sqlite3)
-                    finalSql = dropSql3.arg(typeIt.key(), dbName, wrapObjIfNeeded(name, dialect));
-                else
-                    finalSql = dropSql2.arg(typeIt.key(), wrapObjIfNeeded(name, dialect));
+                finalSql = dropSql3.arg(typeIt.key(), dbName, wrapObjIfNeeded(name));
 
                 results = db->exec(finalSql);
                 if (results->isError())
@@ -339,8 +330,7 @@ DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, co
     static const QString typeSql = "SELECT type FROM %1.sqlite_master WHERE name = ?;";
     static const QStringList types = {"table", "index", "trigger", "view"};
 
-    Dialect dialect = db->getDialect();
-    QString dbName = wrapObjIfNeeded(database, dialect);
+    QString dbName = wrapObjIfNeeded(database);
     SqlQueryPtr results = db->exec(typeSql.arg(dbName), {name});
     if (results->isError())
     {

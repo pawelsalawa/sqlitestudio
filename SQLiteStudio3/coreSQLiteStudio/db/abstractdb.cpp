@@ -211,7 +211,7 @@ QString AbstractDb::generateUniqueDbNameNoLock()
 
 ReadWriteLocker::Mode AbstractDb::getLockingMode(const QString &query, Flags flags)
 {
-    return ReadWriteLocker::getMode(query, getDialect(), flags.testFlag(Flag::NO_LOCK));
+    return ReadWriteLocker::getMode(query, flags.testFlag(Flag::NO_LOCK));
 }
 
 QString AbstractDb::getName() const
@@ -227,14 +227,6 @@ QString AbstractDb::getPath() const
 quint8 AbstractDb::getVersion() const
 {
     return version;
-}
-
-Dialect AbstractDb::getDialect() const
-{
-    if (version == 2)
-        return Dialect::Sqlite2;
-    else
-        return Dialect::Sqlite3;
 }
 
 QString AbstractDb::getEncoding()
@@ -402,7 +394,7 @@ void AbstractDb::initAfterOpen()
 
 void AbstractDb::checkForDroppedObject(const QString& query)
 {
-    TokenList tokens = Lexer::tokenize(query, getDialect());
+    TokenList tokens = Lexer::tokenize(query);
     tokens.trim(Token::OPERATOR, ";");
     if (tokens.size() == 0)
         return;
@@ -441,7 +433,7 @@ void AbstractDb::checkForDroppedObject(const QString& query)
     else
         object = tokens.first()->value;
 
-    object = stripObjName(object, getDialect());
+    object = stripObjName(object);
 
     if (type == "TABLE")
         emit dbObjectDeleted(database, object, DbObjectType::TABLE);
@@ -718,7 +710,7 @@ QSet<QString> AbstractDb::getAllAttaches()
 
 QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
 {
-    QString dbName = getPrefixDb(attachedDbName, getDialect());
+    QString dbName = getPrefixDb(attachedDbName);
 
     QSet<QString> existingNames;
     SqlQueryPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));

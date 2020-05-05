@@ -4,7 +4,6 @@
 #include "token.h"
 #include "ast/sqliteconflictalgo.h"
 #include "ast/sqlitesortorder.h"
-#include "dialect.h"
 
 class SqliteStatement;
 
@@ -33,10 +32,10 @@ class SqliteStatement;
  *     if (ifNotExists)
  *         builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();
  *
- *     if (dialect == Dialect::Sqlite3 && !database.isNull())
- *         builder.withOther(database, dialect).withOperator(".");
+ *     if (!database.isNull())
+ *         builder.withOther(database).withOperator(".");
  *
- *     builder.withOther(view, dialect).withSpace().withKeyword("AS").withStatement(select);
+ *     builder.withOther(view).withSpace().withKeyword("AS").withStatement(select);
  *
  *     return builder.build();
  * }
@@ -64,51 +63,25 @@ class StatementTokenBuilder
         StatementTokenBuilder& withOther(const QString& value);
 
         /**
-         * @brief Adds "other" token (some object name, or other word).
-         * @param value Value for the token.
-         * @param dialect Dialect used for wrapping the value.
-         * @return Reference to the builder for the further building.
-         *
-         * The \p value is wrapped with the proper wrapper using wrapObjIfNeeded().
-         *
-         * @overload
-         */
-        StatementTokenBuilder& withOther(const QString& value, Dialect dialect);
-
-        /**
          * @brief Adds string using double-quote wrapping.
          * @param value Value for the token.
-         * @param dialect Dialect used for wrapping the value if double-quote could not be used.
          * @return Reference to the builder for the further building.
          *
          * The \p value is wrapped with double quote, but if it's not possible then the proper wrapper is used by wrapObjIfNeeded().
          *
          * @overload
          */
-        StatementTokenBuilder& withStringPossiblyOther(const QString& value, Dialect dialect);
+        StatementTokenBuilder& withStringPossiblyOther(const QString& value);
 
         /**
          * @brief Adds list of "other" tokens.
          * @param value List of values for tokens.
-         * @param dialect Dialect used for wrapping values.
          * @param separator Optional value for separator tokens.
          * @return Reference to the builder for the further building.
          *
          * Given the input \p value, this method produces list of tokens. Additionally it can put extra separator
          * token between all produced tokens using the \p separator value. To skip separator tokens pass
          * an empty string as the separator value.
-         */
-        StatementTokenBuilder& withOtherList(const QList<QString>& value, Dialect dialect, const QString& separator = ",");
-
-        /**
-         * @brief Adds list of "other" tokens.
-         * @param value List of values for tokens.
-         * @param separator Optional value for separator tokens.
-         * @return Reference to the builder for the further building.
-         *
-         * Works just like the other withOtherList() method, except it doesn't wrap values with wrapObjIfNeeded().
-         *
-         * @overload
          */
         StatementTokenBuilder& withOtherList(const QList<QString>& value, const QString& separator = ",");
 
