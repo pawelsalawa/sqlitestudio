@@ -440,7 +440,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="390"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Scale is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>No se permite usar escala para las columnas ENTERAS DE CLAVE PRIMARIA.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="391"/>
@@ -455,12 +455,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="393"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation type="unfinished">INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</translation>
+      <translation>Se forzó el uso del tipo ENTERO debido a que la CLAVE PRIMARIA tiene activo el AUTOINCREMENTO.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="415"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Precision is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>Las columnas ENTERAS DE CLAVE PRIMARIA no permiten precisión.</translation>
     </message>
   </context>
   <context>
@@ -656,7 +656,7 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="193"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Collation: %1</translation>
+      <translation>Colación: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="195"/>
