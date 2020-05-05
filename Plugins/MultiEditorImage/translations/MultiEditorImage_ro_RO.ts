@@ -59,13 +59,9 @@
         <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="154"/>
-      <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
-    </message>
-    <message>
-        <source>Could not nopen file %1 for writting.</source>
-        <translation type="obsolete">Could not nopen file %1 for writting.</translation>
+        <location filename="../multieditorimage.cpp" line="154"/>
+        <source>Could not open file %1 for writting.</source>
+        <translation>Could not open file %1 for writting.</translation>
     </message>
     <message>
         <location filename="../multieditorimage.cpp" line="159"/>

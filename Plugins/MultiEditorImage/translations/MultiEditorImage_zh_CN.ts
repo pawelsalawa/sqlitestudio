@@ -59,13 +59,9 @@
         <translation>试图以与原始格式 (%2) 不同的格式 (%1) 保存图像，但应用程序转换失败。 图像将以未改变的格式 (%3) 保存在给定名称下 (%4)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="154"/>
-      <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
-    </message>
-    <message>
-        <source>Could not nopen file %1 for writting.</source>
-        <translation type="vanished">无法以写模式打开文件 %1：</translation>
+        <location filename="../multieditorimage.cpp" line="154"/>
+        <source>Could not open file %1 for writting.</source>
+        <translation>无法以写模式打开文件 %1：</translation>
     </message>
     <message>
         <location filename="../multieditorimage.cpp" line="159"/>
