@@ -764,7 +764,7 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
     view->horizontalHeader()->show();
 
     // Read columns first. It will be needed later.
-    readColumns();
+    bool rowsLimited = readColumns();
 
     // Load data
     SqlResultsRowPtr row;
@@ -790,6 +790,12 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
         }
 
         rowIdx++;
+    }
+
+    if (rowsLimited && rowIdx >= columnRatioBasedRowLimit)
+    {
+        NOTIFY_MANAGER->info(tr("Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.")
+                             .arg(columnRatioBasedRowLimit).arg(columns.size()));
     }
 
     rowIdx = 0;
@@ -939,7 +945,7 @@ bool SqlQueryModel::supportsModifyingQueriesInMenu() const
     return false;
 }
 
-void SqlQueryModel::readColumns()
+bool SqlQueryModel::readColumns()
 {
     columns.clear();
     tableToRowIdColumn.clear();
@@ -979,14 +985,14 @@ void SqlQueryModel::readColumns()
     columnRatioBasedRowLimit = -1;
     int rowsPerPage = getRowsPerPage();
     if (!columns.isEmpty())
-        columnRatioBasedRowLimit = 150000 / columns.size();
+        columnRatioBasedRowLimit = 50000 / columns.size();
 
-    if (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage)
-        NOTIFY_MANAGER->info(tr("Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.")
-                             .arg(columnRatioBasedRowLimit).arg(columns.size()));
+    bool rowsLimited = (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage);
 
     // We have fresh info about columns
     structureOutOfDate = false;
+
+    return rowsLimited;
 }
 
 void SqlQueryModel::readColumnDetails()
