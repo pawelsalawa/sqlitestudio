@@ -9,8 +9,8 @@
 #include <functional>
 #include <QProcess>
 
-class QNetworkAccessManager;
 class QNetworkReply;
+class QNetworkAccessManager;
 class QTemporaryDir;
 class QFile;
 
@@ -18,33 +18,23 @@ class API_EXPORT UpdateManager : public QObject
 {
         Q_OBJECT
     public:
-        struct UpdateEntry
-        {
-            QString compontent;
-            QString version;
-        };
-
         explicit UpdateManager(QObject *parent = 0);
         ~UpdateManager();
 
         void checkForUpdates();
-        void update();
         bool isPlatformEligibleForUpdate() const;
 
     private:
         QString updateBinaryAbsolutePath;
+        QNetworkAccessManager *netManager = nullptr;
 
-        void checkForUpdatesAsync();
-        bool waitForProcess(QProcess& proc);
-        void processCheckResults(const QByteArray& results);
+        void handleUpdatesResponse(QNetworkReply* response);
 
     signals:
-        void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void updateAvailable(const QString& version, const QString& url);
         void noUpdatesAvailable();
         void updatingError(const QString& errorMessage);
 };
-
-Q_DECLARE_METATYPE(QList<UpdateManager::UpdateEntry>)
 
 #define UPDATES SQLITESTUDIO->getUpdateManager()
 

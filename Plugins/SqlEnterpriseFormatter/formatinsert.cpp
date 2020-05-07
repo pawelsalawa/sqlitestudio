@@ -46,10 +46,6 @@ void FormatInsert::formatInternal()
         {
             withStatement(insert->select);
         }
-        else if (dialect == Dialect::Sqlite2) // Sqlite2 uses classic single row values
-        {
-            withKeyword("VALUES").withParDefLeft().withStatementList(insert->values).withParDefRight();
-        }
         if (insert->upsert)
             withStatement(insert->upsert);
 

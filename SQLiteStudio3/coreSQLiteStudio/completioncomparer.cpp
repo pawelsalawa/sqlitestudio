@@ -8,7 +8,6 @@
 CompletionComparer::CompletionComparer(CompletionHelper *helper)
     : helper(helper)
 {
-    dialect = helper->db->getDialect();
     init();
 }
 
@@ -40,12 +39,7 @@ bool CompletionComparer::operator ()(const ExpectedTokenPtr& token1, const Expec
         case ExpectedToken::PRAGMA:
             return compareValues(token1, token2);
         case ExpectedToken::COLLATION:
-        {
-            if (dialect == Dialect::Sqlite3)
-                return compareValues(token1, token2);
-            else
-                return false;
-        }
+            return compareValues(token1, token2);
         case ExpectedToken::OTHER:
         case ExpectedToken::STRING:
         case ExpectedToken::NUMBER:

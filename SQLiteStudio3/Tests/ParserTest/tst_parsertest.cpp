@@ -19,7 +19,6 @@ class ParserTest : public QObject
         ParserTest();
 
     private:
-        Parser* parser2 = nullptr;
         Parser* parser3 = nullptr;
 
     private Q_SLOTS:
@@ -85,7 +84,7 @@ void ParserTest::test()
 void ParserTest::testScientificNumber()
 {
     QString sql = "SELECT 1e100;";
-    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+    TokenList tokens = Lexer::tokenize(sql);
 
     QVERIFY(tokens.size() == 4);
     QVERIFY(tokens[2]->type == Token::Type::FLOAT);
@@ -228,7 +227,7 @@ void ParserTest::testCommentEnding2()
 void ParserTest::testOper1()
 {
     QString sql = "SELECT dfgd<=2";
-    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+    TokenList tokens = Lexer::tokenize(sql);
     QVERIFY(tokens[2]->value == "dfgd");
     QVERIFY(tokens[3]->value == "<=");
     QVERIFY(tokens[4]->value == "2");
@@ -381,7 +380,7 @@ void ParserTest::testExpr()
 void ParserTest::testCommentBeginMultiline()
 {
     QString sql = "/*";
-    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+    TokenList tokens = Lexer::tokenize(sql);
     QVERIFY(tokens.size() == 1);
     QVERIFY(tokens[0]->type == Token::COMMENT);
 }
@@ -503,13 +502,11 @@ void ParserTest::initTestCase()
     initKeywords();
     Lexer::staticInit();
     initUtilsSql();
-    parser2 = new Parser(Dialect::Sqlite2);
-    parser3 = new Parser(Dialect::Sqlite3);
+    parser3 = new Parser();
 }
 
 void ParserTest::cleanupTestCase()
 {
-    delete parser2;
     delete parser3;
 }
 

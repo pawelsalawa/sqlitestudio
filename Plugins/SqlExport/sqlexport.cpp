@@ -44,10 +44,9 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     UNUSED(providedData);
     static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
 
-    Dialect dialect = db->getDialect();
     QStringList colDefs;
     for (QueryExecutor::ResultColumnPtr resCol : columns)
-        colDefs << wrapObjIfNeeded(resCol->displayName, dialect);
+        colDefs << wrapObjIfNeeded(resCol->displayName);
 
     this->columns = colDefs.join(", ");
 
@@ -64,7 +63,7 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     if (!cfg.SqlExport.GenerateCreateTable.get())
         return true;
 
-    theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get(), dialect);
+    theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get());
     QString ddl = "CREATE TABLE " + theTable + " (" + this->columns + ");";
     writeln("");
 
@@ -102,11 +101,9 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 {
     static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
 
-    Dialect dialect = db->getDialect();
-
     QStringList colList;
     for (const QString& colName : columnNames)
-        colList << wrapObjIfNeeded(colName, dialect);
+        colList << wrapObjIfNeeded(colName);
 
     columns = colList.join(", ");
 
@@ -121,7 +118,7 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
     writeln("");
     writeln(tr("-- Table: %1").arg(fullName));
 
-    theTable = getNameForObject(database, table, true, dialect);
+    theTable = getNameForObject(database, table, true);
 
     if (cfg.SqlExport.GenerateDrop.get())
         writeln(formatQuery(dropDdl.arg(theTable)));
@@ -167,7 +164,7 @@ bool SqlExport::exportIndex(const QString& database, const QString& name, const 
     writeln("");
     writeln(tr("-- Index: %1").arg(index));
 
-    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    QString fullName = getNameForObject(database, name, true);
     if (cfg.SqlExport.GenerateDrop.get())
         writeln(formatQuery(dropDdl.arg(fullName)));
 
@@ -184,7 +181,7 @@ bool SqlExport::exportTrigger(const QString& database, const QString& name, cons
     writeln("");
     writeln(tr("-- Trigger: %1").arg(trig));
 
-    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    QString fullName = getNameForObject(database, name, true);
     if (cfg.SqlExport.GenerateDrop.get())
         writeln(dropDdl.arg(fullName));
 
@@ -201,7 +198,7 @@ bool SqlExport::exportView(const QString& database, const QString& name, const Q
     writeln("");
     writeln(tr("-- View: %1").arg(view));
 
-    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    QString fullName = getNameForObject(database, name, true);
     if (cfg.SqlExport.GenerateDrop.get())
         writeln(dropDdl.arg(fullName));
 
@@ -254,18 +251,18 @@ QString SqlExport::formatQuery(const QString& sql)
     return sql.trimmed() + ";";
 }
 
-QString SqlExport::getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect)
+QString SqlExport::getNameForObject(const QString& database, const QString& name, bool wrapped)
 {
-    QString obj = wrapped ? wrapObjIfNeeded(name, dialect) : name;
+    QString obj = wrapped ? wrapObjIfNeeded(name) : name;
     if (!database.isNull() && database.toLower() != "main")
-        obj = (wrapped ?  wrapObjIfNeeded(database, dialect) : database) + "." + obj;
+        obj = (wrapped ?  wrapObjIfNeeded(database) : database) + "." + obj;
 
     return obj;
 }
 
 QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
 {
-    return valueListToSqlList(row->valueList(), db->getDialect());
+    return valueListToSqlList(row->valueList());
 }
 
 void SqlExport::validateOptions()

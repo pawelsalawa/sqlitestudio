@@ -16,7 +16,7 @@
 #define FASTPBKDF2_H
 
 #include <stdlib.h>
-#include <stdint.h>
+#include "mystdint.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,6 +63,16 @@ void fastpbkdf2_hmac_sha512(const uint8_t *pw, size_t npw,
                             const uint8_t *salt, size_t nsalt,
                             uint32_t iterations,
                             uint8_t *out, size_t nout);
+
+/** Calculates SQLCipher HMAC.
+ *
+ *  This function cannot fail; it does not report errors.
+ */
+void sqlcipher_hmac(int algorithm,
+                    unsigned char* key, int nkey,
+                    unsigned char* in, int in_sz,
+                    unsigned char* in2, int in2_sz,
+                    unsigned char* out);
 
 #ifdef __cplusplus
 }

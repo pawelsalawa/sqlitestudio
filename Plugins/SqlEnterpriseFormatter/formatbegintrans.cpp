@@ -21,5 +21,5 @@ void FormatBeginTrans::formatInternal()
             withId(bt->name);
     }
 
-    withConflict(bt->onConflict).withSemicolon();
+    withSemicolon();
 }

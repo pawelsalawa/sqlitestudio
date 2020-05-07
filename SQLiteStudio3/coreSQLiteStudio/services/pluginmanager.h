@@ -344,7 +344,7 @@ class API_EXPORT PluginManager : public QObject
          * the other one, if the first one is already loaded - and vice versa.
          *
          * Declaring conflicts for a plugin can be useful for example if somebody wants to proivde an alternative
-         * implementation of SQLite2 database plugin, etc. In that case SQLiteStudio won't get confused in
+         * implementation of SQLCipher database plugin, etc. In that case SQLiteStudio won't get confused in
          * deciding which plugin to use for supporting such databases.
          */
         virtual QStringList getConflicts(const QString& pluginName) const = 0;

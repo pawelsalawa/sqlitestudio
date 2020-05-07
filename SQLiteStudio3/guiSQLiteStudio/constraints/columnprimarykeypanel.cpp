@@ -49,8 +49,7 @@ void ColumnPrimaryKeyPanel::init()
 void ColumnPrimaryKeyPanel::readConstraint()
 {
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
-    if (constraint->dialect == Dialect::Sqlite3)
-        ui->autoIncrCheck->setChecked(constr->autoincrKw);
+    ui->autoIncrCheck->setChecked(constr->autoincrKw);
 
     if (constr->sortOrder != SqliteSortOrder::null)
     {
@@ -95,8 +94,6 @@ void ColumnPrimaryKeyPanel::constraintAvailable()
     if (constraint.isNull())
         return;
 
-    ui->autoIncrCheck->setVisible(constraint->dialect == Dialect::Sqlite3);
-
     readConstraint();
 }
 
@@ -108,8 +105,7 @@ void ColumnPrimaryKeyPanel::storeConfiguration()
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
     constr->type = SqliteCreateTable::Column::Constraint::PRIMARY_KEY;
 
-    if (constraint->dialect == Dialect::Sqlite3)
-        constr->autoincrKw = ui->autoIncrCheck->isChecked();
+    constr->autoincrKw = ui->autoIncrCheck->isChecked();
 
     if (ui->sortOrderCheck->isChecked() && ui->sortOrderCombo->currentIndex() > -1)
         constr->sortOrder = sqliteSortOrder(ui->sortOrderCombo->currentText());

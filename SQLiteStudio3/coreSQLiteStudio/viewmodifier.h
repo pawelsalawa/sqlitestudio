@@ -29,7 +29,6 @@ class API_EXPORT ViewModifier
         bool handleNewColumns(SqliteCreateTriggerPtr trigger);
 
         Db* db = nullptr;
-        Dialect dialect;
         QString database;
         QString view;
 

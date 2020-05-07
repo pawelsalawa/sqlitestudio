@@ -146,13 +146,6 @@ class API_EXPORT QueryExecutorStep : public QObject
          * Defined by init().
          */
         Db* db = nullptr;
-
-        /**
-         * @brief SQLite dialect of the database.
-         *
-         * Defined by init().
-         */
-        Dialect dialect;
 };
 
 #endif // QUERYEXECUTORSTEP_H

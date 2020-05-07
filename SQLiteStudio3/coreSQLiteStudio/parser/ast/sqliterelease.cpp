@@ -33,7 +33,7 @@ TokenList SqliteRelease::rebuildTokensFromContents()
     if (savepointKw)
         builder.withKeyword("SAVEPOINT").withSpace();
 
-    builder.withOther(name, dialect).withOperator(";");
+    builder.withOther(name).withOperator(";");
 
     return builder.build();
 }

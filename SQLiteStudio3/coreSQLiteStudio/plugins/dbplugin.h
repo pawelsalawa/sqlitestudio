@@ -30,7 +30,7 @@ class API_EXPORT DbPlugin : virtual public Plugin
          * @return Type label.
          *
          * The label is used for presenting to the user what kind of database this is. It's used on GUI
-         * to display database type in databases dialog. It's usually either "SQLite3" or "SQLite2",
+         * to display database type in databases dialog. It's usually "SQLite3",
          * but it may be something else, like for example encrypted database might provide "Encrypted SQLite3",
          * or something similar.
          */

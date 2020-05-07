@@ -12,7 +12,6 @@
 #include <QHash>
 
 class Db;
-class DbVersionConverter;
 
 class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public Interruptable
 {
@@ -45,7 +44,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
          * while executing them on the target database (because of different database versions). User can cancel the process
          * (in which case, the function should return false).
          * @param conversionErrorsConfimFunction This function should display critical errors that occurred when tried to
-         * convert SQL statements for target database (when it's of different version than source database). User
+         * convert SQL statements for target database. User
          * can choose to proceed (with skipping problemating database objects), or cancel the process (in which case the function
          * should return false).
          *
@@ -87,8 +86,6 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool copyTriggerToDb(const QString& trigger);
         bool copySimpleObjectToDb(const QString& name, const QString& errorMessage);
         QSet<QString> resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables);
-        void collectDiffs(const StrHash<SchemaResolver::ObjectDetails>& details);
-        QString convertDdlToDstVersion(const QString& ddl);
         void collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         void collectReferencedIndexes(const QString& table);
         void collectReferencedTriggersForTable(const QString& table);
@@ -96,7 +93,6 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void findBinaryColumns(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         bool copyDataAsMiddleware(const QString& table);
         bool copyDataUsingAttach(const QString& table);
-        void setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames);
         void dropTable(const QString& table);
         void dropView(const QString& view);
         void dropObject(const QString& name, const QString& type);
@@ -125,7 +121,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         QSet<QString> srcTriggers;
         QHash<QString,QString> renamed;
         QString srcTable;
-        QHash<QString,QStringList> binaryColumns; // hints for SQLite 2 databases
+        QHash<QString,QStringList> binaryColumns;
         bool includeData = false;
         bool includeIndexes = false;
         bool includeTriggers = false;
@@ -137,7 +133,6 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         SchemaResolver* dstResolver = nullptr;
         bool interrupted = false;
         bool executing = false;
-        DbVersionConverter* versionConverter = nullptr;
         QMutex interruptMutex;
         QMutex executingMutex;
         QString attachName;

@@ -44,23 +44,6 @@ QDataStream &operator >>(QDataStream &in, Db*& myObj)
     return in;
 }
 
-
-void Sqlite2ColumnDataTypeHelper::setBinaryType(int columnIndex)
-{
-    binaryColumns << columnIndex;
-}
-
-bool Sqlite2ColumnDataTypeHelper::isBinaryColumn(int columnIndex) const
-{
-    return binaryColumns.contains(columnIndex);
-}
-
-void Sqlite2ColumnDataTypeHelper::clearBinaryTypes()
-{
-    binaryColumns.clear();
-}
-
-
 QDebug operator<<(QDebug dbg, const Db* db)
 {
     dbg.nospace() << "<DB:" << db->getName() << ">";

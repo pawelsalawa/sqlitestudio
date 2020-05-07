@@ -558,7 +558,7 @@ SqlQueryPtr ScriptingTcl::dbCommonEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_
     Tcl_Obj* result = nullptr;
     QString sql = QString::fromUtf8(Tcl_GetStringFromObj(objv[2], nullptr));
 
-    TokenList bindTokens = Lexer::tokenize(sql, ctx->db->getDialect()).filter(Token::BIND_PARAM);
+    TokenList bindTokens = Lexer::tokenize(sql).filter(Token::BIND_PARAM);
     QString bindVarName;
     QHash<QString, QVariant> queryArgs;
     for (const TokenPtr& token : bindTokens)

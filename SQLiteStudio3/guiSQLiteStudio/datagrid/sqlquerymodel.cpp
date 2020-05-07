@@ -599,8 +599,6 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         return true;
     }
 
-    Dialect dialect = db->getDialect();
-
     QHash<AliasedTable,QList<SqlQueryItem*>> itemsByTable = groupItemsByTable(itemsInRow);
 
     // Values
@@ -631,15 +629,15 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         // RowId
         queryBuilder.clear();
         rowId = items.first()->getRowId();
-        queryBuilder.setRowId(rowId, dialect);
+        queryBuilder.setRowId(rowId);
         newRowId = getNewRowId(rowId, items); // if any of item updates any of rowid columns, then this will be different than initial rowid
 
         // Database and table
-        queryBuilder.setTable(wrapObjIfNeeded(table.getTable(), dialect));
+        queryBuilder.setTable(wrapObjIfNeeded(table.getTable()));
         if (!table.getDatabase().isNull())
         {
             QString tableDb = getDatabaseForCommit(table.getDatabase());
-            queryBuilder.setDatabase(wrapObjIfNeeded(tableDb, dialect));
+            queryBuilder.setDatabase(wrapObjIfNeeded(tableDb));
         }
 
         for (SqlQueryItem* item : items)
@@ -652,7 +650,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
             }
 
             // Column
-            queryBuilder.addColumn(wrapObjIfNeeded(col->column, dialect));
+            queryBuilder.addColumn(wrapObjIfNeeded(col->column));
         }
 
         // Completing query
@@ -852,7 +850,7 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     SqlQueryModelColumnPtr column = columns[columnIndex];
     Qt::Alignment alignment;
 
-    if (column->isNumeric() && isNumeric(value))
+    if ((column->isNumeric() || column->isNull()) && isNumeric(value))
         alignment = Qt::AlignRight|Qt::AlignVCenter;
     else
         alignment = Qt::AlignLeft|Qt::AlignVCenter;
@@ -1060,7 +1058,6 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
     QHash<AliasedTable, TableDetails> results;
     SqliteQueryPtr query;
     SqliteCreateTablePtr createTable;
-    Dialect dialect = db->getDialect();
     SchemaResolver resolver(getDb());
     QString database;
     AliasedTable table;
@@ -1092,7 +1089,7 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
         {
             // Column details
             TableDetails::ColumnDetails columnDetails;
-            columnName = stripObjName(columnStmt->name, dialect);
+            columnName = stripObjName(columnStmt->name);
 
             // Column type
             if (columnStmt->type)

@@ -9,7 +9,7 @@ SqliteBeginTrans::SqliteBeginTrans()
 }
 
 SqliteBeginTrans::SqliteBeginTrans(const SqliteBeginTrans& other) :
-    SqliteQuery(other), onConflict(other.onConflict), name(other.name), transactionKw(other.transactionKw), type(other.type)
+    SqliteQuery(other), name(other.name), transactionKw(other.transactionKw), type(other.type)
 {
 }
 
@@ -21,9 +21,8 @@ SqliteBeginTrans::SqliteBeginTrans(SqliteBeginTrans::Type type, bool transaction
     this->name = name;
 }
 
-SqliteBeginTrans::SqliteBeginTrans(bool transactionKw, const QString &name, SqliteConflictAlgo onConflict)
+SqliteBeginTrans::SqliteBeginTrans(bool transactionKw, const QString &name)
 {
-    this->onConflict = onConflict;
     this->transactionKw = transactionKw;
     this->name = name;
 }
@@ -62,10 +61,10 @@ TokenList SqliteBeginTrans::rebuildTokensFromContents()
     {
         builder.withSpace().withKeyword("TRANSACTION");
         if (!name.isNull())
-            builder.withSpace().withOther(name, dialect);
+            builder.withSpace().withOther(name);
     }
 
-    builder.withConflict(onConflict).withOperator(";");
+    builder.withOperator(";");
 
     return builder.build();
 }

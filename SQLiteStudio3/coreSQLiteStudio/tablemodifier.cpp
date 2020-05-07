@@ -36,8 +36,7 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     existingColumns = newCreateTable->getColumnNames();
     newName = newCreateTable->table;
 
-    if (db->getDialect() == Dialect::Sqlite3)
-        sqls << "PRAGMA foreign_keys = 0;";
+    sqls << "PRAGMA foreign_keys = 0;";
 
     handleFkConstrains(newCreateTable.data(), createTable->table, newName);
 
@@ -53,14 +52,13 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
 
     // If temp table was created, it means that table name hasn't changed. In that case we need to cleanup temp table (drop it).
     // Otherwise, the table name has changed, therefor there still remains the old table which we copied data from - we need to drop it here.
-    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName, dialect));
+    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName));
 
     handleIndexes();
     handleTriggers();
     handleViews();
 
-    if (db->getDialect() == Dialect::Sqlite3)
-        sqls << "PRAGMA foreign_keys = 1;";
+    sqls << "PRAGMA foreign_keys = 1;";
 }
 
 void TableModifier::renameTo(const QString& newName)
@@ -70,8 +68,8 @@ void TableModifier::renameTo(const QString& newName)
 
     // Using ALTER TABLE RENAME TO is not a good solution here, because it automatically renames all occurrences in REFERENCES,
     // which we don't want, because we rename a lot to temporary tables and drop them.
-    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
-         << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table, dialect));
+    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName), wrapObjIfNeeded(table))
+         << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
 
     table = newName;
     createTable->table = newName;
@@ -91,7 +89,7 @@ void TableModifier::copyDataTo(const QString& targetTable)
     QStringList colsToCopy;
     for (SqliteCreateTable::Column* column : createTable->columns)
         if (targetColumns.contains(column->name, Qt::CaseInsensitive))
-            colsToCopy << wrapObjIfNeeded(column->name, dialect);
+            colsToCopy << wrapObjIfNeeded(column->name);
 
     copyDataTo(targetTable, colsToCopy, colsToCopy);
 }
@@ -159,7 +157,7 @@ void TableModifier::handleFks(const QString& oldName, const QString& theNewName)
 
     handleFks();
 
-    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName, dialect));
+    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName));
 
     simpleHandleIndexes();
     simpleHandleTriggers();
@@ -408,8 +406,8 @@ void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
         if (!existingColumns.contains(column->originalName))
             continue; // not copying columns that didn't exist before
 
-        srcCols << wrapObjIfNeeded(column->originalName, dialect);
-        dstCols << wrapObjIfNeeded(column->name, dialect);
+        srcCols << wrapObjIfNeeded(column->originalName);
+        dstCols << wrapObjIfNeeded(column->name);
     }
 
     copyDataTo(newCreateTable->table, srcCols, dstCols);
@@ -473,7 +471,7 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
     {
         // The trigger was already modified by handling of some referencing table.
         QString oldDdl = triggerNameToDdlMap[trigger->trigger];
-        Parser parser(dialect);
+        Parser parser;
         trigger = parser.parse<SqliteCreateTrigger>(oldDdl);
         if (!trigger)
         {
@@ -506,7 +504,7 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
     if (!forThisTable)
     {
         // If this is for other table, than trigger might be still existing, cause altering this table will not delete trigger.
-        sqls << QString("DROP TRIGGER IF EXISTS %1").arg(wrapObjIfNeeded(trigger->trigger, dialect));
+        sqls << QString("DROP TRIGGER IF EXISTS %1").arg(wrapObjIfNeeded(trigger->trigger));
     }
 
     sqls << newQueryString;
@@ -561,7 +559,7 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
     view->select->setParent(view.data());
     view->rebuildTokens();
 
-    sqls << QString("DROP VIEW %1;").arg(wrapObjIfNeeded(view->view, dialect));
+    sqls << QString("DROP VIEW %1;").arg(wrapObjIfNeeded(view->view));
     sqls << view->detokenize();
 
     simpleHandleTriggers(view->view);
@@ -914,7 +912,7 @@ void TableModifier::simpleHandleTriggers(const QString& view)
 
 SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)
 {
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(ddl) || parser.getQueries().size() == 0)
         return SqliteQueryPtr();
 
@@ -923,8 +921,8 @@ SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)
 
 void TableModifier::copyDataTo(const QString& targetTable, const QStringList& srcCols, const QStringList& dstCols)
 {
-    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4;").arg(wrapObjIfNeeded(targetTable, dialect), dstCols.join(", "), srcCols.join(", "),
-                                                                 wrapObjIfNeeded(table, dialect));
+    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4;").arg(wrapObjIfNeeded(targetTable), dstCols.join(", "), srcCols.join(", "),
+                                                                 wrapObjIfNeeded(table));
 }
 
 QStringList TableModifier::generateSqls() const
@@ -949,7 +947,6 @@ QStringList TableModifier::getWarnings() const
 
 void TableModifier::init()
 {
-    dialect = db->getDialect();
     originalTable = table;
     parseDdl();
 }
@@ -964,7 +961,7 @@ void TableModifier::parseDdl()
         return;
     }
 
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(ddl))
     {
         qCritical() << "Could not parse table's' ddl in the TableModifier. The ddl is:" << ddl;

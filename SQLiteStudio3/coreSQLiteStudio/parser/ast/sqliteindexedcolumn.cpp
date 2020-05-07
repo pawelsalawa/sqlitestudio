@@ -58,9 +58,9 @@ TokenList SqliteIndexedColumn::getColumnTokensInStatement()
 TokenList SqliteIndexedColumn::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-    builder.withOther(name, dialect);
+    builder.withOther(name);
     if (!collate.isNull())
-        builder.withSpace().withKeyword("COLLATE").withSpace().withOther(collate, dialect);
+        builder.withSpace().withKeyword("COLLATE").withSpace().withOther(collate);
 
     builder.withSortOrder(sortOrder);
     return builder.build();

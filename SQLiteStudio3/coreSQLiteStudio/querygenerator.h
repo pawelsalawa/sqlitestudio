@@ -2,7 +2,6 @@
 #define QUERYGENERATOR_H
 
 #include "common/column.h"
-#include "dialect.h"
 #include "common/bistrhash.h"
 #include "schemaresolver.h"
 #include "common/strhash.h"
@@ -65,11 +64,11 @@ class API_EXPORT QueryGenerator
     private:
         QString generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const StrHash<QVariantList> values = StrHash<QVariantList>());
         QString getAlias(const QString& name, QSet<QString>& usedAliases);
-        QStringList valuesToConditionList(const StrHash<QVariantList>& values, Dialect dialect);
-        QString valuesToConditionStr(const StrHash<QVariantList>& values, Dialect dialect);
-        QString toResultColumnString(const SelectResolver::Column& column, Dialect dialect);
-        QString toFullObjectName(const QString& database, const QString& object, Dialect dialect);
-        QStringList toValueSets(const QStringList& columns, const StrHash<QVariantList> values, Dialect dialect);
+        QStringList valuesToConditionList(const StrHash<QVariantList>& values);
+        QString valuesToConditionStr(const StrHash<QVariantList>& values);
+        QString toResultColumnString(const SelectResolver::Column& column);
+        QString toFullObjectName(const QString& database, const QString& object);
+        QStringList toValueSets(const QStringList& columns, const StrHash<QVariantList> values);
 };
 
 #endif // QUERYGENERATOR_H

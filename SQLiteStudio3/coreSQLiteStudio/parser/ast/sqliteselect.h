@@ -124,7 +124,6 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         TokenList rebuildTokensFromContents();
 
                     private:
-                        TokenList rebuildTokensForSqlite2();
                         TokenList rebuildTokensForSqlite3();
                 };
 

@@ -90,6 +90,11 @@ bool SqlQueryModelColumn::isNumeric()
     return dataType.isNumeric();
 }
 
+bool SqlQueryModelColumn::isNull()
+{
+    return dataType.isNull();
+}
+
 bool SqlQueryModelColumn::canEdit()
 {
     return editionForbiddenReason.size() == 0;

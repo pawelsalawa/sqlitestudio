@@ -121,7 +121,6 @@ class API_EXPORT TableModifier
         }
 
         Db* db = nullptr;
-        Dialect dialect;
 
         /**
          * @brief Database name. The "main" is default.

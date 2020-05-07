@@ -26,7 +26,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             SUB_EXPR,
             ROW_VALUE,
             CAST,
-            COLLATE, // in Sqlite2 exists only in expr of sortlist
+            COLLATE,
             LIKE,
             NULL_,
             NOTNULL,

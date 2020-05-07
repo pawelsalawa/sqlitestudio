@@ -2,7 +2,6 @@
 #define LEXER_H
 
 #include "token.h"
-#include "dialect.h"
 
 #include <QList>
 #include <QString>
@@ -24,10 +23,9 @@ class API_EXPORT Lexer
 {
     public:
         /**
-         * @brief Creates lexer for given dialect.
-         * @param dialect SQLite dialect.
+         * @brief Creates lexer.
          */
-        Lexer(Dialect dialect);
+        Lexer();
 
         /**
          * @brief Releases resources.
@@ -39,7 +37,7 @@ class API_EXPORT Lexer
          * @param sql SQL query to tokenize.
          * @return List of tokens produced from tokenizing query.
          */
-        TokenList tokenize(const QString& sql);
+        TokenList process(const QString& sql);
 
         /**
          * @brief Stores given SQL query internally for further processing by the lexer.
@@ -138,18 +136,17 @@ class API_EXPORT Lexer
         static QString detokenize(const TokenPtr& token);
 
         /**
-         * @brief Tokenizes given SQL query with given dialect.
+         * @brief Tokenizes given SQL query.
          * @param sql SQL query to tokenize.
-         * @param dialect SQLite dialect to use when tokenizing.
          * @return List of tokens from tokenizing.
          *
          * This method is a shortcut for:
          * @code
-         * Lexer lexer(dialect);
+         * Lexer lexer;
          * lexer.tokenize(sql);
          * @endcode
          */
-        static TokenList tokenize(const QString& sql, Dialect dialect);
+        static TokenList tokenize(const QString& sql);
 
         /**
          * @brief Translates token pointer into common token shared pointer.
@@ -169,19 +166,16 @@ class API_EXPORT Lexer
         static TokenPtr getEveryTokenTypePtr(Token* token);
 
         /**
-         * @brief Provides token representing semicolon in given SQLite dialect.
-         * @param dialect Dialect to use.
+         * @brief Provides token representing semicolon in SQLite dialect.
          * @return Token representing semicolon.
          *
          * This is used by Parser to complete the parsed query in case the input query did not end with semicolon.
-         * Given the \p dialect it provides proper token for that dialect (they are different by Lemon token ID).
          */
-        static TokenPtr getSemicolonToken(Dialect dialect);
+        static TokenPtr getSemicolonToken();
 
     private:
         /**
          * @brief Creates token for every token type internal tables.
-         * @param dialect SQLite dialect to create token for.
          * @param lemonType Lemon token ID for this token type.
          * @param type SQLiteStudio token type.
          * @param value Sample value for the token.
@@ -191,7 +185,7 @@ class API_EXPORT Lexer
          *
          * @see getEveryTokenType()
          */
-        static TokenPtr createTokenType(Dialect dialect, int lemonType, Token::Type type, const QString& value);
+        static TokenPtr createTokenType(int lemonType, Token::Type type, const QString& value);
 
         /**
          * @brief Current "tolerant mode" flag.
@@ -199,11 +193,6 @@ class API_EXPORT Lexer
          * @see setTolerantMode()
          */
         bool tolerant = false;
-
-        /**
-         * @brief Lexer's SQLite dialect.
-         */
-        Dialect dialect;
 
         /**
          * @brief SQL query to be tokenized with getToken().
@@ -223,26 +212,12 @@ class API_EXPORT Lexer
         quint64 tokenPosition;
 
         /**
-         * @brief Internal table of every token type for SQLite 2.
-         *
-         * @see semicolonTokenSqlite3
-         */
-        static TokenPtr semicolonTokenSqlite2;
-
-        /**
          * @brief Internal table of every token type for SQLite 3.
          *
          * Internal token type table contains single token per token type, so it can be used to probe the Parser
          * for next valid token candidates.
          */
         static TokenPtr semicolonTokenSqlite3;
-
-        /**
-         * @brief Internal table of every token type for SQLite 2.
-         *
-         * @see everyTokenType3
-         */
-        static QHash<Token::Type,QSet<TokenPtr> > everyTokenType2;
 
         /**
          * @brief Internal table of every token type for SQLite 3.

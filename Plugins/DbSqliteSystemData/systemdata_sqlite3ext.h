@@ -295,6 +295,35 @@ struct systemdata_sqlite3_api_routines {
   int (*vtab_nochange)(systemdata_sqlite3_context*);
   int (*value_nochange)(systemdata_sqlite3_value*);
   const char *(*vtab_collation)(systemdata_sqlite3_index_info*,int);
+  /* Version 3.24.0 and later */
+  int (*keyword_count)(void);
+  int (*keyword_name)(int,const char**,int*);
+  int (*keyword_check)(const char*,int);
+  systemdata_sqlite3_str *(*str_new)(systemdata_sqlite3*);
+  char *(*str_finish)(systemdata_sqlite3_str*);
+  void (*str_appendf)(systemdata_sqlite3_str*, const char *zFormat, ...);
+  void (*str_vappendf)(systemdata_sqlite3_str*, const char *zFormat, va_list);
+  void (*str_append)(systemdata_sqlite3_str*, const char *zIn, int N);
+  void (*str_appendall)(systemdata_sqlite3_str*, const char *zIn);
+  void (*str_appendchar)(systemdata_sqlite3_str*, int N, char C);
+  void (*str_reset)(systemdata_sqlite3_str*);
+  int (*str_errcode)(systemdata_sqlite3_str*);
+  int (*str_length)(systemdata_sqlite3_str*);
+  char *(*str_value)(systemdata_sqlite3_str*);
+  /* Version 3.25.0 and later */
+  int (*create_window_function)(systemdata_sqlite3*,const char*,int,int,void*,
+                            void (*xStep)(systemdata_sqlite3_context*,int,systemdata_sqlite3_value**),
+                            void (*xFinal)(systemdata_sqlite3_context*),
+                            void (*xValue)(systemdata_sqlite3_context*),
+                            void (*xInv)(systemdata_sqlite3_context*,int,systemdata_sqlite3_value**),
+                            void(*xDestroy)(void*));
+  /* Version 3.26.0 and later */
+  const char *(*normalized_sql)(systemdata_sqlite3_stmt*);
+  /* Version 3.28.0 and later */
+  int (*stmt_isexplain)(systemdata_sqlite3_stmt*);
+  int (*value_frombind)(systemdata_sqlite3_value*);
+  /* Version 3.30.0 and later */
+  int (*drop_modules)(systemdata_sqlite3*,const char**);
 };
 
 /*
@@ -563,8 +592,32 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 #define systemdata_sqlite3_value_pointer          systemdata_sqlite3_api->value_pointer
 /* Version 3.22.0 and later */
 #define systemdata_sqlite3_vtab_nochange          systemdata_sqlite3_api->vtab_nochange
-#define systemdata_sqlite3_value_nochange         sqltie3_api->value_nochange
-#define systemdata_sqlite3_vtab_collation         sqltie3_api->vtab_collation
+#define systemdata_sqlite3_value_nochange         systemdata_sqlite3_api->value_nochange
+#define systemdata_sqlite3_vtab_collation         systemdata_sqlite3_api->vtab_collation
+/* Version 3.24.0 and later */
+#define systemdata_sqlite3_keyword_count          systemdata_sqlite3_api->keyword_count
+#define systemdata_sqlite3_keyword_name           systemdata_sqlite3_api->keyword_name
+#define systemdata_sqlite3_keyword_check          systemdata_sqlite3_api->keyword_check
+#define systemdata_sqlite3_str_new                systemdata_sqlite3_api->str_new
+#define systemdata_sqlite3_str_finish             systemdata_sqlite3_api->str_finish
+#define systemdata_sqlite3_str_appendf            systemdata_sqlite3_api->str_appendf
+#define systemdata_sqlite3_str_vappendf           systemdata_sqlite3_api->str_vappendf
+#define systemdata_sqlite3_str_append             systemdata_sqlite3_api->str_append
+#define systemdata_sqlite3_str_appendall          systemdata_sqlite3_api->str_appendall
+#define systemdata_sqlite3_str_appendchar         systemdata_sqlite3_api->str_appendchar
+#define systemdata_sqlite3_str_reset              systemdata_sqlite3_api->str_reset
+#define systemdata_sqlite3_str_errcode            systemdata_sqlite3_api->str_errcode
+#define systemdata_sqlite3_str_length             systemdata_sqlite3_api->str_length
+#define systemdata_sqlite3_str_value              systemdata_sqlite3_api->str_value
+/* Version 3.25.0 and later */
+#define systemdata_sqlite3_create_window_function systemdata_sqlite3_api->create_window_function
+/* Version 3.26.0 and later */
+#define systemdata_sqlite3_normalized_sql         systemdata_sqlite3_api->normalized_sql
+/* Version 3.28.0 and later */
+#define systemdata_sqlite3_stmt_isexplain         systemdata_sqlite3_api->isexplain
+#define systemdata_sqlite3_value_frombind         systemdata_sqlite3_api->frombind
+/* Version 3.30.0 and later */
+#define systemdata_sqlite3_drop_modules           systemdata_sqlite3_api->drop_modules
 #endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
 
 #if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)

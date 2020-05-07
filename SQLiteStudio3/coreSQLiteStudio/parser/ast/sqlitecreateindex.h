@@ -33,7 +33,6 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         bool uniqueKw = false;
         bool ifNotExistsKw = false;
         QList<SqliteOrderBy*> indexedColumns;
-        // The database refers to index name in Sqlite3, but in Sqlite2 it refers to the table.
         QString database = QString();
         QString index = QString();
         QString table = QString();

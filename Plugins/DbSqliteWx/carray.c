@@ -24,7 +24,7 @@
 **
 **    static int aX[] = { 53, 9, 17, 2231, 4, 99 };
 **    int i = wx_sqlite3_bind_parameter_index(pStmt, "$ptr");
-**    wx_sqlite3_bind_value(pStmt, i, aX, "carray", 0);
+**    wx_sqlite3_bind_pointer(pStmt, i, aX, "carray", 0);
 **
 ** There is an optional third parameter to determine the datatype of
 ** the C-language array.  Allowed values of the third parameter are
@@ -52,7 +52,7 @@
 ** as the number of elements in the array.  The virtual table steps through
 ** the array, element by element.
 */
-#include "wx_sqlite3ext.h"
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #include <assert.h>
 #include <string.h>

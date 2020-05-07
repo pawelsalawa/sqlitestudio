@@ -1,5 +1,5 @@
 /*
-** This file contains th implementation for
+** This file contains the implementation for
 **   - the ChaCha20 cipher
 **   - the Poly1305 message digest
 **
@@ -7,7 +7,8 @@
 ** of the sqleet project (https://github.com/resilar/sqleet)
 */
 
-#include <stdint.h>
+#include "mystdint.h"
+#include <string.h>
 
 #define ROL32(x, c) (((x) << (c)) | ((x) >> (32-(c))))
 #define ROR32(x, c) (((x) >> (c)) | ((x) << (32-(c))))
@@ -48,12 +49,9 @@
 /*
  * ChaCha20 stream cipher
  */
-static void chacha20_block(unsigned char out[64], const uint32_t in[16])
+static void chacha20_block(uint32_t x[16])
 {
   int i;
-  uint32_t x[16];
-  memcpy(x, in, sizeof(uint32_t) * 16);
-
   #define QR(x, a, b, c, d)                           \
   x[a] += x[b]; x[d] ^= x[a]; x[d] = ROL32(x[d], 16); \
   x[c] += x[d]; x[b] ^= x[c]; x[b] = ROL32(x[b], 12); \
@@ -73,27 +71,23 @@ static void chacha20_block(unsigned char out[64], const uint32_t in[16])
     QR(x, 3, 4, 9, 14)
   }
   #undef QR
-
-  for (i = 0; i < 16; i++)
-  {
-    const uint32_t v = x[i] + in[i];
-    STORE32_LE(out, v);
-    out += 4;
-  }
 }
 
-void chacha20_xor(unsigned char* data, size_t n, const unsigned char key[32],
-                  const unsigned char nonce[12], uint32_t counter)
+void chacha20_xor(void* buffer, size_t n, const uint8_t key[32],
+                  const uint8_t nonce[12], uint32_t counter)
 {
   size_t i;
+  union {
+    uint8_t bytes[64];
+    uint32_t words[16];
+  } block;
   uint32_t state[16];
-  unsigned char block[64];
-  static const unsigned char sigma[16] = "expand 32-byte k";
+  uint8_t* buf = buffer;
 
-  state[ 0] = LOAD32_LE(sigma +  0);
-  state[ 1] = LOAD32_LE(sigma +  4);
-  state[ 2] = LOAD32_LE(sigma +  8);
-  state[ 3] = LOAD32_LE(sigma + 12);
+  state[ 0] = 0x61707865; /* 'expa' */
+  state[ 1] = 0x3320646e; /* 'nd 3' */
+  state[ 2] = 0x79622d32; /* '2-by' */
+  state[ 3] = 0x6b206574; /* 'te k' */
 
   state[ 4] = LOAD32_LE(key +  0);
   state[ 5] = LOAD32_LE(key +  4);
@@ -105,65 +99,71 @@ void chacha20_xor(unsigned char* data, size_t n, const unsigned char key[32],
   state[11] = LOAD32_LE(key + 28);
 
   state[12] = counter;
-
   state[13] = LOAD32_LE(nonce + 0);
   state[14] = LOAD32_LE(nonce + 4);
   state[15] = LOAD32_LE(nonce + 8);
 
-  while (n >= 64)
+  while (n > 64)
   {
-    chacha20_block(block, state);
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < 16; ++i)
     {
-      data[i] ^= block[i];
+      block.words[i] = state[i];
     }
-    state[12]++;
-    data += 64;
+    chacha20_block(block.words);
+    for (i = 0; i < 16; ++i)
+    {
+      block.words[i] += state[i];
+      block.words[i] ^= LOAD32_LE(buf);
+      STORE32_LE(buf, block.words[i]);
+      buf += 4;
+    }
+    ++state[12];
     n -= 64;
   }
 
-  if (n > 0)
+  for (i = 0; i < 16; ++i)
   {
-    chacha20_block(block, state);
-    for (i = 0; i < n; i++)
-    {
-      data[i] ^= block[i];
-    }
+    block.words[i] = state[i];
+  }
+  chacha20_block(state);
+  for (i = 0; i < 16; ++i)
+  {
+    state[i] += block.words[i];
+    STORE32_LE(&block.bytes[4*i], state[i]);
+  }
+  for (i = 0; i < n; i++)
+  {
+    buf[i] ^= block.bytes[i];
   }
 }
 
 /*
  * Poly1305 authentication tags
  */
-void poly1305(const unsigned char* msg, size_t n, const unsigned char key[32],
-              unsigned char tag[16])
+void poly1305(const uint8_t* msg, size_t n, const uint8_t key[32],
+              uint8_t tag[16])
 {
-  uint32_t c, m, w;
+  uint32_t hibit;
+  uint64_t d0, d1, d2, d3, d4;
+  uint32_t h0, h1, h2, h3, h4;
   uint32_t r0, r1, r2, r3, r4;
   uint32_t s1, s2, s3, s4;
-  uint64_t f0, f1, f2, f3;
-  uint32_t g0, g1, g2, g3, g4;
-  uint32_t h0, h1, h2, h3, h4;
-  unsigned char buf[16];
-  size_t i;
 
-  c = 1 << 24;
-  r0 = (LOAD32_LE(key +  0) >> 0) & 0x03FFFFFF;
-  r1 = (LOAD32_LE(key +  3) >> 2) & 0x03FFFF03;
-  r2 = (LOAD32_LE(key +  6) >> 4) & 0x03FFC0FF;
-  r3 = (LOAD32_LE(key +  9) >> 6) & 0x03F03FFF;
-  r4 = (LOAD32_LE(key + 12) >> 8) & 0x000FFFFF;
-  s1 = r1 * 5; s2 = r2 * 5; s3 = r3 * 5; s4 = r4 * 5;
+  hibit = (uint32_t) 1 << 24;
   h0 = h1 = h2 = h3 = h4 = 0;
+  r0 = (LOAD32_LE(key +  0) >> 0) & 0x03FFFFFF;
+  r1 = (LOAD32_LE(key +  3) >> 2) & 0x03FFFF03; s1 = r1 * 5;
+  r2 = (LOAD32_LE(key +  6) >> 4) & 0x03FFC0FF; s2 = r2 * 5;
+  r3 = (LOAD32_LE(key +  9) >> 6) & 0x03F03FFF; s3 = r3 * 5;
+  r4 = (LOAD32_LE(key + 12) >> 8) & 0x000FFFFF; s4 = r4 * 5;
   while (n >= 16)
   {
-    uint64_t d0, d1, d2, d3, d4;
 process_block:
     h0 += (LOAD32_LE(msg +  0) >> 0) & 0x03FFFFFF;
     h1 += (LOAD32_LE(msg +  3) >> 2) & 0x03FFFFFF;
     h2 += (LOAD32_LE(msg +  6) >> 4) & 0x03FFFFFF;
     h3 += (LOAD32_LE(msg +  9) >> 6) & 0x03FFFFFF;
-    h4 += (LOAD32_LE(msg + 12) >> 8) | c;
+    h4 += (LOAD32_LE(msg + 12) >> 8) | hibit;
 
     #define MUL(a,b) ((uint64_t)(a) * (b))
     d0 = MUL(h0,r0) + MUL(h1,s4) + MUL(h2,s3) + MUL(h3,s2) + MUL(h4,s1);
@@ -173,65 +173,52 @@ process_block:
     d4 = MUL(h0,r4) + MUL(h1,r3) + MUL(h2,r2) + MUL(h3,r1) + MUL(h4,r0);
     #undef MUL
 
-    h0 = d0 & 0x03FFFFFF; d1 += (uint32_t)(d0 >> 26);
-    h1 = d1 & 0x03FFFFFF; d2 += (uint32_t)(d1 >> 26);
-    h2 = d2 & 0x03FFFFFF; d3 += (uint32_t)(d2 >> 26);
-    h3 = d3 & 0x03FFFFFF; d4 += (uint32_t)(d3 >> 26);
+    h0 = d0 & 0x03FFFFFF; d1 += (d0 >> 26);
+    h1 = d1 & 0x03FFFFFF; d2 += (d1 >> 26);
+    h2 = d2 & 0x03FFFFFF; d3 += (d2 >> 26);
+    h3 = d3 & 0x03FFFFFF; d4 += (d3 >> 26);
     h4 = d4 & 0x03FFFFFF; h0 += (uint32_t)(d4 >> 26) * 5;
-    h1 += (h0 >> 26); h0 = h0 & 0x03FFFFFF;
 
     msg += 16;
     n -= 16;
   }
   if (n)
   {
-    for (i = 0; i < n; i++) buf[i] = msg[i];
-    buf[i++] = 1;
-    while (i < 16) buf[i++] = 0;
-    msg = buf;
+    size_t i;
+    for (i = 0; i < n; tag[i] = msg[i], i++);
+    for (tag[i++] = 1; i < 16; tag[i++] = 0);
+    msg = tag;
+    hibit = 0;
     n = 16;
-    c = 0;
     goto process_block;
   }
-  *(volatile uint32_t*) &r0 = 0;
-  *(volatile uint32_t*) &r1 = 0; *(volatile uint32_t*) &s1 = 0;
-  *(volatile uint32_t*) &r2 = 0; *(volatile uint32_t*) &s2 = 0;
-  *(volatile uint32_t*) &r3 = 0; *(volatile uint32_t*) &s3 = 0;
-  *(volatile uint32_t*) &r4 = 0; *(volatile uint32_t*) &s4 = 0;
 
-  h2 += (h1 >> 26);     h1 &= 0x03FFFFFF;
-  h3 += (h2 >> 26);     h2 &= 0x03FFFFFF;
-  h4 += (h3 >> 26);     h3 &= 0x03FFFFFF;
-  h0 += (h4 >> 26) * 5; h4 &= 0x03FFFFFF;
-  h1 += (h0 >> 26);     h0 &= 0x03FFFFFF;
+  r0 = h0 + 5;
+  r1 = h1 + (r0 >> 26); *(volatile uint32_t *)&r0 = 0;
+  r2 = h2 + (r1 >> 26); *(volatile uint32_t *)&r1 = 0;
+  r3 = h3 + (r2 >> 26); *(volatile uint32_t *)&r2 = 0;
+  r4 = h4 + (r3 >> 26); *(volatile uint32_t *)&r3 = 0;
+  h0 = h0 + (r4 >> 26) * 5; *(volatile uint32_t *)&r4 = 0;
 
-  g0 = h0 + 5;
-  g1 = h1 + (g0 >> 26); g0 &= 0x03FFFFFF;
-  g2 = h2 + (g1 >> 26); g1 &= 0x03FFFFFF;
-  g3 = h3 + (g2 >> 26); g2 &= 0x03FFFFFF;
-  g4 = h4 + (g3 >> 26) - (1 << 26); g3 &= 0x03FFFFFF;
+  d0 = (uint64_t)LOAD32_LE(key + 16) + (h0 >>  0) + (h1 << 26);
+  d1 = (uint64_t)LOAD32_LE(key + 20) + (h1 >>  6) + (h2 << 20) + (d0 >> 32);
+  d2 = (uint64_t)LOAD32_LE(key + 24) + (h2 >> 12) + (h3 << 14) + (d1 >> 32);
+  d3 = (uint64_t)LOAD32_LE(key + 28) + (h3 >> 18) + (h4 <<  8) + (d2 >> 32);
 
-  w = ~(m = (g4 >> 31) - 1);
-  h0 = (h0 & w) | (g0 & m);
-  h1 = (h1 & w) | (g1 & m);
-  h2 = (h2 & w) | (g2 & m);
-  h3 = (h3 & w) | (g3 & m);
-  h4 = (h4 & w) | (g4 & m);
-
-  f0 = ((h0 >>  0) | (h1 << 26)) + (uint64_t) LOAD32_LE(&key[16]);
-  f1 = ((h1 >>  6) | (h2 << 20)) + (uint64_t) LOAD32_LE(&key[20]);
-  f2 = ((h2 >> 12) | (h3 << 14)) + (uint64_t) LOAD32_LE(&key[24]);
-  f3 = ((h3 >> 18) | (h4 <<  8)) + (uint64_t) LOAD32_LE(&key[28]);
-
-  STORE32_LE(tag +  0, f0); f1 += (f0 >> 32);
-  STORE32_LE(tag +  4, f1); f2 += (f1 >> 32);
-  STORE32_LE(tag +  8, f2); f3 += (f2 >> 32);
-  STORE32_LE(tag + 12, f3);
+  STORE32_LE(tag +  0, d0); *(volatile uint32_t *)&s1 = 0;
+  STORE32_LE(tag +  4, d1); *(volatile uint32_t *)&s2 = 0;
+  STORE32_LE(tag +  8, d2); *(volatile uint32_t *)&s3 = 0;
+  STORE32_LE(tag + 12, d3); *(volatile uint32_t *)&s4 = 0;
+  *(volatile uint64_t *)&d0 = 0; *(volatile uint32_t *)&h0 = 0;
+  *(volatile uint64_t *)&d1 = 0; *(volatile uint32_t *)&h1 = 0;
+  *(volatile uint64_t *)&d2 = 0; *(volatile uint32_t *)&h2 = 0;
+  *(volatile uint64_t *)&d3 = 0; *(volatile uint32_t *)&h3 = 0;
+  *(volatile uint64_t *)&d4 = 0; *(volatile uint32_t *)&h4 = 0;
 }
 
-int poly1305_tagcmp(const unsigned char tag1[16], const unsigned char tag2[16])
+int poly1305_tagcmp(const uint8_t tag1[16], const uint8_t tag2[16])
 {
-  unsigned int d = 0;
+  uint8_t d = 0;
   d |= tag1[ 0] ^ tag2[ 0];
   d |= tag1[ 1] ^ tag2[ 1];
   d |= tag1[ 2] ^ tag2[ 2];
@@ -248,19 +235,37 @@ int poly1305_tagcmp(const unsigned char tag1[16], const unsigned char tag2[16])
   d |= tag1[13] ^ tag2[13];
   d |= tag1[14] ^ tag2[14];
   d |= tag1[15] ^ tag2[15];
-  return d;
+  return (int) d;
 }
 
 /*
  * Platform-specific entropy functions for seeding RNG
  */
-#if defined(__unix__) || defined(__APPLE__)
+#if defined(_WIN32) || defined(__CYGWIN__)
+#include <windows.h>
+#define RtlGenRandom SystemFunction036
+BOOLEAN NTAPI RtlGenRandom(PVOID RandomBuffer, ULONG RandomBufferLength);
+#pragma comment(lib, "advapi32.lib")
+static size_t entropy(void* buf, size_t n)
+{
+  return RtlGenRandom(buf, n) ? n : 0;
+}
+#elif defined(__linux__) || defined(__unix__) || defined(__APPLE__)
 #define _GNU_SOURCE
-#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 #include <sys/syscall.h>
+#include <unistd.h>
 
 #ifdef __linux__
-#include <linux/random.h>
+#include <sys/ioctl.h>
+/* musl does not have <linux/random.h> so let's define RNDGETENTCNT here */
+#ifndef RNDGETENTCNT
+#define RNDGETENTCNT _IOR('R', 0x00, int)
+#endif
 #endif
 
 /* Returns the number of urandom bytes read (either 0 or n) */
@@ -309,7 +314,7 @@ static size_t read_urandom(void* buf, size_t n)
   /* Verify that the random device returned non-zero data */
   for (i = 0; i < n; i++)
   {
-    if (((unsigned char *)buf)[i] != 0)
+    if (((uint8_t*) buf)[i] != 0)
     {
       errno = errnold;
       return n;
@@ -318,7 +323,7 @@ static size_t read_urandom(void* buf, size_t n)
 
   /* Tiny n may unintentionally fall through! */
 fail:
-  fprintf(stderr, "bad /dev/urandom RNG)\n");
+  fprintf(stderr, "bad /dev/urandom RNG\n");
   abort(); /* PANIC! */
   return 0;
 }
@@ -334,21 +339,8 @@ static size_t entropy(void* buf, size_t n)
 #endif
   return read_urandom(buf, n);
 }
-
-#elif defined(_WIN32)
-
-#include <windows.h>
-#define RtlGenRandom SystemFunction036
-BOOLEAN NTAPI RtlGenRandom(PVOID RandomBuffer, ULONG RandomBufferLength);
-#pragma comment(lib, "advapi32.lib")
-
-static size_t entropy(void* buf, size_t n)
-{
-  return RtlGenRandom(buf, n) ? n : 0;
-}
-
 #else
-# error "Secure pseudorandom number generator unimplemented for this OS"
+# error "Secure pseudorandom number generator not implemented for this OS"
 #endif
 
 /*
@@ -356,35 +348,39 @@ static size_t entropy(void* buf, size_t n)
  */
 void chacha20_rng(void* out, size_t n)
 {
+  static uint8_t key[32], nonce[12], buffer[64] = { 0 };
+  static uint32_t counter = 0;
   static size_t available = 0;
-  static uint32_t counter = 0xFFFFFFFF;
-  static unsigned char key[32], nonce[12], buffer[64];
-  wx_sqlite3_mutex* mutex;
-  size_t m;
-    
-  mutex = wx_sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_PRNG);
+
+#if SQLITE_THREADSAFE
+  wx_sqlite3_mutex* mutex = wx_sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_PRNG);
   wx_sqlite3_mutex_enter(mutex);
+#endif
+
   while (n > 0)
   {
+    size_t m;
     if (available == 0)
     {
-      if (counter == 0xFFFFFFFF)
+      if (counter == 0)
       {
         if (entropy(key, sizeof(key)) != sizeof(key))
           abort();
         if (entropy(nonce, sizeof(nonce)) != sizeof(nonce))
           abort();
-        counter = 0;
       }
-      chacha20_xor(buffer, sizeof(buffer), key, nonce, ++counter);
+      chacha20_xor(buffer, sizeof(buffer), key, nonce, counter++);
       available = sizeof(buffer);
     }
     m = (available < n) ? available : n;
     memcpy(out, buffer + (sizeof(buffer) - available), m);
-    out = (unsigned char *)out + m;
+    out = (uint8_t*)out + m;
     available -= m;
     n -= m;
   }
+
+#if SQLITE_THREADSAFE
   wx_sqlite3_mutex_leave(mutex);
+#endif
 }
 

@@ -79,7 +79,6 @@ SOURCES += sqlitestudio.cpp \
     parser/sqlite3_parse.cpp \
     parser/parsercontext.cpp \
     parser/parser.cpp \
-    parser/sqlite2_parse.cpp \
     parser/ast/sqlitestatement.cpp \
     parser/ast/sqlitequery.cpp \
     parser/ast/sqlitealtertable.cpp \
@@ -190,7 +189,6 @@ SOURCES += sqlitestudio.cpp \
     dbobjectorganizer.cpp \
     db/attachguard.cpp \
     db/invaliddb.cpp \
-    dbversionconverter.cpp \
     diff/diff_match_patch.cpp \
     db/sqlquery.cpp \
     db/queryexecutorsteps/queryexecutorvaluesmode.cpp \
@@ -248,7 +246,6 @@ HEADERS += sqlitestudio.h\
     parser/sqlite3_parse.h \
     parser/parsercontext.h \
     parser/parser.h \
-    parser/sqlite2_parse.h \
     parser/ast/sqlitestatement.h \
     parser/ast/sqlitequery.h \
     parser/ast/sqlitealtertable.h \
@@ -294,7 +291,6 @@ HEADERS += sqlitestudio.h\
     common/objectpool.h \
     selectresolver.h \
     schemaresolver.h \
-    dialect.h \
     db/db.h \
     services/dbmanager.h \
     db/sqlresultsrow.h \
@@ -365,7 +361,6 @@ HEADERS += sqlitestudio.h\
     db/abstractdb3.h \
     db/dbsqlite3.h \
     plugins/dbpluginsqlite3.h \
-    db/abstractdb2.h \
     parser/ast/sqlitewith.h \
     services/collationmanager.h \
     services/impl/collationmanagerimpl.h \
@@ -381,7 +376,6 @@ HEADERS += sqlitestudio.h\
     db/attachguard.h \
     interruptable.h \
     db/invaliddb.h \
-    dbversionconverter.h \
     diff/diff_match_patch.h \
     db/sqlquery.h \
     dbobjecttype.h \
@@ -445,16 +439,13 @@ OTHER_FILES += \
     parser/lempar.c \
     parser/lemon.c \
     parser/sqlite3_parse.y \
-    parser/sqlite2_parse.y \
     parser/run_lemon.sh \
-    TODO.txt \
     licenses/fugue_icons.txt \
     licenses/qhexedit.txt \
     licenses/sqlitestudio_license.txt \
     licenses/lgpl.txt \
     licenses/diff_match.txt \
     licenses/gpl.txt \
-    ChangeLog.txt \
     qt.conf
  \
     Info.plist

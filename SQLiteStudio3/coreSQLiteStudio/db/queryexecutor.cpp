@@ -533,7 +533,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
 
 bool QueryExecutor::simpleExecIsSelect()
 {
-    TokenList tokens = Lexer::tokenize(queriesForSimpleExecution.last(), db->getDialect());
+    TokenList tokens = Lexer::tokenize(queriesForSimpleExecution.last());
     tokens.trim();
 
     // First check if it's explicit "SELECT" or "VALUES" (the latter one added in SQLite 3.8.4).
@@ -632,7 +632,7 @@ QStringList QueryExecutor::applyLimitForSimpleMethod(const QStringList &queries)
     QString lastQuery = queries.last();
 
     bool isSelect = false;
-    getQueryAccessMode(lastQuery, db->getDialect(), &isSelect);
+    getQueryAccessMode(lastQuery, &isSelect);
     if (isSelect)
     {
         result.removeLast();
@@ -739,11 +739,10 @@ void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
     {
         QString match;
         QString replaceName;
-        Dialect dialect = db->getDialect();
         for (const QString& attachName : context->dbNameToAttach.rightValues())
         {
             match = attachName + ".";
-            replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName), dialect) + ".";
+            replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName)) + ".";
             while (msg.contains(match))
                 msg.replace(match, replaceName);
         }

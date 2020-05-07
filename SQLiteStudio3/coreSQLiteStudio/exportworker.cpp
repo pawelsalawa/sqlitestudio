@@ -85,7 +85,7 @@ void ExportWorker::prepareExportTable(Db* db, const QString& database, const QSt
 void ExportWorker::prepareParser()
 {
     safe_delete(parser);
-    parser = new Parser(db->getDialect());
+    parser = new Parser();
 }
 
 void ExportWorker::interrupt()
@@ -189,7 +189,7 @@ QHash<ExportManager::ExportProviderFlag, QVariant> ExportWorker::getProviderData
     {
         QStringList wrappedCols;
         for (const QueryExecutor::ResultColumnPtr& col : executor->getResultColumns())
-            wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col->displayName, db->getDialect()));
+            wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col->displayName));
 
         executor->exec(colLengthSql.arg(wrappedCols.join(", "), query));
         SqlQueryPtr results = executor->getResults();
@@ -602,7 +602,7 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
 
     if (config->exportData)
     {
-        QString wrappedTable = wrapObjIfNeeded(table, db->getDialect());
+        QString wrappedTable = wrapObjIfNeeded(table);
         dataPtr = db->exec(sql.arg(wrappedTable));
         if (dataPtr->isError() && !errorMessage->isNull())
             *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table, dataPtr->getErrorText());
@@ -623,7 +623,7 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
         {
             QStringList wrappedCols;
             for (const QString& col : dataPtr->getColumnNames())
-                wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col, db->getDialect()));
+                wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col));
 
             SqlQueryPtr colLengthQuery = db->exec(colLengthSql.arg(wrappedCols.join(", "), wrappedTable));
             if (colLengthQuery->isError())

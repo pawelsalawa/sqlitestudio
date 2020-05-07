@@ -72,7 +72,6 @@ bool TableForeignKeyPanel::validate()
 void TableForeignKeyPanel::setDb(Db* value)
 {
     ConstraintPanel::setDb(value);
-    ui->sqlite2Warn->setVisible(value->getDialect() == Dialect::Sqlite2);
 }
 
 void TableForeignKeyPanel::constraintAvailable()

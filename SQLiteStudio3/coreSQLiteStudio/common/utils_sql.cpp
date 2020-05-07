@@ -15,7 +15,6 @@ QString invalidIdCharacters = "[]()\"'@*.,+-=/%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
-QList<NameWrapper> sqlite2Wrappers;
 
 void initUtilsSql()
 {
@@ -33,22 +32,19 @@ void initUtilsSql()
                     << NameWrapper::BRACKET
                     << NameWrapper::QUOTE
                     << NameWrapper::BACK_QUOTE;
-    sqlite2Wrappers << NameWrapper::DOUBLE_QUOTE
-                    << NameWrapper::BRACKET
-                    << NameWrapper::QUOTE;
 
     qRegisterMetaType<SqlQueryPtr>("SqlQueryPtr");
 }
 
-bool doesObjectNeedWrapping(const QString& str, Dialect dialect)
+bool doesObjectNeedWrapping(const QString& str)
 {
     if (str.isEmpty())
         return true;
 
-    if (isObjWrapped(str, dialect))
+    if (isObjWrapped(str))
         return false;
 
-    if (isKeyword(str, dialect))
+    if (isKeyword(str))
         return true;
 
     for (int i = 0; i < str.size(); i++)
@@ -66,41 +62,36 @@ bool doesObjectNeedWrapping(const QChar& c)
     return invalidIdCharacters.indexOf(c) >= 0;
 }
 
-bool isObjectWrapped(const QChar& c, Dialect dialect)
-{
-    return !doesObjectNeedWrapping(c, dialect);
-}
-
 bool isObjectWrapped(const QChar& c)
 {
     return !doesObjectNeedWrapping(c);
 }
 
-QString wrapObjIfNeeded(const QString& obj, Dialect dialect, NameWrapper favWrapper)
+QString wrapObjIfNeeded(const QString& obj, NameWrapper favWrapper)
 {
-    if (doesObjectNeedWrapping(obj, dialect))
-        return wrapObjName(obj, dialect, favWrapper);
+    if (doesObjectNeedWrapping(obj))
+        return wrapObjName(obj, favWrapper);
 
     return obj;
 }
 
-QString wrapObjIfNeeded(const QString& obj, Dialect dialect, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
+QString wrapObjIfNeeded(const QString& obj, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
 {
-    return wrapObjIfNeeded(obj, dialect, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
+    return wrapObjIfNeeded(obj, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
 }
 
-QString wrapObjName(const QString& obj, Dialect dialect, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
+QString wrapObjName(const QString& obj, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
 {
-    return wrapObjName(obj, dialect, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
+    return wrapObjName(obj, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
 }
 
-QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper)
+QString wrapObjName(const QString& obj, NameWrapper favWrapper)
 {
     QString result =  obj;
     if (result.isNull())
         result = "";
 
-    QPair<QChar,QChar> wrapChars = getQuoteCharacter(result, dialect, favWrapper);
+    QPair<QChar,QChar> wrapChars = getQuoteCharacter(result, favWrapper);
 
     if (wrapChars.first.isNull() || wrapChars.second.isNull())
     {
@@ -112,20 +103,9 @@ QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper)
     return result;
 }
 
-QString wrapObjName(const QString& obj, NameWrapper wrapper)
+QPair<QChar,QChar> getQuoteCharacter(QString& obj, NameWrapper favWrapper)
 {
-    QString result =  obj;
-    if (wrapper == NameWrapper::null)
-        return result;
-
-    result.prepend(wrapperChars[wrapper].first);
-    result.append(wrapperChars[wrapper].second);
-    return result;
-}
-
-QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper favWrapper)
-{
-    QList<NameWrapper> wrappers = (dialect == Dialect::Sqlite3) ? sqlite3Wrappers : sqlite2Wrappers;
+    QList<NameWrapper> wrappers = sqlite3Wrappers;
 
     // Move favourite wrapper to front of list
     if (wrappers.contains(favWrapper))
@@ -150,30 +130,27 @@ QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper 
     return QPair<QChar,QChar>();
 }
 
-QList<QString> wrapObjNames(const QList<QString>& objList, Dialect dialect, NameWrapper favWrapper)
+QList<QString> wrapObjNames(const QList<QString>& objList, NameWrapper favWrapper)
 {
     QList<QString> results;
     for (int i = 0; i < objList.size(); i++)
-        results << wrapObjName(objList[i], dialect, favWrapper);
+        results << wrapObjName(objList[i], favWrapper);
 
     return results;
 }
 
-QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, Dialect dialect, NameWrapper favWrapper)
+QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, NameWrapper favWrapper)
 {
     QList<QString> results;
     for (int i = 0; i < objList.size(); i++)
-        results << wrapObjIfNeeded(objList[i], dialect, favWrapper);
+        results << wrapObjIfNeeded(objList[i], favWrapper);
 
     return results;
 }
 
-QList<NameWrapper> getAllNameWrappers(Dialect dialect)
+QList<NameWrapper> getAllNameWrappers()
 {
-    if (dialect == Dialect::Sqlite3)
-        return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE};
-    else
-        return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::QUOTE};
+    return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE};
 }
 
 QString wrapValueIfNeeded(const QString& str)
@@ -258,13 +235,13 @@ QString stripEndingSemicolon(const QString& str)
         return str;
 }
 
-QString stripObjName(const QString &str, Dialect dialect)
+QString stripObjName(const QString &str)
 {
     QString newStr = str;
-    return stripObjName(newStr, dialect);
+    return stripObjName(newStr);
 }
 
-QString stripObjName(QString &str, Dialect dialect)
+QString stripObjName(QString &str)
 {
     if (str.isNull())
         return str;
@@ -272,15 +249,15 @@ QString stripObjName(QString &str, Dialect dialect)
     if (str.length() <= 1)
         return str;
 
-    if (!isObjWrapped(str, dialect))
+    if (!isObjWrapped(str))
         return str;
 
     return str.mid(1, str.length()-2);
 }
 
-bool isObjWrapped(const QString& str, Dialect dialect)
+bool isObjWrapped(const QString& str)
 {
-    return getObjWrapper(str, dialect) != NameWrapper::null;
+    return getObjWrapper(str) != NameWrapper::null;
 }
 
 bool doesNotContainEndingWrapperChar(const QString& str, NameWrapper wrapper)
@@ -300,19 +277,12 @@ bool doesNotContainEndingWrapperChar(const QString& str, NameWrapper wrapper)
     return true;
 }
 
-NameWrapper getObjWrapper(const QString& str, Dialect dialect)
+NameWrapper getObjWrapper(const QString& str)
 {
     if (str.isEmpty())
         return NameWrapper::null;
 
-    QList<NameWrapper> wrappers;
-
-    if (dialect == Dialect::Sqlite2)
-        wrappers = sqlite2Wrappers;
-    else
-        wrappers = sqlite3Wrappers;
-
-    for (NameWrapper wrapper : wrappers)
+    for (NameWrapper wrapper : sqlite3Wrappers)
     {
         QPair<QChar,QChar> chars = wrapperChars[wrapper];
         if (str[0] == chars.first && str[str.length()-1] == chars.second && doesNotContainEndingWrapperChar(str, wrapper))
@@ -321,15 +291,9 @@ NameWrapper getObjWrapper(const QString& str, Dialect dialect)
     return NameWrapper::null;
 }
 
-bool isWrapperChar(const QChar& c, Dialect dialect)
+bool isWrapperChar(const QChar& c)
 {
-    QList<NameWrapper> wrappers;
-    if (dialect == Dialect::Sqlite2)
-        wrappers = sqlite2Wrappers;
-    else
-        wrappers = sqlite3Wrappers;
-
-    for (NameWrapper wrapper : wrappers)
+    for (NameWrapper wrapper : sqlite3Wrappers)
     {
         QPair<QChar,QChar> chars = wrapperChars[wrapper];
         if (c == chars.first || c == chars.second)
@@ -343,12 +307,12 @@ int qHash(NameWrapper wrapper)
     return (uint)wrapper;
 }
 
-QString getPrefixDb(const QString& origDbName, Dialect dialect)
+QString getPrefixDb(const QString& origDbName)
 {
     if (origDbName.isEmpty())
         return "main";
     else
-        return wrapObjIfNeeded(origDbName, dialect);
+        return wrapObjIfNeeded(origDbName);
 }
 
 bool isSystemTable(const QString &name)
@@ -356,35 +320,24 @@ bool isSystemTable(const QString &name)
     return name.startsWith("sqlite_");
 }
 
-bool isSystemIndex(const QString &name, Dialect dialect)
+bool isSystemIndex(const QString &name)
 {
-    switch (dialect)
-    {
-        case Dialect::Sqlite3:
-            return name.startsWith("sqlite_autoindex_");
-        case Dialect::Sqlite2:
-        {
-            QRegExp re("*(*autoindex*)*");
-            re.setPatternSyntax(QRegExp::Wildcard);
-            return re.exactMatch(name);
-        }
-    }
-    return false;
+    return name.startsWith("sqlite_autoindex_");
 }
 
 
-TokenPtr stripObjName(TokenPtr token, Dialect dialect)
+TokenPtr stripObjName(TokenPtr token)
 {
     if (!token)
         return token;
 
-    token->value = stripObjName(token->value, dialect);
+    token->value = stripObjName(token->value);
     return token;
 }
 
 QString removeComments(const QString& value)
 {
-    Lexer lexer(Dialect::Sqlite3);
+    Lexer lexer;
     TokenList tokens = lexer.tokenize(value);
     while (tokens.remove(Token::COMMENT))
         continue;
@@ -569,9 +522,9 @@ QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries, bool re
     return queries;
 }
 
-QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQueries, bool removeComments, bool* complete)
+QStringList splitQueries(const QString& sql, bool keepEmptyQueries, bool removeComments, bool* complete)
 {
-    TokenList tokens = Lexer::tokenize(sql, dialect);
+    TokenList tokens = Lexer::tokenize(sql);
     if (removeComments)
         tokens = tokens.filterOut(Token::COMMENT);
 
@@ -641,11 +594,11 @@ QString trimBindParamPrefix(const QString& param)
     return param;
 }
 
-QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialect dialect)
+QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query)
 {
     QList<QueryWithParamNames> results;
 
-    TokenList allTokens = Lexer::tokenize(query, dialect);
+    TokenList allTokens = Lexer::tokenize(query);
     QList<TokenList> queries = splitQueries(allTokens);
 
     QString queryStr;
@@ -663,11 +616,11 @@ QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialec
     return results;
 }
 
-QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialect dialect)
+QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query)
 {
     QList<QueryWithParamCount> results;
 
-    TokenList allTokens = Lexer::tokenize(query, dialect);
+    TokenList allTokens = Lexer::tokenize(query);
     QList<TokenList> queries = splitQueries(allTokens);
 
     QString queryStr;
@@ -681,9 +634,9 @@ QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialec
     return results;
 }
 
-QueryWithParamNames getQueryWithParamNames(const QString& query, Dialect dialect)
+QueryWithParamNames getQueryWithParamNames(const QString& query)
 {
-    TokenList allTokens = Lexer::tokenize(query, dialect);
+    TokenList allTokens = Lexer::tokenize(query);
 
     QStringList paramNames;
     for (const TokenPtr& token : allTokens.filter(Token::BIND_PARAM))
@@ -692,9 +645,9 @@ QueryWithParamNames getQueryWithParamNames(const QString& query, Dialect dialect
     return QueryWithParamNames(query, paramNames);
 }
 
-QueryWithParamCount getQueryWithParamCount(const QString& query, Dialect dialect)
+QueryWithParamCount getQueryWithParamCount(const QString& query)
 {
-    TokenList allTokens = Lexer::tokenize(query, dialect);
+    TokenList allTokens = Lexer::tokenize(query);
     return QueryWithParamCount(query, allTokens.filter(Token::BIND_PARAM).size());
 }
 
@@ -719,14 +672,14 @@ QString getBindTokenName(const TokenPtr& token)
     return token->value.mid(1);
 }
 
-QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect, bool* isSelect)
+QueryAccessMode getQueryAccessMode(const QString& query, bool* isSelect)
 {
     static QStringList readOnlyCommands = {"ANALYZE", "EXPLAIN", "PRAGMA", "SELECT"};
 
     if (isSelect)
         *isSelect = false;
 
-    TokenList tokens = Lexer::tokenize(query, dialect);
+    TokenList tokens = Lexer::tokenize(query);
     int keywordIdx = tokens.indexOf(Token::KEYWORD);
     if (keywordIdx < 0)
         return QueryAccessMode::WRITE;
@@ -790,7 +743,7 @@ QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect, bool* 
     return QueryAccessMode::WRITE;
 }
 
-QStringList valueListToSqlList(const QVariantList& values, Dialect dialect)
+QStringList valueListToSqlList(const QVariantList& values)
 {
     QStringList argList;
     for (const QVariant& value : values)
@@ -816,13 +769,8 @@ QStringList valueListToSqlList(const QVariantList& values, Dialect dialect)
                 argList << QString::number(value.toInt());
                 break;
             case QVariant::ByteArray:
-            {
-                if (dialect == Dialect::Sqlite3) // version 2 will go to the regular string processing
-                {
-                    argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
-                    break;
-                }
-            }
+                argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
+                break;
             default:
                 argList << wrapString(escapeString(value.toString()));
                 break;

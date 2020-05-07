@@ -139,7 +139,7 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
         idxModifier += statePrefix.size();
     }
 
-    Lexer lexer(sqliteVersion == 2 ? Dialect::Sqlite2 : Dialect::Sqlite3);
+    Lexer lexer;
     lexer.setTolerantMode(true);
     lexer.prepare(statePrefix+text);
 

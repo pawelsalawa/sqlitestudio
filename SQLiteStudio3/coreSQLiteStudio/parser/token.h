@@ -113,7 +113,7 @@ struct API_EXPORT Token
 
     /**
      * @brief Creates fully defined token.
-     * @param lemonType Lemon token ID to use (see sqlite2_parser.h and sqlite3_parser.h).
+     * @param lemonType Lemon token ID to use (see sqlite3_parser.h).
      * @param type Token type.
      * @param value Value of the token.
      * @param start Start position of the token (index of the first character in the query).

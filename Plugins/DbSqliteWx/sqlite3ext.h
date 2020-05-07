@@ -310,6 +310,26 @@ struct wx_sqlite3_api_routines {
   int (*str_errcode)(wx_sqlite3_str*);
   int (*str_length)(wx_sqlite3_str*);
   char *(*str_value)(wx_sqlite3_str*);
+  /* Version 3.25.0 and later */
+  int (*create_window_function)(wx_sqlite3*,const char*,int,int,void*,
+                            void (*xStep)(wx_sqlite3_context*,int,wx_sqlite3_value**),
+                            void (*xFinal)(wx_sqlite3_context*),
+                            void (*xValue)(wx_sqlite3_context*),
+                            void (*xInv)(wx_sqlite3_context*,int,wx_sqlite3_value**),
+                            void(*xDestroy)(void*));
+  /* Version 3.26.0 and later */
+  const char *(*normalized_sql)(wx_sqlite3_stmt*);
+  /* Version 3.28.0 and later */
+  int (*stmt_isexplain)(wx_sqlite3_stmt*);
+  int (*value_frombind)(wx_sqlite3_value*);
+  /* Version 3.30.0 and later */
+  int (*drop_modules)(wx_sqlite3*,const char**);
+  /* Version 3.31.0 and later */
+  wx_sqlite3_int64 (*hard_heap_limit64)(wx_sqlite3_int64);
+  const char *(*uri_key)(const char*,int);
+  const char *(*filename_database)(const char*);
+  const char *(*filename_journal)(const char*);
+  const char *(*filename_wal)(const char*);
 };
 
 /*
@@ -595,6 +615,21 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #define wx_sqlite3_str_errcode            wx_sqlite3_api->str_errcode
 #define wx_sqlite3_str_length             wx_sqlite3_api->str_length
 #define wx_sqlite3_str_value              wx_sqlite3_api->str_value
+/* Version 3.25.0 and later */
+#define wx_sqlite3_create_window_function wx_sqlite3_api->create_window_function
+/* Version 3.26.0 and later */
+#define wx_sqlite3_normalized_sql         wx_sqlite3_api->normalized_sql
+/* Version 3.28.0 and later */
+#define wx_sqlite3_stmt_isexplain         wx_sqlite3_api->stmt_isexplain
+#define wx_sqlite3_value_frombind         wx_sqlite3_api->value_frombind
+/* Version 3.30.0 and later */
+#define wx_sqlite3_drop_modules           wx_sqlite3_api->drop_modules
+/* Version 3.31.0 and later */
+#define wx_sqlite3_hard_heap_limit64      wx_sqlite3_api->hard_heap_limit64
+#define wx_sqlite3_uri_key                wx_sqlite3_api->uri_key
+#define wx_sqlite3_filename_database      wx_sqlite3_api->filename_database
+#define wx_sqlite3_filename_journal       wx_sqlite3_api->filename_journal
+#define wx_sqlite3_filename_wal           wx_sqlite3_api->filename_wal
 #endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
 
 #if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)

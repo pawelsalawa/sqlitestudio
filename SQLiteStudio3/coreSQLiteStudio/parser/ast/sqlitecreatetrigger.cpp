@@ -180,18 +180,12 @@ QStringList SqliteCreateTrigger::getDatabasesInStatement()
 
 TokenList SqliteCreateTrigger::getTableTokensInStatement()
 {
-    if (dialect == Dialect::Sqlite2)
-        return getObjectTokenListFromNmDbnm("nm2", "dbnm");
-    else
-        return getTokenListFromNamedKey("nm2");
+    return getTokenListFromNamedKey("nm2");
 }
 
 TokenList SqliteCreateTrigger::getDatabaseTokensInStatement()
 {
-    if (dialect == Dialect::Sqlite2)
-        return getDbTokenListFromNmDbnm("nm2", "dbnm");
-    else
-        return getDbTokenListFromNmDbnm();
+    return getDbTokenListFromNmDbnm();
 }
 
 QList<SqliteStatement::FullObject> SqliteCreateTrigger::getFullObjectsInStatement()
@@ -200,14 +194,9 @@ QList<SqliteStatement::FullObject> SqliteCreateTrigger::getFullObjectsInStatemen
 
     // Table object
     FullObject fullObj;
-    if (dialect == Dialect::Sqlite2)
-        fullObj = getFullObjectFromNmDbnm(FullObject::TABLE, "nm2", "dbnm");
-    else
-    {
-        TokenList tableTokens = getTokenListFromNamedKey("nm2");
-        if (tableTokens.size() > 0)
-            fullObj = getFullObject(FullObject::TABLE, TokenPtr(), tableTokens[0]);
-    }
+    TokenList tableTokens = getTokenListFromNamedKey("nm2");
+    if (tableTokens.size() > 0)
+        fullObj = getFullObject(FullObject::TABLE, TokenPtr(), tableTokens[0]);
 
     if (fullObj.isValid())
         result << fullObj;
@@ -221,14 +210,9 @@ QList<SqliteStatement::FullObject> SqliteCreateTrigger::getFullObjectsInStatemen
     }
 
     // Trigger object
-    if (dialect == Dialect::Sqlite2)
-    {
-        TokenList tableTokens = getTokenListFromNamedKey("nm");
-        if (tableTokens.size() > 0)
-            fullObj = getFullObject(FullObject::TRIGGER, TokenPtr(), tableTokens[0]);
-    }
-    else
-        fullObj = getFullObjectFromNmDbnm(FullObject::TRIGGER, "nm", "dbnm");
+    fullObj = getFullObjectFromNmDbnm(FullObject::TRIGGER, "nm", "dbnm");
+    if (fullObj.isValid())
+        result << fullObj;
 
     return result;
 }
@@ -333,10 +317,10 @@ TokenList SqliteCreateTrigger::rebuildTokensFromContents()
     if (ifNotExistsKw)
         builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();
 
-    if (dialect == Dialect::Sqlite3 && !database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+    if (!database.isNull())
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(trigger, dialect).withSpace();
+    builder.withOther(trigger).withSpace();
     switch (eventTime)
     {
         case Time::BEFORE:
@@ -353,10 +337,7 @@ TokenList SqliteCreateTrigger::rebuildTokensFromContents()
     }
 
     builder.withStatement(event).withSpace().withKeyword("ON").withSpace();
-    if (dialect == Dialect::Sqlite2 && !database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
-
-    builder.withOther(table, dialect).withSpace();
+    builder.withOther(table).withSpace();
 
     switch (scope)
     {

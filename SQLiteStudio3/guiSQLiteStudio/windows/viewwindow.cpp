@@ -46,7 +46,6 @@ ViewWindow::ViewWindow(Db* db, QWidget* parent) :
     newView();
     init();
     applyInitialTab();
-    updateDbRelatedUiElements();
 }
 
 ViewWindow::ViewWindow(const ViewWindow& win) :
@@ -59,7 +58,6 @@ ViewWindow::ViewWindow(const ViewWindow& win) :
     init();
     initView();
     applyInitialTab();
-    updateDbRelatedUiElements();
 }
 
 ViewWindow::ViewWindow(QWidget* parent, Db* db, const QString& database, const QString& view) :
@@ -72,7 +70,6 @@ ViewWindow::ViewWindow(QWidget* parent, Db* db, const QString& database, const Q
     init();
     initView();
     applyInitialTab();
-    updateDbRelatedUiElements();
 }
 
 ViewWindow::~ViewWindow()
@@ -139,7 +136,6 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
 
     initView();
     applyInitialTab();
-    updateDbRelatedUiElements();
     return true;
 }
 
@@ -475,7 +471,7 @@ QString ViewWindow::getCurrentDdl() const
         columnsStr = "(" + collectColumnNames().join(", ") + ")";
 
     return ddlTpl.arg(
-                    wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect()),
+                    wrapObjIfNeeded(ui->nameEdit->text()),
                     columnsStr,
                     ui->queryEdit->toPlainText()
                 );
@@ -492,10 +488,9 @@ QStringList ViewWindow::indexedColumnsToNamesOnly(const QList<SqliteIndexedColum
 
 QStringList ViewWindow::collectColumnNames() const
 {
-    Dialect dialect = db ? db->getDialect() : Dialect::Sqlite3;
     QStringList cols;
     for (int row = 0; row < ui->outputColumnsTable->count(); row++)
-        cols << wrapObjIfNeeded(ui->outputColumnsTable->item(row)->text(), dialect);
+        cols << wrapObjIfNeeded(ui->outputColumnsTable->item(row)->text());
 
     return cols;
 }
@@ -827,13 +822,6 @@ void ViewWindow::generateOutputColumns()
     }
 }
 
-void ViewWindow::updateDbRelatedUiElements()
-{
-    bool enabled = db->getDialect() == Dialect::Sqlite3;
-    outputColumnsCheck->setVisible(enabled);
-    outputColumnsSeparator->setVisible(enabled);
-}
-
 void ViewWindow::updateTabsOrder()
 {
     tabsMoving = true;
@@ -927,7 +915,6 @@ void ViewWindow::parseDdl()
     {
         createView = SqliteCreateViewPtr::create();
         createView->view = view;
-        createView->dialect = db->getDialect();
     }
     originalCreateView = SqliteCreateViewPtr::create(*createView);
 
@@ -972,7 +959,7 @@ bool ViewWindow::validate(bool skipWarnings)
 
     // Rebuilding createView statement and validating it on the fly.
     QString ddl = getCurrentDdl();
-    Parser parser(db->getDialect());
+    Parser parser;
     if (!parser.parse(ddl) || parser.getQueries().size() < 1)
     {
         notifyError(tr("The SELECT statement could not be parsed. Please correct the query and retry.\nDetails: %1").arg(parser.getErrorString()));
@@ -1005,7 +992,7 @@ void ViewWindow::executeStructureChanges()
     }
     else
     {
-        Parser parser(db->getDialect());
+        Parser parser;
         if (!parser.parse(theDdl))
         {
             qCritical() << "Could not re-parse the view for executing it:" << parser.getErrorString();

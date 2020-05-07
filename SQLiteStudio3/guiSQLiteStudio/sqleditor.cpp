@@ -91,7 +91,7 @@ void SqlEditor::init()
 
     connect(this, SIGNAL(textChanged()), this, SLOT(scheduleQueryParser()));
 
-    queryParser = new Parser(Dialect::Sqlite3);
+    queryParser = new Parser();
 
     connect(this, &QWidget::customContextMenuRequested, this, &SqlEditor::customContextMenuRequested);
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
@@ -215,8 +215,7 @@ bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
     if (!obj)
         return false;
 
-    Dialect dialect = getDialect();
-    QString objName = stripObjName(toPlainText().mid(obj->from, (obj->to - obj->from + 1)), dialect);
+    QString objName = stripObjName(toPlainText().mid(obj->from, (obj->to - obj->from + 1)));
 
     validObjContextMenu->clear();
 
@@ -492,12 +491,12 @@ void SqlEditor::completeSelected()
     ExpectedTokenPtr token = completer->getSelected();
     QString value = token->value;
     if (token->needsWrapping())
-        value = wrapObjIfNeeded(value, getDialect());
+        value = wrapObjIfNeeded(value);
 
     if (!token->prefix.isNull())
     {
         value.prepend(".");
-        value.prepend(wrapObjIfNeeded(token->prefix, getDialect()));
+        value.prepend(wrapObjIfNeeded(token->prefix));
     }
 
     insertPlainText(value);
@@ -508,7 +507,7 @@ void SqlEditor::checkForAutoCompletion()
     if (!db || !autoCompletion || deletionKeyPressed || !richFeaturesEnabled)
         return;
 
-    Lexer lexer(getDialect());
+    Lexer lexer;
     QString sql = toPlainText();
     int curPos = textCursor().position();
     TokenList tokens = lexer.tokenize(sql.left(curPos));
@@ -544,11 +543,6 @@ void SqlEditor::refreshValidObjects()
             objectsInNamedDb[dbName] << objects;
         }
     });
-}
-
-Dialect SqlEditor::getDialect()
-{
-    return !db ? Dialect::Sqlite3 : db->getDialect();
 }
 
 void SqlEditor::setObjectLinks(bool enabled)
@@ -841,11 +835,6 @@ void SqlEditor::parseContents()
     if (!richFeaturesEnabled)
         return;
 
-    // Updating dialect according to current database (if any)
-    Dialect dialect = Dialect::Sqlite3;
-    if (db && db->isValid())
-        dialect = db->getDialect();
-
     QString sql = toPlainText();
     if (!virtualSqlExpression.isNull())
     {
@@ -855,7 +844,6 @@ void SqlEditor::parseContents()
         sql = virtualSqlExpression.arg(sql);
     }
 
-    queryParser->setDialect(dialect);
     if (richFeaturesEnabled)
     {
         queryParser->parse(sql);
@@ -903,7 +891,6 @@ void SqlEditor::checkForValidObjects()
         return;
 
     QMutexLocker lock(&objectsInNamedDbMutex);
-    Dialect dialect = db->getDialect();
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
     for (SqliteQueryPtr query : queryParser->getQueries())
@@ -911,7 +898,7 @@ void SqlEditor::checkForValidObjects()
         fullObjects = query->getContextFullObjects();
         for (const SqliteStatement::FullObject& fullObj : fullObjects)
         {
-            dbName = fullObj.database ? stripObjName(fullObj.database->value, dialect) : "main";
+            dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
             if (!objectsInNamedDb.contains(dbName))
                 continue;
 
@@ -922,7 +909,7 @@ void SqlEditor::checkForValidObjects()
                 continue;
             }
 
-            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value, dialect)))
+            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value)))
                 continue;
 
             // Valid object name
@@ -1503,7 +1490,7 @@ void SqlEditor::mousePressEvent(QMouseEvent* e)
         if (obj && e->button() == Qt::LeftButton)
         {
             QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
-            openObject(obj->dbName, stripObjName(objName, getDialect()));
+            openObject(obj->dbName, stripObjName(objName));
         }
     }
 

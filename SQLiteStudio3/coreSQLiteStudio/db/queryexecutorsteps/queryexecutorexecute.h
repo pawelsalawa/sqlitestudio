@@ -79,7 +79,6 @@ class QueryExecutorExecute : public QueryExecutorStep
          */
         qint64 startTime;
 
-        void setupSqlite2ColumnDataTypes(SqlQueryPtr results);
         bool isBeginTransaction(SqliteQueryType queryType);
         bool isCommitTransaction(SqliteQueryType queryType);
         bool isRollbackTransaction(SqliteQueryType queryType);

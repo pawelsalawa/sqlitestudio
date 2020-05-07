@@ -222,7 +222,7 @@ StrHash<QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QStr
 {
      StrHash< QSharedPointer<T>> parsedObjects;
 
-     QString dbName = getPrefixDb(database, db->getDialect());
+     QString dbName = getPrefixDb(database);
 
      SqlQueryPtr results;
 

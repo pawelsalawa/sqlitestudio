@@ -611,7 +611,6 @@ void TableWindow::parseDdl()
     {
         createTable = SqliteCreateTablePtr::create();
         createTable->table = table;
-        createTable->dialect = db->getDialect();
     }
     originalCreateTable = SqliteCreateTablePtr::create(*createTable);
     structureModel->setCreateTable(createTable.data());
@@ -1498,10 +1497,6 @@ void TableWindow::updateIndexes()
                                                  tr("Partial index condition", "table window indexes"),
                                              });
 
-    Dialect dialect= db->getDialect();
-    if (dialect == Dialect::Sqlite2)
-        ui->indexList->setColumnCount(3);
-
     ui->indexList->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
 
     QTableWidgetItem* item = nullptr;
@@ -1522,12 +1517,9 @@ void TableWindow::updateIndexes()
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
         ui->indexList->setItem(row, 2, item);
 
-        if (dialect == Dialect::Sqlite3)
-        {
-            item = new QTableWidgetItem(index->where ? index->where->detokenize() : "");
-            item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
-            ui->indexList->setItem(row, 3, item);
-        }
+        item = new QTableWidgetItem(index->where ? index->where->detokenize() : "");
+        item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->indexList->setItem(row, 3, item);
 
         row++;
     }

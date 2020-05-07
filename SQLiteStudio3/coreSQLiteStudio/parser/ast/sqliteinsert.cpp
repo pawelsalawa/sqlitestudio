@@ -191,9 +191,9 @@ TokenList SqliteInsert::rebuildTokensFromContents()
     builder.withKeyword("INTO").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
-    builder.withOther(table, dialect).withSpace();
+    builder.withOther(table).withSpace();
 
     if (defaultValuesKw)
     {
@@ -202,17 +202,13 @@ TokenList SqliteInsert::rebuildTokensFromContents()
     else
     {
         if (columnNames.size() > 0)
-            builder.withParLeft().withOtherList(columnNames, dialect).withParRight().withSpace();
+            builder.withParLeft().withOtherList(columnNames).withParRight().withSpace();
 
         if (select)
         {
             builder.withStatement(select);
             if (upsert)
                 builder.withSpace().withStatement(upsert);
-        }
-        else if (dialect == Dialect::Sqlite2) // Sqlite2 uses classic single row values
-        {
-            builder.withKeyword("VALUES").withSpace().withParLeft().withStatementList(values).withParRight();
         }
     }
 

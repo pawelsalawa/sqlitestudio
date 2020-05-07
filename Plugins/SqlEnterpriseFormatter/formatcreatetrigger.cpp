@@ -28,7 +28,7 @@ void FormatCreateTrigger::formatInternal()
     for (const QString& kw : keywords)
         withKeyword(kw);
 
-    if (dialect == Dialect::Sqlite3 && !createTrig->database.isNull())
+    if (!createTrig->database.isNull())
         withId(createTrig->database).withIdDot();
 
     withId(createTrig->trigger).withNewLine();
@@ -55,9 +55,6 @@ void FormatCreateTrigger::formatInternal()
 
     withStatement(createTrig->event, QString(), eventStmtEnricher).withNewLine();
     withLinedUpKeyword("ON", TRIGGER_MARK);
-    if (dialect == Dialect::Sqlite2 && !createTrig->database.isNull())
-        withId(createTrig->database).withIdDot();
-
     withId(createTrig->table).withNewLine();
 
     switch (createTrig->scope)

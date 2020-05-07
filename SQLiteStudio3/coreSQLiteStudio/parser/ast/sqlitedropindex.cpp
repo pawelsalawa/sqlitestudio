@@ -70,7 +70,7 @@ TokenList SqliteDropIndex::rebuildTokensFromContents()
         builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
     builder.withOther(index).withOperator(";");
 

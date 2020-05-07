@@ -3031,8 +3031,7 @@ static void yy_reduce(
 {
                                                 yygotominor.yy399 = new QString(
                                                     stripObjName(
-                                                        yymsp[0].minor.yy0->value,
-                                                        parserContext->dialect
+                                                        yymsp[0].minor.yy0->value
                                                     )
                                                 );
                                             }

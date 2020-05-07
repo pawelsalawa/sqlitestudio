@@ -107,12 +107,6 @@ void TriggerDialog::init()
                                  SqliteCreateTrigger::scopeToString(SqliteCreateTrigger::Scope::null),
                                  SqliteCreateTrigger::scopeToString(SqliteCreateTrigger::Scope::FOR_EACH_ROW)
                              });
-    if (db->getDialect() == Dialect::Sqlite2)
-    {
-        ui->scopeCombo->addItems({
-                                     SqliteCreateTrigger::scopeToString(SqliteCreateTrigger::Scope::FOR_EACH_STATEMENT)
-                                 });
-    }
 
     // Event combo - default values
     ui->whenCombo->addItems(tableEventNames + viewEventNames);
@@ -223,7 +217,6 @@ void TriggerDialog::readTrigger()
 
 void TriggerDialog::setupVirtualSqls()
 {
-    Dialect dialect = db->getDialect();
     static QString preconditionVirtSql = QStringLiteral("CREATE TRIGGER %1 BEFORE INSERT ON %2 WHEN %3 BEGIN SELECT 1; END;");
     static QString codeVirtSql = QStringLiteral("CREATE TRIGGER %1 BEFORE INSERT ON %2 BEGIN %3 END;");
     ui->codeEdit->setVirtualSqlCompleteSemicolon(true);
@@ -232,14 +225,14 @@ void TriggerDialog::setupVirtualSqls()
         if (createTrigger) // if false, then there was a parsing error in parseDdl().
         {
             ui->preconditionEdit->setVirtualSqlExpression(
-                        preconditionVirtSql.arg(wrapObjIfNeeded(trigger, dialect),
-                                                wrapObjIfNeeded(createTrigger->table, dialect),
+                        preconditionVirtSql.arg(wrapObjIfNeeded(trigger),
+                                                wrapObjIfNeeded(createTrigger->table),
                                                 "%1"));
 
             ui->codeEdit->setVirtualSqlExpression(
                         codeVirtSql.arg(
-                            wrapObjIfNeeded(trigger, dialect),
-                            wrapObjIfNeeded(createTrigger->table, dialect),
+                            wrapObjIfNeeded(trigger),
+                            wrapObjIfNeeded(createTrigger->table),
                             "%1"));
         }
     }
@@ -247,12 +240,12 @@ void TriggerDialog::setupVirtualSqls()
     {
         ui->preconditionEdit->setVirtualSqlExpression(
                     preconditionVirtSql.arg("trig",
-                                            wrapObjIfNeeded(getTargetObjectName(), dialect),
+                                            wrapObjIfNeeded(getTargetObjectName()),
                                             "%1"));
 
         ui->codeEdit->setVirtualSqlExpression(
                     codeVirtSql.arg("trig",
-                                    wrapObjIfNeeded(getTargetObjectName(), dialect),
+                                    wrapObjIfNeeded(getTargetObjectName()),
                                     "%1"));
     }
     else
@@ -292,12 +285,11 @@ void TriggerDialog::rebuildTrigger()
      */
     static const QString tempDdl = QStringLiteral("CREATE TRIGGER %1%2 %3%4 ON %5%6%7 BEGIN %8 END;");
 
-    Dialect dialect = db->getDialect();
-    QString trigName = wrapObjIfNeeded(ui->nameEdit->text(), dialect);
+    QString trigName = wrapObjIfNeeded(ui->nameEdit->text());
     QString when = ui->whenCombo->currentText();
     QString action = ui->actionCombo->currentText();
     QString columns = "";
-    QString target = wrapObjIfNeeded(getTargetObjectName(), dialect);
+    QString target = wrapObjIfNeeded(getTargetObjectName());
     QString scope = ui->scopeCombo->currentText();
     QString precondition = "";
     QString queries = ui->codeEdit->toPlainText();
@@ -308,7 +300,7 @@ void TriggerDialog::rebuildTrigger()
     {
         QStringList colNames;
         for (const QString& colName : selectedColumns)
-            colNames << wrapObjIfNeeded(colName, dialect);
+            colNames << wrapObjIfNeeded(colName);
 
         columns = " "+colNames.join(", ");
     }
@@ -394,11 +386,9 @@ void TriggerDialog::accept()
 {
     rebuildTrigger();
 
-    Dialect dialect = db->getDialect();
-
     QStringList sqls;
     if (existingTrigger)
-        sqls << QString("DROP TRIGGER %1").arg(wrapObjIfNeeded(originalTriggerName, dialect));
+        sqls << QString("DROP TRIGGER %1").arg(wrapObjIfNeeded(originalTriggerName));
 
     sqls << ddl;
 

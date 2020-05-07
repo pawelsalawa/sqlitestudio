@@ -25,7 +25,7 @@ void LexerTest::testStringCase1()
 {
     QString sql = "INSERT INTO tab VALUES (1, 2, :val); /* test";
 
-    Lexer lex(Dialect::Sqlite3);
+    Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     QVERIFY(tokens.size() == 20);
 }
@@ -34,7 +34,7 @@ void LexerTest::testFloat()
 {
     QString sql = "SELECT .2";
 
-    Lexer lex(Dialect::Sqlite3);
+    Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     QVERIFY(tokens.size() == 3);
     QVERIFY(tokens[2]->type == Token::FLOAT);
@@ -44,7 +44,7 @@ void LexerTest::testHex1()
 {
     QString sql = "SELECT 0x";
 
-    Lexer lex(Dialect::Sqlite3);
+    Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     QVERIFY(tokens.size() == 3);
     QVERIFY(tokens[2]->type == Token::INVALID);
@@ -54,7 +54,7 @@ void LexerTest::testHex2()
 {
     QString sql = "SELECT 0x5zzz";
 
-    Lexer lex(Dialect::Sqlite3);
+    Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     QVERIFY(tokens.size() == 4);
     QVERIFY(tokens[2]->type == Token::INTEGER);
@@ -66,7 +66,7 @@ void LexerTest::testBindParam1()
 {
     QString sql = "SELECT * FROM test WHERE id = ?1 OR id = ?123 OR id = ? OR id = :id OR id = @id";
 
-    Lexer lex(Dialect::Sqlite3);
+    Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     TokenList bindTokens = tokens.filter(Token::BIND_PARAM);
     QVERIFY(bindTokens.size() == 5);

@@ -20,7 +20,7 @@ void FormatCreateTable::formatInternal()
     if (createTable->ifNotExistsKw)
         withKeyword("IF").withKeyword("NOT").withKeyword("EXISTS");
 
-    if (dialect == Dialect::Sqlite3 && !createTable->database.isNull())
+    if (!createTable->database.isNull())
         withId(createTable->database).withIdDot();
 
     withId(createTable->table);
@@ -81,9 +81,9 @@ void FormatCreateTable::formatColumns(const QList<SqliteCreateTable::Column*>& c
 int FormatCreateTable::getColNameLength(const QString& name)
 {
     if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
-        return wrapObjName(name, dialect, wrapper).length();
+        return wrapObjName(name, wrapper).length();
     else
-        return wrapObjIfNeeded(name, dialect, wrapper).length();
+        return wrapObjIfNeeded(name, wrapper).length();
 }
 
 FormatCreateTableColumn::FormatCreateTableColumn(SqliteCreateTable::Column* column) :

@@ -2,7 +2,6 @@
 #include "token.h"
 #include "keywords.h"
 #include "sqlite3_parse.h"
-#include "sqlite2_parse.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
 
@@ -21,7 +20,7 @@ bool isIdChar(const QChar& c)
 
 int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tolerant)
 {
-    if (sqliteVersion < 2 || sqliteVersion > 3)
+    if (sqliteVersion < 3 || sqliteVersion > 3)
     {
         qCritical() << "lexerGetToken() called with invalid sqliteVersion:" << sqliteVersion;
         return 0;
@@ -33,7 +32,6 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         return 0;
     }
 
-    bool v3 = sqliteVersion == 3;
     int i;
     QChar c;
     QChar z0 = charAt(z, 0);
@@ -43,7 +41,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         if (z0.isSpace())
         {
             for(i=1; charAt(z, i).isSpace(); i++) {}
-            token->lemonType = v3 ? TK3_SPACE : TK2_SPACE;
+            token->lemonType = TK3_SPACE;
             token->type = Token::SPACE;
             return i;
         }
@@ -52,41 +50,41 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             if (charAt(z, 1) == '-')
             {
                 for (i=2; !(c = charAt(z, i)).isNull() && c != '\n'; i++) {}
-                token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
+                token->lemonType = TK3_COMMENT;
                 token->type = Token::COMMENT;
                 return i;
             }
-            token->lemonType = v3 ? TK3_MINUS : TK2_MINUS;
+            token->lemonType = TK3_MINUS;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '(')
         {
-            token->lemonType = v3 ? TK3_LP : TK2_LP;
+            token->lemonType = TK3_LP;
             token->type = Token::PAR_LEFT;
             return 1;
         }
         if (z0 == ')')
         {
-            token->lemonType = v3 ? TK3_RP : TK2_RP;
+            token->lemonType = TK3_RP;
             token->type = Token::PAR_RIGHT;
             return 1;
         }
         if (z0 == ';')
         {
-            token->lemonType = v3 ? TK3_SEMI : TK2_SEMI;
+            token->lemonType = TK3_SEMI;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '+')
         {
-            token->lemonType = v3 ? TK3_PLUS : TK2_PLUS;
+            token->lemonType = TK3_PLUS;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '*')
         {
-            token->lemonType = v3 ? TK3_STAR : TK2_STAR;
+            token->lemonType = TK3_STAR;
             token->type = Token::OPERATOR;
             return 1;
         }
@@ -94,14 +92,14 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if ( charAt(z, 1) != '*' )
             {
-                token->lemonType = v3 ? TK3_SLASH : TK2_SLASH;
+                token->lemonType = TK3_SLASH;
                 token->type = Token::OPERATOR;
                 return 1;
             }
 
             if ( charAt(z, 2).isNull() )
             {
-                token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
+                token->lemonType = TK3_COMMENT;
                 token->type = Token::COMMENT;
                 if (tolerant)
                     token.dynamicCast<TolerantToken>()->invalid = true;
@@ -119,19 +117,19 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             if ( c > 0 )
 #endif
                 i++;
-            token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
+            token->lemonType = TK3_COMMENT;
             token->type = Token::COMMENT;
             return i;
         }
         if (z0 == '%')
         {
-            token->lemonType = v3 ? TK3_REM : TK2_REM;
+            token->lemonType = TK3_REM;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '=')
         {
-            token->lemonType = v3 ? TK3_EQ : TK2_EQ;
+            token->lemonType = TK3_EQ;
             token->type = Token::OPERATOR;
             return 1 + (charAt(z, 1) == '=');
         }
@@ -139,25 +137,25 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if ( (c = charAt(z, 1)) == '=' )
             {
-                token->lemonType = v3 ? TK3_LE : TK2_LE;
+                token->lemonType = TK3_LE;
                 token->type = Token::OPERATOR;
                 return 2;
             }
             else if ( c == '>' )
             {
-                token->lemonType = v3 ? TK3_NE : TK2_NE;
+                token->lemonType = TK3_NE;
                 token->type = Token::OPERATOR;
                 return 2;
             }
             else if( c == '<' )
             {
-                token->lemonType = v3 ? TK3_LSHIFT : TK2_LSHIFT;
+                token->lemonType = TK3_LSHIFT;
                 token->type = Token::OPERATOR;
                 return 2;
             }
             else
             {
-                token->lemonType = v3 ? TK3_LT : TK2_LT;
+                token->lemonType = TK3_LT;
                 token->type = Token::OPERATOR;
                 return 1;
             }
@@ -166,19 +164,19 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if ( (c = charAt(z, 1)) == '=' )
             {
-                token->lemonType = v3 ? TK3_GE : TK2_GE;
+                token->lemonType = TK3_GE;
                 token->type = Token::OPERATOR;
                 return 2;
             }
             else if ( c == '>' )
             {
-                token->lemonType = v3 ? TK3_RSHIFT : TK2_RSHIFT;
+                token->lemonType = TK3_RSHIFT;
                 token->type = Token::OPERATOR;
                 return 2;
             }
             else
             {
-                token->lemonType = v3 ? TK3_GT : TK2_GT;
+                token->lemonType = TK3_GT;
                 token->type = Token::OPERATOR;
                 return 1;
             }
@@ -187,13 +185,13 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if ( charAt(z, 1) != '=' )
             {
-                token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
                 return 2;
             }
             else
             {
-                token->lemonType = v3 ? TK3_NE : TK2_NE;
+                token->lemonType = TK3_NE;
                 token->type = Token::OPERATOR;
                 return 2;
             }
@@ -202,32 +200,32 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if( charAt(z, 1) != '|' )
             {
-                token->lemonType = v3 ? TK3_BITOR : TK2_BITOR;
+                token->lemonType = TK3_BITOR;
                 token->type = Token::OPERATOR;
                 return 1;
             }
             else
             {
-                token->lemonType = v3 ? TK3_CONCAT : TK2_CONCAT;
+                token->lemonType = TK3_CONCAT;
                 token->type = Token::OPERATOR;
                 return 2;
             }
         }
         if (z0 == ',')
         {
-            token->lemonType = v3 ? TK3_COMMA : TK2_COMMA;
+            token->lemonType = TK3_COMMA;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '&')
         {
-            token->lemonType = v3? TK3_BITAND : TK2_BITAND;
+            token->lemonType = TK3_BITAND;
             token->type = Token::OPERATOR;
             return 1;
         }
         if (z0 == '~')
         {
-            token->lemonType = v3? TK3_BITNOT : TK2_BITAND;
+            token->lemonType = TK3_BITNOT;
             token->type = Token::OPERATOR;
             return 1;
         }
@@ -248,13 +246,13 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             }
             if ( c == '\'' )
             {
-                token->lemonType = v3? TK3_STRING : TK2_STRING;
+                token->lemonType = TK3_STRING;
                 token->type = Token::STRING;
                 return i+1;
             }
             else if ( !c.isNull() )
             {
-                token->lemonType = v3 ? TK3_ID : TK2_ID;
+                token->lemonType = TK3_ID;
                 token->type = Token::OTHER;
                 return i+1;
             }
@@ -262,12 +260,12 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             {
                 if (z0 == '\'')
                 {
-                    token->lemonType = v3 ? TK3_STRING : TK2_STRING;
+                    token->lemonType = TK3_STRING;
                     token->type = Token::STRING;
                 }
                 else
                 {
-                    token->lemonType = v3 ? TK3_ID : TK2_ID;
+                    token->lemonType = TK3_ID;
                     token->type = Token::OTHER;
                 }
                 token.dynamicCast<TolerantToken>()->invalid = true;
@@ -275,7 +273,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             }
             else
             {
-                token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
                 return i;
             }
@@ -284,7 +282,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if( !charAt(z, 1).isDigit() )
             {
-                token->lemonType = v3 ? TK3_DOT : TK2_DOT;
+                token->lemonType = TK3_DOT;
                 token->type = Token::OPERATOR;
                 return 1;
             }
@@ -295,9 +293,9 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         }
         if (z0.isDigit() || z0 == '.')
         {
-            token->lemonType = v3 ? TK3_INTEGER : TK2_INTEGER;
+            token->lemonType = TK3_INTEGER;
             token->type = Token::INTEGER;
-            if (v3 && charAt(z, 0) == '0' && (charAt(z, 1) == 'x' || charAt(z, 1) == 'X') && isHex(charAt(z, 2)))
+            if (charAt(z, 0) == '0' && (charAt(z, 1) == 'x' || charAt(z, 1) == 'X') && isHex(charAt(z, 2)))
             {
                 for (i=3; isHex(charAt(z, i)); i++) {}
                 return i;
@@ -309,7 +307,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                 while ( charAt(z, i).isDigit() )
                     i++;
 
-                token->lemonType = v3 ? TK3_FLOAT : TK2_FLOAT;
+                token->lemonType = TK3_FLOAT;
                 token->type = Token::FLOAT;
             }
             if ( (charAt(z, i) == 'e' || charAt(z, i) == 'E') &&
@@ -322,12 +320,12 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                 while ( charAt(z, i).isDigit() )
                     i++;
 
-                token->lemonType = v3 ? TK3_FLOAT : TK2_FLOAT;
+                token->lemonType = TK3_FLOAT;
                 token->type = Token::FLOAT;
             }
             while ( isIdChar(charAt(z, i)) )
             {
-                token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
                 i++;
             }
@@ -338,25 +336,25 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             for (i = 1, c = z0; c!=']' && !(c = charAt(z, i)).isNull(); i++) {}
             if (c == ']')
             {
-                token->lemonType = v3 ? TK3_ID : TK2_ID;
+                token->lemonType = TK3_ID;
                 token->type = Token::OTHER;
             }
             else if (tolerant)
             {
-                token->lemonType = v3 ? TK3_ID : TK2_ID;
+                token->lemonType = TK3_ID;
                 token->type = Token::OTHER;
                 token.dynamicCast<TolerantToken>()->invalid = true;
             }
             else
             {
-                token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
             }
             return i;
         }
         if (z0 == '?')
         {
-            token->lemonType = v3 ? TK3_VARIABLE : TK2_VARIABLE;
+            token->lemonType = TK3_VARIABLE;
             token->type = Token::BIND_PARAM;
             for (i=1; charAt(z, i).isDigit(); i++) {}
             return i;
@@ -366,7 +364,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             z0 == ':')
         {
             int n = 0;
-            token->lemonType = v3 ? TK3_VARIABLE : TK2_VARIABLE;
+            token->lemonType = TK3_VARIABLE;
             token->type = Token::BIND_PARAM;
             for (i = 1; !(c = charAt(z, i)).isNull(); i++)
             {
@@ -388,7 +386,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                     }
                     else
                     {
-                        token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                        token->lemonType = TK3_ILLEGAL;
                         token->type = Token::INVALID;
                     }
                     break;
@@ -404,15 +402,13 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             }
             if( n == 0 )
             {
-                token->lemonType = v3 ? TK3_ILLEGAL : TK2_ILLEGAL;
+                token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
             }
 
             return i;
         }
-        if ((z0 == 'x' ||
-             z0 == 'X') &&
-             v3)
+        if (z0 == 'x' || z0 == 'X')
         {
             if ( charAt(z, 1) == '\'' )
             {
@@ -457,12 +453,9 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
 
             for (i = 1; isIdChar(charAt(z, i)); i++) {}
 
-            if (v3)
                 token->lemonType = getKeywordId3(z.mid(0, i));
-            else
-                token->lemonType = getKeywordId2(z.mid(0, i));
 
-            if (token->lemonType == TK3_ID || token->lemonType == TK2_ID)
+            if (token->lemonType == TK3_ID)
                 token->type = Token::OTHER;
             else
                 token->type = Token::KEYWORD;
@@ -471,11 +464,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         }
     }
 
-    if (v3)
-        token->lemonType = TK3_ILLEGAL;
-    else
-        token->lemonType = TK2_ILLEGAL;
-
+    token->lemonType = TK3_ILLEGAL;
     token->type = Token::INVALID;
     return 1;
 }

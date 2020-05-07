@@ -99,24 +99,12 @@ void IndexDialog::init()
     if (existingIndex)
         ui->tableCombo->setEnabled(false);
 
-    if (db->getDialect() == Dialect::Sqlite3)
-    {
-        connect(ui->partialIndexCheck, SIGNAL(toggled(bool)), this, SLOT(updatePartialConditionState()));
-        connect(ui->partialIndexEdit, SIGNAL(errorsChecked(bool)), this, SLOT(updateValidation()));
-        connect(ui->partialIndexEdit, SIGNAL(textChanged()), this, SLOT(updateValidation()));
-        ui->partialIndexEdit->setVirtualSqlExpression("SELECT %1");
-        updatePartialConditionState();
-        ui->columnsTable->setColumnHidden(2, false);
-    }
-    else
-    {
-        ui->partialIndexCheck->setVisible(false);
-        ui->partialIndexEdit->setVisible(false);
-        ui->columnsTable->setColumnHidden(2, true);
-        ui->addExprColumnButton->setVisible(false);
-        ui->editExprColumnButton->setVisible(false);
-        ui->delExprColumnButton->setVisible(false);
-    }
+    connect(ui->partialIndexCheck, SIGNAL(toggled(bool)), this, SLOT(updatePartialConditionState()));
+    connect(ui->partialIndexEdit, SIGNAL(errorsChecked(bool)), this, SLOT(updateValidation()));
+    connect(ui->partialIndexEdit, SIGNAL(textChanged()), this, SLOT(updateValidation()));
+    ui->partialIndexEdit->setVirtualSqlExpression("SELECT %1");
+    updatePartialConditionState();
+    ui->columnsTable->setColumnHidden(2, false);
 
     readCollations();
 
@@ -269,13 +257,10 @@ void IndexDialog::buildColumn(Column* column, int row)
     connect(column->getCheck(), SIGNAL(toggled(bool)), columnStateSignalMapping, SLOT(map()));
     connect(column->getCheck(), SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
 
-    if (db->getDialect() == Dialect::Sqlite3)
-    {
-        column->setCollation(new QComboBox());
-        column->getCollation()->setEditable(true);
-        column->getCollation()->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
-        column->getCollation()->setModel(&collations);
-    }
+    column->setCollation(new QComboBox());
+    column->getCollation()->setEditable(true);
+    column->getCollation()->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
+    column->getCollation()->setModel(&collations);
 
     column->setSort(new QComboBox());
     column->getSort()->setToolTip(tr("Sort order", "table constraints"));
@@ -599,7 +584,7 @@ void IndexDialog::rebuildCreateIndex()
         if (createIndex->where)
             delete createIndex->where;
 
-        Parser parser(db->getDialect());
+        Parser parser;
         SqliteExpr* expr = parser.parseExpr(ui->partialIndexEdit->toPlainText());
 
         if (expr)
@@ -624,8 +609,6 @@ void IndexDialog::queryDuplicates()
     static QString countColNameTpl = QStringLiteral("count(%1)");
     static QString countConditionTpl = QStringLiteral("count(%1) > 1");
 
-    Dialect dialect = db->getDialect();
-
     QStringList cols;
     QStringList grpCols;
     QStringList countCols;
@@ -636,10 +619,10 @@ void IndexDialog::queryDuplicates()
         if (!columns[column]->getCheck()->isChecked())
             continue;
 
-        wrappedCol = wrapObjIfNeeded(column, dialect);
+        wrappedCol = wrapObjIfNeeded(column);
         cols << wrappedCol;
         grpCols << wrappedCol;
-        countColName = wrapObjIfNeeded(countColNameTpl.arg(column), dialect);
+        countColName = wrapObjIfNeeded(countColNameTpl.arg(column));
         cols << countTpl.arg(wrappedCol, countColName);
         countCols << countConditionTpl.arg(wrappedCol);
     }
@@ -650,7 +633,7 @@ void IndexDialog::queryDuplicates()
     QString sqlCols = cols.join(", ");
     QString sqlGrpCols = grpCols.join(", ");
     QString sqlCntCols = countCols.join(" AND ");
-    QString sqlTable = wrapObjIfNeeded(ui->tableCombo->currentText(), dialect);
+    QString sqlTable = wrapObjIfNeeded(ui->tableCombo->currentText());
     editor->setContents(queryTpl.arg(sqlCols, sqlTable, sqlGrpCols, sqlCntCols));
     editor->execute();
 }
@@ -715,11 +698,9 @@ void IndexDialog::accept()
 {
     rebuildCreateIndex();
 
-    Dialect dialect = db->getDialect();
-
     QStringList sqls;
     if (existingIndex)
-        sqls << QString("DROP INDEX %1").arg(wrapObjIfNeeded(originalCreateIndex->index, dialect));
+        sqls << QString("DROP INDEX %1").arg(wrapObjIfNeeded(originalCreateIndex->index));
 
     sqls << createIndex->detokenize();
 

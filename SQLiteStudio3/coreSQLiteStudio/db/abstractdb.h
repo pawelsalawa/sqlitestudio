@@ -3,7 +3,6 @@
 
 #include "returncode.h"
 #include "sqlquery.h"
-#include "dialect.h"
 #include "db/db.h"
 #include "common/bihash.h"
 #include "services/functionmanager.h"
@@ -48,7 +47,6 @@ class API_EXPORT AbstractDb : public Db
         QString getName() const;
         QString getPath() const;
         quint8 getVersion() const;
-        Dialect getDialect() const;
         QString getEncoding();
         QHash<QString,QVariant>& getConnectionOptions();
         void setName(const QString& value);

@@ -142,11 +142,7 @@ QStringList CliCompleter::completeQuery(const QString& toBeReplaced, const QStri
 
 bool CliCompleter::doKeepOriginalStr(const QString& str, int curPos)
 {
-    Dialect dialect = Dialect::Sqlite3;
-    if (cli->getCurrentDb())
-        dialect = cli->getCurrentDb()->getDialect();
-
-    TokenList tokens = Lexer::tokenize(str.mid(0, curPos), dialect);
+    TokenList tokens = Lexer::tokenize(str.mid(0, curPos));
     if (tokens.size() == 0)
         return false;
 

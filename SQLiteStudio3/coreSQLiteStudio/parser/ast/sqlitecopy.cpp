@@ -79,9 +79,9 @@ TokenList SqliteCopy::rebuildTokensFromContents()
         builder.withKeyword("OR").withSpace().withKeyword(sqliteConflictAlgo(onConflict)).withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withSpace();
+        builder.withOther(database).withSpace();
 
-    builder.withOther(table, dialect).withSpace().withKeyword("FROM").withSpace().withString(file);
+    builder.withOther(table).withSpace().withKeyword("FROM").withSpace().withString(file);
 
     if (!delimiter.isNull())
         builder.withSpace().withKeyword("USING").withSpace().withKeyword("DELIMITERS").withSpace().withString(delimiter);

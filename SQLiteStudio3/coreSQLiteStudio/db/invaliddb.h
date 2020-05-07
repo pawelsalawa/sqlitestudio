@@ -12,7 +12,6 @@ class API_EXPORT InvalidDb : public Db
         QString getName() const;
         QString getPath() const;
         quint8 getVersion() const;
-        Dialect getDialect() const;
         QString getEncoding();
         QHash<QString, QVariant>& getConnectionOptions();
         void setName(const QString& value);

@@ -89,7 +89,7 @@ void CompleterWindow::shringFilterBy(int chars)
 
 void CompleterWindow::extendFilterBy(const QString& text)
 {
-    if (filter.isEmpty() && text.size() == 1 && isWrapperChar(text[0], db->getDialect()))
+    if (filter.isEmpty() && text.size() == 1 && isWrapperChar(text[0]))
     {
         wrappedFilter = true;
         updateFilter();

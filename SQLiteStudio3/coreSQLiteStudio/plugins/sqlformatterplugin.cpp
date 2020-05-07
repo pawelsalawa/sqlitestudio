@@ -5,11 +5,7 @@
 
 QString SqlFormatterPlugin::format(const QString& code, Db* contextDb)
 {
-    Dialect dialect = Dialect::Sqlite3;
-    if (contextDb && contextDb->isValid())
-        contextDb->getDialect();
-
-    Parser parser(dialect);
+    Parser parser;
     if (!parser.parse(code))
     {
         qWarning() << "Could not parse SQL in order to format it. The SQL was:" << code;

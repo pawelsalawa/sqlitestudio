@@ -197,50 +197,21 @@ void FormatSelectCoreJoinOp::formatInternal()
 
     withNewLine();
     QStringList keywords;
-    switch (dialect)
+    if (joinOp->naturalKw)
+        keywords << "NATURAL";
+
+    if (joinOp->leftKw)
     {
-        case Dialect::Sqlite3:
-        {
-            if (joinOp->naturalKw)
-                keywords << "NATURAL";
-
-            if (joinOp->leftKw)
-            {
-                keywords << "LEFT";
-                if (joinOp->outerKw)
-                    keywords << "OUTER";
-            }
-            else if (joinOp->innerKw)
-                keywords << "INNER";
-            else if (joinOp->crossKw)
-                keywords << "CROSS";
-
-            keywords << "JOIN";
-            break;
-        }
-        case Dialect::Sqlite2:
-        {
-            if (joinOp->naturalKw)
-                keywords << "NATURAL";
-
-            if (joinOp->leftKw)
-                keywords << "LEFT";
-            else if (joinOp->rightKw)
-                keywords << "RIGHT";
-            else if (joinOp->fullKw)
-                keywords << "FULL";
-
-            if (joinOp->innerKw)
-                keywords << "INNER";
-            else if (joinOp->crossKw)
-                keywords << "CROSS";
-            else if (joinOp->outerKw)
-                keywords << "OUTER";
-
-            keywords << "JOIN";
-            break;
-        }
+        keywords << "LEFT";
+        if (joinOp->outerKw)
+            keywords << "OUTER";
     }
+    else if (joinOp->innerKw)
+        keywords << "INNER";
+    else if (joinOp->crossKw)
+        keywords << "CROSS";
+
+    keywords << "JOIN";
 
     if (keywords.size() == 0)
         return;

@@ -21,7 +21,7 @@ bool QueryExecutorParseQuery::exec()
     if (parser)
         delete parser;
 
-    parser = new Parser(dialect);
+    parser = new Parser();
 
     // Do parsing
     context->parsedQueries.clear();

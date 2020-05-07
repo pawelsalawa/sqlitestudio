@@ -3,7 +3,6 @@
 
 #include <QVariant>
 #include "returncode.h"
-#include "dialect.h"
 #include "services/functionmanager.h"
 #include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
@@ -51,7 +50,7 @@ static_char* DB_PLUGIN = "plugin";
  * Everything you might want to do with SQLite databases goes through this interface in the application.
  * It's has a common interface for common database operations, such as connecting and disconnecting,
  * checking current status, executing queries and reading results.
- * It keeps information about the database version, dialect (SQLite 2 vs SQLite 3), encoding (UTF-8, UTF-16, etc.),
+ * It keeps information about the database version, encoding (UTF-8, UTF-16, etc.),
  * symbolic name of the database and path to the file.
  *
  * Regular routine with the database object would be to open it (if not open yet), execute some query
@@ -148,8 +147,6 @@ class API_EXPORT Db : public QObject, public Interruptable
                                         * of code, where the lock on Db was already set. Never (!) use this to ommit lock from different
                                         * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
                                         * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
-                                        * This flag is ignored by SQLite2 plugin, because SQLite2 is not prepared for multithreaded
-                                        * processing, therefore all operations must be synchronized.
                                         */
             SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query.
                                         *   Benefit is that it speeds up execution. */
@@ -212,19 +209,11 @@ class API_EXPORT Db : public QObject, public Interruptable
 
         /**
          * @brief Gets SQLite version major number for this database.
-         * @return Major version number, that is 3 for SQLite 3.x.x and 2 for SQLite 2.x.x.
+         * @return Major version number, that is 3 for SQLite 3.x.x and nothing else for now.
          *
          * You don't have to open the database. This information is always available.
          */
         virtual quint8 getVersion() const = 0;
-
-        /**
-         * @brief Gets database dialect.
-         * @return Database dialect, which is either Sqlite2 or Sqlite3.
-         *
-         * You don't have to open the database. This information is always available.
-         */
-        virtual Dialect getDialect() const = 0;
 
         /**
          * @brief Gets database encoding.
@@ -449,7 +438,6 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @return true on success, or false on failure.
          *
          * This method uses basic "BEGIN" statement to begin transaction, therefore recurrent transactions are not supported.
-         * This is because SQLite2 doesn't support "SAVEPOINT" and this is the common interface for all SQLite versions.
          */
         virtual bool begin() = 0;
 
@@ -846,16 +834,5 @@ QDebug operator<<(QDebug dbg, const Db* db);
 
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)
-
-class API_EXPORT Sqlite2ColumnDataTypeHelper
-{
-    public:
-        void setBinaryType(int columnIndex);
-        bool isBinaryColumn(int columnIndex) const;
-        void clearBinaryTypes();
-
-    private:
-        QSet<int> binaryColumns;
-};
 
 #endif // DB_H

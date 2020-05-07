@@ -28,6 +28,6 @@ TokenList SqliteSavepoint::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
-    builder.withKeyword("SAVEPOINT").withSpace().withOther(name, dialect).withOperator(";");
+    builder.withKeyword("SAVEPOINT").withSpace().withOther(name).withOperator(";");
     return builder.build();
 }

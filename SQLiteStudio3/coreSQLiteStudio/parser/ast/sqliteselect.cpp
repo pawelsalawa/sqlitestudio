@@ -574,7 +574,7 @@ TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents()
     if (star)
     {
         if (!table.isNull())
-            builder.withOther(table, dialect).withOperator(".");
+            builder.withOther(table).withOperator(".");
 
         builder.withOperator("*");
     }
@@ -586,7 +586,7 @@ TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents()
             if (asKw)
                 builder.withSpace().withKeyword("AS");
 
-            builder.withSpace().withOther(alias, dialect);
+            builder.withSpace().withOther(alias);
         }
     }
 
@@ -599,35 +599,35 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
     if (!table.isNull())
     {
         if (!database.isNull())
-            builder.withOther(database, dialect).withOperator(".");
+            builder.withOther(database).withOperator(".");
 
-        builder.withOther(table, dialect);
+        builder.withOther(table);
 
         if (!alias.isNull())
         {
             if (asKw)
                 builder.withSpace().withKeyword("AS");
 
-            builder.withSpace().withOther(alias, dialect);
+            builder.withSpace().withOther(alias);
         }
     }
     else if (!funcName.isNull())
     {
         if (!database.isNull())
-            builder.withOther(database, dialect).withOperator(".");
+            builder.withOther(database).withOperator(".");
 
-        builder.withOther(funcName, dialect).withParLeft().withStatementList(funcParams).withParRight();
+        builder.withOther(funcName).withParLeft().withStatementList(funcParams).withParRight();
 
         if (!alias.isNull())
         {
             if (asKw)
                 builder.withSpace().withKeyword("AS");
 
-            builder.withSpace().withOther(alias, dialect);
+            builder.withSpace().withOther(alias);
         }
 
         if (indexedByKw)
-            builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy, dialect);
+            builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy);
         else if (notIndexedKw)
             builder.withSpace().withKeyword("NOT").withSpace().withKeyword("INDEXED");
     }
@@ -639,7 +639,7 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
             if (asKw)
                 builder.withSpace().withKeyword("AS");
 
-            builder.withSpace().withOther(alias, dialect);
+            builder.withSpace().withOther(alias);
         }
     }
     else
@@ -652,46 +652,7 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
 
 TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents()
 {
-    switch (dialect)
-    {
-        case Dialect::Sqlite3:
-            return rebuildTokensForSqlite2();
-        case Dialect::Sqlite2:
-            return rebuildTokensForSqlite3();
-    }
-    return TokenList();
-}
-
-TokenList SqliteSelect::Core::JoinOp::rebuildTokensForSqlite2()
-{
-    StatementTokenBuilder builder;
-    if (comma)
-    {
-        builder.withOperator(",");
-    }
-    else
-    {
-        if (naturalKw)
-            builder.withKeyword("NATURAL").withSpace();
-
-        if (leftKw)
-            builder.withKeyword("LEFT").withSpace();
-        else if (rightKw)
-            builder.withKeyword("RIGHT").withSpace();
-        else if (fullKw)
-            builder.withKeyword("FULL").withSpace();
-
-        if (innerKw)
-            builder.withKeyword("INNER").withSpace();
-        else if (crossKw)
-            builder.withKeyword("CROSS").withSpace();
-        else if (outerKw)
-            builder.withKeyword("OUTER").withSpace();
-
-        builder.withKeyword("JOIN");
-    }
-
-    return builder.build();
+    return rebuildTokensForSqlite3();
 }
 
 TokenList SqliteSelect::Core::JoinOp::rebuildTokensForSqlite3()
@@ -730,7 +691,7 @@ TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents()
     if (expr)
         builder.withKeyword("ON").withStatement(expr);
     else
-        builder.withKeyword("USING").withSpace().withParLeft().withOtherList(columnNames, dialect).withParRight();
+        builder.withKeyword("USING").withSpace().withParLeft().withOtherList(columnNames).withParRight();
 
     return builder.build();
 }

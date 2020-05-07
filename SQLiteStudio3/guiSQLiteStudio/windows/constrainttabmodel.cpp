@@ -82,7 +82,7 @@ QVariant ConstraintTabModel::data(SqliteCreateTable::Constraint* constr, int col
         case Columns::NAME:
         {
             if (role == Qt::DisplayRole)
-                return stripObjName(constr->name, createTable->dialect);
+                return stripObjName(constr->name);
 
             break;
         }
@@ -124,7 +124,7 @@ QVariant ConstraintTabModel::data(SqliteCreateTable::Column::Constraint* constr,
         case Columns::NAME:
         {
             if (role == Qt::DisplayRole)
-                return stripObjName(constr->name, createTable->dialect);
+                return stripObjName(constr->name);
 
             break;
         }

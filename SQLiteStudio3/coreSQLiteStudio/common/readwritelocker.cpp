@@ -11,9 +11,9 @@ ReadWriteLocker::ReadWriteLocker(QReadWriteLock* lock, Mode mode)
     init(lock, mode);
 }
 
-ReadWriteLocker::ReadWriteLocker(QReadWriteLock* lock, const QString& query, Dialect dialect, bool noLock)
+ReadWriteLocker::ReadWriteLocker(QReadWriteLock* lock, const QString& query, bool noLock)
 {
-    init(lock, getMode(query, dialect, noLock));
+    init(lock, getMode(query, noLock));
 }
 
 ReadWriteLocker::~ReadWriteLocker()
@@ -47,12 +47,12 @@ void ReadWriteLocker::init(QReadWriteLock* lock, ReadWriteLocker::Mode mode)
     }
 }
 
-ReadWriteLocker::Mode ReadWriteLocker::getMode(const QString &query, Dialect dialect, bool noLock)
+ReadWriteLocker::Mode ReadWriteLocker::getMode(const QString &query, bool noLock)
 {
     if (noLock)
         return ReadWriteLocker::NONE;
 
-    QueryAccessMode queryMode = getQueryAccessMode(query, dialect);
+    QueryAccessMode queryMode = getQueryAccessMode(query);
     switch (queryMode)
     {
         case QueryAccessMode::READ:

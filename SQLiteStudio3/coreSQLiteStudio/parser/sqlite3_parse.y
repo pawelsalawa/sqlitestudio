@@ -348,8 +348,7 @@ columnid ::= ID_COL_NEW.                    {}
 id(X) ::= ID(T).                            {
                                                 X = new QString(
                                                     stripObjName(
-                                                        T->value,
-                                                        parserContext->dialect
+                                                        T->value
                                                     )
                                                 );
                                             }

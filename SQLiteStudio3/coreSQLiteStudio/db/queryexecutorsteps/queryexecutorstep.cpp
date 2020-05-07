@@ -11,7 +11,6 @@ void QueryExecutorStep::init(QueryExecutor *queryExecutor, QueryExecutor::Contex
     this->queryExecutor = queryExecutor;
     this->context = context;
     db = queryExecutor->getDb();
-    dialect = db->getDialect();
     init();
 }
 

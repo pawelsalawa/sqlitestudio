@@ -89,7 +89,6 @@ void ImportWorker::error(const QString& err)
 bool ImportWorker::prepareTable()
 {
     QStringList finalColumns;
-    Dialect dialect = db->getDialect();
 
     SchemaResolver resolver(db);
     tableColumns = resolver.getTableColumns(table);
@@ -114,11 +113,11 @@ bool ImportWorker::prepareTable()
     {
         QStringList colDefs;
         for (int i = 0; i < columnsFromPlugin.size(); i++)
-            colDefs << (wrapObjIfNeeded(columnsFromPlugin[i], dialect) + " " + columnTypesFromPlugin[i]).trimmed();
+            colDefs << (wrapObjIfNeeded(columnsFromPlugin[i]) + " " + columnTypesFromPlugin[i]).trimmed();
 
         static const QString ddl = QStringLiteral("CREATE TABLE %1 (%2)");
         Db::Flags flags = config->skipTransaction ? Db::Flag::NO_LOCK : Db::Flag::NONE;
-        SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table, dialect), colDefs.join(", ")), flags);
+        SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table), colDefs.join(", ")), flags);
         if (result->isError())
         {
             error(tr("Could not create table to import to: %1").arg(result->getErrorText()));
@@ -134,7 +133,7 @@ bool ImportWorker::prepareTable()
         return false;
     }
 
-    targetColumns = wrapObjNamesIfNeeded(finalColumns, dialect);
+    targetColumns = wrapObjNamesIfNeeded(finalColumns);
     return true;
 }
 
@@ -147,7 +146,7 @@ bool ImportWorker::importData()
     for (int i = 0; i < colCount; i++)
         valList << "?";
 
-    QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table, db->getDialect()), valList.join(", "));
+    QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table), valList.join(", "));
     SqlQueryPtr query = db->prepare(theInsert);
     query->setFlags(Db::Flag::SKIP_DROP_DETECTION|Db::Flag::SKIP_PARAM_COUNTING|Db::Flag::NO_LOCK);
 

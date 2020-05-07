@@ -26,14 +26,7 @@ int TableStructureModel::columnCount(const QModelIndex& parent) const
     if (createTable.isNull())
         return 0;
 
-    switch (createTable->dialect)
-    {
-        case Dialect::Sqlite3:
-            return 9;
-        case Dialect::Sqlite2:
-            return 7;
-    }
-    return 0;
+    return 9;
 }
 
 QVariant TableStructureModel::data(const QModelIndex& index, int role) const
@@ -142,22 +135,11 @@ QVariant TableStructureModel::headerData(int section, Qt::Orientation orientatio
 
 TableStructureModel::Columns TableStructureModel::getHeaderColumn(int colIdx) const
 {
-    if (!createTable.isNull() && createTable->dialect == Dialect::Sqlite2)
-    {
-        if (colIdx >= 3)
-            colIdx++; // skip FK
-
-        if (colIdx >= 7)
-            colIdx++; // skip COLLATE
-    }
     return static_cast<Columns>(colIdx);
 }
 
 bool TableStructureModel::isValidColumnIdx(int colIdx) const
 {
-    if (!createTable.isNull() && createTable->dialect == Dialect::Sqlite2)
-        return colIdx >= 0 && colIdx < 7;
-
     return colIdx >= 0 && colIdx < 9;
 }
 

@@ -59,6 +59,12 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         QString getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList, QStringList& sqlValues,
                              QList<QVariant>& args);
         void updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId);
+        bool processNullValueAfterInsert(SqlQueryItem* item, QVariant& value, const SqlQueryModelColumnPtr& modelColumn,
+                                         QHash<SqlQueryModelColumnPtr,SqlQueryItem*>& columnsToReadFromDb, RowId rowId,
+                                         Parser& parser);
+        void processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,SqlQueryItem*>& columnsToReadFromDb, QHash<SqlQueryItem*,QVariant>& values,
+                                            RowId rowId);
+
         QString getDatabasePrefix();
         QString getDataSource();
 

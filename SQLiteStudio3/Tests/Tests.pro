@@ -17,9 +17,6 @@ table_modifier.depends = test_utils
 hash_tables.subdir = HashTablesTest
 hash_tables.depends = test_utils
 
-db_ver_conv.subdir = DbVersionConverterTest
-db_ver_conv.depends = test_utils
-
 dsv.subdir = DsvFormatsTest
 dsv.depends = test_utils
 
@@ -36,7 +33,6 @@ SUBDIRS += \
     parser \
     table_modifier \
     hash_tables \
-    db_ver_conv \
     dsv \
     utils_test \
     lexer_test

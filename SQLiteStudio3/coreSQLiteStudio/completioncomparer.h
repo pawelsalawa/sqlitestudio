@@ -2,7 +2,6 @@
 #define COMPLETIONCOMPARER_H
 
 #include "expectedtoken.h"
-#include "dialect.h"
 #include "selectresolver.h"
 
 class CompletionHelper;
@@ -16,7 +15,6 @@ class CompletionComparer
 
     private:
         CompletionHelper* helper = nullptr;
-        Dialect dialect;
         /**
          * @brief contextDatabases
          * Context objects are any names mentioned anywhere in the query at the same level as completion takes place.

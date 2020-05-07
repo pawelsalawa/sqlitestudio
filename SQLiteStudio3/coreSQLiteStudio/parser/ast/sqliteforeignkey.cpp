@@ -115,7 +115,7 @@ TokenList SqliteForeignKey::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
 
-    builder.withKeyword("REFERENCES").withSpace().withOther(foreignTable, dialect);
+    builder.withKeyword("REFERENCES").withSpace().withOther(foreignTable);
 
     if (indexedColumns.size() > 0)
         builder.withSpace().withParLeft().withStatementList(indexedColumns).withParRight();

@@ -18,18 +18,8 @@ void  sqlite3_parseRestoreParserState(void* saved, void* target);
 void  sqlite3_parseFreeSavedState(void* other);
 void  sqlite3_parseAddToken(void* other, Token* token);
 
-void* sqlite2_parseAlloc(void *(*mallocProc)(size_t));
-void  sqlite2_parseFree(void *p, void (*freeProc)(void*));
-void  sqlite2_parse(void *yyp, int yymajor, Token* yyminor, ParserContext* parserContext);
-void  sqlite2_parseTrace(FILE *stream, char *zPrefix);
-void* sqlite2_parseCopyParserState(void* other);
-void  sqlite2_parseRestoreParserState(void* saved, void* target);
-void  sqlite2_parseFreeSavedState(void* other);
-void  sqlite2_parseAddToken(void* other, Token* token);
-
-Parser::Parser(Dialect dialect)
+Parser::Parser()
 {
-    this->dialect = dialect;
     init();
 }
 
@@ -53,74 +43,44 @@ void Parser::cleanUp()
     }
 }
 
-void Parser::fillSqliteDialect()
-{
-    for (SqliteQueryPtr query : context->parsedQueries)
-        query->setSqliteDialect(dialect);
-}
-
 void *Parser::parseAlloc(void *(*mallocProc)(size_t))
 {
-    if (dialect == Dialect::Sqlite2)
-        return sqlite2_parseAlloc(mallocProc);
-    else
-        return sqlite3_parseAlloc(mallocProc);
+    return sqlite3_parseAlloc(mallocProc);
 }
 
 void Parser::parseFree(void *p, void (*freeProc)(void *))
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parseFree(p, freeProc);
-    else
-        sqlite3_parseFree(p, freeProc);
+    sqlite3_parseFree(p, freeProc);
 }
 
 void Parser::parse(void *yyp, int yymajor, TokenPtr yyminor, ParserContext *parserContext)
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parse(yyp, yymajor, yyminor.data(), parserContext);
-    else
-        sqlite3_parse(yyp, yymajor, yyminor.data(), parserContext);
+    sqlite3_parse(yyp, yymajor, yyminor.data(), parserContext);
 }
 
 void Parser::parseTrace(FILE *stream, char *zPrefix)
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parseTrace(stream, zPrefix);
-    else
-        sqlite3_parseTrace(stream, zPrefix);
+    sqlite3_parseTrace(stream, zPrefix);
 }
 
 void *Parser::parseCopyParserState(void *other)
 {
-    if (dialect == Dialect::Sqlite2)
-        return sqlite2_parseCopyParserState(other);
-    else
-        return sqlite3_parseCopyParserState(other);
+    return sqlite3_parseCopyParserState(other);
 }
 
 void Parser::parseRestoreParserState(void *saved, void *target)
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parseRestoreParserState(saved, target);
-    else
-        sqlite3_parseRestoreParserState(saved, target);
+    sqlite3_parseRestoreParserState(saved, target);
 }
 
 void Parser::parseFreeSavedState(void *other)
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parseFreeSavedState(other);
-    else
-        sqlite3_parseFreeSavedState(other);
+    sqlite3_parseFreeSavedState(other);
 }
 
 void Parser::parseAddToken(void *other, TokenPtr token)
 {
-    if (dialect == Dialect::Sqlite2)
-        sqlite2_parseAddToken(other, token.data());
-    else
-        sqlite3_parseAddToken(other, token.data());
+    sqlite3_parseAddToken(other, token.data());
 }
 
 bool Parser::parse(const QString &sql, bool ignoreMinorErrors)
@@ -134,12 +94,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     void* pParser = parseAlloc( malloc );
     if (debugLemon)
     {
-        char* label = nullptr;
-        if (dialect == Dialect::Sqlite2)
-            label = const_cast<char*>("[LEMON2]: ");
-        else
-            label = const_cast<char*>("[LEMON3]: ");
-
+        char* label = const_cast<char*>("[LEMON3]: ");
         parseTrace(stderr, label);
     }
 
@@ -148,7 +103,6 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     context->setupTokens = !lookForExpectedToken;
     context->executeRules = !lookForExpectedToken;
     context->doFallbacks = !lookForExpectedToken;
-    context->dialect = dialect;
 
     TokenPtr token = lexer->getToken();
     if (!token.isNull())
@@ -186,7 +140,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     {
         if (!endsWithSemicolon)
         {
-            token = Lexer::getSemicolonToken(dialect);
+            token = Lexer::getSemicolonToken();
             parse(pParser, token->lemonType, token, context);
         }
 
@@ -194,8 +148,6 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
         TokenPtr endToken = TokenPtr::create(0, Token::INVALID, QString(), endIdx, endIdx);
         parse(pParser, 0, endToken, context);
     }
-
-    fillSqliteDialect();
 
     // Free all non-termials having destructors
     parseFree(pParser, free);
@@ -278,7 +230,7 @@ void Parser::expectedTokenLookup(void* pParser)
 
 void Parser::init()
 {
-    lexer = new Lexer(dialect);
+    lexer = new Lexer();
     context = new ParserContext();
 }
 
@@ -305,16 +257,6 @@ TokenList Parser::getParsedTokens()
 void Parser::setLemonDebug(bool enabled)
 {
     debugLemon = enabled;
-}
-
-void Parser::setDialect(Dialect dialect)
-{
-    if (this->dialect == dialect)
-        return;
-
-    this->dialect = dialect;
-    delete lexer;
-    lexer = new Lexer(dialect);
 }
 
 const QList<SqliteQueryPtr>& Parser::getQueries()

@@ -513,7 +513,7 @@ TokenList SqliteExpr::rebuildTokensFromContents()
                     .withStatement(columnType).withParRight();
             break;
         case SqliteExpr::Mode::COLLATE:
-            builder.withStatement(expr1).withSpace().withKeyword("COLLATE").withSpace().withOther(collation, dialect);
+            builder.withStatement(expr1).withSpace().withKeyword("COLLATE").withSpace().withOther(collation);
             break;
         case SqliteExpr::Mode::LIKE:
             builder.withTokens(rebuildLike());
@@ -562,15 +562,15 @@ TokenList SqliteExpr::rebuildId()
 {
     StatementTokenBuilder builder;
     if (!database.isNull())
-        builder.withOther(database, dialect).withOperator(".");
+        builder.withOther(database).withOperator(".");
 
     if (!table.isNull())
-        builder.withOther(table, dialect).withOperator(".");
+        builder.withOther(table).withOperator(".");
 
     if (table.isNull() && possibleDoubleQuotedString)
-        builder.withStringPossiblyOther(column, dialect);
+        builder.withStringPossiblyOther(column);
     else
-        builder.withOther(column, dialect);
+        builder.withOther(column);
 
     return builder.build();
 }
@@ -652,9 +652,9 @@ TokenList SqliteExpr::rebuildIn()
     else
     {
         if (!database.isNull())
-            builder.withOther(database, dialect).withOperator(".");
+            builder.withOther(database).withOperator(".");
 
-        builder.withOther(table, dialect);
+        builder.withOther(table);
     }
     return builder.build();
 }

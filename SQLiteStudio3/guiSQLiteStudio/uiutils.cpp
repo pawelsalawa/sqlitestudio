@@ -29,9 +29,8 @@ QString getDbPath(bool newFileMode, const QString &startWith)
         dir = CFG->get("dialogCache", "lastDbDir").toString();
 
     QStringList filters;
-    filters += QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3 *.db2 *.s2db *.sqlite2 *.sl2)";
+    filters += QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)";
     filters += "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)";
-    filters += "SQLite2 (*.db2 *.s2db *.sqlite2 *.sl2)";
     filters += QObject::tr("All files")+" (*)";
     QString filter = filters.join(";;");
 
