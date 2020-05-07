@@ -1031,3 +1031,4 @@ QString readFileContents(const QString& path, QString* err)
 
     return contents;
 }
+

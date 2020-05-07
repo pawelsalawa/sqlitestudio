@@ -13,6 +13,7 @@
 - BUGFIX: #291 Fixed named bind parameters dialog, so user will be prompted only once per unique parameter name when executing query with multiple uses of the same parameter.
 - BUGFIX: #3537 Fixed pasting to grid, so pasting to read-only cells is no longer possible.
 - BUGFIX: #3489 Default values of literal string are now properly previewed to user right after using them in Table Window (the '' enclosing quotes are removed).
+- BUGFIX: #3490 Fixed missing string quoting when using "Go to referenced table" action.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
