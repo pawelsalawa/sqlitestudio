@@ -29,16 +29,28 @@ RESOURCES += \
     sqlexport.qrc
 
 
-TRANSLATIONS += SqlExport_ro_RO.ts \
-		SqlExport_de.ts \
-		SqlExport_it.ts \
-		SqlExport_zh_CN.ts \
-		SqlExport_sk.ts \
-		SqlExport_ru.ts \
-		SqlExport_pt_BR.ts \
-		SqlExport_fr.ts \
-		SqlExport_es.ts \
-		SqlExport_pl.ts
+TRANSLATIONS += translations/SqlExport.ts \
+		translations/SqlExport_ro_RO.ts \
+		translations/SqlExport_de_DE.ts \
+		translations/SqlExport_it_IT.ts \
+		translations/SqlExport_zh_CN.ts \
+		translations/SqlExport_sk_SK.ts \
+		translations/SqlExport_ru_RU.ts \
+		translations/SqlExport_pt_BR.ts \
+		translations/SqlExport_fr_FR.ts \
+		translations/SqlExport_es_ES.ts \
+		translations/SqlExport_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
+
 
 
 

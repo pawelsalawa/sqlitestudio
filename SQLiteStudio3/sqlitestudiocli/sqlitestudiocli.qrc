@@ -1,16 +1,26 @@
 <RCC>
     <qresource prefix="/msg">
         <file>translations/sqlitestudiocli_ro_RO.qm</file>
-        <file>translations/sqlitestudiocli_de.qm</file>
+        <file>translations/sqlitestudiocli_de_DE.qm</file>
 
 
-        <file>translations/sqlitestudiocli_pl.qm</file>
-        <file>translations/sqlitestudiocli_ru.qm</file>
-        <file>translations/sqlitestudiocli_fr.qm</file>
-        <file>translations/sqlitestudiocli_sk.qm</file>
+        <file>translations/sqlitestudiocli_pl_PL.qm</file>
+        <file>translations/sqlitestudiocli_ru_RU.qm</file>
+        <file>translations/sqlitestudiocli_fr_FR.qm</file>
+        <file>translations/sqlitestudiocli_sk_SK.qm</file>
         <file>translations/sqlitestudiocli_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

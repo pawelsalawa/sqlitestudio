@@ -1,17 +1,27 @@
 <RCC>
     <qresource prefix="/msg">
         <file>translations/guiSQLiteStudio_ro_RO.qm</file>
-        <file>translations/guiSQLiteStudio_pl.qm</file>
-        <file>translations/guiSQLiteStudio_ru.qm</file>
-        <file>translations/guiSQLiteStudio_fr.qm</file>
-        <file>translations/guiSQLiteStudio_sk.qm</file>
+        <file>translations/guiSQLiteStudio_pl_PL.qm</file>
+        <file>translations/guiSQLiteStudio_ru_RU.qm</file>
+        <file>translations/guiSQLiteStudio_fr_FR.qm</file>
+        <file>translations/guiSQLiteStudio_sk_SK.qm</file>
         <file>translations/guiSQLiteStudio_zh_CN.qm</file>
-        <file>translations/guiSQLiteStudio_de.qm</file>
+        <file>translations/guiSQLiteStudio_de_DE.qm</file>
     </qresource>
     <qresource prefix="/css">
         <file>general.css</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

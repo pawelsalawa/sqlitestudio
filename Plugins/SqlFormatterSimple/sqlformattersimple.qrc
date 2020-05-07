@@ -3,17 +3,27 @@
         <file>SqlFormatterSimple.ui</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>SqlFormatterSimple_ro_RO.qm</file>
-        <file>SqlFormatterSimple_de.qm</file>
+        <file>translations/SqlFormatterSimple_ro_RO.qm</file>
+        <file>translations/SqlFormatterSimple_de_DE.qm</file>
 
 
-        <file>SqlFormatterSimple_pl.qm</file>
-        <file>SqlFormatterSimple_ru.qm</file>
-        <file>SqlFormatterSimple_fr.qm</file>
-        <file>SqlFormatterSimple_sk.qm</file>
-        <file>SqlFormatterSimple_zh_CN.qm</file>
+        <file>translations/SqlFormatterSimple_pl_PL.qm</file>
+        <file>translations/SqlFormatterSimple_ru_RU.qm</file>
+        <file>translations/SqlFormatterSimple_fr_FR.qm</file>
+        <file>translations/SqlFormatterSimple_sk_SK.qm</file>
+        <file>translations/SqlFormatterSimple_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 
