@@ -439,14 +439,12 @@ OTHER_FILES += \
     parser/lemon.c \
     parser/sqlite3_parse.y \
     parser/run_lemon.sh \
-    TODO.txt \
     licenses/fugue_icons.txt \
     licenses/qhexedit.txt \
     licenses/sqlitestudio_license.txt \
     licenses/lgpl.txt \
     licenses/diff_match.txt \
     licenses/gpl.txt \
-    ChangeLog.txt \
     qt.conf
  \
     Info.plist

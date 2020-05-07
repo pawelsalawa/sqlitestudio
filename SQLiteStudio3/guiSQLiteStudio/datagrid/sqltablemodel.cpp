@@ -286,98 +286,21 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
     // If the DEFAULT is not an explicit literal, but an expression and db is SQLite3, we have to read the inserted value from DB.
     QHash<SqlQueryModelColumnPtr,SqlQueryItem*> columnsToReadFromDb;
     Parser parser;
-    SqliteExpr* expr = nullptr;
     QHash<SqlQueryItem*,QVariant> values;
     SqlQueryItem* item = nullptr;
     int i = 0;
     for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
     {
         item = itemsInRow[i++];
-//        qDebug() << "Item is for column" << item->getColumn()->column << ", column iterated:" << modelColumn->column;
-        if (item->getValue().isNull())
-        {
-            if (modelColumn->isDefault())
-            {
-                expr = parser.parseExpr(modelColumn->getDefaultConstraint()->defaultValue);
-                if (expr && expr->mode != SqliteExpr::Mode::LITERAL_VALUE)
-                {
-                    if (isWithOutRowIdTable && rowId.isEmpty())
-                    {
-                        qWarning() << "Inserted expression as DEFAULT value for table WITHOUT ROWID and actually no ROWID."
-                                   << "This is currently unsupported to refresh such cell value instantly.";
-                        values[item] = QVariant();
-                    }
-                    else
-                        columnsToReadFromDb[modelColumn] = item;
-
-                    continue;
-                }
-                values[item] = modelColumn->getDefaultConstraint()->defaultValue;
-                continue;
-            }
-
-            // If this is the PK AUTOINCR column we use RowId as value, because it was skipped when setting values to items
-            if (modelColumn->isPk() && modelColumn->isAutoIncr())
-            {
-                values[item] = rowId["ROWID"];
-                continue;
-            }
-        }
+        if (processNullValueAfterInsert(item, values[item], modelColumn, columnsToReadFromDb, rowId, parser))
+            continue;
 
         values[item] = item->getValue();
     }
 
     // Reading values for DEFAULT values being an expression
     if (columnsToReadFromDb.size() > 0)
-    {
-        // Preparing query
-        static_qstring(limitedColTpl, "substr(%1, 1, %2)");
-        SelectColumnsQueryBuilder queryBuilder;
-        queryBuilder.setTable(wrapObjIfNeeded(table));
-        queryBuilder.setRowId(rowId);
-        QList<SqlQueryModelColumnPtr> columnKeys = columnsToReadFromDb.keys();
-        for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-            queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column), QString::number(cellDataLengthLimit)));
-
-        // Executing query
-        SqlQueryPtr defColValues = db->exec(queryBuilder.build(), queryBuilder.getQueryArgs(), Db::Flag::PRELOAD);
-
-        // Handling error
-        if (defColValues->isError())
-        {
-            qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Error from database was:"
-                        << defColValues->getErrorText();
-
-            for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-                values[columnsToReadFromDb[modelColumn]] = QVariant();
-        }
-        else if (!defColValues->hasNext())
-        {
-            qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. There were no result rows.";
-
-            for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-                values[columnsToReadFromDb[modelColumn]] = QVariant();
-        }
-        else
-        {
-            // Reading a row
-            SqlResultsRowPtr row = defColValues->next();
-            if (row->valueList().size() != columnKeys.size())
-            {
-                qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Number of columns from results was invalid:"
-                            << row->valueList().size() << ", while expected:" << columnKeys.size();
-
-                for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-                    values[columnsToReadFromDb[modelColumn]] = QVariant();
-            }
-            else
-            {
-                int colIdx = 0;
-                for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
-                    values[columnsToReadFromDb[modelColumn]] = row->value(colIdx++);
-            }
-        }
-    }
+        processDefaultValueAfterInsert(columnsToReadFromDb, values, rowId);
 
     // Update cell data with results
     int colIdx = 0;
@@ -390,6 +313,105 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
 
         colIdx++;
     }
+}
+
+bool SqlTableModel::processNullValueAfterInsert(SqlQueryItem* item, QVariant& value, const SqlQueryModelColumnPtr& modelColumn,
+                                                QHash<SqlQueryModelColumnPtr, SqlQueryItem*>& columnsToReadFromDb, RowId rowId, Parser& parser)
+{
+//    qDebug() << "Item is for column" << item->getColumn()->column << ", column iterated:" << modelColumn->column;
+    if (!item->getValue().isNull())
+        return false;
+
+    // If this is the PK AUTOINCR column we use RowId as value, because it was skipped when setting values to items
+    if (modelColumn->isPk() && modelColumn->isAutoIncr())
+    {
+        value = rowId["ROWID"];
+        return true;
+    }
+
+    if (!CFG_UI.General.UseDefaultValueForNull.get() || !modelColumn->isDefault())
+        return false;
+
+    SqliteExpr* expr = parser.parseExpr(modelColumn->getDefaultConstraint()->defaultValue);
+    if (expr && expr->mode != SqliteExpr::Mode::LITERAL_VALUE)
+    {
+        if (isWithOutRowIdTable && rowId.isEmpty())
+        {
+            qWarning() << "Inserted expression as DEFAULT value for table WITHOUT ROWID and actually no ROWID."
+                       << "This is currently unsupported to refresh such cell value instantly.";
+            value = QVariant();
+        }
+        else
+            columnsToReadFromDb[modelColumn] = item;
+
+        return true;
+    }
+
+    if (expr)
+        value = expr->literalValue;
+    else
+        value = modelColumn->getDefaultConstraint()->defaultValue;
+
+    if (value.userType() == QVariant::String)
+        value = stripString(value.toString());
+
+    return true;
+}
+
+void SqlTableModel::processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr, SqlQueryItem*>& columnsToReadFromDb, QHash<SqlQueryItem*, QVariant>& values, RowId rowId)
+{
+    // Preparing query
+    static_qstring(limitedColTpl, "substr(%1, 1, %2)");
+    SelectColumnsQueryBuilder queryBuilder;
+    queryBuilder.setTable(wrapObjIfNeeded(table));
+    queryBuilder.setRowId(rowId);
+    QList<SqlQueryModelColumnPtr> columnKeys = columnsToReadFromDb.keys();
+    for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+        queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column), QString::number(cellDataLengthLimit)));
+
+    // Executing query
+    SqlQueryPtr defColValues = db->exec(queryBuilder.build(), queryBuilder.getQueryArgs(), Db::Flag::PRELOAD);
+
+    // Handling error
+    if (defColValues->isError())
+    {
+        qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Error from database was:"
+                    << defColValues->getErrorText();
+
+        for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+            values[columnsToReadFromDb[modelColumn]] = QVariant();
+
+        return;
+    }
+
+
+    if (!defColValues->hasNext())
+    {
+        qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. There were no result rows.";
+
+        for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+            values[columnsToReadFromDb[modelColumn]] = QVariant();
+
+        return;
+    }
+
+
+    // Reading a row
+    SqlResultsRowPtr row = defColValues->next();
+    if (row->valueList().size() != columnKeys.size())
+    {
+        qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Number of columns from results was invalid:"
+                    << row->valueList().size() << ", while expected:" << columnKeys.size();
+
+        for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+            values[columnsToReadFromDb[modelColumn]] = QVariant();
+
+        return;
+    }
+
+    int colIdx = 0;
+    for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+        values[columnsToReadFromDb[modelColumn]] = row->value(colIdx++);
 }
 
 QString SqlTableModel::getDatabasePrefix()
