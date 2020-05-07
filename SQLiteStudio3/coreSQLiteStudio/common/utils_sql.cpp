@@ -160,7 +160,7 @@ QString wrapValueIfNeeded(const QString& str)
 
 QString wrapValueIfNeeded(const QVariant& value)
 {
-    if (value.canConvert(QMetaType::LongLong) || value.canConvert(QMetaType::Double))
+    if (isNumeric(value))
         return value.toString();
 
     return wrapString(value.toString());

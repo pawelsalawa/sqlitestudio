@@ -425,43 +425,6 @@ void QueryExecutor::setParams(const QHash<QString, QVariant>& params)
     queryParameters = params;
 }
 
-void QueryExecutor::arg(const QVariant& value)
-{
-    QVariant::Type type = value.type();
-    switch (type)
-    {
-        case QVariant::Bool:
-        case QVariant::Int:
-            originalQuery = originalQuery.arg(value.toInt());
-            break;
-        case QVariant::LongLong:
-            originalQuery = originalQuery.arg(value.toLongLong());
-            break;
-        case QVariant::UInt:
-            originalQuery = originalQuery.arg(value.toUInt());
-            break;
-        case QVariant::ULongLong:
-            originalQuery = originalQuery.arg(value.toULongLong());
-            break;
-        case QVariant::Double:
-            originalQuery = originalQuery.arg(value.toDouble());
-            break;
-        case QVariant::String:
-        {
-            if (value.canConvert(QVariant::LongLong))
-                originalQuery = originalQuery.arg(value.toLongLong());
-            else if (value.canConvert(QVariant::Double))
-                originalQuery = originalQuery.arg(value.toDouble());
-            else
-                originalQuery = originalQuery.arg("'"+value.toString().replace("'", "''")+"'");
-
-            break;
-        }
-        default:
-            return;
-    }
-}
-
 void QueryExecutor::exec(const QString& query)
 {
     setQuery(query);

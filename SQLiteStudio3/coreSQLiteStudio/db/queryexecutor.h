@@ -865,21 +865,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void setParams(const QHash<QString, QVariant>& params);
 
         /**
-         * @brief Replaces placeholder in the query.
-         * @param value Value to replace placeholder with.
-         *
-         * This works almost the same as QString::arg(), but it's specialized
-         * for SQL domain. It means that it will work only with numeric
-         * or string values passed in the parameter. If the value is numeric,
-         * then it just replaces a placeholder. If the value is a string,
-         * then it's wrapped with a quote character ('), if necessary, then
-         * it replaces a placeholder.
-         *
-         * Placeholders are the same as for QString::arg(): %1, %2, %3...
-         */
-        void arg(const QVariant& value);
-
-        /**
          * @brief Gets currently defined database.
          * @return Database object, or null pointer if not yet defined.
          */
