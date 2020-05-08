@@ -16,6 +16,7 @@
 - BUGFIX: #3490 Fixed missing string quoting when using "Go to referenced table" action.
 - BUGFIX: #3485 Row limiting message now appears only when it affects number rows displayed, not just because it changes upper limit.
 - BUGFIX: #3485 Row limit decreased. Previous one was too high (150 000 cells at once), causeing too long freeze of application on weaker computers. New limit is 50 000 cells at once.
+- BUGFIX: #3499 Fixed generator for SELECT queries from grid view context menu to quote multi-word columns properly. 
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
