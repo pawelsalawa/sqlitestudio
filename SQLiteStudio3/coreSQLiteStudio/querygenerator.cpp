@@ -176,10 +176,11 @@ QString QueryGenerator::generateSelectFromTableOrView(Db* db, const QString& dat
 {
     static_qstring(tpl, "SELECT %1 FROM %2%3");
 
+    QStringList wrappedCols = wrapObjNamesIfNeeded(columns);
     QString target = toFullObjectName(database, tableOrView);
     QString conditionStr = valuesToConditionStr(values);
 
-    return tpl.arg(columns.join(", "), target, conditionStr);
+    return tpl.arg(wrappedCols.join(", "), target, conditionStr);
 }
 
 QString QueryGenerator::getAlias(const QString& name, QSet<QString>& usedAliases)

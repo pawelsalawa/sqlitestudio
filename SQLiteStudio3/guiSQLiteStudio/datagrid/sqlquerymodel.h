@@ -306,7 +306,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         QList<QStandardItem*> loadRow(SqlResultsRowPtr row);
         RowId getRowIdValue(SqlResultsRowPtr row, int columnIdx);
-        void readColumns();
+        bool readColumns();
         void readColumnDetails();
         void updateColumnsHeader();
         void updateColumnHeaderLabels();
