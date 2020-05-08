@@ -19,10 +19,6 @@ https://sqlitestudio.pl/
 https://github.com/pawelsalawa/sqlitestudio/wiki/Compiling_application_from_sources
 
 
-## Discussion forum
-https://forum.sqlitestudio.pl/
-
-
 ## Bugs & feature requests tracker
 https://github.com/pawelsalawa/sqlitestudio/issues
 
