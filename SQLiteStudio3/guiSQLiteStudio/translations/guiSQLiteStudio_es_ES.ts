@@ -1297,7 +1297,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2105"/>
       <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Las etiquetas adicionales son las que te indican la versión de SQLite, el número de objetos en la profundidad del árbol, etc.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2108"/>
