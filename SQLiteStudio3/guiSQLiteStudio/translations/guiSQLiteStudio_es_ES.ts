@@ -1031,12 +1031,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Actualizaciones</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="911"/>
       <source>Automatically check for updates at startup</source>
-      <translation type="unfinished">Automatically check for updates at startup</translation>
+      <translation>Comprobar actualizaciones automáticamente al inicio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="924"/>
@@ -1097,7 +1097,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Compactar diseño reduce todos los márgenes y espaciados de la IU al mínimo, haciendo espacio para mostrar más datos. Le quita algo de belleza a la interfaz, pero permite mostrar más datos.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1116"/>
@@ -1257,27 +1257,27 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1992"/>
       <source>Data view colors</source>
-      <translation type="unfinished">Data view colors</translation>
+      <translation>Colores de la vista de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1998"/>
       <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cualquier cambio en los datos se resaltará con este color hasta que se confirmen a la base de datos.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2001"/>
       <source>Uncommitted data outline color</source>
-      <translation type="unfinished">Uncommitted data outline color</translation>
+      <translation>Color de resaltado para datos no confirmados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2024"/>
       <source>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Si hay un error durante la confirmación del cambio de datos, la celda problemática se resaltará con este color.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2027"/>
       <source>Commit error outline color</source>
-      <translation type="unfinished">Commit error outline color</translation>
+      <translation>Color de resaltado para errores de confirmación</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2050"/>
@@ -1292,7 +1292,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2099"/>
       <source>Database list colors</source>
-      <translation type="unfinished">Database list colors</translation>
+      <translation>Colores de la lista de bases de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2105"/>
