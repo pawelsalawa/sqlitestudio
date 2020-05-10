@@ -2,6 +2,7 @@
 #include "ui_cssdebugdialog.h"
 #include "mainwindow.h"
 #include "themetuner.h"
+#include "uiconfig.h"
 #include <QApplication>
 #include <QPushButton>
 
@@ -12,7 +13,10 @@ CssDebugDialog::CssDebugDialog(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(buttonClicked(QAbstractButton*)));
 
-    appliedCss = MAINWINDOW->styleSheet();
+    appliedCss = CFG_UI.General.CustomCss.get();
+    if (appliedCss.isEmpty())
+        appliedCss = MAINWINDOW->styleSheet();
+
     ui->cssEdit->setPlainText(appliedCss);
     updateState();
 
@@ -33,6 +37,7 @@ void CssDebugDialog::buttonClicked(QAbstractButton* button)
     else if (ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole)
     {
         appliedCss = ui->cssEdit->toPlainText();
+        CFG_UI.General.CustomCss.set(appliedCss);
         MAINWINDOW->setStyleSheet(appliedCss);
     }
 
