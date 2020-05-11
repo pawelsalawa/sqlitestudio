@@ -1307,7 +1307,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2134"/>
       <source>Status field colors</source>
-      <translation type="unfinished">Status field colors</translation>
+      <translation>Colores del campo de estado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2140"/>
@@ -1328,48 +1328,48 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.cpp" line="792"/>
       <source>Description:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Description:</translation>
+      <translation>Descripción:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="793"/>
       <source>Category:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Category:</translation>
+      <translation>Categoría:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="794"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Versión:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="795"/>
       <source>Author:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Author:</translation>
+      <translation>Autor:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Internal name:</translation>
+      <translation>Nombre interno:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Dependencies:</translation>
+      <translation>Dependencias:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="799"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Conflicts:</translation>
+      <translation>Conflictos:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="803"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>Detalles del plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1215"/>
