@@ -1757,27 +1757,27 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
       <source>This is the name that the converted database will be added to SQLiteStudio with.</source>
-      <translation type="unfinished">This is the name that the converted database will be added to SQLiteStudio with.</translation>
+      <translation>Este es el nombre que se usará al añadir la base de datos convertida a SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
       <source>Select source database</source>
-      <translation type="unfinished">Select source database</translation>
+      <translation>Seleccionar la base de datos de origen</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
       <source>Enter valid and writable file path.</source>
-      <translation type="unfinished">Enter valid and writable file path.</translation>
+      <translation>Ingresa una ruta de archivo válida y que se pueda escribir.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="131"/>
       <source>Entered file exists and will be overwritten.</source>
-      <translation type="unfinished">Entered file exists and will be overwritten.</translation>
+      <translation>El archivo ingresado existe y se sobreescribirá.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
       <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-      <translation type="unfinished">Enter a not empty, unique name (as in the list of databases on the left).</translation>
+      <translation>Ingresa un nombre único y no vacío (como en la lista de bases de datos en la izquierda).</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
