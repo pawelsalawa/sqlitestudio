@@ -1374,18 +1374,18 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1215"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-      <translation type="unfinished">Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</translation>
+      <translation>Los plugins son cargados/liberados inmediatamente el mismo momento que los seleccionas/deseleccionas, pero la lista modificada de plugins a cargar al iniciar el programa no se guarda hasta que Aceptes los cambios de este diálogo de configuración.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1279"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation type="unfinished">%1 (built-in)</translation>
+      <translation>%1 (integrado)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1292"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalles</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1304"/>
@@ -1528,25 +1528,25 @@ but it&apos;s okay to use it.</source>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>Alcance</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalles</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nombre</translation>
     </message>
   </context>
   <context>
@@ -1554,7 +1554,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>Consola CSS de SQLIteStudio</translation>
     </message>
   </context>
   <context>
@@ -1563,29 +1563,29 @@ but it&apos;s okay to use it.</source>
       <location filename="../dataview.cpp" line="105"/>
       <source>Filter data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter data</translation>
+      <translation>Filtrar datos</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="114"/>
       <source>Grid view</source>
-      <translation type="unfinished">Grid view</translation>
+      <translation>Vista de rejilla</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation type="unfinished">Form view</translation>
+      <translation>Vista de formulario</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Refresh table data</translation>
+      <translation>Actualizar los datos de la tabla</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="223"/>
       <source>First page</source>
       <comment>data view</comment>
-      <translation type="unfinished">First page</translation>
+      <translation>Primera página</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="224"/>
