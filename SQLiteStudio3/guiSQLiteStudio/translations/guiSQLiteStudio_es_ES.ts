@@ -1782,22 +1782,22 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
       <source>No valid target dialect available. Conversion not possible.</source>
-      <translation type="unfinished">No valid target dialect available. Conversion not possible.</translation>
+      <translation>No existe un dialecto de destino disponible. No es posible realizar la conversión.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
       <source>Select valid target dialect.</source>
-      <translation type="unfinished">Select valid target dialect.</translation>
+      <translation>Elige un dialecto de destino válido.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
       <source>Database %1 has been successfully converted and now is available under new name: %2</source>
-      <translation type="unfinished">Database %1 has been successfully converted and now is available under new name: %2</translation>
+      <translation>La base de datos %1 se ha convertido correctamente y ahora está disponible con el nombre: %2</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>Conversión de sentencias SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
