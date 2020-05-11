@@ -132,12 +132,6 @@ QString SQLiteStudio::getGitHubReleases() const
     return url;
 }
 
-QString SQLiteStudio::getForumPage() const
-{
-    static_qstring(url, "https://forum.sqlitestudio.pl");
-    return url;
-}
-
 QString SQLiteStudio::getUserManualPage() const
 {
     static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual");
@@ -153,6 +147,12 @@ QString SQLiteStudio::getSqliteDocsPage() const
 QString SQLiteStudio::getIssuesPage() const
 {
     static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/issues");
+    return url;
+}
+
+QString SQLiteStudio::getDonatePage() const
+{
+    static_qstring(url, "https://sqlitestudio.pl/donate/");
     return url;
 }
 

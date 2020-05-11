@@ -103,6 +103,7 @@ void DbTree::init()
     connect(this, &DbTree::updateFileExecProgress, this, &DbTree::setFileExecProgress, Qt::QueuedConnection);
     connect(this, &DbTree::fileExecCoverToBeClosed, this, &DbTree::hideFileExecCover, Qt::QueuedConnection);
     connect(this, &DbTree::fileExecErrors, this, &DbTree::showFileExecErrors, Qt::QueuedConnection);
+    connect(this, SIGNAL(schemaNeedsRefreshing(Db*)), this, SLOT(refreshSchema(Db*)), Qt::QueuedConnection);
 
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
@@ -1920,8 +1921,11 @@ QList<QPair<QString, QString>> DbTree::executeFileQueries(Db* db, QTextStream& s
             }
         }
 
-        if (sql.trimmed().isEmpty())
+        if (shouldSkipQueryFromFileExecution(sql))
+        {
+            sql.clear();;
             continue;
+        }
 
         results = db->exec(sql);
         attemptedExecutions++;
@@ -1946,6 +1950,18 @@ QList<QPair<QString, QString>> DbTree::executeFileQueries(Db* db, QTextStream& s
     return errors;
 }
 
+bool DbTree::shouldSkipQueryFromFileExecution(const QString& sql)
+{
+    if (sql.trimmed().isEmpty())
+        return true;
+
+    QString upper = sql.toUpper().trimmed().split("\n").last().trimmed();
+    return (upper.startsWith("BEGIN") ||
+            upper.startsWith("COMMIT") ||
+            upper.startsWith("ROLLBACK") ||
+            upper.startsWith("END"));
+}
+
 void DbTree::handleFileQueryExecution(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis)
 {
     bool doCommit = ok ? true : ignoreErrors;
@@ -1953,17 +1969,20 @@ void DbTree::handleFileQueryExecution(Db* db, int executed, int attemptedExecuti
     {
         if (!db->commit())
         {
-            db->rollback();
             notifyError(tr("Could not execute SQL, because application has failed to commit the transaction: %1").arg(db->getErrorText()));
+            db->rollback();
         }
         else if (!ok) // committed with errors
         {
             notifyInfo(tr("Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.")
                        .arg(executed).arg(millis / 1000.0).arg(attemptedExecutions - executed));
+
+            emit schemaNeedsRefreshing(db);
         }
         else
         {
             notifyInfo(tr("Finished executing %1 queries in %2 seconds.").arg(executed).arg(millis / 1000.0));
+            emit schemaNeedsRefreshing(db);
         }
     }
     else

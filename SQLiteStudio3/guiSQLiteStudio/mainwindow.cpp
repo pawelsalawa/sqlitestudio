@@ -257,11 +257,11 @@ void MainWindow::createActions()
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
     createAction(OPEN_CSS_CONSOLE, tr("Open CSS Console"), this, SLOT(openCssConsole()), this);
     createAction(REPORT_BUG, ICONS.BUG, tr("Report a &bug"), this, SLOT(reportBug()), this);
+    createAction(DONATE, ICONS.DONATE, tr("D&onate"), this, SLOT(donate()), this);
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new &feature"), this, SLOT(requestFeature()), this);
     createAction(ABOUT, ICONS.SQLITESTUDIO_APP16, tr("&About"), this, SLOT(aboutSqlitestudio()), this);
     createAction(LICENSES, ICONS.LICENSES, tr("&Licenses"), this, SLOT(licenses()), this);
     createAction(HOMEPAGE, ICONS.HOMEPAGE, tr("Open home &page"), this, SLOT(homepage()), this);
-    createAction(FORUM, ICONS.OPEN_FORUM, tr("Open fo&rum page"), this, SLOT(forum()), this);
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User &Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite &documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Bugs and feature &requests"), this, SLOT(reportHistory()), this);
@@ -394,7 +394,6 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[USER_MANUAL]);
     sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
-    sqlitestudioMenu->addAction(actionMap[FORUM]);
     sqlitestudioMenu->addSeparator();
 #ifdef PORTABLE_CONFIG
     if (UPDATES->isPlatformEligibleForUpdate())
@@ -408,6 +407,7 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[BUG_REPORT_HISTORY]);
     sqlitestudioMenu->addSeparator();
     sqlitestudioMenu->addAction(actionMap[LICENSES]);
+    sqlitestudioMenu->addAction(actionMap[DONATE]);
     sqlitestudioMenu->addAction(actionMap[ABOUT]);
 }
 
@@ -751,11 +751,6 @@ void MainWindow::githubReleases()
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getGitHubReleases()));
 }
 
-void MainWindow::forum()
-{
-    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getForumPage()));
-}
-
 void MainWindow::userManual()
 {
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getUserManualPage()));
@@ -769,6 +764,11 @@ void MainWindow::sqliteDocs()
 void MainWindow::reportHistory()
 {
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getIssuesPage()));
+}
+
+void MainWindow::donate()
+{
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getDonatePage()));
 }
 
 void MainWindow::statusFieldLinkClicked(const QString& link)

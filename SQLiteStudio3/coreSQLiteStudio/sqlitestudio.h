@@ -137,10 +137,10 @@ class API_EXPORT SQLiteStudio : public QObject
 
         QString getHomePage() const;
         QString getGitHubReleases() const;
-        QString getForumPage() const;
         QString getUserManualPage() const;
         QString getSqliteDocsPage() const;
         QString getIssuesPage() const;
+        QString getDonatePage() const;
         QString getNewIssuePage() const;
 
 #ifdef PORTABLE_CONFIG
