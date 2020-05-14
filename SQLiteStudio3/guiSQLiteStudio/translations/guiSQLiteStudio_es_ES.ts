@@ -1031,12 +1031,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Actualizaciones</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="911"/>
       <source>Automatically check for updates at startup</source>
-      <translation type="unfinished">Automatically check for updates at startup</translation>
+      <translation>Comprobar actualizaciones automáticamente al inicio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="924"/>
@@ -1097,7 +1097,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Compactar diseño reduce todos los márgenes y espaciados de la IU al mínimo, haciendo espacio para mostrar más datos. Le quita algo de belleza a la interfaz, pero permite mostrar más datos.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1116"/>
@@ -1257,27 +1257,27 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1992"/>
       <source>Data view colors</source>
-      <translation type="unfinished">Data view colors</translation>
+      <translation>Colores de la vista de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1998"/>
       <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cualquier cambio en los datos se resaltará con este color hasta que se confirmen a la base de datos.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2001"/>
       <source>Uncommitted data outline color</source>
-      <translation type="unfinished">Uncommitted data outline color</translation>
+      <translation>Color de resaltado para datos no confirmados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2024"/>
       <source>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Si hay un error durante la confirmación del cambio de datos, la celda problemática se resaltará con este color.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2027"/>
       <source>Commit error outline color</source>
-      <translation type="unfinished">Commit error outline color</translation>
+      <translation>Color de resaltado para errores de confirmación</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2050"/>
@@ -1292,12 +1292,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2099"/>
       <source>Database list colors</source>
-      <translation type="unfinished">Database list colors</translation>
+      <translation>Colores de la lista de bases de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2105"/>
       <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Las etiquetas adicionales son las que te indican la versión de SQLite, el número de objetos en la profundidad del árbol, etc.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2108"/>
@@ -1307,7 +1307,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2134"/>
       <source>Status field colors</source>
-      <translation type="unfinished">Status field colors</translation>
+      <translation>Colores del campo de estado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2140"/>
@@ -1328,64 +1328,64 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.cpp" line="792"/>
       <source>Description:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Description:</translation>
+      <translation>Descripción:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="793"/>
       <source>Category:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Category:</translation>
+      <translation>Categoría:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="794"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Versión:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="795"/>
       <source>Author:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Author:</translation>
+      <translation>Autor:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Internal name:</translation>
+      <translation>Nombre interno:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Dependencies:</translation>
+      <translation>Dependencias:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="799"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Conflicts:</translation>
+      <translation>Conflictos:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="803"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>Detalles del plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1215"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-      <translation type="unfinished">Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</translation>
+      <translation>Los plugins son cargados/liberados inmediatamente el mismo momento que los seleccionas/deseleccionas, pero la lista modificada de plugins a cargar al iniciar el programa no se guarda hasta que Aceptes los cambios de este diálogo de configuración.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1279"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation type="unfinished">%1 (built-in)</translation>
+      <translation>%1 (integrado)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1292"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalles</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1304"/>
@@ -1528,25 +1528,25 @@ but it&apos;s okay to use it.</source>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>Alcance</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalles</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nombre</translation>
     </message>
   </context>
   <context>
@@ -1554,7 +1554,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>Consola CSS de SQLIteStudio</translation>
     </message>
   </context>
   <context>
@@ -1563,29 +1563,29 @@ but it&apos;s okay to use it.</source>
       <location filename="../dataview.cpp" line="105"/>
       <source>Filter data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter data</translation>
+      <translation>Filtrar datos</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="114"/>
       <source>Grid view</source>
-      <translation type="unfinished">Grid view</translation>
+      <translation>Vista de rejilla</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation type="unfinished">Form view</translation>
+      <translation>Vista de formulario</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Refresh table data</translation>
+      <translation>Actualizar los datos de la tabla</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="223"/>
       <source>First page</source>
       <comment>data view</comment>
-      <translation type="unfinished">First page</translation>
+      <translation>Primera página</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="224"/>
@@ -1757,47 +1757,47 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
       <source>This is the name that the converted database will be added to SQLiteStudio with.</source>
-      <translation type="unfinished">This is the name that the converted database will be added to SQLiteStudio with.</translation>
+      <translation>Este es el nombre que se usará al añadir la base de datos convertida a SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
       <source>Select source database</source>
-      <translation type="unfinished">Select source database</translation>
+      <translation>Seleccionar la base de datos de origen</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
       <source>Enter valid and writable file path.</source>
-      <translation type="unfinished">Enter valid and writable file path.</translation>
+      <translation>Ingresa una ruta de archivo válida y que se pueda escribir.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="131"/>
       <source>Entered file exists and will be overwritten.</source>
-      <translation type="unfinished">Entered file exists and will be overwritten.</translation>
+      <translation>El archivo ingresado existe y se sobreescribirá.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
       <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-      <translation type="unfinished">Enter a not empty, unique name (as in the list of databases on the left).</translation>
+      <translation>Ingresa un nombre único y no vacío (como en la lista de bases de datos en la izquierda).</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
       <source>No valid target dialect available. Conversion not possible.</source>
-      <translation type="unfinished">No valid target dialect available. Conversion not possible.</translation>
+      <translation>No existe un dialecto de destino disponible. No es posible realizar la conversión.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
       <source>Select valid target dialect.</source>
-      <translation type="unfinished">Select valid target dialect.</translation>
+      <translation>Elige un dialecto de destino válido.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
       <source>Database %1 has been successfully converted and now is available under new name: %2</source>
-      <translation type="unfinished">Database %1 has been successfully converted and now is available under new name: %2</translation>
+      <translation>La base de datos %1 se ha convertido correctamente y ahora está disponible con el nombre: %2</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>Conversión de sentencias SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
