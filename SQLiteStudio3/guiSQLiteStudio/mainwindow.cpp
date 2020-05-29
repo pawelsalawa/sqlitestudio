@@ -48,6 +48,7 @@
 #include <QLabel>
 #include <QStyle>
 #include <QApplication>
+#include <QToolTip>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -553,7 +554,10 @@ void MainWindow::setStyle(const QString& styleName)
         return;
     }
     QApplication::setStyle(style);
+    QApplication::setPalette(style->standardPalette());
     THEME_TUNER->tuneTheme(styleName);
+    statusField->refreshColors();
+    QToolTip::setPalette(style->standardPalette());
 }
 
 QString MainWindow::currentStyle() const

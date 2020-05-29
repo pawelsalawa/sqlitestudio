@@ -56,7 +56,9 @@ class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
         QSet<QString> m_knownIds;
         QString m_markString;
         Qt::CaseSensitivity m_markCaseSensitivity;
+        QTextCharFormat normalFormat;
         QTextCharFormat keywordsFormat;
+        QTextCharFormat commentFormat;
 };
 
 class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin

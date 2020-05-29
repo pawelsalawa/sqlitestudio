@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.2.2
+- ADDED: #3409 The Dark theme.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).

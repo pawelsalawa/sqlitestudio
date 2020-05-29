@@ -27,7 +27,14 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         void changeEvent(QEvent *e);
 
     private:
-        void addEntry(const QIcon& icon, const QString& text, const QColor &color);
+        enum EntryRole
+        {
+            INFO,
+            WARN,
+            ERROR
+        };
+
+        void addEntry(const QIcon& icon, const QString& text, const QColor& color, EntryRole role);
         void flashItems(const QList<QTableWidgetItem*>& items, const QColor& color);
         void setupMenu();
         void readRecentMessages();
@@ -41,7 +48,9 @@ class GUI_API_EXPORT StatusField : public QDockWidget
 
         static const int timeStampColumnWidth = 70;
         static const int itemCountLimit = 30;
+        static const int itemRole = Qt::UserRole;
         static constexpr const char* timeStampFormat = "hh:mm:ss";
+        static const QString colorTpl;
 
     private slots:
         void customContextMenuRequested(const QPoint& pos);
@@ -50,6 +59,9 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         void error(const QString& text);
         void reset();
         void fontChanged(const QVariant& variant);
+
+    public slots:
+        void refreshColors();
 
     signals:
         void linkActivated(const QString& link);
