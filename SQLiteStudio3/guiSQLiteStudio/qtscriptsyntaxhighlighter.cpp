@@ -1,6 +1,6 @@
 #include "qtscriptsyntaxhighlighter.h"
-#include "uiconfig.h"
-
+#include <QApplication>
+#include <QStyle>
 #include <QPlainTextEdit>
 
 JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
@@ -183,6 +183,7 @@ JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
     m_knownIds << "userAgent";
 
     keywordsFormat.setFontWeight(QFont::Bold);
+    commentFormat.setFontItalic(true);
 }
 
 void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
@@ -196,6 +197,10 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
         Comment = 4,
         Regex = 5
     };
+
+    commentFormat.setForeground(QApplication::style()->standardPalette().dark());
+    keywordsFormat.setForeground(QApplication::style()->standardPalette().text());
+    normalFormat.setForeground(QApplication::style()->standardPalette().text());
 
     int state = previousBlockState();
     int start = 0;
@@ -225,13 +230,13 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 state = Comment;
             } else if (ch == '/' && next == '/') {
                 i = text.length();
-                setFormat(start, text.length(), CFG_UI.Colors.JavaScriptComment.get());
+                setFormat(start, text.length(), commentFormat);
             } else if (ch == '/' && next != '*') {
                 ++i;
                 state = Regex;
             } else {
                 if (!QString("(){}[]").contains(ch))
-                    setFormat(start, 1, CFG_UI.Colors.JavaScriptOperator.get());
+                    setFormat(start, 1, normalFormat);
                 ++i;
                 state = Start;
             }
@@ -239,7 +244,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
 
         case Number:
             if (ch.isSpace() || !ch.isDigit()) {
-                setFormat(start, i - start, CFG_UI.Colors.JavaScriptNumber.get());
+                setFormat(start, i - start, normalFormat);
                 state = Start;
             } else {
                 ++i;
@@ -250,12 +255,10 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
             if (ch.isSpace() || !(ch.isDigit() || ch.isLetter() || ch == '_')) {
                 QString token = text.mid(start, i - start).trimmed();
                 if (m_keywords.contains(token))
-                {
-                    keywordsFormat.setForeground(CFG_UI.Colors.JavaScriptKeyword.get());
                     setFormat(start, i - start, keywordsFormat);
-                }
                 else if (m_knownIds.contains(token))
-                    setFormat(start, i - start, CFG_UI.Colors.JavaScriptBuiltIn.get());
+                    setFormat(start, i - start, normalFormat);
+
                 state = Start;
             } else {
                 ++i;
@@ -267,7 +270,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 QChar prev = (i > 0) ? text.at(i - 1) : QChar();
                 if (prev != '\\') {
                     ++i;
-                    setFormat(start, i - start, CFG_UI.Colors.JavaScriptString.get());
+                    setFormat(start, i - start, normalFormat);
                     state = Start;
                 } else {
                     ++i;
@@ -281,7 +284,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
             if (ch == '*' && next == '/') {
                 ++i;
                 ++i;
-                setFormat(start, i - start, CFG_UI.Colors.JavaScriptComment.get());
+                setFormat(start, i - start, commentFormat);
                 state = Start;
             } else {
                 ++i;
@@ -293,7 +296,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 QChar prev = (i > 0) ? text.at(i - 1) : QChar();
                 if (prev != '\\') {
                     ++i;
-                    setFormat(start, i - start, CFG_UI.Colors.JavaScriptString.get());
+                    setFormat(start, i - start, normalFormat);
                     state = Start;
                 } else {
                     ++i;
@@ -310,7 +313,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     }
 
     if (state == Comment)
-        setFormat(start, text.length(), CFG_UI.Colors.JavaScriptComment.get());
+        setFormat(start, text.length(), commentFormat);
     else
         state = Start;
 
@@ -318,8 +321,8 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
         int pos = 0;
         int len = m_markString.length();
         QTextCharFormat markerFormat;
-        markerFormat.setBackground(CFG_UI.Colors.JavaScriptMarker.get());
-        markerFormat.setForeground(CFG_UI.Colors.JavaScriptFg.get());
+        markerFormat.setBackground(QApplication::style()->standardPalette().alternateBase());
+        markerFormat.setForeground(QApplication::style()->standardPalette().text());
         for (;;) {
             pos = text.indexOf(m_markString, pos, m_markCaseSensitivity);
             if (pos < 0)

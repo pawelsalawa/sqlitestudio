@@ -83,12 +83,12 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             OPEN_CSS_CONSOLE,
             LICENSES,
             HOMEPAGE,
-            FORUM,
             USER_MANUAL,
             SQLITE_DOCS,
             REPORT_BUG,
             FEATURE_REQUEST,
             ABOUT,
+            DONATE,
             BUG_REPORT_HISTORY,
             CHECK_FOR_UPDATES
         };
@@ -180,10 +180,10 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void licenses();
         void homepage();
         void githubReleases();
-        void forum();
         void userManual();
         void sqliteDocs();
         void reportHistory();
+        void donate();
 
     private slots:
         void notifyAboutLanguageChange();

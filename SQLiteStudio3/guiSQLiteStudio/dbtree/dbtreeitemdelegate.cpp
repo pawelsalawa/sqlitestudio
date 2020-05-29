@@ -147,7 +147,7 @@ void DbTreeItemDelegate::paintLabel(QPainter *painter, const QStyleOptionViewIte
     painter->save();
 
     // Colors
-    painter->setPen(CFG_UI.Colors.DbTreeLabelsFg.get());
+    painter->setPen(QApplication::style()->standardPalette().link().color());
 
     // Font
     opt.font = CFG_UI.Fonts.DbTreeLabel.get();

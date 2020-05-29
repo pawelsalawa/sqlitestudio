@@ -1,10 +1,11 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "parser/lexer.h"
-#include "uiconfig.h"
 #include "services/config.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>
+#include <QApplication>
+#include <QStyle>
 
 SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent) :
     QSyntaxHighlighter(parent)
@@ -36,7 +37,7 @@ void SqliteSyntaxHighlighter::setupFormats()
     QTextCharFormat format;
 
     // Standard
-    format.setForeground(CFG_UI.Colors.SqlEditorForeground.get());
+    format.setForeground(QApplication::style()->standardPalette().text());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[State::STANDARD] = format;
@@ -45,37 +46,37 @@ void SqliteSyntaxHighlighter::setupFormats()
     formats[State::PARENTHESIS] = format;
 
     // String
-    format.setForeground(CFG_UI.Colors.SqlEditorStringFg.get());
+    format.setForeground(QApplication::style()->standardPalette().text());
     format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
+    format.setFontItalic(true);
     formats[State::STRING] = format;
 
     // Keyword
-    format.setForeground(CFG_UI.Colors.SqlEditorKeywordFg.get());
-    format.setFontWeight(QFont::Bold);
+    format.setForeground(QApplication::style()->standardPalette().windowText());
+    format.setFontWeight(QFont::ExtraBold);
     format.setFontItalic(false);
     formats[State::KEYWORD] = format;
 
     // BindParam
-    format.setForeground(CFG_UI.Colors.SqlEditorBindParamFg.get());
+    format.setForeground(QApplication::style()->standardPalette().linkVisited());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[State::BIND_PARAM] = format;
 
     // Blob
-    format.setForeground(CFG_UI.Colors.SqlEditorBlobFg.get());
+    format.setForeground(QApplication::style()->standardPalette().text());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[State::BLOB] = format;
 
     // Comment
-    format.setForeground(CFG_UI.Colors.SqlEditorCommentFg.get());
+    format.setForeground(QApplication::style()->standardPalette().dark());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     formats[State::COMMENT] = format;
 
     // Number
-    format.setForeground(CFG_UI.Colors.SqlEditorNumberFg.get());
+    format.setForeground(QApplication::style()->standardPalette().windowText());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[State::NUMBER] = format;
@@ -245,7 +246,7 @@ void SqliteSyntaxHighlighter::applyValidObjectFormat(QTextCharFormat& format, bo
     if (isError || wasError || !isValid)
         return;
 
-    format.setForeground(CFG_UI.Colors.SqlEditorValidObject.get());
+    format.setForeground(QApplication::style()->standardPalette().link());
     if (objectLinksEnabled)
         format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
 }

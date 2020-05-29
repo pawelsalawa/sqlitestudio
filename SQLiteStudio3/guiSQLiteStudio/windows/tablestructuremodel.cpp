@@ -1,10 +1,11 @@
 #include "tablestructuremodel.h"
 #include "iconmanager.h"
 #include "common/unused.h"
-#include "uiconfig.h"
 #include <QFont>
 #include <QDebug>
 #include <QMimeData>
+#include <QApplication>
+#include <QStyle>
 
 TableStructureModel::TableStructureModel(QObject *parent) :
     QAbstractTableModel(parent)
@@ -385,7 +386,7 @@ QVariant TableStructureModel::getColumnDefaultColor(int row) const
 {
     QVariant value = getColumnDefault(row);
     if (value.isNull())
-        return QColor(CFG_UI.Colors.DataNullFg);
+        return QApplication::style()->standardPalette().dark().color();
 
     return QVariant();
 }

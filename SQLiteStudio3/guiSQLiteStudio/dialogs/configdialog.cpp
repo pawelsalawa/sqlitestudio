@@ -1092,6 +1092,7 @@ void ConfigDialog::refreshFormattersPage()
 void ConfigDialog::applyStyle(QWidget *widget, QStyle *style)
 {
     widget->setStyle(style);
+    widget->setPalette(style->standardPalette());
     for (QObject* child : widget->children())
     {
         if (!qobject_cast<QWidget*>(child))

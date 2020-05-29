@@ -148,18 +148,6 @@
                 <normaloff>:/icons/img/config_font.png</normaloff>:/icons/img/config_font.png</iconset>
               </property>
              </item>
-             <item>
-              <property name="text">
-               <string>Colors</string>
-              </property>
-              <property name="statusTip">
-               <string notr="true">colorsPage</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_colors.png</normaloff>:/icons/img/config_colors.png</iconset>
-              </property>
-             </item>
             </item>
             <item>
              <property name="text">
@@ -407,8 +395,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>577</width>
-                <height>472</height>
+                <width>364</width>
+                <height>519</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -1021,11 +1009,11 @@
              <property name="expandsOnDoubleClick">
               <bool>false</bool>
              </property>
-             <attribute name="headerDefaultSectionSize">
-              <number>150</number>
-             </attribute>
              <attribute name="headerMinimumSectionSize">
               <number>16</number>
+             </attribute>
+             <attribute name="headerDefaultSectionSize">
+              <number>150</number>
              </attribute>
              <attribute name="headerStretchLastSection">
               <bool>false</bool>
@@ -1073,8 +1061,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>335</width>
-                <height>237</height>
+                <width>339</width>
+                <height>267</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1585,8 +1573,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>196</width>
-                <height>263</height>
+                <width>580</width>
+                <height>476</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1689,542 +1677,6 @@ p, li { white-space: pre-wrap; }
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="colorsPage">
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <item>
-            <widget class="QScrollArea" name="scrollArea">
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="lineWidth">
-              <number>0</number>
-             </property>
-             <property name="widgetResizable">
-              <bool>true</bool>
-             </property>
-             <widget class="QWidget" name="colorsWidget">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>247</width>
-                <height>701</height>
-               </rect>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_12">
-               <item>
-                <widget class="QGroupBox" name="sqlEditorColorsGroup">
-                 <property name="title">
-                  <string>SQL editor colors</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_3">
-                  <item row="14" column="0">
-                   <widget class="QLabel" name="sqlEditorCurrLineBgLabel">
-                    <property name="text">
-                     <string>Current line background</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="sqlEditorStringFgLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>String foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="ColorButton" name="sqlEditorKeywordFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorKeywordFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="ColorButton" name="sqlEditorStringFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorStringFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="1">
-                   <widget class="ColorButton" name="sqlEditorCommentFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorCommentFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="ColorButton" name="sqlEditorRegularFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorForeground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="14" column="1">
-                   <widget class="ColorButton" name="sqlEditorCurrLineBgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorCurrentLineBg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="16" column="1">
-                   <widget class="ColorButton" name="sqlEditorLineNumAreaBgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorLineNumAreaBg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="12" column="0">
-                   <widget class="QLabel" name="sqlEditorBindParamFgLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Bind parameter foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="15" column="1">
-                   <widget class="ColorButton" name="sqlEditorParBgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorParenthesisBg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="15" column="0">
-                   <widget class="QLabel" name="sqlEditorParBgLabel">
-                    <property name="text">
-                     <string>Highlighted parenthesis background</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="11" column="0">
-                   <widget class="QLabel" name="sqlEditorBlobFgLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X'12B4'&lt;/li&gt;&lt;li&gt;x'46A2F4'&lt;/li&gt;&lt;/ul&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>BLOB value foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="sqlEditorRegularFgLabel">
-                    <property name="text">
-                     <string>Regular foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="16" column="0">
-                   <widget class="QLabel" name="sqlEditorLineNumAreaBgLabel">
-                    <property name="text">
-                     <string>Line numbers area background</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="11" column="1">
-                   <widget class="ColorButton" name="sqlEditorBlobFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorBlobFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLabel" name="sqlEditorKeywordFgLabel">
-                    <property name="text">
-                     <string>Keyword foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="0">
-                   <widget class="QLabel" name="sqlEditorNumberFgLabel">
-                    <property name="text">
-                     <string>Number foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="0">
-                   <widget class="QLabel" name="sqlEditorCommentFgLabel">
-                    <property name="text">
-                     <string>Comment foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="1">
-                   <widget class="ColorButton" name="sqlEditorNumberFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorNumberFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="12" column="1">
-                   <widget class="ColorButton" name="sqlEditorBindParamFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorBindParamFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="13" column="0">
-                   <widget class="QLabel" name="sqlEditorValidObjectsLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Valid objects foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="13" column="1">
-                   <widget class="ColorButton" name="sqlEditorValidObjectsButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.SqlEditorValidObject</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="dataViewGroup">
-                 <property name="title">
-                  <string>Data view colors</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_6">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="dataViewUncommittedLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Any data changes will be outlined with this color, until they're committed to the database.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Uncommitted data outline color</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="ColorButton" name="dataViewUncommittedButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataUncommitted</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="dataViewErrorLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Commit error outline color</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="ColorButton" name="dataViewErrorButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataUncommittedError</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="dataViewNullFgLabel">
-                    <property name="text">
-                     <string>NULL value foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="ColorButton" name="dataViewNullFgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataNullFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="dataViewDeletedRowBgLabel">
-                    <property name="text">
-                     <string>Deleted row background</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="ColorButton" name="dataViewDeletedRowBgButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataDeletedBg</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="dbTreeGroup">
-                 <property name="title">
-                  <string>Database list colors</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_9">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="dbTreeLabelsLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Additional labels foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="ColorButton" name="dbTreeLabelsButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DbTreeLabelsFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="statusFieldGroup">
-                 <property name="title">
-                  <string>Status field colors</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_10">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="statusFieldInfoLabel">
-                    <property name="text">
-                     <string>Information message foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="ColorButton" name="statusFieldInfoButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.StatusFieldInfoFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="statusFieldWarnLabel">
-                    <property name="text">
-                     <string>Warning message foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="ColorButton" name="statusFieldWarnButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.StatusFieldWarnFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="statusFieldErrorLabel">
-                    <property name="text">
-                     <string>Error message foreground</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="ColorButton" name="statusFieldErrorButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>50</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">Colors.StatusFieldErrorFg</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
         </widget>
        </widget>
       </item>
@@ -2255,11 +1707,6 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>ColorButton</class>
-   <extends>QPushButton</extends>
-   <header>common/colorbutton.h</header>
-  </customwidget>
   <customwidget>
    <class>FontEdit</class>
    <extends>QWidget</extends>
@@ -2298,26 +1745,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>previewComboBox</tabstop>
   <tabstop>previewTextEdit</tabstop>
   <tabstop>fontsScrollArea</tabstop>
-  <tabstop>scrollArea</tabstop>
-  <tabstop>sqlEditorKeywordFgButton</tabstop>
-  <tabstop>sqlEditorStringFgButton</tabstop>
-  <tabstop>sqlEditorCommentFgButton</tabstop>
-  <tabstop>sqlEditorRegularFgButton</tabstop>
-  <tabstop>sqlEditorCurrLineBgButton</tabstop>
-  <tabstop>sqlEditorLineNumAreaBgButton</tabstop>
-  <tabstop>sqlEditorParBgButton</tabstop>
-  <tabstop>sqlEditorBlobFgButton</tabstop>
-  <tabstop>sqlEditorNumberFgButton</tabstop>
-  <tabstop>sqlEditorBindParamFgButton</tabstop>
-  <tabstop>sqlEditorValidObjectsButton</tabstop>
-  <tabstop>dataViewUncommittedButton</tabstop>
-  <tabstop>dataViewErrorButton</tabstop>
-  <tabstop>dataViewNullFgButton</tabstop>
-  <tabstop>dataViewDeletedRowBgButton</tabstop>
-  <tabstop>dbTreeLabelsButton</tabstop>
-  <tabstop>statusFieldInfoButton</tabstop>
-  <tabstop>statusFieldWarnButton</tabstop>
-  <tabstop>statusFieldErrorButton</tabstop>
  </tabstops>
  <resources>
   <include location="../icons.qrc"/>

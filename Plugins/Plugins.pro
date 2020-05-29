@@ -5,6 +5,7 @@ pluginsProject = 1
 SUBDIRS += \
     CsvExport \
     CsvImport \
+    FusionDarkStyle \
     HtmlExport \
     PdfExport \
     SqlExport \

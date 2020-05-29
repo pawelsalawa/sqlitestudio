@@ -31,6 +31,7 @@
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QtConcurrent/QtConcurrent>
+#include <QStyle>
 
 CFG_KEYS_DEFINE(SqlEditor)
 
@@ -69,10 +70,9 @@ void SqlEditor::init()
     connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
     connect(this, SIGNAL(textChanged()), this, SLOT(checkContentSize()));
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorMoved()));
-    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
 
     updateLineNumberAreaWidth();
-    highlightCurrentLine();
+    highlightCurrentCursorContext();
 
     completer = new CompleterWindow(this);
     connect(completer, SIGNAL(accepted()), this, SLOT(completeSelected()));
@@ -87,7 +87,7 @@ void SqlEditor::init()
     connect(autoCompleteTrigger, SIGNAL(triggered()), this, SLOT(checkForAutoCompletion()));
 
     queryParserTrigger = new LazyTrigger(queryParserDelay, this);
-    connect(autoCompleteTrigger, SIGNAL(triggered()), this, SLOT(parseContents()));
+    connect(queryParserTrigger, SIGNAL(triggered()), this, SLOT(parseContents()));
 
     connect(this, SIGNAL(textChanged()), this, SLOT(scheduleQueryParser()));
 
@@ -573,7 +573,7 @@ void SqlEditor::clearDbObjects()
 void SqlEditor::lineNumberAreaPaintEvent(QPaintEvent* event)
 {
     QPainter painter(lineNumberArea);
-    painter.fillRect(event->rect(), CFG_UI.Colors.SqlEditorLineNumAreaBg.get());
+    painter.fillRect(event->rect(), style()->standardPalette().alternateBase());
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
     int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
@@ -608,22 +608,10 @@ int SqlEditor::lineNumberAreaWidth()
     return space;
 }
 
-void SqlEditor::highlightParenthesis()
+void SqlEditor::highlightParenthesis(QList<QTextEdit::ExtraSelection>& selections)
 {
     if (!richFeaturesEnabled)
         return;
-
-    // Clear extra selections
-    QList<QTextEdit::ExtraSelection> selections = extraSelections();
-
-    // Just keep "current line" highlighting
-    QMutableListIterator<QTextEdit::ExtraSelection> it(selections);
-    while (it.hasNext())
-    {
-        if (!it.next().format.property(QTextFormat::FullWidthSelection).toBool())
-            it.remove();
-    }
-    setExtraSelections(selections);
 
     // Find out parenthesis under the cursor
     int curPos = textCursor().position();
@@ -658,6 +646,13 @@ void SqlEditor::highlightParenthesis()
 
     // Mark new match
     markMatchedParenthesis(thePar->position, matchedPar->position, selections);
+}
+
+void SqlEditor::highlightCurrentCursorContext()
+{
+    QList<QTextEdit::ExtraSelection> selections;
+    highlightCurrentLine(selections);
+    highlightParenthesis(selections);
     setExtraSelections(selections);
 }
 
@@ -665,7 +660,8 @@ void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::Extr
 {
     QTextEdit::ExtraSelection selection;
 
-    selection.format.setBackground(CFG_UI.Colors.SqlEditorParenthesisBg.get());
+    selection.format.setBackground(style()->standardPalette().highlight());
+    selection.format.setForeground(style()->standardPalette().highlightedText());
 
     QTextCursor cursor = textCursor();
 
@@ -849,9 +845,7 @@ void SqlEditor::parseContents()
         queryParser->parse(sql);
         checkForValidObjects();
         checkForSyntaxErrors();
-        highlighter->rehighlight();
     }
-
 }
 
 void SqlEditor::checkForSyntaxErrors()
@@ -916,6 +910,7 @@ void SqlEditor::checkForValidObjects()
             addDbObject(sqlIndex(fullObj.object->start), sqlIndex(fullObj.object->end), dbName);
         }
     }
+    highlighter->rehighlight();
 }
 
 void SqlEditor::scheduleQueryParser(bool force)
@@ -986,22 +981,18 @@ void SqlEditor::updateLineNumberAreaWidth()
     setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
 }
 
-void SqlEditor::highlightCurrentLine()
+void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selections)
 {
-    QList<QTextEdit::ExtraSelection> selections;
-
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
 
-        selection.format.setBackground(CFG_UI.Colors.SqlEditorCurrentLineBg.get());
+        selection.format.setBackground(style()->standardPalette().alternateBase());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
         selections.append(selection);
     }
-
-    setExtraSelections(selections);
 }
 
 void SqlEditor::updateLineNumberArea(const QRect& rect, int dy)
@@ -1023,8 +1014,7 @@ void SqlEditor::updateLineNumberArea(const QRect& rect, int dy)
 
 void SqlEditor::cursorMoved()
 {
-    highlightParenthesis();
-
+    highlightCurrentCursorContext();
     if (!cursorMovingByLocator)
     {
         textLocator->setStartPosition(textCursor().position());
@@ -1308,6 +1298,7 @@ void SqlEditor::changeFont(const QVariant& font)
 void SqlEditor::configModified()
 {
     highlighter->rehighlight();
+    highlightCurrentCursorContext();
 }
 
 void SqlEditor::toggleComment()
@@ -1644,8 +1635,8 @@ void SqlEditor::LineNumberArea::paintEvent(QPaintEvent* event)
 
 void SqlEditor::changeEvent(QEvent* e)
 {
-    if (e->type() == QEvent::EnabledChange)
-        highlightCurrentLine();
+//    if (e->type() == QEvent::EnabledChange)
+//        highlightCurrentLine();
 
     QPlainTextEdit::changeEvent(e);
 }

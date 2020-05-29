@@ -170,7 +170,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void clearDbObjects();
         void lineNumberAreaPaintEvent(QPaintEvent* event);
         int lineNumberAreaWidth();
-        void highlightParenthesis();
+        void highlightParenthesis(QList<QTextEdit::ExtraSelection>& selections);
+        void highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selections);
+        void highlightCurrentCursorContext();
         const TextBlockData::Parenthesis* matchParenthesis(QList<const TextBlockData::Parenthesis*> parList, const TextBlockData::Parenthesis* thePar);
         void markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::ExtraSelection>& selections);
         void doBackspace(int repeats = 1);
@@ -268,7 +270,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void parseContents();
         void scheduleQueryParser(bool force = false);
         void updateLineNumberAreaWidth();
-        void highlightCurrentLine();
         void updateLineNumberArea(const QRect&rect, int dy);
         void cursorMoved();
         void checkContentSize();

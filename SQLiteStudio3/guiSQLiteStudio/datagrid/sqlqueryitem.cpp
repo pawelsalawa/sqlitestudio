@@ -6,6 +6,8 @@
 #include "sqlqueryview.h"
 #include <QDate>
 #include <QDebug>
+#include <QApplication>
+#include <QStyle>
 
 SqlQueryItem::SqlQueryItem(QObject *parent) :
     QObject(parent)
@@ -352,14 +354,14 @@ QVariant SqlQueryItem::data(int role) const
         {
             QVariant value = getValue();
             if (value.isNull())
-                return QBrush(CFG_UI.Colors.DataNullFg.get());
+                return QApplication::style()->standardPalette().dark();
 
             break;
         }
         case Qt::BackgroundRole:
         {
             if (isDeletedRow())
-                return QBrush(CFG_UI.Colors.DataDeletedBg.get());
+                return QApplication::style()->standardPalette().dark();
 
             break;
         }

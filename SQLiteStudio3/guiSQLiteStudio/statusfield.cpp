@@ -13,6 +13,8 @@
 #include <QVariantAnimation>
 #include <QDebug>
 
+const QString StatusField::colorTpl = "QLabel {color: %1}";
+
 StatusField::StatusField(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::StatusField)
@@ -57,20 +59,20 @@ void StatusField::changeEvent(QEvent *e)
 
 void StatusField::info(const QString &text)
 {
-    addEntry(ICONS.STATUS_INFO, text, CFG_UI.Colors.StatusFieldInfoFg.get());
+    addEntry(ICONS.STATUS_INFO, text, style()->standardPalette().text().color(), INFO);
 }
 
 void StatusField::warn(const QString &text)
 {
-    addEntry(ICONS.STATUS_WARNING, text, CFG_UI.Colors.StatusFieldWarnFg.get());
+    addEntry(ICONS.STATUS_WARNING, text, style()->standardPalette().text().color(), WARN);
 }
 
 void StatusField::error(const QString &text)
 {
-    addEntry(ICONS.STATUS_ERROR, text, CFG_UI.Colors.StatusFieldErrorFg.get());
+    addEntry(ICONS.STATUS_ERROR, text, QColor(Qt::red), ERROR);
 }
 
-void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor& color)
+void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor& color, EntryRole role)
 {
     int row = ui->tableWidget->rowCount();
     ui->tableWidget->setRowCount(row+1);
@@ -86,6 +88,7 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
 
     item = new QTableWidgetItem();
     item->setIcon(icon);
+    item->setData(Qt::UserRole, role);
     ui->tableWidget->setItem(row, 0, item);
     itemsCreated << item;
 
@@ -95,16 +98,17 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     item = new QTableWidgetItem(timeStr);
     item->setForeground(QBrush(color));
     item->setFont(font);
+    item->setData(Qt::UserRole, role);
     ui->tableWidget->setItem(row, 1, item);
     itemsCreated << item;
 
     item = new QTableWidgetItem();
     item->setForeground(QBrush(color));
     item->setFont(font);
+    item->setData(Qt::UserRole, role);
     ui->tableWidget->setItem(row, 2, item);
     itemsCreated << item;
 
-    static_qstring(colorTpl, "QLabel {color: %1}");
     // While QLabel does detect if the text is rich automatically, we don't want to use qlabel for plain text,
     // because it's not wrapped correctly if the text is longer.
     if (text.contains("<"))
@@ -117,6 +121,8 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
         label->setStyleSheet(colorTpl.arg(color.name()));
         connect(label, SIGNAL(linkActivated(QString)), this, SIGNAL(linkActivated(QString)));
         ui->tableWidget->setCellWidget(row, 2, label);
+        ui->tableWidget->item(row, 2)->setData(Qt::UserRole, role);
+        ui->tableWidget->item(row, 2)->setData(Qt::UserRole+1, true);
     }
     else
     {
@@ -129,6 +135,38 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     ui->tableWidget->scrollToBottom();
     if (isVisible() && !noFlashing)
         flashItems(itemsCreated, color);
+}
+
+void StatusField::refreshColors()
+{
+    const QColor stdColor = style()->standardPalette().text().color();
+    const QColor errColor = QColor(Qt::red);
+    EntryRole role;
+    bool hasLabel;
+    QLabel* label = nullptr;
+    for (QTableWidgetItem* item : ui->tableWidget->findItems("", Qt::MatchContains)) {
+        role = (EntryRole)item->data(Qt::UserRole).toInt();
+
+        hasLabel = item->data(Qt::UserRole+1).toBool();
+        label = hasLabel ? dynamic_cast<QLabel*>(ui->tableWidget->cellWidget(item->row(), item->column())) : nullptr;
+
+        switch (role)
+        {
+            case INFO:
+            case WARN:
+                item->setForeground(stdColor);
+                if (label != nullptr)
+                    label->setStyleSheet(colorTpl.arg(stdColor.name()));
+
+                break;
+            case ERROR:
+                item->setForeground(errColor);
+                if (label != nullptr)
+                    label->setStyleSheet(colorTpl.arg(stdColor.name()));
+
+                break;
+        }
+    }
 }
 
 void StatusField::flashItems(const QList<QTableWidgetItem*>& items, const QColor& color)

@@ -39,7 +39,9 @@ void ColumnPrimaryKeyPanel::init()
 
     connect(ui->namedCheck, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
     connect(ui->namedEdit, SIGNAL(textChanged(QString)), this, SIGNAL(updateValidation()));
-    connect(ui->autoIncrCheck, SIGNAL(toggled(bool)), this, SLOT(updateState()));
+    connect(ui->sortOrderCheck, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
+    connect(ui->sortOrderCombo, SIGNAL(currentTextChanged(QString)), this, SIGNAL(updateValidation()));
+    connect(ui->autoIncrCheck, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
     connect(ui->sortOrderCheck, SIGNAL(toggled(bool)), this, SLOT(updateState()));
     connect(ui->namedCheck, SIGNAL(toggled(bool)), this, SLOT(updateState()));
     connect(ui->conflictCheck, SIGNAL(toggled(bool)), this, SLOT(updateState()));
@@ -72,7 +74,6 @@ void ColumnPrimaryKeyPanel::readConstraint()
 
 void ColumnPrimaryKeyPanel::updateState()
 {
-    ui->sortOrderCheck->setEnabled(!ui->autoIncrCheck->isChecked());
     ui->sortOrderCombo->setEnabled(ui->sortOrderCheck->isChecked());
     ui->namedEdit->setEnabled(ui->namedCheck->isChecked());
     ui->conflictCombo->setEnabled(ui->conflictCheck->isChecked());
@@ -86,7 +87,16 @@ bool ColumnPrimaryKeyPanel::validate()
 
     setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
 
-    return nameOk;
+    bool sortOk = true;
+    if (ui->autoIncrCheck->isChecked() && ui->sortOrderCombo->isEnabled() &&
+            ui->sortOrderCombo->currentText().toUpper() == "DESC")
+    {
+        sortOk = false;
+    }
+
+    setValidState(ui->sortOrderCombo, sortOk, tr("Descending order is not allowed with AUTOINCREMENT."));
+
+    return nameOk && sortOk;
 }
 
 void ColumnPrimaryKeyPanel::constraintAvailable()
