@@ -9,8 +9,6 @@
 #include <QEvent>
 #include <QHBoxLayout>
 #include <QGraphicsDropShadowEffect>
-#include <QSequentialAnimationGroup>
-#include <QPropertyAnimation>
 #include <QDebug>
 #include <QScrollArea>
 
@@ -54,7 +52,6 @@ void WidgetStateIndicator::initEffects()
 {
     initGlowEffects();
     initHighlightingEffects();
-    initAnimations();
 }
 
 void WidgetStateIndicator::initGlowEffects()
@@ -71,27 +68,6 @@ void WidgetStateIndicator::initHighlightingEffects()
     highlightingEffect->setColor(Qt::white);
     highlightingEffect->setStrength(0.3);
     highlightingEffect->setEnabled(false);
-}
-
-void WidgetStateIndicator::initAnimations()
-{
-    animation = new QSequentialAnimationGroup(this);
-    animation->setLoopCount(-1);
-
-    // Animation of glow efect
-    QPropertyAnimation* varAnim = new QPropertyAnimation(glowEffect, "blurRadius");
-    varAnim->setStartValue(3.0);
-    varAnim->setEndValue(14.0);
-    varAnim->setEasingCurve(QEasingCurve::InOutCubic);
-    varAnim->setDuration(300);
-    animation->addAnimation(varAnim);
-
-    varAnim = new QPropertyAnimation(glowEffect, "blurRadius");
-    varAnim->setStartValue(14.0);
-    varAnim->setEndValue(3.0);
-    varAnim->setEasingCurve(QEasingCurve::InOutCubic);
-    varAnim->setDuration(300);
-    animation->addAnimation(varAnim);
 }
 
 void WidgetStateIndicator::initPositionMode()
@@ -151,13 +127,10 @@ void WidgetStateIndicator::setMode(WidgetStateIndicator::Mode mode)
     updateMode();
 }
 
-void WidgetStateIndicator::show(const QString& msg, bool animated)
+void WidgetStateIndicator::show(const QString& msg)
 {
     visibilityRequested = true;
     setMessage(msg);
-    if (animated && animation->state() != QAbstractAnimation::Running)
-        animation->start();
-
     updateVisibility();
 }
 
@@ -165,9 +138,6 @@ void WidgetStateIndicator::hide()
 {
     visibilityRequested = false;
     clearMessage();
-    if (animation->state() == QAbstractAnimation::Running)
-        animation->stop();
-
     updateVisibility();
 }
 
@@ -186,28 +156,28 @@ void WidgetStateIndicator::release()
     deleteLater();
 }
 
-void WidgetStateIndicator::info(const QString& msg, bool animated)
+void WidgetStateIndicator::info(const QString& msg)
 {
     setMode(Mode::INFO);
-    show(msg, animated);
+    show(msg);
 }
 
-void WidgetStateIndicator::warn(const QString& msg, bool animated)
+void WidgetStateIndicator::warn(const QString& msg)
 {
     setMode(Mode::WARNING);
-    show(msg, animated);
+    show(msg);
 }
 
-void WidgetStateIndicator::error(const QString& msg, bool animated)
+void WidgetStateIndicator::error(const QString& msg)
 {
     setMode(Mode::ERROR);
-    show(msg, animated);
+    show(msg);
 }
 
-void WidgetStateIndicator::hint(const QString& msg, bool animated)
+void WidgetStateIndicator::hint(const QString& msg)
 {
     setMode(Mode::HINT);
-    show(msg, animated);
+    show(msg);
 }
 
 bool WidgetStateIndicator::exists(QWidget* widget)
