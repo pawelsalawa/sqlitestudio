@@ -7,7 +7,6 @@
 class QLabel;
 class QGraphicsDropShadowEffect;
 class QGraphicsColorizeEffect;
-class QSequentialAnimationGroup;
 
 class GUI_API_EXPORT WidgetStateIndicator : public QObject
 {
@@ -32,14 +31,14 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         ~WidgetStateIndicator();
 
         void setMode(Mode mode);
-        void show(const QString& msg = QString(), bool animated = true);
+        void show(const QString& msg = QString());
         void hide();
         void setVisible(bool visible, const QString& msg = QString());
         void release();
-        void info(const QString& msg, bool animated = true);
-        void warn(const QString& msg, bool animated = true);
-        void error(const QString& msg, bool animated = true);
-        void hint(const QString& msg, bool animated = true);
+        void info(const QString& msg);
+        void warn(const QString& msg);
+        void error(const QString& msg);
+        void hint(const QString& msg);
 
         static bool exists(QWidget* widget);
         static WidgetStateIndicator* getInstance(QWidget* widget);
@@ -57,7 +56,6 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         void initEffects();
         void initGlowEffects();
         void initHighlightingEffects();
-        void initAnimations();
         void initPositionMode();
         void finalInit();
         void setMessage(const QString& msg);
@@ -74,7 +72,6 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         QString message;
         QGraphicsColorizeEffect* highlightingEffect = nullptr;
         QGraphicsDropShadowEffect* glowEffect = nullptr;
-        QSequentialAnimationGroup* animation = nullptr;
         bool widgetVisible = false;
         bool visibilityRequested = false;
         QWidget* windowParent = nullptr;

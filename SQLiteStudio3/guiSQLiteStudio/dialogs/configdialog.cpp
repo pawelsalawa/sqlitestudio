@@ -201,7 +201,9 @@ void ConfigDialog::init()
     for (CfgEntry* cfg : entries)
         connect(cfg, SIGNAL(changed(QVariant)), this, SLOT(markRequiresSchemasRefresh()));
 
-    ui->activeStyleCombo->addItems(QStyleFactory::keys());
+    QStringList styles = QStyleFactory::keys();
+    styles.sort(Qt::CaseInsensitive);
+    ui->activeStyleCombo->addItems(styles);
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
 

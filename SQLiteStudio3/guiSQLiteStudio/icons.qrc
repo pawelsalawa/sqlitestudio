@@ -8,7 +8,6 @@
         <file>img/act_delete.png</file>
         <file>img/act_paste.png</file>
         <file>img/act_redo.png</file>
-        <file>img/act_search.png</file>
         <file>img/act_select_all.png</file>
         <file>img/act_undo.png</file>
         <file>img/apply_filter_re.png</file>
@@ -31,14 +30,10 @@
         <file>img/completer_other.png</file>
         <file>img/completer_pragma.png</file>
         <file>img/completer_string.png</file>
-        <file>img/configure_constraint.png</file>
         <file>img/configure.png</file>
         <file>img/database_connect.png</file>
-        <file>img/database_connected.png</file>
         <file>img/database_disconnect.png</file>
         <file>img/database_export.png</file>
-        <file>img/database_file.png</file>
-        <file>img/database_network.png</file>
         <file>img/database_reload.png</file>
         <file>img/database.png</file>
         <file>img/ddl_history.png</file>
@@ -49,7 +44,6 @@
         <file>img/denied_small.png</file>
         <file>img/directory_open_with_db.png</file>
         <file>img/directory_open.png</file>
-        <file>img/directory_with_db.png</file>
         <file>img/directory.png</file>
         <file>img/edit_small.png</file>
         <file>img/erase.png</file>
@@ -70,7 +64,6 @@
         <file>img/indicator_hint.png</file>
         <file>img/indicator_info.png</file>
         <file>img/indicator_warn.png</file>
-        <file>img/info_balloon.png</file>
         <file>img/info_small.png</file>
         <file>img/insert_row.png</file>
         <file>img/insert_rows.png</file>
@@ -162,19 +155,14 @@
         <file>img/vacuum_db.png</file>
         <file>img/bug.png</file>
         <file>img/feature_request.png</file>
-        <file>img/user_unknown.png</file>
-        <file>img/user.png</file>
-        <file>img/open_forum.png</file>
         <file>img/user_manual.png</file>
         <file>img/sqlite_docs.png</file>
-        <file>img/tip.png</file>
         <file>img/licenses.png</file>
         <file>img/homepage.png</file>
         <file>img/bug_list.png</file>
         <file>img/get_update.png</file>
         <file>img/sqlitestudio.svg</file>
         <file>img/sqlitestudio_16.png</file>
-        <file>img/keyboard.png</file>
         <file>img/config_general.png</file>
         <file>img/config_colors.png</file>
         <file>img/config_font.png</file>
@@ -193,8 +181,6 @@
         <file>img/plus.png</file>
         <file>img/erase_table_data.png</file>
         <file>img/delete.png</file>
-        <file>img/dock_layout_horizontal.png</file>
-        <file>img/dock_layout_vertical.png</file>
         <file>img/tag_hash_add.png</file>
         <file>img/tag_hash_del.png</file>
         <file>img/tag_hash_edit.png</file>
@@ -209,7 +195,9 @@
         <file>img/brick_add.png</file>
         <file>img/brick_delete.png</file>
         <file>img/brick_error.png</file>
-        <file>img/brick_folder.png</file>
         <file>img/execute_sql_from_file.png</file>
+        <file>img/dock_layout_horizontal.png</file>
+        <file>img/dock_layout_vertical.png</file>
+        <file>img/keyboard.png</file>
     </qresource>
 </RCC>
