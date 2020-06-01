@@ -196,5 +196,8 @@
         <file>img/brick_delete.png</file>
         <file>img/brick_error.png</file>
         <file>img/execute_sql_from_file.png</file>
+        <file>img/dock_layout_horizontal.png</file>
+        <file>img/dock_layout_vertical.png</file>
+        <file>img/keyboard.png</file>
     </qresource>
 </RCC>
