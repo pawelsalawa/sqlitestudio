@@ -1,4 +1,5 @@
 #include "qtscriptsyntaxhighlighter.h"
+#include "uiutils.h"
 #include <QApplication>
 #include <QStyle>
 #include <QPlainTextEdit>
@@ -199,8 +200,10 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     };
 
     commentFormat.setForeground(QApplication::style()->standardPalette().dark());
-    keywordsFormat.setForeground(QApplication::style()->standardPalette().text());
+    keywordsFormat.setForeground(QApplication::style()->standardPalette().windowText());
+    keywordsFormat.setFontWeight(QFont::Bold);
     normalFormat.setForeground(QApplication::style()->standardPalette().text());
+    stringFormat.setForeground(QBrush(styleSyntaxStringColor()));
 
     int state = previousBlockState();
     int start = 0;
@@ -270,7 +273,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 QChar prev = (i > 0) ? text.at(i - 1) : QChar();
                 if (prev != '\\') {
                     ++i;
-                    setFormat(start, i - start, normalFormat);
+                    setFormat(start, i - start, stringFormat);
                     state = Start;
                 } else {
                     ++i;

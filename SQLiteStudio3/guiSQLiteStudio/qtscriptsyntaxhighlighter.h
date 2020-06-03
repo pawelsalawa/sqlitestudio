@@ -59,6 +59,7 @@ class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
         QTextCharFormat normalFormat;
         QTextCharFormat keywordsFormat;
         QTextCharFormat commentFormat;
+        QTextCharFormat stringFormat;
 };
 
 class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
