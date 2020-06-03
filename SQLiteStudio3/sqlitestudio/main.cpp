@@ -99,6 +99,8 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
     if (a.isSecondary()) {
