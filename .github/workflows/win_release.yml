@@ -90,11 +90,11 @@ jobs:
               run: |
                 for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
                 cp bin/qt.conf "${{ env.PORTABLE_DIR }}"
-                mkdir "${{ env.PORTABLE_DIR }}/iconengines"
-                mkdir "${{ env.PORTABLE_DIR }}/platforms"
-                mkdir "${{ env.PORTABLE_DIR }}/printsupport"
-                mkdir "${{ env.PORTABLE_DIR }}/styles"
-                mkdir "${{ env.PORTABLE_DIR }}/imageformats"
+                mkdir -p "${{ env.PORTABLE_DIR }}/iconengines"
+                mkdir -p "${{ env.PORTABLE_DIR }}/platforms"
+                mkdir -p "${{ env.PORTABLE_DIR }}/printsupport"
+                mkdir -p "${{ env.PORTABLE_DIR }}/styles"
+                mkdir -p "${{ env.PORTABLE_DIR }}/imageformats"
                 cp plugins/iconengines/qsvgicon.dll "${{ env.PORTABLE_DIR }}/iconengines"
                 cp plugins/platforms/qwindows.dll "${{ env.PORTABLE_DIR }}/platforms"
                 cp plugins/styles/qwindowsvistastyle.dll "${{ env.PORTABLE_DIR }}/styles"
