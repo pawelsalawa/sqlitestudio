@@ -38,6 +38,7 @@
 #include "common/widgetcover.h"
 #include "dialogs/cssdebugdialog.h"
 #include "themetuner.h"
+#include "style.h"
 #include "services/codeformatter.h"
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -553,11 +554,8 @@ void MainWindow::setStyle(const QString& styleName)
         notifyWarn(tr("Could not set style: %1", "main window").arg(styleName));
         return;
     }
-    QApplication::setStyle(style);
-    QApplication::setPalette(style->standardPalette());
-    THEME_TUNER->tuneTheme(styleName);
+    STYLE->setStyle(style, styleName);
     statusField->refreshColors();
-    QToolTip::setPalette(style->standardPalette());
 }
 
 QString MainWindow::currentStyle() const

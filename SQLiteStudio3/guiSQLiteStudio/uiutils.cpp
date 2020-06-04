@@ -2,6 +2,7 @@
 #include "services/config.h"
 #include "common/widgetstateindicator.h"
 #include "common/utils.h"
+#include "uiconfig.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -131,4 +132,16 @@ QColor styleSyntaxStringColor()
         return stdAltColor.lighter();
     else
         return stdAltColor.darker();
+}
+
+QBrush styleEditorLineColor()
+{
+    QPalette palette = QApplication::style()->standardPalette();
+    if (CFG_UI.General.Style.get().toLower() != "macintosh")
+        return palette.alternateBase();
+
+    if (palette.base().color().lightness() < 128)
+        return QBrush(palette.alternateBase().color().darker(300));
+
+    return palette.alternateBase();
 }

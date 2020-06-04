@@ -17,6 +17,7 @@
 #include "searchtextlocator.h"
 #include "services/codeformatter.h"
 #include "sqlitestudio.h"
+#include "style.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
@@ -573,7 +574,7 @@ void SqlEditor::clearDbObjects()
 void SqlEditor::lineNumberAreaPaintEvent(QPaintEvent* event)
 {
     QPainter painter(lineNumberArea);
-    painter.fillRect(event->rect(), style()->standardPalette().alternateBase());
+    painter.fillRect(event->rect(), STYLE->extendedPalette().editorLineBase());
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
     int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
@@ -987,7 +988,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     {
         QTextEdit::ExtraSelection selection;
 
-        selection.format.setBackground(style()->standardPalette().alternateBase());
+        selection.format.setBackground(STYLE->extendedPalette().editorLineBase());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();

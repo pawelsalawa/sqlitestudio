@@ -1,7 +1,7 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "parser/lexer.h"
 #include "services/config.h"
-#include "uiutils.h"
+#include "style.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>
@@ -48,7 +48,7 @@ void SqliteSyntaxHighlighter::setupFormats()
     formats[State::PARENTHESIS] = format;
 
     // String
-    format.setForeground(QBrush(styleSyntaxStringColor()));
+    format.setForeground(STYLE->extendedPalette().editorString());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     formats[State::STRING] = format;
