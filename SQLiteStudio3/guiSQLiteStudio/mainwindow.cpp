@@ -156,6 +156,7 @@ void MainWindow::cleanUp()
     delete ui;
 
     ThemeTuner::cleanUp();
+    Style::cleanUp();
 
     safe_delete(formManager);
 }

@@ -1,5 +1,6 @@
 #include "style.h"
 #include "themetuner.h"
+#include "common/global.h"
 #include <QApplication>
 #include <QToolTip>
 
@@ -11,6 +12,12 @@ Style* Style::getInstance()
         instance = new Style(QApplication::style());
 
     return instance;
+}
+
+void Style::cleanUp()
+{
+    if (instance)
+        safe_delete(instance);
 }
 
 const ExtendedPalette& Style::extendedPalette() const

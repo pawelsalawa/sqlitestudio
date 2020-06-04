@@ -10,6 +10,7 @@ class Style : public QProxyStyle
 {
     public:
         static Style* getInstance();
+        static void cleanUp();
 
         const ExtendedPalette &extendedPalette() const;
         void setStyle(QStyle* style, const QString& styleName);
