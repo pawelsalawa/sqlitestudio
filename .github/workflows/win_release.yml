@@ -1,5 +1,5 @@
 env:
-    QT_VERSION: '5.14.2'
+    QT_VERSION: '5.15.0'
     QT_ARCH: 'win64_mingw73'
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
