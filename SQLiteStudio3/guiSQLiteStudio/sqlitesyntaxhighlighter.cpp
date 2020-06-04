@@ -1,6 +1,7 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "parser/lexer.h"
 #include "services/config.h"
+#include "style.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>
@@ -43,10 +44,11 @@ void SqliteSyntaxHighlighter::setupFormats()
     formats[State::STANDARD] = format;
 
     // Parenthesis
+    format.setForeground(QApplication::style()->standardPalette().text());
     formats[State::PARENTHESIS] = format;
 
     // String
-    format.setForeground(QApplication::style()->standardPalette().text());
+    format.setForeground(STYLE->extendedPalette().editorString());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     formats[State::STRING] = format;
@@ -76,7 +78,7 @@ void SqliteSyntaxHighlighter::setupFormats()
     formats[State::COMMENT] = format;
 
     // Number
-    format.setForeground(QApplication::style()->standardPalette().windowText());
+    format.setForeground(QApplication::style()->standardPalette().text());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[State::NUMBER] = format;
@@ -204,7 +206,7 @@ bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, qint32 idxModifier, in
                     );
     bool fatalError = (error && !limitedDamage) || wasError;
 
-    QTextCharFormat format;
+    QTextCharFormat format = formats[State::STANDARD];
 
     // Applying valid object format.
     applyValidObjectFormat(format, valid, error, wasError);

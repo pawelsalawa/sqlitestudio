@@ -2,6 +2,7 @@
 #include "services/config.h"
 #include "common/widgetstateindicator.h"
 #include "common/utils.h"
+#include "uiconfig.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -14,6 +15,7 @@
 #include <QPainter>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QStyle>
 
 const QStringList pageSizes = {
     "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
@@ -121,4 +123,25 @@ void limitDialogWidth(QDialog* dialog)
 void fixTextCursorSelectedText(QString& text)
 {
     text.replace("\u2029", "\n");
+}
+
+QColor styleSyntaxStringColor()
+{
+    static const QColor stdAltColor = QColor(Qt::green);
+    if (QApplication::style()->standardPalette().text().color().lightness() >= 128)
+        return stdAltColor.lighter();
+    else
+        return stdAltColor.darker();
+}
+
+QBrush styleEditorLineColor()
+{
+    QPalette palette = QApplication::style()->standardPalette();
+    if (CFG_UI.General.Style.get().toLower() != "macintosh")
+        return palette.alternateBase();
+
+    if (palette.base().color().lightness() < 128)
+        return QBrush(palette.alternateBase().color().darker(300));
+
+    return palette.alternateBase();
 }

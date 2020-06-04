@@ -19,6 +19,8 @@ GUI_API_EXPORT QPagedPaintDevice::PageSize convertPageSize(const QString& size);
 GUI_API_EXPORT QPixmap addOpacity(const QPixmap& input, float opacity);
 GUI_API_EXPORT void limitDialogWidth(QDialog* dialog);
 GUI_API_EXPORT void fixTextCursorSelectedText(QString& text);
+GUI_API_EXPORT QColor styleSyntaxStringColor();
+GUI_API_EXPORT QBrush styleEditorLineColor();
 
 #define UI_PROP_COLUMN "column_name"
 

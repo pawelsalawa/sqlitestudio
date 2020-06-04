@@ -44,6 +44,7 @@ TRANSLATIONS += translations/guiSQLiteStudio.ts \
 		translations/guiSQLiteStudio_pl_PL.ts
 
 SOURCES +=\
+    extendedpalette.cpp \
         mainwindow.cpp \
     iconmanager.cpp \
     dbtree/dbtreemodel.cpp \
@@ -51,6 +52,7 @@ SOURCES +=\
     dbtree/dbtree.cpp \
     dbtree/dbtreeview.cpp \
     actionentry.cpp \
+    style.cpp \
     uiutils.cpp \
     dbtree/dbtreeitemdelegate.cpp \
     dbtree/dbtreeitemfactory.cpp \
@@ -193,12 +195,14 @@ SOURCES +=\
     dialogs/fileexecerrorsdialog.cpp
 
 HEADERS  += mainwindow.h \
+    extendedpalette.h \
     iconmanager.h \
     dbtree/dbtreemodel.h \
     dbtree/dbtreeitem.h \
     dbtree/dbtree.h \
     dbtree/dbtreeview.h \
     actionentry.h \
+    style.h \
     uiutils.h \
     dbtree/dbtreeitemdelegate.h \
     dbtree/dbtreeitemfactory.h \
