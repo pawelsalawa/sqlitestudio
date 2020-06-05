@@ -83,6 +83,7 @@ jobs:
               run: |
                 rm -f *.a
                 rm -f plugins/*.a
+                rm -f styles/*.a
 
             - name: Prepare portable distro (Qt)
               shell: bash
