@@ -14,12 +14,6 @@ Style* Style::getInstance()
     return instance;
 }
 
-void Style::cleanUp()
-{
-    if (instance)
-        safe_delete(instance);
-}
-
 const ExtendedPalette& Style::extendedPalette() const
 {
     return extPalette;
@@ -29,15 +23,23 @@ void Style::setStyle(QStyle *style, const QString &styleName)
 {
     setBaseStyle(style);
 
-    QApplication::setStyle(style);
-    QApplication::setPalette(style->standardPalette());
+    QApplication::setPalette(initialPalette); // reset palette, cause styles don't provide
+                                              // full palette when changed in runtime (i.e. windowsvista)
+    QApplication::setStyle(this);
+    QApplication::setPalette(standardPalette());
     THEME_TUNER->tuneTheme(styleName);
-    QToolTip::setPalette(style->standardPalette());
+    QToolTip::setPalette(standardPalette());
 
-    extPalette.styleChanged(style, styleName);
+    extPalette.styleChanged(this, styleName);
+}
+
+QString Style::name() const
+{
+    return baseStyle()->objectName();
 }
 
 Style::Style(QStyle *style)
     : QProxyStyle(style)
 {
+    initialPalette = style->standardPalette();
 }

@@ -156,7 +156,6 @@ void MainWindow::cleanUp()
     delete ui;
 
     ThemeTuner::cleanUp();
-    Style::cleanUp();
 
     safe_delete(formManager);
 }
@@ -555,13 +554,14 @@ void MainWindow::setStyle(const QString& styleName)
         notifyWarn(tr("Could not set style: %1", "main window").arg(styleName));
         return;
     }
+
     STYLE->setStyle(style, styleName);
     statusField->refreshColors();
 }
 
 QString MainWindow::currentStyle() const
 {
-    return QApplication::style()->objectName();
+    return STYLE->name();
 }
 
 EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)

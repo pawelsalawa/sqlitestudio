@@ -1,5 +1,6 @@
 #include "extendedpalette.h"
 #include <QStyle>
+#include <QDebug>
 
 ExtendedPalette::ExtendedPalette()
 {
