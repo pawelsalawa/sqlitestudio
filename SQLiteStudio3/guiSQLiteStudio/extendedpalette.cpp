@@ -30,6 +30,7 @@ void ExtendedPalette::setEditorLineBase(const QBrush &value)
 void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
     QPalette stdPalette = style->standardPalette();
+    bool isDark = stdPalette.base().color().lightness() < 128;
 
     static const QColor stdAltColor = QColor(Qt::green);
     if (stdPalette.text().color().lightness() >= 128)
@@ -37,8 +38,23 @@ void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
     else
         editorStringBrush = QBrush(stdAltColor.darker());
 
-    if (themeName.toLower() == "macintosh" && stdPalette.base().color().lightness() < 128)
+    if (themeName.toLower() == "macintosh" && isDark)
         editorLineBaseBrush = QBrush(stdPalette.alternateBase().color().darker(300));
     else
         editorLineBaseBrush = stdPalette.alternateBase();
+
+    if (isDark)
+        mdiAreaBaseBrush = stdPalette.alternateBase();
+    else
+        mdiAreaBaseBrush = QBrush("#8a8a8a");
+}
+
+QBrush ExtendedPalette::mdiAreaBase() const
+{
+    return mdiAreaBaseBrush;
+}
+
+void ExtendedPalette::setMdiAreaBase(const QBrush& value)
+{
+    mdiAreaBaseBrush = value;
 }

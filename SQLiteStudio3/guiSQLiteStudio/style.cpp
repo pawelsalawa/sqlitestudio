@@ -1,6 +1,7 @@
 #include "style.h"
 #include "themetuner.h"
 #include "common/global.h"
+#include "mainwindow.h"
 #include <QApplication>
 #include <QToolTip>
 
@@ -31,6 +32,8 @@ void Style::setStyle(QStyle *style, const QString &styleName)
     QToolTip::setPalette(standardPalette());
 
     extPalette.styleChanged(this, styleName);
+
+    MAINWINDOW->getMdiArea()->setBackground(extPalette.mdiAreaBase());
 }
 
 QString Style::name() const
