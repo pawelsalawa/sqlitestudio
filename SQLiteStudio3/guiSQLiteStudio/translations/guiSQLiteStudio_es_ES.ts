@@ -807,27 +807,27 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Al agregar una nueva base de datos, esta se añade por defecto como &quot;permanente&quot; (almacenado en la configuración). Marcar esta opción hace que cada nueva base de datos ya NO se añada como &quot;permanente&quot; por defecto.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="360"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>No marcar las bases de datos como &quot;permanentes&quot; por defecto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="370"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esta opción está activada, los archivos agregados desde el gestor de archivos a la lista de bases de datos se añadirán automáticamente a la lista, saltándose el diálogo de base de datos estándar. Si por varios motivos el proceso automático falla, entonces se presentará el diálogo estándar al usuario.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="373"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>Intentar saltarse completamente el diálogo al soltar un archivo de base de datos a la lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="418"/>
       <source>Data browsing and editing</source>
-      <translation type="unfinished">Data browsing and editing</translation>
+      <translation>Exploración y edición de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="424"/>
