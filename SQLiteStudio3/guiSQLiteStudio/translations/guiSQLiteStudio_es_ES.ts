@@ -833,48 +833,48 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <location filename="../dialogs/configdialog.ui" line="434"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de configuraciones del diálogo de Llenar Tabla almacenados en la configuración. El valor de 100 debería bastar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>Número de configuraciones de llenado de tabla memorizados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
       <location filename="../dialogs/configdialog.ui" line="485"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando se cargan los datos en la vista de grilla, se ajusta el ancho de las columnas automáticamente. Este valor limita el ancho inicial para el ajuste, pero el usuario puede redimensionar manualmente la columna por encima de este límite.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="488"/>
       <source>Limit initial data column width to (in pixels):</source>
-      <translation type="unfinished">Limit initial data column width to (in pixels):</translation>
+      <translation>Limitar el ancho inicial de la columna de datos a (en píxeles):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Number of data rows per page:</source>
-      <translation type="unfinished">Number of data rows per page:</translation>
+      <translation>Número de filas de datos por página:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="502"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esto está activado y el usuario deja el puntero del mouse encima de una celda en cualquier vista de datos (resultados de la consulta, una tabla de datos, una vista de datos) un globo de texto aparecerá con detalles sobre la celda - incluye detalles como el tipo de datos de la columna, restricciones, ROWID y otros.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="505"/>
       <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
+      <translation>Mostrar globo de texto con detalles para filas y columnas en la vista de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="515"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Al editar una celda que solía contener un valor NULL, ingresando una string vacía como valor nuevo, con esta opción se determina si el nuevo valor debería quedarse como NULL (si esta opción está activada), o debería reemplazarse con un valor de string vacío (si esta opción está desactivada).&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="518"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation type="unfinished">Keep NULL value when entering empty value</translation>
+      <translation>Mantener valor NULL al ingresar un valor vacío</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="528"/>
