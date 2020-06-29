@@ -12,6 +12,7 @@
 #include "datagrid/sqlqueryrownummodel.h"
 #include "services/dbmanager.h"
 #include "querygenerator.h"
+#include "parser/lexer.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>
@@ -105,7 +106,7 @@ void SqlQueryModel::executeQueryInternal()
         return;
     }
 
-    if (query.trimmed().isEmpty())
+    if (isEmptyQuery())
     {
         notifyWarn("Cannot execute empty query.");
         internalExecutionStopped();
@@ -136,6 +137,23 @@ void SqlQueryModel::executeQueryInternal()
     queryExecutor->setExplainMode(explain);
     queryExecutor->setPreloadResults(true);
     queryExecutor->exec();
+}
+
+bool SqlQueryModel::isEmptyQuery() const
+{
+    if (query.trimmed().isEmpty())
+        return true;
+
+    TokenList tokens = Lexer::tokenize(query);
+    auto foundIter = std::find_if(tokens.begin(), tokens.end(), [](const TokenPtr& token)
+    {
+        return token->isMeaningful();
+    });
+
+    if (foundIter != tokens.end())
+        return false;
+
+    return true;
 }
 
 void SqlQueryModel::internalExecutionStopped()

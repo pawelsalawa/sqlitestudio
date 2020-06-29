@@ -333,6 +333,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int getInsertRowIndex();
         void notifyItemEditionEnded(const QModelIndex& idx);
         int getRowsPerPage() const;
+        bool isEmptyQuery() const;
 
         QString query;
         QHash<QString, QVariant> queryParams;
