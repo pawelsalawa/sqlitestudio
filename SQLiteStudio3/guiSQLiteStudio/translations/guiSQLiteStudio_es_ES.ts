@@ -777,32 +777,32 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="302"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>Mostrar etiquetas para tablas virtuales</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="315"/>
       <source>Expand views node when connected to a database</source>
-      <translation type="unfinished">Expand views node when connected to a database</translation>
+      <translation>Expandir la vista de nodos cuando se conecte a una base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="325"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
+      <translation>Si se desactiva esta opción, los objetos se ordenarán en el orden que aparezcan en la tabla sqlite_master (ordenados según se fueron creando)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="328"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation type="unfinished">Sort objects (tables, indexes, triggers and views) alphabetically</translation>
+      <translation>Ordenar objetos (tablas, índices, disparadores y vistas) alfabéticamente</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="338"/>
       <source>Display system tables and indexes on the list</source>
-      <translation type="unfinished">Display system tables and indexes on the list</translation>
+      <translation>Mostrar tablas e índices del sistema en la lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="351"/>
       <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
+      <translation>Ventana de diálogo de la base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
