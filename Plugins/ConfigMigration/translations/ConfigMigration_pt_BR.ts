@@ -6,7 +6,7 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation>Foi detectada uma configuração do SQLiteStudio 2.x.x. Você gostaria de migrar as configurações antigas para a versão atual? &lt;a href=&quot;%1&quot;&gt;Clique aqui para fazer isso&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>Funções SQL personalizadas (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
@@ -69,22 +69,22 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="68"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation type="unfinished">Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</translation>
+      <translation>O grupo de nível superior chamado &apos;%1&apos; já existe. Digite um nome de grupo que ainda não existe.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="102"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
-      <translation type="unfinished">Could not open old configuration file in order to migrate settings from it.</translation>
+      <translation>Não foi possível abrir o arquivo de configuração antigo para migrar suas configurações.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="110"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
-      <translation type="unfinished">Could not open current configuration file in order to migrate settings from old configuration file.</translation>
+      <translation>Não foi possível abrir o arquivo de configuração atual para migrar as configurações antigas.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation type="unfinished">Could not commit migrated data into new configuration file: %1</translation>
+      <translation>Não foi possível migrar os dados para o novo arquivo de configuração: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
