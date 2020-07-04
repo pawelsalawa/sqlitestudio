@@ -777,114 +777,114 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="302"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>Mostrar etiquetas para tablas virtuales</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="315"/>
       <source>Expand views node when connected to a database</source>
-      <translation type="unfinished">Expand views node when connected to a database</translation>
+      <translation>Expandir la vista de nodos cuando se conecte a una base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="325"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
+      <translation>Si se desactiva esta opción, los objetos se ordenarán en el orden que aparezcan en la tabla sqlite_master (ordenados según se fueron creando)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="328"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation type="unfinished">Sort objects (tables, indexes, triggers and views) alphabetically</translation>
+      <translation>Ordenar objetos (tablas, índices, disparadores y vistas) alfabéticamente</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="338"/>
       <source>Display system tables and indexes on the list</source>
-      <translation type="unfinished">Display system tables and indexes on the list</translation>
+      <translation>Mostrar tablas e índices del sistema en la lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="351"/>
       <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
+      <translation>Ventana de diálogo de la base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Al agregar una nueva base de datos, esta se añade por defecto como &quot;permanente&quot; (almacenado en la configuración). Marcar esta opción hace que cada nueva base de datos ya NO se añada como &quot;permanente&quot; por defecto.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="360"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>No marcar las bases de datos como &quot;permanentes&quot; por defecto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="370"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esta opción está activada, los archivos agregados desde el gestor de archivos a la lista de bases de datos se añadirán automáticamente a la lista, saltándose el diálogo de base de datos estándar. Si por varios motivos el proceso automático falla, entonces se presentará el diálogo estándar al usuario.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="373"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>Intentar saltarse completamente el diálogo al soltar un archivo de base de datos a la lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="418"/>
       <source>Data browsing and editing</source>
-      <translation type="unfinished">Data browsing and editing</translation>
+      <translation>Exploración y edición de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <location filename="../dialogs/configdialog.ui" line="434"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de configuraciones del diálogo de Llenar Tabla almacenados en la configuración. El valor de 100 debería bastar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>Número de configuraciones de llenado de tabla memorizados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
       <location filename="../dialogs/configdialog.ui" line="485"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando se cargan los datos en la vista de grilla, se ajusta el ancho de las columnas automáticamente. Este valor limita el ancho inicial para el ajuste, pero el usuario puede redimensionar manualmente la columna por encima de este límite.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="488"/>
       <source>Limit initial data column width to (in pixels):</source>
-      <translation type="unfinished">Limit initial data column width to (in pixels):</translation>
+      <translation>Limitar el ancho inicial de la columna de datos a (en píxeles):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Number of data rows per page:</source>
-      <translation type="unfinished">Number of data rows per page:</translation>
+      <translation>Número de filas de datos por página:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="502"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esto está activado y el usuario deja el puntero del mouse encima de una celda en cualquier vista de datos (resultados de la consulta, una tabla de datos, una vista de datos) un globo de texto aparecerá con detalles sobre la celda - incluye detalles como el tipo de datos de la columna, restricciones, ROWID y otros.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="505"/>
       <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
+      <translation>Mostrar globo de texto con detalles para filas y columnas en la vista de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="515"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Al editar una celda que solía contener un valor NULL, ingresando una string vacía como valor nuevo, con esta opción se determina si el nuevo valor debería quedarse como NULL (si esta opción está activada), o debería reemplazarse con un valor de string vacío (si esta opción está desactivada).&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="518"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation type="unfinished">Keep NULL value when entering empty value</translation>
+      <translation>Mantener valor NULL al ingresar un valor vacío</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="528"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activar esto para forzar siempre el uso del valor DEFAULT al confirmar un valor NULL para una columna con el valor DEFAULT definido, aún así que la columna esté permitida de almacenar valores NULL.&lt;/p&gt;&lt;p&gt;Desactiva esta opción para usar el valor DEFAULT exclusivamente cuando un valor NULL se confirme a una columna con la restricción NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="531"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
+      <translation>Usar valor DEFAULT (si se ha definido) al confirmar un valor NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
