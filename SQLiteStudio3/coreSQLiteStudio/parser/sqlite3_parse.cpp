@@ -3808,7 +3808,6 @@ static void yy_reduce(
 {
                                                 yygotominor.yy301 = new SqliteSelect::Core::JoinOp(yymsp[-3].minor.yy0->value, *(yymsp[-2].minor.yy399), *(yymsp[-1].minor.yy399));
                                                 delete yymsp[-2].minor.yy399;
-                                                delete yymsp[-2].minor.yy399;
                                                 objectForTokens = yygotominor.yy301;
                                             }
         break;
