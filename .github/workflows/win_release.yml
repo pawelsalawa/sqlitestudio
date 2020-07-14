@@ -57,6 +57,7 @@ jobs:
                 echo "::add-path::${{ github.workspace }}/../lib"
  
              - name: Install SQLite3
+               shell: bash
                run: |
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output ../sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd ..
