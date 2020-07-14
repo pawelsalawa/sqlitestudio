@@ -306,11 +306,11 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
 
     QString tag;
     if (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF)
-        tag = "<view>";
+        tag = "<%1view>";
     else
-        tag = "<table>";
+        tag = "<%1table>";
 
-    writeln(tag + escape(createTrigger->table) + tag);
+    writeln(tag.arg("") + escape(createTrigger->table) + tag.arg("/"));
 
     if (createTrigger->precondition)
         writeln("<precondition>" + escape(createTrigger->precondition->detokenize()) + "</precondition>");
