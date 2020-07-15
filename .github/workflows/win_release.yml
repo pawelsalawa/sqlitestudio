@@ -1,6 +1,8 @@
 env:
     QT_VERSION: '5.15.0'
     QT_ARCH: 'win64_mingw81'
+    SQLITE_VERSION: '3310100'
+    SQLITE_RELEASE_YEAR: '2020'
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw810_64
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
@@ -54,6 +56,26 @@ jobs:
                 7z x -o".." ../win64_deps.zip
                 echo "::add-path::${{ github.workspace }}/../lib"
  
+            - name: Install SQLite3
+              shell: bash
+              run: |
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output ../sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd ..
+                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
+                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_COLUMN_METADATA \
+                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+                    -DSQLITE_ENABLE_FTS3 \
+                    -DSQLITE_ENABLE_FTS4 \
+                    -DSQLITE_ENABLE_FTS5 \
+                    -DSQLITE_ENABLE_GEOPOLY \
+                    -DSQLITE_ENABLE_JSON1 \
+                    -DSQLITE_ENABLE_RTREE
+                cp -f sqlite3.dll lib/
+
             - name: Prepare output dir
               shell: bash
               run: mkdir output output/build output/build/Plugins

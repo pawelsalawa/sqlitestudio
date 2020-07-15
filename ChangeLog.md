@@ -21,6 +21,9 @@
 - BUGFIX: #3499 Fixed generator for SELECT queries from grid view context menu to quote multi-word columns properly. 
 - BUGFIX: #3481 CSS entered in CSS Console (F11) are now persisted and restored for each run.
 - BUGFIX: #3736 Transaction statements are excluded from direct execution of entire SQL file at once from database context menu. Also improved the process to refresh schema afterwards.
+- BUGFIX: #3478 Fixed crash when attempting to execute comment as a query.
+- BUGFIX: #3525 Fixed crash when editing (adding/deleting) JOIN part in INNER JOIN.
+- BUGFIX: #3479 Fixed invalid XML exported for trigger.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

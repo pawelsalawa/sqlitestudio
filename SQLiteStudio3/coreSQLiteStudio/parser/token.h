@@ -199,6 +199,12 @@ struct API_EXPORT Token
     bool isSeparating() const;
 
     /**
+     * @brief Tests whether the token represents meaningful type.
+     * @return true if token is meaningful, like a word, object, string, number, etc. Not comment, not whitespace, not context marker.
+     */
+    bool isMeaningful() const;
+
+    /**
      * @brief Tests whether this token is representing any kind of database object name.
      * @return true if the token is the name an object, or false otherwise.
      *

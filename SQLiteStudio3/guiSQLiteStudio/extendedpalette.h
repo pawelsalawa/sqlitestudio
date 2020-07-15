@@ -18,9 +18,13 @@ class ExtendedPalette
 
         void styleChanged(QStyle* style, const QString& themeName);
 
+        QBrush mdiAreaBase() const;
+        void setMdiAreaBase(const QBrush& value);
+
     private:
         QBrush editorStringBrush;
         QBrush editorLineBaseBrush;
+        QBrush mdiAreaBaseBrush;
 };
 
 #endif // EXTENDEDPALETTE_H

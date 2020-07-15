@@ -160,6 +160,28 @@ bool Token::isSeparating() const
     return false;
 }
 
+bool Token::isMeaningful() const
+{
+    switch (type)
+    {
+        case Token::BIND_PARAM:
+        case Token::PAR_LEFT:
+        case Token::PAR_RIGHT:
+        case Token::BLOB:
+        case Token::FLOAT:
+        case Token::INTEGER:
+        case Token::INVALID:
+        case Token::KEYWORD:
+        case Token::OTHER:
+        case Token::STRING:
+        case Token::OPERATOR:
+            return true;
+        default:
+            break;
+    }
+    return false;
+}
+
 bool Token::isDbObjectType() const
 {
     return ((type & TOKEN_TYPE_MASK_DB_OBJECT) == TOKEN_TYPE_MASK_DB_OBJECT);

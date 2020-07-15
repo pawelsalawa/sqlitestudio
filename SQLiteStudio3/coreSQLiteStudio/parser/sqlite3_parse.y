@@ -1091,7 +1091,6 @@ joinop(X) ::= JOIN_KW(K) nm(N1) nm(N2)
                 JOIN.                       {
                                                 X = new SqliteSelect::Core::JoinOp(K->value, *(N1), *(N2));
                                                 delete N1;
-                                                delete N1;
                                                 objectForTokens = X;
                                             }
 
