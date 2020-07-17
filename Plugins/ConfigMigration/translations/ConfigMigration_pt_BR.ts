@@ -89,22 +89,22 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>Não foi possível ler o relatório de erros do antigo arquivo de configuração para migrá-lo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a bug reports history entry into new configuration file: %1</translation>
+      <translation>Não foi possível inserir uma entrada no relatório de bugs no novo arquivo de configuração: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="201"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read database list from old configuration file in order to migrate it: %1</translation>
+      <translation>Não foi possível ler a lista de banco de dados do antigo arquivo de configuração para migrá-lo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="215"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation>Não foi possível consultar a ordem disponível para o grupo que contém o novo arquivo de configuração para migrar a lista de banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="226"/>
