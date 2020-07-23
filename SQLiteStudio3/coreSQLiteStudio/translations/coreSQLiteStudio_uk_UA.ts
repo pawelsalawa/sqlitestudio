@@ -79,7 +79,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>Новий розріз даних (view)</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>Псевдонім таблиці або стовпця</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
