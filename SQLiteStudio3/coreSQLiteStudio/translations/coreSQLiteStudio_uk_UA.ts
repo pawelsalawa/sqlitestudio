@@ -79,7 +79,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation>Новий розріз даних (view)</translation>
+      <translation>Нова назва розрізу даних (view)</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
@@ -99,42 +99,42 @@
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>Нове ім'я стовпця</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="229"/>
       <source>Column data type</source>
-      <translation type="unfinished">Column data type</translation>
+      <translation>Тип даних стовпця</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="232"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Назва обмеження</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="245"/>
       <source>Error message</source>
-      <translation type="unfinished">Error message</translation>
+      <translation>Повідомлення про помилку</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="289"/>
       <source>Collation name</source>
-      <translation type="unfinished">Collation name</translation>
+      <translation>Назва порівняння</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="304"/>
       <source>Any word</source>
-      <translation type="unfinished">Any word</translation>
+      <translation>Будь-яке слово</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="485"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>База даних за замовчуванням</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="486"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>База даних тимчасових об'єктів</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="869"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Не вдалося почати транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="876"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Не вдалося завершити транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
     </message>
   </context>
   <context>
@@ -155,30 +155,30 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>Не вдалося додати базу даних %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
+      <translation>База даних %1 не може бути оновлена через помилку: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>Файл бази даних не існує.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>Модуль підтримки не завантажений.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>Неможливо ініціалізувати базу даних.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
