@@ -6,27 +6,27 @@
     <message>
       <location filename="../main.cpp" line="49"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Графічний інтерфейс для SQLiteStudio, менеджера баз даних SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="53"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation type="unfinished">Enables debug messages in console (accessible with F12).</translation>
+      <translation>Включає вивід налагоджувальних повідомлень в консоль (доступну після натискання F12).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="54"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into standard output (forces debug mode).</translation>
+      <translation>Перенаправляє налагоджувальні повідомлення в стандартний потік (примусовий режим налагодження).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into given file (forces debug mode).</translation>
+      <translation>Перенаправляє налагоджувальні повідомлення в вказаний файл (примусовий режим налагодження).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>log file</source>
-      <translation type="unfinished">log file</translation>
+      <translation>файл журналу</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
@@ -46,7 +46,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>database</source>
-      <translation type="unfinished">database</translation>
+      <translation>база даних</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>файл</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
