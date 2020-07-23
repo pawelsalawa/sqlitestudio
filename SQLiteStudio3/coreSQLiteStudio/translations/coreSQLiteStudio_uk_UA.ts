@@ -51,7 +51,7 @@
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
+      <translation>Неможливо завершити транзакцію. Подробиці: %1</translation>
     </message>
   </context>
   <context>
@@ -59,12 +59,12 @@
     <message>
       <location filename="../completionhelper.cpp" line="196"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>Нове посилання на рядок</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="203"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>Старе посилання на рядок</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
