@@ -7,12 +7,12 @@
       <location filename="../db/abstractdb.cpp" line="343"/>
       <location filename="../db/abstractdb.cpp" line="360"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>Неможливо виконати запит в закритій базі даних.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="643"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>Помилка підключення бази даних %1: %2</translation>
     </message>
   </context>
   <context>
@@ -21,31 +21,31 @@
       <location filename="../db/chainexecutor.cpp" line="37"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not defined.</translation>
+      <translation>Не вказана база даних для виконання запитів.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="44"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not open.</translation>
+      <translation>Не відкрита база даних для виконання запитів.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>Не вдалося відключити зовнішні ключі в базі даних. Подробиці: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>Неможливо розпочати транзакцію. Подробиці: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>Перервано</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
@@ -69,12 +69,12 @@
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>Назва нової таблиці</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="211"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>Назва нового індексу</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>Назва нової тригера</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
@@ -94,7 +94,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>назва транзакції</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
