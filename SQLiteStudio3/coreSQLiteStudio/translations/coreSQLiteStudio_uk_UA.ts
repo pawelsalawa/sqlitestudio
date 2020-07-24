@@ -183,7 +183,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>Не знайдено відповідного драйвера бази даних.</translation>
     </message>
   </context>
   <context>
@@ -192,7 +192,7 @@
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
