@@ -404,12 +404,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>Помилка при запису в файл %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
       <source>Unsupported scripting language: %1</source>
-      <translation type="unfinished">Unsupported scripting language: %1</translation>
+      <translation>Непідтримуваний скриптова мова: %1</translation>
     </message>
   </context>
   <context>
@@ -417,7 +417,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
-      <translation type="unfinished">Could not initialize text codec for exporting. Using default codec: %1</translation>
+      <translation>Неможливо ініціалізувати текстовий кодек для експорту. Використовується кодек за замовчуванням: %1</translation>
     </message>
   </context>
   <context>
@@ -425,7 +425,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully.</translation>
+      <translation>Імпортовані дані в таблицю &apos;%1&apos; успішно.</translation>
     </message>
   </context>
   <context>
@@ -433,46 +433,46 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>Модуль імпорту не виявив жодного стовпчика.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
       <source>Could not start transaction in order to import a data: %1</source>
-      <translation type="unfinished">Could not start transaction in order to import a data: %1</translation>
+      <translation>Не вдалося почати транзакцію для імпортування даних: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="52"/>
       <source>Could not commit transaction for imported data: %1</source>
-      <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
+      <translation>Не вдалося завершити транзакцію для імпортованих даних: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation type="unfinished">Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
+      <translation>Таблиця &apos;%1&apos; має менше стовпців, ніж в імпортованих даних. Зайві стовпці даних будуть проігноровані.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation type="unfinished">Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
+      <translation>У таблиці &apos;%1&apos; стовпців більше, ніж в імпортованих даних. Відсутні стовпці будуть залишені порожніми.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>Не вдалося створити таблицю для імпорту: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="177"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Error while importing data: %1</source>
-      <translation type="unfinished">Error while importing data: %1</translation>
+      <translation>Помилка при імпорті даних: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
-      <translation type="unfinished">Interrupted.</translation>
+      <translation>Перервано.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="172"/>
