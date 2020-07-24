@@ -771,7 +771,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="70"/>
       <source>Error while populating table: %1</source>
-      <translation type="unfinished">Error while populating table: %1</translation>
+      <translation>Помилка при заповненні таблиці: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="81"/>
