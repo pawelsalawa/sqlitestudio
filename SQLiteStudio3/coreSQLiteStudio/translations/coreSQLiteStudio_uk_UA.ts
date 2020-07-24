@@ -261,7 +261,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../dbversionconverter.cpp" line="1185"/>
       <source>Error while converting database: %1</source>
-      <translation type="unfinished">Error while converting database: %1</translation>
+      <translation>Помилка при конвертації бази даних: %1</translation>
     </message>
   </context>
   <context>
@@ -270,25 +270,25 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../ddlhistorymodel.cpp" line="65"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>Назва бази даних</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="67"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database file</translation>
+      <translation>Файл бази даних</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="69"/>
       <source>Date of execution</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Date of execution</translation>
+      <translation>Дата виконання</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="71"/>
       <source>Changes</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Changes</translation>
+      <translation>Зміни</translation>
     </message>
   </context>
   <context>
@@ -296,42 +296,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
+      <translation>Модуль експорту %1 не підтримує експорт результатів запиту.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
+      <translation>Модуль експорту %1 не підтримує експорт таблиць.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
+      <translation>Модуль експорту %1 не підтримує експорт бази даних.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="155"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-      <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
+      <translation>Формат експорту &apos;%1&apos; не підтримується. Підтримуються формати: %2.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
-      <translation type="unfinished">Export to the clipboard was successful.</translation>
+      <translation>Експорт до буфера обміну пройшов успішно.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
-      <translation type="unfinished">Export to the file &apos;%1&apos; was successful.</translation>
+      <translation>Експорт у файл &apos;%1&apos; успішно здійснено.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation type="unfinished">Export was successful.</translation>
+      <translation>Видалення пройшло успішно.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
-      <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
+      <translation>Не вдалося експортувати до файлу %1. Файл не може бути відкритий для запису.</translation>
     </message>
   </context>
   <context>
@@ -339,33 +339,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="122"/>
       <source>Error while exporting query results: %1</source>
-      <translation type="unfinished">Error while exporting query results: %1</translation>
+      <translation>Помилка під час експорту результатів запиту: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="202"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
+      <translation>Помилка під час підрахунку ширини стовпця даних для експорту з результатів запиту: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="346"/>
       <location filename="../exportworker.cpp" line="404"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-      <translation type="unfinished">Could not parse %1 in order to export it. It will be excluded from the export output.</translation>
+      <translation>Неможливо проаналізувати структуру %1. Даний об'єкт буде виключений при виконанні експорту.</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="608"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation type="unfinished">Error while reading data to export from table %1: %2</translation>
+      <translation>Помилка при читанні даних для експорту з таблиці %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="616"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>Помилка при підрахунку кількості даних для експорту з таблиці %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="632"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>Помилка при підрахунку ширини стовпчика даних для експорту з таблиці %1: %2</translation>
     </message>
   </context>
   <context>
@@ -373,33 +373,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-      <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
+      <translation>Некоректна кількість аргументів для функції &apos;%1&apos;. Очікувалось %2, але отримано %3.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
-      <translation type="unfinished">No such function registered in SQLiteStudio: %1(%2)</translation>
+      <translation>Немає такої функції, зареєстрованої в SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-      <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
+      <translation>Функція %1(%2) була зареєстрована на мові %3, але плагін, що підтримує мову, наразі не завантажений.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
+      <translation>Невірний шаблон регулярного виразу: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
+      <translation>Неможливо відкрити файл %1 для читання: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
+      <translation>Неможливо відкрити файл %1 для запису: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
