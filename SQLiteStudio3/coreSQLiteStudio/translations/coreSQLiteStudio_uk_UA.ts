@@ -714,7 +714,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>Скрипт</translation>
     </message>
   </context>
   <context>
@@ -722,22 +722,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>Ініціалізаційний код (необов&apos;язково)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation type="unfinished">Per step code</translation>
+      <translation>Код для кожного кроку</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Мова</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="89"/>
       <source>Help</source>
-      <translation type="unfinished">Help</translation>
+      <translation>Допомога</translation>
     </message>
   </context>
   <context>
@@ -745,7 +745,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>Послідовність</translation>
     </message>
   </context>
   <context>
@@ -753,12 +753,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>Початкове значення:</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>Крок:</translation>
     </message>
   </context>
   <context>
@@ -766,7 +766,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>Не вдалося почати транзакцію для заповнення таблиці. Подробиці помилки: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="70"/>
