@@ -1106,19 +1106,19 @@ The view will remain as it is.</source>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Time spent</translation>
+      <translation>Витрачено часу</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Rows affected</translation>
+      <translation>Торкнулося рядків</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1126,23 +1126,23 @@ The view will remain as it is.</source>
     <message>
       <location filename="../services/updatemanager.cpp" line="51"/>
       <source>Updates installer executable is missing.</source>
-      <translation type="unfinished">Updates installer executable is missing.</translation>
+      <translation>Відсутній файл інсталятора оновлень.</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="52"/>
       <location filename="../services/updatemanager.cpp" line="76"/>
       <source>Unable to check for updates (%1)</source>
-      <translation type="unfinished">Unable to check for updates (%1)</translation>
+      <translation>Не вдалося перевірити наявність оновлень (%1)</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="74"/>
       <source>details are unknown</source>
-      <translation type="unfinished">details are unknown</translation>
+      <translation>деталі невідомі</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="89"/>
       <source>Unable to run updater application (%1). Please report this.</source>
-      <translation type="unfinished">Unable to run updater application (%1). Please report this.</translation>
+      <translation>Не вдалося запустити програму оновлення (%1). Будь ласка, повідомте про це.</translation>
     </message>
   </context>
 </TS>
