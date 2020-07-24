@@ -74,7 +74,7 @@
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>шлях</translation>
     </message>
   </context>
   <context>
@@ -82,28 +82,28 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>Теку змінено на: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>Не вдалося змінити директорію на: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>змінює поточну робочу директорію</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation type="unfinished">Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</translation>
+      <translation>Дуже схожа команда до &apos;cd&apos; відомої від Unix систем і Windows. Для проходження цього аргументу &lt;path&gt; необхідно перенести аргумент, тому виклик %1 завжди може викликати зміну каталогу. Щоб дізнатися те, що використовує поточну робочу папку, використовуйте %2 команду і щоб перерахувати вміст поточної робочої директорії використовуйте %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>шлях</translation>
     </message>
   </context>
   <context>
@@ -111,34 +111,34 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="10"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім'я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="21"/>
       <location filename="../commands/clicommandclose.cpp" line="29"/>
       <source>Connection to database %1 closed.</source>
-      <translation type="unfinished">Connection to database %1 closed.</translation>
+      <translation>Підключення до бази даних %1 закрито.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>Немає такої бази даних: %1. Використовуйте %2, щоб переглянути перелік відомих баз даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation type="unfinished">closes given (or current) database</translation>
+      <translation>закривається за вказаною (або поточною) базою даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation type="unfinished">Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</translation>
+      <translation>Закриває зв'язок з базою даних. Якщо база даних вже закрита, нічого не відбувається. Якщо &lt;name&gt; буде передбачено, то назва бази даних має бути закрита (як надруковано командою %1). &lt;name&gt; не передбачено, поточна робоча база даних закрита (детальніше дивіться довідку %2).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>назва</translation>
     </message>
   </context>
   <context>
@@ -146,56 +146,56 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation type="unfinished">No current working database defined.</translation>
+      <translation>Поточна робоча база даних не визначена.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation type="unfinished">Databases:</translation>
+      <translation>База даних:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
       <location filename="../commands/clicommanddblist.cpp" line="34"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Назва</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Open</translation>
+      <translation>Відкрити</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Closed</translation>
+      <translation>Закрити</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="32"/>
       <location filename="../commands/clicommanddblist.cpp" line="36"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Connection</translation>
+      <translation>Підключення</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="38"/>
       <location filename="../commands/clicommanddblist.cpp" line="45"/>
       <source>Database file path</source>
-      <translation type="unfinished">Database file path</translation>
+      <translation>Шлях до бази даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation type="unfinished">prints list of registered databases</translation>
+      <translation>друкує список зареєстрованих баз даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation type="unfinished">Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
+      <translation>Друкує перелік баз даних, зареєстрованих у SQLiteStudio. Кожна база даних в списку може бути у відкритому або закритому стані і %1 повідомляє вам це. Поточна робоча база даних (база даних за замовчуванням) також позначена в списку з &apos;*&apos; на початку назви. Дивись довідку для %2 команди щоб дізнатися про типову базу даних.</translation>
     </message>
   </context>
   <context>
@@ -205,64 +205,64 @@
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation type="unfinished">No working database is set.
-Call %1 command to set working database.
-Call %2 to see list of all databases.</translation>
+      <translation>Робоча база даних не встановлена.
+Набрати %1 для встановлення робочої бази даних.
+Набрати %2 для перегляду списку всіх баз даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>База даних не відкрита.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>Не вдалося знайти таблицю з назвою: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>показати деталі про таблицю</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>таблиця</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Таблиця: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Назва стовпця</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Тип даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Обмеження</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Віртуальна таблиця: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>Параметри створення:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>Не вказані параметри створення для цієї віртуальної таблиці.</translation>
     </message>
   </context>
   <context>
@@ -270,21 +270,21 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation type="unfinished">lists directories and files in current working directory</translation>
+      <translation>перелічує каталоги та файли в поточній робочій каталозі</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation type="unfinished">This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
+      <translation>Це дуже схоже на команду &apos;dir&apos; з Windows та &apos;ls&apos; на команду з Unix систем.
 
-You can pass &lt;pattern&gt; with wildcard characters to filter output.</translation>
+Ви можете передати &lt;pattern&gt; символами, які містять шаблони, щоб відфільтрувати вивід.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation type="unfinished">pattern</translation>
+      <translation>шаблон</translation>
     </message>
   </context>
   <context>
@@ -292,12 +292,12 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>вийти з додатку</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation type="unfinished">Quits the application. Settings are stored in configuration file and will be restored on next startup.</translation>
+      <translation>Вийти з додатку. Налаштування зберігаються у файлі конфігурації і будуть відновлені при наступному запуску.</translation>
     </message>
   </context>
   <context>
@@ -305,7 +305,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="16"/>
       <source>shows this help message</source>
-      <translation type="unfinished">shows this help message</translation>
+      <translation>показати це довідкове повідомлення</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="21"/>
