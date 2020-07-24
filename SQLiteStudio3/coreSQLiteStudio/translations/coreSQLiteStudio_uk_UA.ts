@@ -971,79 +971,79 @@ Error details: %2</source>
       <location filename="../sqlitestudio.cpp" line="308"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Скриптові мови</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="309"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Exporting</translation>
+      <translation>Експорт</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="310"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Importing</translation>
+      <translation>Імпорт</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>Заповнення таблиць</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="115"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>Таблиця %1 посилається на таблицю %2, але опис зовнішнього ключа не буде оновлено для опису нової таблиці через проблеми з аналізом DDL таблиці %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="438"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>Всі стовпчики, проіндексовані індексом %1, видалені. Індекс не буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="481"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>Виникла проблема при обробці тригера %1. Згодом він не буде повністю оновлений і вимагає вашої уваги.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="496"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>Всі стовпчики, зачеплені в тригері %1, видалені. Тригер буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="528"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
+      <translation>Не вдалося оновити тригер %1 відповідно до зміни таблиці %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="546"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>Неможливо оновити розріз даних (view) %1 у відповідності зі зміною таблиці %2.
+Вид залишиться таким, як є.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="708"/>
       <location filename="../tablemodifier.cpp" line="732"/>
       <location filename="../tablemodifier.cpp" line="751"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>Виникла проблема при оновленні конструкції %1 всередині тригера %2. Одна з вкладених конструкцій %1, яка можливо посилається на таблицю %3, не може бути коректно модифікована. Можливо необхідне ручна правка тригера.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="25"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>Неможливо проаналізувати DDL створюваного розрізу даних (view). Подробиці: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="34"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation>Проаналізований запит не є запитом CREATE VIEW. Тип запиту: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="82"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation>SQLiteStudio не вдалося визначити стовпці, які повертаються новим розрізом даних (view), тому неможливо вказати, які тригери можуть зламатися в процесі відтворення.</translation>
     </message>
   </context>
   <context>
@@ -1051,28 +1051,28 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="186"/>
       <source>Execution interrupted.</source>
-      <translation type="unfinished">Execution interrupted.</translation>
+      <translation>Виконання перервано.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="227"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Базу даних не відкрито.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>Одночасно може бути виконаний тільки один запит.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="339"/>
       <location filename="../db/queryexecutor.cpp" line="618"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>Сталася помилка під час виконання count(*) запиту, тому розбивка даних по сторінках буде вимкнено. Деталі помилки з бази даних: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-      <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
+      <translation>SQLiteStudio не вдалося витягти метадані із запиту. Результат не зможе бути редагованим.</translation>
     </message>
   </context>
   <context>
