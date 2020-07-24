@@ -197,53 +197,53 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <source>Could not parse table.</source>
-      <translation type="unfinished">Could not parse table.</translation>
+      <translation>Не вдалося проаналізувати структуру таблиці.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
+      <translation>Неможливо приєднати базу даних %1 до бази даних %2, тому дані таблиці %3 будуть скопійовані за допомогою SQLiteStudio. Цей метод може бути повільним для великих таблиць, так що наберіться терпіння.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="447"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation type="unfinished">Error while copying data for table %1: %2</translation>
+      <translation>Помилка при копіюванні даних з таблиці %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="466"/>
       <location filename="../dbobjectorganizer.cpp" line="473"/>
       <location filename="../dbobjectorganizer.cpp" line="496"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation type="unfinished">Error while copying data to table %1: %2</translation>
+      <translation>Помилка при копіюванні даних в таблицю %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="535"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation type="unfinished">Error while dropping source view %1: %2
-Tables, indexes, triggers and views copied to database %3 will remain.</translation>
+      <translation>Помилка при видаленні розрізу даних (view) %1: %2
+Таблиці, індекси, тригери та перегляди, що скопійовані в базу %3, залишаться.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="542"/>
       <source>Error while creating view in target database: %1</source>
-      <translation type="unfinished">Error while creating view in target database: %1</translation>
+      <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="547"/>
       <source>Error while creating index in target database: %1</source>
-      <translation type="unfinished">Error while creating index in target database: %1</translation>
+      <translation>Помилка створення індексу в цільовій базі даних: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="552"/>
       <source>Error while creating trigger in target database: %1</source>
-      <translation type="unfinished">Error while creating trigger in target database: %1</translation>
+      <translation>Помилка створення тригера в цільовій базі даних: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="773"/>
       <location filename="../dbobjectorganizer.cpp" line="780"/>
       <location filename="../dbobjectorganizer.cpp" line="789"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
+      <translation>Не вдалося проаналізувати об'єкт &apos;%1&apos; для того, щоб перемістити або скопіювати його.</translation>
     </message>
   </context>
   <context>
@@ -251,12 +251,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../dbversionconverter.cpp" line="932"/>
       <source>Target file exists, but could not be overwritten.</source>
-      <translation type="unfinished">Target file exists, but could not be overwritten.</translation>
+      <translation>Цільовий файл існує, але не може бути перезаписаний.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="951"/>
       <source>Could not find proper database plugin to create target database.</source>
-      <translation type="unfinished">Could not find proper database plugin to create target database.</translation>
+      <translation>Неможливо знайти відповідний модуль для створення цільової бази даних.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="1185"/>
