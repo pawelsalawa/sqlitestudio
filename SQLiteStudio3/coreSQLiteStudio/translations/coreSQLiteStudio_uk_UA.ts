@@ -1080,12 +1080,12 @@ The view will remain as it is.</source>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called QtScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called QtScript&apos;s %1 command.</translation>
+      <translation>При виклику команди QtScript&apos;s %1 в поточному контексті немає доступних баз даних.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
       <source>Error from %1: %2</source>
-      <translation type="unfinished">Error from %1: %2</translation>
+      <translation>Помилка в команді %1: %2</translation>
     </message>
   </context>
   <context>
@@ -1094,13 +1094,13 @@ The view will remain as it is.</source>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>База даних</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Execution date</translation>
+      <translation>Дата виконання</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
