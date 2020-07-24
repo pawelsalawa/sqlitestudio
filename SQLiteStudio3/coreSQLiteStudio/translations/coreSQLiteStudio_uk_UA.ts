@@ -776,7 +776,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="81"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
+      <translation>Не вдалося завершити транзакцію після заповнення таблиці. Подробиці помилки: %1</translation>
     </message>
   </context>
   <context>
@@ -784,30 +784,30 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../common/utils.cpp" line="1022"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb2.h" line="222"/>
       <location filename="../db/abstractdb3.h" line="384"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>Не вдалося відкрити базу даних: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb2.h" line="833"/>
       <location filename="../db/abstractdb3.h" line="1132"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>Результуюча вибірка застаріла або жоден рядок не доступний.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="328"/>
       <location filename="../db/abstractdb3.h" line="332"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>Не вдалося завантажити розширення %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="405"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>Не вдалося закрити базу даних: %1</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="138"/>
@@ -818,19 +818,18 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../dbversionconverter.cpp" line="256"/>
       <location filename="../dbversionconverter.cpp" line="336"/>
       <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; statement.</translation>
+      <translation>SQLite %1 не підтримує конструкцію &apos;%2&apos;.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="202"/>
       <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</translation>
+      <translation>SQLite %1 не підтримує конструкцію &apos;%2&apos;, однак можна створити звичайну таблицю, якщо ви продовжите.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="429"/>
       <source>Could not parse statement: %1
 Error details: %2</source>
-      <translation type="unfinished">Could not parse statement: %1
-Error details: %2</translation>
+      <translation>Неможливо проаналізувати структуру конструкції: %1 Деталі помилки: %2</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="440"/>
@@ -838,135 +837,135 @@ Error details: %2</translation>
       <location filename="../dbversionconverter.cpp" line="491"/>
       <location filename="../dbversionconverter.cpp" line="529"/>
       <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
-      <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</translation>
+      <translation>SQLite %1 не підтримує оператор &apos;%2&apos;. Неможливо конвертувати конструкцію &apos;%3&apos; з цим оператором.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="497"/>
       <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
-      <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</translation>
+      <translation>SQLite %1 не підтримує оператор &apos;%2&apos; в конструкції &apos;%3&apos;.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="772"/>
       <source>SQLite %1 does not support current date or time clauses in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support current date or time clauses in expressions.</translation>
+      <translation>SQLite %1 не підтримує оператор поточної дати та поточного часу в виразах.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="775"/>
       <source>SQLite %1 does not support row value clauses in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support row value clauses in expressions.</translation>
+      <translation>SQLite %1 не підтримує операції зі значеннями рядків у виразах.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="786"/>
       <location filename="../dbversionconverter.cpp" line="789"/>
       <location filename="../dbversionconverter.cpp" line="800"/>
       <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; clause in expressions.</translation>
+      <translation>SQLite %1 не підтримує конструкцію &apos;%2&apos; у виразах.</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="115"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>Не вдалося підключити базу даних %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>Незавершений запит.</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
       <location filename="../parser/sqlite3_parse.cpp" line="2212"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>Переповнення стека аналізатора</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="4466"/>
       <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
       <source>Syntax error</source>
-      <translation type="unfinished">Syntax error</translation>
+      <translation>Синтаксична помилка</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="30"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>Не вдалося відкрити файл словника %1 для читання.</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="91"/>
       <source>Dictionary file must exist and be readable.</source>
-      <translation type="unfinished">Dictionary file must exist and be readable.</translation>
+      <translation>Файл словника має існувати та бути читабельним.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="53"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation type="unfinished">Maximum value cannot be less than minimum value.</translation>
+      <translation>Максимальне значення не може бути менше мінімального значення.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="77"/>
       <source>Maximum length cannot be less than minimum length.</source>
-      <translation type="unfinished">Maximum length cannot be less than minimum length.</translation>
+      <translation>Максимальна довжина не може бути меншою мінімальної довжини.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="88"/>
       <source>Custom character set cannot be empty.</source>
-      <translation type="unfinished">Custom character set cannot be empty.</translation>
+      <translation>Довільний набір символів не може бути пустим.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="40"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation type="unfinished">Could not find plugin to support scripting language: %1</translation>
+      <translation>Неможливо знайти модуль підтримки скриптового мови: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="58"/>
       <source>Error while executing populating initial code: %1</source>
-      <translation type="unfinished">Error while executing populating initial code: %1</translation>
+      <translation>Помилка при виконанні ініціалізації коду заповнення: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="80"/>
       <source>Error while executing populating code: %1</source>
-      <translation type="unfinished">Error while executing populating code: %1</translation>
+      <translation>Помилка при виконанні коду заповнення: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>Виберіть мову реалізації.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="113"/>
       <source>Implementation code cannot be empty.</source>
-      <translation type="unfinished">Implementation code cannot be empty.</translation>
+      <translation>Заповнюючий код не може бути порожнім.</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="359"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation type="unfinished">Could not resolve data source for column: %1</translation>
+      <translation>Неможливо визначити джерело даних для стовпця: %1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="431"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>Неможливо визначити таблицю для стовпця &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="774"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Неможливо ініціалізувати конфігураційний файл. Будь-які зміни конфігурації і історія запитів будуть втрачені після перезавантаження програми. Неможливо створити файл в наступних місцях: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="305"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">General purpose</translation>
+      <translation>Загального призначення</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="306"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Database support</translation>
+      <translation>Підтримка баз даних</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="307"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Code formatter</translation>
+      <translation>Форматування коду</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="308"/>
