@@ -477,7 +477,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="172"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
+      <translation>Не вдалося імпортувати дані у рядку %1. Рядок було проігноровано. Подробиці проблеми: %2</translation>
     </message>
   </context>
   <context>
@@ -485,34 +485,34 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="543"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
+      <translation>Не вдалося завантажити плагін %1, тому що він конфліктує з плагіном %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="554"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
+      <translation>Неможливо завантажити модуль%1, тому що не завантажений необхідний йому модуль: %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="563"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation type="unfinished">Cannot load plugin %1. Error details: %2</translation>
+      <translation>Не вдалося завантажити плагін %1. Подробиці помилки: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation type="unfinished">Cannot load plugin %1 (error while initializing plugin).</translation>
+      <translation>Не вдалося завантажити плагін %1 (помилка при ініціалізації плагіна).</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">min: %1</translation>
+      <translation>мінімум: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">max: %1</translation>
+      <translation>максимум: %1</translation>
     </message>
   </context>
   <context>
@@ -521,7 +521,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>Константа</translation>
     </message>
   </context>
   <context>
@@ -529,7 +529,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>Значення константи:</translation>
     </message>
   </context>
   <context>
@@ -538,7 +538,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../plugins/populatedictionary.cpp" line="15"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation type="unfinished">Dictionary</translation>
+      <translation>Словник</translation>
     </message>
   </context>
   <context>
@@ -546,42 +546,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>Файл словника</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>Вибрати файл словника</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>Розділювач слів</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Пробіл</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>Перенесення рядка</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>Спосіб використання слів</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation type="unfinished">Ordered</translation>
+      <translation>По порядку</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>Випадковим чином</translation>
     </message>
   </context>
   <context>
@@ -589,7 +589,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>Таблиця &apos;%1&apos; успішно заповнена.</translation>
     </message>
   </context>
   <context>
@@ -597,7 +597,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="12"/>
       <source>Random number</source>
-      <translation type="unfinished">Random number</translation>
+      <translation>Випадкове число</translation>
     </message>
   </context>
   <context>
@@ -605,32 +605,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation type="unfinished">Constant prefix</translation>
+      <translation>Префікс константи</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
       <source>No prefix</source>
-      <translation type="unfinished">No prefix</translation>
+      <translation>Без префікса</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation type="unfinished">Minimum value</translation>
+      <translation>Мінімальне значення</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation type="unfinished">Maximum value</translation>
+      <translation>Максимальне значення</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation type="unfinished">Constant suffix</translation>
+      <translation>Суфікс константи</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
       <source>No suffix</source>
-      <translation type="unfinished">No suffix</translation>
+      <translation>Без суфікса</translation>
     </message>
   </context>
   <context>
@@ -638,7 +638,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="12"/>
       <source>Random text</source>
-      <translation type="unfinished">Random text</translation>
+      <translation>Випадковий текст</translation>
     </message>
   </context>
   <context>
@@ -646,67 +646,67 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>Використовувати символи з стандартного набору:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation type="unfinished">Minimum length</translation>
+      <translation>Мінімальна довжина</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation type="unfinished">Letters from a to z.</translation>
+      <translation>Букви від a до z.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>Буквений</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation type="unfinished">Numbers from 0 to 9.</translation>
+      <translation>Числа від 0 до 9.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation type="unfinished">Numeric</translation>
+      <translation>Цифровий</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>Пробіл, табуляція та символ нового рядка.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Пробіл</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>Включає всі перераховані вище і всі інші.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation type="unfinished">Binary</translation>
+      <translation>Бінарний</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>Використовувати символи з мого набору:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation type="unfinished">Maximum length</translation>
+      <translation>Максимальна довжина</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>При вказівці одного символу кілька разів, ймовірність його використання збільшується.</translation>
     </message>
   </context>
   <context>
