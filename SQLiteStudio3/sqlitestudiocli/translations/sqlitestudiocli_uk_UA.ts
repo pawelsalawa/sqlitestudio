@@ -315,38 +315,38 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-      <translation type="unfinished">Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.
-To see list of supported commands, type %2 without any arguments.
+      <translation>Використовуйте %1, щоб дізнатися про деякі команди, які підтримуються інтерфейсом командного рядка (CLI) з SQLiteStudio.
+Щоб переглянути список підтримуваних команд, введіть %2 без будь-яких аргументів.
 
-When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
+У назві &lt;command&gt; можна не вказувати префіксний символ (&apos;%3&apos;).
 
-You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</translation>
+Для отримання довідки по команді ви також можете виконати команду з єдиним ключем &apos;--help&apos;. Це альтернатива введенню: %1 &lt;command&gt;.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
       <source>command</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">command</translation>
+      <translation>команда</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="42"/>
       <source>No such command: %1</source>
-      <translation type="unfinished">No such command: %1</translation>
+      <translation>Немає такої команди: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
       <source>Type &apos;%1&apos; for list of available commands.</source>
-      <translation type="unfinished">Type &apos;%1&apos; for list of available commands.</translation>
+      <translation>Введіть &apos;%1&apos; для отримання списку доступних команд.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>Використання: %1%2</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
       <source>Aliases: %1</source>
-      <translation type="unfinished">Aliases: %1</translation>
+      <translation>Псевдоніми: %1</translation>
     </message>
   </context>
   <context>
@@ -354,12 +354,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="23"/>
       <source>Current history limit is set to: %1</source>
-      <translation type="unfinished">Current history limit is set to: %1</translation>
+      <translation>Поточний ліміт історії встановлено на: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation type="unfinished">prints history or erases it</translation>
+      <translation>друкувати історію або видалити</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -368,31 +368,31 @@ You can always execute any command with exactly single &apos;--help&apos; option
 When the -c or --clear option is passed, then the history gets erased.
 When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
 Use -ql or --querylimit option to see the current limit value.</source>
-      <translation type="unfinished">When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
+      <translation>Коли аргумент не був прийнятий, ця команда друкує історію командного рядка. Кожен запис в історії розділений по горизонтальній прямій, тож багаторічні записи легше зчитувати.
 
-When the -c or --clear option is passed, then the history gets erased.
-When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
-Use -ql or --querylimit option to see the current limit value.</translation>
+Коли параметр -c або --clear, історія стирається.
+при проходженні параметра -l або --limitвстановлюється новий ліміт на кількість записів в історії. Необхідний додатковий аргумент, який вказує скільки записів необхідно зберігати в історії.
+Для перегляду поточного ліміту записів викличте команду з ключем -ql або --querylimit.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
       <source>number</source>
-      <translation type="unfinished">number</translation>
+      <translation>номер</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
       <source>Console history erased.</source>
-      <translation type="unfinished">Console history erased.</translation>
+      <translation>Історію консолі стерто.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="75"/>
       <source>Invalid number: %1</source>
-      <translation type="unfinished">Invalid number: %1</translation>
+      <translation>Неприпустиме число: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="80"/>
       <source>History limit set to %1</source>
-      <translation type="unfinished">History limit set to %1</translation>
+      <translation>Ліміт історії встановлено на %1</translation>
     </message>
   </context>
   <context>
@@ -400,12 +400,12 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="9"/>
       <source>Current results printing mode: %1</source>
-      <translation type="unfinished">Current results printing mode: %1</translation>
+      <translation>Поточний режим друку результатів: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="16"/>
       <source>Invalid results printing mode: %1</source>
-      <translation type="unfinished">Invalid results printing mode: %1</translation>
+      <translation>Недійсний режим друку результатів: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="21"/>
