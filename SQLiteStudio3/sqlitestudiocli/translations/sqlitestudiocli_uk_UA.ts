@@ -410,12 +410,12 @@ Use -ql or --querylimit option to see the current limit value.</source>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="21"/>
       <source>New results printing mode: %1</source>
-      <translation type="unfinished">New results printing mode: %1</translation>
+      <translation>Поточний режим друку результатів: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="26"/>
       <source>tells or changes the query results format</source>
-      <translation type="unfinished">tells or changes the query results format</translation>
+      <translation>повідомляє або змінює формат результатів запиту</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="31"/>
