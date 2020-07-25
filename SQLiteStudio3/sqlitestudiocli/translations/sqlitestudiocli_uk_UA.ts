@@ -660,38 +660,38 @@ When the -s option is given, then system tables are also listed.</source>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation type="unfinished">No current working database is selected. Use %1 to define one and then run %2.</translation>
+      <translation>Не вибрано жодної робочої бази даних. Використовуйте %1, щоб визначити одне, а потім запустити %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Таблиці</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>Розріз даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Стовпці</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Індекси</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Тригери</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation type="unfinished">prints all objects in the database as a tree</translation>
+      <translation>друкує всі об'єкти в базі даних як дерево</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
@@ -710,23 +710,23 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>Не обрано поточної бази даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Поточна база даних: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Немає такої бази даних: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation type="unfinished">changes default working database</translation>
+      <translation>змінити типову робочу базу даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -757,7 +757,7 @@ The default database can be selected in various ways:
       <location filename="../commands/clicommanduse.cpp" line="63"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ім’я</translation>
     </message>
   </context>
   <context>
@@ -765,37 +765,37 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>Недостатньо кількості аргументів.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>Забагато аргументів.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
       <source>Invalid argument value: %1.
 Expected one of: %2</source>
-      <translation type="unfinished">Invalid argument value: %1.
-Expected one of: %2</translation>
+      <translation>Неприпустиме значення аргументу: %1.
+очікувався: %2</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>Невідомий параметр: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Option %1 requires an argument.</translation>
+      <translation>Опція %1 потребує аргументу.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">string</translation>
+      <translation>рядок</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="22"/>
@@ -805,27 +805,27 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="26"/>
       <source>Enables debug messages on standard error output.</source>
-      <translation type="unfinished">Enables debug messages on standard error output.</translation>
+      <translation>Вмикає повідомлення налагодження при звичайному виході помилки.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="27"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>Включає вивід налагоджувальних повідомлень аналізатора Lemon для автодоповнення SQL коду.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>Виводить список встановлених в SQLiteStudio модулів і здійснює вихід.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>файл</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Файл бази даних для відкриття</translation>
     </message>
   </context>
 </TS>
