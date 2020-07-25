@@ -454,12 +454,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation type="unfinished">Current NULL representation string: %1</translation>
+      <translation>Поточний рядок репрезентації NULL: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
       <source>tells or changes the NULL representation string</source>
-      <translation type="unfinished">tells or changes the NULL representation string</translation>
+      <translation>повідомляє або змінює рядок представлення NULL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
@@ -472,44 +472,44 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="12"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не вибрана. Виберіть поточну базу даних командою %2, або передайте ім'я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Не вдалося додати базу даних %1 до списку.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
       <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-      <translation type="unfinished">File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</translation>
+      <translation>Файл %1 не існує в %2. Неможливо відкрити наявну базу даних з командою %3. Щоб створити нову базу даних, використовуйте команду %4.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation type="unfinished">Database %1 has been open and set as the current working database.</translation>
+      <translation>База даних %1 була відкрита та встановлена як поточна робоча база даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>відкриває підключення до бази даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation type="unfinished">Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</translation>
+      <translation>Відкриває підключення до бази даних. Якщо жодного додаткового аргументу не було передано, то підключення відкрите до поточної бази даних за замовчуванням (див. довідку %1 для деталей). Однак, якщо аргумент був прийнятий, відкривати може бути або &lt;name&gt; з бази даних зареєстрованої або ж це може бути &lt;path&gt; в базі даних, щоб відкрити. В другому випадку, &lt;path&gt; реєструється зі списком зі згенерованою назвою, але тільки за період поточного сеансу додатків. Після перезапуску такої бази даних не відновлено в списку.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ім’я</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>шлях</translation>
     </message>
   </context>
   <context>
@@ -517,12 +517,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="13"/>
       <source>prints the current working directory</source>
-      <translation type="unfinished">prints the current working directory</translation>
+      <translation>друкує поточну робочу директорію</translation>
     </message>
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-      <translation type="unfinished">This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</translation>
+      <translation>Це те саме, що команда &apos;pwd&apos; в системах Unix та команда &apos;cd&apos; без аргументів у Windows. Він друкує поточний робочий каталог. Ви можете змінити поточний робочий каталог за допомогою команди %1, а також можете перерахувати вміст поточного робочого каталогу за допомогою команди %2.</translation>
     </message>
   </context>
   <context>
@@ -530,33 +530,33 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="12"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Немає такої бази даних: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>База даних видалена: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
       <source>New current database set:</source>
-      <translation type="unfinished">New current database set:</translation>
+      <translation>Нову поточну базу даних встановлено:</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>видаляє базу даних зі списку</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation type="unfinished">Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</translation>
+      <translation>Видаляє з списку зареєстрованих баз даних &lt;name&gt; баз даних. Якщо бази даних немає в списку (див. команду %1), то повідомлення про помилку надруковано і більше нічого не відбувається.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ім’я</translation>
     </message>
   </context>
   <context>
@@ -566,46 +566,46 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation type="unfinished">No working database is set.
-Call %1 command to set working database.
-Call %2 to see list of all databases.</translation>
+      <translation>Робоча база даних не встановлена.
+Набрати %1 для встановлення робочої бази даних.
+Набрати %2 для перегляду списку всіх баз даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>База даних не відкрита.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
-      <translation type="unfinished">executes SQL query</translation>
+      <translation>виконується запит SQL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="69"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation type="unfinished">This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+      <translation>Ця команда виконується щоразу, коли ви вводите SQL запит у командному рядку. Він виконує запит на поточну робочу базу даних (перегляньте допомогу для %1 для докладної інформації). Існує&apos;не має сенсу виконувати цю команду явно. Замість цього, просто введіть SQL запит у командний рядок без жодного префіксу команди.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>Занадто багато стовпців для відображення в режимі %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Рядок %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
-      <translation type="unfinished">Query execution error: %1</translation>
+      <translation>Помилка виконання запиту: %1</translation>
     </message>
   </context>
   <context>
@@ -613,46 +613,46 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>Немає такої бази даних: %1. Використовуйте %2, щоб переглянути перелік відомих баз даних.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>Неможливо викликати %1, коли база даних не налаштована на поточну. Вкажіть поточну базу даних з командою %2, або передайте ім'я бази даних на %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>База даних %1 закрита.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>База даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Таблиця</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>надрукує список таблиць в базі даних</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation type="unfinished">Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
-When the -s option is given, then system tables are also listed.</translation>
+      <translation>Друкує перелік таблиць у даній &lt;database&gt; або в поточній базі даних. Зверніть увагу, що &lt;database&gt; має бути ім'я зареєстрованої бази даних (див. %1). Вихідний список включає в себе всі таблиці з будь-яких інших баз даних, прикріплених до запитаної бази даних.
+Якщо параметр -s вказано, то системні таблиці також списані.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>база даних</translation>
     </message>
   </context>
   <context>
