@@ -949,12 +949,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="649"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esté activado, la pestaña &quot;Datos&quot; se posicionará como la primera pestaña en cada Ventana Tabla, en vez de estar en el segundo lugar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="652"/>
       <source>Place data tab as first tab in a View Window</source>
-      <translation type="unfinished">Place data tab as first tab in a View Window</translation>
+      <translation>Ubicar la pestaña de datos como la primera pestaña en una Ventana Ver</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="696"/>
@@ -989,7 +989,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="818"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>No mostrar el diálogo de vista previa del DDL al confirmar cambios del esquema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="831"/>
@@ -1011,12 +1011,12 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.ui" line="866"/>
       <location filename="../dialogs/configdialog.ui" line="892"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de parámetros en la consulta (:param, @param, $param, ?) almacenados en el historial. Cuando reutilizas un parámetro con el mismo nombre/posición, SQLiteStudio lo pre-inicializará con el valor más reciente almacenado en memoria (aún podrás cambiarlo). Un valor de 1000 debería bastar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="879"/>
       <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Si hay más de una consulta en la ventana del editor SQL, entonces (si esta opción está activada) solamente se ejecutará una consulta - la que se encuentra debajo del cursor de inserción del teclado. De otro modo, todas las consultas serán ejecutadas. Siempre puedes limitar la cantidad de consultas a ejecutarse seleccionando aquellas consultas antes de ejecutarlas.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="882"/>
@@ -1107,7 +1107,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1132"/>
       <source>Main window dock areas</source>
-      <translation type="unfinished">Main window dock areas</translation>
+      <translation>Áreas de acoplamiento de la ventana principal</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1138"/>
@@ -1162,7 +1162,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1628"/>
       <source>Database list additional label font</source>
-      <translation type="unfinished">Database list additional label font</translation>
+      <translation>Fuente para la etiqueta adicional de lista de bases de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1644"/>
@@ -1182,7 +1182,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1724"/>
       <source>Current line background</source>
-      <translation type="unfinished">Current line background</translation>
+      <translation>Fondo de la línea actual</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1731"/>
@@ -1192,7 +1192,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1734"/>
       <source>String foreground</source>
-      <translation type="unfinished">String foreground</translation>
+      <translation>Cadena en primer plano</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1837"/>
