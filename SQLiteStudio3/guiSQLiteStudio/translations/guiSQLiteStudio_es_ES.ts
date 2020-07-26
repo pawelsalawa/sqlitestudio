@@ -772,7 +772,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="299"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation type="unfinished">Virtual tables will be marked with a &apos;virtual&apos; label.</translation>
+      <translation>Las tablas virtuales se marcarán con la etiqueta &apos;virtual&apos;.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="302"/>
@@ -889,52 +889,52 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
       <source>Inserting new row in data grid</source>
-      <translation type="unfinished">Inserting new row in data grid</translation>
+      <translation>Insertar una nueva fila en la cuadrícula de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="550"/>
       <source>Before currently selected row</source>
-      <translation type="unfinished">Before currently selected row</translation>
+      <translation>Antes de la fila actualmente seleccionada</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="566"/>
       <source>After currently selected row</source>
-      <translation type="unfinished">After currently selected row</translation>
+      <translation>Después de la fila actualmente seleccionada</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="579"/>
       <source>At the end of data view</source>
-      <translation type="unfinished">At the end of data view</translation>
+      <translation>Al final de la vista de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="595"/>
       <source>Table windows</source>
-      <translation type="unfinished">Table windows</translation>
+      <translation>Ventanas de tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="601"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Si está activado, Ventanas de Tabla se mostrará con la pestaña datos, en vez de la pestaña estructura.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="604"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation type="unfinished">Open Table Windows with the data tab for start</translation>
+      <translation>Abrir Ventanas de Tabla con la pestaña de datos para iniciar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="614"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Cuando esté activado, la pestaña &quot;Datos&quot; se posicionará como la primera pestaña en cada Ventana Tabla, en vez de estar en el segundo lugar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="617"/>
       <source>Place data tab as first tab in a Table Window</source>
-      <translation type="unfinished">Place data tab as first tab in a Table Window</translation>
+      <translation>Ubicar la pestaña de datos como la primera pestaña en una Ventana Tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="630"/>
       <source>View windows</source>
-      <translation type="unfinished">View windows</translation>
+      <translation>Ver ventanas</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="636"/>
@@ -944,7 +944,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="639"/>
       <source>Open View Windows with the data tab for start</source>
-      <translation type="unfinished">Open View Windows with the data tab for start</translation>
+      <translation>Abrir Ver Ventanas con la pestaña de datos al iniciar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="649"/>
