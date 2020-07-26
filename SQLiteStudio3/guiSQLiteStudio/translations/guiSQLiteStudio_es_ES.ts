@@ -320,7 +320,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>Cotejar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -412,7 +412,7 @@
       <location filename="../dialogs/columndialog.cpp" line="97"/>
       <source>Add a collate constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a collate constraint</translation>
+      <translation>Añadir una restricción de verificación</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="98"/>
@@ -504,12 +504,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>Clave foránea diferida</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>Restricción con nombre</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -547,7 +547,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restricción con nombre:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
@@ -565,7 +565,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restricción con nombre:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
@@ -752,7 +752,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="268"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
+      <translation>&lt;p&gt;Las etiquetas extras son las que se muestran al lado de los nombres en la lista de bases de datos (son azules, a menos que se configure otro color). Activar esta opción mostrará etiquetas para las bases de datos, bases de datos inválidas y nodos agregados (grupo de columnas, grupo de índices, grupo de disparadores). Para más etiquetas ve las opciones debajo.&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="271"/>
