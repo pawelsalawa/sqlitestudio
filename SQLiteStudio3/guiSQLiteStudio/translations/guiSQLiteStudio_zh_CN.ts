@@ -450,12 +450,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="392"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
-      <translation type="unfinished">Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</translation>
+      <translation>无法使用非INTEGER 类型，因为主键已启用AUTOINCREMENT。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="393"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation type="unfinished">INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</translation>
+      <translation>INTEGER 类型是强制启用的，因为 AUTOINCREMENT 已在主键中启用。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="415"/>
@@ -1797,7 +1797,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>SQL 语句转换</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
