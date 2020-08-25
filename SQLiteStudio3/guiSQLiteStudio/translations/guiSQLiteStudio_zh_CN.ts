@@ -504,7 +504,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>延迟外键约束</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
@@ -537,7 +537,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>自动递增</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
@@ -662,7 +662,7 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Pragma function: %1</translation>
+      <translation>PRAGMA 函数：%1</translation>
     </message>
   </context>
   <context>
