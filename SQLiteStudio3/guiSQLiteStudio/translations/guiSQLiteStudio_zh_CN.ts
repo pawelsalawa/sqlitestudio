@@ -1112,12 +1112,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1138"/>
       <source>Left and right areas occupy corners</source>
-      <translation type="unfinished">Left and right areas occupy corners</translation>
+      <translation>左右布局</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1158"/>
       <source>Top and bottom areas occupy corners</source>
-      <translation type="unfinished">Top and bottom areas occupy corners</translation>
+      <translation>上下布局</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1280"/>
