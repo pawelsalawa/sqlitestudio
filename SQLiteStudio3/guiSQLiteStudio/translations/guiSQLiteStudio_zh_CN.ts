@@ -838,7 +838,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>表填充配置中的要填充的行数</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
@@ -919,7 +919,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="604"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation type="unfinished">Open Table Windows with the data tab for start</translation>
+      <translation>打开表窗口时显示“数据”选项卡</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="614"/>
@@ -944,7 +944,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="639"/>
       <source>Open View Windows with the data tab for start</source>
-      <translation type="unfinished">Open View Windows with the data tab for start</translation>
+      <translation>打开视图窗口时显示“数据”选项卡</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="649"/>
@@ -1026,7 +1026,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="895"/>
       <source>Number of memorized query parameters</source>
-      <translation type="unfinished">Number of memorized query parameters</translation>
+      <translation>要保存的查询参数数量</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
