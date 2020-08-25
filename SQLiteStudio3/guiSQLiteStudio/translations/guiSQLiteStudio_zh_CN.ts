@@ -762,22 +762,22 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="286"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation>对于常规表，标签将显示每个表的列、索引和触发器的数量。</translation>
+      <translation>对于普通表，标签将显示每个表的列、索引和触发器的数量。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="289"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>显示普通表的标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="299"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation type="unfinished">Virtual tables will be marked with a &apos;virtual&apos; label.</translation>
+      <translation>虚拟表将用 &apos;虚拟&apos; 标签标记。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="302"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>显示虚拟表的标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="315"/>
@@ -787,7 +787,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="325"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
+      <translation>如果关闭此选项，则将按照对象在 sqlite_master 表中出现的顺序（也就是它们被创建的顺序）进行排序</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="328"/>
@@ -797,7 +797,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="338"/>
       <source>Display system tables and indexes on the list</source>
-      <translation type="unfinished">Display system tables and indexes on the list</translation>
+      <translation>在列表中显示系统表和索引</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="351"/>
@@ -807,22 +807,22 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;当添加新的数据库时，默认情况下将其标记为“永久”（存储在配置中）。选中此选项则新添加的数据库都不默认为“永久”的。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="360"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>默认情况下不要将新添加的数据库标记为“永久”</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="370"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;启用此选项后，将文件从文件管理器拖放到数据库列表中时将自动绕过标准数据库对话框添加到列表中。如果由于各种原因自动处理失败，则将向用户显示标准对话框。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="373"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>尝试在将数据库文件拖放到列表中时完全绕过对话框</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="418"/>
@@ -833,7 +833,7 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <location filename="../dialogs/configdialog.ui" line="434"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;在配置中存储的“填充表”对话框的最大配置数，值100应该足够。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
