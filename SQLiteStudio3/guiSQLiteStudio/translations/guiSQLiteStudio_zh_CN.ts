@@ -445,7 +445,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="391"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation type="unfinished">Precision cannot be defined without the scale.</translation>
+      <translation>要先设置精度后才能指定小数位数。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="392"/>
