@@ -752,17 +752,17 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="268"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
+      <translation>&lt;p&gt;附加标签是显示在数据库列表名称旁边的标签（除非另外配置，否则它们为蓝色）。启用此选项将显示数据库、无效数据库和聚合节点（列组、索引组、触发器组）的标签。有关更多标签，请参见下面的选项。&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="271"/>
       <source>Display additional labels on the list</source>
-      <translation type="unfinished">Display additional labels on the list</translation>
+      <translation>在列表中显示附加标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="286"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
+      <translation>对于常规表，标签将显示每个表的列、索引和触发器的数量。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="289"/>
