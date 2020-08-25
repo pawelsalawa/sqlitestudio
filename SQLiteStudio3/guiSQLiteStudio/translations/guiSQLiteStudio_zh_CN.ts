@@ -460,7 +460,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="415"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Precision is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>整型自增主键不能设置精度。</translation>
     </message>
   </context>
   <context>
