@@ -1202,12 +1202,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1840"/>
       <source>Bind parameter foreground</source>
-      <translation type="unfinished">Bind parameter foreground</translation>
+      <translation>绑定参数颜色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1863"/>
       <source>Highlighted parenthesis background</source>
-      <translation type="unfinished">Highlighted parenthesis background</translation>
+      <translation>高亮括号背景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1870"/>
@@ -1302,7 +1302,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2108"/>
       <source>Additional labels foreground</source>
-      <translation type="unfinished">Additional labels foreground</translation>
+      <translation>附加标签颜色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2134"/>
@@ -1410,7 +1410,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1418"/>
       <source>Help for configuring data type editors</source>
-      <translation type="unfinished">Help for configuring data type editors</translation>
+      <translation>配置数据类型编辑器帮助</translation>
     </message>
   </context>
   <context>
@@ -1633,13 +1633,13 @@ but it&apos;s okay to use it.</source>
       <location filename="../dataview.cpp" line="324"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs on top</translation>
+      <translation>顶部标签</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="325"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs at bottom</translation>
+      <translation>底部标签</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="350"/>
@@ -1787,7 +1787,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
       <source>Select valid target dialect.</source>
-      <translation type="unfinished">Select valid target dialect.</translation>
+      <translation>选择有效的目标方言。</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
