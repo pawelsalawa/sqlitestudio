@@ -445,7 +445,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="391"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation type="unfinished">Precision cannot be defined without the scale.</translation>
+      <translation>要先设置精度后才能指定小数位数。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="392"/>
@@ -460,7 +460,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="415"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Precision is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>整型自增主键不能设置精度。</translation>
     </message>
   </context>
   <context>
@@ -504,7 +504,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>延迟外键约束</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
@@ -537,7 +537,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>自动递增</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
@@ -662,7 +662,7 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Pragma function: %1</translation>
+      <translation>PRAGMA 函数：%1</translation>
     </message>
   </context>
   <context>
@@ -752,32 +752,32 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="268"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
+      <translation>&lt;p&gt;附加标签是显示在数据库列表名称旁边的标签（除非另外配置，否则它们为蓝色）。启用此选项将显示数据库、无效数据库和聚合节点（列组、索引组、触发器组）的标签。有关更多标签，请参见下面的选项。&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="271"/>
       <source>Display additional labels on the list</source>
-      <translation type="unfinished">Display additional labels on the list</translation>
+      <translation>在列表中显示附加标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="286"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
+      <translation>对于普通表，标签将显示每个表的列、索引和触发器的数量。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="289"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>显示普通表的标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="299"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation type="unfinished">Virtual tables will be marked with a &apos;virtual&apos; label.</translation>
+      <translation>虚拟表将用 &apos;虚拟&apos; 标签标记。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="302"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>显示虚拟表的标签</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="315"/>
@@ -787,7 +787,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="325"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
+      <translation>如果关闭此选项，则将按照对象在 sqlite_master 表中出现的顺序（也就是它们被创建的顺序）进行排序</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="328"/>
@@ -797,7 +797,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="338"/>
       <source>Display system tables and indexes on the list</source>
-      <translation type="unfinished">Display system tables and indexes on the list</translation>
+      <translation>在列表中显示系统表和索引</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="351"/>
@@ -807,22 +807,22 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;当添加新的数据库时，默认情况下将其标记为“永久”（存储在配置中）。选中此选项则新添加的数据库都不默认为“永久”的。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="360"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>默认情况下不要将新添加的数据库标记为“永久”</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="370"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;启用此选项后，将文件从文件管理器拖放到数据库列表中时将自动绕过标准数据库对话框添加到列表中。如果由于各种原因自动处理失败，则将向用户显示标准对话框。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="373"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>尝试在将数据库文件拖放到列表中时完全绕过对话框</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="418"/>
@@ -833,12 +833,12 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <location filename="../dialogs/configdialog.ui" line="434"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;在配置中存储的“填充表”对话框的最大配置数，值100应该足够。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>表填充配置中的要填充的行数</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
@@ -919,7 +919,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="604"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation type="unfinished">Open Table Windows with the data tab for start</translation>
+      <translation>打开表窗口时显示“数据”选项卡</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="614"/>
@@ -944,7 +944,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="639"/>
       <source>Open View Windows with the data tab for start</source>
-      <translation type="unfinished">Open View Windows with the data tab for start</translation>
+      <translation>打开视图窗口时显示“数据”选项卡</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="649"/>
@@ -1026,7 +1026,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="895"/>
       <source>Number of memorized query parameters</source>
-      <translation type="unfinished">Number of memorized query parameters</translation>
+      <translation>要保存的查询参数数量</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
@@ -1112,12 +1112,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1138"/>
       <source>Left and right areas occupy corners</source>
-      <translation type="unfinished">Left and right areas occupy corners</translation>
+      <translation>左右布局</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1158"/>
       <source>Top and bottom areas occupy corners</source>
-      <translation type="unfinished">Top and bottom areas occupy corners</translation>
+      <translation>上下布局</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1280"/>
@@ -1202,12 +1202,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1840"/>
       <source>Bind parameter foreground</source>
-      <translation type="unfinished">Bind parameter foreground</translation>
+      <translation>绑定参数颜色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1863"/>
       <source>Highlighted parenthesis background</source>
-      <translation type="unfinished">Highlighted parenthesis background</translation>
+      <translation>高亮括号背景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1870"/>
@@ -1302,7 +1302,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2108"/>
       <source>Additional labels foreground</source>
-      <translation type="unfinished">Additional labels foreground</translation>
+      <translation>附加标签颜色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2134"/>
@@ -1410,7 +1410,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1418"/>
       <source>Help for configuring data type editors</source>
-      <translation type="unfinished">Help for configuring data type editors</translation>
+      <translation>配置数据类型编辑器帮助</translation>
     </message>
   </context>
   <context>
@@ -1633,13 +1633,13 @@ but it&apos;s okay to use it.</source>
       <location filename="../dataview.cpp" line="324"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs on top</translation>
+      <translation>顶部标签</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="325"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs at bottom</translation>
+      <translation>底部标签</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="350"/>
@@ -1787,7 +1787,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
       <source>Select valid target dialect.</source>
-      <translation type="unfinished">Select valid target dialect.</translation>
+      <translation>选择有效的目标方言。</translation>
     </message>
     <message>
       <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>

@@ -68,7 +68,7 @@
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>名称</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
@@ -146,7 +146,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation type="unfinished">No current working database defined.</translation>
+      <translation>当前没有定义工作数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
@@ -252,12 +252,12 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>虚拟表：%1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>构造参数：</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
@@ -284,7 +284,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation type="unfinished">pattern</translation>
+      <translation>模式</translation>
     </message>
   </context>
   <context>
