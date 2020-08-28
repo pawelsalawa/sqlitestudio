@@ -6,7 +6,7 @@
     <message>
       <location filename="../main.cpp" line="49"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>SQLiteStudio 图形界面，SQLite 管理器。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="53"/>
@@ -31,12 +31,12 @@
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>启用 SQL 代码助理的 Lemon 解析器调试信息。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>启用正在发送到任何数据库的每个 SQL 查询的调试功能。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
