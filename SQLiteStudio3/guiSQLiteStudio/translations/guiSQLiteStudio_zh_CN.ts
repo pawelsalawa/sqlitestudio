@@ -2970,7 +2970,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="184"/>
       <source>Enter valid query to export.</source>
-      <translation type="unfinished">Enter valid query to export.</translation>
+      <translation>输入要导出的有效查询。</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="207"/>
@@ -3235,12 +3235,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="111"/>
       <source>Scalar</source>
-      <translation type="unfinished">Scalar</translation>
+      <translation>标量函数</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="112"/>
       <source>Aggregate</source>
-      <translation type="unfinished">Aggregate</translation>
+      <translation>聚合函数</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="410"/>
@@ -3266,7 +3266,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.cpp" line="505"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
-      <translation type="unfinished">argument</translation>
+      <translation>参数</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="631"/>
@@ -3408,7 +3408,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="98"/>
       <source>Delete selected indexed expression</source>
-      <translation type="unfinished">Delete selected indexed expression</translation>
+      <translation>删除选定的索引表达式</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="108"/>
@@ -3423,7 +3423,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="128"/>
       <source>Partial index condition</source>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>部分索引条件</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="135"/>
@@ -3443,12 +3443,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="169"/>
       <source>Add indexed expression</source>
-      <translation type="unfinished">Add indexed expression</translation>
+      <translation>添加索引表达式</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="180"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="66"/>
