@@ -3028,7 +3028,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
       <source>SQL</source>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="54"/>
@@ -3129,7 +3129,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="163"/>
       <source>Undefined</source>
-      <translation type="unfinished">Undefined</translation>
+      <translation>未定义</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="205"/>
