@@ -41,7 +41,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>只将 SQL 查询消息限制为指定的 &lt;数据库&gt;。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
@@ -51,7 +51,7 @@
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation>启用 SQLiteStudio 的查询执行器调试功能。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
