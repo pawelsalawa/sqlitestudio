@@ -61,7 +61,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
       <source>Could not open file %1 for writting.</source>
-      <translation>%1 dosyası yazmak için açılamadı.</translation>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
