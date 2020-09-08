@@ -282,7 +282,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * Having this set to 10000 gives about 290 MB of memory consumption
          * while having 30 columns and 1000 result rows loaded, all with 10000 bytes.
          */
-        static const int cellDataLengthLimit = 100;
+        static const int cellDataLengthLimit = 500;
 
     private:
         struct TableDetails
