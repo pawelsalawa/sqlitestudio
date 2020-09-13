@@ -645,14 +645,13 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation type="unfinished">Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
-When the -s option is given, then system tables are also listed.</translation>
+      <translation>Imprime la lista de tablas de la &lt;base de datos&gt; dada, o de la base de datos actualmente en uso. Notar que, &lt;base de datos&gt; debería ser el nombre de la base de datos registrada (ver %1). La lista de la salida incluye todas las tablas de cualquier otra base de datos adjuntada a la base de datos consultada. Cuando se especifica la opción -s, las tablas del sistema también se listan.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>base de datos</translation>
     </message>
   </context>
   <context>
@@ -660,38 +659,38 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation type="unfinished">No current working database is selected. Use %1 to define one and then run %2.</translation>
+      <translation>No hay una base de datos en uso seleccionada. Usa %1 para definir una y luego ejecuta %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tablas</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>Vistas</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Columnas</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Índices</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Disparadores</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation type="unfinished">prints all objects in the database as a tree</translation>
+      <translation>imprime todos los objetos en la base de datos como un árbol</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
