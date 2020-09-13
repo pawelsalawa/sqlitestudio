@@ -698,10 +698,10 @@ When the -s option is given, then system tables are also listed.</source>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
-When -c option is given, then also columns will be listed under each table.
-When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
-The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
+      <translation>Imprime todos los objetos (tablas, índices, disparadores y vistas) que están en la base de datos, como un árbol. El árbol es muy similar al que puedes ver en la IU de SQLiteStudio.
+Cuando la opción -c se especifica, también se listarán las columnas debajo de cada tabla.
+Cuando la opción -s se especifica, también los objetos del sistema se imprimirán (tablas sqlite_*, índices autoincrementables, etc).
+El argumento database es opcional, y si se indica, entonces solamente se mostrará la base de datos especificada. Este no es un nombre de base de datos registrado, sino un nombre de base de datos interno de SQLite, como &apos;main&apos;, &apos;temp&apos;, o cualquier nombre de base de datos adjuntada. Para imprimir el árbol para otra base de datos registrada, ejecuta primero %1 para cambiar la base de datos en uso, y luego ejecuta el comando %2.</translation>
     </message>
   </context>
   <context>
@@ -709,23 +709,23 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>Sin base de datos actual seleccionada.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Base de datos actual: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>No hay tal base de datos: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation type="unfinished">changes default working database</translation>
+      <translation>cambia la base de datos en uso por defecto</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -764,12 +764,12 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>Número insuficiente de argumentos.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>Demasiados argumentos.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
