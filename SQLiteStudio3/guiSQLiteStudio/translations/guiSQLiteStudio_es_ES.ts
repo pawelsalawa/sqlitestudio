@@ -167,7 +167,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="63"/>
       <source>Editing collations manual</source>
-      <translation type="unfinished">Editing collations manual</translation>
+      <translation>Manual para editar colaciones</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="283"/>
