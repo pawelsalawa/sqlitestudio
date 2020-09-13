@@ -589,13 +589,13 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>Demasiadas columnas para mostrar en el modo %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
@@ -613,33 +613,33 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>No existe tal base de datos: %1. Usa %2 para ver una lista de bases de datos conocidas.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>No se puede llamar a %1 cuando no hay una base de datos actualmente establecida. Especifica la base de datos actual con el comando %2 o pasa el nombre de la base de datos a %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>La base de datos %1 está cerrada.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Base de datos</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabla</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>imprime una lista de tablas en la base de datos</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
