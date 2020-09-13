@@ -11,27 +11,27 @@
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation type="unfinished">No current working database is set.</translation>
+      <translation>Sin base de datos en uso establecida.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>Escribe %1 para la ayuda</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="257"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>La base de datos que pasaste como parámetro de la línea de comandos (%1) ya estaba en la lista como: %2</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="264"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>No se pudo agregar la base de datos %1 a la lista.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="290"/>
       <source>closed</source>
-      <translation type="unfinished">closed</translation>
+      <translation>cerrado</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>Uso: %1%2</translation>
     </message>
   </context>
   <context>
@@ -47,34 +47,34 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="9"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>No se pudo agregar la base de datos %1 a la lista.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="14"/>
       <source>Database added: %1</source>
-      <translation type="unfinished">Database added: %1</translation>
+      <translation>Base de datos añadida: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="19"/>
       <source>adds new database to the list</source>
-      <translation type="unfinished">adds new database to the list</translation>
+      <translation>añade una nueva base de datos a la lista</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation type="unfinished">Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</translation>
+      <translation>Agrega la base de datos indicada en la &lt;ruta&gt; con el &lt;nombre&gt; especificado para listar las bases de datos. El &lt;nombre&gt; sólo representa un nombre simbólico al cual puedes hacer referencia. Sólo elige cualquier nombre único. Para una lista de las bases de datos actualmente disponibles usa el comando %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>nombre</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>ruta</translation>
     </message>
   </context>
   <context>
@@ -82,28 +82,28 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>Directorio cambiado a: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>No se pudo cambiar el directorio a: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>cambia el directorio de trabajo actual</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation type="unfinished">Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</translation>
+      <translation>Comando conocido en sistemas Unix y Windows muy parecido a &apos;cd&apos;. Requiere pasar un argumento &lt;ruta&gt;, por lo que llamar a %1 ocasionará siempre un cambio del directorio. Para saber cuál es el directorio de trabajo actual usa el comando %2, y para listar los contenidos del directorio de trabajo actual usa el comando %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>ruta</translation>
     </message>
   </context>
   <context>
