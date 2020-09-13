@@ -6,7 +6,7 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Base de datos actual: %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
