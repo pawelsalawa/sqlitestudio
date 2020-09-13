@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation type="unfinished">Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
+      <translation>Imprime una lista de las bases de datos registradas en SQLiteStudio. Cada base de datos en la lista puede estar en un estado abierto o cerrado, y %1 te lo indica. La base de datos en uso actual (o base de datos por defecto) también está marcada en la lista con un &apos;*&apos; al comienzo de su nombre. Mira la ayuda del comando %2 para saber más sobre la base de datos por defecto.</translation>
     </message>
   </context>
   <context>
@@ -205,54 +205,54 @@
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation type="unfinished">No working database is set.
-Call %1 command to set working database.
-Call %2 to see list of all databases.</translation>
+      <translation>No hay una base de datos en uso establecida.
+Ejecuta %1 para establecer la base de datos a usar.
+Ejecuta %2 para ver una lista de todas las bases de datos.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>La base de datos no está abierta.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>No se puede encontrar la tabla %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>muestra detalles sobre la tabla</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>tabla</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabla: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Nombre de columna</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Tipo de dato</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Restricciones</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Tabla virtual: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
@@ -292,7 +292,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>sale de la aplicación</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
