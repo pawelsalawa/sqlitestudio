@@ -49,7 +49,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>מותאם:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>מפריד שדה:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
