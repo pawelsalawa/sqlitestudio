@@ -74,7 +74,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
       <source>NULL values:</source>
-      <translation type="unfinished">NULL values:</translation>
+      <translation>ערך NULL:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
