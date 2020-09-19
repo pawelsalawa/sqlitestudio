@@ -6,7 +6,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="46"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>תוצאות שאילתת SQL</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="78"/>
@@ -18,7 +18,7 @@
       <location filename="../htmlexport.cpp" line="115"/>
       <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>טבלה מיוצת: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="127"/>
@@ -29,7 +29,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>virtual</source>
-      <translation type="unfinished">virtual</translation>
+      <translation>מְדֻמֶּה</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="308"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="324"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
