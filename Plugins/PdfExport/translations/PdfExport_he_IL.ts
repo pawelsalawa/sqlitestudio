@@ -171,7 +171,7 @@
     <message>
       <location filename="../pdfexport.ui" line="20"/>
       <source>Size and layout</source>
-      <translation type="unfinished">Size and layout</translation>
+      <translation>גודל ופריסה</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="36"/>
@@ -181,22 +181,22 @@
     <message>
       <location filename="../pdfexport.ui" line="63"/>
       <source>Right margin:</source>
-      <translation type="unfinished">Right margin:</translation>
+      <translation>שוליים ימניים:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="70"/>
       <source>Left margin:</source>
-      <translation type="unfinished">Left margin:</translation>
+      <translation>שוליים שמאליים:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="77"/>
       <source>Cell padding:</source>
-      <translation type="unfinished">Cell padding:</translation>
+      <translation>ריפוד תא:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="84"/>
       <source>Limit characters in single cell:</source>
-      <translation type="unfinished">Limit characters in single cell:</translation>
+      <translation>הגבלת תווים בתא בודד:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="91"/>
@@ -205,27 +205,27 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>מ"מ</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
       <source>Bottom margin:</source>
-      <translation type="unfinished">Bottom margin:</translation>
+      <translation>שוליים תחתונים:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="163"/>
       <source>Top margin:</source>
-      <translation type="unfinished">Top margin:</translation>
+      <translation>שוליים עליונים:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="183"/>
       <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <translation>גופן</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="206"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>צבעים</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="212"/>
