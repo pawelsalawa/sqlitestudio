@@ -6,12 +6,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>טעינה מקובץ</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>אחסון בקובץ</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>איפוס מיקוד</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="100"/>
@@ -36,7 +36,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="101"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>פתיחת תמונה</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
@@ -46,12 +46,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="132"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>שמירת תמונה</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="250"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>תמונה</translation>
     </message>
   </context>
 </TS>
