@@ -6,22 +6,22 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="43"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>ססמה (מפתח)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="44"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>להשאיר ריק ליצירת או התחברות למסד נתונים לא מוצפן.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="45"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>ססמה מוצפנת</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="50"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>צוֹפֶן</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="51"/>
