@@ -29,12 +29,12 @@
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>עמודה</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>סוג מידע</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
