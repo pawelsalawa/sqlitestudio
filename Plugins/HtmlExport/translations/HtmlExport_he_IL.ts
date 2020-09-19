@@ -12,7 +12,7 @@
       <location filename="../htmlexport.cpp" line="78"/>
       <location filename="../htmlexport.cpp" line="155"/>
       <source>no type</source>
-      <translation type="unfinished">no type</translation>
+      <translation>ללא סוג</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="115"/>
@@ -24,7 +24,7 @@
       <location filename="../htmlexport.cpp" line="127"/>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>טבלה: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
@@ -49,22 +49,22 @@
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
       <source>Unique:</source>
-      <translation type="unfinished">Unique:</translation>
+      <translation>ייחודי:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>כן</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>לא</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="344"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>עמודה</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>סדר מיון</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="380"/>
@@ -89,17 +89,17 @@
     <message>
       <location filename="../htmlexport.cpp" line="394"/>
       <source>Action:</source>
-      <translation type="unfinished">Action:</translation>
+      <translation>פעולה:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="401"/>
       <source>On view:</source>
-      <translation type="unfinished">On view:</translation>
+      <translation>אין מצג:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>אין טבלה:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
@@ -114,7 +114,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>מצג: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="480"/>
