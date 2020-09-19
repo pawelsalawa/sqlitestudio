@@ -69,7 +69,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
       <source>Collating</source>
-      <translation type="unfinished">Collating</translation>
+      <translation>ארגון</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
@@ -79,12 +79,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="380"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="386"/>
       <source>Activated:</source>
-      <translation type="unfinished">Activated:</translation>
+      <translation>מופעל:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="394"/>
