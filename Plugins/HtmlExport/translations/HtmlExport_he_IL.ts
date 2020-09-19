@@ -34,7 +34,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="308"/>
       <source>Exported database: %1</source>
-      <translation type="unfinished">Exported database: %1</translation>
+      <translation>מסד נתונים מיוצא: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="324"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
-      <translation type="unfinished">For table:</translation>
+      <translation>עבור טבלה:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
@@ -147,7 +147,7 @@
     <message>
       <location filename="../htmlexport.ui" line="73"/>
       <source>Output format</source>
-      <translation type="unfinished">Output format</translation>
+      <translation>תבנית פלט</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="79"/>
