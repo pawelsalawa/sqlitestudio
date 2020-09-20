@@ -109,7 +109,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="232"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>שם אילוץ</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="245"/>
@@ -701,7 +701,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation type="unfinished">Maximum length</translation>
+      <translation>אורך מירבי</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
@@ -978,19 +978,19 @@ Error details: %2</translation>
       <location filename="../sqlitestudio.cpp" line="309"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Exporting</translation>
+      <translation>מייצא</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="310"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Importing</translation>
+      <translation>מייבא</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>אכלוס טבלה</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="115"/>
@@ -1057,7 +1057,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="227"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>מספד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="235"/>
@@ -1095,7 +1095,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
@@ -1119,7 +1119,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
