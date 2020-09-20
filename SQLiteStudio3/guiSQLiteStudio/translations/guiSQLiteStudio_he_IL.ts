@@ -94,7 +94,7 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="17"/>
       <source>Query parameters</source>
-      <translation type="unfinished">Query parameters</translation>
+      <translation>גורמי שאילתה</translation>
     </message>
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
@@ -2590,7 +2590,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>שאילתה</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
