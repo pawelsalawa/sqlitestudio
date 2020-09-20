@@ -14,7 +14,7 @@
     <message>
       <location filename="../XmlExport.ui" line="20"/>
       <source>Output format</source>
-      <translation type="unfinished">Output format</translation>
+      <translation>תבנית פלט</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="26"/>
