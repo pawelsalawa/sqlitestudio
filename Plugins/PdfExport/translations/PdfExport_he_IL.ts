@@ -6,7 +6,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="28"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
@@ -17,13 +17,13 @@
       <location filename="../pdfexport.cpp" line="90"/>
       <location filename="../pdfexport.cpp" line="144"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>טבלה מיוצת: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="93"/>
       <location filename="../pdfexport.cpp" line="159"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>טבלה: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
@@ -148,7 +148,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="285"/>
       <source>Code executed</source>
-      <translation type="unfinished">Code executed</translation>
+      <translation>הקוד בוצע</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="297"/>
@@ -163,7 +163,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="654"/>
       <source>Document generated with SQLiteStudio v%1</source>
-      <translation type="unfinished">Document generated with SQLiteStudio v%1</translation>
+      <translation>מסמך חולל על ידי SQLiteStudio v%1</translation>
     </message>
   </context>
   <context>
