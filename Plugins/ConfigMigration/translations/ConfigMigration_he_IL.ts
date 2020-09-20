@@ -6,7 +6,7 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation>זוהתה תצורה ישנה מגרסת SQLiteStudio 2.x.x. האם להעביר הגדרות ישנות לגרסה הנוכחית? &lt;a href=&quot;%1&quot;&gt;הקשה לאישור ביצוע&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>תפקודי SQK מותאמים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
@@ -34,17 +34,17 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="14"/>
       <source>Configuration migration</source>
-      <translation type="unfinished">Configuration migration</translation>
+      <translation>הגירת תצורה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
       <source>Items to migrate</source>
-      <translation type="unfinished">Items to migrate</translation>
+      <translation>פריטים להגירה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation>זוהי רשימה של פריטים שנמצאו בקובץ התצורה הישן, אותם ניתן להעביר לתצורה הנוכחית.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
@@ -54,7 +54,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>הכנסת מסדי נתונים מיובאים לקבוצה נפרדת</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
       <source>Enter a non-empty name.</source>
-      <translation type="unfinished">Enter a non-empty name.</translation>
+      <translation>נא להזין שם (לא ריק).</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="68"/>
