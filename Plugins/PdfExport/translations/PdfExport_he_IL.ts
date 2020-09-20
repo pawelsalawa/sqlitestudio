@@ -176,7 +176,7 @@
     <message>
       <location filename="../pdfexport.ui" line="36"/>
       <source>Page size:</source>
-      <translation type="unfinished">Page size:</translation>
+      <translation>גודל עמוד:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="63"/>
@@ -230,7 +230,7 @@
     <message>
       <location filename="../pdfexport.ui" line="212"/>
       <source>Headers background:</source>
-      <translation type="unfinished">Headers background:</translation>
+      <translation>רקע כותרות:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="235"/>
