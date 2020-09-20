@@ -21,7 +21,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="185"/>
       <source>-- Trigger: %1</source>
-      <translation type="unfinished">-- Trigger: %1</translation>
+      <translation>-- מַזְנֵק: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="202"/>
