@@ -6,7 +6,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
-      <translation type="unfinished">-- Results of query:</translation>
+      <translation>-- תוצאות שאילתה:</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
@@ -82,7 +82,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Include the query in comments</source>
-      <translation type="unfinished">Include the query in comments</translation>
+      <translation>הכללת השאילתה בהערות</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
