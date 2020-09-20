@@ -16,7 +16,7 @@
     <message>
       <location filename="../printing.cpp" line="74"/>
       <source>No data to print.</source>
-      <translation type="unfinished">No data to print.</translation>
+      <translation>אין נתונים להדפסה.</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="82"/>
