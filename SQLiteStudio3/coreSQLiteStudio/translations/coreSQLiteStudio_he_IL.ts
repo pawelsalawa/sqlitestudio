@@ -261,7 +261,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../dbversionconverter.cpp" line="1185"/>
       <source>Error while converting database: %1</source>
-      <translation type="unfinished">Error while converting database: %1</translation>
+      <translation>שגיאה בעת המרת מסד נתונים: %1</translation>
     </message>
   </context>
   <context>
@@ -506,13 +506,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">min: %1</translation>
+      <translation>מזערי: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">max: %1</translation>
+      <translation>מירבי: %1</translation>
     </message>
   </context>
   <context>
@@ -521,7 +521,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>קבוע</translation>
     </message>
   </context>
   <context>
