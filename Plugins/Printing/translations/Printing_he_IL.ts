@@ -34,7 +34,7 @@
     <message>
       <location filename="../printingexport.cpp" line="30"/>
       <source>Printing</source>
-      <translation type="unfinished">Printing</translation>
+      <translation>מדפיס</translation>
     </message>
   </context>
 </TS>
