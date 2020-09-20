@@ -29,22 +29,22 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (פסיק)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (אתנח)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (טאב)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (מרחב לבן)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
