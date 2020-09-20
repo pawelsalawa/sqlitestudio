@@ -11,7 +11,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>תוצאות שאילתת SQL</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="90"/>
@@ -158,7 +158,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
       <source>Query:</source>
-      <translation type="unfinished">Query:</translation>
+      <translation>שאילתה:</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="654"/>
@@ -235,7 +235,7 @@
     <message>
       <location filename="../pdfexport.ui" line="235"/>
       <source>NULL value color:</source>
-      <translation type="unfinished">NULL value color:</translation>
+      <translation>צבע ערך NULL:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="261"/>
@@ -245,12 +245,12 @@
     <message>
       <location filename="../pdfexport.ui" line="267"/>
       <source>Print row numbers for data</source>
-      <translation type="unfinished">Print row numbers for data</translation>
+      <translation>הדפסת מספרי שורות לנתונים</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
-      <translation type="unfinished">Print page numbers</translation>
+      <translation>הדפסת מספרי עמוד</translation>
     </message>
   </context>
 </TS>
