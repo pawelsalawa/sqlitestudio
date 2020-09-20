@@ -11,12 +11,12 @@
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
       <source>-- Table: %1</source>
-      <translation type="unfinished">-- Table: %1</translation>
+      <translation>-- טבלה: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="168"/>
       <source>-- Index: %1</source>
-      <translation type="unfinished">-- Index: %1</translation>
+      <translation>-- מִפְתֵּחַ: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="185"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="202"/>
       <source>-- View: %1</source>
-      <translation type="unfinished">-- View: %1</translation>
+      <translation>-- מצג: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="216"/>
