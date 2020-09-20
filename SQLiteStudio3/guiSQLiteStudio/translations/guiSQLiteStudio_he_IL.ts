@@ -418,25 +418,25 @@
       <location filename="../dialogs/columndialog.cpp" line="98"/>
       <source>Add a default constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a default constraint</translation>
+      <translation>הוספת אילוץ ברירת מחדל</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="236"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Are you sure you want to delete constraint &apos;%1&apos;?</translation>
+      <translation>האם למחוק אילוץ &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="298"/>
       <source>Correct the constraint&apos;s configuration.</source>
-      <translation type="unfinished">Correct the constraint&apos;s configuration.</translation>
+      <translation>נא לתקן את תצור האילוץ&apos;.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="301"/>
       <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-      <translation type="unfinished">This constraint is not officially supported by SQLite 2,
-but it&apos;s okay to use it.</translation>
+      <translation>אילוץ זה אינו נתמך רשמית ב SQLite 2,
+אך ניתן &apos; להשתמש בו.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="390"/>
@@ -4731,17 +4731,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="38"/>
       <source>Add new table constraint</source>
-      <translation type="unfinished">Add new table constraint</translation>
+      <translation>הוספת אילוץ טבלה חדש</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
       <source>Edit selected table constraint</source>
-      <translation type="unfinished">Edit selected table constraint</translation>
+      <translation>עריכת אילוץ טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="40"/>
       <source>Delete selected table constraint</source>
-      <translation type="unfinished">Delete selected table constraint</translation>
+      <translation>מחיקת אילוץ טבלה שנבחר</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="41"/>
@@ -5601,7 +5601,7 @@ but it&apos;s okay to use them anyway.</translation>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="183"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>אילוץ בעל שם</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="190"/>
@@ -5670,7 +5670,7 @@ but it&apos;s okay to use them anyway.</translation>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>אילוץ בעל שם</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="174"/>
