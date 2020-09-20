@@ -11,7 +11,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
       <source>About</source>
-      <translation type="unfinished">About</translation>
+      <translation>אודות</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="30"/>
@@ -21,27 +21,27 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
-      <translation type="unfinished">Licenses</translation>
+      <translation>רישיון</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="55"/>
       <source>Environment</source>
-      <translation type="unfinished">Environment</translation>
+      <translation>סביבה</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="61"/>
       <source>Icon directories</source>
-      <translation type="unfinished">Icon directories</translation>
+      <translation>מחיצת צלמיות</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="81"/>
       <source>Form directories</source>
-      <translation type="unfinished">Form directories</translation>
+      <translation>מחיצת טפסים</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="101"/>
       <source>Plugin directories</source>
-      <translation type="unfinished">Plugin directories</translation>
+      <translation>מחיצת תוספים</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>העתקה</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="102"/>
@@ -162,7 +162,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Delete selected collation</source>
-      <translation type="unfinished">Delete selected collation</translation>
+      <translation>מחיקת עמודות שנבחרו</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="63"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../common/colorbutton.cpp" line="29"/>
       <source>Pick a color</source>
-      <translation type="unfinished">Pick a color</translation>
+      <translation>בחירת צבע</translation>
     </message>
   </context>
   <context>
@@ -259,12 +259,12 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="14"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>עמודה</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="23"/>
       <source>Name and type</source>
-      <translation type="unfinished">Name and type</translation>
+      <translation>שם וסוג</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="35"/>
@@ -289,17 +289,17 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>גודל:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>מגבלות</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>יחידאי</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
@@ -310,22 +310,22 @@
       <location filename="../dialogs/columndialog.ui" line="199"/>
       <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>תצור</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>מפתח זר</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>ארגון</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Not NULL</source>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>לא NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -335,12 +335,12 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Primary Key</source>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>מפתח ראשי</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>ברירת מחדל</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="270"/>
@@ -351,7 +351,7 @@
       <location filename="../dialogs/columndialog.cpp" line="86"/>
       <source>Add constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add constraint</translation>
+      <translation>הוספת אילוץ</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="87"/>
@@ -382,13 +382,13 @@
       <location filename="../dialogs/columndialog.cpp" line="92"/>
       <source>Add a primary key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a primary key</translation>
+      <translation>הוספת מפתח ראשי</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>הוספת מפתח משני</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="94"/>
@@ -515,7 +515,7 @@ but it&apos;s okay to use it.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>שם אילוץ</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
@@ -548,7 +548,7 @@ but it&apos;s okay to use it.</translation>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>שם אילוץ:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
