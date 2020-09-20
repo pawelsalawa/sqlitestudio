@@ -44,106 +44,106 @@
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
       <source>Global table constraints</source>
-      <translation type="unfinished">Global table constraints</translation>
+      <translation>מגבלות טבלה כלליות</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
       <source>Exported database: %1</source>
-      <translation type="unfinished">Exported database: %1</translation>
+      <translation>מסד נתונים מיוצא: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Property</source>
       <comment>index header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>מאפיין</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Value</source>
       <comment>index header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>ערך</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="228"/>
       <source>Indexed table</source>
-      <translation type="unfinished">Indexed table</translation>
+      <translation>טבלה ממופתחת</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Unique index</source>
-      <translation type="unfinished">Unique index</translation>
+      <translation>מפתח יחודאי</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>כן</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>לא</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>ארגון</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>סדר מיון</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="247"/>
       <source>Partial index condition</source>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>תנאי מפתח חלקי</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="261"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Property</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>מאפיין</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Value</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>ערך</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="265"/>
       <source>Activation time</source>
-      <translation type="unfinished">Activation time</translation>
+      <translation>זמן שפעול</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
       <source>For action</source>
-      <translation type="unfinished">For action</translation>
+      <translation>על פעולה</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="272"/>
       <source>On view</source>
-      <translation type="unfinished">On view</translation>
+      <translation>על מצג</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="274"/>
       <source>On table</source>
-      <translation type="unfinished">On table</translation>
+      <translation>על טבלה</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="279"/>
       <source>Activation condition</source>
-      <translation type="unfinished">Activation condition</translation>
+      <translation>תנאי שפעול</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="285"/>
@@ -153,7 +153,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="297"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>מצג: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
@@ -240,7 +240,7 @@
     <message>
       <location filename="../pdfexport.ui" line="261"/>
       <source>Other settings</source>
-      <translation type="unfinished">Other settings</translation>
+      <translation>הגדרות אחרות</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="267"/>
