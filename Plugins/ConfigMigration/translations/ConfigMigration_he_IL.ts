@@ -11,7 +11,7 @@
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation type="unfinished">Bug reports history (%1)</translation>
+      <translation>היסטורית דיווח תקלים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>היסטוריית שאילתות SQL (%1)</translation>
     </message>
   </context>
   <context>
