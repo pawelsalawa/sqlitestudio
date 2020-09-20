@@ -39,7 +39,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>אילוצים</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
