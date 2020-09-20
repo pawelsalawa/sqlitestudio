@@ -51,7 +51,7 @@
     <message>
       <location filename="../csvexport.cpp" line="42"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>הזנת תו מפריד מותאם.</translation>
     </message>
   </context>
 </TS>
