@@ -31,7 +31,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation type="unfinished">Tab size:</translation>
+      <translation>גודל טאב:</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
@@ -202,7 +202,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
       <source>Comments</source>
-      <translation type="unfinished">Comments</translation>
+      <translation>הערות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>תצוגה מקדימה</translation>
     </message>
   </context>
 </TS>
