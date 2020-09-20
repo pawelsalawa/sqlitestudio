@@ -44,7 +44,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
       <source>Global table constraints</source>
-      <translation>מגבלות טבלה כלליות</translation>
+      <translation>אילוצי טבלה כלליים</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
