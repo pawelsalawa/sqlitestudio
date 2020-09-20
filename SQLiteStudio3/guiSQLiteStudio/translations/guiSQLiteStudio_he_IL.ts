@@ -203,7 +203,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>שם ארגון:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
@@ -218,7 +218,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation type="unfinished">Enter a collation name.</translation>
+      <translation>הזנת שם רגון.</translation>
     </message>
   </context>
   <context>
@@ -226,7 +226,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="20"/>
       <source>Default value:</source>
-      <translation type="unfinished">Default value:</translation>
+      <translation>ערך ברירת המחדל:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
@@ -236,7 +236,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
       <source>Enter a default value expression.</source>
-      <translation type="unfinished">Enter a default value expression.</translation>
+      <translation>הזנת ביטוי ערך ברירת מחדל.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
@@ -470,19 +470,19 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
       <source>Type</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>סוג</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
       <source>Name</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
       <source>Details</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>פרטים</translation>
     </message>
   </context>
   <context>
@@ -490,12 +490,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation type="unfinished">Foreign table:</translation>
+      <translation>טבלה זרה:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Foreign column:</source>
-      <translation type="unfinished">Foreign column:</translation>
+      <translation>עמודה זרה:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -860,7 +860,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="502"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;כאשר אפשרות זו מופעלת והמשתמש מחזיק מצביע עכבר מעל תא במצג נתונים כלשהו (תוצאות שאילתה, נתוני טבלה, נתוני תצוגה) יופיע כלי עצה עם פרטים אודות התא - שיכלול פרטים אודות סוג נתוני העמודה, אילוצים, ROWID ועוד&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="505"/>
@@ -5901,19 +5901,19 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Delete table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete table constraint</translation>
+      <translation>מחיקת אילוץ טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="239"/>
       <source>Move table constraint up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint up</translation>
+      <translation>העברת אילוץ מעלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="240"/>
       <source>Move table constraint down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint down</translation>
+      <translation>העברת אילוץ מטה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="242"/>
@@ -5931,13 +5931,13 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table unique constraint</translation>
+      <translation>הוספת אילוץ טבלה יחודאי</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="245"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table check constraint</translation>
+      <translation>הוספת אילוץ בקרת טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="263"/>
@@ -6110,13 +6110,13 @@ Are you sure you want to create a table with blank name?</translation>
       <location filename="../windows/tablewindow.cpp" line="1208"/>
       <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete table constraint &apos;%1&apos;?</translation>
+      <translation>האם למחוק אילוץ &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1209"/>
       <source>Delete constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>מחיקת אילוץ</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1264"/>
