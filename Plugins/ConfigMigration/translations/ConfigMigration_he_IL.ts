@@ -74,12 +74,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="102"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
-      <translation type="unfinished">Could not open old configuration file in order to migrate settings from it.</translation>
+      <translation>לא ניתן לפתוח קובץ תצורה ישן על מנת לבצע הגירת הגדרות ממנו.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="110"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
-      <translation type="unfinished">Could not open current configuration file in order to migrate settings from old configuration file.</translation>
+      <translation>לא ניתן לפתוח קובץ תצורה נוכחי על מנת לבצע הגירת הגדרות מקובץ תצורה ישן.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
