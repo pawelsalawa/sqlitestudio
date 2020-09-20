@@ -16,7 +16,7 @@
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>רשימת מסד נתונים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>אפשרויות</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>שם קבוצה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
