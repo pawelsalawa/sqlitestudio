@@ -61,12 +61,12 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation type="unfinished">Example: 1, 3, 4</translation>
+      <translation>דוגמה: 1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation type="unfinished">Pattern:</translation>
+      <translation>תבנית:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>
