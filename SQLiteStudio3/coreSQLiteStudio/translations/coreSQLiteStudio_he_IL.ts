@@ -45,7 +45,7 @@
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>פסיקה</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
@@ -69,12 +69,12 @@
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>שם טבלה חדשה</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="211"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>שם מפתח חדש</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>שם מזנק חדש</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
@@ -94,17 +94,17 @@
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>שם תנועה</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>שם עמודה חדשה</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="229"/>
       <source>Column data type</source>
-      <translation type="unfinished">Column data type</translation>
+      <translation>סוג עמודת מידע</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="232"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <source>Could not parse table.</source>
-      <translation type="unfinished">Could not parse table.</translation>
+      <translation>לא ניתן לפרוס טבלה.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>
@@ -270,13 +270,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="65"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>שם מסד הנתונים</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="67"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database file</translation>
+      <translation>קובץ מסד נתונים</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="69"/>
@@ -288,7 +288,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="71"/>
       <source>Changes</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Changes</translation>
+      <translation>שינויים</translation>
     </message>
   </context>
   <context>
@@ -326,7 +326,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation type="unfinished">Export was successful.</translation>
+      <translation>הייצוא צלח.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
@@ -472,7 +472,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../importworker.cpp" line="184"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
-      <translation type="unfinished">Interrupted.</translation>
+      <translation>פסיקה.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="172"/>
@@ -529,7 +529,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>ערך קבוע:</translation>
     </message>
   </context>
   <context>
@@ -538,7 +538,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populatedictionary.cpp" line="15"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation type="unfinished">Dictionary</translation>
+      <translation>מילון</translation>
     </message>
   </context>
   <context>
@@ -546,27 +546,27 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>קובץ מילון</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>בחירת קובץ מילון</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>מפריד מילים</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>מרווח לבן</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>מעבר שורה</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
@@ -581,7 +581,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>אקראי</translation>
     </message>
   </context>
   <context>
@@ -597,7 +597,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.cpp" line="12"/>
       <source>Random number</source>
-      <translation type="unfinished">Random number</translation>
+      <translation>מספר אקרעי</translation>
     </message>
   </context>
   <context>
@@ -661,17 +661,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>אלפא</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation type="unfinished">Numbers from 0 to 9.</translation>
+      <translation>ספרתי בין 0 ל 9.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation type="unfinished">Numeric</translation>
+      <translation>ספרתי</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
@@ -681,7 +681,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>מרווח לבן</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
@@ -691,7 +691,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation type="unfinished">Binary</translation>
+      <translation>בינארי</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
@@ -714,7 +714,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>תסריט</translation>
     </message>
   </context>
   <context>
@@ -732,12 +732,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>שפה</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="89"/>
       <source>Help</source>
-      <translation type="unfinished">Help</translation>
+      <translation>עזרה</translation>
     </message>
   </context>
   <context>
@@ -745,7 +745,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>רצף</translation>
     </message>
   </context>
   <context>
@@ -753,12 +753,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>הערך ההתחלתי:</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>שלב:</translation>
     </message>
   </context>
   <context>
