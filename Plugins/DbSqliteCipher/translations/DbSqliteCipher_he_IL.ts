@@ -37,7 +37,7 @@
       <location filename="../dbsqlitecipher.cpp" line="63"/>
       <location filename="../dbsqlitecipher.cpp" line="72"/>
       <source>Must be the same as the one used when creating the database. %1 is the default.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default.</translation>
+      <translation>חייב להיות זהה לזה ששימש ביצירת מסד נתונים. ברירת המחדל היא %1.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="68"/>
