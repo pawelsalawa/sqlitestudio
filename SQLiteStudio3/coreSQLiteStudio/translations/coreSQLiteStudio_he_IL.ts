@@ -79,7 +79,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>שם מצג חדש</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
@@ -871,7 +871,7 @@ Error details: %2</translation>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>שאילתה חלקית.</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
