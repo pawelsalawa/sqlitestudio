@@ -6,17 +6,17 @@
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>לא ניתן לקרוא קובץ %1</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation type="unfinished">Could not find any data in the file %1.</translation>
+      <translation>לא נמצאו נתונים בקובץ %1.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>הזנת תו מפריד מותאם.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="190"/>
