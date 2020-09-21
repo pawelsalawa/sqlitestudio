@@ -41,7 +41,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>לא ניתן לפתוח קובץ%1 לקריאה.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
