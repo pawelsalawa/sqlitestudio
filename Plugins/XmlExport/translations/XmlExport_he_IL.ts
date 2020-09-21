@@ -49,7 +49,7 @@
     <message>
       <location filename="../XmlExport.ui" line="86"/>
       <source>Always use CDATA</source>
-      <translation type="unfinished">Always use CDATA</translation>
+      <translation>להשתמש תמיד ב CDATA</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="99"/>
