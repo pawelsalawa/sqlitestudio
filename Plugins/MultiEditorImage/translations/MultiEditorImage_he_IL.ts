@@ -31,7 +31,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="100"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>תמונות (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="101"/>
