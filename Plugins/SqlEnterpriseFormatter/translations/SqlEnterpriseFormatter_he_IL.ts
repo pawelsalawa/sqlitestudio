@@ -112,7 +112,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
       <source>White spaces</source>
-      <translation type="unfinished">White spaces</translation>
+      <translation>מרווח לבן</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
@@ -172,12 +172,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>לעולם לא לפני פסיק</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>שמות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
