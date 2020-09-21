@@ -39,7 +39,7 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation type="unfinished">Capture groups</translation>
+      <translation>לכידת קבוצות</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
