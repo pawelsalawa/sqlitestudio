@@ -59,7 +59,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>שורה ראשונה מייצגת שם עמודת CSV</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
