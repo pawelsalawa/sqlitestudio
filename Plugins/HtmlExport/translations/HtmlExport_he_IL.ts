@@ -104,12 +104,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
       <source>Activate condition:</source>
-      <translation type="unfinished">Activate condition:</translation>
+      <translation>שפעול תנאי:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="421"/>
       <source>Code executed:</source>
-      <translation type="unfinished">Code executed:</translation>
+      <translation>הקוד בוצע:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
@@ -127,22 +127,22 @@
     <message>
       <location filename="../htmlexport.ui" line="36"/>
       <source>Maximum number of characters per cell:</source>
-      <translation type="unfinished">Maximum number of characters per cell:</translation>
+      <translation>מספר תווים מזערי בכל תא:</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="43"/>
       <source>Include data types in first row</source>
-      <translation type="unfinished">Include data types in first row</translation>
+      <translation>הכללת סוגי נתונים בשורה ראשונה</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="53"/>
       <source>Column names as first row</source>
-      <translation type="unfinished">Column names as first row</translation>
+      <translation>שמות עמודות בשורה ראשונה</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="63"/>
       <source>Row numbers as first column</source>
-      <translation type="unfinished">Row numbers as first column</translation>
+      <translation>מספר שורה כעמודה ראשונה</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="73"/>
