@@ -96,18 +96,18 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation type="unfinished">After comma in expressions</translation>
+      <translation>לאחר פסיק בביטויים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation type="unfinished">After semicolon</translation>
+      <translation>לאחר אתנח</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>לעולם לא לפני אתנח</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
