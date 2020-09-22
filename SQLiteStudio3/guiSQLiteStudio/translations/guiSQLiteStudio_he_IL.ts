@@ -56,12 +56,12 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="148"/>
       <source>Qt version:</source>
-      <translation type="unfinished">Qt version:</translation>
+      <translation>גרסת Qt:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="172"/>
       <source>SQLite 3 version:</source>
-      <translation type="unfinished">SQLite 3 version:</translation>
+      <translation>גירסת SQLite 3:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
@@ -107,12 +107,12 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="75"/>
       <source>Filter collations</source>
-      <translation type="unfinished">Filter collations</translation>
+      <translation>סינון אורגנים</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="138"/>
