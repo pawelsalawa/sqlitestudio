@@ -21,7 +21,7 @@
     <message>
       <location filename="../csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
+      <translation>קובצי CSV (*.csv);;Text files (*.txt);;כל הקבצים(*)</translation>
     </message>
   </context>
   <context>
@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;ניתן לאפשר במידה ושורת הנתונים הראשונה בקובץ ה- CSV מייצגת שמות עמודות. לא רצוי לייבא שמות עמודות לטבלה כנתונים רגילים.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
