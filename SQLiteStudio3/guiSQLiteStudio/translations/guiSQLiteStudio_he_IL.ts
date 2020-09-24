@@ -657,7 +657,7 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="193"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Collation: %1</translation>
+      <translation>ארגון: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="195"/>
@@ -672,22 +672,22 @@ but it&apos;s okay to use it.</source>
       <location filename="../dialogs/configdialog.ui" line="14"/>
       <location filename="../dialogs/configdialog.ui" line="1563"/>
       <source>Configuration</source>
-      <translation type="unfinished">Configuration</translation>
+      <translation>הגדרות</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="63"/>
       <source>Search</source>
-      <translation type="unfinished">Search</translation>
+      <translation>חיפוש</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="94"/>
       <source>General</source>
-      <translation type="unfinished">General</translation>
+      <translation>כללי</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="106"/>
       <source>Keyboard shortcuts</source>
-      <translation type="unfinished">Keyboard shortcuts</translation>
+      <translation>קיצורי מקלדת</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="118"/>
@@ -697,23 +697,23 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
       <source>Style</source>
-      <translation type="unfinished">Style</translation>
+      <translation>סגנון</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="141"/>
       <source>Fonts</source>
-      <translation type="unfinished">Fonts</translation>
+      <translation>גופנים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="153"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>צבעים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>רשימת מסדי נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
@@ -728,12 +728,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="202"/>
       <source>Plugins</source>
-      <translation type="unfinished">Plugins</translation>
+      <translation>מתקעים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="213"/>
       <source>Code formatters</source>
-      <translation type="unfinished">Code formatters</translation>
+      <translation>מתבנתי קוד</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="245"/>
@@ -803,7 +803,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="351"/>
       <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
+      <translation>חלון דו-שיח מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="357"/>
@@ -960,12 +960,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="696"/>
       <source>Data types</source>
-      <translation type="unfinished">Data types</translation>
+      <translation>סוגי מידע</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="734"/>
       <source>Available editors:</source>
-      <translation type="unfinished">Available editors:</translation>
+      <translation>עורכים זמינים:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="750"/>
@@ -995,7 +995,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="831"/>
       <source>SQL queries</source>
-      <translation type="unfinished">SQL queries</translation>
+      <translation>שאילתות SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="843"/>
@@ -1006,7 +1006,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="859"/>
       <source>History size:</source>
-      <translation type="unfinished">History size:</translation>
+      <translation>גודל היסטוריה:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="866"/>
