@@ -56,7 +56,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
+      <translation>נעשה ניסה לשמירת תמונה בתבנית (%1) השונה מהמקור (%2), אך היישום לא הצליח להמיר אותה. התמונה ללא שינוי בתבנית (%3) תישמר בשם (%4)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
