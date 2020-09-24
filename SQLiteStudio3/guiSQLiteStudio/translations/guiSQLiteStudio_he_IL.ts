@@ -585,43 +585,43 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="159"/>
       <source>Column: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Column: %1</translation>
+      <translation>עמודה: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="161"/>
       <source>Table: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>טבלה: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="163"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="165"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="167"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">View: %1</translation>
+      <translation>מצג: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="169"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="181"/>
       <source>Keyword: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Keyword: %1</translation>
+      <translation>מילת מפתח: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="183"/>
@@ -639,13 +639,13 @@ but it&apos;s okay to use it.</source>
       <location filename="../completer/completerwindow.cpp" line="187"/>
       <source>String</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">String</translation>
+      <translation>מחרוזת</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="189"/>
       <source>Number</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>מספר</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="191"/>
