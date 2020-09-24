@@ -117,12 +117,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>לפני פסיק ברשימות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation type="unfinished">After comma in lists</translation>
+      <translation>אחרי פסיק ברשימות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
