@@ -269,22 +269,22 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="35"/>
       <source>Scale</source>
-      <translation type="unfinished">Scale</translation>
+      <translation>קנה מידה</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
       <source>Precision</source>
-      <translation type="unfinished">Precision</translation>
+      <translation>דיוק</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>סוג מידע:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>שם עמודה:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
@@ -330,7 +330,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>תנאי בקרה</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="164"/>
@@ -345,7 +345,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="270"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>מצב מתקדם</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="86"/>
@@ -500,7 +500,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
       <source>Reactions</source>
-      <translation type="unfinished">Reactions</translation>
+      <translation>תגובות</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
@@ -520,12 +520,12 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>בחירת הטבלה הזרה.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>בחירת העמודה הזרה.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
@@ -543,7 +543,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
       <source>Sort order:</source>
-      <translation type="unfinished">Sort order:</translation>
+      <translation>סדר מיון:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
