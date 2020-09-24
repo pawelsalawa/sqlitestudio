@@ -132,7 +132,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>שם ארגון:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
@@ -1138,7 +1138,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1336"/>
       <source>Enabled</source>
-      <translation type="unfinished">Enabled</translation>
+      <translation>מופעל</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1509"/>
