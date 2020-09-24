@@ -89,17 +89,17 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא את היסטוריית דוחות התקלים מקובץ התצורה הישן כדי להעבירו: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a bug reports history entry into new configuration file: %1</translation>
+      <translation>לא ניתן להוסיף את רשומת היסטוריית דוחות התקלים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="201"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read database list from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא את רשימת מסדי הנתונים מקובץ התצורה הישן כדי להסב אותו: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="215"/>
