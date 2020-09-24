@@ -11,12 +11,12 @@
     <message>
       <location filename="../jsonexport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation type="unfinished">Format document (new lines, indentation)</translation>
+      <translation>תבנות מסמך (שורה חדשה, הזחה)</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation type="unfinished">Compress (everything in one line)</translation>
+      <translation>דחיסה (הכל בשורה אחת)</translation>
     </message>
   </context>
 </TS>
