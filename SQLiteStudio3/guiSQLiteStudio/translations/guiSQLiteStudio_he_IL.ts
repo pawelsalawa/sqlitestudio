@@ -1032,7 +1032,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>עדכונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="911"/>
@@ -1042,7 +1042,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="924"/>
       <source>Session</source>
-      <translation type="unfinished">Session</translation>
+      <translation>מופעים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="930"/>
@@ -1052,7 +1052,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="943"/>
       <source>Status Field</source>
-      <translation type="unfinished">Status Field</translation>
+      <translation>שדה מצב</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="949"/>
@@ -1072,7 +1072,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1035"/>
       <source>Action</source>
-      <translation type="unfinished">Action</translation>
+      <translation>פעולה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1040"/>
@@ -1133,7 +1133,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1326"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>תצוגה מקדימה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1336"/>
@@ -1143,7 +1143,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1509"/>
       <source>Disabled</source>
-      <translation type="unfinished">Disabled</translation>
+      <translation>מושבת</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1558"/>
@@ -1153,7 +1153,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1596"/>
       <source>SQL editor font</source>
-      <translation type="unfinished">SQL editor font</translation>
+      <translation>גופן עורך SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1612"/>
