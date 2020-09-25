@@ -16,7 +16,7 @@
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>הזנת %1 לעזרה</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="257"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../cli.cpp" line="290"/>
       <source>closed</source>
-      <translation type="unfinished">closed</translation>
+      <translation>סגור</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>שימוש: %1%2</translation>
     </message>
   </context>
   <context>
@@ -68,13 +68,13 @@
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>נתיב</translation>
     </message>
   </context>
   <context>
@@ -103,7 +103,7 @@
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>נתיב</translation>
     </message>
   </context>
   <context>
@@ -138,7 +138,7 @@
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
   </context>
   <context>
@@ -151,41 +151,41 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation type="unfinished">Databases:</translation>
+      <translation>מסד נתונים:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
       <location filename="../commands/clicommanddblist.cpp" line="34"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Open</translation>
+      <translation>פתיחה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Closed</translation>
+      <translation>סגירה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="32"/>
       <location filename="../commands/clicommanddblist.cpp" line="36"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Connection</translation>
+      <translation>חיבור</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="38"/>
       <location filename="../commands/clicommanddblist.cpp" line="45"/>
       <source>Database file path</source>
-      <translation type="unfinished">Database file path</translation>
+      <translation>נתיב מסד הנתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
@@ -212,7 +212,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>מספד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
@@ -227,32 +227,32 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>טבלה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>טבלה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>שם עמודה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>סוג נתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>אילוצים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>טבלה מדומה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
