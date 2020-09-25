@@ -212,7 +212,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation>מספד הנתונים אינו פתוח.</translation>
+      <translation>מסד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
@@ -530,12 +530,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="12"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>לא קיים מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>מסד נתונים הוסר: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
@@ -573,12 +573,12 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>מספד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
-      <translation type="unfinished">executes SQL query</translation>
+      <translation>הרצת שאילתת SQL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="69"/>
@@ -605,7 +605,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
-      <translation type="unfinished">Query execution error: %1</translation>
+      <translation>שגיאת ריצת שאילתה: %1</translation>
     </message>
   </context>
   <context>
@@ -623,7 +623,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>מסד נתונים %1 סגור.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
