@@ -297,7 +297,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation type="unfinished">Quits the application. Settings are stored in configuration file and will be restored on next startup.</translation>
+      <translation>יציאה מהיישומון. ההגדרות נשמרות בקובץ התצורה וישוחזרו בהפעלה הבאה.</translation>
     </message>
   </context>
   <context>
@@ -331,7 +331,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="42"/>
       <source>No such command: %1</source>
-      <translation type="unfinished">No such command: %1</translation>
+      <translation>לא קיימת פקודה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
@@ -346,7 +346,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
       <source>Aliases: %1</source>
-      <translation type="unfinished">Aliases: %1</translation>
+      <translation>כינויים: %1</translation>
     </message>
   </context>
   <context>
@@ -354,12 +354,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="23"/>
       <source>Current history limit is set to: %1</source>
-      <translation type="unfinished">Current history limit is set to: %1</translation>
+      <translation>מגבלות היסטוריה נוכחית הוגדרה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation type="unfinished">prints history or erases it</translation>
+      <translation>מציג היסטוריה או מנקה אותה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -382,7 +382,7 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
       <source>Console history erased.</source>
-      <translation type="unfinished">Console history erased.</translation>
+      <translation>היסטוריית המסוף נמחקה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="75"/>
@@ -392,7 +392,7 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="80"/>
       <source>History limit set to %1</source>
-      <translation type="unfinished">History limit set to %1</translation>
+      <translation>מגבלות היסטוריה הוגדרו ל %1</translation>
     </message>
   </context>
   <context>
@@ -595,7 +595,7 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>עמודות רבות מדי למצב תצוגה %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
