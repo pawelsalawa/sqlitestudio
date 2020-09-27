@@ -127,7 +127,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation type="unfinished">closes given (or current) database</translation>
+      <translation>סגירת מסד נתונים נתון (או נוכחי)</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -146,7 +146,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation type="unfinished">No current working database defined.</translation>
+      <translation>לא הוגדר מסד נתונים נוכחי פעיל.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
@@ -257,12 +257,12 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>משתנים בלתי תלויים מבניים:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>לא הועברו משתנים בלתי תלויים מבניים לטבלה מדומה זו.</translation>
     </message>
   </context>
   <context>
@@ -292,7 +292,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>יציאה מהישומון</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
@@ -765,7 +765,7 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation>מספר משתנים בלתי תלויים מעטים מדי.</translation>
+      <translation>מספר משתנים בלתי תלויים לא מספקים.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
