@@ -62,7 +62,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation type="unfinished">Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</translation>
+      <translation>הוספת מסד נתונים נתון מ &lt;path&gt; בשם &lt;name&gt; לרשימת מסדי הנתונים. השם &lt;name&gt; הוא שם סמלי אליו ניתן יהיה להתייחס מאוחר יותר. נא לבחור בכל שם ייחודי. לרשימת מסדי נתונים הנמצאים כבר ברשימה, נא להשתמש בפקודה%1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
@@ -82,17 +82,17 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>מחיצה שונתה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>לא ניתן לשנות מחיצה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>שינוי מחיצת עבודה נוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
@@ -270,7 +270,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation type="unfinished">lists directories and files in current working directory</translation>
+      <translation>הצגת רשימת ספריות וקבצים במחיצת העבודה הנוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
@@ -517,7 +517,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="13"/>
       <source>prints the current working directory</source>
-      <translation type="unfinished">prints the current working directory</translation>
+      <translation>הדפסת מחיצת עבודה נוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
