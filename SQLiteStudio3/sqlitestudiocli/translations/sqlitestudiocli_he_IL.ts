@@ -97,7 +97,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>פקודה דומה מאוד ל &apos;cd&apos; המוכרת ממערכות יוניקס וחלונות. דורש &lt;path&gt; להעברת טיעון, לכן קריאה ל-%1 תגרום תמיד לשינוי מחיצה. למציאת &apos;מחיצת העבודה הנוכחית, ניתן להשתמש בפקודה %2 ולהצגת תוכן מחיצת העבודה הנוכחית ניתן להשתמש בפקודה %3.</translation>
+      <translation>פקודה דומה מאוד ל &apos;cd&apos; המוכרת ממערכות יוניקס וחלונות. דורש &lt;path&gt; להעברת משתנה בלתי תלוי, לכן קריאה ל-%1 תגרום תמיד לשינוי מחיצה. למציאת &apos;מחיצת העבודה הנוכחית, ניתן להשתמש בפקודה %2 ולהצגת תוכן מחיצת העבודה הנוכחית ניתן להשתמש בפקודה %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
@@ -522,7 +522,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-      <translation type="unfinished">This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</translation>
+      <translation>זהה לפקודה &apos;pwd&apos; במערכות יוניקס ולפקודת &apos;cd&apos; ללא משתנה בלתי תלוי בחלונות. הפקודה תציג על המסך את מחיצת העבודה הנוכחית. ניתן לשנות את ספריית העבודה הנוכחית באמצעות הפקודה%1 וניתן גם להציג רשימה של תוכן מחיצת העבודה הנוכחית באמצעות הפקודה%2.</translation>
     </message>
   </context>
   <context>
@@ -765,19 +765,19 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>מספר משתנים בלתי תלויים מעטים מדי.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>משתנים בלתי תלויים רבים מידי.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
       <source>Invalid argument value: %1.
 Expected one of: %2</source>
-      <translation type="unfinished">Invalid argument value: %1.
-Expected one of: %2</translation>
+      <translation>משתנה בלתי תלוי שגוי: %1.
+המערכת ציפתה לאחד מ: %2</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="383"/>
@@ -789,7 +789,7 @@ Expected one of: %2</translation>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Option %1 requires an argument.</translation>
+      <translation>אפשרות %1 דורשת משתנה בלתי תלוי.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
