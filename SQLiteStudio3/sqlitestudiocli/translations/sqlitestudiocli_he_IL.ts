@@ -686,7 +686,7 @@ When the -s option is given, then system tables are also listed.</translation>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>מַזְנֵקים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
