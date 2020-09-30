@@ -305,7 +305,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="16"/>
       <source>shows this help message</source>
-      <translation type="unfinished">shows this help message</translation>
+      <translation>הצגת הודעת עזרה זו</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="21"/>
@@ -492,7 +492,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>פתיחת קישור למסד נתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
@@ -540,12 +540,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
       <source>New current database set:</source>
-      <translation type="unfinished">New current database set:</translation>
+      <translation>הגדרת מסד נתונים נוכחי חדש:</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>הסרת מסד נתונים מהרשימה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -710,13 +710,13 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>לא נבחר מסד נתונים נוכחי.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>מסד נתונים נוכחי: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
@@ -783,7 +783,7 @@ Expected one of: %2</source>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>אפשרות לא ידועה: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
