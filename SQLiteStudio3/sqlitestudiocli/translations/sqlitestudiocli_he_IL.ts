@@ -639,7 +639,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>הדפסת כל הטבלאות במסד הנתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
