@@ -117,7 +117,7 @@
       <location filename="../commands/clicommandclose.cpp" line="21"/>
       <location filename="../commands/clicommandclose.cpp" line="29"/>
       <source>Connection to database %1 closed.</source>
-      <translation type="unfinished">Connection to database %1 closed.</translation>
+      <translation>קישור למסד נתונים %1 נותק.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
@@ -477,7 +477,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>לא ניתן להוסיף מסד נתונים %1 לרשימה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
@@ -721,12 +721,12 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>לא קיים מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation type="unfinished">changes default working database</translation>
+      <translation>החלפת מסד נתונים פעיל ברירת מחדל</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
