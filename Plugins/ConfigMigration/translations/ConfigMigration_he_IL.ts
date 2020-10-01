@@ -16,7 +16,7 @@
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation>רשימת מסד נתונים (%1)</translation>
+      <translation>רשימת מסדי נתונים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation type="unfinished">Could not commit migrated data into new configuration file: %1</translation>
+      <translation>לא ניתן לבצע קומיט של הנתונים המוסבים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
@@ -119,12 +119,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="259"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא התאפשרה שאילתה על סדר זמין של מסד הנתונים הבא בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="270"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
+      <translation>לא ניתן ליצור קבוצה המפנה את מסד הנתונים בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="288"/>
