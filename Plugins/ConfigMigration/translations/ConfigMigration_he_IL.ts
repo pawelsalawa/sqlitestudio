@@ -79,7 +79,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="110"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
-      <translation>לא ניתן לפתוח קובץ תצורה נוכחי על מנת לבצע הגירת הגדרות מקובץ תצורה ישן.</translation>
+      <translation>לא ניתן לפתוח קובץ תצורה נוכחי על מנת להסב הגדרות מקובץ תצורה ישן.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation>לא ניתן לקרוא את היסטוריית דוחות התקלים מקובץ התצורה הישן כדי להעבירו: %1</translation>
+      <translation>לא ניתן לקרוא את היסטוריית דוחות התקלים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
@@ -99,17 +99,17 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="201"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation>לא ניתן לקרוא את רשימת מסדי הנתונים מקובץ התצורה הישן כדי להסב אותו: %1</translation>
+      <translation>לא ניתן לקרוא את רשימת מסדי הנתונים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="215"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>לא התאפשרה שאילתה על קבוצת הכלה וסדר זמין בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
+      <translation>לא ניתן לבצע שאילתה על קבוצת הכלה וסדר זמין בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="226"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>לא ניתן ליצור קבוצת הכלה בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
+      <translation>לא ניתן ליצור קבוצת הכלה בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="247"/>
@@ -119,7 +119,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="259"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation>לא התאפשרה שאילתה על סדר זמין של מסד הנתונים הבא בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
+      <translation>לא ניתן לבצע שאילתה על סדר זמין של מסד הנתונים הבא בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="270"/>
