@@ -6,22 +6,22 @@
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+      <translation>קבצי מלל (*.txt);;כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>לא ניתן לקרוא קובץ %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
       <source>Enter the regular expression pattern.</source>
-      <translation type="unfinished">Enter the regular expression pattern.</translation>
+      <translation>הזנת דפוס ביטוי-רגיל.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
       <source>Invalid pattern: %1</source>
-      <translation type="unfinished">Invalid pattern: %1</translation>
+      <translation>דפוס שגוי: %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../regexpimport.ui" line="39"/>
       <source>Import only following groups:</source>
-      <translation type="unfinished">Import only following groups:</translation>
+      <translation>יבוא הקבוצות הבאות בלבד:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="52"/>
