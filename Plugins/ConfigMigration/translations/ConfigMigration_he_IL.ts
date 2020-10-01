@@ -109,12 +109,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="226"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא ניתן ליצור קבוצת הכלה בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="247"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a database entry into new configuration file: %1</translation>
+      <translation>לא ניתן להוסיף את רשומת מסד נתונים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="259"/>
