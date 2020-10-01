@@ -104,7 +104,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="215"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא התאפשרה שאילתה על קבוצת הכלה וסדר זמין בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="226"/>
