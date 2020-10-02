@@ -26,7 +26,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
       <source>Requested capture index %1 is out of range.</source>
-      <translation type="unfinished">Requested capture index %1 is out of range.</translation>
+      <translation>מפתח לכידה מבוקש %1 מחוץ לטווח.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../regexpimport.ui" line="26"/>
       <source>Treat all RegExp capture groups as columns</source>
-      <translation type="unfinished">Treat all RegExp capture groups as columns</translation>
+      <translation>להתייחס לכל קבוצות הלכידה של ביטוי-רגיל כעמודות</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="39"/>
