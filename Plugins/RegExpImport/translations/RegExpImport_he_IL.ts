@@ -80,7 +80,7 @@ You can use named groups and refer to them in group list below. To name a group 
     <message>
       <location filename="../regexpimport.ui" line="81"/>
       <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-      <translation type="unfinished">Example: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+      <translation>דוגמה: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
   </context>
 </TS>
