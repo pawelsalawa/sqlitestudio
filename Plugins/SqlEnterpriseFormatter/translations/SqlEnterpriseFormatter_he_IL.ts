@@ -26,7 +26,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation type="unfinished">Indent contents of parenthesis block</translation>
+      <translation>הזחת תוכן הגוש החסום בסוגריים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
@@ -127,22 +127,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
       <source>Before opening parenthesis</source>
-      <translation type="unfinished">Before opening parenthesis</translation>
+      <translation>לפני פתיחת סוגריים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="422"/>
       <source>After opening parenthesis</source>
-      <translation type="unfinished">After opening parenthesis</translation>
+      <translation>אחרי פתיחת סוגריים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="432"/>
       <source>Before closing parenthesis</source>
-      <translation type="unfinished">Before closing parenthesis</translation>
+      <translation>לפני סגירת סוגריים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="442"/>
       <source>After closing parenthesis</source>
-      <translation type="unfinished">After closing parenthesis</translation>
+      <translation>אחרי סגירת סוגריים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
