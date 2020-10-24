@@ -405,17 +405,17 @@ Usa l'opzione -ql o --querylimit per vedere il valore limite corrente.</translat
     <message>
       <location filename="../commands/clicommandmode.cpp" line="16"/>
       <source>Invalid results printing mode: %1</source>
-      <translation type="unfinished">Invalid results printing mode: %1</translation>
+      <translation>Modalità di stampa risultati non valida: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="21"/>
       <source>New results printing mode: %1</source>
-      <translation type="unfinished">New results printing mode: %1</translation>
+      <translation>Nuova modalità di stampa risultati: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="26"/>
       <source>tells or changes the query results format</source>
-      <translation type="unfinished">tells or changes the query results format</translation>
+      <translation>dice o cambia il formato dei risultati della query</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="31"/>
