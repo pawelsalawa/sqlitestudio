@@ -903,126 +903,126 @@ Dettagli errore: %2</translation>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="77"/>
       <source>Maximum length cannot be less than minimum length.</source>
-      <translation type="unfinished">Maximum length cannot be less than minimum length.</translation>
+      <translation>La lunghezza massima non può essere minore della lunghezza minima.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="88"/>
       <source>Custom character set cannot be empty.</source>
-      <translation type="unfinished">Custom character set cannot be empty.</translation>
+      <translation>Il set di caratteri personalizzati non può essere vuoto.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="40"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation type="unfinished">Could not find plugin to support scripting language: %1</translation>
+      <translation>Impossibile trovare il plugin per supportare la lingua dello script: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="58"/>
       <source>Error while executing populating initial code: %1</source>
-      <translation type="unfinished">Error while executing populating initial code: %1</translation>
+      <translation>Errore durante il popolamento del codice iniziale: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="80"/>
       <source>Error while executing populating code: %1</source>
-      <translation type="unfinished">Error while executing populating code: %1</translation>
+      <translation>Errore durante il popolamento del codice: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>Seleziona lingua di implementazione.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="113"/>
       <source>Implementation code cannot be empty.</source>
-      <translation type="unfinished">Implementation code cannot be empty.</translation>
+      <translation>Il codice di implementazione non può essere vuoto.</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="359"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation type="unfinished">Could not resolve data source for column: %1</translation>
+      <translation>Impossibile risolvere la sorgente dati per la colonna: %1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="431"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>Impossibile risolvere la tabella per la colonna &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="774"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Impossibile inizializzare il file di configurazione. Qualsiasi modifica di configurazione e cronologia delle interrogazioni verrà persa dopo il riavvio dell'applicazione. Impossibile creare un file nelle seguenti posizioni: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="305"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">General purpose</translation>
+      <translation>Scopo generale</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="306"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Database support</translation>
+      <translation>Supporto database</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="307"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Code formatter</translation>
+      <translation>Formattatore codice</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="308"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Linguaggi di scripting</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="309"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Exporting</translation>
+      <translation>Sto esportando ...</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="310"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Importing</translation>
+      <translation>Sto importando ...</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>Tabella di popolamento</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="115"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>La tabella %1 fa riferimento alla tabella %2, ma la definizione della chiave esterna non sarà aggiornata per la nuova definizione della tabella a causa di problemi durante l'analisi DDL della tabella %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="438"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>Tutte le colonne indicizzate dall'indice %1 non esistono più. L'indice non verrà ricreato dopo la modifica della tabella.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="481"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>C'è un problema con il corretto processo trigger %1. Potrebbe non essere completamente aggiornato in seguito e avrà bisogno della vostra attenzione.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="496"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>Tutte le colonne indicizzate dall'indice %1 non esistono più. L'indice non verrà ricreato dopo la modifica della tabella.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="528"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
+      <translation>Impossibile aggiornare il trigger %1 in accordo alla modifica della tabella %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="546"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>Impossibile aggiornare la vista %1 in base alle modifiche della tabella %2.
+La vista rimarrà così com'è.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="708"/>
