@@ -433,20 +433,20 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
-- CLASSIC - columns are separated by a comma, not aligned,
-- FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
-- COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
-- ROW     - each column from the row is displayed in new line, so the full data is displayed.
+      <translation>Quando viene chiamato senza argomento, indica il formato di output corrente per i risultati di una interrogazione. Quando il &lt;mode&gt; viene passato, la modalità viene cambiata in quella fornita. Le modalità supportate sono:
+- CLASSIC - le colonne sono separate da una virgola, non allineate,
+- FISSATO - le colonne hanno larghezza uguale e fissa, si adattano sempre alla larghezza della finestra del terminale, ma i dati in colonne possono essere tagliati,
+- COLUMNS - come FIXED, ma più intelligente (non usare con enormi set di risultati, vedere i dettagli qui sotto),
+- ROW - ogni colonna della riga viene visualizzata in una nuova riga, quindi vengono visualizzati i dati completi.
 
-The CLASSIC mode is recommended if you want to see all the data, but you don&apos;t want to waste lines for each column. Each row will display full data for every column, but this also means, that columns will not be aligned to each other in next rows. The CLASSIC mode also doesn&apos;t respect the width of your terminal (console) window, so if values in columns are wider than the window, the row will be continued in next lines.
+La modalità CLASSIC è consigliata se si desidera visualizzare tutti i dati, ma si vuole sprecare le linee per ogni colonna. Ogni riga visualizzerà i dati completi per ogni colonna, ma ciò significa anche che le colonne non saranno allineate l'una all'altra nelle righe successive. La modalità CLASSIC inoltre non rispetta la larghezza della finestra terminale (console), quindi se i valori nelle colonne sono più larghi della finestra, la riga verrà continuata nelle righe successive.
 
-The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
+La modalità FIXED è consigliata se si desidera un output leggibile e si ci si cura per i valori di dati lunghi. Le colonne saranno allineate, rendendo l'output una bella tabella. La larghezza delle colonne è calcolata a partire dalla larghezza della finestra della console e da un numero di colonne.
 
-The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+La modalità COLUMNS è simile alla modalità FIXED, tranne che cerca di essere intelligente e rendere le colonne con valori più corti più strette, mentre le colonne con valori più lunghi ottengono più spazio. Prima di ridurre le colonne con intestazioni più lunghe (quindi i nomi delle intestazioni devono essere tagliati come primo), quindi le colonne con i valori più lunghi vengono ridimensionate, fino al momento in cui tutte le colonne si inseriscono nella finestra del terminale.
+ATTENZIONE! La modalità COLUMNS legge tutti i risultati dalla query in una sola volta al fine di valutare i widget della colonna, quindi è pericoloso usare questa modalità quando si lavora con enormi set di risultati. Tieni presente che questa modalità caricherà l'intero risultato impostato in memoria.
 
-The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
+La modalità ROW è consigliata se è necessario vedere valori interi e non ci si aspetta molte righe da visualizzare, perché questa modalità visualizza una linea di uscita per ogni colonna, così si otterranno 10 linee per singola riga con 10 colonne, quindi se avete 10 righe, otterrete 100 linee in uscita (+1 linea extra per ogni riga, per separare le righe l'una dall'altra).</translation>
     </message>
   </context>
   <context>
@@ -454,17 +454,17 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation type="unfinished">Current NULL representation string: %1</translation>
+      <translation>Stringa attuale per la rappresentazione del NULL: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
       <source>tells or changes the NULL representation string</source>
-      <translation type="unfinished">tells or changes the NULL representation string</translation>
+      <translation>mostra o cambia la stringa di rappresentazione NULL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation>Se non è stato passato nessun argomento, indica quale è la rappresentazione attuale del valore NULL (cioè ciò che è stampato al posto dei valori NULL nei risultati della query). Se l'argomento è passato, allora viene usato come nuova stringa da usarsi per la rappresentazione NULL.</translation>
     </message>
   </context>
   <context>
@@ -472,44 +472,44 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="12"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>Impossibile chiamare %1 quando nessun database è impostato per essere corrente. Specificare il database corrente con il comando %2 o passare il nome del database a %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Impossibile aggiungere il database %1 all'elenco.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
       <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-      <translation type="unfinished">File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</translation>
+      <translation>Il file %1 non esiste in %2. Impossibile aprire il database inesistente con il comando %3. Per creare un nuovo database, usa il comando %4.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation type="unfinished">Database %1 has been open and set as the current working database.</translation>
+      <translation>Il database %1 è stato aperto e impostato come database di lavoro corrente.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>apre la connessione al database</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation type="unfinished">Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</translation>
+      <translation>Apre la connessione al database. Se non è stato passato alcun argomento aggiuntivo, allora la connessione è aperta al database predefinito corrente (vedi aiuto per %1 per i dettagli). Tuttavia, se un argomento è stato passato, può essere il &lt;name&gt; del database registrato da aprire, o può essere il &lt;path&gt; al file del database da aprire. Nel secondo caso, il &lt;path&gt; viene registrato nella lista con un nome generato, ma solo per il periodo della sessione attuale dell'applicazione. Dopo aver riavviato l'applicazione, tale database non viene ripristinato nell'elenco.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>nome</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>percorso</translation>
     </message>
   </context>
   <context>
@@ -517,12 +517,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="13"/>
       <source>prints the current working directory</source>
-      <translation type="unfinished">prints the current working directory</translation>
+      <translation>stampa la directory di lavoro corrente</translation>
     </message>
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-      <translation type="unfinished">This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</translation>
+      <translation>Questo è lo stesso comando &apos;pwd&apos; su sistemi Unix e &apos;cd&apos; senza argomenti su Windows. Stampa la directory di lavoro corrente. È possibile modificare la directory di lavoro corrente con il comando %1 ed è anche possibile elencare i contenuti della directory di lavoro corrente con il comando %2.</translation>
     </message>
   </context>
   <context>
@@ -530,22 +530,22 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="12"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Database inesistente: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>Database rimosso: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
       <source>New current database set:</source>
-      <translation type="unfinished">New current database set:</translation>
+      <translation>Nuovo database corrente impostato:</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>rimuove il database dalla lista</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
