@@ -399,7 +399,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
+      <translation>Apertura del file %1 in scrittura fallita: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
@@ -538,7 +538,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populatedictionary.cpp" line="15"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation type="unfinished">Dictionary</translation>
+      <translation>Dizionario</translation>
     </message>
   </context>
   <context>
@@ -546,42 +546,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>File dizionario</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>Scegli il file di dizionario</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>Separatore parole</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Spazio bianco</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>Interruzione di linea</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>Metodo di utilizzo delle parole</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation type="unfinished">Ordered</translation>
+      <translation>Ordinato</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>Casuale</translation>
     </message>
   </context>
   <context>
@@ -589,7 +589,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>Tabella &apos;%1&apos; popolata con successo.</translation>
     </message>
   </context>
   <context>
@@ -597,7 +597,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.cpp" line="12"/>
       <source>Random number</source>
-      <translation type="unfinished">Random number</translation>
+      <translation>Numeri casuali</translation>
     </message>
   </context>
   <context>
@@ -605,32 +605,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation type="unfinished">Constant prefix</translation>
+      <translation>Prefisso costante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
       <source>No prefix</source>
-      <translation type="unfinished">No prefix</translation>
+      <translation>Nessun prefisso</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation type="unfinished">Minimum value</translation>
+      <translation>Valore minimo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation type="unfinished">Maximum value</translation>
+      <translation>Valore massimo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation type="unfinished">Constant suffix</translation>
+      <translation>Suffisso costante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
       <source>No suffix</source>
-      <translation type="unfinished">No suffix</translation>
+      <translation>Nessun suffisso</translation>
     </message>
   </context>
   <context>
@@ -638,7 +638,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="12"/>
       <source>Random text</source>
-      <translation type="unfinished">Random text</translation>
+      <translation>Testo casuale</translation>
     </message>
   </context>
   <context>
@@ -646,7 +646,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>Usa i caratteri dai set comuni:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
@@ -823,14 +823,14 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../dbversionconverter.cpp" line="202"/>
       <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</translation>
+      <translation>SQLite %1 non supporta la dichiarazione &apos;%2&apos;, ma la tabella normale può essere creata se si procede.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="429"/>
       <source>Could not parse statement: %1
 Error details: %2</source>
-      <translation type="unfinished">Could not parse statement: %1
-Error details: %2</translation>
+      <translation>Impossibile analizzare l'dichiarazione: %1
+Dettagli errore: %2</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="440"/>
@@ -838,17 +838,17 @@ Error details: %2</translation>
       <location filename="../dbversionconverter.cpp" line="491"/>
       <location filename="../dbversionconverter.cpp" line="529"/>
       <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
-      <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</translation>
+      <translation>SQLite %1 non supporta la clausola &apos;%2&apos;. Impossibile convertire la dichiarazione &apos;%3&apos; con tale clausola.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="497"/>
       <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
-      <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</translation>
+      <translation>SQLite %1 non supporta la clausola &apos;%2&apos; nella dichiarazione &apos;%3&apos;.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="772"/>
       <source>SQLite %1 does not support current date or time clauses in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support current date or time clauses in expressions.</translation>
+      <translation>SQLite %1 non supporta le clausole di data o ora correnti nelle espressioni.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="775"/>
@@ -865,40 +865,40 @@ Error details: %2</translation>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="115"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>Impossibile allegare il database %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>Query incompleta.</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
       <location filename="../parser/sqlite3_parse.cpp" line="2212"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>Parser stack overflow</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="4466"/>
       <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
       <source>Syntax error</source>
-      <translation type="unfinished">Syntax error</translation>
+      <translation>Errore di sintassi</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="30"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>Impossibile aprire il file dizionario %1 in lettura.</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="91"/>
       <source>Dictionary file must exist and be readable.</source>
-      <translation type="unfinished">Dictionary file must exist and be readable.</translation>
+      <translation>Il file del dizionario deve esistere ed essere leggibile.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="53"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation type="unfinished">Maximum value cannot be less than minimum value.</translation>
+      <translation>Il valore massimo non può essere inferiore al valore minimo.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="77"/>
