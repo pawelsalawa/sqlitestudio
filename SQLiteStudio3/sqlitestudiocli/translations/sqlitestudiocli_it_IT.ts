@@ -305,7 +305,7 @@ Puoi passare &lt;pattern&gt; con caratteri jolly per filtrare l'output.</transla
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="16"/>
       <source>shows this help message</source>
-      <translation type="unfinished">shows this help message</translation>
+      <translation>mostra questo messaggio di aiuto</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="21"/>
@@ -326,27 +326,27 @@ You can always execute any command with exactly single &apos;--help&apos; option
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
       <source>command</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">command</translation>
+      <translation>comando</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="42"/>
       <source>No such command: %1</source>
-      <translation type="unfinished">No such command: %1</translation>
+      <translation>Comando inesistente: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
       <source>Type &apos;%1&apos; for list of available commands.</source>
-      <translation type="unfinished">Type &apos;%1&apos; for list of available commands.</translation>
+      <translation>Digita &apos;%1&apos; per l'elenco dei comandi disponibili.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>Uso: %1%2</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
       <source>Aliases: %1</source>
-      <translation type="unfinished">Aliases: %1</translation>
+      <translation>Aliases: %1</translation>
     </message>
   </context>
   <context>
@@ -354,12 +354,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="23"/>
       <source>Current history limit is set to: %1</source>
-      <translation type="unfinished">Current history limit is set to: %1</translation>
+      <translation>Il limite di cronologia corrente è impostato a: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation type="unfinished">prints history or erases it</translation>
+      <translation>stampa la cronologia o la cancella</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -368,31 +368,31 @@ You can always execute any command with exactly single &apos;--help&apos; option
 When the -c or --clear option is passed, then the history gets erased.
 When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
 Use -ql or --querylimit option to see the current limit value.</source>
-      <translation type="unfinished">When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
+      <translation>Quando non è stato passato alcun argomento, questo comando stampa la cronologia della riga di comando. Ogni voce della cronologia è separata da una linea orizzontale, quindi le voci multilinea sono più facili da leggere.
 
-When the -c or --clear option is passed, then the history gets erased.
-When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
-Use -ql or --querylimit option to see the current limit value.</translation>
+Quando viene passata l'opzione -c o --clear, la cronologia viene cancellata.
+Quando l'opzione -l o --limit viene passata, imposta il limite delle nuove voci della cronologia. Richiede un ulteriore argomento che dice a quante voci vuoi che la cronologia sia limitata.
+Usa l'opzione -ql o --querylimit per vedere il valore limite corrente.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
       <source>number</source>
-      <translation type="unfinished">number</translation>
+      <translation>numero</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
       <source>Console history erased.</source>
-      <translation type="unfinished">Console history erased.</translation>
+      <translation>Cronologia delle console cancellata.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="75"/>
       <source>Invalid number: %1</source>
-      <translation type="unfinished">Invalid number: %1</translation>
+      <translation>Numero non valido: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="80"/>
       <source>History limit set to %1</source>
-      <translation type="unfinished">History limit set to %1</translation>
+      <translation>Limite di cronologia impostato a %1</translation>
     </message>
   </context>
   <context>
@@ -400,7 +400,7 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="9"/>
       <source>Current results printing mode: %1</source>
-      <translation type="unfinished">Current results printing mode: %1</translation>
+      <translation>Modalità di stampa dei risultati attuali: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="16"/>
@@ -691,7 +691,7 @@ Quando viene fornita l'opzione -s, vengono elencate anche le tabelle di sistema.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation type="unfinished">prints all objects in the database as a tree</translation>
+      <translation>stampa tutti gli oggetti nel database ad albero</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
@@ -699,10 +699,10 @@ Quando viene fornita l'opzione -s, vengono elencate anche le tabelle di sistema.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
-When -c option is given, then also columns will be listed under each table.
-When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
-The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
+      <translation>Stampa tutti gli oggetti (tabelle, indici, trigger e viste) che si trovano nel database come albero. L'albero è molto simile a quello che si può vedere nel client GUI di SQLiteStudio.
+Quando viene fornita l'opzione -c, anche le colonne saranno elencate sotto ogni tabella.
+Quando viene fornita l'opzione -s, anche gli oggetti di sistema verranno stampati (tabelle sqlite_*, indici di incremento automatico, ecc).
+L'argomento database è opzionale e, se fornito, verrà stampato solo il database specificato. Questo non è un nome di database registrato, ma invece è un nome di database SQLite interno, come &apos;main&apos;, &apos;temp&apos; o qualsiasi nome allegato al database. Per stampare un albero per altri database registrati, chiama %1 prima per cambiare il database di lavoro e poi usa il comando %2.</translation>
     </message>
   </context>
   <context>
@@ -710,23 +710,23 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>Nessun database corrente selezionato.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Database attuale: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Database inesistente: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation type="unfinished">changes default working database</translation>
+      <translation>modifica il database di lavoro predefinito</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -741,23 +741,23 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+      <translation>Cambia il database di lavoro corrente in &lt;name&gt;. Se il database &lt;name&gt; non è registrato nell'applicazione, il messaggio di errore viene stampato e non viene apportata alcuna modifica.
 
-What is current working database?
-When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
+Cos'è il database di lavoro attuale?
+Quando digiti una query SQL da eseguire, viene eseguita nel database predefinito, che è noto anche come database di lavoro corrente. La maggior parte dei comandi correlati al database può funzionare anche usando il database predefinito, se non è stato fornito alcun database nei loro argomenti. Il database corrente è sempre identificato dal prompt a riga di comando. Il database predefinito è sempre definito (a meno che non ci sia alcun database nella lista).
 
-The default database can be selected in various ways:
-- using %1 command,
-- by passing database file name to the application startup parameters,
-- by passing registered database name to the application startup parameters,
-- by restoring previously selected default database from saved configuration,
-- or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</translation>
+Il database predefinito può essere selezionato in vari modi:
+- usando il comando %1,
+- passando il nome del file di database ai parametri di avvio dell'applicazione,
+- passando il nome del database registrato ai parametri di avvio dell'applicazione,
+- ripristinando il database predefinito precedentemente selezionato dalla configurazione salvata,
+- o quando il database predefinito non è stato selezionato da nessuno dei precedenti, allora il primo database dell'elenco dei database registrati diventa quello predefinito.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="63"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>nome</translation>
     </message>
   </context>
   <context>
@@ -765,67 +765,67 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>Numero insufficiente di argomenti.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>Troppi argomenti.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
       <source>Invalid argument value: %1.
 Expected one of: %2</source>
-      <translation type="unfinished">Invalid argument value: %1.
-Expected one of: %2</translation>
+      <translation>Valore argomento non valido: %1.
+Atteso uno di: %2</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>Opzione sconosciuta: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Option %1 requires an argument.</translation>
+      <translation>L'opzione %1 richiede un argomento.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">string</translation>
+      <translation>stringa</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">Command line interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Interfaccia a riga di comando per SQLiteStudio, un gestore SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
       <source>Enables debug messages on standard error output.</source>
-      <translation type="unfinished">Enables debug messages on standard error output.</translation>
+      <translation>Abilita i messaggi di debug sullo standard error output.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="27"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>Abilita i messaggi di debug dell'analizzatore Lemon per l'assistente di codice SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>Elenca i plugin installati in SQLiteStudio ed esce.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>file</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>File del database da aprire</translation>
     </message>
   </context>
 </TS>
