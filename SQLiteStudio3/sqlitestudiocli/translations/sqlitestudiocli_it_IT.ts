@@ -315,12 +315,12 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-      <translation type="unfinished">Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.
-To see list of supported commands, type %2 without any arguments.
+      <translation>Usa %1 per conoscere alcuni comandi supportati dall'interfaccia a linea di comando (CLI) di Sqlitestudio.
+Per vedere l'elenco dei comandi supportati, digita %2 senza alcun argomento.
 
-When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
+Quando passi il nome &lt;command&gt;, puoi non scrivere il carattere prefisso speciale ('%3').
 
-You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</translation>
+Puoi sempre eseguire qualsiasi comando con l'opzione&apos;--help&apos; per vedere l'aiuto per quel comando. E' una alternativa al dover scrivere: %1 &lt;command>.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
@@ -550,13 +550,13 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation type="unfinished">Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</translation>
+      <translation>Rimuove il database &lt;name&gt; dall'elenco dei database registrati. Se il database non era nella lista (vedere il comando %1), un messaggio di errore viene stampato e nessuna operazione verrà eseguita.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>nome</translation>
     </message>
   </context>
   <context>
@@ -566,46 +566,46 @@ La modalità ROW è consigliata se è necessario vedere valori interi e non ci s
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation type="unfinished">No working database is set.
-Call %1 command to set working database.
-Call %2 to see list of all databases.</translation>
+      <translation>Non è stato impostato alcun database funzionante.
+Esegui il comando %1 per impostare il database di lavoro.
+Esegui %2 per vedere l'elenco di tutti i database.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Il database non è aperto.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
-      <translation type="unfinished">executes SQL query</translation>
+      <translation>esegue query SQL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="69"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation type="unfinished">This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+      <translation>Questo comando viene eseguito ogni volta che si inserisce la query SQL nel prompt dei comandi. Esegue la query nel database corrente di lavoro (consultare la guida per %1 per i dettagli). Non ha senso eseguire questo comando esplicitamente. Invece basta digitare la query SQL nel prompt dei comandi, senza alcun prefisso dei comandi.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>Troppe colonne da visualizzare in modalità %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Riga %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
-      <translation type="unfinished">Query execution error: %1</translation>
+      <translation>Errore di esecuzione query: %1</translation>
     </message>
   </context>
   <context>
@@ -613,23 +613,23 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>Database inesistente: %1. Usa %2 per vedere l'elenco dei database conosciuti.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>Impossibile chiamare %1 quando nessun database è impostato per essere corrente. Specificare il database corrente con %2 comando o passare il nome del database a %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>Il database %1 è chiuso.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
