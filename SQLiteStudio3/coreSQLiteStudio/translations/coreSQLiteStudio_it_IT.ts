@@ -243,7 +243,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../dbobjectorganizer.cpp" line="780"/>
       <location filename="../dbobjectorganizer.cpp" line="789"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
+      <translation>Impossibile analizzare l'oggetto &apos;%1&apos; per spostarlo o copiarlo.</translation>
     </message>
   </context>
   <context>
@@ -251,17 +251,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../dbversionconverter.cpp" line="932"/>
       <source>Target file exists, but could not be overwritten.</source>
-      <translation type="unfinished">Target file exists, but could not be overwritten.</translation>
+      <translation>Il file destinazione esiste, ma non può essere sovrascritto.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="951"/>
       <source>Could not find proper database plugin to create target database.</source>
-      <translation type="unfinished">Could not find proper database plugin to create target database.</translation>
+      <translation>Impossibile trovare un plugin appropriato per la creazione il database di destinazione.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="1185"/>
       <source>Error while converting database: %1</source>
-      <translation type="unfinished">Error while converting database: %1</translation>
+      <translation>Errore durante la conversione del database: %1</translation>
     </message>
   </context>
   <context>
@@ -270,25 +270,25 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="65"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>Nome database</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="67"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database file</translation>
+      <translation>File database</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="69"/>
       <source>Date of execution</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Date of execution</translation>
+      <translation>Data di esecuzione</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="71"/>
       <source>Changes</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Changes</translation>
+      <translation>Modifiche</translation>
     </message>
   </context>
   <context>
@@ -296,7 +296,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
+      <translation>Il plugin di esportazione %1 i risultati delle interrogazioni.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
@@ -350,22 +350,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../exportworker.cpp" line="346"/>
       <location filename="../exportworker.cpp" line="404"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-      <translation type="unfinished">Could not parse %1 in order to export it. It will be excluded from the export output.</translation>
+      <translation>Impossibile analizzare %1 per esportarlo. Sarà escluso dall'output di esportazione.</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="608"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation type="unfinished">Error while reading data to export from table %1: %2</translation>
+      <translation>Errore durante la lettura dei dati da esportare dalla tabella %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="616"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>Errore durante il conteggio dei dati da esportare dalla tabella %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="632"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>Errore durante il conteggio della larghezza della colonna dei dati da esportare dalla tabella %1: %2</translation>
     </message>
   </context>
   <context>
@@ -373,28 +373,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-      <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
+      <translation>Numero di argomenti non valido per la funzione &apos;%1&apos;. Atteso %2, ma ottenuto %3.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
-      <translation type="unfinished">No such function registered in SQLiteStudio: %1(%2)</translation>
+      <translation>Funzione inesistente non registrata in SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-      <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
+      <translation>La funzione %1(%2) è stata registrata con la lingua %3, ma il plugin che supporta tale lingua non è attualmente caricato.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
+      <translation>Espressione regolare ( regular expression): %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
+      <translation>Apertura del file %1 in lettura fallita: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
