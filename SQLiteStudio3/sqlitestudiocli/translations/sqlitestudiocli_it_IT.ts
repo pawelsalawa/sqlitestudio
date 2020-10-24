@@ -190,12 +190,12 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation type="unfinished">prints list of registered databases</translation>
+      <translation>stampa l'elenco dei database registrati</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation type="unfinished">Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
+      <translation>Stampa la lista dei database registrati in SQLiteStudio. Ogni database nella lista può essere in stato di aperto o chiuso e %1 te lo dice. Anche il database di lavoro corrente (aka database predefinito) è contrassegnato nella lista con &apos;*&apos; all'inizio del suo nome. Vedi la guida per il comando %2 per conoscere il database predefinito.</translation>
     </message>
   </context>
   <context>
@@ -205,64 +205,64 @@
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation type="unfinished">No working database is set.
-Call %1 command to set working database.
-Call %2 to see list of all databases.</translation>
+      <translation>Non è stato impostato alcun database funzionante.
+Esegui il comando %1 per impostare il database di lavoro.
+Esegui %2 per vedere l'elenco di tutti i database.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Il database non è aperto.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>Impossibile trovare la tabella denominata: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>mostra i dettagli della tabella</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>tabella</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabella: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Nome colonna</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Tipo di dati</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Vincoli</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Tabella virtuale: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>Argomenti di costruzione:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>Nessun argomento di costruzione è stato passato per questa tabella virtuale.</translation>
     </message>
   </context>
   <context>
@@ -270,21 +270,21 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation type="unfinished">lists directories and files in current working directory</translation>
+      <translation>elenca le directory e i file nella directory di lavoro corrente</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation type="unfinished">This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
+      <translation>Questo è molto simile a &apos;dir&apos; comando conosciuto da Windows e &apos;ls&apos; comando da sistemi Unix.
 
-You can pass &lt;pattern&gt; with wildcard characters to filter output.</translation>
+Puoi passare &lt;pattern&gt; con caratteri jolly per filtrare l'output.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation type="unfinished">pattern</translation>
+      <translation>modello</translation>
     </message>
   </context>
   <context>
@@ -292,12 +292,12 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>chiude l'applicazione</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation type="unfinished">Quits the application. Settings are stored in configuration file and will be restored on next startup.</translation>
+      <translation>Esce dall'applicazione. Le impostazioni sono memorizzate nel file di configurazione e saranno ripristinate al prossimo avvio.</translation>
     </message>
   </context>
   <context>
@@ -634,25 +634,25 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabella</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>stampa l'elenco delle tabelle nel database</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation type="unfinished">Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
-When the -s option is given, then system tables are also listed.</translation>
+      <translation>Stampa l'elenco delle tabelle nel &lt;database&gt; specificato o nel database di lavoro corrente. Nota, che il &lt;database&gt; dovrebbe essere il nome del database registrato (vedi %1). L'elenco di output include tutte le tabelle di qualsiasi altro database allegato al database interrogato.
+Quando viene fornita l'opzione -s, vengono elencate anche le tabelle di sistema.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>database</translation>
     </message>
   </context>
   <context>
@@ -660,33 +660,33 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation type="unfinished">No current working database is selected. Use %1 to define one and then run %2.</translation>
+      <translation>Non è stato selezionato alcun database di lavoro corrente. Utilizzare %1 per definirne uno e quindi eseguire %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tabelle</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>Viste</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colonne</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Indici</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Trigger</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
