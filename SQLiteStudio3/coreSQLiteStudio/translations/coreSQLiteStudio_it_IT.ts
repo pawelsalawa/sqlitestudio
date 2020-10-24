@@ -1029,22 +1029,22 @@ La vista rimarrà così com'è.</translation>
       <location filename="../tablemodifier.cpp" line="732"/>
       <location filename="../tablemodifier.cpp" line="751"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>C'è un problema con l'aggiornamento di un'istruzione %1 entro %2 trigger. Una delle %1 sotto-istruzioni che potrebbero riferirsi alla tabella %3 non può essere modificata correttamente. Può essere necessario un aggiornamento manuale del trigger.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="25"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>Impossibile analizzare il DDL della vista da creare. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="34"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation>La query analizzata non è una CREATE VIEW. Vedi: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="82"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation>SQLiteStudio non è riuscito a risolvere le colonne restituite dalla nuova vista, quindi non potrà essere in grado di riportare quali trigger potrebbero fallire durante il processo di ricreazione.</translation>
     </message>
   </context>
   <context>
@@ -1052,28 +1052,28 @@ La vista rimarrà così com'è.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="186"/>
       <source>Execution interrupted.</source>
-      <translation type="unfinished">Execution interrupted.</translation>
+      <translation>Esecuzione interrotta.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="227"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Il database non è aperto.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>Solo una query può essere eseguita contemporaneamente.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="339"/>
       <location filename="../db/queryexecutor.cpp" line="618"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>Si è verificato un errore durante l'esecuzione della query count(*), quindi la pagina dei dati sarà disabilitata. Dettagli di errore dal database: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-      <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
+      <translation>SQLiteStudio non è stato in grado di estrarre i metadati dalla query. I risultati non sono modificabili.</translation>
     </message>
   </context>
   <context>
@@ -1081,12 +1081,12 @@ La vista rimarrà così com'è.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called QtScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called QtScript&apos;s %1 command.</translation>
+      <translation>Nessun database disponibile nel contesto attuale, mentre si richiamava il comando QtScript %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
       <source>Error from %1: %2</source>
-      <translation type="unfinished">Error from %1: %2</translation>
+      <translation>Errore da %1: %2</translation>
     </message>
   </context>
   <context>
@@ -1095,13 +1095,13 @@ La vista rimarrà così com'è.</translation>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Execution date</translation>
+      <translation>Data di esecuzione</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
