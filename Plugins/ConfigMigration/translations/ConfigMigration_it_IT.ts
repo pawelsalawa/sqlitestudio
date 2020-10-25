@@ -124,27 +124,27 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="270"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
+      <translation>Impossibile creare il gruppo di riferimento del database nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="288"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read function list from old configuration file in order to migrate it: %1</translation>
+      <translation>Impossibile leggere l'elenco delle funzioni dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="323"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read SQL queries history from old configuration file in order to migrate it: %1</translation>
+      <translation>Impossibile leggere la cronologia delle interrogazioni SQL dal vecchio file di configurazione per migrarla: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="330"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
-      <translation type="unfinished">Could not read next ID for SQL queries history in new configuration file: %1</translation>
+      <translation>Impossibile leggere il prossimo ID per la cronologia delle query SQL nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="346"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert SQL history entry into new configuration file: %1</translation>
+      <translation>Impossibile inserire la cronologia SQL nel nuovo file di configurazione: %1</translation>
     </message>
   </context>
 </TS>
