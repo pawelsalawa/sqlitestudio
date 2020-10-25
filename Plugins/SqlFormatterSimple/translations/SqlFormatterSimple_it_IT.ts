@@ -6,12 +6,12 @@
     <message>
       <location filename="../SqlFormatterSimple.ui" line="20"/>
       <source>Upper case keywords</source>
-      <translation type="unfinished">Upper case keywords</translation>
+      <translation>Parole chiave maiuscole</translation>
     </message>
     <message>
       <location filename="../SqlFormatterSimple.ui" line="30"/>
       <source>Reduce multiple whitespaces to single whitespace</source>
-      <translation type="unfinished">Reduce multiple whitespaces to single whitespace</translation>
+      <translation>Riduce spazi bianchi multipli a spazi bianchi singoli</translation>
     </message>
   </context>
 </TS>
