@@ -7,12 +7,12 @@
       <location filename="../db/abstractdb.cpp" line="343"/>
       <location filename="../db/abstractdb.cpp" line="360"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>Impossibile eseguire la query su un database chiuso.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="643"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>Errore nell'allegare il database %1: %2</translation>
     </message>
   </context>
   <context>
@@ -21,37 +21,37 @@
       <location filename="../db/chainexecutor.cpp" line="37"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not defined.</translation>
+      <translation>Il database per l'esecuzione delle query non è stato definito.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="44"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not open.</translation>
+      <translation>Il database per l'esecuzione delle query non è stato aperto.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>Impossibile disabilitare le chiavi esterne nel database. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>Impossibile avviare una transazione nel database. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>Interrotto</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
+      <translation>Impossibile effettuare il commit di una transazione nel database. Dettagli: %1</translation>
     </message>
   </context>
   <context>
@@ -59,82 +59,82 @@
     <message>
       <location filename="../completionhelper.cpp" line="196"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>Nuovo riferimento riga</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="203"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>Vecchio riferimento riga</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>Nuovo nome della tabella</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="211"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>Nuovo nome indice</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>Nuovo nome vista</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>Nuovo nome del trigger</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>Alias tabella o colonna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>nome della transazione</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>Nuovo nome colonna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="229"/>
       <source>Column data type</source>
-      <translation type="unfinished">Column data type</translation>
+      <translation>Tipo di dati colonna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="232"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Nome del constraint</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="245"/>
       <source>Error message</source>
-      <translation type="unfinished">Error message</translation>
+      <translation>Messaggio di errore</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="289"/>
       <source>Collation name</source>
-      <translation type="unfinished">Collation name</translation>
+      <translation>Nome della collation</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="304"/>
       <source>Any word</source>
-      <translation type="unfinished">Any word</translation>
+      <translation>Qualsiasi parola</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="485"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>Database predefinito</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="486"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>Database oggetti temporanei</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="869"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Impossibile avviare la transazione del database per eliminare la cronologia SQL, quindi non è stata eliminata.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="876"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Impossibile avviare la transazione del database per eliminare la cronologia SQL, quindi non è stata eliminata.</translation>
     </message>
   </context>
   <context>
@@ -155,35 +155,35 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>Impossibile aggiungere il database %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
+      <translation>Il database %1 non può essere aggiornato, a causa di un errore: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>Il file del database non esiste.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>Nessun plugin di supporto caricato.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>Impossibile inizializzare il database.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>Non è stato trovato alcun plugin per il driver del database.</translation>
     </message>
   </context>
   <context>
@@ -192,51 +192,51 @@
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>Errore durante la creazione della tabella nel database di destinazione: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <source>Could not parse table.</source>
-      <translation type="unfinished">Could not parse table.</translation>
+      <translation>Impossibile analizzare la tabella.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
+      <translation>Il database %1 non può essere allegato al database %2, così i dati della tabella %3 verranno copiati con SQLiteStudio come mediatore. Questo metodo può essere lento per le tabelle enormi, quindi sii paziente.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="447"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation type="unfinished">Error while copying data for table %1: %2</translation>
+      <translation>Errore durante la copia dei dati per la tabella %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="466"/>
       <location filename="../dbobjectorganizer.cpp" line="473"/>
       <location filename="../dbobjectorganizer.cpp" line="496"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation type="unfinished">Error while copying data to table %1: %2</translation>
+      <translation>Errore durante la copia dei dati nella tabella %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="535"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation type="unfinished">Error while dropping source view %1: %2
-Tables, indexes, triggers and views copied to database %3 will remain.</translation>
+      <translation>Errore durante il rilascio della vista sorgente %1: %2
+Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="542"/>
       <source>Error while creating view in target database: %1</source>
-      <translation type="unfinished">Error while creating view in target database: %1</translation>
+      <translation>Errore durante la creazione della vista nel database di destinazione: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="547"/>
       <source>Error while creating index in target database: %1</source>
-      <translation type="unfinished">Error while creating index in target database: %1</translation>
+      <translation>Errore durante la creazione dell'indice nel database di destinazione: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="552"/>
       <source>Error while creating trigger in target database: %1</source>
-      <translation type="unfinished">Error while creating trigger in target database: %1</translation>
+      <translation>Errore durante la creazione del trigger nel database di destinazione: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="773"/>
@@ -301,7 +301,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
+      <translation>Esporta plugin %1 non supporta esportazione di tabelle.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
