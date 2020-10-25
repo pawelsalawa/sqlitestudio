@@ -181,22 +181,22 @@
     <message>
       <location filename="../pdfexport.ui" line="63"/>
       <source>Right margin:</source>
-      <translation type="unfinished">Right margin:</translation>
+      <translation>Margine destro:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="70"/>
       <source>Left margin:</source>
-      <translation type="unfinished">Left margin:</translation>
+      <translation>Margine sinistro:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="77"/>
       <source>Cell padding:</source>
-      <translation type="unfinished">Cell padding:</translation>
+      <translation>Spaziatura cella:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="84"/>
       <source>Limit characters in single cell:</source>
-      <translation type="unfinished">Limit characters in single cell:</translation>
+      <translation>Limita i caratteri in una singola cella:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="91"/>
@@ -205,52 +205,52 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>mm</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
       <source>Bottom margin:</source>
-      <translation type="unfinished">Bottom margin:</translation>
+      <translation>Margine inferiore:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="163"/>
       <source>Top margin:</source>
-      <translation type="unfinished">Top margin:</translation>
+      <translation>Margine superiore:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="183"/>
       <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <translation>Font</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="206"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>Colori</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="212"/>
       <source>Headers background:</source>
-      <translation type="unfinished">Headers background:</translation>
+      <translation>Sfondo intestazioni:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="235"/>
       <source>NULL value color:</source>
-      <translation type="unfinished">NULL value color:</translation>
+      <translation>Colore del valore NULL:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="261"/>
       <source>Other settings</source>
-      <translation type="unfinished">Other settings</translation>
+      <translation>Altre impostazioni</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="267"/>
       <source>Print row numbers for data</source>
-      <translation type="unfinished">Print row numbers for data</translation>
+      <translation>Stampa numeri di righe per i dati</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
-      <translation type="unfinished">Print page numbers</translation>
+      <translation>Print page numbers</translation>
     </message>
   </context>
 </TS>
