@@ -438,46 +438,46 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../importworker.cpp" line="30"/>
       <source>Could not start transaction in order to import a data: %1</source>
-      <translation type="unfinished">Could not start transaction in order to import a data: %1</translation>
+      <translation>Impossibile avviare la transazione per importare i dati: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="52"/>
       <source>Could not commit transaction for imported data: %1</source>
-      <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
+      <translation>Impossibile effettuare il commit della transazione per i dati importati: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation type="unfinished">Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
+      <translation>La tabella &apos;%1&apos; ha meno colonne di quelle che ci sono colonne nei dati da importare. Le colonne di dati eccessive verranno ignorate.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation type="unfinished">Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
+      <translation>La tabella &apos;%1&apos; ha più colonne di quelle che ci sono colonne nei dati da importare. Alcune colonne nella tabella saranno lasciate vuote.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>Impossibile creare la tabella da importare in: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="177"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Error while importing data: %1</source>
-      <translation type="unfinished">Error while importing data: %1</translation>
+      <translation>Errore durante l'importazione dei dati: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
-      <translation type="unfinished">Interrupted.</translation>
+      <translation>Interrotto.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="172"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
+      <translation>Impossibile importare riga numero %1. La riga è stata ignorata. Dettagli problema: %2</translation>
     </message>
   </context>
   <context>
@@ -485,34 +485,34 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="543"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
+      <translation>Impossibile caricare il plugin %1 perché và in conflitto con il plugin %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="554"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
+      <translation>Impossibile caricare il plugin %1, perché non è stata caricata la sua dipendenza: %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="563"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation type="unfinished">Cannot load plugin %1. Error details: %2</translation>
+      <translation>Impossibile caricare il plugin %1. Dettagli errore: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation type="unfinished">Cannot load plugin %1 (error while initializing plugin).</translation>
+      <translation>Impossibile caricare il plugin %1 (errore durante l'inizializzazione del plugin).</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">min: %1</translation>
+      <translation>min: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">max: %1</translation>
+      <translation>max: %1</translation>
     </message>
   </context>
   <context>
@@ -521,7 +521,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>Costante</translation>
     </message>
   </context>
   <context>
@@ -529,7 +529,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>Valore costante:</translation>
     </message>
   </context>
   <context>
@@ -651,57 +651,57 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation type="unfinished">Minimum length</translation>
+      <translation>Lunghezza minima</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation type="unfinished">Letters from a to z.</translation>
+      <translation>Lettere da a a z.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>Alpha</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation type="unfinished">Numbers from 0 to 9.</translation>
+      <translation>Numeri da 0 a 9.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation type="unfinished">Numeric</translation>
+      <translation>Numerico</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>Uno spazio bianco, un tab ed un carattere di ritorno a capo.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Spazio bianco</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>Include tutto sopra e tutti gli altri.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation type="unfinished">Binary</translation>
+      <translation>Binario</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>Usa i caratteri del mio set personalizzato:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation type="unfinished">Maximum length</translation>
+      <translation>Lunghezza massima</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
