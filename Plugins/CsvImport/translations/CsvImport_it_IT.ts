@@ -6,22 +6,22 @@
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>Impossibile leggere il file %1</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation type="unfinished">Could not find any data in the file %1.</translation>
+      <translation>Impossibile trovare alcun dato nel file %1.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>Inserisci il carattere del separatore personalizzato.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
+      <translation>File CSV (*.csv);;File di testo (*.txt);;Tutti i file (*)</translation>
     </message>
   </context>
   <context>
@@ -29,27 +29,27 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (virgola)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (Punto e virgola)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (tab)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (spazio bianco)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>Personalizzato:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
