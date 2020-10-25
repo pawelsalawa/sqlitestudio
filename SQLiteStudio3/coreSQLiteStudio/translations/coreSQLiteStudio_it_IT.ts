@@ -706,7 +706,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>Se si digita un carattere più volte, esso ha più probabilità di essere utilizzato.</translation>
     </message>
   </context>
   <context>
@@ -714,7 +714,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>Script</translation>
     </message>
   </context>
   <context>
@@ -722,22 +722,22 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>Codice di inizializzazione (facoltativo)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation type="unfinished">Per step code</translation>
+      <translation>Per passo di codice</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Lingua</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="89"/>
       <source>Help</source>
-      <translation type="unfinished">Help</translation>
+      <translation>Aiuto</translation>
     </message>
   </context>
   <context>
@@ -745,7 +745,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>Sequenza</translation>
     </message>
   </context>
   <context>
@@ -753,12 +753,12 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>Valore iniziale:</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>Passo:</translation>
     </message>
   </context>
   <context>
@@ -766,17 +766,17 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>Impossibile avviare la transazione per eseguire il popolamento della tabella. Dettagli di errore: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="70"/>
       <source>Error while populating table: %1</source>
-      <translation type="unfinished">Error while populating table: %1</translation>
+      <translation>Errore durante il popolamento della tabella: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="81"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
+      <translation>Impossibile effettuare il commit della transazione dopo il popolamento della tabella. Dettagli errore: %1</translation>
     </message>
   </context>
   <context>
@@ -784,30 +784,30 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../common/utils.cpp" line="1022"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb2.h" line="222"/>
       <location filename="../db/abstractdb3.h" line="384"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>Impossibile aprire il database: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb2.h" line="833"/>
       <location filename="../db/abstractdb3.h" line="1132"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>Risultato impostato scaduto o nessuna riga disponibile.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="328"/>
       <location filename="../db/abstractdb3.h" line="332"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>Impossibile caricare l'estensione %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="405"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>Impossibile chiudere il database: %1</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="138"/>
@@ -818,7 +818,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <location filename="../dbversionconverter.cpp" line="256"/>
       <location filename="../dbversionconverter.cpp" line="336"/>
       <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; statement.</translation>
+      <translation>SQLite %1 non supporta l'istruzione &apos;%2&apos;.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="202"/>
