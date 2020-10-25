@@ -301,37 +301,37 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation>Esporta plugin %1 non supporta esportazione di tabelle.</translation>
+      <translation>Il plugin di esportazione %1 non supporta l'esportazione di tabelle.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
+      <translation>Il plugin di esportazione %1 non supporta l'esportazione di databases.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="155"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-      <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
+      <translation>Il formato di esportazione &apos;%1&apos; non è supportato. I formati supportati sono: %2.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
-      <translation type="unfinished">Export to the clipboard was successful.</translation>
+      <translation>Esportazione negli appunti riuscita.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
-      <translation type="unfinished">Export to the file &apos;%1&apos; was successful.</translation>
+      <translation>Esportazione nel file &apos;%1&apos; riuscita.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation type="unfinished">Export was successful.</translation>
+      <translation>Esportazione riuscita.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
-      <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
+      <translation>Impossibile esportare nel file %1. Il file non può essere aperto in scrittura.</translation>
     </message>
   </context>
   <context>
@@ -339,12 +339,12 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../exportworker.cpp" line="122"/>
       <source>Error while exporting query results: %1</source>
-      <translation type="unfinished">Error while exporting query results: %1</translation>
+      <translation>Errore durante l'esportazione dei risultati della query: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="202"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
+      <translation>Errore durante il conteggio della larghezza della colonna dei dati da esportare dalla tabella %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="346"/>
@@ -853,14 +853,14 @@ Dettagli errore: %2</translation>
     <message>
       <location filename="../dbversionconverter.cpp" line="775"/>
       <source>SQLite %1 does not support row value clauses in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support row value clauses in expressions.</translation>
+      <translation>SQLite %1 non supporta le clausole di valore di riga nelle espressioni.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="786"/>
       <location filename="../dbversionconverter.cpp" line="789"/>
       <location filename="../dbversionconverter.cpp" line="800"/>
       <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
-      <translation type="unfinished">SQLite %1 does not support &apos;%2&apos; clause in expressions.</translation>
+      <translation>SQLite %1 non supporta la clausola &apos;%2&apos; nelle espressioni.</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="115"/>
@@ -1107,19 +1107,19 @@ La vista rimarrà così com'è.</translation>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Time spent</translation>
+      <translation>Tempo trascorso</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Rows affected</translation>
+      <translation>Righe interessate</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1127,23 +1127,23 @@ La vista rimarrà così com'è.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="51"/>
       <source>Updates installer executable is missing.</source>
-      <translation type="unfinished">Updates installer executable is missing.</translation>
+      <translation>Manca l'eseguibile degli aggiornamenti dell'installatore.</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="52"/>
       <location filename="../services/updatemanager.cpp" line="76"/>
       <source>Unable to check for updates (%1)</source>
-      <translation type="unfinished">Unable to check for updates (%1)</translation>
+      <translation>Impossibile verificare gli aggiornamenti (%1)</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="74"/>
       <source>details are unknown</source>
-      <translation type="unfinished">details are unknown</translation>
+      <translation>i dettagli sono sconosciuti</translation>
     </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="89"/>
       <source>Unable to run updater application (%1). Please report this.</source>
-      <translation type="unfinished">Unable to run updater application (%1). Please report this.</translation>
+      <translation>Impossibile eseguire l'applicazione updater (%1). Si prega di segnalarlo.</translation>
     </message>
   </context>
 </TS>
