@@ -52,7 +52,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="79"/>
       <source>Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</source>
-      <translation type="unfinished">Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</translation>
+      <translation>Abilitando questa opzione disabilita i controlli HMAC introdotti in SQLCipher 2.0, rendendo così la connessione compatibile con SQLCipher 1.1.x.</translation>
     </message>
   </context>
 </TS>
