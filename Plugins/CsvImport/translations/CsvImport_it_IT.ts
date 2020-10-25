@@ -54,32 +54,32 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Abilita questa opzione se la prima riga di dati nel tuo file CSV contiene i nomi di colonna. Se non vuoi che i nomi di colonna vengano importati nella tabella come se fossero semplici dati.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>La prima riga rappresenta i nomi delle colonne CSV</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>Separatore di campo:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation>Se abilitato, il valore del testo fornito a destra sarà interpretato come NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
       <source>NULL values:</source>
-      <translation type="unfinished">NULL values:</translation>
+      <translation>Valori NULL:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
+      <translation>Se i tuoi dati CSV contengono valori nulli, definisci come sono rappresentati nel CSV.</translation>
     </message>
   </context>
 </TS>
