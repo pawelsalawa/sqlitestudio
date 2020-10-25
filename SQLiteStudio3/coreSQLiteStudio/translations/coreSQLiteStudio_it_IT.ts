@@ -404,12 +404,12 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>Errore durante la scrittura sul file %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
       <source>Unsupported scripting language: %1</source>
-      <translation type="unfinished">Unsupported scripting language: %1</translation>
+      <translation>Linguaggio di scripting non supportato: %1</translation>
     </message>
   </context>
   <context>
@@ -417,7 +417,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
-      <translation type="unfinished">Could not initialize text codec for exporting. Using default codec: %1</translation>
+      <translation>Impossibile inizializzare il codec di testo per l'esportazione. Usare il codec predefinito: %1</translation>
     </message>
   </context>
   <context>
@@ -425,7 +425,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully.</translation>
+      <translation>Dati importati nella tabella &apos;%1&apos; con successo.</translation>
     </message>
   </context>
   <context>
@@ -433,7 +433,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>Nessuna colonna fornita dal plugin di importazione.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
