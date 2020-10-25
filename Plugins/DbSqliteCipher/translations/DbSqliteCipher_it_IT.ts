@@ -6,48 +6,48 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="43"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>Password (chiave)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="44"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Lasciare vuoto per creare o connettersi al database decriptato.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="45"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>Password di crittografia</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="50"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>Cifra</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="51"/>
       <source>Must be the same as the one used when creating the database. %1 is the default one.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default one.</translation>
+      <translation>Deve essere lo stesso di quello usato quando si crea il database. %1 è quello predefinito.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="59"/>
       <source>KDF iterations</source>
-      <translation type="unfinished">KDF iterations</translation>
+      <translation>Iterazioni KDF</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="63"/>
       <location filename="../dbsqlitecipher.cpp" line="72"/>
       <source>Must be the same as the one used when creating the database. %1 is the default.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default.</translation>
+      <translation>Deve essere lo stesso di quello usato quando si crea il database. %1 è quello predefinito.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="68"/>
       <source>Cipher page size</source>
-      <translation type="unfinished">Cipher page size</translation>
+      <translation>Dimensione pagina di cifratura</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="77"/>
       <source>1.1 compatibility</source>
-      <translation type="unfinished">1.1 compatibility</translation>
+      <translation>1.1 compatibilità</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="79"/>
