@@ -6,164 +6,164 @@
     <message>
       <location filename="../pdfexport.cpp" line="28"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>Risultati della query SQL</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="90"/>
       <location filename="../pdfexport.cpp" line="144"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>Tabella esportata: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="93"/>
       <location filename="../pdfexport.cpp" line="159"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabella: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Colonna</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Tipo di dati</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Constraints</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
       <source>Global table constraints</source>
-      <translation type="unfinished">Global table constraints</translation>
+      <translation>Constraints della tabella globale</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
       <source>Exported database: %1</source>
-      <translation type="unfinished">Exported database: %1</translation>
+      <translation>Database esportato: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Indice: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Property</source>
       <comment>index header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>Proprietà</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Value</source>
       <comment>index header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>Valore</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="228"/>
       <source>Indexed table</source>
-      <translation type="unfinished">Indexed table</translation>
+      <translation>Tabella indicizzata</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Unique index</source>
-      <translation type="unfinished">Unique index</translation>
+      <translation>Indice unico</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>Sì</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>No</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Collation</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Ordina per</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="247"/>
       <source>Partial index condition</source>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>Condizione indice parziale</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="261"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Trigger: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Property</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>Proprietà</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Value</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>Valore</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="265"/>
       <source>Activation time</source>
-      <translation type="unfinished">Activation time</translation>
+      <translation>Tempo di attivazione</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
       <source>For action</source>
-      <translation type="unfinished">For action</translation>
+      <translation>Per azione</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="272"/>
       <source>On view</source>
-      <translation type="unfinished">On view</translation>
+      <translation>Su vista</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="274"/>
       <source>On table</source>
-      <translation type="unfinished">On table</translation>
+      <translation>Su tabella</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="279"/>
       <source>Activation condition</source>
-      <translation type="unfinished">Activation condition</translation>
+      <translation>Condizione di attivazione</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="285"/>
       <source>Code executed</source>
-      <translation type="unfinished">Code executed</translation>
+      <translation>Codice eseguito</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="297"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>Vista: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
       <source>Query:</source>
-      <translation type="unfinished">Query:</translation>
+      <translation>Query:</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="654"/>
       <source>Document generated with SQLiteStudio v%1</source>
-      <translation type="unfinished">Document generated with SQLiteStudio v%1</translation>
+      <translation>Documento generato con SQLiteStudio v%1</translation>
     </message>
   </context>
   <context>
@@ -171,12 +171,12 @@
     <message>
       <location filename="../pdfexport.ui" line="20"/>
       <source>Size and layout</source>
-      <translation type="unfinished">Size and layout</translation>
+      <translation>Dimensione e disposizione</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="36"/>
       <source>Page size:</source>
-      <translation type="unfinished">Page size:</translation>
+      <translation>Dimensione pagina:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="63"/>
