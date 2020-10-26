@@ -6,27 +6,27 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation>זוהתה תצורה ישנה מגרסת SQLiteStudio 2.x.x. האם להסב הגדרות ישנות לגרסה הנוכחית? &lt;a href=&quot;%1&quot;&gt;הקשה לאישור ביצוע&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation type="unfinished">Bug reports history (%1)</translation>
+      <translation>היסטורית דיווח תקלים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>רשימת מסדי נתונים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>תפקודי SQK מותאמים (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>היסטוריית שאילתות SQL (%1)</translation>
     </message>
   </context>
   <context>
@@ -34,117 +34,117 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="14"/>
       <source>Configuration migration</source>
-      <translation type="unfinished">Configuration migration</translation>
+      <translation>הגירת תצורה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
       <source>Items to migrate</source>
-      <translation type="unfinished">Items to migrate</translation>
+      <translation>פריטים להסבה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation>זוהי רשימה של פריטים שנמצאו בקובץ התצורה הישן, אותם ניתן להסב לתצורה הנוכחית.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>אפשרויות</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>הכנסת מסדי נתונים מיובאים לקבוצה נפרדת</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>שם קבוצה</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
       <source>Enter a non-empty name.</source>
-      <translation type="unfinished">Enter a non-empty name.</translation>
+      <translation>נא להזין שם (לא ריק).</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="68"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation type="unfinished">Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</translation>
+      <translation>קבוצה ברמה עליונה בשם &apos;%1&apos; קיימת כבר. נא להזין שם קבוצה שטרם נוצרה.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="102"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
-      <translation type="unfinished">Could not open old configuration file in order to migrate settings from it.</translation>
+      <translation>לא ניתן לפתוח קובץ תצורה ישן על מנת להסב ממנו הגדרות.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="110"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
-      <translation type="unfinished">Could not open current configuration file in order to migrate settings from old configuration file.</translation>
+      <translation>לא ניתן לפתוח קובץ תצורה נוכחי על מנת להסב הגדרות מקובץ תצורה ישן.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation type="unfinished">Could not commit migrated data into new configuration file: %1</translation>
+      <translation>לא ניתן לבצע קומיט של הנתונים המוסבים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא את היסטוריית דוחות התקלים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a bug reports history entry into new configuration file: %1</translation>
+      <translation>לא ניתן להכניס את רשומת היסטוריית דוחות התקלים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="201"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read database list from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא את רשימת מסדי הנתונים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="215"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא ניתן לבצע שאילתה על קבוצת הכלה וסדר זמין בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="226"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא ניתן ליצור קבוצת הכלה בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="247"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a database entry into new configuration file: %1</translation>
+      <translation>לא ניתן להכניס את רשומת מסד נתונים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="259"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation type="unfinished">Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
+      <translation>לא ניתן לבצע שאילתה על סדר זמין של מסד הנתונים הבא בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="270"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
+      <translation>לא ניתן ליצור קבוצה המפנה את מסד הנתונים בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="288"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read function list from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא רשימת פונקציות מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="323"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read SQL queries history from old configuration file in order to migrate it: %1</translation>
+      <translation>לא ניתן לקרוא את היסטוריית שאילתות ה SQL מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="330"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
-      <translation type="unfinished">Could not read next ID for SQL queries history in new configuration file: %1</translation>
+      <translation>לא ניתן לקרוא את המזהה הבא של שאילתות ה SQL מקובץ התצורה החדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="346"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert SQL history entry into new configuration file: %1</translation>
+      <translation>לא ניתן להכניס את רשומת היסטוריית שאילתות SQL לקובץ תצורה חדש: %1</translation>
     </message>
   </context>
 </TS>

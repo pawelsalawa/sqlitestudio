@@ -6,27 +6,27 @@
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+      <translation>קבצי מלל (*.txt);;כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>לא ניתן לקרוא קובץ %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
       <source>Enter the regular expression pattern.</source>
-      <translation type="unfinished">Enter the regular expression pattern.</translation>
+      <translation>הזנת דפוס ביטוי-רגיל.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
       <source>Invalid pattern: %1</source>
-      <translation type="unfinished">Invalid pattern: %1</translation>
+      <translation>דפוס שגוי: %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
       <source>Requested capture index %1 is out of range.</source>
-      <translation type="unfinished">Requested capture index %1 is out of range.</translation>
+      <translation>מפתח לכידה מבוקש %1 מחוץ לטווח.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
@@ -39,17 +39,17 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation type="unfinished">Capture groups</translation>
+      <translation>לכידת קבוצות</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
       <source>Treat all RegExp capture groups as columns</source>
-      <translation type="unfinished">Treat all RegExp capture groups as columns</translation>
+      <translation>להתייחס לכל קבוצות הלכידה של ביטוי-רגיל כעמודות</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="39"/>
       <source>Import only following groups:</source>
-      <translation type="unfinished">Import only following groups:</translation>
+      <translation>יבוא הקבוצות הבאות בלבד:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="52"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation type="unfinished">Example: 1, 3, 4</translation>
+      <translation>דוגמה: 1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation type="unfinished">Pattern:</translation>
+      <translation>תבנית:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>
@@ -80,7 +80,7 @@ You can use named groups and refer to them in group list below. To name a group 
     <message>
       <location filename="../regexpimport.ui" line="81"/>
       <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-      <translation type="unfinished">Example: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+      <translation>דוגמה: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
   </context>
 </TS>

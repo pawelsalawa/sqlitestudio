@@ -6,32 +6,32 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>מסד נתונים נוכחי: %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation type="unfinished">No current working database is set.</translation>
+      <translation>לא נקבע מסד נתונים נוכחי פעיל.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>הזנת %1 לעזרה</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="257"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>מסד הנתונים שהועבר בפרמטרים של שורת הפקודה (%1) כבר היה ברשימה בשם: %2</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="264"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>לא ניתן להוסיף מסד נתונים %1 לרשימה.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="290"/>
       <source>closed</source>
-      <translation type="unfinished">closed</translation>
+      <translation>סגור</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>שימוש: %1%2</translation>
     </message>
   </context>
   <context>
@@ -47,34 +47,34 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="9"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>לא ניתן להוסיף מסד נתונים %1 לרשימה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="14"/>
       <source>Database added: %1</source>
-      <translation type="unfinished">Database added: %1</translation>
+      <translation>התווסף מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="19"/>
       <source>adds new database to the list</source>
-      <translation type="unfinished">adds new database to the list</translation>
+      <translation>הוספת מסד נתונים חדש לרשימה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation type="unfinished">Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</translation>
+      <translation>הוספת מסד נתונים נתון מ &lt;path&gt; בשם &lt;name&gt; לרשימת מסדי הנתונים. השם &lt;name&gt; הוא שם סמלי אליו ניתן יהיה להתייחס מאוחר יותר. נא לבחור בכל שם ייחודי. לרשימת מסדי נתונים הנמצאים כבר ברשימה, נא להשתמש בפקודה%1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>נתיב</translation>
     </message>
   </context>
   <context>
@@ -82,28 +82,28 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>מחיצה שונתה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>לא ניתן לשנות מחיצה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>שינוי מחיצת עבודה נוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation type="unfinished">Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</translation>
+      <translation>פקודה דומה מאוד ל &apos;cd&apos; המוכרת ממערכות יוניקס וחלונות. דורש &lt;path&gt; להעברת משתנה בלתי תלוי, לכן קריאה ל-%1 תגרום תמיד לשינוי מחיצה. למציאת &apos;מחיצת העבודה הנוכחית, ניתן להשתמש בפקודה %2 ולהצגת תוכן מחיצת העבודה הנוכחית ניתן להשתמש בפקודה %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>נתיב</translation>
     </message>
   </context>
   <context>
@@ -117,7 +117,7 @@
       <location filename="../commands/clicommandclose.cpp" line="21"/>
       <location filename="../commands/clicommandclose.cpp" line="29"/>
       <source>Connection to database %1 closed.</source>
-      <translation type="unfinished">Connection to database %1 closed.</translation>
+      <translation>קישור למסד נתונים %1 נותק.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation type="unfinished">closes given (or current) database</translation>
+      <translation>סגירת מסד נתונים נתון (או נוכחי)</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -138,7 +138,7 @@
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
   </context>
   <context>
@@ -146,51 +146,51 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation type="unfinished">No current working database defined.</translation>
+      <translation>לא הוגדר מסד נתונים נוכחי פעיל.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation type="unfinished">Databases:</translation>
+      <translation>מסד נתונים:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
       <location filename="../commands/clicommanddblist.cpp" line="34"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Open</translation>
+      <translation>פתיחה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Closed</translation>
+      <translation>סגירה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="32"/>
       <location filename="../commands/clicommanddblist.cpp" line="36"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Connection</translation>
+      <translation>חיבור</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="38"/>
       <location filename="../commands/clicommanddblist.cpp" line="45"/>
       <source>Database file path</source>
-      <translation type="unfinished">Database file path</translation>
+      <translation>נתיב מסד הנתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation type="unfinished">prints list of registered databases</translation>
+      <translation>הדפסת רשימה של מסדי נתונים רשומים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
@@ -212,57 +212,57 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>מסד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>לא ניתן למצוא טבלה בשם: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>הצגת פרטים אודות הטבלה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>טבלה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>טבלה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>שם עמודה</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>סוג נתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>אילוצים</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>טבלה מדומה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>משתנים בלתי תלויים מבניים:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>לא הועברו משתנים בלתי תלויים מבניים לטבלה מדומה זו.</translation>
     </message>
   </context>
   <context>
@@ -270,7 +270,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation type="unfinished">lists directories and files in current working directory</translation>
+      <translation>הצגת רשימת ספריות וקבצים במחיצת העבודה הנוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
@@ -284,7 +284,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation type="unfinished">pattern</translation>
+      <translation>דפוס</translation>
     </message>
   </context>
   <context>
@@ -292,12 +292,12 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>יציאה מהישומון</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation type="unfinished">Quits the application. Settings are stored in configuration file and will be restored on next startup.</translation>
+      <translation>יציאה מהיישומון. ההגדרות נשמרות בקובץ התצורה וישוחזרו בהפעלה הבאה.</translation>
     </message>
   </context>
   <context>
@@ -305,7 +305,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="16"/>
       <source>shows this help message</source>
-      <translation type="unfinished">shows this help message</translation>
+      <translation>הצגת הודעת עזרה זו</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="21"/>
@@ -326,12 +326,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
       <source>command</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">command</translation>
+      <translation>פקודה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="42"/>
       <source>No such command: %1</source>
-      <translation type="unfinished">No such command: %1</translation>
+      <translation>לא קיימת פקודה: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
@@ -341,12 +341,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>שימוש: %1%2</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
       <source>Aliases: %1</source>
-      <translation type="unfinished">Aliases: %1</translation>
+      <translation>כינויים: %1</translation>
     </message>
   </context>
   <context>
@@ -354,12 +354,12 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="23"/>
       <source>Current history limit is set to: %1</source>
-      <translation type="unfinished">Current history limit is set to: %1</translation>
+      <translation>מגבלות היסטוריה נוכחית הוגדרה ל: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation type="unfinished">prints history or erases it</translation>
+      <translation>מציג היסטוריה או מנקה אותה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -377,22 +377,22 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
       <source>number</source>
-      <translation type="unfinished">number</translation>
+      <translation>מספר</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
       <source>Console history erased.</source>
-      <translation type="unfinished">Console history erased.</translation>
+      <translation>היסטוריית המסוף נמחקה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="75"/>
       <source>Invalid number: %1</source>
-      <translation type="unfinished">Invalid number: %1</translation>
+      <translation>מספר שגוי: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="80"/>
       <source>History limit set to %1</source>
-      <translation type="unfinished">History limit set to %1</translation>
+      <translation>מגבלות היסטוריה הוגדרו ל %1</translation>
     </message>
   </context>
   <context>
@@ -477,7 +477,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>לא ניתן להוסיף מסד נתונים %1 לרשימה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
@@ -492,24 +492,24 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>פתיחת קישור למסד נתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation type="unfinished">Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</translation>
+      <translation>פתיחת קישור למסד הנתונים. אם לא הועברו משתנים בלתי תלויים נוספים, יתבצע קישור למסד נתונים ברירת המחדל הנוכחי (לפרטים נוספים ולעזרה %1). במידע והועבר משתנה בלתי תלוי, מסד הנתונים הרשום &lt;name&gt; לפתיחה, או &lt;path&gt; לקובץ מסד הנתונים לפתיחה. במקרה השני, הנתיב &lt;path&gt; יתווסף לרשימה בצרוף לשם שיחולל, אך רק למשך הפעולה הנוכחית של היישום. לאחר אתחול היישום מסד נתונים זה לא ישמר ברשימה.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>נתיב</translation>
     </message>
   </context>
   <context>
@@ -517,12 +517,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="13"/>
       <source>prints the current working directory</source>
-      <translation type="unfinished">prints the current working directory</translation>
+      <translation>הדפסת מחיצת עבודה נוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-      <translation type="unfinished">This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</translation>
+      <translation>זהה לפקודה &apos;pwd&apos; במערכות יוניקס ולפקודת &apos;cd&apos; ללא משתנה בלתי תלוי בחלונות. הפקודה תציג על המסך את מחיצת העבודה הנוכחית. ניתן לשנות את ספריית העבודה הנוכחית באמצעות הפקודה%1 וניתן גם להציג רשימה של תוכן מחיצת העבודה הנוכחית באמצעות הפקודה%2.</translation>
     </message>
   </context>
   <context>
@@ -530,22 +530,22 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="12"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>לא קיים מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>מסד נתונים הוסר: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
       <source>New current database set:</source>
-      <translation type="unfinished">New current database set:</translation>
+      <translation>הגדרת מסד נתונים נוכחי חדש:</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>הסרת מסד נתונים מהרשימה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -556,7 +556,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <location filename="../commands/clicommandremove.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
   </context>
   <context>
@@ -573,12 +573,12 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>מספד הנתונים אינו פתוח.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
-      <translation type="unfinished">executes SQL query</translation>
+      <translation>הרצת שאילתת SQL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="69"/>
@@ -589,23 +589,23 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>עמודות רבות מדי למצב תצוגה %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>שורה %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
-      <translation type="unfinished">Query execution error: %1</translation>
+      <translation>שגיאת ריצת שאילתה: %1</translation>
     </message>
   </context>
   <context>
@@ -623,23 +623,23 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>מסד נתונים %1 סגור.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>טבלה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>הדפסת כל הטבלאות במסד הנתונים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
@@ -652,7 +652,7 @@ When the -s option is given, then system tables are also listed.</translation>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>מסד נתונים</translation>
     </message>
   </context>
   <context>
@@ -665,28 +665,28 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>טבלאות</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>מצגים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>עמודות</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>מִפְתֵּחַים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>מַזְנֵקים</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
@@ -710,23 +710,23 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>לא נבחר מסד נתונים נוכחי.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>מסד נתונים נוכחי: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>לא קיים מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation type="unfinished">changes default working database</translation>
+      <translation>החלפת מסד נתונים פעיל ברירת מחדל</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -757,7 +757,7 @@ The default database can be selected in various ways:
       <location filename="../commands/clicommanduse.cpp" line="63"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>שם</translation>
     </message>
   </context>
   <context>
@@ -765,37 +765,37 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>מספר משתנים בלתי תלויים לא מספקים.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>משתנים בלתי תלויים רבים מידי.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
       <source>Invalid argument value: %1.
 Expected one of: %2</source>
-      <translation type="unfinished">Invalid argument value: %1.
-Expected one of: %2</translation>
+      <translation>משתנה בלתי תלוי שגוי: %1.
+המערכת ציפתה לאחד מ: %2</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>אפשרות לא ידועה: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Option %1 requires an argument.</translation>
+      <translation>אפשרות %1 דורשת משתנה בלתי תלוי.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">string</translation>
+      <translation>מחרוזת</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="22"/>
@@ -820,12 +820,12 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>קובץ</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>קובץ מסד נתונים לפתיחה</translation>
     </message>
   </context>
 </TS>

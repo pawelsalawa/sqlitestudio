@@ -6,7 +6,7 @@
     <message>
       <location filename="../main.cpp" line="49"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>ממשק משתמש גרפי ל- SQLiteStudio, תכנת ניהול SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="53"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>log file</source>
-      <translation type="unfinished">log file</translation>
+      <translation>קובץ יומן</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
@@ -46,7 +46,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>database</source>
-      <translation type="unfinished">database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
@@ -56,27 +56,27 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>הצגת מתקעים מותקנים ב- SQLiteStudio ויציאה.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>הפניה לקובץ התצורה הראשי. פרטים נוספים, ניתן למצוא במדריך למשתמש בעמוד הוויקי.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>קובץ הגדרות SQLiteStudio</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>קובץ</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>קובץ מסד נתונים לפתיחה</translation>
     </message>
   </context>
 </TS>

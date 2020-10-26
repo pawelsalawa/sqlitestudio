@@ -6,53 +6,53 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="43"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>ססמה (מפתח)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="44"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>להשאיר ריק ליצירת או התחברות למסד נתונים לא מוצפן.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="45"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>ססמה מוצפנת</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="50"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>צוֹפֶן</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="51"/>
       <source>Must be the same as the one used when creating the database. %1 is the default one.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default one.</translation>
+      <translation>חייב להיות זהה לזה ששימש ביצירת מסד נתונים. ברירת המחדל היא %1.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="59"/>
       <source>KDF iterations</source>
-      <translation type="unfinished">KDF iterations</translation>
+      <translation>חִזְרוּרי KDF</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="63"/>
       <location filename="../dbsqlitecipher.cpp" line="72"/>
       <source>Must be the same as the one used when creating the database. %1 is the default.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default.</translation>
+      <translation>חייב להיות זהה לזה ששימש ביצירת מסד נתונים. ברירת המחדל היא %1.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="68"/>
       <source>Cipher page size</source>
-      <translation type="unfinished">Cipher page size</translation>
+      <translation>גודל דף צופן</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="77"/>
       <source>1.1 compatibility</source>
-      <translation type="unfinished">1.1 compatibility</translation>
+      <translation>תאימות 1.1</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="79"/>
       <source>Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</source>
-      <translation type="unfinished">Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</translation>
+      <translation>הפעלת אפשרות זו מבטלת בדיקות HMAC שהוצגו ב- SQLCipher 2.0, ובכך הופך את החיבור לתואם ל- SQLCipher 1.1.x.</translation>
     </message>
   </context>
 </TS>

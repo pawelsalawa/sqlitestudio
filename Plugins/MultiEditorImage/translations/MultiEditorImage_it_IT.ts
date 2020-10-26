@@ -6,67 +6,67 @@
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>Carica da file</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>Memorizza in un file</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom in by 25%</source>
-      <translation type="unfinished">Zoom in by 25%</translation>
+      <translation>Aumenta ingrandimento del 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Zoom out by 25%</source>
-      <translation type="unfinished">Zoom out by 25%</translation>
+      <translation>Riduci ingrandimento del 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>Reimposta zoom</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="100"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>Immagini (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Tutti i file (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="101"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>Apri immagine</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>Impossibile aprire il file %1 in lettura.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Tutti i file (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="132"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Salva immagine</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
+      <translation>Provato a salvare l'immagine in un formato diverso (%1) rispetto all'originale (%2), ma l'applicazione non è riuscita a convertirla. L'immagine con formato immutato (%3) verrà salvata con il nome specificato (%4)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
+      <translation>Impossibile aprire il file %1 in scrittura.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
       <source>Could not write image into the file %1</source>
-      <translation type="unfinished">Could not write image into the file %1</translation>
+      <translation>Impossibile scrivere l'immagine nel file %1</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="250"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>Immagine</translation>
     </message>
   </context>
 </TS>
