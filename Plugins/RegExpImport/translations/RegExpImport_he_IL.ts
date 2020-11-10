@@ -55,8 +55,8 @@
       <location filename="../regexpimport.ui" line="52"/>
       <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
-&lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;נא להזין רשימה מופרדת בפסיקים של מפתחי קבוצות לכידה. מפתח 0 מתייחס לכל המחרוזת התואמת.&lt;/p&gt;
+&lt;p&gt; אם נעשה שימוש בקבוצות שם בתבנית, ניתן להשתמש בשמות במקום במפתחים. ניתן לערבב מפתחים ושמות ברשימה זו.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="56"/>
