@@ -31,7 +31,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
       <source>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;שם קבוצת הלכידה המבוקש &apos;%1&apos;, אך הוא &apos; אינו מוגדר בתבנית: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
