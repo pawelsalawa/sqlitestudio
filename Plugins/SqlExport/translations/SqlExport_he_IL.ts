@@ -31,12 +31,12 @@
     <message>
       <location filename="../sqlexport.cpp" line="216"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
-      <translation type="unfinished">-- File generated with SQLiteStudio v%1 on %2</translation>
+      <translation>-- המסמך חולל באמצעות SQLiteStudio v%1 ב %2</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Text encoding used: %1</source>
-      <translation type="unfinished">-- Text encoding used: %1</translation>
+      <translation>קידוד מלל באמצעות: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="276"/>

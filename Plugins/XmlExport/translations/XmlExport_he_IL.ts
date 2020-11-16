@@ -19,12 +19,12 @@
     <message>
       <location filename="../XmlExport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation type="unfinished">Format document (new lines, indentation)</translation>
+      <translation>תבנות מסמך (שורה חדשה, הזחה)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation type="unfinished">Compress (everything in one line)</translation>
+      <translation>דחיסה (הכל בשורה אחת)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="58"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../XmlExport.ui" line="67"/>
       <source>Use CDATA and ampersands</source>
-      <translation type="unfinished">Use CDATA and ampersands</translation>
+      <translation>להשתמש ב- CDATA וב- "וגם" (&amp;)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="83"/>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../XmlExport.ui" line="102"/>
       <source>Always use ampersand</source>
-      <translation type="unfinished">Always use ampersand</translation>
+      <translation>להשתמש תמיד ב- "וגם" (&amp;)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="118"/>
