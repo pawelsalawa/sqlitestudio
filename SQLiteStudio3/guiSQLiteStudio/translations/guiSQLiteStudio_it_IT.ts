@@ -441,12 +441,12 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="390"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Scale is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>La scala non è consentita per le colonne di chiavi primarie di tipo Intero.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="391"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation type="unfinished">Precision cannot be defined without the scale.</translation>
+      <translation>La precisione non può essere definita senza la scala.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="392"/>
