@@ -279,27 +279,27 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Tipo di dati:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>Nome colonna:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>Dimensione:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Vincoli</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>Unico</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
@@ -310,133 +310,133 @@
       <location filename="../dialogs/columndialog.ui" line="199"/>
       <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>Configura</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Chiave Secondaria</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>Raccogli</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Not NULL</source>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>Non NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>Verifica condizione</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Primary Key</source>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>Chiave Primaria</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>Predefinito</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="270"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>Modalità avanzata</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="86"/>
       <source>Add constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add constraint</translation>
+      <translation>Aggiungi vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="87"/>
       <source>Edit constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>Modifica vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="88"/>
       <location filename="../dialogs/columndialog.cpp" line="237"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>Elimina vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
       <source>Move constraint up</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint up</translation>
+      <translation>Sposta vincolo su</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="90"/>
       <source>Move constraint down</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint down</translation>
+      <translation>Sposta vincolo verso il basso</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="92"/>
       <source>Add a primary key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a primary key</translation>
+      <translation>Aggiungi una chiave primaria</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>Aggiunge una chiave secondaria</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="94"/>
       <source>Add an unique constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add an unique constraint</translation>
+      <translation>Aggiungi un vincolo univoco</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="95"/>
       <source>Add a check constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a check constraint</translation>
+      <translation>Aggiungi un vincolo di spunta</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="96"/>
       <source>Add a not null constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a not null constraint</translation>
+      <translation>Aggiungi un vincolo non nullo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="97"/>
       <source>Add a collate constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a collate constraint</translation>
+      <translation>Aggiungi un vincolo di ordinamento</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="98"/>
       <source>Add a default constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a default constraint</translation>
+      <translation>Aggiungi un vincolo predefinito</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="236"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Are you sure you want to delete constraint &apos;%1&apos;?</translation>
+      <translation>Sei sicuro di voler eliminare il vincolo &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="298"/>
       <source>Correct the constraint&apos;s configuration.</source>
-      <translation type="unfinished">Correct the constraint&apos;s configuration.</translation>
+      <translation>Correggi la configurazione del vincolo.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="301"/>
       <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-      <translation type="unfinished">This constraint is not officially supported by SQLite 2,
-but it&apos;s okay to use it.</translation>
+      <translation>Questo vincolo non è ufficialmente supportato da SQLite 2,
+ma è comunque possibile usarlo.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="390"/>
