@@ -81,12 +81,12 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copia</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="102"/>
       <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-      <translation type="unfinished">&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
+      <translation>&lt;h3&gt;Tabella dei contenuti:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
   </context>
   <context>
@@ -94,12 +94,12 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="17"/>
       <source>Query parameters</source>
-      <translation type="unfinished">Query parameters</translation>
+      <translation>Parametri query</translation>
     </message>
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
       <source>Please provide values for query parameters</source>
-      <translation type="unfinished">Please provide values for query parameters</translation>
+      <translation>Si prega di fornire valori per i parametri di query</translation>
     </message>
   </context>
   <context>
@@ -107,87 +107,87 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="75"/>
       <source>Filter collations</source>
-      <translation type="unfinished">Filter collations</translation>
+      <translation>Filtro collazioni</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="138"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>Registrati in tutti i database</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="145"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>Registrati nei seguenti database:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="166"/>
       <source>Implementation code:</source>
-      <translation type="unfinished">Implementation code:</translation>
+      <translation>Codice di implementazione:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>Nome di collazione:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>Lingua di implementazione:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="52"/>
       <source>Collations editor</source>
-      <translation type="unfinished">Collations editor</translation>
+      <translation>Editor di collazioni</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="57"/>
       <source>Commit all collation changes</source>
-      <translation type="unfinished">Commit all collation changes</translation>
+      <translation>Esegui tutte le modifiche sulla collazione</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
       <source>Rollback all collation changes</source>
-      <translation type="unfinished">Rollback all collation changes</translation>
+      <translation>Riavvolgi tutte le modiche sulla collazione</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="60"/>
       <source>Create new collation</source>
-      <translation type="unfinished">Create new collation</translation>
+      <translation>Crea nuova collazione</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Delete selected collation</source>
-      <translation type="unfinished">Delete selected collation</translation>
+      <translation>Cancella collazione selezionata</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="63"/>
       <source>Editing collations manual</source>
-      <translation type="unfinished">Editing collations manual</translation>
+      <translation>Modificare il manuale delle collazioni</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="283"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the collation.</translation>
+      <translation>Inserisci un nome non vuoto e univoco della collazione.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="291"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>Scegli il linguaggio di implementazione.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="294"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation type="unfinished">Enter a non-empty implementation code.</translation>
+      <translation>Inserisci un codice di implementazione non vuoto.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="388"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
+      <translation>La finestra dell'editor Collations ha modifiche senza conferma.</translation>
     </message>
   </context>
   <context>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../common/colorbutton.cpp" line="29"/>
       <source>Pick a color</source>
-      <translation type="unfinished">Pick a color</translation>
+      <translation>Scegli un colore</translation>
     </message>
   </context>
   <context>
@@ -203,22 +203,22 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>Nome della collazione:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Constraint nominata:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="80"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Inserire un nome per la Constraint.</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation type="unfinished">Enter a collation name.</translation>
+      <translation>Inserisci un nome di collazione.</translation>
     </message>
   </context>
   <context>
@@ -226,7 +226,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="20"/>
       <source>Default value:</source>
-      <translation type="unfinished">Default value:</translation>
+      <translation>Valore predefinito:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
