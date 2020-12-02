@@ -11,7 +11,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
       <source>About</source>
-      <translation type="unfinished">About</translation>
+      <translation>Circa</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="30"/>
@@ -21,62 +21,62 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
-      <translation type="unfinished">Licenses</translation>
+      <translation>Licenze</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="55"/>
       <source>Environment</source>
-      <translation type="unfinished">Environment</translation>
+      <translation>Ambiente</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="61"/>
       <source>Icon directories</source>
-      <translation type="unfinished">Icon directories</translation>
+      <translation>Cartelle delle icone</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="81"/>
       <source>Form directories</source>
-      <translation type="unfinished">Form directories</translation>
+      <translation>Cartelle dei moduli</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="101"/>
       <source>Plugin directories</source>
-      <translation type="unfinished">Plugin directories</translation>
+      <translation>Cartella dei plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
       <source>Configuration directory</source>
-      <translation type="unfinished">Configuration directory</translation>
+      <translation>Cartella di configurazione</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="121"/>
       <source>Application directory</source>
-      <translation type="unfinished">Application directory</translation>
+      <translation>Cartella dell'applicazione</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="148"/>
       <source>Qt version:</source>
-      <translation type="unfinished">Qt version:</translation>
+      <translation>Versione Qt:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="172"/>
       <source>SQLite 3 version:</source>
-      <translation type="unfinished">SQLite 3 version:</translation>
+      <translation>Versione SQLite 3:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
       <source>Portable distribution.</source>
-      <translation type="unfinished">Portable distribution.</translation>
+      <translation>Distribuzione portatile.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation type="unfinished">MacOS X application boundle distribution.</translation>
+      <translation>Distribuzione boundle dell'applicazione MacOS X.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="45"/>
       <source>Operating system managed distribution.</source>
-      <translation type="unfinished">Operating system managed distribution.</translation>
+      <translation>Sistema operativo di distribuzione gestita.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="89"/>
