@@ -6,7 +6,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="14"/>
       <source>About SQLiteStudio and licenses</source>
-      <translation type="unfinished">About SQLiteStudio and licenses</translation>
+      <translation>Informazioni su SQLiteStudio e licenze</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
