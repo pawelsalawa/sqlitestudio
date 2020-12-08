@@ -451,17 +451,17 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="392"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
-      <translation type="unfinished">Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</translation>
+      <translation>Impossibile usare il tipo diverso da INTEGER se AUTOINCREMENT è abilitato in PRIMARY KEY.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="393"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation type="unfinished">INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</translation>
+      <translation>Il tipo di INTEGER è stato imposto a causa di AUTOINCREMENT abilitato in PRIMARIO CHIAVE.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="415"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Precision is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>La precisione non è consentita per le colonne PRIMARIE INTEGER.</translation>
     </message>
   </context>
   <context>
@@ -490,12 +490,12 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation type="unfinished">Foreign table:</translation>
+      <translation>Tabella secondaria:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Foreign column:</source>
-      <translation type="unfinished">Foreign column:</translation>
+      <translation>Colonna secondaria:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -520,12 +520,12 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>Scegli la tabella secondaria.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>Scegli la colonna secondaria.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
@@ -738,17 +738,17 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="245"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-      <translation type="unfinished">If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</translation>
+      <translation>Se disattivato, le colonne saranno ordinate nell'ordine in cui vengono digitate nell'istruzione CREATE TABLE.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="248"/>
       <source>Sort table columns alphabetically</source>
-      <translation type="unfinished">Sort table columns alphabetically</translation>
+      <translation>Ordina le colonne della tabella alfabeticamente</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="258"/>
       <source>Expand tables node when connected to a database</source>
-      <translation type="unfinished">Expand tables node when connected to a database</translation>
+      <translation>Espandi il nodo delle tabelle quando connesso a un database</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="268"/>
