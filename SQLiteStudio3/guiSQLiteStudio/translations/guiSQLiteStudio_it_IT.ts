@@ -470,19 +470,19 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
       <source>Type</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
       <source>Name</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
       <source>Details</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Dettagli</translation>
     </message>
   </context>
   <context>
@@ -500,7 +500,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
       <source>Reactions</source>
-      <translation type="unfinished">Reactions</translation>
+      <translation>Reazioni</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
@@ -728,7 +728,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="202"/>
       <source>Plugins</source>
-      <translation type="unfinished">Plugins</translation>
+      <translation>Plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="213"/>
