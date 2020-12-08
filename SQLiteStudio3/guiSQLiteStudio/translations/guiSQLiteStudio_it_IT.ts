@@ -505,17 +505,17 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>Chiave secondaria differita</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>Vincolo con nome</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Nome del vincolo</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
@@ -530,7 +530,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Inserisci un nome del vincolo.</translation>
     </message>
   </context>
   <context>
@@ -538,7 +538,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>Autoincremento</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
@@ -553,12 +553,12 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Sul conflitto:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Inserisci un nome del vincolo.</translation>
     </message>
   </context>
   <context>
@@ -566,17 +566,17 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Limitazione nominata:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Sul conflitto:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Inserisci un nome del vincolo.</translation>
     </message>
   </context>
   <context>
@@ -585,85 +585,85 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../completer/completerwindow.cpp" line="159"/>
       <source>Column: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Column: %1</translation>
+      <translation>Colonna: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="161"/>
       <source>Table: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabella: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="163"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Indice: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="165"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Attivatore: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="167"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">View: %1</translation>
+      <translation>Vista: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="169"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Database: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="181"/>
       <source>Keyword: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Keyword: %1</translation>
+      <translation>Parola chiave: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="183"/>
       <source>Function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Function: %1</translation>
+      <translation>Funzione: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="185"/>
       <source>Operator: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Operator: %1</translation>
+      <translation>Operatore: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="187"/>
       <source>String</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">String</translation>
+      <translation>Stringa</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="189"/>
       <source>Number</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Numero</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="191"/>
       <source>Binary data</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Binary data</translation>
+      <translation>Dati binari</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="193"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Collation: %1</translation>
+      <translation>Collazione: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Pragma function: %1</translation>
+      <translation>Funzione Pragma: %1</translation>
     </message>
   </context>
   <context>
@@ -672,22 +672,22 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../dialogs/configdialog.ui" line="14"/>
       <location filename="../dialogs/configdialog.ui" line="1563"/>
       <source>Configuration</source>
-      <translation type="unfinished">Configuration</translation>
+      <translation>Configurazione</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="63"/>
       <source>Search</source>
-      <translation type="unfinished">Search</translation>
+      <translation>Cerca</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="94"/>
       <source>General</source>
-      <translation type="unfinished">General</translation>
+      <translation>Generale</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="106"/>
       <source>Keyboard shortcuts</source>
-      <translation type="unfinished">Keyboard shortcuts</translation>
+      <translation>Scorciatoie da tastiera</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="118"/>
@@ -697,33 +697,33 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
       <source>Style</source>
-      <translation type="unfinished">Style</translation>
+      <translation>Stile</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="141"/>
       <source>Fonts</source>
-      <translation type="unfinished">Fonts</translation>
+      <translation>Caratteri</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="153"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>Colori</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Lista database</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
       <source>Data browsing</source>
-      <translation type="unfinished">Data browsing</translation>
+      <translation>Navigazione dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="189"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Modificatori di dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="202"/>
@@ -733,7 +733,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="213"/>
       <source>Code formatters</source>
-      <translation type="unfinished">Code formatters</translation>
+      <translation>Formatori di codice</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="245"/>
@@ -935,7 +935,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="630"/>
       <source>View windows</source>
-      <translation type="unfinished">View windows</translation>
+      <translation>Visualizza finestre</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="636"/>
@@ -960,32 +960,32 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="696"/>
       <source>Data types</source>
-      <translation type="unfinished">Data types</translation>
+      <translation>Tipi di dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="734"/>
       <source>Available editors:</source>
-      <translation type="unfinished">Available editors:</translation>
+      <translation>Editor disponibili:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="750"/>
       <source>Editors selected for this data type:</source>
-      <translation type="unfinished">Editors selected for this data type:</translation>
+      <translation>Editor selezionati per questo tipo di dati:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="786"/>
       <source>Schema editing</source>
-      <translation type="unfinished">Schema editing</translation>
+      <translation>Modifica dello schema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="798"/>
       <source>Number of DDL changes kept in history.</source>
-      <translation type="unfinished">Number of DDL changes kept in history.</translation>
+      <translation>Numero di modifiche DDL conservate nella cronologia.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="811"/>
       <source>DDL history size:</source>
-      <translation type="unfinished">DDL history size:</translation>
+      <translation>Dimensione cronologia DDL:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="818"/>
@@ -995,18 +995,18 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="831"/>
       <source>SQL queries</source>
-      <translation type="unfinished">SQL queries</translation>
+      <translation>Query SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="843"/>
       <location filename="../dialogs/configdialog.ui" line="856"/>
       <source>Number of queries kept in the history.</source>
-      <translation type="unfinished">Number of queries kept in the history.</translation>
+      <translation>Numero di query conservate nella cronologia.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="859"/>
       <source>History size:</source>
-      <translation type="unfinished">History size:</translation>
+      <translation>Dimensione cronologia:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="866"/>
@@ -1022,37 +1022,37 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="882"/>
       <source>Execute only the query under the cursor</source>
-      <translation type="unfinished">Execute only the query under the cursor</translation>
+      <translation>Esegue solo la query sotto il cursore</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="895"/>
       <source>Number of memorized query parameters</source>
-      <translation type="unfinished">Number of memorized query parameters</translation>
+      <translation>Numero di parametri di interrogazione memorizzati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="905"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Aggiornamenti</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="911"/>
       <source>Automatically check for updates at startup</source>
-      <translation type="unfinished">Automatically check for updates at startup</translation>
+      <translation>Controlla automaticamente gli aggiornamenti all'avvio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="924"/>
       <source>Session</source>
-      <translation type="unfinished">Session</translation>
+      <translation>Sessione</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="930"/>
       <source>Restore last session (active MDI windows) after startup</source>
-      <translation type="unfinished">Restore last session (active MDI windows) after startup</translation>
+      <translation>Ripristina l'ultima sessione (finestre MDI attive) dopo l'avvio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="943"/>
       <source>Status Field</source>
-      <translation type="unfinished">Status Field</translation>
+      <translation>Campo Stato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="949"/>
@@ -1062,38 +1062,38 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="952"/>
       <source>Always open Status panel when new message is printed</source>
-      <translation type="unfinished">Always open Status panel when new message is printed</translation>
+      <translation>Apri sempre il pannello di stato quando viene stampato un nuovo messaggio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="994"/>
       <source>Filter shortcuts by name or key combination</source>
-      <translation type="unfinished">Filter shortcuts by name or key combination</translation>
+      <translation>Filtra le scorciatoie per nome o combinazione di tasti</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1035"/>
       <source>Action</source>
-      <translation type="unfinished">Action</translation>
+      <translation>Azione</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1040"/>
       <source>Key combination</source>
-      <translation type="unfinished">Key combination</translation>
+      <translation>Combinazione di tasti</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1084"/>
       <location filename="../dialogs/configdialog.ui" line="1553"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Lingua</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1090"/>
       <source>Changing language requires application restart to take effect.</source>
-      <translation type="unfinished">Changing language requires application restart to take effect.</translation>
+      <translation>La modifica della lingua richiede il riavvio dell'applicazione per avere effetto.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1107"/>
       <source>Compact layout</source>
-      <translation type="unfinished">Compact layout</translation>
+      <translation>Layout compatto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
@@ -1103,87 +1103,87 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1116"/>
       <source>Use compact layout</source>
-      <translation type="unfinished">Use compact layout</translation>
+      <translation>Usa layout compatto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1132"/>
       <source>Main window dock areas</source>
-      <translation type="unfinished">Main window dock areas</translation>
+      <translation>Aree di aggancio della finestra principale</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1138"/>
       <source>Left and right areas occupy corners</source>
-      <translation type="unfinished">Left and right areas occupy corners</translation>
+      <translation>Le aree sinistra e destra occupano gli angoli</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1158"/>
       <source>Top and bottom areas occupy corners</source>
-      <translation type="unfinished">Top and bottom areas occupy corners</translation>
+      <translation>Le aree superiore e inferiore occupano gli angoli</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Hide built-in plugins</source>
-      <translation type="unfinished">Hide built-in plugins</translation>
+      <translation>Nascondi plugin integrati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1309"/>
       <source>Current style:</source>
-      <translation type="unfinished">Current style:</translation>
+      <translation>Stile attuale:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1326"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Anteprima</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1336"/>
       <source>Enabled</source>
-      <translation type="unfinished">Enabled</translation>
+      <translation>Abilitato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1509"/>
       <source>Disabled</source>
-      <translation type="unfinished">Disabled</translation>
+      <translation>Disabilitato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1558"/>
       <source>Active formatter plugin</source>
-      <translation type="unfinished">Active formatter plugin</translation>
+      <translation>Plugin formattatore attivo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1596"/>
       <source>SQL editor font</source>
-      <translation type="unfinished">SQL editor font</translation>
+      <translation>Carattere editor SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1612"/>
       <source>Database list font</source>
-      <translation type="unfinished">Database list font</translation>
+      <translation>Carattere elenco database</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1628"/>
       <source>Database list additional label font</source>
-      <translation type="unfinished">Database list additional label font</translation>
+      <translation>Database list carattere etichetta aggiuntivo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1644"/>
       <source>Data view font</source>
-      <translation type="unfinished">Data view font</translation>
+      <translation>Carattere vista dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1660"/>
       <source>Status field font</source>
-      <translation type="unfinished">Status field font</translation>
+      <translation>Carattere campo di stato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1718"/>
       <source>SQL editor colors</source>
-      <translation type="unfinished">SQL editor colors</translation>
+      <translation>Colori editor SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1724"/>
       <source>Current line background</source>
-      <translation type="unfinished">Current line background</translation>
+      <translation>Sfondo riga corrente</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1731"/>
@@ -1401,17 +1401,17 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1410"/>
       <source>Rename selected data type</source>
-      <translation type="unfinished">Rename selected data type</translation>
+      <translation>Rinomina il tipo di dati selezionato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1414"/>
       <source>Delete selected data type</source>
-      <translation type="unfinished">Delete selected data type</translation>
+      <translation>Elimina il tipo di dati selezionato</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1418"/>
       <source>Help for configuring data type editors</source>
-      <translation type="unfinished">Help for configuring data type editors</translation>
+      <translation>Aiuto per la configurazione degli editor di tipi di dati</translation>
     </message>
   </context>
   <context>
@@ -1419,27 +1419,27 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="20"/>
       <source>The condition</source>
-      <translation type="unfinished">The condition</translation>
+      <translation>La condizione</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Limitazione nominata:</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
       <source>On conflict</source>
-      <translation type="unfinished">On conflict</translation>
+      <translation>Sul conflitto</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Inserisci una condizione valida.</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Inserisci un nome del vincolo.</translation>
     </message>
   </context>
   <context>
@@ -1448,67 +1448,67 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../dialogs/constraintdialog.cpp" line="62"/>
       <source>New constraint</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">New constraint</translation>
+      <translation>Nuovo vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="63"/>
       <source>Create</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Create</translation>
+      <translation>Crea</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="66"/>
       <source>Edit constraint</source>
       <comment>dialog window</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>Modifica vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="67"/>
       <source>Apply</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Apply</translation>
+      <translation>Applica</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="170"/>
       <source>Primary key</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Primary key</translation>
+      <translation>Chiave primaria</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="174"/>
       <source>Foreign key</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Foreign key</translation>
+      <translation>Chiave secondaria</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="178"/>
       <source>Unique</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Unico</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="182"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>Non NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="186"/>
       <source>Check</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>Controlla</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="190"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Raccogli</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="194"/>
       <source>Default</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Default</translation>
+      <translation>Predefinito</translation>
     </message>
   </context>
   <context>
@@ -1517,37 +1517,37 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../windows/constrainttabmodel.cpp" line="68"/>
       <source>Table</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabella</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
       <source>Column (%1)</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Column (%1)</translation>
+      <translation>Colonna (%1)</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>Ambito</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Dettagli</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
   </context>
   <context>
@@ -1555,7 +1555,7 @@ ma è comunque possibile usarlo.</translation>
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>SQLiteStudio CSS console</translation>
     </message>
   </context>
   <context>
@@ -1564,141 +1564,141 @@ ma è comunque possibile usarlo.</translation>
       <location filename="../dataview.cpp" line="105"/>
       <source>Filter data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter data</translation>
+      <translation>Filtra dati</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="114"/>
       <source>Grid view</source>
-      <translation type="unfinished">Grid view</translation>
+      <translation>Visualizzazione griglia</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation type="unfinished">Form view</translation>
+      <translation>Vista modulo</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Refresh table data</translation>
+      <translation>Aggiorna dati tabella</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="223"/>
       <source>First page</source>
       <comment>data view</comment>
-      <translation type="unfinished">First page</translation>
+      <translation>Prima pagina</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="224"/>
       <source>Previous page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Previous page</translation>
+      <translation>Pagina precedente</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="226"/>
       <source>Next page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Next page</translation>
+      <translation>Pagina successiva</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="227"/>
       <source>Last page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Last page</translation>
+      <translation>Ultima pagina</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="236"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
-      <translation type="unfinished">Commit changes for selected cells</translation>
+      <translation>Esegue il commit delle modifiche per le celle selezionate</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="237"/>
       <source>Rollback changes for selected cells</source>
       <comment>data view</comment>
-      <translation type="unfinished">Rollback changes for selected cells</translation>
+      <translation>Modifiche all'indietro per le celle selezionate</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="238"/>
       <source>Show grid view of results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show grid view of results</translation>
+      <translation>Mostra la visualizzazione della griglia dei risultati</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="239"/>
       <source>Show form view of results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show form view of results</translation>
+      <translation>Mostra la visualizzazione del modulo dei risultati</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="324"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs on top</translation>
+      <translation>Schede in alto</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="325"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs at bottom</translation>
+      <translation>Schede in basso</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="350"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows above selected row</translation>
+      <translation>Posiziona nuove righe sopra la riga selezionata</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="351"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows below selected row</translation>
+      <translation>Posiziona le nuove righe sotto la riga selezionata</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="352"/>
       <source>Place new rows at the end of the data view</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows at the end of the data view</translation>
+      <translation>Posiziona nuove righe alla fine della vista dati</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="656"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
-      <translation type="unfinished">Total number of rows is being counted.
-Browsing other pages will be possible after the row counting is done.</translation>
+      <translation>Il numero totale di righe è in fase di conteggio.
+L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="667"/>
       <source>Row: %1</source>
-      <translation type="unfinished">Row: %1</translation>
+      <translation>Riga: %1</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="947"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filtro</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="950"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
-      <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
+      <translation>Premi entrare o premi &quot;Applica filtro&quot; pulsante sulla barra degli strumenti per applicare un nuovo valore.</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="978"/>
       <source>Filter by text</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text</translation>
+      <translation>Filtra per testo</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="979"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by the Regular Expression</translation>
+      <translation>Filtra per espressione regolare</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="980"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by SQL expression</translation>
+      <translation>Filtra per espressione SQL</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="996"/>
