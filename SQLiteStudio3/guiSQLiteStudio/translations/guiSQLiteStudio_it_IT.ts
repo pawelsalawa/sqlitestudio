@@ -6461,194 +6461,194 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="335"/>
       <source>Edit column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Modifica colonna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="336"/>
       <source>Delete column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Cancellare Colonna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="337"/>
       <source>Move column up</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sposta colonna su</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="338"/>
       <source>Move column down</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sposta colonna giù</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="343"/>
       <source>Refresh trigger list</source>
       <comment>view window</comment>
-      <translation type="unfinished">Refresh trigger list</translation>
+      <translation>Aggiorna elenco trigger</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="345"/>
       <source>Create new trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Create new trigger</translation>
+      <translation>Crea nuovo trigger</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="346"/>
       <source>Edit selected trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Edit selected trigger</translation>
+      <translation>Modifica il trigger selezionato</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="347"/>
       <source>Delete selected trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete selected trigger</translation>
+      <translation>Elimina il trigger selezionato</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="368"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>Visualizza la finestra &quot;%1&quot; ha modifiche e dati della struttura senza commit.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="370"/>
       <source>View window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>Visualizza la finestra &quot;%1&quot; ha dati senza commit.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="372"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>Visualizza la finestra &quot;%1&quot; ha modifiche della struttura senza commit.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="569"/>
       <source>Could not load data for view %1. Error details: %2</source>
-      <translation type="unfinished">Could not load data for view %1. Error details: %2</translation>
+      <translation>Impossibile caricare i dati per la vista %1. Dettagli errore: %2</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="581"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Modifiche senza commit</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="582"/>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Ci sono modifiche della struttura senza commit. Non è possibile sfogliare o modificare i dati fino a quando non si dispone di una struttura di visualizzazione regolata.
+Vuoi eseguire il commit della struttura, o vuoi tornare alla scheda Struttura?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="585"/>
       <source>Go back to structure tab</source>
-      <translation type="unfinished">Go back to structure tab</translation>
+      <translation>Torna alla scheda struttura</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="585"/>
       <source>Commit modifications and browse data.</source>
-      <translation type="unfinished">Commit modifications and browse data.</translation>
+      <translation>Commit delle modifiche e sfoglia i dati.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="637"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; successfully.</translation>
+      <translation>Modifiche impegnate per la vista &apos;%1&apos; con successo.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="639"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Modifiche impegnate per la vista &apos;%1&apos; (nominate prima del &apos;%2&apos;) con successo.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="650"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
-      <translation type="unfinished">Could not commit view changes. Error message: %1</translation>
+      <translation>Impossibile effettuare il commit delle modifiche alla visualizzazione. Messaggio di errore: %1</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="792"/>
       <source>Override columns</source>
-      <translation type="unfinished">Override columns</translation>
+      <translation>Sovrascrivi colonne</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="792"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
-      <translation type="unfinished">Currently defined columns will be overriden. Do you want to continue?</translation>
+      <translation>Le colonne attualmente definite saranno sovrascritte. Vuoi continuare?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="815"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
-      <translation type="unfinished">Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</translation>
+      <translation>Impossibile determinare le colonne restituite dalla vista. La query è &lt;unk> abilmente incompleta o contiene errori.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="876"/>
       <source>Name</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="877"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Instead of</translation>
+      <translation>Invece di</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="878"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Condition</translation>
+      <translation>Condizione</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="879"/>
       <source>Details</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Dettagli</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="919"/>
       <source>Could not process the %1 view correctly. Unable to open a view window.</source>
-      <translation type="unfinished">Could not process the %1 view correctly. Unable to open a view window.</translation>
+      <translation>Impossibile elaborare correttamente la vista « %1 ». Impossibile aprire una finestra di visualizzazione.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>Nome vuoto</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
-      <translation type="unfinished">A blank name for the view is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a view with blank name?</translation>
+      <translation>Un nome vuoto per la vista è consentito in SQLite, ma non è raccomandato.
+Sei sicuro di voler creare una vista con il nome vuoto?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="978"/>
       <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
-      <translation type="unfinished">The SELECT statement could not be parsed. Please correct the query and retry.
-Details: %1</translation>
+      <translation>L'istruzione SELECT non può essere analizzata. Correggi la richiesta e riprova.
+Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="986"/>
       <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
-      <translation type="unfinished">The view could not be modified due to internal SQLiteStudio error. Please report this!</translation>
+      <translation>La vista non può essere modificata a causa di un errore interno di SQLiteStudio. Si prega di segnalarlo!</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
-      <translation type="unfinished">The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</translation>
+      <translation>Il codice di visualizzazione non può essere analizzato correttamente per l'esecuzione. Questo è un bug di SQLiteStudio&apos;s. Si prega di segnalarlo.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1025"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
-      <translation type="unfinished">Following problems will take place while modifying the view.
-Would you like to proceed?</translation>
+      <translation>I seguenti problemi si verificheranno durante la modifica della vista.
+Vuoi procedere?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1027"/>
       <source>View modification</source>
       <comment>view window</comment>
-      <translation type="unfinished">View modification</translation>
+      <translation>Visualizza modifica</translation>
     </message>
   </context>
   <context>
@@ -6656,7 +6656,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../common/widgetcover.cpp" line="234"/>
       <source>Interrupt</source>
-      <translation type="unfinished">Interrupt</translation>
+      <translation>Interrompi</translation>
     </message>
   </context>
 </TS>
