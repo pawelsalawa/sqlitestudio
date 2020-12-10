@@ -46,12 +46,12 @@ jobs:
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
 
             - name: Get SQLite3 p3
-              working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
+              working-directory: ${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION
               run: |
                 ls -l
 
             - name: Install SQLite3
-              working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
+              working-directory: ${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION
               run: |
                 gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
@@ -66,7 +66,7 @@ jobs:
                     -DSQLITE_ENABLE_RTREE
                     
             - name: Install SQLite3 p2
-              working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
+              working-directory: ${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION
               run: |
                 strip libsqlite3.so
                 
