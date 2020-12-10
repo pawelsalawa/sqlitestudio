@@ -23,19 +23,19 @@ jobs:
                 path: ${{ github.workspace }}/../Qt
                 key: ${{ runner.os }}-Qt-Linux-Cache
                 
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v2
-              with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ env.QT_VERSION }}
-                host: 'linux'
-                dir: '${{ github.workspace }}/..'
-                modules: 'qtscript'
+#            - name: Install Qt
+#              uses: jurplel/install-qt-action@v2
+#              with:
+#                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+#                version: ${{ env.QT_VERSION }}
+#                host: 'linux'
+#                dir: '${{ github.workspace }}/..'
+#                modules: 'qtscript'
                 
-            - name: Clone repo
-              uses: actions/checkout@v2
-              with:
-                ref: ${{ github.event.client_payload.branch }}
+#            - name: Clone repo
+#              uses: actions/checkout@v2
+#              with:
+#                ref: ${{ github.event.client_payload.branch }}
 
             - name: Get SQLite3
               run: |
@@ -56,13 +56,28 @@ jobs:
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
-                ls -l
+                    
+            - name: Install SQLite3 p2
+              working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
+              run: |
                 strip libsqlite3.so
-                ls -l
-                sudo cp libsqlite3.so /usr/local/lib/
+                
+            - name: Install SQLite3 p2.1
+              run: |
                 ls -l /usr
+                
+            - name: Install SQLite3 p2.2
+              run: |
                 ls -l /usr/local
+                
+            - name: Install SQLite3 p2.3
+              run: |
                 ls -l /usr/local/lib
+            
+            - name: Install SQLite3 p3
+              working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
+              run: |
+                sudo cp libsqlite3.so /usr/local/lib/
             
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
