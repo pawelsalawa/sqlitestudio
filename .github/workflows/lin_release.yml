@@ -40,10 +40,12 @@ jobs:
             - name: Get SQLite3
               run: |
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                ls -l
 
             - name: Get SQLite3 p2
+              run: |
+                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
+
+            - name: Get SQLite3 p3
               working-directory: '${{ github.workspace }}/sqlite-amalgamation-$SQLITE_VERSION'
               run: |
                 ls -l
