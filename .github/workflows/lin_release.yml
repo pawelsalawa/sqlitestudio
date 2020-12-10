@@ -37,26 +37,10 @@ jobs:
 #              with:
 #                ref: ${{ github.event.client_payload.branch }}
 
-            - name: Get SQLite3
-              run: |
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-
-            - name: Get SQLite3 p2
-              run: |
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-
-            - name: Get SQLite3 p2.1
-              run: |
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                pwd
-
-            - name: Get SQLite3 p2.2
-              run: |
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                ls -l
-
             - name: Install SQLite3
               run: |
+                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
+                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
                 gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
@@ -69,6 +53,7 @@ jobs:
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
+                ls -l
                     
             - name: Install SQLite3 p2
               working-directory: sqlite-amalgamation-$SQLITE_VERSION
