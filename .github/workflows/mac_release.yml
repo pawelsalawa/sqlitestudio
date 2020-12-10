@@ -94,7 +94,7 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
               run: |
-                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+                echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
                 
 
             - name: Upload package artifact

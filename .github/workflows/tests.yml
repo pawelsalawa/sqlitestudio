@@ -1,6 +1,6 @@
 env:
-    QT_VERSION: '5.14.2'
-    SQLITE_VERSION: '3310100'
+    QT_VERSION: '5.15.0'
+    SQLITE_VERSION: '3340000'
     SQLITE_RELEASE_YEAR: '2020'
     TCL_VERSION: '8.6'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -72,7 +72,7 @@ jobs:
             - name: Install other tools/dependencies
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
-                echo "::add-path::${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin"
+                echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
