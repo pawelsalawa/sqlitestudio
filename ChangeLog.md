@@ -24,6 +24,7 @@
 - BUGFIX: #3478 Fixed crash when attempting to execute comment as a query.
 - BUGFIX: #3525 Fixed crash when editing (adding/deleting) JOIN part in INNER JOIN.
 - BUGFIX: #3479 Fixed invalid XML exported for trigger.
+- BUGFIX: #3474 Fixed crash when right-clicking on empty are in data view.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
