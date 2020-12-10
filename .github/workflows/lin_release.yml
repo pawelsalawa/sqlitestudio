@@ -50,14 +50,14 @@ jobs:
                 cd sqlite-amalgamation-$SQLITE_VERSION
                 pwd
 
-            - name: Get SQLite3 p3
-              working-directory: sqlite-amalgamation-$SQLITE_VERSION
+            - name: Get SQLite3 p2.2
               run: |
+                cd sqlite-amalgamation-$SQLITE_VERSION
                 ls -l
 
             - name: Install SQLite3
-              working-directory: sqlite-amalgamation-$SQLITE_VERSION
               run: |
+                cd sqlite-amalgamation-$SQLITE_VERSION
                 gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
