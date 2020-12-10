@@ -56,8 +56,13 @@ jobs:
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
+                ls -l
                 strip libsqlite3.so
+                ls -l
                 sudo cp libsqlite3.so /usr/local/lib/
+                ls -l /usr
+                ls -l /usr/local
+                ls -l /usr/local/lib
             
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
