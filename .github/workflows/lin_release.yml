@@ -54,11 +54,8 @@ jobs:
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
                 ls -l
-                    
-            - name: Install SQLite3 p2
-              working-directory: sqlite-amalgamation-$SQLITE_VERSION
-              run: |
                 strip libsqlite3.so
+                ls -l
                 
             - name: Install SQLite3 p2.1
               run: |
