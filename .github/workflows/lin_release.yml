@@ -45,6 +45,11 @@ jobs:
               run: |
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
 
+            - name: Get SQLite3 p2.1
+              run: |
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                pwd
+
             - name: Get SQLite3 p3
               working-directory: sqlite-amalgamation-$SQLITE_VERSION
               run: |
