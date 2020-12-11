@@ -4,6 +4,7 @@ env:
     SQLITE_VERSION: '3340000'
     SQLITE_RELEASE_YEAR: '2020'
     MINGW_DIR: ../Qt/Tools/mingw810_64
+    QT_BIN_DIR: $QT_VERSION/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
@@ -35,6 +36,9 @@ jobs:
                 arch: ${{ env.QT_ARCH }}
                 dir: '../'
                 modules: 'qtscript'
+                
+            - name: Fix Qt path
+              run: echo "$QT_BIN_DIR" >> $GITHUB_PATH
                 
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
