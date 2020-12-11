@@ -59,8 +59,8 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output ../sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
                 gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
@@ -74,7 +74,9 @@ jobs:
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
-                cp -f sqlite3.dll lib/
+                cp -f sqlite3.dll ../lib/
+                cp -f sqlite3.h ../include/
+                cp -f sqlite3ext.h ../include/
 
             - name: Prepare output dir
               shell: bash
