@@ -3,8 +3,8 @@ env:
     QT_ARCH: 'win64_mingw81'
     SQLITE_VERSION: '3340000'
     SQLITE_RELEASE_YEAR: '2020'
-    MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw810_64
-    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    MINGW_DIR: ../Qt/Tools/mingw810_64
+    PORTABLE_DIR: output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
@@ -41,7 +41,7 @@ jobs:
               shell: bash
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"${{ github.workspace }}/../Qt" ../mingw.7z
+                7z x -o"../Qt" ../mingw.7z
                 echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
  
             - name: Clone repo
@@ -54,7 +54,7 @@ jobs:
               run: |
                 curl -L ${{ env.DEPS_URL }} --output ../win64_deps.zip
                 7z x -o".." ../win64_deps.zip
-                echo "${{ github.workspace }}/../lib" >> $GITHUB_PATH
+                echo "../lib" >> $GITHUB_PATH
  
             - name: Install SQLite3
               shell: bash
@@ -128,7 +128,7 @@ jobs:
 
             - name: Prepare portable distro (Deps)
               shell: bash
-              working-directory: ${{ github.workspace }}/../lib
+              working-directory: ../lib
               run: cp *.dll "${{ env.PORTABLE_DIR }}"
 
             - name: Determine SQLiteStudio version
