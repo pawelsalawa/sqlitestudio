@@ -5,7 +5,7 @@ env:
     SQLITE_RELEASE_YEAR: '2020'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
-    PORTABLE_DIR: ${{ env.GITHUB_WORKSPACE }}/output/portable/SQLiteStudio
+    #PORTABLE_DIR: ${{ env.GITHUB_WORKSPACE }}/output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
@@ -103,6 +103,7 @@ jobs:
               run: |
                 mkdir portable
                 cp -R SQLiteStudio portable/
+                echo "PORTABLE_DIR=`pwd`/portable/SQLiteStudio" >> $GITHUB_ENV
 
             - name: Clean-up portable dir
               shell: bash
