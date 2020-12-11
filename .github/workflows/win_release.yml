@@ -34,7 +34,7 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'windows'
                 arch: ${{ env.QT_ARCH }}
-                dir: '../'
+                dir: '${{ github.workspace }}/../'
                 modules: 'qtscript'
                 
             - name: Fix Qt path
