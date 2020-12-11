@@ -92,13 +92,15 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ..\..\SQLiteStudio3
+                pwd
+                la -l ${{ env.Qt5_Dir }}/bin
+                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable ..\..\..\Plugins
+                qmake.exe CONFIG+=portable ..\..\..\Plugins
                 mingw32-make.exe -j 2
               
             - name: Prepare portable dir
