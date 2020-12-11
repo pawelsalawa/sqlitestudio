@@ -104,6 +104,7 @@ jobs:
                 mkdir portable
                 cp -R SQLiteStudio portable/
                 echo "PORTABLE_DIR=`pwd`/portable/SQLiteStudio" >> $GITHUB_ENV
+                echo "The dir: ${{ env.PORTABLE_DIR }}"
 
             - name: Clean-up portable dir
               shell: bash
