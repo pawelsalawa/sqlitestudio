@@ -5,7 +5,7 @@ env:
     SQLITE_RELEASE_YEAR: '2020'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
-    PORTABLE_DIR: output/portable/SQLiteStudio
+    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
@@ -34,15 +34,10 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'windows'
                 arch: ${{ env.QT_ARCH }}
+                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
                 modules: 'qtscript'
                 setup-python: 'false'
-                
-            - name: Fix Qt path
-              run: |
-                ls -l ${{ env.Qt5_Dir }}
-                echo "${{ env.Qt5_Dir }}/bin" >> $GITHUB_PATH
-                ls -l ${{ env.Qt5_Dir }}/bin
                 
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
@@ -90,12 +85,6 @@ jobs:
               shell: bash
               run: mkdir output output/build output/build/Plugins
 
-            - name: Compile SQLiteStudio3 0
-              working-directory: output/build
-              run: |
-                pwd
-                ls -l ${{ env.Qt5_Dir }}/bin
-            
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
@@ -122,6 +111,18 @@ jobs:
                 rm -f *.a
                 rm -f plugins/*.a
                 rm -f styles/*.a
+
+            - name: temp1
+              shell: bash
+              working-directory: ${{ env.Qt5_Dir }}
+              run: |
+                ls -l bin
+                
+            - name: temp1
+              shell: bash
+              working-directory: ${{ env.Qt5_Dir }}
+              run: |
+                ls -l ${{ env.PORTABLE_DIR }}
 
             - name: Prepare portable distro (Qt)
               shell: bash
