@@ -104,11 +104,11 @@ jobs:
                 mkdir portable
                 cp -R SQLiteStudio portable/
                 echo "PORTABLE_DIR=`pwd`/portable/SQLiteStudio" >> $GITHUB_ENV
-                echo "The dir: ${{ env.PORTABLE_DIR }}"
+                echo "The dir: $PORTABLE_DIR"
 
             - name: Clean-up portable dir
               shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}
+              working-directory: $PORTABLE_DIR
               run: |
                 rm -f *.a
                 rm -f plugins/*.a
@@ -124,7 +124,7 @@ jobs:
               shell: bash
               working-directory: ${{ env.Qt5_Dir }}
               run: |
-                ls -l ${{ env.PORTABLE_DIR }}
+                ls -l $PORTABLE_DIR
 
             - name: Prepare portable distro (Qt)
               shell: bash
