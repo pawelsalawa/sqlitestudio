@@ -1,10 +1,11 @@
 env:
-    QT_VERSION: '5.15.0'
+    QT_VERSION: '5.15.2'
     QT_ARCH: 'win64_mingw81'
-    SQLITE_VERSION: '3310100'
-    SQLITE_RELEASE_YEAR: '2020'
-    MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw810_64
-    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    SQLITE_VERSION: '3340100'
+    SQLITE_RELEASE_YEAR: '2021'
+    MINGW_DIR: ../Qt/Tools/mingw810_64
+    QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
+    PORTABLE_DIR: output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
@@ -33,16 +34,18 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'windows'
                 arch: ${{ env.QT_ARCH }}
-                dir: '${{ github.workspace }}\..'
+                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
+                dir: 'D:/'
                 modules: 'qtscript'
+                setup-python: 'false'
                 
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"${{ github.workspace }}/../Qt" ../mingw.7z
-                echo "::add-path::${{ env.MINGW_DIR }}/bin"
+                7z x -o"../Qt" ../mingw.7z
+                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
  
             - name: Clone repo
               uses: actions/checkout@v2
@@ -54,13 +57,13 @@ jobs:
               run: |
                 curl -L ${{ env.DEPS_URL }} --output ../win64_deps.zip
                 7z x -o".." ../win64_deps.zip
-                echo "::add-path::${{ github.workspace }}/../lib"
+                echo "../lib" >> $GITHUB_PATH
  
             - name: Install SQLite3
               shell: bash
               run: |
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output ../sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
                 gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
@@ -74,7 +77,9 @@ jobs:
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
-                cp -f sqlite3.dll lib/
+                cp -f sqlite3.dll ../lib/
+                cp -f sqlite3.h ../include/
+                cp -f sqlite3ext.h ../include/
 
             - name: Prepare output dir
               shell: bash
@@ -101,46 +106,47 @@ jobs:
 
             - name: Clean-up portable dir
               shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
+                cd ${{ env.PORTABLE_DIR }}
                 rm -f *.a
                 rm -f plugins/*.a
                 rm -f styles/*.a
+                echo "ABSOLUTE_PORTABLE_DIR=`pwd`" >> $GITHUB_ENV
 
             - name: Prepare portable distro (Qt)
               shell: bash
               working-directory: ${{ env.Qt5_Dir }}
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
-                cp bin/qt.conf "${{ env.PORTABLE_DIR }}"
-                mkdir -p "${{ env.PORTABLE_DIR }}/iconengines"
-                mkdir -p "${{ env.PORTABLE_DIR }}/platforms"
-                mkdir -p "${{ env.PORTABLE_DIR }}/printsupport"
-                mkdir -p "${{ env.PORTABLE_DIR }}/styles"
-                mkdir -p "${{ env.PORTABLE_DIR }}/imageformats"
-                cp plugins/iconengines/qsvgicon.dll "${{ env.PORTABLE_DIR }}/iconengines"
-                cp plugins/platforms/qwindows.dll "${{ env.PORTABLE_DIR }}/platforms"
-                cp plugins/styles/qwindowsvistastyle.dll "${{ env.PORTABLE_DIR }}/styles"
-                cp plugins/printsupport/windowsprintersupport.dll "${{ env.PORTABLE_DIR }}/printsupport"
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "${{ env.PORTABLE_DIR }}/imageformats"; done
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
+                cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/imageformats"
+                cp plugins/iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
+                cp plugins/platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
+                cp plugins/styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
+                cp plugins/printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
 
             - name: Prepare portable distro (Deps)
               shell: bash
-              working-directory: ${{ github.workspace }}/../lib
-              run: cp *.dll "${{ env.PORTABLE_DIR }}"
+              run: |
+                cd ../lib
+                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
             - name: Determine SQLiteStudio version
               shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}
-              run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
+              run: |
+                cd $ABSOLUTE_PORTABLE_DIR
+                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}/..
               run: |
+                cd $ABSOLUTE_PORTABLE_DIR/..
                 7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
-                pwd
-                ls -l
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
