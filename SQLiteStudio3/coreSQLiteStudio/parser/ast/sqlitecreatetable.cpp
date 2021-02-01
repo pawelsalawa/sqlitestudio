@@ -3,6 +3,8 @@
 #include "common/utils_sql.h"
 #include "common/global.h"
 
+const QRegExp SqliteCreateTable::Column::GENERATED_ALWAYS_REGEXP = QRegExp("GENERATED\\s+ALWAYS");
+
 SqliteCreateTable::SqliteCreateTable()
 {
     queryType = SqliteQueryType::CreateTable;
@@ -283,6 +285,19 @@ SqliteStatement* SqliteCreateTable::Column::Constraint::clone()
     return new SqliteCreateTable::Column::Constraint(*this);
 }
 
+QString SqliteCreateTable::Column::Constraint::toString(SqliteCreateTable::Column::Constraint::GeneratedType type)
+{
+    switch (type) {
+        case SqliteCreateTable::Column::Constraint::GeneratedType::STORED:
+            return "STORED";
+        case SqliteCreateTable::Column::Constraint::GeneratedType::VIRTUAL:
+            return "VIRTUAL";
+        case SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_:
+            break;
+    }
+    return QString();
+}
+
 void SqliteCreateTable::Column::Constraint::initDefNameOnly(const QString &name)
 {
     this->type = SqliteCreateTable::Column::Constraint::NAME_ONLY;
@@ -402,6 +417,20 @@ void SqliteCreateTable::Column::Constraint::initColl(const QString &name)
 {
     this->type = SqliteCreateTable::Column::Constraint::COLLATE;
     this->collationName = name;
+}
+
+void SqliteCreateTable::Column::Constraint::initGeneratedAs(SqliteExpr* expr, bool genKw, const QString& type)
+{
+    this->type = SqliteCreateTable::Column::Constraint::GENERATED;
+    this->expr = expr;
+    this->generatedKw = genKw;
+    QString upType = type.toUpper();
+    if (upType == "STORED")
+        this->generatedType = GeneratedType::STORED;
+    else if (upType == "VIRTUAL")
+        this->generatedType = GeneratedType::VIRTUAL;
+    else
+        this->generatedType = GeneratedType::DEFAULT_;
 }
 
 QString SqliteCreateTable::Column::Constraint::typeString() const
@@ -694,6 +723,28 @@ QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::Column::getFore
     return results;
 }
 
+void SqliteCreateTable::Column::fixTypeVsGeneratedAs()
+{
+    // This is a workaround for lemon parser taking "GENERATED ALWAYS" as part of the typename,
+    // despite 2 days effort of forcing proper precedense to parse it as part of a constraint.
+    // Lemon keeps reducing these 2 keywords into the typename by using fallback of GENERATED & ALWAYS to ID,
+    // regardless of rule order and explicit precedence. By throwing the GENERATED keyword out of the fallback list,
+    // we would make the syntax incompatible with official SQLite syntax, which allows usage of GENERATED as ID.
+    // I've tried to use more recent Lemon parser, but it's different a lot from current one and it is no longer possible
+    // to collect tokens parsed per rule (needed tor SqliteStatement's tokens & tokenMap). At least not in the way
+    // that it used to be so far.
+    // This is the last resort to make it right.
+    // This method is called from parser rule that reduces column definition (rule "column(X)").
+    Constraint* generatedConstr = getConstraint(Constraint::GENERATED);
+    if (generatedConstr && !generatedConstr->generatedKw && type && type->name.toUpper().contains(GENERATED_ALWAYS_REGEXP))
+    {
+        type->name.replace(GENERATED_ALWAYS_REGEXP, "");
+        type->tokens = type->rebuildTokensFromContents();
+        type->tokensMap["typename"] = type->tokens;
+        generatedConstr->generatedKw = true;
+    }
+}
+
 QStringList SqliteCreateTable::Column::getColumnsInStatement()
 {
     return getStrListFromValue(name);
@@ -766,6 +817,17 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
         {
             builder.withStatement(foreignKey);
+            break;
+        }
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+        {
+            if (generatedKw)
+                builder.withKeyword("GENERATED").withSpace().withKeyword("ALWAYS").withSpace();
+
+            builder.withKeyword("AS").withSpace().withParLeft().withStatement(expr).withParRight();
+            if (generatedType != GeneratedType::DEFAULT_)
+                builder.withSpace().withOther(toString(generatedType));
+
             break;
         }
         case SqliteCreateTable::Column::Constraint::NULL_:

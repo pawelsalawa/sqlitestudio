@@ -173,6 +173,17 @@ void FormatCreateTableColumnConstraint::formatInternal()
             withStatement(constr->foreignKey);
             break;
         }
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+        {
+            if (constr->generatedKw)
+                withKeyword("GENERATED").withKeyword("ALWAYS");
+
+            withKeyword("AS").withParExprLeft().withStatement(constr->expr).withParExprRight();
+            if (constr->generatedType != SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_)
+                withId(SqliteCreateTable::Column::Constraint::toString(constr->generatedType));
+
+            break;
+        }
         case SqliteCreateTable::Column::Constraint::NULL_:
         case SqliteCreateTable::Column::Constraint::NAME_ONLY:
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:

@@ -199,5 +199,8 @@
         <file>img/dock_layout_horizontal.png</file>
         <file>img/dock_layout_vertical.png</file>
         <file>img/keyboard.png</file>
+        <file>img/disk_small.png</file>
+        <file>img/generated.png</file>
+        <file>img/lightning_small.png</file>
     </qresource>
 </RCC>

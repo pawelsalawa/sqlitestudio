@@ -89,6 +89,7 @@ bool Parser::parse(const QString &sql, bool ignoreMinorErrors)
     return parseInternal(sql, false);
 }
 
+#include "qio.h"
 bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
 {
     void* pParser = parseAlloc( malloc );

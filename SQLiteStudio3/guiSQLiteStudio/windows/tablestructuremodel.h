@@ -47,6 +47,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
             CHECK,
             NOTNULL,
             COLLATE,
+            GENERATED,
             DEFAULT
         };
 
@@ -62,6 +63,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         QVariant getColumnCheck(int row) const;
         QVariant getColumnNotNull(int row) const;
         QVariant getColumnCollate(int row) const;
+        QVariant getColumnGenerate(int row) const;
         QVariant getColumnDefaultValue(int row) const;
         QVariant getColumnDefaultFont(int row) const;
         QVariant getColumnDefaultColor(int row) const;
@@ -72,6 +74,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         bool isColumnCheck(SqliteCreateTable::Column* column) const;
         bool isColumnNotNull(SqliteCreateTable::Column* column) const;
         bool isColumnCollate(SqliteCreateTable::Column* column) const;
+        bool isColumnGenerate(SqliteCreateTable::Column* column) const;
 
         static const constexpr char* mimeType = "application/x-sqlitestudio-tablestructuremodel-row-index";
 

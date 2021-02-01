@@ -27,7 +27,7 @@ int TableStructureModel::columnCount(const QModelIndex& parent) const
     if (createTable.isNull())
         return 0;
 
-    return 9;
+    return 10;
 }
 
 QVariant TableStructureModel::data(const QModelIndex& index, int role) const
@@ -102,6 +102,13 @@ QVariant TableStructureModel::data(const QModelIndex& index, int role) const
                 break;
 
             return getColumnCollate(row);
+        }
+        case TableStructureModel::Columns::GENERATED:
+        {
+            if (role != Qt::DecorationRole)
+                break;
+
+            return getColumnGenerate(row);
         }
         case TableStructureModel::Columns::DEFAULT:
         {
@@ -296,6 +303,8 @@ QString TableStructureModel::columnLabel(int column) const
             return tr("Not\nNULL", "table structure columns");
         case Columns::COLLATE:
             return tr("Collate", "table structure columns");
+        case Columns::GENERATED:
+            return tr("Generated", "table structure columns");
         case Columns::DEFAULT:
             return tr("Default value", "table structure columns");
     }
@@ -359,6 +368,23 @@ QVariant TableStructureModel::getColumnCollate(int row) const
         return ICONS.CONSTRAINT_COLLATION;
 
     return QVariant();
+}
+
+QVariant TableStructureModel::getColumnGenerate(int row) const
+{
+    SqliteCreateTable::Column* column = getColumn(row);
+    SqliteCreateTable::Column::Constraint* constr = column->getConstraint(SqliteCreateTable::Column::Constraint::GENERATED);
+    if (!constr)
+        return QVariant();
+
+    switch (constr->generatedType) {
+        case SqliteCreateTable::Column::Constraint::GeneratedType::STORED:
+            return ICONS.CONSTRAINT_GENERATED_STORED;
+        case SqliteCreateTable::Column::Constraint::GeneratedType::VIRTUAL:
+        case SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_:
+            break;
+    }
+    return ICONS.CONSTRAINT_GENERATED_VIRTUAL;
 }
 
 QVariant TableStructureModel::getColumnDefaultValue(int row) const
@@ -472,6 +498,14 @@ bool TableStructureModel::isColumnNotNull(SqliteCreateTable::Column* column) con
 bool TableStructureModel::isColumnCollate(SqliteCreateTable::Column* column) const
 {
     if (column->hasConstraint(SqliteCreateTable::Column::Constraint::COLLATE))
+        return true;
+
+    return false;
+}
+
+bool TableStructureModel::isColumnGenerate(SqliteCreateTable::Column* column) const
+{
+    if (column->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
         return true;
 
     return false;

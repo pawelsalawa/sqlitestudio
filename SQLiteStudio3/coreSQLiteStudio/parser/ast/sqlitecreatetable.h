@@ -13,6 +13,7 @@
 #include "sqliteddlwithdbcontext.h"
 #include <QVariant>
 #include <QList>
+#include <QRegExp>
 
 class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbContext
 {
@@ -34,15 +35,25 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                             DEFAULT,
                             COLLATE,
                             FOREIGN_KEY,
+                            GENERATED,
                             NULL_,           // not officially supported
                             NAME_ONLY,      // unofficial, because of bizarre sqlite grammar
                             DEFERRABLE_ONLY // unofficial, because of bizarre sqlite grammar
+                        };
+
+                        enum class GeneratedType
+                        {
+                            STORED,
+                            VIRTUAL,
+                            DEFAULT_
                         };
 
                         Constraint();
                         Constraint(const Constraint& other);
                         ~Constraint();
                         SqliteStatement* clone();
+
+                        static QString toString(GeneratedType type);
 
                         void initDefNameOnly(const QString& name);
                         void initDefId(const QString& id);
@@ -59,6 +70,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         void initFk(const QString& table, const QList<SqliteIndexedColumn*>& indexedColumns, const QList<SqliteForeignKey::Condition*>& conditions);
                         void initDefer(SqliteInitially initially, SqliteDeferrable deferrable);
                         void initColl(const QString& name);
+                        void initGeneratedAs(SqliteExpr* expr, bool genKw, const QString& type);
                         QString typeString() const;
 
                         Type type;
@@ -66,12 +78,14 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         SqliteSortOrder sortOrder = SqliteSortOrder::null;
                         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
                         bool autoincrKw = false;
+                        bool generatedKw = false;
                         SqliteExpr* expr = nullptr;
                         QVariant literalValue;
                         bool literalNull = false;
                         QString ctime;
                         QString id;
                         QString collationName = QString();
+                        GeneratedType generatedType;
                         SqliteForeignKey* foreignKey = nullptr;
 
                     protected:
@@ -96,6 +110,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 Constraint* getConstraint(Constraint::Type type) const;
                 QList<Constraint*> getConstraints(Constraint::Type type) const;
                 QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
+                void fixTypeVsGeneratedAs();
 
                 QString name = QString();
                 SqliteColumnType* type = nullptr;
@@ -112,6 +127,9 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 QStringList getColumnsInStatement();
                 TokenList getColumnTokensInStatement();
                 TokenList rebuildTokensFromContents();
+
+            private:
+                static const QRegExp GENERATED_ALWAYS_REGEXP;
         };
 
         typedef QSharedPointer<Column> ColumnPtr;

@@ -486,7 +486,7 @@ void TableWindow::executionFailed(const QString& errorText)
 
 void TableWindow::initDbAndTable()
 {
-    int totalConstrCols = 6;
+    int totalConstrCols = 7;
     if (db->getVersion() == 2)
     {
         ui->withoutRowIdCheck->setVisible(false);
