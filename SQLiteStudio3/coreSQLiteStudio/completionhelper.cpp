@@ -946,7 +946,11 @@ void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, cons
 
 void CompletionHelper::filterDuplicates(QList<ExpectedTokenPtr>& resultsSoFar)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QSet<ExpectedTokenPtr> set = QSet<ExpectedTokenPtr>(resultsSoFar.begin(), resultsSoFar.end());
+#else
+    QSet<ExpectedTokenPtr> set = resultsSoFar.toSet();
+#endif
     resultsSoFar = set.values();
 }
 

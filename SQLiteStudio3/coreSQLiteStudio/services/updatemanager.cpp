@@ -11,6 +11,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QtConcurrent/QtConcurrentRun>
 
 UpdateManager::UpdateManager(QObject *parent) :
@@ -73,15 +74,14 @@ void UpdateManager::handleUpdatesResponse(QNetworkReply* response)
         return;
     }
 
-    QString url =
 #if defined(Q_OS_WIN)
-        json["win"].toString();
+    QString url = json["win"].toString();
 #elif defined(Q_OS_LINUX)
-        json["lin"].toString();
+    QString url = json["lin"].toString();
 #elif defined(Q_OS_OSX)
-        json["mac"].toString();
+    QString url = json["mac"].toString();
 #else
-        QString();
+    QString url = jsonQString();
 #endif
 
     emit updateAvailable(version, url);

@@ -1,6 +1,4 @@
 env:
-    OLD_QT_VERSION: '5.9.9'
-    NEW_QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3340100'
     SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
@@ -25,13 +23,13 @@ on:
             - '**/tests.yml'
 
 jobs:
-    strategy:
-        matrix:
-            QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
-
     build:
         runs-on: ubuntu-18.04
         
+        strategy:
+            matrix:
+                QT_VERSION: ['5.12.10', '5.15.2']
+
         steps:
             - name: Cache Qt
               id: cache-qt
@@ -80,7 +78,7 @@ jobs:
             - name: Install other tools/dependencies
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
-                echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
+                echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins

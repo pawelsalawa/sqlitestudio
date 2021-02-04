@@ -2093,7 +2093,11 @@ void SqlQueryModel::SelectCellsQueryBuilder::addRowId(const RowId& rowId)
     if (rowIdColumns.isEmpty())
     {
         QList<QString> rowIdCols = rowId.keys();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
         rowIdColumns = QSet<QString>(rowIdCols.begin(), rowIdCols.end());
+#else
+        rowIdColumns = rowIdCols.toSet();
+#endif
         for (const QString& col : rowId.keys())
             columns << wrapObjIfNeeded(col);
     }
