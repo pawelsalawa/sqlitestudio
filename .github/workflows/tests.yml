@@ -1,7 +1,7 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3340000'
-    SQLITE_RELEASE_YEAR: '2020'
+    SQLITE_VERSION: '3340100'
+    SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
@@ -12,6 +12,7 @@ on:
         branches:
             - master
             - 3.2
+            - 3.3
         paths:
             - '**.cpp'
             - '**.hpp'
@@ -20,6 +21,7 @@ on:
             - '**.pro'
             - '**.pri'
             - '**.ui'
+            - '**/tests.yml'
 
 jobs:
     build:
@@ -49,6 +51,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                sudo apt-get remove --auto-remove sqlite3 libsqlite3
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION

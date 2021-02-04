@@ -1,7 +1,7 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3340000'
-    SQLITE_RELEASE_YEAR: '2020'
+    SQLITE_VERSION: '3340100'
+    SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 

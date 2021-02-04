@@ -1,8 +1,8 @@
 env:
     QT_VERSION: '5.15.2'
     QT_ARCH: 'win64_mingw81'
-    SQLITE_VERSION: '3340000'
-    SQLITE_RELEASE_YEAR: '2020'
+    SQLITE_VERSION: '3340100'
+    SQLITE_RELEASE_YEAR: '2021'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
