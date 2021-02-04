@@ -25,12 +25,12 @@ on:
             - '**/tests.yml'
 
 jobs:
-    strategy:
-        matrix:
-            QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
-
     build:
         runs-on: ubuntu-18.04
+
+        strategy:
+            matrix:
+                QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
 
         steps:
             - name: Cache Qt
@@ -44,7 +44,7 @@ jobs:
               uses: jurplel/install-qt-action@v2
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ env.QT_VERSION }}
+                version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
                 modules: 'qtscript'
@@ -80,7 +80,7 @@ jobs:
             - name: Install other tools/dependencies
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
-                echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
+                echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
