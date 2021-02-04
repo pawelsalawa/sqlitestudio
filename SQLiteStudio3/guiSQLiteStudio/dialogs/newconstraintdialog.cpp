@@ -115,6 +115,7 @@ void NewConstraintDialog::initColumn()
     modeToButton[ConstraintDialog::Constraint::CHECK] = addButton(ICONS.CONSTRAINT_CHECK, tr("Check", "new constraint dialog"), SLOT(createColumnCheck()));
     modeToButton[ConstraintDialog::Constraint::NOTNULL] = addButton(ICONS.CONSTRAINT_NOT_NULL, tr("Not NULL", "new constraint dialog"), SLOT(createColumnNotNull()));
     modeToButton[ConstraintDialog::Constraint::COLLATE] = addButton(ICONS.CONSTRAINT_COLLATION, tr("Collate", "new constraint dialog"), SLOT(createColumnCollate()));
+    modeToButton[ConstraintDialog::Constraint::GENERATED] = addButton(ICONS.CONSTRAINT_GENERATED, tr("Generated", "new constraint dialog"), SLOT(createColumnGenerated()));
     modeToButton[ConstraintDialog::Constraint::DEFAULT] = addButton(ICONS.CONSTRAINT_DEFAULT, tr("Default", "new constraint dialog"), SLOT(createColumnDefault()));
 }
 
@@ -153,6 +154,9 @@ int NewConstraintDialog::createColumnConstraint(ConstraintDialog::Constraint con
             break;
         case ConstraintDialog::DEFAULT:
             constraint->type = SqliteCreateTable::Column::Constraint::DEFAULT;
+            break;
+        case ConstraintDialog::GENERATED:
+            constraint->type = SqliteCreateTable::Column::Constraint::GENERATED;
             break;
         case ConstraintDialog::UNKNOWN:
             break;
@@ -268,6 +272,11 @@ void NewConstraintDialog::createColumnDefault()
 void NewConstraintDialog::createColumnCollate()
 {
     createColumnConstraint(ConstraintDialog::COLLATE);
+}
+
+void NewConstraintDialog::createColumnGenerated()
+{
+    createColumnConstraint(ConstraintDialog::GENERATED);
 }
 
 int NewConstraintDialog::exec()

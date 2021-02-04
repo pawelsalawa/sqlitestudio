@@ -35,7 +35,9 @@ class GUI_API_EXPORT Icon
             QUESTION,
             ERROR,
             SORT_ASC,
-            SORT_DESC
+            SORT_DESC,
+            DISK,
+            LIGHTENING
         };
 
         Icon(const QString& name, const QString& fileName);

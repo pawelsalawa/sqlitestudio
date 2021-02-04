@@ -88,8 +88,13 @@ void TableModifier::copyDataTo(const QString& targetTable)
     QStringList targetColumns = resolver.getTableColumns(targetTable);
     QStringList colsToCopy;
     for (SqliteCreateTable::Column* column : createTable->columns)
+    {
+        if (column->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
+            continue;
+
         if (targetColumns.contains(column->name, Qt::CaseInsensitive))
             colsToCopy << wrapObjIfNeeded(column->name);
+    }
 
     copyDataTo(targetTable, colsToCopy, colsToCopy);
 }
@@ -403,6 +408,9 @@ void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
     QStringList dstCols;
     for (SqliteCreateTable::Column* column : newCreateTable->columns)
     {
+        if (column->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
+            continue;
+
         if (!existingColumns.contains(column->originalName))
             continue; // not copying columns that didn't exist before
 

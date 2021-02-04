@@ -62,6 +62,7 @@ void ColumnDialog::init()
     connect(ui->fkButton, SIGNAL(clicked()), this, SLOT(configureFk()));
     connect(ui->checkButton, SIGNAL(clicked()), this, SLOT(configureCheck()));
     connect(ui->defaultButton, SIGNAL(clicked()), this, SLOT(configureDefault()));
+    connect(ui->generatedButton, SIGNAL(clicked()), this, SLOT(configureGenerated()));
     connect(ui->notNullButton, SIGNAL(clicked()), this, SLOT(configureNotNull()));
     connect(ui->collateButton, SIGNAL(clicked()), this, SLOT(configureCollate()));
     connect(ui->uniqueButton, SIGNAL(clicked()), this, SLOT(configureUnique()));
@@ -95,6 +96,7 @@ void ColumnDialog::createActions()
     createAction(ADD_CHECK, ICONS.CONSTRAINT_CHECK_ADD, tr("Add a check constraint", "column dialog"), this, SLOT(addCheck()), ui->constraintsToolbar);
     createAction(ADD_NOT_NULL, ICONS.CONSTRAINT_NOT_NULL_ADD, tr("Add a not null constraint", "column dialog"), this, SLOT(addNotNull()), ui->constraintsToolbar);
     createAction(ADD_COLLATE, ICONS.CONSTRAINT_COLLATION_ADD, tr("Add a collate constraint", "column dialog"), this, SLOT(addCollate()), ui->constraintsToolbar);
+    createAction(ADD_GENERATED, ICONS.CONSTRAINT_GENERATED_ADD, tr("Add a generated value constraint", "column dialog"), this, SLOT(addGenerated()), ui->constraintsToolbar);
     createAction(ADD_DEFAULT, ICONS.CONSTRAINT_DEFAULT_ADD, tr("Add a default constraint", "column dialog"), this, SLOT(addDefault()), ui->constraintsToolbar);
 }
 
@@ -128,6 +130,7 @@ void ColumnDialog::updateState()
     ui->notNullButton->setEnabled(ui->notNullCheck->isChecked());
     ui->checkButton->setEnabled(ui->checkCheck->isChecked());
     ui->collateButton->setEnabled(ui->collateCheck->isChecked());
+    ui->generatedButton->setEnabled(ui->generatedCheck->isChecked());
     ui->defaultButton->setEnabled(ui->defaultCheck->isChecked());
     updateConstraintsToolbarState();
 }
@@ -163,6 +166,7 @@ void ColumnDialog::setupConstraintCheckBoxes()
     ui->notNullCheck->setIcon(ICONS.CONSTRAINT_NOT_NULL);
     ui->checkCheck->setIcon(ICONS.CONSTRAINT_CHECK);
     ui->collateCheck->setIcon(ICONS.CONSTRAINT_COLLATION);
+    ui->generatedCheck->setIcon(ICONS.CONSTRAINT_GENERATED);
     ui->defaultCheck->setIcon(ICONS.CONSTRAINT_DEFAULT);
 
     connect(ui->pkCheck, SIGNAL(clicked(bool)), this, SLOT(pkToggled(bool)));
@@ -171,6 +175,7 @@ void ColumnDialog::setupConstraintCheckBoxes()
     connect(ui->notNullCheck, SIGNAL(clicked(bool)), this, SLOT(notNullToggled(bool)));
     connect(ui->checkCheck, SIGNAL(clicked(bool)), this, SLOT(checkToggled(bool)));
     connect(ui->collateCheck, SIGNAL(clicked(bool)), this, SLOT(collateToggled(bool)));
+    connect(ui->generatedCheck, SIGNAL(clicked(bool)), this, SLOT(generatedToggled(bool)));
     connect(ui->defaultCheck, SIGNAL(clicked(bool)), this, SLOT(defaultToggled(bool)));
 
     for (QCheckBox* cb : {
@@ -180,6 +185,7 @@ void ColumnDialog::setupConstraintCheckBoxes()
          ui->notNullCheck,
          ui->checkCheck,
          ui->collateCheck,
+         ui->generatedCheck,
          ui->defaultCheck
     })
     {
@@ -321,6 +327,8 @@ QCheckBox* ColumnDialog::getCheckBoxForConstraint(SqliteCreateTable::Column::Con
             return ui->defaultCheck;
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return ui->collateCheck;
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return ui->generatedCheck;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return ui->fkCheck;
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -347,6 +355,8 @@ QToolButton* ColumnDialog::getToolButtonForConstraint(SqliteCreateTable::Column:
             return ui->defaultButton;
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return ui->collateButton;
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return ui->generatedButton;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return ui->fkButton;
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -478,6 +488,11 @@ void ColumnDialog::addNotNull()
     addConstraint(ConstraintDialog::NOTNULL);
 }
 
+void ColumnDialog::addGenerated()
+{
+    addConstraint(ConstraintDialog::GENERATED);
+}
+
 void ColumnDialog::addDefault()
 {
     addConstraint(ConstraintDialog::DEFAULT);
@@ -513,6 +528,11 @@ void ColumnDialog::configureNotNull()
     configureConstraint(SqliteCreateTable::Column::Constraint::NOT_NULL);
 }
 
+void ColumnDialog::configureGenerated()
+{
+    configureConstraint(SqliteCreateTable::Column::Constraint::GENERATED);
+}
+
 void ColumnDialog::configureDefault()
 {
     configureConstraint(SqliteCreateTable::Column::Constraint::DEFAULT);
@@ -544,6 +564,11 @@ void ColumnDialog::collateToggled(bool enabled)
     constraintToggled(SqliteCreateTable::Column::Constraint::COLLATE, enabled);
 }
 
+void ColumnDialog::generatedToggled(bool enabled)
+{
+    constraintToggled(SqliteCreateTable::Column::Constraint::GENERATED, enabled);
+}
+
 void ColumnDialog::notNullToggled(bool enabled)
 {
     constraintToggled(SqliteCreateTable::Column::Constraint::NOT_NULL, enabled);
@@ -571,6 +596,7 @@ void ColumnDialog::updateValidations()
          ui->notNullCheck,
          ui->checkCheck,
          ui->collateCheck,
+         ui->generatedCheck,
          ui->defaultCheck
     })
     {
@@ -584,6 +610,7 @@ void ColumnDialog::updateValidations()
          ui->notNullButton,
          ui->checkButton,
          ui->collateButton,
+         ui->generatedButton,
          ui->defaultButton
     })
     {
@@ -665,6 +692,10 @@ void ColumnDialog::disableConstraint(ConstraintDialog::Constraint constraint)
         case ConstraintDialog::COLLATE:
             ui->collateCheck->setEnabled(false);
             actionMap[ADD_COLLATE]->setEnabled(false);
+            break;
+        case ConstraintDialog::GENERATED:
+            ui->generatedCheck->setEnabled(false);
+            actionMap[ADD_GENERATED]->setEnabled(false);
             break;
         case ConstraintDialog::DEFAULT:
             ui->defaultCheck->setEnabled(false);

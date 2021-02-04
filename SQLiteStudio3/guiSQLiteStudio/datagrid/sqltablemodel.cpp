@@ -3,6 +3,7 @@
 #include "sqlqueryitem.h"
 #include "services/notifymanager.h"
 #include "uiconfig.h"
+#include "common/unused.h"
 #include <QDebug>
 #include <QApplication>
 #include <schemaresolver.h>
@@ -302,6 +303,16 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
     if (columnsToReadFromDb.size() > 0)
         processDefaultValueAfterInsert(columnsToReadFromDb, values, rowId);
 
+    // Reading values for GENERATED columns
+    i = 0;
+    QList<SqlQueryItem*> generatedColumnItems;
+    for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
+    {
+        if (modelColumn->isGenerated())
+            generatedColumnItems << itemsInRow[i++];
+    }
+    refreshGeneratedColumns(generatedColumnItems, values, rowId);
+
     // Update cell data with results
     int colIdx = 0;
     for (SqlQueryItem* itemToUpdate : itemsInRow)
@@ -430,6 +441,8 @@ QString SqlTableModel::getDataSource()
 QString SqlTableModel::getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                     QStringList& sqlValues, QList<QVariant>& args)
 {
+    UNUSED(modelColumns);
+    UNUSED(args);
     QString sql = "INSERT INTO "+wrapObjIfNeeded(table);
     if (colNameList.size() == 0)
     {
@@ -449,6 +462,9 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
     int i = 0;
     for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
+        if (!modelColumn->canEdit())
+            continue;
+
         item = itemsInRow[i++];
         if (item->getValue().isNull())
         {

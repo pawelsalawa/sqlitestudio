@@ -33,6 +33,7 @@ class TableModifierTest : public QObject
         void testCase4();
         void testCase5();
         void testCase6();
+        void testCase7();
 };
 
 TableModifierTest::TableModifierTest()
@@ -263,6 +264,39 @@ void TableModifierTest::testCase6()
     verifyRe("CREATE TRIGGER t2 AFTER UPDATE OF Id ON newTable BEGIN SELECT NULL, Val2 FROM newTable; END;", sqls[i++]);
     verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT Id, NULL FROM newTable\\);", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
+}
+
+void TableModifierTest::testCase7()
+{
+    static_qstring(ddl, "CREATE TABLE abc (col1 text, col2 as (col1 || 'x'));");
+    db->exec(ddl);
+
+    Parser parser;
+    Q_ASSERT(parser.parse(ddl));
+    Q_ASSERT(parser.getQueries().size() > 0);
+    SqliteCreateTablePtr localCreateTable = parser.getQueries().first().dynamicCast<SqliteCreateTable>();
+    Q_ASSERT(!createTable.isNull());
+
+
+    TableModifier mod(db, "abc");
+    localCreateTable->table = "newTable";
+    mod.alterTable(localCreateTable);
+    QStringList sqls = mod.generateSqls();
+
+    /*
+     * 1. Disable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Enable FK.
+     */
+    QVERIFY(sqls.size() == 5);
+    int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
+    verifyRe("CREATE TABLE newTable \\(col1 text, col2 AS \\(col1 \\|\\| 'x'\\)\\);", sqls[i++]);
+    verifyRe("INSERT INTO newTable \\(col1\\) SELECT col1 FROM abc\\;", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 

@@ -6,6 +6,7 @@
 #include "constraints/tablecheckpanel.h"
 #include "constraints/columncheckpanel.h"
 #include "constraints/columncollatepanel.h"
+#include "constraints/columngeneratedpanel.h"
 #include "constraints/columndefaultpanel.h"
 #include "constraints/columnforeignkeypanel.h"
 #include "constraints/columnnotnullpanel.h"
@@ -81,6 +82,8 @@ ConstraintPanel* ConstraintPanel::produce(SqliteCreateTable::Column::Constraint*
             return new ColumnDefaultPanel();
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return new ColumnCollatePanel();
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return new ColumnGeneratedPanel();
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return new ColumnForeignKeyPanel();
         case SqliteCreateTable::Column::Constraint::NULL_:

@@ -80,9 +80,17 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
             return QObject::tr("Cannot edit columns that are result of %1 statement.").arg("SELECT DISTINCT");
         case EditionForbiddenReason::COMMON_TABLE_EXPRESSION:
             return QObject::tr("Cannot edit columns that are result of common table expression statement (%1).").arg("WITH ... SELECT ...");
+        case EditionForbiddenReason::GENERATED_COLUMN:
+            return QObject::tr("Cannot edit table generated columns.");
     }
     qCritical() << "Reached null text message for SqlQueryModel::EditionForbiddenReason. This should not happen!";
     return QString();
+}
+
+void SqlQueryModelColumn::postProcessConstraints()
+{
+    if (isGenerated())
+        editionForbiddenReason << EditionForbiddenReason::GENERATED_COLUMN;
 }
 
 bool SqlQueryModelColumn::isNumeric()
@@ -106,8 +114,8 @@ QString SqlQueryModelColumn::getEditionForbiddenReason()
         return QString();
 
     // We sort reasons to get most significant reason at first position.
-    QList<EditionForbiddenReason> list = editionForbiddenReason.toList();
-    qSort(list);
+    QList<EditionForbiddenReason> list = editionForbiddenReason.values();
+    std::sort(list.begin(), list.end());
     return resolveMessage(list[0]);
 }
 
@@ -160,6 +168,11 @@ bool SqlQueryModelColumn::isDefault() const
 bool SqlQueryModelColumn::isCollate() const
 {
     return getConstraints<ConstraintCollate*>().size() > 0;
+}
+
+bool SqlQueryModelColumn::isGenerated() const
+{
+    return getConstraints<ConstraintGenerated*>().size() > 0;
 }
 
 QList<SqlQueryModelColumn::ConstraintFk*> SqlQueryModelColumn::getFkConstraints() const
@@ -308,6 +321,14 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteC
             collate->collationName = columnConstraint->collationName;
             constr = collate;
             constr->type = Type::COLLATE;
+            break;
+        }
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+        {
+            ConstraintGenerated* generate = new ConstraintGenerated();
+            generate->generatedType = columnConstraint->generatedType;
+            constr = generate;
+            constr->type = Type::GENERATED;
             break;
         }
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
@@ -472,4 +493,21 @@ QString SqlQueryModelColumn::ConstraintCollate::getDetails() const
 Icon* SqlQueryModelColumn::ConstraintCollate::getIcon() const
 {
     return ICONS.CONSTRAINT_COLLATION;
+}
+
+QString SqlQueryModelColumn::ConstraintGenerated::getTypeString() const
+{
+    return "GENERATED";
+}
+
+QString SqlQueryModelColumn::ConstraintGenerated::getDetails() const
+{
+    return "("+QObject::tr("generated column type: %1", "data view tooltip")
+            .arg(SqliteCreateTable::Column::Constraint::toString(generatedType))+")";
+}
+
+Icon* SqlQueryModelColumn::ConstraintGenerated::getIcon() const
+{
+    return generatedType == SqliteCreateTable::Column::Constraint::GeneratedType::STORED ?
+                ICONS.CONSTRAINT_GENERATED_STORED : ICONS.CONSTRAINT_GENERATED_VIRTUAL;
 }

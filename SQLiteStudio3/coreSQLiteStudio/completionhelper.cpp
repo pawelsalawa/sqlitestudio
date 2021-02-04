@@ -401,7 +401,7 @@ bool CompletionHelper::validatePreviousIdForGetObjects(QString* dbName)
     if (previousId)
     {
         localDbName = previousId->value;
-        QStringList databases = schemaResolver->getDatabases().toList();
+        QStringList databases = schemaResolver->getDatabases().values();
         databases += DBLIST->getDbNames();
         if (!databases.contains(localDbName, Qt::CaseInsensitive))
             return false; // if db is not on the set, then getObjects() would return empty list anyway;
@@ -946,8 +946,8 @@ void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, cons
 
 void CompletionHelper::filterDuplicates(QList<ExpectedTokenPtr>& resultsSoFar)
 {
-    QSet<ExpectedTokenPtr> set = resultsSoFar.toSet();
-    resultsSoFar = set.toList();
+    QSet<ExpectedTokenPtr> set = QSet<ExpectedTokenPtr>(resultsSoFar.begin(), resultsSoFar.end());
+    resultsSoFar = set.values();
 }
 
 void CompletionHelper::applyFilter(QList<ExpectedTokenPtr>& resultsSoFar, const QString& filter)
@@ -1024,7 +1024,7 @@ bool CompletionHelper::tryToParse(Parser* parser, const QString& query)
 void CompletionHelper::sort(QList<ExpectedTokenPtr> &resultsSoFar)
 {
     CompletionComparer comparer(this);
-    qSort(resultsSoFar.begin(), resultsSoFar.end(), comparer);
+    std::sort(resultsSoFar.begin(), resultsSoFar.end(), comparer);
 }
 
 void CompletionHelper::extractPreviousIdTokens(const TokenList &parsedTokens)

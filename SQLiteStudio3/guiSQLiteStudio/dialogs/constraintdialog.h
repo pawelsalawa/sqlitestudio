@@ -32,6 +32,7 @@ class GUI_API_EXPORT ConstraintDialog : public QDialog
             NOTNULL,
             CHECK,
             COLLATE,
+            GENERATED,
             DEFAULT,
             UNKNOWN
         };

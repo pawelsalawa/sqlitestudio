@@ -189,6 +189,12 @@ FormatStatement& FormatStatement::withId(const QString& id)
     return *this;
 }
 
+FormatStatement& FormatStatement::withId(const QString& id, bool wrapIfNeeded)
+{
+    withToken(wrapIfNeeded ? FormatToken::ID : FormatToken::ID_NO_WRAP, id);
+    return *this;
+}
+
 FormatStatement& FormatStatement::withOperator(const QString& oper, FormatToken::Flags flags)
 {
     withToken(FormatToken::OPERATOR, oper, flags);
@@ -577,7 +583,13 @@ QString FormatStatement::detokenize()
             case FormatToken::ID:
             {
                 applyIndent();
-                formatId(token->value.toString());
+                formatId(token->value.toString(), true);
+                break;
+            }
+            case FormatToken::ID_NO_WRAP:
+            {
+                applyIndent();
+                formatId(token->value.toString(), false);
                 break;
             }
             case FormatToken::STRING_OR_ID:
@@ -585,7 +597,7 @@ QString FormatStatement::detokenize()
                 applyIndent();
                 QString val = token->value.toString();
                 if (val.contains("\""))
-                    formatId(token->value.toString());
+                    formatId(token->value.toString(), true);
                 else
                     line += wrapObjName(token->value.toString(), NameWrapper::DOUBLE_QUOTE);
 
@@ -1080,8 +1092,14 @@ bool FormatStatement::willStartWithNewLine(FormatStatement::FormatToken* token)
             (token->type == FormatToken::NEW_LINE);
 }
 
-void FormatStatement::formatId(const QString& value)
+void FormatStatement::formatId(const QString& value, bool applyWrapping)
 {
+    if (!applyWrapping)
+    {
+        line += value;
+        return;
+    }
+
     if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
         line += wrapObjName(value, true, wrapper);
     else

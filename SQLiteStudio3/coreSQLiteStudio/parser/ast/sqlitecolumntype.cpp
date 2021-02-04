@@ -1,6 +1,7 @@
 #include "sqlitecolumntype.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/utils_sql.h"
+#include "parser/lexer.h"
 
 SqliteColumnType::SqliteColumnType()
 {
@@ -50,7 +51,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
     if (name.isEmpty())
         return TokenList();
 
-    builder.withOther(name);
+    TokenList resultTokens = Lexer::tokenize(name);
 
     if (!scale.isNull())
     {
@@ -79,7 +80,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
         builder.withParRight();
     }
 
-    return builder.build();
+    return resultTokens + builder.build();
 }
 
 DataType SqliteColumnType::toDataType() const

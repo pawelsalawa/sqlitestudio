@@ -122,7 +122,7 @@ void DataWidgetMapper::submit()
 
         idx = model->index(currentIndex, entry->columnIndex);
         value = entry->widget->property(entry->propertyName.toLatin1().constData());
-        qDebug() << "copying from form view for idx" << idx << "value:" << value;
+        //qDebug() << "copying from form view for idx" << idx << "value:" << value;
         model->setData(idx, value, Qt::EditRole);
     }
 }

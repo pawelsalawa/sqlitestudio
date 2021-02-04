@@ -10,7 +10,12 @@ StatementTokenBuilder& StatementTokenBuilder::withKeyword(const QString& value)
 
 StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value)
 {
-    return with(Token::OTHER, wrapObjIfNeeded(value));
+    return with(Token::OTHER, value);
+}
+
+StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value, bool wrapIfNeeded)
+{
+    return with(Token::OTHER, wrapIfNeeded ? wrapObjIfNeeded(value) : value);
 }
 
 StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value)

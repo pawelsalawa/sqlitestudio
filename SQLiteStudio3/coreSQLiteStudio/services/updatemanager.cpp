@@ -16,7 +16,7 @@
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
 {
-    connect(this, SIGNAL(updatingError(QString)), NOTIFY_MANAGER, SLOT(error(QString)));
+    connect(this, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError(QString)));
     netManager = new QNetworkAccessManager(this);
 }
 
@@ -85,6 +85,11 @@ void UpdateManager::handleUpdatesResponse(QNetworkReply* response)
 #endif
 
     emit updateAvailable(version, url);
+}
+
+void UpdateManager::handleUpdatingError(const QString& errorMessage)
+{
+    NOTIFY_MANAGER->warn(tr("Could not check for updates (%1).").arg(errorMessage));
 }
 
 #endif // PORTABLE_CONFIG
