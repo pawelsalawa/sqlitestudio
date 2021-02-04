@@ -1,7 +1,8 @@
 # ChangeLog
 
-### 3.2.2
+### 3.3.0
 - ADDED: #3409 The Dark theme.
+- ADDED: #3471 Generated Columns support added.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - BUGFIX: #3046 HighDPI support fixed.

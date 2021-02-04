@@ -179,8 +179,8 @@ void FormatCreateTableColumnConstraint::formatInternal()
                 withKeyword("GENERATED").withKeyword("ALWAYS");
 
             withKeyword("AS").withParExprLeft().withStatement(constr->expr).withParExprRight();
-            if (constr->generatedType != SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_)
-                withId(SqliteCreateTable::Column::Constraint::toString(constr->generatedType));
+            if (constr->generatedType != SqliteCreateTable::Column::Constraint::GeneratedType::null)
+                withId(SqliteCreateTable::Column::Constraint::toString(constr->generatedType), false);
 
             break;
         }

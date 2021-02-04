@@ -28,7 +28,8 @@ class GUI_API_EXPORT SqlQueryModelColumn
             EXPRESSION,
             SMART_EXECUTION_FAILED,
             DISTINCT_RESULTS,
-            COMMON_TABLE_EXPRESSION
+            COMMON_TABLE_EXPRESSION,
+            GENERATED_COLUMN
         };
 
         struct Constraint
@@ -41,6 +42,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
                 CHECK,
                 DEFAULT,
                 COLLATE,
+                GENERATED,
                 FOREIGN_KEY,
                 null
             };
@@ -131,6 +133,15 @@ class GUI_API_EXPORT SqlQueryModelColumn
             QString collationName;
         };
 
+        struct ConstraintGenerated : public Constraint
+        {
+            QString getTypeString() const;
+            QString getDetails() const;
+            Icon* getIcon() const;
+
+            SqliteCreateTable::Column::Constraint::GeneratedType generatedType = SqliteCreateTable::Column::Constraint::GeneratedType::null;
+        };
+
         SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& resultColumn);
         virtual ~SqlQueryModelColumn();
 
@@ -138,6 +149,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         static EditionForbiddenReason convert(QueryExecutor::EditionForbiddenReason reason);
         static EditionForbiddenReason convert(QueryExecutor::ColumnEditionForbiddenReason reason);
         static QString resolveMessage(EditionForbiddenReason reason);
+        void postProcessConstraints();
         bool isNumeric();
         bool isNull();
         bool canEdit();
@@ -150,6 +162,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         bool isFk() const;
         bool isDefault() const;
         bool isCollate() const;
+        bool isGenerated() const;
         QList<ConstraintFk*> getFkConstraints() const;
         ConstraintDefault* getDefaultConstraint() const;
 

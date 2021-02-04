@@ -8,6 +8,7 @@ QSet<QString> rowIdKeywords;
 QStringList joinKeywords;
 QStringList fkMatchKeywords;
 QStringList conflictAlgoKeywords;
+QStringList generatedColumnKeywords;
 
 int getKeywordId3(const QString& str)
 {
@@ -182,6 +183,7 @@ void initKeywords()
     joinKeywords << "NATURAL" << "LEFT" << "RIGHT" << "OUTER" << "INNER" << "CROSS";
     fkMatchKeywords << "SIMPLE" << "FULL" << "PARTIAL";
     conflictAlgoKeywords << "ROLLBACK" << "ABORT" << "FAIL" << "IGNORE" << "REPLACE";
+    generatedColumnKeywords << "STORED" << "VIRTUAL";
 }
 
 
@@ -213,4 +215,9 @@ bool isKeyword(const QString& str)
 QStringList getConflictAlgorithms()
 {
     return conflictAlgoKeywords;
+}
+
+QStringList getGeneratedColumnTypes()
+{
+    return generatedColumnKeywords;
 }

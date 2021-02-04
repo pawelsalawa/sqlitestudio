@@ -43,6 +43,7 @@ TRANSLATIONS += translations/guiSQLiteStudio_ro_RO.ts \
 		translations/guiSQLiteStudio_pl.ts
 
 SOURCES +=\
+    constraints/columngeneratedpanel.cpp \
     extendedpalette.cpp \
         mainwindow.cpp \
     iconmanager.cpp \
@@ -194,6 +195,7 @@ SOURCES +=\
     dialogs/fileexecerrorsdialog.cpp
 
 HEADERS  += mainwindow.h \
+    constraints/columngeneratedpanel.h \
     extendedpalette.h \
     iconmanager.h \
     dbtree/dbtreemodel.h \
@@ -350,6 +352,7 @@ HEADERS  += mainwindow.h \
     dialogs/fileexecerrorsdialog.h
 
 FORMS    += mainwindow.ui \
+    constraints/columngeneratedpanel.ui \
     dbtree/dbtree.ui \
     statusfield.ui \
     completer/completerwindow.ui \

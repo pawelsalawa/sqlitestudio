@@ -45,7 +45,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         {
                             STORED,
                             VIRTUAL,
-                            DEFAULT_
+                            null
                         };
 
                         Constraint();
@@ -54,6 +54,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         SqliteStatement* clone();
 
                         static QString toString(GeneratedType type);
+                        static GeneratedType generatedTypeFrom(const QString& type);
 
                         void initDefNameOnly(const QString& name);
                         void initDefId(const QString& id);
@@ -85,7 +86,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         QString ctime;
                         QString id;
                         QString collationName = QString();
-                        GeneratedType generatedType;
+                        GeneratedType generatedType = GeneratedType::null;
                         SqliteForeignKey* foreignKey = nullptr;
 
                     protected:

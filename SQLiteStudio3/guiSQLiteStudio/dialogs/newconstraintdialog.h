@@ -63,6 +63,7 @@ class GUI_API_EXPORT NewConstraintDialog : public QDialog
         void createColumnNotNull();
         void createColumnDefault();
         void createColumnCollate();
+        void createColumnGenerated();
 };
 
 #endif // NEWCONSTRAINTDIALOG_H

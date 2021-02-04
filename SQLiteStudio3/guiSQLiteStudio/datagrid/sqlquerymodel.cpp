@@ -101,14 +101,14 @@ void SqlQueryModel::executeQueryInternal()
 {
     if (!db || !db->isValid())
     {
-        notifyWarn("Cannot execute query on undefined or invalid database.");
+        notifyWarn(tr("Cannot execute query on undefined or invalid database."));
         internalExecutionStopped();
         return;
     }
 
     if (isEmptyQuery())
     {
-        notifyWarn("Cannot execute empty query.");
+        notifyWarn(tr("Cannot execute empty query."));
         internalExecutionStopped();
         return;
     }
@@ -276,6 +276,26 @@ QList<QList<SqlQueryItem*> > SqlQueryModel::groupItemsByRows(const QList<SqlQuer
     return itemsByRow.values();
 }
 
+QHash<AliasedTable, QVector<SqlQueryModelColumn*>> SqlQueryModel::groupColumnsByTable(const QVector<SqlQueryModelColumn*>& columns)
+{
+    QHash<AliasedTable, QVector<SqlQueryModelColumn*>> columnsByTable;
+    AliasedTable table;
+    for (SqlQueryModelColumn* col : columns)
+    {
+        if (!col->column.isNull())
+        {
+            table.setDatabase(col->database.toLower());
+            table.setTable(col->table.toLower());
+            table.setTableAlias(col->tableAlias.toLower());
+            columnsByTable[table] << col;
+        }
+        else
+            columnsByTable[AliasedTable()] << col;
+    }
+
+    return columnsByTable;
+}
+
 QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(const QList<SqlQueryItem*>& items)
 {
     QHash<AliasedTable,QList<SqlQueryItem*>> itemsByTable;
@@ -375,6 +395,128 @@ void SqlQueryModel::rollbackRow(const QList<SqlQueryItem*>& itemsInRow)
         rollbackEditedRow(itemsInRow);
 }
 
+void SqlQueryModel::refreshGeneratedColumns(const QList<SqlQueryItem*>& items)
+{
+    QHash<SqlQueryItem*, QVariant> resultValues;
+    refreshGeneratedColumns(items, resultValues, RowId());
+    for (auto resultIt = resultValues.begin(); resultIt != resultValues.end(); resultIt++)
+    {
+        SqlQueryItem* item = resultIt.key();
+        item->setValue(resultIt.value(), false, true);
+        item->setTextAlignment(findValueAlignment(resultIt.value(), item->getColumn()));
+    }
+}
+
+void SqlQueryModel::refreshGeneratedColumns(const QList<SqlQueryItem*>& items, QHash<SqlQueryItem*, QVariant>& values, const RowId& insertedRowId)
+{
+    // Find out which columns are generated
+    int colIdx = 0;
+    QVector<SqlQueryModelColumn*> generatedColumns;
+    QHash<SqlQueryModelColumn*, int> generatedColumnIdx;
+    for (const SqlQueryModelColumnPtr& column : columns)
+    {
+        if (column->isGenerated())
+        {
+            generatedColumns << column.data();
+            generatedColumnIdx[column.data()] = colIdx;
+        }
+        colIdx++;
+    }
+    if (generatedColumns.isEmpty())
+        return;
+
+    QHash<AliasedTable, QVector<SqlQueryModelColumn*>> columnsByTable = groupColumnsByTable(generatedColumns);
+
+    // Filter out deleted items - we won't update generated values for them
+    QList<SqlQueryItem*> insertedOrAlteredItems = filter<SqlQueryItem*>(items, [&](SqlQueryItem* item) -> bool
+    {
+        if (item->isNewRow())
+            return !insertedRowId.isEmpty();
+
+        return !item->isDeletedRow();
+    });
+
+    SelectCellsQueryBuilder builder;
+    QHash<AliasedTable, QList<SqlQueryItem*>> itemsByTable = groupItemsByTable(insertedOrAlteredItems);
+    for (auto itemsIt = itemsByTable.begin(); itemsIt != itemsByTable.end(); itemsIt++)
+    {
+        const AliasedTable table = itemsIt.key();
+        QVector<SqlQueryModelColumn*> tableColumns = columnsByTable[table];
+        if (tableColumns.isEmpty())
+            continue;
+
+        builder.setDatabase(wrapObjIfNeeded(table.getDatabase()));
+        builder.setTable(wrapObjIfNeeded(table.getTable()));
+
+        QHash<RowId, QSet<SqlQueryItem*>> itemsPerRowId;
+        for (SqlQueryItem* item : itemsIt.value())
+        {
+            RowId rowId = insertedRowId.isEmpty() ? item->getRowId() : insertedRowId;
+            builder.addRowId(rowId);
+            for (SqlQueryModelColumn* tableCol : tableColumns)
+                itemsPerRowId[rowId] << itemFromIndex(item->row(), generatedColumnIdx[tableCol]);
+        }
+
+        for (SqlQueryModelColumn* tableCol : tableColumns)
+            builder.addColumn(tableCol->column);
+
+        values.insert(readCellValues(builder, itemsPerRowId));
+
+        builder.clear();
+    }
+}
+
+QHash<SqlQueryItem*, QVariant> SqlQueryModel::readCellValues(SelectCellsQueryBuilder& queryBuilder, const QHash<RowId, QSet<SqlQueryItem*>>& itemsPerRowId)
+{
+    QHash<SqlQueryItem*, QVariant> values;
+
+    // Executing query
+    SqlQueryPtr results = db->exec(queryBuilder.build(), queryBuilder.getQueryArgs(), Db::Flag::PRELOAD);
+
+    // Handling error
+    if (results->isError())
+    {
+        qCritical() << "Could not load cell values for table" << queryBuilder.getTable() << ", so defaulting them with NULL. Error from database was:"
+                    << results->getErrorText();
+
+        for (SqlQueryItem* item : concatSet(itemsPerRowId.values()))
+            values[item] = QVariant();
+
+        return values;
+    }
+
+    if (!results->hasNext())
+    {
+        qCritical() << "Could not load cell values for table" << queryBuilder.getTable() << ", so defaulting them with NULL. There were no result rows.";
+
+        for (SqlQueryItem* item : concatSet(itemsPerRowId.values()))
+            values[item] = QVariant();
+
+        return values;
+    }
+
+    // Reading a row
+    while (results->hasNext())
+    {
+        SqlResultsRowPtr row = results->next();
+        if (row->valueList().size() != queryBuilder.getColumnCount())
+        {
+            qCritical() << "Could not load cell values for table" << queryBuilder.getTable() << ", so defaulting them with NULL. Number of columns from results was invalid:"
+                        << row->valueList().size() << ", while expected:" << queryBuilder.getColumnCount();
+
+            for (SqlQueryItem* item : concatSet(itemsPerRowId.values()))
+                values[item] = QVariant();
+
+            return values;
+        }
+
+        for (SqlQueryItem* item : itemsPerRowId[queryBuilder.readRowId(row)])
+            values[item] = row->value(item->getColumn()->column);
+    }
+
+    return values;
+}
+
 void SqlQueryModel::rollback()
 {
     QList<SqlQueryItem*> items = findItems(SqlQueryItem::DataRole::UNCOMMITTED, true);
@@ -449,6 +591,9 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         }
         else
         {
+            // Refresh generated columns of altered rows
+            refreshGeneratedColumns(itemsLeft);
+
             // Committed successfully
             for (SqlQueryItem* item : itemsLeft)
             {
@@ -456,7 +601,8 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
                 item->setNewRow(false);
             }
 
-            qSort(rowsDeletedSuccessfullyInTheCommit);
+            // Physically delete rows
+            std::sort(rowsDeletedSuccessfullyInTheCommit.begin(), rowsDeletedSuccessfullyInTheCommit.end());
             int removeOffset = 0;
             for (int row : rowsDeletedSuccessfullyInTheCommit)
                 removeRow(row - removeOffset++); // deleting row decrements all rows below
@@ -872,12 +1018,6 @@ RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, int columnIdx)
 void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId)
 {
     SqlQueryModelColumnPtr column = columns[columnIndex];
-    Qt::Alignment alignment;
-
-    if ((column->isNumeric() || column->isNull()) && isNumeric(value))
-        alignment = Qt::AlignRight|Qt::AlignVCenter;
-    else
-        alignment = Qt::AlignLeft|Qt::AlignVCenter;
 
     // This should be equal at most, unless we have UTF-8 string, than there might be more bytes.
     // If less, than it's not limited.
@@ -886,8 +1026,16 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     item->setJustInsertedWithOutRowId(false);
     item->setValue(value, limited, true);
     item->setColumn(column.data());
-    item->setTextAlignment(alignment);
+    item->setTextAlignment(findValueAlignment(value, column.data()));
     item->setRowId(rowId);
+}
+
+Qt::Alignment SqlQueryModel::findValueAlignment(const QVariant& value, SqlQueryModelColumn* column)
+{
+    if ((column->isNumeric() || column->isNull()) && isNumeric(value))
+        return Qt::AlignRight|Qt::AlignVCenter;
+    else
+        return Qt::AlignLeft|Qt::AlignVCenter;
 }
 
 RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items)
@@ -1059,6 +1207,8 @@ void SqlQueryModel::readColumnDetails()
             modelConstraint = SqlQueryModelColumn::Constraint::create(constrPtr);
             if (modelConstraint)
                 modelColumn->constraints << modelConstraint;
+
+            modelColumn->postProcessConstraints();
         }
 
         // Table constraints
@@ -1713,8 +1863,8 @@ void SqlQueryModel::deleteSelectedRows()
     for (SqlQueryItem* item : selectedItems)
         rows << item->index().row();
 
-    QList<int> rowList = rows.toList();
-    qSort(rowList);
+    QList<int> rowList = rows.values();
+    std::sort(rowList.begin(), rowList.end());
 
     QList<SqlQueryItem*> newItemsToDelete;
     int cols = columnCount();
@@ -1915,4 +2065,117 @@ QString SqlQueryModel::CommitUpdateQueryBuilder::build()
 QStringList SqlQueryModel::CommitUpdateQueryBuilder::getAssignmentArgs() const
 {
     return assignmentArgs;
+}
+
+void SqlQueryModel::SelectCellsQueryBuilder::addRowId(const RowId& rowId)
+{
+    if (includedRowIds.contains(rowId))
+        return;
+
+    static_qstring(argTempalate, ":rowIdArg%1");
+
+    QStringList parts;
+    QString arg;
+    QHashIterator<QString,QVariant> it(rowId);
+    while (it.hasNext())
+    {
+        it.next();
+        arg = argTempalate.arg(argSquence++);
+        queryArgs[arg] = it.value();
+        parts << wrapObjIfNeeded(it.key()) + " = " + arg;
+    }
+    conditions << parts.join(" AND ");
+
+    if (rowIdColumns.isEmpty())
+    {
+        QList<QString> rowIdCols = rowId.keys();
+        rowIdColumns = QSet<QString>(rowIdCols.begin(), rowIdCols.end());
+        for (const QString& col : rowId.keys())
+            columns << wrapObjIfNeeded(col);
+    }
+
+    includedRowIds << rowId;
+}
+
+QString SqlQueryModel::SelectCellsQueryBuilder::build()
+{
+    QString conditionsString = conditions.join(" OR ");
+
+    QString dbAndTable;
+    if (!database.isNull())
+        dbAndTable += database + ".";
+
+    dbAndTable += table;
+
+    QStringList selectColumns;
+    for (const QString& col : columns)
+    {
+        // Explicit "ROWID" alias, because - if ROWID column
+        // is the INTEGER PRIMARY KEY column - SQLite reports
+        // column name as its table column name and it does not
+        // match the RowId columns when requested in #readRowId().
+        if (col.toUpper() == "ROWID")
+            selectColumns << "ROWID AS ROWID";
+        else
+            selectColumns << col;
+    }
+
+
+    static_qstring(sql, "SELECT %1 FROM %2 WHERE %3;");
+    return sql.arg(
+                selectColumns.join(", "),
+                dbAndTable,
+                conditionsString
+                );
+}
+
+void SqlQueryModel::SelectCellsQueryBuilder::clear()
+{
+    database = QString();
+    table = QString();
+    rowIdColumns.clear();
+    columns.clear();
+    conditions.clear();
+    queryArgs.clear();
+    includedRowIds.clear();
+    argSquence = 0;
+}
+
+void SqlQueryModel::SelectCellsQueryBuilder::setDatabase(const QString& database)
+{
+    this->database = database;
+}
+
+void SqlQueryModel::SelectCellsQueryBuilder::setTable(const QString& table)
+{
+    this->table = table;
+}
+
+void SqlQueryModel::SelectCellsQueryBuilder::addColumn(const QString& column)
+{
+    this->columns << column;
+}
+
+RowId SqlQueryModel::SelectCellsQueryBuilder::readRowId(SqlResultsRowPtr row) const
+{
+    RowId rowId;
+    for (const QString& column : rowIdColumns)
+        rowId[column] = row->value(column);
+
+    return rowId;
+}
+
+int SqlQueryModel::SelectCellsQueryBuilder::getColumnCount() const
+{
+    return columns.size();
+}
+
+QString SqlQueryModel::SelectCellsQueryBuilder::getTable() const
+{
+    return table;
+}
+
+QString SqlQueryModel::SelectCellsQueryBuilder::getDatabase() const
+{
+    return database;
 }

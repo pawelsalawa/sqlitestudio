@@ -221,7 +221,7 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
     if (idxList.size() == 0)
         return items;
 
-    qSort(idxList);
+    std::sort(idxList.begin(), idxList.end());
     const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(idxList.first().model());
     for (const QModelIndex& idx : idxList)
         items << model->itemFromIndex(idx);

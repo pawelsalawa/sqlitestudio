@@ -381,7 +381,7 @@ QVariant TableStructureModel::getColumnGenerate(int row) const
         case SqliteCreateTable::Column::Constraint::GeneratedType::STORED:
             return ICONS.CONSTRAINT_GENERATED_STORED;
         case SqliteCreateTable::Column::Constraint::GeneratedType::VIRTUAL:
-        case SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_:
+        case SqliteCreateTable::Column::Constraint::GeneratedType::null:
             break;
     }
     return ICONS.CONSTRAINT_GENERATED_VIRTUAL;

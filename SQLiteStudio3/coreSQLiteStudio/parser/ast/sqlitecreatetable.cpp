@@ -269,8 +269,9 @@ SqliteCreateTable::Column::Constraint::Constraint()
 
 SqliteCreateTable::Column::Constraint::Constraint(const SqliteCreateTable::Column::Constraint& other) :
     SqliteStatement(other), type(other.type), name(other.name), sortOrder(other.sortOrder), onConflict(other.onConflict),
-    autoincrKw(other.autoincrKw), literalValue(other.literalValue), literalNull(other.literalNull), ctime(other.ctime), id(other.id),
-    collationName(other.collationName), deferrable(other.deferrable), initially(other.initially)
+    autoincrKw(other.autoincrKw), generatedKw(other.generatedKw), literalValue(other.literalValue), literalNull(other.literalNull),
+    ctime(other.ctime), id(other.id), collationName(other.collationName), deferrable(other.deferrable), initially(other.initially),
+    generatedType(other.generatedType)
 {
     DEEP_COPY_FIELD(SqliteExpr, expr);
     DEEP_COPY_FIELD(SqliteForeignKey, foreignKey);
@@ -292,10 +293,21 @@ QString SqliteCreateTable::Column::Constraint::toString(SqliteCreateTable::Colum
             return "STORED";
         case SqliteCreateTable::Column::Constraint::GeneratedType::VIRTUAL:
             return "VIRTUAL";
-        case SqliteCreateTable::Column::Constraint::GeneratedType::DEFAULT_:
+        case SqliteCreateTable::Column::Constraint::GeneratedType::null:
             break;
     }
     return QString();
+}
+
+SqliteCreateTable::Column::Constraint::GeneratedType SqliteCreateTable::Column::Constraint::generatedTypeFrom(const QString& type)
+{
+    QString upType = type.toUpper();
+    if (upType == "STORED")
+        return GeneratedType::STORED;
+    else if (upType == "VIRTUAL")
+        return GeneratedType::VIRTUAL;
+    else
+        return GeneratedType::null;
 }
 
 void SqliteCreateTable::Column::Constraint::initDefNameOnly(const QString &name)
@@ -424,13 +436,7 @@ void SqliteCreateTable::Column::Constraint::initGeneratedAs(SqliteExpr* expr, bo
     this->type = SqliteCreateTable::Column::Constraint::GENERATED;
     this->expr = expr;
     this->generatedKw = genKw;
-    QString upType = type.toUpper();
-    if (upType == "STORED")
-        this->generatedType = GeneratedType::STORED;
-    else if (upType == "VIRTUAL")
-        this->generatedType = GeneratedType::VIRTUAL;
-    else
-        this->generatedType = GeneratedType::DEFAULT_;
+    this->generatedType = generatedTypeFrom(type);
 }
 
 QString SqliteCreateTable::Column::Constraint::typeString() const
@@ -447,6 +453,8 @@ QString SqliteCreateTable::Column::Constraint::typeString() const
             return "CHECK";
         case SqliteCreateTable::Column::Constraint::DEFAULT:
             return "DEFAULT";
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return "GENERATED";
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return "COLLATE";
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
@@ -825,8 +833,8 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
                 builder.withKeyword("GENERATED").withSpace().withKeyword("ALWAYS").withSpace();
 
             builder.withKeyword("AS").withSpace().withParLeft().withStatement(expr).withParRight();
-            if (generatedType != GeneratedType::DEFAULT_)
-                builder.withSpace().withOther(toString(generatedType));
+            if (generatedType != GeneratedType::null)
+                builder.withSpace().withOther(toString(generatedType), false);
 
             break;
         }

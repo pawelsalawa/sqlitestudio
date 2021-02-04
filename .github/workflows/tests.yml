@@ -12,6 +12,7 @@ on:
         branches:
             - master
             - 3.2
+            - 3.3
         paths:
             - '**.cpp'
             - '**.hpp'
@@ -49,6 +50,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                sudo apt-get remove --auto-remove sqlite3 libsqlite3
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
