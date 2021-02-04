@@ -25,13 +25,13 @@ on:
             - '**/tests.yml'
 
 jobs:
+    strategy:
+        matrix:
+            QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
+
     build:
         runs-on: ubuntu-18.04
         
-        strategy:
-            matrix:
-                QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
-
         steps:
             - name: Cache Qt
               id: cache-qt
