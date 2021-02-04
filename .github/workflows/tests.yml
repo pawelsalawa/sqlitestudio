@@ -1,6 +1,4 @@
 env:
-    OLD_QT_VERSION: '5.9.9'
-    NEW_QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3340100'
     SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
@@ -30,7 +28,7 @@ jobs:
 
         strategy:
             matrix:
-                QT_VERSION: ['5.9.9', '5.15.2']
+                QT_VERSION: ['5.12.10', '5.15.2']
 
         steps:
             - name: Cache Qt
