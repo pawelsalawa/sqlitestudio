@@ -84,7 +84,7 @@ jobs:
             - name: Prepare output dir
               shell: bash
               run: mkdir output output/build output/build/Plugins
-            
+
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |

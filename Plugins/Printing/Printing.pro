@@ -35,16 +35,28 @@ RESOURCES += \
     printing.qrc
 
 
-TRANSLATIONS += Printing_ro_RO.ts \
-		Printing_de.ts \
-		Printing_it.ts \
-		Printing_zh_CN.ts \
-		Printing_sk.ts \
-		Printing_ru.ts \
-		Printing_pt_BR.ts \
-		Printing_fr.ts \
-		Printing_es.ts \
-		Printing_pl.ts
+TRANSLATIONS += translations/Printing.ts \
+		translations/Printing_ro_RO.ts \
+		translations/Printing_de_DE.ts \
+		translations/Printing_it_IT.ts \
+		translations/Printing_zh_CN.ts \
+		translations/Printing_sk_SK.ts \
+		translations/Printing_ru_RU.ts \
+		translations/Printing_pt_BR.ts \
+		translations/Printing_fr_FR.ts \
+		translations/Printing_es_ES.ts \
+		translations/Printing_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
+
 
 
 

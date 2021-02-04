@@ -11,16 +11,16 @@ A free, open source, multi-platform SQLite database manager written in C++, with
 https://github.com/pawelsalawa/sqlitestudio/wiki/How_can_I_contribute?
 
 
+## Want to donate?
+https://sqlitestudio.pl/donate/
+
+
 ## Home page
 https://sqlitestudio.pl/
 
 
 ## Compilation from sources
 https://github.com/pawelsalawa/sqlitestudio/wiki/Compiling_application_from_sources
-
-
-## Discussion forum
-https://forum.sqlitestudio.pl/
 
 
 ## Bugs & feature requests tracker

@@ -55,7 +55,7 @@ jobs:
                     -DSQLITE_ENABLE_RTREE
                 strip libsqlite3.so
                 sudo cp libsqlite3.so /usr/local/lib/
-            
+                
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
               
@@ -88,7 +88,7 @@ jobs:
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                sqlite3_lib=/usr/local/lib/libsqlite3.so.0.8.6
+                sqlite3_lib=/usr/local/lib/libsqlite3.so
                 sqlite3_lib_target=`ldd lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
                 cp $sqlite3_lib lib/`basename $sqlite3_lib_target`
 
