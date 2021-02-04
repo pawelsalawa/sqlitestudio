@@ -1,5 +1,6 @@
 env:
-    QT_VERSION: '5.14.2'
+    OLD_QT_VERSION: '5.9.9'
+    NEW_QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3340100'
     SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
@@ -26,6 +27,10 @@ on:
 jobs:
     build:
         runs-on: ubuntu-18.04
+        
+        strategy:
+            matrix:
+                QT_VERSION: [$OLD_QT_VERSION, $NEW_QT_VERSION]
 
         steps:
             - name: Cache Qt
@@ -39,7 +44,7 @@ jobs:
               uses: jurplel/install-qt-action@v2
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ env.QT_VERSION }}
+                version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
                 modules: 'qtscript'
