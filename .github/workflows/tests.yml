@@ -30,7 +30,7 @@ jobs:
         
         strategy:
             matrix:
-                QT_VERSION: [$OLD_QT_VERSION, $NEW_QT_VERSION]
+                QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
 
         steps:
             - name: Cache Qt
@@ -56,6 +56,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                sudo apt-get remove --auto-remove sqlite3
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
