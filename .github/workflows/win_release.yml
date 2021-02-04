@@ -69,6 +69,7 @@ jobs:
                 gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_BYTECODE_VTAB \
                     -DSQLITE_ENABLE_COLUMN_METADATA \
                     -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
                     -DSQLITE_ENABLE_FTS3 \
