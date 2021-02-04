@@ -30,7 +30,7 @@ class SelectResolverTest : public QObject
         void testWithCte2();
         void testStarWithJoinAndError();
         void testTableFunction();
-        void test1();
+        void testSubselect();
         void testSubselectWithAlias();
 };
 
@@ -251,7 +251,7 @@ void SelectResolverTest::testTableFunction()
     QVERIFY(columns.first().first().type == SelectResolver::Column::OTHER);
 }
 
-void SelectResolverTest::test1()
+void SelectResolverTest::testSubselect()
 {
     QString sql = "SELECT * FROM (SELECT count(col1), col2 FROM test)";
     SelectResolver resolver(db, sql);

@@ -34,6 +34,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
             ADD_CHECK,
             ADD_DEFAULT,
             ADD_NOT_NULL,
+            ADD_GENERATED,
             ADD_COLLATE
         };
 
@@ -94,12 +95,14 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void addCheck();
         void addCollate();
         void addNotNull();
+        void addGenerated();
         void addDefault();
         void configurePk();
         void configureFk();
         void configureUnique();
         void configureCheck();
         void configureCollate();
+        void configureGenerated();
         void configureNotNull();
         void configureDefault();
         void pkToggled(bool enabled);
@@ -107,6 +110,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void uniqueToggled(bool enabled);
         void checkToggled(bool enabled);
         void collateToggled(bool enabled);
+        void generatedToggled(bool enabled);
         void notNullToggled(bool enabled);
         void defaultToggled(bool enabled);
         void switchMode(bool advanced);

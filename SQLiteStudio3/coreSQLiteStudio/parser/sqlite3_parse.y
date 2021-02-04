@@ -12,7 +12,6 @@
 }
 
 %stack_overflow {
-    UNUSED_PARAMETER(yypMinor);
     parserContext->error(QObject::tr("Parser stack overflow"));
 }
 
@@ -78,15 +77,15 @@
 // are allowed for fallback if compound selects are disabled,
 // which is not this case.
 %fallback ID
-  ABORT ACTION AFTER ANALYZE ASC ATTACH BEFORE BEGIN BY CASCADE CAST COLUMNKW
-  CONFLICT DATABASE DEFERRED DESC DETACH EACH END EXCLUSIVE EXPLAIN FAIL FOR
-  IGNORE IMMEDIATE INDEXED INITIALLY INSTEAD LIKE_KW MATCH NO PLAN
-  QUERY KEY OF OFFSET PRAGMA RAISE RECURSIVE RELEASE REPLACE RESTRICT ROW ROLLBACK
-  SAVEPOINT TEMP TRIGGER VACUUM VIEW VIRTUAL WITH WITHOUT
+  ABORT ACTION AFTER ALWAYS ANALYZE ASC ATTACH BEFORE BEGIN BY CASCADE CAST COLUMNKW
+  CONFLICT CURRENT DATABASE DEFERRED DESC DETACH DO EACH END EXCLUDE EXCLUSIVE EXPLAIN FAIL FIRST FOLLOWING FOR
+  GENERATED GROUPS IGNORE IMMEDIATE INDEXED INITIALLY INSTEAD LAST LIKE_KW MATCH NO NULLS OTHERS PLAN
+  QUERY KEY OF OFFSET PARTITION PRAGMA PRECEDING RAISE RANGE RECURSIVE RELEASE REPLACE RESTRICT ROW ROWS ROLLBACK
+  SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHOUT
   REINDEX RENAME CTIME_KW IF
   .
 %wildcard ANY.
-
+ 
 // Define operator precedence early so that this is the first occurance
 // of the operator tokens in the grammer.  Keeping the operators together
 // causes them to be assigned integer values that are close together,
@@ -330,6 +329,7 @@ columnlist(X) ::= column(C).                {
 column(X) ::= columnid(C) type(T)
                 carglist(L).                {
                                                 X = new SqliteCreateTable::Column(*(C), T, *(L));
+												X->fixTypeVsGeneratedAs();
                                                 delete C;
                                                 delete L;
                                                 objectForTokens = X;
@@ -351,6 +351,15 @@ id(X) ::= ID(T).                            {
                                                         T->value
                                                     )
                                                 );
+                                            }
+
+%type id_opt {QString*}
+%destructor id_opt {delete $$;}
+id_opt(X) ::= id(T).                        {
+                                                X = T;
+                                            }
+id_opt(X) ::= .                             {
+                                                X = new QString();
                                             }
 
 // Why would INDEXED be defined individually like this? I don't know.
@@ -377,8 +386,8 @@ nm(X) ::= JOIN_KW(N).                       {X = new QString(N->value);}
 // Multiple tokens are concatenated to form the value of the typetoken.
 %type type {SqliteColumnType*}
 %destructor type {delete $$;}
-type(X) ::= .                               {X = nullptr;}
-type(X) ::= typetoken(T).                   {X = T;}
+type(X) ::= .                  [LEFT_ASSOC] {X = nullptr;}
+type(X) ::= typetoken(T).      [LEFT_ASSOC] {X = T;}
 
 %type typetoken {SqliteColumnType*}
 %destructor typetoken {delete $$;}
@@ -422,12 +431,13 @@ signed(X) ::= minus_num(N).                 {X = N;}
 // column name and column type in a CREATE TABLE statement.
 %type carglist {ParserCreateTableColumnConstraintList*}
 %destructor carglist {delete $$;}
-carglist(X) ::= carglist(L) ccons(C).       {
+carglist(X) ::= carglist(L) ccons(C).
+							  [RIGHT_ASSOC] {
                                                 L->append(C);
                                                 X = L;
                                                 DONT_INHERIT_TOKENS("carglist");
                                             }
-carglist(X) ::= .                           {X = new ParserCreateTableColumnConstraintList();}
+carglist(X) ::= .             [RIGHT_ASSOC] {X = new ParserCreateTableColumnConstraintList();}
 
 %type ccons {SqliteCreateTable::Column::Constraint*}
 %destructor ccons {delete $$;}
@@ -527,6 +537,17 @@ ccons(X) ::= COLLATE ids(I).                {
                                                 delete I;
                                                 objectForTokens = X;
                                             }
+ccons(X) ::= gen_always(A) AS
+				LP expr(E) RP id_opt(T).    {
+                                                if (!T->isNull() && T->toLower() != "stored" && T->toLower() != "virtual")
+                                                    parserContext->errorAtToken(QString("Invalid generated column type: %1").arg(*(T)));
+
+                                                X = new SqliteCreateTable::Column::Constraint();
+												X->initGeneratedAs(E, *(A), *(T));
+												delete A;
+												delete T;
+												objectForTokens = X;
+											}
 
 ccons ::= CONSTRAINT ID_CONSTR.             {}
 ccons ::= COLLATE ID_COLLATE.               {}
@@ -544,6 +565,11 @@ term(X) ::= NULL.                           {X = new QVariant();}
 term(X) ::= INTEGER(N).                     {X = parserContext->handleNumberToken(N->value);}
 term(X) ::= FLOAT(N).                       {X = new QVariant(QVariant(N->value).toDouble());}
 term(X) ::= STRING|BLOB(S).                 {X = new QVariant(S->value);}
+
+%type gen_always {bool*}
+%destructor gen_always {delete $$;}
+gen_always(X) ::= GENERATED ALWAYS.			{X = new bool(true);}
+gen_always(X) ::= .							{X = new bool(false);}
 
 // The optional AUTOINCREMENT keyword
 %type autoinc {bool*}

@@ -132,7 +132,7 @@ void RowIdConditionBuilder::setRowId(const RowId& rowId)
     }
 }
 
-const QHash<QString, QVariant>& RowIdConditionBuilder::getQueryArgs()
+const QHash<QString, QVariant>& RowIdConditionBuilder::getQueryArgs() const
 {
     return queryArgs;
 }

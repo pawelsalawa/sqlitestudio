@@ -305,7 +305,7 @@ class API_EXPORT RowIdConditionBuilder
 {
     public:
         void setRowId(const RowId& rowId);
-        const QHash<QString,QVariant>& getQueryArgs();
+        const QHash<QString,QVariant>& getQueryArgs() const;
         QString build();
 
     protected:

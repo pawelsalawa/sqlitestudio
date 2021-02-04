@@ -114,19 +114,19 @@ void DbListModel::sort()
         case DbListModel::SortMode::LikeDbTree:
         {
             DbTreeComparer comparer;
-            qSort(dbList.begin(), dbList.end(), comparer);
+            std::sort(dbList.begin(), dbList.end(), comparer);
             break;
         }
         case DbListModel::SortMode::Alphabetical:
         {
             AlphaComparer comparer;
-            qSort(dbList.begin(), dbList.end(), comparer);
+            std::sort(dbList.begin(), dbList.end(), comparer);
             break;
         }
         case DbListModel::SortMode::AlphabeticalCaseInsensitive:
         {
             AlphaComparer comparer(Qt::CaseInsensitive);
-            qSort(dbList.begin(), dbList.end(), comparer);
+            std::sort(dbList.begin(), dbList.end(), comparer);
             break;
         }
         case DbListModel::SortMode::ConnectionOrder:

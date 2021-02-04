@@ -143,6 +143,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void gotoPage(int newPage);
         bool canReload();
         virtual bool supportsModifyingQueriesInMenu() const;
+        Qt::Alignment findValueAlignment(const QVariant& value, SqlQueryModelColumn* column);
 
         QueryExecutor::SortList getSortOrder() const;
         void setSortOrder(const QueryExecutor::SortList& newSortOrder);
@@ -159,6 +160,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         static QList<QList<SqlQueryItem*>> groupItemsByRows(const QList<SqlQueryItem*>& items);
         static QHash<AliasedTable, QList<SqlQueryItem*> > groupItemsByTable(const QList<SqlQueryItem*>& items);
+        static QHash<AliasedTable, QVector<SqlQueryModelColumn*> > groupColumnsByTable(const QVector<SqlQueryModelColumn*>& columns);
 
         bool getSimpleExecutionMode() const;
         void setSimpleExecutionMode(bool value);
@@ -197,6 +199,29 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
                 QString table;
                 QStringList columns;
                 QStringList assignmentArgs;
+        };
+
+        class SelectCellsQueryBuilder : public RowIdConditionBuilder
+        {
+            public:
+                void addRowId(const RowId& rowId);
+                QString build();
+                void clear();
+                void setDatabase(const QString& database);
+                void setTable(const QString& table);
+                QString getDatabase() const;
+                QString getTable() const;
+                void addColumn(const QString& column);
+                RowId readRowId(SqlResultsRowPtr row) const;
+                int getColumnCount() const;
+
+            protected:
+                QSet<QString> rowIdColumns;
+                QString database;
+                QString table;
+                QSet<QString> columns;
+                QSet<RowId> includedRowIds;
+                int argSquence = 0;
         };
 
         /**
@@ -262,6 +287,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
         QHash<QString, QVariantList> toValuesGroupedByColumns(const QList<SqlQueryItem*>& items);
+        void refreshGeneratedColumns(const QList<SqlQueryItem*>& items);
+        void refreshGeneratedColumns(const QList<SqlQueryItem*>& items, QHash<SqlQueryItem*, QVariant>& values, const RowId& insertedRowId);
 
         QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
@@ -318,6 +345,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<SqlQueryItem*> toItemList(const QModelIndexList& indexes) const;
         bool commitRow(const QList<SqlQueryItem*>& itemsInRow);
         void rollbackRow(const QList<SqlQueryItem*>& itemsInRow);
+        QHash<SqlQueryItem*, QVariant> readCellValues(SelectCellsQueryBuilder& queryBuilder, const QHash<RowId, QSet<SqlQueryItem*> >& itemsPerRowId);
         void storeStep1NumbersFromExecution();
         void storeStep2NumbersFromExecution();
         void restoreNumbersToQueryExecutor();

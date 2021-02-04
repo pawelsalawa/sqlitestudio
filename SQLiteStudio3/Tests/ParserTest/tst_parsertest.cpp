@@ -48,6 +48,7 @@ class ParserTest : public QObject
         void testRebuildTokensUpdate();
         void testRebuildTokensInsertUpsert();
         void testGetColumnTokensFromInsertUpsert();
+        void testGeneratedColumn();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -495,6 +496,22 @@ void ParserTest::testGetColumnTokensFromInsertUpsert()
     TokenList tk = insert->getContextColumnTokens();
     qSort(tk.begin(), tk.end(), [](const TokenPtr& t1, const TokenPtr& t2) {return t1->start < t2->start;});
     QVERIFY(tk.toValueList().join(" ") == "a1 a2 b1 b2 b3 col1 col2 col3 x");
+}
+
+void ParserTest::testGeneratedColumn()
+{
+    QString sql = "create table t2 (a INTEGER PRIMARY KEY AUTOINCREMENT, b INTEGER GENERATED ALWAYS AS (a+2) STORED);";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteCreateTablePtr create = parser3->getQueries().first().dynamicCast<SqliteCreateTable>();
+    QVERIFY(create->columns.size() == 2);
+    QVERIFY(create->columns[1]->constraints.size() == 1);
+    QVERIFY(create->columns[1]->constraints[0]->type == SqliteCreateTable::Column::Constraint::GENERATED);
+    QVERIFY(create->columns[1]->constraints[0]->generatedKw == true);
+    QVERIFY(create->columns[1]->constraints[0]->generatedType == SqliteCreateTable::Column::Constraint::GeneratedType::STORED);
+    QVERIFY(create->columns[1]->constraints[0]->expr);
 }
 
 void ParserTest::initTestCase()

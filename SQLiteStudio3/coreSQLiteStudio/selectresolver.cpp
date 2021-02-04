@@ -361,16 +361,16 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 
 void SelectResolver::resolveExpr(SqliteSelect::Core::ResultColumn *resCol)
 {
-    SelectResolver::Column column;
-    column.alias = resCol->alias;
-    column.originalColumn = resCol;
-    column.column = getResColTokensWithoutAlias(resCol).detokenize().trimmed();
-    column.displayName = !resCol->alias.isNull() ? column.alias : column.column;
-
     SqliteExpr* expr = resCol->expr;
     if (expr->mode != SqliteExpr::Mode::ID)
     {
         // Not a simple column, but some expression
+        SelectResolver::Column column;
+        column.alias = resCol->alias;
+        column.originalColumn = resCol;
+        column.column = getResColTokensWithoutAlias(resCol).detokenize().trimmed();
+        column.displayName = !resCol->alias.isNull() ? column.alias : column.column;
+
         column.type = Column::OTHER;
         currentCoreResults << column;
 

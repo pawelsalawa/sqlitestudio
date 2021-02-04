@@ -136,6 +136,8 @@ ConstraintDialog::Constraint ConstraintDialog::getSelectedConstraint(SqliteCreat
             return CHECK;
         case SqliteCreateTable::Column::Constraint::DEFAULT:
             return DEFAULT;
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return GENERATED;
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return COLLATE;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
@@ -184,6 +186,10 @@ void ConstraintDialog::updateDefinitionHeader()
         case ConstraintDialog::CHECK:
             ui->titleIcon->setPixmap(ICONS.CONSTRAINT_CHECK);
             ui->titleLabel->setText(tr("Check", "table constraints"));
+            break;
+        case ConstraintDialog::GENERATED:
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_GENERATED);
+            ui->titleLabel->setText(tr("Generated", "table constraints"));
             break;
         case ConstraintDialog::COLLATE:
             ui->titleIcon->setPixmap(ICONS.CONSTRAINT_COLLATION);

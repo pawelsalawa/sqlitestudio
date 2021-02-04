@@ -30,6 +30,9 @@ class API_EXPORT UpdateManager : public QObject
 
         void handleUpdatesResponse(QNetworkReply* response);
 
+    private slots:
+        void handleUpdatingError(const QString& errorMessage);
+
     signals:
         void updateAvailable(const QString& version, const QString& url);
         void noUpdatesAvailable();

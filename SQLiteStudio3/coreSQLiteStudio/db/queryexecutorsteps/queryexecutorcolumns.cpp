@@ -189,6 +189,7 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         selectResultColumn->alias = aliasTpl.arg(aliasBase, QString::number(nextAliasCounter++));
 
     usedAliases += selectResultColumn->alias;
+    selectResultColumn->alias = wrapObjIfNeeded(selectResultColumn->alias);
 
     return selectResultColumn;
 }

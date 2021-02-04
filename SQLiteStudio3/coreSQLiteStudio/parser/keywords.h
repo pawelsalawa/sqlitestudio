@@ -102,4 +102,13 @@ API_EXPORT void initKeywords();
  */
 API_EXPORT QStringList getConflictAlgorithms();
 
+/**
+ * @brief Provides list of accepted Generated Column storage types in SQLite.
+ *
+ * Generated column storage keywords are: <tt>STORED</tt>, <tt>VIRTUAL</tt>.
+ *
+ * Those keywords are used for example on GUI, when user has the storage type to pick from drop-down list.
+ */
+API_EXPORT QStringList getGeneratedColumnTypes();
+
 #endif // KEYWORDS_H

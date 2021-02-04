@@ -147,6 +147,9 @@ QIcon ColumnDialogConstraintsModel::getIcon(int rowIdx) const
             return ICONS.CONSTRAINT_DEFAULT;
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return ICONS.CONSTRAINT_COLLATION;
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return (constr->generatedType == SqliteCreateTable::Column::Constraint::GeneratedType::STORED) ?
+                        ICONS.CONSTRAINT_GENERATED_STORED : ICONS.CONSTRAINT_GENERATED_VIRTUAL;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return ICONS.CONSTRAINT_FOREIGN_KEY;
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -180,6 +183,8 @@ QString ColumnDialogConstraintsModel::getType(int rowIdx) const
             return "DEFAULT";
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return "COLLATE";
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return "GENERATED";
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return "FOREIGN KEY";
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -207,6 +212,8 @@ QString ColumnDialogConstraintsModel::getDetails(int rowIdx) const
             return getDefaultDetails(constr);
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return getCollateDetails(constr);
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return getGeneratedDetails(constr);
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return getFkDetails(constr);
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -238,6 +245,12 @@ QString ColumnDialogConstraintsModel::getUniqueDetails(SqliteCreateTable::Column
 QString ColumnDialogConstraintsModel::getCheckDetails(SqliteCreateTable::Column::Constraint* constr) const
 {
     int idx = constr->tokens.indexOf(Token::KEYWORD, "CHECK", Qt::CaseInsensitive);
+    return getConstrDetails(constr, idx);
+}
+
+QString ColumnDialogConstraintsModel::getGeneratedDetails(SqliteCreateTable::Column::Constraint* constr) const
+{
+    int idx = constr->tokens.indexOf(Token::KEYWORD, "AS", Qt::CaseInsensitive);
     return getConstrDetails(constr, idx);
 }
 

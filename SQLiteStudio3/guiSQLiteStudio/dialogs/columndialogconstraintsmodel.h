@@ -44,6 +44,7 @@ class GUI_API_EXPORT ColumnDialogConstraintsModel : public QAbstractTableModel
         QString getNotNullDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getUniqueDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getCheckDetails(SqliteCreateTable::Column::Constraint* constr) const;
+        QString getGeneratedDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getDefaultDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getCollateDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getFkDetails(SqliteCreateTable::Column::Constraint* constr) const;

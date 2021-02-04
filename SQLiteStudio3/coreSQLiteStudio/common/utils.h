@@ -140,6 +140,33 @@ QList<T> concat(const QList<QList<T>>& list)
     return result;
 }
 
+template <class T, typename R = QList<T>>
+R concat(const QList<QSet<T>>& list)
+{
+    R result;
+    for (const QSet<T>& itemSet : list)
+        for (const T& subitem : itemSet)
+            result << subitem;
+
+    return result;
+}
+
+template <class T>
+QSet<T> concatSet(const QList<QSet<T>>& list)
+{
+    return concat<T, QSet<T>>(list);
+}
+
+template <class T>
+QSet<T> concat(const QSet<QSet<T>>& list)
+{
+    QSet<T> result;
+    for (const QSet<T>& item : list)
+        result.unite(item);
+
+    return result;
+}
+
 API_EXPORT QStringList concat(const QList<QStringList>& list);
 
 /**
@@ -292,6 +319,8 @@ void removeDuplicates(QList<T>& list)
             set << i.value();
     }
 }
+
+API_EXPORT uint qHash(const QVariant& var);
 
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 

@@ -318,6 +318,10 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
             return "sort_ind_asc";
         case SORT_DESC:
             return "sort_ind_desc";
+        case DISK:
+            return "disk_small";
+        case LIGHTENING:
+            return "lightning_small";
         default:
             qWarning() << "Unhandled icon attribute:" << attr;
     }

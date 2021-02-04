@@ -207,6 +207,8 @@ QString ConstraintTabModel::getTypeLabel(SqliteCreateTable::Column::Constraint::
             return "DEFAULT";
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return "COLLATE";
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return "GENERATED";
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return "FOREIGN KEY";
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -251,6 +253,8 @@ QIcon ConstraintTabModel::getTypeIcon(SqliteCreateTable::Column::Constraint::Typ
             return ICONS.CONSTRAINT_DEFAULT;
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return ICONS.CONSTRAINT_COLLATION;
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return ICONS.CONSTRAINT_GENERATED;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return ICONS.CONSTRAINT_FOREIGN_KEY;
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -295,6 +299,8 @@ QString ConstraintTabModel::getDetails(SqliteCreateTable::Column::Constraint* co
             return getDefaultDetails(constr);
         case SqliteCreateTable::Column::Constraint::COLLATE:
             return getCollateDetails(constr);
+        case SqliteCreateTable::Column::Constraint::GENERATED:
+            return getGeneratedDetails(constr);
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             return getFkDetails(constr);
         case SqliteCreateTable::Column::Constraint::NULL_:
@@ -362,6 +368,12 @@ QString ConstraintTabModel::getNotNullDetails(SqliteCreateTable::Column::Constra
 QString ConstraintTabModel::getCollateDetails(SqliteCreateTable::Column::Constraint* constr) const
 {
     int idx = constr->tokens.indexOf(Token::KEYWORD, "COLLATE", Qt::CaseInsensitive);
+    return getConstrDetails(constr, idx + 1);
+}
+
+QString ConstraintTabModel::getGeneratedDetails(SqliteCreateTable::Column::Constraint* constr) const
+{
+    int idx = constr->tokens.indexOf(Token::KEYWORD, "GENERATED", Qt::CaseInsensitive);
     return getConstrDetails(constr, idx + 1);
 }
 

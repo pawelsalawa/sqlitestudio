@@ -52,6 +52,7 @@ class GUI_API_EXPORT ConstraintTabModel : public QAbstractTableModel
         QString getFkDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getNotNullDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getCollateDetails(SqliteCreateTable::Column::Constraint* constr) const;
+        QString getGeneratedDetails(SqliteCreateTable::Column::Constraint* constr) const;
         QString getDefaultDetails(SqliteCreateTable::Column::Constraint* constr) const;
 
         QString getConstrDetails(SqliteCreateTable::Constraint* constr, int tokenOffset) const;

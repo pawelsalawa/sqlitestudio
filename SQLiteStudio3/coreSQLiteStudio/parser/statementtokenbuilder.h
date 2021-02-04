@@ -63,6 +63,18 @@ class StatementTokenBuilder
         StatementTokenBuilder& withOther(const QString& value);
 
         /**
+         * @brief Adds "other" token (some object name, or other word).
+         * @param value Value for the token.
+         * @param wrapIfNeeded Defined whether the value should be wrapped if identified to require wrapping (i.e. is a keyword, or multiword).
+         * @return Reference to the builder for the further building.
+         *
+         * This is used for table names, etc. The \p value is quoted just as passed.
+         * You may want to pass wrapIfNeeded=false if you know that this may be equal to keyword,
+         * that is allowed as ID too (Lemon's fallback to ID).
+         */
+        StatementTokenBuilder& withOther(const QString& value, bool wrapIfNeeded);
+
+        /**
          * @brief Adds string using double-quote wrapping.
          * @param value Value for the token.
          * @return Reference to the builder for the further building.

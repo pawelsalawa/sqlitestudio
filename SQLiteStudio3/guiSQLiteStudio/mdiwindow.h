@@ -14,7 +14,7 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
     Q_OBJECT
 
     public:
-        MdiWindow(MdiChild* mdiChild, MdiArea *mdiArea, Qt::WindowFlags flags = 0);
+        MdiWindow(MdiChild* mdiChild, MdiArea *mdiArea, Qt::WindowFlags flags = Qt::WindowFlags());
         virtual ~MdiWindow();
 
         virtual QVariant saveSession();
