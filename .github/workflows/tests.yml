@@ -1,5 +1,6 @@
 env:
-    QT_VERSION: '5.15.2'
+    OLD_QT_VERSION: '5.9.9'
+    NEW_QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3340100'
     SQLITE_RELEASE_YEAR: '2021'
     TCL_VERSION: '8.6'
@@ -27,6 +28,10 @@ jobs:
     build:
         runs-on: ubuntu-18.04
 
+        strategy:
+            matrix:
+                QT_VERSION: [${{env.OLD_QT_VERSION}}, ${{env.NEW_QT_VERSION}}]
+
         steps:
             - name: Cache Qt
               id: cache-qt
@@ -51,7 +56,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                sudo apt-get remove --auto-remove sqlite3 libsqlite3
+                sudo apt-get remove --auto-remove sqlite3
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
