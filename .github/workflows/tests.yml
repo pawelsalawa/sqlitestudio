@@ -25,7 +25,7 @@ on:
 jobs:
     build:
         runs-on: ubuntu-18.04
-        
+
         strategy:
             matrix:
                 QT_VERSION: ['5.12.10', '5.15.2']
@@ -37,7 +37,7 @@ jobs:
               with:
                 path: ${{ github.workspace }}/../Qt
                 key: ${{ runner.os }}-Qt-Linux-Cache
-                
+
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
               with:
@@ -46,7 +46,7 @@ jobs:
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
                 modules: 'qtscript'
-                
+
             - name: Clone repo
               uses: actions/checkout@v2
               with:
@@ -54,7 +54,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                sudo apt-get remove --auto-remove sqlite3
+                sudo apt-get remove --auto-remove sqlite3 libsqlite3-0
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
@@ -71,30 +71,30 @@ jobs:
                     -DSQLITE_ENABLE_RTREE
                 strip libsqlite3.so
                 sudo cp libsqlite3.so /usr/local/lib/
-            
+
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
-              
+
             - name: Install other tools/dependencies
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
                 echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
- 
+
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
-            
+
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
                 qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../SQLiteStudio3
                 make -j 2
-            
+
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
                 qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../../Plugins
                 make -j 2
-                
+
             - name: Run tests
               working-directory: output/SQLiteStudio
               run: |
