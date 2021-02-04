@@ -21,6 +21,7 @@ on:
             - '**.pro'
             - '**.pri'
             - '**.ui'
+            - '**/tests.yml'
 
 jobs:
     build:
