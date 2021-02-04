@@ -60,6 +60,7 @@ void NewConstraintDialog::disableMode(ConstraintDialog::Constraint constraintTyp
         case ConstraintDialog::NOTNULL:
         case ConstraintDialog::COLLATE:
         case ConstraintDialog::DEFAULT:
+        case ConstraintDialog::GENERATED:
             modeToButton[constraintType]->setEnabled(false);
             break;
         case ConstraintDialog::UNKNOWN:
@@ -188,6 +189,7 @@ int NewConstraintDialog::createTableConstraint(ConstraintDialog::Constraint cons
         case ConstraintDialog::NOTNULL:
         case ConstraintDialog::COLLATE:
         case ConstraintDialog::DEFAULT:
+        case ConstraintDialog::GENERATED:
         case ConstraintDialog::UNKNOWN:
             break;
     }

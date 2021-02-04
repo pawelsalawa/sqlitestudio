@@ -460,7 +460,11 @@ void SqlQueryModel::refreshGeneratedColumns(const QList<SqlQueryItem*>& items, Q
         for (SqlQueryModelColumn* tableCol : tableColumns)
             builder.addColumn(tableCol->column);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
         values.insert(readCellValues(builder, itemsPerRowId));
+#else
+        values.unite(readCellValues(builder, itemsPerRowId));
+#endif
 
         builder.clear();
     }
@@ -2089,7 +2093,11 @@ void SqlQueryModel::SelectCellsQueryBuilder::addRowId(const RowId& rowId)
     if (rowIdColumns.isEmpty())
     {
         QList<QString> rowIdCols = rowId.keys();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
         rowIdColumns = QSet<QString>(rowIdCols.begin(), rowIdCols.end());
+#else
+        rowIdColumns = rowIdCols.toSet();
+#endif
         for (const QString& col : rowId.keys())
             columns << wrapObjIfNeeded(col);
     }
