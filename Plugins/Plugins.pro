@@ -21,7 +21,3 @@ SUBDIRS += \
     DbSqliteWx \
     MultiEditorImage
 
-win32: {
-SUBDIRS += \
-    DbSqliteSystemData
-}
