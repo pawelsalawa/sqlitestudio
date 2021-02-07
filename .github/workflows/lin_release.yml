@@ -129,10 +129,12 @@ jobs:
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                chrpath -k -r \$ORIGIN/../lib platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib sqlitestudio 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib sqlitestudiocli 2>&1 >/dev/null
-                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
+                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
 
