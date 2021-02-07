@@ -39,7 +39,8 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                sudo apt-get remove sqlite3 libsqlite3-0
+                #sudo apt-get remove sqlite3 libsqlite3-0
+                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
