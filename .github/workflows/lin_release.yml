@@ -137,7 +137,11 @@ jobs:
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+              run: |
+                echo "ls -l lib/"
+                echo "ldd sqlitestudiocli"
+                echo "ldd lib/libsqlite3.so"
+                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
