@@ -10,6 +10,23 @@ void DbSqliteWxInstance::initAfterOpen()
 {
     SqlQueryPtr res;
 
+    QString cipher = connOptions[DbSqliteWx::CIPHER_OPT].toString();
+    if (!cipher.isEmpty())
+    {
+        res = exec(QString("PRAGMA cipher = '%1';").arg(cipher), Flag::NO_LOCK);
+        if (res->isError())
+            qWarning() << "Error while defining WxSqlite3 cipher:" << res->getErrorText();
+    }
+
+    QString pragmas = connOptions[DbSqliteWx::PRAGMAS_OPT].toString();
+    QStringList pragmaList = quickSplitQueries(pragmas);
+    for (const QString& pragma : pragmaList)
+    {
+        res = exec(pragma, Flag::NO_LOCK);
+        if (res->isError())
+            qWarning() << "Error while defining WxSqlite3 pragma" << pragma << ":" << res->getErrorText();
+    }
+
     QString key = connOptions[DbSqliteWx::PASSWORD_OPT].toString();
     if (!key.isEmpty())
     {

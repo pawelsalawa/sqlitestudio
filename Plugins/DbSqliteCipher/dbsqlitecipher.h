@@ -20,13 +20,7 @@ class DBSQLITECIPHERSHARED_EXPORT DbSqliteCipher : public GenericPlugin, public 
         void deinit();
 
         static_char* PASSWORD_OPT = "password";
-        static_char* CIPHER_OPT = "cipher";
-        static_char* KDF_ITER_OPT = "kdf_iter";
-        static_char* CIPHER_PAGE_SIZE_OPT = "cipher_page_size";
-        static_char* CIPHER_1_1_OPT = "cipher_1.1_compatibility";
-        static const int DEF_CIPHER_PAGE_SIZE = 1024;
-        static const int DEF_KDF_ITER = 64000;
-        static_char* DEF_CIPHER = "aes-256-cbc";
+        static_char* PRAGMAS_OPT = "pragmas";
 
     protected:
         Db *newInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options);

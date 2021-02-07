@@ -45,7 +45,8 @@ struct DbPluginOption
         FILE = 4, /**< QLineEdit will be added */
         PASSWORD = 5, /**< QLineEdit with value masking will be added */
         CHOICE = 6, /**< QComboBox will be added */
-        CUSTOM_PATH_BROWSE = 7 /**< File path browse button will be handled by the plugin. No additional editor will be added. */
+        CUSTOM_PATH_BROWSE = 7, /**< File path browse button will be handled by the plugin. No additional editor will be added. */
+        SQL = 8, /**< SqlEditor will be added. */
     };
 
     /**
@@ -73,6 +74,11 @@ struct DbPluginOption
      * @brief List of values for QComboBox.
      */
     QStringList choiceValues;
+
+    /**
+     * @brief List of value for QComboBox, including it's data (hidden) component.
+     */
+    QMap<QString, QVariant> choiceDataValues;
 
     /**
      * @brief Default value to be set in the editor widget.

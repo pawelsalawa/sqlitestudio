@@ -19,6 +19,7 @@ class DbPluginSqlite3 : public BuiltInPlugin, public DbPlugin
         QList<DbPluginOption> getOptionsList() const;
         QString generateDbName(const QVariant& baseValue);
         bool checkIfDbServedByPlugin(Db* db) const;
+        bool usesPath() const;
 };
 
 #endif // DBPLUGINSQLITE3_H

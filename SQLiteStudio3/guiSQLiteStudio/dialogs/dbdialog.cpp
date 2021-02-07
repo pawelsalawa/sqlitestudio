@@ -8,6 +8,7 @@
 #include "services/dbmanager.h"
 #include "common/global.h"
 #include "iconmanager.h"
+#include "sqleditor.h"
 #include "common/unused.h"
 #include "db/sqlquery.h"
 #include <QDateTimeEdit>
@@ -199,15 +200,12 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
     }
 
     QLabel* label = new QLabel(option.label, this);
-    label->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
+    label->setAlignment(Qt::AlignTop|Qt::AlignRight);
     QWidget* editor = nullptr;
     QWidget* editorHelper = nullptr; // TODO, based on plugins for Url handlers
 
     editor = getEditor(option, editorHelper);
     Q_ASSERT(editor != nullptr);
-
-    if (!option.toolTip.isNull())
-        editor->setToolTip(option.toolTip);
 
     optionWidgets << label << editor;
 
@@ -240,6 +238,16 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
     editorHelper = nullptr;
     switch (opt.type)
     {
+        case DbPluginOption::SQL:
+        {
+            SqlEditor* sqlEdit = new SqlEditor(this);
+            editor = sqlEdit;
+            sqlEdit->setShowLineNumbers(false);
+            sqlEdit->setPlainText(opt.defaultValue.toString());
+            sqlEdit->setMaximumHeight(sqlEdit->fontMetrics().height() * 5);
+            connect(sqlEdit, SIGNAL(textChanged()), this, SLOT(propertyChanged()));
+            break;
+        }
         case DbPluginOption::STRING:
         {
             editor = new QLineEdit(this);
@@ -260,8 +268,20 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
             QComboBox* cb = new QComboBox(this);
             editor = cb;
             cb->setEditable(!opt.choiceReadOnly);
-            cb->addItems(opt.choiceValues);
-            cb->setCurrentText(opt.defaultValue.toString());
+            if (opt.choiceDataValues.isEmpty())
+            {
+                cb->addItems(opt.choiceValues);
+                cb->setCurrentText(opt.defaultValue.toString());
+            }
+            else
+            {
+                for (auto it = opt.choiceDataValues.begin(); it != opt.choiceDataValues.end(); ++it)
+                {
+                    cb->addItem(it.key(), it.value());
+                    if (it.value() == opt.defaultValue)
+                        cb->setCurrentText(it.key());
+                }
+            }
             connect(cb, SIGNAL(currentIndexChanged(QString)), this, SLOT(propertyChanged()));
             break;
         }
@@ -330,6 +350,9 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
         le->setText(opt.defaultValue.toString());
     }
 
+    if (!opt.toolTip.isNull())
+        editor->setToolTip(opt.toolTip);
+
     return editor;
 }
 
@@ -338,6 +361,9 @@ QVariant DbDialog::getValueFrom(DbPluginOption::Type type, QWidget *editor)
     QVariant value;
     switch (type)
     {
+        case DbPluginOption::SQL:
+            value = dynamic_cast<SqlEditor*>(editor)->toPlainText();
+            break;
         case DbPluginOption::STRING:
         case DbPluginOption::PASSWORD:
         case DbPluginOption::FILE:
@@ -353,8 +379,17 @@ QVariant DbDialog::getValueFrom(DbPluginOption::Type type, QWidget *editor)
             value = dynamic_cast<QDoubleSpinBox*>(editor)->value();
             break;
         case DbPluginOption::CHOICE:
-            value = dynamic_cast<QComboBox*>(editor)->currentText();
+        {
+            QComboBox* cb = dynamic_cast<QComboBox*>(editor);
+            QVariant data = cb->currentData();
+            if (data.isValid())
+            {
+                value = data;
+                break;
+            }
+            value = cb->currentText();
             break;
+        }
         case DbPluginOption::CUSTOM_PATH_BROWSE:
             break; // should not happen ever
         default:
@@ -369,6 +404,9 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
 {
     switch (type)
     {
+        case DbPluginOption::SQL:
+            dynamic_cast<SqlEditor*>(editor)->setPlainText(value.toString());
+            break;
         case DbPluginOption::STRING:
         case DbPluginOption::FILE:
         case DbPluginOption::PASSWORD:
@@ -384,8 +422,20 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
             dynamic_cast<QDoubleSpinBox*>(editor)->setValue(value.toDouble());
             break;
         case DbPluginOption::CHOICE:
-            dynamic_cast<QComboBox*>(editor)->setCurrentText(value.toString());
+        {
+            QComboBox* cb = dynamic_cast<QComboBox*>(editor);
+            if (value.isValid())
+            {
+                int idx = cb->findData(value);
+                if (idx > -1)
+                {
+                    cb->setCurrentIndex(idx);
+                    break;
+                }
+            }
+            cb->setCurrentText(value.toString());
             break;
+        }
         case DbPluginOption::CUSTOM_PATH_BROWSE:
             break; // should not happen ever
         default:

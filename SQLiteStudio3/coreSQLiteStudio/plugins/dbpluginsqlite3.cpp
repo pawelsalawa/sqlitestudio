@@ -45,3 +45,8 @@ bool DbPluginSqlite3::checkIfDbServedByPlugin(Db* db) const
 {
     return (db && dynamic_cast<DbSqlite3*>(db));
 }
+
+bool DbPluginSqlite3::usesPath() const
+{
+    return true;
+}
