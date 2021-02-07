@@ -39,7 +39,6 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                #sudo apt-get remove sqlite3 libsqlite3-0
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -57,7 +56,7 @@ jobs:
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE
                 strip libsqlite3.so
-                sudo cp libsqlite3.so /usr/local/lib/
+                sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
             
             - name: Install Tcl
@@ -91,7 +90,7 @@ jobs:
 
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: cp /usr/local/lib/libsqlite3.so lib/
+              run: cp -P /usr/local/lib/libsqlite3.so* lib/
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
