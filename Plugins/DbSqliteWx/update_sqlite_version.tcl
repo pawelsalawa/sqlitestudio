@@ -2,41 +2,14 @@
 
 # Download page:
 # https://github.com/utelle/wxsqlite3/releases
+# Link from download page will redicrect to the codeload.....
+# So don't replace whole link, only change version part.
 
-set THE_URL "https://codeload.github.com/utelle/wxsqlite3/zip/v4.5.1"
-set SRC_DIR "sqlite3secure/src"
+set THE_URL "https://codeload.github.com/utelle/wxsqlite3/zip/v4.6.4"
+set SRC_DIR "src"
 set FILES [list \
-	chacha20poly1305.c \
-    fastpbkdf2.c \
-    fileio.c \
-    md5.c \
-    rekeyvacuum.c \
-    sha1.c \
-    shathree.c \
-    test_windirent.c \
-	carray.c \
-	codec.c \
-	codecext.c \
-	csv.c \
-	extensionfunctions.c \
-	rijndael.c \
-	sha2.c \
-	sqlite3.c \
-	sqlite3secure.c \
-	userauth.c \
-	series.c \
-	\
-	codec.h \
-    rijndael.h \
-    sha2.h \
-	sqlite3.h \
-    sqlite3ext.h \
-    sqlite3userauth.h \
-    fastpbkdf2.h \
-    sha1.h \
-    sqlite3secure.h \
-    test_windirent.h \
-	mystdint.h \
+	sqlite3mc_amalgamation.c \
+	sqlite3mc_amalgamation.h \
 ]
 
 proc process {} {
@@ -51,8 +24,8 @@ proc process {} {
 			copy $dir/$::SRC_DIR/$f
 		}
 
-		file rename -force sqlite3.c wxsqlite3.c
-		file rename -force sqlite3.h wxsqlite3.h
+		file rename -force sqlite3mc_amalgamation.c wxsqlite3.c
+		file rename -force sqlite3mc_amalgamation.h wxsqlite3.h
 		
 	}]} {
 		puts $::errorInfo
@@ -67,11 +40,7 @@ proc copy {file} {
 
 	set data [string map [list sqlite3 wx_sqlite3] $data]
 	set data [string map [list \
-			wx_sqlite3secure. sqlite3secure. \
-			wx_sqlite3ext.h sqlite3ext.h \
-			wx_sqlite3userauth.h sqlite3userauth.h \
-			wx_sqlite3.c wxsqlite3.c \
-			wx_sqlite3.h wxsqlite3.h \
+			wx_sqlite3mc_amalgamation. wxsqlite3. \
 		] $data]
  
 	set outFile [file tail $file]
