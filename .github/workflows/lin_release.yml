@@ -96,6 +96,7 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5DBus.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Gui.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
