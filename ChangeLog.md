@@ -35,6 +35,7 @@
 - BUGFIX: #3479 Fixed invalid XML exported for trigger.
 - BUGFIX: #3474 Fixed crash when right-clicking on empty are in data view.
 - BUGFIX: #3418 Fixed crash when importing file with a lot of error-raising rows.
+- BUGFIX: #3413 #3614 #3520 #3403 Fixed import of CSV files with Unix-style line endings.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

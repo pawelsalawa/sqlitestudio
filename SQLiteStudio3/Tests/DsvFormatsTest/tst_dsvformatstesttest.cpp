@@ -2,6 +2,7 @@
 #include <QList>
 #include <QStringList>
 #include <QtTest>
+#include <QTextStream>
 #include "tsvserializer.h"
 #include "csvserializer.h"
 
@@ -27,6 +28,12 @@ private:
         void testTsv1();
         void testTsv2();
         void testCsv1();
+        void testCsv2Unix();
+        void testCsv2Win();
+        void testCsv2Mac();
+        void testCsv3Unix();
+        void testCsv3Win();
+        void testCsv3Mac();
         void testCsvPerformance();
 };
 
@@ -104,6 +111,96 @@ void DsvFormatsTestTest::testCsv1()
 
     QVERIFY(result.size() == 1);
     QVERIFY(result.first().size() == 2);
+}
+
+void DsvFormatsTestTest::testCsv2Unix()
+{
+    QString data = "v1,v2\nv3,v4\n";
+    QList<QStringList> result = CsvSerializer::deserialize(data, CsvFormat::DEFAULT);
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
+}
+
+void DsvFormatsTestTest::testCsv2Win()
+{
+    QString data = "v1,v2\r\nv3,v4\r\n";
+    QList<QStringList> result = CsvSerializer::deserialize(data, CsvFormat::DEFAULT);
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
+}
+
+void DsvFormatsTestTest::testCsv2Mac()
+{
+    QString data = "v1,v2\rv3,v4\r";
+    QList<QStringList> result = CsvSerializer::deserialize(data, CsvFormat::DEFAULT);
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
+}
+
+void DsvFormatsTestTest::testCsv3Unix()
+{
+    QString data = "v1,v2\nv3,v4\n";
+    QTextStream stream(&data);
+    QList<QStringList> result;
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
+}
+
+void DsvFormatsTestTest::testCsv3Win()
+{
+    QString data = "v1,v2\r\nv3,v4\r\n";
+    QTextStream stream(&data);
+    QList<QStringList> result;
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
+}
+
+void DsvFormatsTestTest::testCsv3Mac()
+{
+    QString data = "v1,v2\rv3,v4\r";
+    QTextStream stream(&data);
+    QList<QStringList> result;
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+    result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
+
+    QCOMPARE(result.size(), 2);
+    QCOMPARE(result[0].size(), 2);
+    QCOMPARE(result[0][0], "v1");
+    QCOMPARE(result[0][1], "v2");
+    QCOMPARE(result[1].size(), 2);
+    QCOMPARE(result[1][0], "v3");
+    QCOMPARE(result[1][1], "v4");
 }
 
 void DsvFormatsTestTest::testCsvPerformance()
