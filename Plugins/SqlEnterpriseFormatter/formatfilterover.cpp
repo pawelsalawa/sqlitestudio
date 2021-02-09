@@ -22,7 +22,7 @@ FormatFilterOverFilter::FormatFilterOverFilter(SqliteFilterOver::Filter* filter)
 
 void FormatFilterOverFilter::formatInternal()
 {
-    withKeyword("FILTER").withParFuncLeft().withKeyword("WHERE").withStatement(filter->expr).withParFuncRight();
+    withKeyword("FILTER").withParExprLeft().withKeyword("WHERE").withStatement(filter->expr).withParExprRight();
 }
 
 FormatFilterOverOver::FormatFilterOverOver(SqliteFilterOver::Over* over) :
@@ -37,7 +37,7 @@ void FormatFilterOverOver::formatInternal()
     switch (over->mode)
     {
         case SqliteFilterOver::Over::Mode::WINDOW:
-            withParFuncLeft().withStatement(over->window).withParFuncRight();
+            withParExprLeft().withStatement(over->window).withParExprRight();
             break;
         case SqliteFilterOver::Over::Mode::NAME:
             withId(over->name);

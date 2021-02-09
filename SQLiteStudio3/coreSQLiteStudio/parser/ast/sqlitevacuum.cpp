@@ -1,7 +1,8 @@
 #include "sqlitevacuum.h"
 #include "sqlitequerytype.h"
-
-#include <parser/statementtokenbuilder.h>
+#include "common/global.h"
+#include "parser/statementtokenbuilder.h"
+#include "sqliteexpr.h"
 
 SqliteVacuum::SqliteVacuum()
 {
@@ -11,13 +12,26 @@ SqliteVacuum::SqliteVacuum()
 SqliteVacuum::SqliteVacuum(const SqliteVacuum& other) :
     SqliteQuery(other), database(other.database)
 {
+    DEEP_COPY_FIELD(SqliteExpr, expr);
 }
 
-SqliteVacuum::SqliteVacuum(const QString& name)
+SqliteVacuum::SqliteVacuum(SqliteExpr* expr)
+    : SqliteVacuum()
+{
+    this->expr = expr;
+    if (expr)
+        expr->setParent(this);
+}
+
+SqliteVacuum::SqliteVacuum(const QString& name, SqliteExpr* expr)
     : SqliteVacuum()
 {
     if (!name.isNull())
         database = name;
+
+    this->expr = expr;
+    if (expr)
+        expr->setParent(this);
 }
 
 SqliteStatement*SqliteVacuum::clone()
@@ -55,6 +69,13 @@ TokenList SqliteVacuum::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
-    builder.withKeyword("VACUUM").withOperator(";");
+    builder.withKeyword("VACUUM");
+    if (!database.isNull())
+        builder.withSpace().withOther(database);
+
+    if (expr)
+        builder.withSpace().withKeyword("INTO").withSpace().withStatement(expr);
+
+    builder.withOperator(";");
     return builder.build();
 }

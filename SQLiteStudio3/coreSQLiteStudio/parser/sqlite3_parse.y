@@ -1334,10 +1334,6 @@ where_opt(X) ::= WHERE.                     {
 
 ////////////////////////// The UPDATE command ////////////////////////////////
 
-//%ifdef SQLITE_ENABLE_UPDATE_DELETE_LIMIT
-///cmd ::= UPDATE orconf fullname indexed_opt SET setlist where_opt orderby_opt(O) limit_opt.
-//%endif
-//%ifndef SQLITE_ENABLE_UPDATE_DELETE_LIMIT
 cmd(X) ::= update_stmt(S).                  {
                                                 X = S;
                                                 objectForTokens = X;
@@ -1347,7 +1343,8 @@ cmd(X) ::= update_stmt(S).                  {
 %destructor update_stmt {parser_safe_delete($$);}
 update_stmt(X) ::= with(WI) UPDATE orconf(C)
             fullname(N) indexed_opt(I) SET
-            setlist(L) where_opt(W).        {
+            setlist(L) from(F)
+			where_opt(W). 					{
                                                 X = new SqliteUpdate(
                                                         *(C),
                                                         N->name1,
@@ -1355,6 +1352,7 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                                         I ? I->notIndexedKw : false,
                                                         I ? I->indexedBy : QString(),
                                                         *(L),
+														F,
                                                         W,
                                                         WI
                                                     );
@@ -1366,7 +1364,6 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
-//%endif
 
 update_stmt(X) ::= with(WI) UPDATE
             orconf(C).                      {
@@ -2058,15 +2055,21 @@ cmd ::= DROP INDEX ifexists ID_DB|ID_IDX.   {}
 
 ///////////////////////////// The VACUUM command /////////////////////////////
 
-cmd(X) ::= VACUUM.                          {
-                                                X = new SqliteVacuum();
+cmd(X) ::= VACUUM vinto(I).                 {
+                                                X = new SqliteVacuum(I);
                                                 objectForTokens = X;
                                             }
-cmd(X) ::= VACUUM nm(N).                    {
-                                                X = new SqliteVacuum(*(N));
+cmd(X) ::= VACUUM nm(N) vinto(I).           {
+                                                X = new SqliteVacuum(*(N), I);
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+
+
+%type vinto {SqliteExpr*}
+%destructor vinto {parser_safe_delete($$);}
+vinto(X) ::= INTO expr(E).              	{X = E;}
+vinto(X) ::= .                          	{X = nullptr;}
 
 ///////////////////////////// The PRAGMA command /////////////////////////////
 
@@ -2727,7 +2730,7 @@ frame_exclude_opt(X) ::= EXCLUDE
 
 frame_exclude(X) ::= NO OTHERS.   			{
 												X = new SqliteWindowDefinition::Window::Frame::Exclude(
-													SqliteWindowDefinition::Window::Frame::Exclude::NOT_OTHERS
+													SqliteWindowDefinition::Window::Frame::Exclude::NO_OTHERS
 													);
 											}
 frame_exclude(X) ::= CURRENT ROW. 		 	{

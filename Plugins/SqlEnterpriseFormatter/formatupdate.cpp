@@ -49,6 +49,9 @@ void FormatUpdate::formatInternal()
 
     withDecrIndent();
 
+    if (upd->from)
+        withNewLine().withLinedUpKeyword("FROM").withStatement(upd->from, "updateColumns");
+
     if (upd->where)
         withNewLine().withLinedUpKeyword("WHERE").withStatement(upd->where);
 

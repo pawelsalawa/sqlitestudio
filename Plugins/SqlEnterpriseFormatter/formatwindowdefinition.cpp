@@ -9,7 +9,7 @@ FormatWindowDefinition::FormatWindowDefinition(SqliteWindowDefinition* windowDef
 
 void FormatWindowDefinition::formatInternal()
 {
-    withId(windowDef->name).withKeyword("AS").withParFuncLeft().withStatement(windowDef->window).withParFuncRight();
+    withId(windowDef->name).withKeyword("AS").withParExprLeft().withStatement(windowDef->window).withParExprRight();
 }
 
 FormatWindowDefinitionWindow::FormatWindowDefinitionWindow(SqliteWindowDefinition::Window* window) :

@@ -159,8 +159,8 @@ QString SqliteWindowDefinition::Window::Frame::fromRangeOrRows(SqliteWindowDefin
 SqliteWindowDefinition::Window::Frame::Exclude SqliteWindowDefinition::Window::Frame::toExclude(const QString& value)
 {
     QString upper = value.toUpper();
-    if (upper == "NOT OTHERS")
-        return Exclude::NOT_OTHERS;
+    if (upper == "NO OTHERS")
+        return Exclude::NO_OTHERS;
     else if (upper == "CURRENT ROW")
         return Exclude::CURRENT_ROW;
     else if (upper == "GROUP")
@@ -177,8 +177,8 @@ QString SqliteWindowDefinition::Window::Frame::fromExclude(SqliteWindowDefinitio
     {
         case SqliteWindowDefinition::Window::Frame::Exclude::TIES:
             return "TIES";
-        case SqliteWindowDefinition::Window::Frame::Exclude::NOT_OTHERS:
-            return "NOT OTHERS";
+        case SqliteWindowDefinition::Window::Frame::Exclude::NO_OTHERS:
+            return "NO OTHERS";
         case SqliteWindowDefinition::Window::Frame::Exclude::CURRENT_ROW:
             return "CURRENT ROW";
         case SqliteWindowDefinition::Window::Frame::Exclude::GROUP:

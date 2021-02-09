@@ -29,6 +29,8 @@
 #include "formatdropview.h"
 #include "formatorderby.h"
 #include "formatupsert.h"
+#include "formatwindowdefinition.h"
+#include "formatfilterover.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitelimit.h"
@@ -59,6 +61,8 @@
 #include "parser/ast/sqliteorderby.h"
 #include "parser/ast/sqlitepragma.h"
 #include "parser/ast/sqliteupsert.h"
+#include "parser/ast/sqlitewindowdefinition.h"
+#include "parser/ast/sqlitefilterover.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -155,6 +159,13 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteDropView, FormatDropView);
     FORMATTER_FACTORY_ENTRY(query, SqliteOrderBy, FormatOrderBy);
     FORMATTER_FACTORY_ENTRY(query, SqlitePragma, FormatPragma);
+    FORMATTER_FACTORY_ENTRY(query, SqliteWindowDefinition, FormatWindowDefinition);
+    FORMATTER_FACTORY_ENTRY(query, SqliteWindowDefinition::Window, FormatWindowDefinitionWindow);
+    FORMATTER_FACTORY_ENTRY(query, SqliteWindowDefinition::Window::Frame, FormatWindowDefinitionWindowFrame);
+    FORMATTER_FACTORY_ENTRY(query, SqliteWindowDefinition::Window::Frame::Bound, FormatWindowDefinitionWindowFrameBound);
+    FORMATTER_FACTORY_ENTRY(query, SqliteFilterOver, FormatFilterOver);
+    FORMATTER_FACTORY_ENTRY(query, SqliteFilterOver::Filter, FormatFilterOverFilter);
+    FORMATTER_FACTORY_ENTRY(query, SqliteFilterOver::Over, FormatFilterOverOver);
 
     if (!stmt)
     {
