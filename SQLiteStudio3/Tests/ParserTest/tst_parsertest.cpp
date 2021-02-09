@@ -54,6 +54,7 @@ class ParserTest : public QObject
         void testGeneratedColumn();
         void testWindowClause();
         void testFilterClause();
+        void testUpdateFrom();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -623,6 +624,26 @@ void ParserTest::testFilterClause()
     QVERIFY(resCol->expr->filterOver->over->mode == SqliteFilterOver::Over::Mode::WINDOW);
     QVERIFY(resCol->expr->filterOver->over->window);
     QVERIFY(resCol->expr->filterOver->over->window->mode == SqliteWindowDefinition::Window::Mode::ORDER_BY);
+}
+
+void ParserTest::testUpdateFrom()
+{
+    QString sql = "UPDATE inventory"
+                  "   SET quantity = quantity - daily.amt"
+                  "  FROM (SELECT sum(quantity) AS amt, itemId FROM sales GROUP BY 2) AS daily"
+                  " WHERE inventory.itemId = daily.itemId;";
+
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteUpdatePtr update = parser3->getQueries().first().dynamicCast<SqliteUpdate>();
+    QVERIFY(update->where);
+    QCOMPARE(update->keyValueMap.size(), 1);
+    QVERIFY(update->from);
+    QVERIFY(update->from->singleSource);
+    QVERIFY(update->from->singleSource->select);
+    QCOMPARE(update->from->singleSource->alias, "daily");
 }
 
 void ParserTest::initTestCase()

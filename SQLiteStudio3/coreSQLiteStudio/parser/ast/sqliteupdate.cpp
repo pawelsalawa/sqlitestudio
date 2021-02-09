@@ -26,6 +26,7 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
 
     DEEP_COPY_FIELD(SqliteExpr, where);
     DEEP_COPY_FIELD(SqliteWith, with);
+    DEEP_COPY_FIELD(SqliteSelect::Core::JoinSource, from);
 }
 
 SqliteUpdate::~SqliteUpdate()
@@ -33,7 +34,7 @@ SqliteUpdate::~SqliteUpdate()
 }
 
 SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
-                           const QList<ColumnAndValue>& values, SqliteExpr *where, SqliteWith* with)
+                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -50,6 +51,10 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     this->indexedByKw = !(indexedBy.isNull());
     this->notIndexedKw = notIndexedKw;
     keyValueMap = values;
+
+    this->from = from;
+    if (from)
+        from->setParent(this);
 
     this->where = where;
     if (where)
@@ -213,6 +218,9 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         builder.withSpace().withOperator("=").withStatement(keyVal.second);
         first = false;
     }
+
+    if (from)
+        builder.withSpace().withKeyword("FROM").withStatement(from);
 
     if (where)
         builder.withSpace().withKeyword("WHERE").withStatement(where);

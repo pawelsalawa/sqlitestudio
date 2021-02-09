@@ -56,7 +56,7 @@ class API_EXPORT SqliteWindowDefinition : public SqliteStatement
 
                         enum class Exclude
                         {
-                            NOT_OTHERS,
+                            NO_OTHERS,
                             CURRENT_ROW,
                             GROUP,
                             TIES,

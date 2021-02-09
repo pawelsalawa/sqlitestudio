@@ -4,6 +4,7 @@
 #include "parser/ast/sqlitecolumntype.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteraise.h"
+#include "parser/ast/sqlitefilterover.h"
 #include "sqlenterpriseformatter.h"
 
 QRegularExpression FormatExpr::WORD_ONLY_RE = QRegularExpression("^[a-zA-Z]+$");
@@ -82,11 +83,31 @@ void FormatExpr::formatInternal()
             withFuncId(expr->function).withParFuncLeft();
             if (expr->distinctKw)
                 withKeyword("DISTINCT");
+            else if (expr->allKw)
+                withKeyword("ALL");
 
             if (expr->star)
                 withOperator("*").withParFuncRight();
             else
                 withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+
+            break;
+        }
+        case SqliteExpr::Mode::WINDOW_FUNCTION:
+        {
+            withFuncId(expr->function).withParFuncLeft();
+            if (expr->distinctKw)
+                withKeyword("DISTINCT");
+            else if (expr->allKw)
+                withKeyword("ALL");
+
+            if (expr->star)
+                withOperator("*").withParFuncRight();
+            else
+                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+
+            if (expr->filterOver)
+                withStatement(expr->filterOver);
 
             break;
         }

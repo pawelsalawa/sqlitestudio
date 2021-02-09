@@ -1,6 +1,7 @@
 #include "formatselect.h"
 #include "formatwith.h"
 #include "parser/ast/sqlitewith.h"
+#include "parser/ast/sqlitewindowdefinition.h"
 
 FormatSelect::FormatSelect(SqliteSelect* select) :
     select(select)
@@ -85,6 +86,13 @@ void FormatSelectCore::formatInternal()
 
     if (core->having)
         withNewLine().withLinedUpKeyword("HAVING", "selectCore").withStatement(core->having, "having");
+
+    if (core->windows.size() > 0)
+    {
+        withNewLine().withLinedUpKeyword("WINDOW", "selectCore");
+        markKeywordLineUp("WINDOW", "selectWindow");
+        withStatementList(core->windows, "selectWindow");
+    }
 
     if (core->orderBy.size() > 0)
         withNewLine().withLinedUpKeyword("ORDER", "selectCore").withKeyword("BY").withStatementList(core->orderBy, "order");

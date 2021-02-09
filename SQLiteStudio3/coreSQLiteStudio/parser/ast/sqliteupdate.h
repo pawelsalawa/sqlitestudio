@@ -3,6 +3,7 @@
 
 #include "sqlitequery.h"
 #include "sqliteconflictalgo.h"
+#include "sqliteselect.h"
 
 #include <QStringList>
 #include <QMap>
@@ -20,7 +21,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         ~SqliteUpdate();
         SqliteUpdate(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2,
                      bool notIndexedKw, const QString& indexedBy, const QList<ColumnAndValue>& values,
-                     SqliteExpr* where, SqliteWith* with);
+                     SqliteSelect::Core::JoinSource* from, SqliteExpr* where, SqliteWith* with);
 
         SqliteStatement* clone();
         SqliteExpr* getValueForColumnSet(const QString& column);
@@ -32,6 +33,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         bool notIndexedKw = false;
         QString indexedBy = QString();
         QList<ColumnAndValue> keyValueMap;
+        SqliteSelect::Core::JoinSource* from = nullptr;
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;
 
