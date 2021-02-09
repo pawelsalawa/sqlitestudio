@@ -2055,15 +2055,21 @@ cmd ::= DROP INDEX ifexists ID_DB|ID_IDX.   {}
 
 ///////////////////////////// The VACUUM command /////////////////////////////
 
-cmd(X) ::= VACUUM.                          {
-                                                X = new SqliteVacuum();
+cmd(X) ::= VACUUM vinto(I).                 {
+                                                X = new SqliteVacuum(I);
                                                 objectForTokens = X;
                                             }
-cmd(X) ::= VACUUM nm(N).                    {
-                                                X = new SqliteVacuum(*(N));
+cmd(X) ::= VACUUM nm(N) vinto(I).           {
+                                                X = new SqliteVacuum(*(N), I);
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+
+
+%type vinto {SqliteExpr*}
+%destructor vinto {parser_safe_delete($$);}
+vinto(X) ::= INTO expr(E).              	{X = E;}
+vinto(X) ::= .                          	{X = nullptr;}
 
 ///////////////////////////// The PRAGMA command /////////////////////////////
 
@@ -2724,7 +2730,7 @@ frame_exclude_opt(X) ::= EXCLUDE
 
 frame_exclude(X) ::= NO OTHERS.   			{
 												X = new SqliteWindowDefinition::Window::Frame::Exclude(
-													SqliteWindowDefinition::Window::Frame::Exclude::NOT_OTHERS
+													SqliteWindowDefinition::Window::Frame::Exclude::NO_OTHERS
 													);
 											}
 frame_exclude(X) ::= CURRENT ROW. 		 	{

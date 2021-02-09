@@ -5,16 +5,20 @@
 
 #include <QString>
 
+class SqliteExpr;
+
 class API_EXPORT SqliteVacuum : public SqliteQuery
 {
     public:
         SqliteVacuum();
         SqliteVacuum(const SqliteVacuum& other);
-        explicit SqliteVacuum(const QString &name);
+        SqliteVacuum(SqliteExpr* expr);
+        SqliteVacuum(const QString &name, SqliteExpr* expr);
 
         SqliteStatement* clone();
 
         QString database;
+        SqliteExpr* expr = nullptr;
 
     protected:
         QStringList getDatabasesInStatement();
