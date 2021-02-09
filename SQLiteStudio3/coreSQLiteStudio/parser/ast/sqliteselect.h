@@ -9,6 +9,7 @@
 #include <QList>
 
 class SqliteWith;
+class SqliteWindowDefinition;
 
 /**
  * @addtogroup sqlite_statement
@@ -184,8 +185,11 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                 Core();
                 Core(const Core& other);
                 Core(int distinct, const QList<ResultColumn*>& resCols, JoinSource* src, SqliteExpr* where,
-                     const QList<SqliteExpr*>& groupBy, SqliteExpr* having, const QList<SqliteOrderBy*>& orderBy,
-                     SqliteLimit* limit);
+                     const QList<SqliteExpr*>& groupBy, SqliteExpr* having,
+                     const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit);
+                Core(int distinct, const QList<ResultColumn*>& resCols, JoinSource* src, SqliteExpr* where,
+                     const QList<SqliteExpr*>& groupBy, SqliteExpr* having, const QList<SqliteWindowDefinition*> windows,
+                     const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit);
 
                 SqliteStatement* clone();
 
@@ -198,6 +202,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                 SqliteExpr* having = nullptr;
                 QList<SqliteExpr*> groupBy;
                 QList<SqliteOrderBy*> orderBy;
+                QList<SqliteWindowDefinition*> windows;
                 SqliteLimit* limit = nullptr;
                 bool valuesMode = false;
 

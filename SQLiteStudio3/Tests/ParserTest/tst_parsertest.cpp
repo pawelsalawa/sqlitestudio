@@ -8,6 +8,8 @@
 #include "parser/lexer.h"
 #include "parser/parsererror.h"
 #include "common/utils_sql.h"
+#include "parser/ast/sqlitewindowdefinition.h"
+#include "parser/ast/sqlitefilterover.h"
 #include <QString>
 #include <QtTest>
 
@@ -20,6 +22,7 @@ class ParserTest : public QObject
 
     private:
         Parser* parser3 = nullptr;
+        void verifyWindowClause(const QString& sql, SqliteSelectPtr& select, bool& ok);
 
     private Q_SLOTS:
         void test();
@@ -49,6 +52,8 @@ class ParserTest : public QObject
         void testRebuildTokensInsertUpsert();
         void testGetColumnTokensFromInsertUpsert();
         void testGeneratedColumn();
+        void testWindowClause();
+        void testFilterClause();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -512,6 +517,112 @@ void ParserTest::testGeneratedColumn()
     QVERIFY(create->columns[1]->constraints[0]->generatedKw == true);
     QVERIFY(create->columns[1]->constraints[0]->generatedType == SqliteCreateTable::Column::Constraint::GeneratedType::STORED);
     QVERIFY(create->columns[1]->constraints[0]->expr);
+}
+
+void ParserTest::testWindowClause()
+{
+    QString sql = "SELECT x, y, row_number() OVER win1, rank() OVER win2 "
+                  "  FROM t0 "
+                  "WINDOW win1 AS (ORDER BY y RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW),"
+                  "       win2 AS (PARTITION BY y ORDER BY x)"
+                  " ORDER BY x;";
+
+    SqliteSelectPtr select;
+    bool ok = false;
+    verifyWindowClause(sql, select, ok);
+    if (!ok)
+        return;
+
+    qInfo() << "first run PASS, runing second time, after detokenizing";
+    sql = select->detokenize();
+    verifyWindowClause(sql, select, ok);
+}
+
+void ParserTest::verifyWindowClause(const QString& sql, SqliteSelectPtr& select, bool& ok)
+{
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
+    QCOMPARE(select->coreSelects.size(), 1);
+    SqliteSelect::Core* core = select->coreSelects[0];
+
+    // Result Columns
+    QCOMPARE(core->resultColumns.size(), 4);
+
+    QVERIFY(core->resultColumns[0]->expr);
+    QCOMPARE(core->resultColumns[0]->expr->column, "x");
+
+    QVERIFY(core->resultColumns[1]->expr);
+    QCOMPARE(core->resultColumns[1]->expr->column, "y");
+
+    QVERIFY(core->resultColumns[2]->expr);
+    QCOMPARE(core->resultColumns[2]->expr->function, "row_number");
+    QVERIFY(core->resultColumns[2]->expr->filterOver);
+    QCOMPARE(core->resultColumns[2]->expr->filterOver->over->name, "win1");
+
+    QVERIFY(core->resultColumns[3]->expr);
+    QCOMPARE(core->resultColumns[3]->expr->function, "rank");
+    QVERIFY(core->resultColumns[3]->expr->filterOver);
+    QCOMPARE(core->resultColumns[3]->expr->filterOver->over->name, "win2");
+
+    // Windows
+    QCOMPARE(core->windows.size(), 2);
+    SqliteWindowDefinition* winDef1 = core->windows[0];
+    QVERIFY(!winDef1->name.isNull());
+    QVERIFY(winDef1->window);
+
+    SqliteWindowDefinition::Window* win1 = winDef1->window;
+    QVERIFY(win1->mode == SqliteWindowDefinition::Window::Mode::ORDER_BY);
+    QVERIFY(win1->name.isNull());
+    QVERIFY(win1->frame);
+    QVERIFY(win1->orderBy.size() == 1);
+    QVERIFY(win1->frame->rangeOrRows == SqliteWindowDefinition::Window::Frame::RangeOrRows::RANGE);
+    QVERIFY(win1->frame->startBound);
+    QVERIFY(win1->frame->startBound->type == SqliteWindowDefinition::Window::Frame::Bound::Type::UNBOUNDED_PRECEDING);
+    QVERIFY(win1->frame->endBound);
+    QVERIFY(win1->frame->endBound->type == SqliteWindowDefinition::Window::Frame::Bound::Type::CURRENT_ROW);
+
+    SqliteWindowDefinition* winDef2 = core->windows[1];
+    QVERIFY(!winDef2->name.isNull());
+    QVERIFY(winDef2->window);
+
+    SqliteWindowDefinition::Window* win2 = winDef2->window;
+    QVERIFY(win2->mode == SqliteWindowDefinition::Window::Mode::PARTITION_BY);
+    QVERIFY(win2->name.isNull());
+    QVERIFY(win2->exprList.size() == 1);
+    QVERIFY(win2->orderBy.size() == 1);
+    QVERIFY(!win2->frame);
+
+    ok = true;
+}
+
+void ParserTest::testFilterClause()
+{
+    QString sql = "SELECT c, a, b, group_concat(b, '.') FILTER (WHERE c!='two') OVER ("
+                  "           ORDER BY a"
+                  "       ) AS group_concat"
+                  "  FROM t1 ORDER BY a;";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteSelectPtr select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
+    QVERIFY(select->coreSelects.size() == 1);
+    SqliteSelect::Core* core = select->coreSelects[0];
+    QVERIFY(core->windows.size() == 0);
+
+    QVERIFY(core->resultColumns.size() == 4);
+    SqliteSelect::Core::ResultColumn* resCol = core->resultColumns[3];
+    QVERIFY(resCol->alias == "group_concat");
+    QVERIFY(resCol->expr);
+    QVERIFY(resCol->expr->filterOver);
+    QVERIFY(resCol->expr->filterOver->filter->expr);
+    QVERIFY(resCol->expr->filterOver->over);
+    QVERIFY(resCol->expr->filterOver->over->mode == SqliteFilterOver::Over::Mode::WINDOW);
+    QVERIFY(resCol->expr->filterOver->over->window);
+    QVERIFY(resCol->expr->filterOver->over->window->mode == SqliteWindowDefinition::Window::Mode::ORDER_BY);
 }
 
 void ParserTest::initTestCase()

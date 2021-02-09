@@ -3,6 +3,7 @@
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
 #include "sqlitewith.h"
+#include "sqlitewindowdefinition.h"
 #include <QSet>
 
 SqliteSelect::SqliteSelect()
@@ -142,11 +143,21 @@ SqliteSelect::Core::Core(const SqliteSelect::Core& other) :
     DEEP_COPY_FIELD(SqliteExpr, where);
     DEEP_COPY_FIELD(SqliteExpr, having);
     DEEP_COPY_COLLECTION(SqliteExpr, groupBy);
+    DEEP_COPY_COLLECTION(SqliteWindowDefinition, windows);
     DEEP_COPY_COLLECTION(SqliteOrderBy, orderBy);
     DEEP_COPY_FIELD(SqliteLimit, limit);
 }
 
-SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, SqliteSelect::Core::JoinSource *src, SqliteExpr *where, const QList<SqliteExpr *> &groupBy, SqliteExpr *having, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
+SqliteSelect::Core::Core(int distinct, const QList<ResultColumn*>& resCols, JoinSource* src,
+                         SqliteExpr* where, const QList<SqliteExpr*>& groupBy, SqliteExpr* having,
+                         const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit) :
+    Core(distinct, resCols, src, where, groupBy, having, QList<SqliteWindowDefinition*>(), orderBy, limit)
+{
+}
+
+SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, JoinSource *src,
+                         SqliteExpr *where, const QList<SqliteExpr *> &groupBy, SqliteExpr *having, const QList<SqliteWindowDefinition*> windows,
+                         const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
 {
     if (distinct == 1)
         distinctKw = true;
@@ -156,6 +167,7 @@ SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, Sql
     from = src;
     this->where = where;
     this->having = having;
+    this->windows = windows;
     this->groupBy = groupBy;
     resultColumns = resCols;
     this->limit = limit;
@@ -172,6 +184,9 @@ SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, Sql
 
     if (limit)
         limit->setParent(this);
+
+    for (SqliteWindowDefinition* win : windows)
+        win->setParent(this);
 
     for (SqliteOrderBy* order : orderBy)
         order->setParent(this);
@@ -745,6 +760,9 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents()
         if (having)
             builder.withSpace().withKeyword("HAVING").withStatement(having);
     }
+
+    if (windows.size() > 0)
+        builder.withSpace().withKeyword("WINDOW").withStatementList(windows);
 
     if (orderBy.size() > 0)
         builder.withSpace().withKeyword("ORDER").withSpace().withKeyword("BY").withStatementList(orderBy);

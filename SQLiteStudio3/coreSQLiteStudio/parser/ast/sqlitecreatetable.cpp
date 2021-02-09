@@ -270,8 +270,8 @@ SqliteCreateTable::Column::Constraint::Constraint()
 SqliteCreateTable::Column::Constraint::Constraint(const SqliteCreateTable::Column::Constraint& other) :
     SqliteStatement(other), type(other.type), name(other.name), sortOrder(other.sortOrder), onConflict(other.onConflict),
     autoincrKw(other.autoincrKw), generatedKw(other.generatedKw), literalValue(other.literalValue), literalNull(other.literalNull),
-    ctime(other.ctime), id(other.id), collationName(other.collationName), deferrable(other.deferrable), initially(other.initially),
-    generatedType(other.generatedType)
+    ctime(other.ctime), id(other.id), collationName(other.collationName), generatedType(other.generatedType),
+    deferrable(other.deferrable), initially(other.initially)
 {
     DEEP_COPY_FIELD(SqliteExpr, expr);
     DEEP_COPY_FIELD(SqliteForeignKey, foreignKey);

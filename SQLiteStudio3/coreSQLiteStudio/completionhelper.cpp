@@ -66,7 +66,11 @@ void CompletionHelper::init()
                      << "date(timestr,mod,mod,...)" << "time(timestr,mod,mod,...)"
                      << "datetime(timestr,mod,mod,...)" << "julianday(timestr,mod,mod,...)"
                      << "strftime(format,timestr,mod,mod,...)" << "likelihood(X,Y)"
-                     << "likely(X)" << "unlikely(X)";
+                     << "likely(X)" << "unlikely(X)" "row_number()" << "rank()"
+                     << "dense_rank()" << "percent_rank()" << "cume_dist()" << "ntile(N)"
+                     << "lag(expr)" << "lag(expr, offset)" << "lag(expr, offset, default)"
+                     << "lead(expr)" << "lead(expr, offset)" << "lead(expr, offset, default)"
+                     << "first_value(expr)" << "last_value(expr)" << "nth_value(expr, N)";
 
     sqlite3Pragmas.sort();
     sqlite3Functions.sort();

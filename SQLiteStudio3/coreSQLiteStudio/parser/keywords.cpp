@@ -60,6 +60,7 @@ void initKeywords()
     keywords3["CONSTRAINT"] = TK3_CONSTRAINT;
     keywords3["CREATE"] = TK3_CREATE;
     keywords3["CROSS"] = TK3_JOIN_KW;
+    keywords3["CURRENT"] = TK3_CURRENT;
     keywords3["CURRENT_DATE"] = TK3_CTIME_KW;
     keywords3["CURRENT_TIME"] = TK3_CTIME_KW;
     keywords3["CURRENT_TIMESTAMP"] = TK3_CTIME_KW;
@@ -83,6 +84,7 @@ void initKeywords()
     keywords3["EXISTS"] = TK3_EXISTS;
     keywords3["EXPLAIN"] = TK3_EXPLAIN;
     keywords3["FAIL"] = TK3_FAIL;
+    keywords3["FILTER"] = TK3_FILTER;
     keywords3["FIRST"] = TK3_FIRST;
     keywords3["FOLLOWING"] = TK3_FOLLOWING;
     keywords3["FOR"] = TK3_FOR;
@@ -128,9 +130,9 @@ void initKeywords()
     keywords3["OR"] = TK3_OR;
     keywords3["ORDER"] = TK3_ORDER;
     keywords3["OTHERS"] = TK3_OTHERS;
+    keywords3["OVER"] = TK3_OVER;
     keywords3["OUTER"] = TK3_JOIN_KW;
     keywords3["PARTITION"] = TK3_PARTITION;
-    keywords3["PLAN"] = TK3_PLAN;
     keywords3["PLAN"] = TK3_PLAN;
     keywords3["PRAGMA"] = TK3_PRAGMA;
     keywords3["PRECEDING"] = TK3_PRECEDING;
@@ -172,6 +174,7 @@ void initKeywords()
     keywords3["VIRTUAL"] = TK3_VIRTUAL;
     keywords3["WHEN"] = TK3_WHEN;
     keywords3["WHERE"] = TK3_WHERE;
+    keywords3["WINDOW"] = TK3_WINDOW;
     keywords3["WITH"] = TK3_WITH;
     keywords3["WITHOUT"] = TK3_WITHOUT;
 

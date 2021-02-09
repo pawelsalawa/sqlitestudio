@@ -9,6 +9,7 @@
 #include "ast/sqliteindexedcolumn.h"
 #include "ast/sqliteforeignkey.h"
 #include "ast/sqliteorderby.h"
+#include "ast/sqlitewindowdefinition.h"
 
 #include <QString>
 #include <QList>
@@ -79,6 +80,7 @@ typedef QPair<QVariant,SqliteExpr*> ParserSetValue;
 typedef QList<ParserSetValue> ParserSetValueList;
 typedef QList<SqliteIndexedColumn*> ParserIndexedColumnList;
 typedef QList<ParserExprList> ParserExprNestedList;
+typedef QList<SqliteWindowDefinition*> ParserWindowDefList;
 
 /**
  * @brief Stores parameters for defferable foreign keys.

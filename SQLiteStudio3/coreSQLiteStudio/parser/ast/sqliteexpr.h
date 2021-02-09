@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QList>
 
+class SqliteFilterOver;
 class SqliteSelect;
 class SqliteColumnType;
 class SqliteRaise;
@@ -36,7 +37,8 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             EXISTS,
             CASE,
             SUB_SELECT,
-            RAISE
+            RAISE,
+            WINDOW_FUNCTION
         };
 
         enum class NotNull
@@ -79,6 +81,8 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initCast(SqliteExpr* expr, SqliteColumnType* type);
         void initFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList);
         void initFunction(const QString& fnName, bool star = false);
+        void initWindowFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList, SqliteFilterOver* filterOver);
+        void initWindowFunction(const QString& fnName, SqliteFilterOver* filterOver);
         void initBinOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2);
         void initUnaryOp(SqliteExpr* expr, const QString& op);
         void initLike(SqliteExpr* expr1, bool notKw, SqliteExpr::LikeOp likeOp, SqliteExpr* expr2, SqliteExpr* expr3 = nullptr);
@@ -112,6 +116,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         SqliteExpr* expr3 = nullptr;
         QList<SqliteExpr*> exprList;
         SqliteSelect* select = nullptr;
+        SqliteFilterOver* filterOver = nullptr;
         bool distinctKw = false;
         bool allKw = false; // alias for DISTINCT as for sqlite3 grammar
         bool star = false;
@@ -141,6 +146,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         TokenList rebuildBetween();
         TokenList rebuildIn();
         TokenList rebuildCase();
+        void initDistinct(int distinct);
 };
 
 typedef QSharedPointer<SqliteExpr> SqliteExprPtr;
