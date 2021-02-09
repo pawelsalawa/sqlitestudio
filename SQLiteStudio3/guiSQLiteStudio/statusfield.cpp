@@ -133,8 +133,8 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
         setVisible(true);
 
     ui->tableWidget->scrollToBottom();
-    if (isVisible() && !noFlashing)
-        flashItems(itemsCreated, color);
+//    if (isVisible() && !noFlashing)
+//        flashItems(itemsCreated, color);
 }
 
 void StatusField::refreshColors()
@@ -186,7 +186,7 @@ void StatusField::flashItems(const QList<QTableWidgetItem*>& items, const QColor
     itemAnimations << anim;
     connect(anim, &QObject::destroyed, [this, anim]() {itemAnimations.removeOne(anim);});
 
-    connect(anim, &QVariantAnimation::valueChanged, [items](const QVariant& value)
+    connect(anim, &QVariantAnimation::valueChanged, [anim, items](const QVariant& value)
     {
         for (QTableWidgetItem* item : items)
             item->setBackground(value.value<QColor>());
