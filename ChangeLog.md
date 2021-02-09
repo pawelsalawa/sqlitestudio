@@ -10,7 +10,7 @@
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.
 - CHANGE: #3470 SQLite upgraded to 3.34.1.
-- CHANGE: #3470 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
+- CHANGE: #3494 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
 - CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
 - BUGFIX: #3046 HighDPI support fixed.
@@ -36,6 +36,7 @@
 - BUGFIX: #3474 Fixed crash when right-clicking on empty are in data view.
 - BUGFIX: #3418 Fixed crash when importing file with a lot of error-raising rows.
 - BUGFIX: #3413 #3614 #3520 #3403 Fixed import of CSV files with Unix-style line endings.
+- BUGFIX: #3464 Fixed crash when trying to edit cell, which has duplicated foreign key (column level and table level).
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

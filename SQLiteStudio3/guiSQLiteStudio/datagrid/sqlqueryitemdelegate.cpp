@@ -250,7 +250,7 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     static_qstring(cellLimitTpl, "substr(%2, 0, %1)");
 
     QStringList selectedCols;
-    QStringList fkConfitionTables;
+    QStringList fkConditionTables;
     QStringList fkConditionCols;
     QStringList srcCols;
     Db* db = item->getModel()->getDb();
@@ -271,6 +271,9 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
                 wrapObjIfNeeded(item->getColumn()->column));
         }
 
+        if (fkConditionTables.contains(src, Qt::CaseInsensitive))
+            continue;
+
         srcCols = resolver.getTableColumns(src);
         for (const QString& srcCol : srcCols)
         {
@@ -282,18 +285,18 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
         }
 
         fkConditionCols << col;
-        fkConfitionTables << src;
+        fkConditionTables << src;
 
         i++;
     }
 
     QStringList conditions;
-    QString firstSrc = wrapObjIfNeeded(fkConfitionTables.first());
-    QString firstCol = wrapObjIfNeeded(fkConditionCols.first());
-    for (i = 1; i < fkConfitionTables.size(); i++)
+    QString firstSrc = fkConditionTables.first();
+    QString firstCol = fkConditionCols.first();
+    for (i = 1; i < fkConditionTables.size(); i++)
     {
-        src = wrapObjIfNeeded(fkConfitionTables[i]);
-        col = wrapObjIfNeeded(fkConditionCols[i]);
+        src = fkConditionTables[i];
+        col = fkConditionCols[i];
         conditions << conditionTpl.arg(firstSrc, firstCol, src, col);
     }
 
@@ -302,7 +305,7 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
         conditionsStr = conditionPrefixTpl.arg(conditions.join(", "));
     }
 
-    return sql.arg(selectedCols.join(", "), fkConfitionTables.join(", "), conditionsStr);
+    return sql.arg(selectedCols.join(", "), fkConditionTables.join(", "), conditionsStr);
 }
 
 qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query, bool* isError) const
