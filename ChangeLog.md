@@ -3,9 +3,14 @@
 ### 3.3.0
 - ADDED: #3409 The Dark theme.
 - ADDED: #3763 Generated Columns support added.
+- ADDED: #3471 Window Functions support added.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.
+- CHANGE: #3470 SQLite upgraded to 3.34.1.
+- CHANGE: #3470 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
+- CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
+- CHANGE: #3470 Updated list of functions and pragmas for code assistant.
 - BUGFIX: #3046 HighDPI support fixed.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
 - BUGFIX: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.

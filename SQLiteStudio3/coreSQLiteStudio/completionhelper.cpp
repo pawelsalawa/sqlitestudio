@@ -10,6 +10,7 @@
 #include "common/utils.h"
 #include "common/utils_sql.h"
 #include "services/dbmanager.h"
+#include "db/dbsqlite3.h"
 #include <QStringList>
 #include <QDebug>
 
@@ -34,39 +35,13 @@ CompletionHelper::CompletionHelper(const QString &sql, quint32 cursorPos, Db* db
 
 void CompletionHelper::init()
 {
-    sqlite3Pragmas << "auto_vacuum" << "automatic_index" << "busy_timeout" << "cache_size"
-                   << "case_sensitive_like" << "checkpoint_fullfsync" << "collation_list"
-                   << "compile_options" << "count_changes" << "data_store_directory"
-                   << "database_list" << "default_cache_size" << "empty_result_callbacks"
-                   << "encoding" << "foreign_key_check" << "foreign_key_list" << "foreign_keys"
-                   << "freelist_count" << "full_column_names" << "fullfsync"
-                   << "ignore_check_constraints" << "incremental_vacuum" << "index_info"
-                   << "index_list" << "integrity_check" << "journal_mode" << "journal_size_limit"
-                   << "legacy_file_format" << "locking_mode" << "max_page_count" << "page_count"
-                   << "page_size" << "quick_check" << "read_uncommitted" << "recursive_triggers"
-                   << "reverse_unordered_selects" << "schema_version" << "secure_delete"
-                   << "short_column_names" << "shrink_memory" << "synchronous" << "table_info"
-                   << "temp_store" << "temp_store_directory" << "user_version"
-                   << "wal_autocheckpoint" << "wal_checkpoint" << "writable_schema";
+    Db* db = new DbSqlite3("CompletionHelper::init()", ":memory:", {{DB_PURE_INIT, true}});
+    if (!db->open())
+        qWarning() << "Could not open memory db for initializing function list:" << db->getErrorText();
 
-    sqlite3Functions << "avg(X)" << "count(X)" << "count(*)" << "group_concat(X)"
-                     << "group_concat(X,Y)" << "max(X)" << "min(X)" << "sum(X)" << "total(X)"
-                     << "abs(X)" << "changes()" << "char(X1,X2,...,XN)" << "coalesce(X,Y,...)"
-                     << "glob(X,Y)" << "ifnull(X,Y)" << "instr(X,Y)" << "hex(X)"
-                     << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "like(X,Y,Z)"
-                     << "load_extension(X,Y)" << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
-                     << "max(X,Y,...)" << "min(X,Y,...)" << "nullif(X,Y)" << "quote(X)"
-                     << "random()" << "randomblob(N)" << "hex(randomblob(16))"
-                     << "lower(hex(randomblob(16)))" << "replace(X,Y,Z)" << "round(X)"
-                     << "round(X,Y)" << "rtrim(X)" << "rtrim(X,Y)" << "soundex(X)"
-                     << "sqlite_compileoption_get(N)" << "sqlite_compileoption_used(X)"
-                     << "sqlite_source_id()" << "sqlite_version()" << "substr(X,Y,Z)"
-                     << "substr(X,Y)" << "total_changes()" << "trim(X)" << "trim(X,Y)"
-                     << "typeof(X)" << "unicode(X)" << "upper(X)" << "zeroblob(N)"
-                     << "date(timestr,mod,mod,...)" << "time(timestr,mod,mod,...)"
-                     << "datetime(timestr,mod,mod,...)" << "julianday(timestr,mod,mod,...)"
-                     << "strftime(format,timestr,mod,mod,...)" << "likelihood(X,Y)"
-                     << "likely(X)" << "unlikely(X)";
+    initFunctions(db);
+    initPragmas(db);
+    delete db;
 
     sqlite3Pragmas.sort();
     sqlite3Functions.sort();
@@ -1269,6 +1244,97 @@ QString CompletionHelper::getCreateTriggerTable() const
 void CompletionHelper::setCreateTriggerTable(const QString& value)
 {
     createTriggerTable = value;
+}
+
+void CompletionHelper::initFunctions(Db* db)
+{
+    sqlite3Functions << "avg(X)" << "count(X)" << "count(*)" << "group_concat(X)"
+                     << "group_concat(X,Y)" << "max(X)" << "min(X)" << "sum(X)" << "total(X)"
+                     << "abs(X)" << "changes()" << "char(X1,X2,...,XN)" << "coalesce(X,Y,...)"
+                     << "glob(X,Y)" << "ifnull(X,Y)" << "instr(X,Y)" << "hex(X)" << "iif(X,Y,Z)"
+                     << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "like(X,Y,Z)"
+                     << "load_extension(X,Y)" << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
+                     << "max(X,Y,...)" << "min(X,Y,...)" << "nullif(X,Y)" << "quote(X)"
+                     << "random()" << "randomblob(N)" << "hex(randomblob(16))"
+                     << "lower(hex(randomblob(16)))" << "replace(X,Y,Z)" << "round(X)"
+                     << "round(X,Y)" << "rtrim(X)" << "rtrim(X,Y)" << "soundex(X)"
+                     << "sqlite_compileoption_get(N)" << "sqlite_compileoption_used(X)"
+                     << "sqlite_source_id()" << "sqlite_version()" << "substr(X,Y,Z)"
+                     << "substr(X,Y)" << "total_changes()" << "trim(X)" << "trim(X,Y)"
+                     << "typeof(X)" << "unicode(X)" << "upper(X)" << "zeroblob(N)"
+                     << "date(timestr,mod,mod,...)" << "time(timestr,mod,mod,...)"
+                     << "datetime(timestr,mod,mod,...)" << "julianday(timestr,mod,mod,...)"
+                     << "strftime(format,timestr,mod,mod,...)" << "likelihood(X,Y)"
+                     << "likely(X)" << "unlikely(X)" "row_number()" << "rank()"
+                     << "dense_rank()" << "percent_rank()" << "cume_dist()" << "ntile(N)"
+                     << "lag(expr)" << "lag(expr, offset)" << "lag(expr, offset, default)"
+                     << "lead(expr)" << "lead(expr, offset)" << "lead(expr, offset, default)"
+                     << "first_value(expr)" << "last_value(expr)" << "nth_value(expr, N)"
+                     << "substring(X,Y,Z)" << "substring(X,Y)";
+
+    if (!db->isOpen())
+        return;
+
+    // Parse what we already have
+    QSet<QString> handledSignatures;
+    static_qstring(sigTpl, "%1_%2");
+    for (const QString& fn : sqlite3Functions)
+    {
+        int argStart = fn.lastIndexOf("(");
+        int argEnd = fn.lastIndexOf(")");
+        QString fnName = fn.left(argStart);
+        QString args = fn.mid(argStart + 1, argEnd - argStart - 1);
+        QStringList argList = args.split(",");
+
+        int argCount = argList.size();;
+        if (args.trimmed().isEmpty())
+            argCount = 0;
+        else if (argList.last() == "...")
+            argCount = -1;
+
+        handledSignatures << sigTpl.arg(fnName, QString::number(argCount));
+    }
+
+    // Find what is missing and add it
+    static_qstring(funTpl, "%1(%2)");
+    static const QStringList argSymbols = {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"};
+    static const int argSymbolCnt = argSymbols.size();
+
+    SqlQueryPtr res = db->exec("PRAGMA function_list;");
+    while (res->hasNext())
+    {
+        SqlResultsRowPtr row = res->next();
+        QVariant nargsVar = row->value("narg");
+        QString fnName = row->value("name").toString();
+        QString sig = sigTpl.arg(fnName, nargsVar.toString());
+        if (!handledSignatures.contains(sig))
+        {
+            int nargs = nargsVar.toInt();
+            QStringList args;
+            if (nargs == -1)
+                args << "...";
+
+            for (int i = 0; i < nargs; i++)
+                args << argSymbols[i % argSymbolCnt];
+
+            sqlite3Functions << funTpl.arg(fnName, args.join(","));
+            handledSignatures << sig;
+        }
+    }
+}
+
+void CompletionHelper::initPragmas(Db* db)
+{
+    if (!db->isOpen())
+        return;
+
+    SqlQueryPtr res = db->exec("PRAGMA pragma_list;");
+    while (res->hasNext())
+    {
+        SqlResultsRowPtr row = res->next();
+        QString name = row->value("name").toString();
+        sqlite3Pragmas << name;
+    }
 }
 
 DbAttacher* CompletionHelper::getDbAttacher() const

@@ -67,6 +67,9 @@ TRANSLATIONS += translations/coreSQLiteStudio.ts \
 		translations/coreSQLiteStudio_pl_PL.ts
 
 SOURCES += sqlitestudio.cpp \
+    parser/ast/sqlitefilterover.cpp \
+    parser/ast/sqlitenulls.cpp \
+    parser/ast/sqlitewindowdefinition.cpp \
     returncode.cpp \
     services/config.cpp \
     common/nulldevice.cpp \
@@ -234,6 +237,9 @@ SOURCES += sqlitestudio.cpp \
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
+    parser/ast/sqlitefilterover.h \
+    parser/ast/sqlitenulls.h \
+    parser/ast/sqlitewindowdefinition.h \
     returncode.h \
     services/config.h \
     common/nulldevice.h \

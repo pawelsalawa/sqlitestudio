@@ -3,14 +3,16 @@
 # Download page:
 # https://github.com/utelle/wxsqlite3/releases
 # Link from download page will redicrect to the codeload.....
-# So don't replace whole link, only change version part.
 
-set THE_URL "https://codeload.github.com/utelle/wxsqlite3/zip/v4.6.4"
+set THE_URL "https://github.com/utelle/SQLite3MultipleCiphers/releases/download/v1.1.4/sqlite3mc-1.1.4-sqlite-3.34.1-amalgamation.zip"
+
 set SRC_DIR "src"
 set FILES [list \
 	sqlite3mc_amalgamation.c \
 	sqlite3mc_amalgamation.h \
 ]
+
+package require http
 
 proc process {} {
 	if {[catch {
@@ -18,10 +20,11 @@ proc process {} {
 		puts "Decompressing to 'sqlite' directory."
 		exec 7z x -osqlite sqlite.zip
 		
-		set dir [lindex [glob -directory sqlite wxsqlite3-*] 0]
+		#set dir [lindex [glob -directory sqlite wxsqlite3-*] 0]
+		set dir sqlite
 		
 		foreach f $::FILES {
-			copy $dir/$::SRC_DIR/$f
+			copy $dir/$f
 		}
 
 		file rename -force sqlite3mc_amalgamation.c wxsqlite3.c
@@ -53,7 +56,6 @@ proc copy {file} {
 proc wget {url {filename {}}} {
 	puts "Downloading $url"
 
-	package require http
 	if {[catch {package require twapi_crypto}]} {
 		package require tls 1.7
 		http::register https 443 [list ::tls::socket -autoservername true]
@@ -65,6 +67,15 @@ proc wget {url {filename {}}} {
 		set filename [file tail $url]
 	}
 	set r [http::geturl $url -binary 1]
+	upvar #0 $r state
+	while {[lindex [http::code $r] 1] == "302"} {
+		foreach {name value} $state(meta) {
+			if {[regexp -nocase ^location$ $name]} {
+				puts "Redirection to $value"
+				set r [http::geturl $value -binary 1]
+			}
+		}
+	}
 
 	set fo [open $filename w]
 	fconfigure $fo -translation binary

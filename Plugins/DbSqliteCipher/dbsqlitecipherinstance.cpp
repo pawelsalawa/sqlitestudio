@@ -19,42 +19,13 @@ void DbSqliteCipherInstance::initAfterOpen()
             qWarning() << "Error while defining SQLCipher key:" << res->getErrorText();
     }
 
-    QString cipher = connOptions[DbSqliteCipher::CIPHER_OPT].toString();
-    if (!cipher.isEmpty() && cipher != DbSqliteCipher::DEF_CIPHER)
+    QString pragmas = connOptions[DbSqliteCipher::PRAGMAS_OPT].toString();
+    QStringList pragmaList = quickSplitQueries(pragmas);
+    for (const QString& pragma : pragmaList)
     {
-        res = exec(QString("PRAGMA cipher = '%1';").arg(cipher), Flag::NO_LOCK);
+        res = exec(pragma, Flag::NO_LOCK);
         if (res->isError())
-            qWarning() << "Error while defining SQLCipher cipher:" << res->getErrorText();
-    }
-
-    if (connOptions.contains(DbSqliteCipher::KDF_ITER_OPT))
-    {
-        int kdfIter = connOptions[DbSqliteCipher::KDF_ITER_OPT].toInt();
-        if (kdfIter >= 0 && kdfIter != DbSqliteCipher::DEF_KDF_ITER)
-        {
-            res = exec(QString("PRAGMA kdf_iter = '%1';").arg(kdfIter), Flag::NO_LOCK);
-            if (res->isError())
-                qWarning() << "Error while defining SQLCipher kdf_iter:" << res->getErrorText();
-        }
-    }
-
-    if (connOptions.contains(DbSqliteCipher::CIPHER_PAGE_SIZE_OPT))
-    {
-        int pageSize = connOptions[DbSqliteCipher::CIPHER_PAGE_SIZE_OPT].toInt();
-        if (pageSize >= 0 && pageSize != DbSqliteCipher::DEF_CIPHER_PAGE_SIZE)
-        {
-            res = exec(QString("PRAGMA cipher_page_size = %1;").arg(pageSize), Flag::NO_LOCK);
-            if (res->isError())
-                qWarning() << "Error while defining SQLCipher cipher_page_size:" << res->getErrorText();
-        }
-    }
-
-    bool hmacCompatibility = connOptions[DbSqliteCipher::CIPHER_1_1_OPT].toBool();
-    if (hmacCompatibility)
-    {
-        res = exec(QString("PRAGMA cipher_use_hmac = OFF;"), Flag::NO_LOCK);
-        if (res->isError())
-            qWarning() << "Error while defining cipher_use_hmac:" << res->getErrorText();
+            qWarning() << "Error while defining SQLCipher pragma" << pragma << ":" << res->getErrorText();
     }
 
     AbstractDb3<SqlCipher>::initAfterOpen();

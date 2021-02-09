@@ -14,10 +14,12 @@ TEMPLATE = lib
 DEFINES += SQLENTERPRISEFORMATTER_LIBRARY
 
 SOURCES += sqlenterpriseformatter.cpp \
+    formatfilterover.cpp \
     formatstatement.cpp \
     formatselect.cpp \
     formatexpr.cpp \
     formatlimit.cpp \
+    formatwindowdefinition.cpp \
     formatwith.cpp \
     formatraise.cpp \
     formatcreatetable.cpp \
@@ -53,6 +55,8 @@ SOURCES += sqlenterpriseformatter.cpp \
     formatupsert.cpp
 
 HEADERS += sqlenterpriseformatter.h\
+    formatfilterover.h \
+    formatwindowdefinition.h \
         sqlenterpriseformatter_global.h \
     formatstatement.h \
     formatselect.h \

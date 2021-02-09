@@ -39,6 +39,10 @@
         var = nullptr; \
     }
 
+#define parser_safe_delete(var) \
+    if (var) \
+        delete var
+
 #define static_char static constexpr const char
 
 #define static_qstring(N,V) const static QString N = QStringLiteral(V)

@@ -8,15 +8,16 @@ SqliteOrderBy::SqliteOrderBy()
 }
 
 SqliteOrderBy::SqliteOrderBy(const SqliteOrderBy& other) :
-    SqliteStatement(other), order(other.order)
+    SqliteStatement(other), order(other.order), nulls(other.nulls)
 {
     DEEP_COPY_FIELD(SqliteExpr, expr);
 }
 
-SqliteOrderBy::SqliteOrderBy(SqliteExpr *expr, SqliteSortOrder order)
+SqliteOrderBy::SqliteOrderBy(SqliteExpr *expr, SqliteSortOrder order, SqliteNulls nulls)
 {
     this->expr = expr;
     this->order = order;
+    this->nulls = nulls;
     if (expr)
         expr->setParent(this);
 }
@@ -107,9 +108,11 @@ TokenList SqliteOrderBy::rebuildTokensFromContents()
     if (order != SqliteSortOrder::null)
         builder.withSpace().withKeyword(sqliteSortOrder(order));
 
+    if (nulls != SqliteNulls::null)
+        builder.withSpace().withKeyword("NULLS").withSpace().withKeyword(sqliteNulls(nulls));
+
     return builder.build();
 }
-
 
 void SqliteOrderBy::clearCollation()
 {

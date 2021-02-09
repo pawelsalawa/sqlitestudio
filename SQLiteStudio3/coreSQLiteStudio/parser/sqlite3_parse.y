@@ -20,6 +20,7 @@
 #include "parsercontext.h"
 #include "parser_helper_stubs.h"
 #include "common/utils_sql.h"
+#include "common/global.h"
 #include "parser/ast/sqlitealtertable.h"
 #include "parser/ast/sqliteanalyze.h"
 #include "parser/ast/sqliteattach.h"
@@ -55,6 +56,9 @@
 #include "parser/ast/sqliteforeignkey.h"
 #include "parser/ast/sqlitewith.h"
 #include "parser/ast/sqliteupsert.h"
+#include "parser/ast/sqlitewindowdefinition.h"
+#include "parser/ast/sqlitefilterover.h"
+#include "parser/ast/sqlitenulls.h"
 #include <QObject>
 #include <QDebug>
 #include <limits.h>
@@ -111,7 +115,7 @@
 
 // Input is a single SQL command
 %type cmd {SqliteQuery*}
-%destructor cmd {delete $$;}
+%destructor cmd {parser_safe_delete($$);}
 
 input ::= cmdlist.
 
@@ -119,7 +123,7 @@ cmdlist ::= cmdlist ecmd(C).                {parserContext->addQuery(C); DONT_IN
 cmdlist ::= ecmd(C).                        {parserContext->addQuery(C);}
 
 %type ecmd {SqliteQuery*}
-%destructor ecmd {delete $$;}
+%destructor ecmd {parser_safe_delete($$);}
 ecmd(X) ::= SEMI.                           {X = new SqliteEmptyQuery();}
 ecmd(X) ::= explain(E) cmdx(C) SEMI.        {
                                                 X = C;
@@ -130,13 +134,13 @@ ecmd(X) ::= explain(E) cmdx(C) SEMI.        {
                                             }
 
 %type explain {ParserStubExplain*}
-%destructor explain {delete $$;}
+%destructor explain {parser_safe_delete($$);}
 explain(X) ::= .                            {X = new ParserStubExplain(false, false);}
 explain(X) ::= EXPLAIN.                     {X = new ParserStubExplain(true, false);}
 explain(X) ::= EXPLAIN QUERY PLAN.          {X = new ParserStubExplain(true, true);}
 
 %type cmdx {SqliteQuery*}
-%destructor cmdx {delete $$;}
+%destructor cmdx {parser_safe_delete($$);}
 cmdx(X) ::= cmd(C).                         {X = C;}
 
 ///////////////////// Begin and end transaction. ////////////////////////////
@@ -154,7 +158,7 @@ cmd(X) ::= BEGIN transtype(TT)
                                             }
 
 %type trans_opt {ParserStubTransDetails*}
-%destructor trans_opt {delete $$;}
+%destructor trans_opt {parser_safe_delete($$);}
 trans_opt(X) ::= .                          {X = new ParserStubTransDetails();}
 trans_opt(X) ::= TRANSACTION.               {
                                                 X = new ParserStubTransDetails();
@@ -169,7 +173,7 @@ trans_opt(X) ::= TRANSACTION nm(N).         {
 trans_opt ::= TRANSACTION ID_TRANS.         {}
 
 %type transtype {ParserStubTransDetails*}
-%destructor transtype {delete $$;}
+%destructor transtype {parser_safe_delete($$);}
 transtype(X) ::= .                          {X = new ParserStubTransDetails();}
 transtype(X) ::= DEFERRED.                  {
                                                 X = new ParserStubTransDetails();
@@ -211,7 +215,7 @@ cmd(X) ::= ROLLBACK trans_opt(T).           {
                                             }
 
 %type savepoint_opt {bool*}
-%destructor savepoint_opt {delete $$;}
+%destructor savepoint_opt {parser_safe_delete($$);}
 savepoint_opt(X) ::= SAVEPOINT.             {X = new bool(true);}
 savepoint_opt(X) ::= .                      {X = new bool(false);}
 
@@ -286,7 +290,7 @@ cmd ::= CREATE temp TABLE ifnotexists
             ID_DB|ID_TAB_NEW.               {}
 
 %type table_options {QString*}
-%destructor table_options {delete $$;}
+%destructor table_options {parser_safe_delete($$);}
 table_options(X) ::= .                      {X = new QString();}
 table_options(X) ::= WITHOUT nm(N).         {
                                                 if (N->toLower() != "rowid")
@@ -297,17 +301,17 @@ table_options(X) ::= WITHOUT nm(N).         {
 table_options ::= WITHOUT CTX_ROWID_KW.     {}
 
 %type ifnotexists {bool*}
-%destructor ifnotexists {delete $$;}
+%destructor ifnotexists {parser_safe_delete($$);}
 ifnotexists(X) ::= .                        {X = new bool(false);}
 ifnotexists(X) ::= IF NOT EXISTS.           {X = new bool(true);}
 
 %type temp {int*}
-%destructor temp {delete $$;}
+%destructor temp {parser_safe_delete($$);}
 temp(X) ::= TEMP(T).                        {X = new int( (T->value.length() > 4) ? 2 : 1 );}
 temp(X) ::= .                               {X = new int(0);}
 
 %type columnlist {ParserCreateTableColumnList*}
-%destructor columnlist {delete $$;}
+%destructor columnlist {parser_safe_delete($$);}
 columnlist(X) ::= columnlist(L)
                 COMMA column(C).            {
                                                 L->append(C);
@@ -325,7 +329,7 @@ columnlist(X) ::= column(C).                {
 // NOT NULL and so forth.
 
 %type column {SqliteCreateTable::Column*}
-%destructor column {delete $$;}
+%destructor column {parser_safe_delete($$);}
 column(X) ::= columnid(C) type(T)
                 carglist(L).                {
                                                 X = new SqliteCreateTable::Column(*(C), T, *(L));
@@ -336,7 +340,7 @@ column(X) ::= columnid(C) type(T)
                                             }
 
 %type columnid {QString*}
-%destructor columnid {delete $$;}
+%destructor columnid {parser_safe_delete($$);}
 columnid(X) ::= nm(N).                      {X = N;}
 columnid ::= ID_COL_NEW.                    {}
 
@@ -344,8 +348,8 @@ columnid ::= ID_COL_NEW.                    {}
 // An IDENTIFIER can be a generic identifier, or one of several
 // keywords.  Any non-standard keyword can also be an identifier.
 %type id {QString*}
-%destructor id {delete $$;}
-id(X) ::= ID(T).                            {
+%destructor id {parser_safe_delete($$);}
+id(X) ::= ID(T).                    		{
                                                 X = new QString(
                                                     stripObjName(
                                                         T->value
@@ -354,7 +358,7 @@ id(X) ::= ID(T).                            {
                                             }
 
 %type id_opt {QString*}
-%destructor id_opt {delete $$;}
+%destructor id_opt {parser_safe_delete($$);}
 id_opt(X) ::= id(T).                        {
                                                 X = T;
                                             }
@@ -371,12 +375,12 @@ id_opt(X) ::= .                             {
 
 // And "ids" is an identifer-or-string.
 %type ids {QString*}
-%destructor ids {delete $$;}
+%destructor ids {parser_safe_delete($$);}
 ids(X) ::= ID|STRING(T).                    {X = new QString(T->value);}
 
 // The name of a column or table can be any of the following:
 %type nm {QString*}
-%destructor nm {delete $$;}
+%destructor nm {parser_safe_delete($$);}
 nm(X) ::= id(N).                            {X = N;}
 nm(X) ::= STRING(N).                        {X = new QString(stripString(N->value));}
 nm(X) ::= JOIN_KW(N).                       {X = new QString(N->value);}
@@ -385,12 +389,12 @@ nm(X) ::= JOIN_KW(N).                       {X = new QString(N->value);}
 // as can be found after the column name in a CREATE TABLE statement.
 // Multiple tokens are concatenated to form the value of the typetoken.
 %type type {SqliteColumnType*}
-%destructor type {delete $$;}
-type(X) ::= .                  [LEFT_ASSOC] {X = nullptr;}
-type(X) ::= typetoken(T).      [LEFT_ASSOC] {X = T;}
+%destructor type {parser_safe_delete($$);}
+type(X) ::= .                               {X = nullptr;}
+type(X) ::= typetoken(T).                   {X = T;}
 
 %type typetoken {SqliteColumnType*}
-%destructor typetoken {delete $$;}
+%destructor typetoken {parser_safe_delete($$);}
 typetoken(X) ::= typename(N).               {
                                                 X = new SqliteColumnType(*(N));
                                                 delete N;
@@ -413,7 +417,7 @@ typetoken(X) ::= typename(N) LP signed(P)
                                             }
 
 %type typename {QString*}
-%destructor typename {delete $$;}
+%destructor typename {parser_safe_delete($$);}
 typename(X) ::= ids(I).                     {X = I;}
 typename(X) ::= typename(T) ids(I).         {
                                                 T->append(" " + *(I));
@@ -423,14 +427,14 @@ typename(X) ::= typename(T) ids(I).         {
 typename ::= ID_COL_TYPE.                   {}
 
 %type signed {QVariant*}
-%destructor signed {delete $$;}
+%destructor signed {parser_safe_delete($$);}
 signed(X) ::= plus_num(N).                  {X = N;}
 signed(X) ::= minus_num(N).                 {X = N;}
 
 // "carglist" is a list of additional constraints that come after the
 // column name and column type in a CREATE TABLE statement.
 %type carglist {ParserCreateTableColumnConstraintList*}
-%destructor carglist {delete $$;}
+%destructor carglist {parser_safe_delete($$);}
 carglist(X) ::= carglist(L) ccons(C).
 							  [RIGHT_ASSOC] {
                                                 L->append(C);
@@ -440,7 +444,7 @@ carglist(X) ::= carglist(L) ccons(C).
 carglist(X) ::= .             [RIGHT_ASSOC] {X = new ParserCreateTableColumnConstraintList();}
 
 %type ccons {SqliteCreateTable::Column::Constraint*}
-%destructor ccons {delete $$;}
+%destructor ccons {parser_safe_delete($$);}
 ccons(X) ::= CONSTRAINT nm(N).              {
                                                 X = new SqliteCreateTable::Column::Constraint();
                                                 X->initDefNameOnly(*(N));
@@ -560,20 +564,20 @@ ccons(X) ::= CHECK LP RP.                   {
                                             }
 
 %type term {QVariant*}
-%destructor term {delete $$;}
+%destructor term {parser_safe_delete($$);}
 term(X) ::= NULL.                           {X = new QVariant();}
 term(X) ::= INTEGER(N).                     {X = parserContext->handleNumberToken(N->value);}
 term(X) ::= FLOAT(N).                       {X = new QVariant(QVariant(N->value).toDouble());}
 term(X) ::= STRING|BLOB(S).                 {X = new QVariant(S->value);}
 
 %type gen_always {bool*}
-%destructor gen_always {delete $$;}
+%destructor gen_always {parser_safe_delete($$);}
 gen_always(X) ::= GENERATED ALWAYS.			{X = new bool(true);}
 gen_always(X) ::= .							{X = new bool(false);}
 
 // The optional AUTOINCREMENT keyword
 %type autoinc {bool*}
-%destructor autoinc {delete $$;}
+%destructor autoinc {parser_safe_delete($$);}
 autoinc(X) ::= .                            {X = new bool(false);}
 autoinc(X) ::= AUTOINCR.                    {X = new bool(true);}
 
@@ -582,7 +586,7 @@ autoinc(X) ::= AUTOINCR.                    {X = new bool(true);}
 // or immediate and which determine what action to take if a ref-integ
 // check fails.
 %type refargs {ParserFkConditionList*}
-%destructor refargs {delete $$;}
+%destructor refargs {parser_safe_delete($$);}
 refargs(X) ::= .                            {X = new ParserFkConditionList();}
 refargs(X) ::= refargs(L) refarg(A).        {
                                                 L->append(A);
@@ -591,7 +595,7 @@ refargs(X) ::= refargs(L) refarg(A).        {
                                             }
 
 %type refarg {SqliteForeignKey::Condition*}
-%destructor refarg {delete $$;}
+%destructor refarg {parser_safe_delete($$);}
 refarg(X) ::= MATCH nm(N).                  {
                                                 X = new SqliteForeignKey::Condition(*(N));
                                                 delete N;
@@ -602,7 +606,7 @@ refarg(X) ::= ON UPDATE refact(R).          {X = new SqliteForeignKey::Condition
 refarg ::= MATCH ID_FK_MATCH.               {}
 
 %type refact {SqliteForeignKey::Condition::Reaction*}
-%destructor refact {delete $$;}
+%destructor refact {parser_safe_delete($$);}
 refact(X) ::= SET NULL.                     {X = new SqliteForeignKey::Condition::Reaction(SqliteForeignKey::Condition::SET_NULL);}
 refact(X) ::= SET DEFAULT.                  {X = new SqliteForeignKey::Condition::Reaction(SqliteForeignKey::Condition::SET_DEFAULT);}
 refact(X) ::= CASCADE.                      {X = new SqliteForeignKey::Condition::Reaction(SqliteForeignKey::Condition::CASCADE);}
@@ -610,7 +614,7 @@ refact(X) ::= RESTRICT.                     {X = new SqliteForeignKey::Condition
 refact(X) ::= NO ACTION.                    {X = new SqliteForeignKey::Condition::Reaction(SqliteForeignKey::Condition::NO_ACTION);}
 
 %type defer_subclause {ParserDeferSubClause*}
-%destructor defer_subclause {delete $$;}
+%destructor defer_subclause {parser_safe_delete($$);}
 defer_subclause(X) ::= NOT DEFERRABLE
                 init_deferred_pred_opt(I).  {
                                                 X = new ParserDeferSubClause(SqliteDeferrable::NOT_DEFERRABLE, *(I));
@@ -623,7 +627,7 @@ defer_subclause(X) ::= DEFERRABLE
                                             }
 
 %type init_deferred_pred_opt {SqliteInitially*}
-%destructor init_deferred_pred_opt {delete $$;}
+%destructor init_deferred_pred_opt {parser_safe_delete($$);}
 init_deferred_pred_opt(X) ::= .             {X = new SqliteInitially(SqliteInitially::null);}
 init_deferred_pred_opt(X) ::= INITIALLY
                                 DEFERRED.   {X = new SqliteInitially(SqliteInitially::DEFERRED);}
@@ -631,12 +635,12 @@ init_deferred_pred_opt(X) ::= INITIALLY
                                 IMMEDIATE.  {X = new SqliteInitially(SqliteInitially::IMMEDIATE);}
 
 %type conslist_opt {ParserCreateTableConstraintList*}
-%destructor conslist_opt {delete $$;}
+%destructor conslist_opt {parser_safe_delete($$);}
 conslist_opt(X) ::= .                       {X = new ParserCreateTableConstraintList();}
 conslist_opt(X) ::= COMMA conslist(L).      {X = L;}
 
 %type conslist {ParserCreateTableConstraintList*}
-%destructor conslist {delete $$;}
+%destructor conslist {parser_safe_delete($$);}
 conslist(X) ::= conslist(L) tconscomma(CM)
                 tcons(C).                   {
                                                 C->afterComma = *(CM);
@@ -651,12 +655,12 @@ conslist(X) ::= tcons(C).                   {
                                             }
 
 %type tconscomma {bool*}
-%destructor tconscomma {delete $$;}
+%destructor tconscomma {parser_safe_delete($$);}
 tconscomma(X) ::= COMMA.                    {X = new bool(true);}
 tconscomma(X) ::= .                         {X = new bool(false);}
 
 %type tcons {SqliteCreateTable::Constraint*}
-%destructor tcons {delete $$;}
+%destructor tcons {parser_safe_delete($$);}
 tcons(X) ::= CONSTRAINT nm(N).              {
                                                 X = new SqliteCreateTable::Constraint();
                                                 X->initNameOnly(*(N));
@@ -716,7 +720,7 @@ tcons(X) ::= CHECK LP RP onconf.            {
                                             }
 
 %type defer_subclause_opt {ParserDeferSubClause*}
-%destructor defer_subclause_opt {delete $$;}
+%destructor defer_subclause_opt {parser_safe_delete($$);}
 defer_subclause_opt(X) ::= .                {X = new ParserDeferSubClause(SqliteDeferrable::null, SqliteInitially::null);}
 defer_subclause_opt(X) ::=
                     defer_subclause(D).     {X = D;}
@@ -725,17 +729,17 @@ defer_subclause_opt(X) ::=
 // default behavior when there is a constraint conflict.
 
 %type onconf {SqliteConflictAlgo*}
-%destructor onconf {delete $$;}
+%destructor onconf {parser_safe_delete($$);}
 onconf(X) ::= .                             {X = new SqliteConflictAlgo(SqliteConflictAlgo::null);}
 onconf(X) ::= ON CONFLICT resolvetype(R).   {X = R;}
 
 %type orconf {SqliteConflictAlgo*}
-%destructor orconf {delete $$;}
+%destructor orconf {parser_safe_delete($$);}
 orconf(X) ::= .                             {X = new SqliteConflictAlgo(SqliteConflictAlgo::null);}
 orconf(X) ::= OR resolvetype(R).            {X = R;}
 
 %type resolvetype {SqliteConflictAlgo*}
-%destructor resolvetype {delete $$;}
+%destructor resolvetype {parser_safe_delete($$);}
 resolvetype(X) ::= raisetype(V).            {X = new SqliteConflictAlgo(sqliteConflictAlgo(V->value));}
 resolvetype(X) ::= IGNORE(V).               {X = new SqliteConflictAlgo(sqliteConflictAlgo(V->value));}
 resolvetype(X) ::= REPLACE(V).              {X = new SqliteConflictAlgo(sqliteConflictAlgo(V->value));}
@@ -755,7 +759,7 @@ cmd ::= DROP TABLE ifexists nm DOT
 cmd ::= DROP TABLE ifexists ID_DB|ID_TAB.   {}
 
 %type ifexists {bool*}
-%destructor ifexists {delete $$;}
+%destructor ifexists {parser_safe_delete($$);}
 ifexists(X) ::= IF EXISTS.                  {X = new bool(true);}
 ifexists(X) ::= .                           {X = new bool(false);}
 
@@ -796,7 +800,7 @@ cmd(X) ::= select_stmt(S).                  {
                                             }
 
 %type select_stmt {SqliteQuery*}
-%destructor select_stmt {delete $$;}
+%destructor select_stmt {parser_safe_delete($$);}
 select_stmt(X) ::= select(S).               {
                                                 X = S;
                                                 // since it's used in trigger:
@@ -804,7 +808,7 @@ select_stmt(X) ::= select(S).               {
                                             }
 
 %type select {SqliteSelect*}
-%destructor select {delete $$;}
+%destructor select {parser_safe_delete($$);}
 select(X) ::= with(W) selectnowith(S).      {
                                                 X = S;
                                                 S->setWith(W);
@@ -812,7 +816,7 @@ select(X) ::= with(W) selectnowith(S).      {
                                             }
 
 %type selectnowith {SqliteSelect*}
-%destructor selectnowith {delete $$;}
+%destructor selectnowith {parser_safe_delete($$);}
 selectnowith(X) ::= oneselect(S).           {
                                                 X = SqliteSelect::append(S);
                                                 objectForTokens = X;
@@ -837,7 +841,7 @@ selectnowith(X) ::= selectnowith(S1)
                                                 objectForTokens = X;
                                             }
 %type oneselect {SqliteSelect::Core*}
-%destructor oneselect {delete $$;}
+%destructor oneselect {parser_safe_delete($$);}
 oneselect(X) ::= SELECT distinct(D)
                 selcollist(L) from(F)
                 where_opt(W) groupby_opt(G)
@@ -859,9 +863,34 @@ oneselect(X) ::= SELECT distinct(D)
                                                 delete O;
                                                 objectForTokens = X;
                                             }
+oneselect(X) ::= SELECT distinct(D)
+				selcollist(L) from(F)
+				where_opt(W) groupby_opt(G)
+				having_opt(H)
+				window_clause(WF)
+                orderby_opt(O)
+				limit_opt(LI). 				{
+                                                X = new SqliteSelect::Core(
+                                                        *(D),
+                                                        *(L),
+                                                        F,
+                                                        W,
+                                                        *(G),
+                                                        H,
+														*(WF),
+                                                        *(O),
+                                                        LI
+                                                    );
+                                                delete L;
+                                                delete D;
+                                                delete G;
+                                                delete O;
+												delete WF;
+                                                objectForTokens = X;
+											}
 
 %type values {ParserExprNestedList*}
-%destructor values {delete $$;}
+%destructor values {parser_safe_delete($$);}
 values(X) ::= VALUES LP nexprlist(E) RP. {
                                                 X = new ParserExprNestedList();
                                                 X->append(*(E));
@@ -876,25 +905,25 @@ values(X) ::= values(L) COMMA LP
                                             }
 
 %type multiselect_op {SqliteSelect::CompoundOperator*}
-%destructor multiselect_op {delete $$;}
+%destructor multiselect_op {parser_safe_delete($$);}
 multiselect_op(X) ::= UNION.                {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION);}
 multiselect_op(X) ::= UNION ALL.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION_ALL);}
 multiselect_op(X) ::= EXCEPT.               {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::EXCEPT);}
 multiselect_op(X) ::= INTERSECT.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::INTERSECT);}
 
 %type distinct {int*}
-%destructor distinct {delete $$;}
+%destructor distinct {parser_safe_delete($$);}
 distinct(X) ::= DISTINCT.                   {X = new int(1);}
 distinct(X) ::= ALL.                        {X = new int(2);}
 distinct(X) ::= .                           {X = new int(0);}
 
 %type sclp {ParserResultColumnList*}
-%destructor sclp {delete $$;}
+%destructor sclp {parser_safe_delete($$);}
 sclp(X) ::= selcollist(L) COMMA.            {X = L;}
 sclp(X) ::= .                               {X = new ParserResultColumnList();}
 
 %type selcollist {ParserResultColumnList*}
-%destructor selcollist {delete $$;}
+%destructor selcollist {parser_safe_delete($$);}
 selcollist(X) ::= sclp(L) expr(E) as(N).    {
                                                 SqliteSelect::Core::ResultColumn* obj =
                                                     new SqliteSelect::Core::ResultColumn(
@@ -940,7 +969,7 @@ selcollist ::= sclp ID_TAB DOT STAR.        {}
 // define the result set, or one of the tables in the FROM clause.
 
 %type as {ParserStubAlias*}
-%destructor as {delete $$;}
+%destructor as {parser_safe_delete($$);}
 as(X) ::= AS nm(N).                         {
                                                 X = new ParserStubAlias(*(N), true);
                                                 delete N;
@@ -956,12 +985,12 @@ as(X) ::= .                                 {X = nullptr;}
 // A complete FROM clause.
 
 %type from {SqliteSelect::Core::JoinSource*}
-%destructor from {delete $$;}
+%destructor from {parser_safe_delete($$);}
 from(X) ::= .                               {X = nullptr;}
 from(X) ::= FROM joinsrc(L).                {X = L;}
 
 %type joinsrc {SqliteSelect::Core::JoinSource*}
-%destructor joinsrc {delete $$;}
+%destructor joinsrc {parser_safe_delete($$);}
 joinsrc(X) ::= singlesrc(S) seltablist(L).  {
                                                 X = new SqliteSelect::Core::JoinSource(
                                                         S,
@@ -977,7 +1006,7 @@ joinsrc(X) ::= .                            {
                                             }
 
 %type seltablist {ParserOtherSourceList*}
-%destructor seltablist {delete $$;}
+%destructor seltablist {parser_safe_delete($$);}
 seltablist(X) ::= seltablist(L) joinop(O)
                 singlesrc(S)
                 joinconstr_opt(C).          {
@@ -994,7 +1023,7 @@ seltablist(X) ::= .                         {
                                             }
 
 %type singlesrc {SqliteSelect::Core::SingleSource*}
-%destructor singlesrc {delete $$;}
+%destructor singlesrc {parser_safe_delete($$);}
 singlesrc(X) ::= nm(N1) dbnm(N2) as(A)
                 indexed_opt(I).             {
                                                 X = new SqliteSelect::Core::SingleSource(
@@ -1066,7 +1095,7 @@ singlesrc ::= nm DOT ID_VIEW.               {}
 singlesrc ::= ID_DB|ID_VIEW.                {}
 
 %type joinconstr_opt {SqliteSelect::Core::JoinConstraint*}
-%destructor joinconstr_opt {delete $$;}
+%destructor joinconstr_opt {parser_safe_delete($$);}
 joinconstr_opt(X) ::= ON expr(E).           {
                                                 X = new SqliteSelect::Core::JoinConstraint(E);
                                                 objectForTokens = X;
@@ -1080,12 +1109,12 @@ joinconstr_opt(X) ::= USING LP
 joinconstr_opt(X) ::= .                     {X = nullptr;}
 
 %type dbnm {QString*}
-%destructor dbnm {delete $$;}
+%destructor dbnm {parser_safe_delete($$);}
 dbnm(X) ::= .                               {X = new QString();}
 dbnm(X) ::= DOT nm(N).                      {X = N;}
 
 %type fullname {ParserFullName*}
-%destructor fullname {delete $$;}
+%destructor fullname {parser_safe_delete($$);}
 fullname(X) ::= nm(N1) dbnm(N2).            {
                                                 X = new ParserFullName();
                                                 X->name1 = *(N1);
@@ -1095,7 +1124,7 @@ fullname(X) ::= nm(N1) dbnm(N2).            {
                                             }
 
 %type joinop {SqliteSelect::Core::JoinOp*}
-%destructor joinop {delete $$;}
+%destructor joinop {parser_safe_delete($$);}
 joinop(X) ::= COMMA.                        {
                                                 X = new SqliteSelect::Core::JoinOp(true);
                                                 objectForTokens = X;
@@ -1132,7 +1161,7 @@ joinop ::= ID_JOIN_OPTS.                    {}
 // normally illegal. The sqlite3SrcListIndexedBy() function
 // recognizes and interprets this as a special case.
 %type indexed_opt {ParserIndexedBy*}
-%destructor indexed_opt {delete $$;}
+%destructor indexed_opt {parser_safe_delete($$);}
 indexed_opt(X) ::= .                        {X = nullptr;}
 indexed_opt(X) ::= INDEXED BY nm(N).        {
                                                 X = new ParserIndexedBy(*(N));
@@ -1143,38 +1172,47 @@ indexed_opt(X) ::= NOT INDEXED.             {X = new ParserIndexedBy(true);}
 indexed_opt ::= INDEXED BY ID_IDX.          {}
 
 %type orderby_opt {ParserOrderByList*}
-%destructor orderby_opt {delete $$;}
+%destructor orderby_opt {parser_safe_delete($$);}
 orderby_opt(X) ::= .                        {X = new ParserOrderByList();}
 orderby_opt(X) ::= ORDER BY sortlist(L).    {X = L;}
 
 // SQLite3 documentation says it's allowed for "COLLATE name" and expr itself handles this.
 %type sortlist {ParserOrderByList*}
-%destructor sortlist {delete $$;}
+%destructor sortlist {parser_safe_delete($$);}
 sortlist(X) ::= sortlist(L) COMMA expr(E)
-                    sortorder(O).           {
-                                                SqliteOrderBy* obj = new SqliteOrderBy(E, *(O));
+                    sortorder(O) nulls(N).  {
+                                                SqliteOrderBy* obj = new SqliteOrderBy(E, *(O), *(N));
                                                 L->append(obj);
                                                 X = L;
                                                 delete O;
+												delete N;
                                                 objectForTokens = obj;
                                                 DONT_INHERIT_TOKENS("sortlist");
                                             }
-sortlist(X) ::= expr(E) sortorder(O).       {
-                                                SqliteOrderBy* obj = new SqliteOrderBy(E, *(O));
+sortlist(X) ::= expr(E) sortorder(O)
+					nulls(N).				{
+                                                SqliteOrderBy* obj = new SqliteOrderBy(E, *(O), *(N));
                                                 X = new ParserOrderByList();
                                                 X->append(obj);
                                                 delete O;
+												delete N;
                                                 objectForTokens = obj;
                                             }
 
 %type sortorder {SqliteSortOrder*}
-%destructor sortorder {delete $$;}
+%destructor sortorder {parser_safe_delete($$);}
 sortorder(X) ::= ASC.                       {X = new SqliteSortOrder(SqliteSortOrder::ASC);}
 sortorder(X) ::= DESC.                      {X = new SqliteSortOrder(SqliteSortOrder::DESC);}
 sortorder(X) ::= .                          {X = new SqliteSortOrder(SqliteSortOrder::null);}
 
+%type nulls {SqliteNulls*}
+%destructor nulls {parser_safe_delete($$);}
+nulls(X) ::= NULLS FIRST.       			{X = new SqliteNulls(SqliteNulls::FIRST);}
+nulls(X) ::= NULLS LAST.        			{X = new SqliteNulls(SqliteNulls::LAST);}
+nulls(X) ::= .                  			{X = new SqliteNulls(SqliteNulls::null);}
+
 %type groupby_opt {ParserExprList*}
-%destructor groupby_opt {delete $$;}
+%destructor groupby_opt {parser_safe_delete($$);}
 groupby_opt(X) ::= .                        {X = new ParserExprList();}
 groupby_opt(X) ::= GROUP BY nexprlist(L).   {X = L;}
 groupby_opt(X) ::= GROUP BY.                {
@@ -1183,12 +1221,12 @@ groupby_opt(X) ::= GROUP BY.                {
                                             }
 
 %type having_opt {SqliteExpr*}
-%destructor having_opt {delete $$;}
+%destructor having_opt {parser_safe_delete($$);}
 having_opt(X) ::= .                         {X = nullptr;}
 having_opt(X) ::= HAVING expr(E).           {X = E;}
 
 %type limit_opt {SqliteLimit*}
-%destructor limit_opt {delete $$;}
+%destructor limit_opt {parser_safe_delete($$);}
 limit_opt(X) ::= .                          {X = nullptr;}
 limit_opt(X) ::= LIMIT expr(E).             {
                                                 X = new SqliteLimit(E);
@@ -1218,7 +1256,7 @@ cmd(X) ::= delete_stmt(S).                  {
                                             }
 
 %type delete_stmt {SqliteQuery*}
-%destructor delete_stmt {delete $$;}
+%destructor delete_stmt {parser_safe_delete($$);}
 delete_stmt(X) ::= with(WI) DELETE FROM
                    fullname(N)
                    indexed_opt(I)
@@ -1286,7 +1324,7 @@ delete_stmt ::= with DELETE FROM
                             ID_DB|ID_TAB.   {}
 
 %type where_opt {SqliteExpr*}
-%destructor where_opt {delete $$;}
+%destructor where_opt {parser_safe_delete($$);}
 where_opt(X) ::= .                          {X = nullptr;}
 where_opt(X) ::= WHERE expr(E).             {X = E;}
 where_opt(X) ::= WHERE.                     {
@@ -1306,7 +1344,7 @@ cmd(X) ::= update_stmt(S).                  {
                                             }
 
 %type update_stmt {SqliteQuery*}
-%destructor update_stmt {delete $$;}
+%destructor update_stmt {parser_safe_delete($$);}
 update_stmt(X) ::= with(WI) UPDATE orconf(C)
             fullname(N) indexed_opt(I) SET
             setlist(L) where_opt(W).        {
@@ -1356,7 +1394,7 @@ update_stmt ::= with UPDATE orconf
                     ID_DB|ID_TAB.           {}
 
 %type setlist {ParserSetValueList*}
-%destructor setlist {delete $$;}
+%destructor setlist {parser_safe_delete($$);}
 setlist(X) ::= setlist(L) COMMA nm(N) EQ
                 expr(E).                    {
                                                 L->append(ParserSetValue(*(N), E));
@@ -1392,12 +1430,12 @@ setlist ::= setlist COMMA ID_COL.           {}
 setlist ::= ID_COL.                         {}
 
 %type idlist_opt {QStringList*}
-%destructor idlist_opt {delete $$;}
+%destructor idlist_opt {parser_safe_delete($$);}
 idlist_opt(X) ::= .                         {X = new QStringList();}
 idlist_opt(X) ::= LP idlist(L) RP.          {X = L;}
 
 %type idlist {QStringList*}
-%destructor idlist {delete $$;}
+%destructor idlist {parser_safe_delete($$);}
 idlist(X) ::= idlist(L) COMMA nm(N).        {
                                                 X = L;
                                                 *(X) << *(N);
@@ -1424,7 +1462,7 @@ cmd(X) ::= insert_stmt(S).                  {
                                             }
 
 %type insert_stmt {SqliteQuery*}
-%destructor insert_stmt {delete $$;}
+%destructor insert_stmt {parser_safe_delete($$);}
 
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
@@ -1495,7 +1533,7 @@ insert_stmt ::= with insert_cmd INTO
                     nm DOT ID_TAB.          {}
 
 %type insert_cmd {ParserStubInsertOrReplace*}
-%destructor insert_cmd {delete $$;}
+%destructor insert_cmd {parser_safe_delete($$);}
 insert_cmd(X) ::= INSERT orconf(C).         {
                                                 X = new ParserStubInsertOrReplace(false, *(C));
                                                 delete C;
@@ -1504,7 +1542,7 @@ insert_cmd(X) ::= REPLACE.                  {X = new ParserStubInsertOrReplace(t
 
 
 %type upsert {SqliteUpsert*}
-%destructor upsert {delete $$;}
+%destructor upsert {parser_safe_delete($$);}
 
 upsert(X) ::= .                             {
                                                 X = nullptr;
@@ -1533,7 +1571,7 @@ upsert(X) ::= ON CONFLICT DO NOTHING.       {
 /////////////////////////// Expression Processing /////////////////////////////
 
 %type exprx {SqliteExpr*}
-%destructor exprx {delete $$;}
+%destructor exprx {parser_safe_delete($$);}
 
 exprx(X) ::= nm(N1) DOT.                    {
                                                 X = new SqliteExpr();
@@ -1848,9 +1886,23 @@ exprx(X) ::= RAISE LP raisetype(R) COMMA
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= ID(I) LP distinct(D)
+			exprlist(E) RP filter_over(F).  {
+                                                X = new SqliteExpr();
+                                                X->initWindowFunction(I->value, *(D), *(E), F);
+                                                delete D;
+                                                delete E;
+                                                objectForTokens = X;
+											}
+exprx(X) ::= ID(I) LP STAR RP
+			filter_over(F). 				{
+                                                X = new SqliteExpr();
+                                                X->initWindowFunction(I->value, F);
+                                                objectForTokens = X;
+											}
 
 %type expr {SqliteExpr*}
-%destructor expr {delete $$;}
+%destructor expr {parser_safe_delete($$);}
 expr(X) ::= .                               {
                                                 X = new SqliteExpr();
                                                 objectForTokens = X;
@@ -1859,16 +1911,16 @@ expr(X) ::= .                               {
 expr(X) ::= exprx(E).                       {X = E;}
 
 %type not_opt {bool*}
-%destructor not_opt {delete $$;}
+%destructor not_opt {parser_safe_delete($$);}
 not_opt(X) ::= .                            {X = new bool(false);}
 not_opt(X) ::= NOT.                         {X = new bool(true);}
 
 %type likeop {SqliteExpr::LikeOp*}
-%destructor likeop {delete $$;}
+%destructor likeop {parser_safe_delete($$);}
 likeop(X) ::= LIKE_KW|MATCH(T).             {X = new SqliteExpr::LikeOp(SqliteExpr::likeOp(T->value));}
 
 %type case_exprlist {ParserExprList*}
-%destructor case_exprlist {delete $$;}
+%destructor case_exprlist {parser_safe_delete($$);}
 case_exprlist(X) ::= case_exprlist(L) WHEN
                     expr(E1) THEN expr(E2). {
                                                 L->append(E1);
@@ -1883,22 +1935,22 @@ case_exprlist(X) ::= WHEN expr(E1) THEN
                                             }
 
 %type case_else {SqliteExpr*}
-%destructor case_else {delete $$;}
+%destructor case_else {parser_safe_delete($$);}
 case_else(X) ::=  ELSE expr(E).             {X = E;}
 case_else(X) ::=  .                         {X = nullptr;}
 
 %type case_operand {SqliteExpr*}
-%destructor case_operand {delete $$;}
+%destructor case_operand {parser_safe_delete($$);}
 case_operand(X) ::= exprx(E).               {X = E;}
 case_operand(X) ::= .                       {X = nullptr;}
 
 %type exprlist {ParserExprList*}
-%destructor exprlist {delete $$;}
+%destructor exprlist {parser_safe_delete($$);}
 exprlist(X) ::= nexprlist(L).               {X = L;}
 exprlist(X) ::= .                           {X = new ParserExprList();}
 
 %type nexprlist {ParserExprList*}
-%destructor nexprlist {delete $$;}
+%destructor nexprlist {parser_safe_delete($$);}
 nexprlist(X) ::= nexprlist(L) COMMA
                     expr(E).                {
                                                 L->append(E);
@@ -1943,17 +1995,17 @@ cmd ::= CREATE uniqueflag INDEX ifnotexists
 
 
 %type uniqueflag {bool*}
-%destructor uniqueflag {delete $$;}
+%destructor uniqueflag {parser_safe_delete($$);}
 uniqueflag(X) ::= UNIQUE.                   {X = new bool(true);}
 uniqueflag(X) ::= .                         {X = new bool(false);}
 
 %type idxlist_opt {ParserIndexedColumnList*}
-%destructor idxlist_opt {delete $$;}
+%destructor idxlist_opt {parser_safe_delete($$);}
 idxlist_opt(X) ::= .                        {X = new ParserIndexedColumnList();}
 idxlist_opt(X) ::= LP idxlist(I) RP.        {X = I;}
 
 %type idxlist {ParserIndexedColumnList*}
-%destructor idxlist {delete $$;}
+%destructor idxlist {parser_safe_delete($$);}
 idxlist(X) ::= idxlist(L) COMMA
                 idxlist_single(S).          {
                                                 L->append(S);
@@ -1966,7 +2018,7 @@ idxlist(X) ::= idxlist_single(S).           {
                                             }
 
 %type idxlist_single {SqliteIndexedColumn*}
-%destructor idxlist_single {delete $$;}
+%destructor idxlist_single {parser_safe_delete($$);}
 idxlist_single(X) ::= nm(N) collate(C)
                 sortorder(S).               {
                                                 SqliteIndexedColumn* obj =
@@ -1985,7 +2037,7 @@ idxlist_single(X) ::= nm(N) collate(C)
 idxlist_single ::= ID_COL.                  {}
 
 %type collate {QString*}
-%destructor collate {delete $$;}
+%destructor collate {parser_safe_delete($$);}
 collate(X) ::= .                            {X = new QString();}
 collate(X) ::= COLLATE ids(I).              {X = I;}
 collate ::= COLLATE ID_COLLATE.             {}
@@ -2061,7 +2113,7 @@ cmd ::= PRAGMA nm DOT ID_PRAGMA.            {}
 cmd ::= PRAGMA ID_DB|ID_PRAGMA.             {}
 
 %type nmnum {QVariant*}
-%destructor nmnum {delete $$;}
+%destructor nmnum {parser_safe_delete($$);}
 nmnum(X) ::= plus_num(N).                   {X = N;}
 nmnum(X) ::= nm(N).                         {
                                                 X = new QVariant(*(N));
@@ -2072,12 +2124,12 @@ nmnum(X) ::= DELETE(T).                     {X = new QVariant(T->value);}
 nmnum(X) ::= DEFAULT(T).                    {X = new QVariant(T->value);}
 
 %type plus_num {QVariant*}
-%destructor plus_num {delete $$;}
+%destructor plus_num {parser_safe_delete($$);}
 plus_num(X) ::= PLUS number(N).             {X = N;}
 plus_num(X) ::= number(N).                  {X = N;}
 
 %type minus_num {QVariant*}
-%destructor minus_num {delete $$;}
+%destructor minus_num {parser_safe_delete($$);}
 minus_num(X) ::= MINUS number(N).           {
                                                 if (N->type() == QVariant::Double)
                                                     *(N) = -(N->toDouble());
@@ -2095,7 +2147,7 @@ minus_num(X) ::= MINUS number(N).           {
                                             }
 
 %type number {QVariant*}
-%destructor number {delete $$;}
+%destructor number {parser_safe_delete($$);}
 number(X) ::= INTEGER(N).                   {X = parserContext->handleNumberToken(N->value);}
 number(X) ::= FLOAT(N).                     {X = new QVariant(QVariant(N->value).toDouble());}
 
@@ -2174,17 +2226,17 @@ cmd(X) ::= CREATE temp(T) TRIGGER
         when_clause(WC) BEGIN
         trigger_cmd_list(CL).               {
                                                 X = new SqliteCreateTrigger(
-                                                *(T),
-                                                *(IE),
-                                                *(N1),
-                                                *(N2),
-                                                *(N),
-                                                *(TT),
-                                                EV,
-                                                *(FC),
-                                                WC,
-                                                *(CL),
-                                                3
+													*(T),
+													*(IE),
+													*(N1),
+													*(N2),
+													*(N),
+													*(TT),
+													EV,
+													*(FC),
+													WC,
+													*(CL),
+													3
                                                 );
                                                 delete IE;
                                                 delete T;
@@ -2207,14 +2259,14 @@ cmd ::= CREATE temp TRIGGER ifnotexists
             ID_DB|ID_TRIG_NEW.              {}
 
 %type trigger_time {SqliteCreateTrigger::Time*}
-%destructor trigger_time {delete $$;}
+%destructor trigger_time {parser_safe_delete($$);}
 trigger_time(X) ::= BEFORE.                 {X = new SqliteCreateTrigger::Time(SqliteCreateTrigger::Time::BEFORE);}
 trigger_time(X) ::= AFTER.                  {X = new SqliteCreateTrigger::Time(SqliteCreateTrigger::Time::AFTER);}
 trigger_time(X) ::= INSTEAD OF.             {X = new SqliteCreateTrigger::Time(SqliteCreateTrigger::Time::INSTEAD_OF);}
 trigger_time(X) ::= .                       {X = new SqliteCreateTrigger::Time(SqliteCreateTrigger::Time::null);}
 
 %type trigger_event {SqliteCreateTrigger::Event*}
-%destructor trigger_event {delete $$;}
+%destructor trigger_event {parser_safe_delete($$);}
 trigger_event(X) ::= DELETE.                {
                                                 X = new SqliteCreateTrigger::Event(SqliteCreateTrigger::Event::DELETE);
                                                 objectForTokens = X;
@@ -2235,17 +2287,17 @@ trigger_event(X) ::= UPDATE OF
                                             }
 
 %type foreach_clause {SqliteCreateTrigger::Scope*}
-%destructor foreach_clause {delete $$;}
+%destructor foreach_clause {parser_safe_delete($$);}
 foreach_clause(X) ::= .                     {X = new SqliteCreateTrigger::Scope(SqliteCreateTrigger::Scope::null);}
 foreach_clause(X) ::= FOR EACH ROW.         {X = new SqliteCreateTrigger::Scope(SqliteCreateTrigger::Scope::FOR_EACH_ROW);}
 
 %type when_clause {SqliteExpr*}
-%destructor when_clause {if ($$) delete $$;}
+%destructor when_clause {parser_safe_delete($$);}
 when_clause(X) ::= .                        {X = nullptr;}
 when_clause(X) ::= WHEN expr(E).            {X = E;}
 
 %type trigger_cmd_list {ParserQueryList*}
-%destructor trigger_cmd_list {delete $$;}
+%destructor trigger_cmd_list {parser_safe_delete($$);}
 trigger_cmd_list(X) ::= trigger_cmd_list(L)
                     trigger_cmd(C) SEMI.    {
                                                 L->append(C);
@@ -2263,7 +2315,7 @@ trigger_cmd_list(X) ::= SEMI.               {
                                             }
 
 %type trigger_cmd {SqliteQuery*}
-%destructor trigger_cmd {delete $$;}
+%destructor trigger_cmd {parser_safe_delete($$);}
 trigger_cmd(X) ::= update_stmt(S).          {X = S;}
 trigger_cmd(X) ::= insert_stmt(S).          {X = S;}
 trigger_cmd(X) ::= delete_stmt(S).          {X = S;}
@@ -2302,12 +2354,12 @@ cmd(X) ::= DETACH database_kw_opt(D)
                                             }
 
 %type key_opt {SqliteExpr*}
-%destructor key_opt {if ($$) delete $$;}
+%destructor key_opt {parser_safe_delete($$);}
 key_opt(X) ::= .                            {X = nullptr;}
 key_opt(X) ::= KEY expr(E).                 {X = E;}
 
 %type database_kw_opt {bool*}
-%destructor database_kw_opt {delete $$;}
+%destructor database_kw_opt {parser_safe_delete($$);}
 database_kw_opt(X) ::= DATABASE.            {X = new bool(true);}
 database_kw_opt(X) ::= .                    {X = new bool(false);}
 
@@ -2370,7 +2422,7 @@ cmd ::= ALTER TABLE nm DOT ID_TAB.          {}
 cmd ::= ALTER TABLE ID_DB|ID_TAB.           {}
 
 %type kwcolumn_opt {bool*}
-%destructor kwcolumn_opt {delete $$;}
+%destructor kwcolumn_opt {parser_safe_delete($$);}
 kwcolumn_opt(X) ::= .                       {X = new bool(true);}
 kwcolumn_opt(X) ::= COLUMNKW.               {X = new bool(false);}
 
@@ -2378,7 +2430,7 @@ kwcolumn_opt(X) ::= COLUMNKW.               {X = new bool(false);}
 cmd(X) ::= create_vtab(C).                  {X = C;}
 
 %type create_vtab {SqliteQuery*}
-%destructor create_vtab {delete $$;}
+%destructor create_vtab {parser_safe_delete($$);}
 create_vtab(X) ::= CREATE VIRTUAL TABLE
                 ifnotexists(E) nm(N1)
                 dbnm(N2) USING nm(N3).      {
@@ -2421,7 +2473,7 @@ create_vtab ::= CREATE VIRTUAL TABLE
                     ID_DB|ID_TAB_NEW.       {}
 
 %type vtabarglist {QStringList*}
-%destructor vtabarglist {delete $$;}
+%destructor vtabarglist {parser_safe_delete($$);}
 vtabarglist(X) ::= vtabarg(A).              {
                                                 X = new QStringList();
                                                 X->append((A)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
@@ -2436,7 +2488,7 @@ vtabarglist(X) ::= vtabarglist(L) COMMA
                                             }
 
 %type vtabarg {QString*}
-%destructor vtabarg {delete $$;}
+%destructor vtabarg {parser_safe_delete($$);}
 vtabarg(X) ::= .                            {X = new QString();}
 vtabarg(X) ::= vtabarg(A) vtabargtoken(T).  {
                                                 A->append(" "+ *(T));
@@ -2445,7 +2497,7 @@ vtabarg(X) ::= vtabarg(A) vtabargtoken(T).  {
                                             }
 
 %type vtabargtoken {QString*}
-%destructor vtabargtoken {delete $$;}
+%destructor vtabargtoken {parser_safe_delete($$);}
 vtabargtoken(X) ::= ANY(A).                 {
                                                 X = new QString(A->value);
                                             }
@@ -2457,7 +2509,7 @@ vtabargtoken(X) ::= LP anylist(L) RP.       {
                                             }
 
 %type anylist {QString*}
-%destructor anylist {delete $$;}
+%destructor anylist {parser_safe_delete($$);}
 anylist(X) ::= .                            {X = new QString();}
 anylist(X) ::= anylist(L1) LP anylist(L2)
                 RP.                         {
@@ -2477,8 +2529,8 @@ anylist(X) ::= anylist(L) ANY(A).           {
 //////////////////////// COMMON TABLE EXPRESSIONS ////////////////////////////
 %type with {SqliteWith*}
 %type wqlist {SqliteWith*}
-%destructor with {delete $$;}
-%destructor wqlist {delete $$;}
+%destructor with {parser_safe_delete($$);}
+%destructor wqlist {parser_safe_delete($$);}
 
 with(X) ::= .                               {X = nullptr;}
 with(X) ::= WITH wqlist(W).                 {
@@ -2509,3 +2561,234 @@ wqlist(X) ::= ID_TAB_NEW.                   {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                                 X = new SqliteWith();
                                             }
+
+//////////////////////// WINDOW FUNCTION EXPRESSIONS /////////////////////////
+// These must be at the end of this file. Specifically, the rules that
+// introduce tokens WINDOW, OVER and FILTER must appear last. This causes 
+// the integer values assigned to these tokens to be larger than all other 
+// tokens that may be output by the tokenizer except TK_SPACE and TK_ILLEGAL.
+//
+%type windowdefn_list {ParserWindowDefList*}
+%destructor windowdefn_list {parser_safe_delete($$);}
+
+windowdefn_list(X) ::= windowdefn(W). 		{
+												X = new ParserWindowDefList();
+												X->append(W);
+											}
+windowdefn_list(X) ::= windowdefn_list(L)
+					COMMA windowdefn(W). 	{
+												L->append(W);
+												X = L;
+												DONT_INHERIT_TOKENS("windowdefn_list");
+											}
+
+%type windowdefn {SqliteWindowDefinition*}
+%destructor windowdefn {parser_safe_delete($$);}
+
+windowdefn(X) ::= nm(N) AS LP window(W) RP. {
+												X = new SqliteWindowDefinition(*(N), W);
+												delete N;
+												objectForTokens = X;
+											}
+
+%type window {SqliteWindowDefinition::Window*}
+%destructor window {parser_safe_delete($$);}
+
+window(X) ::= PARTITION BY nexprlist(L)
+			orderby_opt(O) frame_opt(F). 	{
+												X = new SqliteWindowDefinition::Window();
+												X->initPartitionBy(QString(), *(L), *(O), F);
+												delete L;
+												delete O;
+												objectForTokens = X;
+											}
+window(X) ::= nm(N) PARTITION BY
+			nexprlist(L) orderby_opt(O)
+			frame_opt(F). 					{
+												X = new SqliteWindowDefinition::Window();
+												X->initPartitionBy(*(N), *(L), *(O), F);
+												delete L;
+												delete N;
+												delete O;
+												objectForTokens = X;
+											}
+window(X) ::= ORDER BY sortlist(S)
+			frame_opt(F). 					{
+												X = new SqliteWindowDefinition::Window();
+												X->initOrderBy(QString(), *(S), F);
+												delete S;
+												objectForTokens = X;
+											}
+window(X) ::= nm(N) ORDER BY sortlist(S)
+			frame_opt(F). 					{
+												X = new SqliteWindowDefinition::Window();
+												X->initOrderBy(*(N), *(S), F);
+												delete S;
+												delete N;
+												objectForTokens = X;
+											}
+window(X) ::= frame_opt(F). 				{
+												X = new SqliteWindowDefinition::Window();
+												X->init(QString(), F);
+												objectForTokens = X;
+											}
+window(X) ::= nm(N) frame_opt(F). 			{
+												X = new SqliteWindowDefinition::Window();
+												X->init(QString(), F);
+												delete N;
+												objectForTokens = X;
+											}
+
+%type frame_opt {SqliteWindowDefinition::Window::Frame*}
+%destructor frame_opt {parser_safe_delete($$);}
+
+frame_opt(X) ::= .                          {X = nullptr;}
+frame_opt(X) ::= range_or_rows(R)
+			frame_bound_s(B)
+			frame_exclude_opt(E). 			{
+												X = new SqliteWindowDefinition::Window::Frame(*(R), B, nullptr, *(E));
+												delete R;
+												delete E;
+												objectForTokens = X;
+											}
+frame_opt(X) ::= range_or_rows(R) BETWEEN
+			frame_bound_s(BS) AND
+			frame_bound_e(BE)
+			frame_exclude_opt(E). 			{
+												X = new SqliteWindowDefinition::Window::Frame(*(R), BS, BE, *(E));
+												delete R;
+												delete E;
+												objectForTokens = X;
+											}
+
+%type range_or_rows {SqliteWindowDefinition::Window::Frame::RangeOrRows*}
+%destructor range_or_rows {parser_safe_delete($$);}
+
+range_or_rows(X) ::= RANGE|ROWS|GROUPS(R).  {
+												X = new SqliteWindowDefinition::Window::Frame::RangeOrRows(
+													SqliteWindowDefinition::Window::Frame::toRangeOrRows(R->value)
+													);
+											}
+
+%type frame_bound_s {SqliteWindowDefinition::Window::Frame::Bound*}
+%destructor frame_bound_s {parser_safe_delete($$);}
+
+frame_bound_s(X) ::= frame_bound(F).        {
+												X = F;
+												objectForTokens = X;
+											}
+frame_bound_s(X) ::= UNBOUNDED(U)
+			PRECEDING(P). 					{
+												X = new SqliteWindowDefinition::Window::Frame::Bound(nullptr, U->value + " " + P->value);
+												objectForTokens = X;
+											}
+
+%type frame_bound_e {SqliteWindowDefinition::Window::Frame::Bound*}
+%destructor frame_bound_e {parser_safe_delete($$);}
+
+frame_bound_e(X) ::= frame_bound(F).        {
+												X = F;
+												objectForTokens = X;
+											}
+frame_bound_e(X) ::= UNBOUNDED(U)
+			FOLLOWING(F). 					{
+												X = new SqliteWindowDefinition::Window::Frame::Bound(nullptr, U->value + " " + F->value);
+												objectForTokens = X;
+											}
+
+%type frame_bound {SqliteWindowDefinition::Window::Frame::Bound*}
+%destructor frame_bound {parser_safe_delete($$);}
+
+frame_bound(X) ::= expr(E)
+			PRECEDING|FOLLOWING(P).			{
+												X = new SqliteWindowDefinition::Window::Frame::Bound(E, P->value);
+												objectForTokens = X;
+											}
+frame_bound(X) ::= CURRENT(C) ROW(R).       {
+												X = new SqliteWindowDefinition::Window::Frame::Bound(nullptr, C->value + " " + R->value);
+												objectForTokens = X;
+											}
+
+%type frame_exclude_opt {SqliteWindowDefinition::Window::Frame::Exclude*}
+%destructor frame_bound {parser_safe_delete($$);}
+
+frame_exclude_opt(X) ::= . 					{
+												X = new SqliteWindowDefinition::Window::Frame::Exclude(
+													SqliteWindowDefinition::Window::Frame::Exclude::null
+													);
+											}
+frame_exclude_opt(X) ::= EXCLUDE
+			frame_exclude(F). 				{
+												X = F;
+											}
+
+%type frame_exclude {SqliteWindowDefinition::Window::Frame::Exclude*}
+%destructor frame_bound {parser_safe_delete($$);}
+
+frame_exclude(X) ::= NO OTHERS.   			{
+												X = new SqliteWindowDefinition::Window::Frame::Exclude(
+													SqliteWindowDefinition::Window::Frame::Exclude::NOT_OTHERS
+													);
+											}
+frame_exclude(X) ::= CURRENT ROW. 		 	{
+												X = new SqliteWindowDefinition::Window::Frame::Exclude(
+													SqliteWindowDefinition::Window::Frame::Exclude::CURRENT_ROW
+													);
+											}
+frame_exclude(X) ::= GROUP.					{
+												X = new SqliteWindowDefinition::Window::Frame::Exclude(
+													SqliteWindowDefinition::Window::Frame::Exclude::GROUP
+													);
+											}
+frame_exclude(X) ::= TIES.					{
+												X = new SqliteWindowDefinition::Window::Frame::Exclude(
+													SqliteWindowDefinition::Window::Frame::Exclude::TIES
+													);
+											}
+
+%type window_clause {ParserWindowDefList*}
+%destructor window_clause {parser_safe_delete($$);}
+
+window_clause(X) ::= WINDOW
+			windowdefn_list(L). 			{
+												X = L;
+											}
+
+%type filter_over {SqliteFilterOver*}
+%destructor filter_over {parser_safe_delete($$);}
+
+filter_over(X) ::= filter_clause(F)
+			over_clause(O). 				{
+												X = new SqliteFilterOver(F, O);
+												objectForTokens = X;
+											}
+filter_over(X) ::= over_clause(O). 			{
+												X = new SqliteFilterOver(nullptr, O);
+												objectForTokens = X;
+											}
+filter_over(X) ::= filter_clause(F). 		{
+												X = new SqliteFilterOver(F, nullptr);
+												objectForTokens = X;
+											}
+
+%type over_clause {SqliteFilterOver::Over*}
+%destructor over_clause {parser_safe_delete($$);}
+
+over_clause(X) ::= OVER LP window(W) RP. 	{
+												X = new SqliteFilterOver::Over(W);
+												objectForTokens = X;
+											}
+over_clause(X) ::= OVER nm(N). 				{
+												X = new SqliteFilterOver::Over(*(N));
+												delete N;
+												objectForTokens = X;
+											}
+
+%type filter_clause {SqliteFilterOver::Filter*}
+%destructor filter_clause {parser_safe_delete($$);}
+
+filter_clause(X) ::= FILTER LP WHERE
+			expr(E) RP.  					{
+												X = new SqliteFilterOver::Filter(E);
+												objectForTokens = X;
+											}

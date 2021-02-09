@@ -2,6 +2,7 @@
 #include "sqliteraise.h"
 #include "sqliteselect.h"
 #include "sqlitecolumntype.h"
+#include "sqlitefilterover.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -25,6 +26,7 @@ SqliteExpr::SqliteExpr(const SqliteExpr& other) :
     DEEP_COPY_COLLECTION(SqliteExpr, exprList);
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(SqliteRaise, raiseFunction);
+    DEEP_COPY_FIELD(SqliteFilterOver, filterOver);
 }
 
 SqliteExpr::~SqliteExpr()
@@ -168,10 +170,7 @@ void SqliteExpr::initFunction(const QString& fnName, int distinct, const QList<S
     mode = SqliteExpr::Mode::FUNCTION;
     function = fnName;
     this->exprList = exprList;
-    if (distinct == 1)
-        distinctKw = true;
-    else if (distinct == 2)
-        allKw = true;
+    initDistinct(distinct);
 
     for (SqliteExpr* expr : exprList)
         expr->setParent(this);
@@ -182,6 +181,32 @@ void SqliteExpr::initFunction(const QString& fnName, bool star)
     mode = SqliteExpr::Mode::FUNCTION;
     function = fnName;
     this->star = star;
+}
+
+void SqliteExpr::initWindowFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList, SqliteFilterOver* filterOver)
+{
+    mode = SqliteExpr::Mode::WINDOW_FUNCTION;
+    this->function = fnName;
+    this->exprList = exprList;
+    initDistinct(distinct);
+    this->filterOver = filterOver;
+
+    for (SqliteExpr* expr : exprList)
+        expr->setParent(this);
+
+    if (filterOver)
+        filterOver->setParent(this);
+}
+
+void SqliteExpr::initWindowFunction(const QString& fnName, SqliteFilterOver* filterOver)
+{
+    mode = SqliteExpr::Mode::WINDOW_FUNCTION;
+    this->function = fnName;
+    this->star = true;
+    this->filterOver = filterOver;
+
+    if (filterOver)
+        filterOver->setParent(this);
 }
 
 void SqliteExpr::initBinOp(SqliteExpr *expr1, const QString& op, SqliteExpr *expr2)
@@ -498,12 +523,28 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             builder.withOther(function).withParLeft();
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
+            else if (allKw)
+                builder.withKeyword("DISTINCT");
 
             if (star)
                 builder.withOperator("*").withParRight();
             else
                 builder.withStatementList(exprList).withParRight();
 
+            break;
+        case SqliteExpr::Mode::WINDOW_FUNCTION:
+            builder.withOther(function).withParLeft();
+            if (distinctKw)
+                builder.withKeyword("DISTINCT");
+            else if (allKw)
+                builder.withKeyword("DISTINCT");
+
+            if (star)
+                builder.withOperator("*").withParRight();
+            else
+                builder.withStatementList(exprList).withParRight();
+
+            builder.withSpace().withStatement(filterOver);
             break;
         case SqliteExpr::Mode::SUB_EXPR:
             builder.withParLeft().withStatement(expr1).withParRight();
@@ -685,4 +726,12 @@ TokenList SqliteExpr::rebuildCase()
 
     builder.withKeyword("END");
     return builder.build();
+}
+
+void SqliteExpr::initDistinct(int distinct)
+{
+    if (distinct == 1)
+        distinctKw = true;
+    else if (distinct == 2)
+        allKw = true;
 }

@@ -3,6 +3,7 @@
 
 #include "sqlitestatement.h"
 #include "sqlitesortorder.h"
+#include "sqlitenulls.h"
 #include "sqliteextendedindexedcolumn.h"
 
 class SqliteExpr;
@@ -12,7 +13,7 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIn
     public:
         SqliteOrderBy();
         SqliteOrderBy(const SqliteOrderBy& other);
-        SqliteOrderBy(SqliteExpr* expr, SqliteSortOrder order);
+        SqliteOrderBy(SqliteExpr* expr, SqliteSortOrder order, SqliteNulls nulls);
         ~SqliteOrderBy();
 
         SqliteStatement* clone();
@@ -26,6 +27,7 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIn
 
         SqliteExpr* expr = nullptr;
         SqliteSortOrder order = SqliteSortOrder::null;
+        SqliteNulls nulls = SqliteNulls::null;
 
     protected:
         TokenList rebuildTokensFromContents();

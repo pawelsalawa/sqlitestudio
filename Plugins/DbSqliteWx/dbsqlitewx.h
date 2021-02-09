@@ -18,6 +18,8 @@ class DbSqliteWx : public GenericPlugin, public DbPluginStdFileBase
         bool checkIfDbServedByPlugin(Db *db) const;
 
         static_char* PASSWORD_OPT = "password";
+        static_char* CIPHER_OPT = "cipher";
+        static_char* PRAGMAS_OPT = "pragmas";
 
     protected:
         Db *newInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options);
