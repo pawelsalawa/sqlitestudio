@@ -67,6 +67,9 @@ class API_EXPORT CompletionHelper : public QObject
             EXPR
         };
 
+        static void initFunctions(Db* db);
+        static void initPragmas(Db* db);
+
         QList<ExpectedTokenPtr> getExpectedTokens(TokenPtr token);
         ExpectedTokenPtr getExpectedToken(ExpectedToken::Type type);
         ExpectedTokenPtr getExpectedToken(ExpectedToken::Type type, const QString& value);
