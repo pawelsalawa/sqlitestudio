@@ -4,6 +4,7 @@
 #include <QList>
 
 QHash<QString,int> keywords3;
+QSet<QString> softKeywords3;
 QSet<QString> rowIdKeywords;
 QStringList joinKeywords;
 QStringList fkMatchKeywords;
@@ -187,6 +188,15 @@ void initKeywords()
     fkMatchKeywords << "SIMPLE" << "FULL" << "PARTIAL";
     conflictAlgoKeywords << "ROLLBACK" << "ABORT" << "FAIL" << "IGNORE" << "REPLACE";
     generatedColumnKeywords << "STORED" << "VIRTUAL";
+
+    softKeywords3 << "ABORT" << "ACTION" << "AFTER" << "ALWAYS" << "ANALYZE" << "ASC" << "ATTACH" << "BEFORE" << "BEGIN" << "BY" << "CASCADE"
+                  << "CAST" << "COLUMNKW" << "CONFLICT" << "CURRENT" << "DATABASE" << "DEFERRED" << "DESC" << "DETACH" << "DO" << "EACH"
+                  << "END" << "EXCLUDE" << "EXCLUSIVE" << "EXPLAIN" << "FAIL" << "FIRST" << "FOLLOWING" << "FOR" << "GENERATED" << "GROUPS"
+                  << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "NO" << "NULLS"
+                  << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE" << "RANGE"
+                  << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP" << "TIES"
+                  << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME" << "IF"
+                  << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
 }
 
 
@@ -223,4 +233,9 @@ QStringList getConflictAlgorithms()
 QStringList getGeneratedColumnTypes()
 {
     return generatedColumnKeywords;
+}
+
+bool isSoftKeyword(const QString& str)
+{
+    return softKeywords3.contains(str.toUpper());
 }

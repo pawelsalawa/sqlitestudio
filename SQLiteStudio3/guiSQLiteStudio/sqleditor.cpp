@@ -846,6 +846,7 @@ void SqlEditor::parseContents()
         queryParser->parse(sql);
         checkForValidObjects();
         checkForSyntaxErrors();
+        highlighter->rehighlight();
     }
 }
 
@@ -911,7 +912,6 @@ void SqlEditor::checkForValidObjects()
             addDbObject(sqlIndex(fullObj.object->start), sqlIndex(fullObj.object->end), dbName);
         }
     }
-    highlighter->rehighlight();
 }
 
 void SqlEditor::scheduleQueryParser(bool force)
