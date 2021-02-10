@@ -37,6 +37,7 @@
 - BUGFIX: #3418 Fixed crash when importing file with a lot of error-raising rows.
 - BUGFIX: #3413 #3614 #3520 #3403 Fixed import of CSV files with Unix-style line endings.
 - BUGFIX: #3464 Fixed crash when trying to edit cell, which has duplicated foreign key (column level and table level).
+- BUGFIX: #3459 Fixed "fallback" keywords highlighting used in "ID" context, such as replace() function, etc. Also fixed desynchronized error highlighting when typing quickly.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

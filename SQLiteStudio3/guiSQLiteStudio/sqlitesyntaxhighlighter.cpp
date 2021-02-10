@@ -2,6 +2,7 @@
 #include "parser/lexer.h"
 #include "services/config.h"
 #include "style.h"
+#include "parser/keywords.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>
@@ -160,22 +161,25 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
     TextBlockData* data = new TextBlockData();
     int errorStart = -1;
     TokenPtr token = lexer.getToken();
+    TokenPtr aheadToken;
     while (token)
     {
-        if (handleToken(token, idxModifier, errorStart, data, prevData))
+        aheadToken = lexer.getToken();
+
+        if (handleToken(token, aheadToken, idxModifier, errorStart, data, prevData))
             errorStart = token->start + currentBlock().position();
 
         if (data->getEndsWithQuerySeparator())
             errorStart = -1;
 
         handleParenthesis(token, data);
-        token = lexer.getToken();
+        token = aheadToken;
     }
 
     setCurrentBlockUserData(data);
 }
 
-bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, qint32 idxModifier, int errorStart, TextBlockData* currBlockData,
+bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, TokenPtr aheadToken, qint32 idxModifier, int errorStart, TextBlockData* currBlockData,
                                           TextBlockData* previousBlockData)
 {
     qint64 start = token->start - idxModifier;
@@ -188,6 +192,9 @@ bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, qint32 idxModifier, in
 
     if (createTriggerContext && token->type == Token::OTHER && (token->value.toLower() == "old" || token->value.toLower() == "new"))
         token->type = Token::KEYWORD;
+
+    if (aheadToken && aheadToken->type == Token::PAR_LEFT && token->type == Token::KEYWORD && isSoftKeyword(token->value))
+        token->type = Token::OTHER;
 
     bool limitedDamage = false;
     bool querySeparator = (token->type == Token::Type::OPERATOR && token->value == ";");

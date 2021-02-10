@@ -123,7 +123,7 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
          * @param idxModifier Modifier for text highlighting in case of previous state defined by multi-character token. See getPreviousStatePrefix() for details.
          * @return true if the token is being marked as invalid (syntax error).
          */
-        bool handleToken(TokenPtr token, qint32 idxModifier, int errorStart, TextBlockData* currBlockData, TextBlockData* previousBlockData);
+        bool handleToken(TokenPtr token, TokenPtr aheadToken, qint32 idxModifier, int errorStart, TextBlockData* currBlockData, TextBlockData* previousBlockData);
 
         bool isError(int start, int lgt, bool* limitedDamage);
         bool isValid(int start, int lgt);
