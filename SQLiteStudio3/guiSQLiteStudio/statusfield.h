@@ -44,7 +44,6 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         QAction* copyAction = nullptr;
         QAction* clearAction = nullptr;
         QList<QAbstractAnimation*> itemAnimations;
-        bool noFlashing = false;
 
         static const int timeStampColumnWidth = 70;
         static const int itemCountLimit = 30;

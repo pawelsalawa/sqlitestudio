@@ -133,8 +133,6 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
         setVisible(true);
 
     ui->tableWidget->scrollToBottom();
-    if (isVisible() && !noFlashing)
-        flashItems(itemsCreated, color);
 }
 
 void StatusField::refreshColors()
@@ -169,32 +167,6 @@ void StatusField::refreshColors()
     }
 }
 
-void StatusField::flashItems(const QList<QTableWidgetItem*>& items, const QColor& color)
-{
-    QColor alphaColor = color;
-    alphaColor.setAlpha(0);
-
-    QColor finalColor = color;
-    finalColor.setAlpha(150);
-
-    QVariantAnimation* anim = new QVariantAnimation();
-    anim->setDuration(500);
-    anim->setEasingCurve(QEasingCurve::OutQuad);
-    anim->setStartValue(finalColor);
-    anim->setEndValue(alphaColor);
-
-    itemAnimations << anim;
-    connect(anim, &QObject::destroyed, [this, anim]() {itemAnimations.removeOne(anim);});
-
-    connect(anim, &QVariantAnimation::valueChanged, [items](const QVariant& value)
-    {
-        for (QTableWidgetItem* item : items)
-            item->setBackground(value.value<QColor>());
-    });
-
-    anim->start(QAbstractAnimation::DeleteWhenStopped);
-}
-
 void StatusField::setupMenu()
 {
     menu = new QMenu(this);
@@ -215,7 +187,6 @@ void StatusField::setupMenu()
 
 void StatusField::readRecentMessages()
 {
-    noFlashing = true;
     for (const QString& msg : NotifyManager::getInstance()->getRecentInfos())
         info(msg);
 
@@ -224,8 +195,6 @@ void StatusField::readRecentMessages()
 
     for (const QString& msg : NotifyManager::getInstance()->getRecentErrors())
         error(msg);
-
-    noFlashing = false;
 }
 
 void StatusField::customContextMenuRequested(const QPoint &pos)

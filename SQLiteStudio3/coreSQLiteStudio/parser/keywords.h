@@ -28,6 +28,23 @@ API_EXPORT int getKeywordId3(const QString& str);
 API_EXPORT bool isKeyword(const QString& str);
 
 /**
+ * @brief Tests whether given string represents a "soft" keyword in SQLite dialect.
+ * @param str String to test.
+ * @return true if the string represents a soft keyword, or false otherwise.
+ *
+ * "Soft" keywords are like any SQLite keywords, except these can be treated by SQLite as ID too,
+ * if it fits the syntax. It means that when SQLite parses a query, it first tries to parse these
+ * "soft" keywords are regular keywords and if it fails, it re-tries with treating them as ID.
+ *
+ * Quote from SQLite's parse.y:
+ * "The following directive causes tokens ABORT, AFTER, ASC, etc. to
+ * fallback to ID if they will not parse as their original value."
+ *
+ * Comparision is done in case insensitive manner.
+ */
+API_EXPORT bool isSoftKeyword(const QString& str);
+
+/**
  * @brief Tests whether given string representing any variation of ROWID.
  * @param str String to test.
  * @return true if the value represents ROWID keyword, or false otherwise.

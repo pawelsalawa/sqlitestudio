@@ -162,8 +162,15 @@ void typedDeserializeInternal(QTextStream& data, const CsvFormat& format, QList<
     if (field.size() > 0 || sepAsLast)
         *cells << field;
 
-    if (rows && cells->size() > 0)
-        *rows << *cells;
+    if (rows)
+    {
+        if (cells->size() > 0)
+            *rows << *cells;
+    }
+    else if (!ahead.isEmpty())
+    {
+        data.seek(data.pos() - 1);
+    }
 }
 
 template <class T, class C>
