@@ -75,7 +75,7 @@ OTHER_FILES += \
 RESOURCES += \
     dbsqlitecipher.qrc
 
-QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function
+QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable
 
 DISTFILES += \
     openssl_lic.txt

@@ -51,7 +51,7 @@ void DebugConsole::initFormats()
     fatFormat.setFontUnderline(true);
 
     QFontMetrics fm(ui->textEdit->font());
-    int indent = fm.width(QString("X").repeated(25));
+    int indent = fm.horizontalAdvance(QString("X").repeated(25));
     ui->textEdit->document()->setIndentWidth(indent);
 
     blockFormat.setIndent(1);

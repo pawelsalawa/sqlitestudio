@@ -309,7 +309,7 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
     }
 
     widgetToConfigEntry.insert(widget, cfgEntry);
-    configEntryToWidgets.insertMulti(cfgEntry, widget);
+    configEntryToWidgets.insert(cfgEntry, widget);
 
     handleSpecialWidgets(widget, allConfigEntries);
 
@@ -361,7 +361,7 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
 
     if (realTimeUpdates)
     {
-        specialConfigEntryToWidgets.insertMulti(key, widget);
+        specialConfigEntryToWidgets.insert(key, widget);
         connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateConfigComboModel(QVariant)));
     }
 }
@@ -544,7 +544,7 @@ void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, Q
     bool value = cfgValue.toBool();
     widget->setEnabled(value);
 
-    QWidget* dependWidget = configEntryToWidgets[cfg];
+    QWidget* dependWidget = configEntryToWidgets.value(cfg);
     boolDependencyToDependingWidget[dependWidget] = widget;
 }
 
@@ -682,7 +682,7 @@ void ConfigMapper::updateConfigComboModel(const QVariant& value)
     if (!specialConfigEntryToWidgets.contains(key))
         return;
 
-    QWidget* w = specialConfigEntryToWidgets[key];
+    QWidget* w = specialConfigEntryToWidgets.value(key);
     ConfigComboBox* ccb = dynamic_cast<ConfigComboBox*>(w);
     if (!w)
         return;
@@ -709,7 +709,7 @@ void ConfigMapper::notifiableConfigKeyChanged()
         return;
     }
 
-    loadToWidget(key, configEntryToWidgets[key]);
+    loadToWidget(key, configEntryToWidgets.value(key));
 }
 
 void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
@@ -742,7 +742,7 @@ void ConfigMapper::removeMainCfgEntry(CfgMain* cfgMain)
 QWidget* ConfigMapper::getBindWidgetForConfig(CfgEntry* key) const
 {
     if (configEntryToWidgets.contains(key))
-        return configEntryToWidgets[key];
+        return configEntryToWidgets.value(key);
 
     return nullptr;
 }

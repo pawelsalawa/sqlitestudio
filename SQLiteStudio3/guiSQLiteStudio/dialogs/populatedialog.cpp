@@ -10,6 +10,7 @@
 #include "uiutils.h"
 #include "services/populatemanager.h"
 #include "common/widgetcover.h"
+#include "common/compatibility.h"
 #include <QPushButton>
 #include <QGridLayout>
 #include <QCheckBox>
@@ -42,7 +43,7 @@ void PopulateDialog::init()
     ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Populate", "populate dialog button"));
 
     plugins = PLUGINS->getLoadedPlugins<PopulatePlugin>();
-    qSort(plugins.begin(), plugins.end(), [](PopulatePlugin* p1, PopulatePlugin* p2) -> bool
+    sSort(plugins, [](PopulatePlugin* p1, PopulatePlugin* p2) -> bool
     {
         return p1->getTitle().compare(p2->getTitle()) < 0;
     });

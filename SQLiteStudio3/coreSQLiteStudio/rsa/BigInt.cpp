@@ -568,17 +568,18 @@ digitCount(rightNumber.digitCount), positive(rightNumber.positive)
 	//make sure we have just enough space
     if (length <= digitCount + 2 || length > (digitCount << 2))
         length = (unsigned long int) (digitCount * BigInt::FACTOR + 1);
-	try
-	{
-		digits = new unsigned char[length];
-	}
-	catch (...)
-	{
-		delete[] digits;
-		throw "Error BIGINT08: BigInt creation error (out of memory?).";
-	}
 
-	std::copy(rightNumber.digits, rightNumber.digits + digitCount, digits);
+    try
+    {
+        digits = new unsigned char[length];
+    }
+    catch (...)
+    {
+        delete[] digits;
+        throw "Error BIGINT08: BigInt creation error (out of memory?).";
+    }
+
+    std::copy(rightNumber.digits, rightNumber.digits + digitCount, digits);
 }
 
 BigInt::operator std::string() const
@@ -627,12 +628,13 @@ BigInt &BigInt::operator =(const BigInt &rightNumber)
 
 std::ostream &operator <<(std::ostream &cout, const BigInt &number)
 {
-	if (!number.positive)
-		cout << '-';
+    if (!number.positive)
+        cout << '-';
+
     for (int i = number.digitCount - 1; i >= 0; i--)
         cout << (int(number.digits[i]));
 
-	return cout;
+    return cout;
 }
 
 std::istream &operator >>(std::istream &cin, BigInt &number)

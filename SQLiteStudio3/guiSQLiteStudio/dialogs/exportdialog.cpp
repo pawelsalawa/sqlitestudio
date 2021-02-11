@@ -531,7 +531,7 @@ void ExportDialog::updateDbObjTree()
 
         ui->dbObjectsTree->expand(root);
         QModelIndex child;
-        for (int i = 0; (child = root.child(i, 0)).isValid(); i++)
+        for (int i = 0; (child = selectableDbListModel->index(i, 0, root)).isValid(); i++)
             ui->dbObjectsTree->expand(child);
     }
     dbObjectsSelectAll();
@@ -790,7 +790,7 @@ QModelIndex ExportDialog::setupNewDbObjTreeRoot(const QModelIndex& root)
         if (item->getType() == DbTreeItem::Type::DB)
             return newRoot;
 
-        newRoot = newRoot.child(0, 0);
+        newRoot = selectableDbListModel->index(0, 0, newRoot);
     }
     return newRoot;
 }

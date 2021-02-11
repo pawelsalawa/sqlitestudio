@@ -9,6 +9,7 @@
 #include "dbattacher.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
+#include "common/compatibility.h"
 #include "services/dbmanager.h"
 #include "db/dbsqlite3.h"
 #include <QStringList>
@@ -921,12 +922,7 @@ void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, cons
 
 void CompletionHelper::filterDuplicates(QList<ExpectedTokenPtr>& resultsSoFar)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-    QSet<ExpectedTokenPtr> set = QSet<ExpectedTokenPtr>(resultsSoFar.begin(), resultsSoFar.end());
-#else
-    QSet<ExpectedTokenPtr> set = resultsSoFar.toSet();
-#endif
-    resultsSoFar = set.values();
+    resultsSoFar = toSet(resultsSoFar).values();
 }
 
 void CompletionHelper::applyFilter(QList<ExpectedTokenPtr>& resultsSoFar, const QString& filter)

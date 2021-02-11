@@ -1,10 +1,12 @@
 #include "sqlformatterplugin.h"
 #include "parser/parser.h"
 #include "db/db.h"
+#include "common/unused.h"
 #include <QDebug>
 
 QString SqlFormatterPlugin::format(const QString& code, Db* contextDb)
 {
+    UNUSED(contextDb);
     Parser parser;
     if (!parser.parse(code))
     {

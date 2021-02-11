@@ -10,6 +10,7 @@
 #include "common/utils_sql.h"
 #include "parser/ast/sqlitewindowdefinition.h"
 #include "parser/ast/sqlitefilterover.h"
+#include "common/compatibility.h"
 #include <QString>
 #include <QtTest>
 
@@ -500,7 +501,7 @@ void ParserTest::testGetColumnTokensFromInsertUpsert()
     QVERIFY(insert->upsert);
 
     TokenList tk = insert->getContextColumnTokens();
-    qSort(tk.begin(), tk.end(), [](const TokenPtr& t1, const TokenPtr& t2) {return t1->start < t2->start;});
+    sSort(tk, [](const TokenPtr& t1, const TokenPtr& t2) {return t1->start < t2->start;});
     QVERIFY(tk.toValueList().join(" ") == "a1 a2 b1 b2 b3 col1 col2 col3 x");
 }
 

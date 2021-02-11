@@ -4,6 +4,7 @@
 #include "common/utils_sql.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "schemaresolver.h"
+#include "common/compatibility.h"
 #include <QDebug>
 
 bool QueryExecutorAddRowIds::exec()
@@ -56,7 +57,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     // Go trough subselects to add ROWID result columns there and collect rowId mapping to use here.
     for (SqliteSelect* subSelect : getSubSelects(core))
     {
-        rowIdColsMap.unite(addRowIdForTables(subSelect, ok, false));
+        unite(rowIdColsMap, addRowIdForTables(subSelect, ok, false));
         if (!ok)
             return rowIdColsMap;
     }

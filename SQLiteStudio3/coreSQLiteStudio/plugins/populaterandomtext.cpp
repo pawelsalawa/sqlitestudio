@@ -3,6 +3,8 @@
 #include "common/unused.h"
 #include "services/populatemanager.h"
 
+#include <QRandomGenerator>
+
 PopulateRandomText::PopulateRandomText()
 {
 }
@@ -21,7 +23,7 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 {
     UNUSED(db);
     UNUSED(table);
-    qsrand(QDateTime::currentDateTime().toTime_t());
+    QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
     range = cfg.PopulateRandomText.MaxLength.get() - cfg.PopulateRandomText.MinLength.get() + 1;
 
     chars = "";
@@ -53,7 +55,7 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 QVariant PopulateRandomTextEngine::nextValue(bool& nextValueError)
 {
     UNUSED(nextValueError);
-    int lgt = (qrand() % range) + cfg.PopulateRandomText.MinLength.get();
+    int lgt = (QRandomGenerator::system()->generate() % range) + cfg.PopulateRandomText.MinLength.get();
     return randStr(lgt, chars);
 }
 

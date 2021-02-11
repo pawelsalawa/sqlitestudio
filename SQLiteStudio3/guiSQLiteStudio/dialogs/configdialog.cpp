@@ -22,6 +22,9 @@
 #include "datatype.h"
 #include "uiutils.h"
 #include "translations.h"
+#include "plugins/uiconfiguredplugin.h"
+#include "dbtree/dbtree.h"
+#include "common/compatibility.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -37,8 +40,6 @@
 #include <QDesktopServices>
 #include <QtUiTools/QUiLoader>
 #include <QKeySequenceEdit>
-#include <plugins/uiconfiguredplugin.h>
-#include <dbtree/dbtree.h>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -386,7 +387,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType:
         sortedPlugins << editorWithPrio;
     }
 
-    qSort(sortedPlugins.begin(), sortedPlugins.end(), [=](const PluginWithPriority& p1, const PluginWithPriority& p2) -> bool
+    sSort(sortedPlugins, [=](const PluginWithPriority& p1, const PluginWithPriority& p2) -> bool
     {
        return p1.first < p2.first;
     });
@@ -448,7 +449,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateCustomDataTypeEditors(const 
         ui->dataEditorsAvailableList->addItem(item);
     }
 
-    qSort(enabledPlugins.begin(), enabledPlugins.end(), [=](MultiEditorWidgetPlugin* p1, MultiEditorWidgetPlugin* p2) -> bool
+    sSort(enabledPlugins, [=](MultiEditorWidgetPlugin* p1, MultiEditorWidgetPlugin* p2) -> bool
     {
         return editorsOrder.indexOf(p1->getName()) < editorsOrder.indexOf(p2->getName());
     });
@@ -922,9 +923,9 @@ void ConfigDialog::updateBuiltInPluginsVisibility()
     {
         it.next();
         if (PLUGINS->isBuiltIn(it.value()))
-            ui->pluginsList->setItemHidden(it.key(), hideBuiltIn);
+            it.key()->setHidden(hideBuiltIn);
         else
-            ui->pluginsList->setItemHidden(it.key(), false);
+            it.key()->setHidden(false);
     }
 }
 
@@ -1055,7 +1056,7 @@ void ConfigDialog::refreshFormattersPage()
             pluginTitles << plugin->getTitle();
         }
         sortedPluginNames = pluginNames;
-        qSort(sortedPluginNames);
+        sSort(sortedPluginNames);
 
         combo = new QComboBox(ui->formatterPluginsTree);
         for (int i = 0, total = pluginNames.size(); i < total; ++i)
@@ -1253,7 +1254,7 @@ void ConfigDialog::initPluginsPage()
 
     categoryRow = 0;
     QList<PluginType*> pluginTypes = PLUGINS->getPluginTypes();
-    qSort(pluginTypes.begin(), pluginTypes.end(), PluginType::nameLessThan);
+    sSort(pluginTypes, PluginType::nameLessThan);
     for (PluginType* pluginType : pluginTypes)
     {
         category = new QTreeWidgetItem({pluginType->getTitle()});
@@ -1273,7 +1274,7 @@ void ConfigDialog::initPluginsPage()
 
         itemRow = 0;
         pluginNames = pluginType->getAllPluginNames();
-        qSort(pluginNames);
+        sSort(pluginNames);
         for (const QString& pluginName : pluginNames)
         {
             builtIn = PLUGINS->isBuiltIn(pluginName);
@@ -1391,10 +1392,10 @@ void ConfigDialog::initDataEditors()
     ui->dataEditorsAvailableList->setSpacing(1);
 
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
-    QSet<QString> dataTypeSet = editorsOrder.keys().toSet();
-    dataTypeSet += DataType::getAllNames().toSet();
-    QStringList dataTypeList = dataTypeSet.toList();
-    qSort(dataTypeList);
+    QSet<QString> dataTypeSet = toSet(editorsOrder.keys());
+    dataTypeSet += toSet(DataType::getAllNames());
+    QStringList dataTypeList = dataTypeSet.values();
+    sSort(dataTypeList);
 
     QListWidgetItem* item = nullptr;
     for (const QString& type : dataTypeList)
@@ -1455,7 +1456,7 @@ void ConfigDialog::initShortcuts()
             categories << cat;
     }
 
-    qSort(categories.begin(), categories.end(), [](CfgCategory* cat1, CfgCategory* cat2) -> bool
+    sSort(categories, [](CfgCategory* cat1, CfgCategory* cat2) -> bool
     {
         return cat1->getTitle().compare(cat2->getTitle()) < 0;
     });
@@ -1506,7 +1507,7 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
 
     int itemRow = 0;
     QStringList entryNames = cfgCategory->getEntries().keys();
-    qSort(entryNames);
+    sSort(entryNames);
     for (const QString& entryName : entryNames)
     {
         // Title

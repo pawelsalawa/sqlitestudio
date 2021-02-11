@@ -11,6 +11,7 @@
 #include "services/dbmanager.h"
 #include "services/notifymanager.h"
 #include "common/lazytrigger.h"
+#include "common/compatibility.h"
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
@@ -388,7 +389,7 @@ void SqliteExtensionEditor::updateModified()
         bool fileDiff = model->getFilePath(row) != ui->fileEdit->text();
         bool initDiff = model->getInitFunction(row) != ui->initEdit->text();
         bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
-        bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(row).toSet(); // QSet to ignore order
+        bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
 
         currentModified = (fileDiff || initDiff || allDatabasesDiff || dbDiff);
     }

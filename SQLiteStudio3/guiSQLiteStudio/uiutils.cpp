@@ -16,6 +16,7 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QStyle>
+#include <QScreen>
 
 const QStringList pageSizes = {
     "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
@@ -117,7 +118,7 @@ QPixmap addOpacity(const QPixmap& input, float opacity)
 
 void limitDialogWidth(QDialog* dialog)
 {
-    dialog->setMaximumWidth(QApplication::desktop()->availableGeometry().width());
+    dialog->setMaximumWidth(QGuiApplication::primaryScreen()->availableGeometry().width());
 }
 
 void fixTextCursorSelectedText(QString& text)

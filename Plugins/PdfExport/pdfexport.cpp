@@ -37,7 +37,7 @@ QString PdfExport::getFormatName() const
 
 ExportManager::StandardConfigFlags PdfExport::standardOptionsToEnable() const
 {
-    return 0;
+    return ExportManager::StandardConfigFlags();
 }
 
 ExportManager::ExportProviderFlags PdfExport::getProviderFlags() const

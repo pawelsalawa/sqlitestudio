@@ -204,7 +204,7 @@ bool TaskBar::handleMouseMoveEvent(QMouseEvent* event)
     drag->setMimeData(generateMimeData());
 
     dragStartIndex = tasks.indexOf(dragStartTask);
-    drag->start(Qt::MoveAction);
+    drag->exec(Qt::MoveAction);
     return true;
 }
 

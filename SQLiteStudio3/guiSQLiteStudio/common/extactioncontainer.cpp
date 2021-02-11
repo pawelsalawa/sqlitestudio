@@ -15,8 +15,13 @@ ExtActionContainer::ExtActionContainer()
 {
     actionIdMapper = new QSignalMapper();
 
-    // We need to explicitly cast QSignalMapper::mapped to tell which overloaded version of function we want
-    QObject::connect(actionIdMapper, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
+    QObject::connect(actionIdMapper,
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+                     &QSignalMapper::mappedInt,
+#else
+                     // We need to explicitly cast QSignalMapper::mapped to tell which overloaded version of function we want
+                     static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
+#endif
                      [=](int action) {refreshShortcut(action);});
     instances << this;
 }

@@ -266,7 +266,7 @@ QStringList CliCommand::getCompletionInternalDbs()
         return results;
 
     SchemaResolver resolver(cli->getCurrentDb());
-    results += resolver.getDatabases().toList();
+    results += resolver.getDatabases().values();
     results << "main" << "temp";
     results.sort(Qt::CaseInsensitive);
     return results;

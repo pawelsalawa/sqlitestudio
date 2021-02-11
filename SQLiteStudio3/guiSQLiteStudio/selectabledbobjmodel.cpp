@@ -1,6 +1,7 @@
 #include "selectabledbobjmodel.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtreemodel.h"
+#include "common/compatibility.h"
 #include <QDebug>
 #include <QTreeView>
 
@@ -29,10 +30,10 @@ bool SelectableDbObjModel::setData(const QModelIndex& index, const QVariant& val
     return true;
 }
 
-Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& index) const
+Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& idx) const
 {
-    Qt::ItemFlags flags = QSortFilterProxyModel::flags(index);
-    DbTreeItem* item = getItemForProxyIndex(index);
+    Qt::ItemFlags flags = QSortFilterProxyModel::flags(idx);
+    DbTreeItem* item = getItemForProxyIndex(idx);
     switch (item->getType())
     {
         case DbTreeItem::Type::TABLE:
@@ -47,7 +48,7 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& index) const
         case DbTreeItem::Type::VIEWS:
         {
             flags |= Qt::ItemIsUserCheckable;
-            if (index.child(0, 0).isValid())
+            if (index(0, 0, idx).isValid())
                 flags |= Qt::ItemIsTristate;
 
             break;
@@ -76,12 +77,12 @@ void SelectableDbObjModel::setDbName(const QString& value)
 }
 QStringList SelectableDbObjModel::getCheckedObjects() const
 {
-    return checkedObjects.toList();
+    return checkedObjects.values();
 }
 
 void SelectableDbObjModel::setCheckedObjects(const QStringList& value)
 {
-    checkedObjects = value.toSet();
+    checkedObjects = toSet(value);
 }
 
 void SelectableDbObjModel::setRootChecked(bool checked)
@@ -147,13 +148,13 @@ DbTreeItem* SelectableDbObjModel::getItemForProxyIndex(const QModelIndex& index)
     return item;
 }
 
-Qt::CheckState SelectableDbObjModel::getStateFromChilds(const QModelIndex& index) const
+Qt::CheckState SelectableDbObjModel::getStateFromChilds(const QModelIndex& idx) const
 {
-    DbTreeItem* item = getItemForProxyIndex(index);
+    DbTreeItem* item = getItemForProxyIndex(idx);
     if (!item)
         return Qt::Unchecked;
 
-    if (!index.child(0, 0).isValid())
+    if (!index(0, 0, idx).isValid())
     {
         if (isObject(item) && checkedObjects.contains(item->text()))
             return Qt::Checked;
@@ -166,7 +167,7 @@ Qt::CheckState SelectableDbObjModel::getStateFromChilds(const QModelIndex& index
     int partial = 0;
     Qt::CheckState state;
     QModelIndex child;
-    for (int i = 0; (child = index.child(i, 0)).isValid(); i++)
+    for (int i = 0; (child = index(i, 0, idx)).isValid(); i++)
     {
         if (!child.flags().testFlag(Qt::ItemIsUserCheckable))
             continue;
@@ -200,9 +201,9 @@ Qt::CheckState SelectableDbObjModel::getStateFromChilds(const QModelIndex& index
     return Qt::PartiallyChecked;
 }
 
-void SelectableDbObjModel::setRecurrently(const QModelIndex& index, Qt::CheckState checked)
+void SelectableDbObjModel::setRecurrently(const QModelIndex& idx, Qt::CheckState checked)
 {
-    DbTreeItem* item = getItemForProxyIndex(index);
+    DbTreeItem* item = getItemForProxyIndex(idx);
     if (!item)
         return;
 
@@ -211,14 +212,14 @@ void SelectableDbObjModel::setRecurrently(const QModelIndex& index, Qt::CheckSta
     else
         checkedObjects.remove(item->text());
 
-    if (!index.child(0, 0).isValid())
+    if (!index(0, 0, idx).isValid())
         return;
 
     // Limiting checked to 'checked/unchecked', cause recurrent marking cannot set partially checked, it makes no sense
     checked = (checked > 0 ? Qt::Checked : Qt::Unchecked);
 
     QModelIndex child;
-    for (int i = 0; (child = index.child(i, 0)).isValid(); i++)
+    for (int i = 0; (child = index(i, 0, idx)).isValid(); i++)
         setData(child, checked, Qt::CheckStateRole);
 }
 
