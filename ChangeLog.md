@@ -40,6 +40,7 @@
 - BUGFIX: #3459 Fixed "fallback" keywords highlighting used in "ID" context, such as replace() function, etc. Also fixed desynchronized error highlighting when typing quickly.
 - BUGFIX: #3453 Fixed parenthesis highlighting.
 - BUGFIX: #3936 Cleaned up almost all warnings from Qt 5.12 & 5.15 (fixing few minor bugs on the way) so that any important warnings are not missed.
+- BUGFIX: #3445 Detecting correctly current query boundries when executing a query - especially in context of CREATE TRIGGER.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
