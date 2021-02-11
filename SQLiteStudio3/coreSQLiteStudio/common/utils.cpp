@@ -15,6 +15,7 @@
 #include <QByteArray>
 #include <QBitArray>
 #include <QDataStream>
+#include <QRandomGenerator>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -25,7 +26,6 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <tchar.h>
-#include <QRandomGenerator>
 
 typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 bool is64BitWindows()
