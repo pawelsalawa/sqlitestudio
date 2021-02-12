@@ -37,5 +37,6 @@ enum class SqliteQueryType
 };
 
 QString API_EXPORT sqliteQueryTypeToString(const SqliteQueryType& type);
+bool API_EXPORT isDataReturningQuery(const SqliteQueryType& type);
 
 #endif // SQLITEQUERYTYPE_H

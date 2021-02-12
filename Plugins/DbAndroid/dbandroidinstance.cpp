@@ -10,6 +10,7 @@
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
 #include "db/dbsqlite3.h"
+#include "parser/parser.h"
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -24,6 +25,37 @@ DbAndroidInstance::DbAndroidInstance(DbAndroid* plugin, const QString& name, con
 DbAndroidInstance::~DbAndroidInstance()
 {
     closeInternal();
+}
+
+QList<AliasedColumn> DbAndroidInstance::columnsForQuery(const QString& query)
+{
+    Parser parser;
+    bool res = parser.parse(query);
+    if (!res)
+    {
+        qWarning() << "Could not parse query for providing columnsForQuery from DbAndroid:" << query;
+        return QList<AliasedColumn>();
+    }
+
+    if (!isDataReturningQuery(parser.getQueries().last()->queryType))
+        return QList<AliasedColumn>();
+
+    SqlQueryPtr results = exec(query);
+    if (results->isError())
+    {
+        qWarning() << "Could not execute query for providing columnsForQuery from DbAndroid:" << query
+                   << ". The error was:" << results->getErrorText();
+        return QList<AliasedColumn>();
+    }
+
+    QList<AliasedColumn> columns;
+    AliasedColumn column;
+    for (const QString& colName : results->getColumnNames())
+    {
+        column.setAlias(colName);
+        columns << column;
+    }
+    return columns;
 }
 
 SqlQueryPtr DbAndroidInstance::prepare(const QString& query)

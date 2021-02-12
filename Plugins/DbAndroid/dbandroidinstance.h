@@ -19,6 +19,7 @@ class DbAndroidInstance : public AbstractDb
         DbAndroidInstance(DbAndroid* plugin, const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
         ~DbAndroidInstance();
 
+        QList<AliasedColumn> columnsForQuery(const QString& query);
         SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
         bool deregisterFunction(const QString& name, int argCount);

@@ -64,3 +64,41 @@ QString sqliteQueryTypeToString(const SqliteQueryType& type)
             return QString();
     }
 }
+
+bool isDataReturningQuery(const SqliteQueryType& type)
+{
+    switch (type)
+    {
+        case SqliteQueryType::Select:
+        case SqliteQueryType::Pragma:
+            return true;
+        case SqliteQueryType::UNDEFINED:
+        case SqliteQueryType::EMPTY:
+        case SqliteQueryType::AlterTable:
+        case SqliteQueryType::Analyze:
+        case SqliteQueryType::Attach:
+        case SqliteQueryType::BeginTrans:
+        case SqliteQueryType::CommitTrans:
+        case SqliteQueryType::Copy:
+        case SqliteQueryType::CreateIndex:
+        case SqliteQueryType::CreateTable:
+        case SqliteQueryType::CreateTrigger:
+        case SqliteQueryType::CreateView:
+        case SqliteQueryType::CreateVirtualTable:
+        case SqliteQueryType::Delete:
+        case SqliteQueryType::Detach:
+        case SqliteQueryType::DropIndex:
+        case SqliteQueryType::DropTable:
+        case SqliteQueryType::DropTrigger:
+        case SqliteQueryType::DropView:
+        case SqliteQueryType::Insert:
+        case SqliteQueryType::Reindex:
+        case SqliteQueryType::Release:
+        case SqliteQueryType::Rollback:
+        case SqliteQueryType::Savepoint:
+        case SqliteQueryType::Update:
+        case SqliteQueryType::Vacuum:
+        default:
+            return false;
+    }
+}
