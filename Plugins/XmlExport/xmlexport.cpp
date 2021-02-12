@@ -71,11 +71,11 @@ bool XmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 
         writeln("<column>");
         incrIndent();
-        writeln("<displayName>"+ escape(col->displayName) + "</displayName>");
-        writeln("<name>"+ escape(col->column) + "</name>");
-        writeln("<table>"+ escape(col->table) + "</table>");
-        writeln("<database>"+ escape(col->database) + "</database>");
-        writeln("<type>"+ escape(type.toFullTypeString()) + "</type>");
+        writeTagWithValue("displayName", col->displayName);
+        writeTagWithValue("name>", col->column);
+        writeTagWithValue("table", col->table);
+        writeTagWithValue("database", col->database);
+        writeTagWithValue("type", type.toFullTypeString());
         decrIndent();
         writeln("</column>");
         i++;
@@ -134,12 +134,12 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
     writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
 
-    writeln("<database>" + escape(database) + "</database>");
-    writeln("<name>" + escape(table) + "</name>");
+    writeTagWithValue("database", database);
+    writeTagWithValue("name", table);
     if (!createTable->withOutRowId.isNull())
-        writeln(QString("<withoutRowId>true</withoutRowId>"));
+        writeln("<withoutRowId>true</withoutRowId>");
 
-    writeln("<ddl>" + escape(ddl) + "</ddl>");
+    writeTagWithValue("ddl", ddl);
 
     writeln("<columns>");
     incrIndent();
@@ -147,8 +147,8 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
     {
         writeln("<column>");
         incrIndent();
-        writeln("<name>"+ col->name + "</name>");
-        writeln(QString("<type>%1</type>").arg((col->type ? col->type->toDataType().toFullTypeString() : "")));
+        writeTagWithValue("name", col->name);
+        writeTagWithValue("type", (col->type ? col->type->toDataType().toFullTypeString() : ""));
         if (col->constraints.size() > 0)
         {
             writeln("<constraints>");
@@ -157,8 +157,8 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
             {
                 writeln("<constraint>");
                 incrIndent();
-                writeln("<type>" + constr->typeString() + "</type>");
-                writeln("<definition>" + constr->detokenize() + "</definition>");
+                writeTagWithValue("type", constr->typeString());
+                writeTagWithValue("definition", constr->detokenize());
                 decrIndent();
                 writeln("</constraint>");
             }
@@ -179,8 +179,8 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
         {
             writeln("<constraint>");
             incrIndent();
-            writeln("<type>" + constr->typeString() + "</type>");
-            writeln("<definition>" + constr->detokenize() + "</definition>");
+            writeTagWithValue("type", constr->typeString());
+            writeTagWithValue("definition", constr->detokenize());
             decrIndent();
             writeln("</constraint>");
         }
@@ -206,12 +206,11 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
     writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
 
-    writeln("<database>" + escape(database) + "</database>");
-    writeln("<name>" + escape(table) + "</name>");
-    writeln("<virtual>true</name>");
-    writeln("<module>" + escape(createTable->module) + "</module>");
-
-    writeln("<ddl>" + escape(ddl) + "</ddl>");
+    writeTagWithValue("database", database);
+    writeTagWithValue("name", table);
+    writeln("<virtual>true</virtual>");
+    writeTagWithValue("module", createTable->module);
+    writeTagWithValue("ddl", ddl);
 
     writeln("<columns>");
     incrIndent();
@@ -219,7 +218,7 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
     {
         writeln("<column>");
         incrIndent();
-        writeln("<name>"+ col + "</name>");
+        writeTagWithValue("name", col);
         decrIndent();
         writeln("</column>");
     }
@@ -231,7 +230,7 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
         writeln("<moduleArgs>");
         incrIndent();
         for (const QString& arg : createTable->args)
-            writeln("<arg>" + arg + "</arg>");
+            writeTagWithValue("arg", arg);
 
         decrIndent();
         writeln("</moduleArgs>");
@@ -263,7 +262,7 @@ bool XmlExport::beforeExportDatabase(const QString& database)
 
     writeln(QString("<database%1>").arg(nsStr));
     incrIndent();
-    writeln("<name>" + escape(database) + "</name>");
+    writeTagWithValue("name", database);
 
     return true;
 }
@@ -273,15 +272,15 @@ bool XmlExport::exportIndex(const QString& database, const QString& name, const 
     writeln("<index>");
     incrIndent();
 
-    writeln("<database>" + escape(database) + "</database>");
-    writeln("<name>" + escape(name) + "</name>");
+    writeTagWithValue("database", database);
+    writeTagWithValue("name", name);
     if (createIndex->uniqueKw)
         writeln("<unique>true</unique>");
 
     if (createIndex->where)
-        writeln("<partial>" + createIndex->where->detokenize() + "</partial>");
+        writeTagWithValue("partial", createIndex->where->detokenize());
 
-    writeln("<ddl>" + escape(ddl) + "</ddl>");
+    writeTagWithValue("ddl", ddl);
 
     decrIndent();
     writeln("</index>");
@@ -294,15 +293,15 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
     writeln("<trigger>");
     incrIndent();
 
-    writeln("<database>" + escape(database) + "</database>");
-    writeln("<name>" + escape(name) + "</name>");
-    writeln("<ddl>" + escape(ddl) + "</ddl>");
+    writeTagWithValue("database", database);
+    writeTagWithValue("name", name);
+    writeTagWithValue("ddl", ddl);
 
     QString timing = SqliteCreateTrigger::time(createTrigger->eventTime);
-    writeln("<timing>" + escape(timing) + "</timing>");
+    writeTagWithValue("timing", timing);
 
     QString event = createTrigger->event ? SqliteCreateTrigger::Event::typeToString(createTrigger->event->type) : "";
-    writeln("<action>" + escape(event) + "</action>");
+    writeTagWithValue("action", event);
 
     QString tag;
     if (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF)
@@ -313,13 +312,13 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
     writeln(tag.arg("") + escape(createTrigger->table) + tag.arg("/"));
 
     if (createTrigger->precondition)
-        writeln("<precondition>" + escape(createTrigger->precondition->detokenize()) + "</precondition>");
+        writeTagWithValue("precondition", createTrigger->precondition->detokenize());
 
     QStringList queryStrings;
     for (SqliteQuery* q : createTrigger->queries)
         queryStrings << q->detokenize();
 
-    writeln("<code>" + escape(queryStrings.join("\n")) + "</code>");
+    writeTagWithValue("code", queryStrings.join("\n"));
 
     decrIndent();
     writeln("</trigger>");
@@ -332,10 +331,11 @@ bool XmlExport::exportView(const QString& database, const QString& name, const Q
     writeln("<view>");
     incrIndent();
 
-    writeln("<database>" + escape(database) + "</database>");
-    writeln("<name>" + escape(name) + "</name>");
-    writeln("<ddl>" + escape(ddl) + "</ddl>");
-    writeln("<select>" + escape(createView->select->detokenize()) + "</select>");
+    writeTagWithValue("database", database);
+    writeTagWithValue("name", name);
+    writeTagWithValue("ddl", ddl);
+    writeTagWithValue("select", createView->select->detokenize());
+
     decrIndent();
     writeln("</view>");
     return true;
@@ -458,6 +458,17 @@ QString XmlExport::escapeCdata(const QString& str)
 QString XmlExport::escapeAmpersand(const QString& str)
 {
     return str.toHtmlEscaped();
+}
+
+QString XmlExport::tagWithValue(const QString& tag, const QString& value)
+{
+    static_qstring(tpl, "<%1>%2</%1>");
+    return tpl.arg(tag, escape(value));
+}
+
+void XmlExport::writeTagWithValue(const QString& tag, const QString& value)
+{
+    writeln(tagWithValue(tag, value));
 }
 
 QString XmlExport::toString(bool value)

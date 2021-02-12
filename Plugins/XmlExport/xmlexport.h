@@ -55,6 +55,8 @@ class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
         QString escape(const QString& str);
         QString escapeCdata(const QString& str);
         QString escapeAmpersand(const QString& str);
+        QString tagWithValue(const QString& tag, const QString& value);
+        void writeTagWithValue(const QString& tag, const QString& value);
 
         static QString toString(bool value);
 
