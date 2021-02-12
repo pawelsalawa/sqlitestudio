@@ -442,8 +442,15 @@ QString XmlExport::escape(const QString& str)
 
 QString XmlExport::escapeCdata(const QString& str)
 {
+    static_qstring(tpl, "<![CDATA[%1]]>");
     if (str.contains('"') || str.contains('&') || str.contains('<') || str.contains('>'))
-        return "<![CDATA[" + str + "]]>";
+    {
+        int idx = str.indexOf("]]>");
+        if (idx > -1)
+            return escape(str.left(idx + 2)) + escape(str.mid(idx + 2));
+
+        return tpl.arg(str);
+    }
 
     return str;
 }

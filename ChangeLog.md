@@ -43,6 +43,7 @@
 - BUGFIX: #3445 Detecting correctly current query boundries when executing a query - especially in context of CREATE TRIGGER.
 - BUGFIX: #3440 SELECT resolver improved to work better with CTE statements (WITH ... SELECT ...).
 - BUGFIX: #3431 Fixed Index Dialog - it was basically impossible to edit existing index, if index had a collation defined.
+- BUGFIX: #3452 Fixed XML export with CDATA quoting if the value contains CDATA end tag.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
