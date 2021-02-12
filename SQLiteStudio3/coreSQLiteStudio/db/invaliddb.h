@@ -19,6 +19,7 @@ class API_EXPORT InvalidDb : public Db
         void setConnectionOptions(const QHash<QString, QVariant>& value);
         void setTimeout(int secs);
         int getTimeout() const;
+        QList<AliasedColumn> columnsForQuery(const QString& query);
         SqlQueryPtr exec(const QString& query, const QList<QVariant>& args, Flags flags);
         SqlQueryPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
         SqlQueryPtr exec(const QString& query, Db::Flags flags);
