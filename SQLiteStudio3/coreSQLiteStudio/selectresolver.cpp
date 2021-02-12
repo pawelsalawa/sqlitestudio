@@ -168,9 +168,6 @@ QList<SelectResolver::Column> SelectResolver::resolveCore(SqliteSelect::Core* se
     if (select && select->coreSelects.size() > 1)
         markCompoundColumns();
 
-    if (select && select->with)
-        markCteColumns();
-
     return currentCoreResults;
 }
 
@@ -179,10 +176,6 @@ QList<SelectResolver::Column> SelectResolver::resolveAvailableCoreColumns(Sqlite
     QList<Column> columns;
     if (selectCore->from)
         columns = resolveJoinSource(selectCore->from);
-
-    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
-    if (select && select->with)
-        markCteColumns(&columns);
 
     return columns;
 }
@@ -242,11 +235,6 @@ void SelectResolver::markDistinctColumns()
 void SelectResolver::markCompoundColumns()
 {
     markCurrentColumnsWithFlag(FROM_COMPOUND_SELECT);
-}
-
-void SelectResolver::markCteColumns(QList<Column>* columnList)
-{
-    markCurrentColumnsWithFlag(FROM_CTE_SELECT, columnList);
 }
 
 void SelectResolver::markGroupedColumns()
@@ -580,6 +568,9 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     if (isView(joinSrc->database, joinSrc->table))
         return resolveView(joinSrc->database, joinSrc->table, joinSrc->alias);
 
+    if (joinSrc->database.isNull() && cteList.contains(joinSrc->table))
+        return resolveCteColumns(joinSrc);
+
     QList<Column> columnSources;
     QStringList columns = getTableColumns(joinSrc->database, joinSrc->table, joinSrc->alias);
     Column column;
@@ -593,6 +584,47 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     for (const QString& columnName : columns)
     {
         column.column = columnName;
+        columnSources << column;
+    }
+
+    return columnSources;
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Core::SingleSource* joinSrc)
+{
+    SqliteWith::CommonTableExpression* cte = cteList[joinSrc->table];
+
+    Column column;
+    column.type = Column::COLUMN;
+    column.flags |= FROM_CTE_SELECT;
+    column.tableAlias = cte->table;
+
+    QList<Column> columnSources;
+
+    static_qstring(cteSelectTpl, "WITH %1 SELECT * FROM %2");
+    QString selectQuery = cte->detokenize();
+    QString query = cteSelectTpl.arg(selectQuery, cte->table);
+    QList<AliasedColumn> queryColumns = db->columnsForQuery(query);
+    if (queryColumns.isEmpty())
+    {
+        qWarning() << "Could not detect query columns. Probably due to db error:" << db->getErrorText();
+        return columnSources;
+    }
+
+    for (const AliasedColumn& queryColumn : queryColumns)
+    {
+        if (!queryColumn.getDatabase().isNull())
+            column.database = resolveDatabase(queryColumn.getDatabase());
+        else
+            column.database = queryColumn.getDatabase();
+
+        column.table = queryColumn.getTable();
+
+        // From CTE perspective, however the column is received as "result column name" from SQLite API
+        // is what we report back to user of the CTE as available column. No matter if it's actual alias,
+        // or simply name of a column.
+        column.column = queryColumn.getAlias();
+        column.displayName = queryColumn.getAlias();
         columnSources << column;
     }
 
@@ -707,14 +739,6 @@ QStringList SelectResolver::getTableColumns(const QString &database, const QStri
     if (tableColumnsCache.contains(dbTable))
     {
         return tableColumnsCache.value(dbTable);
-    }
-    else if (database.isNull() && cteList.contains(table))
-    {
-        QStringList columns;
-        for (SqliteIndexedColumn* idxCol : cteList[table]->indexedColumns)
-            columns << idxCol->name;
-
-        return columns;
     }
     else
     {

@@ -21,6 +21,9 @@ bool QueryExecutorDataSources::exec()
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
     for (SelectResolver::Table resolvedTable : tables)
     {
+        if (resolvedTable.flags & SelectResolver::FROM_CTE_SELECT)
+            continue;
+
         QueryExecutor::SourceTablePtr table = QueryExecutor::SourceTablePtr::create();
         table->database = resolvedTable.database;
         table->table = resolvedTable.table;

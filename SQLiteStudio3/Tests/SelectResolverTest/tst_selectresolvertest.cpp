@@ -28,6 +28,7 @@ class SelectResolverTest : public QObject
         void testColumnHash();
         void testWithCommonTableExpression();
         void testWithCte2();
+        void testWithCte3();
         void testStarWithJoinAndError();
         void testTableFunction();
         void testSubselect();
@@ -195,7 +196,7 @@ void SelectResolverTest::testWithCommonTableExpression()
     QList<SelectResolver::Column> coreColumns = columns.first();
     QVERIFY(coreColumns.size() == 1);
     QVERIFY(coreColumns[0].type == SelectResolver::Column::OTHER);
-    QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
+    QVERIFY(coreColumns[0].flags ^ SelectResolver::Flag::FROM_CTE_SELECT);
 }
 
 void SelectResolverTest::testWithCte2()
@@ -212,10 +213,58 @@ void SelectResolverTest::testWithCte2()
     QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
     QList<SelectResolver::Column> coreColumns = columns.first();
     QVERIFY(coreColumns.size() == 2);
-    QVERIFY(coreColumns[0].type == SelectResolver::Column::COLUMN);
-    QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
-    QVERIFY(coreColumns[1].type == SelectResolver::Column::COLUMN);
-    QVERIFY(coreColumns[1].flags & SelectResolver::Flag::FROM_CTE_SELECT);
+
+    QCOMPARE(coreColumns[0].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[0].flags, SelectResolver::FROM_CTE_SELECT);
+    QCOMPARE(coreColumns[0].database, "main");
+    QVERIFY(coreColumns[0].table.isNull());
+    QCOMPARE(coreColumns[0].column, "c1");
+    QVERIFY(coreColumns[0].alias.isNull());
+    QCOMPARE(coreColumns[0].displayName, "c1");
+
+    QCOMPARE(coreColumns[1].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[1].flags, SelectResolver::FROM_CTE_SELECT);
+    QCOMPARE(coreColumns[1].database, "main");
+    QVERIFY(coreColumns[1].table.isNull());
+    QCOMPARE(coreColumns[1].column, "c2");
+    QVERIFY(coreColumns[1].alias.isNull());
+    QCOMPARE(coreColumns[1].displayName, "c2");
+}
+
+void SelectResolverTest::testWithCte3()
+{
+    QString sql = "WITH t AS (SELECT 1 AS x, col1 as y, 'z' FROM test2) SELECT * FROM t;";
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QCOMPARE(coreColumns.size(), 3);
+
+    QCOMPARE(coreColumns[0].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[0].flags, SelectResolver::FROM_CTE_SELECT);
+    QCOMPARE(coreColumns[0].database, "main");
+    QVERIFY(coreColumns[0].table.isNull());
+    QCOMPARE(coreColumns[0].column, "x");
+    QVERIFY(coreColumns[0].alias.isNull());
+    QCOMPARE(coreColumns[0].displayName, "x");
+
+    QCOMPARE(coreColumns[1].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[1].flags, SelectResolver::FROM_CTE_SELECT);
+    QCOMPARE(coreColumns[1].database, "main");
+    QCOMPARE(coreColumns[1].table, "test2");
+    QCOMPARE(coreColumns[1].column, "y");
+    QVERIFY(coreColumns[1].alias.isNull());
+    QCOMPARE(coreColumns[1].displayName, "y");
+
+    QCOMPARE(coreColumns[2].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[2].flags, SelectResolver::FROM_CTE_SELECT);
+    QCOMPARE(coreColumns[2].database, "main");
+    QVERIFY(coreColumns[2].table.isNull());
+    QCOMPARE(coreColumns[2].column, "'z'");
+    QVERIFY(coreColumns[2].alias.isNull());
+    QCOMPARE(coreColumns[2].displayName, "'z'");
 }
 
 void SelectResolverTest::testStarWithJoinAndError()

@@ -2532,39 +2532,49 @@ anylist(X) ::= anylist(L) ANY(A).           {
 
 //////////////////////// COMMON TABLE EXPRESSIONS ////////////////////////////
 %type with {SqliteWith*}
-%type wqlist {SqliteWith*}
 %destructor with {parser_safe_delete($$);}
-%destructor wqlist {parser_safe_delete($$);}
 
 with(X) ::= .                               {X = nullptr;}
 with(X) ::= WITH wqlist(W).                 {
-                                                X = W;
+                                                X = new SqliteWith();
+												X->cteList = *(W);
+												delete W;
                                                 objectForTokens = X;
                                             }
 with(X) ::= WITH RECURSIVE wqlist(W).       {
-                                                X = W;
+                                                X = new SqliteWith();
+												X->cteList = *(W);
                                                 X->recursive = true;
+												delete W;
                                                 objectForTokens = X;
                                             }
 
-wqlist(X) ::= nm(N) idxlist_opt(IL) AS
-              LP select(S) RP.              {
-                                                X = SqliteWith::append(*(N), *(IL), S);
-                                                delete N;
-                                                delete IL;
+%type wqlist {ParserCteList*}
+%destructor wqlist {parser_safe_delete($$);}
+
+wqlist(X) ::= wqcte(C).              		{
+												X = new ParserCteList();
+                                                X->append(C);
                                             }
-wqlist(X) ::= wqlist(WL) COMMA nm(N)
-              idxlist_opt(IL) AS
-              LP select(S) RP.              {
-                                                X = SqliteWith::append(WL, *(N), *(IL), S);
-                                                delete N;
-                                                delete IL;
+wqlist(X) ::= wqlist(W) COMMA wqcte(C).    {
+                                                X = W;
+                                                X->append(C);
                                                 DONT_INHERIT_TOKENS("wqlist");
                                             }
-wqlist(X) ::= ID_TAB_NEW.                   {
+wqlist ::= ID_TAB_NEW.                      {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
-                                                X = new SqliteWith();
                                             }
+
+%type wqcte {SqliteWith::CommonTableExpression*}
+%destructor wqcte {parser_safe_delete($$);}
+
+wqcte(X) ::= nm(N) idxlist_opt(IL) AS
+              LP select(S) RP.				{
+                                                X = new SqliteWith::CommonTableExpression(*(N), *(IL), S);
+                                                delete N;
+                                                delete IL;
+												objectForTokens = X;
+											}
 
 //////////////////////// WINDOW FUNCTION EXPRESSIONS /////////////////////////
 // These must be at the end of this file. Specifically, the rules that

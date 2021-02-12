@@ -28,8 +28,6 @@ class SqliteWith : public SqliteStatement
 
         SqliteWith();
         SqliteWith(const SqliteWith& other);
-        static SqliteWith* append(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
-        static SqliteWith* append(SqliteWith* with, const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
 
         SqliteStatement* clone();
 

@@ -69,7 +69,8 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
     for (const SelectResolver::Table& table : tables)
     {
-        if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT))
+        if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT |
+                           SelectResolver::FROM_CTE_SELECT))
             continue; // we don't get ROWID from compound, distinct or aggregated subselects
 
         if (checkInWithClause(table, select->with))
