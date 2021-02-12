@@ -50,7 +50,6 @@ class GUI_API_EXPORT IndexDialog : public QDialog
                 void setSort(QComboBox* cb);
                 QComboBox* getCollation() const;
                 void setCollation(QComboBox* cb);
-                bool hasCollation() const;
 
                 QString getName() const;
                 SqliteExpr* getExpr() const;

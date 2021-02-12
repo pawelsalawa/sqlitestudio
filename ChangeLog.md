@@ -42,6 +42,7 @@
 - BUGFIX: #3936 Cleaned up almost all warnings from Qt 5.12 & 5.15 (fixing few minor bugs on the way) so that any important warnings are not missed.
 - BUGFIX: #3445 Detecting correctly current query boundries when executing a query - especially in context of CREATE TRIGGER.
 - BUGFIX: #3440 SELECT resolver improved to work better with CTE statements (WITH ... SELECT ...).
+- BUGFIX: #3431 Fixed Index Dialog - it was basically impossible to edit existing index, if index had a collation defined.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

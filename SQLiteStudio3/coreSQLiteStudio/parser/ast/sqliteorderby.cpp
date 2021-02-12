@@ -45,7 +45,7 @@ QString SqliteOrderBy::getColumnName() const
         return expr->column;
 
     if (expr->mode == SqliteExpr::Mode::COLLATE && expr->expr1 && expr->expr1->mode == SqliteExpr::Mode::ID)
-        return expr->expr1->literalValue.toString();
+        return expr->expr1->column;
 
     return QString();
 }
