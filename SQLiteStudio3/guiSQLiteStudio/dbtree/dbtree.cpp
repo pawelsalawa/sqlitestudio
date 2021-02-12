@@ -29,6 +29,7 @@
 #include "querygenerator.h"
 #include "dialogs/execfromfiledialog.h"
 #include "dialogs/fileexecerrorsdialog.h"
+#include "common/compatibility.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -43,6 +44,7 @@
 #include <QDesktopServices>
 #include <QDir>
 #include <QFileDialog>
+#include <QElapsedTimer>
 #include <QtConcurrent/QtConcurrentRun>
 
 CFG_KEYS_DEFINE(DbTree)
@@ -713,7 +715,7 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
         {DbTreeItem::Type::INDEX, DbTreeItem::Type::INDEXES}
     };
 
-    if (!forPasting && srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && dstItem &&
+    if (!forPasting && toSet(srcTypes).size() == 1 && srcDbs.size() == 1 && dstItem &&
             *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
         return true;
 
@@ -1159,7 +1161,7 @@ void DbTree::editDb()
 
 void DbTree::removeDb()
 {
-    QList<Db*> dbList = getSelectedDatabases().toList();
+    QList<Db*> dbList = getSelectedDatabases().values();
     if (dbList.isEmpty())
         return;
 
@@ -1884,7 +1886,7 @@ void DbTree::execFromFileAsync(const QString& path, Db* db, bool ignoreErrors, c
     int executed = 0;
     bool ok = true;
 
-    QTime timer;
+    QElapsedTimer timer;
     timer.start();
     QList<QPair<QString, QString>> errors = executeFileQueries(db, stream, executed, attemptedExecutions, ok, ignoreErrors, fileSize);
     int millis = timer.elapsed();

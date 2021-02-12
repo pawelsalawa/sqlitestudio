@@ -62,6 +62,12 @@ int InvalidDb::getTimeout() const
     return timeout;
 }
 
+QList<AliasedColumn> InvalidDb::columnsForQuery(const QString& query)
+{
+    UNUSED(query);
+    return QList<AliasedColumn>();
+}
+
 SqlQueryPtr InvalidDb::exec(const QString& query, const QList<QVariant>& args, Db::Flags flags)
 {
     UNUSED(query);

@@ -1438,7 +1438,7 @@ public:
     }
     ~MockRepository() 
     {
-        if (!std::uncaught_exception())
+        if (std::uncaught_exceptions() == 0)
             VerifyAll();
         reset();
         for (std::list<base_mock *>::iterator i = mocks.begin(); i != mocks.end(); i++)

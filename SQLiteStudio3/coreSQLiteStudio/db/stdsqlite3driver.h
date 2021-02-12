@@ -53,6 +53,8 @@
         static int open_v2(const char *a1, handle **a2, int a3, const char *a4) {return Prefix##sqlite3_open_v2(a1, a2, a3, a4);} \
         static int finalize(stmt *arg) {return Prefix##sqlite3_finalize(arg);} \
         static const char *errmsg(handle* arg) {return Prefix##sqlite3_errmsg(arg);} \
+        static const char *column_decltype(stmt* arg1, int arg2) {return Prefix##sqlite3_column_decltype(arg1, arg2);} \
+        static int column_type(stmt* arg1, int arg2) {return Prefix##sqlite3_column_type(arg1, arg2);} \
         static int extended_errcode(handle* arg) {return Prefix##sqlite3_extended_errcode(arg);} \
         static const void *column_blob(stmt* arg1, int arg2) {return Prefix##sqlite3_column_blob(arg1, arg2);} \
         static int column_bytes(stmt* arg1, int arg2) {return Prefix##sqlite3_column_bytes(arg1, arg2);} \
@@ -61,8 +63,10 @@
         static int64 column_int64(stmt* arg1, int arg2) {return Prefix##sqlite3_column_int64(arg1, arg2);} \
         static const void *column_text16(stmt* arg1, int arg2) {return Prefix##sqlite3_column_text16(arg1, arg2);} \
         static const char *column_name(stmt* arg1, int arg2) {return Prefix##sqlite3_column_name(arg1, arg2);} \
-        static int column_type(stmt* arg1, int arg2) {return Prefix##sqlite3_column_type(arg1, arg2);} \
         static int column_count(stmt* arg1) {return Prefix##sqlite3_column_count(arg1);} \
+        static const char *column_database_name(stmt* arg1, int arg2) {return Prefix##sqlite3_column_database_name(arg1, arg2);} \
+        static const char *column_table_name(stmt* arg1, int arg2) {return Prefix##sqlite3_column_table_name(arg1, arg2);} \
+        static const char *column_origin_name(stmt* arg1, int arg2) {return Prefix##sqlite3_column_origin_name(arg1, arg2);} \
         static int changes(handle* arg) {return Prefix##sqlite3_changes(arg);} \
         static int total_changes(handle* arg) {return Prefix##sqlite3_total_changes(arg);} \
         static int64 last_insert_rowid(handle* arg) {return Prefix##sqlite3_last_insert_rowid(arg);} \

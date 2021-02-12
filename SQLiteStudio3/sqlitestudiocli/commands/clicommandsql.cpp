@@ -8,6 +8,7 @@
 #include "common/unused.h"
 #include "cli_config.h"
 #include "cliutils.h"
+#include "common/compatibility.h"
 #include <QList>
 #include <QDebug>
 
@@ -290,7 +291,7 @@ void CliCommandSql::shrinkColumns(QList<CliCommandSql::SortedColumnWidth*>& colu
         previousTotalWidth = totalWidth;
 
         // Sort columns by current widths
-        qSort(columnWidths);
+        sSort(columnWidths);
 
         // See if we can shrink headers only, or we already need to shrink the data
         for (SortedColumnWidth* colWidth : columnWidths)

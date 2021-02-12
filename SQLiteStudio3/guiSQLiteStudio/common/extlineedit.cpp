@@ -99,7 +99,7 @@ void ExtLineEdit::handleTextChanged()
         return;
 
     // Text width
-    int newWidth = fontMetrics().width(txt);
+    int newWidth = fontMetrics().horizontalAdvance(txt);
 
     // Text margins
     QMargins margins = textMargins();

@@ -13,26 +13,6 @@ SqliteWith::SqliteWith(const SqliteWith& other) :
     DEEP_COPY_COLLECTION(CommonTableExpression, cteList);
 }
 
-SqliteWith* SqliteWith::append(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select)
-{
-    SqliteWith* with = new SqliteWith();
-    CommonTableExpression* cte = new CommonTableExpression(tableName, indexedColumns, select);
-    cte->setParent(with);
-    with->cteList << cte;
-    return with;
-}
-
-SqliteWith* SqliteWith::append(SqliteWith* with, const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select)
-{
-    if (!with)
-        with = new SqliteWith();
-
-    CommonTableExpression* cte = new CommonTableExpression(tableName, indexedColumns, select);
-    cte->setParent(with);
-    with->cteList << cte;
-    return with;
-}
-
 SqliteStatement*SqliteWith::clone()
 {
     return new SqliteWith(*this);

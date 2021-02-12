@@ -2,6 +2,7 @@
 #include "common/global.h"
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
+#include "common/compatibility.h"
 #include <QTextCodec>
 #include <QString>
 #include <QSet>
@@ -14,6 +15,7 @@
 #include <QByteArray>
 #include <QBitArray>
 #include <QDataStream>
+#include <QRandomGenerator>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -69,7 +71,7 @@ QChar charAt(const QString& str, int pos)
 
 int rand(int min, int max)
 {
-    return qrand() % (max-min) + min;
+    return QRandomGenerator::system()->generate() % (max-min) + min;
 }
 
 QString randStr(int length, bool numChars, bool whiteSpaces)
@@ -627,8 +629,8 @@ QStringList textCodecNames()
     for (const QByteArray& codec : codecs)
         nameSet << QString::fromLatin1(codec.constData());
 
-    names = nameSet.toList();
-    qSort(names);
+    names = nameSet.values();
+    sSort(names);
     return names;
 }
 
@@ -976,7 +978,7 @@ QString doubleToString(const QVariant& val)
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)
 {
-    qSort(listToSort.begin(), listToSort.end(), [referenceList, cs](const QString& s1, const QString& s2) -> bool
+    sSort(listToSort, [referenceList, cs](const QString& s1, const QString& s2) -> bool
     {
         int idx1 = indexOf(referenceList, s1, cs);
         int idx2 = indexOf(referenceList, s2, cs);

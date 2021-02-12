@@ -27,7 +27,7 @@ void CliCommandTree::execute()
     else
     {
         databases << "main" << "temp";
-        databases += resolver.getDatabases().toList();
+        databases += resolver.getDatabases().values();
     }
 
     AsciiTree tree;

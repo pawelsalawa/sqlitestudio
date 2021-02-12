@@ -32,7 +32,7 @@ QString PrintingExport::getFormatName() const
 
 ExportManager::StandardConfigFlags PrintingExport::standardOptionsToEnable() const
 {
-    return 0;
+    return ExportManager::StandardConfigFlags();
 }
 
 ExportManager::ExportModes PrintingExport::getSupportedModes() const

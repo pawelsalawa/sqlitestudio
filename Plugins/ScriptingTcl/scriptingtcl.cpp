@@ -290,6 +290,7 @@ QVariant ScriptingTcl::tclObjToVariant(Tcl_Obj* obj)
                 Tcl_DictObjDone(&search);
             }
             result = hash;
+            break;
         }
         case TclDataType::Bignum:
         case TclDataType::String:

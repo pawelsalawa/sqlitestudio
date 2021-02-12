@@ -46,6 +46,7 @@ class AbstractDb3 : public AbstractDb
 
         bool loadExtension(const QString& filePath, const QString& initFunc = QString());
         bool isComplete(const QString& sql) const;
+        QList<AliasedColumn> columnsForQuery(const QString& query);
 
     protected:
         bool isOpenInternal();
@@ -341,6 +342,41 @@ template<class T>
 bool AbstractDb3<T>::isComplete(const QString& sql) const
 {
     return T::complete(sql.toUtf8().constData());
+}
+
+template<class T>
+QList<AliasedColumn> AbstractDb3<T>::columnsForQuery(const QString& query)
+{
+    QList<AliasedColumn> result;
+    const char* tail;
+    QByteArray queryBytes = query.toUtf8();
+    typename T::stmt* stmt = nullptr;
+    int res = T::prepare_v2(dbHandle, queryBytes.constData(), queryBytes.size(), &stmt, &tail);
+    if (res != T::OK)
+    {
+        stmt = nullptr;
+        extractLastError();
+        T::finalize(stmt);
+        return result;
+    }
+
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+        qWarning() << "Executed query left with tailing contents:" << tail << ", while finding columns for query:" << query;
+
+
+    int colCount = T::column_count(stmt);
+    for (int i = 0; i < colCount; i++)
+    {
+        AliasedColumn col;
+        col.setDatabase(QString::fromUtf8(T::column_database_name(stmt, i)));
+        col.setTable(QString::fromUtf8(T::column_table_name(stmt, i)));
+        col.setColumn(QString::fromUtf8(T::column_origin_name(stmt, i)));
+        col.setAlias(QString::fromUtf8(T::column_name(stmt, i)));
+        result << col;
+    }
+
+    T::finalize(stmt);
+    return result;
 }
 
 template <class T>

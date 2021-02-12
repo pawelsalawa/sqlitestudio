@@ -60,7 +60,7 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
         int startPosition = 0;
 
     public slots:
-        bool find(QTextDocument::FindFlags flags = 0);
+        bool find(QTextDocument::FindFlags flags = QTextDocument::FindFlags());
         void findNext();
         void findPrev();
         bool replaceAndFind();

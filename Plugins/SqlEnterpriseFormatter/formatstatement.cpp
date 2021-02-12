@@ -577,6 +577,7 @@ QString FormatStatement::detokenize()
                 {
                     // No 'break', so we go to next case, the regular KEYWORD
                 }
+                __attribute__((__fallthrough__));
             }
             case FormatToken::KEYWORD:
             {
@@ -840,6 +841,7 @@ bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type ty
         case FormatToken::KEYWORD:
         case FormatToken::LINED_UP_KEYWORD:
         case FormatToken::ID:
+        case FormatToken::ID_NO_WRAP:
         case FormatToken::STRING_OR_ID:
         case FormatToken::FLOAT:
         case FormatToken::STRING:
@@ -885,6 +887,7 @@ bool FormatStatement::isMetaType(FormatStatement::FormatToken::Type type)
         case FormatToken::KEYWORD:
         case FormatToken::LINED_UP_KEYWORD:
         case FormatToken::ID:
+        case FormatToken::ID_NO_WRAP:
         case FormatToken::STRING_OR_ID:
         case FormatToken::FLOAT:
         case FormatToken::STRING:

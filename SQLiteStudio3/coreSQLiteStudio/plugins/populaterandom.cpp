@@ -2,6 +2,7 @@
 #include "services/populatemanager.h"
 #include "common/unused.h"
 #include <QDateTime>
+#include <QRandomGenerator>
 
 PopulateRandom::PopulateRandom()
 {
@@ -21,7 +22,7 @@ bool PopulateRandomEngine::beforePopulating(Db* db, const QString& table)
 {
     UNUSED(db);
     UNUSED(table);
-    qsrand(QDateTime::currentDateTime().toTime_t());
+    QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
     range = cfg.PopulateRandom.MaxValue.get() - cfg.PopulateRandom.MinValue.get() + 1;
     return (range > 0);
 }
@@ -29,7 +30,7 @@ bool PopulateRandomEngine::beforePopulating(Db* db, const QString& table)
 QVariant PopulateRandomEngine::nextValue(bool& nextValueError)
 {
     UNUSED(nextValueError);
-    QString randValue = QString::number((qrand() % range) + cfg.PopulateRandom.MinValue.get());
+    QString randValue = QString::number((QRandomGenerator::system()->generate() % range) + cfg.PopulateRandom.MinValue.get());
     return (cfg.PopulateRandom.Prefix.get() + randValue + cfg.PopulateRandom.Suffix.get());
 }
 

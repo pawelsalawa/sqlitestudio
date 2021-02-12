@@ -4,6 +4,7 @@
 #include "datatype.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
+#include "common/compatibility.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -38,12 +39,12 @@ void DbObjectOrganizer::init()
 
 void DbObjectOrganizer::copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers)
 {
-    copyOrMoveObjectsToDb(srcDb, objNames.toSet(), dstDb, includeData, includeIndexes, includeTriggers, false);
+    copyOrMoveObjectsToDb(srcDb, toSet(objNames), dstDb, includeData, includeIndexes, includeTriggers, false);
 }
 
 void DbObjectOrganizer::moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers)
 {
-    copyOrMoveObjectsToDb(srcDb, objNames.toSet(), dstDb, includeData, includeIndexes, includeTriggers, true);
+    copyOrMoveObjectsToDb(srcDb, toSet(objNames), dstDb, includeData, includeIndexes, includeTriggers, true);
 }
 
 void DbObjectOrganizer::interrupt()
@@ -169,7 +170,7 @@ void DbObjectOrganizer::processPreparation()
         }
     }
 
-    if (referencedTables.size() > 0 && !execConfirmFunctionInMainThread(referencedTables.toList()))
+    if (referencedTables.size() > 0 && !execConfirmFunctionInMainThread(referencedTables.values()))
         referencedTables.clear();
 
     for (const QString& srcTable : referencedTables)
@@ -559,9 +560,9 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
 
 QSet<QString> DbObjectOrganizer::resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables)
 {
-    QSet<QString> tables = SchemaResolver::getFkReferencingTables(table, parsedTables).toSet();
+    QSet<QString> tables = toSet(SchemaResolver::getFkReferencingTables(table, parsedTables));
     for (const QString& fkTable : tables)
-        tables += SchemaResolver::getFkReferencingTables(fkTable, parsedTables).toSet();
+        tables += toSet(SchemaResolver::getFkReferencingTables(fkTable, parsedTables));
 
     tables.remove(table); // if it appeared somewhere in the references - we still don't need it here, it's the table we asked by in the first place
     return tables;
@@ -588,17 +589,17 @@ void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrH
 
 void DbObjectOrganizer::collectReferencedIndexes(const QString& table)
 {
-    srcIndexes += srcResolver->getIndexesForTable(table).toSet();
+    srcIndexes += toSet(srcResolver->getIndexesForTable(table));
 }
 
 void DbObjectOrganizer::collectReferencedTriggersForTable(const QString& table)
 {
-    srcTriggers += srcResolver->getTriggersForTable(table).toSet();
+    srcTriggers += toSet(srcResolver->getTriggersForTable(table));
 }
 
 void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
 {
-    srcTriggers += srcResolver->getTriggersForView(view).toSet();
+    srcTriggers += toSet(srcResolver->getTriggersForView(view));
 }
 
 bool DbObjectOrganizer::setFkEnabled(bool enabled)

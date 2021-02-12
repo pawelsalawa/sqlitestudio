@@ -40,6 +40,12 @@ class SchemaResolver;
  * Result column like "table.*" will produce one or more column
  * objects from this class.
  *
+ * In case of CTE (Common Table Expression, aka WITH statement)
+ * the columns resolved from CTE will by of type COLUMN
+ * and will have FROM_CTE flag set. Such columns will have
+ * displayName and tableAlias populated, while database, table
+ * and column attributes may or may not be populated.
+ *
  * There's one unsupported case: When the select has a subselect
  * in "FROM" clause and that subselect is actually a multi-core
  * select (with UNIONs), then columns produced from such source
@@ -203,6 +209,7 @@ class API_EXPORT SelectResolver
 
         QList<Column> resolveJoinSource(SqliteSelect::Core::JoinSource* joinSrc);
         QList<Column> resolveSingleSource(SqliteSelect::Core::SingleSource* joinSrc);
+        QList<Column> resolveCteColumns(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveTableFunctionColumns(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveSingleSourceSubSelect(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveOtherSource(SqliteSelect::Core::JoinSourceOther *otherSrc);
@@ -216,7 +223,6 @@ class API_EXPORT SelectResolver
 
         void markDistinctColumns();
         void markCompoundColumns();
-        void markCteColumns(QList<Column>* columnList = nullptr);
         void markGroupedColumns();
         void fixColumnNames();
         void markCurrentColumnsWithFlag(Flag flag, QList<Column>* columnList = nullptr);

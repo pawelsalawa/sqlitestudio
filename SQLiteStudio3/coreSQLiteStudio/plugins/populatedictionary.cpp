@@ -5,6 +5,7 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
+#include <QRandomGenerator>
 
 PopulateDictionary::PopulateDictionary()
 {
@@ -45,7 +46,7 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     dictionaryPos = 0;
     dictionarySize = dictionary.size();
     if (cfg.PopulateDictionary.Random.get())
-        qsrand(QDateTime::currentDateTime().toTime_t());
+        QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
 
     return true;
 }
@@ -55,7 +56,7 @@ QVariant PopulateDictionaryEngine::nextValue(bool& nextValueError)
     UNUSED(nextValueError);
     if (cfg.PopulateDictionary.Random.get())
     {
-        int r = qrand() % dictionarySize;
+        int r = QRandomGenerator::system()->generate() % dictionarySize;
         return dictionary[r];
     }
     else
