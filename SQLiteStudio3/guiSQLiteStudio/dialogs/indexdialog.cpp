@@ -665,7 +665,15 @@ QString IndexDialog::getKey(SqliteOrderBy* col) const
     if (col->isSimpleColumn())
         return col->getColumnName();
 
-    return col->expr->tokens.filterWhiteSpaces(false).detokenize();
+    return buildKey(col->expr);
+}
+
+QString IndexDialog::buildKey(SqliteExpr* expr)
+{
+    if (expr->mode == SqliteExpr::Mode::COLLATE && expr->expr1)
+        return expr->expr1->tokens.filterWhiteSpaces(false).detokenize().trimmed();
+
+    return expr->tokens.filterWhiteSpaces(false).detokenize().trimmed();
 }
 
 QStringList IndexDialog::getExistingColumnExprs(const QString& exceptThis) const
@@ -829,6 +837,11 @@ QString IndexDialog::Column::getName() const
 
 SqliteExpr* IndexDialog::Column::getExpr() const
 {
+    // If column's expression contains collation at top level,
+    // the EXPR for processing is inner expr of collation.
+    if (expr->mode == SqliteExpr::Mode::COLLATE)
+        return expr->expr1;
+
     return expr;
 }
 
@@ -846,7 +859,7 @@ bool IndexDialog::Column::isExpr() const
 QString IndexDialog::Column::getKey() const
 {
     if (expr)
-        return expr->tokens.filterWhiteSpaces(false).detokenize();
+        return IndexDialog::buildKey(expr);
     else
         return name;
 }

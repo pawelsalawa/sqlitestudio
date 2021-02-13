@@ -388,6 +388,36 @@ void SqliteExpr::detectDoubleQuotes(bool recursively)
     }
 }
 
+bool SqliteExpr::replace(SqliteExpr* toBeReplaced, SqliteExpr* replaceWith)
+{
+    if (expr1 == toBeReplaced)
+    {
+        expr1 = replaceWith;
+        return true;
+    }
+
+    if (expr2 == toBeReplaced)
+    {
+        expr2 = replaceWith;
+        return true;
+    }
+
+    if (expr3 == toBeReplaced)
+    {
+        expr3 = replaceWith;
+        return true;
+    }
+
+    int idx = exprList.indexOf(toBeReplaced);
+    if (idx > -1)
+    {
+        exprList.replace(idx, replaceWith);
+        return true;
+    }
+
+    return false;
+}
+
 QStringList SqliteExpr::getColumnsInStatement()
 {
     return getStrListFromValue(column);

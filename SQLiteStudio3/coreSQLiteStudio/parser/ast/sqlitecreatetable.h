@@ -112,6 +112,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 QList<Constraint*> getConstraints(Constraint::Type type) const;
                 QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
                 void fixTypeVsGeneratedAs();
+                void evaluatePostParsing();
 
                 QString name = QString();
                 SqliteColumnType* type = nullptr;

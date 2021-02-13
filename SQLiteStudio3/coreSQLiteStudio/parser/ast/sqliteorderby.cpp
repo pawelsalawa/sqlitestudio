@@ -2,6 +2,7 @@
 #include "sqliteexpr.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include <QDebug>
 
 SqliteOrderBy::SqliteOrderBy()
 {
@@ -112,6 +113,61 @@ TokenList SqliteOrderBy::rebuildTokensFromContents()
         builder.withSpace().withKeyword("NULLS").withSpace().withKeyword(sqliteNulls(nulls));
 
     return builder.build();
+}
+
+void SqliteOrderBy::evaluatePostParsing()
+{
+    pullLastCollationAsOuterExpr();
+}
+
+void SqliteOrderBy::pullLastCollationAsOuterExpr()
+{
+    /*
+     * If the order statement is like: columnName + 2 COLLATE BINARY ASC
+     * then the COLLATE is associated with the "2" subexpr, instead of the most outer expr.
+     * Looks like SQLite's parser does the same, but they don't care about the depth as we do here.
+     * Therefore if we idenfity this case, we need to pull the inner expr to outside.
+     */
+    TokenPtr collateToken = expr->tokens.findLast(Token::KEYWORD, "COLLATE", Qt::CaseInsensitive);
+    if (collateToken.isNull())
+        return;
+
+    int lastCollateIdx = expr->tokens.indexOf(collateToken);
+    if (expr->tokens.mid(lastCollateIdx).filterWhiteSpaces().size() != 2)
+        return;
+
+    // This is the case. We need to pull the expr to the top level.
+    SqliteStatement* stmt = expr->findStatementWithToken(collateToken);
+    SqliteExpr* collateExpr = dynamic_cast<SqliteExpr*>(stmt);
+    if (!collateExpr)
+    {
+        qCritical() << "Could not cast statement to SqliteExpr, even though it's identified as COLLATE expr. The actual contents:"
+                    << collateExpr->detokenize();
+        return;
+    }
+
+    if (collateExpr == expr)
+        return; // it's already the top-level expr, we're fine.
+
+    SqliteExpr* parentExpr = dynamic_cast<SqliteExpr*>(collateExpr->parentStatement());
+    if (!parentExpr)
+    {
+        qCritical() << "Could not cast parent statement to SqliteExpr, even though parent of COLLATE should be another expr at this stage."
+                    << "The qobject type of parent:" << collateExpr->parentStatement()->metaObject()->className();
+        return;
+    }
+
+    // Take out COLLATE from its current place
+    collateExpr->expr1->setParent(parentExpr);             // New parent of COLLATE's expr is now parent of COLLATE
+    parentExpr->replace(collateExpr, collateExpr->expr1);  // New child expr of COLLATE's parent is now child of COLLATE
+
+    // Put it at top level
+    collateExpr->expr1 = expr;      // COLLATE's child is set to the old top level expr
+    expr->setParent(collateExpr);   // Old top level expr gets COLLATE as parent
+    expr = collateExpr;             // New top level is now COLLATE
+    collateExpr->setParent(this);   // COLLATE's new parent is this
+
+    rebuildTokens();
 }
 
 void SqliteOrderBy::clearCollation()

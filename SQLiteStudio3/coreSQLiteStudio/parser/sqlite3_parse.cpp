@@ -466,7 +466,7 @@ static const YYACTIONTYPE yy_action[] = {
  /*  1980 */   835,  834,  511,  793,  224,  724,  793,  232,  719,   52,
  /*  1990 */    53,  793,  230,  289,  837,  509,   54,  563,  836,  287,
  /*  2000 */    81,  836,   28,  559,    3,  658,  836,  433,  511,  798,
- /*  2010 */   505,  497,  836,  837,  835,  510,  837,  793,  233,  706,
+ /*  2010 */   505,  497,  836,  837,  808,  510,  837,  793,  233,  706,
  /*  2020 */   811,   80,  509,  156,  722,  512,  722,  798,  810,  809,
  /*  2030 */   808,  792,  324,  509,  285,  511,   55,  500,  555,  187,
  /*  2040 */   761,  722,  429,  761,  793,  237,  511,  836,  761,  837,
@@ -3301,7 +3301,6 @@ static void yy_reduce(
       case 42: /* column ::= columnid type carglist */
 {
                                                 yygotominor.yy303 = new SqliteCreateTable::Column(*(yymsp[-2].minor.yy633), yymsp[-1].minor.yy499, *(yymsp[0].minor.yy175));
-												yygotominor.yy303->fixTypeVsGeneratedAs();
                                                 delete yymsp[-2].minor.yy633;
                                                 delete yymsp[0].minor.yy175;
                                                 objectForTokens = yygotominor.yy303;

@@ -334,7 +334,6 @@ columnlist(X) ::= column(C).                {
 column(X) ::= columnid(C) type(T)
                 carglist(L).                {
                                                 X = new SqliteCreateTable::Column(*(C), T, *(L));
-												X->fixTypeVsGeneratedAs();
                                                 delete C;
                                                 delete L;
                                                 objectForTokens = X;

@@ -753,6 +753,11 @@ void SqliteCreateTable::Column::fixTypeVsGeneratedAs()
     }
 }
 
+void SqliteCreateTable::Column::evaluatePostParsing()
+{
+    fixTypeVsGeneratedAs();
+}
+
 QStringList SqliteCreateTable::Column::getColumnsInStatement()
 {
     return getStrListFromValue(name);
