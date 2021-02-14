@@ -122,6 +122,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         QString getKey(SqliteOrderBy* col) const;
         QStringList getExistingColumnExprs(const QString& exceptThis = QString()) const;
         QStringList getTableColumns() const;
+        void preReject();
 
         bool existingIndex = false;
         Db* db = nullptr;
@@ -135,6 +136,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         StrHash<Column*> columns;
         QList<Column*> columnsByRow;
         int totalColumns = 0;
+        bool preRejected = false;
         Ui::IndexDialog *ui = nullptr;
 
     private slots:
@@ -154,6 +156,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
 
     public slots:
         void accept();
+        int exec();
 };
 
 #endif // INDEXDIALOG_H

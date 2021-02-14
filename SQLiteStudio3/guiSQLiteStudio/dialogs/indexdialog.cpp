@@ -65,7 +65,7 @@ void IndexDialog::init()
     {
         qCritical() << "Created IndexDialog for null or closed database.";
         notifyError(tr("Tried to open index dialog for closed or inexisting database."));
-        reject();
+        preReject();
         return;
     }
 
@@ -135,8 +135,9 @@ void IndexDialog::readIndex()
     SqliteQueryPtr parsedObject = resolver.getParsedObject(index, SchemaResolver::INDEX);
     if (!parsedObject.dynamicCast<SqliteCreateIndex>())
     {
+        createIndex = SqliteCreateIndexPtr::create();
         notifyError(tr("Could not process index %1 correctly. Unable to open an index dialog.").arg(index));
-        reject();
+        preReject();
         return;
     }
 
@@ -705,6 +706,11 @@ QStringList IndexDialog::getTableColumns() const
     return cols;
 }
 
+void IndexDialog::preReject()
+{
+    preRejected = true;
+}
+
 void IndexDialog::accept()
 {
     rebuildCreateIndex();
@@ -757,6 +763,14 @@ void IndexDialog::accept()
         QMessageBox::critical(this, tr("Error", "index dialog"), tr("An error occurred while executing SQL statements:\n%1")
                               .arg(executor.getErrorsMessages().join(",\n")), QMessageBox::Ok);
     }
+}
+
+int IndexDialog::exec()
+{
+    if (preRejected)
+        return Rejected;
+
+    return QDialog::exec();
 }
 
 IndexDialog::Column::Column(const QString& name, QTableWidget* table)

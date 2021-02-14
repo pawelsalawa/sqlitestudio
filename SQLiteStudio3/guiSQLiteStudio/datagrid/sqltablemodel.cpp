@@ -428,7 +428,7 @@ void SqlTableModel::processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,
 QString SqlTableModel::getDatabasePrefix()
 {
     if (database.isNull())
-        return "main.";
+        return ""; // not "main.", because the "main." doesn't work for TEMP tables, such as sqlite_temp_master
 
     return wrapObjIfNeeded(database) + ".";
 }

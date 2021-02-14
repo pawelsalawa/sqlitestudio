@@ -45,6 +45,7 @@
 - BUGFIX: #3431 Fixed Index Dialog - it was basically impossible to edit existing index, if index had a collation defined.
 - BUGFIX: #3452 Fixed XML export with CDATA quoting if the value contains CDATA end tag.
 - BUGFIX: #3451 Fixed XML export to escape properly all unguarded values & fixed VIRTUAL TABLE export to produce appropriate tag names.
+- BUGFIX: #3422 Improved handling of SQLite's internal indexes, so SQLiteStudio not only shows them now, but also figures out their DDL, so that user can preview it in dialogs/windows.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
