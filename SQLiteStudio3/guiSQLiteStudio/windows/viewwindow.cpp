@@ -91,6 +91,9 @@ void ViewWindow::changeEvent(QEvent *e)
 
 QVariant ViewWindow::saveSession()
 {
+    if (!db || DBLIST->isTemporary(db))
+        return QVariant();
+
     QHash<QString,QVariant> sessionValue;
     sessionValue["view"] = view;
     sessionValue["db"] = db->getName();
@@ -670,6 +673,7 @@ void ViewWindow::prevTab()
 
 void ViewWindow::dbClosedFinalCleanup()
 {
+    db = nullptr;
     dataModel->setDb(nullptr);
     ui->queryEdit->setDb(nullptr);
     structureExecutor->setDb(nullptr);
