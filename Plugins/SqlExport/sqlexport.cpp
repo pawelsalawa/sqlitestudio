@@ -60,10 +60,10 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 
     writeBegin();
 
+    theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get());
     if (!cfg.SqlExport.GenerateCreateTable.get())
         return true;
 
-    theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get());
     QString ddl = "CREATE TABLE " + theTable + " (" + this->columns + ");";
     writeln("");
 
