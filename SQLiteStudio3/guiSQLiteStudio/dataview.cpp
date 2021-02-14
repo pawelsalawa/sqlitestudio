@@ -544,6 +544,9 @@ void DataView::adjustColumnWidth(SqlQueryItem* item)
         return;
 
     int col = item->column();
+    if (model->getDesiredColumnWidth(col) > -1)
+        return;
+
     gridView->resizeColumnToContents(col);
     if (gridView->columnWidth(col) > CFG_UI.General.MaxInitialColumnWith.get())
         gridView->setColumnWidth(col, CFG_UI.General.MaxInitialColumnWith.get());
