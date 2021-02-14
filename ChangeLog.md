@@ -47,6 +47,7 @@
 - BUGFIX: #3451 Fixed XML export to escape properly all unguarded values & fixed VIRTUAL TABLE export to produce appropriate tag names.
 - BUGFIX: #3422 Improved handling of SQLite's internal indexes, so SQLiteStudio not only shows them now, but also figures out their DDL, so that user can preview it in dialogs/windows.
 - BUGFIX: #3582 Fixed disappearing table (only on the view, not physically) from source database when moving it to another databasein case of failed movement. Now the source database schema is refreshed after failure to show that the table is still there.
+- BUGFIX: #3580 Limiting view depth to 1 for query smart executor, so that it's impossible to build up unbilivebly huge queries by expending multi-level views, which result in unoptimized, slow queries.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
