@@ -97,6 +97,8 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
         char* label = const_cast<char*>("[LEMON3]: ");
         parseTrace(stderr, label);
     }
+    else
+        parseTrace(nullptr, nullptr);
 
     reset();
     lexer->prepare(sql);

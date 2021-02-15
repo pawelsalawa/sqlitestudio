@@ -261,7 +261,7 @@ TokenList SqliteSelect::Core::ResultColumn::getTableTokensInStatement()
         return TokenList();
 
     // Now, we know table was specified
-    return getTokenListFromNamedKey("nm");
+    return getTokenListFromNamedKey("tnm");
 }
 
 QList<SqliteStatement::FullObject> SqliteSelect::Core::ResultColumn::getFullObjectsInStatement()

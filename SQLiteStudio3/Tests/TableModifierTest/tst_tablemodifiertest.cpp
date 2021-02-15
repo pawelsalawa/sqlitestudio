@@ -309,6 +309,7 @@ void TableModifierTest::initTestCase()
 void TableModifierTest::init()
 {
     initMocks();
+    initUtilsSql();
 
     db = new DbSqlite3Mock("testdb");
     db->open();

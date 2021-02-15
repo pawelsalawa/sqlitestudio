@@ -568,7 +568,20 @@ ccons(X) ::= CHECK LP RP.                   {
 term(X) ::= NULL.                           {X = new QVariant();}
 term(X) ::= INTEGER(N).                     {X = parserContext->handleNumberToken(N->value);}
 term(X) ::= FLOAT(N).                       {X = new QVariant(QVariant(N->value).toDouble());}
-term(X) ::= STRING|BLOB(S).                 {X = new QVariant(S->value);}
+term(X) ::= STRING|BLOB(S).                 {X = new QVariant(stripString(S->value));}
+
+// Term Literal or Name. String falls under Term, but can be falled back to Name if necessary in the context.
+// On the other hand - if name is ID, it cannot be falled back to Term, as ID is never a Literal value.
+%type tnm {ParserTermOrLiteral*}
+%destructor tnm {parser_safe_delete($$);}
+tnm(X) ::= term(T).							{
+												X = new ParserTermOrLiteral(*(T));
+												delete T;
+											}
+tnm(X) ::= nm(N).							{
+												X = new ParserTermOrLiteral(*(N));
+												delete N;
+											}
 
 %type gen_always {bool*}
 %destructor gen_always {parser_safe_delete($$);}
@@ -947,12 +960,16 @@ selcollist(X) ::= sclp(L) STAR.             {
                                                 objectForTokens = obj;
                                                 DONT_INHERIT_TOKENS("sclp");
                                             }
-selcollist(X) ::= sclp(L) nm(N) DOT STAR.   {
+selcollist(X) ::= sclp(L) tnm(N) DOT STAR.   {
                                                 SqliteSelect::Core::ResultColumn* obj =
                                                     new SqliteSelect::Core::ResultColumn(
                                                         true,
-                                                        *(N)
+                                                        N->toName()
                                                     );
+													
+												if (!N->isName())
+													parserContext->errorAtToken("Syntax error <expected name, not literal value>", -3);
+													
                                                 L->append(obj);
                                                 X = L;
                                                 delete N;
@@ -1570,75 +1587,17 @@ upsert(X) ::= ON CONFLICT DO NOTHING.       {
 %type exprx {SqliteExpr*}
 %destructor exprx {parser_safe_delete($$);}
 
-exprx(X) ::= nm(N1) DOT.                    {
-                                                X = new SqliteExpr();
-                                                X->initId(*(N1), QString(), QString());
-                                                delete N1;
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.>");
-                                            }
-exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
-                                                X = new SqliteExpr();
-                                                X->initId(*(N1), *(N2), QString());
-                                                delete N1;
-                                                delete N2;
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.nm.>");
-                                            }
-exprx(X) ::= expr(E1) not_opt(N) BETWEEN
-                expr(E2) AND.               {
-                                                X = new SqliteExpr();
-                                                delete N;
-                                                delete E1;
-                                                delete E2;
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt BETWEEN expr AND>");
-                                            }
-exprx(X) ::= CASE case_operand(O)
-                case_exprlist(L)
-                case_else(E).               {
-                                                X = new SqliteExpr();
-                                                delete L;
-                                                delete O;
-                                                delete E;
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: CASE operand exprlist else>");
-                                            }
-exprx(X) ::= expr(E) not_opt(N) IN LP
-                exprlist(L). [IN]           {
-                                                X = new SqliteExpr();
-                                                delete N;
-                                                delete L;
-                                                delete E;
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt IN LP exprlist>");
-                                            }
-/*
-This introduces premature reduce for LP-expr and causes bug #2755
-exprx(X) ::= LP expr(E).                    {
-                                                X = new SqliteExpr();
-                                                X->initSubExpr(E);
-                                                objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: LP expr>");
-                                            }
-*/
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
             ID_TAB. [IN]                    {}
 exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
-exprx ::= nm DOT ID_TAB|ID_COL.             {}
-exprx ::= nm DOT nm DOT ID_COL.             {}
+exprx ::= tnm DOT ID_TAB|ID_COL.             {}
+exprx ::= tnm DOT nm DOT ID_COL.             {}
 exprx ::= expr COLLATE ID_COLLATE.          {}
 exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
 
 
-exprx(X) ::= term(T).                       {
-                                                X = new SqliteExpr();
-                                                X->initLiteral(*(T));
-                                                delete T;
-                                                objectForTokens = X;
-                                            }
 exprx(X) ::= CTIME_KW(K).                   {
                                                 X = new SqliteExpr();
                                                 X->initCTime(K->value);
@@ -1650,34 +1609,35 @@ exprx(X) ::= LP nexprlist(L) RP.            {
                                                 delete L;
                                                 objectForTokens = X;
                                             }
-/*
-exprx(X) ::= LP expr(E) RP.                 {
+exprx(X) ::= tnm(N1).                       {
                                                 X = new SqliteExpr();
-                                                X->initSubExpr(E);
+												if (N1->isLiteral())
+													X->initLiteral(N1->toLiteral());
+												else
+													X->initId(N1->toName());
+													//parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
+
+                                                delete N1;
                                                 objectForTokens = X;
                                             }
-*/
-exprx(X) ::= id(N).                         {
+exprx(X) ::= tnm(N1) DOT nm(N2).            {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N));
-                                                delete N;
-                                                objectForTokens = X;
-                                            }
-exprx(X) ::= JOIN_KW(N).                    {
-                                                X = new SqliteExpr();
-                                                X->initId(N->value);
-                                                objectForTokens = X;
-                                            }
-exprx(X) ::= nm(N1) DOT nm(N2).             {
-                                                X = new SqliteExpr();
-                                                X->initId(*(N1), *(N2));
+												if (N1->isName())
+													X->initId(N1->toName(), *(N2));
+												else
+													parserContext->errorAtToken("Syntax error <expected name>", -3);
+
                                                 delete N1;
                                                 delete N2;
                                                 objectForTokens = X;
                                             }
-exprx(X) ::= nm(N1) DOT nm(N2) DOT nm(N3).  {
+exprx(X) ::= tnm(N1) DOT nm(N2) DOT nm(N3). {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N1), *(N2), *(N3));
+												if (N1->isName())
+													X->initId(N1->toName(), *(N2), *(N3));
+												else
+													parserContext->errorAtToken("Syntax error <expected name>", -5);
+
                                                 delete N1;
                                                 delete N2;
                                                 delete N3;
