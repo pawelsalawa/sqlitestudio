@@ -50,7 +50,8 @@
 - BUGFIX: #3580 Limiting view depth to 1 for query smart executor, so that it's impossible to build up unbilivebly huge queries by expending multi-level views, which result in unoptimized, slow queries.
 - BUGFIX: #3959 Fixed SQL export plugin, so it respects table name for INSERT statements, even though CREATE TABLE statement export was not enabled.
 - BUGFIX: #3941 Column is no longer resized if user set his own width as desired and then he edits values in cells.
-- BUGFIX: #3857 Fixed parse so it accepts string as first part of object path (id.id or id.id.id).
+- BUGFIX: #3857 Fixed parser so it accepts string as first part of object path (id.id or id.id.id).
+- BUGFIX: #3136 Updated configuration path candidates to include Qt's standard path for app configuration. Even then if all paths fail, the app will ask user for writable directory.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

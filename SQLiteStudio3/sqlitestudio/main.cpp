@@ -37,6 +37,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #ifdef Q_OS_WIN
+#include <QFileDialog>
 #   include <windef.h>
 #   include <windows.h>
 #endif
@@ -100,6 +101,9 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 int main(int argc, char *argv[])
 {
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationName("SQLiteStudio");
+    QCoreApplication::setOrganizationName("SalSoft");
+    QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
 
     SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
@@ -114,11 +118,17 @@ int main(int argc, char *argv[])
 
     qInstallMessageHandler(uiMessageHandler);
 
+    Config::setAskUserForConfigDirFunc([]() -> QString
+    {
+       return QFileDialog::getExistingDirectory(nullptr, QObject::tr("Select configuration directory"), QString(), QFileDialog::ShowDirsOnly);
+    });
+
     QString dbToOpen = uiHandleCmdLineArgs();
 
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
+
 
     SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "guiSQLiteStudio", "sqlitestudio"});
     SQLITESTUDIO->init(a.arguments(), true);

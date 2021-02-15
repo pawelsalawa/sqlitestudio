@@ -15,9 +15,13 @@
 #include <QDateTime>
 #include <QSysInfo>
 #include <QCoreApplication>
+#include <QStandardPaths>
+#include <QSettings>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QtWidgets/QFileDialog>
 
 static_qstring(DB_FILE_NAME, "settings3");
+static_qstring(CONFIG_DIR_SETTING, "SQLiteStudioConfigDir");
 qint64 ConfigImpl::sqlHistoryId = -1;
 QString ConfigImpl::memoryDbName = QStringLiteral(":memory:");
 
@@ -598,6 +602,11 @@ void ConfigImpl::rollback()
 
 QString ConfigImpl::getConfigPath()
 {
+    return QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/" + DB_FILE_NAME;
+}
+
+QString ConfigImpl::getLegacyConfigPath()
+{
 #ifdef Q_OS_WIN
     if (QSysInfo::windowsVersion() & QSysInfo::WV_NT_based)
         return SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
@@ -718,32 +727,18 @@ void ConfigImpl::initTables()
 
 void ConfigImpl::initDbFile()
 {
-    // Determinate global config location and portable one
-    QString globalPath = getConfigPath();
-    QString portablePath = getPortableConfigPath();
-
     QList<QPair<QString,bool>> paths;
-    if (!globalPath.isNull() && !portablePath.isNull())
+
+    // Do we have path selected by user? (because app was unable to find writable location before)
+    QSettings sett;
+    QString customPath = sett.value(CONFIG_DIR_SETTING).toString();
+    if (!customPath.isEmpty())
     {
-        if (QFileInfo(portablePath).exists())
-        {
-            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
-            paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
-        }
-        else
-        {
-            paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
-            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
-        }
+        paths << QPair<QString,bool>(customPath + "/" + DB_FILE_NAME, false);
+        qDebug() << "Using custom configuration directory. The location is stored in" << sett.fileName();
     }
-    else if (!globalPath.isNull())
-    {
-        paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
-    }
-    else if (!portablePath.isNull())
-    {
-        paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
-    }
+    else
+        paths.append(getStdDbPaths());
 
     // A fallback to in-memory db
     paths << QPair<QString,bool>(memoryDbName, false);
@@ -754,12 +749,29 @@ void ConfigImpl::initDbFile()
     {
         dir = QDir(path.first);
         if (path.first != memoryDbName)
-            dir.cdUp();
+            dir = QFileInfo(path.first).dir();
 
         if (tryInitDbFile(path))
         {
             configDir = dir.absolutePath();
             break;
+        }
+    }
+
+    // Failed to use any of predefined directories. Let's ask the user.
+    while (configDir == memoryDbName)
+    {
+        QString path = askUserForConfigDirFunc();
+        if (path.isNull())
+            break;
+
+        dir = QDir(path);
+        if (tryInitDbFile(QPair<QString,bool>(path + "/" + DB_FILE_NAME, false)))
+        {
+            configDir = dir.absolutePath();
+            QSettings sett;
+            sett.setValue(CONFIG_DIR_SETTING, configDir);
+            qDebug() << "Using custom configuration directory. The location is stored in" << sett.fileName();
         }
     }
 
@@ -777,6 +789,50 @@ void ConfigImpl::initDbFile()
 
     qDebug() << "Using configuration directory:" << configDir;
     db->exec("PRAGMA foreign_keys = 1;");
+}
+
+QList<QPair<QString,bool>> ConfigImpl::getStdDbPaths()
+{
+    QList<QPair<QString,bool>> paths;
+
+    // Determinate global config location and portable one
+    QString legacyGlobalPath = getLegacyConfigPath();
+    QString portablePath = getPortableConfigPath();
+
+    if (!legacyGlobalPath.isNull() && !portablePath.isNull())
+    {
+        if (QFileInfo(portablePath).exists())
+        {
+            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
+            paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
+        }
+        else
+        {
+            paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
+            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
+        }
+    }
+    else if (!legacyGlobalPath.isNull())
+        paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
+    else if (!portablePath.isNull())
+        paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
+
+    // If needed, migrate configuration from legacy location (pre-3.3) to new location (3.3 and later)
+    QString globalPath = getConfigPath();
+    if (!QFile::exists(globalPath))
+    {
+        for (const QPair<QString,bool>& oldPath : paths)
+        {
+            if (oldPath.second)
+            {
+                if (tryToMigrateOldGlobalPath(oldPath.first, globalPath))
+                    break;
+            }
+        }
+    }
+    paths.insert(0, QPair<QString,bool>(globalPath, true));
+
+    return paths;
 }
 
 bool ConfigImpl::tryInitDbFile(const QPair<QString, bool> &dbPath)
@@ -1133,6 +1189,30 @@ void ConfigImpl::updateConfigDb()
 
     db->exec("UPDATE version SET version = ?", {SQLITESTUDIO_CONFIG_VERSION});
     db->commit();
+}
+
+bool ConfigImpl::tryToMigrateOldGlobalPath(const QString& oldPath, const QString& newPath)
+{
+    if (!QFileInfo::exists(oldPath))
+        return false;
+
+    qDebug() << "Attempting to migrate legacy config location" << oldPath << "to new location" << newPath;
+    QDir dir = QFileInfo(newPath).dir();
+    if (!dir.exists())
+        QDir::root().mkpath(dir.absolutePath());
+
+    if (QFile::copy(oldPath, dir.absoluteFilePath(DB_FILE_NAME)))
+    {
+        qDebug() << "Migration successful. Renaming old location file so it has '.old' suffix.";
+        if (QFile::rename(oldPath, oldPath+".old"))
+            qDebug() << "Renaming successful.";
+        else
+            qDebug() << "Renaming did not work, but it's okay. It will just remain with original name there.";
+    }
+    else
+        qDebug() << "Migration (copying) failed.";
+
+    return true;
 }
 
 void ConfigImpl::refreshSqlHistory()

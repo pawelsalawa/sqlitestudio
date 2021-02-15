@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     QCoreApplication::setApplicationName("SQLiteStudio");
+    QCoreApplication::setOrganizationName("SalSoft");
     QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
 
     qInstallMessageHandler(cliMessageHandler);

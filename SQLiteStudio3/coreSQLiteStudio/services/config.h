@@ -107,8 +107,11 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<ReportHistoryEntry> ReportHistoryEntryPtr;
 
+        typedef std::function<QString()> AskUserForConfigDirFunc;
+
         static void setMasterConfigFile(const QString& path);
         static QString getMasterConfigFile();
+        static void setAskUserForConfigDirFunc(const AskUserForConfigDirFunc& value);
 
         virtual void init() = 0;
         virtual void cleanUp() = 0;
@@ -192,6 +195,10 @@ class API_EXPORT Config : public QObject
     public slots:
         virtual void refreshSqlHistory() = 0;
         virtual void refreshDdlHistory() = 0;
+
+    protected:
+        static AskUserForConfigDirFunc askUserForConfigDirFunc;
+
 };
 
 #define CFG SQLITESTUDIO->getConfig()
