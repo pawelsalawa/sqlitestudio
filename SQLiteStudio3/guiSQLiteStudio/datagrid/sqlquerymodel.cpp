@@ -365,7 +365,7 @@ void SqlQueryModel::commit(const QList<SqlQueryItem*>& items)
     commitInternal(filterOutCommittedItems(items));
 }
 
-bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     const SqlQueryItem* item = itemsInRow.at(0);
     if (!item)
@@ -374,11 +374,11 @@ bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow)
         return true;
     }
     if (item->isNewRow())
-        return commitAddedRow(getRow(item->row())); // we need to get all items again, in case of selective commit
+        return commitAddedRow(getRow(item->row()), successfulCommitHandlers); // we need to get all items again, in case of selective commit
     else if (item->isDeletedRow())
-        return commitDeletedRow(getRow(item->row())); // we need to get all items again, in case of selective commit
+        return commitDeletedRow(getRow(item->row()), successfulCommitHandlers); // we need to get all items again, in case of selective commit
     else
-        return commitEditedRow(itemsInRow);
+        return commitEditedRow(itemsInRow, successfulCommitHandlers);
 }
 
 void SqlQueryModel::rollbackRow(const QList<SqlQueryItem*>& itemsInRow)
@@ -560,10 +560,11 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
 
     int step = 1;
     rowsDeletedSuccessfullyInTheCommit.clear();
+    QList<CommitSuccessfulHandler> successfulCommitHandlers; // list of lambdas to execute after all rows were committed successfully
     bool ok = true;
     for (const QList<SqlQueryItem*>& itemsInRow : groupedItems)
     {
-        if (!commitRow(itemsInRow))
+        if (!commitRow(itemsInRow, successfulCommitHandlers))
         {
             ok = false;
             break;
@@ -592,6 +593,10 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         }
         else
         {
+            // Call all successfull commit handler to refresh cell metadata, etc.
+            for (CommitSuccessfulHandler& handler : successfulCommitHandlers)
+                handler();
+
             // Refresh generated columns of altered rows
             refreshGeneratedColumns(itemsLeft);
 
@@ -750,13 +755,14 @@ int SqlQueryModel::getCurrentPage(bool includeOneBeingLoaded) const
     return result < 0 ? 0 : result;
 }
 
-bool SqlQueryModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     UNUSED(itemsInRow);
+    UNUSED(successfulCommitHandlers);
     return false;
 }
 
-bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     if (itemsInRow.size() == 0)
     {
@@ -842,14 +848,21 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
 
         // After successful commit, check if RowId was modified and upadate it accordingly
         if (rowId != newRowId)
-            updateRowIdForAllItems(table, rowId, newRowId);
+        {
+            // ...and do it with deferred lambda, so only after all rows were successully committed
+            successfulCommitHandlers << [this, table, rowId, newRowId]()
+            {
+                updateRowIdForAllItems(table, rowId, newRowId);
+            };
+        }
     }
 
     return true;
 }
 
-bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
+    UNUSED(successfulCommitHandlers);
     if (itemsInRow.size() == 0)
     {
         qCritical() << "No items passed to SqlQueryModel::commitDeletedRow().";

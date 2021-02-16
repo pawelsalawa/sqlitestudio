@@ -28,8 +28,8 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         bool supportsModifyingQueriesInMenu() const;
 
     protected:
-        bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow);
-        bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow);
+        bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
+        bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
 
     private:
         class CommitDeleteQueryBuilder : public CommitUpdateQueryBuilder

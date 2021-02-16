@@ -31,6 +31,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         };
         Q_DECLARE_FLAGS(Features, Feature)
 
+        typedef std::function<void()> CommitSuccessfulHandler;
+
         friend class SqlQueryItemDelegate;
 
         explicit SqlQueryModel(QObject *parent = 0);
@@ -234,7 +236,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * and insert them into the actual database table. It also has to update items in the model,
          * so they are no longer "new" and have the same data as inserted into the database.
          */
-        virtual bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow);
+        virtual bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
 
         /**
          * @brief commitEditedRow Updates table row with new values.
@@ -245,7 +247,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * unless the cell doesn't referr to the table, but in that case the cell should not be editable for user anyway.
          * <b>Important</b> thing to pay attention to is that the item list passed in arguments contains <b>only modified items</b>.
          */
-        virtual bool commitEditedRow(const QList<SqlQueryItem*>& itemsInRow);
+        virtual bool commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
 
         /**
          * @brief commitDeletedRow Deletes row from the table.
@@ -255,7 +257,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * Inheriting class can reimplement this, so for example model specialized for single table can delete rows.
          * The method implementation should delete the row from the database.
          */
-        virtual bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow);
+        virtual bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
 
         /**
          * @brief rollbackAddedRow
@@ -343,7 +345,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<AliasedTable> getTablesForColumns();
         QList<bool> getColumnEditionEnabledList();
         QList<SqlQueryItem*> toItemList(const QModelIndexList& indexes) const;
-        bool commitRow(const QList<SqlQueryItem*>& itemsInRow);
+        bool commitRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
         void rollbackRow(const QList<SqlQueryItem*>& itemsInRow);
         QHash<SqlQueryItem*, QVariant> readCellValues(SelectCellsQueryBuilder& queryBuilder, const QHash<RowId, QSet<SqlQueryItem*> >& itemsPerRowId);
         void storeStep1NumbersFromExecution();

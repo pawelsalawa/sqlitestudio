@@ -46,7 +46,7 @@ SqlQueryModel::Features SqlTableModel::features() const
     return INSERT_ROW|DELETE_ROW|FILTERING;
 }
 
-bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     QList<SqlQueryModelColumnPtr> modelColumns = getTableColumnModels(table);
     if (modelColumns.size() != itemsInRow.size())
@@ -100,11 +100,16 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     else
         rowId = result->getInsertRowId();
 
-    updateRowAfterInsert(itemsInRow, modelColumns, rowId);
+    // After all items are committed successfully, update data/metadata for inserted rows/items
+    successfulCommitHandlers << [this, itemsInRow, modelColumns, rowId]()
+    {
+        updateRowAfterInsert(itemsInRow, modelColumns, rowId);
+    };
+
     return true;
 }
 
-bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     if (itemsInRow.size() == 0)
     {
@@ -140,7 +145,7 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
         return false;
     }
 
-    if (!SqlQueryModel::commitDeletedRow(itemsInRow))
+    if (!SqlQueryModel::commitDeletedRow(itemsInRow, successfulCommitHandlers))
         qCritical() << "Could not delete row from SqlQueryView while committing row deletion.";
 
     return true;
