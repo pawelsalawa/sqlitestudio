@@ -609,6 +609,9 @@ void DataView::goToPage(const QString& pageStr)
 
     page--; // Converting from visual page representation to logical
 
+    if (page == model->getCurrentPage(true))
+        return;
+
     // We need to get this synchronized against event loop, cause changeing action status (probably) calls event loop update,
     // so this method was sometimes called twice at the time (until setResultsNavigationState() call below),
     // but the page in results model wasn't updated yet. We cannot simply move setResultsNavigationState() below gotoPage(),
@@ -617,9 +620,6 @@ void DataView::goToPage(const QString& pageStr)
     // - because enter was pressed
     // - because edit lost its focus (which happens after enter was hit), at least it looks like it
     if (!manualPageChangeMutex.tryLock())
-        return;
-
-    if (page == model->getCurrentPage(true))
         return;
 
     setNavigationState(false);

@@ -54,6 +54,7 @@
 - BUGFIX: #3136 Updated configuration path candidates to include Qt's standard path for app configuration. Even then if all paths fail, the app will ask user for writable directory.
 - BUGFIX: #3760 Removed warning about not restored View window from the temporary database.
 - BUGFIX: #3720 Fixed which header columns are copied with using "Copy with header" context menu action on the data grid.
+- BUGFIX: #3698 Fixed issue with manual page typing in dataview. If the number entered was same as current page, it blocked further page changes due to a dead-lock.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
