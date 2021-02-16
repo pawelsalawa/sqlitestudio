@@ -68,6 +68,24 @@ bool SqlQueryItem::isCommittingError() const
 void SqlQueryItem::setCommittingError(bool isError)
 {
     QStandardItem::setData(QVariant(isError), DataRole::COMMITTING_ERROR);
+    if (!isError)
+        setCommittingErrorMessage(QString());
+}
+
+void SqlQueryItem::setCommittingError(bool isError, const QString& msg)
+{
+    setCommittingErrorMessage(msg);
+    setCommittingError(isError);
+}
+
+QString SqlQueryItem::getCommittingErrorMessage() const
+{
+    return QStandardItem::data(DataRole::COMMITTING_ERROR_MESSAGE).toString();
+}
+
+void SqlQueryItem::setCommittingErrorMessage(const QString& value)
+{
+    QStandardItem::setData(QVariant(value), DataRole::COMMITTING_ERROR_MESSAGE);
 }
 
 bool SqlQueryItem::isNewRow() const
@@ -242,6 +260,7 @@ QString SqlQueryItem::getToolTip() const
     static const QString hdrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><th colspan=2 style=\"align: center\">%2 %3</th></tr>";
     static const QString constrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
     static const QString emptyRow = "<tr><td colspan=3></td></tr>";
+    static const QString topErrorRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
 
     if (!index().isValid())
         return QString();
@@ -251,11 +270,17 @@ QString SqlQueryItem::getToolTip() const
         return QString(); // happens when simple execution method was performed
 
     QStringList rows;
-    rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);
-    rows << rowTmp.arg(tr("Data type:", "data view")).arg(col->dataType.toString());
+    if (isCommittingError())
+    {
+        rows << topErrorRowTmp.arg(ICONS.STATUS_WARNING.getPath(), tr("Committing error:", "data view tooltip"), getCommittingErrorMessage());
+        rows << emptyRow;
+    }
+
+    rows << hdrRowTmp.arg(ICONS.COLUMN.getPath(), tr("Column:", "data view tooltip"), col->column);
+    rows << rowTmp.arg(tr("Data type:", "data view"), col->dataType.toString());
     if (!col->table.isNull())
     {
-        rows << rowTmp.arg(tr("Table:", "data view tooltip")).arg(col->table);
+        rows << rowTmp.arg(tr("Table:", "data view tooltip"), col->table);
 
         RowId rowId = getRowId();
         QString rowIdStr;
@@ -279,15 +304,15 @@ QString SqlQueryItem::getToolTip() const
             }
             rowIdStr = "[" + values.join(", ") + "]";
         }
-        rows << rowTmp.arg("ROWID:").arg(rowIdStr);
+        rows << rowTmp.arg("ROWID:", rowIdStr);
     }
 
     if (col->constraints.size() > 0)
     {
         rows << emptyRow;
-        rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath()).arg(tr("Constraints:", "data view tooltip")).arg("");
+        rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath(), tr("Constraints:", "data view tooltip"), "");
         for (SqlQueryModelColumn::Constraint* constr : col->constraints)
-            rows << constrRowTmp.arg(constr->getIcon()->toUrl()).arg(constr->getTypeString()).arg(constr->getDetails());
+            rows << constrRowTmp.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
     }
 
     return tableTmp.arg(rows.join(""));

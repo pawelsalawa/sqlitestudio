@@ -77,10 +77,11 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList
     // Handle error
     if (result->isError())
     {
+        QString errMsg = tr("Error while committing new row: %1").arg(result->getErrorText());
         for (SqlQueryItem* item : itemsInRow)
-            item->setCommittingError(true);
+            item->setCommittingError(true, errMsg);
 
-        notifyError(tr("Error while committing new row: %1").arg(result->getErrorText()));
+        notifyError(errMsg);
         return false;
     }
 
@@ -141,7 +142,11 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QLi
     SqlQueryPtr result = db->exec(sql, args);
     if (result->isError())
     {
-        notifyError(tr("Error while deleting row from table %1: %2").arg(table).arg(result->getErrorText()));
+        QString errMsg = tr("Error while deleting row from table %1: %2").arg(table, result->getErrorText());
+        for (SqlQueryItem* item : itemsInRow)
+            item->setCommittingError(true, errMsg);
+
+        notifyError(errMsg);
         return false;
     }
 

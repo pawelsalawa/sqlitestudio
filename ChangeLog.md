@@ -13,6 +13,7 @@
 - CHANGE: #3494 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
 - CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
+- CHANGE: #3583 When committing multiple rows, all rows are attempted at once, despite errors in prior rows, so that all constraint violations are identified immediately. Also added individual error message to cell tooltip, so user can learn which particular violation caused which row failure.
 - BUGFIX: #3046 HighDPI support fixed.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
 - BUGFIX: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.

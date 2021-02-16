@@ -11,8 +11,6 @@ QT       -= gui
 TARGET = TestUtils
 TEMPLATE = lib
 
-QMAKE_CXXFLAGS += -std=c++11
-
 DEFINES += TESTUTILS_LIBRARY
 
 SOURCES += \

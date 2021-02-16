@@ -522,7 +522,7 @@ void DataView::coverForGridCommit(int total)
 
 void DataView::updateGridCommitCover(int value)
 {
-    if (!widgetCover->isVisible())
+    if (!widgetCover->isVisible() || (value % 10) != 0)
         return;
 
     widgetCover->setProgress(value);

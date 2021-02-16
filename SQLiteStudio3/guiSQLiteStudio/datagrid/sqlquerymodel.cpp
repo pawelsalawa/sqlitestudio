@@ -565,10 +565,8 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
     for (const QList<SqlQueryItem*>& itemsInRow : groupedItems)
     {
         if (!commitRow(itemsInRow, successfulCommitHandlers))
-        {
             ok = false;
-            break;
-        }
+
         emit committingStepFinished(step++);
     }
 
@@ -816,7 +814,9 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QLis
             col = item->getColumn();
             if (col->editionForbiddenReason.size() > 0 || item->isJustInsertedWithOutRowId())
             {
-                notifyError(tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it."));
+                QString errMsg = tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.");
+                item->setCommittingError(true, errMsg);
+                notifyError(errMsg);
                 return false;
             }
 
@@ -839,10 +839,11 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QLis
         SqlQueryPtr results = db->exec(query, queryArgs);
         if (results->isError())
         {
+            QString errMsg = tr("An error occurred while committing the data: %1").arg(results->getErrorText());
             for (SqlQueryItem* item : items)
-                item->setCommittingError(true);
+                item->setCommittingError(true, errMsg);
 
-            notifyError(tr("An error occurred while committing the data: %1").arg(results->getErrorText()));
+            notifyError(errMsg);
             return false;
         }
 
