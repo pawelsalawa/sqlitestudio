@@ -17,14 +17,16 @@ QT       += script network
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
-win32 {
+win32: {
     LIBS += -lpsapi -limagehlp
 
-    THE_FILE = $$PWD/qt.conf
-    THE_DEST = $${DESTDIR}
-    THE_FILE ~= s,/,\\,g
-    THE_DEST ~= s,/,\\,g
-    QMAKE_POST_LINK += $$QMAKE_COPY $$THE_FILE $$THE_DEST $$escape_expand(\\n\\t)
+    !debug: {
+        THE_FILE = $$PWD/qt.conf
+        THE_DEST = $${DESTDIR}
+        THE_FILE ~= s,/,\\,g
+        THE_DEST ~= s,/,\\,g
+        QMAKE_POST_LINK += $$QMAKE_COPY $$THE_FILE $$THE_DEST $$escape_expand(\\n\\t)
+    }
 }
 
 linux: {
