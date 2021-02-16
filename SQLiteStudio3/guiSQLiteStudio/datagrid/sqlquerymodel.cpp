@@ -14,6 +14,7 @@
 #include "querygenerator.h"
 #include "parser/lexer.h"
 #include "common/compatibility.h"
+#include "mainwindow.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>
@@ -1860,11 +1861,20 @@ void SqlQueryModel::deleteSelectedRows()
 {
     QList<SqlQueryItem*> selectedItems = view->getSelectedItems();
     QSet<int> rows;
+    QSet<int> newRows;
     for (SqlQueryItem* item : selectedItems)
-        rows << item->index().row();
+    {
+        int row = item->index().row();
+        if (item->isNewRow())
+            newRows << row;
+
+        rows << row;
+    }
 
     QList<int> rowList = rows.values();
-    std::sort(rowList.begin(), rowList.end());
+    QList<int> newRowList = newRows.values();
+    sSort(rowList);
+    sSort(newRowList);
 
     QList<SqlQueryItem*> newItemsToDelete;
     int cols = columnCount();
@@ -1884,8 +1894,25 @@ void SqlQueryModel::deleteSelectedRows()
         }
     }
 
-    for (SqlQueryItem* item : newItemsToDelete)
-        removeRow(item->index().row());
+    if (newItemsToDelete.size() > 0)
+    {
+        QStringList rowNumbers;
+        int rowBase = getRowsPerPage() * getCurrentPage();
+        for (int row : newRowList)
+            rowNumbers << QString::number(rowBase + row + 1); // +1 for visual representation of row, which in code is 0-based
+
+        QMessageBox::StandardButton userResponse = QMessageBox::question(MAINWINDOW, tr("Delete rows"),
+                              tr("You're about to delete newly inserted rows that are not committed yet. Row numbers: %1\n"
+                                 "Such deletion will be permanent. Are you sure you want to delete them?")
+                                    .arg(rowNumbers.join(", ")));
+
+        if (userResponse == QMessageBox::Yes)
+        {
+            for (SqlQueryItem* item : newItemsToDelete)
+                removeRow(item->index().row());
+        }
+    }
+
 
     emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
