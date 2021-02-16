@@ -500,7 +500,8 @@ void SqlQueryView::copy(bool withHeader)
     // Header
     if (withHeader)
     {
-        for (SqlQueryModelColumnPtr col : getModel()->getColumns().mid(0, groupedItems.first().size()))
+        int leftMostColumn = groupedItems.first().first()->column();
+        for (SqlQueryModelColumnPtr col : getModel()->getColumns().mid(leftMostColumn, groupedItems.first().size()))
         {
             theDataRow << col->displayName;
             cells << col->displayName;

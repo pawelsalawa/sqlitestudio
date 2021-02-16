@@ -53,6 +53,7 @@
 - BUGFIX: #3857 Fixed parser so it accepts string as first part of object path (id.id or id.id.id).
 - BUGFIX: #3136 Updated configuration path candidates to include Qt's standard path for app configuration. Even then if all paths fail, the app will ask user for writable directory.
 - BUGFIX: #3760 Removed warning about not restored View window from the temporary database.
+- BUGFIX: #3720 Fixed which header columns are copied with using "Copy with header" context menu action on the data grid.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
