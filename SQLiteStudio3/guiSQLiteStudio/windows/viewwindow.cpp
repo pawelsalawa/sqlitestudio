@@ -191,7 +191,7 @@ void ViewWindow::setupDefShortcuts()
 
 bool ViewWindow::restoreSessionNextTime()
 {
-    return existingView;
+    return existingView && db && !DBLIST->isTemporary(db);
 }
 
 QToolBar* ViewWindow::getToolBar(int toolbar) const
