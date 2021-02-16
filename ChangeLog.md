@@ -56,6 +56,7 @@
 - BUGFIX: #3720 Fixed which header columns are copied with using "Copy with header" context menu action on the data grid.
 - BUGFIX: #3698 Fixed issue with manual page typing in dataview. If the number entered was same as current page, it blocked further page changes due to a dead-lock.
 - BUGFIX: #3639 When deleting row that was just inserted but not committed yet, the app will ask for user confirmation whether to permanently delete the new rows.
+- BUGFIX: #3580 Fixed "full value loading" query for not editable cells (expression values), so it properly loads the full value for example if copying value.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

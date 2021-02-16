@@ -428,17 +428,20 @@ QString SqlQueryItem::loadFullData()
     // Query
     QString query;
     QHash<QString,QVariant> queryArgs;
-    QString column = wrapObjIfNeeded(col->column);
     if (col->editionForbiddenReason.size() > 0)
     {
         static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
 
         // The query
+        QString column = wrapObjIfNeeded(!col->alias.isNull() ? col->alias : col->column);
         query = tpl.arg(column, model->getQuery(), QString::number(index().row()));
     }
     else
     {
         static_qstring(tpl, "SELECT %1 FROM %2 WHERE %3");
+
+        // Column
+        QString column = wrapObjIfNeeded(col->column);
 
         // Db and table
         QString source = wrapObjIfNeeded(col->table);

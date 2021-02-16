@@ -74,9 +74,20 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
 
     QList<SqliteSelect::Core::SingleSource*> sources = core->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
 
+    QList<SqliteSelect::Core::SingleSource*> viewSources;
     QSet<SqliteStatement*> parents;
     for (SqliteSelect::Core::SingleSource* src : sources)
+    {
+        if (src->table.isNull())
+            continue;
+
+        viewsInDatabase = getViews(src->database);
+        if (!viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
+            continue;
+
         parents << src->parentStatement();
+        viewSources << src;
+    }
 
     if (parents.size() > 1)
     {
@@ -88,15 +99,8 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         return;
     }
 
-    for (SqliteSelect::Core::SingleSource* src : sources)
+    for (SqliteSelect::Core::SingleSource* src : viewSources)
     {
-        if (src->table.isNull())
-            continue;
-
-        viewsInDatabase = getViews(src->database);
-        if (!viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
-            continue;
-
         view = getView(src->database, src->table);
         if (!view)
         {
