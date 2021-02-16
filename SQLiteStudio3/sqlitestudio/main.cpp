@@ -36,8 +36,8 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QProcess>
-#ifdef Q_OS_WIN
 #include <QFileDialog>
+#ifdef Q_OS_WIN
 #   include <windef.h>
 #   include <windows.h>
 #endif
