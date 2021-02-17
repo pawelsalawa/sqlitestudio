@@ -98,32 +98,12 @@ void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& ind
 
 void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const
 {
-    const SqlQueryModel* queryModel = dynamic_cast<const SqlQueryModel*>(index.model());
-    SqlQueryItem* item = queryModel->itemFromIndex(index);
-    QVariant modelData = item->getValue();
-
-    SqlQueryModel* cbModel = dynamic_cast<SqlQueryModel*>(cb->model());
-    SqlQueryItem* foundItem = cbModel->findAnyInColumn(0, SqlQueryItem::DataRole::VALUE, modelData);
-    int idx = -1;
-    if (foundItem)
-        idx = foundItem->index().row();
-
-    if (idx == -1 && modelData.isValid())
-    {
-        idx = 0;
-        QList<QVariant> values;
-        values << modelData;
-        for (int i = 1; i < cbModel->columnCount(); i++)
-            values << QVariant();
-
-        cbModel->insertCustomRow(values, idx);
-
-        SqlQueryView* view = dynamic_cast<SqlQueryView*>(cb->view());
-        view->resizeColumnsToContents();
-        view->setMinimumWidth(view->horizontalHeader()->length());
-    }
-    cb->setCurrentIndex(idx);
-    cb->lineEdit()->selectAll();
+    UNUSED(cb);
+    UNUSED(index);
+    // There used to be code here, but it's empty now.
+    // All necessary data population happens in the fkDataReady().
+    // Keeping this method just for this comment and for consistency across different kind of cell editors
+    // (i.e. each editor has method to copy value from model to editor and another to copy from editor to model).
 }
 
 void SqlQueryItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
@@ -152,27 +132,33 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
     if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && cbText.isEmpty())
         return;
 
+    SqlQueryModel* dataModel = dynamic_cast<SqlQueryModel*>(model);
+    SqlQueryItem* theItem = dataModel->itemFromIndex(index);
+    if (!theItem)
+    {
+        qCritical() << "Confirmed FK edition, but there is no SqlQueryItem for which this was triggered!" << index;
+        return;
+    }
+
     int idx = cb->currentIndex();
     if (idx < 0 || idx >= cbModel->rowCount())
     {
-        model->setData(index, cbText, Qt::EditRole);
+        theItem->setValue(cbText);
         return;
     }
 
     QList<SqlQueryItem *> row = cbModel->getRow(idx);
-    if (!row[0])
+    if (row.size() < 2 || !row[1])
     {
         // This happens when inexisting value is confirmed with "Enter" key,
         // cause rowCount() is apparently incremented, but items not yet.
-        model->setData(index, cbText, Qt::EditRole);
+        qCritical() << "Confirmed FK edition, but there is no item in the row for index" << idx << ", CB row count is" << cbModel->rowCount();
+        theItem->setValue(cbText);
         return;
     }
 
-    QVariant comboData = row[0]->getValue();
-    if (cbText != comboData.toString())
-        comboData = cbText;
-
-    model->setData(index, comboData, Qt::EditRole);
+    QVariant comboData = row[1]->getFullValue();
+    theItem->setValue(comboData);
 }
 
 void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const
@@ -242,12 +228,13 @@ QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
 
 QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
 {
-    static_qstring(sql, "SELECT %1 FROM %2%3");
+    static_qstring(sql, "SELECT %4, %1 FROM %2%3");
+    static_qstring(currValueTpl, "(%1 == %2) AS %3");
+    static_qstring(currNullValueTpl, "(%1 IS NULL) AS %2");
     static_qstring(srcColTpl, "%1 AS %2");
     static_qstring(dbColTpl, "%1.%2 AS %3");
     static_qstring(conditionTpl, "%1.%2 = %3.%4");
     static_qstring(conditionPrefixTpl, " WHERE %1");
-    static_qstring(cellLimitTpl, "substr(%2, 0, %1)");
 
     QStringList selectedCols;
     QStringList fkConditionTables;
@@ -261,12 +248,15 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     QString src;
     QString fullSrcCol;
     QString col;
+    QString firstSrcCol;
+    QStringList usedNames;
     for (SqlQueryModelColumn::ConstraintFk* fk : fkList)
     {
         col = wrapObjIfNeeded(fk->foreignColumn);
         src = wrapObjIfNeeded(fk->foreignTable);
         if (i == 0)
         {
+            firstSrcCol = wrapObjIfNeeded(col);
             selectedCols << dbColTpl.arg(src, col,
                 wrapObjIfNeeded(item->getColumn()->column));
         }
@@ -281,7 +271,8 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
                 continue; // Exclude matching column. We don't want the same column several times.
 
             fullSrcCol = src + "." + wrapObjIfNeeded(srcCol);
-            selectedCols << srcColTpl.arg(cellLimitTpl.arg(CELL_LENGTH_LIMIT).arg(fullSrcCol), wrapObjName(fullSrcCol));
+            selectedCols << srcColTpl.arg(fullSrcCol, wrapObjName(fullSrcCol));
+            usedNames << srcCol;
         }
 
         fkConditionCols << col;
@@ -305,7 +296,19 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
         conditionsStr = conditionPrefixTpl.arg(conditions.join(", "));
     }
 
-    return sql.arg(selectedCols.join(", "), fkConditionTables.join(", "), conditionsStr);
+    // Current value column (will be 1 for row which matches current cell value)
+    QVariant fullValue = item->getFullValue();
+    QString currValueColName = generateUniqueName("curr", usedNames);
+    QString currValueExpr = fullValue.isNull() ?
+                currNullValueTpl.arg(firstSrcCol, currValueColName) :
+                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(fullValue), currValueColName);
+
+    return sql.arg(
+                selectedCols.join(", "),
+                fkConditionTables.join(", "),
+                conditionsStr,
+                currValueExpr
+                );
 }
 
 qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query, bool* isError) const
@@ -342,10 +345,13 @@ void SqlQueryItemDelegate::fkDataReady()
     {
         QModelIndex startIdx = model->index(0, 0);
         QModelIndex endIdx = model->index(model->rowCount() - 1, 0);
-        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, valueFromQueryModel, 1);
+        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, 1, 1);
 
         if (idxList.size() > 0)
+        {
+            model->itemFromIndex(idxList.first().row(), 1)->loadFullData();
             cb->setCurrentIndex(idxList.first().row());
+        }
         else
             cb->setCurrentText(valueFromQueryModel.toString());
     }
@@ -398,12 +404,18 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     queryModel->setView(queryView);
 
     // Mapping of model to cb, so we can update combo when data arrives.
-    modelToFkInitialValue[queryModel] = item->getValue();
+    modelToFkInitialValue[queryModel] = item->getFullValue();
     modelToFkCombo[queryModel] = cb;
     connect(cb, &QComboBox::destroyed, [this, queryModel](QObject*)
     {
         modelToFkCombo.remove(queryModel);
         modelToFkInitialValue.remove(queryModel);
+    });
+
+    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, queryModel](int idx)
+    {
+        if (idx > -1)
+            queryModel->itemFromIndex(idx, 1)->loadFullData();
     });
 
     // When execution is done, update combo.
@@ -413,7 +425,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     // Setup combo, model, etc.
     cb->setModel(queryModel);
     cb->setView(queryView);
-    cb->setModelColumn(0);
+    cb->setModelColumn(1);
 
     queryModel->setHardRowLimit(MAX_ROWS_FOR_FK);
     queryModel->setDb(db);
@@ -423,6 +435,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
 
     queryView->verticalHeader()->setVisible(false);
     queryView->horizontalHeader()->setVisible(true);
+    queryView->horizontalHeader()->setSectionHidden(0, true);
     queryView->setSelectionMode(QAbstractItemView::SingleSelection);
     queryView->setSelectionBehavior(QAbstractItemView::SelectRows);
 

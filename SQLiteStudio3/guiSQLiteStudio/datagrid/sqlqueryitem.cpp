@@ -128,6 +128,13 @@ QVariant SqlQueryItem::getValue() const
 
 void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFromDb)
 {
+    if (!valueSettingLock.tryLock())
+    {
+        // Triggered recursively by catching "itemChanged" event,
+        // that was caused by the QStandardItem::setData below.
+        return;
+    }
+
     QVariant newValue = adjustVariantType(value);
     QVariant origValue = getValue();
 
@@ -198,6 +205,8 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
 
     if (modified && getModel())
         getModel()->itemValueEdited(this);
+
+    valueSettingLock.unlock();
 }
 
 bool SqlQueryItem::isLimitedValue() const

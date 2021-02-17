@@ -59,6 +59,7 @@
 - BUGFIX: #3639 When deleting row that was just inserted but not committed yet, the app will ask for user confirmation whether to permanently delete the new rows.
 - BUGFIX: #3586 Fixed "full value loading" query for not editable cells (expression values), so it properly loads the full value for example if copying value.
 - BUGFIX: #3588 Fixed transactional commit of all pending modifications to a data view. No more disappearing values in new rows when re-editing violated constraints.
+- BUGFIX: #3324 Fixed FK dropdown to work properly with long values (longer than 100 characters).
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

@@ -96,6 +96,7 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         void setLimitedValue(bool limited);
         QVariant adjustVariantType(const QVariant& value);
         QString getToolTip() const;
+        QMutex valueSettingLock;
 };
 
 #endif // SQLQUERYITEM_H
