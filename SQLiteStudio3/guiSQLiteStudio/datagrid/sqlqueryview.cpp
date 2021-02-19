@@ -107,6 +107,7 @@ void SqlQueryView::createActions()
     createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row"), this, SIGNAL(requestForRowInsert()), this);
     createAction(INSERT_MULTIPLE_ROWS, ICONS.INSERT_ROWS, tr("Insert multiple rows"), this, SIGNAL(requestForMultipleRowInsert()), this);
     createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete selected row"), this, SIGNAL(requestForRowDelete()), this);
+    createAction(LOAD_FULL_VALUES, ICONS.LOAD_FULL_VALUES, tr("Load full values"), this, SLOT(loadFullValuesForColumn()), this);
 
     actionMap[RESET_SORTING]->setEnabled(false);
 }
@@ -208,6 +209,8 @@ void SqlQueryView::setupHeaderMenu()
     headerContextMenu = new QMenu(horizontalHeader());
     headerContextMenu->addAction(actionMap[SORT_DIALOG]);
     headerContextMenu->addAction(actionMap[RESET_SORTING]);
+    headerContextMenu->addSeparator();
+    headerContextMenu->addAction(actionMap[LOAD_FULL_VALUES]);
 }
 
 QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
@@ -314,6 +317,11 @@ void SqlQueryView::generateDelete()
 {
     QString sql = getModel()->generateDeleteQueryForItems(getSelectedItems());
     MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+}
+
+void SqlQueryView::loadFullValuesForColumn()
+{
+    getModel()->loadFullDataForEntireColumn(headerContextMenuSection);
 }
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
@@ -577,6 +585,20 @@ void SqlQueryView::scrollContentsBy(int dx, int dy)
     emit scrolledBy(dx, dy);
 }
 
+void SqlQueryView::mouseMoveEvent(QMouseEvent* event)
+{
+    QAbstractItemView::mouseMoveEvent(event);
+
+    QModelIndex idx = indexAt(QPoint(event->x(), event->y()));
+    if (idx != indexUnderCursor)
+    {
+        if (indexUnderCursor.isValid())
+            itemDelegate->mouseLeftIndex(indexUnderCursor);
+
+        indexUnderCursor = idx;
+    }
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -606,6 +628,11 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
 {
     if (simpleBrowserMode)
         return;
+
+    headerContextMenuSection = horizontalHeader()->visualIndexAt(pos.x());
+
+    bool hasLimitedValues = getModel()->doesColumnHaveLimitedValues(headerContextMenuSection);
+    actionMap[LOAD_FULL_VALUES]->setEnabled(hasLimitedValues);
 
     headerContextMenu->popup(horizontalHeader()->mapToGlobal(pos));
 }

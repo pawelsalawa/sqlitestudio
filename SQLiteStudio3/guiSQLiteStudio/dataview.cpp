@@ -1010,6 +1010,7 @@ void DataView::createFilteringActions()
 
     actionMap[FILTER]->setIcon(actionMap[FILTER_STRING]->icon());
 
+    gridView->getHeaderContextMenu()->addSeparator();
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
 }
 

@@ -209,6 +209,12 @@ int SqlQueryModel::getCellDataLengthLimit()
     return cellDataLengthLimit;
 }
 
+void SqlQueryModel::setCellDataLengthLimit(int value)
+{
+    cellDataLengthLimit = value;
+    queryExecutor->setDataLengthLimit(value);
+}
+
 QModelIndexList SqlQueryModel::findIndexes(int role, const QVariant& value, int hits) const
 {
     QModelIndex startIdx = index(0, 0);
@@ -2048,6 +2054,39 @@ void SqlQueryModel::loadFullDataForEntireRow(int row)
 
         item->loadFullData();
     }
+}
+
+void SqlQueryModel::loadFullDataForEntireColumn(int column)
+{
+    int rowCnt = rowCount();
+    SqlQueryItem *item = nullptr;
+    for (int row = 0; row < rowCnt; row++)
+    {
+        item = itemFromIndex(row, column);
+        if (!item)
+            continue;
+
+        if (!item->isLimitedValue())
+            continue;
+
+        item->loadFullData();
+    }
+}
+
+bool SqlQueryModel::doesColumnHaveLimitedValues(int column) const
+{
+    int rowCnt = rowCount();
+    SqlQueryItem *item = nullptr;
+    for (int row = 0; row < rowCnt; row++)
+    {
+        item = itemFromIndex(row, column);
+        if (!item)
+            continue;
+
+        if (item->isLimitedValue())
+            return true;
+    }
+    return false;
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::clear()

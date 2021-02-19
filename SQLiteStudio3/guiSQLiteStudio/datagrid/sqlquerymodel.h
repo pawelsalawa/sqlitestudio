@@ -39,7 +39,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual ~SqlQueryModel();
 
         static void staticInit();
-        static int getCellDataLengthLimit();
 
         QString getQuery() const;
         void setQuery(const QString &value);
@@ -65,6 +64,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
         bool isExecutionInProgress() const;
         void loadFullDataForEntireRow(int row);
+        void loadFullDataForEntireColumn(int column);
+        bool doesColumnHaveLimitedValues(int column) const;
         StrHash<QString> attachDependencyTables();
         void detachDependencyTables();
 
@@ -181,6 +182,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         void setDesiredColumnWidth(int colIdx, int width);
         int getDesiredColumnWidth(int colIdx);
+
+        void setCellDataLengthLimit(int value);
+        int getCellDataLengthLimit();
 
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
@@ -311,7 +315,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * Having this set to 10000 gives about 290 MB of memory consumption
          * while having 30 columns and 1000 result rows loaded, all with 10000 bytes.
          */
-        static const int cellDataLengthLimit = 100;
+        int cellDataLengthLimit = 100;
 
     private:
         struct TableDetails

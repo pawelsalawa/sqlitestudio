@@ -48,14 +48,14 @@ void SqlQueryItem::setUncommitted(bool uncommitted)
     QStandardItem::setData(QVariant(uncommitted), DataRole::UNCOMMITTED);
     if (!uncommitted)
     {
-        setOldValue(QVariant());
+        clearOldValue();
         setCommittingError(false);
     }
 }
 
 void SqlQueryItem::rollback()
 {
-    setValue(getOldValue(), true, true);
+    setValue(getOldValue(), getOldValueLimited(), true);
     setUncommitted(false);
     setDeletedRow(false);
 }
@@ -116,7 +116,7 @@ bool SqlQueryItem::isDeletedRow() const
 void SqlQueryItem::setDeletedRow(bool isDeleted)
 {
     if (isDeleted && !getOldValue().isValid())
-        setOldValue(getValue());
+        rememberOldValue();
 
     QStandardItem::setData(QVariant(isDeleted), DataRole::DELETED);
 }
@@ -151,7 +151,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
                     isUncommitted();
 
     if (modified && !getOldValue().isValid())
-        setOldValue(origValue);
+        rememberOldValue();
 
     // This is a workaround for an issue in Qt, that uses operator== to compare values in QStandardItem::setData().
     // If the old value is null and the new value is empty, then operator == returns true, which is a lie.
@@ -165,43 +165,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
 
     // Value for display (in a cell) will always be limited, for performance reasons
     setValueForDisplay("x"); // the same trick as with the DataRole::VALUE
-    if (!limited)
-    {
-        int theLimit = SqlQueryModel::getCellDataLengthLimit();
-        switch (value.type())
-        {
-            case QVariant::ByteArray:
-            {
-                QByteArray newBytes = newValue.toByteArray();
-                if (newBytes.size() > theLimit)
-                {
-                    newBytes.resize(theLimit);
-                    setValueForDisplay(newBytes);
-                }
-                else
-                    setValueForDisplay(newValue);
-
-                break;
-            }
-            case QVariant::String:
-            {
-                QString newString = newValue.toString();
-                if (newString.size() > theLimit)
-                {
-                    newString.resize(theLimit);
-                    setValueForDisplay(newString);
-                }
-                else
-                    setValueForDisplay(newValue);
-
-                break;
-            }
-            default:
-                setValueForDisplay(newValue);
-        }
-    }
-    else
-        setValueForDisplay(newValue);
+    setValueForDisplay(newValue);
 
     if (modified && getModel())
         getModel()->itemValueEdited(this);
@@ -222,6 +186,16 @@ QVariant SqlQueryItem::getOldValue() const
 void SqlQueryItem::setOldValue(const QVariant& value)
 {
     QStandardItem::setData(value, DataRole::OLD_VALUE);
+}
+
+bool SqlQueryItem::getOldValueLimited() const
+{
+    return QStandardItem::data(DataRole::OLD_VALUE_LIMITED).toBool();
+}
+
+void SqlQueryItem::setOldValueLimited(bool value)
+{
+    QStandardItem::setData(value, DataRole::OLD_VALUE_LIMITED);
 }
 
 QVariant SqlQueryItem::getValueForDisplay() const
@@ -325,6 +299,18 @@ QString SqlQueryItem::getToolTip() const
     }
 
     return tableTmp.arg(rows.join(""));
+}
+
+void SqlQueryItem::rememberOldValue()
+{
+    setOldValue(getValue());
+    setOldValueLimited(isLimitedValue());
+}
+
+void SqlQueryItem::clearOldValue()
+{
+    setOldValue(QVariant());
+    setOldValueLimited(false);
 }
 
 SqlQueryModelColumn* SqlQueryItem::getColumn() const
