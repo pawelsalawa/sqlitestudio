@@ -69,8 +69,8 @@ jobs:
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
-                mv /usr/local/lib/libsqlite3* ../lib
-                mv /usr/local/include/sqlite3* ../include
+                cp /usr/local/lib/libsqlite3* ../lib
+                cp /usr/local/include/sqlite3* ../include
             
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
