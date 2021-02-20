@@ -11,6 +11,8 @@
 #include <QGraphicsDropShadowEffect>
 #include <QDebug>
 #include <QScrollArea>
+#include <QToolTip>
+#include <QEnterEvent>
 
 QHash<QWidget*,WidgetStateIndicator*> WidgetStateIndicator::instances;
 
@@ -103,7 +105,6 @@ void WidgetStateIndicator::setMessage(const QString& msg)
     else
         message = paraTpl.arg(msg);
 
-    label->setToolTip(message);
     if (!msg.isNull())
         label->setCursor(Qt::WhatsThisCursor);
     else
@@ -203,47 +204,11 @@ WidgetStateIndicator* WidgetStateIndicator::getInstance(QWidget* widget)
 bool WidgetStateIndicator::eventFilter(QObject* obj, QEvent* ev)
 {
     if (obj == widget)
-    {
-        switch (ev->type())
-        {
-            case QEvent::Move:
-            case QEvent::Resize:
-            case QEvent::Scroll:
-                updatePosition();
-                break;
-            case QEvent::Show:
-                widgetVisible = true;
-                updateVisibility();
-                break;
-            case QEvent::Hide:
-                widgetVisible = false;
-                updateVisibility();
-                break;
-            case QEvent::EnabledChange:
-                updateVisibility();
-                break;
-            default:
-                break;
-        }
-    }
+        return eventFilterFromWidget(ev);
     else if (obj == windowParent)
-    {
-        switch (ev->type())
-        {
-            case QEvent::ParentChange:
-                detectWindowParent();
-                break;
-            default:
-                break;
-        }
-    }
+        return eventFilterFromParentWidget(ev);
     else if (obj == label)
-    {
-        if (ev->type() == QEvent::Enter)
-            highlightingEffect->setEnabled(true);
-        else if (ev->type() == QEvent::Leave)
-            highlightingEffect->setEnabled(false);
-    }
+        return eventFilterFromIndicatorLabel(ev);
 
     return false;
 }
@@ -367,6 +332,67 @@ bool WidgetStateIndicator::shouldShow()
 
     return true;
 }
+
+bool WidgetStateIndicator::eventFilterFromWidget(QEvent* ev)
+{
+    switch (ev->type())
+    {
+        case QEvent::Move:
+        case QEvent::Resize:
+        case QEvent::Scroll:
+            updatePosition();
+            break;
+        case QEvent::Show:
+            widgetVisible = true;
+            updateVisibility();
+            break;
+        case QEvent::Hide:
+            widgetVisible = false;
+            updateVisibility();
+            break;
+        case QEvent::EnabledChange:
+            updateVisibility();
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+
+bool WidgetStateIndicator::eventFilterFromParentWidget(QEvent* ev)
+{
+    switch (ev->type())
+    {
+        case QEvent::ParentChange:
+            detectWindowParent();
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+
+bool WidgetStateIndicator::eventFilterFromIndicatorLabel(QEvent* ev)
+{
+    switch (ev->type())
+    {
+        case QEvent::Enter:
+        {
+            highlightingEffect->setEnabled(true);
+            QEnterEvent* e = dynamic_cast<QEnterEvent*>(ev);
+            QToolTip::showText(e->globalPos(), message);
+            break;
+        }
+        case QEvent::Leave:
+            highlightingEffect->setEnabled(false);
+            QToolTip::hideText();
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+
 WidgetStateIndicator::PositionMode WidgetStateIndicator::getPositionMode() const
 {
     return positionMode;

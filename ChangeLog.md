@@ -62,6 +62,7 @@
 - BUGFIX: #3588 Fixed transactional commit of all pending modifications to a data view. No more disappearing values in new rows when re-editing violated constraints.
 - BUGFIX: #3324 Fixed FK dropdown to work properly with long values (longer than 100 characters).
 - BUGFIX: #3980 Fixed detokenizer for expressions, so the SELECT 1='1' no longer returns true.
+- BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
