@@ -70,9 +70,9 @@ jobs:
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
-                cp /usr/local/lib/libsqlite3.0.dylib ../lib
+                cp /usr/local/lib/libsqlite3.dylib ../lib
                 cp /usr/local/include/sqlite3* ../include
-                ln -f -s libsqlite3.0.dylib ../lib/libsqlite3.dylib
+                ln -f -s libsqlite3.dylib ../lib/libsqlite3.0.dylib
             
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
