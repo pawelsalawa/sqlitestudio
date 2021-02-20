@@ -103,9 +103,9 @@ void ParserTest::testString()
     query->rebuildTokens();
 
     QCOMPARE(query->tokens.detokenize(), sql);
-    QCOMPARE(query->tokens.size(), 7);
+    QCOMPARE(query->tokens.size(), 8);
     QCOMPARE(query->tokens[2]->type, Token::Type::INTEGER);
-    QCOMPARE(query->tokens[7]->type, Token::Type::STRING);
+    QCOMPARE(query->tokens[6]->type, Token::Type::STRING);
 }
 
 void ParserTest::testScientificNumber()
