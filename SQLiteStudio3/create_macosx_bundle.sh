@@ -54,6 +54,12 @@ install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.
 install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/Frameworks/libguiSQLiteStudio.1.dylib
 install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.dylib
 
+echo "lib:"
+ls -l ../../../lib/
+
+echo "in frameworks:"
+ls -l SQLiteStudio.app/Contents/Frameworks
+
 cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
 
 # Plugin paths
