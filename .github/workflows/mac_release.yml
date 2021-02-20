@@ -47,7 +47,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite*
+                sudo rm -f /usr/local/lib/libsqlite* /usr/local/include/sqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
@@ -70,8 +70,9 @@ jobs:
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
-                cp /usr/local/lib/libsqlite3* ../lib
+                cp /usr/local/lib/libsqlite3.0.dylib ../lib
                 cp /usr/local/include/sqlite3* ../include
+                ln -f -s libsqlite3.0.dylib ../lib/libsqlite3.dylib
             
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
