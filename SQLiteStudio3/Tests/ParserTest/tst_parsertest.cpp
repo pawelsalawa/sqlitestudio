@@ -30,6 +30,7 @@ class ParserTest : public QObject
         void cleanupTestCase();
 
         void test();
+        void testString();
         void testScientificNumber();
         void testUniqConflict();
         void testGetTableTokens();
@@ -89,6 +90,22 @@ void ParserTest::test()
 
     SqliteQueryPtr query = parser3->getQueries()[0];
     TokenList tokens = query->getContextTableTokens();
+}
+
+void ParserTest::testString()
+{
+    QString sql = "SELECT 1 = '1';";
+
+    parser3->parse(sql);
+    QCOMPARE(parser3->getErrors().size(), 0);
+
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    query->rebuildTokens();
+
+    QCOMPARE(query->tokens.detokenize(), sql);
+    QCOMPARE(query->tokens.size(), 7);
+    QCOMPARE(query->tokens[2]->type, Token::Type::INTEGER);
+    QCOMPARE(query->tokens[7]->type, Token::Type::STRING);
 }
 
 void ParserTest::testScientificNumber()

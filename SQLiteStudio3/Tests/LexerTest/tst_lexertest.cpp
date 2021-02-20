@@ -11,6 +11,7 @@ class LexerTest : public QObject
 
     private Q_SLOTS:
         void testStringCase1();
+        void testStringCase2();
         void testFloat();
         void testHex1();
         void testHex2();
@@ -28,6 +29,17 @@ void LexerTest::testStringCase1()
     Lexer lex;
     TokenList tokens = lex.tokenize(sql);
     QVERIFY(tokens.size() == 20);
+}
+
+void LexerTest::testStringCase2()
+{
+    QString sql = "SELECT 1 = '1'";
+
+    Lexer lex;
+    TokenList tokens = lex.tokenize(sql);
+    QCOMPARE(tokens.size(), 7);
+    QCOMPARE(tokens[2]->type, Token::INTEGER);
+    QCOMPARE(tokens[6]->type, Token::STRING);
 }
 
 void LexerTest::testFloat()

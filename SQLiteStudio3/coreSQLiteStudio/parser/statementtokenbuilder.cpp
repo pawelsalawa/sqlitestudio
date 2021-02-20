@@ -139,6 +139,12 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
     if (value.isNull())
         return *this;
 
+    if (value.userType() == QVariant::String)
+    {
+        withString(value.toString());
+        return *this;
+    }
+
     bool ok;
     if (value.userType() == QVariant::Double)
     {
