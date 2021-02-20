@@ -57,10 +57,13 @@ install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteS
 echo "lib:"
 ls -l ../../../lib/
 
-echo "in frameworks:"
+echo "in frameworks - 1:"
 ls -l SQLiteStudio.app/Contents/Frameworks
 
 cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
+
+echo "in frameworks - 2:"
+ls -l SQLiteStudio.app/Contents/Frameworks
 
 # Plugin paths
 function fixPluginPaths() {
@@ -94,18 +97,26 @@ function replaceInfo() {
 
 
 if [ "$3" == "dmg" ]; then
-    $qt_deploy_bin SQLiteStudio.app -dmg
     replaceInfo $1
+    $qt_deploy_bin SQLiteStudio.app -dmg
 elif [ "$3" == "dist" ]; then
-	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
 	replaceInfo $1
+	echo "in frameworks - 3:"
+	ls -l SQLiteStudio.app/Contents/Frameworks
+	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
 
 	cd $1/SQLiteStudio
 	VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
 
 	mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
+	
+	hdiutil attach sqlitestudio-$VERSION.dmg
+	cd /Volumes/SQLiteStudio
+	echo "in frameworks - 4:"
+	ls -l SQLiteStudio.app/Contents/Frameworks
+	
     echo "Done."
 else
-    $qt_deploy_bin SQLiteStudio.app
     replaceInfo $1
+    $qt_deploy_bin SQLiteStudio.app
 fi
