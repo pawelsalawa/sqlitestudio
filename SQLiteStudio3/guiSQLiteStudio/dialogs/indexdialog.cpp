@@ -9,7 +9,7 @@
 #include "uiconfig.h"
 #include "services/config.h"
 #include "uiutils.h"
-#include "sqlite3.h"
+#include "db/sqlite3.h"
 #include "indexexprcolumndialog.h"
 #include "windows/editorwindow.h"
 #include "services/codeformatter.h"
