@@ -38,7 +38,7 @@ linux: {
 
 macx: {
     out_file = $$DESTDIR/lib $$TARGET .dylib
-    QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
+    QMAKE_POST_LINK += $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
     QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app/Contents
     QMAKE_POST_LINK += ; $$QMAKE_COPY $$PWD/Info.plist $$DESTDIR/SQLiteStudio.app/Contents
 }
@@ -481,18 +481,3 @@ RESOURCES += \
 
 DISTFILES += \
     licenses/mit.txt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
