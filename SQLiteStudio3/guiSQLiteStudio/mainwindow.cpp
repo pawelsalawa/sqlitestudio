@@ -135,7 +135,9 @@ void MainWindow::init()
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
+    connect(CFG_UI.General.AllowMultipleSessions, SIGNAL(changed(QVariant)), this, SLOT(updateMultipleSessionsSetting(QVariant)));
 
+    updateMultipleSessionsSetting();
     fixFonts();
 }
 
@@ -794,6 +796,18 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
 void MainWindow::quit()
 {
     close();
+}
+
+void MainWindow::updateMultipleSessionsSetting(const QVariant& newValue)
+{
+    QSettings sett;
+    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, newValue);
+}
+
+void MainWindow::updateMultipleSessionsSetting()
+{
+    QSettings sett;
+    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, CFG_UI.General.AllowMultipleSessions.get());
 }
 
 #ifdef PORTABLE_CONFIG

@@ -395,8 +395,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>364</width>
-                <height>519</height>
+                <width>366</width>
+                <height>515</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -922,6 +922,16 @@
                 </property>
                </widget>
               </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="multipleSessionsCheck">
+                <property name="text">
+                 <string>Allow multiple instances of the application at the same time</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.AllowMultipleSessions</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -1062,7 +1072,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>339</width>
-                <height>267</height>
+                <height>264</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1573,8 +1583,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>580</width>
-                <height>476</height>
+                <width>206</width>
+                <height>298</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">

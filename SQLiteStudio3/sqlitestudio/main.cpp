@@ -37,6 +37,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QFileDialog>
+#include <QSettings>
 #ifdef Q_OS_WIN
 #   include <windef.h>
 #   include <windows.h>
@@ -107,7 +108,11 @@ int main(int argc, char *argv[])
 
     SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
-    if (a.isSecondary()) {
+    QSettings sett;
+    QVariant allowMultipleSessionsValue = sett.value(MainWindow::ALLOW_MULTIPLE_SESSIONS_SETTING);
+    bool allowMultipleSessions = allowMultipleSessionsValue.isValid() && allowMultipleSessionsValue.toBool();
+
+    if (!allowMultipleSessions && a.isSecondary()) {
 #ifdef Q_OS_WIN
         AllowSetForegroundWindow(DWORD( a.primaryPid()));
 #endif

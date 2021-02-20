@@ -126,6 +126,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
 
+        static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
+
     protected:
         void closeEvent(QCloseEvent *event);
 
@@ -217,6 +219,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #endif
         void statusFieldLinkClicked(const QString& link);
         void quit();
+        void updateMultipleSessionsSetting();
+        void updateMultipleSessionsSetting(const QVariant& newValue);
 };
 
 template <class T>
