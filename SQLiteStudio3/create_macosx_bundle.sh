@@ -90,50 +90,14 @@ function replaceInfo() {
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
     replaceInfo $1
-elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
-    if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
-        $qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
+elif [ "$3" == "dist" ]; then
+	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
 	replaceInfo $1
 
-        cd $1/SQLiteStudio
-        VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
+	cd $1/SQLiteStudio
+	VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
 
-        mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
-
-        # App
-        #echo "Building incremental update package: sqlitestudio-$VERSION.zip"
-        #cp -R SQLiteStudio.app app
-        #cd app/Contents
-        #if [ "$3" == "dist" ]; then
-        #    rm -rf PlugIns
-        #    rm -rf Frameworks/Qt*.framework
-        #fi
-        #find Frameworks -type l -exec rm -f {} \;
-        #cd ..
-        #zip -r sqlitestudio-$VERSION.zip *
-        #mv sqlitestudio-$VERSION.zip ..
-        #cd ..
-        #rm -rf app
-    #else
-        #$qt_deploy_bin SQLiteStudio.app
-	#replaceInfo $1
-    fi
-
-    # Plugins
-    #mkdir Contents Contents/PlugIns
-    #SQLiteStudio.app/Contents/MacOS/SQLiteStudio --list-plugins | while read line
-    #do
-    #PLUGIN=`echo $line | awk '{print $1}'`
-    #PLUGIN_VER=`echo $line | awk '{print $2}'`
-    #PLUGIN_FILE=SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib
-    #if [ -f $PLUGIN_FILE ]; then
-    #    echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
-    #    cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
-    #    zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
-    #fi
-    #rm -f Contents/PlugIns/*
-    #done
-    #rm -rf Contents
+	mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
     echo "Done."
 else
     $qt_deploy_bin SQLiteStudio.app
