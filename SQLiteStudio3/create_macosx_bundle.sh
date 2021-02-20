@@ -83,6 +83,7 @@ function fixPluginPaths() {
 fixPluginPaths SQLiteStudio.app/Contents/PlugIns
 
 function replaceInfo() {
+	cdir=`pwd`
     echo Replacing Info.plist
     cd $1/SQLiteStudio
     VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
@@ -93,6 +94,7 @@ function replaceInfo() {
     echo "New plist:"
     cat Info.plist.new
     mv Info.plist.new Info.plist
+	cd $cdir
 }
 
 
@@ -103,7 +105,7 @@ elif [ "$3" == "dist" ]; then
 	replaceInfo $1
 	echo "in frameworks - 3:"
 	ls -l SQLiteStudio.app/Contents/Frameworks
-	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
+	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
 
 	cd $1/SQLiteStudio
 	VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
