@@ -5,6 +5,7 @@
 #include "common/utils_sql.h"
 #include "common/utils.h"
 #include "db/sqlresultsrow.h"
+#include "common/compatibility.h"
 #include <QMutexLocker>
 #include <QDebug>
 
@@ -581,7 +582,7 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         objectsToExport << exportObj;
     }
 
-    qSort(objectsToExport.begin(), objectsToExport.end(), [](ExportManager::ExportObjectPtr obj1, ExportManager::ExportObjectPtr obj2) -> bool
+    sSort(objectsToExport, [](ExportManager::ExportObjectPtr obj1, ExportManager::ExportObjectPtr obj2) -> bool
     {
         if (obj1->type == obj2->type)
             return obj1->name.compare(obj2->name, Qt::CaseInsensitive) < 0;

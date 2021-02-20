@@ -2,6 +2,7 @@
 #include "ui_functionseditor.h"
 #include "common/unused.h"
 #include "common/utils.h"
+#include "common/compatibility.h"
 #include "uiutils.h"
 #include "functionseditormodel.h"
 #include "services/pluginmanager.h"
@@ -371,7 +372,7 @@ void FunctionsEditor::updateModified()
         bool undefArgsDiff = model->getUndefinedArgs(row) != ui->undefArgsCheck->isChecked();
         bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
         bool argDiff = getCurrentArgList() != model->getArguments(row);
-        bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(row).toSet(); // QSet to ignore order
+        bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
         bool typeDiff = model->getType(row) != getCurrentFunctionType();
 
         currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff ||

@@ -14,6 +14,7 @@
 #include "dialogs/versionconvertsummarydialog.h"
 #include "db/invaliddb.h"
 #include "services/notifymanager.h"
+#include "common/compatibility.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>
@@ -552,13 +553,13 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
 StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTableColumns(const StrHash<QStringList> &columns)
 {
     QStringList sortedColumns;
-    bool sort = CFG_UI.General.SortColumns.get();
+    bool doSort = CFG_UI.General.SortColumns.get();
     StrHash<QList<QStandardItem*>> items;
     for (const QString& key : columns.keys())
     {
         sortedColumns = columns[key];
-        if (sort)
-            qSort(sortedColumns);
+        if (doSort)
+            ::sSort(sortedColumns);
 
         for (const QString& column : sortedColumns)
             items[key] += DbTreeItemFactory::createColumn(column, this);
@@ -692,10 +693,10 @@ void DbTreeModel::dbConnected(Db* db)
     refreshSchema(db, item);
     treeView->expand(item->index());
     if (CFG_UI.General.ExpandTables.get())
-        treeView->expand(item->index().child(0, 0)); // also expand tables
+        treeView->expand(item->model()->index(0, 0, item->index())); // also expand tables
 
     if (CFG_UI.General.ExpandViews.get())
-        treeView->expand(item->index().child(1, 0)); // also expand views
+        treeView->expand(item->model()->index(1, 0, item->index())); // also expand views
 }
 
 void DbTreeModel::dbDisconnected(Db* db)
@@ -953,7 +954,7 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
     DbTreeItem* dstItem = nullptr;
     if (parent.isValid())
     {
-        QModelIndex idx = parent.child(row, column);
+        QModelIndex idx = index(row, column, parent);
         if (idx.isValid())
             dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
         else // drop on top of the parent

@@ -1,6 +1,6 @@
 #include "signalwait.h"
 #include <QCoreApplication>
-#include <QTime>
+#include <QElapsedTimer>
 
 SignalWait::SignalWait(QObject* object, const char* signal) :
     QObject()
@@ -10,7 +10,7 @@ SignalWait::SignalWait(QObject* object, const char* signal) :
 
 bool SignalWait::wait(int msTimeout)
 {
-    QTime timer(0, 0, 0, msTimeout);
+    QElapsedTimer timer;
     timer.start();
     while (!called && !failed && timer.elapsed() < msTimeout)
         QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);

@@ -1,5 +1,6 @@
 #include "ddlhistorymodel.h"
 #include "querymodel.h"
+#include "common/compatibility.h"
 #include <QSet>
 #include <QDebug>
 
@@ -50,8 +51,8 @@ QStringList DdlHistoryModel::getDbNames() const
     for (int row = 0; row < rowCount(); row++)
         dbNames << data(index(row, 0)).toString();
 
-    QStringList nameList = dbNames.toList();
-    qSort(nameList);
+    QStringList nameList = dbNames.values();
+    ::sSort(nameList);
     return nameList;
 }
 

@@ -1,0 +1,12 @@
+#ifndef DBANDROID_GLOBAL_H
+#define DBANDROID_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(DBANDROID_LIBRARY)
+#  define DBANDROIDSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define DBANDROIDSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DBANDROID_GLOBAL_H

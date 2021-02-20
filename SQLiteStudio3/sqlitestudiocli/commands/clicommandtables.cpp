@@ -41,7 +41,7 @@ void CliCommandTables::execute()
     dbList << "main" << "temp";
     dbList += resolver.getDatabases();
 
-    int width = longest(dbList.toList()).length();
+    int width = longest(dbList.values()).length();
     width = qMax(width, tr("Database").length());
 
     println(pad(tr("Database"), width, ' ') + " " + tr("Table"));

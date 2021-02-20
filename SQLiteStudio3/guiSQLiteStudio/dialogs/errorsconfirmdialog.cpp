@@ -1,6 +1,7 @@
 #include "errorsconfirmdialog.h"
 #include "ui_errorsconfirmdialog.h"
 #include "iconmanager.h"
+#include "common/compatibility.h"
 
 ErrorsConfirmDialog::ErrorsConfirmDialog(QWidget *parent) :
     QDialog(parent),
@@ -31,7 +32,7 @@ void ErrorsConfirmDialog::setErrors(const QHash<QString,QSet<QString>>& errors)
 void ErrorsConfirmDialog::setErrors(const QSet<QString>& errors)
 {
     ui->list->clear();
-    ui->list->addItems(errors.toList());
+    ui->list->addItems(errors.values());
     for (int i = 0, total = ui->list->count(); i < total; ++i)
         ui->list->item(i)->setIcon(ICONS.STATUS_ERROR);
 }

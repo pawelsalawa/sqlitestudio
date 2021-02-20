@@ -14,6 +14,8 @@
 #include "uiconfig.h"
 #include "dialogs/configdialog.h"
 #include "formview.h"
+#include "themetuner.h"
+#include "common/compatibility.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -26,7 +28,6 @@
 #include <QToolButton>
 #include <QDebug>
 #include <QKeyEvent>
-#include <themetuner.h>
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
@@ -365,7 +366,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
         sortedEditors << editorWithPrio;
     }
 
-    qSort(sortedEditors.begin(), sortedEditors.end(), [=](const EditorWithPriority& ed1, const EditorWithPriority& ed2) -> bool
+    sSort(sortedEditors, [=](const EditorWithPriority& ed1, const EditorWithPriority& ed2) -> bool
     {
         return ed1.first < ed2.first;
     });

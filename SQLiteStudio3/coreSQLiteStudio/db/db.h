@@ -9,6 +9,7 @@
 #include "db/attachguard.h"
 #include "interruptable.h"
 #include "dbobjecttype.h"
+#include "common/column.h"
 #include <QObject>
 #include <QList>
 #include <QHash>
@@ -277,6 +278,21 @@ class API_EXPORT Db : public QObject, public Interruptable
          * See setTimeout() for details.
          */
         virtual int getTimeout() const = 0;
+
+        /**
+         * @brief Provides information in expected result columns from given query.
+         * @param query SQL query that returns results.
+         * @return List of columns expected from the query if executed.
+         *
+         * This method used SQLite API functions, which leverage SQLite column metadata to identify
+         * real column, table and database of the expected result columns. It also fills in column names as displayed
+         * in the result set and declared type for certain column (if can be determined), whereas the actual type in each
+         * result row may be different (as SQLite allows it explicitly).
+         *
+         * If the query is not the one that returns any results (i.e. not SELECT nor PRAGMA), then this command returns
+         * empty list.
+         */
+        virtual QList<AliasedColumn> columnsForQuery(const QString& query) = 0;
 
         /**
          * @brief Executes SQL query.

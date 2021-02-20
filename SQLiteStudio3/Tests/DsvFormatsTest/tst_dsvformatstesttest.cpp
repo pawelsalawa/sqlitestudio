@@ -215,7 +215,7 @@ void DsvFormatsTestTest::testCsvPerformance()
     theFile.seek(0);
     QTextStream stream(&theFile);
 
-    QTime timer;
+    QElapsedTimer timer;
     timer.start();
     QList<QStringList> result = CsvSerializer::deserialize(stream, CsvFormat::DEFAULT);
     int time = timer.elapsed();

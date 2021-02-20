@@ -82,8 +82,15 @@ void WidgetStateIndicator::initPositionMode()
 
 void WidgetStateIndicator::finalInit()
 {
-    label->setFixedSize(label->pixmap()->size());
-    labelParent->setFixedSize(label->pixmap()->size());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    QPixmap pixmap = label->pixmap(Qt::ReturnByValue);
+    label->setFixedSize(pixmap.size());
+    labelParent->setFixedSize(pixmap.size());
+#else
+    const QPixmap* pixmap = label->pixmap();
+    label->setFixedSize(pixmap->size());
+    labelParent->setFixedSize(pixmap->size());
+#endif
     widgetVisible = widget->isVisible();
     labelParent->setVisible(false);
 }
@@ -298,7 +305,7 @@ void WidgetStateIndicator::updatePositionGroupBox()
     QFont font = gb->font();
     QFontMetrics fm(font);
     QString txt = gb->title();
-    QPoint diff(fm.width(txt), 2);
+    QPoint diff(fm.horizontalAdvance(txt), 2);
 
     labelParent->move(xy + diff);
 }

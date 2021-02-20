@@ -66,7 +66,8 @@ DEFINES += SQLITE_HAS_CODEC SQLITE_ALLOW_XTHREAD_CONNECT=1 SQLITE_THREADSAFE=1 S
     SQLITE_ENABLE_RTREE=1
 
 QMAKE_CFLAGS += -msse4.1 -msse4.2 -maes
-QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-but-set-variable -Wno-parentheses
+QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-but-set-variable \
+    -Wno-parentheses -Wno-unused-variable -Wno-unknown-pragmas
 
 OTHER_FILES += \
     dbsqlitewx.json

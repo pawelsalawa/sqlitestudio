@@ -855,7 +855,7 @@ void QHexEditPrivate::updateCursor()
 
 void QHexEditPrivate::adjust()
 {
-    _charWidth = fontMetrics().width(QLatin1Char('9'));
+    _charWidth = fontMetrics().horizontalAdvance(QLatin1Char('9'));
     _charHeight = fontMetrics().height();
 
     _xPosAdr = 0;

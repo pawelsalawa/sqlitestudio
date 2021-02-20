@@ -155,7 +155,7 @@ void DbTreeItemDelegate::paintLabel(QPainter *painter, const QStyleOptionViewIte
     painter->setFont(opt.font);
 
     // Coords
-    int x = option.rect.x() + option.fontMetrics.width(item->text()) + 15 + option.decorationSize.width();
+    int x = option.rect.x() + option.fontMetrics.horizontalAdvance(item->text()) + 15 + option.decorationSize.width();
     int y = opt.rect.y() + (opt.rect.height() - opt.fontMetrics.descent() - opt.fontMetrics.ascent()) / 2 + opt.fontMetrics.ascent();
 
     // Paint

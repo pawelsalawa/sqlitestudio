@@ -1,6 +1,7 @@
 #include "collationseditor.h"
 #include "ui_collationseditor.h"
 #include "common/unused.h"
+#include "common/compatibility.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
@@ -350,7 +351,7 @@ void CollationsEditor::updateModified()
         bool codeDiff = model->getCode(row) != ui->codeEdit->toPlainText();
         bool langDiff = model->getLang(row) != ui->langCombo->currentText();
         bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
-        bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(row).toSet(); // QSet to ignore order
+        bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
 
         currentModified = (nameDiff || codeDiff || langDiff || allDatabasesDiff || dbDiff);
     }

@@ -107,8 +107,8 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QList<CustomConfigWidgetPlugin*> internalCustomConfigWidgets;
         bool realTimeUpdates = false;
         QHash<QWidget*,CfgEntry*> widgetToConfigEntry;
-        QHash<CfgEntry*,QWidget*> configEntryToWidgets;
-        QHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
+        QMultiHash<CfgEntry*,QWidget*> configEntryToWidgets;
+        QMultiHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
         bool updatingEntry = false;
         QList<QWidget*> extraWidgets;
         QList<QWidget*> widgetsToIgnore; // main mapper will ignore plugin's forms, they have their own mappers

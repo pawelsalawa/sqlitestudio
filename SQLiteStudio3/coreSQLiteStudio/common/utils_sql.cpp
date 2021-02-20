@@ -579,7 +579,7 @@ QString getQueryWithPosition(const QStringList& queries, int position, int* star
 
 QString getQueryWithPosition(const QString& queries, int position, int* startPos)
 {
-    QStringList queryList = quickSplitQueries(queries);
+    QStringList queryList = splitQueries(queries);
     return getQueryWithPosition(queryList, position, startPos);
 }
 

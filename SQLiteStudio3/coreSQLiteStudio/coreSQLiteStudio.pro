@@ -67,6 +67,7 @@ TRANSLATIONS += translations/coreSQLiteStudio.ts \
 		translations/coreSQLiteStudio_pl_PL.ts
 
 SOURCES += sqlitestudio.cpp \
+    common/compatibility.cpp \
     parser/ast/sqlitefilterover.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
@@ -236,6 +237,7 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqliteupsert.cpp
 
 HEADERS += sqlitestudio.h\
+    common/compatibility.h \
         coreSQLiteStudio_global.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \

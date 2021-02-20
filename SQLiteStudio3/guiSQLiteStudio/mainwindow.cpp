@@ -40,6 +40,7 @@
 #include "themetuner.h"
 #include "style.h"
 #include "services/codeformatter.h"
+#include "common/compatibility.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -611,7 +612,7 @@ void MainWindow::refreshMdiWindows()
         nameToAction[action->text()] = action;
     }
 
-    qSort(actionNames);
+    sSort(actionNames);
 
     for (const QString& name : actionNames)
         mdiMenu->addAction(nameToAction[name]);

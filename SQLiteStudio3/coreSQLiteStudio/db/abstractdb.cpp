@@ -11,6 +11,7 @@
 #include "services/sqliteextensionmanager.h"
 #include "log.h"
 #include "parser/lexer.h"
+#include "common/compatibility.h"
 #include <QDebug>
 #include <QTime>
 #include <QWriteLocker>
@@ -703,7 +704,7 @@ const QHash<Db *, QString> &AbstractDb::getAttachedDatabases()
 QSet<QString> AbstractDb::getAllAttaches()
 {
     QReadLocker locker(&dbOperLock);
-    QSet<QString> attaches = attachedDbMap.leftValues().toSet();
+    QSet<QString> attaches = toSet(attachedDbMap.leftValues());
     // TODO query database for attached databases and unite them here
     return attaches;
 }

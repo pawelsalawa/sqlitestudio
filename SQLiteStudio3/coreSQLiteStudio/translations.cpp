@@ -24,7 +24,7 @@ void loadTranslation(const QString& baseName)
 
     for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
-        dir = dirPath;
+        dir.setPath(dirPath);
         for (const QString& f : dir.entryList(filters))
         {
             res = translator->load(f, dirPath);
@@ -73,7 +73,7 @@ QStringList getAvailableTranslations()
     QStringList filters = QStringList({"*_*.qm"});
     for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
-        dir = dirPath;
+        dir.setPath(dirPath);
         for (const QString& f : dir.entryList(filters))
         {
             match = re.match(f);
@@ -85,7 +85,7 @@ QStringList getAvailableTranslations()
     }
     locales << "en";
 
-    return locales.toList();
+    return locales.values();
 }
 
 QMap<QString,QString> getAvailableLanguages()

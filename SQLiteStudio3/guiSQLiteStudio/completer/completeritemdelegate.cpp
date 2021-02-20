@@ -124,13 +124,13 @@ void CompleterItemDelegate::paintPrefix(QPainter* painter, const QFontMetrics& m
 
     QString value = text + ".";
     painter->drawText(QPoint(x, y), value);
-    x += metrics.width(value);
+    x += metrics.horizontalAdvance(value);
 }
 
 void CompleterItemDelegate::paintValue(QPainter* painter, const QFontMetrics& metrics, int& x, int y, const QString& text) const
 {
     painter->drawText(QPoint(x, y), text);
-    x += metrics.width(text);
+    x += metrics.horizontalAdvance(text);
 }
 
 void CompleterItemDelegate::paintLabel(QPainter* painter, int& x, int y, const QString& text, bool emptyValue) const

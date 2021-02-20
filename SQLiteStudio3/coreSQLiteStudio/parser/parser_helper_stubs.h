@@ -10,6 +10,7 @@
 #include "ast/sqliteforeignkey.h"
 #include "ast/sqliteorderby.h"
 #include "ast/sqlitewindowdefinition.h"
+#include "ast/sqlitewith.h"
 
 #include <QString>
 #include <QList>
@@ -72,6 +73,7 @@ typedef QList<SqliteCreateTable::Constraint*> ParserCreateTableConstraintList;
 typedef QList<SqliteCreateTable::Column::Constraint*> ParserCreateTableColumnConstraintList;
 typedef QList<SqliteForeignKey::Condition*> ParserFkConditionList;
 typedef QList<SqliteExpr*> ParserExprList;
+typedef QList<SqliteWith::CommonTableExpression*> ParserCteList;
 typedef QList<SqliteSelect::Core::ResultColumn*> ParserResultColumnList;
 typedef QList<SqliteSelect::Core::JoinSourceOther*> ParserOtherSourceList;
 typedef QList<SqliteOrderBy*> ParserOrderByList;
