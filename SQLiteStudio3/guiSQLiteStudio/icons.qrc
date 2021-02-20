@@ -204,5 +204,6 @@
         <file>img/lightning_small.png</file>
         <file>img/load_full_value.png</file>
         <file>img/load_full_values.png</file>
+        <file>img/quit.png</file>
     </qresource>
 </RCC>
