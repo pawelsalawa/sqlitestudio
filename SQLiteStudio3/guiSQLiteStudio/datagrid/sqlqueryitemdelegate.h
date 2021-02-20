@@ -31,10 +31,22 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         class FkComboFilter : public QObject
         {
             public:
-                explicit FkComboFilter(SqlQueryView* comboView, QObject* parent = 0);
+                explicit FkComboFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent = 0);
                 bool eventFilter(QObject *obj, QEvent *event);
 
             private:
+                const SqlQueryItemDelegate* delegate = nullptr;
+                SqlQueryView* comboView = nullptr;
+        };
+
+        class FkComboShowFilter : public QObject
+        {
+            public:
+                explicit FkComboShowFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent = 0);
+                bool eventFilter(QObject *obj, QEvent *event);
+
+            private:
+                const SqlQueryItemDelegate* delegate = nullptr;
                 SqlQueryView* comboView = nullptr;
         };
 
@@ -42,6 +54,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         static bool isOverFullValueButton(const QRect& cell, QMouseEvent* event);
         static bool isOverFullValueButton(const QRect& cell, int x, int y);
         static bool shouldLoadFullData(const QRect& rect, QMouseEvent* event, const QModelIndex& index);
+        static bool shouldLoadFullData(const QRect& rect, int x, int y, const QModelIndex& index);
         static bool isLimited(const QModelIndex &index);
 
         SqlQueryItem* getItem(const QModelIndex &index) const;
@@ -53,7 +66,8 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         void setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         QString getSqlForFkEditor(SqlQueryItem* item) const;
         qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool *isError) const;
-        int getFkViewHeaderWidth(SqlQueryView* fkView) const;
+        int getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const;
+        void updateComboViewGeometry(SqlQueryView* comboView, bool initial) const;
 
         QStyleOptionButton fullValueButtonOption;
         QSet<QWidget*> editorsWithAsyncExecution;

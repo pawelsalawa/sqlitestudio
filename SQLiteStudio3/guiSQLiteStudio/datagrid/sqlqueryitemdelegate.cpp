@@ -120,7 +120,12 @@ bool SqlQueryItemDelegate::editorEvent(QEvent* event, QAbstractItemModel* model,
 
 bool SqlQueryItemDelegate::shouldLoadFullData(const QRect& rect, QMouseEvent* event, const QModelIndex& index)
 {
-    return isOverFullValueButton(rect, event) && isLimited(index);
+    return shouldLoadFullData(rect, event->x(), event->y(), index);
+}
+
+bool SqlQueryItemDelegate::shouldLoadFullData(const QRect& rect, int x, int y, const QModelIndex& index)
+{
+    return isOverFullValueButton(rect, x, y) && isLimited(index);
 }
 
 void SqlQueryItemDelegate::mouseLeftIndex(const QModelIndex& index)
@@ -136,7 +141,7 @@ bool SqlQueryItemDelegate::isLimited(const QModelIndex& index)
 
 bool SqlQueryItemDelegate::helpEvent(QHelpEvent* event, QAbstractItemView* view, const QStyleOptionViewItem& option, const QModelIndex& index)
 {
-    if (isOverFullValueButton(option.rect, event->x(), event->y()))
+    if (shouldLoadFullData(option.rect, event->x(), event->y(), index))
     {
         QToolTip::showText(view->mapToGlobal(event->pos() - QPoint(0, 15)), tr("Load remaining part of the value"));
         showingFullButtonTooltip = true;
@@ -334,11 +339,9 @@ QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
 
 QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
 {
-//    static_qstring(limitedCellTpl, "CASE WHEN typeof(%2.%3) IN ('real', 'integer', 'numeric', 'null') THEN %2.%3 ELSE substr(%2.%3, 1, %1) END");
     static_qstring(sql, "SELECT %4, %1 FROM %2%3");
     static_qstring(currValueTpl, "(%1 == %2) AS %3");
     static_qstring(currNullValueTpl, "(%1 IS NULL) AS %2");
-//    static_qstring(srcColTpl, "substr(%2, 0, %1) AS %2");
     static_qstring(dbColTpl, "%1 AS %2");
     static_qstring(conditionTpl, "%1.%2 = %3.%4");
     static_qstring(conditionPrefixTpl, " WHERE %1");
@@ -356,7 +359,6 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     QString fullSrcCol;
     QString col;
     QString firstSrcCol;
-    QString limitedResultCol;
     QStringList usedNames;
     for (SqlQueryModelColumn::ConstraintFk* fk : fkList)
     {
@@ -364,9 +366,9 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
         src = wrapObjIfNeeded(fk->foreignTable);
         if (i == 0)
         {
-            firstSrcCol = wrapObjIfNeeded(col);
-            limitedResultCol = src + "." + col;
-            selectedCols << dbColTpl.arg(limitedResultCol, wrapObjIfNeeded(item->getColumn()->column));
+            firstSrcCol = col;
+            fullSrcCol = src + "." + col;
+            selectedCols << dbColTpl.arg(fullSrcCol, wrapObjIfNeeded(item->getColumn()->column));
         }
 
         if (fkConditionTables.contains(src, Qt::CaseInsensitive))
@@ -379,8 +381,7 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
                 continue; // Exclude matching column. We don't want the same column several times.
 
             fullSrcCol = src + "." + wrapObjIfNeeded(srcCol);
-            limitedResultCol = fullSrcCol;
-            selectedCols << dbColTpl.arg(limitedResultCol, wrapObjIfNeeded(fullSrcCol));
+            selectedCols << fullSrcCol;
             usedNames << srcCol;
         }
 
@@ -450,10 +451,10 @@ bool SqlQueryItemDelegate::isOverFullValueButton(const QRect& cell, int x, int y
     return buttonRect.contains(x, y);
 }
 
-int SqlQueryItemDelegate::getFkViewHeaderWidth(SqlQueryView* fkView) const
+int SqlQueryItemDelegate::getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const
 {
     int wd = fkView->horizontalHeader()->length();
-    if (fkView->verticalScrollBar()->isVisible())
+    if (includeScrollBar && fkView->verticalScrollBar()->isVisible())
         wd += fkView->verticalScrollBar()->width();
 
     return wd;
@@ -484,62 +485,60 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     cb->setEditable(true);
 
     // Prepare combo dropdown view.
-    SqlQueryView* queryView = new SqlQueryView();
-    queryView->setSimpleBrowserMode(true);
-    queryView->setMaximumWidth(QGuiApplication::primaryScreen()->size().width());
+    SqlQueryView* comboView = new SqlQueryView();
+    comboView->setSimpleBrowserMode(true);
+    comboView->setMaximumWidth(QGuiApplication::primaryScreen()->size().width());
 
     fkViewParentItemSize = model->getView()->horizontalHeader()->sectionSize(item->index().column());
-    connect(queryView->horizontalHeader(), &QHeaderView::sectionResized, [this, cb, queryView, model](int, int, int)
+    connect(comboView->horizontalHeader(), &QHeaderView::sectionResized, [this, comboView, model](int, int, int)
     {
         if (!model->isAllDataLoaded())
             return;
 
-        int wd = getFkViewHeaderWidth(queryView);
-        queryView->setMinimumWidth(qMin(qMax(fkViewParentItemSize, wd), queryView->maximumWidth()));
-        QWidget* container = cb->view()->parentWidget();
-        if (container->width() > queryView->minimumWidth())
-            container->resize(queryView->minimumWidth(), container->height());
+        updateComboViewGeometry(comboView, false);
     });
 
-    SqlQueryModel* queryModel = new SqlQueryModel(queryView);
-    queryModel->setView(queryView);
+    SqlQueryModel* comboModel = new SqlQueryModel(comboView);
+    comboModel->setView(comboView);
 
     // Mapping of model to cb, so we can update combo when data arrives.
-    modelToFkInitialValue[queryModel] = item->getFullValue();
-    modelToFkCombo[queryModel] = cb;
-    connect(cb, &QComboBox::destroyed, [this, queryModel](QObject*)
+    modelToFkInitialValue[comboModel] = item->getFullValue();
+    modelToFkCombo[comboModel] = cb;
+    connect(cb, &QComboBox::destroyed, [this, comboModel](QObject*)
     {
-        modelToFkCombo.remove(queryModel);
-        modelToFkInitialValue.remove(queryModel);
+        modelToFkCombo.remove(comboModel);
+        modelToFkInitialValue.remove(comboModel);
     });
 
-    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, queryModel](int idx)
+    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, comboModel](int idx)
     {
-        if (idx > -1 && queryModel->isAllDataLoaded())
-            queryModel->itemFromIndex(idx, 1)->loadFullData();
+        if (idx > -1 && comboModel->isAllDataLoaded())
+            comboModel->itemFromIndex(idx, 1)->loadFullData();
     });
 
     // When execution is done, update combo.
-    connect(queryModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
-    connect(queryModel, SIGNAL(executionFailed(QString)), this, SLOT(fkDataFailed(QString)));
+    connect(comboModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
+    connect(comboModel, SIGNAL(executionFailed(QString)), this, SLOT(fkDataFailed(QString)));
 
     // Setup combo, model, etc.
-    cb->setModel(queryModel);
-    cb->setView(queryView);
+    cb->setModel(comboModel);
+    cb->setView(comboView);
     cb->setModelColumn(1);
-    cb->view()->viewport()->installEventFilter(new FkComboFilter(queryView, cb));
+    cb->view()->viewport()->installEventFilter(new FkComboFilter(this, comboView, cb));
+    cb->view()->viewport()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
+    cb->view()->verticalScrollBar()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
 
-    queryModel->setHardRowLimit(MAX_ROWS_FOR_FK);
-    queryModel->setCellDataLengthLimit(FK_CELL_LENGTH_LIMIT);
-    queryModel->setDb(db);
-    queryModel->setQuery(sql);
-    queryModel->setAsyncMode(false);
-    queryModel->executeQuery();
+    comboModel->setHardRowLimit(MAX_ROWS_FOR_FK);
+    comboModel->setCellDataLengthLimit(FK_CELL_LENGTH_LIMIT);
+    comboModel->setDb(db);
+    comboModel->setQuery(sql);
+    comboModel->setAsyncMode(false);
+    comboModel->executeQuery();
 
-    queryView->verticalHeader()->setVisible(false);
-    queryView->horizontalHeader()->setVisible(true);
-    queryView->setSelectionMode(QAbstractItemView::SingleSelection);
-    queryView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    comboView->verticalHeader()->setVisible(false);
+    comboView->horizontalHeader()->setVisible(true);
+    comboView->setSelectionMode(QAbstractItemView::SingleSelection);
+    comboView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     return cb;
 }
@@ -549,21 +548,11 @@ void SqlQueryItemDelegate::fkDataReady()
     SqlQueryModel* model = dynamic_cast<SqlQueryModel*>(sender());
     SqlQueryView* queryView = model->getView();
 
-    int currMaxWidth = queryView->maximumWidth();
-
     queryView->horizontalHeader()->setSectionHidden(0, true);
     queryView->resizeColumnsToContents();
     queryView->resizeRowsToContents();
 
-    int wd = getFkViewHeaderWidth(queryView);
-    queryView->setMinimumWidth(qMin(currMaxWidth, qMax(fkViewParentItemSize, wd)));
-
-    if (wd < queryView->minimumWidth())
-    {
-        int currentSize = queryView->horizontalHeader()->sectionSize(1);
-        int gap = queryView->minimumWidth() - wd;
-        queryView->horizontalHeader()->resizeSection(1, currentSize + gap);
-    }
+    updateComboViewGeometry(queryView, true);
 
     // Set selected combo value to initial value from the cell
     QComboBox* cb = modelToFkCombo[model];
@@ -592,8 +581,30 @@ void SqlQueryItemDelegate::fkDataFailed(const QString &errorText)
     notifyWarn(tr("Cannot edit this cell. Details: %1").arg(errorText));
 }
 
+void SqlQueryItemDelegate::updateComboViewGeometry(SqlQueryView* comboView, bool initial) const
+{
+    int wd = getFkViewHeaderWidth(comboView, true);
+    comboView->setMinimumWidth(qMin(qMax(fkViewParentItemSize, wd), comboView->maximumWidth()));
 
-SqlQueryItemDelegate::FkComboFilter::FkComboFilter(SqlQueryView* comboView, QObject* parent) : QObject(parent), comboView(comboView)
+    if (initial && wd < comboView->minimumWidth())
+    {
+        // First time, upon showing up
+        int currentSize = comboView->horizontalHeader()->sectionSize(1);
+        int gap = comboView->minimumWidth() - wd;
+        comboView->horizontalHeader()->resizeSection(1, currentSize + gap);
+    }
+
+    QWidget* container = comboView->parentWidget();
+    if (container->width() > comboView->minimumWidth())
+    {
+        container->setMaximumWidth(comboView->minimumWidth());
+        container->resize(comboView->minimumWidth(), container->height());
+    }
+}
+
+
+SqlQueryItemDelegate::FkComboFilter::FkComboFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent)
+    : QObject(parent), delegate(delegate), comboView(comboView)
 {
 }
 
@@ -614,5 +625,19 @@ bool SqlQueryItemDelegate::FkComboFilter::eventFilter(QObject* obj, QEvent* even
             return true;
         }
     }
+    return false;
+}
+
+SqlQueryItemDelegate::FkComboShowFilter::FkComboShowFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent)
+    : QObject(parent), delegate(delegate), comboView(comboView)
+{
+}
+
+bool SqlQueryItemDelegate::FkComboShowFilter::eventFilter(QObject* obj, QEvent* event)
+{
+    UNUSED(obj);
+    if (event->type() == QEvent::Show)
+        delegate->updateComboViewGeometry(comboView, true);
+
     return false;
 }
