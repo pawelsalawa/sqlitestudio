@@ -109,6 +109,11 @@ jobs:
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
+
+            - name: Final preparations for packaging
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
 
             - name: Determine SQLiteStudio version
