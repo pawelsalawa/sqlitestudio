@@ -14,7 +14,7 @@ void ImportWorker::run()
 {
     if (!plugin->beforeImport(*config))
     {
-        emit finished(false);
+        emit finished(false, 0);
         return;
     }
 
@@ -39,7 +39,8 @@ void ImportWorker::run()
         return;
     }
 
-    if (!importData())
+    int rowCount = 0;
+    if (!importData(rowCount))
     {
         if (!config->skipTransaction)
             db->rollback();
@@ -60,7 +61,7 @@ void ImportWorker::run()
         emit createdTable(db, table);
 
     plugin->afterImport();
-    emit finished(true);
+    emit finished(true, rowCount);
 }
 
 void ImportWorker::interrupt()
@@ -83,7 +84,7 @@ void ImportWorker::error(const QString& err)
 {
     notifyError(err);
     plugin->afterImport();
-    emit finished(false);
+    emit finished(false, 0);
 }
 
 bool ImportWorker::prepareTable()
@@ -137,7 +138,7 @@ bool ImportWorker::prepareTable()
     return true;
 }
 
-bool ImportWorker::importData()
+bool ImportWorker::importData(int& rowCount)
 {
     static const QString insertTemplate = QStringLiteral("INSERT INTO %1 VALUES (%2)");
 
@@ -150,7 +151,7 @@ bool ImportWorker::importData()
     SqlQueryPtr query = db->prepare(theInsert);
     query->setFlags(Db::Flag::SKIP_DROP_DETECTION|Db::Flag::SKIP_PARAM_COUNTING|Db::Flag::NO_LOCK);
 
-    int rowCnt = 0;
+    rowCount = 0;
     QList<QVariant> row;
     while ((row = plugin->next()).size() > 0)
     {
@@ -165,11 +166,11 @@ bool ImportWorker::importData()
         {
             if (config->ignoreErrors)
             {
-                qDebug() << "Could not import data row number" << (rowCnt+1) << ". The row was ignored. Problem details:"
+                qDebug() << "Could not import data row number" << (rowCount+1) << ". The row was ignored. Problem details:"
                          << query->getErrorText();
 
                 notifyWarn(tr("Could not import data row number %1. The row was ignored. Problem details: %2")
-                           .arg(QString::number(rowCnt + 1), query->getErrorText()));
+                           .arg(QString::number(rowCount + 1), query->getErrorText()));
             }
             else
             {
@@ -178,12 +179,12 @@ bool ImportWorker::importData()
             }
         }
 
-        if ((rowCnt % 100) == 0 && isInterrupted())
+        if ((rowCount % 100) == 0 && isInterrupted())
         {
             error(tr("Error while importing data: %1").arg(tr("Interrupted.", "import process status update")));
             return false;
         }
-        rowCnt++;
+        rowCount++;
     }
 
     return true;

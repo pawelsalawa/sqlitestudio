@@ -65,6 +65,7 @@
 - BUGFIX: #3324 Fixed FK dropdown to work properly with long values (longer than 100 characters).
 - BUGFIX: #3980 Fixed detokenizer for expressions, so the SELECT 1='1' no longer returns true.
 - BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
+- BUGFIX: #3550 After successful data import, a number of rows imported is included in the notification message.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
