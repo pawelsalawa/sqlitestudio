@@ -22,6 +22,7 @@ class IntValidator;
 class FormView;
 class SqlQueryItem;
 class SqlEditor;
+class DbComboBox;
 
 CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(EXEC_QUERY,                Qt::Key_F9,                 QObject::tr("Execute query"))
@@ -128,8 +129,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         Ui::EditorWindow *ui = nullptr;
         SqlQueryModel* resultsModel = nullptr;
         QHash<ActionGroup,QActionGroup*> actionGroups;
-        QComboBox* dbCombo = nullptr;
-        DbListModel* dbComboModel = nullptr;
+        DbComboBox* dbCombo = nullptr;
         int sqlEditorNum = 1;
         qint64 lastQueryHistoryId = 0;
         QString lastSuccessfulQuery;

@@ -43,6 +43,7 @@ TRANSLATIONS += translations/guiSQLiteStudio_ro_RO.ts \
 		translations/guiSQLiteStudio_pl.ts
 
 SOURCES +=\
+    common/dbcombobox.cpp \
     constraints/columngeneratedpanel.cpp \
     extendedpalette.cpp \
         mainwindow.cpp \
@@ -195,6 +196,7 @@ SOURCES +=\
     dialogs/fileexecerrorsdialog.cpp
 
 HEADERS  += mainwindow.h \
+    common/dbcombobox.h \
     constraints/columngeneratedpanel.h \
     extendedpalette.h \
     iconmanager.h \

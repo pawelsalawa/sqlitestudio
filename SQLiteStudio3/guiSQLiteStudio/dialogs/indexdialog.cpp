@@ -109,8 +109,6 @@ void IndexDialog::init()
 
     readCollations();
 
-    ui->ddlEdit->setSqliteVersion(db->getVersion());
-
     if (index.isNull())
         createIndex = SqliteCreateIndexPtr::create();
     else

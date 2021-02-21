@@ -8,6 +8,7 @@
 - ADDED: #3470 VACUUM INTO clause support added.
 - ADDED: #3266 Added Ctrl+Q and entry in menu for quitting the application.
 - ADDED: #3456 Added option to allow multiple instances of the application running at the same time.
+- ADDED: #3975 Database dropdowns added to table & view windows, to it's more clear to which database particular object belongs. The same database dropdown in SQL Editor is moved to the left side, to be more consistent across the application. Main toolbar ha snow way less unnecessary buttons.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.

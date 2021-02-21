@@ -23,6 +23,7 @@ class WidgetCover;
 class SqliteSyntaxHighlighter;
 class CenteredIconItemDelegate;
 class ConstraintTabModel;
+class DbComboBox;
 
 namespace Ui {
     class TableWindow;
@@ -76,6 +77,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
             ADD_TABLE_CHECK,
             MOVE_CONSTRAINT_UP,
             MOVE_CONSTRAINT_DOWN,
+            ADD_INDEX_STRUCT,
+            ADD_TRIGGER_STRUCT,
             EXPORT,
             IMPORT,
             POPULATE,
@@ -138,6 +141,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void init();
         void newTable();
         void parseDdl();
+        void createDbCombo();
         void initDbAndTable();
         void setupCoverWidget();
         void createStructureActions();
@@ -184,6 +188,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool modifyingThisTable = false;
         CenteredIconItemDelegate* constraintColumnsDelegate = nullptr;
         bool tabsMoving = false;
+        DbComboBox* dbCombo = nullptr;
 
     private slots:
         void executionSuccessful();
@@ -239,6 +244,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void prevTab();
         void updateTabsOrder();
         void updateFont();
+        void dbChanged();
 
     public slots:
         void updateIndexes();

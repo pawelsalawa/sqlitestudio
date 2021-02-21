@@ -11,11 +11,6 @@ SqlView::SqlView(QWidget *parent) :
     setReadOnly(true);
 }
 
-void SqlView::setSqliteVersion(int version)
-{
-    highlighter->setSqliteVersion(version);
-}
-
 void SqlView::setTextBackgroundColor(int from, int to, const QColor& color)
 {
     bool wasRo = false;

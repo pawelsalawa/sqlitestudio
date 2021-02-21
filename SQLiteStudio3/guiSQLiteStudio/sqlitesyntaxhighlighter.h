@@ -54,7 +54,6 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
 
         explicit SqliteSyntaxHighlighter(QTextDocument *parent);
 
-        void setSqliteVersion(int version);
         void setFormat(State state, QTextCharFormat format);
         QTextCharFormat getFormat(State state) const;
 
@@ -156,7 +155,6 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         void handleParenthesis(TokenPtr token, TextBlockData* data);
 
         static const int regulartTextBlockState = static_cast<int>(TextBlockState::REGULAR);
-        int sqliteVersion = 3;
         QHash<State,QTextCharFormat> formats;
         QHash<Token::Type,State> tokenTypeMapping;
         QList<Error> errors;

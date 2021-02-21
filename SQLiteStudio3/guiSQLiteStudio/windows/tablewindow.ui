@@ -55,6 +55,16 @@
            <number>2</number>
           </property>
           <item>
+           <widget class="DbComboBox" name="dbCombo">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="tableNameLabel">
             <property name="text">
              <string>Table name:</string>
@@ -316,6 +326,11 @@
    <class>ExtTableWidget</class>
    <extends>QTableWidget</extends>
    <header>common/exttablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DbComboBox</class>
+   <extends>QComboBox</extends>
+   <header>common/dbcombobox.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
