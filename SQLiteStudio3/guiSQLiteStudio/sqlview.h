@@ -12,7 +12,6 @@ class GUI_API_EXPORT SqlView : public QTextEdit
     public:
         explicit SqlView(QWidget *parent = 0);
 
-        void setSqliteVersion(int version);
         void setTextBackgroundColor(int from, int to, const QColor& color);
 
     private:

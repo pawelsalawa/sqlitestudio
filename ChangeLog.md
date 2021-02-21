@@ -8,6 +8,7 @@
 - ADDED: #3470 VACUUM INTO clause support added.
 - ADDED: #3266 Added Ctrl+Q and entry in menu for quitting the application.
 - ADDED: #3456 Added option to allow multiple instances of the application running at the same time.
+- ADDED: #3975 Database dropdowns added to table & view windows, to it's more clear to which database particular object belongs. The same database dropdown in SQL Editor is moved to the left side, to be more consistent across the application. Main toolbar ha snow way less unnecessary buttons.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.
@@ -17,6 +18,7 @@
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
 - CHANGE: #3583 When committing multiple rows, all rows are attempted at once, despite errors in prior rows, so that all constraint violations are identified immediately. Also added individual error message to cell tooltip, so user can learn which particular violation caused which row failure.
 - CHANGE: #3269 Enhanced handling of big data cells - they are still limited at first, but now there is an indicator (button) showing up when there is more to load and user can press it to load full data for the cell. User can also load full values in entire column using right-click on the column's header and picking option from context menu.
+- CHANGE: #3626 Installer (Qt's Installer Framework) was removed. Updates will still be checked and user will be notified about new version being available, but it will be up to the user to download new version. Only portable packages are going to be provided from now, until more suitable installer framework is found & mastered.
 - BUGFIX: #3046 HighDPI support fixed.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
 - BUGFIX: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.

@@ -45,6 +45,7 @@ ViewWindow::ViewWindow(Db* db, QWidget* parent) :
 {
     newView();
     init();
+    ui->dbCombo->setCurrentDb(db);
     applyInitialTab();
 }
 
@@ -252,6 +253,7 @@ void ViewWindow::init()
     updateOutputColumnsVisibility();
 
     updateTabsOrder();
+    createDbCombo();
 
     updateFont();
     refreshTriggers();
@@ -265,6 +267,13 @@ void ViewWindow::updateAfterInit()
 {
     for (QWidget* tab : {ui->dataTab, ui->triggersTab})
         ui->tabWidget->setTabEnabled(ui->tabWidget->indexOf(tab), existingView);
+}
+
+void ViewWindow::createDbCombo()
+{
+    ui->dbCombo->setFixedWidth(100);
+    ui->dbCombo->setToolTip(tr("Database"));
+    connect(ui->dbCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbChanged()));
 }
 
 void ViewWindow::newView()
@@ -282,14 +291,16 @@ void ViewWindow::initView()
     if (!createView)
         return; // error occured while parsing ddl, window will be closed
 
+    ui->dbCombo->setCurrentDb(db);
     if (existingView)
     {
         dataModel->setDb(db);
         dataModel->setQuery(originalCreateView->select->detokenize());
         dataModel->setView(view);
+        ui->dbCombo->setDisabled(true);
     }
-
     ui->queryEdit->setDb(db);
+
     ui->queryEdit->setPlainText(createView->select->detokenize());
 
     if (createView->columns.size() > 0)
@@ -299,8 +310,6 @@ void ViewWindow::initView()
     }
 
     updateDdlTab();
-
-    ui->ddlEdit->setSqliteVersion(db->getVersion());
 
     refreshTriggers();
 
@@ -625,16 +634,19 @@ void ViewWindow::changesSuccessfullyCommitted()
     database = createView->database;
     QString oldView = view;
     view = createView->view;
+
+    if (!existingView)
+        notifyInfo(tr("View '%1' was committed successfully.").arg(view));
+    else if (oldView.compare(view, Qt::CaseInsensitive) == 0)
+        notifyInfo(tr("Committed changes for view '%1' successfully.").arg(view));
+    else
+        notifyInfo(tr("Committed changes for view '%1' (named before '%2') successfully.").arg(view, oldView));
+
     existingView = true;
     initView();
     updateQueryToolbarStatus();
     updateWindowTitle();
     updateAfterInit();
-
-    if (oldView.compare(view, Qt::CaseInsensitive) == 0)
-        notifyInfo(tr("Committed changes for view '%1' successfully.").arg(view));
-    else
-        notifyInfo(tr("Committed changes for view '%1' (named before '%2') successfully.").arg(view, oldView));
 
     DBTREE->refreshSchema(db);
 }
@@ -1059,4 +1071,15 @@ void ViewWindow::updateFont()
         view->verticalHeader()->setFont(f);
         view->verticalHeader()->setDefaultSectionSize(fm.height() + 4);
     }
+}
+
+void ViewWindow::dbChanged()
+{
+    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
+
+    db = ui->dbCombo->currentDb();
+    dataModel->setDb(db);
+    ui->queryEdit->setDb(db);
+
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 }

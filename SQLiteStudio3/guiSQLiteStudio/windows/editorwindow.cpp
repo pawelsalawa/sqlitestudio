@@ -22,6 +22,7 @@
 #include "themetuner.h"
 #include "dialogs/bindparamsdialog.h"
 #include "common/bindparam.h"
+#include "common/dbcombobox.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QStringListModel>
@@ -106,7 +107,7 @@ void EditorWindow::init()
 
     Db* treeSelectedDb = DBTREE->getSelectedOpenDb();
     if (treeSelectedDb)
-        dbCombo->setCurrentIndex(dbComboModel->getIndexForDb(treeSelectedDb));
+        dbCombo->setCurrentDb(treeSelectedDb);
 
     Db* currentDb = getCurrentDb();
     resultsModel->setDb(currentDb);
@@ -230,11 +231,8 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
 
 bool EditorWindow::setCurrentDb(Db *db)
 {
-    if (dbCombo->findText(db->getName()) == -1)
-        return false;
-
-    dbCombo->setCurrentText(db->getName());
-    return true;
+    dbCombo->setCurrentDb(db);
+    return dbCombo->currentIndex() > -1;
 }
 
 void EditorWindow::setContents(const QString &sql)
@@ -319,7 +317,7 @@ void EditorWindow::changeEvent(QEvent *e)
 
 Db* EditorWindow::getCurrentDb()
 {
-    return dbComboModel->getDb(dbCombo->currentIndex());
+    return dbCombo->currentDb();
 }
 
 void EditorWindow::updateResultsDisplayMode()
@@ -366,6 +364,8 @@ void EditorWindow::updateResultsDisplayMode()
 void EditorWindow::createActions()
 {
     // SQL editor toolbar
+    actionMap[CURRENT_DB] = ui->toolBar->addWidget(dbCombo);
+    ui->toolBar->addSeparator();
     createAction(EXEC_QUERY, ICONS.EXEC_QUERY, tr("Execute query"), this, SLOT(execQuery()), ui->toolBar, ui->sqlEdit);
     createAction(EXPLAIN_QUERY, ICONS.EXPLAIN_QUERY, tr("Explain query"), this, SLOT(explainQuery()), ui->toolBar, ui->sqlEdit);
     ui->toolBar->addSeparator();
@@ -382,8 +382,6 @@ void EditorWindow::createActions()
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FIND));
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::REPLACE));
-    ui->toolBar->addSeparator();
-    actionMap[CURRENT_DB] = ui->toolBar->addWidget(dbCombo);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);
@@ -404,10 +402,7 @@ void EditorWindow::createActions()
 
 void EditorWindow::createDbCombo()
 {
-    dbCombo = new QComboBox(this);
-    dbComboModel = new DbListModel(this);
-    dbComboModel->setCombo(dbCombo);
-    dbCombo->setModel(dbComboModel);
+    dbCombo = new DbComboBox(this);
     dbCombo->setEditable(false);
     dbCombo->setFixedWidth(100);
     connect(dbCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(dbChanged()));

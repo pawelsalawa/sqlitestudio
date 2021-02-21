@@ -18,12 +18,6 @@ SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent) :
     connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(setupFormats()));
 }
 
-void SqliteSyntaxHighlighter::setSqliteVersion(int version)
-{
-    this->sqliteVersion = version;
-    rehighlight();
-}
-
 void SqliteSyntaxHighlighter::setFormat(SqliteSyntaxHighlighter::State state, QTextCharFormat format)
 {
     formats[state] = format;

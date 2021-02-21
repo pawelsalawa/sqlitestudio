@@ -282,26 +282,10 @@ void MainWindow::createActions()
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
     ui->dbToolbar->addSeparator();
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::ADD_DB));
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::DELETE_DB));
-    ui->dbToolbar->addSeparator();
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
 
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_TABLE));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::EDIT_TABLE));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::DEL_TABLE));
-    ui->structureToolbar->addSeparator();
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_INDEX));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::EDIT_INDEX));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::DEL_INDEX));
-    ui->structureToolbar->addSeparator();
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_TRIGGER));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::EDIT_TRIGGER));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::DEL_TRIGGER));
-    ui->structureToolbar->addSeparator();
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_VIEW));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::EDIT_VIEW));
-    ui->structureToolbar->addAction(dbTree->getAction(DbTree::DEL_VIEW));
 
     ui->taskBar->initContextMenu(this);
 }

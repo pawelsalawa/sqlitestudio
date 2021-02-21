@@ -97,6 +97,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
     private:
         void init();
         void updateAfterInit();
+        void createDbCombo();
         void newView();
         void initView();
         void setupCoverWidget();
@@ -166,6 +167,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void updateTabsOrder();
         void triggerViewDoubleClicked(const QModelIndex& idx);
         void updateFont();
+        void dbChanged();
 
     public slots:
         void refreshTriggers();

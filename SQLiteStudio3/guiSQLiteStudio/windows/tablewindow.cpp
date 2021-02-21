@@ -38,6 +38,7 @@
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
 #include "datagrid/sqlqueryitem.h"
+#include "common/dbcombobox.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
@@ -164,6 +165,7 @@ void TableWindow::init()
 
     initActions();
     updateTabsOrder();
+    createDbCombo();
 
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
@@ -224,6 +226,9 @@ void TableWindow::createStructureActions()
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "table window"), this, SLOT(delColumn()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
+    ui->structureToolBar->addSeparator();
+    createAction(ADD_INDEX_STRUCT, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->structureToolBar, ui->structureView);
+    createAction(ADD_TRIGGER_STRUCT, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->structureToolBar, ui->structureView);
     ui->structureToolBar->addSeparator();
     ui->structureToolBar->addAction(actionMap[IMPORT]);
     ui->structureToolBar->addAction(actionMap[EXPORT]);
@@ -486,21 +491,15 @@ void TableWindow::executionFailed(const QString& errorText)
 
 void TableWindow::initDbAndTable()
 {
-    int totalConstrCols = 7;
-    if (db->getVersion() == 2)
-    {
-        ui->withoutRowIdCheck->setVisible(false);
-        totalConstrCols -= 2;
-    }
-
-    totalConstrCols += 2; // we start at 3rd column
-    for (int colIdx = 2; colIdx < totalConstrCols; colIdx++)
+    for (int colIdx = 2; colIdx < 9; colIdx++)
         ui->structureView->setItemDelegateForColumn(colIdx, constraintColumnsDelegate);
 
+    ui->dbCombo->setCurrentDb(db);
     if (existingTable)
     {
         dataModel->setDb(db);
         dataModel->setDatabaseAndTable(database, table);
+        ui->dbCombo->setDisabled(true);
     }
 
     ui->tableNameEdit->setText(table); // TODO no attached/temp db name support here
@@ -569,7 +568,6 @@ void TableWindow::initDbAndTable()
 
     connect(ui->withoutRowIdCheck, SIGNAL(clicked()), this, SLOT(withOutRowIdChanged()));
 
-    ui->ddlEdit->setSqliteVersion(db->getVersion());
     parseDdl();
     updateIndexes();
     updateTriggers();
@@ -624,6 +622,13 @@ void TableWindow::parseDdl()
     updateStructureToolbarState();
     updateTableConstraintsToolbarState();
     updateDdlTab();
+}
+
+void TableWindow::createDbCombo()
+{
+    ui->dbCombo->setFixedWidth(100);
+    ui->dbCombo->setToolTip(tr("Database"));
+    connect(ui->dbCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbChanged()));
 }
 
 void TableWindow::changeEvent(QEvent *e)
@@ -1159,6 +1164,8 @@ void TableWindow::updateNewTableState()
     actionMap[CREATE_SIMILAR]->setEnabled(existingTable);
     actionMap[RESET_AUTOINCREMENT]->setEnabled(existingTable);
     actionMap[REFRESH_STRUCTURE]->setEnabled(existingTable);
+    actionMap[ADD_INDEX_STRUCT]->setEnabled(existingTable);
+    actionMap[ADD_TRIGGER_STRUCT]->setEnabled(existingTable);
 }
 
 void TableWindow::addConstraint()
@@ -1684,4 +1691,14 @@ void TableWindow::updateFont()
         view->verticalHeader()->setFont(f);
         view->verticalHeader()->setDefaultSectionSize(fm.height() + 4);
     }
+}
+
+void TableWindow::dbChanged()
+{
+    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+
+    db = ui->dbCombo->currentDb();
+    dataModel->setDb(db);
+
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 }
