@@ -22,13 +22,13 @@
 #include "common/unused.h"
 #include "chainexecutor.h"
 #include "log.h"
+#include "schemaresolver.h"
+#include "parser/lexer.h"
+#include "common/table.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>
 #include <QDebug>
-#include <schemaresolver.h>
-#include <parser/lexer.h>
-#include <common/table.h>
 #include <QtMath>
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.

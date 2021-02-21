@@ -118,4 +118,20 @@ struct ParserIndexedBy
     QString indexedBy = QString();
 };
 
+class ParserTermOrLiteral
+{
+    public:
+        explicit ParserTermOrLiteral(const QString& name);
+        explicit ParserTermOrLiteral(const QVariant& literal);
+
+        QString toName() const;
+        QVariant toLiteral() const;
+        bool isName() const;
+        bool isLiteral() const;
+
+    private:
+        QVariant value;
+        bool nameMode = false;
+};
+
 #endif // PARSER_HELPER_STUBS_H

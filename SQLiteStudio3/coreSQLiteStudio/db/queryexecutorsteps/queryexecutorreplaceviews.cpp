@@ -73,6 +73,9 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
     SqliteCreateViewPtr view;
 
     QList<SqliteSelect::Core::SingleSource*> sources = core->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
+
+    QList<SqliteSelect::Core::SingleSource*> viewSources;
+    QSet<SqliteStatement*> parents;
     for (SqliteSelect::Core::SingleSource* src : sources)
     {
         if (src->table.isNull())
@@ -82,6 +85,22 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         if (!viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
             continue;
 
+        parents << src->parentStatement();
+        viewSources << src;
+    }
+
+    if (parents.size() > 1)
+    {
+        // Multi-level views (view selecting from view, selecting from view...).
+        // Such constructs build up easily to huge, non-optimized queries.
+        // For performance reasons, we won't expand such views.
+        qDebug() << "Multi-level views. Skipping view expanding feature of query executor. Some columns won't be editable due to that. Number of different view parents:"
+                 << parents.size();
+        return;
+    }
+
+    for (SqliteSelect::Core::SingleSource* src : viewSources)
+    {
         view = getView(src->database, src->table);
         if (!view)
         {

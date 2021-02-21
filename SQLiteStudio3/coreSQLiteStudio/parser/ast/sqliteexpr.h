@@ -97,6 +97,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initCase(SqliteExpr* expr1, const QList<SqliteExpr*>& exprList, SqliteExpr* expr2);
         void initRaise(const QString& type, const QString& text = QString());
         void detectDoubleQuotes(bool recursively = true);
+        bool replace(SqliteExpr* toBeReplaced, SqliteExpr* replaceWith);
 
         Mode mode = Mode::null;
         QVariant literalValue = QVariant();

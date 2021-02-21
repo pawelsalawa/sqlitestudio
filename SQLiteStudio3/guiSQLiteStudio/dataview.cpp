@@ -522,7 +522,7 @@ void DataView::coverForGridCommit(int total)
 
 void DataView::updateGridCommitCover(int value)
 {
-    if (!widgetCover->isVisible())
+    if (!widgetCover->isVisible() || (value % 10) != 0)
         return;
 
     widgetCover->setProgress(value);
@@ -544,6 +544,9 @@ void DataView::adjustColumnWidth(SqlQueryItem* item)
         return;
 
     int col = item->column();
+    if (model->getDesiredColumnWidth(col) > -1)
+        return;
+
     gridView->resizeColumnToContents(col);
     if (gridView->columnWidth(col) > CFG_UI.General.MaxInitialColumnWith.get())
         gridView->setColumnWidth(col, CFG_UI.General.MaxInitialColumnWith.get());
@@ -606,6 +609,9 @@ void DataView::goToPage(const QString& pageStr)
 
     page--; // Converting from visual page representation to logical
 
+    if (page == model->getCurrentPage(true))
+        return;
+
     // We need to get this synchronized against event loop, cause changeing action status (probably) calls event loop update,
     // so this method was sometimes called twice at the time (until setResultsNavigationState() call below),
     // but the page in results model wasn't updated yet. We cannot simply move setResultsNavigationState() below gotoPage(),
@@ -614,9 +620,6 @@ void DataView::goToPage(const QString& pageStr)
     // - because enter was pressed
     // - because edit lost its focus (which happens after enter was hit), at least it looks like it
     if (!manualPageChangeMutex.tryLock())
-        return;
-
-    if (page == model->getCurrentPage(true))
         return;
 
     setNavigationState(false);
@@ -1007,6 +1010,7 @@ void DataView::createFilteringActions()
 
     actionMap[FILTER]->setIcon(actionMap[FILTER_STRING]->icon());
 
+    gridView->getHeaderContextMenu()->addSeparator();
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
 }
 

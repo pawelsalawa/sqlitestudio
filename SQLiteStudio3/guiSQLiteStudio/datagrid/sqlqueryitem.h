@@ -27,7 +27,9 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
                 DELETED = 1008,
                 OLD_VALUE = 1009,
                 JUST_INSERTED_WITHOUT_ROWID = 1010,
-                VALUE_FOR_DISPLAY = 1011
+                VALUE_FOR_DISPLAY = 1011,
+                COMMITTING_ERROR_MESSAGE = 1012,
+                OLD_VALUE_LIMITED = 1013
             };
         };
 
@@ -45,6 +47,10 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         bool isCommittingError() const;
         void setCommittingError(bool isError);
+        void setCommittingError(bool isError, const QString& msg);
+
+        QString getCommittingErrorMessage() const;
+        void setCommittingErrorMessage(const QString& value);
 
         bool isNewRow() const;
         void setNewRow(bool isNew);
@@ -61,6 +67,9 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         QVariant getOldValue() const;
         void setOldValue(const QVariant& value);
+
+        bool getOldValueLimited() const;
+        void setOldValueLimited(bool value);
 
         QVariant getValueForDisplay() const;
         void setValueForDisplay(const QVariant& value);
@@ -91,6 +100,10 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         void setLimitedValue(bool limited);
         QVariant adjustVariantType(const QVariant& value);
         QString getToolTip() const;
+        void rememberOldValue();
+        void clearOldValue();
+
+        QMutex valueSettingLock;
 };
 
 #endif // SQLQUERYITEM_H

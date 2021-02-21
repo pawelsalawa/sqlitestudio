@@ -17,14 +17,16 @@ QT       += script network
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
-win32 {
+win32: {
     LIBS += -lpsapi -limagehlp
 
-    THE_FILE = $$PWD/qt.conf
-    THE_DEST = $${DESTDIR}
-    THE_FILE ~= s,/,\\,g
-    THE_DEST ~= s,/,\\,g
-    QMAKE_POST_LINK += $$QMAKE_COPY $$THE_FILE $$THE_DEST $$escape_expand(\\n\\t)
+    !debug: {
+        THE_FILE = $$PWD/qt.conf
+        THE_DEST = $${DESTDIR}
+        THE_FILE ~= s,/,\\,g
+        THE_DEST ~= s,/,\\,g
+        QMAKE_POST_LINK += $$QMAKE_COPY $$THE_FILE $$THE_DEST $$escape_expand(\\n\\t)
+    }
 }
 
 linux: {
@@ -36,16 +38,23 @@ linux: {
 
 macx: {
     out_file = $$DESTDIR/lib $$TARGET .dylib
-    QMAKE_POST_LINK += install_name_tool -change libsqlite3.dylib @loader_path/../Frameworks/libsqlite3.dylib $$join(out_file)
-    QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
+    QMAKE_POST_LINK += $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
     QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app/Contents
     QMAKE_POST_LINK += ; $$QMAKE_COPY $$PWD/Info.plist $$DESTDIR/SQLiteStudio.app/Contents
-    LIBS += -L/usr/local/lib
 }
 
-LIBS += -lsqlite3
-
-DEFINES += CORESQLITESTUDIO_LIBRARY
+DEFINES += CORESQLITESTUDIO_LIBRARY \
+    SQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+    SQLITE_ENABLE_DBSTAT_VTAB \
+    SQLITE_ENABLE_BYTECODE_VTAB \
+    SQLITE_ENABLE_COLUMN_METADATA \
+    SQLITE_ENABLE_EXPLAIN_COMMENTS \
+    SQLITE_ENABLE_FTS3 \
+    SQLITE_ENABLE_FTS4 \
+    SQLITE_ENABLE_FTS5 \
+    SQLITE_ENABLE_GEOPOLY \
+    SQLITE_ENABLE_JSON1 \
+    SQLITE_ENABLE_RTREE
 
 portable {
     DEFINES += PORTABLE_CONFIG
@@ -68,6 +77,7 @@ TRANSLATIONS += translations/coreSQLiteStudio.ts \
 
 SOURCES += sqlitestudio.cpp \
     common/compatibility.cpp \
+    db/sqlite3.c \
     parser/ast/sqlitefilterover.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
@@ -239,6 +249,7 @@ SOURCES += sqlitestudio.cpp \
 HEADERS += sqlitestudio.h\
     common/compatibility.h \
         coreSQLiteStudio_global.h \
+    db/sqlite3.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \
     parser/ast/sqlitewindowdefinition.h \
@@ -471,29 +482,3 @@ RESOURCES += \
 
 DISTFILES += \
     licenses/mit.txt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

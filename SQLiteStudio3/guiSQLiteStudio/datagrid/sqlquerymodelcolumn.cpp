@@ -6,6 +6,7 @@ SqlQueryModelColumn::SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& r
 {
     displayName = resultColumn->displayName;
     column = resultColumn->column;
+    alias = resultColumn->alias;
     table = resultColumn->table;
     tableAlias = resultColumn->tableAlias;
     database = resultColumn->database.isEmpty() ? "main": resultColumn->database;

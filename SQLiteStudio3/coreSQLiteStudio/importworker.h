@@ -18,7 +18,7 @@ class ImportWorker : public QObject, public QRunnable
         void readPluginColumns();
         void error(const QString& err);
         bool prepareTable();
-        bool importData();
+        bool importData(int& rowCount);
         bool isInterrupted();
 
         ImportPlugin* plugin = nullptr;
@@ -38,7 +38,7 @@ class ImportWorker : public QObject, public QRunnable
 
     signals:
         void createdTable(Db* db, const QString& table);
-        void finished(bool result);
+        void finished(bool result, int rowCount);
 };
 
 #endif // IMPORTWORKER_H

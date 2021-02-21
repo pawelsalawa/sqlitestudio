@@ -16,6 +16,7 @@ const char* sqliteTempMasterDdl =
     "CREATE TABLE sqlite_temp_master (type text, name text, tbl_name text, rootpage integer, sql text)";
 
 ExpiringCache<SchemaResolver::ObjectCacheKey,QVariant> SchemaResolver::cache;
+ExpiringCache<QString, QString> SchemaResolver::autoIndexDdlCache;
 
 SchemaResolver::SchemaResolver(Db *db)
     : db(db)
@@ -39,9 +40,26 @@ QStringList SchemaResolver::getTables(const QString &database)
 
 QStringList SchemaResolver::getIndexes(const QString &database)
 {
-    QStringList indexes = getObjects(database, "index");
-    if (ignoreSystemObjects)
-        filterSystemIndexes(indexes);
+    static_qstring(idxForTableTpl, "SELECT name FROM %1.pragma_index_list(%2)");
+
+    QStringList tables = getTables(database);
+    QStringList queryParts;
+    for (const QString& table : tables)
+        queryParts << idxForTableTpl.arg(wrapObjName(database), wrapString(table));
+
+    QString query = queryParts.join(" UNION ");
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    QStringList indexes;
+    QString value;
+    for (SqlResultsRowPtr row : results->getAll())
+    {
+        value = row->value(0).toString();
+        if (isFilteredOut(value, "index"))
+            continue;
+
+        indexes << value;
+    }
 
     return indexes;
 }
@@ -58,8 +76,17 @@ QStringList SchemaResolver::getViews(const QString &database)
 
 StrHash<QStringList> SchemaResolver::getGroupedIndexes(const QString &database)
 {
-    QStringList allIndexes = getIndexes(database);
-    return getGroupedObjects(database, allIndexes, SqliteQueryType::CreateIndex);
+    StrHash<QString> indexesWithTables = getIndexesWithTables(database);
+
+    StrHash<QStringList> groupedIndexes;
+    auto it = indexesWithTables.iterator();
+    while (it.hasNext())
+    {
+        auto entry = it.next();
+        groupedIndexes[entry.value()] << entry.key();
+    }
+
+    return groupedIndexes;
 }
 
 StrHash<QStringList> SchemaResolver::getGroupedTriggers(const QString &database)
@@ -68,10 +95,10 @@ StrHash<QStringList> SchemaResolver::getGroupedTriggers(const QString &database)
     return getGroupedObjects(database, allTriggers, SqliteQueryType::CreateTrigger);
 }
 
-StrHash< QStringList> SchemaResolver::getGroupedObjects(const QString &database, const QStringList &inputList, SqliteQueryType type)
+StrHash<QStringList> SchemaResolver::getGroupedObjects(const QString &database, const QStringList &inputList, SqliteQueryType type)
 {
     QString strType = sqliteQueryTypeToString(type);
-    StrHash< QStringList> groupedTriggers;
+    StrHash<QStringList> groupedObjects;
 
     SqliteQueryPtr parsedQuery;
     SqliteTableRelatedDdlPtr tableRelatedDdl;
@@ -93,10 +120,10 @@ StrHash< QStringList> SchemaResolver::getGroupedObjects(const QString &database,
             continue;
         }
 
-        groupedTriggers[tableRelatedDdl->getTargetTable()] << object;
+        groupedObjects[tableRelatedDdl->getTargetTable()] << object;
     }
 
-    return groupedTriggers;
+    return groupedObjects;
 }
 
 bool SchemaResolver::isFilteredOut(const QString& value, const QString& type)
@@ -279,15 +306,17 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     if (name.isNull())
         return QString();
 
+    // Prepare db prefix.
+    QString dbName = getPrefixDb(database);
+
     // In case of sqlite_master or sqlite_temp_master we have static definitions
     QString lowerName = stripObjName(name).toLower();
     if (lowerName == "sqlite_master")
         return getSqliteMasterDdl(false);
     else if (lowerName == "sqlite_temp_master")
         return getSqliteMasterDdl(true);
-
-    // Prepare db prefix.
-    QString dbName = getPrefixDb(database);
+    else if (lowerName.startsWith("sqlite_autoindex_"))
+        return getSqliteAutoIndexDdl(dbName, stripObjName(name));
 
     // Standalone or temp table?
     QString targetTable = "sqlite_master";
@@ -391,6 +420,35 @@ QString SchemaResolver::getObjectDdlWithSimpleName(const QString &dbName, const 
     // The DDL string
     results = queryResults->getSingleCell();
     return results.toString();
+}
+
+StrHash<QString> SchemaResolver::getIndexesWithTables(const QString& database)
+{
+    static_qstring(idxForTableTpl, "SELECT %2 as tbl_name, name FROM %1.pragma_index_list(%2)");
+
+    QStringList tables = getTables(database);
+    QString dbName = getPrefixDb(database);
+    QStringList queryParts;
+    for (const QString& table : tables)
+        queryParts << idxForTableTpl.arg(wrapObjName(dbName), wrapString(table));
+
+    QString query = queryParts.join(" UNION ");
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    StrHash<QString> indexes;
+    QString tabName;
+    QString idxName;
+    for (SqlResultsRowPtr row : results->getAll())
+    {
+        tabName = row->value("tbl_name").toString();
+        idxName = row->value("name").toString();
+        if (isFilteredOut(idxName, "index"))
+            continue;
+
+        indexes[idxName] = tabName;
+    }
+
+    return indexes;
 }
 
 QStringList SchemaResolver::getColumnsFromDdlUsingPragma(const QString& ddl)
@@ -548,6 +606,81 @@ StrHash< SqliteCreateViewPtr> SchemaResolver::getAllParsedViews(const QString& d
     return getAllParsedObjectsForType<SqliteCreateView>(database, "view");
 }
 
+QString SchemaResolver::getSqliteAutoIndexDdl(const QString& database, const QString& index)
+{
+    // First, let's try to use cached value
+    static_qstring(cacheKeyTpl, "%1.%2");
+    QString cacheKey = cacheKeyTpl.arg(database, index).toLower();
+    QString* cachedDdlPtr = autoIndexDdlCache[cacheKey];
+    if (cachedDdlPtr)
+        return *(cachedDdlPtr);
+
+    // Not in cache. We need to find out indexed table.
+    // Let's try to find it in sqlite_master.
+    // If it's there, we will at least know it's referenced table.
+    static_qstring(masterQuery, "SELECT tbl_name FROM %1.sqlite_master WHERE type = 'index' AND name = ?");
+
+    QString table;
+    QString dbName = getPrefixDb(database);
+    QVariant masterRes = db->exec(masterQuery.arg(dbName), {index}, dbFlags)->getSingleCell();
+    if (masterRes.isNull())
+    {
+        // Not lucky. We need to find out the table.
+        StrHash<QString> indexesWithTables = getIndexesWithTables(database);
+        auto it = indexesWithTables.iterator();
+        while (it.hasNext())
+        {
+            auto entry = it.next();
+            if (entry.key().toLower() == index.toLower())
+            {
+                table = entry.value();
+                break;
+            }
+        }
+    }
+    else
+        table = masterRes.toString();
+
+    if (table.isNull())
+    {
+        qCritical() << "Could not determin table associated with index" << database << "." << index;
+        return QString();
+    }
+
+    // Check the unique flag of the index
+    static_qstring(idxUniqueQueryTpl, "SELECT unique FROM %1.pragma_index_list(%2) WHERE name = ?");
+    SqlQueryPtr uniqRes = db->exec(idxUniqueQueryTpl.arg(dbName, wrapString(table)), {index}, dbFlags);
+    bool unique = uniqRes->getSingleCell().toInt() > 0;
+
+    // Now let's find out columns
+    static_qstring(idxColQueryTpl, "SELECT name, coll, desc FROM %1.pragma_index_xinfo(%2) WHERE key = 1");
+    static_qstring(idxColTpl, "%1 COLLATE %2");
+
+    QStringList columns;
+    SqlQueryPtr colRes = db->exec(idxColQueryTpl.arg(dbName, wrapString(index)), dbFlags);
+    while (colRes->hasNext())
+    {
+        SqlResultsRowPtr row = colRes->next();
+        QString column = idxColTpl.arg(wrapObjIfNeeded(row->value("name").toString()), row->value("coll").toString());
+        if (row->value("desc").toInt() > 0)
+            column += " DESC";
+
+        columns << column;
+    }
+
+    // Finally, let's build it up & cache
+    static_qstring(ddlTpl, "CREATE %1INDEX %2 ON %3 (%4)");
+    QString ddl = ddlTpl.arg(
+                unique ? "UNIQUE " : "",
+                wrapObjIfNeeded(index),
+                wrapObjIfNeeded(table),
+                columns.join(", ")
+                );
+
+    autoIndexDdlCache.insert(cacheKey, new QString(ddl));
+    return ddl;
+}
+
 SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
 {
     if (!parser->parse(ddl))
@@ -555,6 +688,8 @@ SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
         qDebug() << "Could not parse DDL for parsing object by SchemaResolver. Errors are:";
         for (ParserError* err : parser->getErrors())
             qDebug() << err->getMessage();
+
+        qDebug() << "The DDL is:" << ddl;
 
         return SqliteQueryPtr();
     }
@@ -713,11 +848,23 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& table, const Q
 
 QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)
 {
-    QStringList names;
-    for (SqliteCreateIndexPtr idx : getParsedIndexesForTable(database, table))
-        names << idx->index;
+    static_qstring(idxForTableTpl, "SELECT name FROM %1.pragma_index_list(%2)");
 
-    return names;
+    QString query = idxForTableTpl.arg(wrapObjName(database), wrapString(table));
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    QStringList indexes;
+    QString value;
+    for (SqlResultsRowPtr row : results->getAll())
+    {
+        value = row->value(0).toString();
+        if (isFilteredOut(value, "index"))
+            continue;
+
+        indexes << value;
+    }
+
+    return indexes;
 }
 
 QStringList SchemaResolver::getIndexesForTable(const QString& table)
@@ -826,9 +973,6 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     SqliteCreateIndexPtr createIndex;
     for (const QString& index : indexes)
     {
-        if (index.startsWith("sqlite_", Qt::CaseInsensitive))
-            continue;
-
         query = getParsedObject(database, index, INDEX);
         if (!query)
             continue;

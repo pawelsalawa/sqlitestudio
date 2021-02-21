@@ -14,6 +14,7 @@
 #include "querygenerator.h"
 #include "parser/lexer.h"
 #include "common/compatibility.h"
+#include "mainwindow.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>
@@ -208,6 +209,12 @@ int SqlQueryModel::getCellDataLengthLimit()
     return cellDataLengthLimit;
 }
 
+void SqlQueryModel::setCellDataLengthLimit(int value)
+{
+    cellDataLengthLimit = value;
+    queryExecutor->setDataLengthLimit(value);
+}
+
 QModelIndexList SqlQueryModel::findIndexes(int role, const QVariant& value, int hits) const
 {
     QModelIndex startIdx = index(0, 0);
@@ -364,7 +371,7 @@ void SqlQueryModel::commit(const QList<SqlQueryItem*>& items)
     commitInternal(filterOutCommittedItems(items));
 }
 
-bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     const SqlQueryItem* item = itemsInRow.at(0);
     if (!item)
@@ -373,11 +380,11 @@ bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow)
         return true;
     }
     if (item->isNewRow())
-        return commitAddedRow(getRow(item->row())); // we need to get all items again, in case of selective commit
+        return commitAddedRow(getRow(item->row()), successfulCommitHandlers); // we need to get all items again, in case of selective commit
     else if (item->isDeletedRow())
-        return commitDeletedRow(getRow(item->row())); // we need to get all items again, in case of selective commit
+        return commitDeletedRow(getRow(item->row()), successfulCommitHandlers); // we need to get all items again, in case of selective commit
     else
-        return commitEditedRow(itemsInRow);
+        return commitEditedRow(itemsInRow, successfulCommitHandlers);
 }
 
 void SqlQueryModel::rollbackRow(const QList<SqlQueryItem*>& itemsInRow)
@@ -559,14 +566,13 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
 
     int step = 1;
     rowsDeletedSuccessfullyInTheCommit.clear();
+    QList<CommitSuccessfulHandler> successfulCommitHandlers; // list of lambdas to execute after all rows were committed successfully
     bool ok = true;
     for (const QList<SqlQueryItem*>& itemsInRow : groupedItems)
     {
-        if (!commitRow(itemsInRow))
-        {
+        if (!commitRow(itemsInRow, successfulCommitHandlers))
             ok = false;
-            break;
-        }
+
         emit committingStepFinished(step++);
     }
 
@@ -591,6 +597,10 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         }
         else
         {
+            // Call all successfull commit handler to refresh cell metadata, etc.
+            for (CommitSuccessfulHandler& handler : successfulCommitHandlers)
+                handler();
+
             // Refresh generated columns of altered rows
             refreshGeneratedColumns(itemsLeft);
 
@@ -749,13 +759,14 @@ int SqlQueryModel::getCurrentPage(bool includeOneBeingLoaded) const
     return result < 0 ? 0 : result;
 }
 
-bool SqlQueryModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     UNUSED(itemsInRow);
+    UNUSED(successfulCommitHandlers);
     return false;
 }
 
-bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     if (itemsInRow.size() == 0)
     {
@@ -809,7 +820,9 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
             col = item->getColumn();
             if (col->editionForbiddenReason.size() > 0 || item->isJustInsertedWithOutRowId())
             {
-                notifyError(tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it."));
+                QString errMsg = tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.");
+                item->setCommittingError(true, errMsg);
+                notifyError(errMsg);
                 return false;
             }
 
@@ -832,23 +845,31 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         SqlQueryPtr results = db->exec(query, queryArgs);
         if (results->isError())
         {
+            QString errMsg = tr("An error occurred while committing the data: %1").arg(results->getErrorText());
             for (SqlQueryItem* item : items)
-                item->setCommittingError(true);
+                item->setCommittingError(true, errMsg);
 
-            notifyError(tr("An error occurred while committing the data: %1").arg(results->getErrorText()));
+            notifyError(errMsg);
             return false;
         }
 
         // After successful commit, check if RowId was modified and upadate it accordingly
         if (rowId != newRowId)
-            updateRowIdForAllItems(table, rowId, newRowId);
+        {
+            // ...and do it with deferred lambda, so only after all rows were successully committed
+            successfulCommitHandlers << [this, table, rowId, newRowId]()
+            {
+                updateRowIdForAllItems(table, rowId, newRowId);
+            };
+        }
     }
 
     return true;
 }
 
-bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
+    UNUSED(successfulCommitHandlers);
     if (itemsInRow.size() == 0)
     {
         qCritical() << "No items passed to SqlQueryModel::commitDeletedRow().";
@@ -1860,11 +1881,20 @@ void SqlQueryModel::deleteSelectedRows()
 {
     QList<SqlQueryItem*> selectedItems = view->getSelectedItems();
     QSet<int> rows;
+    QSet<int> newRows;
     for (SqlQueryItem* item : selectedItems)
-        rows << item->index().row();
+    {
+        int row = item->index().row();
+        if (item->isNewRow())
+            newRows << row;
+
+        rows << row;
+    }
 
     QList<int> rowList = rows.values();
-    std::sort(rowList.begin(), rowList.end());
+    QList<int> newRowList = newRows.values();
+    sSort(rowList);
+    sSort(newRowList);
 
     QList<SqlQueryItem*> newItemsToDelete;
     int cols = columnCount();
@@ -1884,8 +1914,25 @@ void SqlQueryModel::deleteSelectedRows()
         }
     }
 
-    for (SqlQueryItem* item : newItemsToDelete)
-        removeRow(item->index().row());
+    if (newItemsToDelete.size() > 0)
+    {
+        QStringList rowNumbers;
+        int rowBase = getRowsPerPage() * getCurrentPage();
+        for (int row : newRowList)
+            rowNumbers << QString::number(rowBase + row + 1); // +1 for visual representation of row, which in code is 0-based
+
+        QMessageBox::StandardButton userResponse = QMessageBox::question(MAINWINDOW, tr("Delete rows"),
+                              tr("You're about to delete newly inserted rows that are not committed yet. Row numbers: %1\n"
+                                 "Such deletion will be permanent. Are you sure you want to delete them?")
+                                    .arg(rowNumbers.join(", ")));
+
+        if (userResponse == QMessageBox::Yes)
+        {
+            for (SqlQueryItem* item : newItemsToDelete)
+                removeRow(item->index().row());
+        }
+    }
+
 
     emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
@@ -2007,6 +2054,39 @@ void SqlQueryModel::loadFullDataForEntireRow(int row)
 
         item->loadFullData();
     }
+}
+
+void SqlQueryModel::loadFullDataForEntireColumn(int column)
+{
+    int rowCnt = rowCount();
+    SqlQueryItem *item = nullptr;
+    for (int row = 0; row < rowCnt; row++)
+    {
+        item = itemFromIndex(row, column);
+        if (!item)
+            continue;
+
+        if (!item->isLimitedValue())
+            continue;
+
+        item->loadFullData();
+    }
+}
+
+bool SqlQueryModel::doesColumnHaveLimitedValues(int column) const
+{
+    int rowCnt = rowCount();
+    SqlQueryItem *item = nullptr;
+    for (int row = 0; row < rowCnt; row++)
+    {
+        item = itemFromIndex(row, column);
+        if (!item)
+            continue;
+
+        if (item->isLimitedValue())
+            return true;
+    }
+    return false;
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::clear()

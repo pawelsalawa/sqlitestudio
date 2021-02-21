@@ -48,14 +48,14 @@ void SqlQueryItem::setUncommitted(bool uncommitted)
     QStandardItem::setData(QVariant(uncommitted), DataRole::UNCOMMITTED);
     if (!uncommitted)
     {
-        setOldValue(QVariant());
+        clearOldValue();
         setCommittingError(false);
     }
 }
 
 void SqlQueryItem::rollback()
 {
-    setValue(getOldValue(), true, true);
+    setValue(getOldValue(), getOldValueLimited(), true);
     setUncommitted(false);
     setDeletedRow(false);
 }
@@ -68,6 +68,24 @@ bool SqlQueryItem::isCommittingError() const
 void SqlQueryItem::setCommittingError(bool isError)
 {
     QStandardItem::setData(QVariant(isError), DataRole::COMMITTING_ERROR);
+    if (!isError)
+        setCommittingErrorMessage(QString());
+}
+
+void SqlQueryItem::setCommittingError(bool isError, const QString& msg)
+{
+    setCommittingErrorMessage(msg);
+    setCommittingError(isError);
+}
+
+QString SqlQueryItem::getCommittingErrorMessage() const
+{
+    return QStandardItem::data(DataRole::COMMITTING_ERROR_MESSAGE).toString();
+}
+
+void SqlQueryItem::setCommittingErrorMessage(const QString& value)
+{
+    QStandardItem::setData(QVariant(value), DataRole::COMMITTING_ERROR_MESSAGE);
 }
 
 bool SqlQueryItem::isNewRow() const
@@ -98,7 +116,7 @@ bool SqlQueryItem::isDeletedRow() const
 void SqlQueryItem::setDeletedRow(bool isDeleted)
 {
     if (isDeleted && !getOldValue().isValid())
-        setOldValue(getValue());
+        rememberOldValue();
 
     QStandardItem::setData(QVariant(isDeleted), DataRole::DELETED);
 }
@@ -110,6 +128,13 @@ QVariant SqlQueryItem::getValue() const
 
 void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFromDb)
 {
+    if (!valueSettingLock.tryLock())
+    {
+        // Triggered recursively by catching "itemChanged" event,
+        // that was caused by the QStandardItem::setData below.
+        return;
+    }
+
     QVariant newValue = adjustVariantType(value);
     QVariant origValue = getValue();
 
@@ -126,7 +151,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
                     isUncommitted();
 
     if (modified && !getOldValue().isValid())
-        setOldValue(origValue);
+        rememberOldValue();
 
     // This is a workaround for an issue in Qt, that uses operator== to compare values in QStandardItem::setData().
     // If the old value is null and the new value is empty, then operator == returns true, which is a lie.
@@ -140,46 +165,12 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
 
     // Value for display (in a cell) will always be limited, for performance reasons
     setValueForDisplay("x"); // the same trick as with the DataRole::VALUE
-    if (!limited)
-    {
-        int theLimit = SqlQueryModel::getCellDataLengthLimit();
-        switch (value.type())
-        {
-            case QVariant::ByteArray:
-            {
-                QByteArray newBytes = newValue.toByteArray();
-                if (newBytes.size() > theLimit)
-                {
-                    newBytes.resize(theLimit);
-                    setValueForDisplay(newBytes);
-                }
-                else
-                    setValueForDisplay(newValue);
-
-                break;
-            }
-            case QVariant::String:
-            {
-                QString newString = newValue.toString();
-                if (newString.size() > theLimit)
-                {
-                    newString.resize(theLimit);
-                    setValueForDisplay(newString);
-                }
-                else
-                    setValueForDisplay(newValue);
-
-                break;
-            }
-            default:
-                setValueForDisplay(newValue);
-        }
-    }
-    else
-        setValueForDisplay(newValue);
+    setValueForDisplay(newValue);
 
     if (modified && getModel())
         getModel()->itemValueEdited(this);
+
+    valueSettingLock.unlock();
 }
 
 bool SqlQueryItem::isLimitedValue() const
@@ -195,6 +186,16 @@ QVariant SqlQueryItem::getOldValue() const
 void SqlQueryItem::setOldValue(const QVariant& value)
 {
     QStandardItem::setData(value, DataRole::OLD_VALUE);
+}
+
+bool SqlQueryItem::getOldValueLimited() const
+{
+    return QStandardItem::data(DataRole::OLD_VALUE_LIMITED).toBool();
+}
+
+void SqlQueryItem::setOldValueLimited(bool value)
+{
+    QStandardItem::setData(value, DataRole::OLD_VALUE_LIMITED);
 }
 
 QVariant SqlQueryItem::getValueForDisplay() const
@@ -242,6 +243,7 @@ QString SqlQueryItem::getToolTip() const
     static const QString hdrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><th colspan=2 style=\"align: center\">%2 %3</th></tr>";
     static const QString constrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
     static const QString emptyRow = "<tr><td colspan=3></td></tr>";
+    static const QString topErrorRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
 
     if (!index().isValid())
         return QString();
@@ -251,11 +253,17 @@ QString SqlQueryItem::getToolTip() const
         return QString(); // happens when simple execution method was performed
 
     QStringList rows;
-    rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);
-    rows << rowTmp.arg(tr("Data type:", "data view")).arg(col->dataType.toString());
+    if (isCommittingError())
+    {
+        rows << topErrorRowTmp.arg(ICONS.STATUS_WARNING.getPath(), tr("Committing error:", "data view tooltip"), getCommittingErrorMessage());
+        rows << emptyRow;
+    }
+
+    rows << hdrRowTmp.arg(ICONS.COLUMN.getPath(), tr("Column:", "data view tooltip"), col->column);
+    rows << rowTmp.arg(tr("Data type:", "data view"), col->dataType.toString());
     if (!col->table.isNull())
     {
-        rows << rowTmp.arg(tr("Table:", "data view tooltip")).arg(col->table);
+        rows << rowTmp.arg(tr("Table:", "data view tooltip"), col->table);
 
         RowId rowId = getRowId();
         QString rowIdStr;
@@ -279,18 +287,30 @@ QString SqlQueryItem::getToolTip() const
             }
             rowIdStr = "[" + values.join(", ") + "]";
         }
-        rows << rowTmp.arg("ROWID:").arg(rowIdStr);
+        rows << rowTmp.arg("ROWID:", rowIdStr);
     }
 
     if (col->constraints.size() > 0)
     {
         rows << emptyRow;
-        rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath()).arg(tr("Constraints:", "data view tooltip")).arg("");
+        rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath(), tr("Constraints:", "data view tooltip"), "");
         for (SqlQueryModelColumn::Constraint* constr : col->constraints)
-            rows << constrRowTmp.arg(constr->getIcon()->toUrl()).arg(constr->getTypeString()).arg(constr->getDetails());
+            rows << constrRowTmp.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
     }
 
     return tableTmp.arg(rows.join(""));
+}
+
+void SqlQueryItem::rememberOldValue()
+{
+    setOldValue(getValue());
+    setOldValueLimited(isLimitedValue());
+}
+
+void SqlQueryItem::clearOldValue()
+{
+    setOldValue(QVariant());
+    setOldValueLimited(false);
 }
 
 SqlQueryModelColumn* SqlQueryItem::getColumn() const
@@ -428,17 +448,20 @@ QString SqlQueryItem::loadFullData()
     // Query
     QString query;
     QHash<QString,QVariant> queryArgs;
-    QString column = wrapObjIfNeeded(col->column);
     if (col->editionForbiddenReason.size() > 0)
     {
         static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
 
         // The query
+        QString column = wrapObjIfNeeded(!col->alias.isNull() ? col->alias : col->column);
         query = tpl.arg(column, model->getQuery(), QString::number(index().row()));
     }
     else
     {
         static_qstring(tpl, "SELECT %1 FROM %2 WHERE %3");
+
+        // Column
+        QString column = wrapObjIfNeeded(col->column);
 
         // Db and table
         QString source = wrapObjIfNeeded(col->table);

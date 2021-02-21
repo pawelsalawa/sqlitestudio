@@ -36,6 +36,8 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QProcess>
+#include <QFileDialog>
+#include <QSettings>
 #ifdef Q_OS_WIN
 #   include <windef.h>
 #   include <windows.h>
@@ -100,10 +102,17 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 int main(int argc, char *argv[])
 {
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationName("SQLiteStudio");
+    QCoreApplication::setOrganizationName("SalSoft");
+    QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
 
     SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
-    if (a.isSecondary()) {
+    QSettings sett;
+    QVariant allowMultipleSessionsValue = sett.value(MainWindow::ALLOW_MULTIPLE_SESSIONS_SETTING);
+    bool allowMultipleSessions = allowMultipleSessionsValue.isValid() && allowMultipleSessionsValue.toBool();
+
+    if (!allowMultipleSessions && a.isSecondary()) {
 #ifdef Q_OS_WIN
         AllowSetForegroundWindow(DWORD( a.primaryPid()));
 #endif
@@ -114,11 +123,17 @@ int main(int argc, char *argv[])
 
     qInstallMessageHandler(uiMessageHandler);
 
+    Config::setAskUserForConfigDirFunc([]() -> QString
+    {
+       return QFileDialog::getExistingDirectory(nullptr, QObject::tr("Select configuration directory"), QString(), QFileDialog::ShowDirsOnly);
+    });
+
     QString dbToOpen = uiHandleCmdLineArgs();
 
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
+
 
     SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "guiSQLiteStudio", "sqlitestudio"});
     SQLITESTUDIO->init(a.arguments(), true);

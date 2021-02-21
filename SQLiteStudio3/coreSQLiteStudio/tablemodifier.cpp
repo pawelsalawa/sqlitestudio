@@ -85,6 +85,7 @@ QString TableModifier::renameToTemp()
 void TableModifier::copyDataTo(const QString& targetTable)
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QStringList targetColumns = resolver.getTableColumns(targetTable);
     QStringList colsToCopy;
     for (SqliteCreateTable::Column* column : createTable->columns)
@@ -104,7 +105,7 @@ void TableModifier::handleFks()
     tablesHandledForFk << originalTable;
 
     SchemaResolver resolver(db);
-
+    resolver.setIgnoreSystemObjects(true);
     QStringList fkTables = resolver.getFkReferencingTables(originalTable);
 
     for (const QString& fkTable : fkTables)
@@ -424,6 +425,7 @@ void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
 void TableModifier::handleIndexes()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
     for (SqliteCreateIndexPtr index : parsedIndexesForTable)
         handleIndex(index);
@@ -450,6 +452,7 @@ void TableModifier::handleIndex(SqliteCreateIndexPtr index)
 void TableModifier::handleTriggers()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateTriggerPtr> parsedTriggersForTable = resolver.getParsedTriggersForTable(originalTable, true);
     for (SqliteCreateTriggerPtr trig : parsedTriggersForTable)
         handleTrigger(trig);
@@ -539,6 +542,7 @@ void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
 void TableModifier::handleViews()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateViewPtr> parsedViewsForTable = resolver.getParsedViewsForTable(originalTable);
     for (SqliteCreateViewPtr view : parsedViewsForTable)
         handleView(view);
@@ -900,6 +904,7 @@ bool TableModifier::handleExpr(SqliteExpr* expr)
 void TableModifier::simpleHandleIndexes()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
     for (SqliteCreateIndexPtr index : parsedIndexesForTable)
         sqls << index->detokenize();
@@ -908,6 +913,7 @@ void TableModifier::simpleHandleIndexes()
 void TableModifier::simpleHandleTriggers(const QString& view)
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateTriggerPtr> parsedTriggers ;
     if (!view.isNull())
         parsedTriggers = resolver.getParsedTriggersForView(view);
@@ -962,6 +968,7 @@ void TableModifier::init()
 void TableModifier::parseDdl()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QString ddl = resolver.getObjectDdl(database, table, SchemaResolver::TABLE);
     if (ddl.isNull())
     {
@@ -996,6 +1003,7 @@ void TableModifier::parseDdl()
 QString TableModifier::getTempTableName()
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QString name = resolver.getUniqueName("sqlitestudio_temp_table", usedTempTableNames);
     usedTempTableNames << name;
     return name;

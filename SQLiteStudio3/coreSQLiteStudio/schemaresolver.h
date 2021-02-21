@@ -175,6 +175,7 @@ class API_EXPORT SchemaResolver
         StrHash<SqliteCreateViewPtr> getAllParsedViews();
         StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
 
+        QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool temp = false);
         static QStringList getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables);
 
@@ -202,6 +203,7 @@ class API_EXPORT SchemaResolver
         QList<SqliteCreateTriggerPtr> getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences, bool table);
         QString getObjectDdlWithDifficultName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         QString getObjectDdlWithSimpleName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
+        StrHash<QString> getIndexesWithTables(const QString& database = QString());
 
         template <class T>
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
@@ -212,6 +214,7 @@ class API_EXPORT SchemaResolver
         Db::Flags dbFlags;
 
         static ExpiringCache<ObjectCacheKey,QVariant> cache;
+        static ExpiringCache<QString, QString> autoIndexDdlCache;
 };
 
 int qHash(const SchemaResolver::ObjectCacheKey& key);

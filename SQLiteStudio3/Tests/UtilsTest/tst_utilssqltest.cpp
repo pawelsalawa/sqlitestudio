@@ -19,6 +19,11 @@ private Q_SLOTS:
 
 UtilsSqlTest::UtilsSqlTest()
 {
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 void UtilsSqlTest::testCaseDefault()

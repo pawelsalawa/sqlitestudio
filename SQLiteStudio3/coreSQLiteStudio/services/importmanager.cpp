@@ -67,7 +67,7 @@ void ImportManager::importToTable(Db* db, const QString& table, bool async)
     importInProgress = true;
 
     ImportWorker* worker = new ImportWorker(plugin, &importConfig, db, table);
-    connect(worker, SIGNAL(finished(bool)), this, SLOT(finalizeImport(bool)));
+    connect(worker, SIGNAL(finished(bool, int)), this, SLOT(finalizeImport(bool, int)));
     connect(worker, SIGNAL(createdTable(Db*,QString)), this, SLOT(handleTableCreated(Db*,QString)));
     connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
 
@@ -87,13 +87,13 @@ bool ImportManager::isAnyPluginAvailable()
     return PLUGINS->getLoadedPlugins<ImportPlugin>().size() > 0;
 }
 
-void ImportManager::finalizeImport(bool result)
+void ImportManager::finalizeImport(bool result, int rowCount)
 {
     importInProgress = false;
     emit importFinished();
     if (result)
     {
-        notifyInfo(tr("Imported data to the table '%1' successfully.").arg(table));
+        notifyInfo(tr("Imported data to the table '%1' successfully. Number of imported rows: %2").arg(table, QString::number(rowCount)));
         emit importSuccessful();
     }
     else

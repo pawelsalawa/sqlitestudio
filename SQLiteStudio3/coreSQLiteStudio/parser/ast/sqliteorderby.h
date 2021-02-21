@@ -31,6 +31,10 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIn
 
     protected:
         TokenList rebuildTokensFromContents();
+        void evaluatePostParsing();
+
+    private:
+        void pullLastCollationAsOuterExpr();
 };
 
 typedef QSharedPointer<SqliteOrderBy> SqliteOrderByPtr;

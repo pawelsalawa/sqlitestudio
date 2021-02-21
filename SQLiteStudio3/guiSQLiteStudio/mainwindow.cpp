@@ -135,7 +135,9 @@ void MainWindow::init()
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
+    connect(CFG_UI.General.AllowMultipleSessions, SIGNAL(changed(QVariant)), this, SLOT(updateMultipleSessionsSetting(QVariant)));
 
+    updateMultipleSessionsSetting();
     fixFonts();
 }
 
@@ -268,6 +270,7 @@ void MainWindow::createActions()
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User &Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite &documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Bugs and feature &requests"), this, SLOT(reportHistory()), this);
+    createAction(QUIT, ICONS.QUIT, tr("Quit"), this, SLOT(quit()), this);
 #ifdef PORTABLE_CONFIG
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
@@ -323,6 +326,10 @@ void MainWindow::initMenuBar()
     dbMenu->addSeparator();
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMAS));
+#ifndef Q_OS_MACX
+    dbMenu->addSeparator();
+    dbMenu->addAction(actionMap[QUIT]);
+#endif
 
     // Structure menu
     structMenu = new QMenu(this);
@@ -784,6 +791,23 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
         return;
     }
 #endif
+}
+
+void MainWindow::quit()
+{
+    close();
+}
+
+void MainWindow::updateMultipleSessionsSetting(const QVariant& newValue)
+{
+    QSettings sett;
+    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, newValue);
+}
+
+void MainWindow::updateMultipleSessionsSetting()
+{
+    QSettings sett;
+    sett.setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, CFG_UI.General.AllowMultipleSessions.get());
 }
 
 #ifdef PORTABLE_CONFIG

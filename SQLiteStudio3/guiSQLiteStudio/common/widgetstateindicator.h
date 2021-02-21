@@ -64,12 +64,16 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         QWidget* findParentWindow(QWidget* w);
         bool shouldHide();
         bool shouldShow();
+        bool eventFilterFromWidget(QEvent *ev);
+        bool eventFilterFromParentWidget(QEvent *ev);
+        bool eventFilterFromIndicatorLabel(QEvent *ev);
 
         QWidget* labelParent = nullptr;
         QLabel* label = nullptr;
         Mode mode = Mode::ERROR;
         QWidget* widget = nullptr;
         QString message;
+        QString processedMessage;
         QGraphicsColorizeEffect* highlightingEffect = nullptr;
         QGraphicsDropShadowEffect* glowEffect = nullptr;
         bool widgetVisible = false;

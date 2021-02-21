@@ -26,7 +26,11 @@ class ParserTest : public QObject
         void verifyWindowClause(const QString& sql, SqliteSelectPtr& select, bool& ok);
 
     private Q_SLOTS:
+        void initTestCase();
+        void cleanupTestCase();
+
         void test();
+        void testString();
         void testScientificNumber();
         void testUniqConflict();
         void testGetTableTokens();
@@ -56,8 +60,7 @@ class ParserTest : public QObject
         void testWindowClause();
         void testFilterClause();
         void testUpdateFrom();
-        void initTestCase();
-        void cleanupTestCase();
+        void testStringAsTableId();
 };
 
 ParserTest::ParserTest()
@@ -89,6 +92,22 @@ void ParserTest::test()
     TokenList tokens = query->getContextTableTokens();
 }
 
+void ParserTest::testString()
+{
+    QString sql = "SELECT 1 = '1';";
+
+    parser3->parse(sql);
+    QCOMPARE(parser3->getErrors().size(), 0);
+
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    query->rebuildTokens();
+
+    QCOMPARE(query->tokens.detokenize(), sql);
+    QCOMPARE(query->tokens.size(), 8);
+    QCOMPARE(query->tokens[2]->type, Token::Type::INTEGER);
+    QCOMPARE(query->tokens[6]->type, Token::Type::STRING);
+}
+
 void ParserTest::testScientificNumber()
 {
     QString sql = "SELECT 1e100;";
@@ -103,7 +122,7 @@ void ParserTest::testGetTableTokens()
     QString sql = "select someTable.* FROM someTable;";
 
     parser3->parse(sql);
-    QVERIFY(parser3->getErrors().size() == 0);
+    QCOMPARE(parser3->getErrors().size(), 0);
 
     SqliteQueryPtr query = parser3->getQueries()[0];
     TokenList tokens = query->getContextTableTokens();
@@ -117,7 +136,7 @@ void ParserTest::testGetTableTokens2()
     QString sql = "select db.tab.col FROM someTable;";
 
     parser3->parse(sql);
-    QVERIFY(parser3->getErrors().size() == 0);
+    QCOMPARE(parser3->getErrors().size(), 0);
 
     SqliteQueryPtr query = parser3->getQueries()[0];
     TokenList tokens = query->getContextTableTokens();
@@ -645,6 +664,14 @@ void ParserTest::testUpdateFrom()
     QVERIFY(update->from->singleSource);
     QVERIFY(update->from->singleSource->select);
     QCOMPARE(update->from->singleSource->alias, "daily");
+}
+
+void ParserTest::testStringAsTableId()
+{
+    QString sql = "select 'bb'.id1 = 'bb'.id2;";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
 }
 
 void ParserTest::initTestCase()

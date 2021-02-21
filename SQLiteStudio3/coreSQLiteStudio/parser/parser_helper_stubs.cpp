@@ -44,3 +44,34 @@ ParserDeferSubClause::ParserDeferSubClause(SqliteDeferrable deferrable, SqliteIn
     this->deferrable = deferrable;
 }
 
+
+ParserTermOrLiteral::ParserTermOrLiteral(const QString& name)
+{
+    value = name;
+    nameMode = true;
+}
+
+ParserTermOrLiteral::ParserTermOrLiteral(const QVariant& literal)
+{
+    value = literal;
+}
+
+QString ParserTermOrLiteral::toName() const
+{
+    return value.toString();
+}
+
+QVariant ParserTermOrLiteral::toLiteral() const
+{
+    return value;
+}
+
+bool ParserTermOrLiteral::isName() const
+{
+    return !value.isNull() && value.type() == QVariant::String;
+}
+
+bool ParserTermOrLiteral::isLiteral() const
+{
+    return !nameMode;
+}

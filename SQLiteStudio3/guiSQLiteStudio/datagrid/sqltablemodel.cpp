@@ -46,7 +46,7 @@ SqlQueryModel::Features SqlTableModel::features() const
     return INSERT_ROW|DELETE_ROW|FILTERING;
 }
 
-bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     QList<SqlQueryModelColumnPtr> modelColumns = getTableColumnModels(table);
     if (modelColumns.size() != itemsInRow.size())
@@ -77,10 +77,11 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     // Handle error
     if (result->isError())
     {
+        QString errMsg = tr("Error while committing new row: %1").arg(result->getErrorText());
         for (SqlQueryItem* item : itemsInRow)
-            item->setCommittingError(true);
+            item->setCommittingError(true, errMsg);
 
-        notifyError(tr("Error while committing new row: %1").arg(result->getErrorText()));
+        notifyError(errMsg);
         return false;
     }
 
@@ -100,11 +101,16 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     else
         rowId = result->getInsertRowId();
 
-    updateRowAfterInsert(itemsInRow, modelColumns, rowId);
+    // After all items are committed successfully, update data/metadata for inserted rows/items
+    successfulCommitHandlers << [this, itemsInRow, modelColumns, rowId]()
+    {
+        updateRowAfterInsert(itemsInRow, modelColumns, rowId);
+    };
+
     return true;
 }
 
-bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
+bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
     if (itemsInRow.size() == 0)
     {
@@ -136,11 +142,15 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     SqlQueryPtr result = db->exec(sql, args);
     if (result->isError())
     {
-        notifyError(tr("Error while deleting row from table %1: %2").arg(table).arg(result->getErrorText()));
+        QString errMsg = tr("Error while deleting row from table %1: %2").arg(table, result->getErrorText());
+        for (SqlQueryItem* item : itemsInRow)
+            item->setCommittingError(true, errMsg);
+
+        notifyError(errMsg);
         return false;
     }
 
-    if (!SqlQueryModel::commitDeletedRow(itemsInRow))
+    if (!SqlQueryModel::commitDeletedRow(itemsInRow, successfulCommitHandlers))
         qCritical() << "Could not delete row from SqlQueryView while committing row deletion.";
 
     return true;
@@ -428,7 +438,7 @@ void SqlTableModel::processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,
 QString SqlTableModel::getDatabasePrefix()
 {
     if (database.isNull())
-        return "main.";
+        return ""; // not "main.", because the "main." doesn't work for TEMP tables, such as sqlite_temp_master
 
     return wrapObjIfNeeded(database) + ".";
 }

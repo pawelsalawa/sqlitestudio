@@ -70,7 +70,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
         void interrupt();
 
     private slots:
-        void finalizeImport(bool result);
+        void finalizeImport(bool result, int rowCount);
         void handleTableCreated(Db* db, const QString& table);
 
     signals:

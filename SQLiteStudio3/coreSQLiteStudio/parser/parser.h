@@ -3,7 +3,6 @@
 
 #include "token.h"
 #undef NDEBUG
-#include "sqlite3_parse.h"
 #include "ast/sqlitequery.h"
 #include "ast/sqliteexpr.h"
 

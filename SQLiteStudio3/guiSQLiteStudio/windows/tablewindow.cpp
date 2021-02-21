@@ -1485,7 +1485,7 @@ void TableWindow::updateIndexes()
         return;
 
     SchemaResolver resolver(db);
-    resolver.setIgnoreSystemObjects(true);
+    resolver.setIgnoreSystemObjects(false);
     QList<SqliteCreateIndexPtr> indexes = resolver.getParsedIndexesForTable(database, table);
 
     ui->indexList->setColumnCount(4);

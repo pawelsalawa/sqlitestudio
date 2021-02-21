@@ -168,6 +168,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
 
         QString displayName;
         QString column;
+        QString alias;
         QString table;
         QString database;
         QString tableAlias;

@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 REQ_QT_MAJOR = 5
-REQ_QT_MINOR = 3
+REQ_QT_MINOR = 12
 REQ_QT_PATCH = 0
 
 lessThan(QT_MAJOR_VERSION, $$REQ_QT_MAJOR)|lessThan(QT_MINOR_VERSION, $$REQ_QT_MINOR)|lessThan(QT_MINOR_VERSION, $$REQ_QT_PATCH) {
@@ -40,7 +40,5 @@ macx: {
     bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE
     dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dmg
     pkg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
-    pkg_plugins.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist_plugins
-    pkg_full.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist_full
-    QMAKE_EXTRA_TARGETS += bundle dmg pkg pkg_plugins pkg_full
+    QMAKE_EXTRA_TARGETS += bundle dmg pkg
 }

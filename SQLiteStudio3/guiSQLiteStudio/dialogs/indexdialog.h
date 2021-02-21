@@ -36,7 +36,14 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         class Column
         {
             public:
+                /**
+                 * @brief Constructor for a real column in the table
+                 */
                 Column(const QString& name, QTableWidget* table);
+
+                /**
+                 * @brief Constructor for an expression column
+                 */
                 Column(SqliteExpr* expr, QTableWidget* table);
                 ~Column();
 
@@ -50,11 +57,32 @@ class GUI_API_EXPORT IndexDialog : public QDialog
                 void setSort(QComboBox* cb);
                 QComboBox* getCollation() const;
                 void setCollation(QComboBox* cb);
-                bool hasCollation() const;
 
+                /**
+                 * @brief Gets name of a real column in the table
+                 * @return Name of table's column, or null string if it's expression column.
+                 */
                 QString getName() const;
+
+                /**
+                 * @brief Gets expression of an expression column.
+                 * @return Either the expression, or null if this is a real table column.
+                 *
+                 * If an expression assigned to the column is a collate expression,
+                 * this method will extract inner expression and return that.
+                 *
+                 * This is done this way, because after parsing SqliteOrderBy,
+                 * the whole expression (including outer COLLATE expression) is passed
+                 * to the column, whereas COLLATE is used for dropdowns, not for actual expression.
+                 */
                 SqliteExpr* getExpr() const;
+
                 void setExpr(SqliteExpr* expr);
+
+                /**
+                 * @brief Tells whether this is an expression column or real table column.
+                 * @return true if it's expression column, or false if it's real table.
+                 */
                 bool isExpr() const;
                 QString getKey() const;
 
@@ -72,6 +100,8 @@ class GUI_API_EXPORT IndexDialog : public QDialog
                 QString name;
                 SqliteExpr* expr = nullptr;
         };
+
+        static QString buildKey(SqliteExpr* expr);
 
         void init();
         void readIndex();
@@ -92,6 +122,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         QString getKey(SqliteOrderBy* col) const;
         QStringList getExistingColumnExprs(const QString& exceptThis = QString()) const;
         QStringList getTableColumns() const;
+        void preReject();
 
         bool existingIndex = false;
         Db* db = nullptr;
@@ -105,6 +136,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         StrHash<Column*> columns;
         QList<Column*> columnsByRow;
         int totalColumns = 0;
+        bool preRejected = false;
         Ui::IndexDialog *ui = nullptr;
 
     private slots:
@@ -124,6 +156,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
 
     public slots:
         void accept();
+        int exec();
 };
 
 #endif // INDEXDIALOG_H

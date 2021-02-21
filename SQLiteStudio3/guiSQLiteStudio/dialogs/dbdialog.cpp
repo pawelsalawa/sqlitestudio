@@ -463,7 +463,7 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     if (ui->typeCombo->currentIndex() < 0)
         return options;
 
-    for (const QString key : optionKeyToWidget.keys())
+    for (const QString& key : optionKeyToWidget.keys())
         options[key] = getValueFrom(optionKeyToType[key], optionKeyToWidget[key]);
 
     DbPlugin* plugin = nullptr;

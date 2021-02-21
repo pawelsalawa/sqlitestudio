@@ -170,10 +170,10 @@
 #define TK3_ID_COL                         170
 #define TK3_INTO                           171
 #define TK3_NOTHING                        172
-#define TK3_CASE                           173
-#define TK3_ID_FN                          174
-#define TK3_ID_ERR_MSG                     175
-#define TK3_VARIABLE                       176
+#define TK3_ID_FN                          173
+#define TK3_ID_ERR_MSG                     174
+#define TK3_VARIABLE                       175
+#define TK3_CASE                           176
 #define TK3_WHEN                           177
 #define TK3_THEN                           178
 #define TK3_ELSE                           179

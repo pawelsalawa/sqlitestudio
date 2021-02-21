@@ -105,6 +105,7 @@ class API_EXPORT ConfigImpl : public Config
         QString getPortableConfigPath();
         void initTables();
         void initDbFile();
+        QList<QPair<QString, bool> > getStdDbPaths();
         bool tryInitDbFile(const QPair<QString, bool>& dbPath);
         QVariant deserializeValue(const QVariant& value) const;
 
@@ -132,6 +133,8 @@ class API_EXPORT ConfigImpl : public Config
 
         void mergeMasterConfig();
         void updateConfigDb();
+        bool tryToMigrateOldGlobalPath(const QString& oldPath, const QString& newPath);
+        QString getLegacyConfigPath();
 
         static Config* instance;
         static qint64 sqlHistoryId;

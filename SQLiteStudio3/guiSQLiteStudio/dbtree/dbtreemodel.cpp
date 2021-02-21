@@ -1269,6 +1269,7 @@ void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
     if (!success)
     {
         interruptableFinished(dbOrganizer);
+        DBTREE->refreshSchema(srcDb);
         return;
     }
 

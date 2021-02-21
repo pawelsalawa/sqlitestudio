@@ -58,6 +58,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             OPEN_VALUE_EDITOR,
             SORT_DIALOG,
             RESET_SORTING,
+            LOAD_FULL_VALUES,
             GENERATE_SELECT,
             GENERATE_INSERT,
             GENERATE_UPDATE,
@@ -85,6 +86,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
     protected:
         void scrollContentsBy(int dx, int dy);
+        void mouseMoveEvent(QMouseEvent *event);
 
     private:
         class Header : public QHeaderView
@@ -123,6 +125,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool simpleBrowserMode = false;
         bool ignoreColumnWidthChanges = false;
         int beforeExecutionHorizontalPosition = -1;
+        int headerContextMenuSection = -1;
+        QModelIndex indexUnderCursor;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);
@@ -137,6 +141,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void generateInsert();
         void generateUpdate();
         void generateDelete();
+        void loadFullValuesForColumn();
 
     public slots:
         void executionStarted();

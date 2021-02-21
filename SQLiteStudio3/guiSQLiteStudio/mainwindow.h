@@ -49,6 +49,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
      CFG_KEY_ENTRY(OPEN_CONFIG,        Qt::Key_F2,                  QObject::tr("Open configuration dialog"))
      CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE, Qt::Key_F12,                 QObject::tr("Open Debug Console"))
      CFG_KEY_ENTRY(OPEN_CSS_CONSOLE,   Qt::Key_F11,                 QObject::tr("Open CSS Console"))
+     CFG_KEY_ENTRY(QUIT,               Qt::CTRL + Qt::Key_Q,        QObject::tr("Quit the application"))
 )
 
 class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
@@ -90,7 +91,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             ABOUT,
             DONATE,
             BUG_REPORT_HISTORY,
-            CHECK_FOR_UPDATES
+            CHECK_FOR_UPDATES,
+            QUIT
         };
 
         enum ToolBar
@@ -123,6 +125,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QString currentStyle() const;
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
+
+        static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -214,6 +218,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void checkForUpdates();
 #endif
         void statusFieldLinkClicked(const QString& link);
+        void quit();
+        void updateMultipleSessionsSetting();
+        void updateMultipleSessionsSetting(const QVariant& newValue);
 };
 
 template <class T>

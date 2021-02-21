@@ -6,13 +6,17 @@
 - ADDED: #3471 Window Functions support added.
 - ADDED: #3470 UPDATE FROM clause support added.
 - ADDED: #3470 VACUUM INTO clause support added.
+- ADDED: #3266 Added Ctrl+Q and entry in menu for quitting the application.
+- ADDED: #3456 Added option to allow multiple instances of the application running at the same time.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.
-- CHANGE: #3470 SQLite upgraded to 3.34.1.
+- CHANGE: #3470 SQLite upgraded to 3.34.1. From now on the core SQLite3 library is bounded together with application (no longer a separate library).
 - CHANGE: #3494 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
 - CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
+- CHANGE: #3583 When committing multiple rows, all rows are attempted at once, despite errors in prior rows, so that all constraint violations are identified immediately. Also added individual error message to cell tooltip, so user can learn which particular violation caused which row failure.
+- CHANGE: #3269 Enhanced handling of big data cells - they are still limited at first, but now there is an indicator (button) showing up when there is more to load and user can press it to load full data for the cell. User can also load full values in entire column using right-click on the column's header and picking option from context menu.
 - BUGFIX: #3046 HighDPI support fixed.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
 - BUGFIX: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.
@@ -40,8 +44,29 @@
 - BUGFIX: #3459 Fixed "fallback" keywords highlighting used in "ID" context, such as replace() function, etc. Also fixed desynchronized error highlighting when typing quickly.
 - BUGFIX: #3453 Fixed parenthesis highlighting.
 - BUGFIX: #3936 Cleaned up almost all warnings from Qt 5.12 & 5.15 (fixing few minor bugs on the way) so that any important warnings are not missed.
-- BUGFIX: #3445 Detecting correctly current query boundries when executing a query - especially in context of CREATE TRIGGER.
+- BUGFIX: #3445 #3777 Detecting correctly current query boundries when executing a query - especially in context of CREATE TRIGGER.
 - BUGFIX: #3440 SELECT resolver improved to work better with CTE statements (WITH ... SELECT ...).
+- BUGFIX: #3431 Fixed Index Dialog - it was basically impossible to edit existing index, if index had a collation defined.
+- BUGFIX: #3452 Fixed XML export with CDATA quoting if the value contains CDATA end tag.
+- BUGFIX: #3451 Fixed XML export to escape properly all unguarded values & fixed VIRTUAL TABLE export to produce appropriate tag names.
+- BUGFIX: #3422 Improved handling of SQLite's internal indexes, so SQLiteStudio not only shows them now, but also figures out their DDL, so that user can preview it in dialogs/windows.
+- BUGFIX: #3582 Fixed disappearing table (only on the view, not physically) from source database when moving it to another databasein case of failed movement. Now the source database schema is refreshed after failure to show that the table is still there.
+- BUGFIX: #3580 Limiting view depth to 1 for query smart executor, so that it's impossible to build up unbilivebly huge queries by expending multi-level views, which result in unoptimized, slow queries.
+- BUGFIX: #3959 Fixed SQL export plugin, so it respects table name for INSERT statements, even though CREATE TABLE statement export was not enabled.
+- BUGFIX: #3941 Column is no longer resized if user set his own width as desired and then he edits values in cells.
+- BUGFIX: #3857 Fixed parser so it accepts string as first part of object path (id.id or id.id.id).
+- BUGFIX: #3136 Updated configuration path candidates to include Qt's standard path for app configuration. Even then if all paths fail, the app will ask user for writable directory.
+- BUGFIX: #3760 Removed warning about not restored View window from the temporary database.
+- BUGFIX: #3720 Fixed which header columns are copied with using "Copy with header" context menu action on the data grid.
+- BUGFIX: #3698 Fixed issue with manual page typing in dataview. If the number entered was same as current page, it blocked further page changes due to a dead-lock.
+- BUGFIX: #3639 When deleting row that was just inserted but not committed yet, the app will ask for user confirmation whether to permanently delete the new rows.
+- BUGFIX: #3586 Fixed "full value loading" query for not editable cells (expression values), so it properly loads the full value for example if copying value.
+- BUGFIX: #3588 Fixed transactional commit of all pending modifications to a data view. No more disappearing values in new rows when re-editing violated constraints.
+- BUGFIX: #3324 Fixed FK dropdown to work properly with long values (longer than 100 characters).
+- BUGFIX: #3980 Fixed detokenizer for expressions, so the SELECT 1='1' no longer returns true.
+- BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
+- BUGFIX: #3550 After successful data import, a number of rows imported is included in the notification message.
+- BUGFIX: #3415 Fixed release build scripts on all platforms.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
