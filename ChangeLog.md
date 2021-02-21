@@ -11,7 +11,7 @@
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
 - CHANGE: Minumum Qt version now is 5.12.0.
-- CHANGE: #3470 SQLite upgraded to 3.34.1.
+- CHANGE: #3470 SQLite upgraded to 3.34.1. From now on the core SQLite3 library is bounded together with application (no longer a separate library).
 - CHANGE: #3494 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
 - CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
@@ -66,6 +66,7 @@
 - BUGFIX: #3980 Fixed detokenizer for expressions, so the SELECT 1='1' no longer returns true.
 - BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
 - BUGFIX: #3550 After successful data import, a number of rows imported is included in the notification message.
+- BUGFIX: #3415 Fixed release build scripts on all platforms.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
