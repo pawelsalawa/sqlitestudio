@@ -115,8 +115,8 @@ jobs:
               run: |
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
-                patchelf --set-rpath '$ORIGIN' lib/libtinfo*
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                patchelf --set-rpath '$ORIGIN' lib/libreadline*
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
