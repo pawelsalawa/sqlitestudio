@@ -1075,7 +1075,11 @@ void ViewWindow::updateFont()
 
 void ViewWindow::dbChanged()
 {
-    this->db = ui->dbCombo->currentDb();
+    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
+
+    db = ui->dbCombo->currentDb();
     dataModel->setDb(db);
     ui->queryEdit->setDb(db);
+
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 }
