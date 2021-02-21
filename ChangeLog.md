@@ -18,6 +18,7 @@
 - CHANGE: #3470 Updated list of functions and pragmas for code assistant.
 - CHANGE: #3583 When committing multiple rows, all rows are attempted at once, despite errors in prior rows, so that all constraint violations are identified immediately. Also added individual error message to cell tooltip, so user can learn which particular violation caused which row failure.
 - CHANGE: #3269 Enhanced handling of big data cells - they are still limited at first, but now there is an indicator (button) showing up when there is more to load and user can press it to load full data for the cell. User can also load full values in entire column using right-click on the column's header and picking option from context menu.
+- CHANGE: #3626 Installer (Qt's Installer Framework) was removed. Updates will still be checked and user will be notified about new version being available, but it will be up to the user to download new version. Only portable packages are going to be provided from now, until more suitable installer framework is found & mastered.
 - BUGFIX: #3046 HighDPI support fixed.
 - BUGFIX: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
 - BUGFIX: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.
