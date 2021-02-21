@@ -40,7 +40,7 @@ jobs:
               
             - name: Install other tools/dependencies
               run: |
-                sudo apt install libreadline-dev libncurses5-dev
+                sudo apt install libreadline-dev libncurses5-dev patchelf
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
             - name: Prepare output dir
@@ -114,6 +114,8 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
+                cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
+                patchelf --set-rpath '$ORIGIN' lib/libtinfo*
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
 
             - name: Determine SQLiteStudio version
