@@ -4181,7 +4181,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="299"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
-      <translation type="unfinished">Populating configuration for this column is invalid or incomplete.</translation>
+      <translation>此列的配置无效或不完整。</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="330"/>
@@ -4568,7 +4568,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="38"/>
       <source>Find in text</source>
-      <translation type="unfinished">Find in text</translation>
+      <translation>查找文本</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="39"/>
@@ -4583,7 +4583,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="41"/>
       <source>Replace in text</source>
-      <translation type="unfinished">Replace in text</translation>
+      <translation>替换文本</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="42"/>
