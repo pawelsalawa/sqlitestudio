@@ -173,7 +173,7 @@
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>不支持所加载的插件。</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
@@ -202,7 +202,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
+      <translation>数据库 %1 无法附加到数据库 %2， 因此将使用 SQLiteStudio 复制表 %3 的数据作为调解人。 对于巨大的表格，此方法可能会很慢，所以请耐心等待。</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="447"/>
