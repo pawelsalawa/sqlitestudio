@@ -6607,8 +6607,8 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
-      <translation type="unfinished">A blank name for the view is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a view with blank name?</translation>
+      <translation>SQLite允许使用空白名称，但不推荐使用空白名称。
+您确定要创建一个空白名称的视图？</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="978"/>
