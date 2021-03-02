@@ -2,6 +2,7 @@
 
 ### 3.3.1
 - BUGFIX: #3996 Fixed SQL formatter to not remove the ' from strings.
+- BUGFIX: #3998 Foreign Key dropdown behavior fixed to allow custom values.
 
 ### 3.3.0
 - ADDED: #3409 The Dark theme.

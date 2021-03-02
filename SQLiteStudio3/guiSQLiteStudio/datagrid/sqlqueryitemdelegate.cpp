@@ -240,31 +240,53 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
     if (cbModel->isExecutionInProgress() || !cbModel->isAllDataLoaded())
         return;
 
+    int idx = cb->currentIndex();
+    QModelIndex cbCol0Index = cbModel->index(idx, 0);
     QString cbText = cb->currentText();
+    bool customValue = false;
+
+    if (cb->currentIndex() > -1 && !cbModel->itemFromIndex(cbCol0Index))
+    {
+        // Inserted QStandardItem by QComboBox, meaning custom value (out of dropdown model)
+        // With Qt 5.15 (maybe earlier) QComboBox started inserting QStandardItems and setting them as currentIndex.
+        // Here we're extracting this inserted value and remembering this is the custom value.
+        cbText = cbModel->data(cbCol0Index).toString();
+        customValue = true;
+    }
+
+    // Regardless if its preselected value or custom value, we need to honor empty=null setting
     if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && cbText.isEmpty())
         return;
 
     SqlQueryModel* dataModel = dynamic_cast<SqlQueryModel*>(model);
     SqlQueryItem* theItem = dataModel->itemFromIndex(index);
+
+    // If the item of the main data model cannot be found, we use plain QStandardItem method to set item's value.
+    // It's a safety circuit breaker. Shouldn't happend and if does so, it prints Critical debug log.
     if (!theItem)
     {
         qCritical() << "Confirmed FK edition, but there is no SqlQueryItem for which this was triggered!" << index;
+        model->setData(index, cbText, Qt::EditRole);
         return;
     }
 
-    int idx = cb->currentIndex();
-    if (idx < 0 || idx >= cbModel->rowCount())
+    // Out of index? So it's custom value. Set it and it's done.
+    // If we deal with custom value inserted as item, we also just set it and that's it.
+    if (idx < 0 || idx >= cbModel->rowCount() || customValue)
     {
         theItem->setValue(cbText);
         return;
     }
 
+    // Otherwise we will have at least 2 columns. 1st column is hidden and is meta-column holding 1/0 (1 for value matching current cell value)
     QList<SqlQueryItem *> row = cbModel->getRow(idx);
     if (row.size() < 2 || !row[1])
     {
         // This happens when inexisting value is confirmed with "Enter" key,
-        // cause rowCount() is apparently incremented, but items not yet.
-        qCritical() << "Confirmed FK edition, but there is no item in the row for index" << idx << ", CB row count is" << cbModel->rowCount();
+        // and rowCount() is apparently incremented, but items not yet.
+        // Very likely this was addressed in recent Qt versions (5.15 or a bit earlier)
+        // which resulted in value insertion and the "customValue" flag above in this method.
+        qCritical() << "Confirmed FK edition, but there is no combo item in the row for index" << idx << ", the item is" << theItem << ", CB row count is" << cbModel->rowCount();
         theItem->setValue(cbText);
         return;
     }
@@ -512,7 +534,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
 
     connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, comboModel](int idx)
     {
-        if (idx > -1 && comboModel->isAllDataLoaded())
+        if (idx > -1 && idx < comboModel->getTotalRowsReturned() && comboModel->isAllDataLoaded())
             comboModel->itemFromIndex(idx, 1)->loadFullData();
     });
 
@@ -570,10 +592,15 @@ void SqlQueryItemDelegate::fkDataReady()
             cb->setCurrentIndex(idxList.first().row());
         }
         else
-            cb->setCurrentText(valueFromQueryModel.toString());
+        {
+            cb->setCurrentIndex(-1);
+            cb->setEditText(valueFromQueryModel.toString());
+        }
     }
     else
-        cb->setCurrentText(valueFromQueryModel.toString());
+        cb->setEditText(valueFromQueryModel.toString());
+
+    cb->lineEdit()->selectAll();
 }
 
 void SqlQueryItemDelegate::fkDataFailed(const QString &errorText)
