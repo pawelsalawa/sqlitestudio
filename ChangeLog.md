@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.3.1
+- BUGFIX: #3996 Fixed SQL formatter to not remove the ' from strings.
+
 ### 3.3.0
 - ADDED: #3409 The Dark theme.
 - ADDED: #3763 Generated Columns support added.
