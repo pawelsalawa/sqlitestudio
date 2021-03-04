@@ -1171,7 +1171,7 @@ bool SqlQueryModel::readColumns()
     // Rows limit to avoid out of memory problems
     columnRatioBasedRowLimit = -1;
     int rowsPerPage = getRowsPerPage();
-    if (!columns.isEmpty())
+    if (!columns.isEmpty() && CFG_UI.General.LimitRowsForManyColumns.get())
         columnRatioBasedRowLimit = 50000 / columns.size();
 
     bool rowsLimited = (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage);
@@ -1770,7 +1770,7 @@ int SqlQueryModel::getRowsPerPage() const
     if (hardRowLimit > -1)
         rowsPerPage = hardRowLimit;
 
-    if (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage)
+    if (CFG_UI.General.LimitRowsForManyColumns.get() && columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage)
         rowsPerPage = columnRatioBasedRowLimit;
 
     return rowsPerPage;

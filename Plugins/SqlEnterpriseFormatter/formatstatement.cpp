@@ -356,6 +356,12 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
     if (value.isNull())
         return *this;
 
+    if (value.userType() == QVariant::String)
+    {
+        withString(value.toString());
+        return *this;
+    }
+
     bool ok;
     if (value.userType() == QVariant::Double)
     {
@@ -622,7 +628,7 @@ QString FormatStatement::detokenize()
             case FormatToken::STRING:
             {
                 applyIndent();
-                line += token->value.toString();
+                line += wrapString(token->value.toString());
                 break;
             }
             case FormatToken::FLOAT:
