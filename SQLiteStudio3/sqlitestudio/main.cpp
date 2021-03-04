@@ -99,9 +99,23 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
     return QString();
 }
 
+void initHighDpi()
+{
+    if (qgetenv("QT_ENABLE_HIGHDPI_SCALING").isEmpty() && qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+    {
+        QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+        QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    }
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0) && defined(Q_OS_WIN)
+    if (qgetenv("QT_SCALE_FACTOR_ROUNDING_POLICY").isEmpty())
+        QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+#endif
+}
+
 int main(int argc, char *argv[])
 {
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    initHighDpi();
     QCoreApplication::setApplicationName("SQLiteStudio");
     QCoreApplication::setOrganizationName("SalSoft");
     QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
