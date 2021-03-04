@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.3.1
+- CHANGE: #4005 The limit of rows number applied for results with lots of columns can now be disabled in options.
 - BUGFIX: #3996 Fixed SQL formatter to not remove the ' from strings.
 - BUGFIX: #3998 Foreign Key dropdown behavior fixed to allow custom values.
 - BUGFIX: #3987 Further enhancements to HighDPI scaling support.
