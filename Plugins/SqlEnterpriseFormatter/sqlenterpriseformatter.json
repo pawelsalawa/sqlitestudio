@@ -2,6 +2,6 @@
     "type":        "CodeFormatterPlugin",
     "title":       "SQL Enterprise",
     "description": "Advanced SQL formatter.",
-    "version":     10006,
+    "version":     10007,
     "author":      "SalSoft"
 }

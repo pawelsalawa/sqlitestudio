@@ -26,6 +26,9 @@ utils_test.depends = test_utils
 lexer_test.subdir = LexerTest
 lexer_test.depends = test_utils
 
+formatter.subdir = FormatterTest
+formatter.depends = test_utils
+
 SUBDIRS += \
     test_utils \
     completion_helper \
@@ -35,4 +38,5 @@ SUBDIRS += \
     hash_tables \
     dsv \
     utils_test \
-    lexer_test
+    lexer_test \
+    formatter

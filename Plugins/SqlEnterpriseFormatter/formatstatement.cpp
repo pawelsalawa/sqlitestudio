@@ -621,14 +621,19 @@ QString FormatStatement::detokenize()
 
                 break;
             }
-            case FormatToken::STAR:
-            case FormatToken::INTEGER:
-            case FormatToken::BLOB:
-            case FormatToken::BIND_PARAM:
             case FormatToken::STRING:
             {
                 applyIndent();
                 line += wrapString(token->value.toString());
+                break;
+            }
+            case FormatToken::BLOB:
+            case FormatToken::BIND_PARAM:
+            case FormatToken::STAR:
+            case FormatToken::INTEGER:
+            {
+                applyIndent();
+                line += token->value.toString();
                 break;
             }
             case FormatToken::FLOAT:
