@@ -661,8 +661,8 @@ void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::Extr
 {
     QTextEdit::ExtraSelection selection;
 
-    selection.format.setBackground(style()->standardPalette().highlight());
-    selection.format.setForeground(style()->standardPalette().highlightedText());
+    selection.format.setBackground(style()->standardPalette().windowText());
+    selection.format.setForeground(style()->standardPalette().window());
 
     QTextCursor cursor = textCursor();
 
