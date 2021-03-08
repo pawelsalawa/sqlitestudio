@@ -19,7 +19,7 @@ TEMPLATE = lib
 
 win32: {
     LIBS += -lpsapi -limagehlp
-    DEFINES += SQLITE_API=__declspec(dllexport)
+    DEFINES += "SQLITE_API=\"__declspec(dllexport)\""
 
     !debug: {
         THE_FILE = $$PWD/qt.conf
