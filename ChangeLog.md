@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 3.3.2
+- BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.
+- BUGFIX: #4019 Parenthesis pair highlighting now uses different color scheme than text selection highlighting, to avoid confusion of what is selected and what is not.
+
 ### 3.3.1
 - CHANGE: #4005 The limit of rows number applied for results with lots of columns can now be disabled in options.
 - BUGFIX: #3996 Fixed SQL formatter to not remove the ' from strings.

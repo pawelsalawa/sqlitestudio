@@ -46,7 +46,7 @@ unix:!symbian {
     INSTALLS += target
 }
 
-LIBS += -lcoreSQLiteStudio -lsqlite3
+LIBS += -lcoreSQLiteStudio
 LIBS -= -lTestUtils
 
 OTHER_FILES += \
