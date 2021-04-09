@@ -311,9 +311,13 @@ void DataView::resizeColumnsInitiallyToContents()
         }
 
         if (wd > CFG_UI.General.MaxInitialColumnWith.get())
+        {
             gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
+        }
         else if (wd < 60)
+        {
             gridView->setColumnWidth(i, 60);
+        }
     }
     gridView->setIgnoreColumnWidthChanges(false);
 }

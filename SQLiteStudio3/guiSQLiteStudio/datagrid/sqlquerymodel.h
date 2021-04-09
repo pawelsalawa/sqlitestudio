@@ -435,7 +435,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QueryExecutor::SortList sortOrder;
 
         QHash<Column,SqlQueryModelColumnPtr> columnMap;
-        QHash<Column,int> columnWidths;
+        QHash<AliasedColumn,int> columnWidths;
         QHash<AliasedTable,QHash<QString,QString>> tableToRowIdColumn;
         QStringList headerColumns;
         int rowNumBase = 0;

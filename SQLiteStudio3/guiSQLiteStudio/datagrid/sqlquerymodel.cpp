@@ -1809,7 +1809,7 @@ void SqlQueryModel::setDesiredColumnWidth(int colIdx, int width)
         return;
     }
 
-    Column column(columnModel->database, columnModel->table, columnModel->column);
+    AliasedColumn column(columnModel->database, columnModel->table, columnModel->column, columnModel->displayName);
     columnWidths[column] = width;
 }
 
@@ -1819,7 +1819,7 @@ int SqlQueryModel::getDesiredColumnWidth(int colIdx)
     if (!columnModel)
         return -1;
 
-    Column column(columnModel->database, columnModel->table, columnModel->column);
+    AliasedColumn column(columnModel->database, columnModel->table, columnModel->column, columnModel->displayName);
     if (!columnWidths.contains(column))
         return -1;
 

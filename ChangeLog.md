@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.3.3
+- BUGFIX: #4010 Fixed result column sizing for EXPLAIN queries.
+
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.
 - BUGFIX: #4019 Parenthesis pair highlighting now uses different color scheme than text selection highlighting, to avoid confusion of what is selected and what is not.
