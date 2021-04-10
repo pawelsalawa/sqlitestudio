@@ -1,20 +1,28 @@
 #ifndef THEMETUNER_H
 #define THEMETUNER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QString>
 #include <QHash>
 
-class ThemeTuner : public QObject
+class QWizard;
+
+class GUI_API_EXPORT ThemeTuner : public QObject
 {
         Q_OBJECT
 
     public:
+        typedef std::function<void(const QString&, QWizard*)> QWizardThemeTuner;
+
         void tuneTheme(const QString& themeName);
         void tuneCurrentTheme();
         void manageCompactLayout(QWidget* w);
         void manageCompactLayout(QList<QWidget*> wList);
         QString getDefaultCss(const QString& themeName = QString()) const;
+        void darkThemeFix(QWizard* wizard);
+        void registerQWizardThemeTuneRequired(const QString& styleName);
+        void deregisterQWizardThemeTuneRequired(const QString& styleName);
 
         static ThemeTuner* getInstance();
         static void cleanUp();
@@ -30,6 +38,7 @@ class ThemeTuner : public QObject
         QString defaultGeneralCss;
         QHash<QString, QString> defaultPerStyleCss;
         QList<QWidget*> widgetsForCompactLayout;
+        QStringList qwizardThemeTuneRequired;
 
         static ThemeTuner* instance;
 
@@ -39,5 +48,7 @@ class ThemeTuner : public QObject
 };
 
 #define THEME_TUNER ThemeTuner::getInstance()
+
+
 
 #endif // THEMETUNER_H

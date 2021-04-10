@@ -1,7 +1,9 @@
 #include "fusiondarkplugin.h"
+#include "themetuner.h"
 #include <QProxyStyle>
 #include <QPalette>
 #include <QDebug>
+#include <QWizard>
 
 class FusionDarkStyle : public QProxyStyle
 {
@@ -17,6 +19,8 @@ class FusionDarkStyle : public QProxyStyle
 FusionDarkStyle::FusionDarkStyle()
     : QProxyStyle("fusion")
 {
+    setObjectName(FusionDarkPlugin::STYLE_NAME);
+
     QColor lightGray(190, 190, 190);
     QColor gray(128, 128, 128);
     QColor midDarkGray(100, 100, 100);
@@ -54,11 +58,17 @@ QPalette FusionDarkStyle::standardPalette() const
 FusionDarkPlugin::FusionDarkPlugin(QObject *parent)
     : QStylePlugin(parent)
 {
+    THEME_TUNER->registerQWizardThemeTuneRequired(STYLE_NAME);
+}
+
+FusionDarkPlugin::~FusionDarkPlugin()
+{
+    THEME_TUNER->deregisterQWizardThemeTuneRequired(STYLE_NAME);
 }
 
 QStyle *FusionDarkPlugin::create(const QString &key)
 {
-    if (key.toLower() == "fusion dark")
+    if (key.toLower() == STYLE_NAME)
         return new FusionDarkStyle();
 
     return nullptr;

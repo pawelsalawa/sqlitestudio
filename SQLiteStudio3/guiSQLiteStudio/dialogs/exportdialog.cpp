@@ -14,6 +14,7 @@
 #include "schemaresolver.h"
 #include "common/widgetcover.h"
 #include "services/notifymanager.h"
+#include "themetuner.h"
 #include "uiconfig.h"
 #include <QClipboard>
 #include <QDebug>
@@ -49,6 +50,7 @@ ExportDialog::~ExportDialog()
 void ExportDialog::init()
 {
     ui->setupUi(this);
+    THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
 
 #ifdef Q_OS_MACX

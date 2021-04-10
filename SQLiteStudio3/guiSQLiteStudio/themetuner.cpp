@@ -2,10 +2,12 @@
 #include "uiconfig.h"
 #include "mainwindow.h"
 #include "uiconfig.h"
+#include "style.h"
 #include <QApplication>
 #include <QFile>
 #include <QStyle>
 #include <QDebug>
+#include <QWizard>
 
 ThemeTuner* ThemeTuner::instance = nullptr;
 
@@ -22,7 +24,7 @@ void ThemeTuner::tuneTheme(const QString& themeName)
 
 void ThemeTuner::tuneCurrentTheme()
 {
-    tuneTheme(QApplication::style()->objectName());
+    tuneTheme(STYLE->name());
 }
 
 void ThemeTuner::manageCompactLayout(QWidget* w)
@@ -47,6 +49,23 @@ QString ThemeTuner::getDefaultCss(const QString& themeName) const
         css += "\n" + defaultPerStyleCss[lowerTheme];
 
     return css;
+}
+
+void ThemeTuner::darkThemeFix(QWizard* wizard)
+{
+    QString themeName = STYLE->name();
+    if (qwizardThemeTuneRequired.contains(themeName))
+        wizard->setWizardStyle(QWizard::ClassicStyle);
+}
+
+void ThemeTuner::registerQWizardThemeTuneRequired(const QString& styleName)
+{
+    qwizardThemeTuneRequired << styleName;
+}
+
+void ThemeTuner::deregisterQWizardThemeTuneRequired(const QString& styleName)
+{
+    qwizardThemeTuneRequired.removeOne(styleName);
 }
 
 ThemeTuner* ThemeTuner::getInstance()
