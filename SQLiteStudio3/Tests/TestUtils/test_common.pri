@@ -3,4 +3,4 @@ include($$PWD/../testdirs.pri)
 
 CONFIG += c++17
 
-LIBS += -lTestUtils -lcoreSQLiteStudio
+LIBS += -lTestUtils -lcoreSQLiteStudio -lsqlite3
