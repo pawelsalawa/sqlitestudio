@@ -27,6 +27,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void connectDbManagerSignals();
         DbTreeItem* findItem(DbTreeItem::Type type, const QString &name);
         DbTreeItem* findItem(DbTreeItem::Type type, Db* db);
+        DbTreeItem* findFirstItemOfType(DbTreeItem::Type type);
         DbTreeItem* findItemBySignature(const QString& signature);
         QList<DbTreeItem*> findItems(DbTreeItem::Type type);
         void move(QStandardItem* itemToMove, QStandardItem* newParentItem, int newRow = -1);
@@ -69,14 +70,15 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
         QStandardItem* refreshSchemaDb(Db* db);
         QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort);
-        StrHash<QList<QStandardItem*> > refreshSchemaTableColumns(const StrHash<QStringList>& columns);
-        StrHash<QList<QStandardItem*> > refreshSchemaIndexes(const StrHash<QStringList>& indexes, bool sort);
-        StrHash<QList<QStandardItem*> > refreshSchemaTriggers(const StrHash<QStringList>& triggers, bool sort);
+        StrHash<QList<QStandardItem*>> refreshSchemaTableColumns(const StrHash<QStringList>& columns);
+        StrHash<QList<QStandardItem*>> refreshSchemaIndexes(const StrHash<QStringList>& indexes, bool sort);
+        StrHash<QList<QStandardItem*>> refreshSchemaTriggers(const StrHash<QStringList>& triggers, bool sort);
         QList<QStandardItem*> refreshSchemaViews(const QStringList &views, bool sort);
         void populateChildItemsWithDb(QStandardItem* parentItem, Db* db);
         void refreshSchemaBuild(QStandardItem* dbItem, QList<QStandardItem*> tables, StrHash<QList<QStandardItem*> > indexes,
                                 StrHash<QList<QStandardItem*> > triggers, QList<QStandardItem*> views, StrHash<QList<QStandardItem*> > allTableColumns);
         void restoreExpandedState(const QHash<QString, bool>& expandedState, QStandardItem* parentItem);
+        DbTreeItem* findFirstItemOfType(DbTreeItem::Type type, QStandardItem* parentItem);
         QString getToolTip(DbTreeItem *item) const;
         QString getDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;

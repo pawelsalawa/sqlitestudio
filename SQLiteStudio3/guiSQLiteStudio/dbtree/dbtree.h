@@ -132,10 +132,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void setActionEnabled(int action, bool enabled);
         TableWindow* openTable(DbTreeItem* item);
         TableWindow* openTable(Db* db, const QString& database, const QString& table);
-        TableWindow* newTable(DbTreeItem* item);
+        TableWindow* newTable(Db* db);
         ViewWindow* openView(DbTreeItem* item);
         ViewWindow* openView(Db* db, const QString& database, const QString& view);
-        ViewWindow* newView(DbTreeItem* item);
+        ViewWindow* newView(Db* db);
         void editIndex(DbTreeItem* item);
         void editTrigger(DbTreeItem* item);
         void delSelectedObject();
