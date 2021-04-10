@@ -682,6 +682,22 @@ void DbTreeModel::restoreExpandedState(const QHash<QString, bool>& expandedState
         restoreExpandedState(expandedState, child);
 }
 
+DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type, QStandardItem* parentItem)
+{
+    DbTreeItem* child = nullptr;
+    for (int i = 0; i < parentItem->rowCount(); i++)
+    {
+        child = dynamic_cast<DbTreeItem*>(parentItem->child(i));
+        if (child->getType() == type)
+            return child;
+
+        child = findFirstItemOfType(type, child);
+        if (child)
+            return child;
+    }
+    return nullptr;
+}
+
 void DbTreeModel::dbConnected(Db* db)
 {
     QStandardItem* item = findItem(DbTreeItem::Type::DB, db);
@@ -797,6 +813,11 @@ DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type ty
 DbTreeItem *DbTreeModel::findItem(DbTreeItem::Type type, Db* db)
 {
     return findItem(root(), type, db);
+}
+
+DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type)
+{
+    return findFirstItemOfType(type, root());
 }
 
 DbTreeItem *DbTreeModel::findItemBySignature(const QString &signature)

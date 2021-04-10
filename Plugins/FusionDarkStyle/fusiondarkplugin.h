@@ -3,6 +3,8 @@
 
 #include <QStylePlugin>
 
+class QWizard;
+
 class FusionDarkPlugin : public QStylePlugin
 {
         Q_OBJECT
@@ -10,8 +12,12 @@ class FusionDarkPlugin : public QStylePlugin
 
     public:
         explicit FusionDarkPlugin(QObject *parent = nullptr);
+        virtual ~FusionDarkPlugin();
+
+        static constexpr const char* STYLE_NAME = "fusion dark";
 
     private:
+
         QStyle *create(const QString &key) override;
 };
 

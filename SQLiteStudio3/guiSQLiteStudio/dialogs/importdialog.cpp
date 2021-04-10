@@ -13,6 +13,7 @@
 #include "formmanager.h"
 #include "common/utils.h"
 #include "uiconfig.h"
+#include "themetuner.h"
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>
@@ -100,6 +101,7 @@ void ImportDialog::readStdConfig()
 void ImportDialog::init()
 {
     ui->setupUi(this);
+    THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
 
 #ifdef Q_OS_MACX

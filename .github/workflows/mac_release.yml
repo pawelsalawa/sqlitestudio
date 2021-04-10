@@ -1,6 +1,8 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
+    SQLITE_VERSION: '3350400'
+    SQLITE_RELEASE_YEAR: '2021'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: MaxOSX release build
@@ -43,6 +45,33 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Install SQLite3
+              run: |
+                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
+                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.0.dylib \
+                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_BYTECODE_VTAB \
+                    -DSQLITE_ENABLE_COLUMN_METADATA \
+                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+                    -DSQLITE_ENABLE_FTS3 \
+                    -DSQLITE_ENABLE_FTS4 \
+                    -DSQLITE_ENABLE_FTS5 \
+                    -DSQLITE_ENABLE_GEOPOLY \
+                    -DSQLITE_ENABLE_JSON1 \
+                    -DSQLITE_ENABLE_RTREE
+                sudo cp libsqlite3.0.dylib /usr/local/lib/
+                sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
+                sudo cp *.h /usr/local/include/
+
+            - name: Prepare deps
+              run: |
+                mkdir ../lib ../include
+                cp /usr/local/lib/libsqlite3* ../lib
+                cp /usr/local/include/sqlite3* ../include
+            
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
             

@@ -208,7 +208,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             enabled << DELETE_DB << EDIT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
-                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA
+                enabled << DISCONNECT_FROM_DB << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA
                         << VACUUM_DB << INTEGRITY_CHECK;
                 isDbOpen = true;
             }
@@ -341,7 +341,13 @@ void DbTree::updateActionStates(const QStandardItem *item)
     }
 
     if (treeModel->rowCount() > 0)
+    {
         enabled << SELECT_ALL; // if there's at least 1 item, enable this
+
+        // Table/view always enabled, as long as there is at least 1 db on the list. #4017
+        if (treeModel->findFirstItemOfType(DbTreeItem::Type::DB))
+            enabled << ADD_TABLE << ADD_VIEW;
+    }
 
     enabled << REFRESH_SCHEMAS;
 
@@ -827,18 +833,14 @@ ViewWindow* DbTree::openView(Db* db, const QString& database, const QString& vie
     return dialogs.editView(database, view);
 }
 
-TableWindow* DbTree::newTable(DbTreeItem* item)
+TableWindow* DbTree::newTable(Db* db)
 {
-    Db* db = item->getDb();
-
     DbObjectDialogs dialogs(db);
     return dialogs.addTable();
 }
 
-ViewWindow* DbTree::newView(DbTreeItem* item)
+ViewWindow* DbTree::newView(Db* db)
 {
-    Db* db = item->getDb();
-
     DbObjectDialogs dialogs(db);
     return dialogs.addView();
 }
@@ -1248,10 +1250,16 @@ void DbTree::addTable()
 {
     Db* db = getSelectedOpenDb();
     if (!db || !db->isValid())
+    {
+        DbTreeItem* item = treeModel->findFirstItemOfType(DbTreeItem::Type::DB);
+        if (item)
+            db = item->getDb();
+    }
+
+    if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    newTable(item);
+    newTable(db);
 }
 
 void DbTree::editTable()
@@ -1340,10 +1348,16 @@ void DbTree::addView()
 {
     Db* db = getSelectedOpenDb();
     if (!db || !db->isValid())
+    {
+        DbTreeItem* item = treeModel->findFirstItemOfType(DbTreeItem::Type::DB);
+        if (item)
+            db = item->getDb();
+    }
+
+    if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    newView(item);
+    newView(db);
 }
 
 void DbTree::editView()

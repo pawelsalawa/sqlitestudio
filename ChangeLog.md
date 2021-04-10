@@ -1,5 +1,12 @@
 # ChangeLog
 
+### 3.3.3
+- CHANGE: #4044 SQLite updated to 3.35.4.
+- BUGFIX: #4044 SQLite linking restored to dynamic model (separate so/dll/dylib file), so users can replace the SQLite library at any moment with more recent version.
+- BUGFIX: #4017 New Table/View buttons are now always enabled, as recently Table/View window got their own database dropdowns.
+- BUGFIX: #4012 Fixed Import/Export wizard windows when using Fusion Dark theme.
+- BUGFIX: #4010 Fixed result column sizing for EXPLAIN queries.
+
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.
 - BUGFIX: #4019 Parenthesis pair highlighting now uses different color scheme than text selection highlighting, to avoid confusion of what is selected and what is not.
