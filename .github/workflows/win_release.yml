@@ -77,7 +77,8 @@ jobs:
                     -DSQLITE_ENABLE_FTS5 \
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE
+                    -DSQLITE_ENABLE_RTREE \
+                    -DSQLITE_ENABLE_MATH_FUNCTIONS
                 cp -f sqlite3.dll ../lib/
                 cp -f sqlite3.h ../include/
                 cp -f sqlite3ext.h ../include/

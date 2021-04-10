@@ -69,7 +69,8 @@ jobs:
                     -DSQLITE_ENABLE_FTS5 \
                     -DSQLITE_ENABLE_GEOPOLY \
                     -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE
+                    -DSQLITE_ENABLE_RTREE \
+                    -DSQLITE_ENABLE_MATH_FUNCTIONS
                 strip libsqlite3.so
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
