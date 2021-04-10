@@ -2,6 +2,7 @@
 #define THEMETUNER_H
 
 #include "guiSQLiteStudio_global.h"
+#include <functional>
 #include <QObject>
 #include <QString>
 #include <QHash>
