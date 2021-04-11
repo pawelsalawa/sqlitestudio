@@ -176,6 +176,9 @@ QString wrapString(const QString& str)
 
 bool doesStringNeedWrapping(const QString& str)
 {
+    if (str.size() == 0)
+        return false;
+
     return str[0] == '\'' && str[str.length()-1] == '\'';
 }
 

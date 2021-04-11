@@ -6,6 +6,7 @@
 - BUGFIX: #4017 New Table/View buttons are now always enabled, as recently Table/View window got their own database dropdowns.
 - BUGFIX: #4012 Fixed Import/Export wizard windows when using Fusion Dark theme.
 - BUGFIX: #4010 Fixed result column sizing for EXPLAIN queries.
+- BUGFIX: #4059 Fixed crash when using empty string in SQL queries.
 
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.
