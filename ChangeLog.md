@@ -2,6 +2,7 @@
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
+- CHANGE: #4028 Open databases are now expanded upon startup only if they were expanded during application shutdown.
 - BUGFIX: #4044 SQLite linking restored to dynamic model (separate so/dll/dylib file), so users can replace the SQLite library at any moment with more recent version.
 - BUGFIX: #4017 New Table/View buttons are now always enabled, as recently Table/View window got their own database dropdowns.
 - BUGFIX: #4012 Fixed Import/Export wizard windows when using Fusion Dark theme.

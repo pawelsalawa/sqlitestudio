@@ -113,7 +113,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void dbAdded(Db* db);
         void dbUpdated(const QString &oldName, Db* db);
         void dbRemoved(Db* db);
-        void dbConnected(Db* db);
+        void dbConnected(Db* db, bool expandItem = true);
         void dbDisconnected(Db* db);
         void dbUnloaded(Db* db);
         void dbLoaded(Db* db);

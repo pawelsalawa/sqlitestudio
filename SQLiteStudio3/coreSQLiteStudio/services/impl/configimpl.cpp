@@ -253,8 +253,8 @@ void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId
     if (parentId > -1)
         parent = parentId;
 
-    SqlQueryPtr results = db->exec("INSERT INTO groups (name, [order], parent, open, dbname) VALUES (?, ?, ?, ?, ?)",
-                                    {group->name, group->order, parent, group->open, group->referencedDbName});
+    SqlQueryPtr results = db->exec("INSERT INTO groups (name, [order], parent, open, dbname, db_expanded) VALUES (?, ?, ?, ?, ?, ?)",
+                                    {group->name, group->order, parent, group->open, group->referencedDbName, group->dbExpanded});
 
     qint64 newParentId = results->getRegularInsertRowId();
     for (const DbGroupPtr& childGroup : group->childs)
@@ -271,7 +271,7 @@ QList<ConfigImpl::DbGroupPtr> ConfigImpl::getGroups()
 
 ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
 {
-    SqlQueryPtr results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE dbname = ? LIMIT 1", {dbName});
+    SqlQueryPtr results = db->exec("SELECT id, name, [order], open, dbname, db_expanded FROM groups WHERE dbname = ? LIMIT 1", {dbName});
 
     DbGroupPtr group = DbGroupPtr::create();
     group->referencedDbName = dbName;
@@ -284,6 +284,7 @@ ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
     group->name = row->value("name").toString();
     group->order = row->value("order").toInt();
     group->open = row->value("open").toBool();
+    group->dbExpanded = row->value("db_expanded").toBool();
     return group;
 }
 
@@ -563,9 +564,9 @@ void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 {
     SqlQueryPtr results;
     if (group->id < 0)
-        results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE parent IS NULL ORDER BY [order]");
+        results = db->exec("SELECT id, name, [order], open, dbname, db_expanded FROM groups WHERE parent IS NULL ORDER BY [order]");
     else
-        results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE parent = ? ORDER BY [order]", {group->id});
+        results = db->exec("SELECT id, name, [order], open, dbname, db_expanded FROM groups WHERE parent = ? ORDER BY [order]", {group->id});
 
     DbGroupPtr childGroup;
     SqlResultsRowPtr row;
@@ -578,6 +579,7 @@ void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
         childGroup->order = row->value("order").toInt();
         childGroup->open = row->value("open").toBool();
         childGroup->referencedDbName = row->value("dbname").toString();
+        childGroup->dbExpanded = row->value("db_expanded").toBool();
         group->childs += childGroup;
     }
 
@@ -684,7 +686,7 @@ void ConfigImpl::initTables()
     if (!tables.contains("groups"))
         db->exec("CREATE TABLE groups (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, parent INTEGER REFERENCES groups(id), "
                  "[order] INTEGER, open INTEGER DEFAULT 0, dbname TEXT UNIQUE REFERENCES dblist(name) ON UPDATE CASCADE ON DELETE CASCADE, "
-                 "UNIQUE(name, parent))");
+                 "db_expanded INTEGER DEFAULT 0, UNIQUE(name, parent))");
 
     if (!tables.contains("ddl_history"))
         db->exec("CREATE TABLE ddl_history (id INTEGER PRIMARY KEY AUTOINCREMENT, dbname TEXT, file TEXT, timestamp INTEGER, "
@@ -1161,6 +1163,12 @@ void ConfigImpl::updateConfigDb()
             // 1->2
             db->exec("UPDATE settings SET [key] = 'DataUncommittedError' WHERE [key] = 'DataUncommitedError'");
             db->exec("UPDATE settings SET [key] = 'DataUncommitted' WHERE [key] = 'DataUncommited'");
+            __attribute__((__fallthrough__));
+        }
+        case 2:
+        {
+            // 2->3
+            db->exec("ALTER TABLE groups ADD db_expanded INTEGER DEFAULT 0");
         }
         // Add cases here for next versions,
         // without a "break" instruction,

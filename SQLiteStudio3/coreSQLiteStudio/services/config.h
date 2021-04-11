@@ -14,7 +14,7 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 2;
+const int SQLITESTUDIO_CONFIG_VERSION = 3;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
@@ -74,6 +74,7 @@ class API_EXPORT Config : public QObject
             QList<DbGroupPtr> childs;
             int order;
             bool open = false;
+            bool dbExpanded = false;
         };
 
         struct SqlHistoryEntry
