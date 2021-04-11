@@ -1,7 +1,7 @@
 # ChangeLog
 
 ### 3.3.3
-- CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
+- CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
 - BUGFIX: #4044 SQLite linking restored to dynamic model (separate so/dll/dylib file), so users can replace the SQLite library at any moment with more recent version.
 - BUGFIX: #4017 New Table/View buttons are now always enabled, as recently Table/View window got their own database dropdowns.
 - BUGFIX: #4012 Fixed Import/Export wizard windows when using Fusion Dark theme.
@@ -9,6 +9,7 @@
 - BUGFIX: #4059 Fixed crash when using empty string in SQL queries.
 - BUGFIX: #4034 Fixed DEFAULT value column rendering in Table Window.
 - BUGFIX: #4035 Fixed full value loading for expression result columns. Also fixed smart executor for queries with aliased views as data source.
+- BUGFIX: #4043 Portable directory functionality fixed after it was broken in some prior 3.3.x version.
 
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.

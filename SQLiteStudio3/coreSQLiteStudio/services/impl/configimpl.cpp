@@ -795,42 +795,23 @@ QList<QPair<QString,bool>> ConfigImpl::getStdDbPaths()
 {
     QList<QPair<QString,bool>> paths;
 
-    // Determinate global config location and portable one
-    QString legacyGlobalPath = getLegacyConfigPath();
+    // Portable dir location has always precedense - comes first
     QString portablePath = getPortableConfigPath();
-
-    if (!legacyGlobalPath.isNull() && !portablePath.isNull())
-    {
-        if (QFileInfo(portablePath).exists())
-        {
-            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
-            paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
-        }
-        else
-        {
-            paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
-            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
-        }
-    }
-    else if (!legacyGlobalPath.isNull())
-        paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
-    else if (!portablePath.isNull())
+    if (!portablePath.isNull())
         paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
 
-    // If needed, migrate configuration from legacy location (pre-3.3) to new location (3.3 and later)
+    // Determinate global config location
     QString globalPath = getConfigPath();
-    if (!QFile::exists(globalPath))
+    paths << QPair<QString,bool>(globalPath, true);
+
+    // If needed, migrate configuration from legacy location (pre-3.3) to new location (3.3 and later)
+    QString legacyGlobalPath = getLegacyConfigPath();
+    if (!legacyGlobalPath.isNull())
     {
-        for (const QPair<QString,bool>& oldPath : paths)
-        {
-            if (oldPath.second)
-            {
-                if (tryToMigrateOldGlobalPath(oldPath.first, globalPath))
-                    break;
-            }
-        }
+        paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
+        if (!QFile::exists(globalPath))
+            tryToMigrateOldGlobalPath(legacyGlobalPath, globalPath);
     }
-    paths.insert(0, QPair<QString,bool>(globalPath, true));
 
     return paths;
 }
