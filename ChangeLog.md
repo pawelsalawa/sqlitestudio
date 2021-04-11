@@ -8,6 +8,7 @@
 - BUGFIX: #4010 Fixed result column sizing for EXPLAIN queries.
 - BUGFIX: #4059 Fixed crash when using empty string in SQL queries.
 - BUGFIX: #4034 Fixed DEFAULT value column rendering in Table Window.
+- BUGFIX: #4035 Fixed full value loading for expression result columns. Also fixed smart executor for queries with aliased views as data source.
 
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.

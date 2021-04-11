@@ -106,12 +106,17 @@ void QueryExecutor::setupExecutionChain()
     executionChain.append(createSteps(AFTER_DISTINCT_WRAP));
 
     executionChain << new QueryExecutorCellSize()
-                   << new QueryExecutorColumnType()
                    << new QueryExecutorCountResults()
                    << new QueryExecutorParseQuery("after CellSize");
 
     executionChain.append(additionalStatelessSteps[AFTER_CELL_SIZE_LIMIT]);
     executionChain.append(createSteps(AFTER_CELL_SIZE_LIMIT));
+
+    executionChain << new QueryExecutorColumnType()
+                   << new QueryExecutorParseQuery("after ColumnType");
+
+    executionChain.append(additionalStatelessSteps[AFTER_COLUMN_TYPES]);
+    executionChain.append(createSteps(AFTER_COLUMN_TYPES));
 
     executionChain << new QueryExecutorLimit()
                    << new QueryExecutorParseQuery("after Limit");
