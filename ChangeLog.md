@@ -10,6 +10,7 @@
 - BUGFIX: #4034 Fixed DEFAULT value column rendering in Table Window.
 - BUGFIX: #4035 Fixed full value loading for expression result columns. Also fixed smart executor for queries with aliased views as data source.
 - BUGFIX: #4043 Portable directory functionality fixed after it was broken in some prior 3.3.x version.
+- BUGFIX: #4049 Fixed bringing primary instance of the application to the front when secondary instance is started (and forbidden).
 
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.
