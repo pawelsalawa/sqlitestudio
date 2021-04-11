@@ -7,6 +7,7 @@
 - BUGFIX: #4012 Fixed Import/Export wizard windows when using Fusion Dark theme.
 - BUGFIX: #4010 Fixed result column sizing for EXPLAIN queries.
 - BUGFIX: #4059 Fixed crash when using empty string in SQL queries.
+- BUGFIX: #4034 Fixed DEFAULT value column rendering in Table Window.
 
 ### 3.3.2
 - BUGFIX: #4018 Fixed SQL formatter to not add ' to numbers and star operators. Added unit tests for SQL Enterprise Formatter.

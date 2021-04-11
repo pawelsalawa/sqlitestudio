@@ -148,7 +148,7 @@ TableStructureModel::Columns TableStructureModel::getHeaderColumn(int colIdx) co
 
 bool TableStructureModel::isValidColumnIdx(int colIdx) const
 {
-    return colIdx >= 0 && colIdx < 9;
+    return colIdx >= 0 && colIdx < 10;
 }
 
 SqliteCreateTable::Column* TableStructureModel::getColumn(int colIdx) const
