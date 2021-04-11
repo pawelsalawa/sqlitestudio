@@ -203,6 +203,7 @@ QList<Config::DbGroupPtr> DbTreeModel::childsToConfig(QStandardItem *item)
                 group->referencedDbName = dbTreeItem->text();
                 group->order = i;
                 group->open = dbTreeItem->getDb()->isOpen();
+                group->dbExpanded = treeView->isExpanded(dbTreeItem->index());
                 groups += group;
                 break;
             }
@@ -261,10 +262,7 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
             // Instead of that, we just check if the database is already open (by DbManager)
             // and call proper handler to refresh database's schema and create tree nodes.
             if (db->isOpen())
-            {
-                dbConnected(db);
-                treeView->expand(item->index());
-            }
+                dbConnected(db, group->dbExpanded);
         }
         else
         {
@@ -698,7 +696,7 @@ DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type, QStandardIte
     return nullptr;
 }
 
-void DbTreeModel::dbConnected(Db* db)
+void DbTreeModel::dbConnected(Db* db, bool expandItem)
 {
     QStandardItem* item = findItem(DbTreeItem::Type::DB, db);
     if (!item)
@@ -707,12 +705,15 @@ void DbTreeModel::dbConnected(Db* db)
         return;
     }
     refreshSchema(db, item);
-    treeView->expand(item->index());
-    if (CFG_UI.General.ExpandTables.get())
-        treeView->expand(item->model()->index(0, 0, item->index())); // also expand tables
+    if (expandItem)
+    {
+        treeView->expand(item->index());
+        if (CFG_UI.General.ExpandTables.get())
+            treeView->expand(item->model()->index(0, 0, item->index())); // also expand tables
 
-    if (CFG_UI.General.ExpandViews.get())
-        treeView->expand(item->model()->index(1, 0, item->index())); // also expand views
+        if (CFG_UI.General.ExpandViews.get())
+            treeView->expand(item->model()->index(1, 0, item->index())); // also expand views
+    }
 }
 
 void DbTreeModel::dbDisconnected(Db* db)

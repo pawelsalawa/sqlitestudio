@@ -56,10 +56,12 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         void writeFkEnable();
         QString formatQuery(const QString& sql);
         QString getNameForObject(const QString& database, const QString& name, bool wrapped);
-        QStringList rowToArgList(SqlResultsRowPtr row);
+        QStringList rowToArgList(SqlResultsRowPtr row, bool honorGeneratedColumns = false);
 
         QString theTable;
         QString columns;
+        QStringList tableGeneratedColumns;
+        QList<int> generatedColumnIndexes;
         CFG_LOCAL_PERSISTABLE(SqlExportConfig, cfg)
 };
 

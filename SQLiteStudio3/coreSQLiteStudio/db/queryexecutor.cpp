@@ -19,6 +19,7 @@
 #include "queryexecutorsteps/queryexecutorreplaceviews.h"
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "queryexecutorsteps/queryexecutorvaluesmode.h"
+#include "queryexecutorsteps/queryexecutorcolumntype.h"
 #include "common/unused.h"
 #include "chainexecutor.h"
 #include "log.h"
@@ -110,6 +111,12 @@ void QueryExecutor::setupExecutionChain()
 
     executionChain.append(additionalStatelessSteps[AFTER_CELL_SIZE_LIMIT]);
     executionChain.append(createSteps(AFTER_CELL_SIZE_LIMIT));
+
+    executionChain << new QueryExecutorColumnType()
+                   << new QueryExecutorParseQuery("after ColumnType");
+
+    executionChain.append(additionalStatelessSteps[AFTER_COLUMN_TYPES]);
+    executionChain.append(createSteps(AFTER_COLUMN_TYPES));
 
     executionChain << new QueryExecutorLimit()
                    << new QueryExecutorParseQuery("after Limit");
@@ -394,6 +401,11 @@ int QueryExecutor::getTotalPages() const
 QList<QueryExecutor::ResultColumnPtr> QueryExecutor::getResultColumns() const
 {
     return context->resultColumns;
+}
+
+QHash<QString, QString> QueryExecutor::getTypeColumns() const
+{
+    return context->typeColumnToResultColumnAlias;
 }
 
 QList<QueryExecutor::ResultRowIdColumnPtr> QueryExecutor::getRowIdResultColumns() const

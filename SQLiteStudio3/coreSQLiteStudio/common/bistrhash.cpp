@@ -31,7 +31,7 @@ void BiStrHash::insert(const QString& left, const QString& right)
     lowerInverted.insert(right.toLower(), right);
 }
 
-bool BiStrHash::containsLeft(const QString& left, Qt::CaseSensitivity cs)
+bool BiStrHash::containsLeft(const QString& left, Qt::CaseSensitivity cs) const
 {
     if (cs == Qt::CaseSensitive)
         return hash.contains(left);
@@ -39,7 +39,7 @@ bool BiStrHash::containsLeft(const QString& left, Qt::CaseSensitivity cs)
         return lowerHash.contains(left.toLower());
 }
 
-bool BiStrHash::containsRight(const QString& right, Qt::CaseSensitivity cs)
+bool BiStrHash::containsRight(const QString& right, Qt::CaseSensitivity cs) const
 {
     if (cs == Qt::CaseSensitive)
         return inverted.contains(right);
@@ -147,7 +147,10 @@ BiStrHash& BiStrHash::unite(const QHash<QString, QString>& other)
 {
     QHashIterator<QString, QString> it(other);
     while (it.hasNext())
-        insert(it.next().key(), it.value());
+    {
+        it.next();
+        insert(it.key(), it.value());
+    }
 
     return *this;
 }

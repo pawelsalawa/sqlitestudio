@@ -109,8 +109,10 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
             continue;
         }
 
+        QString alias = src->alias.isNull() ? view->view : src->alias;
+
         src->select = view->select;
-        src->alias = view->view;
+        src->alias = alias;
         src->database = QString();
         src->table = QString();
 

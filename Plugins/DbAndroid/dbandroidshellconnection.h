@@ -28,16 +28,6 @@ class DbAndroidShellConnection : public DbAndroidConnection
         ExecutionResult executeQuery(const QString& query);
 
     private:
-        enum class DataType
-        {
-            UNKNOWN = -1,
-            _NULL = 0,
-            INTEGER = 1,
-            REAL = 2,
-            TEXT = 3,
-            BLOB = 4
-        };
-
         QStringList findColumns(const QStringList& originalArgs, const QString& query);
         QString appendTypeQueryPart(const QString& query, const QStringList& columnNames);
         void extractResultData(const QList<QList<QByteArray> >& deserialized, bool firstHalfForTypes, ExecutionResult& results);

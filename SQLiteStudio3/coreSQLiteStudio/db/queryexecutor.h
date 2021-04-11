@@ -591,6 +591,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             QSet<SourceTablePtr> sourceTables;
 
             /**
+             * @brief Map of column aliases containing column types.
+             *
+             * Keys are query executor column aliases of column representing types
+             * and values are query executor column aliases of column to which these types apply to.
+             */
+            QHash<QString, QString> typeColumnToResultColumnAlias;
+
+            /**
              * @brief Query used for counting results.
              *
              * Filled with SQL to be used for results counting (even if counting is disabled).
@@ -672,6 +680,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             AFTER_ORDER,                /**< After order clause was applied/modified */
             AFTER_DISTINCT_WRAP,        /**< After wrapping SELECT was added in case of DISTINCT or GROUP BY clauses were used */
             AFTER_CELL_SIZE_LIMIT,      /**< After cell result size was limited to save memory usage */
+            AFTER_COLUMN_TYPES,         /**< After typeof() result meta columns were added */
             AFTER_ROW_LIMIT_AND_OFFSET, /**< After LIMIT and ORDER clauses were added/modified. This is the last possible moment, directly ahead of final query execution */
             JUST_BEFORE_EXECUTION,      /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
             LAST                        /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
@@ -811,6 +820,12 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * See Context::resultColumns for details.
          */
         QList<QueryExecutor::ResultColumnPtr> getResultColumns() const;
+
+        /**
+         * @brief Gets map of meta columns providing SQLite data types.
+         * @return Map of type column alias to target column alias (for which the type applies).
+         */
+        QHash<QString, QString> getTypeColumns() const;
 
         /**
          * @brief Gets list of ROWID columns.

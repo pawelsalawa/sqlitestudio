@@ -87,6 +87,14 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 {
     UNUSED(createTable);
     UNUSED(providedData);
+
+    tableGeneratedColumns.clear();
+    for (SqliteCreateTable::Column* col : createTable->columns)
+    {
+        if (col->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
+            tableGeneratedColumns << col->name;
+    }
+
     return exportTable(database, table, columnNames, ddl);
 }
 
@@ -101,9 +109,20 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 {
     static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
 
+    generatedColumnIndexes.clear();
     QStringList colList;
+    int colIdx = 0;
     for (const QString& colName : columnNames)
+    {
+        if (tableGeneratedColumns.contains(colName, Qt::CaseInsensitive))
+        {
+            generatedColumnIndexes << colIdx++;
+            continue;
+        }
+
         colList << wrapObjIfNeeded(colName);
+        colIdx++;
+    }
 
     columns = colList.join(", ");
 
@@ -129,7 +148,7 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 
 bool SqlExport::exportTableRow(SqlResultsRowPtr data)
 {
-    QStringList argList = rowToArgList(data);
+    QStringList argList = rowToArgList(data, true);
     QString argStr = argList.join(", ");
     QString sql = "INSERT INTO " + theTable + " (" + columns + ") VALUES (" + argStr + ");";
     if (!cfg.SqlExport.FormatDdlsOnly.get())
@@ -260,8 +279,22 @@ QString SqlExport::getNameForObject(const QString& database, const QString& name
     return obj;
 }
 
-QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
+QStringList SqlExport::rowToArgList(SqlResultsRowPtr row, bool honorGeneratedColumns)
 {
+    if (honorGeneratedColumns)
+    {
+        QList<QVariant> filteredValues;
+        int i = 0;
+        for (const QVariant& value : row->valueList())
+        {
+            if (generatedColumnIndexes.contains(i++))
+                continue;
+
+            filteredValues << value;
+        }
+        return valueListToSqlList(filteredValues);
+    }
+
     return valueListToSqlList(row->valueList());
 }
 

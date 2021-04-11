@@ -839,7 +839,11 @@ void MainWindow::messageFromSecondaryInstance(quint32 instanceId, QByteArray mes
 {
     UNUSED(instanceId);
     QApplication::setActiveWindow(this);
+    if (isMinimized())
+        showMaximized();
+
     raise();
+    activateWindow();
     QString dbToOpen = deserializeFromBytes(message).toString();
     if (!dbToOpen.isNull())
         openDb(dbToOpen);

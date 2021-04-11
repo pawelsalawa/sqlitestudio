@@ -24,10 +24,21 @@ enum class QueryAccessMode
     WRITE
 };
 
+enum class SqliteDataType
+{
+    UNKNOWN = -1,
+    _NULL = 0,
+    INTEGER = 1,
+    REAL = 2,
+    TEXT = 3,
+    BLOB = 4
+};
+
 typedef QPair<QString,QStringList> QueryWithParamNames;
 typedef QPair<QString,int> QueryWithParamCount;
 
 API_EXPORT void initUtilsSql();
+API_EXPORT SqliteDataType toSqliteDataType(const QString& typeStr);
 API_EXPORT bool doesObjectNeedWrapping(const QString& str);
 API_EXPORT bool doesObjectNeedWrapping(const QChar& c);
 API_EXPORT bool isObjectWrapped(const QChar& c);

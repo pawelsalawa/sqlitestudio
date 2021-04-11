@@ -71,6 +71,7 @@ TRANSLATIONS += translations/coreSQLiteStudio.ts \
 
 SOURCES += sqlitestudio.cpp \
     common/compatibility.cpp \
+    db/queryexecutorsteps/queryexecutorcolumntype.cpp \
     parser/ast/sqlitefilterover.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
@@ -242,6 +243,7 @@ SOURCES += sqlitestudio.cpp \
 HEADERS += sqlitestudio.h\
     common/compatibility.h \
         coreSQLiteStudio_global.h \
+    db/queryexecutorsteps/queryexecutorcolumntype.h \
     db/sqlite3.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \

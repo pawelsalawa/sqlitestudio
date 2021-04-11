@@ -418,25 +418,6 @@ QVariant SqlQueryItem::data(int role) const
 QString SqlQueryItem::loadFullData()
 {
     SqlQueryModelColumn* col = getColumn();
-
-    // Yes, this function won't be called in case of trying to edit the cell - it's handled in the Editor.
-    // However this function can be called from the FormView, to display full contents of the read-only property.
-    // I'll keep it for some time just in case. To be removed in future.
-//    if (col->editionForbiddenReason.size() > 0)
-//    {
-//        qWarning() << "Tried to load full cell which is not editable. This should be already handled in Editor class when invoking edition action.";
-//        return tr("This cell is not editable, because: %1").arg(SqlQueryModelColumn::resolveMessage(col->editionForbiddenReason.values().first()));
-//    }
-
-    // This should not happen anymore (since WITHOUT ROWID tables should be handled properly now,
-    // but we will keep this here for a while, just in case.
-//    if (isJustInsertedWithOutRowId())
-//    {
-//        QString msg = tr("When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, "
-//                         "the table has to be reloaded in order to edit the new row.");
-//        return tr("This cell is not editable, because: %1").arg(msg);
-//    }
-
     SqlQueryModel *model = getModel();
     Db* db = model->getDb();
     if (!db->isOpen())
@@ -453,7 +434,11 @@ QString SqlQueryItem::loadFullData()
         static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
 
         // The query
-        QString column = wrapObjIfNeeded(!col->alias.isNull() ? col->alias : col->column);
+        QString colName = !col->alias.isNull() ? col->alias : col->column;
+        if (colName.isNull())
+            colName = col->displayName;
+
+        QString column = wrapObjIfNeeded(colName);
         query = tpl.arg(column, model->getQuery(), QString::number(index().row()));
     }
     else

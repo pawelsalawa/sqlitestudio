@@ -176,6 +176,9 @@ QString wrapString(const QString& str)
 
 bool doesStringNeedWrapping(const QString& str)
 {
+    if (str.size() == 0)
+        return false;
+
     return str[0] == '\'' && str[str.length()-1] == '\'';
 }
 
@@ -797,4 +800,25 @@ QString trimQueryEnd(const QString &query)
         q = q.trimmed();
     }
     return q;
+}
+
+SqliteDataType toSqliteDataType(const QString& typeStr)
+{
+    QString upperType = typeStr.trimmed().toUpper();
+    if (upperType == "INTEGER")
+        return SqliteDataType::INTEGER;
+
+    if (upperType == "REAL")
+        return SqliteDataType::REAL;
+
+    if (upperType == "TEXT")
+        return SqliteDataType::TEXT;
+
+    if (upperType == "BLOB")
+        return SqliteDataType::BLOB;
+
+    if (upperType == "NULL")
+        return SqliteDataType::_NULL;
+
+    return SqliteDataType::UNKNOWN;
 }

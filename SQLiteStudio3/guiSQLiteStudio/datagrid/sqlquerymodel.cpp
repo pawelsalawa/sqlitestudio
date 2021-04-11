@@ -965,7 +965,7 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
         if (!row)
             break;
 
-        rowList << loadRow(row);
+        rowList << loadRow(row, results);
 
         if ((rowIdx % 50) == 0)
         {
@@ -991,8 +991,11 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
     return true;
 }
 
-QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
+QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row, SqlQueryPtr results)
 {
+    QStringList columnNames = results->getColumnNames();
+    BiStrHash typeColumnToResColumn = queryExecutor->getTypeColumns();
+
     QList<QStandardItem*> itemList;
     SqlQueryItem* item = nullptr;
     RowId rowId;
@@ -1001,7 +1004,7 @@ QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
     {
         item = new SqlQueryItem();
         rowId = getRowIdValue(row, colIdx);
-        updateItem(item, value, colIdx, rowId);
+        updateItem(item, value, colIdx, rowId, row, columnNames, typeColumnToResColumn);
         itemList << item;
         colIdx++;
     }
@@ -1036,7 +1039,52 @@ RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, int columnIdx)
     return rowId;
 }
 
+
+void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, SqlResultsRowPtr row,
+                               const QStringList& columnNames, const BiStrHash& typeColumnToResColumn)
+{
+    if (columnIndex >= columnNames.size())
+    {
+        updateItem(item, value, columnIndex, rowId);
+        return;
+    }
+
+    QString colName = columnNames[columnIndex];
+    if (typeColumnToResColumn.isEmpty() || !typeColumnToResColumn.containsRight(colName))
+    {
+        updateItem(item, value, columnIndex, rowId);
+        return;
+    }
+
+    QString colTypeColumnName = typeColumnToResColumn.valueByRight(colName);
+    QString colTypeStr = row->value(colTypeColumnName).toString();
+    SqliteDataType sqliteDataType = toSqliteDataType(colTypeStr);
+
+    switch (sqliteDataType)
+    {
+        case SqliteDataType::INTEGER:
+        case SqliteDataType::REAL:
+            updateItem(item, value, columnIndex, rowId, Qt::AlignRight);
+            break;
+        case SqliteDataType::_NULL:
+        case SqliteDataType::TEXT:
+        case SqliteDataType::BLOB:
+            updateItem(item, value, columnIndex, rowId, Qt::AlignLeft);
+            break;
+        case SqliteDataType::UNKNOWN:
+            updateItem(item, value, columnIndex, rowId);
+            break;
+    }
+}
+
 void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId)
+{
+    SqlQueryModelColumnPtr column = columns[columnIndex];
+    Qt::Alignment alignment = findValueAlignment(value, column.data());
+    updateItem(item, value, columnIndex, rowId, alignment);
+}
+
+void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, Qt::Alignment alignment)
 {
     SqlQueryModelColumnPtr column = columns[columnIndex];
 
@@ -1047,7 +1095,7 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     item->setJustInsertedWithOutRowId(false);
     item->setValue(value, limited, true);
     item->setColumn(column.data());
-    item->setTextAlignment(findValueAlignment(value, column.data()));
+    item->setTextAlignment(alignment);
     item->setRowId(rowId);
 }
 
