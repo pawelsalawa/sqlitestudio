@@ -60,7 +60,7 @@ class API_EXPORT BiStrHash
          * @param cs Case sensitivity flag.
          * @return true if the key was matched in left side values, or false otherwise.
          */
-        bool containsLeft(const QString& left, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+        bool containsLeft(const QString& left, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 
         /**
          * @brief Tests if given value is in the right values of the hash.
@@ -68,7 +68,7 @@ class API_EXPORT BiStrHash
          * @param cs Case sensitivity flag.
          * @return true if the key was matched in right side values, or false otherwise.
          */
-        bool containsRight(const QString& right, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+        bool containsRight(const QString& right, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 
         /**
          * @brief Removes entry matching given value in left-side values.

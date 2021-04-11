@@ -289,7 +289,10 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         SqlQueryModelColumnPtr getColumnModel(const QString& table, const QString& column);
         QList<SqlQueryModelColumnPtr> getTableColumnModels(const QString& database, const QString& table);
         QList<SqlQueryModelColumnPtr> getTableColumnModels(const QString& table);
+        void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, SqlResultsRowPtr row,
+                        const QStringList& columnNames, const BiStrHash& typeColumnToResColumn);
         void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId);
+        void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, Qt::Alignment alignment);
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
         QHash<QString, QVariantList> toValuesGroupedByColumns(const QList<SqlQueryItem*>& items);
@@ -337,7 +340,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         bool loadData(SqlQueryPtr results);
 
-        QList<QStandardItem*> loadRow(SqlResultsRowPtr row);
+        QList<QStandardItem*> loadRow(SqlResultsRowPtr row, SqlQueryPtr results);
         RowId getRowIdValue(SqlResultsRowPtr row, int columnIdx);
         bool readColumns();
         void readColumnDetails();

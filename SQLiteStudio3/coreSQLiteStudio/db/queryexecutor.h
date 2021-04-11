@@ -591,6 +591,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             QSet<SourceTablePtr> sourceTables;
 
             /**
+             * @brief Map of column aliases containing column types.
+             *
+             * Keys are query executor column aliases of column representing types
+             * and values are query executor column aliases of column to which these types apply to.
+             */
+            QHash<QString, QString> typeColumnToResultColumnAlias;
+
+            /**
              * @brief Query used for counting results.
              *
              * Filled with SQL to be used for results counting (even if counting is disabled).
@@ -811,6 +819,12 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * See Context::resultColumns for details.
          */
         QList<QueryExecutor::ResultColumnPtr> getResultColumns() const;
+
+        /**
+         * @brief Gets map of meta columns providing SQLite data types.
+         * @return Map of type column alias to target column alias (for which the type applies).
+         */
+        QHash<QString, QString> getTypeColumns() const;
 
         /**
          * @brief Gets list of ROWID columns.

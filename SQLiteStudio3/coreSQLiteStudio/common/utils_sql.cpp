@@ -801,3 +801,24 @@ QString trimQueryEnd(const QString &query)
     }
     return q;
 }
+
+SqliteDataType toSqliteDataType(const QString& typeStr)
+{
+    QString upperType = typeStr.trimmed().toUpper();
+    if (upperType == "INTEGER")
+        return SqliteDataType::INTEGER;
+
+    if (upperType == "REAL")
+        return SqliteDataType::REAL;
+
+    if (upperType == "TEXT")
+        return SqliteDataType::TEXT;
+
+    if (upperType == "BLOB")
+        return SqliteDataType::BLOB;
+
+    if (upperType == "NULL")
+        return SqliteDataType::_NULL;
+
+    return SqliteDataType::UNKNOWN;
+}

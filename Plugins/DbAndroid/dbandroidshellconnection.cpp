@@ -349,21 +349,21 @@ QVariant DbAndroidShellConnection::valueFromString(const QByteArray& bytes, cons
 {
     static const QStringList types = QStringList({"null", "integer", "real", "text", "blob"});
 
-    DataType dataType = static_cast<DataType>(types.indexOf(AdbManager::decode(type).trimmed()));
+    SqliteDataType dataType = static_cast<SqliteDataType>(types.indexOf(AdbManager::decode(type).trimmed()));
     QByteArray decodedBytes = QByteArray::fromHex(bytes);
     switch (dataType)
     {
-        case DataType::BLOB:
+        case SqliteDataType::BLOB:
             return decodedBytes;
-        case DataType::INTEGER:
+        case SqliteDataType::INTEGER:
             return QString::fromLatin1(decodedBytes).toLongLong();
-        case DataType::REAL:
+        case SqliteDataType::REAL:
             return QString::fromLatin1(decodedBytes).toDouble();
-        case DataType::TEXT:
+        case SqliteDataType::TEXT:
             return QString::fromUtf8(decodedBytes);
-        case DataType::_NULL:
+        case SqliteDataType::_NULL:
             break;
-        case DataType::UNKNOWN:
+        case SqliteDataType::UNKNOWN:
             qCritical() << "Unknown type passed to DbAndroidShellConnection::valueFromString():" << type;
             break;
     }
