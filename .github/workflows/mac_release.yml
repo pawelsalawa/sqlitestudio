@@ -47,6 +47,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                sudo rm -f /usr/local/lib/libsqlite3* /usr/local/include/sqlite3*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
