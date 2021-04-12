@@ -130,7 +130,7 @@ elif [ "$3" == "dist" ]; then
 	
 	hdiutil detach /Volumes/SQLiteStudio
 	
-	hdituil convert sqlitestudio-$VERSION.dmg -format UDRW -o sqlitestudio-rw-$VERSION.dmg
+	hdiutil convert sqlitestudio-$VERSION.dmg -format UDRW -o sqlitestudio-rw-$VERSION.dmg
 	echo "New RW image:"
 	ls -l sqlitestudio-rw-$VERSION.dmg
 	hdiutil attach -readwrite sqlitestudio-rw-$VERSION.dmg
@@ -141,7 +141,10 @@ elif [ "$3" == "dist" ]; then
 	hdiutil compact sqlitestudio-rw-$VERSION.dmg
 	echo "New RW image after compacting:"
 	ls -l sqlitestudio-rw-$VERSION.dmg
-	mv -f sqlitestudio-rw-$VERSION.dmg sqlitestudio-$VERSION.dmg
+	
+	rm -f sqlitestudio-$VERSION.dmg
+	hdiutil convert sqlitestudio-rw-$VERSION.dmg -format UDRO -o sqlitestudio-$VERSION.dmg
+	rm -f sqlitestudio-rw-$VERSION.dmg
 	
 	echo "Verifying contents of new image:"
 	hdiutil attach sqlitestudio-$VERSION.dmg
