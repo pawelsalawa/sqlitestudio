@@ -52,7 +52,15 @@ install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.
 
 # Lib paths
 install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/Frameworks/libguiSQLiteStudio.1.dylib
-install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.dylib
+#install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.dylib
+
+# Change every libsqlite3.0.dylib occurrence in deps to the local library, instead of the system one
+find SQLiteStudio.app -name '*.dylib*' -exec install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" '{}' +
+
+cdir=`pwd`
+cd ../../../lib/
+libdir=`pwd`
+cd $cdir
 
 echo "lib:"
 ls -l ../../../lib/
@@ -114,8 +122,28 @@ elif [ "$3" == "dist" ]; then
 	
 	hdiutil attach sqlitestudio-$VERSION.dmg
 	cd /Volumes/SQLiteStudio
+	
+	# Overwrite SQLite kept in the output image, as qt_deploy likely overwritte it with system SQLite...
+	echo "Deleting sqlite from dmg."
+	rm -f SQLiteStudio.app/Contents/Frameworks/libsqlite3*
+	echo "After deleting:"
+	ls -l SQLiteStudio.app/Contents/Frameworks
+	echo  "Copying Sqlite libs:"
+	ls -l $libdir/*.dylib
+	echo "...to SQLiteStudio.app/Contents/Frameworks"
+	cp -RPf $libdir/*.dylib SQLiteStudio.app/Contents/Frameworks
+	
 	echo "in frameworks - 4:"
 	ls -l SQLiteStudio.app/Contents/Frameworks
+	
+	cd $1/SQLiteStudio
+	hditool detach /Volumes/SQLiteStudio
+	echo "Detached. Reattaching and checking results:"
+	
+	hdiutil attach sqlitestudio-$VERSION.dmg
+	ls -l /Volumes/SQLiteStudioSQLiteStudio.app/Contents/Frameworks
+	hditool detach /Volumes/SQLiteStudio
+
 	
     echo "Done."
 else
