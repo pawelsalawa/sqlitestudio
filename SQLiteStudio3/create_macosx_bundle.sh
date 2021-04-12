@@ -117,7 +117,6 @@ elif [ "$3" == "dist" ]; then
 	echo "in frameworks - 3:"
 	ls -l SQLiteStudio.app/Contents/Frameworks
 	
-	export DYLD_LIBRARY_PATH="$libdir"
 	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
 
 	cd $1/SQLiteStudio
@@ -129,6 +128,24 @@ elif [ "$3" == "dist" ]; then
 	echo "in frameworks - 4:"
 	ls -l /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
 	
+	hdiutil detach /Volumes/SQLiteStudio
+	
+	hdituil convert sqlitestudio-$VERSION.dmg -format UDRW -o sqlitestudio-rw-$VERSION.dmg
+	echo "New RW image:"
+	ls -l sqlitestudio-rw-$VERSION.dmg
+	hdiutil attach -readwrite sqlitestudio-rw-$VERSION.dmg
+	cp -RPf $libdir/libsqlite3.0.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
+	hdiutil detach /Volumes/SQLiteStudio
+	echo "New RW image after replacing:"
+	ls -l sqlitestudio-rw-$VERSION.dmg
+	hdiutil compact sqlitestudio-rw-$VERSION.dmg
+	echo "New RW image after compacting:"
+	ls -l sqlitestudio-rw-$VERSION.dmg
+	mv -f sqlitestudio-rw-$VERSION.dmg sqlitestudio-$VERSION.dmg
+	
+	echo "Verifying contents of new image:"
+	hdiutil attach sqlitestudio-$VERSION.dmg
+	ls -l /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
 	hdiutil detach /Volumes/SQLiteStudio
 	
     echo "Done."
