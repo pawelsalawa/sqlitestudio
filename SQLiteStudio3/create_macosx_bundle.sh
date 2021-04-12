@@ -68,7 +68,10 @@ ls -l ../../../lib/
 echo "in frameworks - 1:"
 ls -l SQLiteStudio.app/Contents/Frameworks
 
-cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
+cp -RP ../../../lib/libsqlite3.0.dylib SQLiteStudio.app/Contents/Frameworks
+cd SQLiteStudio.app/Contents/Frameworks
+ln -s libsqlite3.0.dylib libsqlite3.dylib
+cd ../../..
 
 echo "in frameworks - 2:"
 ls -l SQLiteStudio.app/Contents/Frameworks
@@ -113,37 +116,20 @@ elif [ "$3" == "dist" ]; then
 	replaceInfo $1
 	echo "in frameworks - 3:"
 	ls -l SQLiteStudio.app/Contents/Frameworks
+	
+	export DYLD_LIBRARY_PATH="$libdir"
 	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
 
 	cd $1/SQLiteStudio
 	VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
 
 	mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
-	
-	hdiutil attach -readwrite sqlitestudio-$VERSION.dmg
-	cd /Volumes/SQLiteStudio
-	
-	# Overwrite SQLite kept in the output image, as qt_deploy likely overwritte it with system SQLite...
-	echo "Deleting sqlite from dmg."
-	rm -f SQLiteStudio.app/Contents/Frameworks/libsqlite3*
-	echo "After deleting:"
-	ls -l SQLiteStudio.app/Contents/Frameworks
-	echo  "Copying Sqlite libs:"
-	ls -l $libdir/*.dylib
-	echo "...to SQLiteStudio.app/Contents/Frameworks"
-	cp -RPf $libdir/*.dylib SQLiteStudio.app/Contents/Frameworks
+	hdiutil attach sqlitestudio-$VERSION.dmg
 	
 	echo "in frameworks - 4:"
-	ls -l SQLiteStudio.app/Contents/Frameworks
-	
-	cd $1/SQLiteStudio
-	hdiutil detach /Volumes/SQLiteStudio
-	echo "Detached. Reattaching and checking results:"
-	
-	hdiutil attach sqlitestudio-$VERSION.dmg
 	ls -l /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
+	
 	hdiutil detach /Volumes/SQLiteStudio
-
 	
     echo "Done."
 else
