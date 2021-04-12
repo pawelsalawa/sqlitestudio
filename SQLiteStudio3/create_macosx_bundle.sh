@@ -52,10 +52,7 @@ install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.
 
 # Lib paths
 install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/Frameworks/libguiSQLiteStudio.1.dylib
-#install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.dylib
-
-# Change every libsqlite3.0.dylib occurrence in deps to the local library, instead of the system one
-find SQLiteStudio.app -name '*.dylib*' -exec install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" '{}' +
+install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.dylib
 
 cdir=`pwd`
 cd ../../../lib/
@@ -114,8 +111,6 @@ if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
 elif [ "$3" == "dist" ]; then
 	replaceInfo $1
-	echo "in frameworks - 3:"
-	ls -l SQLiteStudio.app/Contents/Frameworks
 	
 	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
 
@@ -125,25 +120,16 @@ elif [ "$3" == "dist" ]; then
 	mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
 	hdiutil attach sqlitestudio-$VERSION.dmg
 	
-	echo "in frameworks - 4:"
-	ls -l /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
-	
 	hdiutil detach /Volumes/SQLiteStudio
 	
 	hdiutil convert sqlitestudio-$VERSION.dmg -format UDRW -o sqlitestudio-rw-$VERSION.dmg
-	echo "New RW image:"
-	ls -l sqlitestudio-rw-$VERSION.dmg
 	hdiutil attach -readwrite sqlitestudio-rw-$VERSION.dmg
 	cp -RPf $libdir/libsqlite3.0.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
 	hdiutil detach /Volumes/SQLiteStudio
-	echo "New RW image after replacing:"
-	ls -l sqlitestudio-rw-$VERSION.dmg
 	hdiutil compact sqlitestudio-rw-$VERSION.dmg
-	echo "New RW image after compacting:"
-	ls -l sqlitestudio-rw-$VERSION.dmg
 	
 	rm -f sqlitestudio-$VERSION.dmg
-	hdiutil convert sqlitestudio-rw-$VERSION.dmg -format UDRO -o sqlitestudio-$VERSION.dmg
+	hdiutil convert sqlitestudio-rw-$VERSION.dmg -format UDZO -o sqlitestudio-$VERSION.dmg
 	rm -f sqlitestudio-rw-$VERSION.dmg
 	
 	echo "Verifying contents of new image:"
