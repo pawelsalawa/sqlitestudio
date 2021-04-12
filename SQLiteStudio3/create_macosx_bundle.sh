@@ -124,11 +124,26 @@ elif [ "$3" == "dist" ]; then
 	cd /Volumes/SQLiteStudio
 	
 	# Overwrite SQLite kept in the output image, as qt_deploy likely overwritte it with system SQLite...
+	echo "Deleting sqlite from dmg."
 	rm -f SQLiteStudio.app/Contents/Frameworks/libsqlite3*
+	echo "After deleting:"
+	ls -l SQLiteStudio.app/Contents/Frameworks
+	echo  "Copying Sqlite libs:"
+	ls -l $libdir/*.dylib
+	echo "...to SQLiteStudio.app/Contents/Frameworks"
 	cp -RPf $libdir/*.dylib SQLiteStudio.app/Contents/Frameworks
 	
 	echo "in frameworks - 4:"
 	ls -l SQLiteStudio.app/Contents/Frameworks
+	
+	cd $1/SQLiteStudio
+	hditool detach /Volumes/SQLiteStudio
+	echo "Detached. Reattaching and checking results:"
+	
+	hdiutil attach sqlitestudio-$VERSION.dmg
+	ls -l /Volumes/SQLiteStudioSQLiteStudio.app/Contents/Frameworks
+	hditool detach /Volumes/SQLiteStudio
+
 	
     echo "Done."
 else
