@@ -30,7 +30,6 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
-                modules: 'qtscript'
                 
             - name: Clone repo
               uses: actions/checkout@v2
@@ -102,7 +101,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Gui.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Script.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Qml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/

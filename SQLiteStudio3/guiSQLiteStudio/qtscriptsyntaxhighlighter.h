@@ -37,7 +37,7 @@
 #include <QtGui>
 
 /**
- * @brief The JavaScript (also QtScript) highlighter
+ * @brief The JavaScript highlighter
  *
  * This class is mostly copied from Ofi Labs X2 project. It has been slightly modified for SQLiteStudio needs.
  * See the source code for the full license disclaimer.
@@ -66,9 +66,9 @@ class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public 
 {
     Q_OBJECT
 
-    SQLITESTUDIO_PLUGIN_TITLE("QtScript highlighter")
-    SQLITESTUDIO_PLUGIN_DESC("QtScript (JavaScript) syntax highlighter.")
-    SQLITESTUDIO_PLUGIN_VERSION(10000)
+    SQLITESTUDIO_PLUGIN_TITLE("JavaScript highlighter")
+    SQLITESTUDIO_PLUGIN_DESC("JavaScript syntax highlighter.")
+    SQLITESTUDIO_PLUGIN_VERSION(10001)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:

@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.0
+- CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon. The debug() function will now print to SQLiteStudio's status panel.
+
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
 - CHANGE: #4028 Open databases are now expanded upon startup only if they were expanded during application shutdown.

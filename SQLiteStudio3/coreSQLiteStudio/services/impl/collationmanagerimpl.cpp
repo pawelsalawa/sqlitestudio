@@ -109,7 +109,7 @@ void CollationManagerImpl::loadFromConfig()
         collHash = var.toHash();
         coll = CollationPtr::create();
         coll->name = collHash["name"].toString();
-        coll->lang = collHash["lang"].toString();
+        coll->lang = updateScriptingQtLang(collHash["lang"].toString());
         coll->code = collHash["code"].toString();
         coll->databases = collHash["databases"].toStringList();
         coll->allDatabases = collHash["allDatabases"].toBool();
@@ -122,4 +122,12 @@ void CollationManagerImpl::refreshCollationsByKey()
     collationsByKey.clear();
     for (CollationPtr collation : collations)
         collationsByKey[collation->name] = collation;
+}
+
+QString CollationManagerImpl::updateScriptingQtLang(const QString& lang) const
+{
+    if (lang == "QtScript")
+        return QStringLiteral("JavaScript");
+
+    return lang;
 }

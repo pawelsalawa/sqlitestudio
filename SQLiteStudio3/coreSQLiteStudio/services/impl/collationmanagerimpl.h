@@ -23,6 +23,7 @@ class API_EXPORT CollationManagerImpl : public CollationManager
         void storeInConfig();
         void loadFromConfig();
         void refreshCollationsByKey();
+        QString updateScriptingQtLang(const QString& lang) const;
 
         QList<CollationPtr> collations;
         QHash<QString,CollationPtr> collationsByKey;

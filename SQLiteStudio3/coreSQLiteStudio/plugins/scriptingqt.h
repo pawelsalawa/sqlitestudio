@@ -6,26 +6,26 @@
 #include <QHash>
 #include <QVariant>
 #include <QCache>
-#include <QScriptValue>
-#include <QScriptProgram>
+#include <QJSValue>
 
-class QScriptEngine;
 class QMutex;
-class QScriptContext;
 class ScriptingQtDbProxy;
+class ScriptingQtDebugger;
 
 class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
 {
     Q_OBJECT
 
-    SQLITESTUDIO_PLUGIN_TITLE("Qt scripting")
-    SQLITESTUDIO_PLUGIN_DESC("Qt scripting support.")
-    SQLITESTUDIO_PLUGIN_VERSION(10000)
+    SQLITESTUDIO_PLUGIN_TITLE("JavaScript scripting")
+    SQLITESTUDIO_PLUGIN_DESC("JavaScript scripting support.")
+    SQLITESTUDIO_PLUGIN_VERSION(10100)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
         ScriptingQt();
         ~ScriptingQt();
+
+        static QJSValueList toValueList(QJSEngine* engine, const QList<QVariant>& values);
 
         QString getLanguage() const;
         Context* createContext();
@@ -50,16 +50,17 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
                 ContextQt();
                 ~ContextQt();
 
-                QScriptEngine* engine = nullptr;
-                QCache<QString,QScriptProgram> scriptCache;
+                QJSEngine* engine = nullptr;
+                QCache<QString, QJSValue> scriptCache;
                 QString error;
                 ScriptingQtDbProxy* dbProxy = nullptr;
-                QScriptValue dbProxyScriptValue;
+                ScriptingQtDebugger* debugger = nullptr;
+                QJSValue dbProxyScriptValue;
         };
 
         ContextQt* getContext(ScriptingPlugin::Context* context) const;
-        QScriptValue getFunctionValue(ContextQt* ctx, const QString& code);
-        QVariant evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args, Db* db, bool locking);
+        QJSValue getFunctionValue(ContextQt* ctx, const QString& code);
+        QVariant evaluate(ContextQt* ctx, const QString& code, const QList<QVariant>& args, Db* db, bool locking);
         QVariant convertVariant(const QVariant& value, bool wrapStrings = false);
 
         static const constexpr int cacheSize = 5;
@@ -67,6 +68,20 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
         ContextQt* mainContext = nullptr;
         QList<Context*> contexts;
         QMutex* mainEngineMutex = nullptr;
+};
+
+class ScriptingQtDebugger : public QObject
+{
+    Q_OBJECT
+
+    public:
+        ScriptingQtDebugger(QJSEngine* engine);
+
+    private:
+        QJSEngine* engine = nullptr;
+
+    public slots:
+        QJSValue debug(const QVariant& value);
 };
 
 #endif // SCRIPTINGQT_H

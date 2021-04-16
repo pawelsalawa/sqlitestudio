@@ -45,7 +45,6 @@ jobs:
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
-                modules: 'qtscript'
 
             - name: Clone repo
               uses: actions/checkout@v2

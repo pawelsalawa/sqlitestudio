@@ -2,21 +2,11 @@
 #include "common/unused.h"
 #include "common/global.h"
 #include "scriptingqtdbproxy.h"
-#include <QScriptEngine>
+#include "services/notifymanager.h"
+#include <QJSEngine>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QDebug>
-
-static QScriptValue scriptingQtDebug(QScriptContext *context, QScriptEngine *engine)
-{
-    UNUSED(engine);
-    QStringList args;
-    for (int i = 0; i < context->argumentCount(); i++)
-        args << context->argument(i).toString();
-
-    qDebug() << "[ScriptingQt]" << args;
-    return QScriptValue();
-}
 
 ScriptingQt::ScriptingQt()
 {
@@ -28,15 +18,24 @@ ScriptingQt::~ScriptingQt()
     safe_delete(mainEngineMutex);
 }
 
+QJSValueList ScriptingQt::toValueList(QJSEngine* engine, const QList<QVariant>& values)
+{
+    QJSValueList result;
+    for (const QVariant& value : values)
+        result << engine->toScriptValue(value);
+
+    return result;
+}
+
 QString ScriptingQt::getLanguage() const
 {
-    return QStringLiteral("QtScript");
+    return QStringLiteral("JavaScript");
 }
 
 ScriptingPlugin::Context* ScriptingQt::createContext()
 {
     ContextQt* ctx = new ContextQt;
-    ctx->engine->pushContext();
+//    ctx->engine->pushContext();
     contexts << ctx;
     return ctx;
 }
@@ -56,27 +55,18 @@ void ScriptingQt::resetContext(ScriptingPlugin::Context* context)
     ContextQt* ctx = getContext(context);
     if (!ctx)
         return;
-
-    ctx->engine->popContext();
-    ctx->engine->pushContext();
 }
 
 QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
     QMutexLocker locker(mainEngineMutex);
 
-    // Enter a new context
-    QScriptContext* engineContext = mainContext->engine->pushContext();
-
     // Call the function
-    QVariant result = evaluate(mainContext, engineContext, code, args, db, locking);
+    QVariant result = evaluate(mainContext, code, args, db, locking);
 
     // Handle errors
     if (!mainContext->error.isEmpty())
         *errorMessage = mainContext->error;
-
-    // Leave the context to reset "this".
-    mainContext->engine->popContext();
 
     return result;
 }
@@ -87,29 +77,33 @@ QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString&
     if (!ctx)
         return QVariant();
 
-    return evaluate(ctx, ctx->engine->currentContext(), code, args, db, locking);
+    return evaluate(ctx, code, args, db, locking);
 }
 
-QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
+QVariant ScriptingQt::evaluate(ContextQt* ctx, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
 {
     // Define function to call
-    QScriptValue functionValue = getFunctionValue(ctx, code);
+    QJSValue functionValue = getFunctionValue(ctx, code);
 
     // Db for this evaluation
     ctx->dbProxy->setDb(db);
     ctx->dbProxy->setUseDbLocking(locking);
 
     // Call the function
-    QScriptValue result;
+    QJSValue result;
     if (args.size() > 0)
-        result = functionValue.call(engineContext->activationObject(), ctx->engine->toScriptValue(args));
+        result = functionValue.call(toValueList(ctx->engine, args));
     else
-        result = functionValue.call(engineContext->activationObject());
+        result = functionValue.call();
 
     // Handle errors
     ctx->error.clear();
-    if (ctx->engine->hasUncaughtException())
-        ctx->error = ctx->engine->uncaughtException().toString();
+    if (result.isError())
+    {
+        ctx->error = QString("Uncaught exception at line %1: %2").arg(
+                        result.property("lineNumber").toString(),
+                        result.toString());
+    }
 
     ctx->dbProxy->setDb(nullptr);
     ctx->dbProxy->setUseDbLocking(false);
@@ -176,7 +170,7 @@ void ScriptingQt::setVariable(ScriptingPlugin::Context* context, const QString& 
     if (!ctx)
         return;
 
-    ctx->engine->globalObject().setProperty(name, ctx->engine->newVariant(value));
+    ctx->engine->globalObject().setProperty(name, ctx->engine->toScriptValue(value));
 }
 
 QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QString& name)
@@ -185,7 +179,7 @@ QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QStri
     if (!ctx)
         return QVariant();
 
-    QScriptValue value = ctx->engine->globalObject().property(name);
+    QJSValue value = ctx->engine->globalObject().property(name);
     return convertVariant(value.toVariant());
 }
 
@@ -239,31 +233,34 @@ ScriptingQt::ContextQt* ScriptingQt::getContext(ScriptingPlugin::Context* contex
     return ctx;
 }
 
-QScriptValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code)
+QJSValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code)
 {
     static const QString fnDef = QStringLiteral("(function () {%1\n})");
 
-    QScriptProgram* prog = nullptr;
+    QJSValue* func = nullptr;
     if (!ctx->scriptCache.contains(code))
     {
-        prog = new QScriptProgram(fnDef.arg(code));
-        ctx->scriptCache.insert(code, prog);
+        func = new QJSValue(ctx->engine->evaluate(fnDef.arg(code)));
+        ctx->scriptCache.insert(code, func);
     }
     else
     {
-        prog = ctx->scriptCache[code];
+        func = ctx->scriptCache[code];
     }
-    return ctx->engine->evaluate(*prog);
+    return *func;
 }
 
 ScriptingQt::ContextQt::ContextQt()
 {
-    engine = new QScriptEngine();
+    engine = new QJSEngine();
+    engine->installExtensions(QJSEngine::ConsoleExtension);
 
-    dbProxy = new ScriptingQtDbProxy();
-    dbProxyScriptValue = engine->newQObject(dbProxy, QScriptEngine::QtOwnership, QScriptEngine::ExcludeDeleteLater);
+    dbProxy = new ScriptingQtDbProxy(engine);
+    dbProxyScriptValue = engine->newQObject(dbProxy);
+    debugger = new ScriptingQtDebugger(engine);
 
-    engine->globalObject().setProperty("debug", engine->newFunction(scriptingQtDebug));
+    engine->globalObject().setProperty("$$debug", engine->newQObject(debugger));
+    engine->globalObject().setProperty("debug", engine->globalObject().property("$$debug").property("debug"));
     engine->globalObject().setProperty("db", dbProxyScriptValue);
 
     scriptCache.setMaxCost(cacheSize);
@@ -271,6 +268,18 @@ ScriptingQt::ContextQt::ContextQt()
 
 ScriptingQt::ContextQt::~ContextQt()
 {
-    safe_delete(engine);
+    safe_delete(debugger);
     safe_delete(dbProxy);
+    safe_delete(engine);
+}
+
+ScriptingQtDebugger::ScriptingQtDebugger(QJSEngine* engine) :
+    QObject(), engine(engine)
+{
+}
+
+QJSValue ScriptingQtDebugger::debug(const QVariant& value)
+{
+    NOTIFY_MANAGER->info("[ScriptingQt] " + value.toString());
+    return QJSValue();
 }

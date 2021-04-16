@@ -12,7 +12,7 @@ MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
 QT       -= gui
-QT       += script network
+QT       += qml network
 
 TARGET = coreSQLiteStudio
 TEMPLATE = lib

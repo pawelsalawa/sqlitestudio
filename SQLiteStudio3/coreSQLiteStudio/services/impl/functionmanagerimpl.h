@@ -56,6 +56,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QString cannotFindFunctionError(const QString& name, int argCount);
         QString langUnsupportedError(const QString& name, int argCount, const QString& lang);
         void registerNativeFunction(const QString& name, const QStringList& args, NativeFunction::ImplementationFunction funcPtr);
+        QString updateScriptingQtLang(const QString& lang) const;
 
         static QStringList getArgMarkers(int argCount);
         static QVariant nativeRegExp(const QList<QVariant>& args, Db* db, bool& ok);

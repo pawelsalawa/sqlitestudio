@@ -320,7 +320,7 @@ void FunctionManagerImpl::loadFromConfig()
         fnHash = var.toHash();
         func = new ScriptFunction();
         func->name = fnHash["name"].toString();
-        func->lang = fnHash["lang"].toString();
+        func->lang = updateScriptingQtLang(fnHash["lang"].toString());
         func->code = fnHash["code"].toString();
         func->initCode = fnHash["initCode"].toString();
         func->finalCode = fnHash["finalCode"].toString();
@@ -779,6 +779,14 @@ void FunctionManagerImpl::registerNativeFunction(const QString& name, const QStr
     nf->undefinedArgs = false;
     nf->functionPtr = funcPtr;
     nativeFunctions << nf;
+}
+
+QString FunctionManagerImpl::updateScriptingQtLang(const QString& lang) const
+{
+    if (lang == "QtScript")
+        return QStringLiteral("JavaScript");
+
+    return lang;
 }
 
 int qHash(const FunctionManagerImpl::Key& key)

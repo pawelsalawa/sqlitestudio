@@ -348,7 +348,7 @@ void JavaScriptSyntaxHighlighter::mark(const QString &str, Qt::CaseSensitivity c
 
 QString JavaScriptHighlighterPlugin::getLanguageName() const
 {
-    return QStringLiteral("QtScript");
+    return QStringLiteral("JavaScript");
 }
 
 QSyntaxHighlighter* JavaScriptHighlighterPlugin::createSyntaxHighlighter(QWidget* textEdit) const

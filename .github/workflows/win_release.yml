@@ -36,7 +36,6 @@ jobs:
                 arch: ${{ env.QT_ARCH }}
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
-                modules: 'qtscript'
                 setup-python: 'false'
                 
             - name: Install mingw
@@ -119,7 +118,7 @@ jobs:
               shell: bash
               working-directory: ${{ env.Qt5_Dir }}
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Qml Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
                 cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"

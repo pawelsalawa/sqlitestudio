@@ -1,11 +1,11 @@
+#include "scriptingqt.h"
 #include "scriptingqtdbproxy.h"
 #include "db/db.h"
 #include "db/sqlquery.h"
-#include <QScriptContext>
-#include <QScriptEngine>
+#include <QJSEngine>
 
-ScriptingQtDbProxy::ScriptingQtDbProxy(QObject *parent) :
-    QObject(parent)
+ScriptingQtDbProxy::ScriptingQtDbProxy(QJSEngine* engine, QObject *parent) :
+    QObject(parent), engine(engine)
 {
 }
 Db* ScriptingQtDbProxy::getDb() const
@@ -40,12 +40,12 @@ QHash<QString, QVariant> ScriptingQtDbProxy::mapToHash(const QMap<QString, QVari
 }
 
 QVariant ScriptingQtDbProxy::evalInternal(const QString& sql, const QList<QVariant>& listArgs, const QMap<QString, QVariant>& mapArgs,
-                                          bool singleCell, const QScriptValue* funcPtr)
+                                          bool singleCell, const QJSValue* funcPtr)
 {
     if (!db)
     {
         QString funcName = singleCell ? QStringLiteral("db.onecolumn()") : QStringLiteral("db.eval()");
-        context()->throwError(tr("No database available in current context, while called QtScript's %1 command.").arg(funcName));
+        engine->throwError(tr("No database available in current context, while called JavaScript's %1 command.").arg(funcName));
         return evalInternalErrorResult(singleCell);
     }
 
@@ -62,7 +62,7 @@ QVariant ScriptingQtDbProxy::evalInternal(const QString& sql, const QList<QVaria
     if (results->isError())
     {
         QString funcName = singleCell ? QStringLiteral("db.onecolumn()") : QStringLiteral("db.eval()");
-        context()->throwError(tr("Error from %1: %2").arg(funcName, results->getErrorText()));
+        engine->throwError(tr("Error from %1: %2").arg(funcName, results->getErrorText()));
         return evalInternalErrorResult(singleCell);
     }
 
@@ -72,15 +72,15 @@ QVariant ScriptingQtDbProxy::evalInternal(const QString& sql, const QList<QVaria
     }
     else if (funcPtr)
     {
-        QScriptValue func(*funcPtr);
+        QJSValue func(*funcPtr);
         SqlResultsRowPtr row;
-        QScriptValue funcArgs;
-        QScriptValue funcResult;
+        QJSValueList funcArgs;
+        QJSValue funcResult;
         while (results->hasNext())
         {
             row = results->next();
-            funcArgs = context()->engine()->toScriptValue(row->valueList());
-            funcResult = func.call(context()->thisObject(), funcArgs);
+            funcArgs = ScriptingQt::toValueList(engine, row->valueList());
+            funcResult = func.call(funcArgs);
             if (!funcResult.isUndefined())
                 break;
         }
@@ -123,12 +123,12 @@ QVariant ScriptingQtDbProxy::eval(const QString& sql, const QMap<QString, QVaria
     return evalInternal(sql, QList<QVariant>(), args, false);
 }
 
-QVariant ScriptingQtDbProxy::eval(const QString& sql, const QList<QVariant>& args, const QScriptValue& func)
+QVariant ScriptingQtDbProxy::eval(const QString& sql, const QList<QVariant>& args, const QJSValue& func)
 {
     return evalInternal(sql, args, QMap<QString, QVariant>(), false, &func);
 }
 
-QVariant ScriptingQtDbProxy::eval(const QString& sql, const QMap<QString, QVariant>& args, const QScriptValue& func)
+QVariant ScriptingQtDbProxy::eval(const QString& sql, const QMap<QString, QVariant>& args, const QJSValue& func)
 {
     return evalInternal(sql, QList<QVariant>(), args, false, &func);
 }
