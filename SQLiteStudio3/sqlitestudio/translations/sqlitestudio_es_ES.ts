@@ -51,32 +51,32 @@
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation>Habilita la depuración del ejecutor de consultas de SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>Lista plugins instalados en SQLiteStudio y cierra la ventana.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Apunta al archivo de configuración maestro. Lee el manual en la página wiki para más detalles.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>Archivo de configuración de SQLiteStudio</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>archivo</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Archivo de base de datos a abrir</translation>
     </message>
   </context>
 </TS>
