@@ -4,42 +4,42 @@
 <context>
     <name>SqlExport</name>
     <message>
-        <location filename="../sqlexport.cpp" line="57"/>
+        <location filename="../sqlexport.cpp" line="56"/>
         <source>-- Results of query:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="122"/>
+        <location filename="../sqlexport.cpp" line="138"/>
         <source>-- Table: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="168"/>
+        <location filename="../sqlexport.cpp" line="184"/>
         <source>-- Index: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="185"/>
+        <location filename="../sqlexport.cpp" line="201"/>
         <source>-- Trigger: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="202"/>
+        <location filename="../sqlexport.cpp" line="218"/>
         <source>-- View: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="216"/>
+        <location filename="../sqlexport.cpp" line="232"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="220"/>
+        <location filename="../sqlexport.cpp" line="236"/>
         <source>-- Text encoding used: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="276"/>
+        <location filename="../sqlexport.cpp" line="306"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation type="unfinished"></translation>
     </message>

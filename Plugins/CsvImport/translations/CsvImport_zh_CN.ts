@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh-CN" sourcelanguage="en">
-  <context>
+<context>
     <name>CsvImport</name>
     <message>
-      <location filename="../csvimport.cpp" line="30"/>
-      <source>Cannot read file %1</source>
-      <translation>无法读取文件 %1</translation>
+        <location filename="../csvimport.cpp" line="30"/>
+        <source>Cannot read file %1</source>
+        <translation>无法读取文件 %1</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="62"/>
-      <source>Could not find any data in the file %1.</source>
-      <translation>无法在文件 %1 中找到任何数据。</translation>
+        <location filename="../csvimport.cpp" line="62"/>
+        <source>Could not find any data in the file %1.</source>
+        <translation>无法在文件 %1 中找到任何数据。</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="167"/>
-      <source>Enter the custom separator character.</source>
-      <translation>设置自定义分隔符。</translation>
+        <location filename="../csvimport.cpp" line="167"/>
+        <source>Enter the custom separator character.</source>
+        <translation>设置自定义分隔符。</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="190"/>
-      <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation>CSV 文件 (*.csv);;文本文件 (*.txt);;所有文件 (*)</translation>
+        <location filename="../csvimport.cpp" line="190"/>
+        <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
+        <translation>CSV 文件 (*.csv);;文本文件 (*.txt);;所有文件 (*)</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>csvImportOptions</name>
     <message>
-      <location filename="../CsvImportOptions.ui" line="24"/>
-      <source>, (comma)</source>
-      <translation>,（逗号）</translation>
+        <location filename="../CsvImportOptions.ui" line="24"/>
+        <source>, (comma)</source>
+        <translation>,（逗号）</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="29"/>
-      <source>; (semicolon)</source>
-      <translation>;（分号）</translation>
+        <location filename="../CsvImportOptions.ui" line="29"/>
+        <source>; (semicolon)</source>
+        <translation>;（分号）</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="34"/>
-      <source>\t (tab)</source>
-      <translation>\t（Tab）</translation>
+        <location filename="../CsvImportOptions.ui" line="34"/>
+        <source>\t (tab)</source>
+        <translation>\t（Tab）</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="39"/>
-      <source>  (whitespace)</source>
-      <translation>  （空格）</translation>
+        <location filename="../CsvImportOptions.ui" line="39"/>
+        <source>  (whitespace)</source>
+        <translation>  （空格）</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="44"/>
-      <source>Custom:</source>
-      <translation>自定义：</translation>
+        <location filename="../CsvImportOptions.ui" line="44"/>
+        <source>Custom:</source>
+        <translation>自定义：</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="52"/>
-      <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;如果您的 CSV 文件中的第一行数据表示字段 且您不想要将字段名以常规数据导入表中，请启用此项。&lt;/p&gt;</translation>
+        <location filename="../CsvImportOptions.ui" line="52"/>
+        <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;如果您的 CSV 文件中的第一行数据表示字段 且您不想要将字段名以常规数据导入表中，请启用此项。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="55"/>
-      <source>First line represents CSV column names</source>
-      <translation>第一行表示CSV字段名称</translation>
+        <location filename="../CsvImportOptions.ui" line="55"/>
+        <source>First line represents CSV column names</source>
+        <translation>第一行表示CSV字段名称</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="65"/>
-      <source>Field separator:</source>
-      <translation>字段分隔符：</translation>
+        <location filename="../CsvImportOptions.ui" line="65"/>
+        <source>Field separator:</source>
+        <translation>字段分隔符：</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="85"/>
-      <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>如果启用，则右侧提供的文本值将被解释为 NULL</translation>
+        <location filename="../CsvImportOptions.ui" line="85"/>
+        <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
+        <translation>如果启用，则右侧提供的文本值将被解释为 NULL</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="88"/>
-      <source>NULL values:</source>
-      <translation>NULL 值：</translation>
+        <location filename="../CsvImportOptions.ui" line="88"/>
+        <source>NULL values:</source>
+        <translation>NULL 值：</translation>
     </message>
     <message>
-      <location filename="../CsvImportOptions.ui" line="98"/>
-      <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation>如果您的 CSV 数据包含空值，请定义它们在CSV 中的呈现方式。</translation>
+        <location filename="../CsvImportOptions.ui" line="98"/>
+        <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
+        <translation>如果您的 CSV 数据包含空值，请定义它们在CSV 中的呈现方式。</translation>
     </message>
-  </context>
+</context>
 </TS>
