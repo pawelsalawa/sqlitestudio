@@ -62,87 +62,87 @@
       <translation>שם קבוצה</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="60"/>
+      <location filename="../configmigrationwizard.cpp" line="62"/>
       <source>Enter a non-empty name.</source>
       <translation>נא להזין שם (לא ריק).</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="68"/>
+      <location filename="../configmigrationwizard.cpp" line="70"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
       <translation>קבוצה ברמה עליונה בשם &apos;%1&apos; קיימת כבר. נא להזין שם קבוצה שטרם נוצרה.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="102"/>
+      <location filename="../configmigrationwizard.cpp" line="104"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
       <translation>לא ניתן לפתוח קובץ תצורה ישן על מנת להסב ממנו הגדרות.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="110"/>
+      <location filename="../configmigrationwizard.cpp" line="112"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
       <translation>לא ניתן לפתוח קובץ תצורה נוכחי על מנת להסב הגדרות מקובץ תצורה ישן.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="119"/>
+      <location filename="../configmigrationwizard.cpp" line="121"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
       <translation>לא ניתן לבצע קומיט של הנתונים המוסבים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="163"/>
+      <location filename="../configmigrationwizard.cpp" line="165"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
       <translation>לא ניתן לקרוא את היסטוריית דוחות התקלים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="180"/>
+      <location filename="../configmigrationwizard.cpp" line="182"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
       <translation>לא ניתן להכניס את רשומת היסטוריית דוחות התקלים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="201"/>
+      <location filename="../configmigrationwizard.cpp" line="203"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
       <translation>לא ניתן לקרוא את רשימת מסדי הנתונים מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="215"/>
+      <location filename="../configmigrationwizard.cpp" line="217"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
       <translation>לא ניתן לבצע שאילתה על קבוצת הכלה וסדר זמין בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="226"/>
+      <location filename="../configmigrationwizard.cpp" line="228"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
       <translation>לא ניתן ליצור קבוצת הכלה בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="247"/>
+      <location filename="../configmigrationwizard.cpp" line="249"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
       <translation>לא ניתן להכניס את רשומת מסד נתונים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="259"/>
+      <location filename="../configmigrationwizard.cpp" line="261"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
       <translation>לא ניתן לבצע שאילתה על סדר זמין של מסד הנתונים הבא בקובץ התצורה החדש, על מנת להסב את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="270"/>
+      <location filename="../configmigrationwizard.cpp" line="272"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
       <translation>לא ניתן ליצור קבוצה המפנה את מסד הנתונים בקובץ התצורה החדש, על מנת להעביר את רשימת מסדי הנתונים: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="288"/>
+      <location filename="../configmigrationwizard.cpp" line="290"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
       <translation>לא ניתן לקרוא רשימת פונקציות מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="323"/>
+      <location filename="../configmigrationwizard.cpp" line="325"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
       <translation>לא ניתן לקרוא את היסטוריית שאילתות ה SQL מקובץ התצורה הישן על מנת להסב אותן: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="330"/>
+      <location filename="../configmigrationwizard.cpp" line="332"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
       <translation>לא ניתן לקרוא את המזהה הבא של שאילתות ה SQL מקובץ התצורה החדש: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="346"/>
+      <location filename="../configmigrationwizard.cpp" line="348"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
       <translation>לא ניתן להכניס את רשומת היסטוריית שאילתות SQL לקובץ תצורה חדש: %1</translation>
     </message>
