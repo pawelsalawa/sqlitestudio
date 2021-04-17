@@ -20,6 +20,7 @@ on:
             - '**.pro'
             - '**.pri'
             - '**.ui'
+            - '**.qrc'
             - '**/tests.yml'
 
 jobs:
