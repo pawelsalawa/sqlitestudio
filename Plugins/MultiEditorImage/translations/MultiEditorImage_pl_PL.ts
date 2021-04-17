@@ -29,42 +29,42 @@
       <translation>Zresetuj powiększenie</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="100"/>
+      <location filename="../multieditorimage.cpp" line="104"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
       <translation>Obrazy (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="101"/>
+      <location filename="../multieditorimage.cpp" line="105"/>
       <source>Open image</source>
       <translation>Otwórz obraz</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="110"/>
+      <location filename="../multieditorimage.cpp" line="114"/>
       <source>Could not open file %1 for reading.</source>
       <translation>Nie można otworzyć pliku %1 do odczytu.</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="130"/>
+      <location filename="../multieditorimage.cpp" line="134"/>
       <source>All files (*)</source>
       <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="132"/>
+      <location filename="../multieditorimage.cpp" line="136"/>
       <source>Save image</source>
       <translation>Zapisz obraz</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="143"/>
+      <location filename="../multieditorimage.cpp" line="155"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
       <translation>Próbowano zapisać obraz używając innego formatu (%1) niż oryginał (%2), lecz aplikacji nie udało się dokonać konwersji. Obraz z niezmienionym formacie (%3) zostanie zapisany pod podaną nazwą (%4)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="154"/>
+      <location filename="../multieditorimage.cpp" line="166"/>
       <source>Could not open file %1 for writting.</source>
       <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="159"/>
+      <location filename="../multieditorimage.cpp" line="171"/>
       <source>Could not write image into the file %1</source>
       <translation>Nie można zapisać obrazu do pliku %1</translation>
     </message>
@@ -72,7 +72,7 @@
   <context>
     <name>MultiEditorImagePlugin</name>
     <message>
-      <location filename="../multieditorimage.cpp" line="250"/>
+      <location filename="../multieditorimage.cpp" line="262"/>
       <source>Image</source>
       <translation>Obraz</translation>
     </message>
