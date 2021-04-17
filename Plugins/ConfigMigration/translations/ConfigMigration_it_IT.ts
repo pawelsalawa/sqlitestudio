@@ -62,87 +62,87 @@
       <translation>Nome del gruppo</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="60"/>
+      <location filename="../configmigrationwizard.cpp" line="62"/>
       <source>Enter a non-empty name.</source>
       <translation>Inserisci un nome non vuoto.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="68"/>
+      <location filename="../configmigrationwizard.cpp" line="70"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
       <translation>Il gruppo di livello superiore chiamato &apos;%1&apos; esiste già. Inserisci un nome di gruppo che non esiste ancora.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="102"/>
+      <location filename="../configmigrationwizard.cpp" line="104"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
       <translation>Impossibile aprire il vecchio file di configurazione per migrare da esso le impostazioni.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="110"/>
+      <location filename="../configmigrationwizard.cpp" line="112"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
       <translation>Impossibile aprire il file di configurazione corrente per migrare le impostazioni dal vecchio file di configurazione.</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="119"/>
+      <location filename="../configmigrationwizard.cpp" line="121"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
       <translation>Impossibile eseguire il commit dei dati migrati nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="163"/>
+      <location filename="../configmigrationwizard.cpp" line="165"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
       <translation>Impossibile leggere la cronologia delle segnalazioni di bug dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="180"/>
+      <location filename="../configmigrationwizard.cpp" line="182"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
       <translation>Impossibile inserire una voce di cronologia delle segnalazioni di bug nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="201"/>
+      <location filename="../configmigrationwizard.cpp" line="203"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
       <translation>Impossibile leggere l'elenco dei database dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="215"/>
+      <location filename="../configmigrationwizard.cpp" line="217"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
       <translation>Impossibile interrogare per l'ordine disponibile contenente il gruppo in un nuovo file di configurazione per migrare l'elenco del database: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="226"/>
+      <location filename="../configmigrationwizard.cpp" line="228"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
       <translation>Impossibile creare il gruppo contenente nel nuovo file di configurazione per migrare l'elenco del database: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="247"/>
+      <location filename="../configmigrationwizard.cpp" line="249"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
       <translation>Impossibile inserire una voce di database nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="259"/>
+      <location filename="../configmigrationwizard.cpp" line="261"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
       <translation>Impossibile interrogare l'ordinamento disponibile per il prossimo database in un nuovo file di configurazione per migrare l'elenco del database: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="270"/>
+      <location filename="../configmigrationwizard.cpp" line="272"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
       <translation>Impossibile creare il gruppo di riferimento del database nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="288"/>
+      <location filename="../configmigrationwizard.cpp" line="290"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
       <translation>Impossibile leggere l'elenco delle funzioni dal vecchio file di configurazione per migrarlo: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="323"/>
+      <location filename="../configmigrationwizard.cpp" line="325"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
       <translation>Impossibile leggere la cronologia delle interrogazioni SQL dal vecchio file di configurazione per migrarla: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="330"/>
+      <location filename="../configmigrationwizard.cpp" line="332"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
       <translation>Impossibile leggere il prossimo ID per la cronologia delle query SQL nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
-      <location filename="../configmigrationwizard.cpp" line="346"/>
+      <location filename="../configmigrationwizard.cpp" line="348"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
       <translation>Impossibile inserire la cronologia SQL nel nuovo file di configurazione: %1</translation>
     </message>
