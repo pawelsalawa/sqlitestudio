@@ -1,6 +1,7 @@
 #ifndef COMPATIBILITY_H
 #define COMPATIBILITY_H
 
+#include "coreSQLiteStudio_global.h"
 #include <QList>
 #include <QSet>
 #include <QHash>
@@ -36,5 +37,7 @@ void sSort(T& collection, C cmp)
 {
     std::sort(collection.begin(), collection.end(), cmp);
 }
+
+API_EXPORT void strSort(QStringList& collection, Qt::CaseSensitivity cs);
 
 #endif // COMPATIBILITY_H

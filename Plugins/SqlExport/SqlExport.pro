@@ -29,17 +29,7 @@ RESOURCES += \
     sqlexport.qrc
 
 
-TRANSLATIONS += translations/SqlExport.ts \
-		translations/SqlExport_ro_RO.ts \
-		translations/SqlExport_de_DE.ts \
-		translations/SqlExport_it_IT.ts \
-		translations/SqlExport_zh_CN.ts \
-		translations/SqlExport_sk_SK.ts \
-		translations/SqlExport_ru_RU.ts \
-		translations/SqlExport_pt_BR.ts \
-		translations/SqlExport_fr_FR.ts \
-		translations/SqlExport_es_ES.ts \
-		translations/SqlExport_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

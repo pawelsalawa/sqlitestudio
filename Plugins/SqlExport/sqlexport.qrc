@@ -3,29 +3,4 @@
         <file>SqlExportQuery.ui</file>
         <file>SqlExportCommon.ui</file>
     </qresource>
-    <qresource prefix="/msg">
-        <file>translations/SqlExport_ro_RO.qm</file>
-        <file>translations/SqlExport_de_DE.qm</file>
-
-
-        <file>translations/SqlExport_pl_PL.qm</file>
-        <file>translations/SqlExport_ru_RU.qm</file>
-        <file>translations/SqlExport_fr_FR.qm</file>
-        <file>translations/SqlExport_sk_SK.qm</file>
-        <file>translations/SqlExport_zh_CN.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

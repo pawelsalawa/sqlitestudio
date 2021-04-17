@@ -28,17 +28,7 @@ RESOURCES += \
     csvimport.qrc
 
 
-TRANSLATIONS += translations/CsvImport.ts \
-		translations/CsvImport_ro_RO.ts \
-		translations/CsvImport_de_DE.ts \
-		translations/CsvImport_it_IT.ts \
-		translations/CsvImport_zh_CN.ts \
-		translations/CsvImport_sk_SK.ts \
-		translations/CsvImport_ru_RU.ts \
-		translations/CsvImport_pt_BR.ts \
-		translations/CsvImport_fr_FR.ts \
-		translations/CsvImport_es_ES.ts \
-		translations/CsvImport_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

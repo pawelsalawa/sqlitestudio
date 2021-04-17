@@ -1,6 +1,8 @@
 include($$PWD/dirs.pri)
 
-CONFIG += c++17 plugin
+CONFIG += c++17 plugin lrelease embed_translations
+
+QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build

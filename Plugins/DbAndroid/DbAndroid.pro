@@ -52,17 +52,7 @@ FORMS += \
 RESOURCES += \
     dbandroid.qrc
 
-TRANSLATIONS += DbAndroid_ro_RO.ts \
-		DbAndroid_de.ts \
-		\
-		DbAndroid_it.ts\
-		DbAndroid_zh_CN.ts\
-		DbAndroid_sk.ts\
-		DbAndroid_ru.ts\
-		DbAndroid_pt_BR.ts\
-		DbAndroid_fr.ts\
-		DbAndroid_es.ts\
-		DbAndroid_pl.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

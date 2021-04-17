@@ -1545,7 +1545,9 @@ void ConfigDialog::initLangs()
     QMap<QString, QString> langs = getAvailableLanguages();
     int idx = 0;
     int selected = -1;
-    for (const QString& lang : langs.keys())
+    QStringList langList = langs.keys();
+    strSort(langList, Qt::CaseInsensitive);
+    for (QString& lang : langList)
     {
         ui->langCombo->addItem(lang, langs[lang]);
         if (langs[lang] == SQLITESTUDIO->getCurrentLang())

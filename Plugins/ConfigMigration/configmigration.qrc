@@ -2,29 +2,4 @@
     <qresource prefix="/icons">
         <file>config_migration.png</file>
     </qresource>
-    <qresource prefix="/msg">
-        <file>translations/ConfigMigration_ro_RO.qm</file>
-        <file>translations/ConfigMigration_de_DE.qm</file>
-
-
-        <file>translations/ConfigMigration_pl_PL.qm</file>
-        <file>translations/ConfigMigration_ru_RU.qm</file>
-        <file>translations/ConfigMigration_fr_FR.qm</file>
-        <file>translations/ConfigMigration_sk_SK.qm</file>
-        <file>translations/ConfigMigration_zh_CN.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

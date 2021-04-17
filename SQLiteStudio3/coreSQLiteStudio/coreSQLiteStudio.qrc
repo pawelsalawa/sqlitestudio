@@ -19,23 +19,4 @@
         <file>licenses/gpl.txt</file>
         <file>licenses/mit.txt</file>
     </qresource>
-    <qresource prefix="/msg">
-        <file>translations/coreSQLiteStudio_ro_RO.qm</file>
-        <file>translations/coreSQLiteStudio_pl_PL.qm</file>
-        <file>translations/coreSQLiteStudio_ru_RU.qm</file>
-        <file>translations/coreSQLiteStudio_fr_FR.qm</file>
-        <file>translations/coreSQLiteStudio_sk_SK.qm</file>
-        <file>translations/coreSQLiteStudio_zh_CN.qm</file>
-        <file>translations/coreSQLiteStudio_de_DE.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-

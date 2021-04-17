@@ -1,25 +1,3 @@
 <RCC>
     <qresource prefix="/forms"/>
-    <qresource prefix="/msg">
-        <file>translations/MultiEditorImage_de_DE.qm</file>
-        <file>translations/MultiEditorImage_es_ES.qm</file>
-        <file>translations/MultiEditorImage_fr_FR.qm</file>
-        <file>translations/MultiEditorImage_it_IT.qm</file>
-        <file>translations/MultiEditorImage_pl_PL.qm</file>
-        <file>translations/MultiEditorImage_pt_BR.qm</file>
-        <file>translations/MultiEditorImage_ro_RO.qm</file>
-        <file>translations/MultiEditorImage_ru_RU.qm</file>
-        <file>translations/MultiEditorImage_sk_SK.qm</file>
-        <file>translations/MultiEditorImage_zh_CN.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-

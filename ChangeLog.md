@@ -2,6 +2,7 @@
 
 ### 3.4.0
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon. The debug() function will now print to SQLiteStudio's status panel.
+- CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.

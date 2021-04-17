@@ -28,18 +28,7 @@ RESOURCES += \
     sqlformattersimple.qrc
 
 
-TRANSLATIONS += translations/SqlFormatterSimple.ts \
-		translations/SqlFormatterSimple_ro_RO.ts \
-		translations/SqlFormatterSimple_de_DE.ts \
-		translations/SqlFormatterSimple_it_IT.ts \
-		translations/SqlFormatterSimple_zh_CN.ts \
-		translations/SqlFormatterSimple_sk_SK.ts \
-		translations/SqlFormatterSimple_ru_RU.ts \
-		translations/SqlFormatterSimple_pt_BR.ts \
-		translations/SqlFormatterSimple_fr_FR.ts \
-		translations/SqlFormatterSimple_es_ES.ts \
-		translations/SqlFormatterSimple_pl_PL.ts
-
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

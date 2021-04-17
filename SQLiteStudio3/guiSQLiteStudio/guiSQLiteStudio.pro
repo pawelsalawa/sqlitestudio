@@ -26,22 +26,13 @@ portable: {
 TARGET = guiSQLiteStudio
 TEMPLATE = lib
 
-CONFIG += c++17
+CONFIG += c++17 lrelease embed_translations
 QMAKE_CXXFLAGS += -pedantic
+QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
-TRANSLATIONS += translations/guiSQLiteStudio.ts \
-		translations/guiSQLiteStudio_ro_RO.ts \
-		translations/guiSQLiteStudio_de_DE.ts \
-		translations/guiSQLiteStudio_it_IT.ts \
-		translations/guiSQLiteStudio_zh_CN.ts \
-		translations/guiSQLiteStudio_sk_SK.ts \
-		translations/guiSQLiteStudio_ru_RU.ts \
-		translations/guiSQLiteStudio_pt_BR.ts \
-		translations/guiSQLiteStudio_fr_FR.ts \
-		translations/guiSQLiteStudio_es_ES.ts \
-		translations/guiSQLiteStudio_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES +=\
     common/dbcombobox.cpp \

@@ -54,20 +54,11 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG  += c++17
+CONFIG  += c++17 lrelease embed_translations
 QMAKE_CXXFLAGS += -pedantic
+QM_FILES_RESOURCE_PREFIX = /msg/translations
 
-TRANSLATIONS += translations/coreSQLiteStudio.ts \
-		translations/coreSQLiteStudio_ro_RO.ts \
-		translations/coreSQLiteStudio_de_DE.ts \
-		translations/coreSQLiteStudio_it_IT.ts \
-		translations/coreSQLiteStudio_zh_CN.ts \
-		translations/coreSQLiteStudio_sk_SK.ts \
-		translations/coreSQLiteStudio_ru_RU.ts \
-		translations/coreSQLiteStudio_pt_BR.ts \
-		translations/coreSQLiteStudio_fr_FR.ts \
-		translations/coreSQLiteStudio_es_ES.ts \
-		translations/coreSQLiteStudio_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += sqlitestudio.cpp \
     common/compatibility.cpp \

@@ -35,17 +35,7 @@ RESOURCES += \
     printing.qrc
 
 
-TRANSLATIONS += translations/Printing.ts \
-		translations/Printing_ro_RO.ts \
-		translations/Printing_de_DE.ts \
-		translations/Printing_it_IT.ts \
-		translations/Printing_zh_CN.ts \
-		translations/Printing_sk_SK.ts \
-		translations/Printing_ru_RU.ts \
-		translations/Printing_pt_BR.ts \
-		translations/Printing_fr_FR.ts \
-		translations/Printing_es_ES.ts \
-		translations/Printing_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

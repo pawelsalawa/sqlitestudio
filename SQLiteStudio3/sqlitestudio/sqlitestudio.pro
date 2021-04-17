@@ -20,8 +20,9 @@ linux {
 }
 TEMPLATE = app
 
-CONFIG   += c++17
+CONFIG   += c++17 lrelease embed_translations
 QMAKE_CXXFLAGS += -pedantic
+QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 DEFINES += QAPPLICATION_CLASS=QApplication
 
@@ -42,17 +43,7 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 SOURCES += main.cpp \
     singleapplication/singleapplication.cpp
 
-TRANSLATIONS += translations/sqlitestudio.ts \
-		translations/sqlitestudio_ro_RO.ts \
-		translations/sqlitestudio_de_DE.ts \
-		translations/sqlitestudio_it_IT.ts \
-		translations/sqlitestudio_zh_CN.ts \
-		translations/sqlitestudio_sk_SK.ts \
-		translations/sqlitestudio_ru_RU.ts \
-		translations/sqlitestudio_pt_BR.ts \
-		translations/sqlitestudio_fr_FR.ts \
-		translations/sqlitestudio_es_ES.ts \
-		translations/sqlitestudio_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 win32 {
     RC_FILE = windows.rc

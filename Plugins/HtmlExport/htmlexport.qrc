@@ -5,29 +5,4 @@
     <qresource prefix="/forms">
         <file>htmlexport.ui</file>
     </qresource>
-    <qresource prefix="/msg">
-        <file>translations/HtmlExport_ro_RO.qm</file>
-        <file>translations/HtmlExport_de_DE.qm</file>
-
-
-        <file>translations/HtmlExport_pl_PL.qm</file>
-        <file>translations/HtmlExport_ru_RU.qm</file>
-        <file>translations/HtmlExport_fr_FR.qm</file>
-        <file>translations/HtmlExport_sk_SK.qm</file>
-        <file>translations/HtmlExport_zh_CN.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

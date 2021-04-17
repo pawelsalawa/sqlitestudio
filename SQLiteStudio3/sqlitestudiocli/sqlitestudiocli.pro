@@ -19,29 +19,20 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-CONFIG   += c++17
+CONFIG   += c++17 lrelease embed_translations
 QMAKE_CXXFLAGS += -pedantic
 linux {
     portable {
         QMAKE_LFLAGS += -Wl,-rpath,./lib
     }
 }
+QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-TRANSLATIONS += translations/sqlitestudiocli.ts \
-		translations/sqlitestudiocli_ro_RO.ts \
-		translations/sqlitestudiocli_de_DE.ts \
-		translations/sqlitestudiocli_it_IT.ts \
-		translations/sqlitestudiocli_zh_CN.ts \
-		translations/sqlitestudiocli_sk_SK.ts \
-		translations/sqlitestudiocli_ru_RU.ts \
-		translations/sqlitestudiocli_pt_BR.ts \
-		translations/sqlitestudiocli_fr_FR.ts \
-		translations/sqlitestudiocli_es_ES.ts \
-		translations/sqlitestudiocli_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += main.cpp \
     cli.cpp \

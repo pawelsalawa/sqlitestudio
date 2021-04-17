@@ -106,17 +106,7 @@ RESOURCES += \
     sqlenterpriseformatter.qrc
 
 
-TRANSLATIONS += translations/SqlEnterpriseFormatter.ts \
-		translations/SqlEnterpriseFormatter_ro_RO.ts \
-		translations/SqlEnterpriseFormatter_de_DE.ts \
-		translations/SqlEnterpriseFormatter_it_IT.ts \
-		translations/SqlEnterpriseFormatter_zh_CN.ts \
-		translations/SqlEnterpriseFormatter_sk_SK.ts \
-		translations/SqlEnterpriseFormatter_ru_RU.ts \
-		translations/SqlEnterpriseFormatter_pt_BR.ts \
-		translations/SqlEnterpriseFormatter_fr_FR.ts \
-		translations/SqlEnterpriseFormatter_es_ES.ts \
-		translations/SqlEnterpriseFormatter_pl_PL.ts
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 

@@ -2,27 +2,4 @@
     <qresource prefix="/forms">
         <file>CsvImportOptions.ui</file>
     </qresource>
-    <qresource prefix="/msg">
-        <file>translations/CsvImport_ro_RO.qm</file>
-
-        <file>translations/CsvImport_de_DE.qm</file>
-        <file>translations/CsvImport_pl_PL.qm</file>
-        <file>translations/CsvImport_ru_RU.qm</file>
-        <file>translations/CsvImport_fr_FR.qm</file>
-        <file>translations/CsvImport_sk_SK.qm</file>
-        <file>translations/CsvImport_zh_CN.qm</file>
-    </qresource>
 </RCC>
-
-
-
-
-
-
-
-
-
-
-
-
-
