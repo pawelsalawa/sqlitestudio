@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru" sourcelanguage="en">
+<TS version="2.1" language="ru" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -140,52 +140,52 @@
         <translation>Язык реализации:</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="52"/>
+        <location filename="../windows/collationseditor.cpp" line="53"/>
         <source>Collations editor</source>
         <translation>Редактор сравнений</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="57"/>
+        <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Commit all collation changes</source>
         <translation>Подтвердить все изменения сравнений</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="58"/>
+        <location filename="../windows/collationseditor.cpp" line="59"/>
         <source>Rollback all collation changes</source>
         <translation>Откатить все изменения сравнений</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="60"/>
+        <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Create new collation</source>
         <translation>Создать новое сравнение</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="61"/>
+        <location filename="../windows/collationseditor.cpp" line="62"/>
         <source>Delete selected collation</source>
         <translation>Удалить выбранное сравнение</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="63"/>
+        <location filename="../windows/collationseditor.cpp" line="64"/>
         <source>Editing collations manual</source>
         <translation>Руководство по редактированию сравнений</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="283"/>
+        <location filename="../windows/collationseditor.cpp" line="284"/>
         <source>Enter a non-empty, unique name of the collation.</source>
         <translation>Введите непустое уникальное имя сравнения.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="291"/>
+        <location filename="../windows/collationseditor.cpp" line="292"/>
         <source>Pick the implementation language.</source>
         <translation>Выберите язык реализации.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="294"/>
+        <location filename="../windows/collationseditor.cpp" line="295"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Введите непустой код реализации.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="388"/>
+        <location filename="../windows/collationseditor.cpp" line="389"/>
         <source>Collations editor window has uncommitted modifications.</source>
         <translation>В редакторе сравнений имеются неподтверждённые изменения.</translation>
     </message>
@@ -297,23 +297,29 @@
         <translation>Ограничения</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="115"/>
+        <location filename="../dialogs/columndialog.ui" line="122"/>
+        <source>Generated value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="157"/>
         <source>Unique</source>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="122"/>
-        <location filename="../dialogs/columndialog.ui" line="136"/>
+        <location filename="../dialogs/columndialog.ui" line="115"/>
+        <location filename="../dialogs/columndialog.ui" line="164"/>
         <location filename="../dialogs/columndialog.ui" line="178"/>
         <location filename="../dialogs/columndialog.ui" line="185"/>
         <location filename="../dialogs/columndialog.ui" line="192"/>
         <location filename="../dialogs/columndialog.ui" line="199"/>
-        <location filename="../dialogs/columndialog.ui" line="206"/>
+        <location filename="../dialogs/columndialog.ui" line="213"/>
+        <location filename="../dialogs/columndialog.ui" line="220"/>
         <source>Configure</source>
         <translation>Настроить</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="129"/>
+        <location filename="../dialogs/columndialog.ui" line="136"/>
         <source>Foreign Key</source>
         <translation>Внешний ключ</translation>
     </message>
@@ -323,142 +329,147 @@
         <translation>Сравнение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="150"/>
+        <location filename="../dialogs/columndialog.ui" line="129"/>
         <source>Not NULL</source>
         <translation>Не NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="157"/>
+        <location filename="../dialogs/columndialog.ui" line="150"/>
         <source>Check condition</source>
         <translation>Проверка условия</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <location filename="../dialogs/columndialog.ui" line="171"/>
         <source>Primary Key</source>
         <translation>Первичный ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="171"/>
+        <location filename="../dialogs/columndialog.ui" line="206"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="270"/>
+        <location filename="../dialogs/columndialog.ui" line="284"/>
         <source>Advanced mode</source>
         <translation>Расширенный режим</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="86"/>
+        <location filename="../dialogs/columndialog.cpp" line="87"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить ограничение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="88"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
         <translation>Редактировать ограничение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="88"/>
-        <location filename="../dialogs/columndialog.cpp" line="237"/>
+        <location filename="../dialogs/columndialog.cpp" line="89"/>
+        <location filename="../dialogs/columndialog.cpp" line="243"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
         <translation>Удалить ограничение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="89"/>
+        <location filename="../dialogs/columndialog.cpp" line="90"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
         <translation>Переместить ограничение вверх</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="90"/>
+        <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
         <translation>Переместить ограничение вниз</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="92"/>
+        <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
         <translation>Добавить первичный ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="93"/>
+        <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
         <translation>Добавить внешний ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="94"/>
+        <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить ограничение на уникальность</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="95"/>
+        <location filename="../dialogs/columndialog.cpp" line="96"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить проверочное ограничение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="96"/>
+        <location filename="../dialogs/columndialog.cpp" line="97"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить ограничение на не null</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="97"/>
+        <location filename="../dialogs/columndialog.cpp" line="98"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить ограничение на сравнение</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="98"/>
+        <location filename="../dialogs/columndialog.cpp" line="99"/>
+        <source>Add a generated value constraint</source>
+        <comment>column dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.cpp" line="100"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
         <translation>Добавить ограничение на значение по умочанию</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="236"/>
+        <location filename="../dialogs/columndialog.cpp" line="242"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
         <translation>Вы действительно хотите удалить ограничение &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="298"/>
+        <location filename="../dialogs/columndialog.cpp" line="304"/>
         <source>Correct the constraint&apos;s configuration.</source>
         <translation>Исправьте конфигурацию ограничения.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="301"/>
         <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-        <translation>Это ограничение официально не поддерживается  SQLite 2, но его использование допустимо.</translation>
+        <translation type="vanished">Это ограничение официально не поддерживается  SQLite 2, но его использование допустимо.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="390"/>
+        <location filename="../dialogs/columndialog.cpp" line="372"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>Указание размера данных недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="391"/>
+        <location filename="../dialogs/columndialog.cpp" line="373"/>
         <source>Precision cannot be defined without the scale.</source>
         <translation>Точность не может быть задана без указания размера данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="392"/>
+        <location filename="../dialogs/columndialog.cpp" line="374"/>
         <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
         <translation>Невозможно использовать тип данных, отличный от INTEGER, если в первичном ключе установлен автоинкремент.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="393"/>
+        <location filename="../dialogs/columndialog.cpp" line="375"/>
         <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
         <translation>В качестве типа данных был принудительно выбран INTEGER, так как в первичном ключе установлен автоинкремент.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="415"/>
+        <location filename="../dialogs/columndialog.cpp" line="397"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>Указание точности недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
@@ -466,19 +477,19 @@ but it&apos;s okay to use it.</source>
 <context>
     <name>ColumnDialogConstraintsModel</name>
     <message>
-        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
+        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="341"/>
         <source>Type</source>
         <comment>column dialog constraints</comment>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
+        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="343"/>
         <source>Name</source>
         <comment>column dialog constraints</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
+        <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="345"/>
         <source>Details</source>
         <comment>column dialog constraints</comment>
         <translation>Подробности</translation>
@@ -533,6 +544,49 @@ but it&apos;s okay to use it.</source>
     </message>
 </context>
 <context>
+    <name>ColumnGeneratedPanel</name>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
+        <source>Generating code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
+        <source>Explicit type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
+        <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
+        <source>Named constraint:</source>
+        <translation type="unfinished">Именованное ограничение:</translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
+        <source>Enter the column value generating expression.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
+        <source>Invalid value generating expression: %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
+        <source>Invalid value generating expression.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
+        <source>Enter a name of the constraint.</source>
+        <translation type="unfinished">Введите имя ограничения.</translation>
+    </message>
+</context>
+<context>
     <name>ColumnPrimaryKeyPanel</name>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
@@ -558,6 +612,11 @@ but it&apos;s okay to use it.</source>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
         <source>Enter a name of the constraint.</source>
         <translation>Введите имя ограничения.</translation>
+    </message>
+    <message>
+        <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
+        <source>Descending order is not allowed with AUTOINCREMENT.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -669,7 +728,7 @@ but it&apos;s okay to use it.</source>
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="1563"/>
+        <location filename="../dialogs/configdialog.ui" line="1574"/>
         <source>Configuration</source>
         <translation>Конфигурация</translation>
     </message>
@@ -704,711 +763,705 @@ but it&apos;s okay to use it.</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="153"/>
         <source>Colors</source>
-        <translation>Цвета</translation>
+        <translation type="vanished">Цвета</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="166"/>
-        <location filename="../dialogs/configdialog.ui" line="239"/>
+        <location filename="../dialogs/configdialog.ui" line="154"/>
+        <location filename="../dialogs/configdialog.ui" line="227"/>
         <source>Database list</source>
         <translation>Список баз данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="178"/>
+        <location filename="../dialogs/configdialog.ui" line="166"/>
         <source>Data browsing</source>
         <translation>Просмотр данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="189"/>
+        <location filename="../dialogs/configdialog.ui" line="177"/>
         <source>Data editors</source>
         <translation>Редакторы данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="202"/>
+        <location filename="../dialogs/configdialog.ui" line="190"/>
         <source>Plugins</source>
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="213"/>
+        <location filename="../dialogs/configdialog.ui" line="201"/>
         <source>Code formatters</source>
         <translation>Средства форматирования кода</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="245"/>
+        <location filename="../dialogs/configdialog.ui" line="233"/>
         <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
         <translation>Если опция деактивирована, столбцы будут отсортированы в том порядке, в котором они были указаны в конструкции CREATE TABLE.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="248"/>
+        <location filename="../dialogs/configdialog.ui" line="236"/>
         <source>Sort table columns alphabetically</source>
         <translation>Сортировать столбцы таблицы в алфавитном порядке</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="258"/>
+        <location filename="../dialogs/configdialog.ui" line="246"/>
         <source>Expand tables node when connected to a database</source>
         <translation>Развернуть список таблиц после подключения к базе данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="268"/>
+        <location filename="../dialogs/configdialog.ui" line="256"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
         <translation>&lt;p&gt;Дополнительные метки находятся справа от имён в списке баз данных (они отображаются синим цветом, если не выбран иной). При активации этой опции будут отображены метки у баз данных, некорректных баз данных и у групповых узлов (группа столбцов, группа индексов, группа триггеров). Для отображения дополнительных меток воспользуйтесь опциями ниже.&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="271"/>
+        <location filename="../dialogs/configdialog.ui" line="259"/>
         <source>Display additional labels on the list</source>
         <translation>Отображать дополнительные метки в списке</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="286"/>
+        <location filename="../dialogs/configdialog.ui" line="274"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
         <translation>Для обычных таблиц метки будут показывать количество столбцов, индексов и триггеров у каждой таблицы.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="289"/>
+        <location filename="../dialogs/configdialog.ui" line="277"/>
         <source>Display labels for regular tables</source>
         <translation>Отображать метки у обычных таблиц</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="299"/>
+        <location filename="../dialogs/configdialog.ui" line="287"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
         <translation>Виртуальные таблицы будут помечены как &apos;вирутальные&apos;.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="302"/>
+        <location filename="../dialogs/configdialog.ui" line="290"/>
         <source>Display labels for virtual tables</source>
         <translation>Отображать метки у виртуальных таблиц</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="315"/>
+        <location filename="../dialogs/configdialog.ui" line="303"/>
         <source>Expand views node when connected to a database</source>
         <translation>Развернуть список представлений после подключения к базе данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="325"/>
+        <location filename="../dialogs/configdialog.ui" line="313"/>
         <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
         <translation>Если опция деактивирована, объекты будут отсортированы в том порядке, в котором они указаны в таблице sqlite_master (т.е. в порядке создания)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="328"/>
+        <location filename="../dialogs/configdialog.ui" line="316"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
         <translation>Сортировать объекты (таблицы, индексы, триггеры и представления) в алфавитном порядке</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="338"/>
+        <location filename="../dialogs/configdialog.ui" line="326"/>
         <source>Display system tables and indexes on the list</source>
         <translation>Отображать в списке системные таблицы и индексы</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="351"/>
+        <location filename="../dialogs/configdialog.ui" line="339"/>
         <source>Database dialog window</source>
         <translation>Диалоговое окно добавления базы данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="357"/>
+        <location filename="../dialogs/configdialog.ui" line="345"/>
         <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
         <translation>&lt;p&gt;По умолчанию при добавлении базы данных она отмечается как &quot;постоянная&quot; (т.е. сохраняется в конфигурацию). При установке данной опции все добавляемые базы данных по умолчанию НЕ будут отмечены как &quot;постоянные&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="360"/>
+        <location filename="../dialogs/configdialog.ui" line="348"/>
         <source>Do not mark database to be &quot;permanent&quot; by default</source>
         <translation>Не отмечать базу данных как &quot;постоянную&quot; по умолчанию</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="370"/>
+        <location filename="../dialogs/configdialog.ui" line="358"/>
         <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
         <translation>&lt;p&gt;При выборе данной опции все файлы, перетянутые в список баз данных из файлового менеджера, будут автоматически добавлены в список без отображения диалога добавления базы данных. Если по каким-либо причинам автоматическое добавление не получится, пользователю будет показан стандартный диалог добавления базы данных.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="373"/>
+        <location filename="../dialogs/configdialog.ui" line="361"/>
         <source>Try to bypass dialog completly when dropping database file onto the list</source>
         <translation>Не показывать диалог при перетягивании файла базы данных в список</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="418"/>
+        <location filename="../dialogs/configdialog.ui" line="406"/>
         <source>Data browsing and editing</source>
         <translation>Просмотр и редактирование данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="424"/>
-        <location filename="../dialogs/configdialog.ui" line="434"/>
+        <location filename="../dialogs/configdialog.ui" line="480"/>
+        <location filename="../dialogs/configdialog.ui" line="493"/>
         <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Макисмальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="427"/>
+        <location filename="../dialogs/configdialog.ui" line="496"/>
         <source>Number of memorized table populating configurations</source>
         <translation>Количество запоминаемых конфигураций заполнения таблицы</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="466"/>
-        <location filename="../dialogs/configdialog.ui" line="485"/>
+        <location filename="../dialogs/configdialog.ui" line="431"/>
+        <location filename="../dialogs/configdialog.ui" line="457"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
         <translation>&lt;p&gt;При загрузке даных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="488"/>
+        <location filename="../dialogs/configdialog.ui" line="460"/>
         <source>Limit initial data column width to (in pixels):</source>
         <translation>Ограничить начальную ширину столбца данных (в пикселях):</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="495"/>
+        <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Number of data rows per page:</source>
         <translation>Количество строк данных на странице:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="502"/>
+        <location filename="../dialogs/configdialog.ui" line="503"/>
         <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если данная опция активирована и пользователь наводит указатель мыши на ячейку в любом режиме просмотра данных (результаты запроса, данные таблицы, данные представления), то будет отображена всплывающая подсказка с информацией о ячейке, в том числе информация о типе данных столбца, ограничениях, значение ROWID и прочее.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="505"/>
+        <location filename="../dialogs/configdialog.ui" line="506"/>
         <source>Show column and row details tooltip in data view</source>
         <translation>Показывать всплывающую подсказку с информацией о столбце и строке при просмотре данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="515"/>
+        <location filename="../dialogs/configdialog.ui" line="516"/>
         <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="518"/>
+        <location filename="../dialogs/configdialog.ui" line="519"/>
         <source>Keep NULL value when entering empty value</source>
         <translation>Сохранять значение NULL при вводе пустой тсроки</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="528"/>
+        <location filename="../dialogs/configdialog.ui" line="467"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Активируйте эту опцию, чтобы всегда подставлять значение DEFAULT (значение по умолчанию) при записи NULL в столбец, у которого определено значение DEFAULT, даже если столбец может содержать NULL.&lt;/p&gt;&lt;p&gt;Отключите эту опцию для подстановки значения DEFAULT только в случае записи NULL в столбец с ограничением NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="531"/>
+        <location filename="../dialogs/configdialog.ui" line="470"/>
         <source>Use DEFAULT value (if defined), when committing NULL value</source>
         <translation>Использовать значение DEFAULT (если оно определено) при записи NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="544"/>
+        <location filename="../dialogs/configdialog.ui" line="529"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="532"/>
+        <source>Limit number of rows for in case of dozens of columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="535"/>
+        <source>General.LimitRowsForManyColumns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="545"/>
         <source>Inserting new row in data grid</source>
         <translation>Вставка новой строки в таблице данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="550"/>
+        <location filename="../dialogs/configdialog.ui" line="551"/>
         <source>Before currently selected row</source>
         <translation>Перед текущей выделенной строкой</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="566"/>
+        <location filename="../dialogs/configdialog.ui" line="567"/>
         <source>After currently selected row</source>
         <translation>После текущей выделенной строки</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="579"/>
+        <location filename="../dialogs/configdialog.ui" line="580"/>
         <source>At the end of data view</source>
         <translation>В конец области просмотра данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="595"/>
+        <location filename="../dialogs/configdialog.ui" line="596"/>
         <source>Table windows</source>
         <translation>Окна таблиц</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="601"/>
+        <location filename="../dialogs/configdialog.ui" line="602"/>
         <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если опция активирована, окна таблиц будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="604"/>
+        <location filename="../dialogs/configdialog.ui" line="605"/>
         <source>Open Table Windows with the data tab for start</source>
         <translation>Открывать окна таблиц на вкладке данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="614"/>
+        <location filename="../dialogs/configdialog.ui" line="615"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах таблиц будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="617"/>
+        <location filename="../dialogs/configdialog.ui" line="618"/>
         <source>Place data tab as first tab in a Table Window</source>
         <translation>Помещать вкладку данных в окнах таблиц первой</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="630"/>
+        <location filename="../dialogs/configdialog.ui" line="631"/>
         <source>View windows</source>
         <translation>Окна представлений</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="636"/>
+        <location filename="../dialogs/configdialog.ui" line="637"/>
         <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если опция активирована, окна представлений будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="639"/>
+        <location filename="../dialogs/configdialog.ui" line="640"/>
         <source>Open View Windows with the data tab for start</source>
         <translation>Открывать окна представлений на вкладке данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="649"/>
+        <location filename="../dialogs/configdialog.ui" line="650"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах представлений будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="652"/>
+        <location filename="../dialogs/configdialog.ui" line="653"/>
         <source>Place data tab as first tab in a View Window</source>
         <translation>Помещать вкладку данных в окнах представлений первой</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="696"/>
+        <location filename="../dialogs/configdialog.ui" line="697"/>
         <source>Data types</source>
         <translation>Типы данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="734"/>
+        <location filename="../dialogs/configdialog.ui" line="735"/>
         <source>Available editors:</source>
         <translation>Доступные редакторы:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="750"/>
+        <location filename="../dialogs/configdialog.ui" line="751"/>
         <source>Editors selected for this data type:</source>
         <translation>Выбранные редакторы для этого типа данных:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="786"/>
+        <location filename="../dialogs/configdialog.ui" line="787"/>
         <source>Schema editing</source>
         <translation>Редактирование схемы</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="798"/>
+        <location filename="../dialogs/configdialog.ui" line="799"/>
         <source>Number of DDL changes kept in history.</source>
         <translation>Количество сохраняемых в истории изменений DDL.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="811"/>
+        <location filename="../dialogs/configdialog.ui" line="812"/>
         <source>DDL history size:</source>
         <translation>Размер истории DDL:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="818"/>
+        <location filename="../dialogs/configdialog.ui" line="819"/>
         <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
         <translation>Не показывать диалог предпросмотра DDL при подтверждении изменений схемы</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="831"/>
+        <location filename="../dialogs/configdialog.ui" line="832"/>
         <source>SQL queries</source>
         <translation>SQL запросы</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="843"/>
-        <location filename="../dialogs/configdialog.ui" line="856"/>
+        <location filename="../dialogs/configdialog.ui" line="844"/>
+        <location filename="../dialogs/configdialog.ui" line="857"/>
         <source>Number of queries kept in the history.</source>
         <translation>Количество сохраняемых в истории запросов.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="859"/>
+        <location filename="../dialogs/configdialog.ui" line="860"/>
         <source>History size:</source>
         <translation>Размер истории:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="866"/>
-        <location filename="../dialogs/configdialog.ui" line="892"/>
+        <location filename="../dialogs/configdialog.ui" line="867"/>
+        <location filename="../dialogs/configdialog.ui" line="893"/>
         <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio преварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="879"/>
+        <location filename="../dialogs/configdialog.ui" line="880"/>
         <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если в окне редактора SQL введено более одного запроса, то (если данная опция активирована) будет выполнен лишь один запрос - тот, который находится под текстовым курсором. В противном случае будут исполнены все запросы. Вы можете ограничить выполняемые запросы, выделив их перед вызовом выполнения.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="882"/>
+        <location filename="../dialogs/configdialog.ui" line="883"/>
         <source>Execute only the query under the cursor</source>
         <translation>Выполнять только запрос под курсором</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="895"/>
+        <location filename="../dialogs/configdialog.ui" line="896"/>
         <source>Number of memorized query parameters</source>
         <translation>Количество запоминаемых параметров запроса</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="905"/>
+        <location filename="../dialogs/configdialog.ui" line="906"/>
         <source>Updates</source>
         <translation>Обновления</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="911"/>
+        <location filename="../dialogs/configdialog.ui" line="912"/>
         <source>Automatically check for updates at startup</source>
         <translation>Автоматически проверять обновления при запуске</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="924"/>
+        <location filename="../dialogs/configdialog.ui" line="925"/>
         <source>Session</source>
         <translation>Сессия</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="930"/>
+        <location filename="../dialogs/configdialog.ui" line="931"/>
         <source>Restore last session (active MDI windows) after startup</source>
         <translation>Восстановить предыдущую сессию (активные MDI окна) после запуска</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="943"/>
+        <location filename="../dialogs/configdialog.ui" line="941"/>
+        <source>Allow multiple instances of the application at the same time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="944"/>
+        <source>General.AllowMultipleSessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="954"/>
         <source>Status Field</source>
         <translation>Окно статуса</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="949"/>
+        <location filename="../dialogs/configdialog.ui" line="960"/>
         <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Если пользователь вручную закрыл окно статуса, включение данной опции гарантирует, что при появлении новых сообщений окно статуса будет автоматически открыто. Если опция отключена, окно статуса может быть заново открыто только пользователем вручную через меню &quot;Вид&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="952"/>
+        <location filename="../dialogs/configdialog.ui" line="963"/>
         <source>Always open Status panel when new message is printed</source>
         <translation>Всегда открывать окно статуса при появлении нового сообщения</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="994"/>
+        <location filename="../dialogs/configdialog.ui" line="1005"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>Фильтруйте горячие клавиши по имени или комбинации клавиш</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1035"/>
+        <location filename="../dialogs/configdialog.ui" line="1046"/>
         <source>Action</source>
         <translation>Действие</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1040"/>
+        <location filename="../dialogs/configdialog.ui" line="1051"/>
         <source>Key combination</source>
         <translation>Комбинация клавиш</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1084"/>
-        <location filename="../dialogs/configdialog.ui" line="1553"/>
+        <location filename="../dialogs/configdialog.ui" line="1095"/>
+        <location filename="../dialogs/configdialog.ui" line="1564"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1090"/>
+        <location filename="../dialogs/configdialog.ui" line="1101"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>Для смены языка потребуется перезапустить приложение.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1107"/>
+        <location filename="../dialogs/configdialog.ui" line="1118"/>
         <source>Compact layout</source>
         <translation>Компактный режим</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1113"/>
+        <location filename="../dialogs/configdialog.ui" line="1124"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation>&lt;p&gt;В компактном режиме все поля и отступы в интерфейсе минимизированы для отображения большего количества данных. Интерфейс станет чуть менее эстетичным, однако это позволит уместить больше данных на экране.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1116"/>
+        <location filename="../dialogs/configdialog.ui" line="1127"/>
         <source>Use compact layout</source>
         <translation>Включить компактный режим</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1132"/>
+        <location filename="../dialogs/configdialog.ui" line="1143"/>
         <source>Main window dock areas</source>
         <translation>Области прикрепления вокруг главного окна</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1138"/>
+        <location filename="../dialogs/configdialog.ui" line="1149"/>
         <source>Left and right areas occupy corners</source>
         <translation>Углы занимают правая и левая области</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1158"/>
+        <location filename="../dialogs/configdialog.ui" line="1169"/>
         <source>Top and bottom areas occupy corners</source>
         <translation>Углы занимают верхняя и нижняя области</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1280"/>
+        <location filename="../dialogs/configdialog.ui" line="1291"/>
         <source>Hide built-in plugins</source>
         <translation>Скрыть встроенные модули</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1309"/>
+        <location filename="../dialogs/configdialog.ui" line="1320"/>
         <source>Current style:</source>
         <translation>Текущий стиль:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1326"/>
+        <location filename="../dialogs/configdialog.ui" line="1337"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1336"/>
+        <location filename="../dialogs/configdialog.ui" line="1347"/>
         <source>Enabled</source>
         <translation>Активно</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1509"/>
+        <location filename="../dialogs/configdialog.ui" line="1520"/>
         <source>Disabled</source>
         <translation>Неактивно</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1558"/>
+        <location filename="../dialogs/configdialog.ui" line="1569"/>
         <source>Active formatter plugin</source>
         <translation>Активный модуль форматирования</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1596"/>
+        <location filename="../dialogs/configdialog.ui" line="1607"/>
         <source>SQL editor font</source>
         <translation>Шрифт редактора SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1612"/>
+        <location filename="../dialogs/configdialog.ui" line="1623"/>
         <source>Database list font</source>
         <translation>Шрифт списка баз данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1628"/>
+        <location filename="../dialogs/configdialog.ui" line="1639"/>
         <source>Database list additional label font</source>
         <translation>Шрифт дополнительных меток в списке баз данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1644"/>
+        <location filename="../dialogs/configdialog.ui" line="1655"/>
         <source>Data view font</source>
         <translation>Шрифт просмотра данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1660"/>
+        <location filename="../dialogs/configdialog.ui" line="1671"/>
         <source>Status field font</source>
         <translation>Шрифт окна статуса</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1718"/>
         <source>SQL editor colors</source>
-        <translation>Цвета редактора SQL</translation>
+        <translation type="vanished">Цвета редактора SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1724"/>
         <source>Current line background</source>
-        <translation>Фон текущей строки</translation>
+        <translation type="vanished">Фон текущей строки</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1731"/>
         <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Строки SQL обрамляются в одинарные кавычки.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Строки SQL обрамляются в одинарные кавычки.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1734"/>
         <source>String foreground</source>
-        <translation>Цвет строки</translation>
+        <translation type="vanished">Цвет строки</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1837"/>
         <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Подстановочные параметры предназначены для значений, которые будут в дальнейшем указаны пользователем. Они определяются одним из следующих способов:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:имя_параметра&lt;/li&gt;&lt;li&gt;$имя_параметра&lt;/li&gt;&lt;li&gt;@имя_параметра&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Подстановочные параметры предназначены для значений, которые будут в дальнейшем указаны пользователем. Они определяются одним из следующих способов:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:имя_параметра&lt;/li&gt;&lt;li&gt;$имя_параметра&lt;/li&gt;&lt;li&gt;@имя_параметра&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1840"/>
         <source>Bind parameter foreground</source>
-        <translation>Цвет подстановочных параметров</translation>
+        <translation type="vanished">Цвет подстановочных параметров</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1863"/>
         <source>Highlighted parenthesis background</source>
-        <translation>Фон подсвечиваемых скобок</translation>
+        <translation type="vanished">Фон подсвечиваемых скобок</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1870"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Данные типа BLOB — это бинарные данные, представляемые в виде шестнадцатеричных чисел, например:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Данные типа BLOB — это бинарные данные, представляемые в виде шестнадцатеричных чисел, например:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1873"/>
         <source>BLOB value foreground</source>
-        <translation>Цвет данных типа BLOB</translation>
+        <translation type="vanished">Цвет данных типа BLOB</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1880"/>
         <source>Regular foreground</source>
-        <translation>Стандартный цвет</translation>
+        <translation type="vanished">Стандартный цвет</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1887"/>
         <source>Line numbers area background</source>
-        <translation>Фон области нумерации строк</translation>
+        <translation type="vanished">Фон области нумерации строк</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1910"/>
         <source>Keyword foreground</source>
-        <translation>Цвет ключевого слова</translation>
+        <translation type="vanished">Цвет ключевого слова</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1917"/>
         <source>Number foreground</source>
-        <translation>Цвет числа</translation>
+        <translation type="vanished">Цвет числа</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1924"/>
         <source>Comment foreground</source>
-        <translation>Цвет комментария</translation>
+        <translation type="vanished">Цвет комментария</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1963"/>
         <source>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Распознаваемыми объектами являются имена талиц, индексов, триггеров и представлений, существующих в базе данных SQLite.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Распознаваемыми объектами являются имена талиц, индексов, триггеров и представлений, существующих в базе данных SQLite.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1966"/>
         <source>Valid objects foreground</source>
-        <translation>Цвет распознанных объектов</translation>
+        <translation type="vanished">Цвет распознанных объектов</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1992"/>
         <source>Data view colors</source>
-        <translation>Цвета в окне просмотра данных</translation>
+        <translation type="vanished">Цвета в окне просмотра данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1998"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Все изменения данных будут обрамлены этим цветом, пока не будут записаны в базу данных.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Все изменения данных будут обрамлены этим цветом, пока не будут записаны в базу данных.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2001"/>
         <source>Uncommitted data outline color</source>
-        <translation>Цвет обрамления неподтверждённых изменений</translation>
+        <translation type="vanished">Цвет обрамления неподтверждённых изменений</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2024"/>
         <source>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;В случае ошибки при подтверждении изменений данных, этим цветом будут обрамлены проблемные ячейки.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;В случае ошибки при подтверждении изменений данных, этим цветом будут обрамлены проблемные ячейки.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2027"/>
         <source>Commit error outline color</source>
-        <translation>Цвет обрамления ошибочных ячеек</translation>
+        <translation type="vanished">Цвет обрамления ошибочных ячеек</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2050"/>
         <source>NULL value foreground</source>
-        <translation>Цвет значений NULL</translation>
+        <translation type="vanished">Цвет значений NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2073"/>
         <source>Deleted row background</source>
-        <translation>Фон удалённых строк</translation>
+        <translation type="vanished">Фон удалённых строк</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2099"/>
         <source>Database list colors</source>
-        <translation>Цвета списка баз данных</translation>
+        <translation type="vanished">Цвета списка баз данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2105"/>
         <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Дополнительные метки содержат информацию о версии SQLite, о количестве объектов в глубине дерева и т.д.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Дополнительные метки содержат информацию о версии SQLite, о количестве объектов в глубине дерева и т.д.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2108"/>
         <source>Additional labels foreground</source>
-        <translation>Цвет дополнительных меток</translation>
+        <translation type="vanished">Цвет дополнительных меток</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2134"/>
         <source>Status field colors</source>
-        <translation>Цвета в окне Статуса</translation>
+        <translation type="vanished">Цвета в окне Статуса</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2140"/>
         <source>Information message foreground</source>
-        <translation>Цвет информационного сообщения</translation>
+        <translation type="vanished">Цвет информационного сообщения</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2163"/>
         <source>Warning message foreground</source>
-        <translation>Цвет предупреждения</translation>
+        <translation type="vanished">Цвет предупреждения</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2186"/>
         <source>Error message foreground</source>
-        <translation>Цвет ошибки</translation>
+        <translation type="vanished">Цвет ошибки</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="792"/>
+        <location filename="../dialogs/configdialog.cpp" line="795"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Описание:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="793"/>
+        <location filename="../dialogs/configdialog.cpp" line="796"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Категория:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="794"/>
+        <location filename="../dialogs/configdialog.cpp" line="797"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="795"/>
+        <location filename="../dialogs/configdialog.cpp" line="798"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="797"/>
+        <location filename="../dialogs/configdialog.cpp" line="800"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Внутреннее имя:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="798"/>
+        <location filename="../dialogs/configdialog.cpp" line="801"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Зависимости:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="799"/>
+        <location filename="../dialogs/configdialog.cpp" line="802"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Конфликты:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="803"/>
+        <location filename="../dialogs/configdialog.cpp" line="806"/>
         <source>Plugin details</source>
         <translation>Сведения о модуле</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1215"/>
+        <location filename="../dialogs/configdialog.cpp" line="1219"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>Модули загружаются и выгружаются сразу после активации/деактивации, однако изменения в списке загружаемых при старте модулей не будут сохранены пока вы не примените изменения в окне конфигурации.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1279"/>
+        <location filename="../dialogs/configdialog.cpp" line="1283"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (встроенный)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1292"/>
+        <location filename="../dialogs/configdialog.cpp" line="1296"/>
         <source>Details</source>
         <translation>Сведения</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1304"/>
+        <location filename="../dialogs/configdialog.cpp" line="1308"/>
         <source>No plugins in this category.</source>
         <translation>В этой категории модулей нет.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1406"/>
+        <location filename="../dialogs/configdialog.cpp" line="1410"/>
         <source>Add new data type</source>
         <translation>Добавить новый тип данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1410"/>
+        <location filename="../dialogs/configdialog.cpp" line="1414"/>
         <source>Rename selected data type</source>
         <translation>Переименовать выбранный тип данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1414"/>
+        <location filename="../dialogs/configdialog.cpp" line="1418"/>
         <source>Delete selected data type</source>
         <translation>Удалить выбранный тип данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1418"/>
+        <location filename="../dialogs/configdialog.cpp" line="1422"/>
         <source>Help for configuring data type editors</source>
         <translation>Справка по настройке редакторов типов данных</translation>
     </message>
@@ -1468,43 +1521,49 @@ but it&apos;s okay to use it.</source>
         <translation>Применить</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="170"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="172"/>
         <source>Primary key</source>
         <comment>table constraints</comment>
         <translation>Первичный ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="174"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="176"/>
         <source>Foreign key</source>
         <comment>table constraints</comment>
         <translation>Внешний ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="178"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="180"/>
         <source>Unique</source>
         <comment>table constraints</comment>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="182"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="184"/>
         <source>Not NULL</source>
         <comment>table constraints</comment>
         <translation>Не NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="186"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="188"/>
         <source>Check</source>
         <comment>table constraints</comment>
         <translation>Проверка</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="190"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="192"/>
+        <source>Generated</source>
+        <comment>table constraints</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/constraintdialog.cpp" line="196"/>
         <source>Collate</source>
         <comment>table constraints</comment>
         <translation>Сравнение</translation>
     </message>
     <message>
-        <location filename="../dialogs/constraintdialog.cpp" line="194"/>
+        <location filename="../dialogs/constraintdialog.cpp" line="200"/>
         <source>Default</source>
         <comment>table constraints</comment>
         <translation>Значение по умолчанию</translation>
@@ -1630,83 +1689,83 @@ but it&apos;s okay to use it.</source>
         <translation>Показать результаты в виде формы</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="324"/>
+        <location filename="../dataview.cpp" line="328"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
         <translation>Вкладки сверху</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="325"/>
+        <location filename="../dataview.cpp" line="329"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
         <translation>Вкладки снизу</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="350"/>
+        <location filename="../dataview.cpp" line="354"/>
         <source>Place new rows above selected row</source>
         <comment>data view</comment>
         <translation>Поместить новые строки перед выделенной строкой</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="351"/>
+        <location filename="../dataview.cpp" line="355"/>
         <source>Place new rows below selected row</source>
         <comment>data view</comment>
         <translation>Поместить новые строки после выделенной строки</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="352"/>
+        <location filename="../dataview.cpp" line="356"/>
         <source>Place new rows at the end of the data view</source>
         <comment>data view</comment>
         <translation>Поместить новые строки в конец области просмотра данных</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="656"/>
+        <location filename="../dataview.cpp" line="663"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
         <translation>Идёт подсчёт общего числа строк.
 Переключение на другие страницы станет возможным после окончания подсчёта.</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="667"/>
+        <location filename="../dataview.cpp" line="674"/>
         <source>Row: %1</source>
         <translation>Строка: %1</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="947"/>
+        <location filename="../dataview.cpp" line="954"/>
         <source>Filter</source>
         <translation>Фильтр</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="950"/>
+        <location filename="../dataview.cpp" line="957"/>
         <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
         <translation>Нажмите Enter или кнопку &quot;Применить фильтр&quot; на панели инструментов чтобы применить новое значение.</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="978"/>
+        <location filename="../dataview.cpp" line="985"/>
         <source>Filter by text</source>
         <comment>data view</comment>
         <translation>Текстовый фильтр</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="979"/>
+        <location filename="../dataview.cpp" line="986"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
         <translation>Фильтр по регулярному выражению</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="980"/>
+        <location filename="../dataview.cpp" line="987"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
         <translation>Фильтр по выражению SQL</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="996"/>
+        <location filename="../dataview.cpp" line="1003"/>
         <source>Show filter inputs per column</source>
         <comment>data view</comment>
         <translation>Показывать поле ввода для фильтра в каждом столбце</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1000"/>
+        <location filename="../dataview.cpp" line="1007"/>
         <source>Apply filter</source>
         <comment>data view</comment>
         <translation>Применить фильтр</translation>
@@ -1715,99 +1774,80 @@ Browsing other pages will be possible after the row counting is done.</source>
 <context>
     <name>DbConverterDialog</name>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
         <source>Convert database</source>
-        <translation>Преобразовать базу данных</translation>
+        <translation type="vanished">Преобразовать базу данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="20"/>
         <source>Source database</source>
-        <translation>Исходная база данных</translation>
+        <translation type="vanished">Исходная база данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="29"/>
         <source>Source database version:</source>
-        <translation>Версия исходной базы данных:</translation>
+        <translation type="vanished">Версия исходной базы данных:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="46"/>
         <source>Target database</source>
-        <translation>Целевая база данных</translation>
+        <translation type="vanished">Целевая база данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="52"/>
         <source>Target version:</source>
-        <translation>Целевая версия:</translation>
+        <translation type="vanished">Целевая версия:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="59"/>
         <source>This is the file that will be created as a result of the conversion.</source>
-        <translation>Это файл, который будет создан в результате конвертации.</translation>
+        <translation type="vanished">Это файл, который будет создан в результате конвертации.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="66"/>
         <source>Target file:</source>
-        <translation>Целевой файл:</translation>
+        <translation type="vanished">Целевой файл:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
         <source>Name of the new database:</source>
-        <translation>Имя новой базы данных:</translation>
+        <translation type="vanished">Имя новой базы данных:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
         <source>This is the name that the converted database will be added to SQLiteStudio with.</source>
-        <translation>Это имя, под которым сконвертированная база данных будет добавлена в SQLiteStudio.</translation>
+        <translation type="vanished">Это имя, под которым сконвертированная база данных будет добавлена в SQLiteStudio.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
         <source>Select source database</source>
-        <translation>Выберите исходную базу данных</translation>
+        <translation type="vanished">Выберите исходную базу данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
         <source>Enter valid and writable file path.</source>
-        <translation>Введите корректный путь к файлу, доступному для записи.</translation>
+        <translation type="vanished">Введите корректный путь к файлу, доступному для записи.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="131"/>
         <source>Entered file exists and will be overwritten.</source>
-        <translation>Указанный файл существует и будет перезаписан.</translation>
+        <translation type="vanished">Указанный файл существует и будет перезаписан.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
         <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-        <translation>Введите непустое уникальное имя (как в списке баз данных слева).</translation>
+        <translation type="vanished">Введите непустое уникальное имя (как в списке баз данных слева).</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
         <source>No valid target dialect available. Conversion not possible.</source>
-        <translation>Отсутствует корректный целевой диалект. Конвертация невозможна.</translation>
+        <translation type="vanished">Отсутствует корректный целевой диалект. Конвертация невозможна.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
         <source>Select valid target dialect.</source>
-        <translation>Выберите корректный целевой диалект.</translation>
+        <translation type="vanished">Выберите корректный целевой диалект.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
         <source>Database %1 has been successfully converted and now is available under new name: %2</source>
-        <translation>База данных %1 была успешно сконвертирована и теперь доступна под новым именем: %2</translation>
+        <translation type="vanished">База данных %1 была успешно сконвертирована и теперь доступна под новым именем: %2</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
         <source>SQL statements conversion</source>
-        <translation>Конвертация конструкций SQL</translation>
+        <translation type="vanished">Конвертация конструкций SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-        <translation>При конвертации конструкций SQL в новую версию SQLite произошла ошибка:</translation>
+        <translation type="vanished">При конвертации конструкций SQL в новую версию SQLite произошла ошибка:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="215"/>
         <source>Would you like to ignore those errors and proceed?</source>
-        <translation>Вы хотите проигнорировать эти ошибки и продолжить?</translation>
+        <translation type="vanished">Вы хотите проигнорировать эти ошибки и продолжить?</translation>
     </message>
 </context>
 <context>
@@ -1829,7 +1869,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
-        <location filename="../dialogs/dbdialog.cpp" line="154"/>
+        <location filename="../dialogs/dbdialog.cpp" line="155"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
@@ -1865,42 +1905,42 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Тест соединения</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="155"/>
+        <location filename="../dialogs/dbdialog.cpp" line="156"/>
         <source>Browse for existing database file on local computer</source>
         <translation>Указать существующий файл базы данных на локальном компьютере</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="288"/>
+        <location filename="../dialogs/dbdialog.cpp" line="308"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="467"/>
+        <location filename="../dialogs/dbdialog.cpp" line="517"/>
         <source>Enter an unique database name.</source>
         <translation>Введите уникальное имя базы данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="477"/>
+        <location filename="../dialogs/dbdialog.cpp" line="527"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Данное имя уже используется. Пожалуйста, укажите уникальное имя.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="484"/>
+        <location filename="../dialogs/dbdialog.cpp" line="534"/>
         <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Автоматическая генерация имени отключена, так как имя было задано вручную. Для автоматической генерации необходимо удалить содержимое из поля имени.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="493"/>
+        <location filename="../dialogs/dbdialog.cpp" line="543"/>
         <source>Enter a database file path.</source>
         <translation>Введите путь к базе данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="502"/>
+        <location filename="../dialogs/dbdialog.cpp" line="552"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Указанная база данных уже находится в списке под именем %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="524"/>
+        <location filename="../dialogs/dbdialog.cpp" line="574"/>
         <source>Select a database type.</source>
         <translation>Выберите тип базы данных.</translation>
     </message>
@@ -1908,70 +1948,70 @@ Browsing other pages will be possible after the row counting is done.</source>
 <context>
     <name>DbObjectDialogs</name>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="174"/>
+        <location filename="../dbobjectdialogs.cpp" line="173"/>
         <source>Delete table</source>
         <translation>Удалить таблицу</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="175"/>
+        <location filename="../dbobjectdialogs.cpp" line="174"/>
         <source>Are you sure you want to delete table %1?</source>
         <translation>Вы действительно хотите удалить таблицу %1?</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="179"/>
+        <location filename="../dbobjectdialogs.cpp" line="178"/>
         <source>Delete index</source>
         <translation>Удалить индекс</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="180"/>
+        <location filename="../dbobjectdialogs.cpp" line="179"/>
         <source>Are you sure you want to delete index %1?</source>
         <translation>Вы действительно хотите удалить индекс %1?</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="184"/>
+        <location filename="../dbobjectdialogs.cpp" line="183"/>
         <source>Delete trigger</source>
         <translation>Удалить триггер</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="185"/>
+        <location filename="../dbobjectdialogs.cpp" line="184"/>
         <source>Are you sure you want to delete trigger %1?</source>
         <translation>Вы действительно хотите удалить триггер %1?</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="189"/>
+        <location filename="../dbobjectdialogs.cpp" line="188"/>
         <source>Delete view</source>
         <translation>Удалить представление</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="190"/>
+        <location filename="../dbobjectdialogs.cpp" line="189"/>
         <source>Are you sure you want to delete view %1?</source>
         <translation>Вы действительно хотите удалить представление %1?</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="218"/>
-        <location filename="../dbobjectdialogs.cpp" line="315"/>
+        <location filename="../dbobjectdialogs.cpp" line="213"/>
+        <location filename="../dbobjectdialogs.cpp" line="306"/>
         <source>Error while dropping %1: %2</source>
         <translation>Ошибка при удалении %1: %2</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="282"/>
+        <location filename="../dbobjectdialogs.cpp" line="276"/>
         <source>Delete objects</source>
         <translation>Удалить объекты</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="283"/>
+        <location filename="../dbobjectdialogs.cpp" line="277"/>
         <source>Are you sure you want to delete following objects:
 %1</source>
         <translation>Вы действительно хотите удалить следующие объекты:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="290"/>
+        <location filename="../dbobjectdialogs.cpp" line="284"/>
         <source>Cannot start transaction. Details: %1</source>
         <translation>Невозможно начать транзакцию. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="327"/>
+        <location filename="../dbobjectdialogs.cpp" line="318"/>
         <source>Cannot commit transaction. Details: %1</source>
         <translation>Невозможно подтвердить транзакцию. Подробности: %1</translation>
     </message>
@@ -1989,394 +2029,393 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Фильтр по имени</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="101"/>
+        <location filename="../dbtree/dbtree.cpp" line="102"/>
         <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
         <translation>Выполнение запросов из файла отменено. Все выполненные ранее из него запросы откачены.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="134"/>
+        <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="135"/>
+        <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="136"/>
+        <location filename="../dbtree/dbtree.cpp" line="138"/>
         <source>Select all</source>
         <translation>Выделить всё</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="137"/>
+        <location filename="../dbtree/dbtree.cpp" line="139"/>
         <source>Create a group</source>
         <translation>Создать группу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="138"/>
+        <location filename="../dbtree/dbtree.cpp" line="140"/>
         <source>Delete the group</source>
         <translation>Удалить группу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="139"/>
+        <location filename="../dbtree/dbtree.cpp" line="141"/>
         <source>Rename the group</source>
         <translation>Переименовать группу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="140"/>
+        <location filename="../dbtree/dbtree.cpp" line="142"/>
         <source>&amp;Add a database</source>
         <translation>&amp;Добавить базу данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="141"/>
+        <location filename="../dbtree/dbtree.cpp" line="143"/>
         <source>&amp;Edit the database</source>
         <translation>&amp;Редактировать базу данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="142"/>
+        <location filename="../dbtree/dbtree.cpp" line="144"/>
         <source>&amp;Remove the database</source>
         <translation>&amp;Удалить базу данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="143"/>
+        <location filename="../dbtree/dbtree.cpp" line="145"/>
         <source>&amp;Connect to the database</source>
         <translation>&amp;Подключиться к базе данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="144"/>
+        <location filename="../dbtree/dbtree.cpp" line="146"/>
         <source>&amp;Disconnect from the database</source>
         <translation>&amp;Отключиться от базы данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="145"/>
+        <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>Import</source>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="146"/>
+        <location filename="../dbtree/dbtree.cpp" line="148"/>
         <source>&amp;Export the database</source>
         <translation>&amp;Экспортировать базу данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>Con&amp;vert database type</source>
-        <translation>И&amp;зменить тип базы данных</translation>
+        <translation type="vanished">И&amp;зменить тип базы данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="148"/>
+        <location filename="../dbtree/dbtree.cpp" line="149"/>
         <source>Vac&amp;uum</source>
         <translation>Оп&amp;ерация VACUUM</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="149"/>
+        <location filename="../dbtree/dbtree.cpp" line="150"/>
         <source>&amp;Integrity check</source>
         <translation>Проверить &amp;целостность</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="150"/>
+        <location filename="../dbtree/dbtree.cpp" line="151"/>
         <source>Create a &amp;table</source>
         <translation>Создать &amp;таблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="151"/>
+        <location filename="../dbtree/dbtree.cpp" line="152"/>
         <source>Edit the t&amp;able</source>
         <translation>Редактировать т&amp;аблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="152"/>
+        <location filename="../dbtree/dbtree.cpp" line="153"/>
         <source>Delete the ta&amp;ble</source>
         <translation>Удалить та&amp;блицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="153"/>
+        <location filename="../dbtree/dbtree.cpp" line="154"/>
         <source>Export the table</source>
         <translation>Экспортировать таблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="154"/>
+        <location filename="../dbtree/dbtree.cpp" line="155"/>
         <source>Import into the table</source>
         <translation>Импортировать данные в таблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="155"/>
+        <location filename="../dbtree/dbtree.cpp" line="156"/>
         <source>Populate table</source>
         <translation>Заполнить таблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="156"/>
+        <location filename="../dbtree/dbtree.cpp" line="157"/>
         <source>Create similar table</source>
         <translation>Создать подобную таблицу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="157"/>
+        <location filename="../dbtree/dbtree.cpp" line="158"/>
         <source>Reset autoincrement sequence</source>
         <translation>Сбросить счётчик автоинкремента</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="158"/>
+        <location filename="../dbtree/dbtree.cpp" line="159"/>
         <source>Create an &amp;index</source>
         <translation>Создать &amp;индекс</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="159"/>
+        <location filename="../dbtree/dbtree.cpp" line="160"/>
         <source>Edit the i&amp;ndex</source>
         <translation>Редактировать и&amp;ндекс</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="160"/>
+        <location filename="../dbtree/dbtree.cpp" line="161"/>
         <source>Delete the in&amp;dex</source>
         <translation>Удалить инде&amp;кс</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="161"/>
+        <location filename="../dbtree/dbtree.cpp" line="162"/>
         <source>Create a trig&amp;ger</source>
         <translation>Создать три&amp;ггер</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="162"/>
+        <location filename="../dbtree/dbtree.cpp" line="163"/>
         <source>Edit the trigg&amp;er</source>
         <translation>Редактиро&amp;вать триггер</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="163"/>
+        <location filename="../dbtree/dbtree.cpp" line="164"/>
         <source>Delete the trigge&amp;r</source>
         <translation>Уда&amp;лить триггер</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="164"/>
+        <location filename="../dbtree/dbtree.cpp" line="165"/>
         <source>Create a &amp;view</source>
         <translation>&amp;Создать представление</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="165"/>
+        <location filename="../dbtree/dbtree.cpp" line="166"/>
         <source>Edit the v&amp;iew</source>
         <translation>Редактироват&amp;ь представление</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="166"/>
+        <location filename="../dbtree/dbtree.cpp" line="167"/>
         <source>Delete the vi&amp;ew</source>
         <translation>Удалить &amp;представление</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="167"/>
+        <location filename="../dbtree/dbtree.cpp" line="168"/>
         <source>Add a column</source>
         <translation>Добавить столбец</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="168"/>
+        <location filename="../dbtree/dbtree.cpp" line="169"/>
         <source>Edit the column</source>
         <translation>Редактировать столбец</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="169"/>
+        <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Delete the column</source>
         <translation>Удалить столбец</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="170"/>
+        <location filename="../dbtree/dbtree.cpp" line="171"/>
         <source>Delete selected items</source>
         <translation>Удалить выбранные элементы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="171"/>
+        <location filename="../dbtree/dbtree.cpp" line="172"/>
         <source>Clear filter</source>
         <translation>Сбросить фильтр</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="172"/>
+        <location filename="../dbtree/dbtree.cpp" line="173"/>
         <source>&amp;Refresh all database schemas</source>
         <translation>Обновить структуры всех баз данн&amp;ых</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="173"/>
+        <location filename="../dbtree/dbtree.cpp" line="174"/>
         <source>Re&amp;fresh selected database schema</source>
         <translation>Обновить структуру выбранной базы данны&amp;х</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="174"/>
-        <location filename="../dbtree/dbtree.cpp" line="1566"/>
+        <location filename="../dbtree/dbtree.cpp" line="175"/>
+        <location filename="../dbtree/dbtree.cpp" line="1569"/>
         <source>Erase table data</source>
         <translation>Удалить данные из таблицы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="179"/>
+        <location filename="../dbtree/dbtree.cpp" line="180"/>
         <source>Open file&apos;s directory</source>
         <translation>Открыть папку с этим файлом</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="180"/>
+        <location filename="../dbtree/dbtree.cpp" line="181"/>
         <source>Execute SQL from file</source>
         <translation>Выполнить SQL-запросы из файла</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="355"/>
-        <location filename="../dbtree/dbtree.cpp" line="360"/>
+        <location filename="../dbtree/dbtree.cpp" line="362"/>
+        <location filename="../dbtree/dbtree.cpp" line="367"/>
         <source>Database</source>
         <translation>База данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="370"/>
+        <location filename="../dbtree/dbtree.cpp" line="377"/>
         <source>Grouping</source>
         <translation>Группировка</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="375"/>
+        <location filename="../dbtree/dbtree.cpp" line="382"/>
         <source>Generate query for table</source>
         <translation>Сгенерировать запрос для этой таблицы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1086"/>
-        <location filename="../dbtree/dbtree.cpp" line="1089"/>
+        <location filename="../dbtree/dbtree.cpp" line="1088"/>
+        <location filename="../dbtree/dbtree.cpp" line="1091"/>
         <source>Create group</source>
         <translation>Создать группу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1086"/>
+        <location filename="../dbtree/dbtree.cpp" line="1088"/>
         <source>Group name</source>
         <translation>Имя группы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1089"/>
+        <location filename="../dbtree/dbtree.cpp" line="1091"/>
         <source>Entry with name %1 already exists in group %2.</source>
         <translation>Элемент с именем %1 уже входит в группу %2.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1107"/>
+        <location filename="../dbtree/dbtree.cpp" line="1109"/>
         <source>Delete group</source>
         <translation>Удалить группу</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1108"/>
+        <location filename="../dbtree/dbtree.cpp" line="1110"/>
         <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
         <translation>Вы действительно хотите удалить группу %1? Все объекты из данной группы будут перемещены в родительскую группу.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1171"/>
+        <location filename="../dbtree/dbtree.cpp" line="1173"/>
         <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
         <translation>Вы действительно хотите удалить базу данных &apos;%1&apos; из списка?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1179"/>
+        <location filename="../dbtree/dbtree.cpp" line="1181"/>
         <source>Are you sure you want to remove following databases from the list:
 %1</source>
         <translation>Вы действительно хотите удалить следующие базы данных из списка: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1181"/>
+        <location filename="../dbtree/dbtree.cpp" line="1183"/>
         <source>Remove database</source>
         <translation>Удалить базу данных</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1218"/>
-        <location filename="../dbtree/dbtree.cpp" line="1411"/>
+        <location filename="../dbtree/dbtree.cpp" line="1220"/>
+        <location filename="../dbtree/dbtree.cpp" line="1425"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1238"/>
-        <location filename="../dbtree/dbtree.cpp" line="1386"/>
+        <location filename="../dbtree/dbtree.cpp" line="1240"/>
+        <location filename="../dbtree/dbtree.cpp" line="1400"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1487"/>
+        <location filename="../dbtree/dbtree.cpp" line="1490"/>
         <source>Vacuum (%1)</source>
         <translation>Операция VACUUM (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1501"/>
+        <location filename="../dbtree/dbtree.cpp" line="1504"/>
         <source>Integrity check (%1)</source>
         <translation>Проверка целостности (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1537"/>
+        <location filename="../dbtree/dbtree.cpp" line="1540"/>
         <source>Reset autoincrement</source>
         <translation>Сброс счётчика автоинкремента</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1537"/>
+        <location filename="../dbtree/dbtree.cpp" line="1540"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Вы действительно хотите сбросить счётчик автоинкремента у таблицы &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1544"/>
+        <location filename="../dbtree/dbtree.cpp" line="1547"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>При попытке сброса счётчика автоинкремента у таблицы &apos;%1&apos; произошла ошибка: %2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1546"/>
+        <location filename="../dbtree/dbtree.cpp" line="1549"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1566"/>
+        <location filename="../dbtree/dbtree.cpp" line="1569"/>
         <source>Are you sure you want to delete all data from table(s): %1?</source>
         <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1579"/>
+        <location filename="../dbtree/dbtree.cpp" line="1581"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
         <translation>При попытке удаления данных из таблицы &apos;%1&apos; произошла ошибка: %2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1583"/>
+        <location filename="../dbtree/dbtree.cpp" line="1585"/>
         <source>All data has been deleted for table &apos;%1&apos;.</source>
         <translation>Из таблицы &apos;%1&apos; были удалены все данные.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1697"/>
+        <location filename="../dbtree/dbtree.cpp" line="1699"/>
         <source>Following objects will be deleted: %1.</source>
         <translation>Будут удалены следующие объекты: %1.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1700"/>
+        <location filename="../dbtree/dbtree.cpp" line="1702"/>
         <source>Following databases will be removed from list: %1.</source>
         <translation>Из списка будут удалены следующие базы данных: %1.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1703"/>
+        <location filename="../dbtree/dbtree.cpp" line="1705"/>
         <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
         <translation>Оставшиеся после удаления группы объекты будут перемещены туда, где ранее располагалась группа.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1705"/>
+        <location filename="../dbtree/dbtree.cpp" line="1707"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
         <translation>%1&lt;br&gt;&lt;br&gt;Вы действительно хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1707"/>
+        <location filename="../dbtree/dbtree.cpp" line="1709"/>
         <source>Delete objects</source>
         <translation>Удалить объекты</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1872"/>
+        <location filename="../dbtree/dbtree.cpp" line="1874"/>
         <source>Could not execute SQL, because application has failed to start transaction: %1</source>
         <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось начать транзакцию: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1886"/>
+        <location filename="../dbtree/dbtree.cpp" line="1888"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1972"/>
+        <location filename="../dbtree/dbtree.cpp" line="1988"/>
         <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
         <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось завершить транзакцию: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1976"/>
+        <location filename="../dbtree/dbtree.cpp" line="1993"/>
         <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
         <translation>Завершено выполнение %1 запросов за %2 секунд. %3 запросов не было выполнено из-за ошибок.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1981"/>
+        <location filename="../dbtree/dbtree.cpp" line="2000"/>
         <source>Finished executing %1 queries in %2 seconds.</source>
         <translation>Завершено выполнение %1 запросов за %2 секунд.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1987"/>
+        <location filename="../dbtree/dbtree.cpp" line="2007"/>
         <source>Could not execute SQL due to error.</source>
         <translation>Невозможно выполнить SQL-запрос из-за ошибки.</translation>
     </message>
@@ -2411,130 +2450,130 @@ All objects from this group will be moved to parent group.</source>
 <context>
     <name>DbTreeModel</name>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="423"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="422"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
         <translation>База данных: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="431"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
         <translation>Размер файла:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="434"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Кодировка:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="439"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
         <translation>Ошибка:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="449"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Таблица: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="472"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Столбцы (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="475"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Индексы (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="478"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Триггеры (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1100"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1123"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1101"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
         <source>Move</source>
         <translation>Переместить</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1103"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1126"/>
         <source>Include data</source>
         <translation>Включая данные</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1104"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1127"/>
         <source>Include indexes</source>
         <translation>Включая индексы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1105"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1128"/>
         <source>Include triggers</source>
         <translation>Включая триггеры</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1107"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1130"/>
         <source>Abort</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
         <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
         <translation>Невозможно автоматически добавить перетянутый файл базы данных &apos;%1&apos;. Необходима ручная настройка.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1213"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1236"/>
         <source>Referenced tables</source>
         <translation>Связанные таблицы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1214"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1237"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>Вы хотите также включить следующие связанные таблицы:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1223"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1246"/>
         <source>Name conflict</source>
         <translation>Конфликт имён</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1224"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1247"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>Данный объект уже существует в целевой базе данных.
 Пожалуйста введите новое уникальное имя или нажмите %1 для прерывания операции:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1237"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
         <source>SQL statements conversion</source>
         <translation>Конвертация конструкций SQL</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1245"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1268"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>При конвертации конструкций SQL в новую версию SQLite произошла ошибка:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1246"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>Вы хотите проигнорировать эти ошибки и продолжить?</translation>
     </message>
@@ -2595,23 +2634,23 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>История</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="142"/>
+        <location filename="../windows/editorwindow.cpp" line="143"/>
         <source>Results in the separate tab</source>
         <translation>Результаты в отдельной вкладке</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="143"/>
+        <location filename="../windows/editorwindow.cpp" line="144"/>
         <source>Results below the query</source>
         <translation>Результаты под запросом</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="176"/>
-        <location filename="../windows/editorwindow.cpp" line="178"/>
+        <location filename="../windows/editorwindow.cpp" line="177"/>
+        <location filename="../windows/editorwindow.cpp" line="179"/>
         <source>SQL editor %1</source>
         <translation>Редактор SQL %1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="336"/>
+        <location filename="../windows/editorwindow.cpp" line="334"/>
         <source>Results</source>
         <translation>Результаты</translation>
     </message>
@@ -2644,82 +2683,82 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Создать представление из запроса</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="390"/>
+        <location filename="../windows/editorwindow.cpp" line="388"/>
         <source>Previous database</source>
         <translation>Предыдущая база данных</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="391"/>
+        <location filename="../windows/editorwindow.cpp" line="389"/>
         <source>Next database</source>
         <translation>Следующая база данных</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="394"/>
+        <location filename="../windows/editorwindow.cpp" line="392"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>Открыть следующую вкладку</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="395"/>
+        <location filename="../windows/editorwindow.cpp" line="393"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>Открыть предыдущую вкладку</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="396"/>
+        <location filename="../windows/editorwindow.cpp" line="394"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>Фокус на результатах внизу</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="397"/>
+        <location filename="../windows/editorwindow.cpp" line="395"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>Фокус на редакторе SQL сверху</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="398"/>
+        <location filename="../windows/editorwindow.cpp" line="396"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>Удалить выбранные записи из истории SQL-запросов</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="472"/>
+        <location filename="../windows/editorwindow.cpp" line="462"/>
         <source>Active database (%1/%2)</source>
         <translation>Текущая база данных (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="585"/>
+        <location filename="../windows/editorwindow.cpp" line="569"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>Запрос выполнен за %1 секунд. Затронуто строк: %2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="589"/>
+        <location filename="../windows/editorwindow.cpp" line="573"/>
         <source>Query finished in %1 second(s).</source>
         <translation>Запрос выполнен за %1 секунд.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="703"/>
+        <location filename="../windows/editorwindow.cpp" line="687"/>
         <source>Clear execution history</source>
         <translation>Очистка истории запросов</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="703"/>
+        <location filename="../windows/editorwindow.cpp" line="687"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>Вы действительно хотите удалить всю историю выполнения SQL запросов? Операцию невозможно отменить.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="728"/>
+        <location filename="../windows/editorwindow.cpp" line="712"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="749"/>
+        <location filename="../windows/editorwindow.cpp" line="733"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>В редакторе SQL не выбрана база данных. Невозможно создать представление в неизвестной базе данных.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="779"/>
+        <location filename="../windows/editorwindow.cpp" line="763"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>В окне редактора &quot;%1&quot; имеются неподтверждённые данные.</translation>
     </message>
@@ -2949,64 +2988,64 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Опции формата экспорта</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="60"/>
+        <location filename="../dialogs/exportdialog.cpp" line="62"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="158"/>
-        <location filename="../dialogs/exportdialog.cpp" line="183"/>
-        <location filename="../dialogs/exportdialog.cpp" line="206"/>
+        <location filename="../dialogs/exportdialog.cpp" line="160"/>
+        <location filename="../dialogs/exportdialog.cpp" line="185"/>
+        <location filename="../dialogs/exportdialog.cpp" line="208"/>
         <source>Select database to export.</source>
         <translation>Выберите базу данных для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="159"/>
+        <location filename="../dialogs/exportdialog.cpp" line="161"/>
         <source>Select table to export.</source>
         <translation>Выберите таблицу для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="184"/>
+        <location filename="../dialogs/exportdialog.cpp" line="186"/>
         <source>Enter valid query to export.</source>
         <translation>Введи корректный запрос для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="207"/>
+        <location filename="../dialogs/exportdialog.cpp" line="209"/>
         <source>Select at least one object to export.</source>
         <translation>Выберите хотя бы один объект для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="230"/>
+        <location filename="../dialogs/exportdialog.cpp" line="232"/>
         <source>You must provide a file name to export to.</source>
         <translation>Необходимо указать имя файла, в который будет произведён экспорт.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="237"/>
+        <location filename="../dialogs/exportdialog.cpp" line="239"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Указанный путь является существующим каталогом. Его невозможно перезаписать.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="243"/>
+        <location filename="../dialogs/exportdialog.cpp" line="245"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Каталог &apos;%1&apos; не существует.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="249"/>
+        <location filename="../dialogs/exportdialog.cpp" line="251"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Файл &apos;%1&apos; существует и будет перезаписан.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="429"/>
+        <location filename="../dialogs/exportdialog.cpp" line="431"/>
         <source>All files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="432"/>
+        <location filename="../dialogs/exportdialog.cpp" line="434"/>
         <source>Pick file to export to</source>
         <translation>Выберите файл для экспорта</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="780"/>
+        <location filename="../dialogs/exportdialog.cpp" line="782"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Внутренняя ошибка во время экспорта. Пожалуйста, вышлите отчёт об этой ошибке.</translation>
     </message>
@@ -3166,7 +3205,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="313"/>
-        <location filename="../windows/functionseditor.cpp" line="426"/>
+        <location filename="../windows/functionseditor.cpp" line="427"/>
         <source>Function implementation code:</source>
         <translation>Код реализации функции:</translation>
     </message>
@@ -3176,98 +3215,98 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Код реализации последнего шага:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="54"/>
+        <location filename="../windows/functionseditor.cpp" line="55"/>
         <source>SQL function editor</source>
         <translation>Редактор функций SQL</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="59"/>
+        <location filename="../windows/functionseditor.cpp" line="60"/>
         <source>Commit all function changes</source>
         <translation>Подтвердить все изменения функций</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="60"/>
+        <location filename="../windows/functionseditor.cpp" line="61"/>
         <source>Rollback all function changes</source>
         <translation>Откатить все изменения функций</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="62"/>
+        <location filename="../windows/functionseditor.cpp" line="63"/>
         <source>Create new function</source>
         <translation>Создать новую функцию</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="63"/>
+        <location filename="../windows/functionseditor.cpp" line="64"/>
         <source>Delete selected function</source>
         <translation>Удалить выбранную функцию</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="65"/>
+        <location filename="../windows/functionseditor.cpp" line="66"/>
         <source>Custom SQL functions manual</source>
         <translation>Руководство по созданию произвольных функций SQL</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="68"/>
+        <location filename="../windows/functionseditor.cpp" line="69"/>
         <source>Add function argument</source>
         <translation>Добавить аргумент функции</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="69"/>
+        <location filename="../windows/functionseditor.cpp" line="70"/>
         <source>Rename function argument</source>
         <translation>Переименовать аргумент функции</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="70"/>
+        <location filename="../windows/functionseditor.cpp" line="71"/>
         <source>Delete function argument</source>
         <translation>Удалить аргумент функции</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="72"/>
+        <location filename="../windows/functionseditor.cpp" line="73"/>
         <source>Move function argument up</source>
         <translation>Переместить аргумент функции вверх</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="73"/>
+        <location filename="../windows/functionseditor.cpp" line="74"/>
         <source>Move function argument down</source>
         <translation>Переместить аргумент функции вниз</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="111"/>
+        <location filename="../windows/functionseditor.cpp" line="112"/>
         <source>Scalar</source>
         <translation>Скалярная</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="112"/>
+        <location filename="../windows/functionseditor.cpp" line="113"/>
         <source>Aggregate</source>
         <translation>Агрегирующая</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="410"/>
+        <location filename="../windows/functionseditor.cpp" line="411"/>
         <source>Enter a non-empty, unique name of the function.</source>
         <translation>Введите непустое уникальное имя функции.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="422"/>
+        <location filename="../windows/functionseditor.cpp" line="423"/>
         <source>Pick the implementation language.</source>
         <translation>Выберите язык реализации.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="426"/>
+        <location filename="../windows/functionseditor.cpp" line="427"/>
         <source>Per step code:</source>
         <translation>Код на каждом шаге:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="432"/>
+        <location filename="../windows/functionseditor.cpp" line="433"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Введите непустой код реализации.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="505"/>
+        <location filename="../windows/functionseditor.cpp" line="506"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
         <translation>аргумент</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="631"/>
+        <location filename="../windows/functionseditor.cpp" line="632"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation>В окне редактора функций имеются неподтверждённые изменения.</translation>
     </message>
@@ -3335,42 +3374,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Опции источника данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="114"/>
+        <location filename="../dialogs/importdialog.cpp" line="116"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="145"/>
+        <location filename="../dialogs/importdialog.cpp" line="147"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Если вы введёте несуществующее имя таблицы, она будет создана.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="145"/>
+        <location filename="../dialogs/importdialog.cpp" line="147"/>
         <source>Enter the table name</source>
         <translation>Введите имя таблицы</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="163"/>
+        <location filename="../dialogs/importdialog.cpp" line="165"/>
         <source>Select import plugin.</source>
         <translation>Выберите модуль импорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="172"/>
+        <location filename="../dialogs/importdialog.cpp" line="174"/>
         <source>You must provide a file to import from.</source>
         <translation>Необходимо указать файл, из которого осуществляется импорт.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="179"/>
+        <location filename="../dialogs/importdialog.cpp" line="181"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Файл &apos;%1&apos; не существует.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="185"/>
+        <location filename="../dialogs/importdialog.cpp" line="187"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Указанный путь является каталогом. Необходимо указать файл.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="364"/>
+        <location filename="../dialogs/importdialog.cpp" line="366"/>
         <source>Pick file to import from</source>
         <translation>Выберите файл для импорта</translation>
     </message>
@@ -3449,61 +3488,61 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="66"/>
+        <location filename="../dialogs/indexdialog.cpp" line="67"/>
         <source>Tried to open index dialog for closed or inexisting database.</source>
         <translation>Попытка вызвать диалог создания индекса для закрытой или несуществующей базы данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="149"/>
+        <location filename="../dialogs/indexdialog.cpp" line="137"/>
         <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
         <translation>Не удалось корректно обработать индекс %1. Невозможно открыть окно индекса.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="206"/>
+        <location filename="../dialogs/indexdialog.cpp" line="191"/>
         <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
         <translation>Уникальный индекс не может содержать индексируемые выражения. Либо удалите выражения из списка ниже, либо отключите эту опцию.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="207"/>
+        <location filename="../dialogs/indexdialog.cpp" line="192"/>
         <source>Pick the table for the index.</source>
         <translation>Выберите таблицу для индекса.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="208"/>
+        <location filename="../dialogs/indexdialog.cpp" line="193"/>
         <source>Select at least one column.</source>
         <translation>Выберите хотя бы один столбец.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="209"/>
+        <location filename="../dialogs/indexdialog.cpp" line="194"/>
         <source>Enter a valid condition.</source>
         <translation>Введите корректное условие.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="276"/>
+        <location filename="../dialogs/indexdialog.cpp" line="266"/>
         <source>default</source>
         <comment>index dialog</comment>
         <translation>по умолчанию</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="281"/>
+        <location filename="../dialogs/indexdialog.cpp" line="270"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
         <translation>Порядок сортировки</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="752"/>
-        <location filename="../dialogs/indexdialog.cpp" line="765"/>
+        <location filename="../dialogs/indexdialog.cpp" line="748"/>
+        <location filename="../dialogs/indexdialog.cpp" line="761"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="753"/>
+        <location filename="../dialogs/indexdialog.cpp" line="749"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>Невозможно создать уникальный индекс, т.к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="765"/>
+        <location filename="../dialogs/indexdialog.cpp" line="761"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>При выполнении конструкций SQL произошла ошибка:
@@ -3594,278 +3633,287 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Панель отображения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="109"/>
+        <location filename="../mainwindow.cpp" line="112"/>
         <source>Configuration widgets</source>
         <translation>Виджеты конфигурации</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="110"/>
+        <location filename="../mainwindow.cpp" line="113"/>
         <source>Syntax highlighting engines</source>
         <translation>Движки синтаксической подсветки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="111"/>
+        <location filename="../mainwindow.cpp" line="114"/>
         <source>Data editors</source>
         <translation>Редакторы данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="123"/>
+        <location filename="../mainwindow.cpp" line="126"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
         <translation>Отладочный режим. Нажмите %1 или воспользуйтесь пунктом меню &apos;Справка / Открыть отладочную консоль&apos; для открытия отладочной консоли.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="125"/>
+        <location filename="../mainwindow.cpp" line="128"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
         <translation>Отладочный режим. Отладочные сообщения выводятся в стандартный выходной поток.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="190"/>
+        <location filename="../mainwindow.cpp" line="195"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>Для смены языка необходимо перезапустить приложение.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="233"/>
+        <location filename="../mainwindow.cpp" line="238"/>
         <source>Open SQL &amp;editor</source>
         <translation>&amp;Открыть редактор SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="234"/>
+        <location filename="../mainwindow.cpp" line="239"/>
         <source>Open DDL &amp;history</source>
         <translation>О&amp;ткрыть историю DDL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="235"/>
+        <location filename="../mainwindow.cpp" line="240"/>
         <source>Open SQL &amp;functions editor</source>
         <translation>От&amp;крыть редактор функций SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="236"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Open &amp;collations editor</source>
         <translation>Отк&amp;рыть редактор сравнений</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="237"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>Open ex&amp;tension manager</source>
         <translation>Откр&amp;ыть менеджер расширений</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="243"/>
         <source>&amp;Import</source>
         <translation>&amp;Импорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="239"/>
+        <location filename="../mainwindow.cpp" line="244"/>
         <source>E&amp;xport</source>
         <translation>&amp;Экспорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="241"/>
+        <location filename="../mainwindow.cpp" line="246"/>
         <source>Open confi&amp;guration dialog</source>
         <translation>Открыт&amp;ь диалог конфигурации</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>&amp;Tile windows</source>
         <translation>Р&amp;асположить окна плиткой</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="249"/>
         <source>Tile windows &amp;horizontally</source>
         <translation>Распо&amp;ложить окна по горизонтали</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="245"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>Tile windows &amp;vertically</source>
         <translation>Располо&amp;жить окна по вертикали</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="251"/>
         <source>&amp;Cascade windows</source>
         <translation>Ра&amp;сположить окна каскадом</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.cpp" line="252"/>
         <source>Next window</source>
         <translation>Следующее окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="253"/>
         <source>Previous window</source>
         <translation>Предыдущее окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="249"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Hide status field</source>
         <translation>Скрыть окно статуса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="251"/>
+        <location filename="../mainwindow.cpp" line="256"/>
         <source>Close selected &amp;window</source>
         <translation>&amp;Закрыть выбранное окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="252"/>
+        <location filename="../mainwindow.cpp" line="257"/>
         <source>Close all windows &amp;but selected</source>
         <translation>Закрыть &amp;все окна, кроме выбранного</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="258"/>
         <source>Close &amp;all windows</source>
         <translation>Закрыть вс&amp;е окна</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="259"/>
         <source>Re&amp;store recently closed window</source>
         <translation>Восста&amp;новить последнее закрытое окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="260"/>
         <source>&amp;Rename selected window</source>
         <translation>Переи&amp;меновать выбранное окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="262"/>
         <source>Open Debug Console</source>
         <translation>Открыть отладочную консоль</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="258"/>
+        <location filename="../mainwindow.cpp" line="263"/>
         <source>Open CSS Console</source>
         <translation>Открыть консоль CSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="264"/>
         <source>Report a &amp;bug</source>
         <translation>Сообщить об о&amp;шибке</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
+        <location filename="../mainwindow.cpp" line="265"/>
+        <source>D&amp;onate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="266"/>
         <source>Propose a new &amp;feature</source>
         <translation>Предложить новую &amp;функцию</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
+        <location filename="../mainwindow.cpp" line="267"/>
         <source>&amp;About</source>
         <translation>О про&amp;грамме</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="262"/>
+        <location filename="../mainwindow.cpp" line="268"/>
         <source>&amp;Licenses</source>
         <translation>Ли&amp;цензии</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="269"/>
         <source>Open home &amp;page</source>
         <translation>Открыть домашн&amp;юю страницу</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="264"/>
         <source>Open fo&amp;rum page</source>
-        <translation>Открыть страниц&amp;у форума</translation>
+        <translation type="vanished">Открыть страниц&amp;у форума</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>User &amp;Manual</source>
         <translation>Руководство пользовател&amp;я</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="271"/>
         <source>SQLite &amp;documentation</source>
         <translation>&amp;Документация по SQLite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="272"/>
         <source>Bugs and feature &amp;requests</source>
         <translation>Оши&amp;бки и предложения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="269"/>
+        <location filename="../mainwindow.cpp" line="273"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>Check for &amp;updates</source>
         <translation>&amp;Проверить обновления</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="297"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation>&amp;База данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation>&amp;Структура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="348"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="352"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>Окна</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="366"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation>&amp;Инструменты</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="388"/>
+        <location filename="../mainwindow.cpp" line="381"/>
         <source>&amp;Help</source>
         <translation>С&amp;правка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="553"/>
+        <location filename="../mainwindow.cpp" line="546"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>Невозможно применить стиль: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="655"/>
+        <location filename="../mainwindow.cpp" line="649"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="671"/>
+        <location filename="../mainwindow.cpp" line="665"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="704"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Rename window</source>
         <translation>Переименовать окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="704"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Enter new name for the window:</source>
         <translation>Введите новое имя для окна:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="787"/>
+        <location filename="../mainwindow.cpp" line="803"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Доступны обновления. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь для подробностей&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="795"/>
+        <location filename="../mainwindow.cpp" line="811"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Установлена последняя версия. Обновлений нет.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="908"/>
+        <location filename="../mainwindow.cpp" line="928"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>База данных, переданная через аргументы командной строки (%1), уже находится в списке под именем %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="915"/>
+        <location filename="../mainwindow.cpp" line="935"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>База данных, переданная через аргументы командной строки (%1), была временно добавлена в список под именем %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="940"/>
         <source>Could not add database %1 to list.</source>
         <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
@@ -3891,34 +3939,34 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
 <context>
     <name>MultiEditor</name>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="62"/>
+        <location filename="../multieditor/multieditor.cpp" line="63"/>
         <source>Null value</source>
         <comment>multieditor</comment>
         <translation>Значение Null</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="81"/>
+        <location filename="../multieditor/multieditor.cpp" line="82"/>
         <source>Configure editors for this data type</source>
         <translation>Настройте редакторы для этого типа данных</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="94"/>
+        <location filename="../multieditor/multieditor.cpp" line="95"/>
         <source>Open another tab</source>
         <translation>Открыть дополнительную вкладку</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="333"/>
+        <location filename="../multieditor/multieditor.cpp" line="334"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
         <translation>Модуль редактора данных &apos;%1&apos; не загружен, хотя указан для редактирования типа данных &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="426"/>
+        <location filename="../multieditor/multieditor.cpp" line="427"/>
         <source>Deleted</source>
         <comment>multieditor</comment>
         <translation>Удалено</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="428"/>
+        <location filename="../multieditor/multieditor.cpp" line="429"/>
         <source>Read only</source>
         <comment>multieditor</comment>
         <translation>Только для чтения</translation>
@@ -4027,47 +4075,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Новое ограничение</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="104"/>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
         <source>Primary Key</source>
         <comment>new constraint dialog</comment>
         <translation>Первичный ключ</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
         <source>Foreign Key</source>
         <comment>new constraint dialog</comment>
         <translation>Внешний ключ</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
         <source>Unique</source>
         <comment>new constraint dialog</comment>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="109"/>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
         <source>Check</source>
         <comment>new constraint dialog</comment>
         <translation>Проверка</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
         <source>Not NULL</source>
         <comment>new constraint dialog</comment>
         <translation>Не NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="122"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
         <source>Collate</source>
         <comment>new constraint dialog</comment>
         <translation>Сравнение</translation>
     </message>
     <message>
-        <location filename="../dialogs/newconstraintdialog.cpp" line="124"/>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
+        <source>Generated</source>
+        <comment>new constraint dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
         <source>Default</source>
         <comment>new constraint dialog</comment>
         <translation>Значение по умолчанию</translation>
@@ -4082,43 +4136,72 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="26"/>
-        <source>New updates are available!</source>
-        <translation>Доступны обновления!</translation>
+        <source>New version is available!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="70"/>
-        <source>Component</source>
-        <translation>Компонент</translation>
+        <location filename="../dialogs/newversiondialog.ui" line="43"/>
+        <source>0.0.0</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="75"/>
-        <source>Update version</source>
-        <translation>Новая версия</translation>
+        <location filename="../dialogs/newversiondialog.ui" line="53"/>
+        <source>Download new version!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/newversiondialog.ui" line="66"/>
+        <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/newversiondialog.ui" line="73"/>
+        <source>Open SQLiteStudio home page.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="86"/>
+        <source>Read release notes &amp;&amp; download package yourself.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/newversiondialog.ui" line="106"/>
+        <source>Just close this window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New updates are available!</source>
+        <translation type="vanished">Доступны обновления!</translation>
+    </message>
+    <message>
+        <source>Component</source>
+        <translation type="vanished">Компонент</translation>
+    </message>
+    <message>
+        <source>Update version</source>
+        <translation type="vanished">Новая версия</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/newversiondialog.ui" line="116"/>
         <source>Check for updates on startup</source>
         <translation>Проверять обновления при запуске</translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="96"/>
         <source>Update to new version!</source>
-        <translation>Обновить до новой версии!</translation>
+        <translation type="vanished">Обновить до новой версии!</translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="109"/>
         <source>This application will be closed and the update installer will start to download and install all the updates.</source>
-        <translation>Приложение будет закрыто, и установщик обновлений начнёт загрузку и установку обновлений.</translation>
+        <translation type="vanished">Приложение будет закрыто, и установщик обновлений начнёт загрузку и установку обновлений.</translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="116"/>
+        <location filename="../dialogs/newversiondialog.ui" line="93"/>
         <source>Not now.</source>
         <translation>Не сейчас.</translation>
     </message>
     <message>
-        <location filename="../dialogs/newversiondialog.ui" line="129"/>
         <source>Don&apos;t install the update and close this window.</source>
-        <translation>Не устанавливать обновление и закрыть данное окно.</translation>
+        <translation type="vanished">Не устанавливать обновление и закрыть данное окно.</translation>
     </message>
 </context>
 <context>
@@ -4162,38 +4245,38 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Количество заполняемых строк:</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="42"/>
+        <location filename="../dialogs/populatedialog.cpp" line="43"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
         <translation>Заполнить</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="57"/>
+        <location filename="../dialogs/populatedialog.cpp" line="58"/>
         <source>Abort</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="192"/>
+        <location filename="../dialogs/populatedialog.cpp" line="193"/>
         <source>Configure</source>
         <translation>Настроить</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="299"/>
+        <location filename="../dialogs/populatedialog.cpp" line="300"/>
         <source>Populating configuration for this column is invalid or incomplete.</source>
         <translation>Настройка заполнения для данного столбца некорректна или незавершена.</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="330"/>
+        <location filename="../dialogs/populatedialog.cpp" line="331"/>
         <source>Select database with table to populate</source>
         <translation>Выберите базу данных с таблицей для заполнения</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="331"/>
+        <location filename="../dialogs/populatedialog.cpp" line="332"/>
         <source>Select table to populate</source>
         <translation>Выберите таблицу для заполнения</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="332"/>
+        <location filename="../dialogs/populatedialog.cpp" line="333"/>
         <source>You have to select at least one column.</source>
         <translation>Необходимо выбрать хотя бы один столбец.</translation>
     </message>
@@ -4201,71 +4284,82 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="67"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
         <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
         <translation>Невозможно редактировать столцбы, являющиеся результатом составных конструкций %1 (те, которые включают ключевые слова %2, %3 и %4).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
         <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
         <translation>В механизме выполнения запросов возникли проблемы при корректном извлечении значений ROWID. Предположительно  это ошибка в приложении. Возможно стоит отправить отчёт об ошибке.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="72"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
         <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
         <translation>Запрошенный столбец является результатом SQL выражения, а не просто выбором столбца. Такие столбцы не могут быть отредактированы.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
         <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
         <translation>Запрошенный столбец принадлежит служебной таблице SQLite. Эти таблицы нельзя редактировать напрямую.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
         <source>Cannot edit results of query other than %1.</source>
         <translation>Невозможно редактировать результаты запросов, отличных от %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
         <source>Cannot edit columns that are result of aggregated %1 statements.</source>
         <translation>Невозможно редактировать столцбы, являющиеся результатом агрегирующих конструкций %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
         <source>Cannot edit columns that are result of %1 statement.</source>
         <translation>Невозможно редактировать столцбы, являющиеся результатом конструкции %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="82"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
         <source>Cannot edit columns that are result of common table expression statement (%1).</source>
         <translation>Невозможно редактировать столцбы, являющиеся результатом обобщённого табличного выражения (%1).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="357"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="393"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="411"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="447"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+        <source>Cannot edit table generated columns.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="384"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="438"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="474"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
         <translation>при конфликте: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="377"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="404"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
         <translation>ссылается на таблицу %1, столбец %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="471"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
         <translation>условие: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="464"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="491"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
         <translation>имя сравнения: %1</translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="506"/>
+        <source>generated column type: %1</source>
+        <comment>data view tooltip</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="21"/>
@@ -4323,12 +4417,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Открыть содержимое выбранной ячейки в отдельном редакторе</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="633"/>
+        <location filename="../dataview.cpp" line="640"/>
         <source>Total pages available: %1</source>
         <translation>Всего доступно страниц: %1</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="643"/>
+        <location filename="../dataview.cpp" line="650"/>
         <source>Total rows loaded: %1</source>
         <translation>Всего загружено строк: %1</translation>
     </message>
@@ -4510,6 +4604,11 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Открыть консоль CSS</translation>
     </message>
     <message>
+        <location filename="../mainwindow.h" line="52"/>
+        <source>Quit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
         <source>Cell text value editor</source>
         <translation>Редактор текстового значения чейки</translation>
@@ -4625,172 +4724,172 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Комментировать/раскомментировать</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="32"/>
+        <location filename="../uiutils.cpp" line="35"/>
         <source>All SQLite databases</source>
         <translation>Все базы данных SQLite</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="35"/>
+        <location filename="../uiutils.cpp" line="37"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="39"/>
         <location filename="../uiutils.cpp" line="41"/>
+        <location filename="../uiutils.cpp" line="43"/>
         <source>Database file</source>
         <translation>Файл баз данных</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="26"/>
+        <location filename="../windows/editorwindow.h" line="27"/>
         <source>SQL editor window</source>
         <translation>Окно редактора SQL</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="27"/>
+        <location filename="../windows/editorwindow.h" line="28"/>
         <source>Execute query</source>
         <translation>Выполнить запрос</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="28"/>
+        <location filename="../windows/editorwindow.h" line="29"/>
         <source>Execute &quot;%1&quot; query</source>
         <translation>Выполнить запрос &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="29"/>
+        <location filename="../windows/editorwindow.h" line="30"/>
         <source>Switch current working database to previous on the list</source>
         <translation>Переключить текущую базу данных на предыдущую в списке</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="30"/>
+        <location filename="../windows/editorwindow.h" line="31"/>
         <source>Switch current working database to next on the list</source>
         <translation>Переключить текущую базу данных на следующую в списке</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="31"/>
+        <location filename="../windows/editorwindow.h" line="32"/>
         <source>Go to next editor tab</source>
         <translation>Перейти на следующую вкладку редактора</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="32"/>
+        <location filename="../windows/editorwindow.h" line="33"/>
         <source>Go to previous editor tab</source>
         <translation>Перейти на предыдущую вкладку редактора</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="33"/>
+        <location filename="../windows/editorwindow.h" line="34"/>
         <source>Move keyboard input focus to the results view below</source>
         <translation>Переместить фокус ввода в окно результатов внизу</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="34"/>
+        <location filename="../windows/editorwindow.h" line="35"/>
         <source>Move keyboard input focus to the SQL editor above</source>
         <translation>Переместить фокус ввода в окно редактора SQL вверху</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="35"/>
+        <location filename="../windows/editorwindow.h" line="36"/>
         <source>Delete selected SQL history entries</source>
         <translation>Удалить выбранные записи из истории SQL-запросов</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="31"/>
+        <location filename="../windows/tablewindow.h" line="32"/>
         <source>Table window</source>
         <translation>Окно таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="32"/>
+        <location filename="../windows/tablewindow.h" line="33"/>
         <source>Refresh table structure</source>
         <translation>Обновить структуру таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="33"/>
+        <location filename="../windows/tablewindow.h" line="34"/>
         <source>Add new column</source>
         <translation>Добавить новый столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="34"/>
+        <location filename="../windows/tablewindow.h" line="35"/>
         <source>Edit selected column</source>
         <translation>Редактировать выбранный столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="35"/>
+        <location filename="../windows/tablewindow.h" line="36"/>
         <source>Delete selected column</source>
         <translation>Удалить выбранный столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="36"/>
+        <location filename="../windows/tablewindow.h" line="37"/>
         <source>Export table data</source>
         <translation>Экспортировать данные таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="37"/>
+        <location filename="../windows/tablewindow.h" line="38"/>
         <source>Import data to the table</source>
         <translation>Импортировать данные в таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="38"/>
+        <location filename="../windows/tablewindow.h" line="39"/>
         <source>Add new table constraint</source>
         <translation>Добавить новое ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="39"/>
+        <location filename="../windows/tablewindow.h" line="40"/>
         <source>Edit selected table constraint</source>
         <translation>Редактировать выбранное ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="40"/>
+        <location filename="../windows/tablewindow.h" line="41"/>
         <source>Delete selected table constraint</source>
         <translation>Удалить выбранное ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="41"/>
+        <location filename="../windows/tablewindow.h" line="42"/>
         <source>Refresh table index list</source>
         <translation>Обновить список индексов таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="42"/>
+        <location filename="../windows/tablewindow.h" line="43"/>
         <source>Add new index</source>
         <translation>Добавить новый индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="43"/>
+        <location filename="../windows/tablewindow.h" line="44"/>
         <source>Edit selected index</source>
         <translation>Редактировать выбранный индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="44"/>
+        <location filename="../windows/tablewindow.h" line="45"/>
         <source>Delete selected index</source>
         <translation>Удалить выбранный индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="45"/>
+        <location filename="../windows/tablewindow.h" line="46"/>
         <source>Refresh table trigger list</source>
         <translation>Обновить список триггеров таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="46"/>
+        <location filename="../windows/tablewindow.h" line="47"/>
         <location filename="../windows/viewwindow.h" line="25"/>
         <source>Add new trigger</source>
         <translation>Добавить новый триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="47"/>
+        <location filename="../windows/tablewindow.h" line="48"/>
         <location filename="../windows/viewwindow.h" line="26"/>
         <source>Edit selected trigger</source>
         <translation>Редактировать выбранный триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="48"/>
+        <location filename="../windows/tablewindow.h" line="49"/>
         <location filename="../windows/viewwindow.h" line="27"/>
         <source>Delete selected trigger</source>
         <translation>Удалить выбранный триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="49"/>
+        <location filename="../windows/tablewindow.h" line="50"/>
         <location filename="../windows/viewwindow.h" line="28"/>
         <source>Go to next tab</source>
         <translation>Перейти к следующей вкладке</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.h" line="50"/>
+        <location filename="../windows/tablewindow.h" line="51"/>
         <location filename="../windows/viewwindow.h" line="29"/>
         <source>Go to previous tab</source>
         <translation>Перейти к предыдущей вкладке</translation>
@@ -4910,133 +5009,133 @@ find next</source>
 <context>
     <name>SqlEditor</name>
     <message>
-        <location filename="../sqleditor.cpp" line="123"/>
+        <location filename="../sqleditor.cpp" line="124"/>
         <source>Cut</source>
         <comment>sql editor</comment>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="124"/>
+        <location filename="../sqleditor.cpp" line="125"/>
         <source>Copy</source>
         <comment>sql editor</comment>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="125"/>
+        <location filename="../sqleditor.cpp" line="126"/>
         <source>Paste</source>
         <comment>sql editor</comment>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="126"/>
+        <location filename="../sqleditor.cpp" line="127"/>
         <source>Delete</source>
         <comment>sql editor</comment>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="127"/>
+        <location filename="../sqleditor.cpp" line="128"/>
         <source>Select all</source>
         <comment>sql editor</comment>
         <translation>Выделить всё</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="128"/>
+        <location filename="../sqleditor.cpp" line="129"/>
         <source>Undo</source>
         <comment>sql editor</comment>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="129"/>
+        <location filename="../sqleditor.cpp" line="130"/>
         <source>Redo</source>
         <comment>sql editor</comment>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="130"/>
+        <location filename="../sqleditor.cpp" line="131"/>
         <source>Complete</source>
         <comment>sql editor</comment>
         <translation>Завершить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="131"/>
+        <location filename="../sqleditor.cpp" line="132"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
         <translation>Форматировать SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="132"/>
+        <location filename="../sqleditor.cpp" line="133"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
         <translation>Сохранить SQL в файл</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="133"/>
+        <location filename="../sqleditor.cpp" line="134"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
         <translation>Выбрать файл для сохранения SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="134"/>
+        <location filename="../sqleditor.cpp" line="135"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
         <translation>Загрузить SQL из файла</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="135"/>
+        <location filename="../sqleditor.cpp" line="136"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
         <translation>Удалить строчку</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="136"/>
+        <location filename="../sqleditor.cpp" line="137"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
         <translation>Переместить блок вниз</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="137"/>
+        <location filename="../sqleditor.cpp" line="138"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
         <translation>Переместить блок вверх</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="138"/>
+        <location filename="../sqleditor.cpp" line="139"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
         <translation>Копировать блок вниз</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="139"/>
+        <location filename="../sqleditor.cpp" line="140"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
         <translation>Копировать блок вверх</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="140"/>
+        <location filename="../sqleditor.cpp" line="141"/>
         <source>Find</source>
         <comment>sql editor</comment>
         <translation>Найти</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="141"/>
+        <location filename="../sqleditor.cpp" line="142"/>
         <source>Find next</source>
         <comment>sql editor</comment>
         <translation>Найти далее</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="142"/>
+        <location filename="../sqleditor.cpp" line="143"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
         <translation>Найти предыдущее</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="143"/>
+        <location filename="../sqleditor.cpp" line="144"/>
         <source>Replace</source>
         <comment>sql editor</comment>
         <translation>Заменить</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="144"/>
+        <location filename="../sqleditor.cpp" line="145"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
         <translation>Комментировать/раскомментировать</translation>
@@ -5057,32 +5156,32 @@ find next</source>
         <translation>Дополнение синтаксиса может быть использовано только после назначения корректной базы данных редактору SQL.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1053"/>
+        <location filename="../sqleditor.cpp" line="1031"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>Размер содержимого редактора SQL слишком велико, поэтому обнаружение ошибок и подсветка существующих объектов временно отключена.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1085"/>
+        <location filename="../sqleditor.cpp" line="1063"/>
         <source>Save to file</source>
         <translation>Сохранить в файл</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1097"/>
+        <location filename="../sqleditor.cpp" line="1075"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>Скрипты SQL (*.sql);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1098"/>
+        <location filename="../sqleditor.cpp" line="1076"/>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1108"/>
+        <location filename="../sqleditor.cpp" line="1086"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1313"/>
+        <location filename="../sqleditor.cpp" line="1291"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>Достигнут конец документа. Нажмите Найти снова для перезапуска поиска.</translation>
     </message>
@@ -5090,31 +5189,37 @@ find next</source>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
+        <source>Committing error:</source>
+        <comment>data view tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>Столбец:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="253"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>Тип данных:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="256"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="266"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>Таблица:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="286"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="296"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>Ограничения:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="426"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
         <translation>Невозможно загрузить данные ячейки, которая ссылается на уже закрытую базу данных.</translation>
     </message>
@@ -5122,32 +5227,37 @@ find next</source>
 <context>
     <name>SqlQueryItemDelegate</name>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="53"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="59"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="356"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="376"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="146"/>
+        <source>Load remaining part of the value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="171"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="177"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="608"/>
         <source>Cannot edit this cell. Details: %1</source>
         <translation>Невозможно редактировать данную ячейку. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="53"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
         <source>The row is marked for deletion.</source>
         <translation>Строка помечена для удаления.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="376"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="177"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
         <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>Структура этой таблицы изменилась с момента последней загрузки данных. Перезагрузите данные для продолжения.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="220"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="340"/>
         <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
         <translation>Редактирование значений большой длины непосредственно в табличном режиме не рекомендуется. Возможны проблемы с производительностью и удобством работы. Для работы с такими большими значениями рекомендуется использовать режим формы либо отдельное окно редактирования значения (доступно в контекстном меню по щелчку правой кнопкой мыши).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="368"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="494"/>
         <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
         <translation>Внешний ключ для столбца %2 имеет более чем %1 возможных значений. Это слишком много для отображения в выпадающем списке. Вам необходимо ввести значение вручную.</translation>
     </message>
@@ -5155,76 +5265,97 @@ find next</source>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="85"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="494"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="118"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
+        <source>Cannot execute query on undefined or invalid database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
+        <source>Cannot execute empty query.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
         <source>Uncommitted data</source>
         <translation>Неподтверждённые данные</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="119"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
         <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
         <translation>Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="376"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Невозможно подтвердить данные для ячейки, которая ссылается на уже закрытую базу данных.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="384"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation>Невозможно начать транзакцию в базе данных. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="430"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
         <source>An error occurred while committing the transaction: %1</source>
         <translation>При завершении транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="455"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>При отмене транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="650"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Попытка подтверждения данных для нередактируемой ячейки (которая тем не менее была изменена и ожидает подтверждения). Это программная ошибка. Пожалуйста, отправьте о ней отчёт.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="676"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
         <source>An error occurred while committing the data: %1</source>
         <translation>При подтверждении данных произошла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="987"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
         <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
         <translation>Количество строк на странице было уменьшено до %1 из-за большого количества столбцов (%2) в окне данных.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1165"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1222"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1405"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Ошибка при выполнении SQL запроса к базе данных &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1219"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1459"/>
         <source>Error while loading query results: %1</source>
         <translation>Ошибка при загрузке результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1677"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
         <source>Insert multiple rows</source>
         <translation>Вставить несколько строк</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1677"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
         <source>Number of rows to insert:</source>
         <translation>Количество вставляемых строк:</translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
+        <source>Delete rows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
+        <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
+Such deletion will be permanent. Are you sure you want to delete them?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5315,77 +5446,82 @@ find next</source>
         <translation>Удалить выбранную строку</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="161"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+        <source>Load full values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
         <source>Edit value in editor</source>
         <translation>Править содержимое в редакторе</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="161"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
         <source>Show value in a viewer</source>
         <translation>Показать значение в просмотрщике</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="179"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="180"/>
         <source>Generate query for selected cells</source>
         <translation>Сгенерировать запрос для выбранных ячеек</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="337"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="345"/>
         <source>No items selected to paste clipboard contents to.</source>
         <translation>Не выбраны элементы для вставки в них содержимого буфера обмена.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="343"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
         <source>Cannot paste data. Details: %1</source>
         <translation>Невозможно вставить данные. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="343"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
         <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>Структура по крайней мере одной используемой таблицы изменилась с момента последней загрузки данных. Перезагрузите данные, чтобы продолжить работу.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="413"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
         <source>Cannot paste to a cell. Details: %1</source>
         <translation>Невозможно вставить в ячейку. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="413"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
         <source>The row is marked for deletion.</source>
         <translation>Строка помечена для удаления.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="424"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="432"/>
         <source>Cannot paste to column %1. Details: %2</source>
         <translation>Невозможно вставить в столбец %1. Подробности: %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="442"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="450"/>
         <source>Go to referenced row in table &apos;%1&apos;</source>
         <translation>Перейти к связанной строке в таблице &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="454"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="462"/>
         <source>table &apos;%1&apos;</source>
         <translation>таблица &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="478"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="485"/>
         <source>Referenced row (%1)</source>
         <translation>Связанная строка (%1)</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="717"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="744"/>
         <source>Trim pasted text?</source>
         <translation>Обрезать вставленный текст?</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="718"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="745"/>
         <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
         <translation>В начале либо конце вставленного текста находятся непечатаемые символы. Обрезать их автоматически?</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="813"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="840"/>
         <source>Edit value</source>
         <translation>Править содержимое</translation>
     </message>
@@ -5393,12 +5529,12 @@ find next</source>
 <context>
     <name>SqlTableModel</name>
     <message>
-        <location filename="../datagrid/sqltablemodel.cpp" line="82"/>
+        <location filename="../datagrid/sqltablemodel.cpp" line="80"/>
         <source>Error while committing new row: %1</source>
         <translation>Ошибка при подтверждении новой строки: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqltablemodel.cpp" line="140"/>
+        <location filename="../datagrid/sqltablemodel.cpp" line="145"/>
         <source>Error while deleting row from table %1: %2</source>
         <translation>Ошибка при удалении строки из таблицы %1: %2</translation>
     </message>
@@ -5441,77 +5577,77 @@ find next</source>
         <translation>Зарегистрировать в следующих базах данных:</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="43"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
         <source>Extension manager window has uncommitted modifications.</source>
         <translation>В менеджере расширений имеются неподтверждённые изменения.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="64"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="65"/>
         <source>Extension manager</source>
         <translation>Менеджер расширений</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="69"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
         <source>Commit all extension changes</source>
         <translation>Подтвердить все изменения расширений</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
         <source>Rollback all extension changes</source>
         <translation>Откатить все изменения расширений</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="72"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
         <source>Add new extension</source>
         <translation>Добавить новое расширение</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
         <source>Remove selected extension</source>
         <translation>Удалить выбранное расширение</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="75"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="76"/>
         <source>Editing extensions manual</source>
         <translation>Руководство по редактированию расширений</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="235"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="236"/>
         <source>File with given path does not exist or is not readable.</source>
         <translation>Файл по указанному пути не существует или не читается.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="241"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="242"/>
         <source>Unable to load extension: %1</source>
         <translation>Невозможно загрузить расширение: %1</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="355"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="356"/>
         <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
         <translation>Некорректное имя инициализирующей функции. Имя функции может состоять только из английских букв, цифр и подчёркивания.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="424"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="425"/>
         <source>Dynamic link libraries (*.dll);;All files (*)</source>
         <translation>Динамически подключаемые библиотеки (*.dll);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="426"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="427"/>
         <source>Shared objects (*.so);;All files (*)</source>
         <translation>Общие объекты (*.so);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="428"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
         <source>Dynamic libraries (*.dylib);;All files (*)</source>
         <translation>Динамические библиотеки (*.dylib);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="430"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="431"/>
         <source>All files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="432"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="433"/>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
@@ -5524,12 +5660,12 @@ find next</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../statusfield.cpp" line="164"/>
+        <location filename="../statusfield.cpp" line="174"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../statusfield.cpp" line="171"/>
+        <location filename="../statusfield.cpp" line="181"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
@@ -5563,44 +5699,43 @@ find next</source>
         <translation>Внешняя таблица:</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="48"/>
         <source>SQLite 2 does not support foreign keys officially,
 but it&apos;s okay to use them anyway.</source>
-        <translation>SQLite 2 официально не поддерживает внешние ключи,
+        <translation type="vanished">SQLite 2 официально не поддерживает внешние ключи,
 но тем не менее их можно использовать.</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="62"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="42"/>
         <source>Columns</source>
         <translation>Столбцы</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="77"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="57"/>
         <source>Local column</source>
         <translation>Локальный столбец</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="90"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="70"/>
         <source>Foreign column</source>
         <translation>Внешний столбец</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="126"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="106"/>
         <source>Reactions</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="165"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="145"/>
         <source>Deferred foreign key</source>
         <translation>Отложенный внешний ключ</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="183"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="163"/>
         <source>Named constraint</source>
         <translation>Именованное ограничение</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="190"/>
+        <location filename="../constraints/tableforeignkeypanel.ui" line="170"/>
         <source>Constraint name</source>
         <translation>Имя ограничения</translation>
     </message>
@@ -5625,7 +5760,7 @@ but it&apos;s okay to use them anyway.</source>
         <translation>Введите имя ограничения.</translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.cpp" line="210"/>
+        <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
         <source>Foreign column</source>
         <comment>table constraints</comment>
         <translation>Внешний столбец</translation>
@@ -5704,19 +5839,19 @@ but it&apos;s okay to use them anyway.</source>
 <context>
     <name>TableStructureModel</name>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="301"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="291"/>
         <source>Name</source>
         <comment>table structure columns</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="303"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="293"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
         <translation>Тип данных</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="305"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="295"/>
         <source>Primary
 Key</source>
         <comment>table structure columns</comment>
@@ -5724,7 +5859,7 @@ Key</source>
 ключ</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="307"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="297"/>
         <source>Foreign
 Key</source>
         <comment>table structure columns</comment>
@@ -5732,19 +5867,19 @@ Key</source>
 ключ</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="309"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="299"/>
         <source>Unique</source>
         <comment>table structure columns</comment>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="311"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="301"/>
         <source>Check</source>
         <comment>table structure columns</comment>
         <translation>Проверка</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="313"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="303"/>
         <source>Not
 NULL</source>
         <comment>table structure columns</comment>
@@ -5752,13 +5887,19 @@ NULL</source>
 NULL</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="315"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="305"/>
         <source>Collate</source>
         <comment>table structure columns</comment>
         <translation>Сравнение</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="317"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="307"/>
+        <source>Generated</source>
+        <comment>table structure columns</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/tablestructuremodel.cpp" line="309"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
         <translation>Значение по умолчанию</translation>
@@ -5772,225 +5913,227 @@ NULL</translation>
         <translation>Структура</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="60"/>
+        <location filename="../windows/tablewindow.ui" line="70"/>
         <source>Table name:</source>
         <translation>Имя таблицы:</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="190"/>
-        <location filename="../windows/tablewindow.cpp" line="1614"/>
+        <location filename="../windows/tablewindow.ui" line="200"/>
+        <location filename="../windows/tablewindow.cpp" line="1613"/>
         <source>Data</source>
         <translation>Данные</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="207"/>
+        <location filename="../windows/tablewindow.ui" line="217"/>
         <source>Constraints</source>
         <translation>Ограничения</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="221"/>
+        <location filename="../windows/tablewindow.ui" line="231"/>
         <source>Indexes</source>
         <translation>Индексы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="250"/>
+        <location filename="../windows/tablewindow.ui" line="260"/>
         <source>Triggers</source>
         <translation>Триггеры</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.ui" line="282"/>
+        <location filename="../windows/tablewindow.ui" line="292"/>
         <source>DDL</source>
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="202"/>
+        <location filename="../windows/tablewindow.cpp" line="204"/>
         <source>Export table</source>
         <comment>table window</comment>
         <translation>Экспортировать таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="203"/>
+        <location filename="../windows/tablewindow.cpp" line="205"/>
         <source>Import data to table</source>
         <comment>table window</comment>
         <translation>Импортировать данные в таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="204"/>
+        <location filename="../windows/tablewindow.cpp" line="206"/>
         <source>Populate table</source>
         <comment>table window</comment>
         <translation>Заполнить таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="218"/>
+        <location filename="../windows/tablewindow.cpp" line="220"/>
         <source>Refresh structure</source>
         <comment>table window</comment>
         <translation>Обновить структуру</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="220"/>
+        <location filename="../windows/tablewindow.cpp" line="222"/>
         <source>Commit structure changes</source>
         <comment>table window</comment>
         <translation>Подтвердить изменения структуры</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="221"/>
+        <location filename="../windows/tablewindow.cpp" line="223"/>
         <source>Rollback structure changes</source>
         <comment>table window</comment>
         <translation>Откатить изменения структуры</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="222"/>
+        <location filename="../windows/tablewindow.cpp" line="224"/>
         <source>Add column</source>
         <comment>table window</comment>
         <translation>Добавить столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="223"/>
+        <location filename="../windows/tablewindow.cpp" line="225"/>
         <source>Edit column</source>
         <comment>table window</comment>
         <translation>Редактировать столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="224"/>
-        <location filename="../windows/tablewindow.cpp" line="315"/>
+        <location filename="../windows/tablewindow.cpp" line="226"/>
+        <location filename="../windows/tablewindow.cpp" line="320"/>
         <source>Delete column</source>
         <comment>table window</comment>
         <translation>Удалить столбец</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="225"/>
+        <location filename="../windows/tablewindow.cpp" line="227"/>
         <source>Move column up</source>
         <comment>table window</comment>
         <translation>Переместить столбец вверх</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="226"/>
+        <location filename="../windows/tablewindow.cpp" line="228"/>
         <source>Move column down</source>
         <comment>table window</comment>
         <translation>Переместить столбец вниз</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="232"/>
+        <location filename="../windows/tablewindow.cpp" line="237"/>
         <source>Create similar table</source>
         <comment>table window</comment>
         <translation>Создать подобную таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="233"/>
+        <location filename="../windows/tablewindow.cpp" line="238"/>
         <source>Reset autoincrement value</source>
         <comment>table window</comment>
         <translation>Сбросить счётчик автоинкремента</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="236"/>
+        <location filename="../windows/tablewindow.cpp" line="241"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
         <translation>Добавить ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="237"/>
+        <location filename="../windows/tablewindow.cpp" line="242"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
         <translation>Редактировать ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="238"/>
+        <location filename="../windows/tablewindow.cpp" line="243"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
         <translation>Удалить ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="239"/>
+        <location filename="../windows/tablewindow.cpp" line="244"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
         <translation>Переместить ограничение на таблицу вверх</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="240"/>
+        <location filename="../windows/tablewindow.cpp" line="245"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
         <translation>Переместить ограничение на таблицу вниз</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="242"/>
+        <location filename="../windows/tablewindow.cpp" line="247"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
         <translation>Добавить первичный ключ таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="243"/>
+        <location filename="../windows/tablewindow.cpp" line="248"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
         <translation>Добавить внешний ключ таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="244"/>
+        <location filename="../windows/tablewindow.cpp" line="249"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
         <translation>Добавить табличное ограничение на уникальность</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="245"/>
+        <location filename="../windows/tablewindow.cpp" line="250"/>
         <source>Add table check constraint</source>
         <comment>table window</comment>
         <translation>Добавить проверочное ограничение на таблицу</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="263"/>
+        <location filename="../windows/tablewindow.cpp" line="268"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
         <translation>Обновить список индексов</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="265"/>
+        <location filename="../windows/tablewindow.cpp" line="230"/>
+        <location filename="../windows/tablewindow.cpp" line="270"/>
         <source>Create index</source>
         <comment>table window</comment>
         <translation>Создать индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="266"/>
+        <location filename="../windows/tablewindow.cpp" line="271"/>
         <source>Edit index</source>
         <comment>table window</comment>
         <translation>Редактировать индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="267"/>
+        <location filename="../windows/tablewindow.cpp" line="272"/>
         <source>Delete index</source>
         <comment>table window</comment>
         <translation>Удалить индекс</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="273"/>
+        <location filename="../windows/tablewindow.cpp" line="278"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
         <translation>Обновить список триггеров</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="275"/>
+        <location filename="../windows/tablewindow.cpp" line="231"/>
+        <location filename="../windows/tablewindow.cpp" line="280"/>
         <source>Create trigger</source>
         <comment>table window</comment>
         <translation>Создать триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="276"/>
+        <location filename="../windows/tablewindow.cpp" line="281"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
         <translation>Редактировать триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="277"/>
+        <location filename="../windows/tablewindow.cpp" line="282"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
         <translation>Удалить триггер</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="314"/>
+        <location filename="../windows/tablewindow.cpp" line="319"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Вы действительно хотите удалить столбец &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="343"/>
+        <location filename="../windows/tablewindow.cpp" line="348"/>
         <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
         <comment>table window</comment>
@@ -5998,214 +6141,219 @@ Would you like to proceed?</source>
 Вы хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="345"/>
+        <location filename="../windows/tablewindow.cpp" line="350"/>
         <source>Table modification</source>
         <comment>table window</comment>
         <translation>Изменение таблицы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="484"/>
+        <location filename="../windows/tablewindow.cpp" line="489"/>
         <source>Could not load data for table %1. Error details: %2</source>
         <translation>Невозможно загрузить данные таблицы %1. Подробности ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="603"/>
+        <location filename="../windows/tablewindow.cpp" line="601"/>
         <source>Could not process the %1 table correctly. Unable to open a table window.</source>
         <translation>Не удалось корректно обработать таблицу %1. Невозможно открыть окно таблицы.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="658"/>
+        <location filename="../windows/tablewindow.cpp" line="630"/>
+        <source>Database</source>
+        <translation type="unfinished">База данных</translation>
+    </message>
+    <message>
+        <location filename="../windows/tablewindow.cpp" line="662"/>
         <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
         <translation>Невозможно восстановить окно %1, так как в сессии для этого окна не была сохранена база данных или таблица.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="664"/>
+        <location filename="../windows/tablewindow.cpp" line="668"/>
         <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как в сессии для этого окна не была сохранена база данных или таблица.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="671"/>
+        <location filename="../windows/tablewindow.cpp" line="675"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="680"/>
+        <location filename="../windows/tablewindow.cpp" line="684"/>
         <source>Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как таблица %2 не существует в базе данных %3.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="705"/>
-        <location filename="../windows/tablewindow.cpp" line="707"/>
+        <location filename="../windows/tablewindow.cpp" line="709"/>
+        <location filename="../windows/tablewindow.cpp" line="711"/>
         <source>New table %1</source>
         <translation>Новая таблица %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="834"/>
+        <location filename="../windows/tablewindow.cpp" line="838"/>
         <source>Committed changes for table &apos;%1&apos; successfully.</source>
         <translation>Изменения в таблицу &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="838"/>
+        <location filename="../windows/tablewindow.cpp" line="842"/>
         <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="872"/>
+        <location filename="../windows/tablewindow.cpp" line="876"/>
         <source>Could not commit table structure. Error message: %1</source>
         <comment>table window</comment>
         <translation>Невозможно подтвердить структуру таблицы. Сообщение об ошибке: %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="894"/>
+        <location filename="../windows/tablewindow.cpp" line="898"/>
         <source>Reset autoincrement</source>
         <translation>Сброс счётчика автоинкремента</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="894"/>
+        <location filename="../windows/tablewindow.cpp" line="898"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Вы действительно хотите сбросить счётчик автоинкремента у таблицы &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="901"/>
+        <location filename="../windows/tablewindow.cpp" line="905"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>При попытке сброса счётчика автоинкремента у таблицы &apos;%1&apos; произошла ошибка: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="903"/>
+        <location filename="../windows/tablewindow.cpp" line="907"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="991"/>
+        <location filename="../windows/tablewindow.cpp" line="995"/>
         <source>Empty name</source>
         <translation>Пустое имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="991"/>
+        <location filename="../windows/tablewindow.cpp" line="995"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation>SQLite позволяет таблице иметь пустое имя, хотя это не рекомендуется.
 Вы действительно хотите создать таблицу с пустым именем?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1000"/>
+        <location filename="../windows/tablewindow.cpp" line="1004"/>
         <source>Cannot create a table without at least one column.</source>
         <translation>Невозможно создать таблицу без хотя бы одного столбца.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1026"/>
+        <location filename="../windows/tablewindow.cpp" line="1030"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation>Невозможно создать таблицу %1, если не определён первичный ключ. Отключите %2, либо определите первичный ключ.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1033"/>
+        <location filename="../windows/tablewindow.cpp" line="1037"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation>Невозможно использовать автоинкремент первичного ключа при использовании оператора %1. Отключите либо %2, либо автоинкремент первичного ключа.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1208"/>
+        <location filename="../windows/tablewindow.cpp" line="1214"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Вы действительно хотите удалить ограничение на таблицу &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1209"/>
+        <location filename="../windows/tablewindow.cpp" line="1215"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>Удалить ограничение</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1264"/>
+        <location filename="../windows/tablewindow.cpp" line="1270"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1277"/>
+        <location filename="../windows/tablewindow.cpp" line="1283"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1310"/>
+        <location filename="../windows/tablewindow.cpp" line="1316"/>
         <source>Uncommitted changes</source>
         <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1311"/>
+        <location filename="../windows/tablewindow.cpp" line="1317"/>
         <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
 Подтвердить структуру таблицы или вернуться на вкладку структуры?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1314"/>
+        <location filename="../windows/tablewindow.cpp" line="1320"/>
         <source>Go back to structure tab</source>
         <translation>Вернуться на вкладку структуры</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1314"/>
+        <location filename="../windows/tablewindow.cpp" line="1320"/>
         <source>Commit modifications and browse data.</source>
         <translation>Подтвердить изменения и перейти к данным.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1495"/>
+        <location filename="../windows/tablewindow.cpp" line="1501"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1496"/>
+        <location filename="../windows/tablewindow.cpp" line="1502"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1497"/>
+        <location filename="../windows/tablewindow.cpp" line="1503"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>Столбцы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1498"/>
+        <location filename="../windows/tablewindow.cpp" line="1504"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation>Условие для частичного индекса</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1552"/>
+        <location filename="../windows/tablewindow.cpp" line="1551"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1553"/>
+        <location filename="../windows/tablewindow.cpp" line="1552"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Событие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1554"/>
+        <location filename="../windows/tablewindow.cpp" line="1553"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Условие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1555"/>
+        <location filename="../windows/tablewindow.cpp" line="1554"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Подробности</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1656"/>
+        <location filename="../windows/tablewindow.cpp" line="1655"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1658"/>
+        <location filename="../windows/tablewindow.cpp" line="1657"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1660"/>
+        <location filename="../windows/tablewindow.cpp" line="1659"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
@@ -6303,33 +6451,33 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="159"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="153"/>
         <source>On view:</source>
         <translation>Для представления:</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="183"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="177"/>
         <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
         <translation>Не удалось корректно обработать триггер %1. Невозможно открыть окно триггера.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="353"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="345"/>
         <source>Enter a valid condition.</source>
         <translation>Введите корректное условие.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="354"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="346"/>
         <source>Enter a valid trigger code.</source>
         <translation>Введите корректный код триггера.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="428"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="418"/>
         <source>Error</source>
         <comment>trigger dialog</comment>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="428"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="418"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>При выполнении конструкций SQL произошла ошибка:
@@ -6367,49 +6515,49 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>Запрос</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="60"/>
+        <location filename="../windows/viewwindow.ui" line="70"/>
         <source>View name:</source>
         <translation>Имя представления:</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="113"/>
+        <location filename="../windows/viewwindow.ui" line="123"/>
         <source>Output column names</source>
         <translation>Отображаемые имена столбцов</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="160"/>
-        <location filename="../windows/viewwindow.cpp" line="845"/>
+        <location filename="../windows/viewwindow.ui" line="170"/>
+        <location filename="../windows/viewwindow.cpp" line="849"/>
         <source>Data</source>
         <translation>Данные</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="170"/>
+        <location filename="../windows/viewwindow.ui" line="180"/>
         <source>Triggers</source>
         <translation>Триггеры</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="202"/>
+        <location filename="../windows/viewwindow.ui" line="212"/>
         <source>DDL</source>
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="108"/>
-        <location filename="../windows/viewwindow.cpp" line="114"/>
+        <location filename="../windows/viewwindow.cpp" line="109"/>
+        <location filename="../windows/viewwindow.cpp" line="115"/>
         <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как в сессии для этого окна не была сохранена база данных или представление.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="121"/>
+        <location filename="../windows/viewwindow.cpp" line="122"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="127"/>
+        <location filename="../windows/viewwindow.cpp" line="128"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно открыть базу данных %2.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="136"/>
+        <location filename="../windows/viewwindow.cpp" line="137"/>
         <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
         <translation>Невозможно восстановить окно &apos;%1&apos;, так как представление %2 не существует в базе данных %3.</translation>
     </message>
@@ -6420,220 +6568,230 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>Новое представление %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="320"/>
+        <location filename="../windows/viewwindow.cpp" line="275"/>
+        <source>Database</source>
+        <translation type="unfinished">База данных</translation>
+    </message>
+    <message>
+        <location filename="../windows/viewwindow.cpp" line="328"/>
         <source>Refresh the view</source>
         <comment>view window</comment>
         <translation>Обновить представление</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="322"/>
+        <location filename="../windows/viewwindow.cpp" line="330"/>
         <source>Commit the view changes</source>
         <comment>view window</comment>
         <translation>Подтвердить изменения представления</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="323"/>
+        <location filename="../windows/viewwindow.cpp" line="331"/>
         <source>Rollback the view changes</source>
         <comment>view window</comment>
         <translation>Откатить изменения представления</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="327"/>
+        <location filename="../windows/viewwindow.cpp" line="335"/>
         <source>Explicit column names</source>
         <translation>Явные имена столбцов</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="333"/>
+        <location filename="../windows/viewwindow.cpp" line="341"/>
         <source>Generate output column names automatically basing on result columns of the view.</source>
         <translation>Сгенерировать отображаемые имена столбцов на основе результирующих столбцов представления.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="334"/>
+        <location filename="../windows/viewwindow.cpp" line="342"/>
         <source>Add column</source>
         <comment>view window</comment>
         <translation>Добавить столбец</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="335"/>
+        <location filename="../windows/viewwindow.cpp" line="343"/>
         <source>Edit column</source>
         <comment>view window</comment>
         <translation>Редактировать столбец</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="336"/>
+        <location filename="../windows/viewwindow.cpp" line="344"/>
         <source>Delete column</source>
         <comment>view window</comment>
         <translation>Удалить столбец</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="337"/>
+        <location filename="../windows/viewwindow.cpp" line="345"/>
         <source>Move column up</source>
         <comment>view window</comment>
         <translation>Переместить столбец вверх</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="338"/>
+        <location filename="../windows/viewwindow.cpp" line="346"/>
         <source>Move column down</source>
         <comment>view window</comment>
         <translation>Переместить столбец вниз</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="343"/>
+        <location filename="../windows/viewwindow.cpp" line="351"/>
         <source>Refresh trigger list</source>
         <comment>view window</comment>
         <translation>Обновить список триггеров</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="345"/>
+        <location filename="../windows/viewwindow.cpp" line="353"/>
         <source>Create new trigger</source>
         <comment>view window</comment>
         <translation>Создать новый триггер</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="346"/>
+        <location filename="../windows/viewwindow.cpp" line="354"/>
         <source>Edit selected trigger</source>
         <comment>view window</comment>
         <translation>Редактировать выбранный триггер</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="347"/>
+        <location filename="../windows/viewwindow.cpp" line="355"/>
         <source>Delete selected trigger</source>
         <comment>view window</comment>
         <translation>Удалить выбранный триггер</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="368"/>
+        <location filename="../windows/viewwindow.cpp" line="376"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="370"/>
+        <location filename="../windows/viewwindow.cpp" line="378"/>
         <source>View window &quot;%1&quot; has uncommitted data.</source>
         <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="372"/>
+        <location filename="../windows/viewwindow.cpp" line="380"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="569"/>
+        <location filename="../windows/viewwindow.cpp" line="576"/>
         <source>Could not load data for view %1. Error details: %2</source>
         <translation>Невозможно загрузить данные представления %1. Подробности ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="581"/>
+        <location filename="../windows/viewwindow.cpp" line="588"/>
         <source>Uncommitted changes</source>
         <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="582"/>
+        <location filename="../windows/viewwindow.cpp" line="589"/>
         <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура представления не подтверждена.
 Подтвердить структуру представления или вернуться на вкладку структуры?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="585"/>
+        <location filename="../windows/viewwindow.cpp" line="592"/>
         <source>Go back to structure tab</source>
         <translation>Вернуться на вкладку структуры</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="585"/>
+        <location filename="../windows/viewwindow.cpp" line="592"/>
         <source>Commit modifications and browse data.</source>
         <translation>Подтвердить изменения и перейти к данным.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="637"/>
+        <location filename="../windows/viewwindow.cpp" line="639"/>
+        <source>View &apos;%1&apos; was committed successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/viewwindow.cpp" line="641"/>
         <source>Committed changes for view &apos;%1&apos; successfully.</source>
         <translation>Изменения в представление &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="639"/>
+        <location filename="../windows/viewwindow.cpp" line="643"/>
         <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="650"/>
+        <location filename="../windows/viewwindow.cpp" line="660"/>
         <source>Could not commit view changes. Error message: %1</source>
         <comment>view window</comment>
         <translation>Невозможно подтвердить изменения представления. Сообщение об ошибке: %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="792"/>
+        <location filename="../windows/viewwindow.cpp" line="803"/>
         <source>Override columns</source>
         <translation>Перезапись столбцов</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="792"/>
+        <location filename="../windows/viewwindow.cpp" line="803"/>
         <source>Currently defined columns will be overriden. Do you want to continue?</source>
         <translation>Заданные столбцы будут перезаписаны. Вы хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="815"/>
+        <location filename="../windows/viewwindow.cpp" line="826"/>
         <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
         <translation>Невозможно определить столбцы, возвращаемые представлением. Вероятно запрос неполон или содержит ошибки.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="876"/>
+        <location filename="../windows/viewwindow.cpp" line="880"/>
         <source>Name</source>
         <comment>view window triggers</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="877"/>
+        <location filename="../windows/viewwindow.cpp" line="881"/>
         <source>Instead of</source>
         <comment>view window triggers</comment>
         <translation>Вместо</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="878"/>
+        <location filename="../windows/viewwindow.cpp" line="882"/>
         <source>Condition</source>
         <comment>view window triggers</comment>
         <translation>Условие</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="879"/>
+        <location filename="../windows/viewwindow.cpp" line="883"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Подробности</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="919"/>
+        <location filename="../windows/viewwindow.cpp" line="923"/>
         <source>Could not process the %1 view correctly. Unable to open a view window.</source>
         <translation>Не удалось корректно обработать представление %1. Невозможно открыть окно представления.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="966"/>
+        <location filename="../windows/viewwindow.cpp" line="969"/>
         <source>Empty name</source>
         <translation>Пустое имя</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="966"/>
+        <location filename="../windows/viewwindow.cpp" line="969"/>
         <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
         <translation>SQLite позволяет представлению иметь пустое имя, хотя это не рекомендуется.
 Вы действительно хотите создать представление с пустым именем?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="978"/>
+        <location filename="../windows/viewwindow.cpp" line="981"/>
         <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
         <translation>Невозможно проанализировать структуру конструкции SELECT. Пожалуйста, исправьте запрос и повторите попытку.
 Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="986"/>
+        <location filename="../windows/viewwindow.cpp" line="989"/>
         <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
         <translation>Невозможно изменить представление из-за внутренней ошибки SQLiteStudio. Пожалуйста, сообщите о ней!</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1012"/>
+        <location filename="../windows/viewwindow.cpp" line="1015"/>
         <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
         <translation>Невозможно корректно проанализировать структуру представления для выполнения. Это ошибка SQLiteStudio. Пожалуйста, сообщите о ней.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1025"/>
+        <location filename="../windows/viewwindow.cpp" line="1028"/>
         <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
         <comment>view window</comment>
@@ -6641,7 +6799,7 @@ Would you like to proceed?</source>
 Вы хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1027"/>
+        <location filename="../windows/viewwindow.cpp" line="1030"/>
         <source>View modification</source>
         <comment>view window</comment>
         <translation>Изменение представления</translation>
