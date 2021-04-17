@@ -29,42 +29,42 @@
       <translation>重置缩放</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="100"/>
+      <location filename="../multieditorimage.cpp" line="104"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
       <translation>图片 (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="101"/>
+      <location filename="../multieditorimage.cpp" line="105"/>
       <source>Open image</source>
       <translation>打开图片</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="110"/>
+      <location filename="../multieditorimage.cpp" line="114"/>
       <source>Could not open file %1 for reading.</source>
       <translation>无法以读模式打开文件 %1。</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="130"/>
+      <location filename="../multieditorimage.cpp" line="134"/>
       <source>All files (*)</source>
       <translation>所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="132"/>
+      <location filename="../multieditorimage.cpp" line="136"/>
       <source>Save image</source>
       <translation>保存图片</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="143"/>
+      <location filename="../multieditorimage.cpp" line="155"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
       <translation>试图以与原始格式 (%2) 不同的格式 (%1) 保存图像，但应用程序转换失败。 图像将以未改变的格式 (%3) 保存在给定名称下 (%4)</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="154"/>
+      <location filename="../multieditorimage.cpp" line="166"/>
       <source>Could not open file %1 for writting.</source>
       <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="159"/>
+      <location filename="../multieditorimage.cpp" line="171"/>
       <source>Could not write image into the file %1</source>
       <translation>无法将图像写入文件 %1</translation>
     </message>
@@ -72,7 +72,7 @@
   <context>
     <name>MultiEditorImagePlugin</name>
     <message>
-      <location filename="../multieditorimage.cpp" line="250"/>
+      <location filename="../multieditorimage.cpp" line="262"/>
       <source>Image</source>
       <translation>图片</translation>
     </message>
