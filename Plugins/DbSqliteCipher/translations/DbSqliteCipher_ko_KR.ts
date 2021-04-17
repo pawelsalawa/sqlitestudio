@@ -4,55 +4,33 @@
   <context>
     <name>DbSqliteCipher</name>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="43"/>
+      <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Password (key)</source>
       <translation type="unfinished">Password (key)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="44"/>
+      <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
       <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="45"/>
+      <location filename="../dbsqlitecipher.cpp" line="32"/>
       <source>Encryption password</source>
       <translation type="unfinished">Encryption password</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="50"/>
-      <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <location filename="../dbsqlitecipher.cpp" line="37"/>
+      <source>Cipher configuration (optional)</source>
+      <translation type="unfinished">Cipher configuration (optional)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="51"/>
-      <source>Must be the same as the one used when creating the database. %1 is the default one.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default one.</translation>
-    </message>
-    <message>
-      <location filename="../dbsqlitecipher.cpp" line="59"/>
-      <source>KDF iterations</source>
-      <translation type="unfinished">KDF iterations</translation>
-    </message>
-    <message>
-      <location filename="../dbsqlitecipher.cpp" line="63"/>
-      <location filename="../dbsqlitecipher.cpp" line="72"/>
-      <source>Must be the same as the one used when creating the database. %1 is the default.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default.</translation>
-    </message>
-    <message>
-      <location filename="../dbsqlitecipher.cpp" line="68"/>
-      <source>Cipher page size</source>
-      <translation type="unfinished">Cipher page size</translation>
-    </message>
-    <message>
-      <location filename="../dbsqlitecipher.cpp" line="77"/>
-      <source>1.1 compatibility</source>
-      <translation type="unfinished">1.1 compatibility</translation>
-    </message>
-    <message>
-      <location filename="../dbsqlitecipher.cpp" line="79"/>
-      <source>Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</source>
-      <translation type="unfinished">Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</translation>
+      <location filename="../dbsqlitecipher.cpp" line="38"/>
+      <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
+They will be executed upon each opening of the database.
+See documentation for SQLCipher for details.</source>
+      <translation type="unfinished">PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
+They will be executed upon each opening of the database.
+See documentation for SQLCipher for details.</translation>
     </message>
   </context>
 </TS>
