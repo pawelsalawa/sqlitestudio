@@ -76,7 +76,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="45"/>
       <source>Operating system managed distribution.</source>
-      <translation type="unfinished">Operating system managed distribution.</translation>
+      <translation>הפצה מנוהלת מערכת הפעלה.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="89"/>
@@ -99,7 +99,7 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
       <source>Please provide values for query parameters</source>
-      <translation type="unfinished">Please provide values for query parameters</translation>
+      <translation>נא לספק ערכים למשתני השאילתה</translation>
     </message>
   </context>
   <context>
@@ -142,7 +142,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="53"/>
       <source>Collations editor</source>
-      <translation>עורך התנגשויות</translation>
+      <translation>עורך אסופות,</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
@@ -152,12 +152,12 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
       <source>Rollback all collation changes</source>
-      <translation type="unfinished">Rollback all collation changes</translation>
+      <translation>הסגת כל שינויי האסופה</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Create new collation</source>
-      <translation type="unfinished">Create new collation</translation>
+      <translation>יצירת אסופה חדשה</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="62"/>
