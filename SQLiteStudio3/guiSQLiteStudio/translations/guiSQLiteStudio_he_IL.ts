@@ -6,7 +6,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="14"/>
       <source>About SQLiteStudio and licenses</source>
-      <translation type="unfinished">About SQLiteStudio and licenses</translation>
+      <translation>אודות QLiteStudio ורישיונות</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
@@ -46,7 +46,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
       <source>Configuration directory</source>
-      <translation type="unfinished">Configuration directory</translation>
+      <translation>מחיצת תצור</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="121"/>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="166"/>
       <source>Implementation code:</source>
-      <translation type="unfinished">Implementation code:</translation>
+      <translation>קוד יישום:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
@@ -137,12 +137,12 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>שפת יישום:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="53"/>
       <source>Collations editor</source>
-      <translation type="unfinished">Collations editor</translation>
+      <translation>עורך התנגשויות</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>ערכך מחולל</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -624,7 +624,7 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>בהתנגשות:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
@@ -704,7 +704,7 @@
       <location filename="../completer/completerwindow.cpp" line="191"/>
       <source>Binary data</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Binary data</translation>
+      <translation>נתונים בינאריים</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="193"/>
@@ -745,7 +745,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="118"/>
       <source>Look &amp; feel</source>
-      <translation type="unfinished">Look &amp; feel</translation>
+      <translation>מראה ותחושה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
