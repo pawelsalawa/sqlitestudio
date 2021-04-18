@@ -147,7 +147,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
       <source>Commit all collation changes</source>
-      <translation type="unfinished">Commit all collation changes</translation>
+      <translation>קִבּוּעַ קיבוע כל שינויי האסופה</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
