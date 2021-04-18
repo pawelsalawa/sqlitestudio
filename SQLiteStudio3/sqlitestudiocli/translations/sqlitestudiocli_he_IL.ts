@@ -270,7 +270,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation>הצגת רשימת ספריות וקבצים במחיצת העבודה הנוכחית</translation>
+      <translation>הצגת מחיצות וקבצים במחיצת העבודה הנוכחית</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
