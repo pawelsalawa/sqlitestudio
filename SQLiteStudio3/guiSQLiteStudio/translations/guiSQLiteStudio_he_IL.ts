@@ -147,7 +147,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
       <source>Commit all collation changes</source>
-      <translation>קִבּוּעַ קיבוע כל שינויי האסופה</translation>
+      <translation>קִבּוּעַ כל שינויי האסופה</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
@@ -1539,7 +1539,7 @@
       <location filename="../dataview.cpp" line="236"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
-      <translation type="unfinished">Commit changes for selected cells</translation>
+      <translation>קיבוע שינויים לתאים שנבחרו</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="237"/>
@@ -2896,7 +2896,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../formview.cpp" line="247"/>
       <source>Commit row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Commit row</translation>
+      <translation>לקבע כעת</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="248"/>
@@ -4955,7 +4955,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Committing error:</translation>
+      <translation>שגיאת קיבוע:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
@@ -5167,7 +5167,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Commit</source>
-      <translation type="unfinished">Commit</translation>
+      <translation>קיבוע</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
