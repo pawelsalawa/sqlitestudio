@@ -2029,7 +2029,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="180"/>
       <source>Open file&apos;s directory</source>
-      <translation type="unfinished">Open file&apos;s directory</translation>
+      <translation>פתיחת מחיצת קבצים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="181"/>
@@ -2812,12 +2812,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="239"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
-      <translation type="unfinished">Path you provided is an existing directory. You cannot overwrite it.</translation>
+      <translation>הנתיב שסופק מפנה למחיצה קיימת, לא ניתן לדרוס אותה.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="245"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
-      <translation type="unfinished">The directory &apos;%1&apos; does not exist.</translation>
+      <translation>מחיצה „%1” לא קיימת.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="251"/>
@@ -3196,7 +3196,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.cpp" line="187"/>
       <source>Path you provided is a directory. A regular file is required.</source>
-      <translation type="unfinished">Path you provided is a directory. A regular file is required.</translation>
+      <translation>הנתיב שסופק מפנה למחיצה קיימת, נדרש קובץ רגיל.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="366"/>
@@ -5177,7 +5177,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit selected cells</source>
-      <translation type="unfinished">Commit selected cells</translation>
+      <translation>קיבוע התאים שנבחרו</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
@@ -6033,7 +6033,7 @@ Are you sure you want to create a table with blank name?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>שנויים לא מקובעים</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1317"/>
