@@ -203,12 +203,12 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation>שם ארגון:</translation>
+      <translation>שם אוסף:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
       <source>Named constraint:</source>
-      <translation>אילוץ בעל שם:</translation>
+      <translation>אילוץ שם:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="80"/>
@@ -218,7 +218,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation>הזנת שם רגון.</translation>
+      <translation>הזנת שם איסוף.</translation>
     </message>
   </context>
   <context>
@@ -326,7 +326,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation>ארגון</translation>
+      <translation>איסוף</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
@@ -418,7 +418,7 @@
       <location filename="../dialogs/columndialog.cpp" line="98"/>
       <source>Add a collate constraint</source>
       <comment>column dialog</comment>
-      <translation>הוספת אילוץ ארגון</translation>
+      <translation>הוספת אילוץ איסוף</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="99"/>
@@ -1431,7 +1431,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>איסוף</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="200"/>
@@ -3898,7 +3898,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
       <source>Collate</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>איסוף</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
@@ -5575,7 +5575,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="87"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>איסוף</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="94"/>
@@ -5648,7 +5648,7 @@ NULL</translation>
       <location filename="../windows/tablestructuremodel.cpp" line="305"/>
       <source>Collate</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>איסוף</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
