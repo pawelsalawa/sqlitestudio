@@ -84,7 +84,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="121"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation>לא ניתן לבצע קומיט של הנתונים המוסבים לקובץ תצורה חדש: %1</translation>
+      <translation>לא ניתן לקבע את הנתונים המוסבים לקובץ תצורה חדש: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="165"/>
