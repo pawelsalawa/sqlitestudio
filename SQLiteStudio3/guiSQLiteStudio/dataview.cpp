@@ -564,6 +564,9 @@ void DataView::syncFilterScrollPosition()
 void DataView::resizeFilter(int section, int oldSize, int newSize)
 {
     UNUSED(oldSize);
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
     if (filterInputs.isEmpty())
         return;
 
@@ -938,6 +941,9 @@ void DataView::formViewFocusFirstEditor()
 
 void DataView::recreateFilterInputs()
 {
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
     qApp->processEvents();
 
     for (QLineEdit* edit : filterInputs)
