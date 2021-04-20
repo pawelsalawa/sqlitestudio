@@ -1,6 +1,6 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3350400'
+    SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
     QT_ARCH: 'win64_mingw81'
     MINGW_DIR: ../Qt/Tools/mingw810_64
