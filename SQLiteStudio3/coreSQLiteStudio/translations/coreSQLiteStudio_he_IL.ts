@@ -51,7 +51,7 @@
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
+      <translation>לא ניתן היה לקבע תנועת מסד נתונים. פרטים:%1</translation>
     </message>
   </context>
   <context>
@@ -142,7 +142,7 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>לא ניתן היה לקבע תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
     </message>
   </context>
   <context>
@@ -420,7 +420,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../importworker.cpp" line="53"/>
       <source>Could not commit transaction for imported data: %1</source>
-      <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
+      <translation>לא ניתן לקבע תנועת לנתונים המיובאים: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="100"/>
@@ -753,7 +753,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../populateworker.cpp" line="80"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
+      <translation>לא ניתן לקבע תנועות לאחר אכלוס טבלה. פרטי שגיאה: %1</translation>
     </message>
   </context>
   <context>
