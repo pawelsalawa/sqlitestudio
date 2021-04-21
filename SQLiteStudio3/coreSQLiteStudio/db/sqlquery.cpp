@@ -1,6 +1,7 @@
 #include "sqlquery.h"
 #include "db/sqlerrorcodes.h"
 #include "common/utils_sql.h"
+#include "common/unused.h"
 
 SqlQuery::~SqlQuery()
 {
@@ -140,4 +141,84 @@ const QHash<QString, QVariant>& RowIdConditionBuilder::getQueryArgs() const
 QString RowIdConditionBuilder::build()
 {
     return conditions.join(" AND ");
+}
+
+/********************** SqlQueryError ************************/
+
+class API_EXPORT SqlQueryError : public SqlQuery
+{
+    public:
+        SqlQueryError(const QString& errorText, int errorCode);
+        virtual ~SqlQueryError();
+
+        QString getErrorText();
+        int getErrorCode();
+        QStringList getColumnNames();
+        int columnCount();
+
+    protected:
+        SqlResultsRowPtr nextInternal();
+        bool hasNextInternal();
+        bool execInternal(const QList<QVariant>& args);
+        bool execInternal(const QHash<QString, QVariant>& args);
+
+    private:
+        QString errorText;
+        int errorCode = 0;
+};
+
+SqlQueryPtr SqlQuery::error(const QString& errorText, int errorCode)
+{
+    return SqlQueryPtr(new SqlQueryError(errorText, errorCode));
+}
+
+SqlQueryError::SqlQueryError(const QString& errorText, int errorCode) :
+    errorText(errorText), errorCode(errorCode)
+{
+}
+
+SqlQueryError::~SqlQueryError()
+{
+}
+
+QString SqlQueryError::getErrorText()
+{
+    return errorText;
+}
+
+int SqlQueryError::getErrorCode()
+{
+    return errorCode;
+}
+
+QStringList SqlQueryError::getColumnNames()
+{
+    return QStringList();
+}
+
+int SqlQueryError::columnCount()
+{
+    return 0;
+}
+
+SqlResultsRowPtr SqlQueryError::nextInternal()
+{
+    return SqlResultsRowPtr();
+}
+
+bool SqlQueryError::hasNextInternal()
+{
+    return false;
+}
+
+bool SqlQueryError::execInternal(const QList<QVariant>& args)
+{
+    UNUSED(args);
+    return false;
+}
+
+bool SqlQueryError::execInternal(const QHash<QString, QVariant>& args)
+{
+    UNUSED(args);
+    return false;
 }

@@ -66,6 +66,14 @@ class API_EXPORT SqlQuery
 {
     public:
         /**
+         * @brief Produces empty, erronous result.
+         * @param errorText Error message returned with #getErrorText() of the returned object.
+         * @param errorCode Error code returned with #getErrorText() of the returned object.
+         * @return SqlQuery object shared pointer with no results, but with error details populated.
+         */
+        static SqlQueryPtr error(const QString& errorText, int errorCode);
+
+        /**
          * @brief Releases result resources.
          */
         virtual ~SqlQuery();

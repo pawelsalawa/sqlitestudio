@@ -15,7 +15,7 @@ macx: {
 }
 
 win32: {
-    INCLUDEPATH += $$PWD/../../include $$PWD/../../include/quazip
+    INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib
 }
 

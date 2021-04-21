@@ -66,6 +66,7 @@ API_EXPORT QStringList tokenizeArgs(const QString& str);
 API_EXPORT QStringList prefixEach(const QString& prefix, const QStringList& list);
 API_EXPORT QByteArray hashToBytes(const QHash<QString,QVariant>& hash);
 API_EXPORT QHash<QString,QVariant> bytesToHash(const QByteArray& bytes);
+API_EXPORT QString indentMultiline(const QString& str);
 /**
   * @brief indexOf Extension to QStringList::indexOf().
   *

@@ -1,9 +1,9 @@
 #!/usr/bin/env tclsh
 
 proc usage {} {
-    puts "$::argv0 (add|remove) <lang_name>"
-    puts "$::argv0 add_plugin <plugin name>"
-    puts "$::argv0 (update|release|status)"
+    puts "$::argv0 add_lang <lang_name>"
+    puts "$::argv0 add_plugin <plugin>"
+    puts "$::argv0 status"
 }
 
 lassign $argv op lang
@@ -40,6 +40,16 @@ proc countstrings {data search} {
     set count
 }
 
+proc findLangs {} {
+    set langs [list]
+    foreach f [find coreSQLiteStudio "*.ts"] {
+		set lang [lindex [regexp -inline {[^_]*_(\w+(\w+)?).ts$} $f] 1]
+		if {$lang == ""} continue
+        lappend langs $lang
+	}
+	return $langs
+}
+
 proc scanLangs {} {
     set langs [dict create]
     foreach f [find .. "*.ts"] {
@@ -65,7 +75,7 @@ proc scanLangs {} {
 }
 
 switch -- $op {
-    "update" - "release" {
+    "update" {
 		if {$argc != 1} {
 			usage
 			exit 1
@@ -83,34 +93,25 @@ switch -- $op {
 		
 		foreach f $files {
 			catch {
-			if {$op == "update"} {
 				puts "updating $f:"
 				exec lupdate $f
-			} else {
-				#exec lrelease $f $::ERR_NULL
-				exec lrelease $f
-			}
 			} res
-			if {$op == "release"} {
-			puts $res
-			} else {
 			foreach line [split $res \n] {
 				if {[string first Q_OBJECT $line] > -1} {
-				puts $line
+					puts $line
 				}
 				if {[regexp -- {^.*\w+\.ts.*$} $line]} {
-				puts -nonewline [lindex [regexp -inline -- {^.*"([\w\/\\\.]+\.ts)".*$} $line] 1]
-				puts -nonewline ": "
+					puts -nonewline [lindex [regexp -inline -- {^.*"([\w\/\\\.]+\.ts)".*$} $line] 1]
+					puts -nonewline ": "
 				}
 				if {[regexp -- {^.*\d+[^\d]+\(\d+[^\d]+\d+.*\).*$} $line]} {
-				puts -nonewline [lindex [regexp -inline -- {\S+.*} $line] 0]
-				set new [lindex [regexp -inline -- {^.*\d+[^\d]+(\d+)[^\d]+\d+.*$} $line] 1]
-				if {$new > 0} {
-					puts -nonewline " <- !!!!!!!!!!!"
+					puts -nonewline [lindex [regexp -inline -- {\S+.*} $line] 0]
+					set new [lindex [regexp -inline -- {^.*\d+[^\d]+(\d+)[^\d]+\d+.*$} $line] 1]
+					if {$new > 0} {
+						puts -nonewline " <- !!!!!!!!!!!"
+					}
+					puts ""
 				}
-				puts ""
-				}
-			}
 			}
 		}
     }
@@ -126,7 +127,7 @@ switch -- $op {
 			set perc [expr {round(double($tr)/$all * 1000)/10.0}]
 			
 			set lang [string tolower $lang]
-			puts "$k - ${perc}% ($tr / $all)"
+			puts "$lang - ${perc}% ($tr / $all)"
 		}
     }
     "add_plugin" {
@@ -142,296 +143,48 @@ switch -- $op {
 			exit 1
 		}
 		
-		set fd [open ../Plugins/CsvImport/CsvImport.pro r]
-		set data [read $fd]
-		close $fd
-		
-		set langs [list]
-		set trData "\nTRANSLATIONS += "
-		foreach {all lang} [regexp -inline -all -- {CsvImport_(\w+)\.ts} $data] {
-			append trData "\\\n\t\t${plug}_$lang.ts"
-			lappend langs $lang
+		if {![file exists ../Plugins/$plug/translations]} {
+			file mkdir ../Plugins/$plug/translations
 		}
-		append trData "\n"
 		
-		set fd [open $plugPro a+]
-		puts $fd $trData
-		close $fd
-		puts "Added translation languages for plugin $plug:\n[join $langs \n]"
+		set plugTs ../Plugins/$plug/translations/$plug.ts
+		if {![file exists $plugTs]} {
+			catch {
+				exec lupdate-pro $plugPro -ts $plugTs
+			}
+			if {![file exists $plugTs]} {
+				puts "Failed to create $plugTs."
+				exit 1
+			}
+		}
+		
+		foreach lang [findLangs] {
+			set plugTs ../Plugins/$plug/translations/${plug}_${lang}.ts
+			if {![file exists $plugTs]} {
+				catch {exec lupdate-pro $plugPro -ts $plugTs}
+			}
+		}
     }
-    "add" - "remove" {
+    "add_lang" {
 		if {$argc != 2} {
 			usage
 			exit 1
 		}
 
-		foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
-			# pro file
-			set fd [open $p/$p.pro r]
-			set data [read $fd]
-			close $fd
-		
-			set ts "translations/${p}_$lang.ts"
-			if {$op == "add" && [string first $ts $data] == -1} {
-			set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
-			} elseif {$op == "remove" && [string first $ts $data] > -1} {
-			regsub -- "$ts\\s*(\\\\)?\n\\s*" $data "" data
-			} else {
-			continue
+		foreach d [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
+			set pro $d/$d.pro
+			set ts "$d/translations/${d}_$lang.ts"
+			if {![file exists $ts]} {
+				catch {exec lupdate-pro $pro -ts $ts}
 			}
-			
-			set fd [open $p/$p.pro w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $p.pro"
 		}
 
-		foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
-			# qrc file
-			set fd [open $p/$p.qrc r]
-			set data [read $fd]
-			close $fd
-		
-			set qm "translations/${p}_$lang.qm"
-			if {$op == "add" && [string first $qm $data] == -1} {
-			set data [string map [list "<qresource prefix=\"/msg\">" "<qresource prefix=\"/msg\">\n        <file>$qm</file>"] $data]
-			} elseif {$op == "remove" && [string first $qm $data] > -1} {
-			regsub -- "\\s*$qm\\s*\n" $data "" data
-			} else {
-			continue
-			}
-
-			set fd [open $p/$p.qrc w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $p.qrc"
-		}
-		
 		foreach d [glob -directory ../Plugins -tails -nocomplain *] {
 			if {![file isdirectory ../Plugins/$d]} continue
-		
-			# pro file
-			set fd [open ../Plugins/$d/$d.pro r]
-			set data [read $fd]
-			close $fd
-
-			if {[string first "TRANSLATIONS +=" $data] == -1} continue
-
-			set ts "${d}_$lang.ts"
-			if {$op == "add" && [string first $ts $data] == -1} {
-			set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
-			} elseif {$op == "remove" && [string first $ts $data] > -1} {
-			regsub -- "$ts\\s*(\\\\)?\n\\s*" $data "" data
-			} else {
-			continue
-			}
-			
-			set fd [open ../Plugins/$d/$d.pro w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $d.pro"
-		}
-		
-		foreach d [glob -directory ../Plugins -tails -nocomplain *] {
-			# qrc file
-			if {![file isdirectory ../Plugins/$d]} continue
-			if {[file exists ../Plugins/$d/$d.qrc]} {
-			set fname ../Plugins/$d/$d.qrc
-			set fnameOnly $d.qrc
-			} elseif {[file exists ../Plugins/$d/[string tolower $d].qrc]} {
-			set fname ../Plugins/$d/[string tolower $d].qrc
-			set fnameOnly [string tolower $d].qrc
-			} else {
-			continue
-			}
-		
-			set fd [open $fname r]
-			set data [read $fd]
-			close $fd
-
-			if {[string first "<qresource prefix=\"/msg\">" $data] == -1} continue
-
-			set qm "${d}_$lang.qm"
-			if {$op == "add" && [string first $qm $data] == -1} {
-			set data [string map [list "<qresource prefix=\"/msg\">" "<qresource prefix=\"/msg\">\n        <file>$qm</file>"] $data]
-			} elseif {$op == "remove" && [string first $qm $data] > -1} {
-			regsub -- "\\s*$qm\\s*\n" $data "" data
-			} else {
-			continue
-			}
-			
-			set fd [open $fname w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $fnameOnly"
-		}
-	}
-	"migrate-2" {
-		foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
-			# pro file
-			set fd [open $p/$p.pro r]
-			set data [read $fd]
-			close $fd
-		
-			set ts "translations/${p}.ts"
-			set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
-			
-			set fd [open $p/$p.pro w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $p.pro"
-		}
-		
-		foreach d [glob -directory ../Plugins -tails -nocomplain *] {
-			if {![file isdirectory ../Plugins/$d]} continue
-		
-			# pro file
-			set fd [open ../Plugins/$d/$d.pro r]
-			set data [read $fd]
-			close $fd
-
-			if {[string first "TRANSLATIONS +=" $data] == -1} continue
-
-			set ts "translations/${d}.ts"
-			set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
-			
-			set fd [open ../Plugins/$d/$d.pro w+]
-			puts $fd $data
-			close $fd
-			
-			puts "Updated $d.pro"
-		}
-	}
-    "migrate-1" {
-		set changes [dict create \
-			de de_DE \
-			es es_ES \
-			fr fr_FR \
-			it it_IT \
-			pl pl_PL \
-			ru ru_RU \
-			sk sk_SK \
-			pt_BR pt_BR \
-			ro_RO ro_RO \
-			zh_CN zh_CN \
-		]
-		
-		foreach src [dict keys $changes] {
-			set trg [dict get $changes $src]
-			foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
-				# pro file
-				set fd [open $p/$p.pro r]
-				set data [read $fd]
-				close $fd
-			
-				set srcTs "translations/${p}_$src.ts"
-				set trgTs "translations/${p}_$trg.ts"
-				
-				if {$srcTs ne $trgTs} {
-					file rename $p/$srcTs $p/$trgTs
-					set data [string map [list $srcTs $trgTs] $data]
-				}
-				
-				set fd [open $p/$p.pro w+]
-				puts $fd $data
-				close $fd
-				
-				puts "Updated $p.pro"
-			}
-
-			foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
-				# qrc file
-				set fd [open $p/$p.qrc r]
-				set data [read $fd]
-				close $fd
-			
-				set srcQm "translations/${p}_$src.qm"
-				set trgQm "translations/${p}_$trg.qm"
-				
-				if {$srcQm ne $trgQm} {
-					if {[file exists $p/$srcQm]} {
-						file rename $p/$srcQm $p/$trgQm
-					} else {
-						puts "$p/$srcQm not moved, does not exist"
-					}
-					set data [string map [list $srcQm $trgQm] $data]
-				}
-
-				set fd [open $p/$p.qrc w+]
-				puts $fd $data
-				close $fd
-				
-				puts "Updated $p.qrc"
-			}
-			
-			foreach d [glob -directory ../Plugins -tails -nocomplain *] {
-				if {![file isdirectory ../Plugins/$d]} continue
-			
-				# pro file
-				set fd [open ../Plugins/$d/$d.pro r]
-				set data [read $fd]
-				close $fd
-
-				if {[string first "TRANSLATIONS +=" $data] == -1} continue
-
-				set srcTs "${d}_$src.ts"
-				set trgTs "translations/${d}_$trg.ts"
-				
-				file mkdir ../Plugins/$d/translations
-				if {$srcTs ne $trgTs} {
-					file rename ../Plugins/$d/$srcTs ../Plugins/$d/$trgTs
-					set data [string map [list $srcTs $trgTs] $data]
-				}
-
-				set fd [open ../Plugins/$d/$d.pro w+]
-				puts $fd $data
-				close $fd
-				
-				puts "Updated $d.pro"
-			}
-			
-			foreach d [glob -directory ../Plugins -tails -nocomplain *] {
-				# qrc file
-				if {![file isdirectory ../Plugins/$d]} continue
-				if {[file exists ../Plugins/$d/$d.qrc]} {
-				set fname ../Plugins/$d/$d.qrc
-				set fnameOnly $d.qrc
-				} elseif {[file exists ../Plugins/$d/[string tolower $d].qrc]} {
-				set fname ../Plugins/$d/[string tolower $d].qrc
-				set fnameOnly [string tolower $d].qrc
-				} else {
-				continue
-				}
-			
-				set fd [open $fname r]
-				set data [read $fd]
-				close $fd
-
-				if {[string first "<qresource prefix=\"/msg\">" $data] == -1} continue
-
-				set srcQm "${d}_$src.qm"
-				set trgQm "translations/${d}_$trg.qm"
-				
-				file mkdir ../Plugins/$d/translations
-				if {$srcQm ne $trgQm} {
-					if {[file exists ../Plugins/$d/$srcQm]} {
-						file rename ../Plugins/$d/$srcQm ../Plugins/$d/$trgQm
-					} else {
-						puts "../Plugins/$d/$srcQm not moved, does not exist"
-					}
-					set data [string map [list $srcQm $trgQm] $data]
-				}
-				
-				set fd [open $fname w+]
-				puts $fd $data
-				close $fd
-				
-				puts "Updated $fnameOnly"
+			set pro ../Plugins/$d/$d.pro
+			set ts "../Plugins/$d/translations/${d}_$lang.ts"
+			if {![file exists $ts]} {
+				catch {exec lupdate-pro $pro -ts $ts}
 			}
 		}
 	}

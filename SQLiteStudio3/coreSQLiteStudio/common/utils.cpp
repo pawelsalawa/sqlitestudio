@@ -1097,3 +1097,12 @@ uint qHash(const QVariant& var)
     // could not generate a hash for the given variant
     return -2;
 }
+
+QString indentMultiline(const QString& str)
+{
+    QStringList lines = str.split("\n");
+    for (QString& line : lines)
+        line = line.prepend("    ");
+
+    return lines.join("\n");
+}

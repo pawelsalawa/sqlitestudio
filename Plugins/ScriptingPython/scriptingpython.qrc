@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/scriptingpython">
+        <file>scriptingpython.png</file>
+    </qresource>
+</RCC>

@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.0
+- ADDED: #513 Python scripting plugin added.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon. The debug() function will now print to SQLiteStudio's status panel.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
