@@ -24,6 +24,13 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
+            - name: fine python
+              shell: bash
+              run: |
+                find $pythonLocation -iname python39.dll
+                find $pythonLocation -iname Python.h
+                jgfyjd
+
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1

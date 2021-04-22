@@ -25,6 +25,7 @@ jobs:
               shell: bash
               run: |
                 find $pythonLocation -iname python39.dll
+                find $pythonLocation -iname Python.h
                 jgfyjd
         
             - name: Cache Qt
