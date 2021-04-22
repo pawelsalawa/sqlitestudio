@@ -132,7 +132,7 @@ elif [ "$3" == "dist" ]; then
 	# Fix python dependencies in the image
 	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libpython*
 	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libint*
-	install_name_tool -change "@loader_path/../Frameworks/libpython3.9.dylib" libpython3.9.dylib SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
+	install_name_tool -change "@loader_path/../Frameworks/libpython3.9.dylib" libpython3.9.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
 
 	# Detach RW image
 	hdiutil detach /Volumes/SQLiteStudio
