@@ -1,0 +1,7 @@
+{
+    "type":        "SyntaxHighlighterPlugin",
+    "title":       "Python syntax highlighting",
+    "description": "Provides Python syntax highlighting support.",
+    "version":     10000,
+    "author":      "SalSoft"
+}

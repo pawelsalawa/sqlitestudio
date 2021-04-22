@@ -17,8 +17,10 @@ SUBDIRS += \
     SqlEnterpriseFormatter \
     ConfigMigration \
     ScriptingTcl \
+    ScriptingPython \
     DbAndroid \
     DbSqliteCipher \
     DbSqliteWx \
-    MultiEditorImage
+    MultiEditorImage \
+	PythonSyntaxHighlighter
 
