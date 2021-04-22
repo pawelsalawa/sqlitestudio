@@ -18,9 +18,11 @@ OTHER_FILES += \
     scriptingpython.json
 
 linux: {
+    LIBS += -lpython39
 }
 
 macx: {
+    LIBS += -lpython3.9
 }
 
 win32: {
