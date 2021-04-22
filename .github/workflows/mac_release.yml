@@ -42,7 +42,7 @@ jobs:
             - name: fine python
               shell: bash
               run: |
-                find $pythonLocation -iname python39.dll
+                find $pythonLocation -iname "*python*.dylib*"
                 find $pythonLocation -iname Python.h
                 jgfyjd
 
