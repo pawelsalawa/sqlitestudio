@@ -95,6 +95,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
+                fine $pythonLocation -iname Python.h
                 qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include" ../../../Plugins
                 make -j 2
 
