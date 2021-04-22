@@ -95,7 +95,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include" ../../../Plugins
                 make -j 2
 
             - name: Run tests

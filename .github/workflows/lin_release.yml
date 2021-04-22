@@ -13,7 +13,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
 
         steps:
             - name: Cache Qt
@@ -79,7 +79,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable ../../../Plugins
+                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include" ../../../Plugins
                 make -j 2
               
             - name: Prepare portable dir

@@ -3,5 +3,6 @@
     "title":        "Python scripting",
     "description":  "Provides Python scripting language support for SQLiteStudio.",
     "version":      10000,
-    "author":       "SalSoft"
+    "author":       "SalSoft",
+    "loadByDefault": false
 }
