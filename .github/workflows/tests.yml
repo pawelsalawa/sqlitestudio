@@ -47,11 +47,11 @@ jobs:
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
                 
-             - name: find python
-               run: |
-                 find $pythonLocation -name libpython
-                 ls -l $pythonLocation/lib
-                 sdfsgfh
+            - name: find python
+              run: |
+                find $pythonLocation -name libpython
+                ls -l $pythonLocation/lib
+                sdfsgfh
 
             - name: Clone repo
               uses: actions/checkout@v2
