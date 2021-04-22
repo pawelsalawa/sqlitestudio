@@ -54,6 +54,8 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                find $pythonLocation -iname Python.h
+                aaaaaaaaaaa
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -95,7 +97,6 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                fine $pythonLocation -iname Python.h
                 qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include" ../../../Plugins
                 make -j 2
 
