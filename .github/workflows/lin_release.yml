@@ -79,7 +79,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include" ../../../Plugins
+                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python3.9" ../../../Plugins
                 make -j 2
               
             - name: Prepare portable dir

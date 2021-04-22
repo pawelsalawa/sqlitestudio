@@ -21,6 +21,12 @@ jobs:
         runs-on: windows-2019
 
         steps:
+            - name: fine python
+              shell: bash
+              run: |
+                find $pythonLocation -iname python39.dll
+                jgfyjd
+        
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
@@ -96,7 +102,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include" "LIBS += -L$pythonLocation/include" ..\..\..\Plugins
+                qmake.exe CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python3.9" "LIBS += -L$pythonLocation/include" ..\..\..\Plugins
                 mingw32-make.exe -j 2
               
             - name: Prepare portable dir
