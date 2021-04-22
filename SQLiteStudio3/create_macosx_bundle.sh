@@ -121,13 +121,24 @@ elif [ "$3" == "dist" ]; then
 	hdiutil attach sqlitestudio-$VERSION.dmg
 	
 	hdiutil detach /Volumes/SQLiteStudio
-	
+
+    # Convert image to RW and attach	
 	hdiutil convert sqlitestudio-$VERSION.dmg -format UDRW -o sqlitestudio-rw-$VERSION.dmg
 	hdiutil attach -readwrite sqlitestudio-rw-$VERSION.dmg
+	
+	# Fix sqlite3 file in the image
 	cp -RPf $libdir/libsqlite3.0.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
+
+	# Fix python dependencies in the image
+	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libpython*
+	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libint*
+	install_name_tool -change "@loader_path/../Frameworks/libpython3.9.dylib" libpython3.9.dylib SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
+
+	# Detach RW image
 	hdiutil detach /Volumes/SQLiteStudio
 	hdiutil compact sqlitestudio-rw-$VERSION.dmg
 	
+	# Convert image back to RO and compressed
 	rm -f sqlitestudio-$VERSION.dmg
 	hdiutil convert sqlitestudio-rw-$VERSION.dmg -format UDZO -o sqlitestudio-$VERSION.dmg
 	rm -f sqlitestudio-rw-$VERSION.dmg
