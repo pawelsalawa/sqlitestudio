@@ -57,12 +57,12 @@ void ScriptingQt::resetContext(ScriptingPlugin::Context* context)
         return;
 }
 
-QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
+QVariant ScriptingQt::evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
     QMutexLocker locker(mainEngineMutex);
 
     // Call the function
-    QVariant result = evaluate(mainContext, code, args, db, locking);
+    QVariant result = evaluate(mainContext, code, funcInfo, args, db, locking);
 
     // Handle errors
     if (!mainContext->error.isEmpty())
@@ -71,19 +71,19 @@ QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args,
     return result;
 }
 
-QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
+QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking)
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
-    return evaluate(ctx, code, args, db, locking);
+    return evaluate(ctx, code, funcInfo, args, db, locking);
 }
 
-QVariant ScriptingQt::evaluate(ContextQt* ctx, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
+QVariant ScriptingQt::evaluate(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking)
 {
     // Define function to call
-    QJSValue functionValue = getFunctionValue(ctx, code);
+    QJSValue functionValue = getFunctionValue(ctx, code, funcInfo);
 
     // Db for this evaluation
     ctx->dbProxy->setDb(db);
@@ -233,20 +233,16 @@ ScriptingQt::ContextQt* ScriptingQt::getContext(ScriptingPlugin::Context* contex
     return ctx;
 }
 
-QJSValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code)
+QJSValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo)
 {
-    static const QString fnDef = QStringLiteral("(function () {%1\n})");
+    static const QString fnDef = QStringLiteral("(function (%1) {%2\n})");
 
-    QJSValue* func = nullptr;
-    if (!ctx->scriptCache.contains(code))
-    {
-        func = new QJSValue(ctx->engine->evaluate(fnDef.arg(code)));
-        ctx->scriptCache.insert(code, func);
-    }
-    else
-    {
-        func = ctx->scriptCache[code];
-    }
+    QString fullCode = fnDef.arg(funcInfo.getArguments().join(", "), code);
+    if (ctx->scriptCache.contains(fullCode))
+        return *(ctx->scriptCache[fullCode]);
+
+    QJSValue* func = new QJSValue(ctx->engine->evaluate(fullCode));
+    ctx->scriptCache.insert(fullCode, func);
     return *func;
 }
 

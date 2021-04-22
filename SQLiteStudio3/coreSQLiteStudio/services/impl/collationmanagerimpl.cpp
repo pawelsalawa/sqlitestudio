@@ -6,6 +6,16 @@
 #include "common/utils.h"
 #include <QDebug>
 
+class CollationFunctionInfoImpl : public ScriptingPlugin::FunctionInfo
+{
+    public:
+        QString getName() const {return QString();}
+        QStringList getArguments() const {return {"first", "second"};}
+        bool getUndefinedArgs() const {return false;}
+};
+
+CollationFunctionInfoImpl collationFunctionInfo;
+
 CollationManagerImpl::CollationManagerImpl()
 {
     init();
@@ -51,7 +61,7 @@ int CollationManagerImpl::evaluate(const QString& name, const QString& value1, c
     }
 
     QString err;
-    QVariant result = plugin->evaluate(collationsByKey[name]->code, {value1, value2}, &err);
+    QVariant result = plugin->evaluate(collationsByKey[name]->code, collationFunctionInfo, {value1, value2}, &err);
 
     if (!err.isNull())
     {

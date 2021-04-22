@@ -33,15 +33,15 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, publi
         bool hasError(Context* context) const;
         QString getErrorMessage(Context* context) const;
         QString getIconPath() const;
-        QVariant evaluate(Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking = false);
-        QVariant evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking = false, QString* errorMessage = nullptr);
+        QVariant evaluate(Context* context, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking = false);
+        QVariant evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking = false, QString* errorMessage = nullptr);
 
     private:
         class ContextPython;
         class ScriptObject
         {
             public:
-                ScriptObject(const QString& code, ContextPython* context);
+                ScriptObject(const QString& code, const FunctionInfo& funcInfo, ContextPython* context);
                 ~ScriptObject();
 
                 PyObject* getCompiled() const;
@@ -72,11 +72,13 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, publi
         };
 
         ContextPython* getContext(ScriptingPlugin::Context* context) const;
-        QVariant compileAndEval(ContextPython* ctx, const QString& code, const QList<QVariant>& args, Db* db, bool locking);
+        QVariant compileAndEval(ContextPython* ctx, const QString& code, const FunctionInfo& funcInfo,
+                                const QList<QVariant>& args, Db* db, bool locking);
         void clearError(ContextPython* ctx);
+        ScriptObject* getScriptObject(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo, ContextPython* ctx);
 
         static QString extractError();
-        static PyObject* argsToPyArgs(const QVariantList& args);
+        static PyObject* argsToPyArgs(const QVariantList& args, const QStringList& namedParameters);
         static QVariant pythonObjToVariant(PyObject* obj);
         static QString pythonObjToString(PyObject* obj);
         static PyObject* variantToPythonObj(const QVariant& value);

@@ -18,6 +18,50 @@
 #include <QUrl>
 #include <plugins/importplugin.h>
 
+class FunctionInfoImpl : public ScriptingPlugin::FunctionInfo
+{
+    public:
+        FunctionInfoImpl(FunctionManager::FunctionBase* fn);
+        FunctionInfoImpl();
+
+        QString getName() const;
+        QStringList getArguments() const;
+        bool getUndefinedArgs() const;
+
+    private:
+        QString name;
+        QStringList arguments;
+        bool undefinedArgs = true;
+};
+
+FunctionInfoImpl::FunctionInfoImpl(FunctionManager::FunctionBase* fn)
+{
+    name = fn->name;
+    arguments = fn->arguments;
+    undefinedArgs = fn->undefinedArgs;
+}
+
+FunctionInfoImpl::FunctionInfoImpl()
+{
+}
+
+QString FunctionInfoImpl::getName() const
+{
+    return name;
+}
+
+QStringList FunctionInfoImpl::getArguments() const
+{
+    return arguments;
+}
+
+bool FunctionInfoImpl::getUndefinedArgs() const
+{
+    return undefinedArgs;
+}
+
+
+
 FunctionManagerImpl::FunctionManagerImpl()
 {
     init();
@@ -120,14 +164,15 @@ QVariant FunctionManagerImpl::evaluateScriptScalar(ScriptFunction* func, const Q
         return langUnsupportedError(name, argCount, func->lang);
     }
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+    FunctionInfoImpl info(func);
 
     QString error;
     QVariant result;
 
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(func->code, args, db, false, &error);
+        result = dbAwarePlugin->evaluate(func->code, info, args, db, false, &error);
     else
-        result = plugin->evaluate(func->code, args, &error);
+        result = plugin->evaluate(func->code, info, args, &error);
 
     if (!error.isEmpty())
     {
@@ -147,11 +192,12 @@ void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, D
 
     ScriptingPlugin::Context* ctx = plugin->createContext();
     aggregateStorage["context"] = QVariant::fromValue(ctx);
+    FunctionInfoImpl info(func);
 
     if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, func->initCode, {}, db, false);
+        dbAwarePlugin->evaluate(ctx, func->initCode, info, {}, db, false);
     else
-        plugin->evaluate(ctx, func->initCode, {});
+        plugin->evaluate(ctx, func->initCode, info, {});
 
     if (plugin->hasError(ctx))
     {
@@ -170,12 +216,13 @@ void FunctionManagerImpl::evaluateScriptAggregateStep(ScriptFunction* func, cons
         return;
 
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+    FunctionInfoImpl info(func);
 
     ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
     if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, func->code, args, db, false);
+        dbAwarePlugin->evaluate(ctx, func->code, info, args, db, false);
     else
-        plugin->evaluate(ctx, func->code, args);
+        plugin->evaluate(ctx, func->code, info, args);
 
     if (plugin->hasError(ctx))
     {
@@ -203,11 +250,13 @@ QVariant FunctionManagerImpl::evaluateScriptAggregateFinal(ScriptFunction* func,
 
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
 
+    FunctionInfoImpl info(func);
+
     QVariant result;
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(ctx, func->finalCode, {}, db, false);
+        result = dbAwarePlugin->evaluate(ctx, func->finalCode, info, {}, db, false);
     else
-        result = plugin->evaluate(ctx, func->finalCode, {});
+        result = plugin->evaluate(ctx, func->finalCode, info, {});
 
     if (plugin->hasError(ctx))
     {
@@ -483,14 +532,15 @@ QVariant FunctionManagerImpl::nativeScript(const QList<QVariant>& args, Db* db, 
         return tr("Unsupported scripting language: %1").arg(args[0].toString());
     }
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+    FunctionInfoImpl info;
 
     QString error;
     QVariant result;
 
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(args[1].toString(), QList<QVariant>(), db, false, &error);
+        result = dbAwarePlugin->evaluate(args[1].toString(), info, QList<QVariant>(), db, false, &error);
     else
-        result = plugin->evaluate(args[1].toString(), QList<QVariant>(), &error);
+        result = plugin->evaluate(args[1].toString(), info, QList<QVariant>(), &error);
 
     if (!error.isEmpty())
     {

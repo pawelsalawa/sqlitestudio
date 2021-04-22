@@ -4,6 +4,27 @@
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
 
+class PopulateFunctionInfoImpl : public ScriptingPlugin::FunctionInfo
+{
+    public:
+        PopulateFunctionInfoImpl(bool rowCount)
+        {
+            args = QStringList({"dbName", "tableName"});
+            if (rowCount)
+                args << "rowCount";
+        }
+
+        QString getName() const {return QString();}
+        QStringList getArguments() const {return args;}
+        bool getUndefinedArgs() const {return false;}
+
+    private:
+        QStringList args;
+};
+
+PopulateFunctionInfoImpl populateInitFunctionInfo(false);
+PopulateFunctionInfoImpl populateNextFunctionInfo(true);
+
 PopulateScript::PopulateScript()
 {
 }
@@ -49,9 +70,9 @@ bool PopulateScriptEngine::beforePopulating(Db* db, const QString& table)
     if (!initCode.trimmed().isEmpty())
     {
         if (dbAwarePlugin)
-            dbAwarePlugin->evaluate(context, initCode, evalArgs, db);
+            dbAwarePlugin->evaluate(context, initCode, populateInitFunctionInfo, evalArgs, db);
         else
-            scriptingPlugin->evaluate(context, initCode, evalArgs);
+            scriptingPlugin->evaluate(context, initCode, populateInitFunctionInfo, evalArgs);
 
         if (scriptingPlugin->hasError(context))
         {
@@ -71,9 +92,9 @@ QVariant PopulateScriptEngine::nextValue(bool& nextValueError)
 {
     QVariant result;
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(context, cfg.PopulateScript.Code.get(), evalArgs, db);
+        result = dbAwarePlugin->evaluate(context, cfg.PopulateScript.Code.get(), populateNextFunctionInfo, evalArgs, db);
     else
-        result = scriptingPlugin->evaluate(context, cfg.PopulateScript.Code.get(), evalArgs);
+        result = scriptingPlugin->evaluate(context, cfg.PopulateScript.Code.get(), populateNextFunctionInfo, evalArgs);
 
     if (scriptingPlugin->hasError(context))
     {

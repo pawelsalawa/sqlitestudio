@@ -137,19 +137,19 @@ QString ScriptingPython::getIconPath() const
     return ":/scriptingpython/scriptingpython.png";
 }
 
-QVariant ScriptingPython::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
+QVariant ScriptingPython::evaluate(ScriptingPlugin::Context* context, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking)
 {
     ContextPython* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
-    return compileAndEval(ctx, code, args, db, locking);
+    return compileAndEval(ctx, code, funcInfo, args, db, locking);
 }
 
-QVariant ScriptingPython::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
+QVariant ScriptingPython::evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
     QMutexLocker locker(mainInterpMutex);
-    QVariant results = compileAndEval(mainContext, code, args, db, locking);
+    QVariant results = compileAndEval(mainContext, code, funcInfo, args, db, locking);
 
     if (errorMessage && !mainContext->error.isEmpty())
         *errorMessage = mainContext->error;
@@ -166,31 +166,23 @@ ScriptingPython::ContextPython* ScriptingPython::getContext(ScriptingPlugin::Con
     return ctx;
 }
 
-QVariant ScriptingPython::compileAndEval(ScriptingPython::ContextPython* ctx, const QString& code,
+QVariant ScriptingPython::compileAndEval(ScriptingPython::ContextPython* ctx, const QString& code, const FunctionInfo& funcInfo,
                                          const QList<QVariant>& args, Db* db, bool locking)
 {
     PyThreadState_Swap(ctx->interp);
     clearError(ctx);
 
-    ScriptObject* scriptObj = nullptr;
-    if (!ctx->scriptCache.contains(code))
+    ScriptObject* scriptObj = getScriptObject(code, funcInfo, ctx);
+    if (PyErr_Occurred() || !scriptObj->getCompiled())
     {
-        scriptObj = new ScriptObject(code, ctx);
-        if (PyErr_Occurred() || !scriptObj->getCompiled())
-        {
-            ctx->error = extractError();
-            return QVariant();
-        }
-
-        ctx->scriptCache.insert(code, scriptObj);
+        ctx->error = extractError();
+        return QVariant();
     }
-    else
-        scriptObj = ctx->scriptCache[code];
 
     ctx->db = db;
     ctx->useDbLocking = locking;
 
-    PyObject* pyArgs = argsToPyArgs(args);
+    PyObject* pyArgs = argsToPyArgs(args, funcInfo.getArguments());
     PyObject* result = PyObject_CallObject(scriptObj->getCompiled(), pyArgs);
     Py_DECREF(pyArgs);
 
@@ -234,17 +226,44 @@ void ScriptingPython::clearError(ContextPython* ctx)
     ctx->error.clear();
 }
 
-PyObject* ScriptingPython::argsToPyArgs(const QVariantList& args)
+ScriptingPython::ScriptObject* ScriptingPython::getScriptObject(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo, ContextPython* ctx)
+{
+    static const QString keyTpl = QStringLiteral("{%1} %2");
+
+    QString key = keyTpl.arg(funcInfo.getArguments().join("#"), code);
+    if (ctx->scriptCache.contains(key))
+        return ctx->scriptCache[key];
+
+    ScriptObject* scriptObj = new ScriptObject(code, funcInfo, ctx);
+    ctx->scriptCache.insert(key, scriptObj);
+    return scriptObj;
+}
+
+PyObject* ScriptingPython::argsToPyArgs(const QVariantList& args, const QStringList& namedParameters)
 {
     PyObject* result = PyTuple_New(args.size());
+    PyObject* namedParamTuple = namedParameters.isEmpty() ? nullptr : PyTuple_New(namedParameters.size() + 1);
     int i = 0;
     for (const QVariant& value : args)
     {
         PyObject* valueObj = variantToPythonObj(value);
         PyTuple_SetItem(result, i, valueObj);
-        Py_DECREF(valueObj);
+        if (namedParamTuple && i < namedParameters.size())
+        {
+            Py_INCREF(valueObj);
+            PyTuple_SetItem(namedParamTuple, i, valueObj);
+        }
         i++;
     }
+
+    // If function has named parameters, than named param tuple takes precedense
+    // and positional tuple becomes last argument.
+    if (namedParamTuple)
+    {
+        PyTuple_SetItem(namedParamTuple, namedParameters.size(), result);
+        result = namedParamTuple;
+    }
+
     return result;
 }
 
@@ -584,11 +603,15 @@ QVariant ScriptingPython::getVariable(const QString& name)
     return pythonObjToVariant(obj);
 }
 
-ScriptingPython::ScriptObject::ScriptObject(const QString& code, ContextPython* context)
+ScriptingPython::ScriptObject::ScriptObject(const QString& code, const ScriptingPlugin::FunctionInfo& funcInfo, ContextPython* context)
 {
-    static_qstring(fnTpl, "def fn(*args):\n%1");
+    static_qstring(fnTpl, "def fn(%1%2*args):\n%3");
 
-    QByteArray utf8Bytes = fnTpl.arg(indentMultiline(code)).toUtf8();
+    QString indentedCode = indentMultiline(code);
+    QByteArray utf8Bytes = funcInfo.getUndefinedArgs() ?
+                fnTpl.arg("", "", indentedCode).toUtf8() :
+                fnTpl.arg(funcInfo.getArguments().join(", "), ", ", indentedCode).toUtf8();
+
     PyObject* result = PyRun_String(utf8Bytes.constData(), Py_file_input, context->envDict, context->envDict);
     if (!result)
         return;

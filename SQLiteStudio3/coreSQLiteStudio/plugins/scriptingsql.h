@@ -28,8 +28,10 @@ class ScriptingSql : public BuiltInPlugin, public DbAwareScriptingPlugin
         Context* createContext();
         void releaseContext(Context* context);
         void resetContext(Context* context);
-        QVariant evaluate(Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking);
-        QVariant evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage);
+        QVariant evaluate(Context* context, const QString& code, const FunctionInfo& funcInfo,
+                          const QList<QVariant>& args, Db* db, bool locking);
+        QVariant evaluate(const QString& code, const FunctionInfo& funcInfo,
+                          const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage);
         void setVariable(Context* context, const QString& name, const QVariant& value);
         QVariant getVariable(Context* context, const QString& name);
         bool hasError(Context* context) const;
@@ -39,6 +41,8 @@ class ScriptingSql : public BuiltInPlugin, public DbAwareScriptingPlugin
         void deinit();
 
     private:
+        void replaceNamedArgs(QString& sql, const FunctionInfo& funcInfo, const QList<QVariant>& args);
+
         QList<Context*> contexts;
         Db* memDb = nullptr;
 };

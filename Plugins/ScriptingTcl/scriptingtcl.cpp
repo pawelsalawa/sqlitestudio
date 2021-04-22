@@ -106,21 +106,21 @@ QString ScriptingTcl::getIconPath() const
     return ":/scriptingtcl/scriptingtcl.png";
 }
 
-QVariant ScriptingTcl::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
+QVariant ScriptingTcl::evaluate(ScriptingPlugin::Context* context, const QString& code, const FunctionInfo& funcInfo,
+                                const QList<QVariant>& args, Db* db, bool locking)
 {
     ContextTcl* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
-    setArgs(ctx, args);
-    return compileAndEval(ctx, code, db, locking);
+    return compileAndEval(ctx, code, funcInfo, args, db, locking);
 }
 
-QVariant ScriptingTcl::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
+QVariant ScriptingTcl::evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args,
+                                Db* db, bool locking, QString* errorMessage)
 {
     QMutexLocker locker(mainInterpMutex);
-    setArgs(mainContext, args);
-    QVariant results = compileAndEval(mainContext, code, db, locking);
+    QVariant results = compileAndEval(mainContext, code, funcInfo, args, db, locking);
 
     if (errorMessage && !mainContext->error.isEmpty())
         *errorMessage = mainContext->error;
@@ -137,20 +137,24 @@ ScriptingTcl::ContextTcl* ScriptingTcl::getContext(ScriptingPlugin::Context* con
     return ctx;
 }
 
-QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QString& code, Db* db, bool locking)
+QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QString& code, const FunctionInfo& funcInfo,
+                                      const QList<QVariant>& args, Db* db, bool locking)
 {
-    ScriptObject* scriptObj = nullptr;
-    if (!ctx->scriptCache.contains(code))
-    {
-        scriptObj = new ScriptObject(code);
-        ctx->scriptCache.insert(code, scriptObj);
-    }
-    else
-    {
-        scriptObj = ctx->scriptCache[code];
-    }
+    ScriptObject* scriptObj = getScript(code, funcInfo);
+
     Tcl_ResetResult(ctx->interp);
     ctx->error.clear();
+
+    setArgs(ctx, args);
+
+    int i = 0;
+    for (const QString& key : funcInfo.getArguments())
+    {
+        if (i >= args.size())
+            break;
+
+        setVariable(ctx, key, args[i++]);
+    }
 
     ctx->db = db;
     ctx->useDbLocking = locking;
@@ -178,6 +182,19 @@ void ScriptingTcl::setArgs(ScriptingTcl::ContextTcl* ctx, const QList<QVariant>&
 {
     setVariable(ctx, "argc", args.size());
     setVariable(ctx, "argv", args);
+}
+
+ScriptingTcl::ScriptObject* ScriptingTcl::getScript(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo)
+{
+    static const QString keyTpl = QStringLiteral("{%1} %2");
+
+    QString key = keyTpl.arg(funcInfo.getArguments().join(" "), code);
+    if (ctx->scriptCache.contains(key))
+        return ctx->scriptCache[key];
+
+    ScriptObject* scriptObj = new ScriptObject(code);
+    ctx->scriptCache.insert(key, scriptObj);
+    return scriptObj;
 }
 
 Tcl_Obj* ScriptingTcl::argsToList(const QList<QVariant>& args)

@@ -32,8 +32,10 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
         bool hasError(Context* context) const;
         QString getErrorMessage(Context* context) const;
         QString getIconPath() const;
-        QVariant evaluate(Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking = false);
-        QVariant evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking = false, QString* errorMessage = nullptr);
+        QVariant evaluate(Context* context, const QString& code, const FunctionInfo& funcInfo,
+                          const QList<QVariant>& args, Db* db, bool locking = false);
+        QVariant evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args,
+                          Db* db, bool locking = false, QString* errorMessage = nullptr);
 
     private:
         class ScriptObject
@@ -82,9 +84,10 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
         };
 
         ContextTcl* getContext(ScriptingPlugin::Context* context) const;
-        QVariant compileAndEval(ContextTcl* ctx, const QString& code, Db* db, bool locking);
+        QVariant compileAndEval(ContextTcl* ctx, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking);
         QVariant extractResult(ContextTcl* ctx);
         void setArgs(ContextTcl* ctx, const QList<QVariant>& args);
+        ScriptObject* getScript(const QString code, const FunctionInfo& funcInfo);
 
         static Tcl_Obj* argsToList(const QList<QVariant>& args);
         static QVariant tclObjToVariant(Tcl_Obj* obj);
