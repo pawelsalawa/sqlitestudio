@@ -39,13 +39,6 @@ jobs:
                 host: 'mac'
                 dir: '${{ github.workspace }}/..'
 
-            - name: fine python
-              shell: bash
-              run: |
-                find $pythonLocation -iname "*python*.dylib*"
-                find $pythonLocation -iname Python.h
-                jgfyjd
-
             - name: Clone repo
               uses: actions/checkout@v2
               with:
