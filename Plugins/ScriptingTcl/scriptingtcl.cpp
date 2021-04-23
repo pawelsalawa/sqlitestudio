@@ -140,7 +140,7 @@ ScriptingTcl::ContextTcl* ScriptingTcl::getContext(ScriptingPlugin::Context* con
 QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QString& code, const FunctionInfo& funcInfo,
                                       const QList<QVariant>& args, Db* db, bool locking)
 {
-    ScriptObject* scriptObj = getScript(code, funcInfo);
+    ScriptObject* scriptObj = getScript(code, funcInfo, ctx);
 
     Tcl_ResetResult(ctx->interp);
     ctx->error.clear();
@@ -184,7 +184,7 @@ void ScriptingTcl::setArgs(ScriptingTcl::ContextTcl* ctx, const QList<QVariant>&
     setVariable(ctx, "argv", args);
 }
 
-ScriptingTcl::ScriptObject* ScriptingTcl::getScript(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo)
+ScriptingTcl::ScriptObject* ScriptingTcl::getScript(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo, ContextTcl* ctx)
 {
     static const QString keyTpl = QStringLiteral("{%1} %2");
 

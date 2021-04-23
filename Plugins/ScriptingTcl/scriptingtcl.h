@@ -87,7 +87,7 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
         QVariant compileAndEval(ContextTcl* ctx, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking);
         QVariant extractResult(ContextTcl* ctx);
         void setArgs(ContextTcl* ctx, const QList<QVariant>& args);
-        ScriptObject* getScript(const QString code, const FunctionInfo& funcInfo);
+        ScriptObject* getScript(const QString code, const FunctionInfo& funcInfo, ContextTcl* ctx);
 
         static Tcl_Obj* argsToList(const QList<QVariant>& args);
         static QVariant tclObjToVariant(Tcl_Obj* obj);
