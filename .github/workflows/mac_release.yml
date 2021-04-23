@@ -86,7 +86,7 @@ jobs:
               working-directory: output/build/Plugins
               run: |
                 qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python3.9" "LIBS += -L$pythonLocation/lib" ../../../Plugins
-                make -j 2
+                make -j 1
               
             - name: Build packages
               working-directory: output/build

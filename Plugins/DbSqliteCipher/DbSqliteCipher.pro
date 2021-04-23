@@ -81,18 +81,10 @@ QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused
 DISTFILES += \
     openssl_lic.txt
 
-TRANSLATIONS += translations/DbSqliteCipher.ts \
-		translations/DbSqliteCipher_ro_RO.ts \
-	translations/DbSqliteCipher_de_DE.ts \
-	\
-	translations/DbSqliteCipher_it_IT.ts\
-	translations/DbSqliteCipher_zh_CN.ts\
-	translations/DbSqliteCipher_sk_SK.ts\
-	translations/DbSqliteCipher_ru_RU.ts\
-	translations/DbSqliteCipher_pt_BR.ts\
-	translations/DbSqliteCipher_fr_FR.ts\
-	translations/DbSqliteCipher_es_ES.ts\
-	translations/DbSqliteCipher_pl_PL.ts
+CONFIG += lrelease embed_translations
+QM_FILES_RESOURCE_PREFIX = /msg/translations
+
+TRANSLATIONS += $$files(translations/*.ts)
 
 
 
