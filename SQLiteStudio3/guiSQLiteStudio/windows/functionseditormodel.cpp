@@ -170,6 +170,16 @@ bool FunctionsEditorModel::isScalar(int row) const
     GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::SCALAR, false);
 }
 
+void FunctionsEditorModel::setDeterministic(int row, bool value)
+{
+    SETTER(functionList[row]->data.deterministic, value);
+}
+
+bool FunctionsEditorModel::isDeterministic(int row) const
+{
+    GETTER(functionList[row]->data.deterministic, false);
+}
+
 QStringList FunctionsEditorModel::getArguments(int row) const
 {
     GETTER(functionList[row]->data.arguments, QStringList());

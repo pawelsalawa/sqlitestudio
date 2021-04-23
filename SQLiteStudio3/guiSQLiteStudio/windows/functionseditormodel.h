@@ -49,6 +49,8 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         void setType(int row, FunctionManager::ScriptFunction::Type type);
         bool isAggregate(int row) const;
         bool isScalar(int row) const;
+        void setDeterministic(int row, bool value);
+        bool isDeterministic(int row) const;
         bool getUndefinedArgs(int row) const;
         void setUndefinedArgs(int row, bool value);
         bool getAllDatabases(int row) const;

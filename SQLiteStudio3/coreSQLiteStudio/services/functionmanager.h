@@ -37,6 +37,7 @@ class API_EXPORT FunctionManager : public QObject
             QStringList arguments;
             Type type = SCALAR;
             bool undefinedArgs = true;
+            bool deterministic = false;
         };
 
         struct API_EXPORT ScriptFunction : public FunctionBase

@@ -631,6 +631,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @brief Registers scalar custom SQL function.
          * @param name Name of the function.
          * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @param deterministic The deterministic function flag used when registering the function.
          * @return true on success, false on failure.
          *
          * Scalar functions are evaluated for each row and their result is used in place of function invokation.
@@ -643,12 +644,13 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * @see FunctionManager
          */
-        virtual bool registerScalarFunction(const QString& name, int argCount) = 0;
+        virtual bool registerScalarFunction(const QString& name, int argCount, bool deterministic) = 0;
 
         /**
          * @brief Registers aggregate custom SQL function.
          * @param name Name of the function.
          * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @param deterministic The deterministic function flag used when registering the function.
          * @return true on success, false on failure.
          *
          * Aggregate functions are used to aggregate many rows into single row. They are common in queries with GROUP BY statements.
@@ -666,7 +668,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * @see FunctionManager
          */
-        virtual bool registerAggregateFunction(const QString& name, int argCount) = 0;
+        virtual bool registerAggregateFunction(const QString& name, int argCount, bool deterministic) = 0;
 
         /**
          * @brief Registers a collation sequence implementation in the database.

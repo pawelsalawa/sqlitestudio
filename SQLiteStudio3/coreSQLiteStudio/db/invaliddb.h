@@ -51,8 +51,8 @@ class API_EXPORT InvalidDb : public Db
         QString getTypeLabel();
         bool initAfterCreated();
         bool deregisterFunction(const QString& name, int argCount);
-        bool registerScalarFunction(const QString& name, int argCount);
-        bool registerAggregateFunction(const QString& name, int argCount);
+        bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
+        bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
         void interrupt();

@@ -341,6 +341,11 @@ class API_EXPORT AbstractDb : public Db
              * @brief Function type.
              */
             FunctionManager::ScriptFunction::Type type;
+
+            /**
+             * @brief The deterministic flag used for function registration.
+             */
+            bool deterministic;
         };
 
         friend int qHash(const AbstractDb::RegisteredFunction& fn);

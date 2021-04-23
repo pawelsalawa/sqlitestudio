@@ -23,8 +23,8 @@ class DbAndroidInstance : public AbstractDb
         SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
         bool deregisterFunction(const QString& name, int argCount);
-        bool registerScalarFunction(const QString& name, int argCount);
-        bool registerAggregateFunction(const QString& name, int argCount);
+        bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
+        bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool initAfterCreated();
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;

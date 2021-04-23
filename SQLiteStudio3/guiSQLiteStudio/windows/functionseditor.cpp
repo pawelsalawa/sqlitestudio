@@ -123,11 +123,12 @@ void FunctionsEditor::init()
     connect(ui->mainCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->finalCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
-    connect(ui->undefArgsCheck, SIGNAL(clicked()), this, SLOT(updateModified()));
+    connect(ui->undefArgsCheck, SIGNAL(toggled(bool)), this, SLOT(updateModified()));
     connect(ui->allDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->selDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->langCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateModified()));
     connect(ui->typeCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateModified()));
+    connect(ui->deterministicCheck, SIGNAL(toggled(bool)), this, SLOT(updateModified()));
 
     connect(ui->argsList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateArgsState()));
     connect(ui->argsList->model(), SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SLOT(updateModified()));
@@ -170,6 +171,7 @@ void FunctionsEditor::functionDeselected(int row)
     model->setUndefinedArgs(row, ui->undefArgsCheck->isChecked());
     model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
     model->setCode(row, ui->mainCodeEdit->toPlainText());
+    model->setDeterministic(row, ui->deterministicCheck->isChecked());
     model->setModified(row, currentModified);
 
     if (model->isAggregate(row))
@@ -201,6 +203,7 @@ void FunctionsEditor::functionSelected(int row)
     ui->finalCodeEdit->setPlainText(model->getFinalCode(row));
     ui->undefArgsCheck->setChecked(model->getUndefinedArgs(row));
     ui->langCombo->setCurrentText(model->getLang(row));
+    ui->deterministicCheck->setChecked(model->isDeterministic(row));
 
     // Arguments
     ui->argsList->clear();
@@ -248,6 +251,7 @@ void FunctionsEditor::clearEdits()
     ui->allDatabasesRadio->setChecked(true);
     ui->typeCombo->setCurrentIndex(0);
     ui->langCombo->setCurrentIndex(-1);
+    ui->deterministicCheck->setChecked(false);
 }
 
 void FunctionsEditor::selectFunction(int row)
@@ -374,9 +378,10 @@ void FunctionsEditor::updateModified()
         bool argDiff = getCurrentArgList() != model->getArguments(row);
         bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
         bool typeDiff = model->getType(row) != getCurrentFunctionType();
+        bool deterministicDiff = model->isDeterministic(row) != ui->deterministicCheck->isChecked();
 
         currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff ||
-                           initCodeDiff || finalCodeDiff);
+                           initCodeDiff || finalCodeDiff || deterministicDiff);
     }
 
     updateCurrentFunctionState();
@@ -415,6 +420,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->mainCodeGroup->setEnabled(langOk);
     ui->finalCodeGroup->setEnabled(langOk);
     ui->argsGroup->setEnabled(langOk);
+    ui->deterministicCheck->setEnabled(langOk);
     ui->databasesGroup->setEnabled(langOk);
     ui->nameEdit->setEnabled(langOk);
     ui->nameLabel->setEnabled(langOk);

@@ -258,17 +258,19 @@ bool InvalidDb::deregisterFunction(const QString& name, int argCount)
     return false;
 }
 
-bool InvalidDb::registerScalarFunction(const QString& name, int argCount)
+bool InvalidDb::registerScalarFunction(const QString& name, int argCount, bool deterministic)
 {
     UNUSED(name);
     UNUSED(argCount);
+    UNUSED(deterministic);
     return false;
 }
 
-bool InvalidDb::registerAggregateFunction(const QString& name, int argCount)
+bool InvalidDb::registerAggregateFunction(const QString& name, int argCount, bool deterministic)
 {
     UNUSED(name);
     UNUSED(argCount);
+    UNUSED(deterministic);
     return false;
 }
 

@@ -11,6 +11,7 @@
         static const int OPEN_READWRITE = UppercasePrefix##SQLITE_OPEN_READWRITE; \
         static const int OPEN_CREATE = UppercasePrefix##SQLITE_OPEN_CREATE; \
         static const int UTF8 = UppercasePrefix##SQLITE_UTF8; \
+        static const int DETERMINISTIC = UppercasePrefix##SQLITE_DETERMINISTIC; \
         static const int INTEGER = UppercasePrefix##SQLITE_INTEGER; \
         static const int FLOAT = UppercasePrefix##SQLITE_FLOAT; \
         static const int NULL_TYPE = UppercasePrefix##SQLITE_NULL; \

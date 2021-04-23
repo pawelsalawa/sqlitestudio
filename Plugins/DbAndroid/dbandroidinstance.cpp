@@ -76,19 +76,21 @@ bool DbAndroidInstance::deregisterFunction(const QString& name, int argCount)
     return true;
 }
 
-bool DbAndroidInstance::registerScalarFunction(const QString& name, int argCount)
+bool DbAndroidInstance::registerScalarFunction(const QString& name, int argCount, bool deterministic)
 {
     // Unsupported by native Android driver
     UNUSED(name);
     UNUSED(argCount);
+    UNUSED(deterministic);
     return true;
 }
 
-bool DbAndroidInstance::registerAggregateFunction(const QString& name, int argCount)
+bool DbAndroidInstance::registerAggregateFunction(const QString& name, int argCount, bool deterministic)
 {
     // Unsupported by native Android driver
     UNUSED(name);
     UNUSED(argCount);
+    UNUSED(deterministic);
     return true;
 }
 

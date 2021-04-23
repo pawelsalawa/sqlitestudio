@@ -105,6 +105,7 @@ void AbstractDb::registerAllFunctions()
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
         regFn.type = fnPtr->type;
+        regFn.deterministic = fnPtr->deterministic;
         registerFunction(regFn);
     }
 
@@ -113,6 +114,7 @@ void AbstractDb::registerAllFunctions()
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
         regFn.type = fnPtr->type;
+        regFn.deterministic = fnPtr->deterministic;
         registerFunction(regFn);
     }
 
@@ -875,10 +877,10 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
     switch (function.type)
     {
         case FunctionManager::ScriptFunction::SCALAR:
-            successful = registerScalarFunction(function.name, function.argCount);
+            successful = registerScalarFunction(function.name, function.argCount, function.deterministic);
             break;
         case FunctionManager::ScriptFunction::AGGREGATE:
-            successful = registerAggregateFunction(function.name, function.argCount);
+            successful = registerAggregateFunction(function.name, function.argCount, function.deterministic);
             break;
     }
 

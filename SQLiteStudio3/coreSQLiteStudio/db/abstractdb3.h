@@ -60,8 +60,8 @@ class AbstractDb3 : public AbstractDb
         SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
         bool deregisterFunction(const QString& name, int argCount);
-        bool registerScalarFunction(const QString& name, int argCount);
-        bool registerAggregateFunction(const QString& name, int argCount);
+        bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
+        bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
 
@@ -485,7 +485,7 @@ bool AbstractDb3<T>::deregisterFunction(const QString& name, int argCount)
 }
 
 template <class T>
-bool AbstractDb3<T>::registerScalarFunction(const QString& name, int argCount)
+bool AbstractDb3<T>::registerScalarFunction(const QString& name, int argCount, bool deterministic)
 {
     if (!dbHandle)
         return false;
@@ -495,7 +495,11 @@ bool AbstractDb3<T>::registerScalarFunction(const QString& name, int argCount)
     userData->name = name;
     userData->argCount = argCount;
 
-    int res = T::create_function_v2(dbHandle, name.toUtf8().constData(), argCount, T::UTF8, userData,
+    int opts = T::UTF8;
+    if (deterministic)
+        opts |= T::DETERMINISTIC;
+
+    int res = T::create_function_v2(dbHandle, name.toUtf8().constData(), argCount, opts, userData,
                                          &AbstractDb3<T>::evaluateScalar,
                                          nullptr,
                                          nullptr,
@@ -505,7 +509,7 @@ bool AbstractDb3<T>::registerScalarFunction(const QString& name, int argCount)
 }
 
 template <class T>
-bool AbstractDb3<T>::registerAggregateFunction(const QString& name, int argCount)
+bool AbstractDb3<T>::registerAggregateFunction(const QString& name, int argCount, bool deterministic)
 {
     if (!dbHandle)
         return false;
@@ -515,7 +519,11 @@ bool AbstractDb3<T>::registerAggregateFunction(const QString& name, int argCount
     userData->name = name;
     userData->argCount = argCount;
 
-    int res = T::create_function_v2(dbHandle, name.toUtf8().constData(), argCount, T::UTF8, userData,
+    int opts = T::UTF8;
+    if (deterministic)
+        opts |= T::DETERMINISTIC;
+
+    int res = T::create_function_v2(dbHandle, name.toUtf8().constData(), argCount, opts, userData,
                                          nullptr,
                                          &AbstractDb3<T>::evaluateAggregateStep,
                                          &AbstractDb3<T>::evaluateAggregateFinal,
