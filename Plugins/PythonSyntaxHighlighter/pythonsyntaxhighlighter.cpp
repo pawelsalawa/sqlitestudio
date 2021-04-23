@@ -2,10 +2,11 @@
 #include <QtWidgets/QPlainTextEdit>
 
 #include <QSyntaxHighlighter>
-#include <QRegExp>
+#include <QRegularExpression>
 
 // Started from Qt Syntax Highlighter example and then ported https://wiki.python.org/moin/PyQt/Python%20syntax%20highlighting
 // Ported code copied from https://forum.qt.io/topic/96285/c-highlighter-for-python
+// and then adjusted for SQLiteStudio (i.e. migrated from QRegExp to QRegularExpression).
 class PythonHighlighter : public QSyntaxHighlighter
 {
     public:
@@ -22,13 +23,13 @@ class PythonHighlighter : public QSyntaxHighlighter
     private:
         struct HighlightingRule
         {
-            QRegExp pattern;
+            QRegularExpression pattern;
             QTextCharFormat format;
             int matchIndex = 0;
 
             HighlightingRule() { }
-            HighlightingRule(const QRegExp &r, int i, const QTextCharFormat &f) : pattern(r), format(f), matchIndex(i) { }
-            HighlightingRule(const QString &p, int i, const QTextCharFormat &f) : pattern(QRegExp(p)), format(f), matchIndex(i) { }
+            HighlightingRule(const QRegularExpression &r, int i, const QTextCharFormat &f) : pattern(r), format(f), matchIndex(i) { }
+            HighlightingRule(const QString &p, int i, const QTextCharFormat &f) : pattern(QRegularExpression(p)), format(f), matchIndex(i) { }
         };
 
         static const QMap<QString, QTextCharFormat> STYLES;
@@ -122,9 +123,9 @@ void PythonHighlighter::initialize()
     _pythonHighlightingRules += HighlightingRule("\\bself\\b", 0, STYLES["self"]);
 
     // Double-quoted string, possibly containing escape sequences
-    _pythonHighlightingRules += HighlightingRule("\"[^\"\\]*(\\\\.[^\"\\]*)*\"", 0, STYLES["string"]);
+    _pythonHighlightingRules += HighlightingRule("\"([^\"\\\\]|\\\\.)*\"", 0, STYLES["string"]);
     // Single-quoted string, possibly containing escape sequences
-    _pythonHighlightingRules += HighlightingRule("'[^'\\]*(\\\\.[^'\\]*)*'", 0, STYLES["string"]);
+    _pythonHighlightingRules += HighlightingRule("'([^'\\\\]|\\\\.)*'", 0, STYLES["string"]);
 
     // 'def' followed by an identifier
     _pythonHighlightingRules += HighlightingRule("\\bdef\\b\\s*(\\w+)", 1, STYLES["defclass"]);
@@ -150,18 +151,17 @@ void PythonHighlighter::highlightPythonBlock(const QString &text)
     // Do other syntax formatting
     for (const HighlightingRule& rule : _pythonHighlightingRules)
     {
-        index = rule.pattern.indexIn(text, 0);
+        if (!rule.pattern.isValid())
+            qDebug() << "Invalid pattern:" << rule.pattern.patternErrorOffset() << rule.pattern.errorString();
 
-        // We actually want the index of the nth match
-        while (index >= 0)
+        QRegularExpressionMatchIterator iter = rule.pattern.globalMatch(text, 0);
+        while (iter.hasNext())
         {
-            index = rule.pattern.pos(rule.matchIndex);
-            int length = rule.pattern.cap(rule.matchIndex).length();
+            QRegularExpressionMatch match = iter.next();
+            index = match.capturedStart(rule.matchIndex);
+            int length = match.capturedLength(rule.matchIndex);
             if (length > 0)
-            {
                 setFormat(index, length, rule.format);
-                index = rule.pattern.indexIn(text, index + length);
-            }
         }
     }
 
@@ -201,7 +201,7 @@ bool PythonHighlighter::matchMultiLine(const QString &text, const HighlightingRu
     int start, add, end, length;
 
     // If inside triple-single quotes, start at 0
-    if(previousBlockState() == rule.matchIndex)
+    if (previousBlockState() == rule.matchIndex)
     {
         start = 0;
         add = 0;
@@ -209,20 +209,22 @@ bool PythonHighlighter::matchMultiLine(const QString &text, const HighlightingRu
     // Otherwise, look for the delimiter on this line
     else
     {
-        start = rule.pattern.indexIn(text);
+        QRegularExpressionMatch match = rule.pattern.match(text);
+        start = match.capturedStart();
         // Move past this match
-        add = rule.pattern.matchedLength();
+        add = match.capturedLength();
     }
 
     // As long as there's a delimiter match on this line...
     while (start >= 0)
     {
+        QRegularExpressionMatch match = rule.pattern.match(text, start + add);
         // Look for the ending delimiter
-        end = rule.pattern.indexIn(text, start + add);
+        end = match.capturedStart();
         // Ending delimiter on this line?
         if(end >= add)
         {
-            length = end - start + add + rule.pattern.matchedLength();
+            length = end - start + add + match.capturedLength();
             setCurrentBlockState(0);
         }
         // No; multi-line string
@@ -236,7 +238,8 @@ bool PythonHighlighter::matchMultiLine(const QString &text, const HighlightingRu
         setFormat(start, length, rule.format);
 
         // Look for the next match
-        start = rule.pattern.indexIn(text, start + length);
+        match = rule.pattern.match(text, start + length);
+        start = match.capturedStart();
     }
 
     // Return True if still inside a multi-line string, False otherwise
