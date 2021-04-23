@@ -618,7 +618,7 @@ void PluginManagerImpl::removePluginFromCollections(Plugin* plugin)
 {
     ScriptingPlugin* scriptingPlugin = dynamic_cast<ScriptingPlugin*>(plugin);
     if (scriptingPlugin && scriptingPlugins.contains(scriptingPlugin->getLanguage()))
-        scriptingPlugins.remove(plugin->getName());
+        scriptingPlugins.remove(scriptingPlugin->getLanguage());
 }
 
 bool PluginManagerImpl::readMetaData(PluginManagerImpl::PluginContainer* container)

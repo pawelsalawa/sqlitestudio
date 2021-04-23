@@ -55,7 +55,6 @@ void ScriptingPython::deinit()
 {
     QMutexLocker locker(mainInterpMutex);
     contexts.clear();
-    safe_delete(mainContext);
     Py_Finalize();
     Q_CLEANUP_RESOURCE(scriptingpython);
 }
