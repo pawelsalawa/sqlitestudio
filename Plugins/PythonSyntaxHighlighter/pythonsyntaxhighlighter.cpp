@@ -151,9 +151,6 @@ void PythonHighlighter::highlightPythonBlock(const QString &text)
     // Do other syntax formatting
     for (const HighlightingRule& rule : _pythonHighlightingRules)
     {
-        if (!rule.pattern.isValid())
-            qDebug() << "Invalid pattern:" << rule.pattern.patternErrorOffset() << rule.pattern.errorString();
-
         QRegularExpressionMatchIterator iter = rule.pattern.globalMatch(text, 0);
         while (iter.hasNext())
         {
