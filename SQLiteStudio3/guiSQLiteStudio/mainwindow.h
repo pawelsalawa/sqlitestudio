@@ -30,6 +30,7 @@ class Committable;
 class WidgetCover;
 class QProgressBar;
 class QLabel;
+class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
 
@@ -136,10 +137,12 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ~MainWindow();
 
         void init();
+        void observeSessionChanges();
         void createActions();
         void setupDefShortcuts();
         void initMenuBar();
         void saveSession(MdiWindow* currWindow);
+        void saveSession(bool hide);
         void restoreWindowSessions(const QList<QVariant>& windowSessions);
         MdiWindow *restoreWindowSession(const QVariant& windowSessions);
         void closeNonSessionWindows();
@@ -157,6 +160,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         static MainWindow* instance;
         static constexpr int closedWindowsStackSize = 20;
         static_char* openUpdatesUrl = "open_updates://";
+        static constexpr int saveSessionDelayMs = 500;
 
         Ui::MainWindow *ui = nullptr;
         DbTree* dbTree = nullptr;
@@ -175,6 +179,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #endif
         WidgetCover* widgetCover = nullptr;
         bool manualUpdatesChecking = false;
+        QTimer* saveSessionTimer = nullptr;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -221,6 +226,11 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void quit();
         void updateMultipleSessionsSetting();
         void updateMultipleSessionsSetting(const QVariant& newValue);
+        void saveSession();
+        void scheduleSessionSave();
+
+    signals:
+        void sessionValueChanged();
 };
 
 template <class T>

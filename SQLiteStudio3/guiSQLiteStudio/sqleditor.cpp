@@ -274,6 +274,11 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
 
 }
 
+bool SqlEditor::getHighlightingSyntax() const
+{
+    return highlightingSyntax;
+}
+
 void SqlEditor::updateUndoAction(bool enabled)
 {
     actionMap[UNDO]->setEnabled(enabled);
@@ -551,7 +556,7 @@ void SqlEditor::setObjectLinks(bool enabled)
     objectLinksEnabled = enabled;
     setMouseTracking(enabled);
     highlighter->setObjectLinksEnabled(enabled);
-    highlighter->rehighlight();
+    highlightSyntax();
 
     if (enabled)
         handleValidObjectCursor(mapFromGlobal(QCursor::pos()));
@@ -846,7 +851,7 @@ void SqlEditor::parseContents()
         queryParser->parse(sql);
         checkForValidObjects();
         checkForSyntaxErrors();
-        highlighter->rehighlight();
+        highlightSyntax();
     }
 }
 
@@ -969,6 +974,13 @@ void SqlEditor::openObject(const QString& database, const QString& name)
 {
     DbObjectDialogs dialogs(db);
     dialogs.editObject(database, name);
+}
+
+void SqlEditor::highlightSyntax()
+{
+    highlightingSyntax = true;
+    highlighter->rehighlight();
+    highlightingSyntax = false;
 }
 
 void SqlEditor::updateLineNumberAreaWidth()
@@ -1298,7 +1310,7 @@ void SqlEditor::changeFont(const QVariant& font)
 
 void SqlEditor::configModified()
 {
-    highlighter->rehighlight();
+    highlightSyntax();
     highlightCurrentCursorContext();
 }
 

@@ -34,6 +34,7 @@
 #include "services/extralicensemanager.h"
 #include "services/sqliteextensionmanager.h"
 #include "translations.h"
+#include "chillout/chillout.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -51,6 +52,25 @@ SQLiteStudio::SQLiteStudio()
 SQLiteStudio::~SQLiteStudio()
 {
 }
+
+void SQLiteStudio::setupCrashHandler()
+{
+    auto &chillout = Debug::Chillout::getInstance();
+
+#ifdef _WIN32
+    chillout.init(qApp->applicationName().toStdWString(), qApp->applicationDirPath().toStdWString());
+#else
+    chillout.init(qApp->applicationName().toStdString(), qApp->applicationDirPath().toStdString());
+#endif
+
+    chillout.setBacktraceCallback([](const char * const) {});
+
+    chillout.setCrashCallback([this]() {
+        for (CrashHandler& hnd : crashHandlers)
+            hnd();
+    });
+}
+
 QStringList SQLiteStudio::getInitialTranslationFiles() const
 {
     return initialTranslationFiles;
@@ -59,6 +79,11 @@ QStringList SQLiteStudio::getInitialTranslationFiles() const
 void SQLiteStudio::setInitialTranslationFiles(const QStringList& value)
 {
     initialTranslationFiles = value;
+}
+
+void SQLiteStudio::installCrashHandler(SQLiteStudio::CrashHandler handler)
+{
+    crashHandlers << handler;
 }
 
 
@@ -352,6 +377,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     extraLicenseManager->addLicense("diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
     extraLicenseManager->addLicense("RSA library (GPL v3)", ":/docs/licenses/gpl.txt");
     extraLicenseManager->addLicense("SingleApplication (The MIT License)", ":/docs/licenses/mit.txt");
+
+    setupCrashHandler();
 }
 
 void SQLiteStudio::initPlugins()

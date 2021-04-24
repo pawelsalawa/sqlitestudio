@@ -106,7 +106,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool getVirtualSqlCompleteSemicolon() const;
         void setVirtualSqlCompleteSemicolon(bool value);
 
-    protected:
+        bool getHighlightingSyntax() const;
+
+        protected:
         void setupDefShortcuts();
         void createActions();
         void keyPressEvent(QKeyEvent* e);
@@ -187,6 +189,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void replaceSelectedText(const QString& newText);
         QString getSelectedText() const;
         void openObject(const QString& database, const QString& name);
+        void highlightSyntax();
 
         /**
          * @brief getValidObjectForPosition
@@ -224,6 +227,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         int storedSelectionStart = 0;
         int storedSelectionEnd = 0;
         bool richFeaturesEnabled = true;
+        bool highlightingSyntax = true;
 
         /**
          * @brief virtualSqlExpression

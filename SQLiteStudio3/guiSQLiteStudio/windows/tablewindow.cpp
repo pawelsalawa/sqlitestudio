@@ -645,7 +645,7 @@ void TableWindow::changeEvent(QEvent *e)
 
 QVariant TableWindow::saveSession()
 {
-    if (!db || DBLIST->isTemporary(db))
+    if (!db || DBLIST->isTemporary(db) || !existingTable)
         return QVariant();
 
     QHash<QString,QVariant> sessionValue;
@@ -831,6 +831,8 @@ void TableWindow::changesSuccessfullyCommitted()
     updateStructureCommitState();
     updateNewTableState();
     updateWindowTitle();
+
+    emit sessionValueChanged();
 
     NotifyManager* notifyManager = NotifyManager::getInstance();
     if (oldTable.compare(table, Qt::CaseInsensitive) == 0 || oldTable.isEmpty())

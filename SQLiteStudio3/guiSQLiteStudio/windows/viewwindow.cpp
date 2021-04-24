@@ -635,6 +635,8 @@ void ViewWindow::changesSuccessfullyCommitted()
     QString oldView = view;
     view = createView->view;
 
+    emit sessionValueChanged();
+
     if (!existingView)
         notifyInfo(tr("View '%1' was committed successfully.").arg(view));
     else if (oldView.compare(view, Qt::CaseInsensitive) == 0)

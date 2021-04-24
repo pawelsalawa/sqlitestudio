@@ -60,6 +60,8 @@ class API_EXPORT SQLiteStudio : public QObject
         DECLARE_SINGLETON(SQLiteStudio)
 
     public:
+        typedef std::function<void()> CrashHandler;
+
         /**
          * @brief Initializes SQLiteStudio object.
          * @param cmdListArguments Command line arguments.
@@ -159,6 +161,8 @@ class API_EXPORT SQLiteStudio : public QObject
         QStringList getInitialTranslationFiles() const;
         void setInitialTranslationFiles(const QStringList& value);
 
+        void installCrashHandler(CrashHandler handler);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -174,6 +178,10 @@ class API_EXPORT SQLiteStudio : public QObject
          * Calls cleanUp().
          */
         ~SQLiteStudio();
+
+        void setupCrashHandler();
+
+        QList<CrashHandler> crashHandlers;
 
         /**
          * @brief Code formatter service.

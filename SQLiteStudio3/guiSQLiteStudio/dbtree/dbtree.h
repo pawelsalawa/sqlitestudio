@@ -241,6 +241,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void fileExecCoverToBeClosed();
         void fileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
         void schemaNeedsRefreshing(Db* db);
+        void sessionValueChanged();
 };
 
 int qHash(DbTree::Action action);

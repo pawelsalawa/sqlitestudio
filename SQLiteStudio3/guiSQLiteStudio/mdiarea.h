@@ -41,6 +41,7 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
 
     signals:
         void windowListChanged();
+        void sessionValueChanged();
 
     private slots:
         void taskActivated();

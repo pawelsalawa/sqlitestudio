@@ -41,6 +41,9 @@ class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, publi
 
     private:
         MdiWindow* mdiWindow = nullptr;
+
+    signals:
+        void sessionValueChanged();
 };
 
 

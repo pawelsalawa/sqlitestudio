@@ -113,6 +113,8 @@ void EditorWindow::init()
     resultsModel->setDb(currentDb);
     ui->sqlEdit->setDb(currentDb);
 
+    connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
+
     connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(resultsModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
     connect(resultsModel, SIGNAL(storeExecutionInHistory()), this, SLOT(storeExecutionInHistory()));
@@ -237,7 +239,9 @@ bool EditorWindow::setCurrentDb(Db *db)
 
 void EditorWindow::setContents(const QString &sql)
 {
+    settingSqlContents = true;
     ui->sqlEdit->setPlainText(sql);
+    settingSqlContents = false;
 }
 
 QString EditorWindow::getContents() const
@@ -745,6 +749,12 @@ void EditorWindow::updateState()
     actionMap[CURRENT_DB]->setEnabled(!executionInProgress);
     actionMap[EXEC_QUERY]->setEnabled(!executionInProgress);
     actionMap[EXPLAIN_QUERY]->setEnabled(!executionInProgress);
+}
+
+void EditorWindow::checkTextChangedForSession()
+{
+    if (!ui->sqlEdit->getHighlightingSyntax() && !settingSqlContents)
+        emit sessionValueChanged();
 }
 
 int qHash(EditorWindow::ActionGroup actionGroup)

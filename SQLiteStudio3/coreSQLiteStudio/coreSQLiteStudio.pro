@@ -18,7 +18,7 @@ TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
 win32: {
-    LIBS += -lpsapi -limagehlp
+    LIBS += -lpsapi -limagehlp -lversion
     DEFINES += "SQLITE_API=\"__declspec(dllexport)\""
 
     !debug: {
@@ -61,6 +61,11 @@ QM_FILES_RESOURCE_PREFIX = /msg/translations
 TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += sqlitestudio.cpp \
+    chillout/chillout.cpp \
+    chillout/common/common.cpp \
+    chillout/posix/posixcrashhandler.cpp \
+    chillout/windows/StackWalker.cpp \
+    chillout/windows/windowscrashhandler.cpp \
     common/compatibility.cpp \
     db/queryexecutorsteps/queryexecutorcolumntype.cpp \
     parser/ast/sqlitefilterover.cpp \
@@ -232,6 +237,12 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqliteupsert.cpp
 
 HEADERS += sqlitestudio.h\
+    chillout/chillout.h \
+    chillout/common/common.h \
+    chillout/defines.h \
+    chillout/posix/posixcrashhandler.h \
+    chillout/windows/StackWalker.h \
+    chillout/windows/windowscrashhandler.h \
     common/compatibility.h \
         coreSQLiteStudio_global.h \
     db/queryexecutorsteps/queryexecutorcolumntype.h \

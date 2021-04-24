@@ -51,6 +51,7 @@
 #include <QStyle>
 #include <QApplication>
 #include <QToolTip>
+#include <QTimer>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -139,6 +140,29 @@ void MainWindow::init()
 
     updateMultipleSessionsSetting();
     fixFonts();
+    observeSessionChanges();
+
+    SQLITESTUDIO->installCrashHandler([this]()
+    {
+        saveSession();
+    });
+}
+
+void MainWindow::observeSessionChanges()
+{
+    saveSessionTimer = new QTimer(this);
+    saveSessionTimer->setSingleShot(true);
+    connect(saveSessionTimer, SIGNAL(timeout()), this, SLOT(saveSession()));
+
+    for (QDockWidget* dock : QList<QDockWidget*>({dbTree, statusField}))
+    {
+        connect(dock, SIGNAL(topLevelChanged(bool)), this, SLOT(scheduleSessionSave()));
+        connect(dock, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), this, SLOT(scheduleSessionSave()));
+        connect(dock, SIGNAL(visibilityChanged(bool)), this, SLOT(scheduleSessionSave()));
+    }
+    connect(dbTree, SIGNAL(sessionValueChanged()), this, SLOT(scheduleSessionSave()));
+    connect(getMdiArea(), SIGNAL(sessionValueChanged()), this, SLOT(scheduleSessionSave()));
+    connect(this, SIGNAL(sessionValueChanged()), this, SLOT(scheduleSessionSave()));
 }
 
 void MainWindow::cleanUp()
@@ -227,9 +251,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
     closingApp = true;
     closeNonSessionWindows();
-    MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
-    hide();
-    saveSession(currWindow);
+    saveSession(true);
     QMainWindow::closeEvent(event);
 }
 
@@ -570,12 +592,32 @@ EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
     return win;
 }
 
+void MainWindow::saveSession(bool hide)
+{
+    MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
+    if (hide)
+        this->hide();
+
+    saveSession(currWindow);
+}
+
+void MainWindow::saveSession()
+{
+    saveSession(false);
+}
+
+void MainWindow::scheduleSessionSave()
+{
+    saveSessionTimer->start(saveSessionDelayMs);
+}
+
 void MainWindow::closeNonSessionWindows()
 {
     for (MdiWindow* window : ui->mdiArea->getWindows())
         if (!window->restoreSessionNextTime())
             window->close();
 }
+
 FormManager* MainWindow::getFormManager() const
 {
     return formManager;

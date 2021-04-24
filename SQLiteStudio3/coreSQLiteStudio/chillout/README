@@ -1,0 +1,4 @@
+Chillout crash handler
+https://gitlab.com/ribtoks/chillout
+
+This is subset of the original code. Some parts were removed, some were changed to adjust it for compilation with Mingw under Windows and to remove parts unused in SQLiteStudio.

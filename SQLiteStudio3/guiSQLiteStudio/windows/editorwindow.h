@@ -134,6 +134,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         qint64 lastQueryHistoryId = 0;
         QString lastSuccessfulQuery;
         QMenu* sqlHistoryMenu = nullptr;
+        bool settingSqlContents = false;
 
     private slots:
         void execQuery(bool explain = false);
@@ -157,6 +158,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void exportResults();
         void createViewFromQuery();
         void updateState();
+        void checkTextChangedForSession();
 };
 
 GUI_API_EXPORT int qHash(EditorWindow::ActionGroup action);

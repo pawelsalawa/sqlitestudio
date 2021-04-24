@@ -128,6 +128,12 @@ void DbTree::init()
 
     connect(CFG_UI.Fonts.DbTree, SIGNAL(changed(QVariant)), this, SLOT(refreshFont()));
 
+    connect(treeModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
+    connect(treeModel, SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SIGNAL(sessionValueChanged()));
+    connect(treeModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
+    connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SIGNAL(sessionValueChanged()));
+    connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SIGNAL(sessionValueChanged()));
+
     updateActionsForCurrent();
 }
 
@@ -1729,6 +1735,8 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
         refreshSchema(dbToRefresh);
     }
+
+    emit sessionValueChanged();
 }
 
 void DbTree::refreshSchemas()
@@ -1775,12 +1783,14 @@ void DbTree::dbConnected(Db* db)
 {
     updateActionsForCurrent();
     updateDbIcon(db);
+    emit sessionValueChanged();
 }
 
 void DbTree::dbDisconnected(Db* db)
 {
     updateActionsForCurrent();
     updateDbIcon(db);
+    emit sessionValueChanged();
 }
 
 void DbTree::updateDbIcon(Db* db)

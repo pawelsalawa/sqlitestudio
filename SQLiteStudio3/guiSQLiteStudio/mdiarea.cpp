@@ -42,7 +42,10 @@ MdiWindow *MdiArea::addSubWindow(MdiChild *mdiChild)
             mdiWin->setWindowState(mdiWin->windowState()|Qt::WindowMaximized);
     }
 
+    connect(mdiChild, SIGNAL(sessionValueChanged()), this, SIGNAL(sessionValueChanged()));
+
     emit windowListChanged();
+    emit sessionValueChanged();
     return mdiWin;
 }
 
@@ -110,6 +113,7 @@ void MdiArea::taskActivated()
     }
 
     setActiveSubWindow(actionToWinMap[action]);
+    emit sessionValueChanged();
 }
 
 void MdiArea::windowDestroyed(MdiWindow* window)
@@ -132,6 +136,7 @@ void MdiArea::windowDestroyed(MdiWindow* window)
     delete action;
 
     emit windowListChanged();
+    emit sessionValueChanged();
 
     if (taskToSelect)
         taskBar->setActiveTask(taskToSelect);
@@ -151,6 +156,7 @@ void MdiArea::windowActivated()
 
     QAction* action = winToActionMap[subWin];
     action->setChecked(true);
+    emit sessionValueChanged();
 }
 
 void MdiArea::tileHorizontally()
