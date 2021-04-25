@@ -39,6 +39,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(QString,               DataViewTabs,               QString())
         CFG_ENTRY(QString,               SqlEditorTabs,              QString())
         CFG_ENTRY(QString,               SqlEditorDbListOrder,       "LikeDbTree")
+        CFG_ENTRY(bool,                  SqlEditorWrapWords,         false)
         CFG_ENTRY(bool,                  ExpandTables,               true)
         CFG_ENTRY(bool,                  ExpandViews,                true)
         CFG_ENTRY(bool,                  SortObjects,                true)

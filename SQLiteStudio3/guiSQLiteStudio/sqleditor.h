@@ -3,7 +3,6 @@
 
 #include "guiSQLiteStudio_global.h"
 #include "common/extactioncontainer.h"
-#include "db/db.h"
 #include "sqlitesyntaxhighlighter.h"
 #include <QPlainTextEdit>
 #include <QTextEdit>
@@ -18,6 +17,7 @@ class SqlEditor;
 class SearchTextDialog;
 class SearchTextLocator;
 class LazyTrigger;
+class Db;
 
 #ifdef Q_OS_OSX
 #  define COMPLETE_REQ_KEY Qt::META
@@ -40,7 +40,7 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(FIND_PREV,       QKeySequence::FindPrevious,        QObject::tr("Find previous"))
     CFG_KEY_ENTRY(REPLACE,         QKeySequence::Replace,             QObject::tr("Replace in text"))
     CFG_KEY_ENTRY(DELETE_LINE,     Qt::CTRL + Qt::Key_D,              QObject::tr("Delete current line"))
-    CFG_KEY_ENTRY(COMPLETE,        COMPLETE_REQ_KEY + Qt::Key_Space,          QObject::tr("Request code assistant"))
+    CFG_KEY_ENTRY(COMPLETE,        COMPLETE_REQ_KEY + Qt::Key_Space,  QObject::tr("Request code assistant"))
     CFG_KEY_ENTRY(FORMAT_SQL,      Qt::CTRL + Qt::Key_T,              QObject::tr("Format contents"))
     CFG_KEY_ENTRY(MOVE_BLOCK_DOWN, Qt::ALT + Qt::Key_Down,            QObject::tr("Move selected block of text one line down"))
     CFG_KEY_ENTRY(MOVE_BLOCK_UP,   Qt::ALT + Qt::Key_Up,              QObject::tr("Move selected block of text one line up"))
@@ -78,12 +78,16 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             FIND_NEXT,
             FIND_PREV,
             REPLACE,
-            TOGGLE_COMMENT
+            TOGGLE_COMMENT,
+            WORD_WRAP
         };
 
         enum ToolBar
         {
         };
+
+        static void createStaticActions();
+        static void staticInit();
 
         explicit SqlEditor(QWidget *parent = 0);
         ~SqlEditor();
@@ -108,7 +112,10 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
 
         bool getHighlightingSyntax() const;
 
-        protected:
+        static QHash<Action, QAction*> staticActions;
+        static bool wrapWords;
+
+    protected:
         void setupDefShortcuts();
         void createActions();
         void keyPressEvent(QKeyEvent* e);
@@ -119,6 +126,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void mousePressEvent(QMouseEvent* e);
         void resizeEvent(QResizeEvent *e);
         void changeEvent(QEvent*e);
+        void showEvent(QShowEvent* event);
 
     private:
         class LineNumberArea : public QWidget
@@ -295,6 +303,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void changeFont(const QVariant& font);
         void configModified();
         void toggleComment();
+        void wordWrappingChanged(const QVariant& value);
 
     signals:
         void errorsChecked(bool haveErrors);

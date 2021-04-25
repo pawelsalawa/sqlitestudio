@@ -2,9 +2,7 @@
 #define DB_H
 
 #include <QVariant>
-#include "returncode.h"
-#include "services/functionmanager.h"
-#include "common/readwritelocker.h"
+#include "common/global.h"
 #include "coreSQLiteStudio_global.h"
 #include "db/attachguard.h"
 #include "interruptable.h"

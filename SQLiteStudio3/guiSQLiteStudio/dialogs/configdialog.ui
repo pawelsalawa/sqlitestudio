@@ -217,7 +217,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -395,7 +395,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>564</width>
+                <width>407</width>
                 <height>540</height>
                </rect>
               </property>
@@ -832,6 +832,16 @@
               <string>SQL queries</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
+              <item row="2" column="0">
+               <widget class="QLabel" name="bindParamLimitLabel">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Number of memorized query parameters</string>
+                </property>
+               </widget>
+              </item>
               <item row="1" column="1">
                <widget class="QSpinBox" name="queryHistorySizeSpin">
                 <property name="maximumSize">
@@ -887,13 +897,16 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="bindParamLimitLabel">
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBox_3">
                 <property name="toolTip">
-                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>Number of memorized query parameters</string>
+                 <string>Wrap lines in SQL editor</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.SqlEditorWrapWords</string>
                 </property>
                </widget>
               </item>
@@ -1731,15 +1744,15 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+  <customwidget>
    <class>FontEdit</class>
    <extends>QWidget</extends>
    <header>common/fontedit.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ConfigRadioButton</class>
-   <extends>QRadioButton</extends>
-   <header>common/configradiobutton.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -4,6 +4,7 @@
 - ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
 - ADDED: #3615 console.log() function for JS scripts.
+- ADDED: #3503 #3963 SQL Editor has word wrapping option in context menu. It's also available in the configuration dialog.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.

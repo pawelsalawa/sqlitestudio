@@ -52,6 +52,7 @@
 #include <QApplication>
 #include <QToolTip>
 #include <QTimer>
+#include <QtGui>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;

@@ -162,6 +162,7 @@ int main(int argc, char *argv[])
     MultiEditorDate::staticInit();
     MultiEditorBool::staticInit();
     TriggerDialog::staticInit();
+    SqlEditor::staticInit();
 
     MainWindow* mainWin = MAINWINDOW;
 

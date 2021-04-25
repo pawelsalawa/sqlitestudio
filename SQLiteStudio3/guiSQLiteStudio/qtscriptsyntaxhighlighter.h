@@ -33,37 +33,6 @@
 #include "guiSQLiteStudio_global.h"
 #include "plugins/builtinplugin.h"
 #include "syntaxhighlighterplugin.h"
-#include <QSyntaxHighlighter>
-#include <QtGui>
-
-/**
- * @brief The JavaScript highlighter
- *
- * This class is mostly copied from Ofi Labs X2 project. It has been slightly modified for SQLiteStudio needs.
- * See the source code for the full license disclaimer.
- */
-class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
-{
-    public:
-        explicit JavaScriptSyntaxHighlighter(QTextDocument *parent = 0);
-        void mark(const QString &str, Qt::CaseSensitivity caseSensitivity);
-
-    protected:
-        void highlightBlock(const QString &text);
-
-    private:
-        void highlightTemplateExpressions(const QString &text, int strStart, int strEnd);
-
-        QSet<QString> keywords;
-        QSet<QString> knownIds;
-        QString markString;
-        Qt::CaseSensitivity markCaseSensitivity;
-        QTextCharFormat normalFormat;
-        QTextCharFormat keywordsFormat;
-        QTextCharFormat commentFormat;
-        QTextCharFormat stringFormat;
-        QTextCharFormat expressionFormat;
-};
 
 class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
 {

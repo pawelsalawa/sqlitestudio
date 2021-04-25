@@ -1,4 +1,6 @@
 #include "sqleditor.h"
+#include "sqlitesyntaxhighlighter.h"
+#include "db/db.h"
 #include "log.h"
 #include "uiconfig.h"
 #include "uiutils.h"
@@ -22,6 +24,7 @@
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
 #include "common/lazytrigger.h"
+#include "common/extaction.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -35,6 +38,28 @@
 #include <QStyle>
 
 CFG_KEYS_DEFINE(SqlEditor)
+
+QHash<SqlEditor::Action, QAction*> SqlEditor::staticActions;
+bool SqlEditor::wrapWords = false;
+
+void SqlEditor::createStaticActions()
+{
+    staticActions[WORD_WRAP] = new ExtAction(tr("Wrap words", "sql editor"), MainWindow::getInstance());
+
+    staticActions[WORD_WRAP]->setCheckable(true);
+    staticActions[WORD_WRAP]->setChecked(wrapWords);
+    connect(staticActions[WORD_WRAP], &QAction::toggled, [=](bool value)
+    {
+        wrapWords = value;
+        CFG_UI.General.SqlEditorWrapWords.set(value);
+    });
+}
+
+void SqlEditor::staticInit()
+{
+    wrapWords = CFG_UI.General.SqlEditorWrapWords.get();
+    createStaticActions();
+}
 
 SqlEditor::SqlEditor(QWidget *parent) :
     QPlainTextEdit(parent)
@@ -153,6 +178,8 @@ void SqlEditor::createActions()
     connect(this, &QPlainTextEdit::undoAvailable, this, &SqlEditor::updateUndoAction);
     connect(this, &QPlainTextEdit::redoAvailable, this, &SqlEditor::updateRedoAction);
     connect(this, &QPlainTextEdit::copyAvailable, this, &SqlEditor::updateCopyAction);
+
+    connect(CFG_UI.General.SqlEditorWrapWords, SIGNAL(changed(QVariant)), this, SLOT(wordWrappingChanged(QVariant)));
 }
 
 void SqlEditor::setupDefShortcuts()
@@ -167,6 +194,7 @@ void SqlEditor::setupMenu()
 {
     contextMenu = new QMenu(this);
     contextMenu->addAction(actionMap[FORMAT_SQL]);
+    contextMenu->addAction(staticActions[WORD_WRAP]);
     contextMenu->addSeparator();
     contextMenu->addAction(actionMap[SAVE_SQL_FILE]);
     contextMenu->addAction(actionMap[OPEN_SQL_FILE]);
@@ -1399,6 +1427,11 @@ void SqlEditor::toggleComment()
     setTextCursor(cur);
 }
 
+void SqlEditor::wordWrappingChanged(const QVariant& value)
+{
+    setLineWrapMode(value.toBool() ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
+}
+
 void SqlEditor::keyPressEvent(QKeyEvent* e)
 {
     switch (e->key())
@@ -1652,4 +1685,10 @@ void SqlEditor::changeEvent(QEvent* e)
 //        highlightCurrentLine();
 
     QPlainTextEdit::changeEvent(e);
+}
+
+void SqlEditor::showEvent(QShowEvent* event)
+{
+    UNUSED(event);
+    setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
 }
