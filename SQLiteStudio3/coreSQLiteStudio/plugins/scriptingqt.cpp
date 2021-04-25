@@ -35,7 +35,6 @@ QString ScriptingQt::getLanguage() const
 ScriptingPlugin::Context* ScriptingQt::createContext()
 {
     ContextQt* ctx = new ContextQt;
-//    ctx->engine->pushContext();
     contexts << ctx;
     return ctx;
 }
@@ -253,10 +252,9 @@ ScriptingQt::ContextQt::ContextQt()
 
     dbProxy = new ScriptingQtDbProxy(engine);
     dbProxyScriptValue = engine->newQObject(dbProxy);
-    debugger = new ScriptingQtDebugger(engine);
+    console = new ScriptingQtConsole(engine);
 
-    engine->globalObject().setProperty("$$debug", engine->newQObject(debugger));
-    engine->globalObject().setProperty("debug", engine->globalObject().property("$$debug").property("debug"));
+    engine->globalObject().setProperty("console", engine->newQObject(console));
     engine->globalObject().setProperty("db", dbProxyScriptValue);
 
     scriptCache.setMaxCost(cacheSize);
@@ -264,18 +262,19 @@ ScriptingQt::ContextQt::ContextQt()
 
 ScriptingQt::ContextQt::~ContextQt()
 {
-    safe_delete(debugger);
+    safe_delete(console);
     safe_delete(dbProxy);
     safe_delete(engine);
 }
 
-ScriptingQtDebugger::ScriptingQtDebugger(QJSEngine* engine) :
+ScriptingQtConsole::ScriptingQtConsole(QJSEngine* engine) :
     QObject(), engine(engine)
 {
 }
 
-QJSValue ScriptingQtDebugger::debug(const QVariant& value)
+QJSValue ScriptingQtConsole::log(const QJSValue& value)
 {
-    NOTIFY_MANAGER->info("[ScriptingQt] " + value.toString());
+    static_qstring(tpl, "[JS] %1");
+    NOTIFY_MANAGER->info(tpl.arg(ScriptingQt::convertVariant(value.toVariant()).toString()));
     return QJSValue();
 }

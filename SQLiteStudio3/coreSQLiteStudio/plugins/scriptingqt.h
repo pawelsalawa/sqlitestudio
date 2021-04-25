@@ -10,7 +10,7 @@
 
 class QMutex;
 class ScriptingQtDbProxy;
-class ScriptingQtDebugger;
+class ScriptingQtConsole;
 
 class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
 {
@@ -26,6 +26,7 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
         ~ScriptingQt();
 
         static QJSValueList toValueList(QJSEngine* engine, const QList<QVariant>& values);
+        static QVariant convertVariant(const QVariant& value, bool wrapStrings = false);
 
         QString getLanguage() const;
         Context* createContext();
@@ -54,14 +55,13 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
                 QCache<QString, QJSValue> scriptCache;
                 QString error;
                 ScriptingQtDbProxy* dbProxy = nullptr;
-                ScriptingQtDebugger* debugger = nullptr;
+                ScriptingQtConsole* console = nullptr;
                 QJSValue dbProxyScriptValue;
         };
 
         ContextQt* getContext(ScriptingPlugin::Context* context) const;
         QJSValue getFunctionValue(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo);
         QVariant evaluate(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking);
-        QVariant convertVariant(const QVariant& value, bool wrapStrings = false);
 
         static const constexpr int cacheSize = 5;
 
@@ -70,18 +70,18 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
         QMutex* mainEngineMutex = nullptr;
 };
 
-class ScriptingQtDebugger : public QObject
+class ScriptingQtConsole : public QObject
 {
     Q_OBJECT
 
     public:
-        ScriptingQtDebugger(QJSEngine* engine);
+        ScriptingQtConsole(QJSEngine* engine);
 
     private:
         QJSEngine* engine = nullptr;
 
     public slots:
-        QJSValue debug(const QVariant& value);
+        QJSValue log(const QJSValue& value);
 };
 
 #endif // SCRIPTINGQT_H

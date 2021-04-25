@@ -3,8 +3,9 @@
 ### 3.4.0
 - ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
+- ADDED: #3615 console.log() function for JS scripts.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
-- CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon. The debug() function will now print to SQLiteStudio's status panel.
+- CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
