@@ -52,14 +52,17 @@ class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
         void highlightBlock(const QString &text);
 
     private:
-        QSet<QString> m_keywords;
-        QSet<QString> m_knownIds;
-        QString m_markString;
-        Qt::CaseSensitivity m_markCaseSensitivity;
+        void highlightTemplateExpressions(const QString &text, int strStart, int strEnd);
+
+        QSet<QString> keywords;
+        QSet<QString> knownIds;
+        QString markString;
+        Qt::CaseSensitivity markCaseSensitivity;
         QTextCharFormat normalFormat;
         QTextCharFormat keywordsFormat;
         QTextCharFormat commentFormat;
         QTextCharFormat stringFormat;
+        QTextCharFormat expressionFormat;
 };
 
 class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
@@ -68,7 +71,7 @@ class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public 
 
     SQLITESTUDIO_PLUGIN_TITLE("JavaScript highlighter")
     SQLITESTUDIO_PLUGIN_DESC("JavaScript syntax highlighter.")
-    SQLITESTUDIO_PLUGIN_VERSION(10001)
+    SQLITESTUDIO_PLUGIN_VERSION(10100)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:

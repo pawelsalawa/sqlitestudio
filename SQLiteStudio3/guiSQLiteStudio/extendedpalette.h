@@ -21,8 +21,12 @@ class ExtendedPalette
         QBrush mdiAreaBase() const;
         void setMdiAreaBase(const QBrush& value);
 
+        QBrush editorExpression() const;
+        void setEditorExpression(const QBrush& value);
+
     private:
         QBrush editorStringBrush;
+        QBrush editorExpressionBrush;
         QBrush editorLineBaseBrush;
         QBrush mdiAreaBaseBrush;
 };

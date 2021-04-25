@@ -6,182 +6,182 @@
 
 JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
     : QSyntaxHighlighter(parent)
-    , m_markCaseSensitivity(Qt::CaseInsensitive)
+    , markCaseSensitivity(Qt::CaseInsensitive)
 {
     // https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words
-    m_keywords << "break";
-    m_keywords << "case";
-    m_keywords << "catch";
-    m_keywords << "continue";
-    m_keywords << "default";
-    m_keywords << "delete";
-    m_keywords << "do";
-    m_keywords << "else";
-    m_keywords << "finally";
-    m_keywords << "for";
-    m_keywords << "function";
-    m_keywords << "if";
-    m_keywords << "in";
-    m_keywords << "instanceof";
-    m_keywords << "new";
-    m_keywords << "return";
-    m_keywords << "switch";
-    m_keywords << "this";
-    m_keywords << "throw";
-    m_keywords << "try";
-    m_keywords << "typeof";
-    m_keywords << "var";
-    m_keywords << "void";
-    m_keywords << "while";
-    m_keywords << "with";
+    keywords << "break";
+    keywords << "case";
+    keywords << "catch";
+    keywords << "continue";
+    keywords << "default";
+    keywords << "delete";
+    keywords << "do";
+    keywords << "else";
+    keywords << "finally";
+    keywords << "for";
+    keywords << "function";
+    keywords << "if";
+    keywords << "in";
+    keywords << "instanceof";
+    keywords << "new";
+    keywords << "return";
+    keywords << "switch";
+    keywords << "this";
+    keywords << "throw";
+    keywords << "try";
+    keywords << "typeof";
+    keywords << "var";
+    keywords << "void";
+    keywords << "while";
+    keywords << "with";
 
-    m_keywords << "true";
-    m_keywords << "false";
-    m_keywords << "null";
+    keywords << "true";
+    keywords << "false";
+    keywords << "null";
 
     // built-in and other popular objects + properties
-    m_knownIds << "Object";
-    m_knownIds << "prototype";
-    m_knownIds << "create";
-    m_knownIds << "defineProperty";
-    m_knownIds << "defineProperties";
-    m_knownIds << "getOwnPropertyDescriptor";
-    m_knownIds << "keys";
-    m_knownIds << "getOwnPropertyNames";
-    m_knownIds << "constructor";
-    m_knownIds << "__parent__";
-    m_knownIds << "__proto__";
-    m_knownIds << "__defineGetter__";
-    m_knownIds << "__defineSetter__";
-    m_knownIds << "eval";
-    m_knownIds << "hasOwnProperty";
-    m_knownIds << "isPrototypeOf";
-    m_knownIds << "__lookupGetter__";
-    m_knownIds << "__lookupSetter__";
-    m_knownIds << "__noSuchMethod__";
-    m_knownIds << "propertyIsEnumerable";
-    m_knownIds << "toSource";
-    m_knownIds << "toLocaleString";
-    m_knownIds << "toString";
-    m_knownIds << "unwatch";
-    m_knownIds << "valueOf";
-    m_knownIds << "watch";
+    knownIds << "Object";
+    knownIds << "prototype";
+    knownIds << "create";
+    knownIds << "defineProperty";
+    knownIds << "defineProperties";
+    knownIds << "getOwnPropertyDescriptor";
+    knownIds << "keys";
+    knownIds << "getOwnPropertyNames";
+    knownIds << "constructor";
+    knownIds << "__parent__";
+    knownIds << "__proto__";
+    knownIds << "__defineGetter__";
+    knownIds << "__defineSetter__";
+    knownIds << "eval";
+    knownIds << "hasOwnProperty";
+    knownIds << "isPrototypeOf";
+    knownIds << "__lookupGetter__";
+    knownIds << "__lookupSetter__";
+    knownIds << "__noSuchMethod__";
+    knownIds << "propertyIsEnumerable";
+    knownIds << "toSource";
+    knownIds << "toLocaleString";
+    knownIds << "toString";
+    knownIds << "unwatch";
+    knownIds << "valueOf";
+    knownIds << "watch";
 
-    m_knownIds << "Function";
-    m_knownIds << "arguments";
-    m_knownIds << "arity";
-    m_knownIds << "caller";
-    m_knownIds << "constructor";
-    m_knownIds << "length";
-    m_knownIds << "name";
-    m_knownIds << "apply";
-    m_knownIds << "bind";
-    m_knownIds << "call";
+    knownIds << "Function";
+    knownIds << "arguments";
+    knownIds << "arity";
+    knownIds << "caller";
+    knownIds << "constructor";
+    knownIds << "length";
+    knownIds << "name";
+    knownIds << "apply";
+    knownIds << "bind";
+    knownIds << "call";
 
-    m_knownIds << "String";
-    m_knownIds << "fromCharCode";
-    m_knownIds << "length";
-    m_knownIds << "charAt";
-    m_knownIds << "charCodeAt";
-    m_knownIds << "concat";
-    m_knownIds << "indexOf";
-    m_knownIds << "lastIndexOf";
-    m_knownIds << "localCompare";
-    m_knownIds << "match";
-    m_knownIds << "quote";
-    m_knownIds << "replace";
-    m_knownIds << "search";
-    m_knownIds << "slice";
-    m_knownIds << "split";
-    m_knownIds << "substr";
-    m_knownIds << "substring";
-    m_knownIds << "toLocaleLowerCase";
-    m_knownIds << "toLocaleUpperCase";
-    m_knownIds << "toLowerCase";
-    m_knownIds << "toUpperCase";
-    m_knownIds << "trim";
-    m_knownIds << "trimLeft";
-    m_knownIds << "trimRight";
+    knownIds << "String";
+    knownIds << "fromCharCode";
+    knownIds << "length";
+    knownIds << "charAt";
+    knownIds << "charCodeAt";
+    knownIds << "concat";
+    knownIds << "indexOf";
+    knownIds << "lastIndexOf";
+    knownIds << "localCompare";
+    knownIds << "match";
+    knownIds << "quote";
+    knownIds << "replace";
+    knownIds << "search";
+    knownIds << "slice";
+    knownIds << "split";
+    knownIds << "substr";
+    knownIds << "substring";
+    knownIds << "toLocaleLowerCase";
+    knownIds << "toLocaleUpperCase";
+    knownIds << "toLowerCase";
+    knownIds << "toUpperCase";
+    knownIds << "trim";
+    knownIds << "trimLeft";
+    knownIds << "trimRight";
 
-    m_knownIds << "Array";
-    m_knownIds << "isArray";
-    m_knownIds << "index";
-    m_knownIds << "input";
-    m_knownIds << "pop";
-    m_knownIds << "push";
-    m_knownIds << "reverse";
-    m_knownIds << "shift";
-    m_knownIds << "sort";
-    m_knownIds << "splice";
-    m_knownIds << "unshift";
-    m_knownIds << "concat";
-    m_knownIds << "join";
-    m_knownIds << "filter";
-    m_knownIds << "forEach";
-    m_knownIds << "every";
-    m_knownIds << "map";
-    m_knownIds << "some";
-    m_knownIds << "reduce";
-    m_knownIds << "reduceRight";
+    knownIds << "Array";
+    knownIds << "isArray";
+    knownIds << "index";
+    knownIds << "input";
+    knownIds << "pop";
+    knownIds << "push";
+    knownIds << "reverse";
+    knownIds << "shift";
+    knownIds << "sort";
+    knownIds << "splice";
+    knownIds << "unshift";
+    knownIds << "concat";
+    knownIds << "join";
+    knownIds << "filter";
+    knownIds << "forEach";
+    knownIds << "every";
+    knownIds << "map";
+    knownIds << "some";
+    knownIds << "reduce";
+    knownIds << "reduceRight";
 
-    m_knownIds << "RegExp";
-    m_knownIds << "global";
-    m_knownIds << "ignoreCase";
-    m_knownIds << "lastIndex";
-    m_knownIds << "multiline";
-    m_knownIds << "source";
-    m_knownIds << "exec";
-    m_knownIds << "test";
+    knownIds << "RegExp";
+    knownIds << "global";
+    knownIds << "ignoreCase";
+    knownIds << "lastIndex";
+    knownIds << "multiline";
+    knownIds << "source";
+    knownIds << "exec";
+    knownIds << "test";
 
-    m_knownIds << "JSON";
-    m_knownIds << "parse";
-    m_knownIds << "stringify";
+    knownIds << "JSON";
+    knownIds << "parse";
+    knownIds << "stringify";
 
-    m_knownIds << "decodeURI";
-    m_knownIds << "decodeURIComponent";
-    m_knownIds << "encodeURI";
-    m_knownIds << "encodeURIComponent";
-    m_knownIds << "eval";
-    m_knownIds << "isFinite";
-    m_knownIds << "isNaN";
-    m_knownIds << "parseFloat";
-    m_knownIds << "parseInt";
-    m_knownIds << "Infinity";
-    m_knownIds << "NaN";
-    m_knownIds << "undefined";
+    knownIds << "decodeURI";
+    knownIds << "decodeURIComponent";
+    knownIds << "encodeURI";
+    knownIds << "encodeURIComponent";
+    knownIds << "eval";
+    knownIds << "isFinite";
+    knownIds << "isNaN";
+    knownIds << "parseFloat";
+    knownIds << "parseInt";
+    knownIds << "Infinity";
+    knownIds << "NaN";
+    knownIds << "undefined";
 
-    m_knownIds << "Math";
-    m_knownIds << "E";
-    m_knownIds << "LN2";
-    m_knownIds << "LN10";
-    m_knownIds << "LOG2E";
-    m_knownIds << "LOG10E";
-    m_knownIds << "PI";
-    m_knownIds << "SQRT1_2";
-    m_knownIds << "SQRT2";
-    m_knownIds << "abs";
-    m_knownIds << "acos";
-    m_knownIds << "asin";
-    m_knownIds << "atan";
-    m_knownIds << "atan2";
-    m_knownIds << "ceil";
-    m_knownIds << "cos";
-    m_knownIds << "exp";
-    m_knownIds << "floor";
-    m_knownIds << "log";
-    m_knownIds << "max";
-    m_knownIds << "min";
-    m_knownIds << "pow";
-    m_knownIds << "random";
-    m_knownIds << "round";
-    m_knownIds << "sin";
-    m_knownIds << "sqrt";
-    m_knownIds << "tan";
+    knownIds << "Math";
+    knownIds << "E";
+    knownIds << "LN2";
+    knownIds << "LN10";
+    knownIds << "LOG2E";
+    knownIds << "LOG10E";
+    knownIds << "PI";
+    knownIds << "SQRT1_2";
+    knownIds << "SQRT2";
+    knownIds << "abs";
+    knownIds << "acos";
+    knownIds << "asin";
+    knownIds << "atan";
+    knownIds << "atan2";
+    knownIds << "ceil";
+    knownIds << "cos";
+    knownIds << "exp";
+    knownIds << "floor";
+    knownIds << "log";
+    knownIds << "max";
+    knownIds << "min";
+    knownIds << "pow";
+    knownIds << "random";
+    knownIds << "round";
+    knownIds << "sin";
+    knownIds << "sqrt";
+    knownIds << "tan";
 
-    m_knownIds << "document";
-    m_knownIds << "window";
-    m_knownIds << "navigator";
-    m_knownIds << "userAgent";
+    knownIds << "document";
+    knownIds << "window";
+    knownIds << "navigator";
+    knownIds << "userAgent";
 
     keywordsFormat.setFontWeight(QFont::Bold);
     commentFormat.setFontItalic(true);
@@ -190,7 +190,8 @@ JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
 void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
 {
     // parsing state
-    enum {
+    enum
+    {
         Start = -1,
         Number = 1,
         Identifier = 2,
@@ -204,114 +205,146 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     keywordsFormat.setFontWeight(QFont::Bold);
     normalFormat.setForeground(QApplication::style()->standardPalette().text());
     stringFormat.setForeground(STYLE->extendedPalette().editorString());
+    expressionFormat.setForeground(STYLE->extendedPalette().editorExpression());
 
     int state = previousBlockState();
     int start = 0;
     int i = 0;
-    while (i <= text.length()) {
+    while (i <= text.length())
+    {
         QChar ch = (i < text.length()) ? text.at(i) : QChar();
         QChar next = (i < text.length() - 1) ? text.at(i + 1) : QChar();
 
-        switch (state) {
-
-        case Start:
-            start = i;
-            if (ch.isSpace()) {
-                ++i;
-            } else if (ch.isDigit()) {
-                ++i;
-                state = Number;
-            } else if (ch.isLetter() || ch == '_') {
-                ++i;
-                state = Identifier;
-            } else if (ch == '\'' || ch == '\"') {
-                ++i;
-                state = String;
-            } else if (ch == '/' && next == '*') {
-                ++i;
-                ++i;
-                state = Comment;
-            } else if (ch == '/' && next == '/') {
-                i = text.length();
-                setFormat(start, text.length(), commentFormat);
-            } else if (ch == '/' && next != '*') {
-                ++i;
-                state = Regex;
-            } else {
-                if (!QString("(){}[]").contains(ch))
-                    setFormat(start, 1, normalFormat);
-                ++i;
-                state = Start;
-            }
-            break;
-
-        case Number:
-            if (ch.isSpace() || !ch.isDigit()) {
-                setFormat(start, i - start, normalFormat);
-                state = Start;
-            } else {
-                ++i;
-            }
-            break;
-
-        case Identifier:
-            if (ch.isSpace() || !(ch.isDigit() || ch.isLetter() || ch == '_')) {
-                QString token = text.mid(start, i - start).trimmed();
-                if (m_keywords.contains(token))
-                    setFormat(start, i - start, keywordsFormat);
-                else if (m_knownIds.contains(token))
-                    setFormat(start, i - start, normalFormat);
-
-                state = Start;
-            } else {
-                ++i;
-            }
-            break;
-
-        case String:
-            if (ch == text.at(start)) {
-                QChar prev = (i > 0) ? text.at(i - 1) : QChar();
-                if (prev != '\\') {
-                    ++i;
-                    setFormat(start, i - start, stringFormat);
-                    state = Start;
-                } else {
+        switch (state)
+        {
+            case Start:
+                start = i;
+                if (ch.isSpace())
+                {
                     ++i;
                 }
-            } else {
-                ++i;
-            }
-            break;
-
-        case Comment:
-            if (ch == '*' && next == '/') {
-                ++i;
-                ++i;
-                setFormat(start, i - start, commentFormat);
-                state = Start;
-            } else {
-                ++i;
-            }
-            break;
-
-        case Regex:
-            if (ch == '/') {
-                QChar prev = (i > 0) ? text.at(i - 1) : QChar();
-                if (prev != '\\') {
+                else if (ch.isDigit())
+                {
                     ++i;
+                    state = Number;
+                }
+                else if (ch.isLetter() || ch == '_')
+                {
+                    ++i;
+                    state = Identifier;
+                }
+                else if (ch == '\'' || ch == '\"' || ch == '`')
+                {
+                    ++i;
+                    state = String;
+                }
+                else if (ch == '/' && next == '*')
+                {
+                    ++i;
+                    ++i;
+                    state = Comment;
+                }
+                else if (ch == '/' && next == '/')
+                {
+                    i = text.length();
+                    setFormat(start, text.length(), commentFormat);
+                }
+                else if (ch == '/' && next != '*')
+                {
+                    ++i;
+                    state = Regex;
+                }
+                else
+                {
+                    if (!QString("(){}[]").contains(ch))
+                        setFormat(start, 1, normalFormat);
+                    ++i;
+                    state = Start;
+                }
+                break;
+
+            case Number:
+                if (ch.isSpace() || !ch.isDigit())
+                {
                     setFormat(start, i - start, normalFormat);
                     state = Start;
-                } else {
-                    ++i;
                 }
-            } else {
-                ++i;
-            }
-            break;
+                else
+                    ++i;
 
-        default:
-            state = Start;
-            break;
+                break;
+
+            case Identifier:
+                if (ch.isSpace() || !(ch.isDigit() || ch.isLetter() || ch == '_'))
+                {
+                    QString token = text.mid(start, i - start).trimmed();
+                    if (keywords.contains(token))
+                        setFormat(start, i - start, keywordsFormat);
+                    else if (knownIds.contains(token))
+                        setFormat(start, i - start, normalFormat);
+
+                    state = Start;
+                }
+                else
+                    ++i;
+
+                break;
+
+            case String:
+                if (ch == text.at(start))
+                {
+                    QChar prev = (i > 0) ? text.at(i - 1) : QChar();
+                    if (prev != '\\')
+                    {
+                        ++i;
+                        setFormat(start, i - start, stringFormat);
+                        if (ch == '`')
+                            highlightTemplateExpressions(text, start, i);
+
+                        state = Start;
+                    }
+                    else
+                        ++i;
+                }
+                else
+                    ++i;
+
+                break;
+
+            case Comment:
+                if (ch == '*' && next == '/')
+                {
+                    ++i;
+                    ++i;
+                    setFormat(start, i - start, commentFormat);
+                    state = Start;
+                }
+                else
+                    ++i;
+
+                break;
+
+            case Regex:
+                if (ch == '/')
+                {
+                    QChar prev = (i > 0) ? text.at(i - 1) : QChar();
+                    if (prev != '\\')
+                    {
+                        ++i;
+                        setFormat(start, i - start, expressionFormat);
+                        state = Start;
+                    }
+                    else
+                        ++i;
+                }
+                else
+                    ++i;
+
+                break;
+
+            default:
+                state = Start;
+                break;
         }
     }
 
@@ -320,14 +353,16 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     else
         state = Start;
 
-    if (!m_markString.isEmpty()) {
+    if (!markString.isEmpty())
+    {
         int pos = 0;
-        int len = m_markString.length();
+        int len = markString.length();
         QTextCharFormat markerFormat;
         markerFormat.setBackground(QApplication::style()->standardPalette().alternateBase());
         markerFormat.setForeground(QApplication::style()->standardPalette().text());
-        for (;;) {
-            pos = text.indexOf(m_markString, pos, m_markCaseSensitivity);
+        for (;;)
+        {
+            pos = text.indexOf(markString, pos, markCaseSensitivity);
             if (pos < 0)
                 break;
             setFormat(pos, len, markerFormat);
@@ -338,10 +373,51 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     setCurrentBlockState(state);
 }
 
+void JavaScriptSyntaxHighlighter::highlightTemplateExpressions(const QString& text, int strStart, int strEnd)
+{
+    bool expr = false;
+    int i = strStart;
+    int start = i;
+    while (i <= strEnd)
+    {
+        QChar ch = text.at(i);
+        QChar next = (i < strEnd - 1) ? text.at(i + 1) : QChar();
+        if (expr)
+        {
+            if (ch == '}')
+            {
+                QChar prev = (i > 0) ? text.at(i - 1) : QChar();
+                if (prev != '\\')
+                {
+                    ++i;
+                    setFormat(start, i - start, expressionFormat);
+                    expr = false;
+                }
+                else
+                    ++i;
+            }
+            else
+                ++i;
+
+        }
+        else if (ch == '$' && next == '{')
+        {
+            start = i;
+            expr = true;
+            ++i;
+            ++i;
+        }
+        else
+        {
+            ++i;
+        }
+    }
+}
+
 void JavaScriptSyntaxHighlighter::mark(const QString &str, Qt::CaseSensitivity caseSensitivity)
 {
-    m_markString = str;
-    m_markCaseSensitivity = caseSensitivity;
+    markString = str;
+    markCaseSensitivity = caseSensitivity;
     rehighlight();
 }
 
