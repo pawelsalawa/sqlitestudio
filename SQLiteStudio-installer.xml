@@ -125,7 +125,7 @@
             <ruleList>
                 <compareText>
                     <logic>does_not_equal</logic>
-                    <text>${env(INSTALLER_SRC_PREFIX)}</text>
+                    <text>${env(INSTALLER_BIN_PREFIX)}</text>
                     <value></value>
                 </compareText>
             </ruleList>
