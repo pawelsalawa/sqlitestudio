@@ -7,8 +7,10 @@ env:
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
+    INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/2dpem7vy0ee19tu/win64_deps.zip?dl=1
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
 
 name: Windows release build
 
@@ -51,6 +53,19 @@ jobs:
               uses: actions/checkout@v2
               with:
                 ref: ${{ github.event.client_payload.branch }}
+
+            - name: Install the InstallBuilder
+              shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
+                ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
+                echo "$IB_LICENSE" > lic.xml
+                ls -l
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --license lic.xml --version
+                abortxyz
 
             - name: Install dependencies
               shell: bash
@@ -149,6 +164,13 @@ jobs:
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
                 7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                
+            - name: Create installer package
+              shell: bash
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
+                ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1

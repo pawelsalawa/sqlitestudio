@@ -5,7 +5,7 @@ env:
     SQLITE_RELEASE_YEAR: '2021'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
-name: MaxOSX release build
+name: MacOSX release build
 
 on:
     repository_dispatch:
