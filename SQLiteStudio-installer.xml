@@ -90,7 +90,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/${product_shortname}.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico</windowsIcon>
+                    <windowsIcon>${installdir}/appicon.ico</windowsIcon>
                     <windowsPath></windowsPath>
                 </startMenuShortcut>
             </startMenuShortcutList>
@@ -145,40 +145,81 @@
             <exec>${bin_prefix}/sqlitestudiocli.exe</exec>
             <execArgs>--version</execArgs>
             <name>cli_output</name>
-			<ruleList>
-				<compareText logic="equals" text="${project.version}" value="1"/>
-				<platformTest type="windows"/>
-			</ruleList>
+            <ruleList>
+                <compareText logic="equals" text="${project.version}" value="1"/>
+                <platformTest type="windows"/>
+            </ruleList>
         </setInstallerVariableFromScriptOutput>
         <setInstallerVariableFromScriptOutput>
             <exec>${bin_prefix}/sqlitestudiocli</exec>
             <execArgs>--version</execArgs>
             <name>cli_output</name>
-			<ruleList>
-				<compareText logic="equals" text="${project.version}" value="1"/>
-				<platformTest type="linux"/>
-			</ruleList>
+            <ruleList>
+                <compareText logic="equals" text="${project.version}" value="1"/>
+                <platformTest type="linux"/>
+            </ruleList>
         </setInstallerVariableFromScriptOutput>
         <setInstallerVariableFromScriptOutput>
             <exec>${bin_prefix}/SQLiteStudio.app/Contents/MacOS/sqlitestudiocli</exec>
             <execArgs>--version</execArgs>
             <name>cli_output</name>
-			<ruleList>
-				<compareText logic="equals" text="${project.version}" value="1"/>
-				<platformTest type="osx"/>
-			</ruleList>
+            <ruleList>
+                <compareText logic="equals" text="${project.version}" value="1"/>
+                <platformTest type="osx"/>
+            </ruleList>
         </setInstallerVariableFromScriptOutput>
         <setInstallerVariableFromRegEx>
             <name>project.version</name>
             <pattern>\w+\s+(\d+\.\d+\.\d+)</pattern>
             <substitution>\1</substitution>
             <text>${cli_output}</text>
-			<ruleList>
-				<compareText logic="equals" text="${project.version}" value="1"/>
-			</ruleList>
+            <ruleList>
+                <compareText logic="equals" text="${project.version}" value="1"/>
+            </ruleList>
         </setInstallerVariableFromRegEx>
     </preBuildActionList>
+    <postInstallationActionList>
+        <actionGroup>
+            <explanation>File association</explanation>
+            <actionList>
+                <associateWindowsFileExtension>
+                    <extensions>.db .db3 .sqlite .sqlite3 .sdb .s3db</extensions>
+                    <friendlyName>SQLite</friendlyName>
+                    <icon>${installdir}/appicon.ico</icon>
+                    <mimeType>application/vnd.sqlite3</mimeType>
+                    <progID>SQLiteStudio.GUI.3</progID>
+                    <commandList>
+                        <command>
+                            <makeDefault>1</makeDefault>
+                            <runProgram>${installdir}\SQLiteStudio.exe</runProgram>
+                            <runProgramArguments>"%1"</runProgramArguments>
+                            <verb>Open</verb>
+                        </command>
+                    </commandList>
+                    <ruleList>
+                        <platformTest type="windows"/>
+                    </ruleList>
+                </associateWindowsFileExtension>
+            </actionList>
+            <ruleList>
+                <isTrue>
+                    <value>${file_assoc}</value>
+                </isTrue>
+            </ruleList>
+        </actionGroup>
+    </postInstallationActionList>
+    <preUninstallationActionList>
+        <removeWindowsFileAssociation>
+            <extensions>.db .db3 .sqlite .sqlite3 .sdb .s3db</extensions>
+            <mimeType>application/vnd.sqlite3</mimeType>
+            <progID>SQLiteStudio.GUI.3</progID>
+			<ruleList>
+				<platformTest type="windows"/>
+			</ruleList>
+        </removeWindowsFileAssociation>
+    </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
+    <createOsxBundleDmg>1</createOsxBundleDmg>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <vendor>sqlitestudio.pl</vendor>
@@ -196,61 +237,14 @@
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
-		<booleanParameterGroup>
-		    <name>file_assoc</name>
-		    <description>Associate file extensions with SQLiteStudio</description>
-		    <value>1</value>
-		    <parameterList>
-				<booleanParameter>
-					<name>assoc_db</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.db</description>
-					<value>1</value>
-				</booleanParameter>
-				<booleanParameter>
-					<name>assoc_db3</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.db3</description>
-					<value>1</value>
-				</booleanParameter>
-				<booleanParameter>
-					<name>assoc_sqlite</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.sqlite</description>
-					<value>1</value>
-				</booleanParameter>
-				<booleanParameter>
-					<name>assoc_sqlite3</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.sqlite3</description>
-					<value>1</value>
-				</booleanParameter>
-				<booleanParameter>
-					<name>assoc_sdb</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.sdb</description>
-					<value>1</value>
-				</booleanParameter>
-				<booleanParameter>
-					<name>assoc_s3db</name>
-					<displayStyle>checkbox-left</displayStyle>
-					<ask>yes</ask>
-					<default>1</default>
-					<description>*.s3db</description>
-					<value>1</value>
-				</booleanParameter>
-		    </parameterList>
-		</booleanParameterGroup>
+        <booleanParameter>
+            <name>file_assoc</name>
+            <description>Associate SQLite file extensions with SQLiteStudio</description>
+            <explanation></explanation>
+            <value>1</value>
+            <default>1</default>
+            <ask>yes</ask>
+        </booleanParameter>
     </parameterList>
 </project>
 

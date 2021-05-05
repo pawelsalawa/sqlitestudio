@@ -139,6 +139,7 @@ jobs:
               run: |
                 cd ../lib
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
 
             - name: Determine SQLiteStudio version
               shell: bash
@@ -171,6 +172,7 @@ jobs:
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version $SQLITESTUDIO_VERSION
+                ls -l
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
