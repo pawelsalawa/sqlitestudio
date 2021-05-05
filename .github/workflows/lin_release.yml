@@ -184,7 +184,7 @@ jobs:
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
-                    --setvars project.version=$SQLITESTUDIO_VERSION
+                    --setvars project.version=$SQLITESTUDIO_VERSION \
                     --setvars platform_install_prefix=/opt
                 ls -l
 
