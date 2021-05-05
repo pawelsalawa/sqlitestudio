@@ -200,6 +200,27 @@
                         <platformTest type="windows"/>
                     </ruleList>
                 </associateWindowsFileExtension>
+				<writeFile>
+					<path>/usr/share/applications/SQLiteStudio.desktop</path>
+					<encoding>utf-8</encoding>
+					<text>
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=SQLiteStudio
+GenericName=SQLiteStudio
+Comment=SQLiteStudio
+Icon=${installdir}/appicon.png
+Exec=${installdir}/sqlitestudio
+Terminal=false
+Type=Application
+Categories=Application;Development;Database
+MimeType=application/vnd.sqlite3
+					</text>
+                    <ruleList>
+                        <platformTest type="linux"/>
+                    </ruleList>
+				</writeFile>
             </actionList>
             <ruleList>
                 <isTrue>
@@ -217,6 +238,12 @@
 				<platformTest type="windows"/>
 			</ruleList>
         </removeWindowsFileAssociation>
+		<deleteFile>
+			<path>/usr/share/applications/SQLiteStudio.desktop</path>
+			<ruleList>
+				<platformTest type="linux"/>
+			</ruleList>
+		</deleteFile>
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>

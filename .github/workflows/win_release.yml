@@ -139,6 +139,10 @@ jobs:
               run: |
                 cd ../lib
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
+                
+            - name: Prepare portable distro (Resources)
+              shell: bash
+              run: |
                 cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
 
             - name: Determine SQLiteStudio version
