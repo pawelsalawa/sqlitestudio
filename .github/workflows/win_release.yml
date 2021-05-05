@@ -23,6 +23,20 @@ jobs:
         runs-on: windows-2019
 
         steps:
+            - name: Install the InstallBuilder
+              shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
+                ls -l
+                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
+                echo "$IB_LICENSE" > lic.xml
+                ls -l
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --license lic.xml --version
+                abortxyz
+
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
@@ -53,19 +67,6 @@ jobs:
               uses: actions/checkout@v2
               with:
                 ref: ${{ github.event.client_payload.branch }}
-
-            - name: Install the InstallBuilder
-              shell: bash
-              env:
-                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
-              run: |
-                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
-                ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
-                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
-                echo "$IB_LICENSE" > lic.xml
-                ls -l
-                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --license lic.xml --version
-                abortxyz
 
             - name: Install dependencies
               shell: bash
