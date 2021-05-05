@@ -2,48 +2,55 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>CFBundleIconFile</key>
-	<string>sqlitestudio.icns</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleGetInfoString</key>
-	<string>SalSoft, %YEAR%</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleShortVersionString</key>
-	<string>%VERSION%</string>
-	<key>CFBundleExecutable</key>
-	<string>SQLiteStudio</string>
-	<key>CFBundleIdentifier</key>
-	<string>pl.com.salsoft.SQLiteStudio</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-	    <dict>
-		<key>CFBundleTypeExtensions</key>
+		<key>NSPrincipalClass</key>
+		<string>NSApplication</string>
+		<key>CFBundleIconFile</key>
+		<string>sqlitestudio.icns</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleGetInfoString</key>
+		<string>SalSoft, %YEAR%</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleShortVersionString</key>
+		<string>%VERSION%</string>
+		<key>CFBundleExecutable</key>
+		<string>SQLiteStudio</string>
+		<key>CFBundleIdentifier</key>
+		<string>pl.com.salsoft.SQLiteStudio</string>
+		<key>UTImportedTypeDeclarations</key>
 		<array>
-		    <string>db</string>
-		    <string>sdb</string>
-		    <string>sqlite</string>
-		    <string>db3</string>
-		    <string>s3db</string>
-		    <string>sqlite3</string>
-		    <string>sl3</string>
-		    <string>db2</string>
-		    <string>s2db</string>
-		    <string>sqlite2</string>
-		    <string>sl2</string>
+			<dict>
+				<key>UTTypeIdentifier</key>
+				<string>org.sqlite</string>
+				<key>UTTypeTagSpecification</key>
+				<dict>
+					<key>public.filename-extension</key>
+					<array>
+						<string>db</string>
+						<string>sdb</string>
+						<string>sqlite</string>
+						<string>db3</string>
+						<string>s3db</string>
+						<string>sqlite3</string>
+						<string>sl3</string>
+						<string>db2</string>
+						<string>s2db</string>
+						<string>sqlite2</string>
+						<string>sl2</string>
+					</array>
+				</dict>
+				<key>UTTypeConformsTo</key>
+				<array>
+					<string>public.database</string>
+				</array>
+				<key>UTTypeDescription</key>
+				<string>SQLite3 database</string>
+				<key>UTTypeIconFile</key>
+				<string>sqlitestudio.icns</string>
+				<key>UTTypeReferenceURL</key>
+				<string>https://www.sqlite.org/fileformat.html</string>
+			</dict>
 		</array>
-		<key>CFBundleTypeName</key>
-		<string>SQLite Database Document</string>
-		<key>CFBundleTypeOSTypes</key>
-		<array>
-		    <string>****</string>
-		</array>
-		<key>CFBundleTypeRole</key>
-		<string>Editor</string>
-	    </dict>
-	</array>
     </dict>
 </plist>
