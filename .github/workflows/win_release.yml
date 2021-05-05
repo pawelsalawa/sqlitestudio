@@ -175,7 +175,7 @@ jobs:
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
-                    --setvars project.version $SQLITESTUDIO_VERSION
+                    --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
 
             - name: Upload package artifact

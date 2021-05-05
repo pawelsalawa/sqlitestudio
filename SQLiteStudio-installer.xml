@@ -141,42 +141,6 @@
                 </compareText>
             </ruleList>
         </setInstallerVariable>
-        <setInstallerVariableFromScriptOutput>
-            <exec>${bin_prefix}/sqlitestudiocli.exe</exec>
-            <execArgs>--version</execArgs>
-            <name>cli_output</name>
-            <ruleList>
-                <compareText logic="equals" text="${project.version}" value="1"/>
-                <platformTest type="windows"/>
-            </ruleList>
-        </setInstallerVariableFromScriptOutput>
-        <setInstallerVariableFromScriptOutput>
-            <exec>${bin_prefix}/sqlitestudiocli</exec>
-            <execArgs>--version</execArgs>
-            <name>cli_output</name>
-            <ruleList>
-                <compareText logic="equals" text="${project.version}" value="1"/>
-                <platformTest type="linux"/>
-            </ruleList>
-        </setInstallerVariableFromScriptOutput>
-        <setInstallerVariableFromScriptOutput>
-            <exec>${bin_prefix}/SQLiteStudio.app/Contents/MacOS/sqlitestudiocli</exec>
-            <execArgs>--version</execArgs>
-            <name>cli_output</name>
-            <ruleList>
-                <compareText logic="equals" text="${project.version}" value="1"/>
-                <platformTest type="osx"/>
-            </ruleList>
-        </setInstallerVariableFromScriptOutput>
-        <setInstallerVariableFromRegEx>
-            <name>project.version</name>
-            <pattern>\w+\s+(\d+\.\d+\.\d+)</pattern>
-            <substitution>\1</substitution>
-            <text>${cli_output}</text>
-            <ruleList>
-                <compareText logic="equals" text="${project.version}" value="1"/>
-            </ruleList>
-        </setInstallerVariableFromRegEx>
     </preBuildActionList>
     <postInstallationActionList>
         <actionGroup>
@@ -200,10 +164,10 @@
                         <platformTest type="windows"/>
                     </ruleList>
                 </associateWindowsFileExtension>
-				<writeFile>
-					<path>/usr/share/applications/SQLiteStudio.desktop</path>
-					<encoding>utf-8</encoding>
-					<text>
+                <writeFile>
+                    <encoding>utf-8</encoding>
+                    <path>/usr/share/applications/SQLiteStudio.desktop</path>
+                    <text>
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -220,7 +184,7 @@ MimeType=application/vnd.sqlite3
                     <ruleList>
                         <platformTest type="linux"/>
                     </ruleList>
-				</writeFile>
+                </writeFile>
             </actionList>
             <ruleList>
                 <isTrue>
@@ -234,16 +198,16 @@ MimeType=application/vnd.sqlite3
             <extensions>.db .db3 .sqlite .sqlite3 .sdb .s3db</extensions>
             <mimeType>application/vnd.sqlite3</mimeType>
             <progID>SQLiteStudio.GUI.3</progID>
-			<ruleList>
-				<platformTest type="windows"/>
-			</ruleList>
+            <ruleList>
+                <platformTest type="windows"/>
+            </ruleList>
         </removeWindowsFileAssociation>
-		<deleteFile>
-			<path>/usr/share/applications/SQLiteStudio.desktop</path>
-			<ruleList>
-				<platformTest type="linux"/>
-			</ruleList>
-		</deleteFile>
+        <deleteFile>
+            <path>/usr/share/applications/SQLiteStudio.desktop</path>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+        </deleteFile>
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
