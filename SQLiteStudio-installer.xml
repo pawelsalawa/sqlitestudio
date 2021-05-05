@@ -146,6 +146,7 @@
             <execArgs>--version</execArgs>
             <name>cli_output</name>
 			<ruleList>
+				<compareText logic="equals" text="${project.version}" value="1"/>
 				<platformTest type="windows"/>
 			</ruleList>
         </setInstallerVariableFromScriptOutput>
@@ -154,6 +155,7 @@
             <execArgs>--version</execArgs>
             <name>cli_output</name>
 			<ruleList>
+				<compareText logic="equals" text="${project.version}" value="1"/>
 				<platformTest type="linux"/>
 			</ruleList>
         </setInstallerVariableFromScriptOutput>
@@ -162,6 +164,7 @@
             <execArgs>--version</execArgs>
             <name>cli_output</name>
 			<ruleList>
+				<compareText logic="equals" text="${project.version}" value="1"/>
 				<platformTest type="osx"/>
 			</ruleList>
         </setInstallerVariableFromScriptOutput>
@@ -170,6 +173,9 @@
             <pattern>\w+\s+(\d+\.\d+\.\d+)</pattern>
             <substitution>\1</substitution>
             <text>${cli_output}</text>
+			<ruleList>
+				<compareText logic="equals" text="${project.version}" value="1"/>
+			</ruleList>
         </setInstallerVariableFromRegEx>
     </preBuildActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
@@ -190,6 +196,61 @@
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
+		<booleanParameterGroup>
+		    <name>file_assoc</name>
+		    <description>Associate file extensions with SQLiteStudio</description>
+		    <value>1</value>
+		    <parameterList>
+				<booleanParameter>
+					<name>assoc_db</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.db</description>
+					<value>1</value>
+				</booleanParameter>
+				<booleanParameter>
+					<name>assoc_db3</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.db3</description>
+					<value>1</value>
+				</booleanParameter>
+				<booleanParameter>
+					<name>assoc_sqlite</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.sqlite</description>
+					<value>1</value>
+				</booleanParameter>
+				<booleanParameter>
+					<name>assoc_sqlite3</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.sqlite3</description>
+					<value>1</value>
+				</booleanParameter>
+				<booleanParameter>
+					<name>assoc_sdb</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.sdb</description>
+					<value>1</value>
+				</booleanParameter>
+				<booleanParameter>
+					<name>assoc_s3db</name>
+					<displayStyle>checkbox-left</displayStyle>
+					<ask>yes</ask>
+					<default>1</default>
+					<description>*.s3db</description>
+					<value>1</value>
+				</booleanParameter>
+		    </parameterList>
+		</booleanParameterGroup>
     </parameterList>
 </project>
 

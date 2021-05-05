@@ -167,7 +167,10 @@ jobs:
             - name: Create installer package
               shell: bash
               run: |
-                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml --license lic.xml --setvars project.outputDirectory=$(pwd)
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
+                    --license lic.xml \
+                    --setvars project.outputDirectory=$(pwd) \
+                    --setvars project.version $SQLITESTUDIO_VERSION
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
