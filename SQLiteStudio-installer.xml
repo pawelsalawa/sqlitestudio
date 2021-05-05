@@ -114,14 +114,14 @@
             <ruleList>
                 <compareText>
                     <logic>equals</logic>
-                    <text>${env(INSTALLER_BIN_PREFIX)}</text>
+                    <text>${env(INSTALLER_SRC_PREFIX)}</text>
                     <value></value>
                 </compareText>
             </ruleList>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>bin_prefix</name>
-            <value>${env(INSTALLER_SRC_PREFIX)}</value>
+            <value>${env(INSTALLER_BIN_PREFIX)}</value>
             <ruleList>
                 <compareText>
                     <logic>does_not_equal</logic>
