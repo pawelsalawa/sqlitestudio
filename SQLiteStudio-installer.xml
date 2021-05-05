@@ -1,7 +1,7 @@
 <project>
     <shortName>SQLiteStudio</shortName>
     <fullName>SQLiteStudio</fullName>
-    <version>3.4.0</version>
+    <version>1</version>
     <licenseFile>${src_prefix}/LICENSE</licenseFile>
     <leftImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_installer.png</leftImage>
     <splashImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_logo.png</splashImage>
@@ -141,6 +141,36 @@
                 </compareText>
             </ruleList>
         </setInstallerVariable>
+        <setInstallerVariableFromScriptOutput>
+            <exec>${bin_prefix}/sqlitestudiocli.exe</exec>
+            <execArgs>--version</execArgs>
+            <name>cli_output</name>
+			<ruleList>
+				<platformTest type="windows"/>
+			</ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <exec>${bin_prefix}/sqlitestudiocli</exec>
+            <execArgs>--version</execArgs>
+            <name>cli_output</name>
+			<ruleList>
+				<platformTest type="linux"/>
+			</ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <exec>${bin_prefix}/SQLiteStudio.app/Contents/MacOS/sqlitestudiocli</exec>
+            <execArgs>--version</execArgs>
+            <name>cli_output</name>
+			<ruleList>
+				<platformTest type="osx"/>
+			</ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromRegEx>
+            <name>project.version</name>
+            <pattern>\w+\s+(\d+\.\d+\.\d+)</pattern>
+            <substitution>\1</substitution>
+            <text>${cli_output}</text>
+        </setInstallerVariableFromRegEx>
     </preBuildActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <enableRollback>1</enableRollback>

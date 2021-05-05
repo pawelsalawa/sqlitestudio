@@ -152,7 +152,7 @@ jobs:
                 cd $ABSOLUTE_PORTABLE_DIR/..
                 7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
                 
-            - name: Create installer package
+            - name: Install the InstalBuilder
               shell: bash
               env:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
@@ -163,6 +163,10 @@ jobs:
                 echo "$IB_LICENSE" > lic.xml
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
+                
+            - name: Create installer package
+              shell: bash
+              run: |
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml --license lic.xml --setvars project.outputDirectory=$(pwd)
 
             - name: Upload package artifact
