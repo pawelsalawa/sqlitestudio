@@ -23,20 +23,6 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Install the InstallBuilder
-              shell: bash
-              env:
-                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
-              run: |
-                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
-                ls -l
-                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
-                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
-                echo "$IB_LICENSE" > lic.xml
-                ls -l
-                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --license lic.xml --version
-                abortxyz
-
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
@@ -168,13 +154,25 @@ jobs:
                 
             - name: Create installer package
               shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
-                ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
-                
+                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
+                echo "$IB_LICENSE" > lic.xml
+                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml --license lic.xml --setvars project.outputDirectory=$(pwd)
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
                 path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
