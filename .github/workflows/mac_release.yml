@@ -4,6 +4,8 @@ env:
     SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    INSTALLBUILDER_DIR: ../ib
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-osx-installer.dmg
 
 name: MacOSX release build
 
@@ -38,6 +40,19 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'mac'
                 dir: '${{ github.workspace }}/..'
+
+            - name: Install the InstalBuilder
+              shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.run
+                chmod +x ib.run
+                ./ib.run --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
+                echo "$IB_LICENSE" > lic.xml
+                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=${{ env.PORTABLE_DIR }}" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v2
