@@ -35,14 +35,11 @@ jobs:
                 
             - name: Install the InstalBuilder
               shell: bash
-              env:
-                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.run
                 chmod +x ib.run
                 ./ib.run --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
-                echo "$IB_LICENSE" > lic.xml
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=${{ env.PORTABLE_DIR }}" >> $GITHUB_ENV
 
@@ -180,7 +177,10 @@ jobs:
 
             - name: Create installer package
               shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
+                echo "$IB_LICENSE" > lic.xml
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \

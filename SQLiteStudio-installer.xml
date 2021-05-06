@@ -278,7 +278,7 @@ MimeType=application/vnd.sqlite3
 					<parameterList>
 						<choiceParameter>
 							<name>install_for</name>
-							<value>all</value>
+							<value></value>
 							<allowEmptyValue>0</allowEmptyValue>
 							<displayType>radiobuttons</displayType>
 							<ordering>default</ordering>
