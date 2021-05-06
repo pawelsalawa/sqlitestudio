@@ -239,15 +239,6 @@ MimeType=application/vnd.sqlite3
                 </platformTest>
             </ruleList>
         </actionGroup>
-        <runProgram>
-            <program>lsregister</program>
-            <programArguments>${installdir}/SQLiteStudio.app</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
     </postInstallationActionList>
     <preUninstallationActionList>
         <removeWindowsFileAssociation>
@@ -264,15 +255,6 @@ MimeType=application/vnd.sqlite3
                 <platformTest type="linux"/>
             </ruleList>
         </deleteFile>
-        <runProgram>
-            <program>lsregister</program>
-            <programArguments>-u ${installdir}/SQLiteStudio.app</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
