@@ -228,6 +228,24 @@ MimeType=application/vnd.sqlite3
             </ruleList>
         </deleteFile>
     </preUninstallationActionList>
+	<finalPageActionList>
+		<runProgram>
+		    <progressText>Launch ${project.fullName} now.</progressText>
+		    <program>${installdir}/${product_shortname}.exe</program>
+		    <programArguments>&amp;</programArguments>
+            <ruleList>
+                <platformTest type="windows"/>
+            </ruleList>
+		</runProgram>
+		<runProgram>
+		    <progressText>Launch ${project.fullName} now.</progressText>
+		    <program>${installdir}/sqlitestudio</program>
+		    <programArguments>&amp;</programArguments>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+		</runProgram>
+	</finalPageActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
     <disableSplashScreen>1</disableSplashScreen>
