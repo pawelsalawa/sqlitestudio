@@ -4,8 +4,7 @@
     <version>1</version>
     <licenseFile>${src_prefix}/LICENSE</licenseFile>
     <leftImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_installer.png</leftImage>
-	<logoImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_48.png</logoImage>
-	<disableSplashScreen>1</disableSplashScreen>
+    <logoImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_48.png</logoImage>
     <componentList>
         <component>
             <name>default</name>
@@ -111,6 +110,21 @@
                     <windowsPath></windowsPath>
                 </startMenuShortcut>
             </startMenuShortcutList>
+			<quickLaunchShortcutList>
+				<quickLaunchShortcut>
+					<comment>Run SQLiteStudio</comment>
+					<name>SQLiteStudio</name>
+					<runInTerminal>0</runInTerminal>
+					<windowsExec>${installdir}/${product_shortname}.exe</windowsExec>
+					<windowsExecArgs></windowsExecArgs>
+					<windowsIcon>${installdir}/appicon.ico</windowsIcon>
+					<windowsPath>${installdir}</windowsPath>
+					<ruleList>
+						<platformTest type="windows"/>
+						<isTrue value="${quick_launch}"/>
+					</ruleList>
+				</quickLaunchShortcut>
+			</quickLaunchShortcutList>
         </component>
     </componentList>
     <preBuildActionList>
@@ -118,73 +132,51 @@
             <name>src_prefix</name>
             <value>${env(INSTALLER_SRC_PREFIX)}</value>
             <ruleList>
-                <compareText>
-                    <logic>does_not_equal</logic>
-                    <text>${env(INSTALLER_SRC_PREFIX)}</text>
-                    <value></value>
-                </compareText>
+                <compareText logic="does_not_equal" text="${env(INSTALLER_SRC_PREFIX)}" value=""/>
             </ruleList>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>src_prefix</name>
             <value>C:/projects/sqlitestudio-master</value>
             <ruleList>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${env(INSTALLER_SRC_PREFIX)}</text>
-                    <value></value>
-                </compareText>
+                <compareText logic="equals" text="${env(INSTALLER_SRC_PREFIX)}" value=""/>
             </ruleList>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>bin_prefix</name>
             <value>${env(INSTALLER_BIN_PREFIX)}</value>
             <ruleList>
-                <compareText>
-                    <logic>does_not_equal</logic>
-                    <text>${env(INSTALLER_BIN_PREFIX)}</text>
-                    <value></value>
-                </compareText>
+                <compareText logic="does_not_equal" text="${env(INSTALLER_BIN_PREFIX)}" value=""/>
             </ruleList>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>bin_prefix</name>
             <value>C:/projects/sqlitestudio-master/output/SQLiteStudio</value>
             <ruleList>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${env(INSTALLER_BIN_PREFIX)}</text>
-                    <value></value>
-                </compareText>
+                <compareText logic="equals" text="${env(INSTALLER_BIN_PREFIX)}" value=""/>
             </ruleList>
         </setInstallerVariable>
     </preBuildActionList>
-	<preInstallationActionList>
-		<setInstallerVariable>
-			<name>desktop_prefix</name>
-			<value>/usr/share/applications</value>
-			<ruleList>
-				<compareText>
-					<logic>equals</logic>
-					<text>${install_for}</text>
-					<value>all</value>
-				</compareText>
-				<platformTest type="linux"/>
-			</ruleList>
-		</setInstallerVariable>
-		<setInstallerVariable>
-			<name>desktop_prefix</name>
-			<value>~/.local/share/applications</value>
-			<ruleList>
-				<compareText>
-					<logic>equals</logic>
-					<text>${install_for}</text>
-					<value>local</value>
-				</compareText>
-				<platformTest type="linux"/>
-			</ruleList>
-		</setInstallerVariable>
-	</preInstallationActionList>
+    <readyToInstallActionList>
+        <setInstallerVariable>
+            <name>desktop_prefix</name>
+            <value>/usr/share/applications</value>
+			<persist>1</persist>
+            <ruleList>
+                <compareText logic="equals" text="${install_for}" value="all"/>
+                <platformTest type="linux"/>
+            </ruleList>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>desktop_prefix</name>
+            <value>~/.local/share/applications</value>
+			<persist>1</persist>
+            <ruleList>
+                <compareText logic="equals" text="${install_for}" value="local"/>
+                <platformTest type="linux"/>
+            </ruleList>
+        </setInstallerVariable>
+    </readyToInstallActionList>
     <postInstallationActionList>
         <actionGroup>
             <explanation>File association</explanation>
@@ -230,13 +222,8 @@ MimeType=application/vnd.sqlite3
                 </writeFile>
             </actionList>
             <ruleList>
-                <isTrue>
-                    <value>${file_assoc}</value>
-                </isTrue>
-                <platformTest>
-                    <negate>1</negate>
-                    <type>osx</type>
-                </platformTest>
+                <isTrue value="${file_assoc}"/>
+                <platformTest negate="1" type="osx"/>
             </ruleList>
         </actionGroup>
     </postInstallationActionList>
@@ -258,6 +245,7 @@ MimeType=application/vnd.sqlite3
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
+    <disableSplashScreen>1</disableSplashScreen>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <vendor>sqlitestudio.pl</vendor>
@@ -266,63 +254,81 @@ MimeType=application/vnd.sqlite3
         <parameterGroup>
             <name>install_options</name>
             <title>Installation options</title>
+            <explanation></explanation>
             <value></value>
             <default></default>
-			<insertBefore>installdir</insertBefore>
+            <insertBefore>installdir</insertBefore>
             <parameterList>
-				<parameterGroup>
-					<name>install_for_grp</name>
-					<explanation>Install the application for:</explanation>
-					<value></value>
-					<default></default>
-					<parameterList>
-						<choiceParameter>
-							<name>install_for</name>
-							<value></value>
-							<allowEmptyValue>0</allowEmptyValue>
-							<displayType>radiobuttons</displayType>
-							<ordering>default</ordering>
-							<width>40</width>
-							<optionList>
-								<option text="all users (requires root privileges)" value="all"/>
-								<option text="local user only" value="local"/>
-							</optionList>
-						</choiceParameter>
-					</parameterList>
-					<ruleList>
-						<platformTest>
-							<type>linux</type>
-						</platformTest>
-					</ruleList>
-					<validationActionList>
-						<throwError text="You are not running the installer as an administrator!">
-							<ruleList>
-								<isFalse value="${installer_is_root_install}"/>
-								<compareText>
-									<logic>equals</logic>
-									<text>${install_for}</text>
-									<value>all</value>
-								</compareText>
-							</ruleList>
-						</throwError>
-					</validationActionList>
-				</parameterGroup>
-				<booleanParameter>
-					<name>file_assoc</name>
-					<description>Associate SQLite file extensions with SQLiteStudio</description>
-					<explanation></explanation>
-					<value>1</value>
-					<default>1</default>
-					<ask>yes</ask>
-					<ruleList>
-						<platformTest>
-							<negate>1</negate>
-							<type>osx</type>
-						</platformTest>
-					</ruleList>
-				</booleanParameter>
-			</parameterList>
+                <parameterGroup>
+                    <name>install_for_grp</name>
+                    <explanation>Install the application for:</explanation>
+                    <value></value>
+                    <default></default>
+                    <parameterList>
+                        <choiceParameter>
+                            <name>install_for</name>
+                            <description></description>
+                            <explanation></explanation>
+                            <value></value>
+                            <default></default>
+                            <allowEmptyValue>0</allowEmptyValue>
+                            <displayType>radiobuttons</displayType>
+                            <ordering>default</ordering>
+                            <width>40</width>
+                            <optionList>
+                                <option text="all users (requires root privileges)" value="all">
+                                    <description></description>
+                                    <image></image>
+                                </option>
+                                <option text="local user only" value="local">
+                                    <description></description>
+                                    <image></image>
+                                </option>
+                            </optionList>
+                        </choiceParameter>
+                    </parameterList>
+                    <ruleList>
+                        <platformTest type="linux"/>
+                    </ruleList>
+                    <validationActionList>
+                        <throwError text="You are not running the installer as an administrator!">
+                            <ruleList>
+                                <isFalse value="${installer_is_root_install}"/>
+                                <compareText logic="equals" text="${install_for}" value="all"/>
+                            </ruleList>
+                        </throwError>
+                    </validationActionList>
+                </parameterGroup>
+                <booleanParameter>
+                    <name>file_assoc</name>
+                    <description>Associate SQLite file extensions with SQLiteStudio</description>
+                    <explanation></explanation>
+                    <value>1</value>
+                    <default>1</default>
+                    <ask>yes</ask>
+                    <ruleList>
+						<platformTest negate="1" type="osx"/>
+                    </ruleList>
+                </booleanParameter>
+                <booleanParameter>
+                    <name>quick_launch</name>
+                    <description>Create Quick Launch shortcut</description>
+                    <explanation></explanation>
+                    <value>1</value>
+                    <default>1</default>
+                    <ask>yes</ask>
+                    <ruleList>
+                        <platformTest type="windows"/>
+                    </ruleList>
+                </booleanParameter>
+            </parameterList>
         </parameterGroup>
+		<stringParameter>
+			<name>desktop_prefix_x</name>
+			<ask>1</ask>
+			<insertAfter>install_options</insertAfter>
+			<default>${desktop_prefix}</default>
+		</stringParameter>
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
@@ -334,20 +340,24 @@ MimeType=application/vnd.sqlite3
             <mustBeWritable>1</mustBeWritable>
             <mustExist>0</mustExist>
             <width>40</width>
-			<preShowPageActionList>
-				<setInstallerVariable>
-					<name>platform_install_prefix</name>
-					<value>/opt</value>
-					<ruleList>
-						<compareText>
-							<logic>equals</logic>
-							<text>${install_for}</text>
-							<value>all</value>
-						</compareText>
-						<platformTest type="linux"/>
-					</ruleList>
-				</setInstallerVariable>
-			</preShowPageActionList>
+            <preShowPageActionList>
+				<actionGroup>
+					<actionList>
+						<setInstallerVariable>
+							<name>platform_install_prefix</name>
+							<value>/opt</value>
+						</setInstallerVariable>
+						<setInstallerVariable>
+							<name>installdir</name>
+							<value>/opt/${product_shortname}</value>
+						</setInstallerVariable>
+					</actionList>
+                    <ruleList>
+                        <compareText logic="equals" text="${install_for}" value="all"/>
+                        <platformTest type="linux"/>
+                    </ruleList>
+				</actionGroup>
+            </preShowPageActionList>
         </directoryParameter>
     </parameterList>
 </project>
