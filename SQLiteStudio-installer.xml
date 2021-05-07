@@ -110,21 +110,6 @@
                     <windowsPath></windowsPath>
                 </startMenuShortcut>
             </startMenuShortcutList>
-			<quickLaunchShortcutList>
-				<quickLaunchShortcut>
-					<comment>Run SQLiteStudio</comment>
-					<name>SQLiteStudio</name>
-					<runInTerminal>0</runInTerminal>
-					<windowsExec>${installdir}/${product_shortname}.exe</windowsExec>
-					<windowsExecArgs></windowsExecArgs>
-					<windowsIcon>${installdir}/appicon.ico</windowsIcon>
-					<windowsPath>${installdir}</windowsPath>
-					<ruleList>
-						<platformTest type="windows"/>
-						<isTrue value="${quick_launch}"/>
-					</ruleList>
-				</quickLaunchShortcut>
-			</quickLaunchShortcutList>
         </component>
     </componentList>
     <preBuildActionList>
@@ -308,17 +293,6 @@ MimeType=application/vnd.sqlite3
                     <ask>yes</ask>
                     <ruleList>
 						<platformTest negate="1" type="osx"/>
-                    </ruleList>
-                </booleanParameter>
-                <booleanParameter>
-                    <name>quick_launch</name>
-                    <description>Create Quick Launch shortcut</description>
-                    <explanation></explanation>
-                    <value>1</value>
-                    <default>1</default>
-                    <ask>yes</ask>
-                    <ruleList>
-                        <platformTest type="windows"/>
                     </ruleList>
                 </booleanParameter>
             </parameterList>
