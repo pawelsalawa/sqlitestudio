@@ -3,6 +3,7 @@
     <fullName>SQLiteStudio</fullName>
     <version>1</version>
     <licenseFile>${src_prefix}/LICENSE</licenseFile>
+    <wrapLicenseFileText>0</wrapLicenseFileText>
     <leftImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_installer.png</leftImage>
     <logoImage>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_48.png</logoImage>
     <componentList>
@@ -145,8 +146,8 @@
     <readyToInstallActionList>
         <setInstallerVariable>
             <name>desktop_prefix</name>
+            <persist>1</persist>
             <value>/usr/share/applications</value>
-			<persist>1</persist>
             <ruleList>
                 <compareText logic="equals" text="${install_for}" value="all"/>
                 <platformTest type="linux"/>
@@ -154,8 +155,8 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>desktop_prefix</name>
+            <persist>1</persist>
             <value>~/.local/share/applications</value>
-			<persist>1</persist>
             <ruleList>
                 <compareText logic="equals" text="${install_for}" value="local"/>
                 <platformTest type="linux"/>
@@ -184,10 +185,13 @@
                         <platformTest type="windows"/>
                     </ruleList>
                 </associateWindowsFileExtension>
-                <writeFile>
-                    <encoding>utf-8</encoding>
-                    <path>${desktop_prefix}/SQLiteStudio.desktop</path>
-                    <text>
+				<actionGroup>
+					<explanation>Linux</explanation>
+					<actionList>
+						<writeFile>
+							<encoding>utf-8</encoding>
+							<path>${desktop_prefix}/SQLiteStudio.desktop</path>
+							<text>
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -200,15 +204,20 @@ Terminal=false
 Type=Application
 Categories=Application;Development;Database
 MimeType=application/vnd.sqlite3
-					</text>
-                    <ruleList>
-                        <platformTest type="linux"/>
-                    </ruleList>
-                </writeFile>
+							</text>
+						</writeFile>
+						<runProgram>
+							<program>xdg-mime</program>
+							<programArguments>default SQLiteStudio.desktop application/vnd.sqlite3</programArguments>
+						</runProgram>
+					</actionList>
+					<ruleList>
+						<platformTest type="linux"/>
+					</ruleList>
+				</actionGroup>
             </actionList>
             <ruleList>
                 <isTrue value="${file_assoc}"/>
-                <platformTest negate="1" type="osx"/>
             </ruleList>
         </actionGroup>
     </postInstallationActionList>
@@ -221,39 +230,18 @@ MimeType=application/vnd.sqlite3
                 <platformTest type="windows"/>
             </ruleList>
         </removeWindowsFileAssociation>
-        <deleteFile>
-            <path>${desktop_prefix}/SQLiteStudio.desktop</path>
+		<actionGroup>
+			<explanation>Linux</explanation>
+			<actionList>
+				<deleteFile>
+					<path>${desktop_prefix}/SQLiteStudio.desktop</path>
+				</deleteFile>
+            </actionList>
             <ruleList>
-                <platformTest type="linux"/>
+				<platformTest type="linux"/>
             </ruleList>
-        </deleteFile>
+        </actionGroup>
     </preUninstallationActionList>
-	<finalPageActionList>
-		<runProgram>
-		    <progressText>Launch ${project.fullName} now.</progressText>
-		    <program>${installdir}/SQLiteStudio.exe</program>
-		    <programArguments>&amp;</programArguments>
-            <ruleList>
-                <platformTest type="windows"/>
-            </ruleList>
-		</runProgram>
-		<runProgram>
-		    <progressText>Launch ${project.fullName} now.</progressText>
-		    <program>${installdir}/sqlitestudio</program>
-		    <programArguments>&amp;</programArguments>
-            <ruleList>
-                <platformTest type="linux"/>
-            </ruleList>
-		</runProgram>
-		<runProgram>
-		    <progressText>Launch ${project.fullName} now.</progressText>
-		    <program>${installdir}/${product_shortname}.app/Contents/MacOS/SQLiteStudio</program>
-		    <programArguments>&amp;</programArguments>
-            <ruleList>
-                <platformTest type="osx"/>
-            </ruleList>
-		</runProgram>
-	</finalPageActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
     <disableSplashScreen>1</disableSplashScreen>
@@ -261,6 +249,32 @@ MimeType=application/vnd.sqlite3
     <enableTimestamp>1</enableTimestamp>
     <vendor>sqlitestudio.pl</vendor>
     <windowsExecutableIcon>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_opt.ico</windowsExecutableIcon>
+    <finalPageActionList>
+        <runProgram>
+            <program>${installdir}/SQLiteStudio.exe</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Launch ${project.fullName} now.</progressText>
+            <ruleList>
+                <platformTest type="windows"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${installdir}/sqlitestudio</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Launch ${project.fullName} now.</progressText>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${installdir}/${product_shortname}.app/Contents/MacOS/SQLiteStudio</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Launch ${project.fullName} now.</progressText>
+            <ruleList>
+                <platformTest type="osx"/>
+            </ruleList>
+        </runProgram>
+    </finalPageActionList>
     <parameterList>
         <parameterGroup>
             <name>install_options</name>
@@ -318,7 +332,7 @@ MimeType=application/vnd.sqlite3
                     <default>1</default>
                     <ask>yes</ask>
                     <ruleList>
-						<platformTest negate="1" type="osx"/>
+                        <platformTest negate="1" type="osx"/>
                     </ruleList>
                 </booleanParameter>
             </parameterList>
@@ -335,22 +349,22 @@ MimeType=application/vnd.sqlite3
             <mustExist>0</mustExist>
             <width>40</width>
             <preShowPageActionList>
-				<actionGroup>
-					<actionList>
-						<setInstallerVariable>
-							<name>platform_install_prefix</name>
-							<value>/opt</value>
-						</setInstallerVariable>
-						<setInstallerVariable>
-							<name>installdir</name>
-							<value>/opt/${product_shortname}</value>
-						</setInstallerVariable>
-					</actionList>
+                <actionGroup>
+                    <actionList>
+                        <setInstallerVariable>
+                            <name>platform_install_prefix</name>
+                            <value>/opt</value>
+                        </setInstallerVariable>
+                        <setInstallerVariable>
+                            <name>installdir</name>
+                            <value>/opt/${product_shortname}</value>
+                        </setInstallerVariable>
+                    </actionList>
                     <ruleList>
                         <compareText logic="equals" text="${install_for}" value="all"/>
                         <platformTest type="linux"/>
                     </ruleList>
-				</actionGroup>
+                </actionGroup>
             </preShowPageActionList>
         </directoryParameter>
     </parameterList>
