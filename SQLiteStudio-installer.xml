@@ -323,12 +323,6 @@ MimeType=application/vnd.sqlite3
                 </booleanParameter>
             </parameterList>
         </parameterGroup>
-		<stringParameter>
-			<name>desktop_prefix_x</name>
-			<ask>1</ask>
-			<insertAfter>install_options</insertAfter>
-			<default>${desktop_prefix}</default>
-		</stringParameter>
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
