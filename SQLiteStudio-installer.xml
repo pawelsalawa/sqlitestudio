@@ -231,7 +231,7 @@ MimeType=application/vnd.sqlite3
 	<finalPageActionList>
 		<runProgram>
 		    <progressText>Launch ${project.fullName} now.</progressText>
-		    <program>${installdir}/${product_shortname}.exe</program>
+		    <program>${installdir}/SQLiteStudio.exe</program>
 		    <programArguments>&amp;</programArguments>
             <ruleList>
                 <platformTest type="windows"/>
@@ -243,6 +243,14 @@ MimeType=application/vnd.sqlite3
 		    <programArguments>&amp;</programArguments>
             <ruleList>
                 <platformTest type="linux"/>
+            </ruleList>
+		</runProgram>
+		<runProgram>
+		    <progressText>Launch ${project.fullName} now.</progressText>
+		    <program>${installdir}/${product_shortname}.app/Contents/MacOS/SQLiteStudio</program>
+		    <programArguments>&amp;</programArguments>
+            <ruleList>
+                <platformTest type="osx"/>
             </ruleList>
 		</runProgram>
 	</finalPageActionList>
