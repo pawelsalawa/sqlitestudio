@@ -331,6 +331,9 @@ MimeType=application/vnd.sqlite3
                     </ruleList>
                 </booleanParameter>
             </parameterList>
+            <ruleList>
+                 <platformTest negate="1" type="osx"/>
+	    </ruleList>
         </parameterGroup>
         <directoryParameter>
             <name>installdir</name>
