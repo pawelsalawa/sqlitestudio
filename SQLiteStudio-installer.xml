@@ -84,7 +84,7 @@
                     <distributionFileList>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>${bin_prefix}/*</origin>
+                            <origin>${bin_prefix}/SQLiteStudio.app</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
