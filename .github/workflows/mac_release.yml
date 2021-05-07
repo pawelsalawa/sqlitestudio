@@ -116,11 +116,11 @@ jobs:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                hdiutil attach output/SQLiteStudio/sqlitestudio-3.4.0.dmg
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
-                    --setvars project.version=$SQLITESTUDIO_VERSION
+                    --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
                 ls -l
 
             - name: Upload package artifact
