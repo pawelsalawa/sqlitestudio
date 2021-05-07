@@ -230,17 +230,12 @@ MimeType=application/vnd.sqlite3
                 <platformTest type="windows"/>
             </ruleList>
         </removeWindowsFileAssociation>
-		<actionGroup>
-			<explanation>Linux</explanation>
-			<actionList>
-				<deleteFile>
-					<path>${desktop_prefix}/SQLiteStudio.desktop</path>
-				</deleteFile>
-            </actionList>
+		<deleteFile>
+			<path>${desktop_prefix}/SQLiteStudio.desktop</path>
             <ruleList>
 				<platformTest type="linux"/>
             </ruleList>
-        </actionGroup>
+		</deleteFile>
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
