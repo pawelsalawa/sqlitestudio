@@ -67,8 +67,32 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${installdir}</destination>
+                    <name>programfileslinux32</name>
+                    <platforms>linux</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <allowWildcards>1</allowWildcards>
+                            <origin>${bin_prefix}/*</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
                     <name>programfileswindows64</name>
                     <platforms>windows-x64</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <allowWildcards>1</allowWildcards>
+                            <origin>${bin_prefix}/*</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileswindows32</name>
+                    <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>

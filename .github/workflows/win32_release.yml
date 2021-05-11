@@ -2,20 +2,20 @@ env:
     QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
-    QT_ARCH: 'win64_mingw81'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.4/x64'
-    MINGW_DIR: ../Qt/Tools/mingw810_64
-    QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
+    QT_ARCH: 'win32_mingw81'
+    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.4/x86'
+    MINGW_DIR: ../Qt/Tools/mingw810_32
+    QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
+    MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw810/8.1.0-1-202004170606i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-installer.exe
 
 name: Windows release build
 
 on:
     repository_dispatch:
-        types: [win64_release]
+        types: [win32_release]
 
 jobs:
     build:
@@ -56,7 +56,7 @@ jobs:
             - name: Install dependencies
               shell: bash
               run: |
-                7z x -o".." win_deps/win64_deps.zip
+                7z x -o".." win_deps/win32_deps.zip
                 echo "../lib" >> $GITHUB_PATH
  
             - name: Install SQLite3
@@ -66,7 +66,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
+                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m32 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -185,5 +185,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v1
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x86-installer.exe
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x86-installer.exe
