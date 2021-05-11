@@ -84,7 +84,7 @@
                     <distributionFileList>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>${bin_prefix}/*</origin>
+                            <origin>${bin_prefix}/SQLiteStudio.app</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -325,6 +325,9 @@ MimeType=application/vnd.sqlite3
                     </ruleList>
                 </booleanParameter>
             </parameterList>
+            <ruleList>
+                 <platformTest negate="1" type="osx"/>
+	    </ruleList>
         </parameterGroup>
         <directoryParameter>
             <name>installdir</name>

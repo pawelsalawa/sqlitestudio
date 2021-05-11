@@ -44,12 +44,12 @@ jobs:
             - name: Install the InstalBuilder
               shell: bash
               run: |
-                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.run
-                chmod +x ib.run
-                ./ib.run --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
+                hdiutil attach ib.dmg
+                /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
-                echo "INSTALLER_BIN_PREFIX=${{ env.PORTABLE_DIR }}" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v2
@@ -116,10 +116,11 @@ jobs:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
-                    --setvars project.version=$SQLITESTUDIO_VERSION
+                    --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
                 ls -l
 
             - name: Upload package artifact
@@ -127,3 +128,9 @@ jobs:
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
                 path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
