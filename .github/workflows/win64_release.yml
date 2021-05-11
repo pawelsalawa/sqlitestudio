@@ -9,7 +9,6 @@ env:
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
-    DEPS_URL: https://www.dropbox.com/s/2dpem7vy0ee19tu/win64_deps.zip?dl=1
     INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
 
 name: Windows release build
@@ -23,6 +22,10 @@ jobs:
         runs-on: windows-2019
 
         steps:
+            - name: debug
+              shell: bash
+              run: ls -l C:/hostedtoolcache/windows/python/3.9.4
+        
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
@@ -57,8 +60,7 @@ jobs:
             - name: Install dependencies
               shell: bash
               run: |
-                curl -L ${{ env.DEPS_URL }} --output ../win64_deps.zip
-                7z x -o".." ../win64_deps.zip
+                7z x -o".." win_deps/win64_deps.zip
                 echo "../lib" >> $GITHUB_PATH
  
             - name: Install SQLite3

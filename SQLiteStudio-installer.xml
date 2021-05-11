@@ -296,14 +296,8 @@ MimeType=application/vnd.sqlite3
                             <ordering>default</ordering>
                             <width>40</width>
                             <optionList>
-                                <option text="all users (requires root privileges)" value="all">
-                                    <description></description>
-                                    <image></image>
-                                </option>
-                                <option text="local user only" value="local">
-                                    <description></description>
-                                    <image></image>
-                                </option>
+                                <option text="all users (requires root privileges)" value="all"/>
+                                <option text="local user only" value="local"/>
                             </optionList>
                         </choiceParameter>
                     </parameterList>
