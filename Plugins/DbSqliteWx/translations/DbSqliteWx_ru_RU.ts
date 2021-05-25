@@ -6,41 +6,41 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>Пароль (ключ)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Оставьте пустым для создания или подключения к расшифрованной базе данных.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>Пароль для шифрования</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="38"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>Шифр</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation type="unfinished">Cipher determines encryption algorithm used to encrypt the database.</translation>
+      <translation>Шифр определяет алгоритм шифрования, используемый для шифрования базы данных.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Настройки шифрования (необязательно)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLite3 Multiple Ciphers for details.</translation>
+      <translation>Конструкции PRAGMA для изменения настроек SQLite3 Multiple Ciphers, таких как количество итераций KDF (функции формирования ключа), режим совместимости и т. д.
+Они будут выполняться при каждом открытии базы данных.
+Для дополнительной информации см. документацию к SQLite3 Multiple Ciphers.</translation>
     </message>
   </context>
 </TS>
