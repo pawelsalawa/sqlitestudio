@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Сгенерированное значение</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -424,7 +424,7 @@
       <location filename="../dialogs/columndialog.cpp" line="99"/>
       <source>Add a generated value constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a generated value constraint</translation>
+      <translation>Добавить ограничение на сгенерированное значение</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="100"/>
@@ -543,42 +543,42 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Генерирующий код:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Заданный тип:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>Использовать ключевые слова &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Именованное ограничение:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Введите выражение для генерации значений столбца.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Некорректное выражение для генерации значений: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Некорректное выражение для генерации значений.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Введите имя ограничения.</translation>
     </message>
   </context>
   <context>
@@ -611,7 +611,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
       <source>Descending order is not allowed with AUTOINCREMENT.</source>
-      <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+      <translation>Сортировка по убыванию недопустима при использовании AUTOINCREMENT.</translation>
     </message>
   </context>
   <context>
@@ -938,12 +938,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="529"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если результаты запроса содержат десятки (или сотни) столбцов, они вполне вероятно могут исчерпать всю свободную память компьютера, одномоментно загрузив несколько гигабайт данных. В таких случаях, для защиты компьютера SQLiteStudio может попытаться ограничить количество результатов, отображаемых на одной странице. Если вы уверены, что не работаете с большими объемами в базе данных, то можете отключить это ограничение и всегда видеть заданное в настройках количество строк на странице.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="532"/>
       <source>Limit number of rows for in case of dozens of columns</source>
-      <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
+      <translation>Ограничить число строк в случае десятков столбцов</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
@@ -1115,7 +1115,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="941"/>
       <source>Allow multiple instances of the application at the same time</source>
-      <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
+      <translation>Разрешить одновременную работу нескольких экземпляров приложения</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
@@ -1357,7 +1357,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
       <source>Enter a valid condition.</source>
-      <translation>Введите корректное условие</translation>
+      <translation>Введите корректное условие.</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
@@ -1425,7 +1425,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
       <source>Generated</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Сгенерированное</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
@@ -1609,7 +1609,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dataview.cpp" line="957"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
-      <translation>Нажмите Enter или кнопку &quot;Применить фильтр&quot; на панели инструментов чтобы применить новое значение</translation>
+      <translation>Нажмите Enter или кнопку &quot;Применить фильтр&quot; на панели инструментов чтобы применить новое значение.</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="985"/>
@@ -2170,7 +2170,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1707"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-      <translation>%11&lt;br&gt;&lt;br&gt;Вы действительно хотите продолжить?</translation>
+      <translation>%1&lt;br&gt;&lt;br&gt;Вы действительно хотите продолжить?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1709"/>
@@ -2619,7 +2619,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="64"/>
       <source>Please provide file to be executed.</source>
-      <translation>Пожалуйста укажите файл с SQL-запросами</translation>
+      <translation>Пожалуйста укажите файл с SQL-запросами.</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="71"/>
@@ -2733,7 +2733,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="256"/>
       <source>Query to be executed for results:</source>
-      <translation>Выполняемый запрос для получения данных</translation>
+      <translation>Выполняемый запрос для получения данных:</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="264"/>
@@ -2768,7 +2768,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="382"/>
       <source>Exported text encoding:</source>
-      <translation>Кодировка экспорта</translation>
+      <translation>Кодировка экспорта:</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="398"/>
@@ -3568,7 +3568,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="265"/>
       <source>D&amp;onate</source>
-      <translation type="unfinished">D&amp;onate</translation>
+      <translation>По&amp;жертвование</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="266"/>
@@ -3608,7 +3608,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Выход</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="275"/>
@@ -3741,7 +3741,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="334"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-      <translation>Модуль редактора данных &apos;%1&apos; не загружен, хотя указан для редактирования типа данных &apos;%1&apos;</translation>
+      <translation>Модуль редактора данных &apos;%1&apos; не загружен, хотя указан для редактирования типа данных &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="427"/>
@@ -3777,7 +3777,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditordatetime.cpp" line="274"/>
       <source>Date &amp; time</source>
-      <translation>Дата и время</translation>
+      <translation>Дата &amp; время</translation>
     </message>
   </context>
   <context>
@@ -3902,7 +3902,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
       <source>Generated</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Сгенерированное</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
@@ -3921,7 +3921,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="26"/>
       <source>New version is available!</source>
-      <translation type="unfinished">New version is available!</translation>
+      <translation>Доступна новая версия!</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="43"/>
@@ -3931,27 +3931,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="53"/>
       <source>Download new version!</source>
-      <translation type="unfinished">Download new version!</translation>
+      <translation>Загрузить новую версию!</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="66"/>
       <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
-      <translation type="unfinished">New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</translation>
+      <translation>Будет загружен установщик новой версии. Вы сможете начать установку когда будете готовы.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="73"/>
       <source>Open SQLiteStudio home page.</source>
-      <translation type="unfinished">Open SQLiteStudio home page.</translation>
+      <translation>Посетить домашнюю страницу SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="86"/>
       <source>Read release notes &amp;&amp; download package yourself.</source>
-      <translation type="unfinished">Read release notes &amp;&amp; download package yourself.</translation>
+      <translation>Прочитать примечания к выпуску и загрузить установщик самостоятельно.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="106"/>
       <source>Just close this window.</source>
-      <translation type="unfinished">Just close this window.</translation>
+      <translation>Просто закрыть это окно.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="116"/>
@@ -4071,22 +4071,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
-      <translation>Невозможно редактировать столцбы, являющиеся результатом агрегирующих конструкций %1.</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом агрегирующих конструкций %1.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
-      <translation>Невозможно редактировать столцбы, являющиеся результатом конструкции %1.</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом конструкции %1.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
-      <translation>Невозможно редактировать столцбы, являющиеся результатом обобщённого табличного выражения (%1).</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом обобщённого табличного выражения (%1).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit table generated columns.</source>
-      <translation type="unfinished">Cannot edit table generated columns.</translation>
+      <translation>Невозможно редактировать сгенерированные таблицей столбцы.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="384"/>
@@ -4119,7 +4119,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="506"/>
       <source>generated column type: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">generated column type: %1</translation>
+      <translation>тип сгенерированного столбца: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
@@ -4366,7 +4366,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>Выход из приложения</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -4952,7 +4952,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Committing error:</translation>
+      <translation>Ошибка при подтверждении измнений:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
@@ -4989,7 +4989,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="146"/>
       <source>Load remaining part of the value</source>
-      <translation type="unfinished">Load remaining part of the value</translation>
+      <translation>Загрузить оставшуюся часть значения</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
@@ -5033,12 +5033,12 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
       <source>Cannot execute query on undefined or invalid database.</source>
-      <translation type="unfinished">Cannot execute query on undefined or invalid database.</translation>
+      <translation>Невозможно выполнить запрос к неопознанной или некорректной базе данных.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
       <source>Cannot execute empty query.</source>
-      <translation type="unfinished">Cannot execute empty query.</translation>
+      <translation>Невозможно выполнить пустой запрос.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
@@ -5109,14 +5109,14 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Delete rows</source>
-      <translation type="unfinished">Delete rows</translation>
+      <translation>Удалить строки</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
-      <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
-Such deletion will be permanent. Are you sure you want to delete them?</translation>
+      <translation>Вы собираетесь удалить недавно вставленные строки, которые ещё не были подтверждены. Номера строк: %1
+Такое удаление необратимо. Вы действительно хотите удалить их?</translation>
     </message>
   </context>
   <context>
@@ -5209,7 +5209,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Load full values</source>
-      <translation type="unfinished">Load full values</translation>
+      <translation>Загрузить полные значения</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
@@ -5651,7 +5651,7 @@ NULL</translation>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
       <source>Generated</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Сгенерированное</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="309"/>
@@ -5914,7 +5914,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="630"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>База данных</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="662"/>
@@ -5929,7 +5929,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="675"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2</translation>
+      <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="684"/>
@@ -6325,7 +6325,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="275"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>База данных</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="328"/>
@@ -6454,7 +6454,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="639"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
-      <translation type="unfinished">View &apos;%1&apos; was committed successfully.</translation>
+      <translation>Представление &apos;%1&apos; успешно подтверждено.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="641"/>
