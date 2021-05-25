@@ -79,7 +79,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation>Если данные в CSV содержат значения NULL, укажите, как они представлены в файле CSV</translation>
+      <translation>Если данные в CSV содержат значения NULL, укажите, как они представлены в файле CSV.</translation>
     </message>
   </context>
 </TS>
