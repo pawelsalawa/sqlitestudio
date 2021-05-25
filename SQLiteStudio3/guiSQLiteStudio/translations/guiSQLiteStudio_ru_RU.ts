@@ -430,7 +430,7 @@
       <location filename="../dialogs/columndialog.cpp" line="100"/>
       <source>Add a default constraint</source>
       <comment>column dialog</comment>
-      <translation>Добавить ограничение на значение по умочанию</translation>
+      <translation>Добавить ограничение на значение по умолчанию</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="242"/>
@@ -821,7 +821,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation>Виртуальные таблицы будут помечены как &apos;вирутальные&apos;.</translation>
+      <translation>Виртуальные таблицы будут помечены как &apos;виртуальные&apos;.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
@@ -836,7 +836,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation>Если опция деактивирована, объекты будут отсортированы в том порядке, в котором они указаны в таблице sqlite_master (т.е. в порядке создания)</translation>
+      <translation>Если опция деактивирована, объекты будут отсортированы в том порядке, в котором они указаны в таблице sqlite_master (т. е. в порядке создания)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
@@ -882,7 +882,7 @@
       <location filename="../dialogs/configdialog.ui" line="480"/>
       <location filename="../dialogs/configdialog.ui" line="493"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Макисмальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Максимальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="496"/>
@@ -893,7 +893,7 @@
       <location filename="../dialogs/configdialog.ui" line="431"/>
       <location filename="../dialogs/configdialog.ui" line="457"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;При загрузке даных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;При загрузке данных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="460"/>
@@ -923,7 +923,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="519"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation>Сохранять значение NULL при вводе пустой тсроки</translation>
+      <translation>Сохранять значение NULL при вводе пустой строки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio преварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio предварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
