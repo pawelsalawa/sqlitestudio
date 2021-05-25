@@ -29,7 +29,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation> (Kommatecken)</translation>
+      <translation>&#xa0;(Kommatecken)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
