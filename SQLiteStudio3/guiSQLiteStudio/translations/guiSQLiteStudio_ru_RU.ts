@@ -2099,7 +2099,7 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtree.cpp" line="1220"/>
       <location filename="../dbtree/dbtree.cpp" line="1425"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1240"/>
@@ -2140,7 +2140,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): &apos;%1&apos;?</translation>
+      <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1581"/>
@@ -2348,7 +2348,7 @@ All objects from this group will be moved to parent group.</source>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>Данный объект уже существует в целевой базе данных.
-Пожалуйста введите новое уникальное имя или нажмите %1 для прерывания операции:</translation>
+Пожалуйста введите новое уникальное имя или нажмите &apos;%1&apos; для прерывания операции:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
@@ -2538,7 +2538,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="733"/>
@@ -3327,7 +3327,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="749"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-      <translation>Невозможно создать уникальный индекс, т.к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
+      <translation>Невозможно создать уникальный индекс, т. к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
@@ -3390,7 +3390,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/languagedialog.ui" line="20"/>
       <source>Please choose language:</source>
-      <translation>Пожалйуста, выберите язык:</translation>
+      <translation>Пожалуйста, выберите язык:</translation>
     </message>
   </context>
   <context>
@@ -3659,12 +3659,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="649"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="665"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
@@ -4023,7 +4023,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="300"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
-      <translation>Настройка заполнения для данного столбца некорректна или незавершена.</translation>
+      <translation>Настройка заполнения для данного столбца некорректна или не завершена.</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="331"/>
@@ -4046,12 +4046,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
-      <translation>Невозможно редактировать столцбы, являющиеся результатом составных конструкций %1 (те, которые включают ключевые слова %2, %3 и %4).</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом составных конструкций %1 (те, которые включают ключевые слова %2, %3 и %4).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
-      <translation>В механизме выполнения запросов возникли проблемы при корректном извлечении значений ROWID. Предположительно  это ошибка в приложении. Возможно стоит отправить отчёт об ошибке.</translation>
+      <translation>В механизме выполнения запросов возникли проблемы при корректном извлечении значений ROWID. Предположительно это ошибка в приложении. Возможно стоит отправить отчёт об ошибке.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
@@ -4371,7 +4371,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
       <source>Cell text value editor</source>
-      <translation>Редактор текстового значения чейки</translation>
+      <translation>Редактор текстового значения ячейки</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
@@ -4952,7 +4952,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation>Ошибка при подтверждении измнений:</translation>
+      <translation>Ошибка при подтверждении изменений:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
@@ -6020,12 +6020,12 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1270"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1283"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
