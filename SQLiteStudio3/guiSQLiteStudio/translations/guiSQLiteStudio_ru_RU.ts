@@ -948,7 +948,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
       <source>General.LimitRowsForManyColumns</source>
-      <translation type="unfinished">General.LimitRowsForManyColumns</translation>
+      <translation>General.LimitRowsForManyColumns</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="545"/>
@@ -1120,7 +1120,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>General.AllowMultipleSessions</source>
-      <translation type="unfinished">General.AllowMultipleSessions</translation>
+      <translation>General.AllowMultipleSessions</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
@@ -3926,7 +3926,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="43"/>
       <source>0.0.0</source>
-      <translation type="unfinished">0.0.0</translation>
+      <translation>0.0.0</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="53"/>
