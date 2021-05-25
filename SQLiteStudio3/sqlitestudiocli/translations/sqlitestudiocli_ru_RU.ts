@@ -146,7 +146,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation>Не указана текущая рабочая база данных</translation>
+      <translation>Не указана текущая рабочая база данных.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
