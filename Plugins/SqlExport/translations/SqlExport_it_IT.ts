@@ -49,7 +49,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Genera l'istruzione &quot;DROP IF EXISTS&quot; prima dell'istruzione &quot;CREATE&quot;</translation>
+      <translation>Genera l&apos;istruzione &quot;DROP IF EXISTS&quot; prima dell&apos;istruzione &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
@@ -77,7 +77,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="37"/>
       <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-      <translation>Genera dichiarazione &quot;CREATE TABLE&quot; all'inizio</translation>
+      <translation>Genera dichiarazione &quot;CREATE TABLE&quot; all&apos;inizio</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
@@ -87,7 +87,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Genera l'istruzione &quot;DROP IF EXISTS&quot; prima dell'istruzione &quot;CREATE&quot;</translation>
+      <translation>Genera l&apos;istruzione &quot;DROP IF EXISTS&quot; prima dell&apos;istruzione &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
