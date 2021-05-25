@@ -6,27 +6,27 @@
     <message>
       <location filename="../scriptingpython.cpp" line="466"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation type="unfinished">Invalid use of %1 function. Expected %2 arguments, but got %3.</translation>
+      <translation>Некорректное использование функции %1. Ожидается аргументов: %2, передано аргументов: %3.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="475"/>
       <source>Unknown error from function %1.</source>
-      <translation type="unfinished">Unknown error from function %1.</translation>
+      <translation>Неизвестная ошибка при выполнении функции %1.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="516"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation type="unfinished">Could not calculate string representation of the Python object passed as argument to the function %1.</translation>
+      <translation>Невозможно сформировать строковое представление объекта Python, переданного в виде аргумента в функцию %1.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="532"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation type="unfinished">Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</translation>
+      <translation>Не найден контекст выполнения для функции %1. Это ошибка модуля Python. Пожалуйста, сообщите о ней.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="557"/>
       <source>Error from Python function %1: %2</source>
-      <translation type="unfinished">Error from Python function %1: %2</translation>
+      <translation>Ошибка при выполнении функции Python %1: %2</translation>
     </message>
   </context>
 </TS>
