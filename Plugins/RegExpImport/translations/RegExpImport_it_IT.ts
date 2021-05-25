@@ -26,7 +26,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
       <source>Requested capture index %1 is out of range.</source>
-      <translation>L'indice di cattura richiesto %1 è fuori dall'intervallo.</translation>
+      <translation>L&apos;indice di cattura richiesto %1 è fuori dall&apos;intervallo.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
@@ -55,7 +55,7 @@
       <location filename="../regexpimport.ui" line="52"/>
       <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Inserisci l'elenco separato da virgola degli indici dei gruppi di acquisizione. L'indice 0 si riferisce all'intera stringa corrispondente.&lt;/p&gt;
+      <translation>&lt;p&gt;Inserisci l&apos;elenco separato da virgola degli indici dei gruppi di acquisizione. L&apos;indice 0 si riferisce all&apos;intera stringa corrispondente.&lt;/p&gt;
 &lt;p&gt;Se hai usato i gruppi denominati nel modello, puoi usare i nomi al posto degli indici. È possibile mescolare indici e nomi in questa lista.&lt;/p&gt;</translation>
     </message>
     <message>
@@ -73,7 +73,7 @@
       <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Usa gruppi di espressioni regolari per racchiudere parti dell'espressione che vuoi importare. Se si desidera utilizzare un gruppo, che non si desidera importare, allora utilizzare l'opzione &quot;importa solo i gruppi seguenti&quot; sottostante.
+      <translation>&lt;p&gt;Usa gruppi di espressioni regolari per racchiudere parti dell&apos;espressione che vuoi importare. Se si desidera utilizzare un gruppo, che non si desidera importare, allora utilizzare l&apos;opzione &quot;importa solo i gruppi seguenti&quot; sottostante.
 
 Puoi usare i gruppi con nome e fare riferimento ad essi nella lista dei gruppi qui sotto. Per nominare un gruppo usa: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
