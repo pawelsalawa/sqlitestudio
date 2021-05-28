@@ -26,7 +26,7 @@
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>log file</source>
-      <translation type="unfinished">log file</translation>
+      <translation>로그 파일</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
@@ -46,7 +46,7 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>database</source>
-      <translation type="unfinished">database</translation>
+      <translation>데이터베이스</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../main.cpp" line="74"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>파일</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="74"/>
