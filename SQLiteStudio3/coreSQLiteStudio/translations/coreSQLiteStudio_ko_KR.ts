@@ -12,7 +12,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>데이터베이스 등록 중 오류 %1: %2</translation>
     </message>
   </context>
   <context>
@@ -114,7 +114,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="204"/>
       <source>Error message</source>
-      <translation type="unfinished">Error message</translation>
+      <translation>오류 메시지</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="253"/>
@@ -124,7 +124,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="434"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>기본 데이터베이스</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="435"/>
@@ -247,13 +247,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="66"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>데이터베이스 이름</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="68"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database file</translation>
+      <translation>데이터베이스 파일</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="70"/>
