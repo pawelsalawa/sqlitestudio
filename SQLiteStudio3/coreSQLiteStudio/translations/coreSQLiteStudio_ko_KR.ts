@@ -7,7 +7,7 @@
       <location filename="../db/abstractdb.cpp" line="336"/>
       <location filename="../db/abstractdb.cpp" line="353"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>연결되지 않은 데이터베이스에서 쿼리를 실행할 수 없습니다</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
