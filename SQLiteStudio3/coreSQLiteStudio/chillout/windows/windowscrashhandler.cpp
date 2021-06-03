@@ -220,18 +220,6 @@ namespace Debug {
         fprintf(stderr, "Chillout SehHandler");
 #endif
 
-#ifdef _M_IX86
-        if (pExPtrs->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW)
-        {
-            // http://groups.google.com/group/crashrpt/browse_thread/thread/a1dbcc56acb58b27/fbd0151dd8e26daf?lnk=gst&q=stack+overflow#fbd0151dd8e26daf
-            HANDLE thread = ::CreateThread(0, 0,
-                                           &StackOverflowThreadFunction, pExPtrs, 0, 0);
-            DWORD dwMilliseconds = 1000 * 30; // 30 seconds
-            ::WaitForSingleObject(thread, dwMilliseconds);
-            ::CloseHandle(thread);
-            return EXCEPTION_EXECUTE_HANDLER;
-        }
-#endif
         DoHandleCrash();
 
         TerminateProcess(GetCurrentProcess(), CHILLOUT_EXIT_CODE);
