@@ -103,7 +103,7 @@
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>경로</translation>
     </message>
   </context>
   <context>

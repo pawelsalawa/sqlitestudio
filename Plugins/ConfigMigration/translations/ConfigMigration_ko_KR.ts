@@ -16,7 +16,7 @@
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>데이터베이스 목록 (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>설정</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>

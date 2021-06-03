@@ -430,7 +430,7 @@
       <location filename="../dialogs/columndialog.cpp" line="100"/>
       <source>Add a default constraint</source>
       <comment>column dialog</comment>
-      <translation>Добавить ограничение на значение по умочанию</translation>
+      <translation>Добавить ограничение на значение по умолчанию</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="242"/>
@@ -821,7 +821,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation>Виртуальные таблицы будут помечены как &apos;вирутальные&apos;.</translation>
+      <translation>Виртуальные таблицы будут помечены как &apos;виртуальные&apos;.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
@@ -836,7 +836,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation>Если опция деактивирована, объекты будут отсортированы в том порядке, в котором они указаны в таблице sqlite_master (т.е. в порядке создания)</translation>
+      <translation>Если опция деактивирована, объекты будут отсортированы в том порядке, в котором они указаны в таблице sqlite_master (т. е. в порядке создания)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
@@ -882,7 +882,7 @@
       <location filename="../dialogs/configdialog.ui" line="480"/>
       <location filename="../dialogs/configdialog.ui" line="493"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Макисмальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Максимальное количество конфигураций окна Заполнения таблицы, сохраняемых в конфигурации программы. 100 конфигураций должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="496"/>
@@ -893,7 +893,7 @@
       <location filename="../dialogs/configdialog.ui" line="431"/>
       <location filename="../dialogs/configdialog.ui" line="457"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;При загрузке даных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;При загрузке данных в табличный вид ширина столбцов автоматически подстраивается. Этот параметр ограничивает начальную ширину для подстройки, при этом пользователь может вручную изменить ширину столбца сверх данного лимита.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="460"/>
@@ -923,7 +923,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="519"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation>Сохранять значение NULL при вводе пустой тсроки</translation>
+      <translation>Сохранять значение NULL при вводе пустой строки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
@@ -948,7 +948,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
       <source>General.LimitRowsForManyColumns</source>
-      <translation type="unfinished">General.LimitRowsForManyColumns</translation>
+      <translation>General.LimitRowsForManyColumns</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="545"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio преварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Максимальное количество параметров запроса (:param, @param, $param, ?), сохраняемых в истории. Когда вы повторно используете параметр с тем же именем/расположением, SQLiteStudio предварительно инициализирует его последним запомненным значением (которое затем можно изменить). 1000 параметров должно хватить.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -1120,7 +1120,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>General.AllowMultipleSessions</source>
-      <translation type="unfinished">General.AllowMultipleSessions</translation>
+      <translation>General.AllowMultipleSessions</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
@@ -2099,7 +2099,7 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtree.cpp" line="1220"/>
       <location filename="../dbtree/dbtree.cpp" line="1425"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1240"/>
@@ -2140,7 +2140,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): &apos;%1&apos;?</translation>
+      <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1581"/>
@@ -2348,7 +2348,7 @@ All objects from this group will be moved to parent group.</source>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>Данный объект уже существует в целевой базе данных.
-Пожалуйста введите новое уникальное имя или нажмите %1 для прерывания операции:</translation>
+Пожалуйста введите новое уникальное имя или нажмите &apos;%1&apos; для прерывания операции:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
@@ -2538,7 +2538,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="733"/>
@@ -3327,7 +3327,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="749"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-      <translation>Невозможно создать уникальный индекс, т.к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
+      <translation>Невозможно создать уникальный индекс, т. к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
@@ -3390,7 +3390,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/languagedialog.ui" line="20"/>
       <source>Please choose language:</source>
-      <translation>Пожалйуста, выберите язык:</translation>
+      <translation>Пожалуйста, выберите язык:</translation>
     </message>
   </context>
   <context>
@@ -3659,12 +3659,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="649"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="665"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
@@ -3926,7 +3926,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="43"/>
       <source>0.0.0</source>
-      <translation type="unfinished">0.0.0</translation>
+      <translation>0.0.0</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="53"/>
@@ -4023,7 +4023,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="300"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
-      <translation>Настройка заполнения для данного столбца некорректна или незавершена.</translation>
+      <translation>Настройка заполнения для данного столбца некорректна или не завершена.</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="331"/>
@@ -4046,12 +4046,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
-      <translation>Невозможно редактировать столцбы, являющиеся результатом составных конструкций %1 (те, которые включают ключевые слова %2, %3 и %4).</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом составных конструкций %1 (те, которые включают ключевые слова %2, %3 и %4).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
-      <translation>В механизме выполнения запросов возникли проблемы при корректном извлечении значений ROWID. Предположительно  это ошибка в приложении. Возможно стоит отправить отчёт об ошибке.</translation>
+      <translation>В механизме выполнения запросов возникли проблемы при корректном извлечении значений ROWID. Предположительно это ошибка в приложении. Возможно стоит отправить отчёт об ошибке.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
@@ -4371,7 +4371,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
       <source>Cell text value editor</source>
-      <translation>Редактор текстового значения чейки</translation>
+      <translation>Редактор текстового значения ячейки</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
@@ -4952,7 +4952,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation>Ошибка при подтверждении измнений:</translation>
+      <translation>Ошибка при подтверждении изменений:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
@@ -6020,12 +6020,12 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1270"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
+      <translation>Невозможно произвести экспорт, т. к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1283"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
+      <translation>Невозможно произвести импорт, т. к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
