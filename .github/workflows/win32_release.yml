@@ -4,7 +4,7 @@ env:
     SQLITE_RELEASE_YEAR: '2021'
     QT_ARCH: 'win32_mingw81'
     pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.4/x86'
-    MINGW_DIR: ../Qt/Tools/mingw810_32
+    #MINGW_DIR: ../Qt/Tools/mingw810_32
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -22,10 +22,15 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Delet preinstalled mingw64
-              shell: bash
-              run: |
-                rm -rf C:/ProgramData/Chocolatey/lib/mingw
+            # - name: Delete preinstalled mingw64
+              # shell: bash
+              # run: |
+                # rm -rf C:/ProgramData/Chocolatey/lib/mingw
+
+            - name: Set up MinGW
+              uses: egor-tensin/setup-mingw@v2
+              with:
+                platform: x86
 
             - name: Cache Qt
               id: cache-qt
@@ -45,13 +50,13 @@ jobs:
                 dir: 'D:/'
                 setup-python: 'false'
                 
-            - name: Install mingw
-              if: steps.cache-qt.outputs.cache-hit != 'true'
-              shell: bash
-              run: |
-                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"../Qt" ../mingw.7z
-                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
+            # - name: Install mingw
+              # if: steps.cache-qt.outputs.cache-hit != 'true'
+              # shell: bash
+              # run: |
+                # curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
+                # 7z x -o"../Qt" ../mingw.7z
+                # echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
  
             - name: Clone repo
               uses: actions/checkout@v2
@@ -71,7 +76,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc.exe sqlite3.c -Os -fpic -DWIN32 -I. -shared -o sqlite3.dll \
+                gcc.exe sqlite3.c -Os -fpic -DWIN32 -m32 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -95,14 +100,14 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
-                ${{ env.MINGW_DIR }}\bin\mingw32-make.exe -j 2
+                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" ..\..\SQLiteStudio3
+                mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
-                ${{ env.MINGW_DIR }}\bin\mingw32-make.exe -j 1
+                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
+                mingw32-make.exe -j 1
               
             - name: Prepare portable dir
               shell: bash
