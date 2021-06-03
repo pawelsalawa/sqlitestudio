@@ -66,7 +66,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc.exe sqlite3.c -Os -fpic -DWIN32 -m32 -I. -shared -o sqlite3.dll \
+                gcc.exe sqlite3.c -Os -fpic -DWIN32 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -91,13 +91,13 @@ jobs:
               working-directory: output/build
               run: |
                 qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
-                mingw32-make.exe -j 2
+                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
                 qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
-                mingw32-make.exe -j 1
+                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 1
               
             - name: Prepare portable dir
               shell: bash
