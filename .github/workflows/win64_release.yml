@@ -91,13 +91,13 @@ jobs:
               working-directory: output/build
               run: |
                 qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
-                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 2
+                mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
                 qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
-                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 1
+                mingw32-make.exe -j 1
               
             - name: Prepare portable dir
               shell: bash
