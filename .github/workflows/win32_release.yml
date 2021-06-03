@@ -41,7 +41,7 @@ jobs:
                 # version: ${{ env.QT_VERSION }}
                 # host: 'windows'
                 # arch: ${{ env.QT_ARCH }}
-                jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
+                ## jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 # dir: 'D:/'
                 # setup-python: 'false'
                 
