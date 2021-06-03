@@ -90,6 +90,7 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
+                echo "will run ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 2"
                 qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
