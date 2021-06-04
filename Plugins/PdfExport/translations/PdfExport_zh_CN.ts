@@ -205,7 +205,7 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>毫米</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
@@ -230,7 +230,7 @@
     <message>
       <location filename="../pdfexport.ui" line="212"/>
       <source>Headers background:</source>
-      <translation type="unfinished">Headers background:</translation>
+      <translation>标题背景色：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="235"/>
