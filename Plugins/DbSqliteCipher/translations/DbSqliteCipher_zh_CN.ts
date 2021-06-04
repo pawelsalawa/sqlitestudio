@@ -21,16 +21,16 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Cipher配置 (可选)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="38"/>
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLCipher for details.</translation>
+      <translation>自定义 SQLCiper 配置的 PRAGMA 语句，如KDF 迭代、遗留模式等。
+它们将在数据库的每次打开时执行。
+了解 SQLCipher 文档的详细信息。</translation>
     </message>
   </context>
 </TS>
