@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>已生成的值</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -1783,7 +1783,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbobjectdialogs.cpp" line="213"/>
       <location filename="../dbobjectdialogs.cpp" line="306"/>
       <source>Error while dropping %1: %2</source>
-      <translation type="unfinished">Error while dropping %1: %2</translation>
+      <translation>丢弃 %1 时出错： %2</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="276"/>
@@ -3329,7 +3329,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="749"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-      <translation type="unfinished">Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</translation>
+      <translation>无法创建唯一索引，因为选中的列中的值不是唯一的。您想要执行 SELECT 查询以查看有问题的值吗？</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
@@ -3343,7 +3343,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="14"/>
       <source>Indexed expression</source>
-      <translation type="unfinished">Indexed expression</translation>
+      <translation>索引表达式</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="20"/>
