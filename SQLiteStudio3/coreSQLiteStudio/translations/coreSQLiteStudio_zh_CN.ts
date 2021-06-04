@@ -215,8 +215,8 @@
       <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation type="unfinished">Error while dropping source view %1: %2
-Tables, indexes, triggers and views copied to database %3 will remain.</translation>
+      <translation>在丢弃源视图 %1:%2 时出错
+已拷贝至数据库 %3 的表格、索引、触发器和视图将被保留。</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
