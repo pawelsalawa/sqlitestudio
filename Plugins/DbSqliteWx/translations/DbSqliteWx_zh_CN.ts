@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>密码(密钥)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
