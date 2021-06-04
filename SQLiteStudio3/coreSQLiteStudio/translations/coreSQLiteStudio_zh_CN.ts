@@ -238,7 +238,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
+      <translation>无法解析对象 &apos;%1&apos; 以便进行移动或复制。</translation>
     </message>
   </context>
   <context>
@@ -638,7 +638,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>内部测试 (Alpha) 版</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
