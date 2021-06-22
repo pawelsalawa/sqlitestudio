@@ -81,7 +81,7 @@
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation type="unfinished">Select configuration directory</translation>
+      <translation>选择配置目录</translation>
     </message>
   </context>
 </TS>
