@@ -44,12 +44,12 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation>Das ist eine Liste von Elementen aus der alten Konfigurationsdatei, die in die aktuelle Konfiguration migriert werden können.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Optionen</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Gruppenname</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="62"/>
