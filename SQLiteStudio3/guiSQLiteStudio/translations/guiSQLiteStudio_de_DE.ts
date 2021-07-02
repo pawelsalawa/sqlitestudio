@@ -94,7 +94,7 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="17"/>
       <source>Query parameters</source>
-      <translation type="unfinished">Query parameters</translation>
+      <translation>Abfrageparameter</translation>
     </message>
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
@@ -481,13 +481,13 @@
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="343"/>
       <source>Name</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Name</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="345"/>
       <source>Details</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Details</translation>
     </message>
   </context>
   <context>
@@ -578,7 +578,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
   </context>
   <context>
@@ -650,19 +650,19 @@
       <location filename="../completer/completerwindow.cpp" line="163"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Index: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="165"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Trigger: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="167"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">View: %1</translation>
+      <translation>View: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="169"/>
@@ -776,7 +776,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
       <source>Plugins</source>
-      <translation type="unfinished">Plugins</translation>
+      <translation>Erweiterungen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="201"/>
@@ -1095,7 +1095,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="906"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Updates</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="912"/>
