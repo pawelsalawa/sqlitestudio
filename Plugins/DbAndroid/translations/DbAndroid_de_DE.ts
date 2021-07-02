@@ -158,12 +158,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation type="unfinished">Network (IP address)</translation>
+      <translation>Netzwerk (IP-Adresse)</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
       <source>Device</source>
-      <translation type="unfinished">Device</translation>
+      <translation>Gerät</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="71"/>
