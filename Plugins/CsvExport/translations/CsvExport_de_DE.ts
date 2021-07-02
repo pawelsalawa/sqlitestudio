@@ -6,32 +6,32 @@
     <message>
       <location filename="../CsvExport.ui" line="20"/>
       <source>Column names in first row</source>
-      <translation type="unfinished">Column names in first row</translation>
+      <translation>Spaltenname als erste Zeile verwenden</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="30"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>Trennzeichen:</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="41"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (Komma)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="46"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (Semikolon)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="51"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (Tabulator)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="56"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (Leerzeichen)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="61"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../CsvExport.ui" line="82"/>
       <source>Export NULL values as:</source>
-      <translation type="unfinished">Export NULL values as:</translation>
+      <translation>NULL-Werte exportieren als:</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="89"/>
