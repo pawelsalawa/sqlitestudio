@@ -10,13 +10,8 @@
 #include <querygenerator.h>
 
 SqlTableModel::SqlTableModel(QObject *parent) :
-    SqlQueryModel(parent)
+    SqlDataSourceQueryModel(parent)
 {
-}
-
-QString SqlTableModel::getDatabase() const
-{
-    return database;
 }
 
 QString SqlTableModel::getTable() const
@@ -29,13 +24,7 @@ void SqlTableModel::setDatabaseAndTable(const QString& database, const QString& 
     this->database = database;
     this->table = table;
     setQuery("SELECT * FROM "+getDataSource());
-
-    QString dbName = database;
-    if (database.toLower() == "main" || database.isEmpty())
-        dbName = QString();
-
-    tablesInUse.clear();
-    tablesInUse << DbAndTable(db, dbName, table);
+    updateTablesInUse(table);
 
     SchemaResolver resolver(db);
     isWithOutRowIdTable = resolver.isWithoutRowIdTable(database, table);
@@ -156,107 +145,9 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QLi
     return true;
 }
 
-void SqlTableModel::applyFilter(const QString& value, FilterValueProcessor valueProc)
-{
-    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
-
-    if (value.isEmpty())
-    {
-        resetFilter();
-        return;
-    }
-
-    QStringList conditions;
-    for (SqlQueryModelColumnPtr column : columns)
-        conditions << wrapObjIfNeeded(column->column)+" "+valueProc(value);
-
-    setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
-    executeQuery();
-}
-
-void SqlTableModel::applyFilter(const QStringList& values, FilterValueProcessor valueProc)
-{
-    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
-    if (values.isEmpty())
-    {
-        resetFilter();
-        return;
-    }
-
-    if (values.size() != columns.size())
-    {
-        qCritical() << "Asked to per-column filter, but number columns"
-                    << columns.size() << "is different than number of values" << values.size();
-        return;
-    }
-
-    QStringList conditions;
-    for (int i = 0, total = columns.size(); i < total; ++i)
-    {
-        if (values[i].isEmpty())
-            continue;
-
-        conditions << wrapObjIfNeeded(columns[i]->column)+" "+valueProc(values[i]);
-    }
-
-    setQuery(sql.arg(getDataSource(), conditions.join(" AND ")));
-    executeQuery();
-}
-
-QString SqlTableModel::stringFilterValueProcessor(const QString& value)
-{
-    static_qstring(pattern, "LIKE '%%1%'");
-    return pattern.arg(escapeString(value));
-}
-
-QString SqlTableModel::regExpFilterValueProcessor(const QString& value)
-{
-    static_qstring(pattern, "REGEXP '%1'");
-    return pattern.arg(escapeString(value));
-}
-
 bool SqlTableModel::supportsModifyingQueriesInMenu() const
 {
     return true;
-}
-
-void SqlTableModel::applySqlFilter(const QString& value)
-{
-    if (value.isEmpty())
-    {
-        resetFilter();
-        return;
-    }
-
-    setQuery("SELECT * FROM "+getDataSource()+" WHERE "+value);
-    executeQuery();
-}
-
-void SqlTableModel::applyStringFilter(const QString& value)
-{
-    applyFilter(value, &stringFilterValueProcessor);
-}
-
-void SqlTableModel::applyStringFilter(const QStringList& values)
-{
-    applyFilter(values, &stringFilterValueProcessor);
-}
-
-void SqlTableModel::applyRegExpFilter(const QString& value)
-{
-    applyFilter(value, &regExpFilterValueProcessor);
-}
-
-void SqlTableModel::applyRegExpFilter(const QStringList& values)
-{
-    applyFilter(values, &regExpFilterValueProcessor);
-}
-
-void SqlTableModel::resetFilter()
-{
-    setQuery("SELECT * FROM "+getDataSource());
-    //reload();
-    executeQuery();
 }
 
 QString SqlTableModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& items)
@@ -433,14 +324,6 @@ void SqlTableModel::processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,
     int colIdx = 0;
     for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
         values[columnsToReadFromDb[modelColumn]] = row->value(colIdx++);
-}
-
-QString SqlTableModel::getDatabasePrefix()
-{
-    if (database.isNull())
-        return ""; // not "main.", because the "main." doesn't work for TEMP tables, such as sqlite_temp_master
-
-    return wrapObjIfNeeded(database) + ".";
 }
 
 QString SqlTableModel::getDataSource()

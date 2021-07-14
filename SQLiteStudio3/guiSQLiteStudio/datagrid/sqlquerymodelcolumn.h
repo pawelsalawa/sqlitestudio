@@ -163,6 +163,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         bool isDefault() const;
         bool isCollate() const;
         bool isGenerated() const;
+        QString getAliasedName() const;
         QList<ConstraintFk*> getFkConstraints() const;
         ConstraintDefault* getDefaultConstraint() const;
 

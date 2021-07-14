@@ -2,7 +2,7 @@
 #include "querygenerator.h"
 
 SqlViewModel::SqlViewModel(QObject *parent) :
-    SqlQueryModel(parent)
+    SqlDataSourceQueryModel(parent)
 {
 }
 
@@ -14,7 +14,17 @@ QString SqlViewModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& it
     return generator.generateSelectFromView(db, view, values);
 }
 
-void SqlViewModel::setView(const QString& view)
+void SqlViewModel::setDatabaseAndView(const QString& database, const QString& view)
 {
+    this->database = database;
     this->view = view;
+    //setQuery("SELECT * FROM "+getDataSource());
+    updateTablesInUse(view);
+
+    SchemaResolver resolver(db);
+}
+
+QString SqlViewModel::getDataSource()
+{
+    return getDatabasePrefix() + wrapObjIfNeeded(view);
 }

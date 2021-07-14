@@ -296,7 +296,7 @@ void ViewWindow::initView()
     {
         dataModel->setDb(db);
         dataModel->setQuery(originalCreateView->select->detokenize());
-        dataModel->setView(view);
+        dataModel->setDatabaseAndView(database, view);
         ui->dbCombo->setDisabled(true);
     }
     ui->queryEdit->setDb(db);
