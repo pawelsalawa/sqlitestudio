@@ -176,6 +176,11 @@ bool SqlQueryModelColumn::isGenerated() const
     return getConstraints<ConstraintGenerated*>().size() > 0;
 }
 
+QString SqlQueryModelColumn::getAliasedName() const
+{
+    return this->alias.isEmpty() ? this->column : this->alias;
+}
+
 QList<SqlQueryModelColumn::ConstraintFk*> SqlQueryModelColumn::getFkConstraints() const
 {
     return getConstraints<ConstraintFk*>();

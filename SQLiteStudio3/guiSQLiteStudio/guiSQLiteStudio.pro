@@ -51,6 +51,7 @@ SOURCES +=\
     dbtree/dbtreeitemfactory.cpp \
     sqleditor.cpp \
     datagrid/sqlquerymodel.cpp \
+    datagrid/sqldatasourcequerymodel.cpp \
     dblistmodel.cpp \
     mdiarea.cpp \
     statusfield.cpp \
@@ -203,6 +204,7 @@ HEADERS  += mainwindow.h \
     dbtree/dbtreeitemfactory.h \
     sqleditor.h \
     datagrid/sqlquerymodel.h \
+    datagrid/sqldatasourcequerymodel.h \
     dblistmodel.h \
     mdiarea.h \
     statusfield.h \
