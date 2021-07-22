@@ -6,22 +6,22 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>ססמה (מפתח)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>להשאיר ריק ליצירת או התחברות למסד נתונים לא מוצפן.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>ססמה מוצפנת</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="38"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>צוֹפֶן</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>תצורת צופן (חלופי)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>
