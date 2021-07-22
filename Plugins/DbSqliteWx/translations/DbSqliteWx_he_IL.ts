@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation type="unfinished">Cipher determines encryption algorithm used to encrypt the database.</translation>
+      <translation>צופן קובעת אלגוריתם ההצפנה שישמש להצפנת מסד הנתונים.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
@@ -38,9 +38,9 @@
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLite3 Multiple Ciphers for details.</translation>
+      <translation>הצהרות PRAGMA להתאמה אישית של תצורת ריבוי צופן SQLite3, כגון חִזְרוּר KDF, מצב מורשת ועוד.
+יופעלו עם כל פתיחה של מסד הנתונים.
+לפרטים, נא עיין בתיעוד ריבוי צופן SQLite3.</translation>
     </message>
   </context>
 </TS>
