@@ -31,17 +31,17 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>אפשור הודעות ניפוי תקלים ניתוח תחביר Lemon לסייען קוד SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>אפשור ניפוי תקלים לכל שאילתת SQL שנשלחת למסד נתונים כלשהו.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>הגבלת הודעות שאילתות SQL למסד הנתונים הנתון בלבד.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
