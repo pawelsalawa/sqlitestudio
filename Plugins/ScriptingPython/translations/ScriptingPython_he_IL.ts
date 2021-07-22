@@ -21,7 +21,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="532"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation type="unfinished">Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</translation>
+      <translation>לא ניתן למצוא הקשר הפעלת פונקציה %1. זהו תקל במתקע פייתון. נא לדווח על כך.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="557"/>
