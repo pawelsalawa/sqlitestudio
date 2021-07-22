@@ -162,12 +162,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation type="unfinished">Before mathematical operator</translation>
+      <translation>לפני סימן מתמטי</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation type="unfinished">After mathematical operator</translation>
+      <translation>אחרי סימן מתמטי</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>מילות מפתח באותיות רישיות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
