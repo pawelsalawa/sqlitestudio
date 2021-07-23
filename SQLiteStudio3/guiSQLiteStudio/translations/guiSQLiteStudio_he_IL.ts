@@ -66,7 +66,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
       <source>Portable distribution.</source>
-      <translation type="unfinished">Portable distribution.</translation>
+      <translation>הפצה ניידת.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -543,7 +543,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>חילול קוד:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
@@ -558,7 +558,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>אילוץ בשם:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -601,7 +601,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>אין התנגשות:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
