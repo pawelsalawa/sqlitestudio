@@ -21,7 +21,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>סידור מלות־מפתח בשורה בשאילתות רבות־שורות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
