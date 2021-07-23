@@ -691,7 +691,7 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation type="unfinished">prints all objects in the database as a tree</translation>
+      <translation>הדפסת כל עצמי מסד הנתונים כעץ</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
