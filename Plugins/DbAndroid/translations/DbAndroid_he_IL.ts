@@ -193,7 +193,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="155"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>מסנן</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="168"/>
@@ -247,7 +247,7 @@ It&apos;s the name which Android application will use to connect to the database
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Invalid name</source>
-      <translation type="unfinished">Invalid name</translation>
+      <translation>שם לא תקין</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -271,18 +271,18 @@ Details: %2</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Delete database</source>
-      <translation type="unfinished">Delete database</translation>
+      <translation>מחיקת מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
-      <translation type="unfinished">Are you sure you want to delete database &apos;%1&apos; from %2?</translation>
+      <translation>האם למחוק מסד נתונים &apos;%1&apos; מ־%2?</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Error deleting</source>
-      <translation type="unfinished">Error deleting</translation>
+      <translation>שגיאת מחיקה</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>

@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
+      <translation>שם הטבלה להצהרות INSERT הוא חובה.</translation>
     </message>
   </context>
   <context>
@@ -72,7 +72,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation type="unfinished">Table name to use for INSERT statements:</translation>
+      <translation>שם הטבלה לשימוש להצהרות INSERT:</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="37"/>
