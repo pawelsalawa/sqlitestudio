@@ -6,7 +6,7 @@
     <message>
       <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <translation type="unfinished">Enter the namespace to use (for example: http://my.namespace.org)</translation>
+      <translation>הזנת מרחב־השם לשימוש (לדוגמה: http://my.namespace.org)</translation>
     </message>
   </context>
   <context>
@@ -29,7 +29,7 @@
     <message>
       <location filename="../XmlExport.ui" line="58"/>
       <source>Special characters escaping</source>
-      <translation type="unfinished">Special characters escaping</translation>
+      <translation>בֵּאוּר־תָּוִים מיוחדים</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="64"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../XmlExport.ui" line="118"/>
       <source>Define XML namespace</source>
-      <translation type="unfinished">Define XML namespace</translation>
+      <translation>הגדרת מרחב־שם XML</translation>
     </message>
   </context>
 </TS>
