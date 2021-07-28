@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>מען URL מסד נתוני אנדרואיד לא תקין או חסר.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
@@ -16,17 +16,17 @@
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>בחירת מסד נתוני אנדרואיד</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>בחירת ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>שימוש בגשר ניפוי־תקלים אנדרואיד: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>ADB לא תקין</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -53,22 +53,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>בחר ADB נוסף</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>להשאיר לא מתוצר</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation type="unfinished">Save jar file</translation>
+      <translation>שמירת קובץ jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
       <source>Get Android connector JAR file</source>
-      <translation type="unfinished">Get Android connector JAR file</translation>
+      <translation>קבלת קובץ מחבר אנדרואיד JAR</translation>
     </message>
   </context>
   <context>
@@ -99,7 +99,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
       <source>Could not connect to network host: %1:%2</source>
-      <translation type="unfinished">Could not connect to network host: %1:%2</translation>
+      <translation>לא ניתן להתחבר למארח הרשת: %1:%2</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
@@ -138,22 +138,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>מען URL מסד נתוני אנדרואיד</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
       <source>Connection method</source>
-      <translation type="unfinished">Connection method</translation>
+      <translation>שיטת התחברות</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="32"/>
       <source>USB cable - port forwarding</source>
-      <translation type="unfinished">USB cable - port forwarding</translation>
+      <translation>כבל USB - הפנית פתחה</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="42"/>
       <source>USB cable - sqlite3 command</source>
-      <translation type="unfinished">USB cable - sqlite3 command</translation>
+      <translation>כקל USB - פקודת sqlite3</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
