@@ -81,7 +81,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation type="unfinished">After JOIN keywords in FROM clause</translation>
+      <translation>אחרי מילות־מפתח JOIN בפסקת FROM</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
@@ -147,17 +147,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation type="unfinished">No space between SQL function name and opening parenthesis</translation>
+      <translation>אין רווח בין שם פונקציית SQL לסוגר פתיחה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation type="unfinished">Before dot operator (in path to database object)</translation>
+      <translation>לפני סימן־פעולה נקודה (בנתיב לעצם מסד נתונים)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation type="unfinished">After dot operator (in path to database object)</translation>
+      <translation>לאחר סימן־פעולה נקודה (בנתיב לעצם מסד נתונים)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
