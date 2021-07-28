@@ -39,7 +39,7 @@
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>לא ניתן לאתחל תנועת מסד נתונים. פרטים:%1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="435"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>מסד נתוני עצמים זמניים</translation>
     </message>
   </context>
   <context>
