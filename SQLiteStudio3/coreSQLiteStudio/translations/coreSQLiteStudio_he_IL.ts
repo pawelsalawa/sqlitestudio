@@ -89,7 +89,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>כינוי טבלה או עמודות</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="182"/>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>לא ניתן לאתחל תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
@@ -150,7 +150,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>לא ניתן להוסיף מסד נתונים%1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
@@ -365,18 +365,18 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
+      <translation>תבנית ביטוי־רגיל לא תקינה: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
+      <translation>לא ניתן לפתוח קובץ%1 לקריאה: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
+      <translation>לא ניתן לפתוח קובץ%1 לכתיבה: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
