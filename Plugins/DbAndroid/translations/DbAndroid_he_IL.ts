@@ -6,27 +6,27 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>מען URL מסד נתוני אנדרואיד לא תקין או חסר.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>מען URL מסד נתוני אנדרואיד</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>בחירת מסד נתוני אנדרואיד</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>בחירת ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>שימוש בגשר ניפוי־תקלים אנדרואיד: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>ADB לא תקין</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -53,22 +53,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>בחר ADB נוסף</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>להשאיר לא מתוצר</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation type="unfinished">Save jar file</translation>
+      <translation>שמירת קובץ jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
       <source>Get Android connector JAR file</source>
-      <translation type="unfinished">Get Android connector JAR file</translation>
+      <translation>קבלת קובץ מחבר אנדרואיד JAR</translation>
     </message>
   </context>
   <context>
@@ -99,7 +99,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
       <source>Could not connect to network host: %1:%2</source>
-      <translation type="unfinished">Could not connect to network host: %1:%2</translation>
+      <translation>לא ניתן להתחבר למארח הרשת: %1:%2</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
@@ -138,47 +138,47 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>מען URL מסד נתוני אנדרואיד</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
       <source>Connection method</source>
-      <translation type="unfinished">Connection method</translation>
+      <translation>שיטת התחברות</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="32"/>
       <source>USB cable - port forwarding</source>
-      <translation type="unfinished">USB cable - port forwarding</translation>
+      <translation>כבל USB - הפנית פתחה</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="42"/>
       <source>USB cable - sqlite3 command</source>
-      <translation type="unfinished">USB cable - sqlite3 command</translation>
+      <translation>כקל USB - פקודת sqlite3</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation type="unfinished">Network (IP address)</translation>
+      <translation>רשת (כתובת IP)</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
       <source>Device</source>
-      <translation type="unfinished">Device</translation>
+      <translation>התקן</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="71"/>
       <source>IP address</source>
-      <translation type="unfinished">IP address</translation>
+      <translation>כתובת IP</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="93"/>
       <source>Port</source>
-      <translation type="unfinished">Port</translation>
+      <translation>פתחה</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
       <source>Remote access password</source>
-      <translation type="unfinished">Remote access password</translation>
+      <translation>ססמת גישה מרחוק</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
@@ -188,7 +188,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
       <source>Application</source>
-      <translation type="unfinished">Application</translation>
+      <translation>יישום</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="155"/>
@@ -198,12 +198,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="168"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
       <source>Create a new database directly on the device.</source>
-      <translation type="unfinished">Create a new database directly on the device.</translation>
+      <translation>יצירת מסד נתונים חדש ישירות על־גבי ההתקן.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
@@ -213,27 +213,27 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
       <source>Enter valid IP address.</source>
-      <translation type="unfinished">Enter valid IP address.</translation>
+      <translation>הזנת כתובת IP תקנית.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="367"/>
       <source>Pick Android device.</source>
-      <translation type="unfinished">Pick Android device.</translation>
+      <translation>בחירת מכשיר אנדרואיד.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="371"/>
       <source>Pick Android database.</source>
-      <translation type="unfinished">Pick Android database.</translation>
+      <translation>בחירת מסד נתוני אנדרואיד.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation type="unfinished">Selected Android application is unknown, or not debuggable.</translation>
+      <translation>יישום אנדרואיד שנבחר לא ידוע, או לא בר ניפוי־תקלים.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Create new database</source>
-      <translation type="unfinished">Create new database</translation>
+      <translation>יצירת מסד נתונים חדש</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>

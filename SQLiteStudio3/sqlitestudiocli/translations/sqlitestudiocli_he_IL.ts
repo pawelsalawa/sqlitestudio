@@ -400,22 +400,22 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="9"/>
       <source>Current results printing mode: %1</source>
-      <translation type="unfinished">Current results printing mode: %1</translation>
+      <translation>מצב הדפסת תוצאות נוכחי:%1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="16"/>
       <source>Invalid results printing mode: %1</source>
-      <translation type="unfinished">Invalid results printing mode: %1</translation>
+      <translation>מצב הדפסת תוצאות שגוי:%1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="21"/>
       <source>New results printing mode: %1</source>
-      <translation type="unfinished">New results printing mode: %1</translation>
+      <translation>מצב הדפסת תוצאות חדש:%1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="26"/>
       <source>tells or changes the query results format</source>
-      <translation type="unfinished">tells or changes the query results format</translation>
+      <translation>מורה או משנה את תבנית תוצאות השאילתה</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="31"/>
@@ -660,7 +660,7 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation type="unfinished">No current working database is selected. Use %1 to define one and then run %2.</translation>
+      <translation>לא נבחר מסד נתונים נוכחי פעיל. נא השתמש ב־%1 להגדרת אחד, לאחר מכן להריץ את %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
@@ -800,7 +800,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">Command line interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>מנשק משתמש שורת־פקודה SQLiteStudio, תכנת ניהול SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
@@ -810,12 +810,12 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="27"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>אפשור הודעות ניפוי תקלים ניתוח תחביר Lemon לסייען קוד SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>הצגת רשימת מתקעים מותקנים ב־SQLiteStudio ויציאה.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="33"/>
