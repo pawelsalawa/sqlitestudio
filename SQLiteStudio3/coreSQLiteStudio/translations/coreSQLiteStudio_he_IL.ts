@@ -381,7 +381,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>שגיאה בעת כתיבה לקובץ %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
@@ -442,7 +442,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../importworker.cpp" line="177"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Error while importing data: %1</source>
-      <translation type="unfinished">Error while importing data: %1</translation>
+      <translation>שגיאה בעת ייבוא נתונים: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
