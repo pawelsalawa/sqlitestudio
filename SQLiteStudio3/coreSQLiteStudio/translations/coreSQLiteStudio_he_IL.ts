@@ -316,7 +316,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../exportworker.cpp" line="123"/>
       <source>Error while exporting query results: %1</source>
-      <translation type="unfinished">Error while exporting query results: %1</translation>
+      <translation>שגיאה בעת יצוא תוצאות שאילתה: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
