@@ -177,7 +177,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="292"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>בחירת שפת היישום.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="295"/>
@@ -766,7 +766,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <source>Data browsing</source>
-      <translation type="unfinished">Data browsing</translation>
+      <translation>סיור בנתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="177"/>
@@ -841,7 +841,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation type="unfinished">Sort objects (tables, indexes, triggers and views) alphabetically</translation>
+      <translation>מיון עצמים (טבלאות, מפתחים, הדקים ומצגים)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="326"/>
