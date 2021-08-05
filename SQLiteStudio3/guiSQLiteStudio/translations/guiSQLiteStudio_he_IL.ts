@@ -816,7 +816,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="277"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>הצגת תוויות לטבלאות רגילות</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
