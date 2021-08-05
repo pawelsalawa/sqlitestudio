@@ -578,7 +578,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>הזנת שם לאילוץ.</translation>
     </message>
   </context>
   <context>
@@ -771,7 +771,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="177"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>עורכי נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -826,7 +826,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>הצגת תוויות של טבלאות מדומות</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="303"/>
@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="406"/>
       <source>Data browsing and editing</source>
-      <translation type="unfinished">Data browsing and editing</translation>
+      <translation>סיור בנתונים ועריכה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="480"/>
