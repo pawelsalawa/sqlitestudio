@@ -173,7 +173,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>לא ניתן היה לאתחל את מסד הנתונים.‏.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
