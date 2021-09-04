@@ -6,7 +6,7 @@
     <message>
       <location filename="../main.cpp" line="51"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>SQLiteStudioへの GUI インターフェイス、SQLiteマネージャー。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
