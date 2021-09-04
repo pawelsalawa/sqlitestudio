@@ -251,7 +251,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>制約の名前を入力します。</translation>
     </message>
   </context>
   <context>
@@ -259,52 +259,52 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="14"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>列</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="23"/>
       <source>Name and type</source>
-      <translation type="unfinished">Name and type</translation>
+      <translation>名前と種類</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="35"/>
       <source>Scale</source>
-      <translation type="unfinished">Scale</translation>
+      <translation>スケール</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
       <source>Precision</source>
-      <translation type="unfinished">Precision</translation>
+      <translation>精度</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>データ型:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>列名:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>サイズ:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>制約</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>生成された値</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>一意</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -316,97 +316,97 @@
       <location filename="../dialogs/columndialog.ui" line="213"/>
       <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>設定</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation> 外部キー</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>照合順序</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Not NULL</source>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>NULL非許容</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>条件をチェック</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Primary Key</source>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>主キー</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>デフォルト</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="284"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>上級者向けモード</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="87"/>
       <source>Add constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add constraint</translation>
+      <translation>制約の追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="88"/>
       <source>Edit constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>制約を編集</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
       <location filename="../dialogs/columndialog.cpp" line="243"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>制約を削除</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="90"/>
       <source>Move constraint up</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint up</translation>
+      <translation>制約を上へ移動</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="91"/>
       <source>Move constraint down</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint down</translation>
+      <translation>制約を下に移動</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
       <source>Add a primary key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a primary key</translation>
+      <translation>主キーを追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="94"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>外部キーを追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="95"/>
       <source>Add an unique constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add an unique constraint</translation>
+      <translation>一意制約を追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="96"/>
       <source>Add a check constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a check constraint</translation>
+      <translation>チェック制約を追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="97"/>
