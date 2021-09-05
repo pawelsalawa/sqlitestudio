@@ -6,32 +6,32 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>現在のデータベース: %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation type="unfinished">No current working database is set.</translation>
+      <translation>現在の作業データベースが設定されていません。</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>%1と入力してヘルプを表示</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="253"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>コマンドラインパラメータ(%1) で渡されたデータベースは既に%2のリストにありました</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="260"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>データベース %1 をリストに追加できませんでした。</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="286"/>
       <source>closed</source>
-      <translation type="unfinished">closed</translation>
+      <translation>閉じました</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>使用方法: %1%2</translation>
     </message>
   </context>
   <context>
@@ -47,34 +47,34 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="9"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>データベース %1 をリストに追加できませんでした。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="14"/>
       <source>Database added: %1</source>
-      <translation type="unfinished">Database added: %1</translation>
+      <translation>データベース%1を追加しました</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="19"/>
       <source>adds new database to the list</source>
-      <translation type="unfinished">adds new database to the list</translation>
+      <translation>新しいデータベースをリストに追加</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation type="unfinished">Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</translation>
+      <translation>&lt;パス&gt;が指す特定のデータベースを追加します。 与えられた&lt;名前&gt; のデータベースのリストを一覧表示します。&lt;名前&gt; は、後で参照できる単なる記号名です。 一意の名前を選択してください。 すでにリストにあるデータベースを表示するには、%1コマンドを使用してください。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>名前</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>パス</translation>
     </message>
   </context>
   <context>
@@ -82,17 +82,17 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>ディレクトリを %1に変更しました</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>ディレクトリを%1に変更できませんでした</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>現在の作業ディレクトリを変更</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
