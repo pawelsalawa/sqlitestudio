@@ -29,9 +29,9 @@ jobs:
                 ls -l C:/hostedtoolcache/
                 ls -l C:/hostedtoolcache/windows/
                 ls -l C:/hostedtoolcache/windows/python/
-                ls -l C:/hostedtoolcache/windows/python/3.9.4/
-                ls -l C:/hostedtoolcache/windows/python/3.9.4/x64/
-                ls -l C:/hostedtoolcache/windows/python/3.9.4/x64/include
+                ls -l C:/hostedtoolcache/windows/python/3.9.7/
+                ls -l C:/hostedtoolcache/windows/python/3.9.7/x64/
+                ls -l C:/hostedtoolcache/windows/python/3.9.7/x64/include
               
 #            - name: Cache Qt
 #              id: cache-qt
