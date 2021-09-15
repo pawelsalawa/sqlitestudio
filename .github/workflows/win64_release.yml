@@ -22,179 +22,168 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Debug
+            - name: Cache Qt
+              id: cache-qt
+              uses: actions/cache@v1
+              with:
+                path: ${{ github.workspace }}\..\Qt
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
+
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v2
+              with:
+                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                version: ${{ env.QT_VERSION }}
+                host: 'windows'
+                arch: ${{ env.QT_ARCH }}
+                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
+                dir: 'D:/'
+                setup-python: 'false'
+                
+            - name: Install mingw
+              if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
               run: |
-                ls -l C:/
-                ls -l C:/hostedtoolcache/
-                ls -l C:/hostedtoolcache/windows/
-                ls -l C:/hostedtoolcache/windows/python/
-                ls -l C:/hostedtoolcache/windows/python/3.9.7/
-                ls -l C:/hostedtoolcache/windows/python/3.9.7/x64/
-                ls -l C:/hostedtoolcache/windows/python/3.9.7/x64/include
+                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
+                7z x -o"../Qt" ../mingw.7z
+                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
+ 
+            - name: Clone repo
+              uses: actions/checkout@v2
+              with:
+                ref: ${{ github.event.client_payload.branch }}
+
+            - name: Install dependencies
+              shell: bash
+              run: |
+                7z x -o".." win_deps/win64_deps.zip
+                echo "../lib" >> $GITHUB_PATH
+ 
+            - name: Install SQLite3
+              shell: bash
+              run: |
+                cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
+                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
+                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_BYTECODE_VTAB \
+                    -DSQLITE_ENABLE_COLUMN_METADATA \
+                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+                    -DSQLITE_ENABLE_FTS3 \
+                    -DSQLITE_ENABLE_FTS4 \
+                    -DSQLITE_ENABLE_FTS5 \
+                    -DSQLITE_ENABLE_GEOPOLY \
+                    -DSQLITE_ENABLE_JSON1 \
+                    -DSQLITE_ENABLE_RTREE \
+                    -DSQLITE_ENABLE_MATH_FUNCTIONS
+                cp -f sqlite3.dll ../lib/
+                cp -f sqlite3.h ../include/
+                cp -f sqlite3ext.h ../include/
+                
+            - name: Prepare output dir
+              shell: bash
+              run: mkdir output output/build output/build/Plugins
+
+            - name: Compile SQLiteStudio3
+              working-directory: output/build
+              run: |
+                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
+                mingw32-make.exe -j 2
+            
+            - name: Compile Plugins
+              working-directory: output/build/Plugins
+              run: |
+                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
+                mingw32-make.exe -j 1
               
-#            - name: Cache Qt
-#              id: cache-qt
-#              uses: actions/cache@v1
-#              with:
-#                path: ${{ github.workspace }}\..\Qt
-#                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
-#
-#            - name: Install Qt
-#              uses: jurplel/install-qt-action@v2
-#              with:
-#                cached: ${{ steps.cache-qt.outputs.cache-hit }}
-#                version: ${{ env.QT_VERSION }}
-#                host: 'windows'
-#                arch: ${{ env.QT_ARCH }}
-#                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
-#                dir: 'D:/'
-#                setup-python: 'false'
-#                
-#            - name: Install mingw
-#              if: steps.cache-qt.outputs.cache-hit != 'true'
-#              shell: bash
-#              run: |
-#                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-#                7z x -o"../Qt" ../mingw.7z
-#                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
-# 
-#            - name: Clone repo
-#              uses: actions/checkout@v2
-#              with:
-#                ref: ${{ github.event.client_payload.branch }}
-#
-#            - name: Install dependencies
-#              shell: bash
-#              run: |
-#                7z x -o".." win_deps/win64_deps.zip
-#                echo "../lib" >> $GITHUB_PATH
-# 
-#            - name: Install SQLite3
-#              shell: bash
-#              run: |
-#                cd ..
-#                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
-#                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
-#                cd sqlite-amalgamation-$SQLITE_VERSION
-#                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
-#                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-#                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-#                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-#                    -DSQLITE_ENABLE_COLUMN_METADATA \
-#                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-#                    -DSQLITE_ENABLE_FTS3 \
-#                    -DSQLITE_ENABLE_FTS4 \
-#                    -DSQLITE_ENABLE_FTS5 \
-#                    -DSQLITE_ENABLE_GEOPOLY \
-#                    -DSQLITE_ENABLE_JSON1 \
-#                    -DSQLITE_ENABLE_RTREE \
-#                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-#                cp -f sqlite3.dll ../lib/
-#                cp -f sqlite3.h ../include/
-#                cp -f sqlite3ext.h ../include/
-#                
-#            - name: Prepare output dir
-#              shell: bash
-#              run: mkdir output output/build output/build/Plugins
-#
-#            - name: Compile SQLiteStudio3
-#              working-directory: output/build
-#              run: |
-#                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
-#                mingw32-make.exe -j 2
-#            
-#            - name: Compile Plugins
-#              working-directory: output/build/Plugins
-#              run: |
-#                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
-#                mingw32-make.exe -j 1
-#              
-#            - name: Prepare portable dir
-#              shell: bash
-#              working-directory: output
-#              run: |
-#                mkdir portable
-#                cp -R SQLiteStudio portable/
-#
-#            - name: Clean-up portable dir
-#              shell: bash
-#              run: |
-#                cd ${{ env.PORTABLE_DIR }}
-#                rm -f *.a
-#                rm -f plugins/*.a
-#                rm -f styles/*.a
-#                echo "ABSOLUTE_PORTABLE_DIR=`pwd`" >> $GITHUB_ENV
-#
-#            - name: Prepare portable distro (Qt)
-#              shell: bash
-#              working-directory: ${{ env.Qt5_Dir }}
-#              run: |
-#                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Qml Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
-#                cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
-#                mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
-#                mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
-#                mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
-#                mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
-#                mkdir -p "$ABSOLUTE_PORTABLE_DIR/imageformats"
-#                cp plugins/iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
-#                cp plugins/platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
-#                cp plugins/styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
-#                cp plugins/printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
-#                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
-#
-#            - name: Prepare portable distro (Deps)
-#              shell: bash
-#              run: |
-#                cd ../lib
-#                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
-#                
-#            - name: Prepare portable distro (Resources)
-#              shell: bash
-#              run: |
-#                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
-#
-#            - name: Determine SQLiteStudio version
-#              shell: bash
-#              run: |
-#                cd $ABSOLUTE_PORTABLE_DIR
-#                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
-#
-#            - name: Assemble portable package
-#              shell: bash
-#              run: |
-#                cd $ABSOLUTE_PORTABLE_DIR/..
-#                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
-#                
-#            - name: Install the InstalBuilder
-#              shell: bash
-#              env:
-#                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
-#              run: |
-#                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
-#                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
-#                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
-#                echo "$IB_LICENSE" > lic.xml
-#                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
-#                echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
-#                
-#            - name: Create installer package
-#              shell: bash
-#              run: |
-#                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
-#                    --license lic.xml \
-#                    --setvars project.outputDirectory=$(pwd) \
-#                    --setvars project.version=$SQLITESTUDIO_VERSION
-#                ls -l
-#
-#            - name: Upload package artifact
-#              uses: actions/upload-artifact@v1
-#              with:
-#                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-#                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-#
-#            - name: Upload installer artifact
-#              uses: actions/upload-artifact@v1
-#              with:
-#                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
-#                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+            - name: Prepare portable dir
+              shell: bash
+              working-directory: output
+              run: |
+                mkdir portable
+                cp -R SQLiteStudio portable/
+
+            - name: Clean-up portable dir
+              shell: bash
+              run: |
+                cd ${{ env.PORTABLE_DIR }}
+                rm -f *.a
+                rm -f plugins/*.a
+                rm -f styles/*.a
+                echo "ABSOLUTE_PORTABLE_DIR=`pwd`" >> $GITHUB_ENV
+
+            - name: Prepare portable distro (Qt)
+              shell: bash
+              working-directory: ${{ env.Qt5_Dir }}
+              run: |
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Qml Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
+                cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
+                mkdir -p "$ABSOLUTE_PORTABLE_DIR/imageformats"
+                cp plugins/iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
+                cp plugins/platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
+                cp plugins/styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
+                cp plugins/printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
+
+            - name: Prepare portable distro (Deps)
+              shell: bash
+              run: |
+                cd ../lib
+                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
+                
+            - name: Prepare portable distro (Resources)
+              shell: bash
+              run: |
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
+
+            - name: Determine SQLiteStudio version
+              shell: bash
+              run: |
+                cd $ABSOLUTE_PORTABLE_DIR
+                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+
+            - name: Assemble portable package
+              shell: bash
+              run: |
+                cd $ABSOLUTE_PORTABLE_DIR/..
+                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                
+            - name: Install the InstalBuilder
+              shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
+                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
+                echo "$IB_LICENSE" > lic.xml
+                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
+                
+            - name: Create installer package
+              shell: bash
+              run: |
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
+                    --license lic.xml \
+                    --setvars project.outputDirectory=$(pwd) \
+                    --setvars project.version=$SQLITESTUDIO_VERSION
+                ls -l
+
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe

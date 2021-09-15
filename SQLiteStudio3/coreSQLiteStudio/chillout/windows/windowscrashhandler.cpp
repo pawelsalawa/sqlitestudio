@@ -653,7 +653,7 @@ namespace Debug {
     }
 
     // CRT SIGTERM signal handler
-    int WindowsCrashHandler::ConsoleCtrlHandler(DWORD type) {
+    BOOL WINAPI WindowsCrashHandler::ConsoleCtrlHandler(DWORD type) {
         // Termination request (CTRL_C_EVENT)
         switch (type)
         {

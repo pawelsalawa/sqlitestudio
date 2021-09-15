@@ -3,7 +3,7 @@ env:
     SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
     QT_ARCH: 'win32_mingw81'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.4/x86'
+    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x86'
     #MINGW_DIR: ../Qt/Tools/mingw810_32
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio

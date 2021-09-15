@@ -108,7 +108,7 @@ namespace Debug {
         static void SigillHandler(int);
         static void SigsegvHandler(int);
         static void SigtermHandler(int);
-        static int ConsoleCtrlHandler(DWORD type);
+        static BOOL WINAPI ConsoleCtrlHandler(DWORD type);
 
         private:
         std::function<void()> m_crashCallback;
