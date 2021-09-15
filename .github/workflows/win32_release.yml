@@ -195,5 +195,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v1
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x86-installer.exe
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x86-installer.exe
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
