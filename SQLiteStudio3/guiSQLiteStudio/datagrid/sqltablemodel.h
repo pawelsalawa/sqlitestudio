@@ -2,25 +2,18 @@
 #define SQLTABLEMODEL_H
 
 #include "guiSQLiteStudio_global.h"
-#include "sqlquerymodel.h"
+#include "sqldatasourcequerymodel.h"
 
-class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
+class GUI_API_EXPORT SqlTableModel : public SqlDataSourceQueryModel
 {
         Q_OBJECT
     public:
         explicit SqlTableModel(QObject *parent = 0);
 
-        QString getDatabase() const;
         QString getTable() const;
         void setDatabaseAndTable(const QString& database, const QString& table);
 
         Features features() const;
-        void applySqlFilter(const QString& value);
-        void applyStringFilter(const QString& value);
-        void applyStringFilter(const QStringList& values);
-        void applyRegExpFilter(const QString& value);
-        void applyRegExpFilter(const QStringList& values);
-        void resetFilter();
         QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
         QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
         QString generateUpdateQueryForItems(const QList<SqlQueryItem*>& items);
@@ -30,6 +23,8 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
     protected:
         bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
         bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<CommitSuccessfulHandler>& successfulCommitHandlers);
+
+        QString getDataSource();
 
     private:
         class CommitDeleteQueryBuilder : public CommitUpdateQueryBuilder
@@ -45,13 +40,6 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
                 void addColumn(const QString& col);
         };
 
-        typedef std::function<QString(const QString&)> FilterValueProcessor;
-
-        static QString stringFilterValueProcessor(const QString& value);
-        static QString regExpFilterValueProcessor(const QString& value);
-
-        void applyFilter(const QString& value, FilterValueProcessor valueProc);
-        void applyFilter(const QStringList& values, FilterValueProcessor valueProc);
         void updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                                      QStringList& sqlValues, QList<QVariant>& args);
         void updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns,
@@ -65,11 +53,7 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         void processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,SqlQueryItem*>& columnsToReadFromDb, QHash<SqlQueryItem*,QVariant>& values,
                                             RowId rowId);
 
-        QString getDatabasePrefix();
-        QString getDataSource();
-
         QString table;
-        QString database;
         bool isWithOutRowIdTable = false;
 };
 

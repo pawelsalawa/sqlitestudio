@@ -6,22 +6,22 @@
     <message>
       <location filename="../main.cpp" line="51"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation>ממשק משתמש גרפי ל- SQLiteStudio, תכנת ניהול SQLite.</translation>
+      <translation>מנשק משתמש גרפי SQLiteStudio, תכנת ניהול SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation type="unfinished">Enables debug messages in console (accessible with F12).</translation>
+      <translation>אפשור הודעות ניפוי תקלים בעמדת־הבקרה (נגיש באמצעות מקש F12).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into standard output (forces debug mode).</translation>
+      <translation>הפנית הודעות ניפוי תקלים לפלט תקני (אילוץ מצב ניפוי תקלים).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into given file (forces debug mode).</translation>
+      <translation>הפנית הודעות ניפוי תקלים לקובץ נתון (אילוץ מצב ניפוי תקלים).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -31,17 +31,17 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>אפשור הודעות ניפוי תקלים ניתוח תחביר Lemon לסייען קוד SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>אפשור ניפוי תקלים לכל שאילתת SQL שנשלחת למסד נתונים כלשהו.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>הגבלת הודעות שאילתות SQL למסד הנתונים הנתון בלבד.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -51,17 +51,17 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation>אפשור ניפוי תקלים מריץ השאילתות של SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="62"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation>הצגת מתקעים מותקנים ב- SQLiteStudio ויציאה.</translation>
+      <translation>הצגת רשימת מתקעים מותקנים ב־SQLiteStudio ויציאה.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation>הפניה לקובץ התצורה הראשי. פרטים נוספים, ניתן למצוא במדריך למשתמש בעמוד הוויקי.</translation>
+      <translation>הפניה לקובץ התצורה הראשי. פרטים נוספים, ניתן למצוא במדריך למשתמש בעמוד הויקי.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>

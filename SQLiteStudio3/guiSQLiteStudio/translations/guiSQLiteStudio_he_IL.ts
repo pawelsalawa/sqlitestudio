@@ -66,7 +66,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
       <source>Portable distribution.</source>
-      <translation type="unfinished">Portable distribution.</translation>
+      <translation>הפצה ניידת.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -177,7 +177,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="292"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>בחירת שפת היישום.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="295"/>
@@ -543,7 +543,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>חילול קוד:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
@@ -558,7 +558,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>אילוץ בשם:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -578,7 +578,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>הזנת שם לאילוץ.</translation>
     </message>
   </context>
   <context>
@@ -601,7 +601,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>אין התנגשות:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
@@ -766,12 +766,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <source>Data browsing</source>
-      <translation type="unfinished">Data browsing</translation>
+      <translation>סיור בנתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="177"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>עורכי נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -816,7 +816,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="277"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>הצגת תוויות לטבלאות רגילות</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
@@ -826,7 +826,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>הצגת תוויות של טבלאות מדומות</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="303"/>
@@ -841,7 +841,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation type="unfinished">Sort objects (tables, indexes, triggers and views) alphabetically</translation>
+      <translation>מיון עצמים (טבלאות, מפתחים, הדקים ומצגים)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="326"/>
@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="406"/>
       <source>Data browsing and editing</source>
-      <translation type="unfinished">Data browsing and editing</translation>
+      <translation>סיור בנתונים ועריכה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="480"/>

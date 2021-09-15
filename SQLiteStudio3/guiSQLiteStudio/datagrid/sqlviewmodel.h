@@ -1,15 +1,20 @@
 #ifndef SQLVIEWMODEL_H
 #define SQLVIEWMODEL_H
 
-#include "sqlquerymodel.h"
+#include "sqldatasourcequerymodel.h"
 
-class SqlViewModel : public SqlQueryModel
+class SqlViewModel : public SqlDataSourceQueryModel
 {
     public:
-        SqlViewModel(QObject *parent = 0);
+        explicit SqlViewModel(QObject *parent = 0);
+
+        QString getView() const;
 
         QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
-        void setView(const QString& view);
+        void setDatabaseAndView(const QString& database, const QString& view);
+
+    protected:
+        QString getDataSource();
 
     private:
         QString view;

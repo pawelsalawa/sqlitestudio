@@ -6,41 +6,41 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>密码(密钥)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>置空以创建或连接至已解密的数据库。</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>加密密码</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="38"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>加密</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation type="unfinished">Cipher determines encryption algorithm used to encrypt the database.</translation>
+      <translation>用于加密数据库的加密算法。</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>加密配置 (可选)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLite3 Multiple Ciphers for details.</translation>
+      <translation>用于自定义 SQLite3 Multiple Ciphers 配置的 PRAGMA 语句，如KDF 迭代、遗留模式等。
+它们将在数据库的每次打开时执行。
+查看 SQLite3 Multiple Ciphers 的文档以了解详情。</translation>
     </message>
   </context>
 </TS>

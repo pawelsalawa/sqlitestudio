@@ -21,7 +21,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>סידור מלות־מפתח בשורה בשאילתות רבות־שורות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
@@ -41,47 +41,47 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation type="unfinished">Before opening parenthesis in column definitions</translation>
+      <translation>לפני פתיחת סוגריים בהגדרות עמודה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
       <source>After opening parenthesis in column definitions</source>
-      <translation type="unfinished">After opening parenthesis in column definitions</translation>
+      <translation>אחרי פתיחת סוגריים בהגדרות עמודה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="180"/>
       <source>Before closing parenthesis in column definitions</source>
-      <translation type="unfinished">Before closing parenthesis in column definitions</translation>
+      <translation>לפני סגירת סוגריים בהגדרות עמודה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="190"/>
       <source>After closing parenthesis in column definitions</source>
-      <translation type="unfinished">After closing parenthesis in column definitions</translation>
+      <translation>אחרי סגירת סוגריים בהגדרות עמודה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
       <source>Before opening parenthesis in expressions</source>
-      <translation type="unfinished">Before opening parenthesis in expressions</translation>
+      <translation>לפני פתיחת סוגריים בביטויים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="210"/>
       <source>After opening parenthesis in expressions</source>
-      <translation type="unfinished">After opening parenthesis in expressions</translation>
+      <translation>אחרי פתיחת סוגריים בביטויים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="220"/>
       <source>Before closing parenthesis in expressions</source>
-      <translation type="unfinished">Before closing parenthesis in expressions</translation>
+      <translation>לפני סגירת סוגריים בביטויים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="230"/>
       <source>After closing parenthesis in expressions</source>
-      <translation type="unfinished">After closing parenthesis in expressions</translation>
+      <translation>אחרי סגירת סוגריים בביטויים</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation type="unfinished">After JOIN keywords in FROM clause</translation>
+      <translation>אחרי מילות־מפתח JOIN בפסקת FROM</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
@@ -147,27 +147,27 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation type="unfinished">No space between SQL function name and opening parenthesis</translation>
+      <translation>אין רווח בין שם פונקציית SQL לסוגר פתיחה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation type="unfinished">Before dot operator (in path to database object)</translation>
+      <translation>לפני סימן־פעולה נקודה (בנתיב לעצם מסד נתונים)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation type="unfinished">After dot operator (in path to database object)</translation>
+      <translation>לאחר סימן־פעולה נקודה (בנתיב לעצם מסד נתונים)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation type="unfinished">Before mathematical operator</translation>
+      <translation>לפני סימן מתמטי</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation type="unfinished">After mathematical operator</translation>
+      <translation>אחרי סימן מתמטי</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
@@ -182,22 +182,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
       <source>Preferred name wrapper</source>
-      <translation type="unfinished">Preferred name wrapper</translation>
+      <translation>עטיפת שמות מועדפת</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="600"/>
       <source>Always use name wrapping</source>
-      <translation type="unfinished">Always use name wrapping</translation>
+      <translation>להשתמש תמיד בעטיפת שמות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="610"/>
       <source>Uppercase data type names</source>
-      <translation type="unfinished">Uppercase data type names</translation>
+      <translation>שמות סוגי נתונים באותיות רישיות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>מילות מפתח באותיות רישיות</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
@@ -207,17 +207,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation type="unfinished">Preferred comment marker (where possible):</translation>
+      <translation>מדגש הערות מועדף (היכן שניתן):</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
       <source>Move all comments to the line end</source>
-      <translation type="unfinished">Move all comments to the line end</translation>
+      <translation>העברת כל ההערות לסוף השורה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="664"/>
       <source>Line up comments at the line end</source>
-      <translation type="unfinished">Line up comments at the line end</translation>
+      <translation>סידור הערות בטור בסוף השורה</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>

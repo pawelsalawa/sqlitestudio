@@ -39,7 +39,7 @@
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>לא ניתן לאתחל תנועת מסד נתונים. פרטים:%1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>כינוי טבלה או עמודות</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="182"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="435"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>מסד נתוני עצמים זמניים</translation>
     </message>
   </context>
   <context>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>לא ניתן לאתחל תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
@@ -150,7 +150,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>לא ניתן להוסיף מסד נתונים%1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
@@ -173,7 +173,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>לא ניתן היה לאתחל את מסד הנתונים.‏.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
@@ -316,7 +316,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../exportworker.cpp" line="123"/>
       <source>Error while exporting query results: %1</source>
-      <translation type="unfinished">Error while exporting query results: %1</translation>
+      <translation>שגיאה בעת יצוא תוצאות שאילתה: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
@@ -365,23 +365,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
+      <translation>תבנית ביטוי־רגיל לא תקינה: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
+      <translation>לא ניתן לפתוח קובץ%1 לקריאה: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
+      <translation>לא ניתן לפתוח קובץ%1 לכתיבה: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>שגיאה בעת כתיבה לקובץ %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
@@ -442,7 +442,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../importworker.cpp" line="177"/>
       <location filename="../importworker.cpp" line="184"/>
       <source>Error while importing data: %1</source>
-      <translation type="unfinished">Error while importing data: %1</translation>
+      <translation>שגיאה בעת ייבוא נתונים: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -548,7 +548,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>שיטת שימוש במילים</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
@@ -582,32 +582,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation type="unfinished">Constant prefix</translation>
+      <translation>תחילית קבועה</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
       <source>No prefix</source>
-      <translation type="unfinished">No prefix</translation>
+      <translation>אין תחלית</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation type="unfinished">Minimum value</translation>
+      <translation>ערך מזערי</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation type="unfinished">Maximum value</translation>
+      <translation>ערך מרבי</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation type="unfinished">Constant suffix</translation>
+      <translation>סופית קבועה</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
       <source>No suffix</source>
-      <translation type="unfinished">No suffix</translation>
+      <translation>ללא סופית</translation>
     </message>
   </context>
   <context>
@@ -673,7 +673,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>שימוש בתווים מהסדרה המותאמת שלי:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
@@ -848,7 +848,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>בחירת שפת יישום.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="113"/>
@@ -972,7 +972,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="193"/>
       <source>Execution interrupted.</source>
-      <translation type="unfinished">Execution interrupted.</translation>
+      <translation>הביצוע הופסק.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="234"/>

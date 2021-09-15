@@ -6,87 +6,87 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="14"/>
       <source>About SQLiteStudio and licenses</source>
-      <translation type="unfinished">About SQLiteStudio and licenses</translation>
+      <translation>SQLiteStudio とライセンスについて</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
       <source>About</source>
-      <translation type="unfinished">About</translation>
+      <translation>SQLiteStudioについて</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="30"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;無料のオープンソースのクロスプラットフォームSQLiteデータベースマネージャー。&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;作成者およびアクティブなメンテナ&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
-      <translation type="unfinished">Licenses</translation>
+      <translation>ライセンス</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="55"/>
       <source>Environment</source>
-      <translation type="unfinished">Environment</translation>
+      <translation>環境</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="61"/>
       <source>Icon directories</source>
-      <translation type="unfinished">Icon directories</translation>
+      <translation>アイコンディレクトリ</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="81"/>
       <source>Form directories</source>
-      <translation type="unfinished">Form directories</translation>
+      <translation>フォームディレクトリ</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="101"/>
       <source>Plugin directories</source>
-      <translation type="unfinished">Plugin directories</translation>
+      <translation>プラグインディレクトリ</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
       <source>Configuration directory</source>
-      <translation type="unfinished">Configuration directory</translation>
+      <translation>設定ディレクトリ</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="121"/>
       <source>Application directory</source>
-      <translation type="unfinished">Application directory</translation>
+      <translation>アプリケーション ディレクトリ</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="148"/>
       <source>Qt version:</source>
-      <translation type="unfinished">Qt version:</translation>
+      <translation>Qt バージョン:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="172"/>
       <source>SQLite 3 version:</source>
-      <translation type="unfinished">SQLite 3 version:</translation>
+      <translation>SQLite3 バージョン:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
       <source>Portable distribution.</source>
-      <translation type="unfinished">Portable distribution.</translation>
+      <translation>ポータブル版</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation type="unfinished">MacOS X application boundle distribution.</translation>
+      <translation>MacOS X アプリケーションバンドル版</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="45"/>
       <source>Operating system managed distribution.</source>
-      <translation type="unfinished">Operating system managed distribution.</translation>
+      <translation>OSマネージ版</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>コピー</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="102"/>
       <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-      <translation type="unfinished">&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
+      <translation>&lt;h3&gt;目次:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
   </context>
   <context>
@@ -94,12 +94,12 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="17"/>
       <source>Query parameters</source>
-      <translation type="unfinished">Query parameters</translation>
+      <translation>クエリパラメータ</translation>
     </message>
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
       <source>Please provide values for query parameters</source>
-      <translation type="unfinished">Please provide values for query parameters</translation>
+      <translation>クエリパラメータの値を入力してください</translation>
     </message>
   </context>
   <context>
@@ -107,87 +107,87 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="75"/>
       <source>Filter collations</source>
-      <translation type="unfinished">Filter collations</translation>
+      <translation>照合順序を絞り込む</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>データベース</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="138"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>すべてのデータベースに登録する</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="145"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>次のデータベースに登録:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="166"/>
       <source>Implementation code:</source>
-      <translation type="unfinished">Implementation code:</translation>
+      <translation>実装コード:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>照合順序名:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>実装言語:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="53"/>
       <source>Collations editor</source>
-      <translation type="unfinished">Collations editor</translation>
+      <translation>照合順序エディタ</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
       <source>Commit all collation changes</source>
-      <translation type="unfinished">Commit all collation changes</translation>
+      <translation>すべての照合順序の変更をコミット</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
       <source>Rollback all collation changes</source>
-      <translation type="unfinished">Rollback all collation changes</translation>
+      <translation>すべての照合順序の変更をロールバック</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Create new collation</source>
-      <translation type="unfinished">Create new collation</translation>
+      <translation>新しい照合順序を作成</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="62"/>
       <source>Delete selected collation</source>
-      <translation type="unfinished">Delete selected collation</translation>
+      <translation>選択した照合順序を削除</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="64"/>
       <source>Editing collations manual</source>
-      <translation type="unfinished">Editing collations manual</translation>
+      <translation>照合順序マニュアルの編集</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="284"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the collation.</translation>
+      <translation>照合順序の空でない一意の名前を入力します。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="292"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>実装言語を選択します。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="295"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation type="unfinished">Enter a non-empty implementation code.</translation>
+      <translation>空でない実装コードを入力します。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="389"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
+      <translation>照合順序エディタウィンドウにはコミットされていない変更があります。</translation>
     </message>
   </context>
   <context>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../common/colorbutton.cpp" line="29"/>
       <source>Pick a color</source>
-      <translation type="unfinished">Pick a color</translation>
+      <translation>色を選択</translation>
     </message>
   </context>
   <context>
@@ -203,22 +203,22 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
+      <translation>照合順序名:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>名前付き制約:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="80"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>制約の名前を入力します。</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation type="unfinished">Enter a collation name.</translation>
+      <translation>照合順序名を入力します。</translation>
     </message>
   </context>
   <context>
@@ -226,32 +226,32 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="20"/>
       <source>Default value:</source>
-      <translation type="unfinished">Default value:</translation>
+      <translation>デフォルト値:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>名前付き制約:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
       <source>Enter a default value expression.</source>
-      <translation type="unfinished">Enter a default value expression.</translation>
+      <translation>デフォルト値の式を入力します。</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
       <source>Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>デフォルト値の式%1 は無効です. 単純な文字列を値として使用する場合は、引用符で囲んでください。</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>無効なデフォルト値です。単純な文字列を値として使用する場合は、引用符で囲んでください。</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>制約の名前を入力します。</translation>
     </message>
   </context>
   <context>
@@ -259,52 +259,52 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="14"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>列</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="23"/>
       <source>Name and type</source>
-      <translation type="unfinished">Name and type</translation>
+      <translation>名前と種類</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="35"/>
       <source>Scale</source>
-      <translation type="unfinished">Scale</translation>
+      <translation>スケール</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
       <source>Precision</source>
-      <translation type="unfinished">Precision</translation>
+      <translation>精度</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>データ型:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>列名:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>サイズ:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>制約</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>生成された値</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>一意</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -316,97 +316,97 @@
       <location filename="../dialogs/columndialog.ui" line="213"/>
       <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>設定</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation> 外部キー</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>照合順序</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Not NULL</source>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>NULL非許容</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>条件をチェック</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Primary Key</source>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>主キー</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>デフォルト</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="284"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>上級者向けモード</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="87"/>
       <source>Add constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add constraint</translation>
+      <translation>制約の追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="88"/>
       <source>Edit constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>制約を編集</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
       <location filename="../dialogs/columndialog.cpp" line="243"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>制約を削除</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="90"/>
       <source>Move constraint up</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint up</translation>
+      <translation>制約を上へ移動</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="91"/>
       <source>Move constraint down</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint down</translation>
+      <translation>制約を下に移動</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
       <source>Add a primary key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a primary key</translation>
+      <translation>主キーを追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="94"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>外部キーを追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="95"/>
       <source>Add an unique constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add an unique constraint</translation>
+      <translation>一意制約を追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="96"/>
       <source>Add a check constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a check constraint</translation>
+      <translation>チェック制約を追加</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="97"/>

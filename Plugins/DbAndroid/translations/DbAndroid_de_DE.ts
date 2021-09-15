@@ -158,27 +158,27 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation type="unfinished">Network (IP address)</translation>
+      <translation>Netzwerk (IP-Adresse)</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
       <source>Device</source>
-      <translation type="unfinished">Device</translation>
+      <translation>Gerät</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="71"/>
       <source>IP address</source>
-      <translation type="unfinished">IP address</translation>
+      <translation>IP-Adresse</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="93"/>
       <source>Port</source>
-      <translation type="unfinished">Port</translation>
+      <translation>Port</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
       <source>Remote access password</source>
-      <translation type="unfinished">Remote access password</translation>
+      <translation>Fernzugriffspasswort</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
@@ -188,42 +188,42 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
       <source>Application</source>
-      <translation type="unfinished">Application</translation>
+      <translation>Anwendung</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="155"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filter</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="168"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Datenbank</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
       <source>Create a new database directly on the device.</source>
-      <translation type="unfinished">Create a new database directly on the device.</translation>
+      <translation>Erstellen Sie eine neue Datenbank direkt auf dem Gerät.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
       <source>Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</source>
-      <translation type="unfinished">Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</translation>
+      <translation>Löschen Sie die aktuell ausgewählte Datenbank vom Gerät. Die aktuell ausgewählte Datenbank ist die ausgewählte in der Liste auf der linken Seite dieser Schaltfläche.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
       <source>Enter valid IP address.</source>
-      <translation type="unfinished">Enter valid IP address.</translation>
+      <translation>Geben Sie eine gültige IP-Adresse ein.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="367"/>
       <source>Pick Android device.</source>
-      <translation type="unfinished">Pick Android device.</translation>
+      <translation>Wähle Android-Gerät.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="371"/>
       <source>Pick Android database.</source>
-      <translation type="unfinished">Pick Android database.</translation>
+      <translation>Wähle die Android Datenbank.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
@@ -233,7 +233,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Create new database</source>
-      <translation type="unfinished">Create new database</translation>
+      <translation>Neue Datenbank erstellen</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -247,14 +247,14 @@ It&apos;s the name which Android application will use to connect to the database
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Invalid name</source>
-      <translation type="unfinished">Invalid name</translation>
+      <translation>Ungültiger Name</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <source>Database with the same name (%1) already exists on the device.
 The name must be unique.</source>
-      <translation type="unfinished">Database with the same name (%1) already exists on the device.
-The name must be unique.</translation>
+      <translation>Datenbank mit dem gleichen Namen (%1) existiert bereits auf dem Gerät.
+Der Name muss eindeutig sein.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
@@ -271,7 +271,7 @@ Details: %2</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Delete database</source>
-      <translation type="unfinished">Delete database</translation>
+      <translation>Datenbank löschen</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>

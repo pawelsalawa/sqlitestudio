@@ -29,7 +29,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>virtual</source>
-      <translation type="unfinished">virtual</translation>
+      <translation>虚拟的</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="308"/>
@@ -44,12 +44,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
-      <translation type="unfinished">For table:</translation>
+      <translation>表格：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
       <source>Unique:</source>
-      <translation type="unfinished">Unique:</translation>
+      <translation>唯一:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
@@ -69,7 +69,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
       <source>Collating</source>
-      <translation type="unfinished">Collating</translation>
+      <translation>排序</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
@@ -84,27 +84,27 @@
     <message>
       <location filename="../htmlexport.cpp" line="386"/>
       <source>Activated:</source>
-      <translation type="unfinished">Activated:</translation>
+      <translation>激活：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="394"/>
       <source>Action:</source>
-      <translation type="unfinished">Action:</translation>
+      <translation>操作：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="401"/>
       <source>On view:</source>
-      <translation type="unfinished">On view:</translation>
+      <translation>视图：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>表格：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
       <source>Activate condition:</source>
-      <translation type="unfinished">Activate condition:</translation>
+      <translation>激活情况：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="421"/>

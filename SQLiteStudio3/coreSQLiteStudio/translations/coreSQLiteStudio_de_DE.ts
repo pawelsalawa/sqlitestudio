@@ -777,7 +777,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <location filename="../db/abstractdb3.h" line="329"/>
       <location filename="../db/abstractdb3.h" line="333"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>Konnte die Erweiterung %1 nicht laden: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="441"/>
@@ -1038,7 +1038,7 @@ The view will remain as it is.</source>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1046,7 +1046,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>Konnte nicht auf Updates prüfen (%1).</translation>
     </message>
   </context>
 </TS>
