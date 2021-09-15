@@ -17,6 +17,7 @@ macx: {
 win32: {
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib
+    QMAKE_LFLAGS += -static-libgcc
 }
 
 INCLUDEPATH += $$PWD/coreSQLiteStudio

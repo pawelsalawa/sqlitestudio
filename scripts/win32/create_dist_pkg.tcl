@@ -48,7 +48,7 @@ foreach f [glob -nocomplain *.a] {
 
 # Copy Qt files
 cd $QT_DIR
-set QT_LIB_LIST [list Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_dw2-1 libstdc++-6 libwinpthread-1]
+set QT_LIB_LIST [list Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml]
 foreach f $QT_LIB_LIST {
 	file copy "$f.dll" $PORTABLE
 }
