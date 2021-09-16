@@ -11,7 +11,7 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw810/8.1.0-1-202004170606i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-installer.exe
 
-name: Windows release build
+name: Windows 32-bit release build
 
 on:
     repository_dispatch:
@@ -22,11 +22,6 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            # - name: Delete preinstalled mingw64
-              # shell: bash
-              # run: |
-                # rm -rf C:/ProgramData/Chocolatey/lib/mingw
-
             - name: Set up MinGW
               uses: egor-tensin/setup-mingw@v2
               with:
@@ -50,14 +45,6 @@ jobs:
                 dir: 'D:/'
                 setup-python: 'false'
                 
-            # - name: Install mingw
-              # if: steps.cache-qt.outputs.cache-hit != 'true'
-              # shell: bash
-              # run: |
-                # curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                # 7z x -o"../Qt" ../mingw.7z
-                # echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
- 
             - name: Clone repo
               uses: actions/checkout@v2
               with:

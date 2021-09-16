@@ -1,12 +1,13 @@
 # ChangeLog
 
 ### 3.4.0
-- ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin.
+- ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin. Requires Python installed in the system to use the plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
 - ADDED: #3615 console.log() function for JS scripts.
 - ADDED: #3503 #3963 SQL Editor has word wrapping option in context menu. It's also available in the configuration dialog.
 - ADDED: #4087 The installer packages are back (powered by VMware InstallBuilder), with proper "Start Menu" entries and SQLite file associations - across all 3 platforms!
 - ADDED: #3291 Filtering in View window (thanks to @electrickite).
+- ADDED: #4103 Windows 32-bit binaries, alongside with 64-bit. With version 3.3.0 Windows binaries were upgraded to 64 bit, but it turns out many people still need 32 bit binaries.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
