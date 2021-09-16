@@ -558,8 +558,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translatorcomment>已命名的约束：</translatorcomment>
-      <translation>Named constraint:</translation>
+      <translation>已命名的约束：</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -2169,8 +2168,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1705"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
-      <translatorcomment>被删除分组中的剩余子对象会移动到原来的位置</translatorcomment>
-      <translation>Remainig objects from deleted group will be moved in place where the group used to be.</translation>
+      <translation>被删除分组中的剩余子对象会移动到原来的位置</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1707"/>
