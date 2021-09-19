@@ -41,6 +41,7 @@
 #include "style.h"
 #include "services/codeformatter.h"
 #include "common/compatibility.h"
+#include "uiutils.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -141,6 +142,7 @@ void MainWindow::init()
 
     updateMultipleSessionsSetting();
     fixFonts();
+    fixToolbars();
     observeSessionChanges();
 
     SQLITESTUDIO->installCrashHandler([this]()
@@ -921,6 +923,14 @@ void MainWindow::fixFonts()
         if (typed->get().pointSize() == 0)
             cfg->set(cfg->getDefultValue());
     }
+}
+
+void MainWindow::fixToolbars()
+{
+    fixToolbarTooltips(ui->viewToolbar);
+    fixToolbarTooltips(ui->mainToolBar);
+    fixToolbarTooltips(ui->structureToolbar);
+    fixToolbarTooltips(ui->dbToolbar);
 }
 
 bool MainWindow::confirmQuit(const QList<Committable*>& instances)

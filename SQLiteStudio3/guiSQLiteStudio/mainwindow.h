@@ -151,6 +151,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
+        void fixToolbars();
 
         template <class T>
         T* openMdiWindow();

@@ -14,6 +14,7 @@
 - CHANGE: #4083 Added support for regexp literals and template literals in JS syntax highlighter.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
+- BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 
 ### 3.3.3

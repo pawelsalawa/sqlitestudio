@@ -17,6 +17,8 @@
 #include <QApplication>
 #include <QStyle>
 #include <QScreen>
+#include <QToolBar>
+#include <QToolButton>
 
 const QStringList pageSizes = {
     "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
@@ -145,4 +147,20 @@ QBrush styleEditorLineColor()
         return QBrush(palette.alternateBase().color().darker(300));
 
     return palette.alternateBase();
+}
+
+void fixToolbarTooltips(QToolBar* toolbar)
+{
+    for (QAction*& action : toolbar->actions())
+    {
+        QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(action));
+        if (!button)
+            continue;
+
+        QString text = action->text().replace("&", "");
+        if (!action->shortcut().isEmpty())
+            text += QString(" (%1)").arg(action->shortcut().toString());
+
+        button->setToolTip(text);
+    }
 }

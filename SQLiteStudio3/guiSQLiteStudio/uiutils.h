@@ -6,6 +6,7 @@
 #include <QPagedPaintDevice>
 
 class QWidget;
+class QToolBar;
 
 GUI_API_EXPORT QString getDbPath(bool newFileMode, const QString& startWith = QString());
 GUI_API_EXPORT void setValidState(QWidget* widget, bool valid, const QString& message = QString());
@@ -21,6 +22,7 @@ GUI_API_EXPORT void limitDialogWidth(QDialog* dialog);
 GUI_API_EXPORT void fixTextCursorSelectedText(QString& text);
 GUI_API_EXPORT QColor styleSyntaxStringColor();
 GUI_API_EXPORT QBrush styleEditorLineColor();
+GUI_API_EXPORT void fixToolbarTooltips(QToolBar* toolbar);
 
 #define UI_PROP_COLUMN "column_name"
 

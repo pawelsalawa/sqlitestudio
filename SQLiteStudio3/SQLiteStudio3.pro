@@ -42,3 +42,7 @@ macx: {
     pkg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
     QMAKE_EXTRA_TARGETS += bundle dmg pkg
 }
+
+OTHER_FILES += \
+    ../ChangeLog.md \
+    ../SQLiteStudio-installer.xml
