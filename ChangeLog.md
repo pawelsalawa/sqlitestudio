@@ -16,6 +16,7 @@
 - CHANGE: SQLite updated to 3.35.5.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
+- BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.

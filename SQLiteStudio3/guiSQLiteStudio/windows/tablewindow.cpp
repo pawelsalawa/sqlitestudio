@@ -885,6 +885,7 @@ void TableWindow::rollbackStructure()
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
     ui->tableNameEdit->setText(createTable->table);
+    ui->withoutRowIdCheck->setChecked(!createTable->withOutRowId.isNull());
 
     updateStructureCommitState();
     updateStructureToolbarState();
