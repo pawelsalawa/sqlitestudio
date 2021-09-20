@@ -205,12 +205,24 @@ bool MultiEditorImagePlugin::validFor(const DataType& dataType)
     switch (dataType.getType())
     {
         case DataType::BLOB:
+        case DataType::NONE:
         case DataType::unknown:
             return true;
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
         case DataType::INTEGER:
+        case DataType::INT:
         case DataType::NUMERIC:
         case DataType::REAL:
+        case DataType::STRING:
         case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
             break;
     }
     return false;
@@ -222,12 +234,24 @@ int MultiEditorImagePlugin::getPriority(const DataType& dataType)
     {
         case DataType::BLOB:
             return 10;
+        case DataType::NONE:
         case DataType::unknown:
             return 50;
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
         case DataType::INTEGER:
+        case DataType::INT:
         case DataType::NUMERIC:
         case DataType::REAL:
+        case DataType::STRING:
         case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
             break;
     }
     return 100;
