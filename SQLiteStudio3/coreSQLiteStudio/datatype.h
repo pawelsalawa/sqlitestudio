@@ -13,23 +13,11 @@ class API_EXPORT DataType : public QObject
     public:
         enum Enum
         {
-            BIGINT,
             BLOB,
-            BOOLEAN,
-            CHAR,
-            DATE,
-            DATETIME,
-            DECIMAL,
-            DOUBLE,
             INTEGER,
-            INT,
-            NONE,
             NUMERIC,
             REAL,
-            STRING,
             TEXT,
-            TIME,
-            VARCHAR,
             unknown
         };
 

@@ -155,7 +155,7 @@ DataType& DataType::operator=(const DataType& other)
     this->type = other.type;
     this->typeStr = other.typeStr;
     this->precision = other.precision;
-    this->scale = scale;
+    this->scale = other.scale;
     return *this;
 }
 
@@ -188,24 +188,12 @@ bool DataType::isNumeric(DataType::Enum e)
 {
     switch (e)
     {
-        case BIGINT:
-        case DECIMAL:
-        case DOUBLE:
         case INTEGER:
-        case INT:
         case NUMERIC:
         case REAL:
             return true;
         case BLOB:
-        case BOOLEAN:
-        case CHAR:
-        case DATE:
-        case DATETIME:
-        case NONE:
-        case STRING:
         case TEXT:
-        case TIME:
-        case VARCHAR:
         case unknown:
             break;
     }
