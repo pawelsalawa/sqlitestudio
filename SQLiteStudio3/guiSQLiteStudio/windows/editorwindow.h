@@ -26,6 +26,8 @@ class DbComboBox;
 
 CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(EXEC_QUERY,                Qt::Key_F9,                 QObject::tr("Execute query"))
+     CFG_KEY_ENTRY(EXEC_ONE_QUERY,            Qt::CTRL + Qt::Key_F9,      QObject::tr("Execute single query under cursor"))
+     CFG_KEY_ENTRY(EXEC_ALL_QUERIES,          Qt::SHIFT + Qt::Key_F9,     QObject::tr("Execute all queries in editor"))
      CFG_KEY_ENTRY(EXPLAIN_QUERY,             Qt::Key_F8,                 QObject::tr("Execute \"%1\" query").arg("EXPLAIN"))
      CFG_KEY_ENTRY(PREV_DB,                   Qt::CTRL + Qt::Key_Up,      QObject::tr("Switch current working database to previous on the list"))
      CFG_KEY_ENTRY(NEXT_DB,                   Qt::CTRL + Qt::Key_Down,    QObject::tr("Switch current working database to next on the list"))
@@ -51,6 +53,8 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         enum Action
         {
             EXEC_QUERY,
+            EXEC_ONE_QUERY,
+            EXEC_ALL_QUERIES,
             EXPLAIN_QUERY,
             RESULTS_IN_TAB,
             RESULTS_BELOW,
@@ -65,6 +69,13 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
             EXPORT_RESULTS,
             CREATE_VIEW_FROM_QUERY,
             DELETE_SINGLE_HISTORY_SQL
+        };
+
+        enum QueryExecMode
+        {
+            DEFAULT,
+            SINGLE,
+            ALL
         };
 
         enum ToolBar
@@ -89,7 +100,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
 
         QSize sizeHint() const;
         QAction* getAction(Action action);
-        QString getQueryToExecute(bool doSelectCurrentQuery = false);
+        QString getQueryToExecute(bool doSelectCurrentQuery = false, QueryExecMode querySelectionMode = DEFAULT);
         bool setCurrentDb(Db* db);
         void setContents(const QString& sql);
         QString getContents() const;
@@ -137,7 +148,9 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         bool settingSqlContents = false;
 
     private slots:
-        void execQuery(bool explain = false);
+        void execQuery(bool explain = false, QueryExecMode querySelectionMode = DEFAULT);
+        void execOneQuery();
+        void execAllQueries();
         void explainQuery();
         void dbChanged();
         void executionSuccessful();

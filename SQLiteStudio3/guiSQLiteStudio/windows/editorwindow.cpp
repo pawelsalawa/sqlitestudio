@@ -207,7 +207,7 @@ QAction* EditorWindow::getAction(EditorWindow::Action action)
     return ExtActionContainer::getAction(action);
 }
 
-QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
+QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery, QueryExecMode querySelectionMode)
 {
     QString sql;
     if (ui->sqlEdit->textCursor().hasSelection())
@@ -215,7 +215,11 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
         sql = ui->sqlEdit->textCursor().selectedText();
         fixTextCursorSelectedText(sql);
     }
-    else if (CFG_UI.General.ExecuteCurrentQueryOnly.get())
+    else if (querySelectionMode == ALL)
+    {
+        sql = ui->sqlEdit->toPlainText();
+    }
+    else if (CFG_UI.General.ExecuteCurrentQueryOnly.get() || querySelectionMode == SINGLE)
     {
         ui->sqlEdit->saveSelection();
         selectCurrentQuery(true);
@@ -398,6 +402,8 @@ void EditorWindow::createActions()
     createAction(FOCUS_RESULTS_BELOW, tr("Focus results below", "sql editor"), this, SLOT(focusResultsBelow()), this);
     createAction(FOCUS_EDITOR_ABOVE, tr("Focus SQL editor above", "sql editor"), this, SLOT(focusEditorAbove()), this);
     createAction(DELETE_SINGLE_HISTORY_SQL, tr("Delete selected SQL history entries", "sql editor"), this, SLOT(deleteSelectedSqlHistory()), ui->historyList);
+    createAction(EXEC_ONE_QUERY, ICONS.EXEC_QUERY, tr("Execute single query under cursor"), this, SLOT(execOneQuery()), this);
+    createAction(EXEC_ALL_QUERIES, ICONS.EXEC_QUERY, tr("Execute all queries in editor"), this, SLOT(execAllQueries()), this);
 
     // Static action triggers
     connect(staticActions[RESULTS_IN_TAB], SIGNAL(triggered()), this, SLOT(updateResultsDisplayMode()));
@@ -463,13 +469,13 @@ void EditorWindow::updateShortcutTips()
     {
         QString prevDbKey = actionMap[PREV_DB]->shortcut().toString(QKeySequence::NativeText);
         QString nextDbKey = actionMap[NEXT_DB]->shortcut().toString(QKeySequence::NativeText);
-        dbCombo->setToolTip(tr("Active database (%1/%2)").arg(prevDbKey).arg(nextDbKey));
+        dbCombo->setToolTip(tr("Active database (%1/%2)").arg(prevDbKey, nextDbKey));
     }
 }
 
-void EditorWindow::execQuery(bool explain)
+void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
 {
-    QString sql = getQueryToExecute(true);
+    QString sql = getQueryToExecute(true, querySelectionMode);
     QHash<QString, QVariant> bindParams;
     bool proceed = processBindParams(sql, bindParams);
     if (!proceed)
@@ -491,6 +497,16 @@ void EditorWindow::execQuery(bool explain)
     }
 }
 
+void EditorWindow::execOneQuery()
+{
+    execQuery(false, SINGLE);
+}
+
+void EditorWindow::execAllQueries()
+{
+    execQuery(false, ALL);
+}
+
 void EditorWindow::explainQuery()
 {
     execQuery(true);
@@ -508,7 +524,6 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
 
     // Process bind tokens, prepare list for a dialog.
     static_qstring(paramTpl, ":arg%1");
-    QString arg;
     QVector<BindParam*> bindParams;
     QHash<QString, QString> namedBindParams;
     BindParam* bindParam = nullptr;
@@ -543,14 +558,14 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
     // Transfer values from dialog to arguments for query
     if (accepted)
     {
-        for (BindParam* bindParam : bindParams)
+        for (BindParam*& bindParam : bindParams)
             queryParams[bindParam->newName] = bindParam->value;
 
         sql = tokens.detokenize();
     }
 
     // Cleanup
-    for (BindParam* bindParam : bindParams)
+    for (BindParam*& bindParam : bindParams)
         delete bindParam;
 
     return accepted;
@@ -680,7 +695,7 @@ void EditorWindow::deleteSelectedSqlHistory()
         return;
 
     QList<qint64> ids;
-    for (const QModelIndex& idx : ui->historyList->selectionModel()->selectedRows(0))
+    for (QModelIndex& idx : ui->historyList->selectionModel()->selectedRows(0))
         ids += idx.data().toLongLong();
 
     CFG->deleteSqlHistory(ids);

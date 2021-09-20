@@ -57,6 +57,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initShortcuts();
         void initShortcuts(CfgCategory* cfgCategory);
         void initLangs();
+        void initTooltips();
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;
@@ -85,6 +86,8 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void rollbackPluginConfigs();
         void commitPluginConfigs();
         void connectMapperSignals(ConfigMapper* mapper);
+        QList<CfgMain*> getShortcutsCfgMains() const;
+        QList<CfgCategory*> getShortcutsCfgCategories() const;
 
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;

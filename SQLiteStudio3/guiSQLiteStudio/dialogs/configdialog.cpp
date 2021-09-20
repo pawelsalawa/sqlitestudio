@@ -25,6 +25,7 @@
 #include "plugins/uiconfiguredplugin.h"
 #include "dbtree/dbtree.h"
 #include "common/compatibility.h"
+#include "windows/editorwindow.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -64,7 +65,7 @@ ConfigDialog::~ConfigDialog()
 
     // Notify plugins about dialog being closed
     UiConfiguredPlugin* cfgPlugin = nullptr;
-    for (Plugin* plugin : PLUGINS->getLoadedPlugins())
+    for (Plugin*& plugin : PLUGINS->getLoadedPlugins())
     {
         cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
         if (!cfgPlugin)
@@ -77,7 +78,7 @@ ConfigDialog::~ConfigDialog()
     delete ui;
     safe_delete(configMapper);
 
-    for (ConfigMapper* mapper : pluginConfigMappers.values())
+    for (ConfigMapper*& mapper : pluginConfigMappers)
         delete mapper;
 
     pluginConfigMappers.clear();
@@ -184,6 +185,7 @@ void ConfigDialog::init()
     initDataEditors();
     initShortcuts();
     initLangs();
+    initTooltips();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
@@ -199,7 +201,7 @@ void ConfigDialog::init()
             << CFG_UI.General.ShowSystemObjects
             << CFG_UI.General.ShowVirtualTableLabels;
 
-    for (CfgEntry* cfg : entries)
+    for (CfgEntry*& cfg : entries)
         connect(cfg, SIGNAL(changed(QVariant)), this, SLOT(markRequiresSchemasRefresh()));
 
     QStringList styles = QStyleFactory::keys();
@@ -302,7 +304,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     QColor disabledColor = ui->categoriesTree->palette().color(QPalette::Disabled, QPalette::WindowText);
     if (filter.isEmpty())
     {
-        for (QTreeWidgetItem* item : getAllCategoryItems())
+        for (QTreeWidgetItem*& item : getAllCategoryItems())
             item->setForeground(0, normalColor);
 
         return;
@@ -318,9 +320,9 @@ void ConfigDialog::applyFilter(const QString &filter)
 
     QHash<QWidget*, QTreeWidgetItem*> pageToCategoryItem = buildPageToCategoryItemMap();
     QSet<QTreeWidgetItem*> matchedCategories;
-    for (QWidget* page : pageToCategoryItem.keys())
+    for (QWidget*& page : pageToCategoryItem.keys())
     {
-        for (QWidget* matched : matchedWidgets)
+        for (QWidget* matched : qAsConst(matchedWidgets))
         {
             if (page->isAncestorOf(matched))
             {
@@ -336,10 +338,10 @@ void ConfigDialog::applyFilter(const QString &filter)
         }
     }
 
-    for (QTreeWidgetItem* item : getAllCategoryItems())
+    for (QTreeWidgetItem*& item : getAllCategoryItems())
         item->setForeground(0, disabledColor);
 
-    for (QTreeWidgetItem* item : matchedCategories)
+    for (QTreeWidgetItem* item : qAsConst(matchedCategories))
     {
         item->setForeground(0, normalColor);
         while ((item = item->parent()) != nullptr)
@@ -350,7 +352,7 @@ void ConfigDialog::applyFilter(const QString &filter)
 QHash<QWidget*, QTreeWidgetItem*> ConfigDialog::buildPageToCategoryItemMap() const
 {
     QHash<QString,QTreeWidgetItem*> pageNameToCategoryItem;
-    for (QTreeWidgetItem* item : getAllCategoryItems())
+    for (QTreeWidgetItem*& item : getAllCategoryItems())
         pageNameToCategoryItem[item->statusTip(0)] = item;
 
     QWidget* page = nullptr;
@@ -393,7 +395,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType:
     });
 
     QList<MultiEditorWidgetPlugin*> results;
-    for (const PluginWithPriority& p: sortedPlugins)
+    for (PluginWithPriority& p: sortedPlugins)
         results << p.second;
 
     return results;
@@ -427,7 +429,7 @@ void ConfigDialog::updateDataTypeEditors()
 
     ui->dataEditorsAvailableList->sortItems();
 
-    for (MultiEditorWidgetPlugin* plugin : sortedPlugins)
+    for (MultiEditorWidgetPlugin*& plugin : sortedPlugins)
         addDataTypeEditor(plugin);
 }
 
@@ -557,7 +559,7 @@ void ConfigDialog::addDataType(const QString& typeStr)
 void ConfigDialog::rollbackPluginConfigs()
 {
     CfgMain* mainCfg = nullptr;
-    for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
+    for (UiConfiguredPlugin*& plugin : pluginConfigMappers.keys())
     {
         mainCfg = plugin->getMainUiConfig();
         if (mainCfg)
@@ -568,7 +570,7 @@ void ConfigDialog::rollbackPluginConfigs()
 void ConfigDialog::commitPluginConfigs()
 {
     CfgMain* mainCfg = nullptr;
-    for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
+    for (UiConfiguredPlugin*& plugin : pluginConfigMappers.keys())
     {
         mainCfg = plugin->getMainUiConfig();
         if (mainCfg)
@@ -582,7 +584,30 @@ void ConfigDialog::commitPluginConfigs()
 void ConfigDialog::connectMapperSignals(ConfigMapper* mapper)
 {
     connect(mapper, SIGNAL(modified()), this, SLOT(markModified()));
-    connect(mapper, SIGNAL(notifyEnabledWidgetModified(QWidget*, CfgEntry*, const QVariant&)), this, SLOT(notifyPluginsAboutModification(QWidget*, CfgEntry*, const QVariant&)));
+    connect(mapper, SIGNAL(notifyEnabledWidgetModified(QWidget*,CfgEntry*,QVariant)), this, SLOT(notifyPluginsAboutModification(QWidget*,CfgEntry*,QVariant)));
+}
+
+QList<CfgMain*> ConfigDialog::getShortcutsCfgMains() const
+{
+    static const QString metaName = CFG_SHORTCUTS_METANAME;
+    QList<CfgMain*> mains;
+    for (CfgMain*& cfgMain : CfgMain::getInstances())
+    {
+        if (cfgMain->getMetaName() != metaName)
+            continue;
+
+        mains << cfgMain;
+    }
+    return mains;
+}
+
+QList<CfgCategory*> ConfigDialog::getShortcutsCfgCategories() const
+{
+    QList<CfgCategory*> categories;
+    for (CfgMain*& cfgMain : getShortcutsCfgMains())
+        categories.append(cfgMain->getCategories().values());
+
+    return categories;
 }
 
 void ConfigDialog::updateDataTypeListState()
@@ -792,17 +817,17 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
 
     // Rows
     QStringList rows;
-    rows << row.arg(tr("Description:", "plugin details")).arg(PLUGINS->getDescription(pluginName));
-    rows << row.arg(tr("Category:", "plugin details")).arg(type->getTitle());
-    rows << row.arg(tr("Version:", "plugin details")).arg(PLUGINS->getPrintableVersion(pluginName));
-    rows << row.arg(tr("Author:", "plugin details")).arg(PLUGINS->getAuthor(pluginName));
+    rows << row.arg(tr("Description:", "plugin details"), PLUGINS->getDescription(pluginName));
+    rows << row.arg(tr("Category:", "plugin details"), type->getTitle());
+    rows << row.arg(tr("Version:", "plugin details"), PLUGINS->getPrintableVersion(pluginName));
+    rows << row.arg(tr("Author:", "plugin details"), PLUGINS->getAuthor(pluginName));
     rows << hline;
-    rows << row.arg(tr("Internal name:", "plugin details")).arg(pluginName);
-    rows << row.arg(tr("Dependencies:", "plugin details")).arg(PLUGINS->getDependencies(pluginName).join(", "));
-    rows << row.arg(tr("Conflicts:", "plugin details")).arg(PLUGINS->getConflicts(pluginName).join(", "));
+    rows << row.arg(tr("Internal name:", "plugin details"), pluginName);
+    rows << row.arg(tr("Dependencies:", "plugin details"), PLUGINS->getDependencies(pluginName).join(", "));
+    rows << row.arg(tr("Conflicts:", "plugin details"), PLUGINS->getConflicts(pluginName).join(", "));
 
     // Message
-    QString pluginDetails = details.arg(PLUGINS->getTitle(pluginName)).arg(rows.join(""));
+    QString pluginDetails = details.arg(PLUGINS->getTitle(pluginName), rows.join(""));
     QMessageBox::information(this, tr("Plugin details"), pluginDetails);
 }
 
@@ -964,7 +989,7 @@ void ConfigDialog::markRequiresSchemasRefresh()
 
 void ConfigDialog::notifyPluginsAboutModification(QWidget*, CfgEntry* key, const QVariant& value)
 {
-    for (ConfigNotifiablePlugin* plugin : notifiablePlugins)
+    for (ConfigNotifiablePlugin*& plugin : notifiablePlugins)
         plugin->configModified(key, value);
 }
 
@@ -1195,7 +1220,7 @@ void ConfigDialog::initPlugins()
 
     // Recreate
     QTreeWidgetItem *typeItem = nullptr;
-    for (PluginType* pluginType : PLUGINS->getPluginTypes())
+    for (PluginType*& pluginType : PLUGINS->getPluginTypes())
     {
         typeItem = createPluginsTypeItem(pluginType->getConfigUiForm(), pluginType->getTitle());
         if (!typeItem)
@@ -1204,7 +1229,7 @@ void ConfigDialog::initPlugins()
         item->addChild(typeItem);
         pluginTypeToItemMap[pluginType] = typeItem;
 
-        for (Plugin* plugin : pluginType->getLoadedPlugins())
+        for (Plugin*& plugin : pluginType->getLoadedPlugins())
             pluginLoaded(plugin, pluginType, true);
     }
 
@@ -1255,7 +1280,7 @@ void ConfigDialog::initPluginsPage()
     categoryRow = 0;
     QList<PluginType*> pluginTypes = PLUGINS->getPluginTypes();
     sSort(pluginTypes, PluginType::nameLessThan);
-    for (PluginType* pluginType : pluginTypes)
+    for (PluginType*& pluginType : pluginTypes)
     {
         category = new QTreeWidgetItem({pluginType->getTitle()});
         font.setItalic(false);
@@ -1275,7 +1300,7 @@ void ConfigDialog::initPluginsPage()
         itemRow = 0;
         pluginNames = pluginType->getAllPluginNames();
         sSort(pluginNames);
-        for (const QString& pluginName : pluginNames)
+        for (QString& pluginName : pluginNames)
         {
             builtIn = PLUGINS->isBuiltIn(pluginName);
             title = PLUGINS->getTitle(pluginName);
@@ -1293,7 +1318,7 @@ void ConfigDialog::initPluginsPage()
             itemToPluginNameMap.insert(item, pluginName);
 
             // Details button
-            detailsLabel = new QLabel(QString("<a href='%1'>%2</a> ").arg(pluginName).arg(tr("Details")), ui->pluginsList);
+            detailsLabel = new QLabel(QString("<a href='%1'>%2</a> ").arg(pluginName, tr("Details")), ui->pluginsList);
             detailsLabel->setAlignment(Qt::AlignRight);
             itemIndex = ui->pluginsList->model()->index(itemRow, 1, categoryIndex);
             ui->pluginsList->setIndexWidget(itemIndex, detailsLabel);
@@ -1398,7 +1423,7 @@ void ConfigDialog::initDataEditors()
     sSort(dataTypeList);
 
     QListWidgetItem* item = nullptr;
-    for (const QString& type : dataTypeList)
+    for (QString& type : dataTypeList)
     {
         item = new QListWidgetItem(type);
         if (!DataType::getAllNames().contains(type))
@@ -1445,23 +1470,14 @@ void ConfigDialog::initShortcuts()
     ui->shortcutsFilterEdit->setClearButtonEnabled(true);
     new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
 
-    static const QString metaName = CFG_SHORTCUTS_METANAME;
-    QList<CfgCategory*> categories;
-    for (CfgMain* cfgMain : CfgMain::getInstances())
-    {
-        if (cfgMain->getMetaName() != metaName)
-            continue;
-
-        for (CfgCategory* cat : cfgMain->getCategories().values())
-            categories << cat;
-    }
+    QList<CfgCategory*> categories = getShortcutsCfgCategories();
 
     sSort(categories, [](CfgCategory* cat1, CfgCategory* cat2) -> bool
     {
         return cat1->getTitle().compare(cat2->getTitle()) < 0;
     });
 
-    for (CfgCategory* cat : categories)
+    for (CfgCategory*& cat : categories)
         initShortcuts(cat);
 }
 
@@ -1508,11 +1524,11 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     int itemRow = 0;
     QStringList entryNames = cfgCategory->getEntries().keys();
     sSort(entryNames);
-    for (const QString& entryName : entryNames)
+    for (QString& entryName : entryNames)
     {
         // Title
         title = cfgCategory->getEntries()[entryName]->getTitle();
-        item = new QTreeWidgetItem(category, {title});
+        new QTreeWidgetItem(category, {title});
 
         // Key edit
         sequenceEdit = new QKeySequenceEdit(ui->shortcutsTable);
@@ -1557,6 +1573,14 @@ void ConfigDialog::initLangs()
     }
 
     ui->langCombo->setCurrentIndex(selected);
+}
+
+void ConfigDialog::initTooltips()
+{
+    ui->execQueryUnderCursorCheck->setToolTip(ui->execQueryUnderCursorCheck->toolTip().arg(
+        GET_SHORTCUT_ENTRY(EditorWindow, EXEC_ONE_QUERY)->get().toString(),
+        GET_SHORTCUT_ENTRY(EditorWindow, EXEC_ALL_QUERIES)->get().toString()
+        ));
 }
 
 bool ConfigDialog::isPluginCategoryItem(QTreeWidgetItem *item) const

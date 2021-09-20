@@ -58,7 +58,21 @@ class QMenu;
         } \
     }
 
-#define GET_SHORTCUTS(Type) ExtActionContainer::getAllShortcutSequences(Cfg::getShortcuts##Type##Instance()->ShortcutsCategory##Type)
+/**
+ * @def Finds shortcut config category instance.
+ * Finds CfgCategory containing CfgEntry instances of all shortcuts defined for class \arg Type.
+ * For example: GET_SHORTCUTS_CATEGORY(EditorWindow)->getTitle()
+ * @return CfgCategory instance of a shortcuts configuration used for specified class.
+ */
+#define GET_SHORTCUTS_CATEGORY(Type) Cfg::getShortcuts##Type##Instance()->ShortcutsCategory##Type
+
+/**
+ * @def Finds shortcut config entry instance.
+ * Finds CfgEntry used to store shortcut for enumerated action with \arg ActionName in the class \arg Type.
+ * For example: GET_SHORTCUT_ENTRY(EditorWindow, EXEC_QUERY)->get().toString()
+ * @return CfgEntry instance of a shortcut config entry.
+ */
+#define GET_SHORTCUT_ENTRY(Type, ActionName) Cfg::getShortcuts##Type##Instance()->ShortcutsCategory##Type.getEntryByName(#ActionName)
 
 class GUI_API_EXPORT ExtActionContainer
 {

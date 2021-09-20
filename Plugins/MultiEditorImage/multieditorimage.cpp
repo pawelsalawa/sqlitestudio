@@ -270,7 +270,7 @@ bool MultiEditorImagePlugin::init()
 
 void MultiEditorImagePlugin::deinit()
 {
-    for (MultiEditorImage* editor : instances)
+    for (MultiEditorImage*& editor : instances)
     {
         editor->notifyAboutUnload();
         delete editor;
