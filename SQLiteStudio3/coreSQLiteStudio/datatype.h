@@ -13,11 +13,23 @@ class API_EXPORT DataType : public QObject
     public:
         enum Enum
         {
+            BIGINT,
             BLOB,
+            BOOLEAN,
+            CHAR,
+            DATE,
+            DATETIME,
+            DECIMAL,
+            DOUBLE,
             INTEGER,
+            INT,
+            NONE,
             NUMERIC,
             REAL,
+            STRING,
             TEXT,
+            TIME,
+            VARCHAR,
             unknown
         };
 
@@ -46,6 +58,7 @@ class API_EXPORT DataType : public QObject
         static bool isBinary(const QString& type);
         static QList<Enum> getAllTypes();
         static QStringList getAllNames();
+        static QList<Enum> getAllTypesForUiDropdown();
 
     private:
         Enum type = unknown;
@@ -55,6 +68,7 @@ class API_EXPORT DataType : public QObject
 
         static QList<Enum> values;
         static const QStringList names;
+        static QList<Enum> valuesForUiDropdown;
 };
 
 #endif // DATATYPE_H

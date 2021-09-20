@@ -36,6 +36,8 @@ const QStringList DataType::names = []() -> QStringList
     return list;
 }();
 
+QList<DataType::Enum> DataType::valuesForUiDropdown = {BLOB, INTEGER, NUMERIC, REAL, TEXT};
+
 DataType::DataType()
 {
     setEmpty();
@@ -155,7 +157,7 @@ DataType& DataType::operator=(const DataType& other)
     this->type = other.type;
     this->typeStr = other.typeStr;
     this->precision = other.precision;
-    this->scale = other.scale;
+    this->scale = scale;
     return *this;
 }
 
@@ -188,12 +190,24 @@ bool DataType::isNumeric(DataType::Enum e)
 {
     switch (e)
     {
+        case BIGINT:
+        case DECIMAL:
+        case DOUBLE:
         case INTEGER:
+        case INT:
         case NUMERIC:
         case REAL:
             return true;
         case BLOB:
+        case BOOLEAN:
+        case CHAR:
+        case DATE:
+        case DATETIME:
+        case NONE:
+        case STRING:
         case TEXT:
+        case TIME:
+        case VARCHAR:
         case unknown:
             break;
     }
@@ -209,6 +223,11 @@ bool DataType::isBinary(const QString& type)
 QList<DataType::Enum> DataType::getAllTypes()
 {
     return values;
+}
+
+QList<DataType::Enum> DataType::getAllTypesForUiDropdown()
+{
+    return valuesForUiDropdown;
 }
 
 QStringList DataType::getAllNames()

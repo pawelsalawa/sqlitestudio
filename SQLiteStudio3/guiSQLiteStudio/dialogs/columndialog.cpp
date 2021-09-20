@@ -37,7 +37,7 @@ void ColumnDialog::init()
     ui->precision->setStrict(true, true);
 
     ui->typeCombo->addItem("");
-    for (DataType::Enum type : DataType::getAllTypes())
+    for (DataType::Enum& type : DataType::getAllTypesForUiDropdown())
         ui->typeCombo->addItem(DataType::toString(type));
 
     connect(ui->typeCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateDataType()));
@@ -54,7 +54,7 @@ void ColumnDialog::init()
     connect(ui->constraintsView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editConstraint(QModelIndex)));
     connect(constraintsModel, SIGNAL(constraintsChanged()), this, SLOT(updateValidations()));
     connect(constraintsModel, SIGNAL(constraintsChanged()), this, SLOT(updateState()));
-    connect(ui->typeCombo, SIGNAL(currentTextChanged(const QString&)), this, SLOT(updateValidations()));
+    connect(ui->typeCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateValidations()));
     connect(ui->scale, SIGNAL(modified()), this, SLOT(updateValidations()));
     connect(ui->precision, SIGNAL(modified()), this, SLOT(updateValidations()));
 
