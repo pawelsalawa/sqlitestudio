@@ -14,6 +14,7 @@ class Style : public QProxyStyle
         const ExtendedPalette &extendedPalette() const;
         void setStyle(QStyle* style, const QString& styleName);
         QString name() const;
+        bool isDark() const;
 
     private:
         static Style* instance;

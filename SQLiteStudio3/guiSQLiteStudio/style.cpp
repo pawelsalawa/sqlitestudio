@@ -41,6 +41,11 @@ QString Style::name() const
     return baseStyle()->objectName();
 }
 
+bool Style::isDark() const
+{
+    return standardPalette().text().color().value() >= 80;
+}
+
 Style::Style(QStyle *style)
     : QProxyStyle(style)
 {

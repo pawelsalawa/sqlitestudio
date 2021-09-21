@@ -113,6 +113,10 @@ void EditorWindow::init()
     resultsModel->setDb(currentDb);
     ui->sqlEdit->setDb(currentDb);
 
+    connect(CFG_UI.General.SqlEditorCurrQueryHighlight, SIGNAL(changed(QVariant)), this, SLOT(queryHighlightingConfigChanged(QVariant)));
+    if (CFG_UI.General.SqlEditorCurrQueryHighlight.get())
+        ui->sqlEdit->setCurrentQueryHighlighting(true);
+
     connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
 
     connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
@@ -431,35 +435,19 @@ void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
 {
     QTextCursor cursor = ui->sqlEdit->textCursor();
     int pos = cursor.position();
-    int queryStartPos;
+
     QString contents = ui->sqlEdit->toPlainText();
-    QString query = getQueryWithPosition(contents, pos, &queryStartPos);
-    TokenList tokens = Lexer::tokenize(query);
-    tokens.trim();
-    tokens.trimRight(Token::OPERATOR, ";");
+    QPair boundries = getQueryBoundriesForPosition(contents, pos, fallBackToPreviousIfNecessary);
 
-    if (tokens.size() == 0 && fallBackToPreviousIfNecessary)
-    {
-        // Fallback
-        pos = contents.lastIndexOf(";", pos - 1);
-        if (pos > -1)
-        {
-            query = getQueryWithPosition(contents, pos, &queryStartPos);
-            tokens = Lexer::tokenize(query);
-            tokens.trim();
-            tokens.trimRight(Token::OPERATOR, ";");
-        }
-    }
-
-    if (tokens.size() == 0)
+    if (boundries.second < 0)
     {
         qWarning() << "No tokens to select in EditorWindow::selectCurrentQuery().";
         return;
     }
 
     cursor.clearSelection();
-    cursor.setPosition(tokens.first()->start + queryStartPos);
-    cursor.setPosition(tokens.last()->end + 1 + queryStartPos, QTextCursor::KeepAnchor);
+    cursor.setPosition(boundries.first);
+    cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
     ui->sqlEdit->setTextCursor(cursor);
 }
 
@@ -770,6 +758,11 @@ void EditorWindow::checkTextChangedForSession()
 {
     if (!ui->sqlEdit->getHighlightingSyntax() && !settingSqlContents)
         emit sessionValueChanged();
+}
+
+void EditorWindow::queryHighlightingConfigChanged(const QVariant& enabled)
+{
+    ui->sqlEdit->setCurrentQueryHighlighting(enabled.toBool());
 }
 
 int qHash(EditorWindow::ActionGroup actionGroup)

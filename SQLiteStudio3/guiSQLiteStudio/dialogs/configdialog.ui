@@ -832,16 +832,6 @@
               <string>SQL queries</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
-              <item row="2" column="0">
-               <widget class="QLabel" name="bindParamLimitLabel">
-                <property name="toolTip">
-                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Number of memorized query parameters</string>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="1">
                <widget class="QSpinBox" name="queryHistorySizeSpin">
                 <property name="maximumSize">
@@ -861,13 +851,13 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="queryHistorySizeLabel">
+              <item row="2" column="0">
+               <widget class="QLabel" name="bindParamLimitLabel">
                 <property name="toolTip">
-                 <string>Number of queries kept in the history.</string>
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
                 </property>
                 <property name="text">
-                 <string>History size:</string>
+                 <string>Number of memorized query parameters</string>
                 </property>
                </widget>
               </item>
@@ -897,7 +887,17 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="1" column="0">
+               <widget class="QLabel" name="queryHistorySizeLabel">
+                <property name="toolTip">
+                 <string>Number of queries kept in the history.</string>
+                </property>
+                <property name="text">
+                 <string>History size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
                <widget class="QCheckBox" name="wrapLinesInSqlEditorCheck">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -907,6 +907,19 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.SqlEditorWrapWords</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="highlightCurrentQueryCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It's the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Highlight current query</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.SqlEditorCurrQueryHighlight</string>
                 </property>
                </widget>
               </item>

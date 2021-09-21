@@ -82,6 +82,7 @@ SqlEditor::~SqlEditor()
 void SqlEditor::init()
 {
     highlighter = new SqliteSyntaxHighlighter(document());
+    updateColors();
     setFont(CFG_UI.Fonts.SqlEditor.get());
     initActions();
     setupMenu();
@@ -300,6 +301,15 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
     else
         cur.insertText("--");
 
+}
+
+void SqlEditor::updateColors()
+{
+    currentQueryBrush = style()->standardPalette().base();
+    if (STYLE->isDark())
+        currentQueryBrush.setColor(currentQueryBrush.color().lighter(130));
+    else
+        currentQueryBrush.setColor(currentQueryBrush.color().darker(103));
 }
 
 bool SqlEditor::getHighlightingSyntax() const
@@ -682,9 +692,38 @@ void SqlEditor::highlightParenthesis(QList<QTextEdit::ExtraSelection>& selection
     markMatchedParenthesis(thePar->position, matchedPar->position, selections);
 }
 
-void SqlEditor::highlightCurrentCursorContext()
+void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selections)
+{
+    QTextCursor cursor = textCursor();
+    int curPos = cursor.position();
+    QString contents = cursor.document()->toPlainText();
+    QPair<int,int> boundries = getQueryBoundriesForPosition(contents, curPos, true);
+    if (boundries.second < 0)
+        return;
+
+    QTextEdit::ExtraSelection selection;
+
+    QBrush brush = style()->standardPalette().base();
+    if (STYLE->isDark())
+        brush.setColor(brush.color().lighter(140));
+    else
+        brush.setColor(brush.color().darker(103));
+    selection.format.setBackground(brush);
+
+    cursor.setPosition(boundries.first);
+    cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
+    selection.cursor = cursor;
+    selections.append(selection);
+}
+
+void SqlEditor::highlightCurrentCursorContext(bool delayedCall)
 {
     QList<QTextEdit::ExtraSelection> selections;
+    if (delayedCall)
+        highlightCurrentQuery(selections);
+    else if (currentQueryTimer)
+        currentQueryTimer->start();
+
     highlightCurrentLine(selections);
     highlightParenthesis(selections);
     setExtraSelections(selections);
@@ -1338,6 +1377,7 @@ void SqlEditor::changeFont(const QVariant& font)
 
 void SqlEditor::configModified()
 {
+    updateColors();
     highlightSyntax();
     highlightCurrentCursorContext();
 }
@@ -1430,6 +1470,11 @@ void SqlEditor::toggleComment()
 void SqlEditor::wordWrappingChanged(const QVariant& value)
 {
     setLineWrapMode(value.toBool() ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
+}
+
+void SqlEditor::currentCursorContextDelayedHighlight()
+{
+    highlightCurrentCursorContext(true);
 }
 
 void SqlEditor::keyPressEvent(QKeyEvent* e)
@@ -1606,6 +1651,21 @@ QToolBar* SqlEditor::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
     return nullptr;
+}
+
+void SqlEditor::setCurrentQueryHighlighting(bool enabled)
+{
+    if (enabled && !currentQueryTimer)
+    {
+        currentQueryTimer = new QTimer(this);
+        currentQueryTimer->setInterval(300);
+        currentQueryTimer->setSingleShot(true);
+        connect(currentQueryTimer, SIGNAL(timeout()), this, SLOT(currentCursorContextDelayedHighlight()));
+    }
+    else if (!enabled && currentQueryTimer)
+    {
+        safe_delete(currentQueryTimer);
+    }
 }
 
 QString SqlEditor::getVirtualSqlExpression() const

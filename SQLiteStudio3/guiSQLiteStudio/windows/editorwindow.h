@@ -172,6 +172,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void createViewFromQuery();
         void updateState();
         void checkTextChangedForSession();
+        void queryHighlightingConfigChanged(const QVariant& enabled);
 };
 
 GUI_API_EXPORT int qHash(EditorWindow::ActionGroup action);

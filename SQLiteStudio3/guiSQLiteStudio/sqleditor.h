@@ -18,6 +18,7 @@ class SearchTextDialog;
 class SearchTextLocator;
 class LazyTrigger;
 class Db;
+class QTimer;
 
 #ifdef Q_OS_OSX
 #  define COMPLETE_REQ_KEY Qt::META
@@ -106,6 +107,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void saveSelection();
         void restoreSelection();
         QToolBar* getToolBar(int toolbar) const;
+        void setCurrentQueryHighlighting(bool enabled);
 
         bool getVirtualSqlCompleteSemicolon() const;
         void setVirtualSqlCompleteSemicolon(bool value);
@@ -181,8 +183,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void lineNumberAreaPaintEvent(QPaintEvent* event);
         int lineNumberAreaWidth();
         void highlightParenthesis(QList<QTextEdit::ExtraSelection>& selections);
+        void highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selections);
         void highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selections);
-        void highlightCurrentCursorContext();
+        void highlightCurrentCursorContext(bool delayedCall = false);
         const TextBlockData::Parenthesis* matchParenthesis(QList<const TextBlockData::Parenthesis*> parList, const TextBlockData::Parenthesis* thePar);
         void markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::ExtraSelection>& selections);
         void doBackspace(int repeats = 1);
@@ -211,6 +214,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
+        void updateColors();
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
@@ -236,6 +240,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         int storedSelectionEnd = 0;
         bool richFeaturesEnabled = true;
         bool highlightingSyntax = true;
+        QBrush currentQueryBrush;
+        QTimer* currentQueryTimer = nullptr;
 
         /**
          * @brief virtualSqlExpression
@@ -304,6 +310,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void configModified();
         void toggleComment();
         void wordWrappingChanged(const QVariant& value);
+        void currentCursorContextDelayedHighlight();
 
     signals:
         void errorsChecked(bool haveErrors);

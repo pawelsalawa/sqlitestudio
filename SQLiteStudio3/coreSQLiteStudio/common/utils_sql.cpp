@@ -586,6 +586,33 @@ QString getQueryWithPosition(const QString& queries, int position, int* startPos
     return getQueryWithPosition(queryList, position, startPos);
 }
 
+QPair<int, int> getQueryBoundriesForPosition(const QString& contents, int cursorPosition, bool fallBackToPreviousIfNecessary)
+{
+    int queryStartPos;
+    QString query = getQueryWithPosition(contents, cursorPosition, &queryStartPos);
+    TokenList tokens = Lexer::tokenize(query);
+    tokens.trim();
+    tokens.trimRight(Token::OPERATOR, ";");
+
+    if (tokens.size() == 0 && fallBackToPreviousIfNecessary)
+    {
+        // Fallback
+        cursorPosition = contents.lastIndexOf(";", cursorPosition - 1);
+        if (cursorPosition > -1)
+        {
+            query = getQueryWithPosition(contents, cursorPosition, &queryStartPos);
+            tokens = Lexer::tokenize(query);
+            tokens.trim();
+            tokens.trimRight(Token::OPERATOR, ";");
+        }
+    }
+
+    if (tokens.size() == 0)
+        return QPair<int, int>(-1, -1);
+
+    return QPair<int, int>(tokens.first()->start + queryStartPos, tokens.last()->end + 1 + queryStartPos);
+}
+
 QString trimBindParamPrefix(const QString& param)
 {
     if (param == "?")

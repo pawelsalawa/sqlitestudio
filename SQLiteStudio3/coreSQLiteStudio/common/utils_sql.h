@@ -78,6 +78,7 @@ API_EXPORT QStringList splitQueries(const QString& sql, bool keepEmptyQueries = 
 API_EXPORT QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries = true, bool removeComments = false);
 API_EXPORT QString getQueryWithPosition(const QStringList& queries, int position, int* startPos = nullptr);
 API_EXPORT QString getQueryWithPosition(const QString& queries, int position, int* startPos = nullptr);
+API_EXPORT QPair<int, int> getQueryBoundriesForPosition(const QString& contents, int cursorPosition, bool fallBackToPreviousIfNecessary);
 API_EXPORT QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query);
 API_EXPORT QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query);
 API_EXPORT QueryWithParamNames getQueryWithParamNames(const QString& query);
