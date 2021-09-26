@@ -3,80 +3,32 @@
 #include "services/config.h"
 #include "style.h"
 #include "parser/keywords.h"
+#include "uiconfig.h"
+#include "services/pluginmanager.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>
 #include <QApplication>
 #include <QStyle>
 
-SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent) :
+SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent, const QHash<State, QTextCharFormat>* formats) :
     QSyntaxHighlighter(parent)
 {
-    setupFormats();
+    init(formats);
+}
+
+SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument* parent) :
+    QSyntaxHighlighter(parent)
+{
+    SqliteHighlighterPlugin* plugin = dynamic_cast<SqliteHighlighterPlugin*>(PLUGINS->getLoadedPlugin("SqliteHighlighterPlugin"));
+    init(plugin->getFormats());
+}
+
+void SqliteSyntaxHighlighter::init(const QHash<State, QTextCharFormat>* formats)
+{
+    this->formats = formats;
     setupMapping();
     setCurrentBlockState(regulartTextBlockState);
-    connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(setupFormats()));
-}
-
-void SqliteSyntaxHighlighter::setFormat(SqliteSyntaxHighlighter::State state, QTextCharFormat format)
-{
-    formats[state] = format;
-}
-
-QTextCharFormat SqliteSyntaxHighlighter::getFormat(SqliteSyntaxHighlighter::State state) const
-{
-    return formats[state];
-}
-
-void SqliteSyntaxHighlighter::setupFormats()
-{
-    QTextCharFormat format;
-
-    // Standard
-    format.setForeground(QApplication::style()->standardPalette().text());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[State::STANDARD] = format;
-
-    // Parenthesis
-    format.setForeground(QApplication::style()->standardPalette().text());
-    formats[State::PARENTHESIS] = format;
-
-    // String
-    format.setForeground(STYLE->extendedPalette().editorString());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(true);
-    formats[State::STRING] = format;
-
-    // Keyword
-    format.setForeground(QApplication::style()->standardPalette().windowText());
-    format.setFontWeight(QFont::ExtraBold);
-    format.setFontItalic(false);
-    formats[State::KEYWORD] = format;
-
-    // BindParam
-    format.setForeground(QApplication::style()->standardPalette().linkVisited());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[State::BIND_PARAM] = format;
-
-    // Blob
-    format.setForeground(QApplication::style()->standardPalette().text());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[State::BLOB] = format;
-
-    // Comment
-    format.setForeground(QApplication::style()->standardPalette().dark());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(true);
-    formats[State::COMMENT] = format;
-
-    // Number
-    format.setForeground(QApplication::style()->standardPalette().text());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[State::NUMBER] = format;
 }
 
 void SqliteSyntaxHighlighter::setupMapping()
@@ -127,7 +79,7 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
         return;
 
     // Reset to default
-    QSyntaxHighlighter::setFormat(0, text.length(), formats[State::STANDARD]);
+    QSyntaxHighlighter::setFormat(0, text.length(), formats->value(State::STANDARD));
 
     qint32 idxModifier = 0;
     QString statePrefix = "";
@@ -207,14 +159,14 @@ bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, TokenPtr aheadToken, q
                     );
     bool fatalError = (error && !limitedDamage) || wasError;
 
-    QTextCharFormat format = formats[State::STANDARD];
+    QTextCharFormat format = formats->value(State::STANDARD);
 
     // Applying valid object format.
     applyValidObjectFormat(format, valid, error, wasError);
 
     // Get format for token type (if any)
     if (tokenTypeMapping.contains(token->type))
-        format = formats[tokenTypeMapping[token->type]];
+        format = formats->value(tokenTypeMapping[token->type]);
 
     // Merge with error format (if this is an error).
     applyErrorFormat(format, error, wasError, token->type);
@@ -283,7 +235,7 @@ bool SqliteSyntaxHighlighter::isError(int start, int lgt, bool* limitedDamage)
 {
     start += currentBlock().position();
     int end = start + lgt - 1;
-    for (const Error& error : errors)
+    for (Error& error : errors)
     {
         if (error.from <= start && error.to >= end)
         {
@@ -298,7 +250,7 @@ bool SqliteSyntaxHighlighter::isValid(int start, int lgt)
 {
     start += currentBlock().position();
     int end = start + lgt - 1;
-    for (const DbObject& obj : dbObjects)
+    for (DbObject& obj : dbObjects)
     {
         if (obj.from <= start && obj.to >= end)
             return true;
@@ -383,7 +335,7 @@ SqliteSyntaxHighlighter::DbObject::DbObject(int from, int to) :
 QList<const TextBlockData::Parenthesis*> TextBlockData::parentheses()
 {
     QList<const TextBlockData::Parenthesis*> list;
-    for (const TextBlockData::Parenthesis& par : parData)
+    for (TextBlockData::Parenthesis& par : parData)
         list << &par;
 
     return list;
@@ -399,7 +351,7 @@ void TextBlockData::insertParenthesis(int pos, char c)
 
 const TextBlockData::Parenthesis* TextBlockData::parenthesisForPosision(int pos)
 {
-    for (const Parenthesis& par : parData)
+    for (Parenthesis& par : parData)
     {
         if (par.position == pos)
             return &par;
@@ -440,11 +392,80 @@ QSyntaxHighlighter* SqliteHighlighterPlugin::createSyntaxHighlighter(QWidget* te
 {
     QPlainTextEdit* plainEdit = dynamic_cast<QPlainTextEdit*>(textEdit);
     if (plainEdit)
-        return new SqliteSyntaxHighlighter(plainEdit->document());
+        return new SqliteSyntaxHighlighter(plainEdit->document(), &formats);
 
     QTextEdit* edit = dynamic_cast<QTextEdit*>(textEdit);
     if (edit)
-        return new SqliteSyntaxHighlighter(edit->document());
+        return new SqliteSyntaxHighlighter(edit->document(), &formats);
 
     return nullptr;
+}
+
+void SqliteHighlighterPlugin::refreshFormats()
+{
+    QTextCharFormat format;
+
+    // Standard
+    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(false);
+    formats[SqliteSyntaxHighlighter::State::STANDARD] = format;
+
+    // Parenthesis
+    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    formats[SqliteSyntaxHighlighter::State::PARENTHESIS] = format;
+
+    // String
+    format.setForeground(CFG_UI.Colors.SyntaxStringFg.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(true);
+    formats[SqliteSyntaxHighlighter::State::STRING] = format;
+
+    // Keyword
+    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setFontWeight(QFont::ExtraBold);
+    format.setFontItalic(false);
+    formats[SqliteSyntaxHighlighter::State::KEYWORD] = format;
+
+    // BindParam
+    format.setForeground(CFG_UI.Colors.SyntaxBindParamFg.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(false);
+    formats[SqliteSyntaxHighlighter::State::BIND_PARAM] = format;
+
+    // Blob
+    format.setForeground(CFG_UI.Colors.SyntaxBlobFg.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(false);
+    formats[SqliteSyntaxHighlighter::State::BLOB] = format;
+
+    // Comment
+    format.setForeground(CFG_UI.Colors.SyntaxCommentFg.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(true);
+    formats[SqliteSyntaxHighlighter::State::COMMENT] = format;
+
+    // Number
+    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    format.setFontWeight(QFont::Normal);
+    format.setFontItalic(false);
+    formats[SqliteSyntaxHighlighter::State::NUMBER] = format;
+}
+
+QString SqliteHighlighterPlugin::previewSampleCode() const
+{
+    static_qstring(code,
+                   "SELECT my_column\n"
+                   "  FROM my_table;\n"
+                   "\n"
+                   "SELECT my_column, 'sample string', x'afff'\n"
+                   "  FROM my_table -- sample comment\n"
+                   " WHERE (col1 + col2) > @input_param;"
+                   );
+    return code;
+}
+
+const QHash<SqliteSyntaxHighlighter::State, QTextCharFormat>* SqliteHighlighterPlugin::getFormats() const
+{
+    return &formats;
 }

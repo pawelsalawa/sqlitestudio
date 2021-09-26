@@ -26,6 +26,13 @@ class ConfigMapper;
 class MultiEditorWidgetPlugin;
 class ConfigNotifiablePlugin;
 class UiConfiguredPlugin;
+class SyntaxHighlighterPlugin;
+class QPlainTextEdit;
+class QSyntaxHighlighter;
+class SqlEditor;
+
+#define CFG_UI_NAME "Ui"
+#define CFG_COLORS_NAME "Colors"
 
 class GUI_API_EXPORT ConfigDialog : public QDialog
 {
@@ -58,6 +65,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initShortcuts(CfgCategory* cfgCategory);
         void initLangs();
         void initTooltips();
+        void initColors();
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;
@@ -84,10 +92,19 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
         void addDataType(const QString& typeStr);
         void rollbackPluginConfigs();
+        void rollbackColorsConfig();
         void commitPluginConfigs();
+        void commitColorsConfig();
         void connectMapperSignals(ConfigMapper* mapper);
         QList<CfgMain*> getShortcutsCfgMains() const;
         QList<CfgCategory*> getShortcutsCfgCategories() const;
+        void refreshColorsInSyntaxHighlighters();
+        void colorChanged();
+        QList<QWidget*> prepareCodeSyntaxColorsForStyle();
+        void adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors);
+        void initPreviewEditorsForSyntaxHighlighters();
+        void highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin);
+        void highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin);
 
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;
@@ -105,6 +122,11 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         bool modifiedFlag = false;
         QList<ConfigNotifiablePlugin*> notifiablePlugins;
         bool requiresSchemasRefresh = false;
+        QList<QPlainTextEdit*> colorPreviewEditors;
+        SqlEditor* codePreviewSqlEditor = nullptr;
+        QList<QSyntaxHighlighter*> colorPreviewHighlighters;
+        BiHash<QPlainTextEdit*, SyntaxHighlighterPlugin*> highlightingPluginForPreviewEditor;
+        bool resettingColors = false;
 
     private slots:
         void refreshFormattersPage();
@@ -141,6 +163,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void applyShortcutsFilter(const QString& filter);
         void markRequiresSchemasRefresh();
         void notifyPluginsAboutModification(QWidget*, CfgEntry* key, const QVariant& value);
+        void resetCodeSyntaxColors();
 
     public slots:
         void accept();

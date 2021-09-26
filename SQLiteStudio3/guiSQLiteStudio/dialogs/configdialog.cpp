@@ -21,11 +21,15 @@
 #include "configmapper.h"
 #include "datatype.h"
 #include "uiutils.h"
+#include "common/utils.h"
 #include "translations.h"
 #include "plugins/uiconfiguredplugin.h"
 #include "dbtree/dbtree.h"
 #include "common/compatibility.h"
 #include "windows/editorwindow.h"
+#include "syntaxhighlighterplugin.h"
+#include "sqleditor.h"
+#include "style.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -41,6 +45,7 @@
 #include <QDesktopServices>
 #include <QtUiTools/QUiLoader>
 #include <QKeySequenceEdit>
+#include <QPlainTextEdit>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -60,6 +65,8 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
 ConfigDialog::~ConfigDialog()
 {
+    rollbackColorsConfig();
+
     // Cancel transaction on CfgMain objects from plugins
     rollbackPluginConfigs();
 
@@ -75,6 +82,7 @@ ConfigDialog::~ConfigDialog()
     }
 
     // Delete UI and other resources
+    qDeleteAll(colorPreviewEditors);
     delete ui;
     safe_delete(configMapper);
 
@@ -82,7 +90,6 @@ ConfigDialog::~ConfigDialog()
         delete mapper;
 
     pluginConfigMappers.clear();
-
 }
 
 void ConfigDialog::configureDataEditors(const QString& dataTypeString)
@@ -186,12 +193,14 @@ void ConfigDialog::init()
     initShortcuts();
     initLangs();
     initTooltips();
+    initColors();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
     connect(ui->activeStyleCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateStylePreview()));
     connect(ui->buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(apply()));
     connect(ui->hideBuiltInPluginsCheck, SIGNAL(toggled(bool)), this, SLOT(updateBuiltInPluginsVisibility()));
+    connect(ui->codeColorsResetBtn, SIGNAL(pressed()), this, SLOT(resetCodeSyntaxColors()));
 
     QList<CfgEntry*> entries;
     entries << CFG_UI.General.SortObjects
@@ -216,8 +225,13 @@ void ConfigDialog::init()
     ui->updatesGroup->setVisible(false);
 #endif
 
+    resettingColors = true;
     load();
+    resettingColors = false;
+    colorChanged();
     updateStylePreview();
+
+    ui->categoriesTree->expandAll();
 }
 
 void ConfigDialog::load()
@@ -231,7 +245,20 @@ void ConfigDialog::load()
 void ConfigDialog::save()
 {
     if (MainWindow::getInstance()->currentStyle().compare(ui->activeStyleCombo->currentText(), Qt::CaseInsensitive) != 0)
+    {
+        QList<QWidget*> unmodifiedColors = prepareCodeSyntaxColorsForStyle();
+        bool wasDark = STYLE->isDark();
+
         MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
+
+        if (STYLE->isDark() != wasDark)
+        {
+            resettingColors = true; // to avoid mass events of color change on syntax page
+            adjustSyntaxColorsForStyle(unmodifiedColors);
+            resettingColors = false;
+            colorChanged();
+        }
+    }
 
     QString loadedPlugins = collectLoadedPlugins();
     storeSelectedFormatters();
@@ -239,6 +266,7 @@ void ConfigDialog::save()
     CFG_CORE.General.LoadedPlugins.set(loadedPlugins);
     configMapper->saveFromWidget(ui->stackedWidget, true);
     commitPluginConfigs();
+    commitColorsConfig();
     CFG->commitMassSave();
 
     if (requiresSchemasRefresh)
@@ -320,10 +348,11 @@ void ConfigDialog::applyFilter(const QString &filter)
 
     QHash<QWidget*, QTreeWidgetItem*> pageToCategoryItem = buildPageToCategoryItemMap();
     QSet<QTreeWidgetItem*> matchedCategories;
-    for (QWidget*& page : pageToCategoryItem.keys())
+    for (auto it = pageToCategoryItem.keyBegin(), end = pageToCategoryItem.keyEnd(); it != end; ++it)
     {
         for (QWidget* matched : qAsConst(matchedWidgets))
         {
+            QWidget* page = *it;
             if (page->isAncestorOf(matched))
             {
                 if (!pageToCategoryItem.contains(page))
@@ -567,23 +596,44 @@ void ConfigDialog::rollbackPluginConfigs()
     }
 }
 
+void ConfigDialog::rollbackColorsConfig()
+{
+    CFG_UI.Colors.rollback();
+}
+
 void ConfigDialog::commitPluginConfigs()
 {
     CfgMain* mainCfg = nullptr;
-    for (UiConfiguredPlugin*& plugin : pluginConfigMappers.keys())
+    for (auto it = pluginConfigMappers.keyBegin(), end = pluginConfigMappers.keyEnd(); it != end; ++it)
     {
-        mainCfg = plugin->getMainUiConfig();
+        mainCfg = (*it)->getMainUiConfig();
         if (mainCfg)
         {
             mainCfg->commit();
             mainCfg->begin(); // be prepared for further changes after "Apply"
         }
     }
+
+    auto it = highlightingPluginForPreviewEditor.iterator();
+    while (it.hasNext())
+    {
+        auto item = it.next();
+        if (item.value()->getLanguageName() == "SQL")
+            continue;
+
+        item.value()->refreshFormats();
+    }
+}
+
+void ConfigDialog::commitColorsConfig()
+{
+    CFG_UI.Colors.commit();
+    CFG_UI.Colors.begin();
 }
 
 void ConfigDialog::connectMapperSignals(ConfigMapper* mapper)
 {
-    connect(mapper, SIGNAL(modified()), this, SLOT(markModified()));
+    connect(mapper, SIGNAL(modified(QWidget*)), this, SLOT(markModified()));
     connect(mapper, SIGNAL(notifyEnabledWidgetModified(QWidget*,CfgEntry*,QVariant)), this, SLOT(notifyPluginsAboutModification(QWidget*,CfgEntry*,QVariant)));
 }
 
@@ -891,6 +941,10 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
     if (notifiablePlugin && notifiablePlugins.contains(notifiablePlugin))
         notifiablePlugins.removeOne(notifiablePlugin);
 
+    // Update code colors page
+    if (type->isForPluginType<SyntaxHighlighterPlugin>())
+        highlighterPluginUnloaded(dynamic_cast<SyntaxHighlighterPlugin*>(plugin));
+
     // Deinit page
     deinitPluginPage(plugin);
 
@@ -903,6 +957,10 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfi
     // Update formatters page
     if (type->isForPluginType<CodeFormatterPlugin>())
         codeFormatterLoaded();
+
+    // Update code colors page
+    if (type->isForPluginType<SyntaxHighlighterPlugin>())
+        highlighterPluginLoaded(dynamic_cast<SyntaxHighlighterPlugin*>(plugin));
 
     // Init page
     if (!initPluginPage(plugin, skipConfigLoading))
@@ -954,6 +1012,13 @@ void ConfigDialog::updateBuiltInPluginsVisibility()
     }
 }
 
+void ConfigDialog::refreshColorsInSyntaxHighlighters()
+{
+    auto it = highlightingPluginForPreviewEditor.iterator();
+    while (it.hasNext())
+        it.next().value()->refreshFormats();
+}
+
 void ConfigDialog::applyShortcutsFilter(const QString &filter)
 {
     QTreeWidgetItem* categoryItem = nullptr;
@@ -991,6 +1056,121 @@ void ConfigDialog::notifyPluginsAboutModification(QWidget*, CfgEntry* key, const
 {
     for (ConfigNotifiablePlugin*& plugin : notifiablePlugins)
         plugin->configModified(key, value);
+}
+
+void ConfigDialog::resetCodeSyntaxColors()
+{
+    resettingColors = true;
+    for (QWidget*& widget : configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup))
+        configMapper->applyConfigDefaultValueToWidget(widget);
+
+    resettingColors = false;
+    colorChanged();
+}
+
+void ConfigDialog::colorChanged()
+{
+    refreshColorsInSyntaxHighlighters();
+    for (QSyntaxHighlighter*& highligter : colorPreviewHighlighters)
+        highligter->rehighlight();
+
+    if (codePreviewSqlEditor)
+        codePreviewSqlEditor->colorsConfigChanged();
+}
+
+void ConfigDialog::adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors)
+{
+    for (QWidget*& w : unmodifiedColors)
+        configMapper->applyConfigDefaultValueToWidget(w);
+}
+
+void ConfigDialog::initPreviewEditorsForSyntaxHighlighters()
+{
+    for (SyntaxHighlighterPlugin*& plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
+        highlighterPluginLoaded(plugin);
+}
+
+void ConfigDialog::highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin)
+{
+    QPlainTextEdit* editor = nullptr;
+    if (plugin->getLanguageName() == "SQL")
+    {
+        // For SQL there is assumed just one, built-in plugin
+        codePreviewSqlEditor = new SqlEditor(ui->codeColorsPreviewTabWidget);
+        codePreviewSqlEditor->setShowLineNumbers(false);
+        codePreviewSqlEditor->setCurrentQueryHighlighting(true);
+        editor = codePreviewSqlEditor;
+    }
+    else
+    {
+        editor = new QPlainTextEdit(ui->codeColorsPreviewTabWidget);
+        editor->setFont(CFG_UI.Fonts.SqlEditor.get());
+        colorPreviewHighlighters << plugin->createSyntaxHighlighter(editor);
+    }
+
+    editor->setPlainText(plugin->previewSampleCode());
+    editor->setReadOnly(true);
+    colorPreviewEditors << editor;
+    highlightingPluginForPreviewEditor.insert(editor, plugin);
+    ui->codeColorsPreviewTabWidget->addTab(editor, plugin->getLanguageName());
+}
+
+void ConfigDialog::highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin)
+{
+    QPlainTextEdit* editor = highlightingPluginForPreviewEditor.valueByRight(plugin);
+    if (!editor)
+    {
+        qCritical() << "Highlighter plugin unloaded for which there is no preview editor! Application crash is possible. Plugin:" << plugin->getName();
+        return;
+    }
+
+    QTextDocument* document = editor->document();
+    QSyntaxHighlighter* highlighter = findFirst<QSyntaxHighlighter>(colorPreviewHighlighters, [document](auto highlighter) {return highlighter->document() == document;});
+
+    ui->codeColorsPreviewTabWidget->removeTab(ui->codeColorsPreviewTabWidget->indexOf(editor));
+    colorPreviewHighlighters.removeOne(highlighter);
+    colorPreviewEditors.removeOne(editor);
+    delete editor;
+
+    highlightingPluginForPreviewEditor.removeRight(plugin);
+}
+
+QList<QWidget*> ConfigDialog::prepareCodeSyntaxColorsForStyle()
+{
+    QList<QWidget*> unmodified;
+    for (QWidget*& w : configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup))
+    {
+        CfgEntry* entry = configMapper->getConfigForWidget(w);
+        if (entry->getDefultValue() == entry->get())
+            unmodified << w;
+    }
+    return unmodified;
+}
+
+void ConfigDialog::initColors()
+{
+    CFG_UI.Colors.begin();
+    initPreviewEditorsForSyntaxHighlighters();
+    connect(configMapper, &ConfigMapper::modified,
+            [this](QWidget* widget)
+            {
+                CfgEntry* key = configMapper->getBindConfigForWidget(widget);
+                if (!key)
+                {
+                    qCritical() << "Missing CfgEntry in Colors configuration for widget" << widget->objectName();
+                    return;
+                }
+
+                if (key->getCategory() != CFG_UI.Colors)
+                    return;
+
+                configMapper->saveFromWidget(widget, key);
+
+                if (resettingColors)
+                    return;
+
+                colorChanged();
+            });
 }
 
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)
@@ -1235,8 +1415,11 @@ void ConfigDialog::initPlugins()
 
     updatePluginCategoriesVisibility();
 
+    // Using old connect() syntax, becase the pointer syntax does not work correctly with signals declared in an interface class.
+    // At least that's the case with Qt 5.15.2.
     connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginAboutToUnload(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
 }
 
 void ConfigDialog::initPluginsPage()
@@ -1347,10 +1530,10 @@ void ConfigDialog::initPluginsPage()
 
 bool ConfigDialog::initPluginPage(Plugin* plugin, bool skipConfigLoading)
 {
-    if (!dynamic_cast<UiConfiguredPlugin*>(plugin))
+    UiConfiguredPlugin* cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
+    if (!cfgPlugin)
         return false;
 
-    UiConfiguredPlugin* cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
     QString pluginName = plugin->getName();
     QString formName = cfgPlugin->getConfigUiForm();
     QWidget* widget = FORMS->createWidget(formName);
@@ -1581,6 +1764,11 @@ void ConfigDialog::initTooltips()
         GET_SHORTCUT_ENTRY(EditorWindow, EXEC_ONE_QUERY)->get().toString(),
         GET_SHORTCUT_ENTRY(EditorWindow, EXEC_ALL_QUERIES)->get().toString()
         ));
+
+    setValidStateTooltip(ui->commonCodeColorsGroup,
+                         tr("Here you can configure colors for code syntax highlighting."
+                            "They are shared across different languages - not only for SQL, but also JavaScript and others."));
+
 }
 
 bool ConfigDialog::isPluginCategoryItem(QTreeWidgetItem *item) const

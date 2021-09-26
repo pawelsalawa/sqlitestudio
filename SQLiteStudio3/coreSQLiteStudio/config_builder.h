@@ -6,7 +6,7 @@
 #include "config_builder/cfgentry.h"
 #include "config_builder/cfglazyinitializer.h"
 
-#define CFG_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString())
+#define CFG_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),API_EXPORT)
 
 #define CFG_CATEGORY(Name,Body) \
     _CFG_CATEGORY_WITH_TITLE(Name,Body,QString())
@@ -38,20 +38,20 @@
 // They are called from macros above.
 
 #define _CFG_CATEGORIES_WITH_METANAME(Type,Body,MetaName) \
-    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,QString())
+    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,QString(),API_EXPORT)
 
 #define _CFG_CATEGORIES_WITH_TITLE(Type,Body,Title) \
-    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",Title)
+    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",Title,API_EXPORT)
 
-#define _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,Title) \
+#define _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,Title,ExportType) \
     namespace Cfg\
     {\
-        struct API_EXPORT Type : public CfgMain\
+        struct ExportType Type : public CfgMain\
         {\
             Type(bool persistable) : CfgMain(#Type, persistable, MetaName, Title) {}\
             Body\
         };\
-        API_EXPORT Type* get##Type##Instance();\
+        ExportType Type* get##Type##Instance();\
     }
 
 #define _CFG_DEFINE(Type, Persistant) \

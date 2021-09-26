@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include "coreSQLiteStudio_global.h"
+#include <functional>
 #include <QList>
 #include <QMutableListIterator>
 #include <QSet>
@@ -302,6 +303,36 @@ QList<T> reverse(const QList<T>& list)
     QList<T> result;
     for (const T& el : list)
         result.prepend(el);
+
+    return result;
+}
+
+template <class S, class T>
+QList<T> map(const QList<S>& list, std::function<T(S)> transformer)
+{
+    QList<T> result;
+    for (const S& el : list)
+        result << transformer(el);
+
+    return result;
+}
+
+template <class S, class T>
+QHash<S, T> toHash(const QList<S>& list, std::function<T(S)> transformer)
+{
+    QHash<S, T> result;
+    for (const S& el : list)
+        result[el] = transformer(el);
+
+    return result;
+}
+
+template <class S, class T>
+QSet<T> map(const QSet<S>& set, std::function<T(S)> transformer)
+{
+    QSet<T> result;
+    for (const S& el : set)
+        result << transformer(el);
 
     return result;
 }

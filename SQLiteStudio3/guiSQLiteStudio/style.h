@@ -5,11 +5,13 @@
 #include <QPalette>
 #include <QProxyStyle>
 
+class CfgEntry;
 
 class Style : public QProxyStyle
 {
     public:
         static Style* getInstance();
+        static bool isDark(const QStyle* style);
 
         const ExtendedPalette &extendedPalette() const;
         void setStyle(QStyle* style, const QString& styleName);

@@ -1,9 +1,11 @@
 #include "uiconfig.h"
+#include "style.h"
 #include <QApplication>
 #include <QPlainTextEdit>
 #include <QStyle>
 #include <QStandardItem>
 #include <QDir>
+#include <QDebug>
 
 namespace Cfg
 {
@@ -43,6 +45,65 @@ namespace Cfg
         return font;
     }
 
+    QVariant getDefaultSyntaxParenthesisBg()
+    {
+        return STYLE->standardPalette().windowText();
+    }
+
+    QVariant getDefaultSyntaxParenthesisFg()
+    {
+        return STYLE->standardPalette().window();
+    }
+
+    QVariant getDefaultSyntaxCurrentLineBg()
+    {
+        return STYLE->extendedPalette().editorLineBase();
+    }
+
+    QVariant getDefaultSyntaxCurrentQueryBg()
+    {
+        return STYLE->extendedPalette().editorCurrentQueryBase();
+    }
+
+    QVariant getDefaultSyntaxValidObject()
+    {
+        return STYLE->standardPalette().link();
+    }
+
+    QVariant getDefaultSyntaxForeground()
+    {
+        return STYLE->standardPalette().text();
+    }
+
+    QVariant getDefaultSyntaxStringFg()
+    {
+        return STYLE->extendedPalette().editorString();
+    }
+
+    QVariant getDefaultSyntaxKeywordFg()
+    {
+        return STYLE->standardPalette().windowText();
+    }
+
+    QVariant getDefaultSyntaxBindParamFg()
+    {
+        return STYLE->standardPalette().linkVisited();
+    }
+
+    QVariant getDefaultSyntaxBlobFg()
+    {
+        return STYLE->standardPalette().text();
+    }
+
+    QVariant getDefaultSyntaxCommentFg()
+    {
+        return STYLE->standardPalette().dark();
+    }
+
+    QVariant getDefaultSyntaxNumberFg()
+    {
+        return STYLE->standardPalette().text();
+    }
 }
 
 CFG_DEFINE(Ui)

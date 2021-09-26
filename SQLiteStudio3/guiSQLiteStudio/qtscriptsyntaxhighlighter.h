@@ -34,17 +34,35 @@
 #include "plugins/builtinplugin.h"
 #include "syntaxhighlighterplugin.h"
 
+#include <QTextCharFormat>
+
 class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
 {
     Q_OBJECT
 
     SQLITESTUDIO_PLUGIN_TITLE("JavaScript highlighter")
     SQLITESTUDIO_PLUGIN_DESC("JavaScript syntax highlighter.")
-    SQLITESTUDIO_PLUGIN_VERSION(10100)
+    SQLITESTUDIO_PLUGIN_VERSION(10200)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
+        enum State
+        {
+            NORMAL,
+            NUMBER,
+            KEYWORDS,
+            COMMENT,
+            STRING,
+            EXPRESSION
+        };
+
         QString getLanguageName() const;
         QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const;
+        void refreshFormats();
+        QString previewSampleCode() const;
+
+    private:
+        QHash<State, QTextCharFormat> formats;
+
 };
 #endif // JAVASCRIPTSYNTAXHIGHLIGHTER_H

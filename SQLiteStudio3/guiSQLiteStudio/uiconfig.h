@@ -7,12 +7,26 @@
 #include <QHash>
 #include <QColor>
 
+#define CFG_UI_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),GUI_API_EXPORT)
+
 namespace Cfg
 {
     GUI_API_EXPORT QVariant getStyleDefaultValue();
     GUI_API_EXPORT QVariant getDefaultTextEditorFont();
     GUI_API_EXPORT QVariant getDefaultItemViewFont();
     GUI_API_EXPORT QVariant getDefaultDbTreeLabelFont();
+    QVariant getDefaultSyntaxParenthesisBg();
+    QVariant getDefaultSyntaxParenthesisFg();
+    QVariant getDefaultSyntaxCurrentLineBg();
+    QVariant getDefaultSyntaxCurrentQueryBg();
+    QVariant getDefaultSyntaxValidObject();
+    QVariant getDefaultSyntaxForeground();
+    QVariant getDefaultSyntaxStringFg();
+    QVariant getDefaultSyntaxKeywordFg();
+    QVariant getDefaultSyntaxBindParamFg();
+    QVariant getDefaultSyntaxBlobFg();
+    QVariant getDefaultSyntaxCommentFg();
+    QVariant getDefaultSyntaxNumberFg();
     typedef QHash<QString,QVariant> Session;
     typedef QHash<QString,QVariant> DataEditorsOrder;
     enum InsertRowPlacement
@@ -23,13 +37,28 @@ namespace Cfg
     };
 }
 
-CFG_CATEGORIES(Ui,
+CFG_UI_CATEGORIES(Ui,
     CFG_CATEGORY(Fonts,
         CFG_ENTRY(QFont,        SqlEditor,               &Cfg::getDefaultTextEditorFont)
         CFG_ENTRY(QFont,        DataView,                &Cfg::getDefaultItemViewFont)
         CFG_ENTRY(QFont,        DbTree,                  &Cfg::getDefaultItemViewFont)
         CFG_ENTRY(QFont,        DbTreeLabel,             &Cfg::getDefaultDbTreeLabelFont)
         CFG_ENTRY(QFont,        StatusField,             &Cfg::getDefaultItemViewFont)
+    )
+
+    CFG_CATEGORY(Colors,
+        CFG_ENTRY(QColor,       SyntaxParenthesisBg,  &Cfg::getDefaultSyntaxParenthesisBg)
+        CFG_ENTRY(QColor,       SyntaxParenthesisFg,  &Cfg::getDefaultSyntaxParenthesisFg)
+        CFG_ENTRY(QColor,       SyntaxCurrentLineBg,  &Cfg::getDefaultSyntaxCurrentLineBg)
+        CFG_ENTRY(QColor,       SyntaxCurrentQueryBg, &Cfg::getDefaultSyntaxCurrentQueryBg)
+        CFG_ENTRY(QColor,       SyntaxValidObject,    &Cfg::getDefaultSyntaxValidObject)
+        CFG_ENTRY(QColor,       SyntaxForeground,     &Cfg::getDefaultSyntaxForeground)
+        CFG_ENTRY(QColor,       SyntaxStringFg,       &Cfg::getDefaultSyntaxStringFg)
+        CFG_ENTRY(QColor,       SyntaxKeywordFg,      &Cfg::getDefaultSyntaxKeywordFg)
+        CFG_ENTRY(QColor,       SyntaxBindParamFg,    &Cfg::getDefaultSyntaxBindParamFg)
+        CFG_ENTRY(QColor,       SyntaxBlobFg,         &Cfg::getDefaultSyntaxBlobFg)
+        CFG_ENTRY(QColor,       SyntaxCommentFg,      &Cfg::getDefaultSyntaxCommentFg)
+        CFG_ENTRY(QColor,       SyntaxNumberFg,       &Cfg::getDefaultSyntaxNumberFg)
     )
 
     CFG_CATEGORY(DbList,

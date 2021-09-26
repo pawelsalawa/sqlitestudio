@@ -15,3 +15,6 @@ HEADERS += pythonsyntaxhighlighter.h\
 OTHER_FILES += \
     pythonsyntaxhighlighter.json
 
+win32: {
+    LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
+}

@@ -24,6 +24,9 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void saveFromWidget(QWidget* widget, bool noTransaction = false);
         void setInternalCustomConfigWidgets(const QList<CustomConfigWidgetPlugin*>& value);
         bool isPersistant() const;
+        void applyConfigDefaultValueToWidget(QWidget *widget);
+        QList<QWidget*> getAllConfigWidgets(QWidget* parent);
+        CfgEntry* getConfigForWidget(QWidget* widget);
 
         /**
          * @brief Scans widget and binds widgets to proper config objects.
@@ -74,11 +77,11 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void clearExtraWidgets();
         void ignoreWidget(QWidget* w);
         void removeIgnoredWidget(QWidget* w);
+        void saveFromWidget(QWidget* widget, CfgEntry* cfgEntry);
 
     private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
-        void applyConfigDefaultValueToWidget(QWidget *widget);
         void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void handleConfigComboBox(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void connectCommonNotifierToWidget(QWidget *widget, CfgEntry* key);
@@ -86,7 +89,6 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void applyCommonConfigToWidget(QWidget *widget, const QVariant& value, CfgEntry* cfgEntry);
         bool applyCustomConfigToWidget(CfgEntry* key, QWidget *widget, const QVariant& value);
         void saveWidget(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
-        void saveFromWidget(QWidget* widget, CfgEntry* cfgEntry);
         void saveCommonConfigFromWidget(QWidget *widget, CfgEntry* key);
         bool saveCustomConfigFromWidget(QWidget *widget, CfgEntry* key);
         QVariant getCommonConfigValueFromWidget(QWidget *widget, CfgEntry* key, bool& ok);
@@ -96,11 +98,11 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
-        QList<QWidget*> getAllConfigWidgets(QWidget* parent);
         void handleDependencySettings(QWidget* widget);
         void handleBoolDependencySettings(const QString& boolDependency, QWidget* widget);
         void handleDependencyChange(QWidget* widget);
         bool handleBoolDependencyChange(QWidget* widget);
+        QString getConfigFullKeyForWidget(QWidget* widget);
 
         QWidget* configDialogWidget = nullptr;
         QList<CfgMain*> cfgMainList;
@@ -122,13 +124,14 @@ class GUI_API_EXPORT ConfigMapper : public QObject
 
     private slots:
         void handleModified();
+        void handleCustomModified();
         void entryChanged(const QVariant& newValue);
         void uiConfigEntryChanged();
         void updateConfigComboModel(const QVariant& value);
         void notifiableConfigKeyChanged();
 
     signals:
-        void modified();
+        void modified(QWidget* widget);
         void notifyEnabledWidgetModified(QWidget* widget, CfgEntry* key, const QVariant& value);
 };
 

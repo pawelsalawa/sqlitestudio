@@ -1,5 +1,7 @@
 #include "qtscriptsyntaxhighlighter.h"
 #include "style.h"
+#include "uiconfig.h"
+#include "common/global.h"
 #include <QApplication>
 #include <QStyle>
 #include <QPlainTextEdit>
@@ -15,8 +17,7 @@
 class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
 {
     public:
-        explicit JavaScriptSyntaxHighlighter(QTextDocument *parent = 0);
-        void mark(const QString &str, Qt::CaseSensitivity caseSensitivity);
+        explicit JavaScriptSyntaxHighlighter(QTextDocument *parent, const QHash<JavaScriptHighlighterPlugin::State, QTextCharFormat>* formats);
 
     protected:
         void highlightBlock(const QString &text);
@@ -26,18 +27,11 @@ class GUI_API_EXPORT JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
 
         QSet<QString> keywords;
         QSet<QString> knownIds;
-        QString markString;
-        Qt::CaseSensitivity markCaseSensitivity;
-        QTextCharFormat normalFormat;
-        QTextCharFormat keywordsFormat;
-        QTextCharFormat commentFormat;
-        QTextCharFormat stringFormat;
-        QTextCharFormat expressionFormat;
+        const QHash<JavaScriptHighlighterPlugin::State, QTextCharFormat>* formats = nullptr;
 };
 
-JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
-    : QSyntaxHighlighter(parent)
-    , markCaseSensitivity(Qt::CaseInsensitive)
+JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent, const QHash<JavaScriptHighlighterPlugin::State, QTextCharFormat>* formats)
+    : QSyntaxHighlighter(parent), formats(formats)
 {
     // https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words
     keywords << "break";
@@ -213,9 +207,6 @@ JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
     knownIds << "window";
     knownIds << "navigator";
     knownIds << "userAgent";
-
-    keywordsFormat.setFontWeight(QFont::Bold);
-    commentFormat.setFontItalic(true);
 }
 
 void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
@@ -231,14 +222,8 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
         Regex = 5
     };
 
-    commentFormat.setForeground(QApplication::style()->standardPalette().dark());
-    keywordsFormat.setForeground(QApplication::style()->standardPalette().windowText());
-    keywordsFormat.setFontWeight(QFont::Bold);
-    normalFormat.setForeground(QApplication::style()->standardPalette().text());
-    stringFormat.setForeground(STYLE->extendedPalette().editorString());
-    expressionFormat.setForeground(STYLE->extendedPalette().editorExpression());
-
     int state = previousBlockState();
+    setFormat(0, text.length(), formats->value(JavaScriptHighlighterPlugin::NORMAL));
     int start = 0;
     int i = 0;
     while (i <= text.length())
@@ -278,7 +263,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 else if (ch == '/' && next == '/')
                 {
                     i = text.length();
-                    setFormat(start, text.length(), commentFormat);
+                    setFormat(start, text.length(), formats->value(JavaScriptHighlighterPlugin::COMMENT));
                 }
                 else if (ch == '/' && next != '*')
                 {
@@ -288,7 +273,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 else
                 {
                     if (!QString("(){}[]").contains(ch))
-                        setFormat(start, 1, normalFormat);
+                        setFormat(start, 1, formats->value(JavaScriptHighlighterPlugin::NORMAL));
                     ++i;
                     state = Start;
                 }
@@ -297,7 +282,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
             case Number:
                 if (ch.isSpace() || !ch.isDigit())
                 {
-                    setFormat(start, i - start, normalFormat);
+                    setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::NUMBER));
                     state = Start;
                 }
                 else
@@ -310,9 +295,9 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 {
                     QString token = text.mid(start, i - start).trimmed();
                     if (keywords.contains(token))
-                        setFormat(start, i - start, keywordsFormat);
+                        setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::KEYWORDS));
                     else if (knownIds.contains(token))
-                        setFormat(start, i - start, normalFormat);
+                        setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::NORMAL));
 
                     state = Start;
                 }
@@ -328,7 +313,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                     if (prev != '\\')
                     {
                         ++i;
-                        setFormat(start, i - start, stringFormat);
+                        setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::STRING));
                         if (ch == '`')
                             highlightTemplateExpressions(text, start, i);
 
@@ -347,7 +332,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                 {
                     ++i;
                     ++i;
-                    setFormat(start, i - start, commentFormat);
+                    setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::COMMENT));
                     state = Start;
                 }
                 else
@@ -362,7 +347,7 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
                     if (prev != '\\')
                     {
                         ++i;
-                        setFormat(start, i - start, expressionFormat);
+                        setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::EXPRESSION));
                         state = Start;
                     }
                     else
@@ -380,26 +365,9 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
     }
 
     if (state == Comment)
-        setFormat(start, text.length(), commentFormat);
+        setFormat(start, text.length(), formats->value(JavaScriptHighlighterPlugin::COMMENT));
     else
         state = Start;
-
-    if (!markString.isEmpty())
-    {
-        int pos = 0;
-        int len = markString.length();
-        QTextCharFormat markerFormat;
-        markerFormat.setBackground(QApplication::style()->standardPalette().alternateBase());
-        markerFormat.setForeground(QApplication::style()->standardPalette().text());
-        for (;;)
-        {
-            pos = text.indexOf(markString, pos, markCaseSensitivity);
-            if (pos < 0)
-                break;
-            setFormat(pos, len, markerFormat);
-            ++pos;
-        }
-    }
 
     setCurrentBlockState(state);
 }
@@ -421,7 +389,7 @@ void JavaScriptSyntaxHighlighter::highlightTemplateExpressions(const QString& te
                 if (prev != '\\')
                 {
                     ++i;
-                    setFormat(start, i - start, expressionFormat);
+                    setFormat(start, i - start, formats->value(JavaScriptHighlighterPlugin::EXPRESSION));
                     expr = false;
                 }
                 else
@@ -445,14 +413,6 @@ void JavaScriptSyntaxHighlighter::highlightTemplateExpressions(const QString& te
     }
 }
 
-void JavaScriptSyntaxHighlighter::mark(const QString &str, Qt::CaseSensitivity caseSensitivity)
-{
-    markString = str;
-    markCaseSensitivity = caseSensitivity;
-    rehighlight();
-}
-
-
 QString JavaScriptHighlighterPlugin::getLanguageName() const
 {
     return QStringLiteral("JavaScript");
@@ -462,11 +422,50 @@ QSyntaxHighlighter* JavaScriptHighlighterPlugin::createSyntaxHighlighter(QWidget
 {
     QPlainTextEdit* plainEdit = dynamic_cast<QPlainTextEdit*>(textEdit);
     if (plainEdit)
-        return new JavaScriptSyntaxHighlighter(plainEdit->document());
+        return new JavaScriptSyntaxHighlighter(plainEdit->document(), &formats);
 
     QTextEdit* edit = dynamic_cast<QTextEdit*>(textEdit);
     if (edit)
-        return new JavaScriptSyntaxHighlighter(edit->document());
+        return new JavaScriptSyntaxHighlighter(edit->document(), &formats);
 
     return nullptr;
+}
+
+void JavaScriptHighlighterPlugin::refreshFormats()
+{
+    QTextCharFormat format;
+
+    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    formats[NORMAL] = format;
+
+    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    formats[NUMBER] = format;
+
+    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setFontWeight(QFont::Bold);
+    formats[KEYWORDS] = format;
+
+    format.setFontItalic(true);
+    format.setFontWeight(QFont::Normal);
+    format.setForeground(CFG_UI.Colors.SyntaxCommentFg.get());
+    formats[COMMENT] = format;
+
+    format.setFontItalic(false);
+    format.setForeground(CFG_UI.Colors.SyntaxStringFg.get());
+    formats[STRING] = format;
+
+    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    formats[EXPRESSION] = format;
+}
+
+QString JavaScriptHighlighterPlugin::previewSampleCode() const
+{
+    static_qstring(code,
+                   "function myFunction() { // Declare a function\n"
+                   "    return \"Hello World!\";\n"
+                   "}\n"
+                   "\n"
+                   "myFunction(); // Call the function"
+                   );
+    return code;
 }

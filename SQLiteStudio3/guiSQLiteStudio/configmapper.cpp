@@ -329,17 +329,35 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, CfgEntry* cfgEntry, cons
 
 void ConfigMapper::applyConfigDefaultValueToWidget(QWidget* widget)
 {
-    QString keyStr = widget->property(CFG_MODEL_PROPERTY).toString();
-    QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
-    if (!allConfigEntries.contains(keyStr))
+    CfgEntry* key = getConfigForWidget(widget);
+    if (!key)
     {
-        qWarning() << "Asked to apply config value to widget" << widget << "but it's config entry key was not found:" << keyStr;
+        qWarning() << "Asked to apply config value to widget" << widget
+                   << "but it's config entry key was not found.";
         return;
     }
 
-    CfgEntry* key = allConfigEntries[keyStr];
     applyConfigToWidget(widget, key, key->getDefultValue());
 }
+
+CfgEntry* ConfigMapper::getConfigForWidget(QWidget* widget)
+{
+    QString keyStr = getConfigFullKeyForWidget(widget);
+    QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
+    if (!allConfigEntries.contains(keyStr))
+    {
+        qWarning() << "Config entry with key not found:" << keyStr;
+        return nullptr;
+    }
+
+    return allConfigEntries[keyStr];
+}
+
+QString ConfigMapper::getConfigFullKeyForWidget(QWidget* widget)
+{
+    return widget->property(CFG_MODEL_PROPERTY).toString();
+}
+
 
 void ConfigMapper::handleSpecialWidgets(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
@@ -372,7 +390,7 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    for (CustomConfigWidgetPlugin* handler : handlers)
+    for (CustomConfigWidgetPlugin*& handler : handlers)
     {
         if (handler->isConfigForWidget(key, widget))
         {
@@ -389,11 +407,11 @@ bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgE
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    for (CustomConfigWidgetPlugin* handler : handlers)
+    for (CustomConfigWidgetPlugin*& handler : handlers)
     {
         if (handler->isConfigForWidget(cfgEntry, widget))
         {
-            connect(widget, handler->getModifiedNotifier(), this, SIGNAL(modified()));
+            connect(widget, handler->getModifiedNotifier(), this, SLOT(handleCustomModified()));
             if (widget->property(CFG_NOTIFY_PROPERTY).isValid() && widget->property(CFG_NOTIFY_PROPERTY).toBool())
                 connect(widget, handler->getModifiedNotifier(), this, SLOT(uiConfigEntryChanged()));
 
@@ -430,7 +448,7 @@ bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    for (CustomConfigWidgetPlugin* plugin : handlers)
+    for (CustomConfigWidgetPlugin*& plugin : handlers)
     {
         if (plugin->isConfigForWidget(key, widget))
         {
@@ -470,7 +488,7 @@ QHash<QString, CfgEntry *> ConfigMapper::getAllConfigEntries()
     if (allEntries.isEmpty())
     {
         QString key;
-        for (CfgMain* cfgMain : cfgMainList)
+        for (CfgMain*& cfgMain : cfgMainList)
         {
             QHashIterator<QString,CfgCategory*> catIt(cfgMain->getCategories());
             while (catIt.hasNext())
@@ -627,7 +645,13 @@ void ConfigMapper::handleModified()
 
     handleDependencyChange(widget);
 
-    emit modified();
+    emit modified(widget);
+}
+
+void ConfigMapper::handleCustomModified()
+{
+    QWidget* widget = dynamic_cast<QWidget*>(sender());
+    emit modified(widget);
 }
 
 void ConfigMapper::entryChanged(const QVariant& newValue)

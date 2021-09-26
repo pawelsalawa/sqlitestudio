@@ -12,6 +12,8 @@ class GUI_API_EXPORT SyntaxHighlighterPlugin : virtual public Plugin
     public:
         virtual QString getLanguageName() const = 0;
         virtual QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const = 0;
+        virtual void refreshFormats() = 0;
+        virtual QString previewSampleCode() const = 0;
 };
 
 #endif // SYNTAXHIGHLIGHTERPLUGIN_H

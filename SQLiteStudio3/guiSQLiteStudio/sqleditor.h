@@ -214,7 +214,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
-        void updateColors();
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
@@ -311,6 +310,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void toggleComment();
         void wordWrappingChanged(const QVariant& value);
         void currentCursorContextDelayedHighlight();
+
+    public slots:
+        void colorsConfigChanged();
 
     signals:
         void errorsChecked(bool haveErrors);

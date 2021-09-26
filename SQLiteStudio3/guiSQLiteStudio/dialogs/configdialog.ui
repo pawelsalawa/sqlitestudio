@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
+    <width>866</width>
     <height>539</height>
    </rect>
   </property>
@@ -14,6 +14,16 @@
    <string>Configuration</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_5">
+   <item row="4" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QWidget" name="mainWidget" native="true">
      <property name="contextMenuPolicy">
@@ -148,6 +158,18 @@
                 <normaloff>:/icons/img/config_font.png</normaloff>:/icons/img/config_font.png</iconset>
               </property>
              </item>
+             <item>
+              <property name="text">
+               <string>Code colors</string>
+              </property>
+              <property name="statusTip">
+               <string>codeColorsPage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_colors.png</normaloff>:/icons/img/config_colors.png</iconset>
+              </property>
+             </item>
             </item>
             <item>
              <property name="text">
@@ -217,7 +239,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1011,6 +1033,369 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="codeColorsPage">
+          <layout class="QGridLayout" name="gridLayout_6">
+           <property name="horizontalSpacing">
+            <number>15</number>
+           </property>
+           <item row="0" column="2">
+            <widget class="QTabWidget" name="codeColorsPreviewTabWidget"/>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <spacer name="codeColorsSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QGroupBox" name="commonCodeColorsGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Code syntax colors</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="2" column="0">
+               <widget class="QLabel" name="keywordFgLabel">
+                <property name="text">
+                 <string>Keyword foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="ColorButton" name="stringFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxStringFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="ColorButton" name="commentFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxCommentFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ColorButton" name="keywordFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxKeywordFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="regularFgLabel">
+                <property name="text">
+                 <string>Regular foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="ColorButton" name="matchedParBgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxParenthesisBg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="stringFgLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>String foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="ColorButton" name="numberFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxNumberFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="ColorButton" name="currLineBgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxCurrentLineBg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="commentFgLabel">
+                <property name="text">
+                 <string>Comment foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="ColorButton" name="bindParamFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxBindParamFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="validObjectsFkLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Valid objects foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="currQueryBgLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Current query background</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="bindParamFgLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Bind parameter foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="currLineBgLabel">
+                <property name="text">
+                 <string>Current line background</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="ColorButton" name="validObjectsFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxValidObject</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="matchedParBgLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Matched parenthesis background</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="ColorButton" name="currQueryBgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxCurrentQueryBg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="ColorButton" name="blobFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxBlobFg</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ColorButton" name="regularFgBtn">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxForeground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="numberFgLabel">
+                <property name="text">
+                 <string>Number foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="blobFgLabel">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X'12B4'&lt;/p&gt;&lt;p&gt;x'46A2F4'&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>BLOB value foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="matchedParFgLabel">
+                <property name="text">
+                 <string>Matched parenthesis foreground</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="ColorButton" name="matchedParFgBtn">
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>Colors.SyntaxParenthesisFg</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QFrame" name="frame">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item alignment="Qt::AlignRight">
+               <widget class="QPushButton" name="codeColorsResetBtn">
+                <property name="text">
+                 <string>Reset to defaults</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="shortcutsPage">
           <layout class="QVBoxLayout" name="verticalLayout_28">
            <property name="leftMargin">
@@ -1732,16 +2117,6 @@ p, li { white-space: pre-wrap; }
      </layout>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
   </layout>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -1766,6 +2141,11 @@ p, li { white-space: pre-wrap; }
    <extends>QWidget</extends>
    <header>common/fontedit.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ColorButton</class>
+   <extends>QPushButton</extends>
+   <header>common/colorbutton.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

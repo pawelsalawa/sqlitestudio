@@ -35,7 +35,7 @@ void ThemeTuner::manageCompactLayout(QWidget* w)
 void ThemeTuner::manageCompactLayout(QList<QWidget*> wList)
 {
     widgetsForCompactLayout += wList;
-    for (QWidget* w : wList)
+    for (QWidget*& w : wList)
         connect(w, SIGNAL(destroyed()), this, SLOT(handleWidgetDestroyed()));
 
     handleCompactLayoutChange(CFG_UI.General.CompactLayout.get());
@@ -126,7 +126,7 @@ void ThemeTuner::handleCompactLayoutChange(const QVariant& newValue)
 {
     if (newValue.toBool())
     {
-        for (QWidget* w : widgetsForCompactLayout)
+        for (QWidget*& w : widgetsForCompactLayout)
         {
             w->layout()->setContentsMargins(0, 0, 0, 0);
             w->layout()->setSpacing(0);
@@ -134,7 +134,7 @@ void ThemeTuner::handleCompactLayoutChange(const QVariant& newValue)
     }
     else
     {
-        for (QWidget* w : widgetsForCompactLayout)
+        for (QWidget*& w : widgetsForCompactLayout)
         {
             w->layout()->setContentsMargins(-1, -1, -1, -1);
             w->layout()->setSpacing(-1);

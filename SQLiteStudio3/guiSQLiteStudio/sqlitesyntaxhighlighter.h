@@ -52,10 +52,8 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
             NUMBER
         };
 
+        SqliteSyntaxHighlighter(QTextDocument *parent, const QHash<State,QTextCharFormat>* formats);
         explicit SqliteSyntaxHighlighter(QTextDocument *parent);
-
-        void setFormat(State state, QTextCharFormat format);
-        QTextCharFormat getFormat(State state) const;
 
         void addError(int from, int to, bool limitedDamage = false);
         void clearErrors();
@@ -107,6 +105,8 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
             int to;
         };
 
+        void init(const QHash<State,QTextCharFormat>* formats);
+
         void setupMapping();
 
         /**
@@ -155,15 +155,13 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         void handleParenthesis(TokenPtr token, TextBlockData* data);
 
         static const int regulartTextBlockState = static_cast<int>(TextBlockState::REGULAR);
-        QHash<State,QTextCharFormat> formats;
+
         QHash<Token::Type,State> tokenTypeMapping;
         QList<Error> errors;
         QList<DbObject> dbObjects;
         bool objectLinksEnabled = false;
         bool createTriggerContext = false;
-
-    private slots:
-        void setupFormats();
+        const QHash<State,QTextCharFormat>* formats = nullptr;
 };
 
 class GUI_API_EXPORT SqliteHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
@@ -172,12 +170,18 @@ class GUI_API_EXPORT SqliteHighlighterPlugin : public BuiltInPlugin, public Synt
 
     SQLITESTUDIO_PLUGIN_TITLE("SQL highlighter")
     SQLITESTUDIO_PLUGIN_DESC("SQL (SQLite) syntax highlighter.")
-    SQLITESTUDIO_PLUGIN_VERSION(10000)
+    SQLITESTUDIO_PLUGIN_VERSION(10100)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
         QString getLanguageName() const;
         QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const;
+        void refreshFormats();
+        QString previewSampleCode() const;
+        const QHash<SqliteSyntaxHighlighter::State,QTextCharFormat>* getFormats() const;
+
+    private:
+        QHash<SqliteSyntaxHighlighter::State,QTextCharFormat> formats;
 };
 
 GUI_API_EXPORT int qHash(SqliteSyntaxHighlighter::State state);

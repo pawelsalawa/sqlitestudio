@@ -11,7 +11,7 @@ CfgCategory::CfgCategory(const CfgCategory &other) :
     lastCreatedCfgCategory = this;
     lastCreatedCfgMain->childs[name] = this;
     cfgParent = lastCreatedCfgMain;
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->parent = this;
 }
 
@@ -44,32 +44,32 @@ void CfgCategory::translateTitle()
     // This needs to be "QObject::tr" and not just "tr", because this guarantees proper message context for retranslating
     // titles for objects initialized in global scope (as CfgCategories are).
     title = QObject::tr(title.toUtf8().constData());
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->translateTitle();
 
 }
 
 void CfgCategory::reset()
 {
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->reset();
 }
 
 void CfgCategory::savepoint(bool transaction)
 {
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->savepoint(transaction);
 }
 
 void CfgCategory::restore()
 {
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->restore();
 }
 
 void CfgCategory::release()
 {
-    for (CfgEntry* entry : childs)
+    for (CfgEntry*& entry : childs)
         entry->release();
 }
 
@@ -80,7 +80,8 @@ void CfgCategory::commit()
 
 void CfgCategory::rollback()
 {
-    rollback();
+    for (CfgEntry*& entry : childs)
+        entry->rollback();
 }
 
 void CfgCategory::begin()

@@ -35,24 +35,32 @@ void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
     static const QColor stdStrColor = QColor(Qt::green);
     static const QColor stdExprColor = QColor(Qt::magenta);
     if (stdPalette.text().color().lightness() >= 128)
-        editorStringBrush = QBrush(stdStrColor.lighter());
+        editorStringBrush = stdStrColor.lighter();
     else
-        editorStringBrush = QBrush(stdStrColor.darker());
+        editorStringBrush = stdStrColor.darker();
 
     if (stdPalette.text().color().lightness() >= 128)
-        editorExpressionBrush = QBrush(stdExprColor.lighter());
+        editorExpressionBrush = stdExprColor.lighter();
     else
-        editorExpressionBrush = QBrush(stdExprColor);
+        editorExpressionBrush = stdExprColor;
 
     if (themeName.toLower() == "macintosh" && isDark)
-        editorLineBaseBrush = QBrush(stdPalette.alternateBase().color().darker(300));
+        editorLineNumberBaseBrush = stdPalette.alternateBase().color().darker(300);
     else
-        editorLineBaseBrush = stdPalette.alternateBase();
+        editorLineNumberBaseBrush = stdPalette.alternateBase();
 
     if (isDark)
+    {
+        editorLineBaseBrush = stdPalette.alternateBase();
+        editorCurrentQueryBrush = stdPalette.base().color().lighter(140);
         mdiAreaBaseBrush = stdPalette.alternateBase();
+    }
     else
-        mdiAreaBaseBrush = QBrush("#8a8a8a");
+    {
+        editorLineBaseBrush = stdPalette.alternateBase().color().darker(103);
+        editorCurrentQueryBrush = stdPalette.base().color().darker(103);
+        mdiAreaBaseBrush = QColor(138, 138, 138);
+    }
 }
 
 QBrush ExtendedPalette::mdiAreaBase() const
@@ -73,4 +81,24 @@ QBrush ExtendedPalette::editorExpression() const
 void ExtendedPalette::setEditorExpression(const QBrush& value)
 {
     editorExpressionBrush = value;
+}
+
+const QBrush& ExtendedPalette::editorCurrentQueryBase() const
+{
+    return editorCurrentQueryBrush;
+}
+
+void ExtendedPalette::setEditorCurrentQueryBase(const QBrush& value)
+{
+    editorCurrentQueryBrush = value;
+}
+
+const QBrush& ExtendedPalette::editorLineNumberBase() const
+{
+    return editorLineNumberBaseBrush;
+}
+
+void ExtendedPalette::setEditorLineNumberBaseBrush(const QBrush& newEditorLineNumberBaseBrush)
+{
+    editorLineNumberBaseBrush = newEditorLineNumberBaseBrush;
 }

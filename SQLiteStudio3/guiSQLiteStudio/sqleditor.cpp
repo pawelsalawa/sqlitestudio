@@ -82,7 +82,6 @@ SqlEditor::~SqlEditor()
 void SqlEditor::init()
 {
     highlighter = new SqliteSyntaxHighlighter(document());
-    updateColors();
     setFont(CFG_UI.Fonts.SqlEditor.get());
     initActions();
     setupMenu();
@@ -275,7 +274,7 @@ void SqlEditor::saveToFile(const QString &fileName)
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        notifyError(tr("Could not open file '%1' for writing: %2").arg(fileName).arg(file.errorString()));
+        notifyError(tr("Could not open file '%1' for writing: %2").arg(fileName, file.errorString()));
         return;
     }
 
@@ -301,15 +300,6 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
     else
         cur.insertText("--");
 
-}
-
-void SqlEditor::updateColors()
-{
-    currentQueryBrush = style()->standardPalette().base();
-    if (STYLE->isDark())
-        currentQueryBrush.setColor(currentQueryBrush.color().lighter(130));
-    else
-        currentQueryBrush.setColor(currentQueryBrush.color().darker(103));
 }
 
 bool SqlEditor::getHighlightingSyntax() const
@@ -574,6 +564,7 @@ void SqlEditor::refreshValidObjects()
 
     objectsInNamedDbFuture = QtConcurrent::run([this]()
     {
+        // TODO lambda may be executed when there is no longer "this", which will crash the app
         QMutexLocker lock(&objectsInNamedDbMutex);
         objectsInNamedDb.clear();
 
@@ -581,7 +572,7 @@ void SqlEditor::refreshValidObjects()
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
         QStringList objects;
-        for (const QString& dbName : databases)
+        for (const QString& dbName : qAsConst(databases))
         {
             objects = resolver.getAllObjects(dbName);
             objectsInNamedDb[dbName] << objects;
@@ -617,7 +608,7 @@ void SqlEditor::clearDbObjects()
 void SqlEditor::lineNumberAreaPaintEvent(QPaintEvent* event)
 {
     QPainter painter(lineNumberArea);
-    painter.fillRect(event->rect(), STYLE->extendedPalette().editorLineBase());
+    painter.fillRect(event->rect(), STYLE->extendedPalette().editorLineNumberBase());
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
     int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
@@ -702,13 +693,7 @@ void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selectio
         return;
 
     QTextEdit::ExtraSelection selection;
-
-    QBrush brush = style()->standardPalette().base();
-    if (STYLE->isDark())
-        brush.setColor(brush.color().lighter(140));
-    else
-        brush.setColor(brush.color().darker(103));
-    selection.format.setBackground(brush);
+    selection.format.setBackground(CFG_UI.Colors.SyntaxCurrentQueryBg.get());
 
     cursor.setPosition(boundries.first);
     cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
@@ -733,8 +718,8 @@ void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::Extr
 {
     QTextEdit::ExtraSelection selection;
 
-    selection.format.setBackground(style()->standardPalette().windowText());
-    selection.format.setForeground(style()->standardPalette().window());
+    selection.format.setBackground(CFG_UI.Colors.SyntaxParenthesisBg.get());
+    selection.format.setForeground(CFG_UI.Colors.SyntaxParenthesisFg.get());
 
     QTextCursor cursor = textCursor();
 
@@ -913,13 +898,10 @@ void SqlEditor::parseContents()
         sql = virtualSqlExpression.arg(sql);
     }
 
-    if (richFeaturesEnabled)
-    {
-        queryParser->parse(sql);
-        checkForValidObjects();
-        checkForSyntaxErrors();
-        highlightSyntax();
-    }
+    queryParser->parse(sql);
+    checkForValidObjects();
+    checkForSyntaxErrors();
+    highlightSyntax();
 }
 
 void SqlEditor::checkForSyntaxErrors()
@@ -930,9 +912,9 @@ void SqlEditor::checkForSyntaxErrors()
 
     // Marking invalid tokens, like in "SELECT * from test] t" - the "]" token is invalid.
     // Such tokens don't cause parser to fail.
-    for (SqliteQueryPtr query : queryParser->getQueries())
+    for (const SqliteQueryPtr& query : queryParser->getQueries())
     {
-        for (TokenPtr token : query->tokens)
+        for (TokenPtr& token : query->tokens)
         {
             if (token->type == Token::INVALID)
                 markErrorAt(token->start, token->end, true);
@@ -961,10 +943,10 @@ void SqlEditor::checkForValidObjects()
     QMutexLocker lock(&objectsInNamedDbMutex);
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
-    for (SqliteQueryPtr query : queryParser->getQueries())
+    for (const SqliteQueryPtr& query : queryParser->getQueries())
     {
         fullObjects = query->getContextFullObjects();
-        for (const SqliteStatement::FullObject& fullObj : fullObjects)
+        for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
             dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
             if (!objectsInNamedDb.contains(dbName))
@@ -1067,7 +1049,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     {
         QTextEdit::ExtraSelection selection;
 
-        selection.format.setBackground(STYLE->extendedPalette().editorLineBase());
+        selection.format.setBackground(CFG_UI.Colors.SyntaxCurrentLineBg.get());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
@@ -1162,7 +1144,7 @@ void SqlEditor::loadFromFile()
     QString sql = readFileContents(fName, &err);
     if (sql.isNull() && !err.isNull())
     {
-        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName).arg(err));
+        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName, err));
         return;
     }
 
@@ -1377,9 +1359,7 @@ void SqlEditor::changeFont(const QVariant& font)
 
 void SqlEditor::configModified()
 {
-    updateColors();
-    highlightSyntax();
-    highlightCurrentCursorContext();
+    colorsConfigChanged();
 }
 
 void SqlEditor::toggleComment()
@@ -1475,6 +1455,12 @@ void SqlEditor::wordWrappingChanged(const QVariant& value)
 void SqlEditor::currentCursorContextDelayedHighlight()
 {
     highlightCurrentCursorContext(true);
+}
+
+void SqlEditor::colorsConfigChanged()
+{
+    highlightSyntax();
+    highlightCurrentCursorContext();
 }
 
 void SqlEditor::keyPressEvent(QKeyEvent* e)
