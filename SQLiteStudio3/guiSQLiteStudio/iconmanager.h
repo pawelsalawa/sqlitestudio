@@ -241,6 +241,8 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(WIN_TILE_VERTICAL,                 "win_tile_vertical")
             DEF_ICON(WIN_CLOSE,                         "window_close")
             DEF_ICON(WIN_CLOSE_ALL,                     "window_close_all")
+            DEF_ICON(WIN_CLOSE_ALL_LEFT,                "window_close_all_left")
+            DEF_ICON(WIN_CLOSE_ALL_RIGHT,               "window_close_all_right")
             DEF_ICON(WIN_CLOSE_OTHER,                   "window_close_other")
             DEF_ICON(WIN_RESTORE,                       "window_restore")
             DEF_ICON(WIN_RENAME,                        "window_rename")

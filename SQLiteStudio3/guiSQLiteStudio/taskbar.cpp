@@ -125,8 +125,10 @@ void TaskBar::initContextMenu(ExtActionContainer* mainWin)
     // because that macro causes MainWindow initialization and this caused endless loop.
     taskMenu = new QMenu(this);
     taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_WINDOW));
-    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_OTHER_WINDOWS));
     taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS));
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_OTHER_WINDOWS));
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS_LEFT));
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS_RIGHT));
     taskMenu->addSeparator();
     taskMenu->addAction(mainWin->getAction(MainWindow::RESTORE_WINDOW));
     taskMenu->addAction(mainWin->getAction(MainWindow::RENAME_WINDOW));

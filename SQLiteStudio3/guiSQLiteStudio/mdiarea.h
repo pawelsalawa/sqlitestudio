@@ -52,6 +52,8 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
         void tileHorizontally();
         void tileVertically();
         void closeAllButActive();
+        void closeAllLeftToActive();
+        void closeAllRightToActive();
 };
 
 template<class T>

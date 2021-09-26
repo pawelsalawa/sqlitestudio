@@ -218,8 +218,28 @@ void MdiArea::closeAllButActive()
     QList<QMdiSubWindow*> allButActive = subWindowList();
     allButActive.removeOne(activeSubWindow());
 
-    for (QMdiSubWindow *window : allButActive)
+    for (QMdiSubWindow*& window : allButActive)
         window->close();
+}
+
+void MdiArea::closeAllLeftToActive()
+{
+    QList<QAction*> tasks = taskBar->getTasks();
+    QAction* activeTask = taskBar->getActiveTask();
+    int activeIdx = tasks.indexOf(activeTask);
+
+    for (QAction*& task : tasks.mid(0, activeIdx))
+        actionToWinMap[task]->close();
+}
+
+void MdiArea::closeAllRightToActive()
+{
+    QList<QAction*> tasks = taskBar->getTasks();
+    QAction* activeTask = taskBar->getActiveTask();
+    int activeIdx = tasks.indexOf(activeTask);
+
+    for (QAction*& task : tasks.mid(activeIdx + 1))
+        actionToWinMap[task]->close();
 }
 
 MdiWindow* MdiArea::getWindowByChild(MdiChild *child)
@@ -227,7 +247,7 @@ MdiWindow* MdiArea::getWindowByChild(MdiChild *child)
     if (!child)
         return nullptr;
 
-    for (QMdiSubWindow *window : subWindowList())
+    for (QMdiSubWindow*& window : subWindowList())
         if (window->widget() == child)
             return dynamic_cast<MdiWindow*>(window);
 

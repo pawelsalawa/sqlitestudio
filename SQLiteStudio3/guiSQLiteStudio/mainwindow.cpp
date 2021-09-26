@@ -213,6 +213,8 @@ void MainWindow::updateWindowActions()
     actionMap[CLOSE_WINDOW]->setEnabled(hasActiveTask);
     actionMap[CLOSE_OTHER_WINDOWS]->setEnabled(hasActiveTask);
     actionMap[CLOSE_ALL_WINDOWS]->setEnabled(hasActiveTask);
+    actionMap[CLOSE_ALL_WINDOWS_LEFT]->setEnabled(hasActiveTask);
+    actionMap[CLOSE_ALL_WINDOWS_RIGHT]->setEnabled(hasActiveTask);
     actionMap[RENAME_WINDOW]->setEnabled(hasActiveTask);
     actionMap[RESTORE_WINDOW]->setEnabled(hasClosedWindowToRestore());
 }
@@ -278,11 +280,13 @@ void MainWindow::createActions()
     createAction(PREV_TASK, tr("Previous window"), ui->taskBar, SLOT(prevTask()), this);
     createAction(HIDE_STATUS_FIELD, tr("Hide status field"), this, SLOT(hideStatusField()), this);
 
-    createAction(CLOSE_WINDOW, ICONS.WIN_CLOSE, tr("Close selected &window"), this, SLOT(closeSelectedWindow()), this);
-    createAction(CLOSE_OTHER_WINDOWS, ICONS.WIN_CLOSE_OTHER, tr("Close all windows &but selected"), this, SLOT(closeAllWindowsButSelected()), this);
+    createAction(CLOSE_WINDOW, ICONS.WIN_CLOSE, tr("Close current &window"), this, SLOT(closeSelectedWindow()), this);
+    createAction(CLOSE_OTHER_WINDOWS, ICONS.WIN_CLOSE_OTHER, tr("Close &other windows"), this, SLOT(closeAllWindowsButSelected()), this);
     createAction(CLOSE_ALL_WINDOWS, ICONS.WIN_CLOSE_ALL, tr("Close &all windows"), this, SLOT(closeAllWindows()), this);
+    createAction(CLOSE_ALL_WINDOWS_LEFT, ICONS.WIN_CLOSE_ALL_LEFT, tr("Close windows on the &left"), this, SLOT(closeAllLeftWindows()), this);
+    createAction(CLOSE_ALL_WINDOWS_RIGHT, ICONS.WIN_CLOSE_ALL_RIGHT, tr("Close windows on the &right"), this, SLOT(closeAllRightWindows()), this);
     createAction(RESTORE_WINDOW, ICONS.WIN_RESTORE, tr("Re&store recently closed window"), this, SLOT(restoreLastClosedWindow()), this);
-    createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("&Rename selected window"), this, SLOT(renameWindow()), this);
+    createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("Re&name selected window"), this, SLOT(renameWindow()), this);
 
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
     createAction(OPEN_CSS_CONSOLE, tr("Open CSS Console"), this, SLOT(openCssConsole()), this);
@@ -377,8 +381,10 @@ void MainWindow::initMenuBar()
     viewMenu->addAction(actionMap[MDI_CASCADE]);
     viewMenu->addSeparator();
     viewMenu->addAction(actionMap[CLOSE_WINDOW]);
-    viewMenu->addAction(actionMap[CLOSE_OTHER_WINDOWS]);
     viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS]);
+    viewMenu->addAction(actionMap[CLOSE_OTHER_WINDOWS]);
+    viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS_LEFT]);
+    viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS_RIGHT]);
     viewMenu->addSeparator();
     viewMenu->addAction(actionMap[RESTORE_WINDOW]);
     viewMenu->addAction(actionMap[RENAME_WINDOW]);
@@ -722,6 +728,16 @@ void MainWindow::importAnything()
 void MainWindow::closeAllWindows()
 {
     ui->mdiArea->closeAllSubWindows();
+}
+
+void MainWindow::closeAllLeftWindows()
+{
+    ui->mdiArea->closeAllLeftToActive();
+}
+
+void MainWindow::closeAllRightWindows()
+{
+    ui->mdiArea->closeAllRightToActive();
 }
 
 void MainWindow::closeAllWindowsButSelected()

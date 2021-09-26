@@ -11,6 +11,7 @@
 - ADDED: #3715 Dedicated hotkeys to execute either single query under cursor or all queries in editor, regardless of default execution mode configured. Default hotkeys: Ctrl+F9 (or Cmd+F9) for single query, Shift+F9 for all queries.
 - ADDED: #3714 Added highlighter for current query (under cursor, to be executed), to make the user aware which query is actually going to be executed when Execute Query hotkey is used.
 - ADDED: #4006 Colors configuration for syntax highlighting is reintroduced in a new, improved form.
+- ADDED: #3793 Close windows on the left/right options added to the View menu and Taskbar context menu. Also renamed 'all but selected' to 'other'.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.

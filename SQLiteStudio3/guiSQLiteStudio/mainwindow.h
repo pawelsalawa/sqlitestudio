@@ -78,6 +78,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             IMPORT,
             CLOSE_WINDOW,
             CLOSE_ALL_WINDOWS,
+            CLOSE_ALL_WINDOWS_LEFT,
+            CLOSE_ALL_WINDOWS_RIGHT,
             CLOSE_OTHER_WINDOWS,
             RESTORE_WINDOW,
             RENAME_WINDOW,
@@ -209,6 +211,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void exportAnything();
         void importAnything();
         void closeAllWindows();
+        void closeAllLeftWindows();
+        void closeAllRightWindows();
         void closeAllWindowsButSelected();
         void closeSelectedWindow();
         void restoreLastClosedWindow();
