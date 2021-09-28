@@ -10,7 +10,7 @@ bool QueryExecutorCellSize::exec()
     if (!select || select->explain)
         return true;
 
-    for (SqliteSelect::Core* core : select->coreSelects)
+    for (SqliteSelect::Core*& core : select->coreSelects)
     {
         if (!applyDataLimit(select.data(), core))
             return false;
@@ -31,7 +31,7 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
     bool first = true;
     TokenList tokens;
 
-    for (const QueryExecutor::ResultColumnPtr& col : context->resultColumns)
+    for (QueryExecutor::ResultColumnPtr& col : context->resultColumns)
     {
         if (!first)
             tokens += getSeparatorTokens();
@@ -40,7 +40,7 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
         first = false;
     }
 
-    for (const QueryExecutor::ResultRowIdColumnPtr& col : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& col : context->rowIdColumns)
     {
         if (!first)
             tokens += getSeparatorTokens();
@@ -57,8 +57,17 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
 
 TokenList QueryExecutorCellSize::getLimitTokens(const QueryExecutor::ResultColumnPtr& resCol)
 {
-    // CASE WHEN typeof(alias) IN ('real', 'integer', 'numeric', 'null') THEN alias ELSE substr(alias, 1, limit) END
     TokenList newTokens;
+
+    // Not limiting cells that are not editable, because when later copying such cells, the full value is loaded
+    // by re-executing entire query, which can be very slow (#4129).
+    if (!resCol->editionForbiddenReasons.isEmpty())
+    {
+        newTokens << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
+        return newTokens;
+    }
+
+    // CASE WHEN typeof(alias) IN ('real', 'integer', 'numeric', 'null') THEN alias ELSE substr(alias, 1, limit) END
     newTokens << TokenPtr::create(Token::KEYWORD, "CASE")
               << TokenPtr::create(Token::SPACE, " ")
               << TokenPtr::create(Token::KEYWORD, "WHEN")
@@ -112,12 +121,12 @@ TokenList QueryExecutorCellSize::getNoLimitTokens(const QueryExecutor::ResultRow
 {
     TokenList newTokens;
     bool first = true;
-    for (const QString& col : resCol->queryExecutorAliasToColumn.keys())
+    for (auto it = resCol->queryExecutorAliasToColumn.keyBegin(), end = resCol->queryExecutorAliasToColumn.keyEnd(); it != end; ++it)
     {
         if (!first)
             newTokens += getSeparatorTokens();
 
-        newTokens << TokenPtr::create(Token::OTHER, col);
+        newTokens << TokenPtr::create(Token::OTHER, *it);
         first = false;
     }
     return newTokens;

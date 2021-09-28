@@ -1090,7 +1090,10 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
 
     // This should be equal at most, unless we have UTF-8 string, than there might be more bytes.
     // If less, than it's not limited.
-    bool limited = value.toByteArray().size() >= cellDataLengthLimit;
+    // An exception is when this is a column resulting from expression (function, operator, etc), because cell size limiting is applied
+    // only for columns resulting directly from table column. Cells without rowId and table are not limited to avoid slow "loadFullData()" calls
+    // on cells when - for example - copying full value of a cell.
+    bool limited = value.toByteArray().size() >= cellDataLengthLimit && !rowId.isEmpty() && column->editionForbiddenReason.isEmpty();
 
     item->setJustInsertedWithOutRowId(false);
     item->setValue(value, limited, true);
