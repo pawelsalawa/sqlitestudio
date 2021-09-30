@@ -946,17 +946,17 @@ void DataView::recreateFilterInputs()
 
     qApp->processEvents();
 
-    for (QLineEdit* edit : filterInputs)
+    for (ExtLineEdit*& edit : filterInputs)
         delete edit;
 
     filterInputs.clear();
 
     filterLeftSpacer->setFixedSize(gridView->verticalHeader()->width() + 1, 1);
 
-    QLineEdit* edit = nullptr;
+    ExtLineEdit* edit = nullptr;
     for (int i = 0, total = gridView->horizontalHeader()->count(); i < total; ++i)
     {
-        edit = new QLineEdit(perColumnWidget);
+        edit = new ExtLineEdit(perColumnWidget);
         edit->setPlaceholderText(tr("Filter"));
         edit->setClearButtonEnabled(true);
         edit->setFixedWidth(gridView->columnWidth(i));
@@ -964,7 +964,8 @@ void DataView::recreateFilterInputs()
         if (filterValues.size() > i)
             edit->setText(filterValues[i]);
 
-        connect(edit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(valueErased()), this, SLOT(resetFilter()));
         perColumnWidget->layout()->addWidget(edit);
         filterInputs << edit;
     }

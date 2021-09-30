@@ -20,6 +20,7 @@
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
+- BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
 

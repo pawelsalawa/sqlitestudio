@@ -169,7 +169,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool uncommittedGrid = false;
         bool uncommittedForm = false;
         WidgetCover* widgetCover = nullptr;
-        QList<QLineEdit*> filterInputs;
+        QList<ExtLineEdit*> filterInputs;
         QStringList filterValues;
         QWidget* filterLeftSpacer = nullptr;
         QWidget* filterRightSpacer = nullptr;
