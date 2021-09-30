@@ -140,14 +140,17 @@ bool ImportWorker::prepareTable()
 
 bool ImportWorker::importData(int& rowCount)
 {
-    static const QString insertTemplate = QStringLiteral("INSERT INTO %1 VALUES (%2)");
+    static const QString insertTemplate = QStringLiteral("INSERT INTO %1 (%2) VALUES (%3)");
 
     int colCount = targetColumns.size();
     QStringList valList;
     for (int i = 0; i < colCount; i++)
         valList << "?";
 
-    QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table), valList.join(", "));
+    QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table),
+                                           wrapObjNamesIfNeeded(targetColumns).join(", "),
+                                           valList.join(", "));
+
     SqlQueryPtr query = db->prepare(theInsert);
     query->setFlags(Db::Flag::SKIP_DROP_DETECTION|Db::Flag::SKIP_PARAM_COUNTING|Db::Flag::NO_LOCK);
 
