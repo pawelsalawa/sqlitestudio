@@ -182,10 +182,12 @@ QList<SelectResolver::Column> SelectResolver::resolveAvailableCoreColumns(Sqlite
 
 SelectResolver::Column SelectResolver::translateTokenToColumn(SqliteSelect* select, TokenPtr token)
 {
+    QString strippedColName = stripObjName(token->value);
+
     // Default result
     Column notTranslatedColumn;
     notTranslatedColumn.type = Column::OTHER;
-    notTranslatedColumn.column = token->value;
+    notTranslatedColumn.column = strippedColName;
 
     // Find containing statement
     SqliteStatement* parentStmt = select->findStatementWithToken(token);
@@ -214,9 +216,9 @@ SelectResolver::Column SelectResolver::translateTokenToColumn(SqliteSelect* sele
         }
 
         // Search through available columns
-        for (const Column& availableColumn : resolveAvailableColumns(core))
+        for (Column& availableColumn : resolveAvailableColumns(core))
         {
-            if (availableColumn.type == Column::COLUMN && availableColumn.column.compare(token->value, Qt::CaseInsensitive) == 0)
+            if (availableColumn.type == Column::COLUMN && availableColumn.column.compare(strippedColName, Qt::CaseInsensitive) == 0)
                 return availableColumn;
         }
 

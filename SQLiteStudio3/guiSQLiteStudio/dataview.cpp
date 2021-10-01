@@ -310,14 +310,11 @@ void DataView::resizeColumnsInitiallyToContents()
             continue;
         }
 
+        int headerMinSize = qMax(gridView->horizontalHeader()->sizeHintForColumn(i), 60);
         if (wd > CFG_UI.General.MaxInitialColumnWith.get())
-        {
             gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
-        }
-        else if (wd < 60)
-        {
-            gridView->setColumnWidth(i, 60);
-        }
+        else if (wd < headerMinSize)
+            gridView->setColumnWidth(i, headerMinSize);
     }
     gridView->setIgnoreColumnWidthChanges(false);
 }
@@ -549,6 +546,9 @@ void DataView::adjustColumnWidth(SqlQueryItem* item)
 
     int col = item->column();
     if (model->getDesiredColumnWidth(col) > -1)
+        return;
+
+    if (!CFG_UI.General.EnlargeColumnForValue.get())
         return;
 
     gridView->resizeColumnToContents(col);

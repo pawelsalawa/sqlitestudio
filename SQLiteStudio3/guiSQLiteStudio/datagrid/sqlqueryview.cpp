@@ -867,7 +867,7 @@ QSize SqlQueryView::Header::sectionSizeFromContents(int section) const
 {
     QSize originalSize = QHeaderView::sectionSizeFromContents(section);
     int colCount = dynamic_cast<SqlQueryView*>(parent())->getModel()->columnCount();
-    if (colCount <= 5)
+    if (colCount <= 5 || CFG_UI.General.ColumnWidthForName.get())
         return originalSize;
 
     int wd = minHeaderWidth;

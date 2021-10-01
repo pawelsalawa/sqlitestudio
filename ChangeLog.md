@@ -17,6 +17,7 @@
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
 - CHANGE: #4083 Added support for regexp literals and template literals in JS syntax highlighter.
 - CHANGE: #4129 Improved memory saving algorithm, so when the colum is result of expression, the full value is always loaded immediately, to avoid subsequent query execution for loading full value when user copies cell value to clipboad.
+- CHANGE: #4071 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).

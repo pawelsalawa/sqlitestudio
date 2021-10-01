@@ -96,6 +96,8 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(Cfg::DataEditorsOrder, DataEditorsOrder,            Cfg::DataEditorsOrder())
         CFG_ENTRY(QString,               FileDialogLastPath,          QString())
         CFG_ENTRY(int,                   MaxInitialColumnWith,        600)
+        CFG_ENTRY(bool,                  EnlargeColumnForValue,       true)
+        CFG_ENTRY(bool,                  ColumnWidthForName,          false)
         CFG_ENTRY(bool,                  LanguageAsked,               false)
         CFG_ENTRY(bool,                  OpenMaximized,               true)
         CFG_ENTRY(QString,               DockLayout,                  "vertical")
