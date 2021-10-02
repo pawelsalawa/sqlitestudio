@@ -54,7 +54,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         SqlQueryItem* itemFromIndex(const QModelIndex& index) const;
         SqlQueryItem* itemFromIndex(int row, int column) const;
         QModelIndexList findIndexes(int role, const QVariant &value, int hits = -1) const;
-        QModelIndexList findIndexes(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
+        QModelIndexList findIndexes(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1, bool stringApproximation = false) const;
         QList<SqlQueryItem*> findItems(int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
         SqlQueryItem* findAnyInColumn(int column, int role, const QVariant &value) const;
@@ -535,6 +535,12 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * Emitted after initial query execution was successful. It's not emitted after data reloading of page changing.
          */
         void executionSuccessful();
+
+        /**
+         * @brief Execution is finished and data is about to be loaded to model.
+         * Emitted every query execution, every data reloading and every page change.
+         */
+        void aboutToLoadResults();
 
         /**
          * @brief executionFailed

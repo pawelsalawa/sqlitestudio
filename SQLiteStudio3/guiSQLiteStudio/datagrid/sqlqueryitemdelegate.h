@@ -87,6 +87,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         static const int HUGE_CONTENTS_WARNING_LIMIT = 32767; // pow(2, 16) / 2 - 1
 
     private slots:
+        void fkDataAboutToLoad();
         void fkDataReady();
         void fkDataFailed(const QString& errorText);
 };

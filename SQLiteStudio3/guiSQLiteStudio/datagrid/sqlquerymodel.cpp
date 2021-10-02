@@ -222,7 +222,7 @@ QModelIndexList SqlQueryModel::findIndexes(int role, const QVariant& value, int 
     return findIndexes(startIdx, endIdx, role, value, hits);
 }
 
-QModelIndexList SqlQueryModel::findIndexes(const QModelIndex& start, const QModelIndex& end, int role, const QVariant& value, int hits) const
+QModelIndexList SqlQueryModel::findIndexes(const QModelIndex& start, const QModelIndex& end, int role, const QVariant& value, int hits, bool stringApproximation) const
 {
     QModelIndexList results;
     bool allHits = hits < 0;
@@ -231,6 +231,7 @@ QModelIndexList SqlQueryModel::findIndexes(const QModelIndex& start, const QMode
     int toRow = end.row();
     int fromCol = start.column();
     int toCol = end.column();
+    QString stringVal = value.toString();
 
     for (int row = fromRow; row <= toRow && (allHits || results.count() < hits); row++)
     {
@@ -241,7 +242,7 @@ QModelIndexList SqlQueryModel::findIndexes(const QModelIndex& start, const QMode
                  continue;
 
             QVariant cellVal = data(idx, role);
-            if (value != cellVal)
+            if (value != cellVal && !(stringApproximation && stringVal == cellVal.toString()))
                 continue;
 
             results.append(idx);
@@ -1409,6 +1410,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
         return;
     }
 
+    emit aboutToLoadResults();
     storeStep1NumbersFromExecution();
     if (!loadData(results))
         return;

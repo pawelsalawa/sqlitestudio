@@ -524,7 +524,6 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     comboModel->setView(comboView);
 
     // Mapping of model to cb, so we can update combo when data arrives.
-    modelToFkInitialValue[comboModel] = item->getFullValue();
     modelToFkCombo[comboModel] = cb;
     connect(cb, &QComboBox::destroyed, [this, comboModel](QObject*)
     {
@@ -532,13 +531,14 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
         modelToFkInitialValue.remove(comboModel);
     });
 
-    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, comboModel](int idx)
+    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [comboModel](int idx)
     {
         if (idx > -1 && idx < comboModel->getTotalRowsReturned() && comboModel->isAllDataLoaded())
             comboModel->itemFromIndex(idx, 1)->loadFullData();
     });
 
     // When execution is done, update combo.
+    connect(comboModel, SIGNAL(aboutToLoadResults()), this, SLOT(fkDataAboutToLoad()));
     connect(comboModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
     connect(comboModel, SIGNAL(executionFailed(QString)), this, SLOT(fkDataFailed(QString)));
 
@@ -546,15 +546,18 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     cb->setModel(comboModel);
     cb->setView(comboView);
     cb->setModelColumn(1);
+    cb->setCurrentText(item->getValue().toString());
     cb->view()->viewport()->installEventFilter(new FkComboFilter(this, comboView, cb));
     cb->view()->viewport()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
     cb->view()->verticalScrollBar()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
+    if (!item->getValue().isNull())
+        cb->lineEdit()->selectAll();
 
     comboModel->setHardRowLimit(MAX_ROWS_FOR_FK);
     comboModel->setCellDataLengthLimit(FK_CELL_LENGTH_LIMIT);
     comboModel->setDb(db);
     comboModel->setQuery(sql);
-    comboModel->setAsyncMode(false);
+    comboModel->setAsyncMode(true);
     comboModel->executeQuery();
 
     comboView->verticalHeader()->setVisible(false);
@@ -565,9 +568,25 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     return cb;
 }
 
+void SqlQueryItemDelegate::fkDataAboutToLoad()
+{
+    SqlQueryModel* model = dynamic_cast<SqlQueryModel*>(sender());
+    if (!modelToFkCombo.contains(model))
+        return;
+
+    QComboBox* cb = modelToFkCombo[model];
+    modelToFkInitialValue[model] = cb->currentText();
+}
+
 void SqlQueryItemDelegate::fkDataReady()
 {
     SqlQueryModel* model = dynamic_cast<SqlQueryModel*>(sender());
+    if (!modelToFkCombo.contains(model))
+    {
+        qDebug() << "Deceived fkDataReady() call when there is no longer a combo linked to the model.";
+        return;
+    }
+
     SqlQueryView* queryView = model->getView();
 
     queryView->horizontalHeader()->setSectionHidden(0, true);
@@ -578,13 +597,13 @@ void SqlQueryItemDelegate::fkDataReady()
 
     // Set selected combo value to initial value from the cell
     QComboBox* cb = modelToFkCombo[model];
-    QVariant valueFromQueryModel = modelToFkInitialValue[model];
+    QString valueFromQueryModel = modelToFkInitialValue[model].toString();
 
     if (model->rowCount() > 0)
     {
-        QModelIndex startIdx = model->index(0, 0);
-        QModelIndex endIdx = model->index(model->rowCount() - 1, 0);
-        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, 1, 1);
+        QModelIndex startIdx = model->index(0, cb->modelColumn());
+        QModelIndex endIdx = model->index(model->rowCount() - 1, cb->modelColumn());
+        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, valueFromQueryModel, 1, true);
 
         if (idxList.size() > 0)
         {
@@ -594,13 +613,11 @@ void SqlQueryItemDelegate::fkDataReady()
         else
         {
             cb->setCurrentIndex(-1);
-            cb->setEditText(valueFromQueryModel.toString());
+            cb->setEditText(valueFromQueryModel);
         }
     }
     else
-        cb->setEditText(valueFromQueryModel.toString());
-
-    cb->lineEdit()->selectAll();
+        cb->setEditText(valueFromQueryModel);
 }
 
 void SqlQueryItemDelegate::fkDataFailed(const QString &errorText)
