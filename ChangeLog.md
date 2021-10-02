@@ -17,12 +17,13 @@
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
 - CHANGE: #4083 Added support for regexp literals and template literals in JS syntax highlighter.
 - CHANGE: #4129 Improved memory saving algorithm, so when the colum is result of expression, the full value is always loaded immediately, to avoid subsequent query execution for loading full value when user copies cell value to clipboad.
-- CHANGE: #4071 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
+- CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
+- BUGFIX: #4207 Fixed crash when populating table with either Random Numbers or Random Text. Big thanks to @jiangzc!
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
 

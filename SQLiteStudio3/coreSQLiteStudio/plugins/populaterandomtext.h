@@ -4,6 +4,7 @@
 #include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
+#include <QRandomGenerator>
 
 CFG_CATEGORIES(PopulateRandomTextConfig,
     CFG_CATEGORY(PopulateRandomText,
@@ -47,6 +48,7 @@ class PopulateRandomTextEngine : public PopulateEngine
         CFG_LOCAL(PopulateRandomTextConfig, cfg)
         int range;
         QString chars;
+        QRandomGenerator randomGenerator;
 };
 
 #endif // POPULATERANDOMTEXT_H

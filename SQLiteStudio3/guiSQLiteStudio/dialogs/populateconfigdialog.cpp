@@ -55,7 +55,7 @@ void PopulateConfigDialog::init()
     ui->headerLabel->setText(headerString );
 
     configMapper = new ConfigMapper(engine->getConfig());
-    connect(configMapper, SIGNAL(modified()), this, SLOT(validateEngine()));
+    connect(configMapper, SIGNAL(modified(QWidget*)), this, SLOT(validateEngine()));
 
     connect(POPULATE_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(validationResultFromPlugin(bool,CfgEntry*,QString)));
     connect(POPULATE_MANAGER, SIGNAL(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)), this, SLOT(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)));

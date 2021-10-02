@@ -23,7 +23,7 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 {
     UNUSED(db);
     UNUSED(table);
-    QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
+    randomGenerator = QRandomGenerator::securelySeeded();
     range = cfg.PopulateRandomText.MaxLength.get() - cfg.PopulateRandomText.MinLength.get() + 1;
 
     chars = "";
@@ -55,7 +55,7 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 QVariant PopulateRandomTextEngine::nextValue(bool& nextValueError)
 {
     UNUSED(nextValueError);
-    int lgt = (QRandomGenerator::system()->generate() % range) + cfg.PopulateRandomText.MinLength.get();
+    int lgt = (randomGenerator.generate() % range) + cfg.PopulateRandomText.MinLength.get();
     return randStr(lgt, chars);
 }
 

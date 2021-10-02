@@ -619,7 +619,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 
     configMapper = new ConfigMapper(cfgMain);
     configMapper->bindToConfig(pluginOptionsWidget);
-    connect(configMapper, SIGNAL(modified()), this, SLOT(updateValidation()));
+    connect(configMapper, SIGNAL(modified(QWidget*)), this, SLOT(updateValidation()));
     plugin->validateOptions();
 }
 
