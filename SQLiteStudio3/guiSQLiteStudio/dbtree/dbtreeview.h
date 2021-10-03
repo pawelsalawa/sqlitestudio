@@ -22,6 +22,7 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
         DbTree* getDbTree() const;
 
         DbTreeItem *currentItem();
+        DbTreeItem *currentDbItem();
         DbTreeItem *itemAt(const QPoint& pos);
         QList<DbTreeItem *> selectionItems();
         DbTreeModel *model() const;

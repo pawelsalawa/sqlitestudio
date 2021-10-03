@@ -713,7 +713,7 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
             srcDbs << srcItem->getDb();
     }
 
-    for (DbTreeItem::Type srcType : srcTypes)
+    for (DbTreeItem::Type& srcType : srcTypes)
     {
         if (!allowedTypesInside[dstType].contains(srcType))
             return false;
@@ -1214,6 +1214,9 @@ void DbTree::disconnectFromDb()
 
     if (!db->isOpen())
         return;
+
+    DbTreeItem* dbItem = ui->treeView->currentDbItem();
+    ui->treeView->setCurrentIndex(dbItem->index());
 
     db->close();
 }

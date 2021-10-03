@@ -45,6 +45,15 @@ DbTreeItem *DbTreeView::currentItem()
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(currentIndex()));
 }
 
+DbTreeItem* DbTreeView::currentDbItem()
+{
+    DbTreeItem* item = currentItem();
+    if (item->getType() == DbTreeItem::Type::DB)
+        return item;
+
+    return item->findParentItem(DbTreeItem::Type::DB);
+}
+
 DbTreeItem *DbTreeView::itemAt(const QPoint &pos)
 {
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(indexAt(pos)));
