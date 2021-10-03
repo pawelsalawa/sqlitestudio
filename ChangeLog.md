@@ -25,6 +25,7 @@
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
 - BUGFIX: #4207 Fixed crash when populating table with either Random Numbers or Random Text. Big thanks to @jiangzc!
 - BUGFIX: #4093 Fixed foreign key dropdown to execute query asynchronously (and not to block UI for that time) and to not overwrite randomly value that user already typed.
+- BUGFIX: #4177 Fixed Populate Table dialog when there is only one table in the database.
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
 

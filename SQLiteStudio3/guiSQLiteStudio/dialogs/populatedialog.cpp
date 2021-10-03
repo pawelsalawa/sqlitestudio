@@ -32,8 +32,13 @@ PopulateDialog::~PopulateDialog()
 
 void PopulateDialog::setDbAndTable(Db* db, const QString& table)
 {
+    QString oldTable = ui->tableCombo->currentText();
     ui->databaseCombo->setCurrentText(db->getName());
     ui->tableCombo->setCurrentText(table);
+
+    // #4177
+    if (oldTable == table)
+        refreshColumns();
 }
 
 void PopulateDialog::init()
@@ -48,7 +53,7 @@ void PopulateDialog::init()
         return p1->getTitle().compare(p2->getTitle()) < 0;
     });
 
-    for (PopulatePlugin* plugin : plugins)
+    for (PopulatePlugin*& plugin : plugins)
     {
         pluginByName[plugin->getName()] = plugin;
         pluginTitles << plugin->getTitle();
@@ -103,7 +108,7 @@ void PopulateDialog::rebuildEngines(const QHash<QString, QPair<QString, QVariant
     int row = 0;
     QVariant config;
     QString pluginName;
-    for (const ColumnEntry& entry : columnEntries)
+    for (ColumnEntry& entry : columnEntries)
     {
         pluginName.clear();
         if (columnConfig.contains(entry.column))
@@ -136,7 +141,7 @@ void PopulateDialog::refreshTables()
 
 void PopulateDialog::refreshColumns()
 {
-    for (const ColumnEntry& entry : columnEntries)
+    for (ColumnEntry& entry : columnEntries)
     {
         delete entry.check;
         delete entry.combo;
@@ -319,7 +324,7 @@ void PopulateDialog::updateState()
     bool tableOk = !ui->tableCombo->currentText().isNull();
 
     bool colCountOk = false;
-    for (const ColumnEntry& entry : columnEntries)
+    for (ColumnEntry& entry : columnEntries)
     {
         if (entry.check->isChecked())
         {
