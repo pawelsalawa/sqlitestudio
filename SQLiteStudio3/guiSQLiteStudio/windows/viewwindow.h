@@ -168,6 +168,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void triggerViewDoubleClicked(const QModelIndex& idx);
         void updateFont();
         void dbChanged();
+        void handleObjectModified(Db* db, const QString& database, const QString& object);
 
     public slots:
         void refreshTriggers();

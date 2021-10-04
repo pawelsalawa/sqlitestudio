@@ -233,11 +233,12 @@ void ViewWindow::init()
     connect(ui->triggersList, SIGNAL(itemSelectionChanged()), this, SLOT(updateTriggersState()));
     connect(ui->triggersList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(triggerViewDoubleClicked(QModelIndex)));
     connect(ui->outputColumnsTable, SIGNAL(currentRowChanged(int)), this, SLOT(updateColumnButtons()));
-    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateColumnButtons()));
-    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateQueryToolbarStatus()));
+    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SLOT(updateColumnButtons()));
+    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->outputColumnsTable, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(updateQueryToolbarStatus()));
-    connect(CFG_UI.General.DataTabAsFirstInViews, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
+    connect(CFG_UI.General.DataTabAsFirstInViews, SIGNAL(changed(QVariant)), this, SLOT(updateTabsOrder()));
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
+    connect(NotifyManager::getInstance(), SIGNAL(objectModified(Db*,QString,QString)), this, SLOT(handleObjectModified(Db*,QString,QString)));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommitted()));
@@ -313,6 +314,8 @@ void ViewWindow::initView()
 
     refreshTriggers();
 
+    // Disconnect first in case this method is (re)executed upon dependant table changes.
+    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
     connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 }
 
@@ -1084,4 +1087,19 @@ void ViewWindow::dbChanged()
     ui->queryEdit->setDb(db);
 
     connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
+}
+
+void ViewWindow::handleObjectModified(Db* db, const QString& database, const QString& object)
+{
+    UNUSED(db);
+    UNUSED(database);
+    if (object.compare(view, Qt::CaseInsensitive) != 0)
+        return;
+
+// TODO uncomment below when dbnames are supported
+//    if (this->database != database)
+//        return;
+
+    view = object;
+    refreshView();
 }

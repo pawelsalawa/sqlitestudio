@@ -348,10 +348,10 @@ void TableWindow::executeStructureChanges()
             MessageListDialog dialog(tr("Following problems will take place while modifying the table.\n"
                                         "Would you like to proceed?", "table window"));
             dialog.setWindowTitle(tr("Table modification", "table window"));
-            for (const QString& error : tableModifier->getErrors())
+            for (QString& error : tableModifier->getErrors())
                 dialog.addError(error);
 
-            for (const QString& warn : tableModifier->getWarnings())
+            for (QString& warn : tableModifier->getWarnings())
                 dialog.addWarning(warn);
 
             if (dialog.exec() != QDialog::Accepted)
