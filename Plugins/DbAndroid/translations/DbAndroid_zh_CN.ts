@@ -6,27 +6,27 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>无效或不完整的 Android 数据库 URL。</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>Android 数据库 URL</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>选择 Android 数据库</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>选择 ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>使用 Android 调试桥（ADB）: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -41,34 +41,34 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>无效的 ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.
 Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="unfinished">The selected ADB is incorrect.
-Would you like to select another one, or leave it unconfigured?</translation>
+      <translation>选择的 ADB 不正确。
+选择另一个？或者不做配置？</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>选择其他 ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>不做配置</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation type="unfinished">Save jar file</translation>
+      <translation>保存 jar 文件</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
       <source>Get Android connector JAR file</source>
-      <translation type="unfinished">Get Android connector JAR file</translation>
+      <translation>获取 Android 连接器 JAR 文件</translation>
     </message>
   </context>
   <context>
@@ -76,12 +76,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="106"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
-      <translation type="unfinished">Android SQLite driver does not support loadable extensions.</translation>
+      <translation>Android SQLite 驱动程序不支持可加载的扩展。</translation>
     </message>
     <message>
       <location filename="../dbandroidinstance.cpp" line="188"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
-      <translation type="unfinished">Connection with Android database &apos;%1&apos; lost.</translation>
+      <translation>与 Android 数据库 &apos;%1&apos; 的连接丢失。</translation>
     </message>
   </context>
   <context>
@@ -89,22 +89,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible to your computer.</translation>
+      <translation>无法连接设备 %1，它对您的计算机不可见。</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
       <source>Failed to create port forwarding for device %1 for port %2.</source>
-      <translation type="unfinished">Failed to create port forwarding for device %1 for port %2.</translation>
+      <translation>为设备 %1 创建 %2 端口转发失败。</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
       <source>Could not connect to network host: %1:%2</source>
-      <translation type="unfinished">Could not connect to network host: %1:%2</translation>
+      <translation>无法连接到网络主机：%1:%2</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
       <source>Cannot connect to %1:%2, because password is invalid.</source>
-      <translation type="unfinished">Cannot connect to %1:%2, because password is invalid.</translation>
+      <translation>无法连接到 %1:%2，密码无效。</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
