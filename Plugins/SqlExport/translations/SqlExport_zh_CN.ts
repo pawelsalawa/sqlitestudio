@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation>Table name for INSERT statements is mandatory.</translation>
+      <translation>INSERT 语句的表名称是强制性的。</translation>
     </message>
   </context>
   <context>
@@ -82,7 +82,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Include the query in comments</source>
-      <translation>Include the query in comments</translation>
+      <translation>在注释中包含该查询</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
