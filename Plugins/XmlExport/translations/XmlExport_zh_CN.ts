@@ -39,7 +39,7 @@
     <message>
       <location filename="../XmlExport.ui" line="67"/>
       <source>Use CDATA and ampersands</source>
-      <translation type="unfinished">Use CDATA and ampersands</translation>
+      <translation>使用 CDATA 及符号</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="83"/>
