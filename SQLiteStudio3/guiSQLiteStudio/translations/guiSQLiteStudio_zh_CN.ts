@@ -3007,7 +3007,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="55"/>
       <source>SQL function editor</source>
-      <translation>SQL函数编辑器</translation>
+      <translation>SQL 函数编辑器</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="60"/>
