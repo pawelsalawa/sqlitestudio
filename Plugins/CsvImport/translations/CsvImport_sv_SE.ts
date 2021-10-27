@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
