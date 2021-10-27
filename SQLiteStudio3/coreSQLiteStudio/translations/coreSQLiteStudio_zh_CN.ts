@@ -337,12 +337,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的数量出错</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的列宽度出错</translation>
     </message>
   </context>
   <context>
@@ -410,7 +410,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>导入插件没有提供列。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
@@ -435,7 +435,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>无法创建导入所需的表：%1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
