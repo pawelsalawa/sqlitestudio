@@ -49,17 +49,17 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
+      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>Use SQL formatter to format exported SQL statements</translation>
+      <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
     </message>
   </context>
   <context>
@@ -67,7 +67,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="20"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>Use SQL formatter to format exported SQL statements</translation>
+      <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
@@ -77,7 +77,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="37"/>
       <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-      <translation>Generate &quot;CREATE TABLE&quot; statement at the begining</translation>
+      <translation type="unfinished">Generate &quot;CREATE TABLE&quot; statement at the begining</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
@@ -87,12 +87,12 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
+      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
     </message>
   </context>
 </TS>
