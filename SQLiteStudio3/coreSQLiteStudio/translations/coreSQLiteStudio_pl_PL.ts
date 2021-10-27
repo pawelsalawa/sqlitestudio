@@ -402,7 +402,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
     </message>
   </context>
   <context>
@@ -1001,7 +1001,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation>No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1047,7 +1047,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation>Could not check for updates (%1).</translation>
+      <translation type="unfinished">Could not check for updates (%1).</translation>
     </message>
   </context>
 </TS>
