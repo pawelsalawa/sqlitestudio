@@ -3564,7 +3564,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="264"/>
       <source>Report a &amp;bug</source>
-      <translation>提交 Bug (&amp;B)</translation>
+      <translation>提报 Bug (&amp;B)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="265"/>
@@ -3574,7 +3574,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="266"/>
       <source>Propose a new &amp;feature</source>
-      <translation>提交新功能建议(&amp;F)</translation>
+      <translation>提议新增功能(&amp;F)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="267"/>
@@ -3604,7 +3604,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="272"/>
       <source>Bugs and feature &amp;requests</source>
-      <translation>提交 Bug 与请求新功能(&amp;R)</translation>
+      <translation>Bug 与功能请求(&amp;R)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
@@ -4513,7 +4513,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
       <source>Execute &quot;%1&quot; query</source>
-      <translation type="unfinished">Execute &quot;%1&quot; query</translation>
+      <translation>执行 &quot;%1&quot; 查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="30"/>
