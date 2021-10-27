@@ -21,17 +21,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>多行查询中提升关键字</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation type="unfinished">Indent contents of parenthesis block</translation>
+      <translation>缩进括号块的内容</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation type="unfinished">Tab size:</translation>
+      <translation>制表符宽度：</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation type="unfinished">After JOIN keywords in FROM clause</translation>
+      <translation>FROM 部分中在 JOIN 关键字后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
@@ -107,7 +107,7 @@
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>不在分号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
@@ -117,7 +117,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>在列表中逗号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
@@ -162,22 +162,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation type="unfinished">Before mathematical operator</translation>
+      <translation>在数学运算符前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation type="unfinished">After mathematical operator</translation>
+      <translation>在数学运算符后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>不在逗号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>名称</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
@@ -187,22 +187,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="600"/>
       <source>Always use name wrapping</source>
-      <translation type="unfinished">Always use name wrapping</translation>
+      <translation>始终包裹名称</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="610"/>
       <source>Uppercase data type names</source>
-      <translation type="unfinished">Uppercase data type names</translation>
+      <translation>大写数据类型名</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>大写关键字</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
       <source>Comments</source>
-      <translation type="unfinished">Comments</translation>
+      <translation>注释</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
@@ -212,12 +212,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
       <source>Move all comments to the line end</source>
-      <translation type="unfinished">Move all comments to the line end</translation>
+      <translation>所有注释移动到行尾</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="664"/>
       <source>Line up comments at the line end</source>
-      <translation type="unfinished">Line up comments at the line end</translation>
+      <translation>注释放到行尾</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
