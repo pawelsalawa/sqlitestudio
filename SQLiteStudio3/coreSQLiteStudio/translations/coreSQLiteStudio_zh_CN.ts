@@ -321,7 +321,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation>Error while counting data column width to export from query results: %1</translation>
+      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="347"/>
@@ -337,12 +337,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation>Error while counting data to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的数量出错</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation>Error while counting data column width to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的列宽度出错</translation>
     </message>
   </context>
   <context>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
     </message>
   </context>
   <context>
@@ -410,7 +410,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation>No columns provided by the import plugin.</translation>
+      <translation>导入插件没有提供列。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
@@ -435,7 +435,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation>Could not create table to import to: %1</translation>
+      <translation>无法创建导入所需的表：%1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -548,7 +548,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation>Method of using words</translation>
+      <translation type="unfinished">Method of using words</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
@@ -566,7 +566,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation>Table &apos;%1&apos; populated successfully.</translation>
+      <translation>表 &apos;%1&apos; 填充成功。</translation>
     </message>
   </context>
   <context>
@@ -623,7 +623,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation>Use characters from common sets:</translation>
+      <translation>使用常用的字符：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
@@ -653,7 +653,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation>A whitespace, a tab and a new line character.</translation>
+      <translation>空白、Tab 和换行符。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
@@ -663,7 +663,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation>Includes all above and all others.</translation>
+      <translation>包括上述及其他所有。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
@@ -673,7 +673,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation>Use characters from my custom set:</translation>
+      <translation>使用自定义集中的字符：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
@@ -683,7 +683,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation>If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>字符被输入的次数越多，被使用的概率越大。</translation>
     </message>
   </context>
   <context>
@@ -743,17 +743,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation>Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
       <source>Error while populating table: %1</source>
-      <translation>Error while populating table: %1</translation>
+      <translation type="unfinished">Error while populating table: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="80"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation>Could not commit transaction after table populating. Error details: %1</translation>
+      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
     </message>
   </context>
   <context>
@@ -771,7 +771,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="1168"/>
       <source>Result set expired or no row available.</source>
-      <translation>Result set expired or no row available.</translation>
+      <translation type="unfinished">Result set expired or no row available.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="329"/>
@@ -828,7 +828,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="90"/>
       <source>Custom character set cannot be empty.</source>
-      <translation>Custom character set cannot be empty.</translation>
+      <translation type="unfinished">Custom character set cannot be empty.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="40"/>
@@ -838,12 +838,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="58"/>
       <source>Error while executing populating initial code: %1</source>
-      <translation>Error while executing populating initial code: %1</translation>
+      <translation type="unfinished">Error while executing populating initial code: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="80"/>
       <source>Error while executing populating code: %1</source>
-      <translation>Error while executing populating code: %1</translation>
+      <translation type="unfinished">Error while executing populating code: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
@@ -858,23 +858,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../selectresolver.cpp" line="347"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation>Could not resolve data source for column: %1</translation>
+      <translation type="unfinished">Could not resolve data source for column: %1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation>Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="788"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation>General purpose</translation>
+      <translation>一般用途</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="312"/>
@@ -886,7 +886,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="313"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation>Code formatter</translation>
+      <translation>代码格式化</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="314"/>
@@ -910,27 +910,27 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation>Table populating</translation>
+      <translation>数据表填充</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
@@ -941,7 +941,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../tablemodifier.cpp" line="556"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation>Cannot not update view %1 according to table %2 modifications.
+      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</translation>
     </message>
     <message>
@@ -949,22 +949,22 @@ The view will remain as it is.</translation>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation>Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>无法解析要创建的视图的 DDL。详情：%1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation>Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
     </message>
   </context>
   <context>
@@ -988,7 +988,7 @@ The view will remain as it is.</translation>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
@@ -1001,7 +1001,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation>No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation>Could not check for updates (%1).</translation>
+      <translation>检查更新失败 (%1)。</translation>
     </message>
   </context>
 </TS>
