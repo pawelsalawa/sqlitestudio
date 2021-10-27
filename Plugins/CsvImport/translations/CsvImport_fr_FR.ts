@@ -59,7 +59,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation>First line represents CSV column names</translation>
+      <translation type="unfinished">First line represents CSV column names</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
@@ -69,7 +69,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
