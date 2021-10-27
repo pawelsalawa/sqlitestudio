@@ -377,7 +377,7 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
       <source>number</source>
-      <translation type="unfinished">number</translation>
+      <translation>数值</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
@@ -710,7 +710,7 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>目前没有选择数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
@@ -795,7 +795,7 @@ Expected one of: %2</translation>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">string</translation>
+      <translation>字符串</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="22"/>
