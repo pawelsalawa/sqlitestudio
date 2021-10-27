@@ -433,7 +433,7 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
+      <translation>When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
 - CLASSIC - columns are separated by a comma, not aligned,
 - FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
 - COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
@@ -464,7 +464,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
     </message>
   </context>
   <context>
@@ -699,7 +699,7 @@ When the -s option is given, then system tables are also listed.</source>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
+      <translation>Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
@@ -741,7 +741,7 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+      <translation>Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
 
 What is current working database?
 When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
@@ -800,7 +800,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">Command line interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Command line interface to SQLiteStudio, a SQLite manager.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
