@@ -6,7 +6,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="28"/>
       <source>SQLiteStudio v%1</source>
-      <translation>SQLiteStudio v%1</translation>
+      <translation type="unfinished">SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
@@ -54,7 +54,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
       <source>Index: %1</source>
-      <translation>Index: %1</translation>
+      <translation type="unfinished">Index: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
@@ -205,7 +205,7 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation>mm</translation>
+      <translation type="unfinished">mm</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
