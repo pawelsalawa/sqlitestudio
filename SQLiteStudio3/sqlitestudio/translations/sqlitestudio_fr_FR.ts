@@ -61,12 +61,12 @@
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Points to the master configuration file. Read manual at wiki page for more details.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>SQLiteStudio settings file</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="74"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation type="unfinished">Select configuration directory</translation>
+      <translation>Select configuration directory</translation>
     </message>
   </context>
 </TS>
