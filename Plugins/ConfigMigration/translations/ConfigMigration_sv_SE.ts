@@ -6,7 +6,7 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="121"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation>Could not commit migrated data into new configuration file: %1</translation>
+      <translation type="unfinished">Could not commit migrated data into new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="165"/>
@@ -94,52 +94,52 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="182"/>
       <source>Could not insert a bug reports history entry into new configuration file: %1</source>
-      <translation>Could not insert a bug reports history entry into new configuration file: %1</translation>
+      <translation type="unfinished">Could not insert a bug reports history entry into new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="203"/>
       <source>Could not read database list from old configuration file in order to migrate it: %1</source>
-      <translation>Could not read database list from old configuration file in order to migrate it: %1</translation>
+      <translation type="unfinished">Could not read database list from old configuration file in order to migrate it: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="217"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="228"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="249"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
-      <translation>Could not insert a database entry into new configuration file: %1</translation>
+      <translation type="unfinished">Could not insert a database entry into new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="261"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="272"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation>Could not create group referencing the database in new configuration file: %1</translation>
+      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="290"/>
       <source>Could not read function list from old configuration file in order to migrate it: %1</source>
-      <translation>Could not read function list from old configuration file in order to migrate it: %1</translation>
+      <translation type="unfinished">Could not read function list from old configuration file in order to migrate it: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="325"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
-      <translation>Could not read SQL queries history from old configuration file in order to migrate it: %1</translation>
+      <translation type="unfinished">Could not read SQL queries history from old configuration file in order to migrate it: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="332"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
-      <translation>Could not read next ID for SQL queries history in new configuration file: %1</translation>
+      <translation type="unfinished">Could not read next ID for SQL queries history in new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="348"/>
