@@ -21,7 +21,7 @@
     <message>
       <location filename="../cli.cpp" line="253"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>Database passed in command line parameters (%1) was already on the list under name: %2</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="260"/>
@@ -217,7 +217,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>Cannot find table named: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
@@ -232,37 +232,37 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Table: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Column name</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Data type</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Constraints</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Virtual table: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>Construction arguments:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>No construction arguments were passed for this virtual table.</translation>
     </message>
   </context>
   <context>
@@ -634,7 +634,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Table</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
@@ -665,7 +665,7 @@ Lorsque l’option « -s » est ajouté, les tables système sont aussi listées
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tables</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
