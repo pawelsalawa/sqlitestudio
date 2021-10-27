@@ -207,7 +207,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation type="unfinished">Preferred comment marker (where possible):</translation>
+      <translation>Preferred comment marker (where possible):</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
