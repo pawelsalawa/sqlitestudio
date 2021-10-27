@@ -49,7 +49,7 @@
     <message>
       <location filename="../regexpimport.ui" line="39"/>
       <source>Import only following groups:</source>
-      <translation type="unfinished">Import only following groups:</translation>
+      <translation>仅导入下列组：</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="52"/>
@@ -66,7 +66,7 @@
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation type="unfinished">Pattern:</translation>
+      <translation>模式：</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>
