@@ -104,12 +104,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="217"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="228"/>
       <source>Could not create containing group in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not create containing group in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="249"/>
@@ -119,12 +119,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="261"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
-      <translation>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
+      <translation type="unfinished">Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="272"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation>Could not create group referencing the database in new configuration file: %1</translation>
+      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="290"/>
