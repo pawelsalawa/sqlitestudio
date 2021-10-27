@@ -41,42 +41,42 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation type="unfinished">Before opening parenthesis in column definitions</translation>
+      <translation>列定义左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
       <source>After opening parenthesis in column definitions</source>
-      <translation type="unfinished">After opening parenthesis in column definitions</translation>
+      <translation>列定义左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="180"/>
       <source>Before closing parenthesis in column definitions</source>
-      <translation type="unfinished">Before closing parenthesis in column definitions</translation>
+      <translation>列定义右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="190"/>
       <source>After closing parenthesis in column definitions</source>
-      <translation type="unfinished">After closing parenthesis in column definitions</translation>
+      <translation>列定义右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
       <source>Before opening parenthesis in expressions</source>
-      <translation>表达式中左括号前</translation>
+      <translation>表达式左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="210"/>
       <source>After opening parenthesis in expressions</source>
-      <translation>表达式中左括号后</translation>
+      <translation>表达式左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="220"/>
       <source>Before closing parenthesis in expressions</source>
-      <translation>表达式中右括号前</translation>
+      <translation>表达式右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="230"/>
       <source>After closing parenthesis in expressions</source>
-      <translation>表达式中右括号后</translation>
+      <translation>表达式右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
@@ -86,7 +86,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation type="unfinished">Put each column constraint in CREATE TABLE into new line</translation>
+      <translation>CREATE TABLE 的每条列约束单列一行</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
@@ -152,12 +152,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation type="unfinished">Before dot operator (in path to database object)</translation>
+      <translation>数据库对象路径的.操作符前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation type="unfinished">After dot operator (in path to database object)</translation>
+      <translation>数据库对象路径的.操作符后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
@@ -182,7 +182,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
       <source>Preferred name wrapper</source>
-      <translation type="unfinished">Preferred name wrapper</translation>
+      <translation>首选名称包裹符</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="600"/>
