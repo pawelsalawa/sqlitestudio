@@ -337,12 +337,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的数量出错</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>统计从 %1: %2 表导出数据的列宽度出错</translation>
     </message>
   </context>
   <context>
@@ -410,7 +410,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>导入插件没有提供列。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
@@ -435,7 +435,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>无法创建导入所需的表：%1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -566,7 +566,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>表 &apos;%1&apos; 填充成功。</translation>
     </message>
   </context>
   <context>
@@ -623,7 +623,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>使用常用的字符：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
@@ -653,7 +653,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>空白、Tab 和换行符。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
@@ -663,7 +663,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>包括上述及其他所有。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
@@ -673,7 +673,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>使用自定义集中的字符：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
@@ -683,7 +683,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>字符被输入的次数越多，被使用的概率越大。</translation>
     </message>
   </context>
   <context>
@@ -874,7 +874,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">General purpose</translation>
+      <translation>一般用途</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="312"/>
@@ -886,7 +886,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="313"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Code formatter</translation>
+      <translation>代码格式化</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="314"/>
@@ -910,12 +910,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>数据表填充</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
@@ -954,7 +954,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>无法解析要创建的视图的 DDL。详情：%1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
@@ -1039,7 +1039,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>检查更新失败 (%1)。</translation>
     </message>
   </context>
 </TS>

@@ -64,7 +64,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="62"/>
       <source>Enter a non-empty name.</source>
-      <translation>输入一个非空名称。</translation>
+      <translation>请输入一个非空的名称。</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="70"/>

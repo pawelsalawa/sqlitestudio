@@ -21,17 +21,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>多行查询中提升关键字</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation type="unfinished">Indent contents of parenthesis block</translation>
+      <translation>缩进括号块的内容</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation type="unfinished">Tab size:</translation>
+      <translation>制表符宽度：</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
@@ -41,52 +41,52 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation type="unfinished">Before opening parenthesis in column definitions</translation>
+      <translation>列定义左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
       <source>After opening parenthesis in column definitions</source>
-      <translation type="unfinished">After opening parenthesis in column definitions</translation>
+      <translation>列定义左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="180"/>
       <source>Before closing parenthesis in column definitions</source>
-      <translation type="unfinished">Before closing parenthesis in column definitions</translation>
+      <translation>列定义右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="190"/>
       <source>After closing parenthesis in column definitions</source>
-      <translation type="unfinished">After closing parenthesis in column definitions</translation>
+      <translation>列定义右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
       <source>Before opening parenthesis in expressions</source>
-      <translation type="unfinished">Before opening parenthesis in expressions</translation>
+      <translation>表达式左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="210"/>
       <source>After opening parenthesis in expressions</source>
-      <translation type="unfinished">After opening parenthesis in expressions</translation>
+      <translation>表达式左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="220"/>
       <source>Before closing parenthesis in expressions</source>
-      <translation type="unfinished">Before closing parenthesis in expressions</translation>
+      <translation>表达式右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="230"/>
       <source>After closing parenthesis in expressions</source>
-      <translation type="unfinished">After closing parenthesis in expressions</translation>
+      <translation>表达式右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation type="unfinished">After JOIN keywords in FROM clause</translation>
+      <translation>FROM 部分中在 JOIN 关键字后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation type="unfinished">Put each column constraint in CREATE TABLE into new line</translation>
+      <translation>CREATE TABLE 的每条列约束单列一行</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
@@ -107,7 +107,7 @@
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>不在分号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
@@ -117,7 +117,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>在列表中逗号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
@@ -152,72 +152,72 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation type="unfinished">Before dot operator (in path to database object)</translation>
+      <translation>数据库对象路径的.操作符前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation type="unfinished">After dot operator (in path to database object)</translation>
+      <translation>数据库对象路径的.操作符后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation type="unfinished">Before mathematical operator</translation>
+      <translation>在数学运算符前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation type="unfinished">After mathematical operator</translation>
+      <translation>在数学运算符后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>不在逗号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>名称</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
       <source>Preferred name wrapper</source>
-      <translation type="unfinished">Preferred name wrapper</translation>
+      <translation>首选名称包裹符</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="600"/>
       <source>Always use name wrapping</source>
-      <translation type="unfinished">Always use name wrapping</translation>
+      <translation>始终包裹名称</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="610"/>
       <source>Uppercase data type names</source>
-      <translation type="unfinished">Uppercase data type names</translation>
+      <translation>大写数据类型名</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>大写关键字</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
       <source>Comments</source>
-      <translation type="unfinished">Comments</translation>
+      <translation>注释</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation type="unfinished">Preferred comment marker (where possible):</translation>
+      <translation>首选注释标记（如可能）：</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
       <source>Move all comments to the line end</source>
-      <translation type="unfinished">Move all comments to the line end</translation>
+      <translation>所有注释移动到行尾</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="664"/>
       <source>Line up comments at the line end</source>
-      <translation type="unfinished">Line up comments at the line end</translation>
+      <translation>注释放到行尾</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
