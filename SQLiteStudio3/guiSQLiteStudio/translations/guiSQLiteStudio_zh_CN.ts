@@ -1033,7 +1033,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="751"/>
       <source>Editors selected for this data type:</source>
-      <translation>已选的该数据类型编辑器：</translation>
+      <translation>已为该数据类型选择的编辑器：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="787"/>
@@ -2452,7 +2452,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="370"/>
       <source>Explain query</source>
-      <translation type="unfinished">Explain query</translation>
+      <translation>解释查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="373"/>
@@ -3803,7 +3803,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="102"/>
       <source>Tab changes focus</source>
-      <translation type="unfinished">Tab changes focus</translation>
+      <translation>Tab 键更改焦点</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="103"/>
@@ -3922,37 +3922,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="26"/>
       <source>New version is available!</source>
-      <translation type="unfinished">New version is available!</translation>
+      <translation>有新版本了！</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="43"/>
       <source>0.0.0</source>
-      <translation type="unfinished">0.0.0</translation>
+      <translation>0.0.0</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="53"/>
       <source>Download new version!</source>
-      <translation type="unfinished">Download new version!</translation>
+      <translation>下载新版本</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="66"/>
       <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
-      <translation type="unfinished">New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</translation>
+      <translation>下载新版本程序包。将在准备就绪时提醒您安装。</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="73"/>
       <source>Open SQLiteStudio home page.</source>
-      <translation type="unfinished">Open SQLiteStudio home page.</translation>
+      <translation>打开 SQLiteStudio 主页</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="86"/>
       <source>Read release notes &amp;&amp; download package yourself.</source>
-      <translation type="unfinished">Read release notes &amp;&amp; download package yourself.</translation>
+      <translation>阅读发行说明和自行下载程序包。</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="106"/>
       <source>Just close this window.</source>
-      <translation type="unfinished">Just close this window.</translation>
+      <translation>关闭此窗口。</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="116"/>
@@ -4951,7 +4951,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Committing error:</translation>
+      <translation>提交出错：</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
@@ -5108,7 +5108,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Delete rows</source>
-      <translation type="unfinished">Delete rows</translation>
+      <translation>删除行</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
@@ -5208,7 +5208,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Load full values</source>
-      <translation type="unfinished">Load full values</translation>
+      <translation>加载完整值</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
@@ -5268,7 +5268,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="485"/>
       <source>Referenced row (%1)</source>
-      <translation type="unfinished">Referenced row (%1)</translation>
+      <translation>引用的行（%1）</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="744"/>
@@ -5550,7 +5550,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="145"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>自动递增</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
@@ -5895,7 +5895,7 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="350"/>
       <source>Table modification</source>
       <comment>table window</comment>
-      <translation type="unfinished">Table modification</translation>
+      <translation>表修改</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="489"/>
@@ -5910,7 +5910,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="630"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>数据库</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="662"/>
@@ -6114,12 +6114,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="14"/>
       <source>Trigger columns</source>
-      <translation type="unfinished">Trigger columns</translation>
+      <translation>触发列</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="47"/>
       <source>Triggering columns:</source>
-      <translation type="unfinished">Triggering columns:</translation>
+      <translation>触发列：</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="115"/>
@@ -6320,7 +6320,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="275"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>数据库</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="328"/>
@@ -6470,7 +6470,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="803"/>
       <source>Override columns</source>
-      <translation type="unfinished">Override columns</translation>
+      <translation>覆盖列</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="803"/>
@@ -6514,7 +6514,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="969"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>空名称</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="969"/>
