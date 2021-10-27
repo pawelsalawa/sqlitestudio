@@ -2202,7 +2202,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="2000"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation>在 %2 秒内完成 %1 个查询。</translation>
+      <translation>用 %2 秒完成了 %1 个查询。</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="2007"/>
@@ -2520,12 +2520,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation>查询在 %1 秒内完成。影响的行数：%2</translation>
+      <translation>查询用时 %1 秒。影响行数：%2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s).</source>
-      <translation>查询在 %1 秒内完成。</translation>
+      <translation>查询用时 %1 秒。</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
