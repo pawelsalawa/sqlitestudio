@@ -36,7 +36,7 @@
     <message>
       <location filename="../CsvExport.ui" line="61"/>
       <source>Custom:</source>
-      <translation>Custom:</translation>
+      <translation type="unfinished">Custom:</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="82"/>
@@ -46,12 +46,12 @@
     <message>
       <location filename="../CsvExport.ui" line="89"/>
       <source>Empty string</source>
-      <translation>Empty string</translation>
+      <translation type="unfinished">Empty string</translation>
     </message>
     <message>
       <location filename="../csvexport.cpp" line="42"/>
       <source>Enter the custom separator character.</source>
-      <translation>Enter the custom separator character.</translation>
+      <translation type="unfinished">Enter the custom separator character.</translation>
     </message>
   </context>
 </TS>
