@@ -71,7 +71,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="228"/>
       <source>Indexed table</source>
-      <translation>Indexed table</translation>
+      <translation type="unfinished">Indexed table</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
@@ -101,7 +101,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="247"/>
       <source>Partial index condition</source>
-      <translation>Partial index condition</translation>
+      <translation type="unfinished">Partial index condition</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="261"/>
@@ -128,32 +128,32 @@
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
       <source>For action</source>
-      <translation>For action</translation>
+      <translation type="unfinished">For action</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="272"/>
       <source>On view</source>
-      <translation>On view</translation>
+      <translation type="unfinished">On view</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="274"/>
       <source>On table</source>
-      <translation>On table</translation>
+      <translation type="unfinished">On table</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="279"/>
       <source>Activation condition</source>
-      <translation>Activation condition</translation>
+      <translation type="unfinished">Activation condition</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="285"/>
       <source>Code executed</source>
-      <translation>Code executed</translation>
+      <translation type="unfinished">Code executed</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="297"/>
       <source>View: %1</source>
-      <translation>View: %1</translation>
+      <translation type="unfinished">View: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
@@ -196,7 +196,7 @@
     <message>
       <location filename="../pdfexport.ui" line="84"/>
       <source>Limit characters in single cell:</source>
-      <translation>Limit characters in single cell:</translation>
+      <translation type="unfinished">Limit characters in single cell:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="91"/>
