@@ -21,27 +21,27 @@
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation>Redirects debug messages into given file (forces debug mode).</translation>
+      <translation type="unfinished">Redirects debug messages into given file (forces debug mode).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>log file</source>
-      <translation>log file</translation>
+      <translation type="unfinished">log file</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation>Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation>Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -51,22 +51,22 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation>Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="62"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation>Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation>Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>SQLiteStudio settings file</source>
-      <translation>SQLiteStudio settings file</translation>
+      <translation type="unfinished">SQLiteStudio settings file</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="74"/>
@@ -76,12 +76,12 @@
     <message>
       <location filename="../main.cpp" line="74"/>
       <source>Database file to open</source>
-      <translation>Database file to open</translation>
+      <translation type="unfinished">Database file to open</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation>Select configuration directory</translation>
+      <translation type="unfinished">Select configuration directory</translation>
     </message>
   </context>
 </TS>
