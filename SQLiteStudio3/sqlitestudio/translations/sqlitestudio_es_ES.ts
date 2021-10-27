@@ -36,12 +36,12 @@
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>Enables debugging of every single SQL query being sent to any database.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>Limits SQL query messages to only the given &lt;database&gt;.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation type="unfinished">Select configuration directory</translation>
+      <translation>Select configuration directory</translation>
     </message>
   </context>
 </TS>
