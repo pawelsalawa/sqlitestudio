@@ -841,7 +841,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation>按字母顺序排序对象（表，索引，触发器与视图）</translation>
+      <translation>按字母顺序排序对象（表、索引、触发器及视图）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="326"/>
@@ -861,7 +861,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="348"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation>默认情况下不要将新添加的数据库标记为“永久”</translation>
+      <translation>默认不将新添加的数据库标为“永久”（记住）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="358"/>
@@ -928,12 +928,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用此选项后，提交一个 NULL 值时，如果该列已定义 DEFAULT 值，即使该列允许包含 NULL 值，也始终采用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此选项则仅在列有非空（NOT NULL）约束时将 NULL 值转变为 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="470"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation>当提交 NULL 值时使用 DEFAULT 值（如果已被定义）</translation>
+      <translation>提交 NULL 值时使用 DEFAULT 值（如果已定义）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="529"/>
@@ -1018,7 +1018,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="653"/>
       <source>Place data tab as first tab in a View Window</source>
-      <translation>将数据选项卡作为视图窗口的第一选项卡</translation>
+      <translation>将“数据”选项卡放置为视图窗口的首个选项卡</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="697"/>
@@ -1100,7 +1100,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="912"/>
       <source>Automatically check for updates at startup</source>
-      <translation>在启动时自己检查更新</translation>
+      <translation>启动时自动检查更新</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="925"/>
@@ -1110,7 +1110,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="931"/>
       <source>Restore last session (active MDI windows) after startup</source>
-      <translation>启动后恢复上一次会话。</translation>
+      <translation>启动后恢复上一次会话</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="941"/>
@@ -1135,7 +1135,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="963"/>
       <source>Always open Status panel when new message is printed</source>
-      <translation>当有新信息被输出时，总是打开状态面板</translation>
+      <translation>有新消息输出时就打开状态面板</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1005"/>
@@ -1196,7 +1196,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1291"/>
       <source>Hide built-in plugins</source>
-      <translation>隐藏内建插件</translation>
+      <translation>隐藏内置插件</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1320"/>
@@ -1231,17 +1231,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1623"/>
       <source>Database list font</source>
-      <translation>数据库字体</translation>
+      <translation>数据库列表字体</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Database list additional label font</source>
-      <translation>数据库额外标签字体</translation>
+      <translation>数据库列表附加说明字体</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1655"/>
       <source>Data view font</source>
-      <translation>数据浏览字体</translation>
+      <translation>数据视图字体</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1671"/>
@@ -2373,7 +2373,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="35"/>
       <source>Filter by database:</source>
-      <translation>数据库过滤：</translation>
+      <translation>按数据库过滤：</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
@@ -2946,7 +2946,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation>过滤函数</translation>
+      <translation>函数过滤器</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
