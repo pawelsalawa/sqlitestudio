@@ -915,7 +915,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
@@ -954,7 +954,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>无法解析要创建的视图的 DDL。详情：%1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
