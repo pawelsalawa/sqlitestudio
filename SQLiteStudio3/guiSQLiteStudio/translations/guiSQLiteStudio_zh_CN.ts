@@ -553,7 +553,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>使用 &quot;GENERATED ALWAYS&quot; 关键字</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
@@ -563,7 +563,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>请输入列值生成表达式。</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
@@ -903,7 +903,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="450"/>
       <source>Number of data rows per page:</source>
-      <translation>每页的行数：</translation>
+      <translation>每页数据行数：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="503"/>
@@ -2355,7 +2355,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>SQL 语句转换</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1268"/>
@@ -2515,7 +2515,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="462"/>
       <source>Active database (%1/%2)</source>
-      <translation type="unfinished">Active database (%1/%2)</translation>
+      <translation>活跃数据库 (%1/%2)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
@@ -4367,12 +4367,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>退出程序</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
       <source>Cell text value editor</source>
-      <translation type="unfinished">Cell text value editor</translation>
+      <translation>单元格文本值编辑器</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
@@ -4407,7 +4407,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="28"/>
       <source>SQL editor input field</source>
-      <translation type="unfinished">SQL editor input field</translation>
+      <translation>SQL 编辑器输入字段</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="33"/>
@@ -5037,7 +5037,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
       <source>Cannot execute empty query.</source>
-      <translation type="unfinished">Cannot execute empty query.</translation>
+      <translation>无法执行空的查询。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
@@ -5103,7 +5103,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
       <source>Number of rows to insert:</source>
-      <translation type="unfinished">Number of rows to insert:</translation>
+      <translation>要插入的行数：</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
@@ -5123,7 +5123,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
-      <translation type="unfinished">Go to referenced row in...</translation>
+      <translation>转到引用的行...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="89"/>
@@ -5218,7 +5218,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
       <source>Show value in a viewer</source>
-      <translation type="unfinished">Show value in a viewer</translation>
+      <translation>在查看器中显示值</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="180"/>
@@ -5771,7 +5771,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
-      <translation type="unfinished">Reset autoincrement value</translation>
+      <translation>重置自动递增值</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="241"/>
@@ -5825,7 +5825,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="250"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table check constraint</translation>
+      <translation>添加表检查约束</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="268"/>
@@ -6067,7 +6067,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1504"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>部分索引条件</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1551"/>
