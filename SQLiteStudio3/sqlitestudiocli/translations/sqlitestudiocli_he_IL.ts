@@ -111,7 +111,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="10"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="21"/>
@@ -122,7 +122,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</translation>
+      <translation type="unfinished">Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
+      <translation type="unfinished">Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
     </message>
   </context>
   <context>
@@ -205,7 +205,7 @@
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation>No working database is set.
+      <translation type="unfinished">No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</translation>
     </message>
@@ -277,7 +277,7 @@ Call %2 to see list of all databases.</translation>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
+      <translation type="unfinished">This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</translation>
     </message>
@@ -315,7 +315,7 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-      <translation>Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.
+      <translation type="unfinished">Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.
 To see list of supported commands, type %2 without any arguments.
 
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
@@ -336,7 +336,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
       <source>Type &apos;%1&apos; for list of available commands.</source>
-      <translation>Type &apos;%1&apos; for list of available commands.</translation>
+      <translation type="unfinished">Type &apos;%1&apos; for list of available commands.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
@@ -368,7 +368,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
 When the -c or --clear option is passed, then the history gets erased.
 When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
 Use -ql or --querylimit option to see the current limit value.</source>
-      <translation>When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
+      <translation type="unfinished">When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
 
 When the -c or --clear option is passed, then the history gets erased.
 When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
@@ -433,7 +433,7 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
+      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
 - CLASSIC - columns are separated by a comma, not aligned,
 - FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
 - COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
@@ -454,17 +454,17 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation>Current NULL representation string: %1</translation>
+      <translation type="unfinished">Current NULL representation string: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
       <source>tells or changes the NULL representation string</source>
-      <translation>tells or changes the NULL representation string</translation>
+      <translation type="unfinished">tells or changes the NULL representation string</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
     </message>
   </context>
   <context>
@@ -472,7 +472,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="12"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
@@ -482,12 +482,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
       <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-      <translation>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</translation>
+      <translation type="unfinished">File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation>Database %1 has been open and set as the current working database.</translation>
+      <translation type="unfinished">Database %1 has been open and set as the current working database.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
@@ -550,7 +550,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</translation>
+      <translation type="unfinished">Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -566,7 +566,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation>No working database is set.
+      <translation type="unfinished">No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</translation>
     </message>
@@ -583,7 +583,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+      <translation type="unfinished">This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
@@ -613,12 +613,12 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
@@ -645,7 +645,7 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
+      <translation type="unfinished">Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</translation>
     </message>
     <message>
@@ -699,7 +699,7 @@ When the -s option is given, then system tables are also listed.</translation>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation>Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
+      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
@@ -741,7 +741,7 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+      <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
 
 What is current working database?
 When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
@@ -805,7 +805,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="26"/>
       <source>Enables debug messages on standard error output.</source>
-      <translation>Enables debug messages on standard error output.</translation>
+      <translation type="unfinished">Enables debug messages on standard error output.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="27"/>
