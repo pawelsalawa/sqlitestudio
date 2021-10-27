@@ -172,7 +172,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="284"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation>为排序规则输入一个非空唯一的名称。</translation>
+      <translation>请为排序规则输入一个非空且唯一的名称。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="292"/>
@@ -182,7 +182,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="295"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation>输入非空实现代码。</translation>
+      <translation>请输入非空的实现代码。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="389"/>
@@ -1038,22 +1038,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="787"/>
       <source>Schema editing</source>
-      <translation>架构编辑</translation>
+      <translation>结构编辑</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="799"/>
       <source>Number of DDL changes kept in history.</source>
-      <translation>数据库定义（DDL）的更改历史记录数量。</translation>
+      <translation>DDL 变更历史的记录数量。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="812"/>
       <source>DDL history size:</source>
-      <translation>数据库定义（DDL）历史大小：</translation>
+      <translation>DDL 历史大小：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="819"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation>当提交 schema 更改时不要展示 DDL 预览对话框</translation>
+      <translation>提交结构更改时不显示 DDL 预览对话框</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="832"/>
@@ -1888,12 +1888,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation>导出该数据库(&amp;E)</translation>
+      <translation>导出数据库(&amp;E)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation>清理(&amp;U)</translation>
+      <translation>释放空闲占用（VACUUM）(&amp;U)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
@@ -1918,7 +1918,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Export the table</source>
-      <translation>导出该表</translation>
+      <translation>导出表</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="155"/>
@@ -2013,12 +2013,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation>刷新全部数据库的结构(&amp;R)</translation>
+      <translation>刷新全部数据库结构(&amp;R)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation>刷新已选数据库的结构(&amp;F)</translation>
+      <translation>刷新已选数据库结构(&amp;F)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
@@ -2112,7 +2112,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1490"/>
       <source>Vacuum (%1)</source>
-      <translation>清理（%1）</translation>
+      <translation>释放空闲占用（VACUUM）(%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
@@ -2197,7 +2197,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1993"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation>在 %2 秒内完成执行 %1 个查询。 %3 个由于错误而没有被执行。</translation>
+      <translation>用 %2 秒完成了 %1 个查询。其中 %3 个由于错误未被执行。</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="2000"/>
@@ -2380,8 +2380,8 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- 在数据库 %1 (%2) 执行的查询
+-- 执行日期和时间：%3
 %4</translation>
     </message>
     <message>
@@ -2679,7 +2679,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="130"/>
       <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-      <translation type="unfinished">When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</translation>
+      <translation>不选中此选项时，仅导出表的 DDL（CREATE TABLE 语句）。</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="133"/>
@@ -3072,7 +3072,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="411"/>
       <source>Enter a non-empty, unique name of the function.</source>
-      <translation>输入非空唯一的函数名称</translation>
+      <translation>请输入非空且唯一的函数名称。</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="423"/>
@@ -3087,7 +3087,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="433"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation>输入非空实现代码。</translation>
+      <translation>请输入非空的实现代码。</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="506"/>
@@ -3459,7 +3459,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="239"/>
       <source>Open DDL &amp;history</source>
-      <translation>打开数据库定义（DDL）历史(&amp;H)</translation>
+      <translation>打开 DDL 历史(&amp;H)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="240"/>
@@ -3534,7 +3534,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="257"/>
       <source>Close all windows &amp;but selected</source>
-      <translation>关闭其它窗口(&amp;B)</translation>
+      <translation>关闭其他窗口(&amp;B)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="258"/>
@@ -3544,7 +3544,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="259"/>
       <source>Re&amp;store recently closed window</source>
-      <translation>恢复最近关闭的窗口(&amp;S)</translation>
+      <translation>还原最近关闭的窗口(&amp;S)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="260"/>
@@ -4225,12 +4225,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="31"/>
       <source>Refresh schema</source>
-      <translation type="unfinished">Refresh schema</translation>
+      <translation>刷新结构</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="32"/>
       <source>Refresh all schemas</source>
-      <translation type="unfinished">Refresh all schemas</translation>
+      <translation>刷新全部结构</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="33"/>
@@ -5692,7 +5692,7 @@ NULL</source>
     <message>
       <location filename="../windows/tablewindow.ui" line="292"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="204"/>
@@ -6199,7 +6199,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="138"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="153"/>
@@ -6288,7 +6288,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="212"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="109"/>
