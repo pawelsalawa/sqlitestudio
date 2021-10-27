@@ -137,12 +137,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
   </context>
   <context>
@@ -402,7 +402,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
     </message>
   </context>
   <context>
@@ -761,7 +761,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../common/utils.cpp" line="1025"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="420"/>
@@ -863,12 +863,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="788"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
@@ -1000,7 +1000,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>No database available in current context, while called JavaScript&apos;s %1 command.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
