@@ -33,7 +33,7 @@
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>Could not disable foreign keys in the database. Details: %1</translation>
+      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
@@ -137,12 +137,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
   </context>
   <context>
@@ -238,7 +238,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation>Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
+      <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
     </message>
   </context>
   <context>
@@ -402,7 +402,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
     </message>
   </context>
   <context>
@@ -454,7 +454,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../importworker.cpp" line="172"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation>Could not import data row number %1. The row was ignored. Problem details: %2</translation>
+      <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
     </message>
   </context>
   <context>
@@ -691,7 +691,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation>Script</translation>
+      <translation type="unfinished">Script</translation>
     </message>
   </context>
   <context>
@@ -761,7 +761,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../common/utils.cpp" line="1025"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation>Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="420"/>
@@ -777,7 +777,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
       <location filename="../db/abstractdb3.h" line="329"/>
       <location filename="../db/abstractdb3.h" line="333"/>
       <source>Could not load extension %1: %2</source>
-      <translation>Could not load extension %1: %2</translation>
+      <translation type="unfinished">Could not load extension %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="441"/>
@@ -863,12 +863,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation>Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="788"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
@@ -925,7 +925,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
@@ -949,7 +949,7 @@ La vue restera telque.</translation>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
@@ -1001,7 +1001,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation>No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1039,7 +1039,7 @@ La vue restera telque.</translation>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation>SQL</translation>
+      <translation type="unfinished">SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation>Could not check for updates (%1).</translation>
+      <translation type="unfinished">Could not check for updates (%1).</translation>
     </message>
   </context>
 </TS>
