@@ -61,22 +61,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
       <source>Before opening parenthesis in expressions</source>
-      <translation type="unfinished">Before opening parenthesis in expressions</translation>
+      <translation>表达式中左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="210"/>
       <source>After opening parenthesis in expressions</source>
-      <translation type="unfinished">After opening parenthesis in expressions</translation>
+      <translation>表达式中左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="220"/>
       <source>Before closing parenthesis in expressions</source>
-      <translation type="unfinished">Before closing parenthesis in expressions</translation>
+      <translation>表达式中右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="230"/>
       <source>After closing parenthesis in expressions</source>
-      <translation type="unfinished">After closing parenthesis in expressions</translation>
+      <translation>表达式中右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
@@ -207,7 +207,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation type="unfinished">Preferred comment marker (where possible):</translation>
+      <translation>首选注释标记（如可能）：</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
