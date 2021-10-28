@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>使用 Android 调试桥（ADB）: %1</translation>
+      <translation>使用 Android 调试桥（ADB）：%1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -143,7 +143,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
       <source>Connection method</source>
-      <translation>连接方法</translation>
+      <translation>连接方式</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="32"/>
@@ -228,7 +228,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation>所选的 Android 应用程序未知或者无法调试。</translation>
+      <translation>所选的 Android 应用程序未知或者非可调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -302,32 +302,32 @@ Android 设备拒绝或无法完成删除。</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation>无法连接设备 %1，它对您的计算机不可见。</translation>
+      <translation>无法连接设备 %1，您的计算机上看不到它。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
       <source>Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</source>
-      <translation>无法连接到设备 %1，应用程序 %2 似乎没有在该设备上安装。</translation>
+      <translation>无法连接设备 %1，应用程序 %2 似乎没有在该设备上安装。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="56"/>
       <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
-      <translation>无法连接到设备 %1，因为应用程序 %2 不可调试。</translation>
+      <translation>无法连接设备 %1，应用程序 %2 不可调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation>无法连接到设备 %1，因为命令 &apos;%2&apos; 在设备上似乎不可用。</translation>
+      <translation>无法连接设备 %1，命令 &apos;%2&apos; 在该设备上似乎不可用。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation>无法连接到设备 %1，因为无法访问该设备上的 &apos;%2&apos; 数据库。</translation>
+      <translation>无法连接设备 %1，因无法访问该设备上的 &apos;%2&apos; 数据库。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation>无法连接到设备 %1，因为无法访问该设备上的 &apos;%2&apos; 数据库。详细信息：%3</translation>
+      <translation>无法连接设备 %1，因无法访问该设备上的 &apos;%2&apos; 数据库。详细信息：%3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
@@ -338,7 +338,7 @@ Android 设备拒绝或无法完成删除。</translation>
       <location filename="../dbandroidshellconnection.cpp" line="219"/>
       <location filename="../dbandroidshellconnection.cpp" line="226"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation>无法在数据库 &apos; %1 &apos; 上执行查询：%2</translation>
+      <translation>无法在数据库 &apos;%1&apos; 上执行查询：%2</translation>
     </message>
   </context>
   <context>
@@ -346,7 +346,7 @@ Android 设备拒绝或无法完成删除。</translation>
     <message>
       <location filename="../sqlqueryandroid.cpp" line="101"/>
       <source>Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</source>
-      <translation>无法在查询中绑定参数 &apos;%1&apos;，因为缺少它的值。</translation>
+      <translation>无法在此查询中绑定参数 &apos;%1&apos;，因为缺少它的值。</translation>
     </message>
   </context>
 </TS>
