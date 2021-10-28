@@ -124,7 +124,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="272"/>
       <source>Could not create group referencing the database in new configuration file: %1</source>
-      <translation type="unfinished">Could not create group referencing the database in new configuration file: %1</translation>
+      <translation>未能在新的配置文件中创建引用该数据库的组：%1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="290"/>
