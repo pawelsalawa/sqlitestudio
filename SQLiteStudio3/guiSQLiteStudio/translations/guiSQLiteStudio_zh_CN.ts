@@ -2426,12 +2426,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
       <source>Results in the separate tab</source>
-      <translation>结果在新标签中打开</translation>
+      <translation>在新选项卡中显示结果</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="144"/>
       <source>Results below the query</source>
-      <translation>结果在当前页打开</translation>
+      <translation>在查询下方显示结果</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="177"/>
@@ -5419,7 +5419,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../statusfield.ui" line="14"/>
       <source>Status</source>
-      <translation>状态</translation>
+      <translation>状态栏</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="174"/>
