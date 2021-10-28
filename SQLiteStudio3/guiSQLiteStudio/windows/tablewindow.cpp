@@ -681,7 +681,7 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     SchemaResolver resolver(db);
     if (!resolver.getTables(database).contains(table, Qt::CaseInsensitive))
     {
-        notifyWarn(tr("Could not restore window '%1'', because the table %2 doesn't exist in the database %3.").arg(value["title"].toString(), table, db->getName()));
+        notifyWarn(tr("Could not restore window '%1', because the table %2 doesn't exist in the database %3.").arg(value["title"].toString(), table, db->getName()));
         return false;
     }
 

@@ -52,7 +52,7 @@ Icon* FunctionsEditor::getIconNameForMdiWindow()
 
 QString FunctionsEditor::getTitleForMdiWindow()
 {
-    return tr("SQL function editor");
+    return tr("SQL functions editor");
 }
 
 void FunctionsEditor::createActions()

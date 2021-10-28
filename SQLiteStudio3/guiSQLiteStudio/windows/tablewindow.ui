@@ -84,7 +84,7 @@
           <item>
            <widget class="QCheckBox" name="withoutRowIdCheck">
             <property name="text">
-             <string notr="true">WITHOUT ROWID</string>
+             <string>WITHOUT ROWID</string>
             </property>
            </widget>
           </item>

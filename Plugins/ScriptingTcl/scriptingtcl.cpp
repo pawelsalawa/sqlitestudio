@@ -448,7 +448,7 @@ int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc,
         return dbEvalOneColumn(ctx, interp, objv);
     }
 
-    result = Tcl_NewStringObj(tr("Invalid '%1' command sytax. Should be: %2").arg("db", "db eval sql").toUtf8().constData(), -1);
+    result = Tcl_NewStringObj(tr("Invalid '%1' command syntax. Should be: %2").arg("db", "db eval sql").toUtf8().constData(), -1);
     Tcl_SetObjResult(interp, result);
     return TCL_ERROR;
 }
@@ -460,7 +460,7 @@ int ScriptingTcl::initTclCommand(ClientData clientData, Tcl_Interp* interp, int 
 
     if (objc > 1)
     {
-        Tcl_Obj* result = Tcl_NewStringObj(tr("Error from Tcl's' '%1' command: %2").arg("tcl_init", "invalid # args: tcl_init").toUtf8().constData(), -1);
+        Tcl_Obj* result = Tcl_NewStringObj(tr("Error from Tcl's '%1' command: %2").arg("tcl_init", "invalid # args: tcl_init").toUtf8().constData(), -1);
         Tcl_SetObjResult(interp, result);
         return TCL_ERROR;
     }

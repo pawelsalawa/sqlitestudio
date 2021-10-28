@@ -62,7 +62,7 @@
    <item row="1" column="0">
     <widget class="QLabel" name="separatorLabel">
      <property name="text">
-      <string>Field separator:</string>
+      <string>Column separator:</string>
      </property>
     </widget>
    </item>

@@ -525,7 +525,7 @@
                      <string>Limit number of rows for in case of dozens of columns</string>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.LimitRowsForManyColumns</string>
+                     <string notr="true">General.LimitRowsForManyColumns</string>
                     </property>
                    </widget>
                   </item>
@@ -1030,7 +1030,7 @@
                  <string>Allow multiple instances of the application at the same time</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.AllowMultipleSessions</string>
+                 <string notr="true">General.AllowMultipleSessions</string>
                 </property>
                </widget>
               </item>
