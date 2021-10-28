@@ -81,22 +81,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation>FROM 部分中在 JOIN 关键字后</translation>
+      <translation>FROM 语句中 JOIN 关键字后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>CREATE TABLE 的每条列约束单列一行</translation>
+      <translation>CREATE TABLE 的每个列约束单列一行</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation>逗号之后</translation>
+      <translation>逗号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation>在表达式中的逗号之后</translation>
+      <translation>表达式中的逗号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
@@ -117,37 +117,37 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation>在列表中逗号前</translation>
+      <translation>列表中的逗号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation>在列表中的逗号之后</translation>
+      <translation>列表中的逗号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
       <source>Before opening parenthesis</source>
-      <translation>在左小括号之前</translation>
+      <translation>左括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="422"/>
       <source>After opening parenthesis</source>
-      <translation>在左小括号之后</translation>
+      <translation>左括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="432"/>
       <source>Before closing parenthesis</source>
-      <translation>在右小括号之前</translation>
+      <translation>右括号前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="442"/>
       <source>After closing parenthesis</source>
-      <translation>在右小括号之后</translation>
+      <translation>右括号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation>SQL 函数名称和左括号之间没有空格</translation>
+      <translation>SQL 函数名称与左括号之间无空格</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
@@ -162,12 +162,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation>在数学运算符前</translation>
+      <translation>数学运算符前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation>在数学运算符后</translation>
+      <translation>数学运算符后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
@@ -217,7 +217,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="664"/>
       <source>Line up comments at the line end</source>
-      <translation>注释放到行尾</translation>
+      <translation>提升行尾的注释</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
