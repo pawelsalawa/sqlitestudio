@@ -11,7 +11,7 @@
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation>错误报告历史(%1)</translation>
+      <translation>错误报告历史 (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation>SQL 查询历史(%1)</translation>
+      <translation>SQL 查询历史 (%1)</translation>
     </message>
   </context>
   <context>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation>这是在旧配置文件中找到的项列表，这些项可以迁移到当前配置。</translation>
+      <translation>这是在旧的配置文件中找到的项列表，这些项可以迁移到当前配置。</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
@@ -114,7 +114,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="249"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
-      <translation>无法将数据库条目插入到新的配置文件： %1</translation>
+      <translation>无法将数据库条目插入到新的配置文件：%1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="261"/>
@@ -134,7 +134,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="325"/>
       <source>Could not read SQL queries history from old configuration file in order to migrate it: %1</source>
-      <translation>无法从旧配置文件读取SQL查询历史来进行迁移： %1</translation>
+      <translation>无法从旧配置文件读取 SQL 查询历史来进行迁移： %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="332"/>
