@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string notr="true">SQL editor</string>
+   <string>SQL editor</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -77,7 +77,7 @@
      </widget>
      <widget class="QWidget" name="results">
       <attribute name="title">
-       <string notr="true">Results</string>
+       <string>Results</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>

@@ -172,7 +172,7 @@ bool DbAndroidJsonConnection::connectToDevice()
 
     if (!plugin->getAdbManager()->getDevices().contains(dbUrl.getDevice()))
     {
-        notifyWarn(tr("Cannot connect to device %1, because it's not visible to your computer.").arg(dbUrl.getDevice()));
+        notifyWarn(tr("Cannot connect to device %1, because it's not visible from your computer.").arg(dbUrl.getDevice()));
         return false;
     }
 
