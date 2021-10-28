@@ -11,22 +11,22 @@
     <message>
       <location filename="../printing.cpp" line="37"/>
       <source>Print query</source>
-      <translation>打印 query</translation>
+      <translation>打印查询</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="74"/>
       <source>No data to print.</source>
-      <translation>没有数据可打印。</translation>
+      <translation>没有可打印的数据。</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="82"/>
       <source>Printing data.</source>
-      <translation>打印数据中。</translation>
+      <translation>正在打印数据。</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="108"/>
       <source>Printing query.</source>
-      <translation>打印query中。</translation>
+      <translation>正在打印查询。</translation>
     </message>
   </context>
   <context>
