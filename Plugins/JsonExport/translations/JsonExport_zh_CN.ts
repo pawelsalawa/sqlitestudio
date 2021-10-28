@@ -16,7 +16,7 @@
     <message>
       <location filename="../jsonexport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation>压缩（产生单行文件）</translation>
+      <translation>压缩（单行文件）</translation>
     </message>
   </context>
 </TS>
