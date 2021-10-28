@@ -18,7 +18,7 @@
       <location filename="../htmlexport.cpp" line="115"/>
       <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
-      <translation>导出的表： %1</translation>
+      <translation>导出的表：%1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="127"/>
@@ -29,12 +29,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>virtual</source>
-      <translation>虚拟的</translation>
+      <translation>虚拟</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="308"/>
       <source>Exported database: %1</source>
-      <translation>导出的数据库： %1</translation>
+      <translation>导出的数据库：%1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="324"/>
@@ -44,12 +44,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
-      <translation>表格：</translation>
+      <translation>表：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
       <source>Unique:</source>
-      <translation>唯一:</translation>
+      <translation>唯一：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
@@ -64,17 +64,17 @@
     <message>
       <location filename="../htmlexport.cpp" line="344"/>
       <source>Column</source>
-      <translation>字段</translation>
+      <translation>列</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
       <source>Collating</source>
-      <translation>排序</translation>
+      <translation>字符序</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
       <source>Sort order</source>
-      <translation>排列顺序</translation>
+      <translation>排序方式</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="380"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="386"/>
       <source>Activated:</source>
-      <translation>激活：</translation>
+      <translation>激活时间：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="394"/>
@@ -99,17 +99,17 @@
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation>表格：</translation>
+      <translation>表：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
       <source>Activate condition:</source>
-      <translation>激活情况：</translation>
+      <translation>激活条件：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="421"/>
       <source>Code executed:</source>
-      <translation>代码已执行：</translation>
+      <translation>代码执行：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../htmlexport.ui" line="36"/>
       <source>Maximum number of characters per cell:</source>
-      <translation>每个单元的最大字符数：</translation>
+      <translation>每个单元格的最大字符数：</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="43"/>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../htmlexport.ui" line="53"/>
       <source>Column names as first row</source>
-      <translation>字段名用作首行</translation>
+      <translation>列名作为首行</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="63"/>
@@ -152,22 +152,22 @@
     <message>
       <location filename="../htmlexport.ui" line="79"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>格式文档 (新行，缩进)</translation>
+      <translation>格式化的文档 (新行，缩进)</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="92"/>
       <source>Compress (everything in one line)</source>
-      <translation>压缩（所有数据都将在一行内）</translation>
+      <translation>压缩（单行文件）</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="108"/>
       <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;启用时，导出值中不会漏掉诸如 &amp;lt;、 &amp;gt；以及 &amp; 等HTML字符。 这允许您例如导出启用超链接的文档，但也可能导致不正确的 HTML 文档 (无法匹配的 &amp;lt; 和 &amp;gt; 字符)。 请注意。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;如果启用，导出值中不会转义诸如 &amp;lt;、&amp;gt; 和 &amp; 等 HTML 字符。请小心，这使您能导出有超链接的文档，但也可能导致不正确的 HTML 文档（不配对的 &amp;lt; 和 &amp;gt; 字符）。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="111"/>
       <source>Don&apos;t escape HTML characters</source>
-      <translation>不要转义HTML字符</translation>
+      <translation>不转义 HTML 字符</translation>
     </message>
   </context>
 </TS>

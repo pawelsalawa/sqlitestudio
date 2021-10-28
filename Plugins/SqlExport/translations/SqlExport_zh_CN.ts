@@ -6,7 +6,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
-      <translation>-- 执行结果：</translation>
+      <translation>-- 查询的执行结果：</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
@@ -36,7 +36,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Text encoding used: %1</source>
-      <translation>-- 文本编码：%1</translation>
+      <translation>-- 所用的文本编码：%1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
@@ -54,7 +54,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>仅格式 DDL 语句 (排除 &quot;INSERT&quot; 语句)</translation>
+      <translation>仅格式 DDL 语句（排除 &quot;INSERT&quot; 语句）</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
@@ -82,7 +82,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Include the query in comments</source>
-      <translation>在注释中包含该查询</translation>
+      <translation>在注释中包含查询</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>仅格式 DDL 语句 (排除 &quot;INSERT&quot; 语句)</translation>
+      <translation>仅格式 DDL 语句（排除 &quot;INSERT&quot; 语句）</translation>
     </message>
   </context>
 </TS>
