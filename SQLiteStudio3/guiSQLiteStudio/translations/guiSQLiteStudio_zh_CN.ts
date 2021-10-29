@@ -331,7 +331,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Not NULL</source>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -515,7 +515,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation>已命名的约束</translation>
+      <translation>命名的约束</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 100 应已足够。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 1000 应已足够。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -1413,7 +1413,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="184"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
@@ -1425,7 +1425,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
       <source>Generated</source>
       <comment>table constraints</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
@@ -3903,7 +3903,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
       <source>Generated</source>
       <comment>new constraint dialog</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
@@ -5637,7 +5637,7 @@ Key</source>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="305"/>
@@ -5649,7 +5649,7 @@ NULL</source>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
       <source>Generated</source>
       <comment>table structure columns</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="309"/>
@@ -6563,7 +6563,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../common/widgetcover.cpp" line="234"/>
       <source>Interrupt</source>
-      <translation>中断</translation>
+      <translation>停止</translation>
     </message>
   </context>
 </TS>
