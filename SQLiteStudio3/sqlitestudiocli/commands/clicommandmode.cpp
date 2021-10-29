@@ -49,7 +49,7 @@ QString CliCommandMode::fullHelp() const
                 "The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, "
                 "while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be "
                 "cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.\n"
-                "ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous "
+                "ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous "
                 "to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.\n"
                 "\n"
                 "The ROW mode is recommended if you need to see whole values and you don't expect many rows to be displayed, because this mode "
