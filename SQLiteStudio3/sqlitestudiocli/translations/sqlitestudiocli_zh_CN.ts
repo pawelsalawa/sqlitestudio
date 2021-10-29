@@ -497,7 +497,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation type="unfinished">Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</translation>
+      <translation>打开到数据库的连接。如果不提供额外的参数，则打开到当前的默认数据库（详见 %1）的连接。如果提供一个参数，它可以是已注册的数据库的 &lt;name&gt;，也可以是要打开的数据库文件的 &lt;path&gt;。第二种情况下，&lt;path&gt; 将使用自动生成的名称临时注册到数据库列表，并在应用程序退出时从列表中消失。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
@@ -645,8 +645,7 @@ Call %2 to see list of all databases.</source>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation type="unfinished">Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
-When the -s option is given, then system tables are also listed.</translation>
+      <translation>列出指定的 &lt;database&gt; 或当前操作的数据库的表。注意，&lt;database&gt; 应是已注册的数据库的名称（见 %1）。输出的列表同时包含已附加到被查询数据库的其他数据库的所有表。提供 -s 选项时，将同时列出系统表。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
@@ -699,10 +698,10 @@ When the -s option is given, then system tables are also listed.</translation>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
-When -c option is given, then also columns will be listed under each table.
-When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
-The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
+      <translation>列出数据库中的所有对象（表、索引、触发器和视图）为一个树。此树非常类似您在 SQLiteStudio 的图形用户界面（GUI）版本中看到的效果。
+提供 -c 选项时，会同时在每个表下列出它的列。
+提供 -s 选项时，会同时列出系统对象（sqlite_* 表、自动增量索引等）。
+数据库参数为可选，如果提供则仅列出所给出的数据库。这不是数据库在列表中注册的名称，而是其在 SQLIte 数据库内部的名称，例如 &apos;main&apos;、&apos;temp&apos; 等。如果要列出列表中注册的其他数据库，先调用 %1 切换当前操作的数据库，然后再使用 %2 命令。</translation>
     </message>
   </context>
   <context>
