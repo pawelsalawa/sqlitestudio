@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 100 应已足够。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 1000 应已足够。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -6563,7 +6563,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../common/widgetcover.cpp" line="234"/>
       <source>Interrupt</source>
-      <translation>中断</translation>
+      <translation>停止</translation>
     </message>
   </context>
 </TS>
