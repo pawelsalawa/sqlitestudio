@@ -740,17 +740,17 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+      <translation>更改当前操作的数据库至 &lt;name&gt;。如果 &lt;name&gt; 数据库没有在本程序中注册，将给出错误消息并且什么也不做。
 
-What is current working database?
-When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
+什么是当前操作的数据库。
+当您输入一条 SQL 查询以期执行时，它会在默认数据库上执行，这也被称为当前操作（或称作业）的数据库。大多数与数据库相关的命令也在没有额外指明时使用默认数据库。当前的数据库会始终在命令行中标明。会始终有一个默认数据库，除非数据库列表为空。
 
-The default database can be selected in various ways:
-- using %1 command,
-- by passing database file name to the application startup parameters,
-- by passing registered database name to the application startup parameters,
-- by restoring previously selected default database from saved configuration,
-- or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</translation>
+有多种方式选择默认数据库。
+- 使用 %1 命令；
+- 本程序启动时将数据库的文件名作为启动参数传入；
+- 本程序启动时将已注册的数据库名称；
+- 从已保存的配置文件还原之前选择的默认数据库；
+- 未通过以上任何方式选择默认数据库时，注册的数据库列表中的第一个数据库将作为默认数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="63"/>
