@@ -368,11 +368,11 @@ You can always execute any command with exactly single &apos;--help&apos; option
 When the -c or --clear option is passed, then the history gets erased.
 When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
 Use -ql or --querylimit option to see the current limit value.</source>
-      <translation type="unfinished">When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
+      <translation>没有传入参数时，此命令列出命令行历史。每条历史以水平线隔开，以使多行单条更易阅读。
 
-When the -c or --clear option is passed, then the history gets erased.
-When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
-Use -ql or --querylimit option to see the current limit value.</translation>
+传入 -c 或 --clear 选项，历史记录将被清空擦除。
+传入 -l 或 --limit 选项，设置历史记录条数限制。需要附上额外参数，指明将历史记录限制为最多多少条。
+使用 -ql 或 --querylimit 选项，可查看当前的限制值。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
@@ -464,7 +464,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation>如果不传入任何参数，则会告知当前的 NULL 值表示方法（即查询结果中以什么代表 NULL 值）。如果提供了参数，则参数将作为新的代表 NULL 值的字符串。</translation>
     </message>
   </context>
   <context>
@@ -522,7 +522,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-      <translation type="unfinished">This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</translation>
+      <translation>这与 Unix 系统上的 &apos;pwd&apos; 命令以及 Windows 系统上没有参数的 &apos;cd&apos; 命令作用相同。将列出当前的工作目录。使用 %1 命令可以更改当前的工作目录，您也可以用 %2 命令列出当前工作目录的内容。</translation>
     </message>
   </context>
   <context>
@@ -583,7 +583,7 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation type="unfinished">This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+      <translation>您每次在命令行提示符中输入 SQL 查询时会执行此命令。它负责在当前操作的数据库（详见 %1）上执行查询。专门执行此命令没有任何意义。您可以在命令行提示符中直接输入 SQL 查询，无需添加命令前缀。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
