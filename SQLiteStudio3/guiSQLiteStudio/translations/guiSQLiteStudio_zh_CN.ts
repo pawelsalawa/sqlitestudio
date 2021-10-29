@@ -331,7 +331,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Not NULL</source>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -515,7 +515,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation>已命名的约束</translation>
+      <translation>命名的约束</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -1413,7 +1413,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="184"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
@@ -1425,7 +1425,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
       <source>Generated</source>
       <comment>table constraints</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
@@ -3903,7 +3903,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
       <source>Generated</source>
       <comment>new constraint dialog</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
@@ -5637,7 +5637,7 @@ Key</source>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation>非 NULL</translation>
+      <translation>非空</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="305"/>
@@ -5649,7 +5649,7 @@ NULL</source>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
       <source>Generated</source>
       <comment>table structure columns</comment>
-      <translation>已生成</translation>
+      <translation>生成</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="309"/>
