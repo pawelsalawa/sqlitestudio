@@ -20,6 +20,7 @@
 - CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
+- CHANGE: Unused the help button in title bar are removed.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
@@ -66,7 +67,7 @@
 - ADDED: #3975 Database dropdowns added to table & view windows, to it's more clear to which database particular object belongs. The same database dropdown in SQL Editor is moved to the left side, to be more consistent across the application. Main toolbar ha snow way less unnecessary buttons.
 - CHANGE: Windows binaries are now 64-bit.
 - CHANGE: SQLite2 plugin removed due to harder and harder maintenance of SQLite2 library compilation.
-- CHANGE: Minumum Qt version now is 5.12.0.
+- CHANGE: Minimum Qt version now is 5.12.0.
 - CHANGE: #3470 SQLite upgraded to 3.34.1. From now on the core SQLite3 library is bounded together with application (no longer a separate library).
 - CHANGE: #3494 DbSqliteCipher (SQLCipher) upgraded to 4.4.2 (SQLite 3.34.0).
 - CHANGE: #3954 DbSqliteWx plugin migrated to SQLite3MultipleCiphers 1.1.4 (SQLite 3.34.1).
