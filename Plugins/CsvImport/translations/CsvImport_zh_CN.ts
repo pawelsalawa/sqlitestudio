@@ -11,7 +11,7 @@
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation>无法在文件 %1 中找到任何数据。</translation>
+      <translation>在文件 %1 中未找到任何数据。</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
@@ -39,12 +39,12 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation>\t（Tab）</translation>
+      <translation>\t（制表符）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation>  （空格）</translation>
+      <translation> （空格）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
@@ -54,12 +54,12 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;如果您的 CSV 文件中的第一行数据表示字段 且您不想要将字段名以常规数据导入表中，请启用此项。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;如果您的 CSV 文件中的第一行数据表示列名，且您不想将列名作为常规数据导入表中，启用此选项。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation>第一行表示CSV字段名称</translation>
+      <translation>第一行表示 CSV 列名</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
@@ -79,7 +79,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation>如果您的 CSV 数据包含空值，请定义它们在CSV 中的呈现方式。</translation>
+      <translation>如果您的 CSV 数据包含空值，请定义它们在该 CSV 中的呈现方式。</translation>
     </message>
   </context>
 </TS>

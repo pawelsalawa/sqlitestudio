@@ -11,7 +11,7 @@
     <message>
       <location filename="../SqlFormatterSimple.ui" line="30"/>
       <source>Reduce multiple whitespaces to single whitespace</source>
-      <translation>将多个空白转换为一个空白</translation>
+      <translation>连续的多个空白符转化为一个空白符</translation>
     </message>
   </context>
 </TS>

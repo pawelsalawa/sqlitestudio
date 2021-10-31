@@ -21,25 +21,25 @@
       <location filename="../db/chainexecutor.cpp" line="37"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
-      <translation>用于执行查询的数据库没有被定义。</translation>
+      <translation>没有定义执行查询的数据库。</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="44"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
-      <translation>用于执行查询的数据库没有打开。</translation>
+      <translation>没有打开执行查询的数据库。</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>无法在数据库中禁用外键。详情：%1</translation>
+      <translation>未能禁用该数据库中的外键。详情：%1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>无法开始数据库事务。详情：%1</translation>
+      <translation>未能启动数据库事务。详情：%1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
@@ -51,7 +51,7 @@
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>无法提交数据库事务。详情：%1</translation>
+      <translation>未能提交数据库事务。详情：%1</translation>
     </message>
   </context>
   <context>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
       <source>Table or column alias</source>
-      <translation>表或字段别名</translation>
+      <translation>表或列别名</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="182"/>
@@ -99,12 +99,12 @@
     <message>
       <location filename="../completionhelper.cpp" line="185"/>
       <source>New column name</source>
-      <translation>新字段名</translation>
+      <translation>新列名</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="188"/>
       <source>Column data type</source>
-      <translation>字段数据类型</translation>
+      <translation>列数据类型</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="191"/>
@@ -137,12 +137,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>无法为删除 SQL 历史开始数据库事务，因此它没有被删除。</translation>
+      <translation>删除 SQL 历史的数据库事务启动失败，因此未删除。</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>无法为删除 SQL 历史提交数据库事务，因此它没有被删除。</translation>
+      <translation>删除 SQL 历史的数据库事务提交失败，因此未删除。</translation>
     </message>
   </context>
   <context>
@@ -161,24 +161,24 @@
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation>数据库文件不存在</translation>
+      <translation>数据库文件不存在。</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation>不支持所加载的插件。</translation>
+      <translation>没有加载所需的插件。</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation>数据库无法被初始化。</translation>
+      <translation>无法初始化数据库。</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation>没有找到合适的数据库驱动插件</translation>
+      <translation>没有找到合适的数据库驱动插件。</translation>
     </message>
   </context>
   <context>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="419"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>数据库 %1 无法附加到数据库 %2， 因此将使用 SQLiteStudio 来复制表 %3 的数据。 对于大型表格可能会很慢，请耐心等待。</translation>
+      <translation>数据库 %1 无法附加到数据库 %2，因此将使用 SQLiteStudio 做中间人来复制表 %3 的数据。此方法用于大型表格可能会很慢，请耐心等待。</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
@@ -238,7 +238,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation>无法解析对象 &apos;%1&apos; 以便进行移动或复制。</translation>
+      <translation>无法解析对象 &apos;%1&apos; 用于移动或复制。</translation>
     </message>
   </context>
   <context>
@@ -321,7 +321,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
+      <translation>计算从查询结果来导出数据的列宽度时出错：%1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="347"/>
@@ -332,17 +332,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="609"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation>从表 %1读取数据并导出时出错： %2</translation>
+      <translation>从表 %1读取数据并导出时出错：%2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>计算从 %1: %2 表导出数据的数量时出错</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>计算从 %1: %2 表导出数据的列宽度时出错</translation>
     </message>
   </context>
   <context>
@@ -355,17 +355,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
-      <translation>没有这样的一个在 SQLiteStudio 中注册的函数：%1(%2)</translation>
+      <translation>SQLiteStudio 中没有注册该函数：%1(%2)</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-      <translation>函数 %1(%2) 以 %3 语言被注册。但是支持该语言的插件没有被正确加载。</translation>
+      <translation>函数 %1(%2) 以 %3 语言注册，但是支持该语言的插件没有被正确加载。</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation>无效的正则表达式：%1</translation>
+      <translation>无效的正则表达式模式：%1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation>成功向表 &apos;%1&apos; 导入数据。影响行数：%2</translation>
     </message>
   </context>
   <context>
@@ -410,7 +410,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>导入插件没有提供列。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
@@ -425,17 +425,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation>表 %1 的字段数少于即将导入数据的字段数。过多的字段将会被忽略。</translation>
+      <translation>表 &apos;%1&apos; 的列少于即将导入数据的列数。过多的数据列将被忽略。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation>表 %1 的字段数多于即将导入数据的字段数。一些字段将会被置为空值。</translation>
+      <translation>表 &apos;%1&apos; 的列多于即将导入数据的列数。一些字段将被留空。</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>未能创建导入所用的表：%1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -454,7 +454,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="172"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation>无法导入行数为 %1 的数据，该行将会被忽略。问题详情：%2</translation>
+      <translation>无法导入行号 %1 的数据。该行将被忽略。问题详情：%2</translation>
     </message>
   </context>
   <context>
@@ -472,7 +472,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="569"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation>无法加载插件 %1。错误详情：52</translation>
+      <translation>无法加载插件 %1。错误详情：%2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="585"/>
@@ -533,7 +533,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation>文本分隔符</translation>
+      <translation>单词分隔符</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
@@ -548,17 +548,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>单词用法</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation>有序的</translation>
+      <translation>有序</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation>随机地</translation>
+      <translation>随机</translation>
     </message>
   </context>
   <context>
@@ -566,7 +566,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>表 &apos;%1&apos; 填充成功。</translation>
     </message>
   </context>
   <context>
@@ -582,7 +582,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation>常量前缀</translation>
+      <translation>固定前缀</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
@@ -602,7 +602,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation>常量后缀</translation>
+      <translation>固定后缀</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
@@ -623,7 +623,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>使用常用字符集合：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
@@ -633,17 +633,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation>字母a到z。</translation>
+      <translation>字母 a 到 z。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation>内部测试 (Alpha) 版</translation>
+      <translation>英文字母</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation>数字0到9</translation>
+      <translation>数字 0 到 9。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
@@ -653,17 +653,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>空格、制表符和换行符。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation>空白</translation>
+      <translation>空白字符</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>包括上述及其他所有。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
@@ -673,7 +673,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>使用自定义字符集合：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
@@ -683,7 +683,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>字符被输入的次数越多，被使用的概率越大。</translation>
     </message>
   </context>
   <context>
@@ -704,7 +704,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation>每一步代码</translation>
+      <translation>步进代码</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
@@ -730,12 +730,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation>开始值：</translation>
+      <translation>起始值：</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation>步数：</translation>
+      <translation>步进：</translation>
     </message>
   </context>
   <context>
@@ -743,17 +743,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>未能启动执行表填充的事务。错误细节：%1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
       <source>Error while populating table: %1</source>
-      <translation type="unfinished">Error while populating table: %1</translation>
+      <translation>表填充出错：%1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="80"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
+      <translation>未能提交表填充事务。错误细节：%1</translation>
     </message>
   </context>
   <context>
@@ -771,7 +771,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="1168"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>结果集过期或者无可用的行。</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="329"/>
@@ -793,7 +793,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation>不完整的查询</translation>
+      <translation>不完整的查询。</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
@@ -818,7 +818,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="54"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation>最大值不饿能小于最小值。</translation>
+      <translation>最大值不能小于最小值。</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="79"/>
@@ -828,22 +828,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="90"/>
       <source>Custom character set cannot be empty.</source>
-      <translation type="unfinished">Custom character set cannot be empty.</translation>
+      <translation>自定义字符集合不能为空。</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="40"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation>无法找到插件去支持脚本语言：%1</translation>
+      <translation>无法找到提供脚本语言支持的插件：%1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="58"/>
       <source>Error while executing populating initial code: %1</source>
-      <translation type="unfinished">Error while executing populating initial code: %1</translation>
+      <translation>执行填充初始化代码时出错：%1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="80"/>
       <source>Error while executing populating code: %1</source>
-      <translation type="unfinished">Error while executing populating code: %1</translation>
+      <translation>执行填充代码时出错：%1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
@@ -858,23 +858,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../selectresolver.cpp" line="347"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation type="unfinished">Could not resolve data source for column: %1</translation>
+      <translation>无法解析该列的数据源：%1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>无法解析表的列 &apos;%1&apos;。</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="788"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>无法初始化配置文件。所有的配置更改和查询历史都将在应用程序重启时丢失。无法在下列位置创建文件：%1。</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">General purpose</translation>
+      <translation>一般用途</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="312"/>
@@ -886,7 +886,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="313"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Code formatter</translation>
+      <translation>代码格式化</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="314"/>
@@ -910,61 +910,61 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>数据表填充</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>索引 %1 涵盖的所有列索引已消失。表修改后该索引也不会被重新触发。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>处理触发器 %1 时出现问题。它可能没有被充分更新，这需要您的注意。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>触发器 %1 涵盖的所有列已消失。表修改后该触发器也不会被重新触发。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>无法根据表 %2 的修改去更新触发器 %1。</translation>
+      <translation>无法根据表 %2 的修改更新触发器 %1。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="556"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>无法根据表 %2 的修改更新视图 %1。
+视图将保持原样不变。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="718"/>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>更新 %2 触发器内的一个 %1 语句时出现问题。%1 子句中引用的表 %3 可能无法被正确修改。必要时需要手动更新触发器。</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>无法解析要创建的视图的 DDL。详情：%1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation>解析的查询不是 CREATE VIEW。它是：%1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation>SQLiteStudio 无法解析新建视图时返回的列，因此无法告知哪些触发器可能在触发过程中失败。</translation>
     </message>
   </context>
   <context>
@@ -988,7 +988,7 @@ The view will remain as it is.</translation>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>执行 count(*) 查询时出错，因此将禁用数据分页。数据库错误详情：%1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
@@ -1001,7 +1001,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>调用 JavaScript 的 %1 命令期间，当前上下文没有可用的数据库。</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1021,25 +1021,25 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation>执行代码</translation>
+      <translation>执行日期</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation>耗时</translation>
+      <translation>用时</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation>影响的行数</translation>
+      <translation>影响行数</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>检查更新失败 (%1)。</translation>
     </message>
   </context>
 </TS>

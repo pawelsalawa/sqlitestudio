@@ -28,7 +28,7 @@ bool DbAndroidShellConnection::connectToAndroid(const DbAndroidUrl& url)
 
     if (!adbManager->getDevices().contains(url.getDevice()))
     {
-        notifyWarn(tr("Cannot connect to device %1, because it's not visible to your computer.").arg(url.getDevice()));
+        notifyWarn(tr("Cannot connect to device %1, because it's not visible from your computer.").arg(url.getDevice()));
         return false;
     }
 

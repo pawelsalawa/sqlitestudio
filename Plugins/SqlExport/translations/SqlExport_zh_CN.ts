@@ -6,7 +6,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
-      <translation>-- 执行结果：</translation>
+      <translation>-- 查询的执行结果：</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
@@ -31,17 +31,17 @@
     <message>
       <location filename="../sqlexport.cpp" line="216"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
-      <translation>-- 由SQLiteStudio v%1 产生的文件 %2</translation>
+      <translation>-- SQLiteStudio v%1 生成的文件，%2</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Text encoding used: %1</source>
-      <translation>-- 文本编码：%1</translation>
+      <translation>-- 所用的文本编码：%1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
+      <translation>INSERT 语句的表名称是强制性的。</translation>
     </message>
   </context>
   <context>
@@ -49,17 +49,17 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>生成&quot;DROP IF EXISTS&quot;语句在&quot;CREATE&quot;语句前</translation>
+      <translation>在 &quot;CREATE&quot; 语句前生成 &quot;DROP IF EXISTS&quot; 语句</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>仅格式 DDL 语句 (排除 &quot;INSERT&quot; 语句)</translation>
+      <translation>仅格式 DDL 语句（排除 &quot;INSERT&quot; 语句）</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>使用 SQL 格式化器去格式化导出的 SQL 语句</translation>
+      <translation>使用 SQL 格式化器格式化导出的 SQL 语句</translation>
     </message>
   </context>
   <context>
@@ -67,12 +67,12 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="20"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>使用 SQL 格式化器去格式化导出的 SQL 语句</translation>
+      <translation>使用 SQL 格式化器格式化导出的 SQL 语句</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation>用于INSERT语句的表名：</translation>
+      <translation>INSERT 语句的表名：</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="37"/>
@@ -82,17 +82,17 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Include the query in comments</source>
-      <translation type="unfinished">Include the query in comments</translation>
+      <translation>在注释中包含查询</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>生成&quot;DROP IF EXISTS&quot;语句在&quot;CREATE&quot;语句前</translation>
+      <translation>在 &quot;CREATE&quot; 语句前生成 &quot;DROP IF EXISTS&quot; 语句</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>仅格式 DDL 语句 (排除 &quot;INSERT&quot; 语句)</translation>
+      <translation>仅格式 DDL 语句（排除 &quot;INSERT&quot; 语句）</translation>
     </message>
   </context>
 </TS>

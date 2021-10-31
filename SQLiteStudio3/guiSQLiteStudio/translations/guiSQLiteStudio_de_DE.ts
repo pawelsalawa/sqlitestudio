@@ -4833,13 +4833,13 @@ find next</source>
       <location filename="../sqleditor.cpp" line="134"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
-      <translation>SQL in andere Datei speichern</translation>
+      <translation>SQL aus Datei laden</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="135"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
-      <translation>SQL aus Datei laden</translation>
+      <translation>Zeile löschen</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="136"/>
