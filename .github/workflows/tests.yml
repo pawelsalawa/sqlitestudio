@@ -32,76 +32,80 @@ jobs:
                 QT_VERSION: ['5.12.10', '5.15.2']
 
         steps:
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}/../Qt
-                key: ${{ runner.os }}-Qt-${{ matrix.QT_VERSION }}-Linux-Cache
-
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v2
-              with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ matrix.QT_VERSION }}
-                host: 'linux'
-                dir: '${{ github.workspace }}/..'
-
-            - name: Clone repo
-              uses: actions/checkout@v2
-              with:
-                ref: ${{ env.GITHUB_REF }}
-
-            - name: Install SQLite3
+            - name: debug
               run: |
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                strip libsqlite3.so
-                sudo cp -P libsqlite3.so* /usr/local/lib/
-                sudo cp *.h /usr/local/include/
-
-            - name: Install Tcl
-              run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
-
-            - name: Install other tools/dependencies
-              run: |
-                sudo apt install libreadline-dev libncurses5-dev
-                echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
-
-            - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
-
-            - name: Compile SQLiteStudio3
-              working-directory: output/build
-              run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../SQLiteStudio3
-                make -j 2
-
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python3.10" "LIBS += -L$pythonLocation/lib" ../../../Plugins
-                make -j 1
-
-            - name: Run tests
-              working-directory: output/SQLiteStudio
-              run: |
-                sudo cp -P /usr/local/lib/libsqlite3.so* ./lib/
-                export LD_LIBRARY_PATH="./lib"
-                ldd tst_tablemodifiertest
-                for f in tst_*; do ./$f; done
+                ls -l $pythonLocation/include
+        
+#            - name: Cache Qt
+#              id: cache-qt
+#              uses: actions/cache@v1
+#              with:
+#                path: ${{ github.workspace }}/../Qt
+#                key: ${{ runner.os }}-Qt-${{ matrix.QT_VERSION }}-Linux-Cache
+#
+#            - name: Install Qt
+#              uses: jurplel/install-qt-action@v2
+#              with:
+#                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+#                version: ${{ matrix.QT_VERSION }}
+#                host: 'linux'
+#                dir: '${{ github.workspace }}/..'
+#
+#            - name: Clone repo
+#              uses: actions/checkout@v2
+#              with:
+#                ref: ${{ env.GITHUB_REF }}
+#
+#            - name: Install SQLite3
+#              run: |
+#                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
+#                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
+#                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
+#                cd sqlite-amalgamation-$SQLITE_VERSION
+#                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
+#                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+#                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+#                    -DSQLITE_ENABLE_BYTECODE_VTAB \
+#                    -DSQLITE_ENABLE_COLUMN_METADATA \
+#                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+#                    -DSQLITE_ENABLE_FTS3 \
+#                    -DSQLITE_ENABLE_FTS4 \
+#                    -DSQLITE_ENABLE_FTS5 \
+#                    -DSQLITE_ENABLE_GEOPOLY \
+#                    -DSQLITE_ENABLE_JSON1 \
+#                    -DSQLITE_ENABLE_RTREE \
+#                    -DSQLITE_ENABLE_MATH_FUNCTIONS
+#                strip libsqlite3.so
+#                sudo cp -P libsqlite3.so* /usr/local/lib/
+#                sudo cp *.h /usr/local/include/
+#
+#            - name: Install Tcl
+#              run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
+#
+#            - name: Install other tools/dependencies
+#              run: |
+#                sudo apt install libreadline-dev libncurses5-dev
+#                echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
+#
+#            - name: Prepare output dir
+#              run: mkdir output output/build output/build/Plugins
+#
+#            - name: Compile SQLiteStudio3
+#              working-directory: output/build
+#              run: |
+#                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../SQLiteStudio3
+#                make -j 2
+#
+#            - name: Compile Plugins
+#              working-directory: output/build/Plugins
+#              run: |
+#                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python3.10" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+#                make -j 1
+#
+#            - name: Run tests
+#              working-directory: output/SQLiteStudio
+#              run: |
+#                sudo cp -P /usr/local/lib/libsqlite3.so* ./lib/
+#                export LD_LIBRARY_PATH="./lib"
+#                ldd tst_tablemodifiertest
+#                for f in tst_*; do ./$f; done
