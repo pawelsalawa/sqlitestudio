@@ -32,6 +32,8 @@ void Style::setStyle(QStyle *style, const QString &styleName)
 {
     setBaseStyle(style);
 
+    QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+
     QApplication::setPalette(initialPalette); // reset palette, cause styles don't provide
                                               // full palette when changed in runtime (i.e. windowsvista)
     QApplication::setStyle(this);
