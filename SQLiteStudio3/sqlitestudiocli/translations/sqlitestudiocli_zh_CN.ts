@@ -11,7 +11,7 @@
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation>当前没有选定工作数据库。</translation>
+      <translation>目前未设定操作的数据库。</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation>更改当前工作目录</translation>
+      <translation>更改当前的工作目录</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
@@ -146,7 +146,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation>当前没有定义工作数据库。</translation>
+      <translation>目前未定义操作的数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
@@ -205,9 +205,9 @@
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation>没有设置工作数据库。
-调用 %1 命令去设置工作数据库。
-调用 %2 去浏览所有数据库列表。</translation>
+      <translation>没有设定操作的数据库。
+调用 %1 命令操作的数据库。
+调用 %2 查阅数据库列表。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
@@ -222,7 +222,7 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation>显示表的详情</translation>
+      <translation>显示一个表的详细信息</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
@@ -487,7 +487,7 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation>数据库 %1 已被打开并设为当前工作数据库。</translation>
+      <translation>已打开数据库 %1 并将其设为当前操作的数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
@@ -566,9 +566,9 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-      <translation>没有设置工作数据库。
-调用 %1 命令去设置工作数据库。
-调用 %2 去浏览所有数据库列表。</translation>
+      <translation>没有设定操作的数据库。
+调用 %1 命令操作的数据库。
+调用 %2 查阅数据库列表。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="30"/>
@@ -725,7 +725,7 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation>更改默认工作数据库</translation>
+      <translation>更改默认操作的数据库</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
