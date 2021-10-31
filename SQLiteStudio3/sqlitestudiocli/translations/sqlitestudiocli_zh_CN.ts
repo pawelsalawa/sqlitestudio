@@ -92,7 +92,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation>更改当前工作目录</translation>
+      <translation>更改当前的工作目录</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
@@ -487,7 +487,7 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation>数据库 %1 已被打开并设为当前工作数据库。</translation>
+      <translation>已打开数据库 %1 并将其设为当前操作的数据库。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
