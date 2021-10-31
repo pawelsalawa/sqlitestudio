@@ -623,7 +623,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation>使用常用的字符：</translation>
+      <translation>使用常用字符集合：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
@@ -673,7 +673,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation>使用自定义集中的字符：</translation>
+      <translation>使用自定义字符集合：</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
@@ -704,7 +704,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation>每一步代码</translation>
+      <translation>步进代码</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
@@ -735,7 +735,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation>步数：</translation>
+      <translation>步进：</translation>
     </message>
   </context>
   <context>

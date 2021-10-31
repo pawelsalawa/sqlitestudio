@@ -3082,7 +3082,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="427"/>
       <source>Per step code:</source>
-      <translation>每一步的代码：</translation>
+      <translation>步进代码：</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="433"/>
