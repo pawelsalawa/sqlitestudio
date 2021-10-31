@@ -36,7 +36,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="81"/>
       <source>Form directories</source>
-      <translation>表格目录</translation>
+      <translation>表单目录</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="101"/>
