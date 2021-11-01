@@ -658,6 +658,7 @@ void MainWindow::refreshMdiWindows()
 
     for (const QString& name : actionNames)
         mdiMenu->addAction(nameToAction[name]);
+    fixToolbarTooltips(ui->viewToolbar);
 
     updateWindowActions();
 }
