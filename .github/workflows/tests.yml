@@ -2,6 +2,7 @@ env:
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
+    PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: Unit tests
@@ -85,7 +86,7 @@ jobs:
                 
             - uses: actions/setup-python@v2
               with:
-                python-version: '3.9'
+                python-version: ${{ PYTHON_VERSION }}
                 architecture: 'x64'
 
             - name: Prepare output dir
@@ -100,7 +101,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python3.9" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python${{ PYTHON_VERSION }}" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
 
             - name: Run tests
