@@ -82,6 +82,11 @@ jobs:
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
                 echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
+                
+            - uses: actions/setup-python@v2
+              with:
+                python-version: '3.9'
+                architecture: 'x64'
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
@@ -95,8 +100,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                ls -l $pythonLocation/include
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python3.10" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python3.9" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
 
             - name: Run tests
