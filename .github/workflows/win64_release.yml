@@ -3,6 +3,7 @@ env:
     SQLITE_VERSION: '3350500'
     SQLITE_RELEASE_YEAR: '2021'
     QT_ARCH: 'win64_mingw81'
+    PYTHON_VERSION: '3.9'
     pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
@@ -47,6 +48,11 @@ jobs:
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
                 echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
+
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
  
             - name: Clone repo
               uses: actions/checkout@v2
