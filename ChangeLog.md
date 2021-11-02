@@ -31,6 +31,7 @@
 - BUGFIX: #4084 Fixed View window refreshing when a dependant table was modified.
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
+- BUGFIX: #4267 Path now shows familiar backslashes on Windows for Add a database and About dialog.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.

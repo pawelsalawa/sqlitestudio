@@ -75,8 +75,8 @@ void AboutDialog::init(InitialMode initialMode)
     licenseContents.clear();
 
     // Environment
-    ui->appDirEdit->setText(qApp->applicationDirPath());
-    ui->cfgDirEdit->setText(CFG->getConfigDir());
+    ui->appDirEdit->setText(toNativePath(qApp->applicationDirPath()));
+    ui->cfgDirEdit->setText(toNativePath(CFG->getConfigDir()));
     ui->pluginDirList->addItems(filterResourcePaths(PLUGINS->getPluginDirs()));
     ui->iconDirList->addItems(filterResourcePaths(ICONMANAGER->getIconDirs()));
     ui->formDirList->addItems(filterResourcePaths(FORMS->getFormDirs()));
@@ -135,7 +135,8 @@ QStringList AboutDialog::filterResourcePaths(const QStringList& paths)
         if (path.startsWith(":"))
             continue;
 
-        output << path;
+        QString newPath = toNativePath(path);
+        output << newPath;
     }
     return output;
 }

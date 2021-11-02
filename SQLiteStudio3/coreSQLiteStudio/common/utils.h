@@ -360,6 +360,8 @@ API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes);
 
 API_EXPORT QString readFileContents(const QString& path, QString* err);
 
+API_EXPORT QString toNativePath(const QString& path);
+
 Q_DECLARE_METATYPE(QList<int>)
 
 #endif // UTILS_H

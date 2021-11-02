@@ -18,6 +18,7 @@
 #include <QFileDialog>
 #include <QComboBox>
 #include <QTimer>
+#include <QDir>
 
 DbDialog::DbDialog(Mode mode, QWidget *parent) :
     QDialog(parent),
@@ -44,12 +45,14 @@ void DbDialog::setPermanent(bool perm)
 
 QString DbDialog::getPath()
 {
-    return ui->fileEdit->text();
+    QString newPath = QDir::fromNativeSeparators(ui->fileEdit->text());
+    return newPath;
 }
 
 void DbDialog::setPath(const QString& path)
 {
-    ui->fileEdit->setText(path);
+    QString newPath = QDir::toNativeSeparators(path);
+    ui->fileEdit->setText(newPath);
 }
 
 QString DbDialog::getName()
