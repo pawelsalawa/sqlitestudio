@@ -714,6 +714,7 @@ void DbTreeModel::dbConnected(Db* db, bool expandItem)
         if (CFG_UI.General.ExpandViews.get())
             treeView->expand(item->model()->index(1, 0, item->index())); // also expand views
     }
+    treeView->setCurrentIndex(item->index());
 }
 
 void DbTreeModel::dbDisconnected(Db* db)
