@@ -18,6 +18,7 @@
 #include <QFileDialog>
 #include <QComboBox>
 #include <QTimer>
+#include <QMimeData>
 #include <QDir>
 
 DbDialog::DbDialog(Mode mode, QWidget *parent) :
