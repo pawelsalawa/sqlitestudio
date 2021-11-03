@@ -1106,3 +1106,8 @@ QString indentMultiline(const QString& str)
 
     return lines.join("\n");
 }
+
+QString toNativePath(const QString& path)
+{
+    return QDir::toNativeSeparators(path);
+}
