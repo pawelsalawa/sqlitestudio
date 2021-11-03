@@ -44,6 +44,8 @@ class GUI_API_EXPORT DbDialog : public QDialog
     protected:
         void changeEvent(QEvent *e);
         void showEvent(QShowEvent* e);
+        void dragEnterEvent(QDragEnterEvent* e);
+        void dropEvent(QDropEvent*e);
 
     private:
         void init();

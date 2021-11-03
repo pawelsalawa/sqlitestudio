@@ -42,6 +42,22 @@ void DbDialog::setPermanent(bool perm)
     ui->permamentCheckBox->setChecked(perm);
 }
 
+
+void DbDialog::dragEnterEvent(QDragEnterEvent* e)
+{
+    if (e->mimeData()->hasUrls())
+        e->acceptProposedAction();
+}
+
+void DbDialog::dropEvent(QDropEvent* e)
+{
+    if (!e->isAccepted() && e->mimeData()->hasUrls())
+    {
+        setPath(e->mimeData()->urls().first().toLocalFile());
+        e->accept();
+    }
+}
+
 QString DbDialog::getPath()
 {
     return ui->fileEdit->text();
