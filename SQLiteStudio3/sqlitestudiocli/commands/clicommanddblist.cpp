@@ -49,7 +49,7 @@ void CliCommandDbList::execute()
     for (Db* db : dbList)
     {
         bool open = db->isOpen();
-        path = db->getPath();
+        path = QDir::toNativeSeparators(db->getPath());
         name = db->getName();
         if (name == currentName)
             name.prepend("*");
