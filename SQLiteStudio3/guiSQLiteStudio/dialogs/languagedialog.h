@@ -13,6 +13,9 @@ class GUI_API_EXPORT LanguageDialog : public QDialog
 {
         Q_OBJECT
 
+    protected:
+        void showEvent(QShowEvent*);
+
     public:
         explicit LanguageDialog(QWidget *parent = 0);
         ~LanguageDialog();
