@@ -424,7 +424,7 @@ void DbManagerImpl::rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin)
 
         if (!dbPlugin->checkIfDbServedByPlugin(db))
         {
-            qDebug() << "Managed to load database" << db->getPath() << " (" << db->getName() << ")"
+            qDebug().noquote() << "Managed to load database" << toNativePath(db->getPath()) << " (" << db->getName() << ")"
                      << "but it doesn't use DbPlugin that was just loaded, so it will not be loaded to the db manager";
 
             delete db;

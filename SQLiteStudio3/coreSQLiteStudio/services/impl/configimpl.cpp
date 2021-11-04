@@ -789,7 +789,7 @@ void ConfigImpl::initDbFile()
                        " Unable to create a file at following locations: %1.").arg(pathStrings.join(", ")));
     }
 
-    qDebug() << "Using configuration directory:" << configDir;
+    qDebug().noquote() << "Using configuration directory:" << toNativePath(configDir);
     db->exec("PRAGMA foreign_keys = 1;");
 }
 
@@ -1185,7 +1185,7 @@ bool ConfigImpl::tryToMigrateOldGlobalPath(const QString& oldPath, const QString
     if (!QFileInfo::exists(oldPath))
         return false;
 
-    qDebug() << "Attempting to migrate legacy config location" << oldPath << "to new location" << newPath;
+    qDebug().noquote() << "Attempting to migrate legacy config location" << toNativePath(oldPath) << "to new location" << toNativePath(newPath);
     QDir dir = QFileInfo(newPath).dir();
     if (!dir.exists())
         QDir::root().mkpath(dir.absolutePath());
