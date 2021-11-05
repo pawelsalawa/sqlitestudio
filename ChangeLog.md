@@ -20,6 +20,7 @@
 - CHANGE: #4129 Improved memory saving algorithm, so when the colum is result of expression, the full value is always loaded immediately, to avoid subsequent query execution for loading full value when user copies cell value to clipboad.
 - CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
+- CHANGE: Changed icon for "Create new database file" button to open-box instead of green add icon.
 - CHANGE: SQLite updated to 3.35.5.
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
