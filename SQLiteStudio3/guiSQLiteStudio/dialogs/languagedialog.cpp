@@ -1,3 +1,4 @@
+#include "iconmanager.h"
 #include "languagedialog.h"
 #include "ui_languagedialog.h"
 #include "uiconfig.h"
@@ -42,4 +43,9 @@ bool LanguageDialog::didAskForDefaultLanguage()
 void LanguageDialog::askedForDefaultLanguage()
 {
     CFG_UI.General.LanguageAsked.set(true);
+}
+
+void LanguageDialog::showEvent(QShowEvent*)
+{
+    setWindowIcon(ICONS.SQLITESTUDIO_APP);
 }
