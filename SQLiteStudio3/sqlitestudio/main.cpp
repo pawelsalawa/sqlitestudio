@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
         if (dialog.exec() == QDialog::Accepted)
             setDefaultLanguage(dialog.getSelectedLang());
 
-        QProcess::startDetached(a.applicationFilePath(), QStringList());
+        QProcess::startDetached(qApp->arguments().at(0), qApp->arguments().mid(1));
         return 0;
     }
 
