@@ -420,7 +420,7 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
         fileSize = QFile(db->getPath()).size();
 
     rows << toolTipHdrRowTmp.arg(iconPath).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
-    rows << toolTipRowTmp.arg("URI:").arg(db->getPath());
+    rows << toolTipRowTmp.arg(tr("URI:", "dbtree tooltip")).arg(toNativePath(db->getPath()));
 
     if (db->isValid())
     {

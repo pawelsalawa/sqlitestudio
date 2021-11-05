@@ -491,7 +491,7 @@ void PluginManagerImpl::unload(const QString& pluginName)
 
     emit unloaded(container->name, container->type);
 
-    qDebug() << pluginName << "unloaded:" << container->filePath;
+    qDebug().noquote() << pluginName << "unloaded:" << toNativePath(container->filePath);
 }
 
 bool PluginManagerImpl::load(const QString& pluginName)
@@ -604,7 +604,7 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
 
     emit loaded(container->plugin, container->type);
     if (!container->builtIn)
-        qDebug() << container->name << "loaded:" << container->filePath;
+        qDebug().noquote() << container->name << "loaded:" << toNativePath(container->filePath);
 }
 
 void PluginManagerImpl::addPluginToCollections(Plugin* plugin)

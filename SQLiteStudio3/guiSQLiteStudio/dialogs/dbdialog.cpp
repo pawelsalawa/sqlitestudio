@@ -102,7 +102,7 @@ void DbDialog::showEvent(QShowEvent *e)
         int idx = ui->typeCombo->findText(db->getTypeLabel());
         ui->typeCombo->setCurrentIndex(idx);
 
-        ui->fileEdit->setText(db->getPath());
+        setPath(db->getPath());
         ui->nameEdit->setText(db->getName());
         disableTypeAutodetection = false;
     }
@@ -470,7 +470,7 @@ void DbDialog::updateType()
     if (disableTypeAutodetection)
         return;
 
-    DbPlugin* validPlugin = SQLITESTUDIO->getDbManager()->getPluginForDbFile(ui->fileEdit->text());
+    DbPlugin* validPlugin = SQLITESTUDIO->getDbManager()->getPluginForDbFile(getPath());
     if (!validPlugin || validPlugin->getLabel() == ui->typeCombo->currentText())
         return;
 
@@ -501,7 +501,7 @@ bool DbDialog::testDatabase()
     if (ui->typeCombo->currentIndex() < 0)
         return false;
 
-    QString path = ui->fileEdit->text();
+    QString path = getPath();
     if (path.isEmpty())
         return false;
 
@@ -566,7 +566,7 @@ bool DbDialog::validate()
 
     if (fileState)
     {
-        registeredDb = DBLIST->getByPath(ui->fileEdit->text());
+        registeredDb = DBLIST->getByPath(getPath());
         if (registeredDb && (mode == Mode::ADD || registeredDb != db))
         {
             setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(registeredDb->getName()));
@@ -632,9 +632,9 @@ void DbDialog::valueForNameGenerationChanged()
     QString generatedName;
     DbPlugin* plugin = dbPlugins.count() > 0 ? dbPlugins[ui->typeCombo->currentText()] : nullptr;
     if (plugin)
-        generatedName = DBLIST->generateUniqueDbName(plugin, ui->fileEdit->text());
+        generatedName = DBLIST->generateUniqueDbName(plugin, getPath());
     else
-        generatedName = DBLIST->generateUniqueDbName(ui->fileEdit->text());
+        generatedName = DBLIST->generateUniqueDbName(getPath());
 
 
     ui->nameEdit->setText(generatedName);
@@ -665,10 +665,10 @@ void DbDialog::browseClicked()
 {
     if (customBrowseHandler)
     {
-        QString newUrl = customBrowseHandler(ui->fileEdit->text());
+        QString newUrl = customBrowseHandler(getPath());
         if (!newUrl.isNull())
         {
-            ui->fileEdit->setText(newUrl);
+            setPath(newUrl);
             updateState();
         }
         return;
@@ -676,7 +676,7 @@ void DbDialog::browseClicked()
 
     bool createMode = (sender() == ui->browseCreateButton);
 
-    QFileInfo fileInfo(ui->fileEdit->text());
+    QFileInfo fileInfo(getPath());
     QString dir;
     if (ui->fileEdit->text().isEmpty())
         dir = getFileDialogInitPath();
