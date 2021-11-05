@@ -132,7 +132,8 @@ void DbDialog::init()
 {
     ui->setupUi(this);
 
-    ui->browseCreateButton->setIcon(ICONS.PLUS);
+    ui->browseCreateButton->setIcon(ICONS.DATABASE_ADD);
+    ui->browseOpenButton->setIcon(ICONS.DATABASE_EDIT);
 
     for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
         dbPlugins[dbPlugin->getLabel()] = dbPlugin;

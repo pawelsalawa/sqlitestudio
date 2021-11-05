@@ -56,20 +56,12 @@
         <property name="text">
          <string/>
         </property>
-        <property name="icon">
-         <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/plus.png</normaloff>:/icons/img/plus.png</iconset>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="browseOpenButton">
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/open_sql_file.png</normaloff>:/icons/img/open_sql_file.png</iconset>
         </property>
        </widget>
       </item>
@@ -173,9 +165,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
