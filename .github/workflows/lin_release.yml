@@ -72,6 +72,11 @@ jobs:
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
 
+            - name: Workaround for updating qtbase.qm
+              shell: bash
+              run: |
+                curl https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts  https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
+
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
               

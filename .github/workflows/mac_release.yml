@@ -62,6 +62,11 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Workaround for updating qtbase.qm
+              shell: bash
+              run: |
+                curl https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts  https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
+
             - name: Install SQLite3
               run: |
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip

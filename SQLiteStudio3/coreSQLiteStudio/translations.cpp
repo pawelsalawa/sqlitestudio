@@ -62,6 +62,8 @@ void loadTranslations(const QStringList& baseNames)
 {
     for (const QString& name : baseNames)
         loadTranslation(name);
+    QString basefile = "qtbase";
+    loadTranslation(basefile);
 }
 
 QStringList getAvailableTranslations()
