@@ -6,22 +6,22 @@
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>無法讀取檔案 %1</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation type="unfinished">Could not find any data in the file %1.</translation>
+      <translation>在檔案 %1 中未找到任何資料。</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>設定自訂分隔符。</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
+      <translation>CSV 檔案 (*.csv);;文字檔案 (*.txt);;所有檔案 (*)</translation>
     </message>
   </context>
   <context>
@@ -29,57 +29,57 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (逗號)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (分號)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (製表符)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (空格)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>自訂：</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;如果您的 CSV 檔案中的第一行資料表示列名，且您不想將列名作為常規資料匯入表中，啟用此選項。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>第一行表示 CSV 列名</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>欄位分隔符：</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation>如果啟用，則右側提供的文字值將被解釋為 NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
       <source>NULL values:</source>
-      <translation type="unfinished">NULL values:</translation>
+      <translation>NULL 值：</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
+      <translation>如果您的 CSV 資料包含空值，請定義它們在該 CSV 中的呈現方式。</translation>
     </message>
   </context>
 </TS>
