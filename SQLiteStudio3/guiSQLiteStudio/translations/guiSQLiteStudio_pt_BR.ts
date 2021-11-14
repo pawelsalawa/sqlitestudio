@@ -2301,17 +2301,17 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
       <source>Move</source>
-      <translation type="unfinished">Move</translation>
+      <translation>Mover</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1126"/>
       <source>Include data</source>
-      <translation type="unfinished">Include data</translation>
+      <translation>Incluir dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1127"/>
       <source>Include indexes</source>
-      <translation type="unfinished">Include indexes</translation>
+      <translation>Incluir índices</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1128"/>
