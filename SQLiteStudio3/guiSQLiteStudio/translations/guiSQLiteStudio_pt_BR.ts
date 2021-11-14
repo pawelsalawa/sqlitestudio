@@ -1110,231 +1110,231 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="931"/>
       <source>Restore last session (active MDI windows) after startup</source>
-      <translation type="unfinished">Restore last session (active MDI windows) after startup</translation>
+      <translation>Restaurar última sessão (janelas MDI ativas) após a inicialização</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="941"/>
       <source>Allow multiple instances of the application at the same time</source>
-      <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
+      <translation>Permitir várias instâncias do aplicativo ao mesmo tempo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>General.AllowMultipleSessions</source>
-      <translation type="unfinished">General.AllowMultipleSessions</translation>
+      <translation>Geral.AllowMultipleSessions</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
       <source>Status Field</source>
-      <translation type="unfinished">Status Field</translation>
+      <translation>Campo Status</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="960"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
+      <translation>Quando o usuário fecha manualmente o painel de Status, esta opção garante que, se alguma nova mensagem for impressa no painel de Status, ela será reaberta. Se desativado, o painel de status só pode ser aberto manualmente pelo usuário a partir do menu</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="963"/>
       <source>Always open Status panel when new message is printed</source>
-      <translation type="unfinished">Always open Status panel when new message is printed</translation>
+      <translation>Sempre abrir painel de Status quando uma nova mensagem é impressa</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1005"/>
       <source>Filter shortcuts by name or key combination</source>
-      <translation type="unfinished">Filter shortcuts by name or key combination</translation>
+      <translation>Filtrar atalhos por nome ou combinação de teclas</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1046"/>
       <source>Action</source>
-      <translation type="unfinished">Action</translation>
+      <translation>Acão</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1051"/>
       <source>Key combination</source>
-      <translation type="unfinished">Key combination</translation>
+      <translation>Combinação de teclas</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1095"/>
       <location filename="../dialogs/configdialog.ui" line="1564"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Idioma</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1101"/>
       <source>Changing language requires application restart to take effect.</source>
-      <translation type="unfinished">Changing language requires application restart to take effect.</translation>
+      <translation>Para mudar o idioma é necessário reiniciar o aplicativo para ter efeito.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1118"/>
       <source>Compact layout</source>
-      <translation type="unfinished">Compact layout</translation>
+      <translation>Layout compacto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1124"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;O layout compacto reduz ao mínimo todas as margens e espaços na interface do usuário, deixando espaço para exibir mais dados. A interface fica um pouco menos estética, mas permite exibir mais dados de uma só vez.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1127"/>
       <source>Use compact layout</source>
-      <translation type="unfinished">Use compact layout</translation>
+      <translation>Usar layout compacto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1143"/>
       <source>Main window dock areas</source>
-      <translation type="unfinished">Main window dock areas</translation>
+      <translation>Áreas de encaixe da janela principal</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1149"/>
       <source>Left and right areas occupy corners</source>
-      <translation type="unfinished">Left and right areas occupy corners</translation>
+      <translation>Áreas esquerda e direita ocupam cantos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1169"/>
       <source>Top and bottom areas occupy corners</source>
-      <translation type="unfinished">Top and bottom areas occupy corners</translation>
+      <translation>Áreas superior e inferior ocupam cantos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1291"/>
       <source>Hide built-in plugins</source>
-      <translation type="unfinished">Hide built-in plugins</translation>
+      <translation>Ocultar plugins integrados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1320"/>
       <source>Current style:</source>
-      <translation type="unfinished">Current style:</translation>
+      <translation>Estilo atual:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1337"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Pré-visualizar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1347"/>
       <source>Enabled</source>
-      <translation type="unfinished">Enabled</translation>
+      <translation>Ativado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1520"/>
       <source>Disabled</source>
-      <translation type="unfinished">Disabled</translation>
+      <translation>Desabilitado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1569"/>
       <source>Active formatter plugin</source>
-      <translation type="unfinished">Active formatter plugin</translation>
+      <translation>Plugin formatador ativo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1607"/>
       <source>SQL editor font</source>
-      <translation type="unfinished">SQL editor font</translation>
+      <translation>Fonte do editor SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1623"/>
       <source>Database list font</source>
-      <translation type="unfinished">Database list font</translation>
+      <translation>Fonte da lista do banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Database list additional label font</source>
-      <translation type="unfinished">Database list additional label font</translation>
+      <translation>Fonte de rótulo adicional da lista de banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1655"/>
       <source>Data view font</source>
-      <translation type="unfinished">Data view font</translation>
+      <translation>Fonte para visualização de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1671"/>
       <source>Status field font</source>
-      <translation type="unfinished">Status field font</translation>
+      <translation>Fonte do campo status</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="795"/>
       <source>Description:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Description:</translation>
+      <translation>Descrição:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="796"/>
       <source>Category:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Category:</translation>
+      <translation>Categoria:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Versão:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
       <source>Author:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Author:</translation>
+      <translation>Autor:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="800"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Internal name:</translation>
+      <translation>Nome interno:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="801"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Dependencies:</translation>
+      <translation>Dependências:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="802"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Conflicts:</translation>
+      <translation>Conflitos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="806"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>Detalhes do plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1219"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-      <translation type="unfinished">Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</translation>
+      <translation>Plugins são carregados/descarregados imediatamente quando marcados/desmarcados, mas a lista de plugins modificados para carregar na inicialização não é salva até que você confirme toda a caixa de diálogo de configuração.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1283"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation type="unfinished">%1 (built-in)</translation>
+      <translation>%1 (embutido)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1296"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalhes</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1308"/>
       <source>No plugins in this category.</source>
-      <translation type="unfinished">No plugins in this category.</translation>
+      <translation>Sem plugins nesta categoria.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1410"/>
       <source>Add new data type</source>
-      <translation type="unfinished">Add new data type</translation>
+      <translation>Adicionar novo tipo de dado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1414"/>
       <source>Rename selected data type</source>
-      <translation type="unfinished">Rename selected data type</translation>
+      <translation>Renomear tipo de dados selecionados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1418"/>
       <source>Delete selected data type</source>
-      <translation type="unfinished">Delete selected data type</translation>
+      <translation>Excluir tipo de dado selecionado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1422"/>
       <source>Help for configuring data type editors</source>
-      <translation type="unfinished">Help for configuring data type editors</translation>
+      <translation>Ajuda para configurar editores de tipos de dados</translation>
     </message>
   </context>
   <context>
@@ -1342,7 +1342,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="20"/>
       <source>The condition</source>
-      <translation type="unfinished">The condition</translation>
+      <translation>A condição</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
@@ -1652,89 +1652,89 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
       <source>Database type</source>
-      <translation type="unfinished">Database type</translation>
+      <translation>Tipo de banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="32"/>
       <source>Database driver</source>
-      <translation type="unfinished">Database driver</translation>
+      <translation>Driver de banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="42"/>
       <location filename="../dialogs/dbdialog.cpp" line="155"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>Arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Create new database file</source>
-      <translation type="unfinished">Create new database file</translation>
+      <translation>Criar novo arquivo de banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="79"/>
       <source>Name (on the list)</source>
-      <translation type="unfinished">Name (on the list)</translation>
+      <translation>Nome (na lista)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="91"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opções</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="97"/>
       <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
       <extracomment>aasfd</extracomment>
-      <translation type="unfinished">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Ative isso se quiser que o banco de dados seja armazenado no arquivo de configuração e restaurado toda vez que o SQLiteStudio é iniciado.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="100"/>
       <source>Permanent (keep it in configuration)</source>
-      <translation type="unfinished">Permanent (keep it in configuration)</translation>
+      <translation>Permanente (mantenha na configuração)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="144"/>
       <source>Test connection</source>
-      <translation type="unfinished">Test connection</translation>
+      <translation>Testar conexão</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="156"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>Procurar um arquivo de banco de dados existente no computador local</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="308"/>
       <source>Browse</source>
-      <translation type="unfinished">Browse</translation>
+      <translation>Navegar</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="517"/>
       <source>Enter an unique database name.</source>
-      <translation type="unfinished">Enter an unique database name.</translation>
+      <translation>Informe um nome único para o banco de dados.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="527"/>
       <source>This name is already in use. Please enter unique name.</source>
-      <translation type="unfinished">This name is already in use. Please enter unique name.</translation>
+      <translation>Este nome já está em uso. Por favor, insira um nome único.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="534"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;A geração automática de nome foi desabilitada, porque o nome foi editado manualmente. Para restaurar a geração automática, apague o conteúdo do campo nome.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="543"/>
       <source>Enter a database file path.</source>
-      <translation type="unfinished">Enter a database file path.</translation>
+      <translation>Digite o caminho do arquivo de banco de dados.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="552"/>
       <source>This database is already on the list under name: %1</source>
-      <translation type="unfinished">This database is already on the list under name: %1</translation>
+      <translation>Este banco de dados já está na lista sob o nome: %1</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="574"/>
       <source>Select a database type.</source>
-      <translation type="unfinished">Select a database type.</translation>
+      <translation>Selecione um tipo de banco de dados.</translation>
     </message>
   </context>
   <context>
@@ -1742,70 +1742,70 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="173"/>
       <source>Delete table</source>
-      <translation type="unfinished">Delete table</translation>
+      <translation>Apagar a tabela</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="174"/>
       <source>Are you sure you want to delete table %1?</source>
-      <translation type="unfinished">Are you sure you want to delete table %1?</translation>
+      <translation>Tem certeza que deseja apagar a tabela %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="178"/>
       <source>Delete index</source>
-      <translation type="unfinished">Delete index</translation>
+      <translation>Excluir índice</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="179"/>
       <source>Are you sure you want to delete index %1?</source>
-      <translation type="unfinished">Are you sure you want to delete index %1?</translation>
+      <translation>Tem certeza que deseja excluir o índice %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="183"/>
       <source>Delete trigger</source>
-      <translation type="unfinished">Delete trigger</translation>
+      <translation>Excluir trigger</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="184"/>
       <source>Are you sure you want to delete trigger %1?</source>
-      <translation type="unfinished">Are you sure you want to delete trigger %1?</translation>
+      <translation>Deseja mesmo excluir trigger %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="188"/>
       <source>Delete view</source>
-      <translation type="unfinished">Delete view</translation>
+      <translation>Excluir visualização</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="189"/>
       <source>Are you sure you want to delete view %1?</source>
-      <translation type="unfinished">Are you sure you want to delete view %1?</translation>
+      <translation>Tem certeza que deseja excluir a visualização %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="213"/>
       <location filename="../dbobjectdialogs.cpp" line="306"/>
       <source>Error while dropping %1: %2</source>
-      <translation type="unfinished">Error while dropping %1: %2</translation>
+      <translation>Erro ao derrubar %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="276"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>Excluir objetos</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="277"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
-      <translation type="unfinished">Are you sure you want to delete following objects:
+      <translation>Tem certeza que deseja excluir os seguintes objetos:
 %1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="284"/>
       <source>Cannot start transaction. Details: %1</source>
-      <translation type="unfinished">Cannot start transaction. Details: %1</translation>
+      <translation>Não é possível iniciar a transação. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="318"/>
       <source>Cannot commit transaction. Details: %1</source>
-      <translation type="unfinished">Cannot commit transaction. Details: %1</translation>
+      <translation>Não é possível realizar a transação. Detalhes: %1</translation>
     </message>
   </context>
   <context>
@@ -1813,17 +1813,17 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.ui" line="23"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.ui" line="73"/>
       <source>Filter by name</source>
-      <translation type="unfinished">Filter by name</translation>
+      <translation>Filtrar por nome</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="102"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Execução do arquivo cancelada. Quaisquer consultas executadas até agora foram devolvidas.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
