@@ -6,12 +6,12 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="14"/>
       <source>About SQLiteStudio and licenses</source>
-      <translation type="unfinished">About SQLiteStudio and licenses</translation>
+      <translation>Sobre SQLiteStudio e licenças</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="24"/>
       <source>About</source>
-      <translation type="unfinished">About</translation>
+      <translation>Sobre</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="30"/>
@@ -21,37 +21,37 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
-      <translation type="unfinished">Licenses</translation>
+      <translation>Licenças</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="55"/>
       <source>Environment</source>
-      <translation type="unfinished">Environment</translation>
+      <translation>Ambiente</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="61"/>
       <source>Icon directories</source>
-      <translation type="unfinished">Icon directories</translation>
+      <translation>Diretórios de ícones</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="81"/>
       <source>Form directories</source>
-      <translation type="unfinished">Form directories</translation>
+      <translation>Diretório de formulários</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="101"/>
       <source>Plugin directories</source>
-      <translation type="unfinished">Plugin directories</translation>
+      <translation>Diretório de plugins</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
       <source>Configuration directory</source>
-      <translation type="unfinished">Configuration directory</translation>
+      <translation>Configuração do diretório</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="121"/>
       <source>Application directory</source>
-      <translation type="unfinished">Application directory</translation>
+      <translation>Diretório da aplicação</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="148"/>
