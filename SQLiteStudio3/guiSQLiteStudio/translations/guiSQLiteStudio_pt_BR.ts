@@ -1828,87 +1828,87 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Colar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="138"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Selecionar tudo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>Create a group</source>
-      <translation type="unfinished">Create a group</translation>
+      <translation>Criar um grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>Delete the group</source>
-      <translation type="unfinished">Delete the group</translation>
+      <translation>Excluir grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="141"/>
       <source>Rename the group</source>
-      <translation type="unfinished">Rename the group</translation>
+      <translation>Renomear o grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Adicionar um banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;Editar o base de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Remover o banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>&amp;Conectar ao banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>&amp;Desconectar do banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
       <source>Import</source>
-      <translation type="unfinished">Import</translation>
+      <translation>Importar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>&amp;Exportar banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation type="unfinished">Vac&amp;uum</translation>
+      <translation>Vac&amp;uum</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>Verificar &amp;Integridade</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Create a &amp;table</source>
-      <translation type="unfinished">Create a &amp;table</translation>
+      <translation>Criar uma &amp;tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Edit the t&amp;able</source>
-      <translation type="unfinished">Edit the t&amp;able</translation>
+      <translation>Edita uma tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="153"/>
@@ -2172,42 +2172,42 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1707"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-      <translation type="unfinished">%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</translation>
+      <translation>%1&lt;br&gt;&lt;br&gt;Você tem certeza que quer continuar?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1709"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>Excluir objetos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1874"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>Não foi possível executar SQL, porque a aplicação falhou ao iniciar a transação: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1888"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1988"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>Não foi possível executar SQL, porque o aplicativo falhou ao confirmar a transação: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1993"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+      <translation>Concluiu a execução de consultas %1 em %2 segundos. %3 não foi executado devido a erros.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="2000"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Terminou a execução de consultas %1 em %2 segundos.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="2007"/>
       <source>Could not execute SQL due to error.</source>
-      <translation type="unfinished">Could not execute SQL due to error.</translation>
+      <translation>Não foi possível executar SQL devido a um erro.</translation>
     </message>
   </context>
   <context>
@@ -2216,25 +2216,25 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
       <source>error</source>
       <comment>dbtree labels</comment>
-      <translation type="unfinished">error</translation>
+      <translation>erro</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
       <source>(system table)</source>
       <comment>database tree label</comment>
-      <translation type="unfinished">(system table)</translation>
+      <translation>(tabela de sistema)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
       <source>(virtual)</source>
       <comment>virtual table label</comment>
-      <translation type="unfinished">(virtual)</translation>
+      <translation>(virtual)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
       <source>(system index)</source>
       <comment>database tree label</comment>
-      <translation type="unfinished">(system index)</translation>
+      <translation>(índice do sistema)</translation>
     </message>
   </context>
   <context>
@@ -2243,60 +2243,60 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="422"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Versão:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">File size:</translation>
+      <translation>Tamanho do arquivo:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
       <source>Encoding:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Encoding:</translation>
+      <translation>Codificação:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Error:</translation>
+      <translation>Erro:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Table : %1</translation>
+      <translation>Tabela: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Columns (%1):</translation>
+      <translation>Colunas (%1):</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Indexes (%1):</translation>
+      <translation>Índices (%1):</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Triggers (%1):</translation>
+      <translation>Triggers (%1):</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1123"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Cópia</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
