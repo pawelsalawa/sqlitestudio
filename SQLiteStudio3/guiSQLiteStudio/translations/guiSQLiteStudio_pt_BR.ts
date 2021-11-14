@@ -226,32 +226,32 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="20"/>
       <source>Default value:</source>
-      <translation type="unfinished">Default value:</translation>
+      <translation>Valor padrão:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restrição nomeada:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
       <source>Enter a default value expression.</source>
-      <translation type="unfinished">Enter a default value expression.</translation>
+      <translation>Informe uma expressão de valor padrão.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
       <source>Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Expressão de valor padrão inválido: %1. Se você quiser usar uma string simples como valor, lembre-se de envolvê-lo com caracteres de cotação.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Expressão de valor padrão inválida. Se você quiser usar uma string simples como valor, lembre-se de colocá-la em cima com caracteres de cotação.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da restrição</translation>
     </message>
   </context>
   <context>
@@ -259,17 +259,17 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="14"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Coluna</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="23"/>
       <source>Name and type</source>
-      <translation type="unfinished">Name and type</translation>
+      <translation>Nome e tipo</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="35"/>
       <source>Scale</source>
-      <translation type="unfinished">Scale</translation>
+      <translation>Escala</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
@@ -553,32 +553,32 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>Usar &quot;SEMPRE GERADO&quot; palavras-chave</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restrição nomeada:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Informe o valor da coluna que gera expressão.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Valor que gera a expressão inválido: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Expressão de geração de valor inválida.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da restrição.</translation>
     </message>
   </context>
   <context>
@@ -586,32 +586,32 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>Auto-incremento</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
       <source>Sort order:</source>
-      <translation type="unfinished">Sort order:</translation>
+      <translation>Ordem de classificação:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restrição nomeada:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Conflito:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da restrição</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
       <source>Descending order is not allowed with AUTOINCREMENT.</source>
-      <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+      <translation>A ordem decrescente não é permitida com AUTOINCREMENT.</translation>
     </message>
   </context>
   <context>
@@ -619,17 +619,17 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restrição nomeada:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Conflito:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da restrição</translation>
     </message>
   </context>
   <context>
@@ -638,85 +638,85 @@
       <location filename="../completer/completerwindow.cpp" line="159"/>
       <source>Column: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Column: %1</translation>
+      <translation>Coluna: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="161"/>
       <source>Table: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabela: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="163"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Índice: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="165"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Desencadear: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="167"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">View: %1</translation>
+      <translation>Visualizar: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="169"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="181"/>
       <source>Keyword: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Keyword: %1</translation>
+      <translation>Tecla: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="183"/>
       <source>Function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Function: %1</translation>
+      <translation>Função: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="185"/>
       <source>Operator: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Operator: %1</translation>
+      <translation>Operador: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="187"/>
       <source>String</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">String</translation>
+      <translation>String</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="189"/>
       <source>Number</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Número</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="191"/>
       <source>Binary data</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Binary data</translation>
+      <translation>Dados binários</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="193"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Collation: %1</translation>
+      <translation>Agrupamento: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Pragma function: %1</translation>
+      <translation>Pragma função: %1</translation>
     </message>
   </context>
   <context>
@@ -725,108 +725,108 @@
       <location filename="../dialogs/configdialog.ui" line="14"/>
       <location filename="../dialogs/configdialog.ui" line="1574"/>
       <source>Configuration</source>
-      <translation type="unfinished">Configuration</translation>
+      <translation>Configuração</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="63"/>
       <source>Search</source>
-      <translation type="unfinished">Search</translation>
+      <translation>Pesquisa</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="94"/>
       <source>General</source>
-      <translation type="unfinished">General</translation>
+      <translation>Geral</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="106"/>
       <source>Keyboard shortcuts</source>
-      <translation type="unfinished">Keyboard shortcuts</translation>
+      <translation>Atalhos de teclado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="118"/>
       <source>Look &amp; feel</source>
-      <translation type="unfinished">Look &amp; feel</translation>
+      <translation>Aparência e funcionamento</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
       <source>Style</source>
-      <translation type="unfinished">Style</translation>
+      <translation>Estilo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="141"/>
       <source>Fonts</source>
-      <translation type="unfinished">Fonts</translation>
+      <translation>Fontes</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="154"/>
       <location filename="../dialogs/configdialog.ui" line="227"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Lista de banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <source>Data browsing</source>
-      <translation type="unfinished">Data browsing</translation>
+      <translation>Navegação de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="177"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Editores de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
       <source>Plugins</source>
-      <translation type="unfinished">Plugins</translation>
+      <translation>Complementos</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="201"/>
       <source>Code formatters</source>
-      <translation type="unfinished">Code formatters</translation>
+      <translation>Formatadores de código</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-      <translation type="unfinished">If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</translation>
+      <translation>Se desativado, então as colunas serão classificadas na ordem em que são digitadas na instrução CREATE TABLE.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="236"/>
       <source>Sort table columns alphabetically</source>
-      <translation type="unfinished">Sort table columns alphabetically</translation>
+      <translation>Ordenar colunas das tabelas alfabeticamente</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="246"/>
       <source>Expand tables node when connected to a database</source>
-      <translation type="unfinished">Expand tables node when connected to a database</translation>
+      <translation>Expandir tabelas nó quando conectado a um banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="256"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
+      <translation>&lt;p&gt;Rótulos adicionais são exibidos ao lado dos nomes na lista de bancos de dados (eles são azuis, a menos que configurados de outra forma). Ativar esta opção resultará em rótulos para bancos de dados, bancos de dados inválidos e nós agregados (grupo de colunas, grupo de indexações, grupo de ativação). Para mais rótulos veja as opções abaixo.&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="259"/>
       <source>Display additional labels on the list</source>
-      <translation type="unfinished">Display additional labels on the list</translation>
+      <translation>Exibir rótulos adicionais na lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="274"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
+      <translation>Para tabelas regulares, os rótulos mostrarão o número de colunas, índices e ativadores para cada tabela.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="277"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>Exibir rótulos para tabelas regulares</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-      <translation type="unfinished">Virtual tables will be marked with a &apos;virtual&apos; label.</translation>
+      <translation>Tabelas virtuais serão marcadas com um &apos;virtual&apos; rótulo.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>Exibir rótulos para tabelas virtuais</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="303"/>
@@ -1085,27 +1085,27 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
       <source>Execute only the query under the cursor</source>
-      <translation type="unfinished">Execute only the query under the cursor</translation>
+      <translation>Executar apenas a consulta sob o cursor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="896"/>
       <source>Number of memorized query parameters</source>
-      <translation type="unfinished">Number of memorized query parameters</translation>
+      <translation>Número de parâmetros de consulta memorizados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="906"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Atualizações</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="912"/>
       <source>Automatically check for updates at startup</source>
-      <translation type="unfinished">Automatically check for updates at startup</translation>
+      <translation>Verificar atualizações automaticamente ao iniciar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="925"/>
       <source>Session</source>
-      <translation type="unfinished">Session</translation>
+      <translation>Sessão</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="931"/>
