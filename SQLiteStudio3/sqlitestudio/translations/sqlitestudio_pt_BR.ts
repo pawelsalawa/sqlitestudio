@@ -6,32 +6,32 @@
     <message>
       <location filename="../main.cpp" line="51"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Interface de GUI para SQLiteStudio, um gerente de SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation type="unfinished">Enables debug messages in console (accessible with F12).</translation>
+      <translation>Habilita mensagens de depuração no console (acessível com F12).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into standard output (forces debug mode).</translation>
+      <translation>Redireciona as mensagens de depuração na saída padrão (força o modo de depuração).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into given file (forces debug mode).</translation>
+      <translation>Redireciona as mensagens de depuração em determinado arquivo (força o modo de depuração).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>log file</source>
-      <translation type="unfinished">log file</translation>
+      <translation>arquivo de log</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>Habilita mensagens de depuração do analisador de Lemon no assistente de código SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
