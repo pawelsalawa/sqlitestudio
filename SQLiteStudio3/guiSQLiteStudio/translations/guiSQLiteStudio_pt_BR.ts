@@ -1353,17 +1353,17 @@ Key</translation>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
       <source>On conflict</source>
-      <translation type="unfinished">On conflict</translation>
+      <translation>Em conflito</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Informe uma condição válida.</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da constraint.</translation>
     </message>
   </context>
   <context>
@@ -1372,73 +1372,73 @@ Key</translation>
       <location filename="../dialogs/constraintdialog.cpp" line="62"/>
       <source>New constraint</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">New constraint</translation>
+      <translation>Nova constraint</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="63"/>
       <source>Create</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Create</translation>
+      <translation>Criar</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="66"/>
       <source>Edit constraint</source>
       <comment>dialog window</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>Editar constraint</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="67"/>
       <source>Apply</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Apply</translation>
+      <translation>Aplicar</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="172"/>
       <source>Primary key</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Primary key</translation>
+      <translation>Chave primária</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="176"/>
       <source>Foreign key</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Foreign key</translation>
+      <translation>Foreign Key</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="180"/>
       <source>Unique</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Unique</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="184"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>Not NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
       <source>Check</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>Check</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
       <source>Generated</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Generated</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Collate</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="200"/>
       <source>Default</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Default</translation>
+      <translation>Padrão</translation>
     </message>
   </context>
   <context>
@@ -1447,37 +1447,37 @@ Key</translation>
       <location filename="../windows/constrainttabmodel.cpp" line="68"/>
       <source>Table</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabela</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
       <source>Column (%1)</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Column (%1)</translation>
+      <translation>Coluna (%1)</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>Escopo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalhes</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
   </context>
   <context>
@@ -1485,7 +1485,7 @@ Key</translation>
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>SQLiteStudio CSS console</translation>
     </message>
   </context>
   <context>
@@ -1494,153 +1494,153 @@ Key</translation>
       <location filename="../dataview.cpp" line="105"/>
       <source>Filter data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter data</translation>
+      <translation>Filtrar dados</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="114"/>
       <source>Grid view</source>
-      <translation type="unfinished">Grid view</translation>
+      <translation>Exibição em grade</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation type="unfinished">Form view</translation>
+      <translation>Visualização do formulário</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Refresh table data</translation>
+      <translation>Atualizar dados das tabelas</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="223"/>
       <source>First page</source>
       <comment>data view</comment>
-      <translation type="unfinished">First page</translation>
+      <translation>Primeira página</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="224"/>
       <source>Previous page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Previous page</translation>
+      <translation>Página anterior</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="226"/>
       <source>Next page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Next page</translation>
+      <translation>Próxima página</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="227"/>
       <source>Last page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Last page</translation>
+      <translation>Última página</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="236"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
-      <translation type="unfinished">Commit changes for selected cells</translation>
+      <translation>Enviar mudanças para as células selecionadas</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="237"/>
       <source>Rollback changes for selected cells</source>
       <comment>data view</comment>
-      <translation type="unfinished">Rollback changes for selected cells</translation>
+      <translation>Reverter mudanças para as células selecionadas</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="238"/>
       <source>Show grid view of results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show grid view of results</translation>
+      <translation>Mostrar exibição de grid de resultados</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="239"/>
       <source>Show form view of results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show form view of results</translation>
+      <translation>Mostrar formulário de visualização de resultados</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="328"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs on top</translation>
+      <translation>Abas no topo</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="329"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs at bottom</translation>
+      <translation>Abas na parte inferior</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="354"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows above selected row</translation>
+      <translation>Colocar novas linhas acima da linha selecionada</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="355"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows below selected row</translation>
+      <translation>Colocar novas linhas abaixo da linha selecionada</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="356"/>
       <source>Place new rows at the end of the data view</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows at the end of the data view</translation>
+      <translation>Coloque novas linhas no final da exibição de dados</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="663"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
-      <translation type="unfinished">Total number of rows is being counted.
-Browsing other pages will be possible after the row counting is done.</translation>
+      <translation>O número total de linhas está sendo contado.
+Navegar por outras páginas será possível após a contagem de linhas ser finalizada.</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="674"/>
       <source>Row: %1</source>
-      <translation type="unfinished">Row: %1</translation>
+      <translation>Linha: %1</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="954"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filtro</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="957"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
-      <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
+      <translation>Pressione a tecla Enter ou pressione &quot;Aplicar filtro&quot; botão na barra de ferramentas para aplicar o novo valor.</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="985"/>
       <source>Filter by text</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text</translation>
+      <translation>Filtrar por texto</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="986"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by the Regular Expression</translation>
+      <translation>Filtrar pela Expressão Regular</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="987"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by SQL expression</translation>
+      <translation>Filtrar por expressão SQL</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="1003"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
-      <translation type="unfinished">Show filter inputs per column</translation>
+      <translation>Mostrar entradas de filtro por coluna</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="1007"/>
       <source>Apply filter</source>
       <comment>data view</comment>
-      <translation type="unfinished">Apply filter</translation>
+      <translation>Aplicar filtro</translation>
     </message>
   </context>
   <context>
@@ -1648,7 +1648,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="20"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
@@ -1914,7 +1914,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="153"/>
       <source>Delete the ta&amp;ble</source>
-      <translation type="unfinished">Delete the ta&amp;ble</translation>
+      <translation>Apagar a tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="154"/>
@@ -2866,12 +2866,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="68"/>
       <source>Statements that were executed successfully were commited.</source>
-      <translation type="unfinished">Statements that were executed successfully were commited.</translation>
+      <translation>Declarações executadas com sucesso foram enviadas.</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="81"/>
       <source>Statements that were executed successfully were rolled back.</source>
-      <translation type="unfinished">Statements that were executed successfully were rolled back.</translation>
+      <translation>Declarações executadas com sucesso foram rebaixadas.</translation>
     </message>
   </context>
   <context>
@@ -2880,7 +2880,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../common/fontedit.cpp" line="61"/>
       <source>Choose font</source>
       <comment>font configuration</comment>
-      <translation type="unfinished">Choose font</translation>
+      <translation>Escolha a fonte</translation>
     </message>
   </context>
   <context>
@@ -2888,7 +2888,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../forms/sqlformatterplugin.ui" line="20"/>
       <source>Active SQL formatter plugin</source>
-      <translation type="unfinished">Active SQL formatter plugin</translation>
+      <translation>Formatador SQL ativo do plugin</translation>
     </message>
   </context>
   <context>
@@ -2897,49 +2897,49 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../formview.cpp" line="247"/>
       <source>Commit row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Commit row</translation>
+      <translation>Submeter linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="248"/>
       <source>Rollback row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Rollback row</translation>
+      <translation>Reverter linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="249"/>
       <source>First row</source>
       <comment>form view</comment>
-      <translation type="unfinished">First row</translation>
+      <translation>Primeira linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="250"/>
       <source>Previous row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Previous row</translation>
+      <translation>Linha anterior</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="251"/>
       <source>Next row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Next row</translation>
+      <translation>Próxima linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="252"/>
       <source>Last row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Last row</translation>
+      <translation>Última linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="253"/>
       <source>Insert new row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Insert new row</translation>
+      <translation>Inserir nova linha</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="254"/>
       <source>Delete current row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Delete current row</translation>
+      <translation>Excluir linha atual</translation>
     </message>
   </context>
   <context>
@@ -2947,7 +2947,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation type="unfinished">Filter funtions</translation>
+      <translation>Filtrar funções</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
