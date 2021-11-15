@@ -2952,154 +2952,154 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
       <source>Input arguments</source>
-      <translation type="unfinished">Input arguments</translation>
+      <translation>Imputar argumentos</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="163"/>
       <source>Undefined</source>
-      <translation type="unfinished">Undefined</translation>
+      <translation>Indefinido</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="205"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="211"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>Registrar em todos os bancos de dados</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="218"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>Registrar nos seguintes bancos de dados:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="253"/>
       <source>Type:</source>
-      <translation type="unfinished">Type:</translation>
+      <translation>Tipo:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="260"/>
       <source>Function name:</source>
-      <translation type="unfinished">Function name:</translation>
+      <translation>Nome da função:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="273"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>Idioma de implementação:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="293"/>
       <source>Initialization code:</source>
-      <translation type="unfinished">Initialization code:</translation>
+      <translation>Código de inicialização:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="313"/>
       <location filename="../windows/functionseditor.cpp" line="427"/>
       <source>Function implementation code:</source>
-      <translation type="unfinished">Function implementation code:</translation>
+      <translation>Código de implementação da função:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="333"/>
       <source>Final step implementation code:</source>
-      <translation type="unfinished">Final step implementation code:</translation>
+      <translation>Código de implementação da etapa final:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="55"/>
       <source>SQL function editor</source>
-      <translation type="unfinished">SQL function editor</translation>
+      <translation>Editor de função SQL</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="60"/>
       <source>Commit all function changes</source>
-      <translation type="unfinished">Commit all function changes</translation>
+      <translation>Enviar todas as mudanças de função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Rollback all function changes</source>
-      <translation type="unfinished">Rollback all function changes</translation>
+      <translation>Restaurar todas as alterações de função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="63"/>
       <source>Create new function</source>
-      <translation type="unfinished">Create new function</translation>
+      <translation>Criar nova função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="64"/>
       <source>Delete selected function</source>
-      <translation type="unfinished">Delete selected function</translation>
+      <translation>Excluir função selecionada</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="66"/>
       <source>Custom SQL functions manual</source>
-      <translation type="unfinished">Custom SQL functions manual</translation>
+      <translation>Personalizar funções SQL manualmente</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="69"/>
       <source>Add function argument</source>
-      <translation type="unfinished">Add function argument</translation>
+      <translation>Adicionar argumento da função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="70"/>
       <source>Rename function argument</source>
-      <translation type="unfinished">Rename function argument</translation>
+      <translation>Renomear argumento da função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="71"/>
       <source>Delete function argument</source>
-      <translation type="unfinished">Delete function argument</translation>
+      <translation>Excluir argumento da função</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="73"/>
       <source>Move function argument up</source>
-      <translation type="unfinished">Move function argument up</translation>
+      <translation>Move o argumento da função para cima</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="74"/>
       <source>Move function argument down</source>
-      <translation type="unfinished">Move function argument down</translation>
+      <translation>Move o argumento da função para baixo</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="112"/>
       <source>Scalar</source>
-      <translation type="unfinished">Scalar</translation>
+      <translation>Escalar</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="113"/>
       <source>Aggregate</source>
-      <translation type="unfinished">Aggregate</translation>
+      <translation>Agregar</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="411"/>
       <source>Enter a non-empty, unique name of the function.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the function.</translation>
+      <translation>Insira um nome único e completo da função.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="423"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>Escolha a linguagem de implementação.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="427"/>
       <source>Per step code:</source>
-      <translation type="unfinished">Per step code:</translation>
+      <translation>Código de cada passo:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="433"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation type="unfinished">Enter a non-empty implementation code.</translation>
+      <translation>Digite um código de implementação não vazio.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="506"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
-      <translation type="unfinished">argument</translation>
+      <translation>argumento</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="632"/>
       <source>Functions editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
+      <translation>Janela do editor de funções tem modificações não autorizadas.</translation>
     </message>
   </context>
   <context>
@@ -3107,37 +3107,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="14"/>
       <source>Import data</source>
-      <translation type="unfinished">Import data</translation>
+      <translation>Importar dados</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="21"/>
       <source>Table to import to</source>
-      <translation type="unfinished">Table to import to</translation>
+      <translation>Importar tabela para</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="36"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="43"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="84"/>
       <source>Data source to import from</source>
-      <translation type="unfinished">Data source to import from</translation>
+      <translation>Fonte de dados para importar de</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="129"/>
       <source>Data source type</source>
-      <translation type="unfinished">Data source type</translation>
+      <translation>Tipo de fonte de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="141"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation> Opções</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="175"/>
