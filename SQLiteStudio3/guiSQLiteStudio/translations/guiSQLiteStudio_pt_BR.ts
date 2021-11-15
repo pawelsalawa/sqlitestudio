@@ -1929,246 +1929,246 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Populate table</source>
-      <translation>Preencher tabela</translation>
+      <translation>Preencher a tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Create similar table</source>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Criar tabela semelhante</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
       <source>Reset autoincrement sequence</source>
-      <translation type="unfinished">Reset autoincrement sequence</translation>
+      <translation>Redefinir sequência de auto-incremento</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create an &amp;index</source>
-      <translation type="unfinished">Create an &amp;index</translation>
+      <translation>Criar um &amp;índice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Edit the i&amp;ndex</source>
-      <translation type="unfinished">Edit the i&amp;ndex</translation>
+      <translation>Editar o índice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Delete the in&amp;dex</source>
-      <translation type="unfinished">Delete the in&amp;dex</translation>
+      <translation>Apagar o índice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Create a trig&amp;ger</source>
-      <translation type="unfinished">Create a trig&amp;ger</translation>
+      <translation>Criar um gatilho</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Edit the trigg&amp;er</source>
-      <translation type="unfinished">Edit the trigg&amp;er</translation>
+      <translation>Editar gatilho</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Delete the trigge&amp;r</source>
-      <translation type="unfinished">Delete the trigge&amp;r</translation>
+      <translation>Excluir gatilho</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="165"/>
       <source>Create a &amp;view</source>
-      <translation type="unfinished">Create a &amp;view</translation>
+      <translation>Criar uma visualização</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>Edit the v&amp;iew</source>
-      <translation type="unfinished">Edit the v&amp;iew</translation>
+      <translation>Editar uma visualização</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>Delete the vi&amp;ew</source>
-      <translation type="unfinished">Delete the vi&amp;ew</translation>
+      <translation>Apagar uma visualização</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
       <source>Add a column</source>
-      <translation type="unfinished">Add a column</translation>
+      <translation>Adicionar uma coluna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="169"/>
       <source>Edit the column</source>
-      <translation type="unfinished">Edit the column</translation>
+      <translation>Editar a coluna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="170"/>
       <source>Delete the column</source>
-      <translation type="unfinished">Delete the column</translation>
+      <translation>Excluir a coluna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="171"/>
       <source>Delete selected items</source>
-      <translation type="unfinished">Delete selected items</translation>
+      <translation>Excluir itens selecionados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="172"/>
       <source>Clear filter</source>
-      <translation type="unfinished">Clear filter</translation>
+      <translation>Limpar filtro</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation type="unfinished">&amp;Refresh all database schemas</translation>
+      <translation>&amp;Atualizar todos os esquemas de banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation type="unfinished">Re&amp;fresh selected database schema</translation>
+      <translation>Atualizar &amp;esquema de banco de dados selecionado</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
       <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Erase table data</source>
-      <translation type="unfinished">Erase table data</translation>
+      <translation>Apagar dados da tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="180"/>
       <source>Open file&apos;s directory</source>
-      <translation type="unfinished">Open file&apos;s directory</translation>
+      <translation>Abrir arquivos diretório</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="181"/>
       <source>Execute SQL from file</source>
-      <translation type="unfinished">Execute SQL from file</translation>
+      <translation>Executar SQL de um arquivo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="362"/>
       <location filename="../dbtree/dbtree.cpp" line="367"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Base de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="377"/>
       <source>Grouping</source>
-      <translation type="unfinished">Grouping</translation>
+      <translation>Agrupamento</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="382"/>
       <source>Generate query for table</source>
-      <translation type="unfinished">Generate query for table</translation>
+      <translation>Gerar consulta para tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1088"/>
       <location filename="../dbtree/dbtree.cpp" line="1091"/>
       <source>Create group</source>
-      <translation type="unfinished">Create group</translation>
+      <translation>Criar grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1088"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Nome do grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1091"/>
       <source>Entry with name %1 already exists in group %2.</source>
-      <translation type="unfinished">Entry with name %1 already exists in group %2.</translation>
+      <translation>A referência com o nome %1 já existe no grupo %2.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1109"/>
       <source>Delete group</source>
-      <translation type="unfinished">Delete group</translation>
+      <translation>Apagar grupo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1110"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
-      <translation type="unfinished">Are you sure you want to delete group %1?
-All objects from this group will be moved to parent group.</translation>
+      <translation>Tem certeza que deseja excluir o grupo %1?
+Todos os objetos deste grupo serão movidos para o grupo pai.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1173"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
-      <translation type="unfinished">Are you sure you want to remove database &apos;%1&apos; from the list?</translation>
+      <translation>Tem certeza de que deseja remover o banco de dados da lista?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1181"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
-      <translation type="unfinished">Are you sure you want to remove following databases from the list:
+      <translation>Tem certeza de que deseja remover os seguintes bancos de dados da lista:
 %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1183"/>
       <source>Remove database</source>
-      <translation type="unfinished">Remove database</translation>
+      <translation>Apagar banco de dados</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1220"/>
       <location filename="../dbtree/dbtree.cpp" line="1425"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
+      <translation>Não é possível importar porque nenhum plugin de importação está carregado.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1240"/>
       <location filename="../dbtree/dbtree.cpp" line="1400"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1490"/>
       <source>Vacuum (%1)</source>
-      <translation type="unfinished">Vacuum (%1)</translation>
+      <translation>Vacuum (%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
       <source>Integrity check (%1)</source>
-      <translation type="unfinished">Integrity check (%1)</translation>
+      <translation>Verificação de integridade (%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1540"/>
       <source>Reset autoincrement</source>
-      <translation type="unfinished">Reset autoincrement</translation>
+      <translation>Redefinir auto-incremento</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1540"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-      <translation type="unfinished">Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</translation>
+      <translation>Tem certeza de que deseja redefinir o valor de auto-incremento para a tabela?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1547"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-      <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
+      <translation>Ocorreu um erro ao tentar redefinir o valor de auto-incremento da tabela: %2</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1549"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
+      <translation>O valor do auto-incremento para a tabela foi redefinido com sucesso.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
+      <translation>Tem certeza que deseja excluir todos os dados da tabela: %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1581"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-      <translation type="unfinished">An error occurred while trying to delete data from table &apos;%1&apos;: %2</translation>
+      <translation>Ocorreu um erro ao tentar excluir os dados da tabela: %2</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1585"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
-      <translation type="unfinished">All data has been deleted for table &apos;%1&apos;.</translation>
+      <translation>Todos os dados da tabela %1 foram apagados.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1699"/>
       <source>Following objects will be deleted: %1.</source>
-      <translation type="unfinished">Following objects will be deleted: %1.</translation>
+      <translation>Os seguintes objetos serão deletados: %1.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1702"/>
       <source>Following databases will be removed from list: %1.</source>
-      <translation type="unfinished">Following databases will be removed from list: %1.</translation>
+      <translation>Os seguintes bancos de dados serão removidos da lista: %1.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1705"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
-      <translation type="unfinished">Remainig objects from deleted group will be moved in place where the group used to be.</translation>
+      <translation>Os objetos restantes do grupo excluído serão movidos no lugar onde o grupo costumava estar.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1707"/>
@@ -2317,7 +2317,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1128"/>
       <source>Include triggers</source>
-      <translation type="unfinished">Include triggers</translation>
+      <translation>Incluir triggers</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1130"/>
@@ -2607,27 +2607,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="69"/>
       <source>Skip failing SQL statements</source>
-      <translation type="unfinished">Skip failing SQL statements</translation>
+      <translation>Pular comandos SQL falhados</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="49"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
-      <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
+      <translation>SQL scripts (*.sql);;All files (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="50"/>
       <source>Execute SQL file</source>
-      <translation type="unfinished">Execute SQL file</translation>
+      <translation>Executar o arquivo SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="64"/>
       <source>Please provide file to be executed.</source>
-      <translation type="unfinished">Please provide file to be executed.</translation>
+      <translation>Por favor, forneça um arquivo para ser executado.</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="71"/>
       <source>Provided file does not exist or cannot be read.</source>
-      <translation type="unfinished">Provided file does not exist or cannot be read.</translation>
+      <translation>O arquivo fornecido não existe ou não pode ser lido.</translation>
     </message>
   </context>
   <context>
@@ -2635,210 +2635,210 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="14"/>
       <source>Export</source>
-      <translation type="unfinished">Export</translation>
+      <translation>Exportar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="21"/>
       <source>What do you want to export?</source>
-      <translation type="unfinished">What do you want to export?</translation>
+      <translation>O que você deseja exportar?</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="36"/>
       <source>A database</source>
-      <translation type="unfinished">A database</translation>
+      <translation>Um banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="46"/>
       <source>A single table</source>
-      <translation type="unfinished">A single table</translation>
+      <translation>Uma única tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="53"/>
       <source>Query results</source>
-      <translation type="unfinished">Query results</translation>
+      <translation>Resultados da consulta</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="65"/>
       <source>Table to export</source>
-      <translation type="unfinished">Table to export</translation>
+      <translation>Tabela a exportar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="100"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="124"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation> Opções</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="130"/>
       <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-      <translation type="unfinished">When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</translation>
+      <translation>Quando esta opção está desmarcada, então apenas o DDL da tabela (CREATE TABLE) é exportado.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="133"/>
       <source>Export table data</source>
-      <translation type="unfinished">Export table data</translation>
+      <translation>Exportar dados da tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="143"/>
       <source>Export table indexes</source>
-      <translation type="unfinished">Export table indexes</translation>
+      <translation>Exportar índices de tabelas</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="153"/>
       <source>Export table triggers</source>
-      <translation type="unfinished">Export table triggers</translation>
+      <translation>Exportar gatilhos de tabelas</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="175"/>
       <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
-      <translation type="unfinished">Note, that exporting table indexes and triggers may be unsupported by some output formats.</translation>
+      <translation>Observe que a exportação de índices e gatilhos de tabela podem não ser suportados por alguns formatos de saída.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="189"/>
       <source>Select database objects to export</source>
-      <translation type="unfinished">Select database objects to export</translation>
+      <translation>Selecionar objetos de banco de dados para exportar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="202"/>
       <source>Export data from tables</source>
-      <translation type="unfinished">Export data from tables</translation>
+      <translation>Exportar dados das tabelas</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="212"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Selecionar todos</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="219"/>
       <source>Deselect all</source>
-      <translation type="unfinished">Deselect all</translation>
+      <translation>Desmarcar todos</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="229"/>
       <location filename="../dialogs/exportdialog.ui" line="249"/>
       <source>Database:</source>
-      <translation type="unfinished">Database:</translation>
+      <translation>Banco de dados:</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="237"/>
       <source>Query to export results for</source>
-      <translation type="unfinished">Query to export results for</translation>
+      <translation>Consulta para exportar resultados para</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="256"/>
       <source>Query to be executed for results:</source>
-      <translation type="unfinished">Query to be executed for results:</translation>
+      <translation>Consulta a ser executada para resultados:</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="264"/>
       <source>Export format and options</source>
-      <translation type="unfinished">Export format and options</translation>
+      <translation>Formato e opções de exportação</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="318"/>
       <source>Export format</source>
-      <translation type="unfinished">Export format</translation>
+      <translation>Formato de exportação</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="330"/>
       <source>Output</source>
-      <translation type="unfinished">Output</translation>
+      <translation>Saída</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="336"/>
       <source>Exported file path</source>
-      <translation type="unfinished">Exported file path</translation>
+      <translation>Caminho do arquivo exportado</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="343"/>
       <source>Clipboard</source>
-      <translation type="unfinished">Clipboard</translation>
+      <translation>Área de transferência</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="357"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>Arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="382"/>
       <source>Exported text encoding:</source>
-      <translation type="unfinished">Exported text encoding:</translation>
+      <translation>Codificação de texto exportado:</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="398"/>
       <source>Export format options</source>
-      <translation type="unfinished">Export format options</translation>
+      <translation>Formato e opções de exportação</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="62"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <location filename="../dialogs/exportdialog.cpp" line="185"/>
       <location filename="../dialogs/exportdialog.cpp" line="208"/>
       <source>Select database to export.</source>
-      <translation type="unfinished">Select database to export.</translation>
+      <translation>Selecionar banco de dados para exportar.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="161"/>
       <source>Select table to export.</source>
-      <translation type="unfinished">Select table to export.</translation>
+      <translation>Selecione a tabela a ser exportada.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="186"/>
       <source>Enter valid query to export.</source>
-      <translation type="unfinished">Enter valid query to export.</translation>
+      <translation>Digite uma consulta válida para exportar.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select at least one object to export.</source>
-      <translation type="unfinished">Select at least one object to export.</translation>
+      <translation>Selecione pelo menos um objeto para exportar.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="232"/>
       <source>You must provide a file name to export to.</source>
-      <translation type="unfinished">You must provide a file name to export to.</translation>
+      <translation>Você deve fornecer um nome de arquivo para exportar.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="239"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
-      <translation type="unfinished">Path you provided is an existing directory. You cannot overwrite it.</translation>
+      <translation>O caminho fornecido é um diretório existente. Você não pode substituí-lo.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="245"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
-      <translation type="unfinished">The directory &apos;%1&apos; does not exist.</translation>
+      <translation>O diretório %1 não existe.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="251"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
-      <translation type="unfinished">The file &apos;%1&apos; exists and will be overwritten.</translation>
+      <translation>O arquivo %1 existe e será sobrescrito.</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="431"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="434"/>
       <source>Pick file to export to</source>
-      <translation type="unfinished">Pick file to export to</translation>
+      <translation>Exportar arquivo para</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="782"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
-      <translation type="unfinished">Internal error during export. This is a bug. Please report it.</translation>
+      <translation>Erro interno durante a exportação. Isto é um bug. Por favor, reporte-o.</translation>
     </message>
   </context>
   <context>
@@ -2846,22 +2846,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="14"/>
       <source>Execution errors</source>
-      <translation type="unfinished">Execution errors</translation>
+      <translation>Erros de execução</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="26"/>
       <source>Following errors were encountered during execution of SQL statements from the file:</source>
-      <translation type="unfinished">Following errors were encountered during execution of SQL statements from the file:</translation>
+      <translation>Os seguintes erros foram encontrados durante a execução das instruções SQL do arquivo:</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
       <source>SQL</source>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="54"/>
       <source>Error</source>
-      <translation type="unfinished">Error</translation>
+      <translation>Erro</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="68"/>
