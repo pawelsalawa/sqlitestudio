@@ -832,256 +832,256 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="303"/>
       <source>Expand views node when connected to a database</source>
-      <translation type="unfinished">Expand views node when connected to a database</translation>
+      <translation>Expandir visualizações enquanto conectado a um banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
+      <translation>Se esta opção estiver desligada, os objetos serão classificados na ordem em que aparecem na tabela mestra sqlite_master (que é em ordem que foram criados)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation type="unfinished">Sort objects (tables, indexes, triggers and views) alphabetically</translation>
+      <translation>Ordenar objetos (tabelas, índices, gatilhos e visualizações) em ordem alfabética</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="326"/>
       <source>Display system tables and indexes on the list</source>
-      <translation type="unfinished">Display system tables and indexes on the list</translation>
+      <translation>Exibir tabelas e índices do sistema em lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="339"/>
       <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
+      <translation>Janela de diálogo do banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="345"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Ao adicionar um novo banco de dados, está marcado como &quot;permanente&quot; (armazenado na configuração) por padrão. Marcar esta opção faz com que cada novo banco de dados para NÃO ser &quot;permanente&quot; por padrão.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="348"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>Não marcar banco de dados para ser &quot;permanente&quot; por padrão</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="358"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando esta opção está habilitada, em seguida, os arquivos descartados do gerenciador de arquivos na lista de banco de dados serão automaticamente adicionados à lista, ignorando o diálogo padrão de banco de dados. Se por várias razões o processo automático falhar, então a caixa de diálogo padrão será apresentada ao usuário.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="361"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>Tente ignorar completamente a caixa de diálogo ao soltar o arquivo de banco de dados na lista</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="406"/>
       <source>Data browsing and editing</source>
-      <translation type="unfinished">Data browsing and editing</translation>
+      <translation>Navegação e edição de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="480"/>
       <location filename="../dialogs/configdialog.ui" line="493"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;O número máximo de configurações da caixa de diálogo Populate Table armazenada na configuração. O valor de 100 deve ser suficiente.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="496"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>Número de tabelas memorizadas que preenchem configurações</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="431"/>
       <location filename="../dialogs/configdialog.ui" line="457"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando os dados são lidos na exibição das colunas de grade a largura é automaticamente ajustada. Este valor limita a largura inicial para o ajuste, mas o usuário ainda pode redimensionar a coluna manualmente acima deste limite.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="460"/>
       <source>Limit initial data column width to (in pixels):</source>
-      <translation type="unfinished">Limit initial data column width to (in pixels):</translation>
+      <translation>Limitar a largura da coluna de dados inicial em (em pixels):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="450"/>
       <source>Number of data rows per page:</source>
-      <translation type="unfinished">Number of data rows per page:</translation>
+      <translation>Número de linhas de dados por página:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="503"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando isso está habilitado e o usuário mantém o ponteiro do mouse sobre uma célula em qualquer exibição de dados (resultados de consulta, dados de uma tabela, uma visualização de dados), uma dica será exibida com detalhes sobre a célula - ela inclui detalhes como o tipo de dados da coluna, restrições, ROWID e outros.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="506"/>
       <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
+      <translation>Mostrar dica de detalhes da coluna e linha na visualização de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="516"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Ao editar uma célula que usava como novo valor NULL e a entrada de seqüência de caracteres vazios, então esta opção determina se o novo valor deve permanecer NULO (tenha esta opção ativada), ou deve ser substituído pelo valor vazio da string (tenha esta opção desativada).&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="519"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation type="unfinished">Keep NULL value when entering empty value</translation>
+      <translation>Manter valor NULL ao inserir um valor vazio</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Habilite isso para sempre aplicar o valor DEFAULT ao confirmar um valor NULL para uma coluna que tenha o valor padrão definido, embora a coluna possa conter valores NULL.&lt;/p&gt;&lt;p&gt;Desativar esta opção para usar valor PADRÃO exclusivamente quando o valor NULL é comprometido para a coluna com restrição NÃO NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="470"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
+      <translation>Usar valor PADRÃO (se definido), ao confirmar o valor NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="529"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se consultas de resultados contêm dezenas (ou centenas) de colunas, é mais provável que ele esgote a memória livre do seu computador carregando vários gigabytes de dados de uma só vez. SQLiteStudio pode tentar limitar o número de resultados exibidos em uma página para proteger o seu computador. Se você sabe que você don&apos;t trabalha com grandes valores no banco de dados, você pode desativar esse limite e sempre verá quantas linhas forem definidas por página.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="532"/>
       <source>Limit number of rows for in case of dozens of columns</source>
-      <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
+      <translation>Limitar o número de linhas no caso de dezenas de colunas</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
       <source>General.LimitRowsForManyColumns</source>
-      <translation type="unfinished">General.LimitRowsForManyColumns</translation>
+      <translation>General.LimitRowsForManyColumns</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="545"/>
       <source>Inserting new row in data grid</source>
-      <translation type="unfinished">Inserting new row in data grid</translation>
+      <translation>Inserindo nova linha na grade de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>Before currently selected row</source>
-      <translation type="unfinished">Before currently selected row</translation>
+      <translation>Antes da linha selecionada</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>After currently selected row</source>
-      <translation type="unfinished">After currently selected row</translation>
+      <translation>Depois da linha selecionada</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="580"/>
       <source>At the end of data view</source>
-      <translation type="unfinished">At the end of data view</translation>
+      <translation>No final da visualização de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="596"/>
       <source>Table windows</source>
-      <translation type="unfinished">Table windows</translation>
+      <translation>Janelas da tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="602"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando ativado, as janelas de tabela serão exibidas na aba de dados, em vez da aba estrutura.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="605"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation type="unfinished">Open Table Windows with the data tab for start</translation>
+      <translation>Janelas em tabela aberta com a guia de dados para iniciar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="615"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando ativado a guia &quot;Dados&quot; será colocada como a primeira guia em cada janela de tabela, em vez de estar no segundo lugar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="618"/>
       <source>Place data tab as first tab in a Table Window</source>
-      <translation type="unfinished">Place data tab as first tab in a Table Window</translation>
+      <translation>Colocar guia de dados como primeira aba em uma janela de tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="631"/>
       <source>View windows</source>
-      <translation type="unfinished">View windows</translation>
+      <translation>Ver janelas</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="637"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando ativado, exibir janelas irá aparecer na aba de dados, em vez da aba estrutura.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="640"/>
       <source>Open View Windows with the data tab for start</source>
-      <translation type="unfinished">Open View Windows with the data tab for start</translation>
+      <translation>Abra a visualização de janelas com a guia de dados para iniciar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="650"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando ativado a guia &quot;Dados&quot; será colocada como a primeira guia em cada exibição de janela, em vez de ser no segundo lugar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="653"/>
       <source>Place data tab as first tab in a View Window</source>
-      <translation type="unfinished">Place data tab as first tab in a View Window</translation>
+      <translation>Colocar guia de dados como primeira aba em uma janela de visualização</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="697"/>
       <source>Data types</source>
-      <translation type="unfinished">Data types</translation>
+      <translation>Tipo de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="735"/>
       <source>Available editors:</source>
-      <translation type="unfinished">Available editors:</translation>
+      <translation>Editores disponíveis:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="751"/>
       <source>Editors selected for this data type:</source>
-      <translation type="unfinished">Editors selected for this data type:</translation>
+      <translation>Editores selecionados para este tipo de dado:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="787"/>
       <source>Schema editing</source>
-      <translation type="unfinished">Schema editing</translation>
+      <translation>Edição do schema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="799"/>
       <source>Number of DDL changes kept in history.</source>
-      <translation type="unfinished">Number of DDL changes kept in history.</translation>
+      <translation>Número de alterações DDL mantidas no histórico.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="812"/>
       <source>DDL history size:</source>
-      <translation type="unfinished">DDL history size:</translation>
+      <translation>Tamanho do histórico DDL:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="819"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>Don&apos;t mostrar janela de pré-visualização do DDL ao confirmar alterações de esquema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="832"/>
       <source>SQL queries</source>
-      <translation type="unfinished">SQL queries</translation>
+      <translation>Consultas SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="844"/>
       <location filename="../dialogs/configdialog.ui" line="857"/>
       <source>Number of queries kept in the history.</source>
-      <translation type="unfinished">Number of queries kept in the history.</translation>
+      <translation>Número de consultas mantidas no histórico.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="860"/>
       <source>History size:</source>
-      <translation type="unfinished">History size:</translation>
+      <translation>Tamanho do histórico:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de parâmetros de consulta (:param, @param, $param, ?) armazenado na história. Quando você usar novamente o parâmetro com o mesmo nome/posição, SQLiteStudio irá pré-inicializá-lo com o valor mais recente memorizado (você ainda poderá alterá-lo). O valor de 1000 deve ser suficiente.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
       <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Se houver mais de uma consulta na janela do editor de SQL, então (se essa opção estiver ativada) apenas uma consulta será executada - a que está sob o cursor de inserção do teclado. Caso contrário, todas as consultas serão executadas. Você pode limitar as consultas a serem executadas selecionando essas consultas antes de chamar para executar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
@@ -1919,17 +1919,17 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Export the table</source>
-      <translation type="unfinished">Export the table</translation>
+      <translation>Exportar a tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="155"/>
       <source>Import into the table</source>
-      <translation type="unfinished">Import into the table</translation>
+      <translation>Importar para a tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Preencher tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
