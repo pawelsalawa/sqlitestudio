@@ -2322,51 +2322,51 @@ Todos os objetos deste grupo serão movidos para o grupo pai.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1130"/>
       <source>Abort</source>
-      <translation type="unfinished">Abort</translation>
+      <translation>Interromper</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
-      <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
+      <translation>Não foi possível adicionar o arquivo de banco de dados &apos;%1&apos; automaticamente. A configuração manual é necessária.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1236"/>
       <source>Referenced tables</source>
-      <translation type="unfinished">Referenced tables</translation>
+      <translation>Tabelas referenciadas</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1237"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
-      <translation type="unfinished">Do you want to include following referenced tables as well:
+      <translation>Você também deseja incluir as seguintes tabelas referenciadas:
 %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1246"/>
       <source>Name conflict</source>
-      <translation type="unfinished">Name conflict</translation>
+      <translation>Conflito no nome</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1247"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
-      <translation type="unfinished">Following object already exists in the target database.
-Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
+      <translation>Seguindo o objeto já existe no banco de dados de destino.
+Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operação:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>Conversão de comandos SQL</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1268"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-      <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
+      <translation>Ocorreu um erro ao converter as instruções SQL para a versão de SQLite de destino:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
       <source>Would you like to ignore those errors and proceed?</source>
-      <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
+      <translation>Gostaria de ignorar esses erros e prosseguir?</translation>
     </message>
   </context>
   <context>
@@ -2374,21 +2374,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="35"/>
       <source>Filter by database:</source>
-      <translation type="unfinished">Filter by database:</translation>
+      <translation>Filtrar por banco de dados:</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- Consultas executadas no banco de dados %1 (%2)
+-- Data e horário de execução: %3
 %4</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
       <source>DDL history</source>
-      <translation type="unfinished">DDL history</translation>
+      <translation>Histórico DDL</translation>
     </message>
   </context>
   <context>
@@ -2396,12 +2396,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="14"/>
       <source>Queries to be executed</source>
-      <translation type="unfinished">Queries to be executed</translation>
+      <translation>Consultas a serem executadas</translation>
     </message>
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
       <source>Don&apos;t show again</source>
-      <translation type="unfinished">Don&apos;t show again</translation>
+      <translation>Não mostrar novamente</translation>
     </message>
   </context>
   <context>
@@ -2409,7 +2409,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../debugconsole.ui" line="14"/>
       <source>SQLiteStudio Debug Console</source>
-      <translation type="unfinished">SQLiteStudio Debug Console</translation>
+      <translation>Console de Debug SQLiteStudio</translation>
     </message>
   </context>
   <context>
@@ -2417,12 +2417,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
       <source>History</source>
-      <translation type="unfinished">History</translation>
+      <translation>Histórico</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
