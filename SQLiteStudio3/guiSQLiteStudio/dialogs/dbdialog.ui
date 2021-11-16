@@ -49,20 +49,6 @@
        <widget class="QLineEdit" name="fileEdit"/>
       </item>
       <item>
-       <widget class="QToolButton" name="browseCreateButton">
-        <property name="toolTip">
-         <string>Create new database file</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/plus.png</normaloff>:/icons/img/plus.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="browseOpenButton">
         <property name="text">
          <string/>

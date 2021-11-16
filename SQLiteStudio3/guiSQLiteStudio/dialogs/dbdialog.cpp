@@ -132,8 +132,6 @@ void DbDialog::init()
 {
     ui->setupUi(this);
 
-    ui->browseCreateButton->setIcon(ICONS.PLUS);
-
     for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
         dbPlugins[dbPlugin->getLabel()] = dbPlugin;
 
@@ -142,12 +140,10 @@ void DbDialog::init()
     typeLabels.sort(Qt::CaseInsensitive);
     ui->typeCombo->addItems(typeLabels);
 
-    ui->browseCreateButton->setVisible(true);
     ui->testConnIcon->setVisible(false);
 
     connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(fileChanged(QString)));
     connect(ui->nameEdit, SIGNAL(textEdited(QString)), this, SLOT(nameModified(QString)));
-    connect(ui->browseCreateButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
     connect(ui->browseOpenButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
     connect(ui->testConnButton, SIGNAL(clicked()), this, SLOT(testConnectionClicked()));
     connect(ui->typeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbTypeChanged(int)));
@@ -165,7 +161,7 @@ void DbDialog::updateOptions()
     setUpdatesEnabled(false);
 
     // Remove olds
-    for (QWidget* w : optionWidgets)
+    for (QWidget*& w : optionWidgets)
     {
         ui->optionsGrid->removeWidget(w);
         delete w;
@@ -173,8 +169,7 @@ void DbDialog::updateOptions()
 
     customBrowseHandler = nullptr;
     ui->pathGroup->setTitle(tr("File"));
-    ui->browseOpenButton->setToolTip(tr("Browse for existing database file on local computer"));
-    ui->browseCreateButton->setVisible(true);
+    ui->browseOpenButton->setToolTip(tr("Select new or existing file on local computer"));
 
     optionWidgets.clear();
     optionKeyToWidget.clear();
@@ -211,7 +206,6 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
         // This option does not add any editor, but has it's own label for path edit.
         row--;
         ui->pathGroup->setTitle(option.label);
-        ui->browseCreateButton->setVisible(false);
         if (!option.toolTip.isEmpty())
             ui->browseOpenButton->setToolTip(option.toolTip);
 
@@ -644,7 +638,7 @@ void DbDialog::browseForFile()
 {
     QString dir = getFileDialogInitPath();
     QString path = QFileDialog::getOpenFileName(0, QString(), dir);
-    if (path.isNull())
+    if (path.isEmpty())
         return;
 
     QString key = helperToKey[dynamic_cast<QWidget*>(sender())];
@@ -674,8 +668,6 @@ void DbDialog::browseClicked()
         return;
     }
 
-    bool createMode = (sender() == ui->browseCreateButton);
-
     QFileInfo fileInfo(getPath());
     QString dir;
     if (ui->fileEdit->text().isEmpty())
@@ -687,7 +679,7 @@ void DbDialog::browseClicked()
     else
         dir = getFileDialogInitPath();
 
-    QString path = getDbPath(createMode, dir);
+    QString path = getDbPath(dir);
     if (path.isNull())
         return;
 

@@ -27,22 +27,28 @@ const QStringList pageSizes = {
 
 const QStringList pageSizesWithDimensions;
 
-QString getDbPath(bool newFileMode, const QString &startWith)
+QString getDbPath(const QString &startWith)
 {
     QString dir = startWith;
     if (dir.isNull())
         dir = CFG->get("dialogCache", "lastDbDir").toString();
 
-    QStringList filters;
-    filters += QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)";
-    filters += "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)";
-    filters += QObject::tr("All files")+" (*)";
-    QString filter = filters.join(";;");
+    QStringList filters({
+        QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
+        "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
+        QObject::tr("All files")+" (*)"
+    });
 
-    if (newFileMode)
-        return QFileDialog::getSaveFileName(0, QObject::tr("Database file"), dir, filter, &filters[0], QFileDialog::DontConfirmOverwrite);
-    else
-        return QFileDialog::getOpenFileName(0, QObject::tr("Database file"), dir, filter, &filters[0]);
+    QFileDialog dialog(nullptr, QObject::tr("Select database file"), dir, QString());
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setOption(QFileDialog::DontConfirmOverwrite, true);
+    dialog.setLabelText(QFileDialog::Accept, QObject::tr("Select"));
+    dialog.setLabelText(QFileDialog::FileType, QObject::tr("File type"));
+    dialog.setNameFilters(filters);
+    if (dialog.exec() != QDialog::Accepted || dialog.selectedFiles().empty())
+        return QString();
+
+    return dialog.selectedFiles().constFirst();
 }
 
 void setValidState(QWidget *widget, bool valid, const QString& message)
