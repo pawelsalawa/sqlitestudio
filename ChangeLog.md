@@ -21,6 +21,7 @@
 - CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: SQLite updated to 3.35.5.
+- CHANGE: #4300 Db Dialog now has just 1 browse button, but uses Qt file dialog, not native one.
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
@@ -34,6 +35,7 @@
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
 - BUGFIX: #4267 Path now shows familiar backslashes on Windows for Add a database and About dialog.
+- BUGFIX: #4314 Fixed missing OpenSSL license exemptions.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
