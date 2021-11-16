@@ -3401,122 +3401,122 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mainwindow.ui" line="81"/>
       <source>Database toolbar</source>
-      <translation type="unfinished">Database toolbar</translation>
+      <translation>Barra de ferramentas do banco de dados</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="92"/>
       <source>Structure toolbar</source>
-      <translation type="unfinished">Structure toolbar</translation>
+      <translation>Barra de ferramentas da estrutura</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="103"/>
       <source>Tools</source>
-      <translation type="unfinished">Tools</translation>
+      <translation>Ferramentas</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="120"/>
       <source>Window list</source>
-      <translation type="unfinished">Window list</translation>
+      <translation>Lista de janelas</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="134"/>
       <source>View toolbar</source>
-      <translation type="unfinished">View toolbar</translation>
+      <translation>Visualizar barra de ferramentas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="112"/>
       <source>Configuration widgets</source>
-      <translation type="unfinished">Configuration widgets</translation>
+      <translation>Configurar widgets</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="113"/>
       <source>Syntax highlighting engines</source>
-      <translation type="unfinished">Syntax highlighting engines</translation>
+      <translation>Realce do tema da sintaxe</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="114"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Editores de dados</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="126"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-      <translation type="unfinished">Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</translation>
+      <translation>Executando no modo de depuração. Pressione %1 ou use &apos;Ajuda / Abrir console de depuração&apos; entrada de menu para abrir o console de depuração.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="128"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-      <translation type="unfinished">Running in debug mode. Debug messages are printed to the standard output.</translation>
+      <translation>Executando em modo de depuração. Mensagens de depuração são impressas na saída padrão.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="195"/>
       <source>You need to restart application to make the language change take effect.</source>
-      <translation type="unfinished">You need to restart application to make the language change take effect.</translation>
+      <translation>Você precisa reiniciar o aplicativo para que a alteração de idioma tenha efeito.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="238"/>
       <source>Open SQL &amp;editor</source>
-      <translation type="unfinished">Open SQL &amp;editor</translation>
+      <translation>Abrir editor de SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="239"/>
       <source>Open DDL &amp;history</source>
-      <translation type="unfinished">Open DDL &amp;history</translation>
+      <translation>Abrir histórico DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="240"/>
       <source>Open SQL &amp;functions editor</source>
-      <translation type="unfinished">Open SQL &amp;functions editor</translation>
+      <translation>Abrir editor de funções SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="241"/>
       <source>Open &amp;collations editor</source>
-      <translation type="unfinished">Open &amp;collations editor</translation>
+      <translation>Abrir editor de ordenações</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="242"/>
       <source>Open ex&amp;tension manager</source>
-      <translation type="unfinished">Open ex&amp;tension manager</translation>
+      <translation>Abrir gerenciador de extensão</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="243"/>
       <source>&amp;Import</source>
-      <translation type="unfinished">&amp;Import</translation>
+      <translation>Importar</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="244"/>
       <source>E&amp;xport</source>
-      <translation type="unfinished">E&amp;xport</translation>
+      <translation>Exportar</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="246"/>
       <source>Open confi&amp;guration dialog</source>
-      <translation type="unfinished">Open confi&amp;guration dialog</translation>
+      <translation>Abrir diálogo de configuração</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="248"/>
       <source>&amp;Tile windows</source>
-      <translation type="unfinished">&amp;Tile windows</translation>
+      <translation>Dividir janelas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="249"/>
       <source>Tile windows &amp;horizontally</source>
-      <translation type="unfinished">Tile windows &amp;horizontally</translation>
+      <translation>Dividir janela horizontalmente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="250"/>
       <source>Tile windows &amp;vertically</source>
-      <translation type="unfinished">Tile windows &amp;vertically</translation>
+      <translation>Dividir janela verticalmente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="251"/>
       <source>&amp;Cascade windows</source>
-      <translation type="unfinished">&amp;Cascade windows</translation>
+      <translation>Janelas em cascata</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="252"/>
       <source>Next window</source>
-      <translation type="unfinished">Next window</translation>
+      <translation>Próxima janela</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="253"/>
@@ -4089,7 +4089,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit table generated columns.</source>
-      <translation type="unfinished">Cannot edit table generated columns.</translation>
+      <translation>Não é possível editar colunas geradas pela tabela.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="384"/>
