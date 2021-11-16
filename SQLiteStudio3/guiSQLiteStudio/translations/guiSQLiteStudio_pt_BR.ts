@@ -2427,131 +2427,131 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
       <source>Results in the separate tab</source>
-      <translation type="unfinished">Results in the separate tab</translation>
+      <translation>Resultados em uma aba separada</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="144"/>
       <source>Results below the query</source>
-      <translation type="unfinished">Results below the query</translation>
+      <translation>Resultados abaixo da consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="177"/>
       <location filename="../windows/editorwindow.cpp" line="179"/>
       <source>SQL editor %1</source>
-      <translation type="unfinished">SQL editor %1</translation>
+      <translation>Editor SQL %1</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="334"/>
       <source>Results</source>
-      <translation type="unfinished">Results</translation>
+      <translation>Resultados</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="369"/>
       <source>Execute query</source>
-      <translation type="unfinished">Execute query</translation>
+      <translation>Executar consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="370"/>
       <source>Explain query</source>
-      <translation type="unfinished">Explain query</translation>
+      <translation>Expandir consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="373"/>
       <source>Clear execution history</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpar histórico de execução</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="375"/>
       <source>Export results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Export results</translation>
+      <translation>Exportar resultados</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="377"/>
       <source>Create view from query</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Create view from query</translation>
+      <translation>Criar visualização a partir da consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="388"/>
       <source>Previous database</source>
-      <translation type="unfinished">Previous database</translation>
+      <translation>Banco de dados anterior</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="389"/>
       <source>Next database</source>
-      <translation type="unfinished">Next database</translation>
+      <translation>Próximo banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="392"/>
       <source>Show next tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show next tab</translation>
+      <translation>Mostrar próxima aba</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="393"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show previous tab</translation>
+      <translation>Mostrar aba anterior</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="394"/>
       <source>Focus results below</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Focus results below</translation>
+      <translation>Focar resultados abaixo</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="395"/>
       <source>Focus SQL editor above</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Focus SQL editor above</translation>
+      <translation>Focar resultados acima</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="396"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Excluir as entradas do histórico SQL selecionadas</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="462"/>
       <source>Active database (%1/%2)</source>
-      <translation type="unfinished">Active database (%1/%2)</translation>
+      <translation>Banco de dados ativo (%1/%2)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation type="unfinished">Query finished in %1 second(s). Rows affected: %2</translation>
+      <translation>Consulta finalizada em %1 segundo(s). Linhas afetadas: %2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s).</source>
-      <translation type="unfinished">Query finished in %1 second(s).</translation>
+      <translation>Consulta finalizada em %1 segundo(s).</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Clear execution history</source>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpar histórico de execução</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-      <translation type="unfinished">Are you sure you want to erase the entire SQL execution history? This cannot be undone.</translation>
+      <translation>Tem certeza que deseja apagar todo o histórico de execução de SQL? Isso não pode ser desfeito.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="733"/>
       <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
-      <translation type="unfinished">No database selected in the SQL editor. Cannot create a view for unknown database.</translation>
+      <translation>Nenhum banco de dados selecionado no editor SQL. Não é possível criar uma view para um banco de dados desconhecido.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="763"/>
       <source>Editor window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">Editor window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>Janela do editor &quot;%1&quot; possui dados não confirmados.</translation>
     </message>
   </context>
   <context>
@@ -2559,17 +2559,17 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
       <source>Errors</source>
-      <translation type="unfinished">Errors</translation>
+      <translation>Erros</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
       <source>Following errors occured:</source>
-      <translation type="unfinished">Following errors occured:</translation>
+      <translation>Ocorreu o seguinte erro:</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
       <source>Would you like to proceed?</source>
-      <translation type="unfinished">Would you like to proceed?</translation>
+      <translation>Deseja continuar?</translation>
     </message>
   </context>
   <context>
@@ -2577,32 +2577,32 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="14"/>
       <source>Execute SQL from file</source>
-      <translation type="unfinished">Execute SQL from file</translation>
+      <translation>Executar SQL de um arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="23"/>
       <source>Input file</source>
-      <translation type="unfinished">Input file</translation>
+      <translation>Arquivo de entrada</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="29"/>
       <source>Path to file</source>
-      <translation type="unfinished">Path to file</translation>
+      <translation>Caminho para o arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="36"/>
       <source>Browse for file</source>
-      <translation type="unfinished">Browse for file</translation>
+      <translation>Procurar por arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="53"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opções</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="59"/>
       <source>File encoding</source>
-      <translation type="unfinished">File encoding</translation>
+      <translation>Codificação de arquivo</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="69"/>
@@ -3142,67 +3142,67 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/importdialog.ui" line="175"/>
       <source>Text encoding:</source>
-      <translation type="unfinished">Text encoding:</translation>
+      <translation>Codificação de texto:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="182"/>
       <source>Input file:</source>
-      <translation type="unfinished">Input file:</translation>
+      <translation>Arquivo de entrada:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="192"/>
       <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Se ativado, qualquer violação de restrição ou formato de dados inválido (contagem de coluna errada), ou qualquer outro problema encontrado durante a importação será ignorado e a importação será continuada.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="195"/>
       <source>Ignore errors</source>
-      <translation type="unfinished">Ignore errors</translation>
+      <translation>Ignorar erros</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="205"/>
       <source>Data source options</source>
-      <translation type="unfinished">Data source options</translation>
+      <translation>Opções de fonte de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="116"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
       <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-      <translation type="unfinished">If you type table name that doesn&apos;t exist, it will be created.</translation>
+      <translation>Se você digitar o nome da tabela que não existe, ela será criada.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
       <source>Enter the table name</source>
-      <translation type="unfinished">Enter the table name</translation>
+      <translation>Digite o nome da tabela</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="165"/>
       <source>Select import plugin.</source>
-      <translation type="unfinished">Select import plugin.</translation>
+      <translation>Selecione plugin de importação.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="174"/>
       <source>You must provide a file to import from.</source>
-      <translation type="unfinished">You must provide a file to import from.</translation>
+      <translation>Você deve fornecer um arquivo para importar.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="181"/>
       <source>The file &apos;%1&apos; does not exist.</source>
-      <translation type="unfinished">The file &apos;%1&apos; does not exist.</translation>
+      <translation>O arquivo &apos;%1&apos; não existe.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="187"/>
       <source>Path you provided is a directory. A regular file is required.</source>
-      <translation type="unfinished">Path you provided is a directory. A regular file is required.</translation>
+      <translation>Caminho fornecido é um diretório. Um arquivo regular é necessário.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
-      <translation type="unfinished">Pick file to import from</translation>
+      <translation>Escolher arquivo de onde importar</translation>
     </message>
   </context>
   <context>
@@ -3211,47 +3211,47 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <location filename="../dialogs/indexdialog.ui" line="20"/>
       <location filename="../dialogs/indexdialog.ui" line="30"/>
       <source>Index</source>
-      <translation type="unfinished">Index</translation>
+      <translation>Índice</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="70"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Coluna</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="75"/>
       <source>Sort</source>
-      <translation type="unfinished">Sort</translation>
+      <translation>Ordenar</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="80"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Collation</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="88"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Na tabela:</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="98"/>
       <source>Delete selected indexed expression</source>
-      <translation type="unfinished">Delete selected indexed expression</translation>
+      <translation>Excluir expressão indexada selecionada</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="108"/>
       <source>Moves selected index column up in the order, making it more significant in the index.</source>
-      <translation type="unfinished">Moves selected index column up in the order, making it more significant in the index.</translation>
+      <translation>Move a coluna de índice selecionada para cima, tornando-a mais significativa no índice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="118"/>
       <source>Moves selected index column down in the order, making it less significant in the index.</source>
-      <translation type="unfinished">Moves selected index column down in the order, making it less significant in the index.</translation>
+      <translation>Move a coluna de índice selecionada para baixo na ordem, tornando-a menos significativa no índice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="128"/>
       <source>Partial index condition</source>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>Condição do índice parcial</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="135"/>
@@ -3521,188 +3521,188 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mainwindow.cpp" line="253"/>
       <source>Previous window</source>
-      <translation type="unfinished">Previous window</translation>
+      <translation>Janela anterior</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="254"/>
       <source>Hide status field</source>
-      <translation type="unfinished">Hide status field</translation>
+      <translation>Ocultar a barra de status</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="256"/>
       <source>Close selected &amp;window</source>
-      <translation type="unfinished">Close selected &amp;window</translation>
+      <translation>Fechar &amp;janela selecionada</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="257"/>
       <source>Close all windows &amp;but selected</source>
-      <translation type="unfinished">Close all windows &amp;but selected</translation>
+      <translation>Fechar todas as janelas exceto as selecionadas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="258"/>
       <source>Close &amp;all windows</source>
-      <translation type="unfinished">Close &amp;all windows</translation>
+      <translation>Fechar todas as janelas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="259"/>
       <source>Re&amp;store recently closed window</source>
-      <translation type="unfinished">Re&amp;store recently closed window</translation>
+      <translation>Restaurar a janela fechada recentemente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="260"/>
       <source>&amp;Rename selected window</source>
-      <translation type="unfinished">&amp;Rename selected window</translation>
+      <translation>Renomear janela selecionada</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="262"/>
       <source>Open Debug Console</source>
-      <translation type="unfinished">Open Debug Console</translation>
+      <translation>Abrir Debug Console</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="263"/>
       <source>Open CSS Console</source>
-      <translation type="unfinished">Open CSS Console</translation>
+      <translation>Abrir CSS Console</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="264"/>
       <source>Report a &amp;bug</source>
-      <translation type="unfinished">Report a &amp;bug</translation>
+      <translation>Relatar um erro</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="265"/>
       <source>D&amp;onate</source>
-      <translation type="unfinished">D&amp;onate</translation>
+      <translation>Fazer uma doação</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="266"/>
       <source>Propose a new &amp;feature</source>
-      <translation type="unfinished">Propose a new &amp;feature</translation>
+      <translation>Proponha novas funcionalidades</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="267"/>
       <source>&amp;About</source>
-      <translation type="unfinished">&amp;About</translation>
+      <translation>Sobre</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="268"/>
       <source>&amp;Licenses</source>
-      <translation type="unfinished">&amp;Licenses</translation>
+      <translation>Licenças</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
       <source>Open home &amp;page</source>
-      <translation type="unfinished">Open home &amp;page</translation>
+      <translation>Abrir página inicial</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="270"/>
       <source>User &amp;Manual</source>
-      <translation type="unfinished">User &amp;Manual</translation>
+      <translation>Manual do Usuário</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="271"/>
       <source>SQLite &amp;documentation</source>
-      <translation type="unfinished">SQLite &amp;documentation</translation>
+      <translation>Documentação do SQLite</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="272"/>
       <source>Bugs and feature &amp;requests</source>
-      <translation type="unfinished">Bugs and feature &amp;requests</translation>
+      <translation>Bugs e solicitações de recursos</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Sair</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="275"/>
       <source>Check for &amp;updates</source>
-      <translation type="unfinished">Check for &amp;updates</translation>
+      <translation>Verificar atualizações</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="320"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Structure</translation>
+      <translation>Estrutura</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;View</translation>
+      <translation>Visualizar</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
-      <translation type="unfinished">Window list</translation>
+      <translation>Lista de janelas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="366"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Tools</translation>
+      <translation>Ferramentas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="381"/>
       <source>&amp;Help</source>
-      <translation type="unfinished">&amp;Help</translation>
+      <translation>Ajuda</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="546"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
-      <translation type="unfinished">Could not set style: %1</translation>
+      <translation>Não foi possível definir o estilo: %1</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="649"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="665"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
+      <translation>Não é possível importar porque nenhum plugin de importação está carregado.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
       <source>Rename window</source>
-      <translation type="unfinished">Rename window</translation>
+      <translation>Renomear janela</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
       <source>Enter new name for the window:</source>
-      <translation type="unfinished">Enter new name for the window:</translation>
+      <translation>Digite um novo nome para a janela:</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="803"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
-      <translation type="unfinished">New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</translation>
+      <translation>Novas atualizações estão disponíveis. &lt;a href=&quot;%1&quot;&gt;Clique aqui para mais detalhes&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="811"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
-      <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+      <translation>Você está executando a versão mais recente. Não há atualizações disponíveis.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="928"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="935"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
+      <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="940"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Não foi possível adicionar o banco de dados %1 à lista.</translation>
     </message>
   </context>
   <context>
@@ -3710,17 +3710,17 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mdiwindow.cpp" line="199"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Alterações não realizadas</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="204"/>
       <source>Close anyway</source>
-      <translation type="unfinished">Close anyway</translation>
+      <translation>Fechar mesmo assim</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="206"/>
       <source>Don&apos;t close</source>
-      <translation type="unfinished">Don&apos;t close</translation>
+      <translation>Não fechar</translation>
     </message>
   </context>
   <context>
@@ -3729,34 +3729,34 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <location filename="../multieditor/multieditor.cpp" line="63"/>
       <source>Null value</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Null value</translation>
+      <translation>Valor nulo</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="82"/>
       <source>Configure editors for this data type</source>
-      <translation type="unfinished">Configure editors for this data type</translation>
+      <translation>Configurar os editores para este tipo de dados</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="95"/>
       <source>Open another tab</source>
-      <translation type="unfinished">Open another tab</translation>
+      <translation>Abrir outra aba</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="334"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-      <translation type="unfinished">Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</translation>
+      <translation>Plugin do editor de dados &apos;%1&apos; não carregado, enquanto estiver definido para edição &apos;%1&apos; tipo de dados.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="427"/>
       <source>Deleted</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Deleted</translation>
+      <translation>Excluído</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="429"/>
       <source>Read only</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Read only</translation>
+      <translation>Somente leitura</translation>
     </message>
   </context>
   <context>
@@ -3764,7 +3764,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../multieditor/multieditorbool.cpp" line="214"/>
       <source>Boolean</source>
-      <translation type="unfinished">Boolean</translation>
+      <translation>Booleano</translation>
     </message>
   </context>
   <context>
@@ -3772,7 +3772,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../multieditor/multieditordate.cpp" line="86"/>
       <source>Date</source>
-      <translation type="unfinished">Date</translation>
+      <translation>Data </translation>
     </message>
   </context>
   <context>
@@ -3780,7 +3780,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../multieditor/multieditordatetime.cpp" line="274"/>
       <source>Date &amp; time</source>
-      <translation type="unfinished">Date &amp; time</translation>
+      <translation>Data e hora</translation>
     </message>
   </context>
   <context>
@@ -3788,7 +3788,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../multieditor/multieditorhex.cpp" line="91"/>
       <source>Hex</source>
-      <translation type="unfinished">Hex</translation>
+      <translation>Hexadecimal</translation>
     </message>
   </context>
   <context>
@@ -3797,7 +3797,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <location filename="../multieditor/multieditornumeric.cpp" line="109"/>
       <source>Number</source>
       <comment>numeric multi editor tab name</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Número</translation>
     </message>
   </context>
   <context>
