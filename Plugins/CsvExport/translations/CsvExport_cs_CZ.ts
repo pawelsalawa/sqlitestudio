@@ -16,7 +16,7 @@
     <message>
       <location filename="../CsvExport.ui" line="41"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (čárka)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="46"/>
