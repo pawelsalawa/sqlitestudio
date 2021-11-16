@@ -3256,87 +3256,87 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/indexdialog.ui" line="135"/>
       <source>Unique index</source>
-      <translation type="unfinished">Unique index</translation>
+      <translation>Índice exclusivo</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="142"/>
       <source>Index name:</source>
-      <translation type="unfinished">Index name:</translation>
+      <translation>Nome do índice:</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="149"/>
       <source>Edit selected indexed expression</source>
-      <translation type="unfinished">Edit selected indexed expression</translation>
+      <translation>Editar a expressão indexada selecionada</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="169"/>
       <source>Add indexed expression</source>
-      <translation type="unfinished">Add indexed expression</translation>
+      <translation>Adicionar expressão indexada</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="180"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="67"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
-      <translation type="unfinished">Tried to open index dialog for closed or inexisting database.</translation>
+      <translation>Tentou abrir diálogo de índice para banco de dados fechado ou inexistente.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="137"/>
       <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
-      <translation type="unfinished">Could not process index %1 correctly. Unable to open an index dialog.</translation>
+      <translation>Não foi possível processar o índice %1 corretamente. Não foi possível abrir um diálogo de índice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="191"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-      <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
+      <translation>Índice exclusivo não pode ter expressões indexadas. Remova expressões da lista abaixo, ou desmarque esta opção.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="192"/>
       <source>Pick the table for the index.</source>
-      <translation type="unfinished">Pick the table for the index.</translation>
+      <translation>Selecione a tabela para o índice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="193"/>
       <source>Select at least one column.</source>
-      <translation type="unfinished">Select at least one column.</translation>
+      <translation>Selecione pelo menos uma coluna.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Informe uma condição válida.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="266"/>
       <source>default</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">default</translation>
+      <translation>padrão</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="270"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Ordem de classificação</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="748"/>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
       <source>Error</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Erro</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="749"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-      <translation type="unfinished">Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</translation>
+      <translation>Não é possível criar um índice único, porque os valores nas colunas selecionadas não são únicos. Gostaria de executar uma consulta SELECT para ver os valores problemáticos?</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
-      <translation type="unfinished">An error occurred while executing SQL statements:
+      <translation>Ocorreu um erro ao executar instruções SQL:
 %1</translation>
     </message>
   </context>
@@ -3345,42 +3345,42 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="14"/>
       <source>Indexed expression</source>
-      <translation type="unfinished">Indexed expression</translation>
+      <translation>Expressão indexada</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="20"/>
       <source>Expression to index</source>
-      <translation type="unfinished">Expression to index</translation>
+      <translation>Expressão para indexar</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="60"/>
       <source>This expression is already indexed by the index.</source>
-      <translation type="unfinished">This expression is already indexed by the index.</translation>
+      <translation>Esta expressão já está indexada pelo índice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="66"/>
       <source>Column should be indexed directly, not by expression. Either extend this expression to contain something more than just column name, or abort and select this column in index dialog directly.</source>
-      <translation type="unfinished">Column should be indexed directly, not by expression. Either extend this expression to contain something more than just column name, or abort and select this column in index dialog directly.</translation>
+      <translation>A coluna deve ser indexada diretamente, não por expressão. Ou amplie esta expressão para conter algo mais do que apenas o nome da coluna, ou aborte e selecione esta coluna no diálogo de índice diretamente.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="76"/>
       <source>Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</source>
-      <translation type="unfinished">Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</translation>
+      <translation>A coluna &apos;%1&apos; não pertence à tabela coberta por este índice. Expressões indexadas podem se referir apenas a colunas da tabela indexada.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
       <source>It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</source>
-      <translation type="unfinished">It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</translation>
+      <translation>Proibido usar instruções SELECT em expressões indexadas.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="105"/>
       <source>Enter an indexed expression.</source>
-      <translation type="unfinished">Enter an indexed expression.</translation>
+      <translation>Informe uma expressão indexada.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="119"/>
       <source>Invalid expression.</source>
-      <translation type="unfinished">Invalid expression.</translation>
+      <translation>Expressão inválida.</translation>
     </message>
   </context>
   <context>
@@ -3388,12 +3388,12 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/languagedialog.ui" line="14"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Idioma</translation>
     </message>
     <message>
       <location filename="../dialogs/languagedialog.ui" line="20"/>
       <source>Please choose language:</source>
-      <translation type="unfinished">Please choose language:</translation>
+      <translation>Por favor, escolha o idioma:</translation>
     </message>
   </context>
   <context>
