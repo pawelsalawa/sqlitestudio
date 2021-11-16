@@ -4349,258 +4349,258 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mainwindow.h" line="48"/>
       <source>Hide status area</source>
-      <translation type="unfinished">Hide status area</translation>
+      <translation>Ocultar área de status</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="49"/>
       <source>Open configuration dialog</source>
-      <translation type="unfinished">Open configuration dialog</translation>
+      <translation>Abrir diálogo de configuração</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="50"/>
       <source>Open Debug Console</source>
-      <translation type="unfinished">Open Debug Console</translation>
+      <translation>Abrir Console de Depuração</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="51"/>
       <source>Open CSS Console</source>
-      <translation type="unfinished">Open CSS Console</translation>
+      <translation>Abrir Console CSS</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>Sair do aplicativo</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
       <source>Cell text value editor</source>
-      <translation type="unfinished">Cell text value editor</translation>
+      <translation>Editor de texto de célula</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
       <location filename="../sqleditor.h" line="29"/>
       <source>Cut selected text</source>
-      <translation type="unfinished">Cut selected text</translation>
+      <translation>Recortar texto selecionado</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="14"/>
       <location filename="../sqleditor.h" line="30"/>
       <source>Copy selected text</source>
-      <translation type="unfinished">Copy selected text</translation>
+      <translation>Copiar texto selecionado</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
       <location filename="../sqleditor.h" line="32"/>
       <source>Delete selected text</source>
-      <translation type="unfinished">Delete selected text</translation>
+      <translation>Excluir texto selecionado</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="17"/>
       <location filename="../sqleditor.h" line="34"/>
       <source>Undo</source>
-      <translation type="unfinished">Undo</translation>
+      <translation>Desfazer</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="18"/>
       <location filename="../sqleditor.h" line="35"/>
       <source>Redo</source>
-      <translation type="unfinished">Redo</translation>
+      <translation>Refazer</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="28"/>
       <source>SQL editor input field</source>
-      <translation type="unfinished">SQL editor input field</translation>
+      <translation>Campo de entrada do editor SQL</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="33"/>
       <source>Select whole editor contents</source>
-      <translation type="unfinished">Select whole editor contents</translation>
+      <translation>Selecionar todo o conteúdo do editor</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="36"/>
       <source>Save contents into a file</source>
-      <translation type="unfinished">Save contents into a file</translation>
+      <translation>Salvar conteúdo em um arquivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="37"/>
       <source>Load contents from a file</source>
-      <translation type="unfinished">Load contents from a file</translation>
+      <translation>Carregar conteúdo de um arquivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="38"/>
       <source>Find in text</source>
-      <translation type="unfinished">Find in text</translation>
+      <translation>Localizar no texto</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="39"/>
       <source>Find next</source>
-      <translation type="unfinished">Find next</translation>
+      <translation>Localizar próximo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="40"/>
       <source>Find previous</source>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Localizar anterior</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="41"/>
       <source>Replace in text</source>
-      <translation type="unfinished">Replace in text</translation>
+      <translation>Substituir no texto</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="42"/>
       <source>Delete current line</source>
-      <translation type="unfinished">Delete current line</translation>
+      <translation>Excluir linha atual</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="43"/>
       <source>Request code assistant</source>
-      <translation type="unfinished">Request code assistant</translation>
+      <translation>Solicitar código assistente</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="44"/>
       <source>Format contents</source>
-      <translation type="unfinished">Format contents</translation>
+      <translation>Formatar conteúdo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="45"/>
       <source>Move selected block of text one line down</source>
-      <translation type="unfinished">Move selected block of text one line down</translation>
+      <translation>Mover o bloco selecionado de texto com uma linha para baixo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="46"/>
       <source>Move selected block of text one line up</source>
-      <translation type="unfinished">Move selected block of text one line up</translation>
+      <translation>Mover o bloco selecionado de uma linha para cima</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="47"/>
       <source>Copy selected block of text and paste it a line below</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line below</translation>
+      <translation>Copie o bloco de texto selecionado e cole uma linha abaixo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="48"/>
       <source>Copy selected block of text and paste it a line above</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line above</translation>
+      <translation>Copie o bloco de texto selecionado e cole uma linha acima</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="49"/>
       <source>Toggle comment</source>
-      <translation type="unfinished">Toggle comment</translation>
+      <translation>Alternar comentário</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="35"/>
       <source>All SQLite databases</source>
-      <translation type="unfinished">All SQLite databases</translation>
+      <translation>Todos os bancos de dados</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="37"/>
       <source>All files</source>
-      <translation type="unfinished">All files</translation>
+      <translation>Todos os arquivos</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="41"/>
       <location filename="../uiutils.cpp" line="43"/>
       <source>Database file</source>
-      <translation type="unfinished">Database file</translation>
+      <translation>Arquivo de banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
       <source>SQL editor window</source>
-      <translation type="unfinished">SQL editor window</translation>
+      <translation>Editor gráfico SQL</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="28"/>
       <source>Execute query</source>
-      <translation type="unfinished">Execute query</translation>
+      <translation>Executar consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
       <source>Execute &quot;%1&quot; query</source>
-      <translation type="unfinished">Execute &quot;%1&quot; query</translation>
+      <translation>Executar &quot;%1&quot; consulta</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="30"/>
       <source>Switch current working database to previous on the list</source>
-      <translation type="unfinished">Switch current working database to previous on the list</translation>
+      <translation>Alternar a atual base de dados de trabalho para a anterior na lista</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="31"/>
       <source>Switch current working database to next on the list</source>
-      <translation type="unfinished">Switch current working database to next on the list</translation>
+      <translation>Alternar a atual base de dados de trabalho para a próxima lista</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="32"/>
       <source>Go to next editor tab</source>
-      <translation type="unfinished">Go to next editor tab</translation>
+      <translation>Ir para a aba do próximo editor</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="33"/>
       <source>Go to previous editor tab</source>
-      <translation type="unfinished">Go to previous editor tab</translation>
+      <translation>Ir para aba editor anterior</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="34"/>
       <source>Move keyboard input focus to the results view below</source>
-      <translation type="unfinished">Move keyboard input focus to the results view below</translation>
+      <translation>Mover o foco de entrada do teclado para a exibição de resultados abaixo</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="35"/>
       <source>Move keyboard input focus to the SQL editor above</source>
-      <translation type="unfinished">Move keyboard input focus to the SQL editor above</translation>
+      <translation>Mover o foco de entrada do teclado para o editor SQL acima</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Delete selected SQL history entries</source>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Excluir as entradas do histórico SQL selecionadas</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="32"/>
       <source>Table window</source>
-      <translation type="unfinished">Table window</translation>
+      <translation>Janela da tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Refresh table structure</source>
-      <translation type="unfinished">Refresh table structure</translation>
+      <translation>Atualizar estrutura da tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Add new column</source>
-      <translation type="unfinished">Add new column</translation>
+      <translation>Adicionar nova coluna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
       <source>Edit selected column</source>
-      <translation type="unfinished">Edit selected column</translation>
+      <translation>Editar coluna selecionada</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="36"/>
       <source>Delete selected column</source>
-      <translation type="unfinished">Delete selected column</translation>
+      <translation>Excluir coluna selecionada</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="37"/>
       <source>Export table data</source>
-      <translation type="unfinished">Export table data</translation>
+      <translation>Exportar dados da tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="38"/>
       <source>Import data to the table</source>
-      <translation type="unfinished">Import data to the table</translation>
+      <translation>Importar dados para a tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
       <source>Add new table constraint</source>
-      <translation type="unfinished">Add new table constraint</translation>
+      <translation>Adicionar nova restrição de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="40"/>
       <source>Edit selected table constraint</source>
-      <translation type="unfinished">Edit selected table constraint</translation>
+      <translation>Editar restrição de tabela selecionada</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="41"/>
       <source>Delete selected table constraint</source>
-      <translation type="unfinished">Delete selected table constraint</translation>
+      <translation>Excluir restrição de tabela selecionada</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="42"/>
@@ -4878,25 +4878,25 @@ encontrar próximo</translation>
       <location filename="../sqleditor.cpp" line="141"/>
       <source>Find</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find</translation>
+      <translation>Localizar</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="142"/>
       <source>Find next</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find next</translation>
+      <translation>Encontrar próximo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="143"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Localizar anterior</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="144"/>
       <source>Replace</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Replace</translation>
+      <translation>Substituir</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="145"/>
@@ -5178,117 +5178,117 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit selected cells</source>
-      <translation type="unfinished">Commit selected cells</translation>
+      <translation>Submeter células selecionadas</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Rollback selected cells</source>
-      <translation type="unfinished">Rollback selected cells</translation>
+      <translation>Restaurar células selecionadas</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Define columns to sort by</source>
-      <translation type="unfinished">Define columns to sort by</translation>
+      <translation>Definir colunas para classificar por</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
       <source>Remove custom sorting</source>
-      <translation type="unfinished">Remove custom sorting</translation>
+      <translation>Remover classificação personalizada</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
       <source>Insert row</source>
-      <translation type="unfinished">Insert row</translation>
+      <translation>Inserir linha</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>Inserir múltiplas linhas</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
       <source>Delete selected row</source>
-      <translation type="unfinished">Delete selected row</translation>
+      <translation>Excluir linha selecionada</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Load full values</source>
-      <translation type="unfinished">Load full values</translation>
+      <translation>Carregar valores completos</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
       <source>Edit value in editor</source>
-      <translation type="unfinished">Edit value in editor</translation>
+      <translation>Editar valor no editor</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
       <source>Show value in a viewer</source>
-      <translation type="unfinished">Show value in a viewer</translation>
+      <translation>Mostrar valor em um visualizador</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="180"/>
       <source>Generate query for selected cells</source>
-      <translation type="unfinished">Generate query for selected cells</translation>
+      <translation>Gerar consulta para células selecionadas</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="345"/>
       <source>No items selected to paste clipboard contents to.</source>
-      <translation type="unfinished">No items selected to paste clipboard contents to.</translation>
+      <translation>Nenhum item selecionado para colar conteúdo da área de transferência.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
       <source>Cannot paste data. Details: %1</source>
-      <translation type="unfinished">Cannot paste data. Details: %1</translation>
+      <translation>Não é possível colar dados. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>A estrutura de pelo menos uma tabela usada mudou desde a última data foi carregada. Recarregue os dados para prosseguir.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>Cannot paste to a cell. Details: %1</source>
-      <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
+      <translation>Não é possível colar para uma célula. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>The row is marked for deletion.</source>
-      <translation type="unfinished">The row is marked for deletion.</translation>
+      <translation>A linha está marcada para exclusão.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="432"/>
       <source>Cannot paste to column %1. Details: %2</source>
-      <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
+      <translation>Não é possível colar na coluna %1. Detalhes: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="450"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
-      <translation type="unfinished">Go to referenced row in table &apos;%1&apos;</translation>
+      <translation>Ir para a linha referenciada na tabela &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="462"/>
       <source>table &apos;%1&apos;</source>
-      <translation type="unfinished">table &apos;%1&apos;</translation>
+      <translation>tabela &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="485"/>
       <source>Referenced row (%1)</source>
-      <translation type="unfinished">Referenced row (%1)</translation>
+      <translation>Linha referenciada (%1)</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="744"/>
       <source>Trim pasted text?</source>
-      <translation type="unfinished">Trim pasted text?</translation>
+      <translation>Aparar texto colado?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="745"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
-      <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
+      <translation>O texto colado contém espaço branco à esquerda ou à direita. Aparar automaticamente?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="840"/>
       <source>Edit value</source>
-      <translation type="unfinished">Edit value</translation>
+      <translation>Editar valor</translation>
     </message>
   </context>
   <context>
@@ -5296,12 +5296,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="80"/>
       <source>Error while committing new row: %1</source>
-      <translation type="unfinished">Error while committing new row: %1</translation>
+      <translation>Erro ao confirmar nova linha: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="145"/>
       <source>Error while deleting row from table %1: %2</source>
-      <translation type="unfinished">Error while deleting row from table %1: %2</translation>
+      <translation>Erro ao excluir linha da tabela %1: %2</translation>
     </message>
   </context>
   <context>
@@ -5309,112 +5309,112 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="63"/>
       <source>Filter extensions</source>
-      <translation type="unfinished">Filter extensions</translation>
+      <translation>Filtrar extensões</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="107"/>
       <source>Leave empty to use default function</source>
-      <translation type="unfinished">Leave empty to use default function</translation>
+      <translation>Deixe em branco para usar a função padrão</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="128"/>
       <source>Extension file</source>
-      <translation type="unfinished">Extension file</translation>
+      <translation>Arquivo de extensão</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="135"/>
       <source>Initialization function</source>
-      <translation type="unfinished">Initialization function</translation>
+      <translation>Função de inicialização</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="151"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="157"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>Registrar em todos os bancos de dados</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="164"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>Registrar nos seguintes bancos de dados:</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
       <source>Extension manager window has uncommitted modifications.</source>
-      <translation type="unfinished">Extension manager window has uncommitted modifications.</translation>
+      <translation>A janela do gerenciador de extensões tem modificações não realizadas.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="65"/>
       <source>Extension manager</source>
-      <translation type="unfinished">Extension manager</translation>
+      <translation>Gerenciador de extensões</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
       <source>Commit all extension changes</source>
-      <translation type="unfinished">Commit all extension changes</translation>
+      <translation>Enviar todas as alterações de extensão</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
       <source>Rollback all extension changes</source>
-      <translation type="unfinished">Rollback all extension changes</translation>
+      <translation>Restaurar todas as alterações de extensão</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
       <source>Add new extension</source>
-      <translation type="unfinished">Add new extension</translation>
+      <translation>Adicionar nova extensão</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
       <source>Remove selected extension</source>
-      <translation type="unfinished">Remove selected extension</translation>
+      <translation>Remover extensão selecionada</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="76"/>
       <source>Editing extensions manual</source>
-      <translation type="unfinished">Editing extensions manual</translation>
+      <translation>Edição manual de extensões</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="236"/>
       <source>File with given path does not exist or is not readable.</source>
-      <translation type="unfinished">File with given path does not exist or is not readable.</translation>
+      <translation>O arquivo com o caminho informado não existe ou não é legível.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="242"/>
       <source>Unable to load extension: %1</source>
-      <translation type="unfinished">Unable to load extension: %1</translation>
+      <translation>Não foi possível carregar a extensão: %1</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="356"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
-      <translation type="unfinished">Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</translation>
+      <translation>Nome de função de inicialização inválido. Nome de função só pode conter caracteres alfa-numéricos e sublinhado.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="425"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
-      <translation type="unfinished">Dynamic link libraries (*.dll);;All files (*)</translation>
+      <translation>Bibliotecas dinâmicas de links (*.dll);;Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="427"/>
       <source>Shared objects (*.so);;All files (*)</source>
-      <translation type="unfinished">Shared objects (*.so);;All files (*)</translation>
+      <translation>Objetos compartilhados (*.so);;Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
-      <translation type="unfinished">Dynamic libraries (*.dylib);;All files (*)</translation>
+      <translation>Bibliotecas dinâmicas (*.dylib);;Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="431"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="433"/>
       <source>Open file</source>
-      <translation type="unfinished">Open file</translation>
+      <translation>Abrir arquivo</translation>
     </message>
   </context>
   <context>
@@ -5422,17 +5422,17 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../statusfield.ui" line="14"/>
       <source>Status</source>
-      <translation type="unfinished">Status</translation>
+      <translation>Status</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="174"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="181"/>
       <source>Clear</source>
-      <translation type="unfinished">Clear</translation>
+      <translation>Limpar</translation>
     </message>
   </context>
   <context>
@@ -5441,19 +5441,19 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../windows/tableconstraintsmodel.cpp" line="75"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tipo</translation>
     </message>
     <message>
       <location filename="../windows/tableconstraintsmodel.cpp" line="77"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalhes</translation>
     </message>
     <message>
       <location filename="../windows/tableconstraintsmodel.cpp" line="79"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
   </context>
   <context>
@@ -5461,68 +5461,68 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation type="unfinished">Foreign table:</translation>
+      <translation>Tabela externa:</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="42"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colunas</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="57"/>
       <source>Local column</source>
-      <translation type="unfinished">Local column</translation>
+      <translation>Coluna local</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="70"/>
       <source>Foreign column</source>
-      <translation type="unfinished">Foreign column</translation>
+      <translation>Foreign column</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="106"/>
       <source>Reactions</source>
-      <translation type="unfinished">Reactions</translation>
+      <translation>Reações</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="145"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>Chave estrangeira diferida</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="163"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>Restrição nomeada</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="170"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Nome da restrição</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>Selecione a coluna estrangeira.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>Pegue a tabela externa.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
       <source>Select at least one foreign column.</source>
-      <translation type="unfinished">Select at least one foreign column.</translation>
+      <translation>Selecione pelo menos uma coluna estrangeira.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da constraint.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
       <source>Foreign column</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Foreign column</translation>
+      <translation>Coluna estrangeira</translation>
     </message>
   </context>
   <context>
@@ -5530,69 +5530,69 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="32"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colunas</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="59"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Coluna</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Collation</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="109"/>
       <source>Sort</source>
-      <translation type="unfinished">Sort</translation>
+      <translation>Ordenar</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="142"/>
       <source>Valid only for a single column with INTEGER data type</source>
-      <translation type="unfinished">Valid only for a single column with INTEGER data type</translation>
+      <translation>Válido somente para uma única coluna com tipo de dados INTEGER</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="145"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>Auto-incremento</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>Restrição nomeada</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="174"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Nome da constraint</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="199"/>
       <source>On conflict</source>
-      <translation type="unfinished">On conflict</translation>
+      <translation>Conflito</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="87"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Collate</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="94"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Ordem de classificação</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="170"/>
       <source>Select at least one column.</source>
-      <translation type="unfinished">Select at least one column.</translation>
+      <translation>Selecione pelo menos uma coluna.</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="171"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Digite um nome da restrição</translation>
     </message>
   </context>
   <context>
@@ -5601,67 +5601,65 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../windows/tablestructuremodel.cpp" line="291"/>
       <source>Name</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="293"/>
       <source>Data type</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Data type</translation>
+      <translation>Tipo de dado</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="295"/>
       <source>Primary
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Primary
-Key</translation>
+      <translation>Primary Key</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="297"/>
       <source>Foreign
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Foreign
+      <translation>Foreign
 Key</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="299"/>
       <source>Unique</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Unique</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="301"/>
       <source>Check</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>Verificar</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="303"/>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Not
-NULL</translation>
+      <translation>Not NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="305"/>
       <source>Collate</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Collate</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
       <source>Generated</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Gerado</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="309"/>
       <source>Default value</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Default value</translation>
+      <translation>Valor padrão</translation>
     </message>
   </context>
   <context>
@@ -5669,62 +5667,62 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="36"/>
       <source>Structure</source>
-      <translation type="unfinished">Structure</translation>
+      <translation>Estrutura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="70"/>
       <source>Table name:</source>
-      <translation type="unfinished">Table name:</translation>
+      <translation>Nome da tabela:</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="200"/>
       <location filename="../windows/tablewindow.cpp" line="1613"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Dados</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="217"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Constraints</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="231"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Índices</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="260"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Triggers</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="292"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="204"/>
       <source>Export table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Export table</translation>
+      <translation>Exportar a tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="205"/>
       <source>Import data to table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Import data to table</translation>
+      <translation>Importar para a tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="206"/>
       <source>Populate table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Preencher a tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="220"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh structure</translation>
+      <translation>Atualizar estrutura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
