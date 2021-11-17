@@ -59,77 +59,77 @@
     <message>
       <location filename="../completionhelper.cpp" line="155"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>Nova referência de linha</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="162"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>Referência de linha antiga</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="167"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>Nome da nova tabela</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="170"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>Novo nome do índice</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="173"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>Nome da nova visualização</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="176"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>Novo nome de gatilho</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>Apelido da tabela ou coluna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="182"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>nome da transação</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="185"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>Nome da nova coluna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="188"/>
       <source>Column data type</source>
-      <translation type="unfinished">Column data type</translation>
+      <translation>Tipo de dados de coluna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="191"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Nome da constraint</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="204"/>
       <source>Error message</source>
-      <translation type="unfinished">Error message</translation>
+      <translation>Mensagem de Erro</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="253"/>
       <source>Any word</source>
-      <translation type="unfinished">Any word</translation>
+      <translation>Qualquer palavra</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="434"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>Banco de dados padrão</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="435"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>Banco de dados de objetos temporários</translation>
     </message>
   </context>
   <context>
@@ -137,12 +137,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Não foi possível iniciar a transação do banco de dados para excluir o histórico do SQL. Portanto, ela não será excluída.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Não foi possível submeter a transação do banco de dados para excluir o histórico do SQL. Portanto, não será excluída.</translation>
     </message>
   </context>
   <context>
@@ -150,35 +150,35 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>Não foi possível adicionar o banco de dados %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
+      <translation>Banco de dados %1 não pode ser atualizado, devido a um erro: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>Arquivo de banco de dados não existe.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>Nenhum plugin de suporte carregado.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>Banco de dados não pode ser inicializado.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>Nenhum plugin de driver de base de dados adequado encontrado.</translation>
     </message>
   </context>
   <context>
@@ -215,8 +215,8 @@
       <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation type="unfinished">Error while dropping source view %1: %2
-Tables, indexes, triggers and views copied to database %3 will remain.</translation>
+      <translation>Erro ao soltar a visão da fonte %1: %2
+Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 permanecerão.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
