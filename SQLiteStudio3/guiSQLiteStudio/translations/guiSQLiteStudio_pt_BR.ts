@@ -4902,52 +4902,52 @@ encontrar próximo</translation>
       <location filename="../sqleditor.cpp" line="145"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Toggle comment</translation>
+      <translation>Alternar comentário</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="249"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
+      <translation>Não foi possível abrir o arquivo &apos;%1&apos; para escrever: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="259"/>
       <source>Saved SQL contents to file: %1</source>
-      <translation type="unfinished">Saved SQL contents to file: %1</translation>
+      <translation>Conteúdo SQL salvo no arquivo: %1</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="453"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
-      <translation type="unfinished">Syntax completion can be used only when a valid database is set for the SQL editor.</translation>
+      <translation>A conclusão da sintaxe só pode ser usada quando um banco de dados válido é definido para o editor SQL.</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1031"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
-      <translation type="unfinished">Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</translation>
+      <translation>O conteúdo do editor SQL é enorme, portanto os erros detectando e o realce de objetos existentes estão temporariamente desabilitados.</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1063"/>
       <source>Save to file</source>
-      <translation type="unfinished">Save to file</translation>
+      <translation>Salvar para arquivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1075"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
-      <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
+      <translation>Scripts SQL (*.sql);;Todos os arquivos (*)</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1076"/>
       <source>Open file</source>
-      <translation type="unfinished">Open file</translation>
+      <translation>Abrir arquivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1086"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1291"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
-      <translation type="unfinished">Reached the end of document. Hit the find again to restart the search.</translation>
+      <translation>Alcançou o fim do documento. Clique em encontrar novamente para reiniciar a pesquisa.</translation>
     </message>
   </context>
   <context>
@@ -4956,13 +4956,13 @@ encontrar próximo</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Committing error:</translation>
+      <translation>Erro ao enviar:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
       <source>Column:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Column:</translation>
+      <translation>Coluna:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
