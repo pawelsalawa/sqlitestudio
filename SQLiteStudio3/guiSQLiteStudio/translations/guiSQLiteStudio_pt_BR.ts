@@ -4968,24 +4968,24 @@ encontrar próximo</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
       <source>Data type:</source>
       <comment>data view</comment>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Tipo de dado:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="266"/>
       <source>Table:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Table:</translation>
+      <translation>Tabela:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="296"/>
       <source>Constraints:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Constraints:</translation>
+      <translation>Constraints:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="426"/>
       <source>Cannot load the data for a cell that refers to the already closed database.</source>
-      <translation type="unfinished">Cannot load the data for a cell that refers to the already closed database.</translation>
+      <translation>Não é possível carregar os dados de uma célula que se refere ao banco de dados já fechado.</translation>
     </message>
   </context>
   <context>
@@ -4993,7 +4993,7 @@ encontrar próximo</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="146"/>
       <source>Load remaining part of the value</source>
-      <translation type="unfinished">Load remaining part of the value</translation>
+      <translation>Carregar parte restante do valor</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
@@ -5002,28 +5002,28 @@ encontrar próximo</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="608"/>
       <source>Cannot edit this cell. Details: %1</source>
-      <translation type="unfinished">Cannot edit this cell. Details: %1</translation>
+      <translation>Não é possível editar esta célula. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
       <source>The row is marked for deletion.</source>
-      <translation type="unfinished">The row is marked for deletion.</translation>
+      <translation>A linha está marcada para exclusão.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="177"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of this table has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>A estrutura desta tabela mudou desde a última data foi carregada. Recarregue os dados para continuar.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="340"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
+      <translation>Editar um conteúdo enorme em um editor de celular não é uma boa ideia. Pode se tornar lento e inconveniente. É melhor editar conteúdos tão grandes em um Form View ou em um editor pop-up (disponível no menu rick-click).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="494"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
-      <translation type="unfinished">Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</translation>
+      <translation>Chave estrangeira para a coluna %2 possui mais de %1 valores possíveis.&apos;é muito para ser exibido na lista de seleção. Você precisa editar o valor manualmente.</translation>
     </message>
   </context>
   <context>
@@ -5032,95 +5032,95 @@ encontrar próximo</translation>
       <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
       <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
       <source>Cannot execute query on undefined or invalid database.</source>
-      <translation type="unfinished">Cannot execute query on undefined or invalid database.</translation>
+      <translation>Não é possível executar a consulta num banco de dados indefinido ou inválido.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
       <source>Cannot execute empty query.</source>
-      <translation type="unfinished">Cannot execute empty query.</translation>
+      <translation>Não é possível executar consulta vazia.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
       <source>Uncommitted data</source>
-      <translation type="unfinished">Uncommitted data</translation>
+      <translation>Dados não confirmados</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-      <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
+      <translation>Há alterações de dados não confirmadas. Você deseja prosseguir mesmo assim? Todas as alterações não confirmadas serão perdidas.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
-      <translation type="unfinished">Cannot commit the data for a cell that refers to the already closed database.</translation>
+      <translation>Não é possível confirmar os dados para uma célula que se refere ao banco de dados já fechado.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
       <source>Could not begin transaction on the database. Details: %1</source>
-      <translation type="unfinished">Could not begin transaction on the database. Details: %1</translation>
+      <translation>Não foi possível iniciar a transação no banco de dados. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
-      <translation type="unfinished">An error occurred while committing the transaction: %1</translation>
+      <translation>Ocorreu um erro ao confirmar a transação: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
       <source>An error occurred while rolling back the transaction: %1</source>
-      <translation type="unfinished">An error occurred while rolling back the transaction: %1</translation>
+      <translation>Ocorreu um erro ao reverter a transação: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-      <translation type="unfinished">Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</translation>
+      <translation>Tentou comprometer uma célula que não é editável (ainda é modificada e aguardando commit)! Isso é um bug. Por favor, reporte isso.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
-      <translation type="unfinished">An error occurred while committing the data: %1</translation>
+      <translation>Ocorreu um erro ao confirmar os dados: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
-      <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
+      <translation>O número de linhas por página foi reduzido para %1 devido ao número de colunas (%2) na visualização de dados.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1405"/>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Error while executing SQL query on database &apos;%1&apos;: %2</translation>
+      <translation>Erro ao executar consulta SQL no banco de dados &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1459"/>
       <source>Error while loading query results: %1</source>
-      <translation type="unfinished">Error while loading query results: %1</translation>
+      <translation>Erro ao carregar os resultados da consulta: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>Inserir múltiplas linhas</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
       <source>Number of rows to insert:</source>
-      <translation type="unfinished">Number of rows to insert:</translation>
+      <translation>Número de linhas a inserir:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Delete rows</source>
-      <translation type="unfinished">Delete rows</translation>
+      <translation>Excluir linha</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
-      <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
-Such deletion will be permanent. Are you sure you want to delete them?</translation>
+      <translation>Você&apos;está prestes a excluir linhas recém-inseridas que ainda não foram confirmadas. Números da linha: %1
+Essa exclusão será permanente. Tem certeza que deseja excluí-la?</translation>
     </message>
   </context>
   <context>
@@ -5128,52 +5128,52 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
-      <translation type="unfinished">Go to referenced row in...</translation>
+      <translation>Ir para a linha referenciada em...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="90"/>
       <source>Copy with headers</source>
-      <translation type="unfinished">Copy with headers</translation>
+      <translation>Copiar com cabeçalhos</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy as...</source>
-      <translation type="unfinished">Copy as...</translation>
+      <translation>Copiar como...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Colar</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Paste as...</source>
-      <translation type="unfinished">Paste as...</translation>
+      <translation>Colar como...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Set NULL values</source>
-      <translation type="unfinished">Set NULL values</translation>
+      <translation>Definir valores NULL</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Erase values</source>
-      <translation type="unfinished">Erase values</translation>
+      <translation>Apagar valores</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Commit</source>
-      <translation type="unfinished">Commit</translation>
+      <translation>Commit</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Rollback</source>
-      <translation type="unfinished">Rollback</translation>
+      <translation>Rollback</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
@@ -5728,185 +5728,185 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Commit structure changes</translation>
+      <translation>Confirmar alterações de estrutura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="223"/>
       <source>Rollback structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Rollback structure changes</translation>
+      <translation>Restaurar alterações de estrutura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="224"/>
       <source>Add column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Adicionar coluna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="225"/>
       <source>Edit column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Editar coluna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="226"/>
       <location filename="../windows/tablewindow.cpp" line="320"/>
       <source>Delete column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Excluir coluna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="227"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Mover a coluna para cima</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="228"/>
       <source>Move column down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Mover a coluna para baixo</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="237"/>
       <source>Create similar table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Criar tabela semelhante</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
-      <translation type="unfinished">Reset autoincrement value</translation>
+      <translation>Redefinir valor de auto-incremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="241"/>
       <source>Add table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table constraint</translation>
+      <translation>Adicionar restrição de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="242"/>
       <source>Edit table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit table constraint</translation>
+      <translation>Editar restrição de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="243"/>
       <source>Delete table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete table constraint</translation>
+      <translation>Apagar restrição de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Move table constraint up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint up</translation>
+      <translation>Mover restrição de tabela para cima</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="245"/>
       <source>Move table constraint down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint down</translation>
+      <translation>Mover restrição de tabela para baixo</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="247"/>
       <source>Add table primary key</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table primary key</translation>
+      <translation>Adicionar chave primária da tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="248"/>
       <source>Add table foreign key</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table foreign key</translation>
+      <translation>Adicionar chave estrangeira de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="249"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table unique constraint</translation>
+      <translation>Adicionar restrição de unicidade de tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="250"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table check constraint</translation>
+      <translation>Adicionar uma check constraint</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="268"/>
       <source>Refresh index list</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh index list</translation>
+      <translation>Atualizar lista de índices</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="230"/>
       <location filename="../windows/tablewindow.cpp" line="270"/>
       <source>Create index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create index</translation>
+      <translation>Criar índice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="271"/>
       <source>Edit index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit index</translation>
+      <translation>Editar índice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="272"/>
       <source>Delete index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete index</translation>
+      <translation>Excluir índice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="278"/>
       <source>Refresh trigger list</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh trigger list</translation>
+      <translation>Atualizar lista de disparos</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="231"/>
       <location filename="../windows/tablewindow.cpp" line="280"/>
       <source>Create trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create trigger</translation>
+      <translation>Criar gatilho</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="281"/>
       <source>Edit trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit trigger</translation>
+      <translation>Editar gatilho</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="282"/>
       <source>Delete trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete trigger</translation>
+      <translation>Excluir gatilho</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="319"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
+      <translation>Tem certeza que deseja excluir a coluna &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="348"/>
       <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Following problems will take place while modifying the table.
-Would you like to proceed?</translation>
+      <translation>Os seguintes problemas ocorrerão durante a modificação da tabela.
+Gostaria de continuar?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="350"/>
       <source>Table modification</source>
       <comment>table window</comment>
-      <translation type="unfinished">Table modification</translation>
+      <translation>Modificação da tabela</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="489"/>
       <source>Could not load data for table %1. Error details: %2</source>
-      <translation type="unfinished">Could not load data for table %1. Error details: %2</translation>
+      <translation>Não foi possível carregar os dados da tabela %1. Detalhes do erro: %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="601"/>
