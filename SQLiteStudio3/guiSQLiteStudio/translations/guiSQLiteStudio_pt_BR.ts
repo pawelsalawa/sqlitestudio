@@ -5911,208 +5911,208 @@ Gostaria de continuar?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="601"/>
       <source>Could not process the %1 table correctly. Unable to open a table window.</source>
-      <translation type="unfinished">Could not process the %1 table correctly. Unable to open a table window.</translation>
+      <translation>Não foi possível processar a tabela %1 corretamente. Não foi possível abrir uma janela da tabela.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="630"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="662"/>
       <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window %1, because no database or table was stored in session for this window.</translation>
+      <translation>Não foi possível restaurar a janela %1, porque nenhum banco de dados ou tabela foi armazenada na sessão desta janela.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="668"/>
       <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque nenhum banco de dados ou tabela foi armazenada na sessão desta janela.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="675"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque o banco de dados %2 não pôde ser resolvido.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="684"/>
       <source>Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;&apos;, porque a tabela %2 não existe no banco de dados %3.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="709"/>
       <location filename="../windows/tablewindow.cpp" line="711"/>
       <source>New table %1</source>
-      <translation type="unfinished">New table %1</translation>
+      <translation>Nova tabela %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
+      <translation>Alterações comprometidas para a tabela &apos;%1&apos; com sucesso.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Alterações comprometidas para a tabela &apos;%1&apos; (nomeado antes &apos;%2&apos;) com sucesso.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
       <source>Could not commit table structure. Error message: %1</source>
       <comment>table window</comment>
-      <translation type="unfinished">Could not commit table structure. Error message: %1</translation>
+      <translation>Não foi possível criar a estrutura da tabela. Mensagem de erro: %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="898"/>
       <source>Reset autoincrement</source>
-      <translation type="unfinished">Reset autoincrement</translation>
+      <translation>Redefinir auto-incremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="898"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-      <translation type="unfinished">Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</translation>
+      <translation>Tem certeza de que deseja redefinir o valor de auto-incremento para a tabela &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="905"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-      <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
+      <translation>Ocorreu um erro ao tentar redefinir o valor de auto-incremento da tabela &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="907"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
+      <translation>O valor do auto-incremento para a tabela &apos;%1&apos; foi redefinido com sucesso.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>Nome vazio</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-      <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a table with blank name?</translation>
+      <translation>Um nome em branco para a tabela é permitido no SQLite, mas não é recomendado.
+Tem certeza de que deseja criar uma tabela com nome em branco?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1004"/>
       <source>Cannot create a table without at least one column.</source>
-      <translation type="unfinished">Cannot create a table without at least one column.</translation>
+      <translation>Não é possível criar uma tabela sem pelo menos uma coluna.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1030"/>
       <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
-      <translation type="unfinished">Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</translation>
+      <translation>Não é possível criar tabela %1, se não tem chave primária definida. Desmarque a chave %2ou defina uma chave primária.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1037"/>
       <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
-      <translation type="unfinished">Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</translation>
+      <translation>Não é possível usar o autoincremento para a chave primária quando a cláusula %1 é usada. Desmarque o %2, ou o autoincremento em uma chave primária.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1214"/>
       <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete table constraint &apos;%1&apos;?</translation>
+      <translation>Tem certeza que deseja excluir a restrição de tabela &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1215"/>
       <source>Delete constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>Apagar restrição</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1270"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1283"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
+      <translation>Não é possível importar porque nenhum plugin de importação está carregado.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Alterações não realizadas</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1317"/>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Há modificações de estrutura não autorizadas. Você não pode navegar ou editar dados até que sua estrutura de tabela seja estabelecida.
+Você deseja comprometer a estrutura, ou deseja voltar para a guia estrutura?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1320"/>
       <source>Go back to structure tab</source>
-      <translation type="unfinished">Go back to structure tab</translation>
+      <translation>Voltar à aba de estrutura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1320"/>
       <source>Commit modifications and browse data.</source>
-      <translation type="unfinished">Commit modifications and browse data.</translation>
+      <translation>Conclua modificações e navegue dados.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1501"/>
       <source>Name</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1502"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Unique</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1503"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colunas</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1504"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>Condição do índice parcial</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1551"/>
       <source>Name</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Nome</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1552"/>
       <source>Event</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Event</translation>
+      <translation>Evento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1553"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Condition</translation>
+      <translation>Condição</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1554"/>
       <source>Details</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detalhes</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1655"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>Janela de tabela &quot;%1&quot; possui dados e modificações de estrutura não autorizadas.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1657"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>Janela de tabela &quot;%1&quot; tem dados não confirmados.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1659"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>Janela de tabela &quot;%1&quot; tem modificações de estrutura não autorizadas.</translation>
     </message>
   </context>
   <context>
@@ -6120,22 +6120,22 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="14"/>
       <source>Trigger columns</source>
-      <translation type="unfinished">Trigger columns</translation>
+      <translation>Colunas de disparo</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="47"/>
       <source>Triggering columns:</source>
-      <translation type="unfinished">Triggering columns:</translation>
+      <translation>Disparar colunas:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="115"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Selecionar tudo</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="128"/>
       <source>Deselect all</source>
-      <translation type="unfinished">Deselect all</translation>
+      <translation>Desmarcar tudo</translation>
     </message>
   </context>
   <context>
@@ -6144,100 +6144,100 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../dialogs/triggerdialog.ui" line="14"/>
       <location filename="../dialogs/triggerdialog.ui" line="24"/>
       <source>Trigger</source>
-      <translation type="unfinished">Trigger</translation>
+      <translation>Trigger</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="30"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Na tabela:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="40"/>
       <source>Action:</source>
-      <translation type="unfinished">Action:</translation>
+      <translation>Ação:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="56"/>
       <location filename="../dialogs/triggerdialog.ui" line="127"/>
       <source>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;A condição de SQL será avaliada antes do atual código de ativação. Caso a condição retorne falso, o gatilho não será disparado por essa linha.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="59"/>
       <source>Pre-condition:</source>
-      <translation type="unfinished">Pre-condition:</translation>
+      <translation>Pré-condição:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="66"/>
       <source>The scope is still not fully supported by the SQLite database.</source>
-      <translation type="unfinished">The scope is still not fully supported by the SQLite database.</translation>
+      <translation>O âmbito ainda não é totalmente suportado pelo banco de dados SQLite.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="73"/>
       <source>Trigger name:</source>
-      <translation type="unfinished">Trigger name:</translation>
+      <translation>Nome do gatilho:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="80"/>
       <source>When:</source>
-      <translation type="unfinished">When:</translation>
+      <translation>Quando:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="87"/>
       <source>List of columns for UPDATE OF action.</source>
-      <translation type="unfinished">List of columns for UPDATE OF action.</translation>
+      <translation>Lista de colunas para ATUALIZAR A ação.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="97"/>
       <source>Scope:</source>
-      <translation type="unfinished">Scope:</translation>
+      <translation>Escopo:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="104"/>
       <source>Code:</source>
-      <translation type="unfinished">Code:</translation>
+      <translation>Código:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="111"/>
       <source>Trigger statements to be executed.</source>
-      <translation type="unfinished">Trigger statements to be executed.</translation>
+      <translation>Instruções de disparo a serem executadas.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="138"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="153"/>
       <source>On view:</source>
-      <translation type="unfinished">On view:</translation>
+      <translation>Na visualização:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="177"/>
       <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
-      <translation type="unfinished">Could not process trigger %1 correctly. Unable to open a trigger dialog.</translation>
+      <translation>Não foi possível processar o gatilho %1 corretamente. Não foi possível abrir um diálogo de gatilho.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="345"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Informe uma condição válida.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="346"/>
       <source>Enter a valid trigger code.</source>
-      <translation type="unfinished">Enter a valid trigger code.</translation>
+      <translation>Digite um código acionador válido.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="418"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Erro</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="418"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
-      <translation type="unfinished">An error occurred while executing SQL statements:
+      <translation>Ocorreu um erro ao executar instruções SQL:
 %1</translation>
     </message>
   </context>
@@ -6246,22 +6246,22 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="14"/>
       <source>Database version convert</source>
-      <translation type="unfinished">Database version convert</translation>
+      <translation>Conversão do banco de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
       <source>Following changes to the SQL statements will be made:</source>
-      <translation type="unfinished">Following changes to the SQL statements will be made:</translation>
+      <translation>As seguintes mudanças para as instruções SQL serão feitas:</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="10"/>
       <source>Before</source>
-      <translation type="unfinished">Before</translation>
+      <translation>Antes</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="11"/>
       <source>After</source>
-      <translation type="unfinished">After</translation>
+      <translation>Depois</translation>
     </message>
   </context>
   <context>
@@ -6269,88 +6269,88 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="36"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Consulta</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="70"/>
       <source>View name:</source>
-      <translation type="unfinished">View name:</translation>
+      <translation>Ver nome:</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="123"/>
       <source>Output column names</source>
-      <translation type="unfinished">Output column names</translation>
+      <translation>Nomes das colunas de saída</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
       <location filename="../windows/viewwindow.cpp" line="849"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Dado</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="180"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Triggers</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="212"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="109"/>
       <location filename="../windows/viewwindow.cpp" line="115"/>
       <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque nenhum banco de dados ou visualização foi armazenado na sessão desta janela.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="122"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque o banco de dados %2 não pôde ser resolvido.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="128"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be open.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque o banco de dados %2 não pôde estar aberto.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="137"/>
       <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>Não foi possível restaurar a janela &apos;%1&apos;, porque a visualização %2&apos;t existe no banco de dados %3.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="162"/>
       <location filename="../windows/viewwindow.cpp" line="164"/>
       <source>New view %1</source>
-      <translation type="unfinished">New view %1</translation>
+      <translation>Nova visualização %1</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="275"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="328"/>
       <source>Refresh the view</source>
       <comment>view window</comment>
-      <translation type="unfinished">Refresh the view</translation>
+      <translation>Atualizar a visualização</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="330"/>
       <source>Commit the view changes</source>
       <comment>view window</comment>
-      <translation type="unfinished">Commit the view changes</translation>
+      <translation>Faça commit da alteração.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="331"/>
       <source>Rollback the view changes</source>
       <comment>view window</comment>
-      <translation type="unfinished">Rollback the view changes</translation>
+      <translation>Restaurar as alterações de exibição</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="335"/>
       <source>Explicit column names</source>
-      <translation type="unfinished">Explicit column names</translation>
+      <translation>Nomes de coluna explícitas</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="341"/>
