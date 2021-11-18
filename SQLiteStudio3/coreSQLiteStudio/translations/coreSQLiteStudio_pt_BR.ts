@@ -7,7 +7,7 @@
       <location filename="../db/abstractdb.cpp" line="336"/>
       <location filename="../db/abstractdb.cpp" line="353"/>
       <source>Cannot execute query on closed database.</source>
-      <translation>Não é possível executar query em banco de dados fechado.</translation>
+      <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
@@ -892,79 +892,79 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
       <location filename="../sqlitestudio.cpp" line="314"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Linguagens dos scripts</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="315"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Exporting</translation>
+      <translation>Exportando</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="316"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Importing</translation>
+      <translation>Importando</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>Preenchendo a tabela</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
+      <translation>Tabela %1 é tabela de referência %2, mas a definição de chave estrangeira não será atualizada para uma nova definição de tabela devido a problemas ao analisar DDL da tabela %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>Todas as colunas indexadas pelo índice %1 desapareceram. O índice não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>Há um problema com o gatilho de processamento adequado %1. Ele pode não ser totalmente atualizado depois e precisará de sua atenção.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>Todas as colunas cobertas pelo gatilho %1 desapareceram. O gatilho não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
+      <translation>Não é possível atualizar gatilho %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="556"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>Não é possível atualizar a exibição %1 de acordo com as modificações da tabela %2 .
+A visualização permanecerá como é.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="718"/>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual do gatilho pode ser necessária.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>Não foi possível analisar DDL da vista a ser criada. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation>A consulta analisada não é CREATE VIEW. É: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais gatilhos podem falhar durante o processo de recriação.</translation>
     </message>
   </context>
   <context>
@@ -972,28 +972,28 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="193"/>
       <source>Execution interrupted.</source>
-      <translation type="unfinished">Execution interrupted.</translation>
+      <translation>Execução interrompida.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="234"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="242"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>Ocorreu um erro ao executar a consulta de contagem(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-      <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
+      <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
   </context>
   <context>
@@ -1001,12 +1001,12 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>Nenhum banco de dados disponível no contexto atual, enquanto chamado comando JavaScript&apos;s %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
       <source>Error from %1: %2</source>
-      <translation type="unfinished">Error from %1: %2</translation>
+      <translation>Erro de %1: %2</translation>
     </message>
   </context>
   <context>
@@ -1015,31 +1015,31 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>Banco de dados</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Execution date</translation>
+      <translation>Data de execução</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Time spent</translation>
+      <translation>Tempo gasto: %s</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Rows affected</translation>
+      <translation>Linhas afetadas</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>Não foi possível verificar se há atualizações (%1.</translation>
     </message>
   </context>
 </TS>
