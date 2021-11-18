@@ -523,42 +523,42 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>Arquivo de dicionário</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>Escolher arquivo do dicionário</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>Separador de palavras</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Espaço em branco</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>Quebra de linha</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>Método de uso palavras</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation type="unfinished">Ordered</translation>
+      <translation>Ordenado</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>Aleatoriamente</translation>
     </message>
   </context>
   <context>
@@ -566,7 +566,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>Tabela &apos;%1&apos; preenchida com sucesso.</translation>
     </message>
   </context>
   <context>
@@ -574,7 +574,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.cpp" line="13"/>
       <source>Random number</source>
-      <translation type="unfinished">Random number</translation>
+      <translation>Número aleatório</translation>
     </message>
   </context>
   <context>
@@ -582,32 +582,32 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation type="unfinished">Constant prefix</translation>
+      <translation>Prefixo constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
       <source>No prefix</source>
-      <translation type="unfinished">No prefix</translation>
+      <translation>Nenhum prefixo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation type="unfinished">Minimum value</translation>
+      <translation>Valor mínimo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation type="unfinished">Maximum value</translation>
+      <translation>Valor máximo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation type="unfinished">Constant suffix</translation>
+      <translation>Sufixo constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
       <source>No suffix</source>
-      <translation type="unfinished">No suffix</translation>
+      <translation>Nenhum sufixo</translation>
     </message>
   </context>
   <context>
@@ -615,7 +615,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="14"/>
       <source>Random text</source>
-      <translation type="unfinished">Random text</translation>
+      <translation>Texto aleatório</translation>
     </message>
   </context>
   <context>
@@ -623,67 +623,67 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>Usar caracteres de conjuntos comuns:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation type="unfinished">Minimum length</translation>
+      <translation>Comprimento mínimo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation type="unfinished">Letters from a to z.</translation>
+      <translation>Letras de a a z.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>Alfa</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation type="unfinished">Numbers from 0 to 9.</translation>
+      <translation>Números de 0 a 9.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation type="unfinished">Numeric</translation>
+      <translation>Numérico</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>Um espaço em branco, uma aba e um novo caractere de linha.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>Espaço em branco</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>Inclui todos acima e todos os outros.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation type="unfinished">Binary</translation>
+      <translation>Binário</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>Usar caracteres do meu grupo personalizado:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation type="unfinished">Maximum length</translation>
+      <translation>Comprimento máximo</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>Se você digitar um caractere várias vezes, é mais provável que seja usado.</translation>
     </message>
   </context>
   <context>
@@ -691,7 +691,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>Script</translation>
     </message>
   </context>
   <context>
@@ -699,22 +699,22 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>Código de inicialização (opcional)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation type="unfinished">Per step code</translation>
+      <translation>Código por passo</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Idioma</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="89"/>
       <source>Help</source>
-      <translation type="unfinished">Help</translation>
+      <translation>Ajuda</translation>
     </message>
   </context>
   <context>
@@ -722,7 +722,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>Sequência</translation>
     </message>
   </context>
   <context>
@@ -730,12 +730,12 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>Valor inicial:</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>Etapas:</translation>
     </message>
   </context>
   <context>
@@ -743,17 +743,17 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>Não foi possível iniciar a transação para realizar o preenchimento da tabela. Detalhes do erro: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
       <source>Error while populating table: %1</source>
-      <translation type="unfinished">Error while populating table: %1</translation>
+      <translation>Erro ao preencher a tabela: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="80"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
+      <translation>Não foi possível submeter a transação após o preenchimento da tabela. Detalhes de erro: %1</translation>
     </message>
   </context>
   <context>
@@ -761,49 +761,49 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../common/utils.cpp" line="1025"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="420"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="1168"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="329"/>
       <location filename="../db/abstractdb3.h" line="333"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>Não foi possível carregar a extensão %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="441"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>Não foi possível fechar o banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>Não foi possível anexar o banco de dados %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>Consulta incompleta.</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>Excesso de pilha de analisador</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
       <source>Syntax error</source>
-      <translation type="unfinished">Syntax error</translation>
+      <translation>Erro de sintaxe</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="31"/>
