@@ -205,52 +205,52 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>mm</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
       <source>Bottom margin:</source>
-      <translation type="unfinished">Bottom margin:</translation>
+      <translation>Margem inferior:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="163"/>
       <source>Top margin:</source>
-      <translation type="unfinished">Top margin:</translation>
+      <translation>Margem superior:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="183"/>
       <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <translation>Fonte</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="206"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>Cores</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="212"/>
       <source>Headers background:</source>
-      <translation type="unfinished">Headers background:</translation>
+      <translation>Fundo dos cabeçalhos:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="235"/>
       <source>NULL value color:</source>
-      <translation type="unfinished">NULL value color:</translation>
+      <translation>Cor do valor NULL:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="261"/>
       <source>Other settings</source>
-      <translation type="unfinished">Other settings</translation>
+      <translation>Outras configurações</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="267"/>
       <source>Print row numbers for data</source>
-      <translation type="unfinished">Print row numbers for data</translation>
+      <translation>Imprimir números de linhas para dados</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
-      <translation type="unfinished">Print page numbers</translation>
+      <translation>Imprimir número de páginas</translation>
     </message>
   </context>
 </TS>
