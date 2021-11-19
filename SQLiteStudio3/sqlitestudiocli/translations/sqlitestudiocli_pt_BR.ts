@@ -277,9 +277,9 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation>Isso é muito semelhante ao &apos;diretório&apos; comando conhecido do Windows e &apos;ls&apos; comando do sistema Unix.
+      <translation>Isso é muito semelhante ao comando &apos;diretório&apos; do Windows e &apos;ls&apos; comando do sistema Unix.
 
-Você pode passar &lt;pattern&gt; com caracteres curinga para filtrar a saída.</translation>
+Você pode passar &lt;pattern&gt; como caracteres curinga para filtrar a saída.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
@@ -548,7 +548,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>Remove &lt;name&gt; base de dados da lista de bancos de dados registrados. Se o banco de dados não estava na lista (ver %1 comando), então a mensagem de erro é impressa e nada mais acontece.</translation>
+      <translation>Remove &lt;name&gt; do banco de dados da lista de bancos de dados registrados. Se o banco de dados não estava na lista (ver %1 comando), então a mensagem de erro é impressa e nada mais acontece.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -581,7 +581,7 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation>Este comando é executado toda vez que você digitar a consulta SQL no prompt de comando. Executa a consulta no banco de dados de trabalho atual (veja ajuda para %1 para detalhes).&apos;Não faz sentido executar este comando explicitamente. Em vez disso, digite a consulta SQL no prompt de comando, sem qualquer comando prefixado.</translation>
+      <translation>Este comando é executado toda vez que você digitar a consulta SQL no prompt de comando. Executa a consulta no banco de dados de trabalho atual (veja ajuda para %1 para detalhes). Não faz sentido executar este comando explicitamente. Em vez disso, digite a consulta SQL no prompt de comando, sem qualquer comando prefixado.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
@@ -658,7 +658,7 @@ Quando a opção -s é dada, então as tabelas do sistema também são listadas.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation>Nenhuma base de dados de trabalho atual selecionada. Use %1 para definir uma e depois execute %2.</translation>
+      <translation>Nenhuma banco de dados de trabalho atual selecionada. Use %1 para definir uma e depois execute %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
