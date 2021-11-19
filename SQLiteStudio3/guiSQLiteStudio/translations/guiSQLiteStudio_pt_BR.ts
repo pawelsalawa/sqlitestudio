@@ -3634,7 +3634,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation>Visualizar</translation>
+      <translation>Visualização</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
@@ -5119,7 +5119,7 @@ encontrar próximo</translation>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
-      <translation>Você&apos;está prestes a excluir linhas recém-inseridas que ainda não foram confirmadas. Números da linha: %1
+      <translation>Você está prestes a excluir linhas recém-inseridas que ainda não foram confirmadas. Números da linha: %1
 Essa exclusão será permanente. Tem certeza que deseja excluí-la?</translation>
     </message>
   </context>
