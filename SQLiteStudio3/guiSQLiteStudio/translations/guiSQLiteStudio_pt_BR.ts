@@ -554,7 +554,7 @@ Key</translation>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation>Usar &quot;SEMPRE GERADO&quot; palavras-chave</translation>
+      <translation>Usar palavras-chave &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
@@ -837,7 +837,7 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation>Se esta opção estiver desligada, os objetos serão classificados na ordem em que aparecem na tabela mestra sqlite_master (que é em ordem que foram criados)</translation>
+      <translation>Se esta opção estiver desligada, os objetos serão classificados na ordem em que aparecem na tabela mestre sqlite_master (que é em ordem que foram criados)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
@@ -1894,17 +1894,17 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation>Vac&amp;uum</translation>
+      <translation>Vacuum</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>&amp;Integrity check</source>
-      <translation>Verificar &amp;Integridade</translation>
+      <translation>Verificar Integridade</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Create a &amp;table</source>
-      <translation>Criar uma &amp;tabela</translation>
+      <translation>Criar uma tabela</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
@@ -1944,7 +1944,7 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create an &amp;index</source>
-      <translation>Criar um &amp;índice</translation>
+      <translation>Criar um índice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
