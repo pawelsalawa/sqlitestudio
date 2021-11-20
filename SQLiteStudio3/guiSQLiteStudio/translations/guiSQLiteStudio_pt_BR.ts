@@ -3634,7 +3634,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation>Visualização</translation>
+      <translation>Visualizar</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
