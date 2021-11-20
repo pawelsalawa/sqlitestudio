@@ -240,7 +240,7 @@ Gostaria de selecionar outro ou deixá-lo não configurado?</translation>
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
       <translation>Por favor, forneça o nome para o novo banco de dados.
-É&apos;o nome que o aplicativo Android irá usar para conectar ao banco de dados:</translation>
+É o nome que o aplicativo Android irá usar para conectar ao banco de dados:</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
