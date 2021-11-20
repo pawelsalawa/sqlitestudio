@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Fecha a conexão com a base de dados. Se o banco de dados já foi fechado, nada acontece. Se &lt;name&gt; for fornecido, deve ser o nome do banco de dados para fechar (como impresso pelo comando %1 ). O &lt;name&gt; não é fornecido, então a base de dados de trabalho atual está fechada (veja a ajuda para %2 detalhes).</translation>
+      <translation>Fecha a conexão com a base de dados. Se o banco de dados já foi fechado, nada acontece. Se &lt;name&gt; for fornecido, deve ser o nome do banco de dados para fechar (como impresso pelo comando %1 ). O &lt;name&gt; não é fornecido, então a base de dados de trabalho atual está fechada (veja a ajuda %2 para detalhes).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -151,7 +151,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation>Banco de dados</translation>
+      <translation>Banco de dados:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Mostra a lista de bancos de dados registrados no SQLiteStudio. Cada banco de dados da lista pode ser aberto ou fechado e %1 avisa isso. O banco de dados de trabalho atual (conhecido como padrão de banco de dados) também está marcado na lista com &apos;*&apos; no início do seu nome. Consulte ajuda para usar o comando %2 para aprender sobre o banco de dados padrão.</translation>
+      <translation>Mostra a lista de bancos de dados registrados no SQLiteStudio. Cada banco de dados da lista pode ser aberto ou fechado %1 avisa isso. O banco de dados de trabalho atual (conhecido como padrão de banco de dados) também está marcado na lista com &apos;*&apos; no início do seu nome. Consulte ajuda para usar o comando %2 para aprender sobre o banco de dados padrão.</translation>
     </message>
   </context>
   <context>
@@ -206,8 +206,8 @@
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Nenhum banco de dados está definido.
-Chame o comando %1 para definir o banco de dados ativo.
-Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
+Use %1 para definir o banco de dados ativo.
+Use %2 para ver a lista de todos os bancos de dados.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
@@ -277,7 +277,7 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation>Isso é muito semelhante ao comando &apos;diretório&apos; do Windows e &apos;ls&apos; comando do sistema Unix.
+      <translation>Isso é muito semelhante ao comando &apos;dir&apos; do Windows e &apos;ls&apos; do sistema Unix.
 
 Você pode passar &lt;pattern&gt; como caracteres curinga para filtrar a saída.</translation>
     </message>
@@ -320,7 +320,7 @@ Para ver a lista de comandos suportados, digite %2 sem quaisquer argumentos.
 
 Ao passar o nome &lt;command&gt; você pode pular o caractere de prefixo especial (&apos;%3&apos;).
 
-Você sempre pode executar qualquer comando com exatamente um único &apos;--help&apos; opção para ver a ajuda para esse comando.&apos;é uma alternativa para digitar: %1 &lt;command&gt;.</translation>
+Você sempre pode executar qualquer comando com exatamente um único &apos;--help&apos; opção para ver a ajuda para esse comando. Uma alternativa para digitar: %1 &lt;command&gt;.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
@@ -359,7 +359,7 @@ Você sempre pode executar qualquer comando com exatamente um único &apos;--hel
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation>imprime histórico ou apaga o histórico</translation>
+      <translation>mostrar ou apagar o histórico</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
