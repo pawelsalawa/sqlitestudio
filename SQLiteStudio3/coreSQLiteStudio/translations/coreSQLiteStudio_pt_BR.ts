@@ -930,12 +930,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>Todas as colunas cobertas pelo gatilho %1 desapareceram. O gatilho não será recriado após a modificação da tabela.</translation>
+      <translation>Todas as colunas cobertas pela trigger %1 desapareceram. A trigger não será recriada após a modificação da tabela.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>Não é possível atualizar gatilho %1 de acordo com modificação da tabela %2.</translation>
+      <translation>Não é possível atualizar trigger %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="556"/>
@@ -949,12 +949,12 @@ A visualização permanecerá como é.</translation>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual do gatilho pode ser necessária.</translation>
+      <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual da trigger pode ser necessária.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation>Não foi possível analisar DDL da vista a ser criada. Detalhes: %1</translation>
+      <translation>Não foi possível analisar DDL da view a ser criada. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
@@ -964,7 +964,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais gatilhos podem falhar durante o processo de recriação.</translation>
+      <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais trigger podem falhar durante o processo de recriação.</translation>
     </message>
   </context>
   <context>
@@ -988,7 +988,7 @@ A visualização permanecerá como é.</translation>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation>Ocorreu um erro ao executar a consulta de contagem(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
+      <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
@@ -1001,7 +1001,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation>Nenhum banco de dados disponível no contexto atual, enquanto chamado comando JavaScript&apos;s %1.</translation>
+      <translation>Nenhum banco de dados disponível, enquanto rodando JavaScript %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1027,7 +1027,7 @@ A visualização permanecerá como é.</translation>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation>Tempo gasto: %s</translation>
+      <translation>Tempo gasto</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
@@ -1047,7 +1047,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation>Não foi possível verificar se há atualizações (%1.</translation>
+      <translation>Não foi possível verificar se há atualizações (%1).</translation>
     </message>
   </context>
 </TS>
