@@ -658,7 +658,7 @@ Quando a opção -s é dada, então as tabelas do sistema também são listadas.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation>Nenhuma banco de dados de trabalho atual selecionada. Use %1 para definir uma e depois execute %2.</translation>
+      <translation>Nenhum banco de dados selecionado. Use %1 para definir um banco de dados e depois execute %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
@@ -689,7 +689,7 @@ Quando a opção -s é dada, então as tabelas do sistema também são listadas.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation>imprime todos os objetos no banco do dados como uma árvore</translation>
+      <translation>mostra todos os objetos no banco do dados como uma árvore</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
@@ -700,7 +700,7 @@ The database argument is optional and if provided, then only given database will
       <translation>Imprime todos os objetos (tabelas, indexes, gatilhos e visualizações) que estão no banco de dados como uma árvore. A árvore é muito parecida com a que você pode ver no cliente GUI do SQLiteStudio.
 Quando a opção -c é dada, então as colunas também serão listadas sob cada tabela.
 Quando a opção -s é dada, então também objetos do sistema serão impressos (sqlite_* tabelas, índices de auto-incremento, etc).
-O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dados informado será impresso. Este não é um nome de banco de dados registrado, mas em vez disso&apos;um nome de banco de dados SQLite interno, como &apos;principal&apos;, &apos;temp&apos;, ou qualquer nome de banco de dados anexado. Para imprimir árvore para outro banco de dados registrado, chame %1 primeiro para mudar o banco de dados de trabalho e, em seguida, use o comando %2.</translation>
+O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dados informado será impresso. Este não é um nome de banco de dados registrado, mas em vez disso é um nome de banco de dados SQLite interno, como &apos;main&apos;, &apos;temp&apos;, ou qualquer nome de banco de dados anexado. Para imprimir árvore para outro banco de dados registrado, chame %1 primeiro para mudar o banco de dados de trabalho e, em seguida, use o comando %2.</translation>
     </message>
   </context>
   <context>
@@ -724,7 +724,7 @@ O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dad
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation>alterações no banco de dados de trabalho padrão</translation>
+      <translation>definir o banco de dados padrão</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -739,10 +739,10 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Altera a base de dados atual de trabalho para &lt;name&gt;. Se o banco de dados &lt;name&gt; não estiver registrado no aplicativo, então a mensagem de erro é impressa e nenhuma alteração é feita.
+      <translation>Altera a base de dados atual de trabalho para &lt;name&gt;. Se o banco de dados &lt;name&gt; não estiver registrado, então a mensagem de erro é mostrada e nenhuma alteração é feita.
 
 O que é uma base de dados em funcionamento?
-Quando você digita uma consulta SQL a ser executada, ela é executada no banco de dados padrão, que é também conhecida como a base de dados de trabalho actual. A maioria dos comandos relacionados ao banco de dados também pode funcionar usando o banco de dados padrão, se nenhum banco de dados foi fornecido em seus argumentos. A base de dados atual é sempre identificada pela linha de comando. O banco de dados padrão é sempre definido (a menos que não haja nenhum banco de dados na lista).
+Quando você digita uma consulta SQL a ser executada, ela é executada no banco de dados padrão, que é também conhecida como a banco de dados de trabalho atual. A maioria dos comandos relacionados ao banco de dados também pode funcionar usando o banco de dados padrão, se nenhum banco de dados foi fornecido em seus argumentos. A base de dados atual é sempre identificada pela linha de comando. O banco de dados padrão é sempre definido (a menos que não haja nenhum banco de dados na lista).
 
 O banco de dados padrão pode ser selecionado de várias maneiras:
 - usando o comando %1
@@ -798,17 +798,17 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation>Interface da linha de comando para SQLiteStudio, um gestor para SQLite.</translation>
+      <translation>Interface da linha de comando para SQLiteStudio, um gerenciador para SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
       <source>Enables debug messages on standard error output.</source>
-      <translation>Habilita mensagens de depuração na saída de erro padrão.</translation>
+      <translation>Habilita mensagens de depuração padrão na saída de erro.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="27"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Habilita mensagens de depuração do analisador de Lemon no assistente de código SQL.</translation>
+      <translation>Habilita mensagens de depuração do analisador Lemon no assistente de código SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
