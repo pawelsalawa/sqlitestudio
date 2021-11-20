@@ -704,7 +704,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation>Código por passo</translation>
+      <translation>Código detalhado</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
@@ -798,7 +798,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
       <source>Parser stack overflow</source>
-      <translation>Excesso de pilha de analisador</translation>
+      <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
@@ -925,7 +925,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation>Há um problema com o gatilho de processamento adequado %1. Ele pode não ser totalmente atualizado depois e precisará de sua atenção.</translation>
+      <translation>Há um problema com a trigger %1. Ela pode não ser totalmente atualizada e precisará de sua atenção.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
