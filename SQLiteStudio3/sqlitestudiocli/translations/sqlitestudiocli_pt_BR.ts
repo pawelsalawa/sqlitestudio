@@ -97,7 +97,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>Um comando muito semelhante ao &apos;cd&apos; conhecido do Unix system e Windows. É necessário que um argumento &lt;path&gt; seja aprovado, portanto chamar %1 sempre causará uma mudança do diretório. Para saber o que&apos;o diretório de trabalho atual usa o comando %2 e para listar o conteúdo do diretório de trabalho atual use o comando %3.</translation>
+      <translation>Um comando muito semelhante ao &apos;cd&apos; conhecido do Unix system e Windows. É necessário que um argumento &lt;path&gt; seja aprovado, portanto chamar %1 sempre causará uma mudança do diretório. Para saber qual diretório de trabalho atual usa o comando %2 e para listar o conteúdo do diretório de trabalho atual use o comando %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
