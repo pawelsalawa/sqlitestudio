@@ -434,14 +434,14 @@ ATTENTION! The COLUMNS mode reads all the results from the query at once in orde
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
       <translation>Quando chamado sem argumento, informa o formato de saída atual para obter resultados de consulta. Quando o modo é passado, o modo é alterado para o dado. Os modos suportados são:
-- CLASSIC - as colunas são separadas por uma círgula, não alinhadas,
+- CLASSIC - as colunas são separadas por uma vírgula, não alinhadas,
 - FIXED - as colunas têm largura igual e fixa, sempre se encaixam na largura da janela do terminal, mas os dados nas colunas podem ser cortados,
 - COLUMNS - como FIXO, mas mais inteligente (não use com conjuntos de resultados enormes, veja detalhes abaixo),
 - ROW - cada coluna da linha é exibida em nova linha, de modo que os dados completos são exibidos.
 O modo CLASSIC é recomendado se você quiser ver todos os dados, mas você não quer desperdiçar linhas para cada coluna. Cada linha exibirá dados completos para cada coluna, mas isso também significa que as colunas não estarão alinhadas umas com as outras nas próximas linhas. O modo CLASSIC também não respeita a largura da janela do terminal (console), portanto, se os valores nas colunas forem mais amplos que a janela, a linha será continuada nas próximas linhas.
-O modo FIXO é recomendado se você quiser uma saída legível e não se importar com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e de várias colunas.
-O modo COLUNAS é semelhante ao modo FIXO, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto colunas com valores mais longos ganham mais espaço. Primeiro para encolher são colunas com cabeçalhos mais longos (de modo que os nomes do cabeçalho devem ser cortados como primeiro), em seguida, colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas se encaixam na janela do terminal.
-ATENÇÃO! O modo COLUNAS lê todos os resultados da consulta de uma só vez para avaliar widhts de coluna, portanto é perigoso usar esse modo ao trabalhar com conjuntos de resultados enormes. Tenha em mente que este modo carregará todo o resultado definido na memória.
+O modo FIXED é recomendado se você quiser uma saída legível e não se importar com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e de várias colunas.
+O modo COLUMNS é semelhante ao modo FIXED, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto colunas com valores mais longos ganham mais espaço. Primeiro para encolher são colunas com cabeçalhos mais longos (de modo que os nomes do cabeçalho devem ser cortados como primeiro), em seguida, colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas se encaixam na janela do terminal.
+ATENÇÃO! O modo COLUMNS lê todos os resultados da consulta de uma só vez para avaliar WIDHTS de coluna, portanto é perigoso usar esse modo ao trabalhar com conjuntos de resultados enormes. Tenha em mente que este modo carregará todo o resultado definido na memória.
 O modo ROW é recomendado se você precisar ver valores inteiros e você não espera que muitas linhas sejam exibidas, pois este modo exibe uma linha de saída por cada coluna, então você terá 10 linhas para uma única linha com 10 colunas, então se você tiver 10 dessas linhas, você terá 100 linhas de saída (+1 linha extra por cada linha,  para separar fileiras um do outro).
 </translation>
     </message>
@@ -451,7 +451,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation>Frase de representação NULL atual: %1</translation>
+      <translation>String de denominação NULL atual: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
@@ -461,7 +461,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>Se nenhum argumento foi aprovado, diz o que&apos;s a representação de valor NULL atual (ou seja, o que é impresso no lugar de valores NULL nos resultados de consultas). Se o argumento é dado, então&apos;é usado como uma nova string a ser usada para representação NULL.</translation>
+      <translation>Se nenhum argumento foi aprovado, utilizar a denominação de NULL atual (ou seja, o que é impresso no lugar de valores NULL nos resultados de consultas). Se o argumento é dado, então será usado como uma nova string a ser usada para denominação NULL.</translation>
     </message>
   </context>
   <context>
@@ -543,7 +543,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation>remove banco de dados da lista</translation>
+      <translation>remove o banco de dados da lista</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -565,8 +565,8 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Nenhum banco de dados está definido.
-Chame o comando %1 para definir o banco de dados ativo.
-Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
+Execute %1 para definir o banco de dados ativo.
+Execute %2 para ver a lista de todos os bancos de dados.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="30"/>
@@ -611,7 +611,7 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>Nenhum banco de dados: %1. Use %2 para ver a lista de bancos de dados conhecidos.</translation>
+      <translation>Nenhum banco de dados: %1. Use %2 para ver a lista de bancos de dados existentes.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
