@@ -31,7 +31,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Habilita Lemon para mensagens de depuração de analisador para assistente de código SQL.</translation>
+      <translation>Habilita Lemon para mensagens de debug para o assistente de código SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation>Limita as mensagens de consulta SQL para apenas o &lt;banco de dados&gt;.</translation>
+      <translation>Limita as mensagens de consulta SQL apenas para &lt;database&gt;.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -51,7 +51,7 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation>Habilita a depuração de um executor de consulta SQLiteStudio&apos;s.</translation>
+      <translation>Habilita a depuração de uma consulta SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="62"/>
@@ -61,7 +61,7 @@
     <message>
       <location filename="../main.cpp" line="63"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation>Pontos para o arquivo de configuração mestra. Leia o manual na página wiki para mais detalhes.</translation>
+      <translation>Ítens do arquivo de configuração principal. Leia o manual na página wiki para mais detalhes.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="63"/>
