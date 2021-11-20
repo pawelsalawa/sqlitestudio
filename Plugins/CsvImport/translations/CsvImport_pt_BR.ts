@@ -69,7 +69,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>Se ativado, então o valor do texto fornecido à direita será interpretado como NULO</translation>
+      <translation>Se ativado, então o valor do texto fornecido à direita será interpretado como NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
