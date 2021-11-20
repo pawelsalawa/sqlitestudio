@@ -44,17 +44,17 @@
     <message>
       <location filename="../XmlExport.ui" line="83"/>
       <source>&lt;p&gt;Every value requiring character escepe will be enclosed in CDATA block.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Todo valor que exija aprovação de caráter será incluído no bloco CDATA.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Todo valor que exija aprovação de caráter será incluído no bloco &lt;>.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="86"/>
       <source>Always use CDATA</source>
-      <translation>Sempre usar CDATA</translation>
+      <translation>Sempre usar &lt;></translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="99"/>
       <source>&lt;p&gt;Every character that require esceping will be replaced with its ampersand escape sequence. No CDATA blocks will be used.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Todos os caracteres que precisarem de aprovação serão substituídos por seus amantes e sua sequência de escape. Nenhum bloco CDATA será usado.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Todos os caracteres que precisarem de aprovação serão substituídos por &amp; e sua sequência de escape. Nenhum bloco &lt;> será usado.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="102"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../XmlExport.ui" line="118"/>
       <source>Define XML namespace</source>
-      <translation>Definir nome do espaço XML</translation>
+      <translation>Definir domínio XML</translation>
     </message>
   </context>
 </TS>
