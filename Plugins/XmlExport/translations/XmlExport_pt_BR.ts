@@ -6,7 +6,7 @@
     <message>
       <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <translation>Digite o namespace a ser usado (por exemplo: http://my.namespace.org)</translation>
+      <translation>Digite o domínio a ser usado (por exemplo: http://my.namespace.org)</translation>
     </message>
   </context>
   <context>
@@ -34,12 +34,12 @@
     <message>
       <location filename="../XmlExport.ui" line="64"/>
       <source>&lt;p&gt;Ampersands will be used for shorter values and CDATA will be used for larger values. This applies only to values that require character escaping. Other values will be exported as they are.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Âmbar será usado para valores mais curtos e CDATA será usado para valores maiores. Isso só se aplica a valores que exigem escapar do caractere. Outros valores serão exportados como estão.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;O &amp; será usado para valores mais curtos e &lt;> será usado para valores maiores. Isso só se aplica a valores que exigem escapar do caractere. Outros valores serão exportados como estão.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="67"/>
       <source>Use CDATA and ampersands</source>
-      <translation>Usar CDATA e &amp;</translation>
+      <translation>Usar &lt;> e &amp;</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="83"/>
