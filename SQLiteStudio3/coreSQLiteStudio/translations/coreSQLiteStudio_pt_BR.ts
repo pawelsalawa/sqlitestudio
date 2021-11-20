@@ -12,7 +12,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
       <source>Error attaching database %1: %2</source>
-      <translation> </translation>
+      <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="170"/>
       <source>New index name</source>
-      <translation>Novo nome do índice</translation>
+      <translation>Nome do novo índice</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="173"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="176"/>
       <source>New trigger name</source>
-      <translation>Novo nome de gatilho</translation>
+      <translation>Nome da nova trigger</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
@@ -197,26 +197,26 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="419"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este metodo pode ser lento para grande tabelas, por favor seja paciente. </translation>
+      <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este método pode ser lento para grande tabelas, por favor seja paciente. </translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation>Erro ao copiar data para tabela %1:%2</translation>
+      <translation>Erro ao copiar dados da tabela %1:%2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="458"/>
       <location filename="../dbobjectorganizer.cpp" line="465"/>
       <location filename="../dbobjectorganizer.cpp" line="488"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation>Erro ao copiar data para tabela %1:%2</translation>
+      <translation>Erro ao copiar dados para a tabela %1:%2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erro ao soltar a visão da fonte %1: %2
-Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 permanecerão.</translation>
+Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 permanecerão.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
@@ -238,7 +238,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation>Não foi possível analisar o objeto &apos;%1&apos; para mover ou copiá-lo.</translation>
+      <translation>Não foi possível analisar o objeto &apos;%1&apos; para mover ou copiar.</translation>
     </message>
   </context>
   <context>
@@ -462,7 +462,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="549"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation>Não foi possível carregar o plugin %1, porque&apos;está em conflito com o plugin %2.</translation>
+      <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
@@ -582,7 +582,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation>Prefixo constante</translation>
+      <translation>Prefixo da constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
@@ -602,7 +602,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation>Sufixo constante</translation>
+      <translation>Sufixo da constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
