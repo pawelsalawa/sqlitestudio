@@ -12,7 +12,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
       <source>Error attaching database %1: %2</source>
-      <translation> </translation>
+      <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="170"/>
       <source>New index name</source>
-      <translation>Novo nome do índice</translation>
+      <translation>Nome do novo índice</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="173"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="176"/>
       <source>New trigger name</source>
-      <translation>Novo nome de gatilho</translation>
+      <translation>Nome da nova trigger</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="179"/>
@@ -197,26 +197,26 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="419"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este metodo pode ser lento para grande tabelas, por favor seja paciente. </translation>
+      <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este método pode ser lento para grande tabelas, por favor seja paciente. </translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation>Erro ao copiar data para tabela %1:%2</translation>
+      <translation>Erro ao copiar dados da tabela %1:%2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="458"/>
       <location filename="../dbobjectorganizer.cpp" line="465"/>
       <location filename="../dbobjectorganizer.cpp" line="488"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation>Erro ao copiar data para tabela %1:%2</translation>
+      <translation>Erro ao copiar dados para a tabela %1:%2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erro ao soltar a visão da fonte %1: %2
-Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 permanecerão.</translation>
+Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 permanecerão.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
@@ -238,7 +238,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation>Não foi possível analisar o objeto &apos;%1&apos; para mover ou copiá-lo.</translation>
+      <translation>Não foi possível analisar o objeto &apos;%1&apos; para mover ou copiar.</translation>
     </message>
   </context>
   <context>
@@ -462,7 +462,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="549"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation>Não foi possível carregar o plugin %1, porque&apos;está em conflito com o plugin %2.</translation>
+      <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
@@ -582,7 +582,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation>Prefixo constante</translation>
+      <translation>Prefixo da constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
@@ -602,7 +602,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation>Sufixo constante</translation>
+      <translation>Sufixo da constante</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
@@ -704,7 +704,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation>Código por passo</translation>
+      <translation>Código detalhado</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
@@ -798,7 +798,7 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
       <source>Parser stack overflow</source>
-      <translation>Excesso de pilha de analisador</translation>
+      <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
@@ -925,17 +925,17 @@ Tabelas, indexes, gatilhos e visualizações copiadas para a base de dados %3 pe
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation>Há um problema com o gatilho de processamento adequado %1. Ele pode não ser totalmente atualizado depois e precisará de sua atenção.</translation>
+      <translation>Há um problema com a trigger %1. Ela pode não ser totalmente atualizada e precisará de sua atenção.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>Todas as colunas cobertas pelo gatilho %1 desapareceram. O gatilho não será recriado após a modificação da tabela.</translation>
+      <translation>Todas as colunas cobertas pela trigger %1 desapareceram. A trigger não será recriada após a modificação da tabela.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>Não é possível atualizar gatilho %1 de acordo com modificação da tabela %2.</translation>
+      <translation>Não é possível atualizar trigger %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="556"/>
@@ -949,12 +949,12 @@ A visualização permanecerá como é.</translation>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual do gatilho pode ser necessária.</translation>
+      <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual da trigger pode ser necessária.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation>Não foi possível analisar DDL da vista a ser criada. Detalhes: %1</translation>
+      <translation>Não foi possível analisar DDL da view a ser criada. Detalhes: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
@@ -964,7 +964,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais gatilhos podem falhar durante o processo de recriação.</translation>
+      <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais trigger podem falhar durante o processo de recriação.</translation>
     </message>
   </context>
   <context>
@@ -988,7 +988,7 @@ A visualização permanecerá como é.</translation>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation>Ocorreu um erro ao executar a consulta de contagem(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
+      <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
@@ -1001,7 +1001,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation>Nenhum banco de dados disponível no contexto atual, enquanto chamado comando JavaScript&apos;s %1.</translation>
+      <translation>Nenhum banco de dados disponível, enquanto rodando JavaScript %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1027,7 +1027,7 @@ A visualização permanecerá como é.</translation>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation>Tempo gasto: %s</translation>
+      <translation>Tempo gasto</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
@@ -1047,7 +1047,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation>Não foi possível verificar se há atualizações (%1.</translation>
+      <translation>Não foi possível verificar se há atualizações (%1).</translation>
     </message>
   </context>
 </TS>

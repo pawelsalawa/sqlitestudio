@@ -97,7 +97,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>Um comando muito semelhante ao &apos;cd&apos; conhecido do Unix system e Windows. É necessário que um argumento &lt;path&gt; seja aprovado, portanto chamar %1 sempre causará uma mudança do diretório. Para saber o que&apos;o diretório de trabalho atual usa o comando %2 e para listar o conteúdo do diretório de trabalho atual use o comando %3.</translation>
+      <translation>Um comando muito semelhante ao &apos;cd&apos; conhecido do Unix system e Windows. É necessário que um argumento &lt;path&gt; seja aprovado, portanto chamar %1 sempre causará uma mudança do diretório. Para saber qual diretório de trabalho atual usa o comando %2 e para listar o conteúdo do diretório de trabalho atual use o comando %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Fecha a conexão com a base de dados. Se o banco de dados já foi fechado, nada acontece. Se &lt;name&gt; for fornecido, deve ser o nome do banco de dados para fechar (como impresso pelo comando %1 ). O &lt;name&gt; não é fornecido, então a base de dados de trabalho atual está fechada (veja a ajuda para %2 detalhes).</translation>
+      <translation>Fecha a conexão com a base de dados. Se o banco de dados já foi fechado, nada acontece. Se &lt;name&gt; for fornecido, deve ser o nome do banco de dados para fechar (como impresso pelo comando %1 ). O &lt;name&gt; não é fornecido, então a base de dados de trabalho atual está fechada (veja a ajuda %2 para detalhes).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -151,7 +151,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation>Banco de dados</translation>
+      <translation>Banco de dados:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Mostra a lista de bancos de dados registrados no SQLiteStudio. Cada banco de dados da lista pode ser aberto ou fechado e %1 avisa isso. O banco de dados de trabalho atual (conhecido como padrão de banco de dados) também está marcado na lista com &apos;*&apos; no início do seu nome. Consulte ajuda para usar o comando %2 para aprender sobre o banco de dados padrão.</translation>
+      <translation>Mostra a lista de bancos de dados registrados no SQLiteStudio. Cada banco de dados da lista pode ser aberto ou fechado %1 avisa isso. O banco de dados de trabalho atual (conhecido como padrão de banco de dados) também está marcado na lista com &apos;*&apos; no início do seu nome. Consulte ajuda para usar o comando %2 para aprender sobre o banco de dados padrão.</translation>
     </message>
   </context>
   <context>
@@ -206,8 +206,8 @@
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Nenhum banco de dados está definido.
-Chame o comando %1 para definir o banco de dados ativo.
-Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
+Use %1 para definir o banco de dados ativo.
+Use %2 para ver a lista de todos os bancos de dados.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
@@ -277,9 +277,9 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
       <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-      <translation>Isso é muito semelhante ao &apos;diretório&apos; comando conhecido do Windows e &apos;ls&apos; comando do sistema Unix.
+      <translation>Isso é muito semelhante ao comando &apos;dir&apos; do Windows e &apos;ls&apos; do sistema Unix.
 
-Você pode passar &lt;pattern&gt; com caracteres curinga para filtrar a saída.</translation>
+Você pode passar &lt;pattern&gt; como caracteres curinga para filtrar a saída.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
@@ -320,7 +320,7 @@ Para ver a lista de comandos suportados, digite %2 sem quaisquer argumentos.
 
 Ao passar o nome &lt;command&gt; você pode pular o caractere de prefixo especial (&apos;%3&apos;).
 
-Você sempre pode executar qualquer comando com exatamente um único &apos;--help&apos; opção para ver a ajuda para esse comando.&apos;é uma alternativa para digitar: %1 &lt;command&gt;.</translation>
+Você sempre pode executar qualquer comando com exatamente um único &apos;--help&apos; opção para ver a ajuda para esse comando. Uma alternativa para digitar: %1 &lt;command&gt;.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
@@ -359,7 +359,7 @@ Você sempre pode executar qualquer comando com exatamente um único &apos;--hel
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
       <source>prints history or erases it</source>
-      <translation>imprime histórico ou apaga o histórico</translation>
+      <translation>mostrar ou apagar o histórico</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -434,14 +434,14 @@ ATTENTION! The COLUMNS mode reads all the results from the query at once in orde
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
       <translation>Quando chamado sem argumento, informa o formato de saída atual para obter resultados de consulta. Quando o modo é passado, o modo é alterado para o dado. Os modos suportados são:
-- CLASSIC - as colunas são separadas por uma círgula, não alinhadas,
+- CLASSIC - as colunas são separadas por uma vírgula, não alinhadas,
 - FIXED - as colunas têm largura igual e fixa, sempre se encaixam na largura da janela do terminal, mas os dados nas colunas podem ser cortados,
 - COLUMNS - como FIXO, mas mais inteligente (não use com conjuntos de resultados enormes, veja detalhes abaixo),
 - ROW - cada coluna da linha é exibida em nova linha, de modo que os dados completos são exibidos.
 O modo CLASSIC é recomendado se você quiser ver todos os dados, mas você não quer desperdiçar linhas para cada coluna. Cada linha exibirá dados completos para cada coluna, mas isso também significa que as colunas não estarão alinhadas umas com as outras nas próximas linhas. O modo CLASSIC também não respeita a largura da janela do terminal (console), portanto, se os valores nas colunas forem mais amplos que a janela, a linha será continuada nas próximas linhas.
-O modo FIXO é recomendado se você quiser uma saída legível e não se importar com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e de várias colunas.
-O modo COLUNAS é semelhante ao modo FIXO, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto colunas com valores mais longos ganham mais espaço. Primeiro para encolher são colunas com cabeçalhos mais longos (de modo que os nomes do cabeçalho devem ser cortados como primeiro), em seguida, colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas se encaixam na janela do terminal.
-ATENÇÃO! O modo COLUNAS lê todos os resultados da consulta de uma só vez para avaliar widhts de coluna, portanto é perigoso usar esse modo ao trabalhar com conjuntos de resultados enormes. Tenha em mente que este modo carregará todo o resultado definido na memória.
+O modo FIXED é recomendado se você quiser uma saída legível e não se importar com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e de várias colunas.
+O modo COLUMNS é semelhante ao modo FIXED, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto colunas com valores mais longos ganham mais espaço. Primeiro para encolher são colunas com cabeçalhos mais longos (de modo que os nomes do cabeçalho devem ser cortados como primeiro), em seguida, colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas se encaixam na janela do terminal.
+ATENÇÃO! O modo COLUMNS lê todos os resultados da consulta de uma só vez para avaliar WIDHTS de coluna, portanto é perigoso usar esse modo ao trabalhar com conjuntos de resultados enormes. Tenha em mente que este modo carregará todo o resultado definido na memória.
 O modo ROW é recomendado se você precisar ver valores inteiros e você não espera que muitas linhas sejam exibidas, pois este modo exibe uma linha de saída por cada coluna, então você terá 10 linhas para uma única linha com 10 colunas, então se você tiver 10 dessas linhas, você terá 100 linhas de saída (+1 linha extra por cada linha,  para separar fileiras um do outro).
 </translation>
     </message>
@@ -451,7 +451,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation>Frase de representação NULL atual: %1</translation>
+      <translation>String de denominação NULL atual: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
@@ -461,7 +461,7 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>Se nenhum argumento foi aprovado, diz o que&apos;s a representação de valor NULL atual (ou seja, o que é impresso no lugar de valores NULL nos resultados de consultas). Se o argumento é dado, então&apos;é usado como uma nova string a ser usada para representação NULL.</translation>
+      <translation>Se nenhum argumento foi aprovado, utilizar a denominação de NULL atual (ou seja, o que é impresso no lugar de valores NULL nos resultados de consultas). Se o argumento é dado, então será usado como uma nova string a ser usada para denominação NULL.</translation>
     </message>
   </context>
   <context>
@@ -543,12 +543,12 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation>remove banco de dados da lista</translation>
+      <translation>remove o banco de dados da lista</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>Remove &lt;name&gt; base de dados da lista de bancos de dados registrados. Se o banco de dados não estava na lista (ver %1 comando), então a mensagem de erro é impressa e nada mais acontece.</translation>
+      <translation>Remove &lt;name&gt; do banco de dados da lista de bancos de dados registrados. Se o banco de dados não estava na lista (ver %1 comando), então a mensagem de erro é impressa e nada mais acontece.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -565,8 +565,8 @@ O modo ROW é recomendado se você precisar ver valores inteiros e você não es
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Nenhum banco de dados está definido.
-Chame o comando %1 para definir o banco de dados ativo.
-Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
+Execute %1 para definir o banco de dados ativo.
+Execute %2 para ver a lista de todos os bancos de dados.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="30"/>
@@ -581,7 +581,7 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation>Este comando é executado toda vez que você digitar a consulta SQL no prompt de comando. Executa a consulta no banco de dados de trabalho atual (veja ajuda para %1 para detalhes).&apos;Não faz sentido executar este comando explicitamente. Em vez disso, digite a consulta SQL no prompt de comando, sem qualquer comando prefixado.</translation>
+      <translation>Este comando é executado toda vez que você digitar a consulta SQL no prompt de comando. Executa a consulta no banco de dados de trabalho atual (veja ajuda para %1 para detalhes). Não faz sentido executar este comando explicitamente. Em vez disso, digite a consulta SQL no prompt de comando, sem qualquer comando prefixado.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
@@ -611,7 +611,7 @@ Ligue para %2 para ver a lista de todos os bancos de dados.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>Nenhum banco de dados: %1. Use %2 para ver a lista de bancos de dados conhecidos.</translation>
+      <translation>Nenhum banco de dados: %1. Use %2 para ver a lista de bancos de dados existentes.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
@@ -658,7 +658,7 @@ Quando a opção -s é dada, então as tabelas do sistema também são listadas.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation>Nenhuma base de dados de trabalho atual selecionada. Use %1 para definir uma e depois execute %2.</translation>
+      <translation>Nenhum banco de dados selecionado. Use %1 para definir um banco de dados e depois execute %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
@@ -689,7 +689,7 @@ Quando a opção -s é dada, então as tabelas do sistema também são listadas.
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
       <source>prints all objects in the database as a tree</source>
-      <translation>imprime todos os objetos no banco do dados como uma árvore</translation>
+      <translation>mostra todos os objetos no banco do dados como uma árvore</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="137"/>
@@ -700,7 +700,7 @@ The database argument is optional and if provided, then only given database will
       <translation>Imprime todos os objetos (tabelas, indexes, gatilhos e visualizações) que estão no banco de dados como uma árvore. A árvore é muito parecida com a que você pode ver no cliente GUI do SQLiteStudio.
 Quando a opção -c é dada, então as colunas também serão listadas sob cada tabela.
 Quando a opção -s é dada, então também objetos do sistema serão impressos (sqlite_* tabelas, índices de auto-incremento, etc).
-O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dados informado será impresso. Este não é um nome de banco de dados registrado, mas em vez disso&apos;um nome de banco de dados SQLite interno, como &apos;principal&apos;, &apos;temp&apos;, ou qualquer nome de banco de dados anexado. Para imprimir árvore para outro banco de dados registrado, chame %1 primeiro para mudar o banco de dados de trabalho e, em seguida, use o comando %2.</translation>
+O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dados informado será impresso. Este não é um nome de banco de dados registrado, mas em vez disso é um nome de banco de dados SQLite interno, como &apos;main&apos;, &apos;temp&apos;, ou qualquer nome de banco de dados anexado. Para imprimir árvore para outro banco de dados registrado, chame %1 primeiro para mudar o banco de dados de trabalho e, em seguida, use o comando %2.</translation>
     </message>
   </context>
   <context>
@@ -724,7 +724,7 @@ O argumento do banco de dados é opcional e, se fornecido, apenas o banco de dad
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
       <source>changes default working database</source>
-      <translation>alterações no banco de dados de trabalho padrão</translation>
+      <translation>definir o banco de dados padrão</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -739,10 +739,10 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Altera a base de dados atual de trabalho para &lt;name&gt;. Se o banco de dados &lt;name&gt; não estiver registrado no aplicativo, então a mensagem de erro é impressa e nenhuma alteração é feita.
+      <translation>Altera a base de dados atual de trabalho para &lt;name&gt;. Se o banco de dados &lt;name&gt; não estiver registrado, então a mensagem de erro é mostrada e nenhuma alteração é feita.
 
 O que é uma base de dados em funcionamento?
-Quando você digita uma consulta SQL a ser executada, ela é executada no banco de dados padrão, que é também conhecida como a base de dados de trabalho actual. A maioria dos comandos relacionados ao banco de dados também pode funcionar usando o banco de dados padrão, se nenhum banco de dados foi fornecido em seus argumentos. A base de dados atual é sempre identificada pela linha de comando. O banco de dados padrão é sempre definido (a menos que não haja nenhum banco de dados na lista).
+Quando você digita uma consulta SQL a ser executada, ela é executada no banco de dados padrão, que é também conhecida como a banco de dados de trabalho atual. A maioria dos comandos relacionados ao banco de dados também pode funcionar usando o banco de dados padrão, se nenhum banco de dados foi fornecido em seus argumentos. A base de dados atual é sempre identificada pela linha de comando. O banco de dados padrão é sempre definido (a menos que não haja nenhum banco de dados na lista).
 
 O banco de dados padrão pode ser selecionado de várias maneiras:
 - usando o comando %1
@@ -798,17 +798,17 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation>Interface da linha de comando para SQLiteStudio, um gestor para SQLite.</translation>
+      <translation>Interface da linha de comando para SQLiteStudio, um gerenciador para SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
       <source>Enables debug messages on standard error output.</source>
-      <translation>Habilita mensagens de depuração na saída de erro padrão.</translation>
+      <translation>Habilita mensagens de depuração padrão na saída de erro.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="27"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Habilita mensagens de depuração do analisador de Lemon no assistente de código SQL.</translation>
+      <translation>Habilita mensagens de depuração do analisador Lemon no assistente de código SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>

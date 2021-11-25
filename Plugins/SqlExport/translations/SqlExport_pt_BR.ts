@@ -21,7 +21,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="185"/>
       <source>-- Trigger: %1</source>
-      <translation>-- Disparador: %1</translation>
+      <translation>-- Trigger: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="202"/>
@@ -49,12 +49,12 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Gerar &quot;DROP IF EXISTS&quot; declaração antes &quot;CRIAR&quot; instrução</translation>
+      <translation>Gerar &quot;DROP IF EXISTS&quot; declaração antes &quot;CREATE&quot; instrução</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>Formatar declarações DDL apenas (excluir &quot;INSERT&quot; declarações)</translation>
+      <translation>Formatar declarações DDL apenas (excluir declarações &quot;INSERT&quot;)</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
@@ -87,12 +87,12 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Gerar &quot;DROP IF EXISTS&quot; declaração antes &quot;CRIAR&quot; instrução</translation>
+      <translation>Gerar declaração &quot;DROP IF EXISTS&quot; antes da instrução &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>Formatar declarações DDL apenas (excluir &quot;INSERT&quot; declarações)</translation>
+      <translation>Formatar apenas declarações DDL (excluir declarações &quot;INSERT&quot;)</translation>
     </message>
   </context>
 </TS>
