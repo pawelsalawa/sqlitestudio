@@ -341,7 +341,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Primary Key</source>
-      <translation>Primärer Schlüssel</translation>
+      <translation>Primärschlüssel</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="206"/>
