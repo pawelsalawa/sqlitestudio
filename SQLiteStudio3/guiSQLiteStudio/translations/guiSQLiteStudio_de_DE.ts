@@ -5611,8 +5611,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <source>Primary
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Primary
-Key</translation>
+      <translation>Primärschlüssel</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="297"/>
