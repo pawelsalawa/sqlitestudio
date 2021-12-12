@@ -155,20 +155,20 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
+      <translation>資料庫 %1 無法被更新，因為 error: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>資料庫檔案不存在</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation>無法載入可供支援的 plugin</translation>
+      <translation>無法載入可支援的 plugin</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
@@ -178,7 +178,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>沒有適合的資料庫趨動程式 plugin</translation>
     </message>
   </context>
   <context>
@@ -187,7 +187,7 @@
       <location filename="../dbobjectorganizer.cpp" line="374"/>
       <location filename="../dbobjectorganizer.cpp" line="405"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>在資料庫 %1 建立 table時發生錯誤</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="374"/>
@@ -202,14 +202,14 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation type="unfinished">Error while copying data for table %1: %2</translation>
+      <translation>當複製table %1: %2 時發生錯誤</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="458"/>
       <location filename="../dbobjectorganizer.cpp" line="465"/>
       <location filename="../dbobjectorganizer.cpp" line="488"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation type="unfinished">Error while copying data to table %1: %2</translation>
+      <translation>當複製table %1: %2 時發生錯誤</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="510"/>
@@ -247,19 +247,19 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="66"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>資料庫名稱</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="68"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database file</translation>
+      <translation>資料庫檔案</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="70"/>
       <source>Date of execution</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Date of execution</translation>
+      <translation>執行日期</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="72"/>
