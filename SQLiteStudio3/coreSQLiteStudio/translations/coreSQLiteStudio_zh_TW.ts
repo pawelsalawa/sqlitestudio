@@ -33,13 +33,13 @@
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>無法disable foreign keys. Details: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>無法啟動資料庫交易. 請見詳細資料說明: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
@@ -137,12 +137,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="908"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>因無法啟動資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="915"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>因無法commit資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
   </context>
   <context>
@@ -150,7 +150,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>無法新增資料庫 %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
