@@ -533,32 +533,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>文字分隔字元</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>空格</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>換行</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>使用字元的方法</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation type="unfinished">Ordered</translation>
+      <translation>排列</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>隨機</translation>
     </message>
   </context>
   <context>
