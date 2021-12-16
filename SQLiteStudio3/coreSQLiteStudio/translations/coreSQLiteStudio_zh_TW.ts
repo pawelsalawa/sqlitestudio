@@ -691,7 +691,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>腳本 Script</translation>
     </message>
   </context>
   <context>
@@ -699,7 +699,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>初始化的程式片段 (optional)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
@@ -722,7 +722,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>序列</translation>
     </message>
   </context>
   <context>
@@ -730,12 +730,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>起始值：</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>步骤：</translation>
     </message>
   </context>
   <context>
@@ -777,12 +777,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../db/abstractdb3.h" line="329"/>
       <location filename="../db/abstractdb3.h" line="333"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>無法載入extension %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="441"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>無法關閉資料庫 %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
@@ -793,7 +793,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>不完整的查詢</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
@@ -803,12 +803,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
       <source>Syntax error</source>
-      <translation type="unfinished">Syntax error</translation>
+      <translation>語法錯誤</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="31"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>無法開啟檔案 %1 以讀取。</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="92"/>
