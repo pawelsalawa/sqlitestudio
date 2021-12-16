@@ -197,7 +197,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="419"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
+      <translation>資料庫 %1 無法被附加至資料庫 %2, 所以 table %3 的資料將會被SQLiteStudio複製一份作為mediator. 此方法對於大table會很慢，請耐心等待.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
@@ -303,7 +303,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation type="unfinished">Export was successful.</translation>
+      <translation>匯出成功。</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
@@ -498,7 +498,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>常數</translation>
     </message>
   </context>
   <context>
@@ -506,7 +506,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>常數值:</translation>
     </message>
   </context>
   <context>
@@ -515,7 +515,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populatedictionary.cpp" line="16"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation type="unfinished">Dictionary</translation>
+      <translation>字典</translation>
     </message>
   </context>
   <context>
@@ -523,12 +523,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>字典檔案</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>選擇字典檔</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
@@ -691,7 +691,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="13"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>腳本 Script</translation>
     </message>
   </context>
   <context>
@@ -699,7 +699,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>初始化的程式片段 (optional)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
@@ -722,7 +722,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation type="unfinished">Sequence</translation>
+      <translation>序列</translation>
     </message>
   </context>
   <context>
@@ -730,12 +730,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation type="unfinished">Start value:</translation>
+      <translation>起始值：</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation type="unfinished">Step:</translation>
+      <translation>步骤：</translation>
     </message>
   </context>
   <context>
@@ -761,156 +761,156 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../common/utils.cpp" line="1025"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>無法開啟檔案 &apos;%1&apos; 為了讀取: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="420"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>無法開啟資料庫 %1。</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="1168"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>結果集已過期或是無有效的資料</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="329"/>
       <location filename="../db/abstractdb3.h" line="333"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>無法載入extension %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="441"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>無法關閉資料庫 %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>無法附加資料庫 %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>不完整的查詢</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>Parser 溢位</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
       <source>Syntax error</source>
-      <translation type="unfinished">Syntax error</translation>
+      <translation>語法錯誤</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="31"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>無法開啟檔案 %1 以讀取。</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="92"/>
       <source>Dictionary file must exist and be readable.</source>
-      <translation type="unfinished">Dictionary file must exist and be readable.</translation>
+      <translation>字典檔必須存在並且可被讀取</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="54"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation type="unfinished">Maximum value cannot be less than minimum value.</translation>
+      <translation>最大值不能小於最小值</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="79"/>
       <source>Maximum length cannot be less than minimum length.</source>
-      <translation type="unfinished">Maximum length cannot be less than minimum length.</translation>
+      <translation>最大值不能小於最小值</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="90"/>
       <source>Custom character set cannot be empty.</source>
-      <translation type="unfinished">Custom character set cannot be empty.</translation>
+      <translation>自訂字元集不能為空白</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="40"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation type="unfinished">Could not find plugin to support scripting language: %1</translation>
+      <translation>無法找到plugin以支援scripting language: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="58"/>
       <source>Error while executing populating initial code: %1</source>
-      <translation type="unfinished">Error while executing populating initial code: %1</translation>
+      <translation>當產生initial code: %1 時發生錯誤</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="80"/>
       <source>Error while executing populating code: %1</source>
-      <translation type="unfinished">Error while executing populating code: %1</translation>
+      <translation>當產生code: %1 時發生錯誤</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>請選擇實作的語系</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="113"/>
       <source>Implementation code cannot be empty.</source>
-      <translation type="unfinished">Implementation code cannot be empty.</translation>
+      <translation>Implementation code 不能是空的</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="347"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation type="unfinished">Could not resolve data source for column: %1</translation>
+      <translation>無法解析資料來源, Column: %1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>無法解析table, Column: &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="788"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>無法初始化設定檔. 在應用程式重啟時，任何設定檔的異動及查詢歷史將遺失. 無法建立檔案在以下位置: %1</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="311"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">General purpose</translation>
+      <translation>通用目的說明</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="312"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Database support</translation>
+      <translation>資料庫支援</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="313"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Code formatter</translation>
+      <translation>Code formatter</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="314"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Scripting languages</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="315"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Exporting</translation>
+      <translation>匯出中</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="316"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Importing</translation>
+      <translation>匯入中...</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation type="unfinished">Table populating</translation>
+      <translation>Table 產生中</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
@@ -920,7 +920,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>All columns indexed by the index %1 已遺失. 在 table 修改後, 此 index 並不會建立.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
@@ -941,8 +941,8 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../tablemodifier.cpp" line="556"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>因 table %2 的異動導致無法更新 view %1
+view 將保留原始內容</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="718"/>
@@ -972,12 +972,12 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="193"/>
       <source>Execution interrupted.</source>
-      <translation type="unfinished">Execution interrupted.</translation>
+      <translation>執行中斷</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="234"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>資料庫未開啟</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="242"/>
@@ -1006,7 +1006,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
       <source>Error from %1: %2</source>
-      <translation type="unfinished">Error from %1: %2</translation>
+      <translation>從 %1: %2 引發的錯誤</translation>
     </message>
   </context>
   <context>
@@ -1015,31 +1015,31 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>資料庫</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Execution date</translation>
+      <translation>執行時間</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Time spent</translation>
+      <translation>所花費的時間</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Rows affected</translation>
+      <translation>被影響的列數</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>不能檢查 for updates (%1).</translation>
     </message>
   </context>
 </TS>
