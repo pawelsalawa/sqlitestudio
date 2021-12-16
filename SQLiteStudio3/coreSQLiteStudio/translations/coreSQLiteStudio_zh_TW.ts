@@ -197,7 +197,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="419"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
+      <translation>資料庫 %1 無法被附加至資料庫 %2, 所以 table %3 的資料將會被SQLiteStudio複製一份作為mediator. 此方法對於大table會很慢，請耐心等待.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="439"/>
@@ -303,7 +303,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation type="unfinished">Export was successful.</translation>
+      <translation>匯出成功。</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
@@ -498,7 +498,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>常數</translation>
     </message>
   </context>
   <context>
@@ -506,7 +506,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>常數值:</translation>
     </message>
   </context>
   <context>
@@ -515,7 +515,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populatedictionary.cpp" line="16"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation type="unfinished">Dictionary</translation>
+      <translation>字典</translation>
     </message>
   </context>
   <context>
@@ -523,12 +523,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation type="unfinished">Dictionary file</translation>
+      <translation>字典檔案</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation type="unfinished">Pick dictionary file</translation>
+      <translation>選擇字典檔</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
@@ -761,17 +761,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../common/utils.cpp" line="1025"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>無法開啟檔案 &apos;%1&apos; 為了讀取: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="420"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>無法開啟資料庫 %1。</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="1168"/>
       <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
+      <translation>結果集已過期或是無有效的資料</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="329"/>
@@ -787,7 +787,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>無法附加資料庫 %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
@@ -798,7 +798,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2517"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>Parser 溢位</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5793"/>
@@ -813,17 +813,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="92"/>
       <source>Dictionary file must exist and be readable.</source>
-      <translation type="unfinished">Dictionary file must exist and be readable.</translation>
+      <translation>字典檔必須存在並且可被讀取</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="54"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation type="unfinished">Maximum value cannot be less than minimum value.</translation>
+      <translation>最大值不能小於最小值</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="79"/>
       <source>Maximum length cannot be less than minimum length.</source>
-      <translation type="unfinished">Maximum length cannot be less than minimum length.</translation>
+      <translation>最大值不能小於最小值</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="90"/>
@@ -848,17 +848,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="112"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>請選擇實作的語系</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="113"/>
       <source>Implementation code cannot be empty.</source>
-      <translation type="unfinished">Implementation code cannot be empty.</translation>
+      <translation>Implementation code 不能是空的</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="347"/>
       <source>Could not resolve data source for column: %1</source>
-      <translation type="unfinished">Could not resolve data source for column: %1</translation>
+      <translation>無法解析資料來源, Column: %1</translation>
     </message>
     <message>
       <location filename="../selectresolver.cpp" line="419"/>
@@ -1039,7 +1039,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
@@ -1047,7 +1047,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>不能檢查 for updates (%1).</translation>
     </message>
   </context>
 </TS>
