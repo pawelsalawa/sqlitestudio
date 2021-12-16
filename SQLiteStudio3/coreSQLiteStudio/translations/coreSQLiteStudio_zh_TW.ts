@@ -920,7 +920,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../tablemodifier.cpp" line="446"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
+      <translation>All columns indexed by the index %1 已遺失. 在 table 修改後, 此 index 並不會建立.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
@@ -941,8 +941,8 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../tablemodifier.cpp" line="556"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
+      <translation>因 table %2 的異動導致無法更新 view %1
+view 將保留原始內容</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="718"/>
