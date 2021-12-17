@@ -11,6 +11,8 @@ env:
 name: Linux release build
 
 on:
+    schedule:
+        - cron: '30 3 * * *' # run at 3:30 AM UTC
     repository_dispatch:
         types: [lin_release]
 
