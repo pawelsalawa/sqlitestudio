@@ -11,6 +11,8 @@ env:
 name: MacOSX release build
 
 on:
+    schedule:
+        - cron: '0 3 * * *' # run at 3 AM UTC
     repository_dispatch:
         types: [mac_release]
 
