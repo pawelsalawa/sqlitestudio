@@ -930,12 +930,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>被trigger %1 包含的所有欄位異動均失效. 在 table 修改後, 此 Trigger 亦無法被建立.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="537"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
+      <translation>根據 table %2 的修改內容，導致無法更新 trigger %1</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="556"/>
@@ -959,12 +959,12 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-      <translation type="unfinished">Parsed query is not CREATE VIEW. It&apos;s: %1</translation>
+      <translation>解析後的查詢並非CREATE VIEW, 它是: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-      <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
+      <translation>SQLiteStudio 無法從回傳的新view中解析columns, 亦無法確認trigger 在重建程序中將導致失敗的狀況.</translation>
     </message>
   </context>
   <context>
@@ -982,7 +982,7 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="242"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>儘有單一查詢可被冋時執行</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="346"/>
