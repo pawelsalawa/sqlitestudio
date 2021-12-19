@@ -954,7 +954,7 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
-      <translation type="unfinished">Could not parse DDL of the view to be created. Details: %1</translation>
+      <translation>無法解析此view的DDL, 詳細資料請見: %1</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="33"/>
