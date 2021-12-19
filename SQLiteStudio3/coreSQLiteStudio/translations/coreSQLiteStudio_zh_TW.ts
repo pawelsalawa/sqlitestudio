@@ -988,12 +988,12 @@ view 將保留原始內容</translation>
       <location filename="../db/queryexecutor.cpp" line="346"/>
       <location filename="../db/queryexecutor.cpp" line="593"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>當執行count(*) 查詢時發生錯誤, 資料分頁功能亦被停用. 詳細錯誤資訊來自於資料庫: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="504"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-      <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
+      <translation>SQLiteStudio無法從此查詢解析metadata. 結果亦無法編輯</translation>
     </message>
   </context>
   <context>
