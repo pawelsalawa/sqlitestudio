@@ -95,7 +95,7 @@ macx: {
         out_file = $$join(out_file_parts)
         lib_name_parts = lib $$1 .dylib
         lib_name = $$join(lib_name_parts)
-        QMAKE_POST_LINK += install_name_tool -change $$lib_name @loader_path/../PlugIns/$$lib_name $$out_file
+        QMAKE_POST_LINK += "install_name_tool -change $$lib_name @loader_path/../PlugIns/$$lib_name \"$$out_file\";"
         export(QMAKE_POST_LINK)
 
         linker_flag_parts = -l $$1
@@ -109,7 +109,7 @@ macx: {
         out_file = $$join(out_file_parts)
         lib_name_parts = lib $$1 .dylib
         lib_name = $$join(lib_name_parts)
-        QMAKE_POST_LINK += install_name_tool -change $$lib_name @loader_path/../Frameworks/$$lib_name $$out_file
+        QMAKE_POST_LINK += "install_name_tool -change $$lib_name @loader_path/../Frameworks/$$lib_name \"$$out_file\";"
         export(QMAKE_POST_LINK)
 
         linker_flag_parts = -l $$1

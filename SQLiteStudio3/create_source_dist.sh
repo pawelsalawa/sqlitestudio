@@ -24,7 +24,7 @@ gzip -9 ../sqlitestudio-$VERSION.tar
 
 zip -r ../sqlitestudio-$VERSION.zip SQLiteStudio3 Plugins
 
-cd $OLDDIR
+cd "$OLDDIR"
 
 mv $TEMP/sqlitestudio-$VERSION.zip ../output
 mv $TEMP/sqlitestudio-$VERSION.tar.gz ../output
@@ -35,4 +35,4 @@ rm -rf $TEMP
 
 echo "Source packages stored in `pwd`"
 
-cd $OLDDIR
+cd "$OLDDIR"
