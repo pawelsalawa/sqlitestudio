@@ -21,7 +21,7 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-cd $1/SQLiteStudio
+cd "$1/SQLiteStudio"
 
 rm -rf SQLiteStudio.app/Contents/Frameworks
 rm -rf SQLiteStudio.app/Contents/PlugIns
@@ -39,7 +39,7 @@ cp -RP styles/* SQLiteStudio.app/Contents/PlugIns/styles
 cp -RP lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
 
 # CLI paths
-qtcore_path=`otool -L sqlitestudiocli | grep QtCore | awk '{print $1;}'`
+qtcore_path=`otool -L sqlitestudiocli | awk '/QtCore/ {print $1;}'`
 new_qtcore_path="@rpath/QtCore.framework/Versions/5/QtCore"
 
 cp -P sqlitestudiocli SQLiteStudio.app/Contents/MacOS
@@ -57,7 +57,7 @@ install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteS
 cdir=`pwd`
 cd ../../../lib/
 libdir=`pwd`
-cd $cdir
+cd "$cdir"
 
 echo "lib:"
 ls -l ../../../lib/
@@ -75,16 +75,16 @@ ls -l SQLiteStudio.app/Contents/Frameworks
 
 # Plugin paths
 function fixPluginPaths() {
-    for f in `ls $1`
+    for f in `ls "$1"`
     do
-        PLUGIN_FILE=$1/$f
-        if [ -f $PLUGIN_FILE ]; then
+        PLUGIN_FILE="$1/$f"
+        if [ -f "$PLUGIN_FILE" ]; then
     	    echo "Fixing paths for plugin $PLUGIN_FILE"
-            install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" $PLUGIN_FILE
-            install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.1.dylib" $PLUGIN_FILE
+            install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" "$PLUGIN_FILE"
+            install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.1.dylib" "$PLUGIN_FILE"
         fi
-        if [ -d $PLUGIN_FILE ]; then
-            fixPluginPaths $PLUGIN_FILE
+        if [ -d "$PLUGIN_FILE" ]; then
+            fixPluginPaths "$PLUGIN_FILE"
         fi
     done
 }
@@ -93,7 +93,7 @@ fixPluginPaths SQLiteStudio.app/Contents/PlugIns
 function replaceInfo() {
 	cdir=`pwd`
     echo Replacing Info.plist
-    cd $1/SQLiteStudio
+    cd "$1/SQLiteStudio"
     VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
     YEAR=`date '+%Y'`
 
@@ -102,19 +102,19 @@ function replaceInfo() {
     echo "New plist:"
     cat Info.plist.new
     mv Info.plist.new Info.plist
-	cd $cdir
+	cd "$cdir"
 }
 
 
 if [ "$3" == "dmg" ]; then
-    replaceInfo $1
-    $qt_deploy_bin SQLiteStudio.app -dmg
+    replaceInfo "$1"
+    "$qt_deploy_bin" SQLiteStudio.app -dmg
 elif [ "$3" == "dist" ]; then
-	replaceInfo $1
+	replaceInfo "$1"
 	
-	$qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
+	"$qt_deploy_bin" SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3
 
-	cd $1/SQLiteStudio
+	cd "$1/SQLiteStudio"
 	VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
 
 	mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
@@ -127,7 +127,7 @@ elif [ "$3" == "dist" ]; then
 	hdiutil attach -readwrite sqlitestudio-rw-$VERSION.dmg
 	
 	# Fix sqlite3 file in the image
-	cp -RPf $libdir/libsqlite3.0.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
+	cp -RPf "$libdir/libsqlite3.0.dylib" /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
 
 	# Fix python dependencies in the image
 	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libpython*
@@ -150,6 +150,6 @@ elif [ "$3" == "dist" ]; then
 	
     echo "Done."
 else
-    replaceInfo $1
+    replaceInfo "$1"
     $qt_deploy_bin SQLiteStudio.app
 fi
