@@ -925,7 +925,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../tablemodifier.cpp" line="490"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>當處理trigger %1時發生了問題。請注意此 trigger 可能尚未更新完成。</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="505"/>
@@ -949,7 +949,7 @@ view 將保留原始內容</translation>
       <location filename="../tablemodifier.cpp" line="742"/>
       <location filename="../tablemodifier.cpp" line="761"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>更新 trigger %2 中的SQL %1 時發生了錯誤，有可能是SQL %1 中參考了某張不能被修改的 table %3. 若有需要的話，如有需要請手動更新此trigger。</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
