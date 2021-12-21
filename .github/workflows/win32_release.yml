@@ -51,7 +51,7 @@ jobs:
             - uses: actions/setup-python@v2
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+                architecture: 'x86'
                 
             - name: Clone repo
               uses: actions/checkout@v2
