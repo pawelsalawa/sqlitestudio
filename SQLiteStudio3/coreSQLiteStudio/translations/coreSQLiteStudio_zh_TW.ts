@@ -1001,7 +1001,7 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>當呼叫JavaScript %1 時 ，無法確認資料庫是否有效。</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
