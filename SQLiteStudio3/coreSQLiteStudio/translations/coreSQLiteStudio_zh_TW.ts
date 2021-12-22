@@ -64,7 +64,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="162"/>
       <source>Old row reference</source>
-      <translation>新的 row 參考</translation>
+      <translation>舊的 row 參考</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="167"/>
@@ -293,7 +293,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
-      <translation type="unfinished">Export to the clipboard was successful.</translation>
+      <translation>已成功將資料匯出至剪貼簿</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
@@ -381,12 +381,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>當寫入檔案 %1:%2時發生錯誤。</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
       <source>Unsupported scripting language: %1</source>
-      <translation type="unfinished">Unsupported scripting language: %1</translation>
+      <translation>不支援的scripting language: %1</translation>
     </message>
   </context>
   <context>
@@ -743,7 +743,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>當匯出table後無法依序啟動交易. 錯誤訊息 %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
