@@ -150,6 +150,6 @@ elif [ "$3" == "dist" ]; then
 	
     echo "Done."
 else
+    "$qt_deploy_bin" SQLiteStudio.app
     replaceInfo "$1"
-    $qt_deploy_bin SQLiteStudio.app
 fi
