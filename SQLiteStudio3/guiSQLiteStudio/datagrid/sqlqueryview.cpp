@@ -727,6 +727,8 @@ void SqlQueryView::paste()
     QList<QStringList> deserializedRows = TsvSerializer::deserialize(mimeData->text());
     bool trimOnPaste = false;
     bool trimOnPasteAsked = false;
+    bool PasteAsNull = false;
+    bool PasteAsNullAsked = false;
 
     QList<QVariant> dataRow;
     QList<QList<QVariant>> dataToPaste;
@@ -747,7 +749,23 @@ void SqlQueryView::paste()
                 trimOnPaste = (choice == QMessageBox::Yes);
             }
 
-            dataRow << (trimOnPaste ? cell.trimmed() : cell);
+            if (cell=="NULL" && !PasteAsNullAsked)
+            {
+                QMessageBox::StandardButton choice2;
+                choice2 = QMessageBox::question(this, tr("Paste \"NULL\" as null value?"),
+                                               tr("The pasted text contains \"NULL\" literals. Do you want to consider them as NULL values?"));
+                PasteAsNullAsked = true;
+                PasteAsNull = (choice2 == QMessageBox::Yes);
+            }
+
+            if (cell=="NULL" && PasteAsNull)
+            {
+                dataRow << QVariant();
+            }
+            else
+            {
+                dataRow << (trimOnPaste ? cell.trimmed() : cell);
+            }
         }
 
         dataToPaste << dataRow;
