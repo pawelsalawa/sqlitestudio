@@ -88,7 +88,6 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
             - name: Install Tcl
-              shell: sh
               run: brew install tcl-tk
 
             - name: Prepare deps
