@@ -87,6 +87,10 @@ jobs:
                 sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
+            - name: Install Tcl
+              shell: sh
+              run: brew install tcl-tk
+
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
@@ -105,7 +109,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                env PATH="/usr/local/opt/tcl-tk/bin:$PATH" qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
               
             - name: Build packages
