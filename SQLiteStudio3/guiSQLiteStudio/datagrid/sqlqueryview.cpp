@@ -727,6 +727,8 @@ void SqlQueryView::paste()
     QList<QStringList> deserializedRows = TsvSerializer::deserialize(mimeData->text());
     bool trimOnPaste = false;
     bool trimOnPasteAsked = false;
+    bool pasteAsNull = false;
+    bool pasteAsNullAsked = false;
 
     QList<QVariant> dataRow;
     QList<QList<QVariant>> dataToPaste;
@@ -740,14 +742,30 @@ void SqlQueryView::paste()
             if ((cell.at(0).isSpace() || cell.at(cell.size() - 1).isSpace()) && !trimOnPasteAsked)
 #endif
             {
-                QMessageBox::StandardButton choice;
-                choice = QMessageBox::question(this, tr("Trim pasted text?"),
+                QMessageBox::StandardButton trimChoice;
+                trimChoice = QMessageBox::question(this, tr("Trim pasted text?"),
                                                tr("The pasted text contains leading or trailing white space. Trim it automatically?"));
                 trimOnPasteAsked = true;
-                trimOnPaste = (choice == QMessageBox::Yes);
+                trimOnPaste = (trimChoice == QMessageBox::Yes);
             }
 
-            dataRow << (trimOnPaste ? cell.trimmed() : cell);
+            if (cell=="NULL" && !pasteAsNullAsked)
+            {
+                QMessageBox::StandardButton nullChoice;
+                nullChoice = QMessageBox::question(this, tr("Paste \"NULL\" as null value?"),
+                                               tr("The pasted text contains \"NULL\" literals. Do you want to consider them as NULL values?"));
+                pasteAsNullAsked = true;
+                pasteAsNull = (nullChoice == QMessageBox::Yes);
+            }
+
+            if (cell=="NULL" && pasteAsNull)
+            {
+                dataRow << QVariant();
+            }
+            else
+            {
+                dataRow << (trimOnPaste ? cell.trimmed() : cell);
+            }
         }
 
         dataToPaste << dataRow;
