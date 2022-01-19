@@ -92,8 +92,7 @@ macx: {
     message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
 
     # Find tclConfig.sh
-    TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
-    TCL_CONFIG = $$TCL_CONFIG_DIR/../tclConfig.sh
+    TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
 
     # Define other libs required when linking with Tcl
     eval($$system(cat $$TCL_CONFIG | grep TCL_LIBS))
