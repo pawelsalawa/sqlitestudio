@@ -727,8 +727,8 @@ void SqlQueryView::paste()
     QList<QStringList> deserializedRows = TsvSerializer::deserialize(mimeData->text());
     bool trimOnPaste = false;
     bool trimOnPasteAsked = false;
-    bool PasteAsNull = false;
-    bool PasteAsNullAsked = false;
+    bool pasteAsNull = false;
+    bool pasteAsNullAsked = false;
 
     QList<QVariant> dataRow;
     QList<QList<QVariant>> dataToPaste;
@@ -742,23 +742,23 @@ void SqlQueryView::paste()
             if ((cell.at(0).isSpace() || cell.at(cell.size() - 1).isSpace()) && !trimOnPasteAsked)
 #endif
             {
-                QMessageBox::StandardButton choice;
-                choice = QMessageBox::question(this, tr("Trim pasted text?"),
+                QMessageBox::StandardButton trimChoice;
+                trimChoice = QMessageBox::question(this, tr("Trim pasted text?"),
                                                tr("The pasted text contains leading or trailing white space. Trim it automatically?"));
                 trimOnPasteAsked = true;
-                trimOnPaste = (choice == QMessageBox::Yes);
+                trimOnPaste = (trimChoice == QMessageBox::Yes);
             }
 
-            if (cell=="NULL" && !PasteAsNullAsked)
+            if (cell=="NULL" && !pasteAsNullAsked)
             {
-                QMessageBox::StandardButton choice2;
-                choice2 = QMessageBox::question(this, tr("Paste \"NULL\" as null value?"),
+                QMessageBox::StandardButton nullChoice;
+                nullChoice = QMessageBox::question(this, tr("Paste \"NULL\" as null value?"),
                                                tr("The pasted text contains \"NULL\" literals. Do you want to consider them as NULL values?"));
-                PasteAsNullAsked = true;
-                PasteAsNull = (choice2 == QMessageBox::Yes);
+                pasteAsNullAsked = true;
+                pasteAsNull = (nullChoice == QMessageBox::Yes);
             }
 
-            if (cell=="NULL" && PasteAsNull)
+            if (cell=="NULL" && pasteAsNull)
             {
                 dataRow << QVariant();
             }
