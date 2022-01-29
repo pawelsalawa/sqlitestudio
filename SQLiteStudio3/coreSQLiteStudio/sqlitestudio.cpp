@@ -333,7 +333,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     pluginManager = new PluginManagerImpl();
     dbManager = new DbManagerImpl();
 
-    pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));
+    pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"), "generalPurposePluginsPage");
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support", "plugin category name"));
     pluginManager->registerPluginType<CodeFormatterPlugin>(QObject::tr("Code formatter", "plugin category name"), "formatterPluginsPage");
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages", "plugin category name"));
