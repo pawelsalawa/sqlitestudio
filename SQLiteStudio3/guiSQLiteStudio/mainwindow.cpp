@@ -938,7 +938,7 @@ void MainWindow::fixFonts()
     {
         typed = dynamic_cast<CfgTypedEntry<QFont>*>(cfg);
         if (typed->get().pointSize() == 0)
-            cfg->set(cfg->getDefultValue());
+            cfg->set(cfg->getDefaultValue());
     }
 }
 
