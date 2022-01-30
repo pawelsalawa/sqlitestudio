@@ -1141,7 +1141,7 @@ QList<QWidget*> ConfigDialog::prepareCodeSyntaxColorsForStyle()
     for (QWidget*& w : configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup))
     {
         CfgEntry* entry = configMapper->getConfigForWidget(w);
-        if (entry->getDefultValue() == entry->get())
+        if (entry->getDefaultValue() == entry->get())
             unmodified << w;
     }
     return unmodified;

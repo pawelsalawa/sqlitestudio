@@ -114,5 +114,5 @@ void setDefaultLanguage(const QString& lang)
 
 QString getConfigLanguageDefault()
 {
-    return CFG_CORE.General.Language.getDefultValue().toString();
+    return CFG_CORE.General.Language.getDefaultValue().toString();
 }

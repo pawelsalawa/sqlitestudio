@@ -293,14 +293,14 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
     {
         configValue = config[cfgEntry->getFullKey()];
         if (!configValue.isValid())
-            configValue = cfgEntry->getDefultValue();
+            configValue = cfgEntry->getDefaultValue();
     }
     else if (cfgEntry->isPersistable())
     {
         // In case this is a persistable config, we should have everything in the config hash, which is just one, initial database query.
         // If we don't, than we don't want to call get(), because it will cause one more query to the database for it.
         // We go with the default value.
-        configValue = cfgEntry->getDefultValue();
+        configValue = cfgEntry->getDefaultValue();
     }
     else
     {
@@ -337,7 +337,7 @@ void ConfigMapper::applyConfigDefaultValueToWidget(QWidget* widget)
         return;
     }
 
-    applyConfigToWidget(widget, key, key->getDefultValue());
+    applyConfigToWidget(widget, key, key->getDefaultValue());
 }
 
 CfgEntry* ConfigMapper::getConfigForWidget(QWidget* widget)

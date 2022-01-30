@@ -56,7 +56,7 @@ QVariant CfgEntry::get() const
     return cfgVal;
 }
 
-QVariant CfgEntry::getDefultValue() const
+QVariant CfgEntry::getDefaultValue() const
 {
     if (defValueFunc)
         return (*defValueFunc)();
@@ -107,7 +107,7 @@ void CfgEntry::translateTitle()
 
 void CfgEntry::reset()
 {
-    set(getDefultValue());
+    set(getDefaultValue());
 }
 
 bool CfgEntry::isPersistable() const

@@ -23,7 +23,7 @@ class API_EXPORT CfgEntry : public QObject
         virtual ~CfgEntry();
 
         QVariant get() const;
-        QVariant getDefultValue() const;
+        QVariant getDefaultValue() const;
         void set(const QVariant& value);
         operator QString() const;
         void defineDefaultValueFunction(DefaultValueProviderFunc func);
