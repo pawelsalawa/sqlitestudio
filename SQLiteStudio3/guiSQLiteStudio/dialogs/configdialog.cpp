@@ -1352,8 +1352,7 @@ QTreeWidgetItem* ConfigDialog::createPluginsTypeItem(const QString& widgetName, 
         if (item->statusTip(0) == widgetName)
             return item;
     }
-    return nullptr;
-
+    return new QTreeWidgetItem({title});
 }
 
 QTreeWidgetItem* ConfigDialog::getItemByTitle(const QString& title) const
@@ -1403,8 +1402,6 @@ void ConfigDialog::initPlugins()
     for (PluginType*& pluginType : PLUGINS->getPluginTypes())
     {
         typeItem = createPluginsTypeItem(pluginType->getConfigUiForm(), pluginType->getTitle());
-        if (!typeItem)
-            continue;
 
         item->addChild(typeItem);
         pluginTypeToItemMap[pluginType] = typeItem;
