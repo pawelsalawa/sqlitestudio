@@ -6,17 +6,17 @@
     <message>
       <location filename="../main.cpp" line="51"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation>Interfaz de usuario gráfica para SQLiteStudio, un gestor de bases de datos SQLite.</translation>
+      <translation>Interfaz GUI para SQLiteStudio, un gestor de SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation>Habilita los mensajes de depuración en la consola (accesible con F12).</translation>
+      <translation>Habilita mensajes de depuración en consola (accesible con F12).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation>Redirige los mensajes de depuración a la salida estándar (fuerza el modo de depuración).</translation>
+      <translation>Redirige mensajes de depuración a salida estándar (fuerza el modo de depuración).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -36,12 +36,12 @@
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>Permite la depuración de cada consulta SQL que se envía a cualquier base de datos.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>Limita los mensajes de consulta SQL a sólo la &lt;database&gt; dada.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation type="unfinished">Select configuration directory</translation>
+      <translation>Directorio de configuración</translation>
     </message>
   </context>
 </TS>
