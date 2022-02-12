@@ -7,12 +7,12 @@
       <location filename="../db/abstractdb.cpp" line="336"/>
       <location filename="../db/abstractdb.cpp" line="353"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>Kan geen aanvraag uitvoeren op een gesloten databank.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="636"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>Fout bij het koppelen van de databank: %1: %2</translation>
     </message>
   </context>
   <context>
