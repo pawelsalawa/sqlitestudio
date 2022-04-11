@@ -4025,22 +4025,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="300"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
-      <translation type="unfinished">Populating configuration for this column is invalid or incomplete.</translation>
+      <translation>La configurazione di popolamento per questa colonna non è valida o incompleta.</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="331"/>
       <source>Select database with table to populate</source>
-      <translation type="unfinished">Select database with table to populate</translation>
+      <translation>Seleziona il database con la tabella da popolare</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="332"/>
       <source>Select table to populate</source>
-      <translation type="unfinished">Select table to populate</translation>
+      <translation>Seleziona la tabella da popolare</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="333"/>
       <source>You have to select at least one column.</source>
-      <translation type="unfinished">You have to select at least one column.</translation>
+      <translation>Devi selezionare almeno una colonna.</translation>
     </message>
   </context>
   <context>
@@ -4048,7 +4048,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
-      <translation type="unfinished">Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</translation>
+      <translation>Impossibile modificare le colonne che sono il risultato di %1 istruzioni composte (una che include %2, %3 o %4 parole chiave).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
