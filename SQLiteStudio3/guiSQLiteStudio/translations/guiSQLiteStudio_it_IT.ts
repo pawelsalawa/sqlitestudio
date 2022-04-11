@@ -4992,7 +4992,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="146"/>
       <source>Load remaining part of the value</source>
-      <translation type="unfinished">Load remaining part of the value</translation>
+      <translation>Carica la parte rimanente del valore</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
@@ -5001,28 +5001,28 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="608"/>
       <source>Cannot edit this cell. Details: %1</source>
-      <translation type="unfinished">Cannot edit this cell. Details: %1</translation>
+      <translation>Impossibile modificare questa cella. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="165"/>
       <source>The row is marked for deletion.</source>
-      <translation type="unfinished">The row is marked for deletion.</translation>
+      <translation>La riga è contrassegnata per l'eliminazione.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="177"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="502"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of this table has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>La struttura di questa tabella è cambiata da quando sono stati caricati gli ultimi dati. Ricarica i dati per procedere.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="340"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
+      <translation>Modificare un ampio contenuto in un editor di celle in linea non è una buona idea. Può diventare lento e scomodo. È meglio modificare tali grandi contenuti in una vista modulo, o in un editor popup (disponibile sotto il menu tasto-destro).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="494"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
-      <translation type="unfinished">Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</translation>
+      <translation>La chiave esterna per la colonna %2 ha più di %1 valori possibili. Sono troppi per essere visualizzati nell'elenco a discesa. È necessario modificare il valore manualmente.</translation>
     </message>
   </context>
   <context>
@@ -5031,52 +5031,52 @@ find next</translation>
       <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
       <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
       <source>Only one query can be executed simultaneously.</source>
-      <translation type="unfinished">Only one query can be executed simultaneously.</translation>
+      <translation>Solo una query può essere eseguita contemporaneamente.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
       <source>Cannot execute query on undefined or invalid database.</source>
-      <translation type="unfinished">Cannot execute query on undefined or invalid database.</translation>
+      <translation>Impossibile eseguire la query su database non definito o non valido.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
       <source>Cannot execute empty query.</source>
-      <translation type="unfinished">Cannot execute empty query.</translation>
+      <translation>Impossibile eseguire l'interrogazione vuota.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
       <source>Uncommitted data</source>
-      <translation type="unfinished">Uncommitted data</translation>
+      <translation>Dati non salvati</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-      <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
+      <translation>Ci sono modifiche dei dati senza commit. Vuoi procedere comunque? Tutte le modifiche senza commit andranno perse.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
-      <translation type="unfinished">Cannot commit the data for a cell that refers to the already closed database.</translation>
+      <translation>Impossibile eseguire il commit dei dati per una cella che si riferisce al database già chiuso.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
       <source>Could not begin transaction on the database. Details: %1</source>
-      <translation type="unfinished">Could not begin transaction on the database. Details: %1</translation>
+      <translation>Impossibile avviare la transazione nel database. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
-      <translation type="unfinished">An error occurred while committing the transaction: %1</translation>
+      <translation>Si è verificato un errore durante il commit della transazione: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
       <source>An error occurred while rolling back the transaction: %1</source>
-      <translation type="unfinished">An error occurred while rolling back the transaction: %1</translation>
+      <translation>Si è verificato un errore durante il ripristino della transazione: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-      <translation type="unfinished">Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</translation>
+      <translation>Hai provato a salvare una cella che non è modificabile (ancora modificata e in attesa di commit)! Questo è un bug. Si prega di segnalarlo.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
@@ -5343,47 +5343,47 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
       <source>Extension manager window has uncommitted modifications.</source>
-      <translation type="unfinished">Extension manager window has uncommitted modifications.</translation>
+      <translation>La finestra del gestore di estensioni ha modifiche senza commit.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="65"/>
       <source>Extension manager</source>
-      <translation type="unfinished">Extension manager</translation>
+      <translation>Gestore estensioni</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
       <source>Commit all extension changes</source>
-      <translation type="unfinished">Commit all extension changes</translation>
+      <translation>Esegue il commit di tutte le modifiche all'estensione</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
       <source>Rollback all extension changes</source>
-      <translation type="unfinished">Rollback all extension changes</translation>
+      <translation>Annulla tutte le modifiche all'estensione</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
       <source>Add new extension</source>
-      <translation type="unfinished">Add new extension</translation>
+      <translation>Aggiungi una nuova estensione</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
       <source>Remove selected extension</source>
-      <translation type="unfinished">Remove selected extension</translation>
+      <translation>Rimuovi l'estensione selezionata</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="76"/>
       <source>Editing extensions manual</source>
-      <translation type="unfinished">Editing extensions manual</translation>
+      <translation>Modifica le estensioni manualmente</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="236"/>
       <source>File with given path does not exist or is not readable.</source>
-      <translation type="unfinished">File with given path does not exist or is not readable.</translation>
+      <translation>Il file con percorso fornito non esiste o non è leggibile.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="242"/>
       <source>Unable to load extension: %1</source>
-      <translation type="unfinished">Unable to load extension: %1</translation>
+      <translation>Impossibile caricare l'estensione: %1</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="356"/>
