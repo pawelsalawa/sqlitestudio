@@ -1001,7 +1001,7 @@ La vista rimarrà così com'è.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>Nessun database disponibile nel contesto attuale, mentre si richiamava il comando JavaScript %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1047,7 +1047,7 @@ La vista rimarrà così com'è.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>Impossibile controllare gli aggiornamenti: (%1).</translation>
     </message>
   </context>
 </TS>
