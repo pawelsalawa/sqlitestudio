@@ -5947,92 +5947,92 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
+      <translation>Modifiche per la tabella &apos;%1&apos; memorizzate con successo.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Modifiche memorizzate per la tabella &apos;%1&apos; (nominate prima del &apos;%2&apos;) con successo.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
       <source>Could not commit table structure. Error message: %1</source>
       <comment>table window</comment>
-      <translation type="unfinished">Could not commit table structure. Error message: %1</translation>
+      <translation>Impossibile eseguire il commit della struttura della tabella. Messaggio di errore: %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="898"/>
       <source>Reset autoincrement</source>
-      <translation type="unfinished">Reset autoincrement</translation>
+      <translation>Reimposta l'autoincremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="898"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-      <translation type="unfinished">Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</translation>
+      <translation>Sei sicuro di voler ripristinare il valore dell'incremento automatico per la tabella &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="905"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-      <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
+      <translation>Si è verificato un errore durante il tentativo di ripristinare il valore dell'incremento automatico per la tabella &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="907"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
+      <translation>Il valore dell'incremento automatico per la tabella &apos;%1&apos; è stato ripristinato con successo.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>Nome vuoto</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-      <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a table with blank name?</translation>
+      <translation>Un nome vuoto per la tabella è consentito in SQLite, ma non è raccomandato.
+Sei sicuro di voler creare una tabella con il nome vuoto?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1004"/>
       <source>Cannot create a table without at least one column.</source>
-      <translation type="unfinished">Cannot create a table without at least one column.</translation>
+      <translation>Impossibile creare una tabella senza almeno una colonna.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1030"/>
       <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
-      <translation type="unfinished">Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</translation>
+      <translation>Impossibile creare la tabella %1, se non ha una chiave primaria definita. Deselezionare la %2 o definire una chiave primaria.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1037"/>
       <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
-      <translation type="unfinished">Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</translation>
+      <translation>Impossibile usare l'auto incremento per la chiave primaria quando viene utilizzata la clausola %1. Deseleziona la casella %2 o l'auto incremento in una chiave primaria.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1214"/>
       <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete table constraint &apos;%1&apos;?</translation>
+      <translation>Sei sicuro di voler eliminare il vincolo della tabella &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1215"/>
       <source>Delete constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>Elimina vincolo</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1270"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Impossibile esportare, perché non è stato caricato nessun plugin di esportazione.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1283"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
+      <translation>Impossibile importare, perché non è stato caricato alcun plugin di importazione.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Modifiche senza commit</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1317"/>
