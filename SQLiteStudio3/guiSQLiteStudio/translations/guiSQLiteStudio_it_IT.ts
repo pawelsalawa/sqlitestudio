@@ -4053,42 +4053,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
-      <translation type="unfinished">The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</translation>
+      <translation>Il meccanismo di esecuzione della query ha avuto problemi con l'estrazione corretta dei ROWID. Questo potrebbe essere un bug nell'applicazione. Potresti volerlo segnalare.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
-      <translation type="unfinished">Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</translation>
+      <translation>La colonna richiesta è il risultato di un'espressione SQL invece di una semplice selezione di colonne. Tali colonne non possono essere modificate.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
-      <translation type="unfinished">Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</translation>
+      <translation>La colonna richiesta appartiene alla tabella SQLite limitata. Queste tabelle non possono essere modificate direttamente.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
       <source>Cannot edit results of query other than %1.</source>
-      <translation type="unfinished">Cannot edit results of query other than %1.</translation>
+      <translation>Impossibile modificare i risultati di query diversi da %1.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
-      <translation type="unfinished">Cannot edit columns that are result of aggregated %1 statements.</translation>
+      <translation>Impossibile modificare le colonne che sono il risultato di %1 istruzioni aggregate.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
-      <translation type="unfinished">Cannot edit columns that are result of %1 statement.</translation>
+      <translation>Impossibile modificare le colonne che sono il risultato dell'istruzione %1.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
-      <translation type="unfinished">Cannot edit columns that are result of common table expression statement (%1).</translation>
+      <translation>Impossibile modificare le colonne che sono il risultato di un'espressione di tabella comune (%1).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit table generated columns.</source>
-      <translation type="unfinished">Cannot edit table generated columns.</translation>
+      <translation>Impossibile modificare le colonne generate dalla tabella.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="384"/>
@@ -4097,163 +4097,163 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="474"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">on conflict: %1</translation>
+      <translation>su conflitto: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="404"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">references table %1, column %2</translation>
+      <translation>riferimento tabella %1, colonna %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="471"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">condition: %1</translation>
+      <translation>condizione: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="491"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">collation name: %1</translation>
+      <translation>nome dell'ordinamento: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="506"/>
       <source>generated column type: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">generated column type: %1</translation>
+      <translation>tipo di colonna generato: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Data grid view</source>
-      <translation type="unfinished">Data grid view</translation>
+      <translation>Visualizzazione griglia dati</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
       <source>Copy cell(s) contents to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents to clipboard</translation>
+      <translation>Copia il contenuto delle celle negli appunti</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents together with header to clipboard</translation>
+      <translation>Copia i contenuti delle celle insieme all'intestazione negli appunti</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="25"/>
       <source>Paste cell(s) contents from clipboard</source>
-      <translation type="unfinished">Paste cell(s) contents from clipboard</translation>
+      <translation>Incolla il contenuto delle celle dagli appunti</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="27"/>
       <source>Set empty value to selected cell(s)</source>
-      <translation type="unfinished">Set empty value to selected cell(s)</translation>
+      <translation>Imposta valore vuoto per le celle selezionate</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="28"/>
       <source>Set NULL value to selected cell(s)</source>
-      <translation type="unfinished">Set NULL value to selected cell(s)</translation>
+      <translation>Imposta valore NULL per le celle selezionate</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="29"/>
       <source>Commit changes to cell(s) contents</source>
-      <translation type="unfinished">Commit changes to cell(s) contents</translation>
+      <translation>Esegue il commit delle modifiche ai contenuti delle celle</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="30"/>
       <source>Rollback changes to cell(s) contents</source>
-      <translation type="unfinished">Rollback changes to cell(s) contents</translation>
+      <translation>Annulla e ripristina le modifiche ai contenuti delle celle</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="31"/>
       <source>Delete selected data row</source>
-      <translation type="unfinished">Delete selected data row</translation>
+      <translation>Elimina riga di dati selezionata</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="32"/>
       <source>Insert new data row</source>
-      <translation type="unfinished">Insert new data row</translation>
+      <translation>Inserisci nuova riga di dati</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="33"/>
       <source>Open contents of selected cell in a separate editor</source>
-      <translation type="unfinished">Open contents of selected cell in a separate editor</translation>
+      <translation>Apre il contenuto della cella selezionata in un editor separato</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="640"/>
       <source>Total pages available: %1</source>
-      <translation type="unfinished">Total pages available: %1</translation>
+      <translation>Pagine totali disponibili: %1</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="650"/>
       <source>Total rows loaded: %1</source>
-      <translation type="unfinished">Total rows loaded: %1</translation>
+      <translation>Righe totali caricate: %1</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="21"/>
       <source>Data view (both grid and form)</source>
-      <translation type="unfinished">Data view (both grid and form)</translation>
+      <translation>Visualizzazione dati (sia griglia che form)</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="22"/>
       <source>Refresh data</source>
-      <translation type="unfinished">Refresh data</translation>
+      <translation>Aggiorna dati</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="23"/>
       <source>Switch to grid view of the data</source>
-      <translation type="unfinished">Switch to grid view of the data</translation>
+      <translation>Passa alla visualizzazione a griglia dei dati</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="24"/>
       <source>Switch to form view of the data</source>
-      <translation type="unfinished">Switch to form view of the data</translation>
+      <translation>Passa alla visualizzazione del modulo dei dati</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="28"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Lista database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="29"/>
       <source>Delete selected item</source>
-      <translation type="unfinished">Delete selected item</translation>
+      <translation>Elimina elemento selezionato</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="30"/>
       <source>Clear filter contents</source>
-      <translation type="unfinished">Clear filter contents</translation>
+      <translation>Cancella contenuto filtro</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="31"/>
       <source>Refresh schema</source>
-      <translation type="unfinished">Refresh schema</translation>
+      <translation>Aggiorna schema</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="32"/>
       <source>Refresh all schemas</source>
-      <translation type="unfinished">Refresh all schemas</translation>
+      <translation>Aggiorna tutti gli schemi</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="33"/>
       <source>Add database</source>
-      <translation type="unfinished">Add database</translation>
+      <translation>Aggiungi database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="34"/>
       <source>Select all items</source>
-      <translation type="unfinished">Select all items</translation>
+      <translation>Seleziona tutti gli elementi</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="35"/>
       <source>Copy selected item(s)</source>
-      <translation type="unfinished">Copy selected item(s)</translation>
+      <translation>Copia gli elementi selezionati</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <location filename="../multieditor/multieditortext.h" line="15"/>
       <location filename="../sqleditor.h" line="31"/>
       <source>Paste from clipboard</source>
-      <translation type="unfinished">Paste from clipboard</translation>
+      <translation>Incolla dagli appunti</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
@@ -5081,45 +5081,45 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
-      <translation type="unfinished">An error occurred while committing the data: %1</translation>
+      <translation>Si è verificato un errore durante il commit dei dati: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
-      <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
+      <translation>Il numero di righe per pagina è decrementato a %1 a causa del numero di colonne (%2) nella vista dati.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1405"/>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Error while executing SQL query on database &apos;%1&apos;: %2</translation>
+      <translation>Errore durante l'esecuzione della query SQL nel database &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1459"/>
       <source>Error while loading query results: %1</source>
-      <translation type="unfinished">Error while loading query results: %1</translation>
+      <translation>Errore durante il caricamento dei risultati della query: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>Inserisci righe multiple</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1917"/>
       <source>Number of rows to insert:</source>
-      <translation type="unfinished">Number of rows to insert:</translation>
+      <translation>Numero di righe da inserire:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Delete rows</source>
-      <translation type="unfinished">Delete rows</translation>
+      <translation>Elimina righe</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1973"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
-      <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
-Such deletion will be permanent. Are you sure you want to delete them?</translation>
+      <translation>Stai per cancellare le righe appena inserite che non sono ancora committate. Numeri di riga: %1
+Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translation>
     </message>
   </context>
   <context>
@@ -5127,132 +5127,132 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
-      <translation type="unfinished">Go to referenced row in...</translation>
+      <translation>Vai alla riga di riferimento in...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copia</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="90"/>
       <source>Copy with headers</source>
-      <translation type="unfinished">Copy with headers</translation>
+      <translation>Copia con intestazioni</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy as...</source>
-      <translation type="unfinished">Copy as...</translation>
+      <translation>Copia come...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Incolla</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Paste as...</source>
-      <translation type="unfinished">Paste as...</translation>
+      <translation>Incolla come...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Set NULL values</source>
-      <translation type="unfinished">Set NULL values</translation>
+      <translation>Imposta valori NULL</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Erase values</source>
-      <translation type="unfinished">Erase values</translation>
+      <translation>Cancella valori</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Commit</source>
-      <translation type="unfinished">Commit</translation>
+      <translation>Commit</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Rollback</source>
-      <translation type="unfinished">Rollback</translation>
+      <translation>Rollback</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit selected cells</source>
-      <translation type="unfinished">Commit selected cells</translation>
+      <translation>Committa celle selezionate</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Rollback selected cells</source>
-      <translation type="unfinished">Rollback selected cells</translation>
+      <translation>Ripristina celle selezionate</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Define columns to sort by</source>
-      <translation type="unfinished">Define columns to sort by</translation>
+      <translation>Definire le colonne da ordinare per</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
       <source>Remove custom sorting</source>
-      <translation type="unfinished">Remove custom sorting</translation>
+      <translation>Rimuovi ordinamento personalizzato</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
       <source>Insert row</source>
-      <translation type="unfinished">Insert row</translation>
+      <translation>Inserisci riga</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>Inserisci righe multiple</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
       <source>Delete selected row</source>
-      <translation type="unfinished">Delete selected row</translation>
+      <translation>Elimina riga selezionata</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Load full values</source>
-      <translation type="unfinished">Load full values</translation>
+      <translation>Carica i valori completi</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
       <source>Edit value in editor</source>
-      <translation type="unfinished">Edit value in editor</translation>
+      <translation>Modifica valore nell'editor</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="162"/>
       <source>Show value in a viewer</source>
-      <translation type="unfinished">Show value in a viewer</translation>
+      <translation>Mostra valore in un visualizzatore</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="180"/>
       <source>Generate query for selected cells</source>
-      <translation type="unfinished">Generate query for selected cells</translation>
+      <translation>Genera query per le celle selezionate</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="345"/>
       <source>No items selected to paste clipboard contents to.</source>
-      <translation type="unfinished">No items selected to paste clipboard contents to.</translation>
+      <translation>Nessun elemento selezionato in cui incollare il contenuto degli appunti.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
       <source>Cannot paste data. Details: %1</source>
-      <translation type="unfinished">Cannot paste data. Details: %1</translation>
+      <translation>Impossibile incollare i dati. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="351"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>La struttura di almeno una tabella utilizzata è cambiata dall'ultimo caricamento dei dati. Ricarica i dati per procedere.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>Cannot paste to a cell. Details: %1</source>
-      <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
+      <translation>Impossibile incollare in una cella. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>The row is marked for deletion.</source>
-      <translation type="unfinished">The row is marked for deletion.</translation>
+      <translation>La riga è contrassegnata per l'eliminazione.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="432"/>
