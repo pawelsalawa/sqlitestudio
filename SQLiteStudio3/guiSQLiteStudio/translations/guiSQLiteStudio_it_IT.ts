@@ -3804,37 +3804,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="102"/>
       <source>Tab changes focus</source>
-      <translation type="unfinished">Tab changes focus</translation>
+      <translation>Cambio focus scheda</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="103"/>
       <source>Cut</source>
-      <translation type="unfinished">Cut</translation>
+      <translation>Taglia</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="104"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copia</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="105"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Incolla</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="106"/>
       <source>Delete</source>
-      <translation type="unfinished">Delete</translation>
+      <translation>Elimina</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="107"/>
       <source>Undo</source>
-      <translation type="unfinished">Undo</translation>
+      <translation>Annulla</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="108"/>
       <source>Redo</source>
-      <translation type="unfinished">Redo</translation>
+      <translation>Ripeti</translation>
     </message>
   </context>
   <context>
@@ -3842,7 +3842,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="184"/>
       <source>Text</source>
-      <translation type="unfinished">Text</translation>
+      <translation>Testo</translation>
     </message>
   </context>
   <context>
@@ -3850,7 +3850,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortime.cpp" line="89"/>
       <source>Time</source>
-      <translation type="unfinished">Time</translation>
+      <translation>Tempo</translation>
     </message>
   </context>
   <context>
@@ -3858,59 +3858,59 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newconstraintdialog.ui" line="20"/>
       <source>New constraint</source>
-      <translation type="unfinished">New constraint</translation>
+      <translation>Nuovo vincolo</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
       <source>Primary Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>Chiave Principale</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
       <source>Foreign Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Chiave Esterna</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
       <source>Unique</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Esclusivo</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
       <source>Check</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>Controllo</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
       <source>Not NULL</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>Non NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
       <source>Collate</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Ordinamento</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
       <source>Generated</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Generato</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
       <source>Default</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Default</translation>
+      <translation>Predefinito</translation>
     </message>
   </context>
   <context>
@@ -3918,52 +3918,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="14"/>
       <source>SQLiteStudio updates</source>
-      <translation type="unfinished">SQLiteStudio updates</translation>
+      <translation>Aggiornamenti di SQLiteStudio</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="26"/>
       <source>New version is available!</source>
-      <translation type="unfinished">New version is available!</translation>
+      <translation>È disponibile una nuova versione!</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="43"/>
       <source>0.0.0</source>
-      <translation type="unfinished">0.0.0</translation>
+      <translation>0.0.0</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="53"/>
       <source>Download new version!</source>
-      <translation type="unfinished">Download new version!</translation>
+      <translation>Scarica la nuova versione!</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="66"/>
       <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
-      <translation type="unfinished">New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</translation>
+      <translation>Il pacchetto della nuova versione verrà scaricato. Starà a voi installarlo quando sarete pronti.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="73"/>
       <source>Open SQLiteStudio home page.</source>
-      <translation type="unfinished">Open SQLiteStudio home page.</translation>
+      <translation>Apri la home page SQLiteStudio.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="86"/>
       <source>Read release notes &amp;&amp; download package yourself.</source>
-      <translation type="unfinished">Read release notes &amp;&amp; download package yourself.</translation>
+      <translation>Leggi le note di rilascio &amp;&amp; scarica tu stesso il pacchetto.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="106"/>
       <source>Just close this window.</source>
-      <translation type="unfinished">Just close this window.</translation>
+      <translation>Chiudete questa finestra e basta.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="116"/>
       <source>Check for updates on startup</source>
-      <translation type="unfinished">Check for updates on startup</translation>
+      <translation>Controlla gli aggiornamenti all'avvio</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="93"/>
       <source>Not now.</source>
-      <translation type="unfinished">Not now.</translation>
+      <translation>Non ora.</translation>
     </message>
   </context>
   <context>
@@ -3971,12 +3971,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
       <source>Populating configuration</source>
-      <translation type="unfinished">Populating configuration</translation>
+      <translation>Configurazione del popolamento</translation>
     </message>
     <message>
       <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
       <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
-      <translation type="unfinished">Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</translation>
+      <translation>Configurazione di &lt;b&gt;%1&lt;/b&gt; per la colonna &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>
   </context>
   <context>
@@ -3984,12 +3984,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="14"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Popola tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
@@ -4258,37 +4258,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tabelle</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Indici</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="57"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Triggers</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="62"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>Viste</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="67"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colonne</translation>
     </message>
     <message>
       <location filename="../formview.h" line="16"/>
       <source>Data form view</source>
-      <translation type="unfinished">Data form view</translation>
+      <translation>Vista modulo dati</translation>
     </message>
     <message>
       <location filename="../formview.h" line="17"/>
       <source>Commit changes for current row</source>
-      <translation type="unfinished">Commit changes for current row</translation>
+      <translation>Commit delle modifiche per la riga corrente</translation>
     </message>
     <message>
       <location filename="../formview.h" line="18"/>
