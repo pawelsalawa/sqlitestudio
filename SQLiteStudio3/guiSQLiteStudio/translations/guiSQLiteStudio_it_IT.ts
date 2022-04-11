@@ -3550,123 +3550,123 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../mainwindow.cpp" line="260"/>
       <source>&amp;Rename selected window</source>
-      <translation type="unfinished">&amp;Rename selected window</translation>
+      <translation>&amp;Rinomina la finestra selezionata</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="262"/>
       <source>Open Debug Console</source>
-      <translation type="unfinished">Open Debug Console</translation>
+      <translation>Apri Console di Debug</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="263"/>
       <source>Open CSS Console</source>
-      <translation type="unfinished">Open CSS Console</translation>
+      <translation>Apri Console CSS</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="264"/>
       <source>Report a &amp;bug</source>
-      <translation type="unfinished">Report a &amp;bug</translation>
+      <translation>Segnala un &amp;bug</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="265"/>
       <source>D&amp;onate</source>
-      <translation type="unfinished">D&amp;onate</translation>
+      <translation>D&amp;ona</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="266"/>
       <source>Propose a new &amp;feature</source>
-      <translation type="unfinished">Propose a new &amp;feature</translation>
+      <translation>Proponi una nuova &amp;funzionalità</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="267"/>
       <source>&amp;About</source>
-      <translation type="unfinished">&amp;About</translation>
+      <translation>&amp;Informazioni</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="268"/>
       <source>&amp;Licenses</source>
-      <translation type="unfinished">&amp;Licenses</translation>
+      <translation>&amp;Licenze</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
       <source>Open home &amp;page</source>
-      <translation type="unfinished">Open home &amp;page</translation>
+      <translation>Apri home &amp;page</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="270"/>
       <source>User &amp;Manual</source>
-      <translation type="unfinished">User &amp;Manual</translation>
+      <translation>Manuale Utente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="271"/>
       <source>SQLite &amp;documentation</source>
-      <translation type="unfinished">SQLite &amp;documentation</translation>
+      <translation>Documentazione SQLite</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="272"/>
       <source>Bugs and feature &amp;requests</source>
-      <translation type="unfinished">Bugs and feature &amp;requests</translation>
+      <translation>&amp;Richieste di bug e funzionalità</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Esci</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="275"/>
       <source>Check for &amp;updates</source>
-      <translation type="unfinished">Check for &amp;updates</translation>
+      <translation>Controlla aggiornamenti</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>&amp;Database</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="320"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Structure</translation>
+      <translation>&amp;Struttura</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;View</translation>
+      <translation>&amp;Visualizza</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
-      <translation type="unfinished">Window list</translation>
+      <translation>Lista finestre</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="366"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Tools</translation>
+      <translation>&amp;Strumenti</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="381"/>
       <source>&amp;Help</source>
-      <translation type="unfinished">&amp;Help</translation>
+      <translation>&amp;Aiuto</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="546"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
-      <translation type="unfinished">Could not set style: %1</translation>
+      <translation>Impossibile impostare lo stile: %1</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="649"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Impossibile esportare, perché non è stato caricato alcun plugin di esportazione.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="665"/>
       <source>Cannot import, because no import plugin is loaded.</source>
-      <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
+      <translation>Impossibile importare, perché non è stato caricato alcun plugin di importazione.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
