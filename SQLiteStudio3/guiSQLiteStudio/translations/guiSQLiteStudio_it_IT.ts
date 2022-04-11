@@ -1130,7 +1130,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="960"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando l'utente chiude manualmente il pannello di Stato, questa opzione fa in modo che se un nuovo messaggio viene stampato nel pannello di stato esso venga riaperto. Se è disabilitata, allora il pannello di stato può essere aperto manualmente dall'utente solo dal menu &quot;Visualizza&quot;&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="963"/>
@@ -1171,7 +1171,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1124"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;La disposizione compatta riduce al minimo tutti i margini e la spaziatura dell'interfaccia utente, rendendo lo spazio per visualizzare più dati. Rende l'interfaccia un po' meno estetica, ma permette di visualizzare più dati contemporaneamente.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1127"/>
@@ -1252,74 +1252,74 @@
       <location filename="../dialogs/configdialog.cpp" line="795"/>
       <source>Description:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Description:</translation>
+      <translation>Descrizione:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="796"/>
       <source>Category:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Category:</translation>
+      <translation>Categoria:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Versione:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
       <source>Author:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Author:</translation>
+      <translation>Autore:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="800"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Internal name:</translation>
+      <translation>Nome interno:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="801"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Dependencies:</translation>
+      <translation>Dipendenze:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="802"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Conflicts:</translation>
+      <translation>Conflitti:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="806"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>Dettagli plugin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1219"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-      <translation type="unfinished">Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</translation>
+      <translation>I plugin vengono caricati/scaricati immediatamente quando selezionati/non selezionati, ma l'elenco modificato dei plugin da caricare all'avvio non viene salvato fino a quando non si effettua il commit dell'intera finestra di configurazione.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1283"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation type="unfinished">%1 (built-in)</translation>
+      <translation>%1 (integrato)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1296"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Dettagli</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1308"/>
       <source>No plugins in this category.</source>
-      <translation type="unfinished">No plugins in this category.</translation>
+      <translation>Nessun plugin in questa categoria.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1410"/>
       <source>Add new data type</source>
-      <translation type="unfinished">Add new data type</translation>
+      <translation>Aggiungi un nuovo tipo di file</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1414"/>
@@ -1425,7 +1425,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
       <source>Generated</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Generato</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
@@ -1633,13 +1633,13 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
       <location filename="../dataview.cpp" line="1003"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
-      <translation type="unfinished">Show filter inputs per column</translation>
+      <translation>Mostra gli input del filtro per colonna</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="1007"/>
       <source>Apply filter</source>
       <comment>data view</comment>
-      <translation type="unfinished">Apply filter</translation>
+      <translation>Applica filtro</translation>
     </message>
   </context>
   <context>
@@ -1647,94 +1647,94 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dialogs/dbdialog.ui" line="20"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
       <source>Database type</source>
-      <translation type="unfinished">Database type</translation>
+      <translation>Tipo di database</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="32"/>
       <source>Database driver</source>
-      <translation type="unfinished">Database driver</translation>
+      <translation>Driver del database</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="42"/>
       <location filename="../dialogs/dbdialog.cpp" line="155"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>File</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Create new database file</source>
-      <translation type="unfinished">Create new database file</translation>
+      <translation>Crea nuovo file database</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="79"/>
       <source>Name (on the list)</source>
-      <translation type="unfinished">Name (on the list)</translation>
+      <translation>Nome (nella lista)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="91"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opzioni</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="97"/>
       <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
       <extracomment>aasfd</extracomment>
-      <translation type="unfinished">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Abilita questa opzione se vuoi che il database sia memorizzato nel file di configurazione e ripristinato ogni volta che SQLiteStudio viene avviato.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="100"/>
       <source>Permanent (keep it in configuration)</source>
-      <translation type="unfinished">Permanent (keep it in configuration)</translation>
+      <translation>Permanente (mantenerlo nella configurazione)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="144"/>
       <source>Test connection</source>
-      <translation type="unfinished">Test connection</translation>
+      <translation>Verifica connessione</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="156"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>Sfoglia per il file di database esistente sul computer locale</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="308"/>
       <source>Browse</source>
-      <translation type="unfinished">Browse</translation>
+      <translation>Sfoglia</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="517"/>
       <source>Enter an unique database name.</source>
-      <translation type="unfinished">Enter an unique database name.</translation>
+      <translation>Inserisci un nome di database univoco.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="527"/>
       <source>This name is already in use. Please enter unique name.</source>
-      <translation type="unfinished">This name is already in use. Please enter unique name.</translation>
+      <translation>Questo nome è già in uso. Inserisci un nome univoco.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="534"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;La generazione automatica del nome è stata disabilitata, perché il nome è stato modificato manualmente. Per ripristinare la generazione automatica si prega di cancellare il contenuto del campo nome.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="543"/>
       <source>Enter a database file path.</source>
-      <translation type="unfinished">Enter a database file path.</translation>
+      <translation>Inserire un percorso di un file database.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="552"/>
       <source>This database is already on the list under name: %1</source>
-      <translation type="unfinished">This database is already on the list under name: %1</translation>
+      <translation>Questo database è già nella lista sotto il nome: %1</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="574"/>
       <source>Select a database type.</source>
-      <translation type="unfinished">Select a database type.</translation>
+      <translation>Selezionare un tipo di database.</translation>
     </message>
   </context>
   <context>
@@ -1742,12 +1742,12 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="173"/>
       <source>Delete table</source>
-      <translation type="unfinished">Delete table</translation>
+      <translation>Elimina tabella</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="174"/>
       <source>Are you sure you want to delete table %1?</source>
-      <translation type="unfinished">Are you sure you want to delete table %1?</translation>
+      <translation>Sei sicuro di voler eliminare la tabella %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="178"/>
@@ -1757,7 +1757,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="179"/>
       <source>Are you sure you want to delete index %1?</source>
-      <translation type="unfinished">Are you sure you want to delete index %1?</translation>
+      <translation>Sei sicuro di voler eliminare l'indice %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="183"/>
@@ -1767,7 +1767,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="184"/>
       <source>Are you sure you want to delete trigger %1?</source>
-      <translation type="unfinished">Are you sure you want to delete trigger %1?</translation>
+      <translation>Sei sicuro di voler eliminare il trigger %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="188"/>
