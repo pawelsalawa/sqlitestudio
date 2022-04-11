@@ -2029,7 +2029,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="180"/>
       <source>Open file&apos;s directory</source>
-      <translation type="unfinished">Open file&apos;s directory</translation>
+      <translation>Apri cartella dei file</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="181"/>
@@ -2045,23 +2045,23 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="377"/>
       <source>Grouping</source>
-      <translation type="unfinished">Grouping</translation>
+      <translation>Raggruppamento</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="382"/>
       <source>Generate query for table</source>
-      <translation type="unfinished">Generate query for table</translation>
+      <translation>Genera query per tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1088"/>
       <location filename="../dbtree/dbtree.cpp" line="1091"/>
       <source>Create group</source>
-      <translation type="unfinished">Create group</translation>
+      <translation>Crea gruppo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1088"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Nome del gruppo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1091"/>
@@ -2896,49 +2896,49 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../formview.cpp" line="247"/>
       <source>Commit row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Commit row</translation>
+      <translation>Committa riga</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="248"/>
       <source>Rollback row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Rollback row</translation>
+      <translation>Ripristina riga</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="249"/>
       <source>First row</source>
       <comment>form view</comment>
-      <translation type="unfinished">First row</translation>
+      <translation>Prima riga</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="250"/>
       <source>Previous row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Previous row</translation>
+      <translation>Riga precedente</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="251"/>
       <source>Next row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Next row</translation>
+      <translation>Riga successiva</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="252"/>
       <source>Last row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Last row</translation>
+      <translation>Ultima riga</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="253"/>
       <source>Insert new row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Insert new row</translation>
+      <translation>Inserisci nuova riga</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="254"/>
       <source>Delete current row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Delete current row</translation>
+      <translation>Elimina riga corrente</translation>
     </message>
   </context>
   <context>
@@ -2946,159 +2946,159 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation type="unfinished">Filter funtions</translation>
+      <translation>Opzioni di filtro</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
       <source>Input arguments</source>
-      <translation type="unfinished">Input arguments</translation>
+      <translation>Argomenti in input</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="163"/>
       <source>Undefined</source>
-      <translation type="unfinished">Undefined</translation>
+      <translation>Indefinito</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="205"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="211"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>Registra in tutti i database</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="218"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>Registra nelle seguenti banche dati:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="253"/>
       <source>Type:</source>
-      <translation type="unfinished">Type:</translation>
+      <translation>Tipo:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="260"/>
       <source>Function name:</source>
-      <translation type="unfinished">Function name:</translation>
+      <translation>Nome funzione:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="273"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>Linguaggio di implementazione:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="293"/>
       <source>Initialization code:</source>
-      <translation type="unfinished">Initialization code:</translation>
+      <translation>Codice d'inizializzazione:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="313"/>
       <location filename="../windows/functionseditor.cpp" line="427"/>
       <source>Function implementation code:</source>
-      <translation type="unfinished">Function implementation code:</translation>
+      <translation>Codice implementazione funzione:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="333"/>
       <source>Final step implementation code:</source>
-      <translation type="unfinished">Final step implementation code:</translation>
+      <translation>Codice di implementazione della fase finale:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="55"/>
       <source>SQL function editor</source>
-      <translation type="unfinished">SQL function editor</translation>
+      <translation>Editor di funzioni SQL</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="60"/>
       <source>Commit all function changes</source>
-      <translation type="unfinished">Commit all function changes</translation>
+      <translation>Commit tutte le modifiche alla funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Rollback all function changes</source>
-      <translation type="unfinished">Rollback all function changes</translation>
+      <translation>Rollback tutte le modifiche della funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="63"/>
       <source>Create new function</source>
-      <translation type="unfinished">Create new function</translation>
+      <translation>Crea nuova funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="64"/>
       <source>Delete selected function</source>
-      <translation type="unfinished">Delete selected function</translation>
+      <translation>Elimina la funzione selezionata</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="66"/>
       <source>Custom SQL functions manual</source>
-      <translation type="unfinished">Custom SQL functions manual</translation>
+      <translation>Manuale personalizzato delle funzioni SQL</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="69"/>
       <source>Add function argument</source>
-      <translation type="unfinished">Add function argument</translation>
+      <translation>Aggiungi argomento funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="70"/>
       <source>Rename function argument</source>
-      <translation type="unfinished">Rename function argument</translation>
+      <translation>Rinomina argomento funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="71"/>
       <source>Delete function argument</source>
-      <translation type="unfinished">Delete function argument</translation>
+      <translation>Elimina argomento funzione</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="73"/>
       <source>Move function argument up</source>
-      <translation type="unfinished">Move function argument up</translation>
+      <translation>Sposta argomento funzione in alto</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="74"/>
       <source>Move function argument down</source>
-      <translation type="unfinished">Move function argument down</translation>
+      <translation>Sposta argomento funzione in basso</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="112"/>
       <source>Scalar</source>
-      <translation type="unfinished">Scalar</translation>
+      <translation>Scalare</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="113"/>
       <source>Aggregate</source>
-      <translation type="unfinished">Aggregate</translation>
+      <translation>Aggregate</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="411"/>
       <source>Enter a non-empty, unique name of the function.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the function.</translation>
+      <translation>Inserisci un nome non vuoto e univoco della funzione.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="423"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>Scegli il linguaggio di implementazione.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="427"/>
       <source>Per step code:</source>
-      <translation type="unfinished">Per step code:</translation>
+      <translation>Per passo di codice:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="433"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation type="unfinished">Enter a non-empty implementation code.</translation>
+      <translation>Inserisci un codice di implementazione non vuoto.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="506"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
-      <translation type="unfinished">argument</translation>
+      <translation>argomento</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="632"/>
       <source>Functions editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
+      <translation>La finestra dell'editor Collations ha modifiche senza conferma.</translation>
     </message>
   </context>
   <context>
@@ -3106,57 +3106,57 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="14"/>
       <source>Import data</source>
-      <translation type="unfinished">Import data</translation>
+      <translation>Importa dati</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="21"/>
       <source>Table to import to</source>
-      <translation type="unfinished">Table to import to</translation>
+      <translation>Tabella da importare a</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="36"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="43"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="84"/>
       <source>Data source to import from</source>
-      <translation type="unfinished">Data source to import from</translation>
+      <translation>Fonte dei dati da cui importare</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="129"/>
       <source>Data source type</source>
-      <translation type="unfinished">Data source type</translation>
+      <translation>Tipo di sorgente dati</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="141"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opzioni</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="175"/>
       <source>Text encoding:</source>
-      <translation type="unfinished">Text encoding:</translation>
+      <translation>Codifica del testo:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="182"/>
       <source>Input file:</source>
-      <translation type="unfinished">Input file:</translation>
+      <translation>File di ingresso:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="192"/>
       <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Se abilitato, qualsiasi violazione del vincolo, o formato di dati non valido (numero di colonne errato), o qualsiasi altro problema riscontrato durante l'importazione verrà ignorato e l'importazione verrà continuata.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="195"/>
       <source>Ignore errors</source>
-      <translation type="unfinished">Ignore errors</translation>
+      <translation>Ignora errori</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="205"/>
@@ -3994,33 +3994,33 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="72"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Colonne</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="102"/>
       <source>Number of rows to populate:</source>
-      <translation type="unfinished">Number of rows to populate:</translation>
+      <translation>Numero di righe da popolare:</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="43"/>
       <source>Populate</source>
       <comment>populate dialog button</comment>
-      <translation type="unfinished">Populate</translation>
+      <translation>Popola</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="58"/>
       <source>Abort</source>
-      <translation type="unfinished">Abort</translation>
+      <translation>Interrompi</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="193"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>Configura</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="300"/>
