@@ -3738,24 +3738,24 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="95"/>
       <source>Open another tab</source>
-      <translation type="unfinished">Open another tab</translation>
+      <translation>Apri un'altra scheda</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="334"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-      <translation type="unfinished">Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</translation>
+      <translation>Il plugin editor dati &apos;%1&apos; dell'editor di dati non viene caricato, mentre è definito per la modifica del tipo di dati &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="427"/>
       <source>Deleted</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Deleted</translation>
+      <translation>Eliminato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="429"/>
       <source>Read only</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Read only</translation>
+      <translation>Sola lettura</translation>
     </message>
   </context>
   <context>
@@ -3763,7 +3763,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditorbool.cpp" line="214"/>
       <source>Boolean</source>
-      <translation type="unfinished">Boolean</translation>
+      <translation>Booleano</translation>
     </message>
   </context>
   <context>
@@ -3771,7 +3771,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditordate.cpp" line="86"/>
       <source>Date</source>
-      <translation type="unfinished">Date</translation>
+      <translation>Data</translation>
     </message>
   </context>
   <context>
@@ -3779,7 +3779,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditordatetime.cpp" line="274"/>
       <source>Date &amp; time</source>
-      <translation type="unfinished">Date &amp; time</translation>
+      <translation>Data e ora</translation>
     </message>
   </context>
   <context>
@@ -3787,7 +3787,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditorhex.cpp" line="91"/>
       <source>Hex</source>
-      <translation type="unfinished">Hex</translation>
+      <translation>Hex</translation>
     </message>
   </context>
   <context>
@@ -3796,7 +3796,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditornumeric.cpp" line="109"/>
       <source>Number</source>
       <comment>numeric multi editor tab name</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Numero</translation>
     </message>
   </context>
   <context>
