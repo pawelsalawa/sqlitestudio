@@ -2343,29 +2343,29 @@ Tutti gli oggetti da questo gruppo verranno spostati nel gruppo principale.</tra
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1246"/>
       <source>Name conflict</source>
-      <translation type="unfinished">Name conflict</translation>
+      <translation>Conflitto di nomi</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1247"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
-      <translation type="unfinished">Following object already exists in the target database.
-Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
+      <translation>L'oggetto seguente esiste già nel database di destinazione.
+Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operazione:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1260"/>
       <source>SQL statements conversion</source>
-      <translation type="unfinished">SQL statements conversion</translation>
+      <translation>Conversione di istruzioni SQL</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1268"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-      <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
+      <translation>Si è verificato un errore seguente durante la conversione di istruzioni SQL nella versione SQLite di destinazione:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
       <source>Would you like to ignore those errors and proceed?</source>
-      <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
+      <translation>Vuoi ignorare questi errori e procedere?</translation>
     </message>
   </context>
   <context>
@@ -2373,7 +2373,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="35"/>
       <source>Filter by database:</source>
-      <translation type="unfinished">Filter by database:</translation>
+      <translation>Filtra per database:</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
@@ -5257,37 +5257,37 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="432"/>
       <source>Cannot paste to column %1. Details: %2</source>
-      <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
+      <translation>Impossibile incollare nella colonna %1. Dettagli: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="450"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
-      <translation type="unfinished">Go to referenced row in table &apos;%1&apos;</translation>
+      <translation>Vai alla riga referenziata nella tabella &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="462"/>
       <source>table &apos;%1&apos;</source>
-      <translation type="unfinished">table &apos;%1&apos;</translation>
+      <translation>tabella &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="485"/>
       <source>Referenced row (%1)</source>
-      <translation type="unfinished">Referenced row (%1)</translation>
+      <translation>Riga referenziata (%1)</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="744"/>
       <source>Trim pasted text?</source>
-      <translation type="unfinished">Trim pasted text?</translation>
+      <translation>Tagliare il testo incollato?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="745"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
-      <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
+      <translation>Il testo incollato contiene lo spazio bianco iniziale o finale. Taglio automaticamente?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="840"/>
       <source>Edit value</source>
-      <translation type="unfinished">Edit value</translation>
+      <translation>Modifica valore</translation>
     </message>
   </context>
   <context>
@@ -5295,12 +5295,12 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="80"/>
       <source>Error while committing new row: %1</source>
-      <translation type="unfinished">Error while committing new row: %1</translation>
+      <translation>Errore durante il commit della nuova riga: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="145"/>
       <source>Error while deleting row from table %1: %2</source>
-      <translation type="unfinished">Error while deleting row from table %1: %2</translation>
+      <translation>Errore durante l'eliminazione della riga dalla tabella %1: %2</translation>
     </message>
   </context>
   <context>
@@ -5308,37 +5308,37 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="63"/>
       <source>Filter extensions</source>
-      <translation type="unfinished">Filter extensions</translation>
+      <translation>Estensioni filtro</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="107"/>
       <source>Leave empty to use default function</source>
-      <translation type="unfinished">Leave empty to use default function</translation>
+      <translation>Lascia vuoto per usare la funzione predefinita</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="128"/>
       <source>Extension file</source>
-      <translation type="unfinished">Extension file</translation>
+      <translation>File di estensione</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="135"/>
       <source>Initialization function</source>
-      <translation type="unfinished">Initialization function</translation>
+      <translation>Funzione di inizializzazione</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="151"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="157"/>
       <source>Register in all databases</source>
-      <translation type="unfinished">Register in all databases</translation>
+      <translation>Registra in tutti i database</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="164"/>
       <source>Register in following databases:</source>
-      <translation type="unfinished">Register in following databases:</translation>
+      <translation>Registra nei seguenti database:</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
@@ -5620,46 +5620,44 @@ Key</source>
       <source>Foreign
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Foreign
-Key</translation>
+      <translation>Foreign key</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="299"/>
       <source>Unique</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Univoco</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="301"/>
       <source>Check</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>Controllo</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="303"/>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Not
-NULL</translation>
+      <translation>Non NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="305"/>
       <source>Collate</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Collate</translation>
+      <translation>Ordinamento</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="307"/>
       <source>Generated</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Generated</translation>
+      <translation>Generato</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="309"/>
       <source>Default value</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Default value</translation>
+      <translation>Valore predefinito</translation>
     </message>
   </context>
   <context>
@@ -5667,256 +5665,256 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="36"/>
       <source>Structure</source>
-      <translation type="unfinished">Structure</translation>
+      <translation>Struttura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="70"/>
       <source>Table name:</source>
-      <translation type="unfinished">Table name:</translation>
+      <translation>Nome tabella:</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="200"/>
       <location filename="../windows/tablewindow.cpp" line="1613"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Dati</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="217"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Vincoli</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="231"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Indici</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="260"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="292"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="204"/>
       <source>Export table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Export table</translation>
+      <translation>Esporta tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="205"/>
       <source>Import data to table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Import data to table</translation>
+      <translation>Importa dati nella tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="206"/>
       <source>Populate table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Popola tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="220"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh structure</translation>
+      <translation>Aggiorna struttura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Commit structure changes</translation>
+      <translation>Registra modifiche struttura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="223"/>
       <source>Rollback structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Rollback structure changes</translation>
+      <translation>Ripristina modifiche struttura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="224"/>
       <source>Add column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Aggiungi colonna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="225"/>
       <source>Edit column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Modifica colonna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="226"/>
       <location filename="../windows/tablewindow.cpp" line="320"/>
       <source>Delete column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Elimina colonna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="227"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sposta colonna in alto</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="228"/>
       <source>Move column down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sposta colonna in basso</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="237"/>
       <source>Create similar table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crea una tabella simile</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
-      <translation type="unfinished">Reset autoincrement value</translation>
+      <translation>Ripristina valore autoincremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="241"/>
       <source>Add table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table constraint</translation>
+      <translation>Aggiungi vincolo tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="242"/>
       <source>Edit table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit table constraint</translation>
+      <translation>Modifica vincolo tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="243"/>
       <source>Delete table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete table constraint</translation>
+      <translation>Elimina vincolo tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Move table constraint up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint up</translation>
+      <translation>Sposta vincolo tabella in alto</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="245"/>
       <source>Move table constraint down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move table constraint down</translation>
+      <translation>Sposta vincolo tabella in basso</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="247"/>
       <source>Add table primary key</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table primary key</translation>
+      <translation>Aggiungi chiave primaria tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="248"/>
       <source>Add table foreign key</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table foreign key</translation>
+      <translation>Aggiungi la chiave esterna della tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="249"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table unique constraint</translation>
+      <translation>Aggiungi vincolo univocità tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="250"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table check constraint</translation>
+      <translation>Aggiungi vincolo di controllo tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="268"/>
       <source>Refresh index list</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh index list</translation>
+      <translation>Aggiorna elenco indici</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="230"/>
       <location filename="../windows/tablewindow.cpp" line="270"/>
       <source>Create index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create index</translation>
+      <translation>Crea indice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="271"/>
       <source>Edit index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit index</translation>
+      <translation>Modifica indice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="272"/>
       <source>Delete index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete index</translation>
+      <translation>Elimina indice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="278"/>
       <source>Refresh trigger list</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh trigger list</translation>
+      <translation>Aggiorna elenco trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="231"/>
       <location filename="../windows/tablewindow.cpp" line="280"/>
       <source>Create trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create trigger</translation>
+      <translation>Crea trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="281"/>
       <source>Edit trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit trigger</translation>
+      <translation>Modifica trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="282"/>
       <source>Delete trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete trigger</translation>
+      <translation>Elimina trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="319"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
+      <translation>Sei sicuro di voler eliminare la colonna &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="348"/>
       <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Following problems will take place while modifying the table.
-Would you like to proceed?</translation>
+      <translation>I seguenti problemi si verificheranno durante la modifica della tabella.
+Vuoi procedere?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="350"/>
       <source>Table modification</source>
       <comment>table window</comment>
-      <translation type="unfinished">Table modification</translation>
+      <translation>Modifica tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="489"/>
       <source>Could not load data for table %1. Error details: %2</source>
-      <translation type="unfinished">Could not load data for table %1. Error details: %2</translation>
+      <translation>Impossibile caricare i dati per la tabella %1. Dettagli errore: %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="601"/>
       <source>Could not process the %1 table correctly. Unable to open a table window.</source>
-      <translation type="unfinished">Could not process the %1 table correctly. Unable to open a table window.</translation>
+      <translation>Impossibile elaborare correttamente la tabella %1. Impossibile aprire una finestra della tabella.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="630"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="662"/>
