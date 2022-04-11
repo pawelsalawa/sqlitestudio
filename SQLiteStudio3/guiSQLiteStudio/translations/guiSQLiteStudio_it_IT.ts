@@ -983,7 +983,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="605"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation>Apri Finestre tabella all'avvio con la scheda dati</translation>
+      <translation>Apri Finestre Tabella all'avvio con la scheda dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="615"/>
@@ -993,7 +993,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="618"/>
       <source>Place data tab as first tab in a Table Window</source>
-      <translation type="unfinished">Place data tab as first tab in a Table Window</translation>
+      <translation>Posiziona la scheda dati come prima scheda in una finestra della tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="631"/>
@@ -1003,22 +1003,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="637"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando abilitata, Finestra Vista apparirà con la scheda dati, invece della scheda struttura.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="640"/>
       <source>Open View Windows with the data tab for start</source>
-      <translation type="unfinished">Open View Windows with the data tab for start</translation>
+      <translation>Apri Finestre Tabella all'avvio con la scheda dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="650"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando abilitata, la scheda &quot;Dati&quot; sarà posizionata come prima scheda in ogni Finestra Tabella, invece di essere al secondo posto.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="653"/>
       <source>Place data tab as first tab in a View Window</source>
-      <translation type="unfinished">Place data tab as first tab in a View Window</translation>
+      <translation>Posiziona la scheda dati come prima scheda in una Finestra Tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="697"/>
@@ -1788,24 +1788,24 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="276"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>Elimina oggetti</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="277"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
-      <translation type="unfinished">Are you sure you want to delete following objects:
+      <translation>Sei sicuro di voler eliminare i seguenti oggetti:
 %1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="284"/>
       <source>Cannot start transaction. Details: %1</source>
-      <translation type="unfinished">Cannot start transaction. Details: %1</translation>
+      <translation>Impossibile avviare la transazione. Dettagli: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="318"/>
       <source>Cannot commit transaction. Details: %1</source>
-      <translation type="unfinished">Cannot commit transaction. Details: %1</translation>
+      <translation>Impossibile eseguire il commit della transazione. Dettagli: %1</translation>
     </message>
   </context>
   <context>
@@ -1813,132 +1813,132 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.ui" line="23"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Databases</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.ui" line="73"/>
       <source>Filter by name</source>
-      <translation type="unfinished">Filter by name</translation>
+      <translation>Filtra per nome</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="102"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Esecuzione dal file annullato. Tutte le query eseguite finora sono state ripristinate.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copia</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Incolla</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="138"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Seleziona tutto</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>Create a group</source>
-      <translation type="unfinished">Create a group</translation>
+      <translation>Crea un gruppo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>Delete the group</source>
-      <translation type="unfinished">Delete the group</translation>
+      <translation>Cancella il gruppo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="141"/>
       <source>Rename the group</source>
-      <translation type="unfinished">Rename the group</translation>
+      <translation>Rinomina il gruppo</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Aggiunge un database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>Modifica il databas&amp;e</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Rimuove il database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>&amp;Connetti al database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>&amp;Disconnetti dal database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
       <source>Import</source>
-      <translation type="unfinished">Import</translation>
+      <translation>Importa</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>&amp;Esporta il database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation type="unfinished">Vac&amp;uum</translation>
+      <translation>Vac&amp;uum</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>Controllo &amp;integrità</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Create a &amp;table</source>
-      <translation type="unfinished">Create a &amp;table</translation>
+      <translation>Crea una &amp;tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Edit the t&amp;able</source>
-      <translation type="unfinished">Edit the t&amp;able</translation>
+      <translation>Modifica la t&amp;abella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="153"/>
       <source>Delete the ta&amp;ble</source>
-      <translation type="unfinished">Delete the ta&amp;ble</translation>
+      <translation>Cancella la ta&amp;bella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Export the table</source>
-      <translation type="unfinished">Export the table</translation>
+      <translation>Esporta la tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="155"/>
       <source>Import into the table</source>
-      <translation type="unfinished">Import into the table</translation>
+      <translation>Importa nella tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Popola tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Create similar table</source>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crea una tabella simile</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
       <source>Reset autoincrement sequence</source>
-      <translation type="unfinished">Reset autoincrement sequence</translation>
+      <translation>Reimposta sequenza autoincrementale</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
