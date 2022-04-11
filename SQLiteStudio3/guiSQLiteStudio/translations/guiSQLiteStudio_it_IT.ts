@@ -3430,122 +3430,122 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../mainwindow.cpp" line="113"/>
       <source>Syntax highlighting engines</source>
-      <translation type="unfinished">Syntax highlighting engines</translation>
+      <translation>Motori di evidenziazione della sintassi</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="114"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Editor di dati</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="126"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-      <translation type="unfinished">Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</translation>
+      <translation>Esecuzione in modalità debug. Premi %1 o usa &apos;Aiuto / Apri la console di debug&apos; per aprire la console di debug.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="128"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-      <translation type="unfinished">Running in debug mode. Debug messages are printed to the standard output.</translation>
+      <translation>Esecuzione in modalità debug. I messaggi di debug vengono stampati sullo standard output.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="195"/>
       <source>You need to restart application to make the language change take effect.</source>
-      <translation type="unfinished">You need to restart application to make the language change take effect.</translation>
+      <translation>È necessario riavviare l'applicazione per rendere effettivo il cambiamento della lingua.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="238"/>
       <source>Open SQL &amp;editor</source>
-      <translation type="unfinished">Open SQL &amp;editor</translation>
+      <translation>Apri &amp;editor SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="239"/>
       <source>Open DDL &amp;history</source>
-      <translation type="unfinished">Open DDL &amp;history</translation>
+      <translation>Apri &amp;Cronologia DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="240"/>
       <source>Open SQL &amp;functions editor</source>
-      <translation type="unfinished">Open SQL &amp;functions editor</translation>
+      <translation>Apri editor di &amp;funzioni SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="241"/>
       <source>Open &amp;collations editor</source>
-      <translation type="unfinished">Open &amp;collations editor</translation>
+      <translation>Apri editor &amp;collations</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="242"/>
       <source>Open ex&amp;tension manager</source>
-      <translation type="unfinished">Open ex&amp;tension manager</translation>
+      <translation>Apri gestore es&amp;tensioni</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="243"/>
       <source>&amp;Import</source>
-      <translation type="unfinished">&amp;Import</translation>
+      <translation>&amp;Importa</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="244"/>
       <source>E&amp;xport</source>
-      <translation type="unfinished">E&amp;xport</translation>
+      <translation>E&amp;sporta</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="246"/>
       <source>Open confi&amp;guration dialog</source>
-      <translation type="unfinished">Open confi&amp;guration dialog</translation>
+      <translation>Apri finestra di configurazione</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="248"/>
       <source>&amp;Tile windows</source>
-      <translation type="unfinished">&amp;Tile windows</translation>
+      <translation>Affianca fines&amp;tre</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="249"/>
       <source>Tile windows &amp;horizontally</source>
-      <translation type="unfinished">Tile windows &amp;horizontally</translation>
+      <translation>Affianca finestre &amp;orizzontalmente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="250"/>
       <source>Tile windows &amp;vertically</source>
-      <translation type="unfinished">Tile windows &amp;vertically</translation>
+      <translation>Affianca finestre &amp;verticalmente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="251"/>
       <source>&amp;Cascade windows</source>
-      <translation type="unfinished">&amp;Cascade windows</translation>
+      <translation>Finestre in &amp;cascata</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="252"/>
       <source>Next window</source>
-      <translation type="unfinished">Next window</translation>
+      <translation>Finestra successiva</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="253"/>
       <source>Previous window</source>
-      <translation type="unfinished">Previous window</translation>
+      <translation>Finestra precedente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="254"/>
       <source>Hide status field</source>
-      <translation type="unfinished">Hide status field</translation>
+      <translation>Nascondi campo stato</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="256"/>
       <source>Close selected &amp;window</source>
-      <translation type="unfinished">Close selected &amp;window</translation>
+      <translation>Chiudi la &amp;finestra selezionata</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="257"/>
       <source>Close all windows &amp;but selected</source>
-      <translation type="unfinished">Close all windows &amp;but selected</translation>
+      <translation>Chiudi tutte le finestre escluse le selezionate</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="258"/>
       <source>Close &amp;all windows</source>
-      <translation type="unfinished">Close &amp;all windows</translation>
+      <translation>Chiudi tutte le finestre</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="259"/>
       <source>Re&amp;store recently closed window</source>
-      <translation type="unfinished">Re&amp;store recently closed window</translation>
+      <translation>Ripristina la finestra chiusa di recente</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="260"/>
@@ -4514,102 +4514,102 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
       <source>Execute &quot;%1&quot; query</source>
-      <translation type="unfinished">Execute &quot;%1&quot; query</translation>
+      <translation>Esegui &quot;%1&quot; query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="30"/>
       <source>Switch current working database to previous on the list</source>
-      <translation type="unfinished">Switch current working database to previous on the list</translation>
+      <translation>Passa il database corrente di lavoro a quello precedente nella lista</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="31"/>
       <source>Switch current working database to next on the list</source>
-      <translation type="unfinished">Switch current working database to next on the list</translation>
+      <translation>Passa il database corrente di lavoro a quello successivo nella lista</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="32"/>
       <source>Go to next editor tab</source>
-      <translation type="unfinished">Go to next editor tab</translation>
+      <translation>Vai alla scheda successiva dell'editor</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="33"/>
       <source>Go to previous editor tab</source>
-      <translation type="unfinished">Go to previous editor tab</translation>
+      <translation>Vai alla scheda precedente dell'editor</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="34"/>
       <source>Move keyboard input focus to the results view below</source>
-      <translation type="unfinished">Move keyboard input focus to the results view below</translation>
+      <translation>Sposta il focus sull'input della tastiera nella vista dei risultati qui sotto</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="35"/>
       <source>Move keyboard input focus to the SQL editor above</source>
-      <translation type="unfinished">Move keyboard input focus to the SQL editor above</translation>
+      <translation>Sposta il focus sull'input della tastiera nell'editor SQL sopra</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Delete selected SQL history entries</source>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Elimina le voci selezionate nella cronologia SQL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="32"/>
       <source>Table window</source>
-      <translation type="unfinished">Table window</translation>
+      <translation>Finestra tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Refresh table structure</source>
-      <translation type="unfinished">Refresh table structure</translation>
+      <translation>Aggiorna struttura tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Add new column</source>
-      <translation type="unfinished">Add new column</translation>
+      <translation>Aggiungi nuova colonna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
       <source>Edit selected column</source>
-      <translation type="unfinished">Edit selected column</translation>
+      <translation>Modifica la colonna selezionata</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="36"/>
       <source>Delete selected column</source>
-      <translation type="unfinished">Delete selected column</translation>
+      <translation>Elimina la colonna selezionata</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="37"/>
       <source>Export table data</source>
-      <translation type="unfinished">Export table data</translation>
+      <translation>Esporta dati tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="38"/>
       <source>Import data to the table</source>
-      <translation type="unfinished">Import data to the table</translation>
+      <translation>Importa dati nella tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
       <source>Add new table constraint</source>
-      <translation type="unfinished">Add new table constraint</translation>
+      <translation>Aggiungi nuovo vincolo tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="40"/>
       <source>Edit selected table constraint</source>
-      <translation type="unfinished">Edit selected table constraint</translation>
+      <translation>Modifica il vincolo della tabella selezionata</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="41"/>
       <source>Delete selected table constraint</source>
-      <translation type="unfinished">Delete selected table constraint</translation>
+      <translation>Elimina il vincolo di tabella selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="42"/>
       <source>Refresh table index list</source>
-      <translation type="unfinished">Refresh table index list</translation>
+      <translation>Aggiorna elenco indici tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="43"/>
       <source>Add new index</source>
-      <translation type="unfinished">Add new index</translation>
+      <translation>Aggiungi un nuovo indice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="44"/>
