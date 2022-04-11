@@ -4293,82 +4293,82 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../formview.h" line="18"/>
       <source>Rollback changes for current row</source>
-      <translation type="unfinished">Rollback changes for current row</translation>
+      <translation>Annulla cambiamenti per la riga corrente</translation>
     </message>
     <message>
       <location filename="../formview.h" line="19"/>
       <source>Go to first row on current page</source>
-      <translation type="unfinished">Go to first row on current page</translation>
+      <translation>Va alla prima riga della pagina corrente</translation>
     </message>
     <message>
       <location filename="../formview.h" line="20"/>
       <source>Go to next row</source>
-      <translation type="unfinished">Go to next row</translation>
+      <translation>Vai alla riga successiva</translation>
     </message>
     <message>
       <location filename="../formview.h" line="21"/>
       <source>Go to previous row</source>
-      <translation type="unfinished">Go to previous row</translation>
+      <translation>Va alla riga precedente</translation>
     </message>
     <message>
       <location filename="../formview.h" line="22"/>
       <source>Go to last row on current page</source>
-      <translation type="unfinished">Go to last row on current page</translation>
+      <translation>Va all'ultima riga nella pagina corrente</translation>
     </message>
     <message>
       <location filename="../formview.h" line="23"/>
       <source>Insert new row</source>
-      <translation type="unfinished">Insert new row</translation>
+      <translation>Inserisci nuova riga</translation>
     </message>
     <message>
       <location filename="../formview.h" line="24"/>
       <source>Delete current row</source>
-      <translation type="unfinished">Delete current row</translation>
+      <translation>Elimina riga corrente</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="44"/>
       <source>Main window</source>
-      <translation type="unfinished">Main window</translation>
+      <translation>Finestra principale</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="45"/>
       <source>Open SQL editor</source>
-      <translation type="unfinished">Open SQL editor</translation>
+      <translation>Apri editor SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="46"/>
       <source>Previous window</source>
-      <translation type="unfinished">Previous window</translation>
+      <translation>Finestra precedente</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="47"/>
       <source>Next window</source>
-      <translation type="unfinished">Next window</translation>
+      <translation>Finestra successiva</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="48"/>
       <source>Hide status area</source>
-      <translation type="unfinished">Hide status area</translation>
+      <translation>Nascondi area di stato</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="49"/>
       <source>Open configuration dialog</source>
-      <translation type="unfinished">Open configuration dialog</translation>
+      <translation>Apri finestra di configurazione</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="50"/>
       <source>Open Debug Console</source>
-      <translation type="unfinished">Open Debug Console</translation>
+      <translation>Apri Console di Debug</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="51"/>
       <source>Open CSS Console</source>
-      <translation type="unfinished">Open CSS Console</translation>
+      <translation>Apri Console CSS</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>Esce dall'applicazione</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
