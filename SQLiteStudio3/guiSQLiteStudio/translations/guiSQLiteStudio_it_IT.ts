@@ -3317,25 +3317,25 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/indexdialog.cpp" line="270"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Criterio di ordinamento</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="748"/>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
       <source>Error</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Errore</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="749"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-      <translation type="unfinished">Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</translation>
+      <translation>Impossibile creare un indice univoco, perché i valori nelle colonne selezionate non sono univoci. Vuoi eseguire la query SELECT per vedere valori problematici?</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="761"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
-      <translation type="unfinished">An error occurred while executing SQL statements:
+      <translation>Si è verificato un errore durante l'esecuzione dei comandi SQL:
 %1</translation>
     </message>
   </context>
@@ -3344,42 +3344,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="14"/>
       <source>Indexed expression</source>
-      <translation type="unfinished">Indexed expression</translation>
+      <translation>Espressione indicizzata</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.ui" line="20"/>
       <source>Expression to index</source>
-      <translation type="unfinished">Expression to index</translation>
+      <translation>Espressione per l'indice</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="60"/>
       <source>This expression is already indexed by the index.</source>
-      <translation type="unfinished">This expression is already indexed by the index.</translation>
+      <translation>Questa espressione è già indicizzata dall'indice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="66"/>
       <source>Column should be indexed directly, not by expression. Either extend this expression to contain something more than just column name, or abort and select this column in index dialog directly.</source>
-      <translation type="unfinished">Column should be indexed directly, not by expression. Either extend this expression to contain something more than just column name, or abort and select this column in index dialog directly.</translation>
+      <translation>La colonna deve essere indicizzata direttamente, non per espressione. Estendi questa espressione per contenere qualcosa di più del solo nome di colonna, oppure interrompi e seleziona direttamente questa colonna nella finestra di dialogo indice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="76"/>
       <source>Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</source>
-      <translation type="unfinished">Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</translation>
+      <translation>La colonna &apos;%1&apos; non appartiene alla tabella coperta da questo indice. Le espressioni indicizzate possono riferirsi solo alle colonne della tabella indicizzata.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
       <source>It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</source>
-      <translation type="unfinished">It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</translation>
+      <translation>È proibito usare istruzioni &apos;SELECT&apos; in espressioni indicizzate.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="105"/>
       <source>Enter an indexed expression.</source>
-      <translation type="unfinished">Enter an indexed expression.</translation>
+      <translation>Inserisci un'espressione indice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="119"/>
       <source>Invalid expression.</source>
-      <translation type="unfinished">Invalid expression.</translation>
+      <translation>Espressione non valida.</translation>
     </message>
   </context>
   <context>
@@ -3387,12 +3387,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/languagedialog.ui" line="14"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Lingua</translation>
     </message>
     <message>
       <location filename="../dialogs/languagedialog.ui" line="20"/>
       <source>Please choose language:</source>
-      <translation type="unfinished">Please choose language:</translation>
+      <translation>Scegli la lingua:</translation>
     </message>
   </context>
   <context>
@@ -3400,32 +3400,32 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.ui" line="81"/>
       <source>Database toolbar</source>
-      <translation type="unfinished">Database toolbar</translation>
+      <translation>Barra degli strumenti del database</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="92"/>
       <source>Structure toolbar</source>
-      <translation type="unfinished">Structure toolbar</translation>
+      <translation>Barra degli strumenti</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="103"/>
       <source>Tools</source>
-      <translation type="unfinished">Tools</translation>
+      <translation>Strumenti</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="120"/>
       <source>Window list</source>
-      <translation type="unfinished">Window list</translation>
+      <translation>Lista delle finestre</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="134"/>
       <source>View toolbar</source>
-      <translation type="unfinished">View toolbar</translation>
+      <translation>Visualizza barra strumenti</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="112"/>
       <source>Configuration widgets</source>
-      <translation type="unfinished">Configuration widgets</translation>
+      <translation>Widget di configurazione</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="113"/>
@@ -3686,22 +3686,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="811"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
-      <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+      <translation>Stai usando la versione più recente. Non sono disponibili aggiornamenti.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="928"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>Il database passato nei parametri della riga di comando (%1) era già nell'elenco con il nome: %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="935"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
+      <translation>Il database passato nei parametri della riga di comando (%1) è stato temporaneamente aggiunto all'elenco con nome: %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="940"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Impossibile aggiungere il database %1 all'elenco.</translation>
     </message>
   </context>
   <context>
@@ -3709,17 +3709,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mdiwindow.cpp" line="199"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Modifiche non memorizzate</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="204"/>
       <source>Close anyway</source>
-      <translation type="unfinished">Close anyway</translation>
+      <translation>Chiudi comunque</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="206"/>
       <source>Don&apos;t close</source>
-      <translation type="unfinished">Don&apos;t close</translation>
+      <translation>Don&apos;t close</translation>
     </message>
   </context>
   <context>
@@ -3728,12 +3728,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditor.cpp" line="63"/>
       <source>Null value</source>
       <comment>multieditor</comment>
-      <translation type="unfinished">Null value</translation>
+      <translation>Valore nullo</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="82"/>
       <source>Configure editors for this data type</source>
-      <translation type="unfinished">Configure editors for this data type</translation>
+      <translation>Configura gli editor per questo tipo di dati</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="95"/>
