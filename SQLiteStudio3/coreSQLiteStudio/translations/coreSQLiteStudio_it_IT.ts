@@ -402,7 +402,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation>Dati importati nella tabella &apos;%1&apos; con successo. Numero di righe importate: %2</translation>
     </message>
   </context>
   <context>
