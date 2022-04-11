@@ -1752,7 +1752,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="178"/>
       <source>Delete index</source>
-      <translation type="unfinished">Delete index</translation>
+      <translation>Elimina indice</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="179"/>
@@ -1762,7 +1762,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="183"/>
       <source>Delete trigger</source>
-      <translation type="unfinished">Delete trigger</translation>
+      <translation>Elimina trigger</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="184"/>
@@ -1772,18 +1772,18 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbobjectdialogs.cpp" line="188"/>
       <source>Delete view</source>
-      <translation type="unfinished">Delete view</translation>
+      <translation>Elimina vista</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="189"/>
       <source>Are you sure you want to delete view %1?</source>
-      <translation type="unfinished">Are you sure you want to delete view %1?</translation>
+      <translation>Sei sicuro di voler eliminare la vista %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="213"/>
       <location filename="../dbobjectdialogs.cpp" line="306"/>
       <source>Error while dropping %1: %2</source>
-      <translation type="unfinished">Error while dropping %1: %2</translation>
+      <translation>Errore nel cancellare %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="276"/>
@@ -1943,88 +1943,88 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create an &amp;index</source>
-      <translation type="unfinished">Create an &amp;index</translation>
+      <translation>Crea un &amp;indice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Edit the i&amp;ndex</source>
-      <translation type="unfinished">Edit the i&amp;ndex</translation>
+      <translation>Modifica 'i&amp;ndice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Delete the in&amp;dex</source>
-      <translation type="unfinished">Delete the in&amp;dex</translation>
+      <translation>Cancella l'in&amp;dice</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Create a trig&amp;ger</source>
-      <translation type="unfinished">Create a trig&amp;ger</translation>
+      <translation>Crea un trig&amp;ger</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Edit the trigg&amp;er</source>
-      <translation type="unfinished">Edit the trigg&amp;er</translation>
+      <translation>Modifica il trigg&amp;er</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Delete the trigge&amp;r</source>
-      <translation type="unfinished">Delete the trigge&amp;r</translation>
+      <translation>Elimina il trigge&amp;r</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="165"/>
       <source>Create a &amp;view</source>
-      <translation type="unfinished">Create a &amp;view</translation>
+      <translation>Crea una &amp;vista</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>Edit the v&amp;iew</source>
-      <translation type="unfinished">Edit the v&amp;iew</translation>
+      <translation>Modifica la vista</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>Delete the vi&amp;ew</source>
-      <translation type="unfinished">Delete the vi&amp;ew</translation>
+      <translation>&amp;Elimina la vista</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
       <source>Add a column</source>
-      <translation type="unfinished">Add a column</translation>
+      <translation>Aggiungi una colonna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="169"/>
       <source>Edit the column</source>
-      <translation type="unfinished">Edit the column</translation>
+      <translation>Modifica la colonna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="170"/>
       <source>Delete the column</source>
-      <translation type="unfinished">Delete the column</translation>
+      <translation>Elimina la colonna</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="171"/>
       <source>Delete selected items</source>
-      <translation type="unfinished">Delete selected items</translation>
+      <translation>Elimina elementi selezionati</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="172"/>
       <source>Clear filter</source>
-      <translation type="unfinished">Clear filter</translation>
+      <translation>Cancella filtro</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation type="unfinished">&amp;Refresh all database schemas</translation>
+      <translation>Aggio&amp;rna tutti gli schemi del database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation type="unfinished">Re&amp;fresh selected database schema</translation>
+      <translation>Aggiorna lo schema del database selezionato</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
       <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Erase table data</source>
-      <translation type="unfinished">Erase table data</translation>
+      <translation>Cancellare i dati della tabella</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="180"/>
@@ -2034,13 +2034,13 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="181"/>
       <source>Execute SQL from file</source>
-      <translation type="unfinished">Execute SQL from file</translation>
+      <translation>Esegui SQL da file</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="362"/>
       <location filename="../dbtree/dbtree.cpp" line="367"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="377"/>
@@ -2066,7 +2066,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1091"/>
       <source>Entry with name %1 already exists in group %2.</source>
-      <translation type="unfinished">Entry with name %1 already exists in group %2.</translation>
+      <translation>La voce con il nome %1 esiste già nel gruppo %2.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1109"/>
