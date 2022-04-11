@@ -6,27 +6,27 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>URL database Android non valido o incompleto.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>Url database Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>Seleziona database Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>Seleziona ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>Utilizzo di Android Debug Bridge: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
