@@ -973,22 +973,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="596"/>
       <source>Table windows</source>
-      <translation type="unfinished">Table windows</translation>
+      <translation>Finestra tabelle</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="602"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Se abilitata, le finestre della tabella verranno visualizzate con la scheda dati, invece della scheda struttura.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="605"/>
       <source>Open Table Windows with the data tab for start</source>
-      <translation type="unfinished">Open Table Windows with the data tab for start</translation>
+      <translation>Apri Finestre tabella all'avvio con la scheda dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="615"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quando abilitata, la scheda &quot;Dati&quot; sarà posizionata come prima scheda in ogni finestra della tabella, invece di essere al secondo posto.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="618"/>
