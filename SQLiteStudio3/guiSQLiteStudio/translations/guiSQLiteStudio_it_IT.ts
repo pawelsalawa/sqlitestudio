@@ -2870,7 +2870,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="81"/>
       <source>Statements that were executed successfully were rolled back.</source>
-      <translation type="unfinished">Statements that were executed successfully were rolled back.</translation>
+      <translation>I comandi che sono stati eseguiti con successo sono stati annullati.</translation>
     </message>
   </context>
   <context>
@@ -2879,7 +2879,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../common/fontedit.cpp" line="61"/>
       <source>Choose font</source>
       <comment>font configuration</comment>
-      <translation type="unfinished">Choose font</translation>
+      <translation>Scegli carattere</translation>
     </message>
   </context>
   <context>
@@ -2887,7 +2887,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../forms/sqlformatterplugin.ui" line="20"/>
       <source>Active SQL formatter plugin</source>
-      <translation type="unfinished">Active SQL formatter plugin</translation>
+      <translation>Plugin per formattare SQL attivo</translation>
     </message>
   </context>
   <context>
@@ -3161,47 +3161,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="205"/>
       <source>Data source options</source>
-      <translation type="unfinished">Data source options</translation>
+      <translation>Opzioni sorgente dati</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="116"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Annulla</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
       <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-      <translation type="unfinished">If you type table name that doesn&apos;t exist, it will be created.</translation>
+      <translation>Se digiti il nome di una tabella che non esiste, essa verrà creata.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
       <source>Enter the table name</source>
-      <translation type="unfinished">Enter the table name</translation>
+      <translation>Inserisci il nome della tabella</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="165"/>
       <source>Select import plugin.</source>
-      <translation type="unfinished">Select import plugin.</translation>
+      <translation>Selezionare il plugin di importazione.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="174"/>
       <source>You must provide a file to import from.</source>
-      <translation type="unfinished">You must provide a file to import from.</translation>
+      <translation>Devi fornire un file da cui importare.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="181"/>
       <source>The file &apos;%1&apos; does not exist.</source>
-      <translation type="unfinished">The file &apos;%1&apos; does not exist.</translation>
+      <translation>Il file &apos;%1&apos; non esiste.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="187"/>
       <source>Path you provided is a directory. A regular file is required.</source>
-      <translation type="unfinished">Path you provided is a directory. A regular file is required.</translation>
+      <translation>Il percorso fornito è una directory. È richiesto un file.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
-      <translation type="unfinished">Pick file to import from</translation>
+      <translation>Scegli il file da cui importare</translation>
     </message>
   </context>
   <context>
@@ -3210,77 +3210,77 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/indexdialog.ui" line="20"/>
       <location filename="../dialogs/indexdialog.ui" line="30"/>
       <source>Index</source>
-      <translation type="unfinished">Index</translation>
+      <translation>Indice</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="70"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Colonna</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="75"/>
       <source>Sort</source>
-      <translation type="unfinished">Sort</translation>
+      <translation>Ordinamento</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="80"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Collation</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="88"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Su tabella:</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="98"/>
       <source>Delete selected indexed expression</source>
-      <translation type="unfinished">Delete selected indexed expression</translation>
+      <translation>Elimina l'espressione indicizzata selezionata</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="108"/>
       <source>Moves selected index column up in the order, making it more significant in the index.</source>
-      <translation type="unfinished">Moves selected index column up in the order, making it more significant in the index.</translation>
+      <translation>Sposta la colonna dell'indice selezionata nell'ordinamento, rendendola nel'indice più significativa.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="118"/>
       <source>Moves selected index column down in the order, making it less significant in the index.</source>
-      <translation type="unfinished">Moves selected index column down in the order, making it less significant in the index.</translation>
+      <translation>Sposta la colonna dell'indice selezionata nell'ordinamento, rendendola nel'indice meno significativa.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="128"/>
       <source>Partial index condition</source>
-      <translation type="unfinished">Partial index condition</translation>
+      <translation>Condizione indice parziale</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="135"/>
       <source>Unique index</source>
-      <translation type="unfinished">Unique index</translation>
+      <translation>Indice univoco</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="142"/>
       <source>Index name:</source>
-      <translation type="unfinished">Index name:</translation>
+      <translation>Nome indice:</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="149"/>
       <source>Edit selected indexed expression</source>
-      <translation type="unfinished">Edit selected indexed expression</translation>
+      <translation>Modifica l'espressione indicice selezionata</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="169"/>
       <source>Add indexed expression</source>
-      <translation type="unfinished">Add indexed expression</translation>
+      <translation>Aggiungi espressione indice</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="180"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="67"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
-      <translation type="unfinished">Tried to open index dialog for closed or inexisting database.</translation>
+      <translation>Ho cercato di aprire la finestra di dialogo dell'indice per un database chiuso o inesistente.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="137"/>
