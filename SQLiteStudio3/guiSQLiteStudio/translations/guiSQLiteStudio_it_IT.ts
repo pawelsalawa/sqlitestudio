@@ -2380,14 +2380,14 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- Query eseguite nel database %1 (%2)
+-- Data e ora di esecuzione: %3
 %4</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
       <source>DDL history</source>
-      <translation type="unfinished">DDL history</translation>
+      <translation>DDL history</translation>
     </message>
   </context>
   <context>
@@ -2395,12 +2395,12 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="14"/>
       <source>Queries to be executed</source>
-      <translation type="unfinished">Queries to be executed</translation>
+      <translation>Query da eseguire</translation>
     </message>
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
       <source>Don&apos;t show again</source>
-      <translation type="unfinished">Don&apos;t show again</translation>
+      <translation>Non mostrare di nuovo</translation>
     </message>
   </context>
   <context>
@@ -2408,7 +2408,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../debugconsole.ui" line="14"/>
       <source>SQLiteStudio Debug Console</source>
-      <translation type="unfinished">SQLiteStudio Debug Console</translation>
+      <translation>Console Debug SQLiteStudio</translation>
     </message>
   </context>
   <context>
@@ -2416,141 +2416,141 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
       <source>History</source>
-      <translation type="unfinished">History</translation>
+      <translation>Cronologia</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
       <source>Results in the separate tab</source>
-      <translation type="unfinished">Results in the separate tab</translation>
+      <translation>Risultati nella scheda separata</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="144"/>
       <source>Results below the query</source>
-      <translation type="unfinished">Results below the query</translation>
+      <translation>Risultati sotto la query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="177"/>
       <location filename="../windows/editorwindow.cpp" line="179"/>
       <source>SQL editor %1</source>
-      <translation type="unfinished">SQL editor %1</translation>
+      <translation>Editor SQL %1</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="334"/>
       <source>Results</source>
-      <translation type="unfinished">Results</translation>
+      <translation>Risultati</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="369"/>
       <source>Execute query</source>
-      <translation type="unfinished">Execute query</translation>
+      <translation>Esegui query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="370"/>
       <source>Explain query</source>
-      <translation type="unfinished">Explain query</translation>
+      <translation>Explain query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="373"/>
       <source>Clear execution history</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Cancella cronologia esecuzione</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="375"/>
       <source>Export results</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Export results</translation>
+      <translation>Esporta risultati</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="377"/>
       <source>Create view from query</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Create view from query</translation>
+      <translation>Crea vista dalla query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="388"/>
       <source>Previous database</source>
-      <translation type="unfinished">Previous database</translation>
+      <translation>Database precedente</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="389"/>
       <source>Next database</source>
-      <translation type="unfinished">Next database</translation>
+      <translation>Prossimo database</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="392"/>
       <source>Show next tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show next tab</translation>
+      <translation>Mostra la scheda successiva</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="393"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show previous tab</translation>
+      <translation>Mostra scheda precedente</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="394"/>
       <source>Focus results below</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Focus results below</translation>
+      <translation>Focus risultati sotto</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="395"/>
       <source>Focus SQL editor above</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Focus SQL editor above</translation>
+      <translation>Focus editor SQL sopra</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="396"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Elimina le voci selezionate nella cronologia SQL</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="462"/>
       <source>Active database (%1/%2)</source>
-      <translation type="unfinished">Active database (%1/%2)</translation>
+      <translation>Database attivo (%1/%2)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation type="unfinished">Query finished in %1 second(s). Rows affected: %2</translation>
+      <translation>Interrogazione terminata in %1 secondi. Righe interessate: %2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s).</source>
-      <translation type="unfinished">Query finished in %1 second(s).</translation>
+      <translation>Interrogazione terminata in %1 secondi.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Clear execution history</source>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Cancella cronologia esecuzione</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-      <translation type="unfinished">Are you sure you want to erase the entire SQL execution history? This cannot be undone.</translation>
+      <translation>Sei sicuro di voler cancellare l'intera cronologia di esecuzione SQL? Questo non può essere annullato.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
       <source>Cannot export, because no export plugin is loaded.</source>
-      <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
+      <translation>Impossibile esportare, perché non è stato caricato alcun plugin di esportazione.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="733"/>
       <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
-      <translation type="unfinished">No database selected in the SQL editor. Cannot create a view for unknown database.</translation>
+      <translation>Nessun database selezionato nell'editor SQL. Impossibile creare una vista per un database sconosciuto.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="763"/>
       <source>Editor window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">Editor window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>La finestra dell'editor &quot;%1&quot; ha dati senza commit.</translation>
     </message>
   </context>
   <context>
@@ -2558,17 +2558,17 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
       <source>Errors</source>
-      <translation type="unfinished">Errors</translation>
+      <translation>Errori</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
       <source>Following errors occured:</source>
-      <translation type="unfinished">Following errors occured:</translation>
+      <translation>Si sono verificati i seguenti errori:</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
       <source>Would you like to proceed?</source>
-      <translation type="unfinished">Would you like to proceed?</translation>
+      <translation>Ti piacerebbe procedere?</translation>
     </message>
   </context>
   <context>
@@ -2576,52 +2576,52 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="14"/>
       <source>Execute SQL from file</source>
-      <translation type="unfinished">Execute SQL from file</translation>
+      <translation>Esegui SQL da file</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="23"/>
       <source>Input file</source>
-      <translation type="unfinished">Input file</translation>
+      <translation>File in ingresso</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="29"/>
       <source>Path to file</source>
-      <translation type="unfinished">Path to file</translation>
+      <translation>Percorso del file</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="36"/>
       <source>Browse for file</source>
-      <translation type="unfinished">Browse for file</translation>
+      <translation>Sfoglia per il file</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="53"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opzioni</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="59"/>
       <source>File encoding</source>
-      <translation type="unfinished">File encoding</translation>
+      <translation>Codifica file</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="69"/>
       <source>Skip failing SQL statements</source>
-      <translation type="unfinished">Skip failing SQL statements</translation>
+      <translation>Salta le istruzioni SQL fallite</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="49"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
-      <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
+      <translation>Script SQL (*.sql);;Tutti i file (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="50"/>
       <source>Execute SQL file</source>
-      <translation type="unfinished">Execute SQL file</translation>
+      <translation>Esegui file SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="64"/>
       <source>Please provide file to be executed.</source>
-      <translation type="unfinished">Please provide file to be executed.</translation>
+      <translation>Fornisci il file da eseguire.</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="71"/>
