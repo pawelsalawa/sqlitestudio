@@ -11,7 +11,7 @@
     <message>
       <location filename="../CsvExport.ui" line="30"/>
       <source>Column separator:</source>
-      <translation>Separatore di colonne:</translation>
+      <translation>Separatore di colonna:</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="41"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../CsvExport.ui" line="46"/>
       <source>; (semicolon)</source>
-      <translation>; (Punto e virgola)</translation>
+      <translation>; (punto e virgola)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="51"/>
