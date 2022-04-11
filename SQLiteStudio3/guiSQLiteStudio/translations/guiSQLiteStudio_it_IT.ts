@@ -3285,33 +3285,33 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="137"/>
       <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
-      <translation type="unfinished">Could not process index %1 correctly. Unable to open an index dialog.</translation>
+      <translation>Impossibile elaborare correttamente l'indice %1. Impossibile aprire una finestra di dialogo indice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="191"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-      <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
+      <translation>L'indice univoco non può avere espressioni indicizzate. Rimuovere le espressioni dalla lista sotto, o deselezionare questa opzione.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="192"/>
       <source>Pick the table for the index.</source>
-      <translation type="unfinished">Pick the table for the index.</translation>
+      <translation>Scegliere la tabella per l'indice.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="193"/>
       <source>Select at least one column.</source>
-      <translation type="unfinished">Select at least one column.</translation>
+      <translation>Seleziona almeno una colonna.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Inserisci una condizione valida.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="266"/>
       <source>default</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">default</translation>
+      <translation>default</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="270"/>
