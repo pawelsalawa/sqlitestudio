@@ -4871,82 +4871,82 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="140"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy up down</translation>
+      <translation>Copia su giù</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="141"/>
       <source>Find</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find</translation>
+      <translation>Trova</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="142"/>
       <source>Find next</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find next</translation>
+      <translation>Trova successivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="143"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Trova precedente</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="144"/>
       <source>Replace</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Replace</translation>
+      <translation>Sostituisci</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="145"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Toggle comment</translation>
+      <translation>Attiva/disattiva commento</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="249"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
+      <translation>Impossibile aprire il file &apos;%1&apos; in scrittura: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="259"/>
       <source>Saved SQL contents to file: %1</source>
-      <translation type="unfinished">Saved SQL contents to file: %1</translation>
+      <translation>Contenuti SQL salvati nel file: %1</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="453"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
-      <translation type="unfinished">Syntax completion can be used only when a valid database is set for the SQL editor.</translation>
+      <translation>Il completamento della sintassi può essere usato solo quando è impostato un database valido per l'editor SQL.</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1031"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
-      <translation type="unfinished">Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</translation>
+      <translation>I contenuti dell'editor SQL sono enormi, quindi gli errori di rilevamento e gli oggetti esistenti di evidenziazione sono temporaneamente disabilitati.</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1063"/>
       <source>Save to file</source>
-      <translation type="unfinished">Save to file</translation>
+      <translation>Salva su file</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1075"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
-      <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
+      <translation>Script SQL (*.sql);;Tutti i file (*)</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1076"/>
       <source>Open file</source>
-      <translation type="unfinished">Open file</translation>
+      <translation>Apri file</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1086"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1291"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
-      <translation type="unfinished">Reached the end of document. Hit the find again to restart the search.</translation>
+      <translation>Raggiunta la fine del documento. Premi nuovamente la ricerca per riavviare la ricerca.</translation>
     </message>
   </context>
   <context>
@@ -4955,36 +4955,36 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="258"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Committing error:</translation>
+      <translation>Errore di commit:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
       <source>Column:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Column:</translation>
+      <translation>Colonna:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
       <source>Data type:</source>
       <comment>data view</comment>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Tipo di dati:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="266"/>
       <source>Table:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Table:</translation>
+      <translation>Tabella:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="296"/>
       <source>Constraints:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Constraints:</translation>
+      <translation>Vincoli:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="426"/>
       <source>Cannot load the data for a cell that refers to the already closed database.</source>
-      <translation type="unfinished">Cannot load the data for a cell that refers to the already closed database.</translation>
+      <translation>Impossibile caricare i dati per una cella che si riferisce al database già chiuso.</translation>
     </message>
   </context>
   <context>
