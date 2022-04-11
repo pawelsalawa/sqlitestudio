@@ -317,28 +317,28 @@ Il dispositivo Android ha rifiutato la cancellazione, o era impossibile.</transl
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</translation>
+      <translation>Impossibile connettersi al dispositivo %1, perché il comando &apos;%2&apos; non sembra essere disponibile sul dispositivo.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</translation>
+      <translation>Impossibile connettersi al dispositivo %1 perché &apos;%2&apos; database non è accessibile sul dispositivo.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</translation>
+      <translation>Impossibile connettersi al dispositivo %1 perché &apos;%2&apos; database non è accessibile sul dispositivo. Dettagli: %3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
       <source>Cannot get list of databases for application %1. Details: %2</source>
-      <translation type="unfinished">Cannot get list of databases for application %1. Details: %2</translation>
+      <translation>Impossibile ottenere l'elenco dei database per l'applicazione %1. Dettagli: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="219"/>
       <location filename="../dbandroidshellconnection.cpp" line="226"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Could not execute query on database &apos;%1&apos;: %2</translation>
+      <translation>Impossibile eseguire la query nel database &apos;%1&apos;: %2</translation>
     </message>
   </context>
   <context>
@@ -346,7 +346,7 @@ Il dispositivo Android ha rifiutato la cancellazione, o era impossibile.</transl
     <message>
       <location filename="../sqlqueryandroid.cpp" line="101"/>
       <source>Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</source>
-      <translation type="unfinished">Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</translation>
+      <translation>Impossibile legare l'argomento &apos;%1&apos; della query, perché manca il suo valore.</translation>
     </message>
   </context>
 </TS>
