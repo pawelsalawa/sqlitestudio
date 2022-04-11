@@ -1053,7 +1053,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="819"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>Non mostrare la finestra di anteprima DDL quando si salvano le modifiche allo schema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="832"/>
@@ -1075,12 +1075,12 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Numero massimo di parametri di interrogazione (:param, @param, $param, ?) memorizzati nella cronologia. Quando riutilizzi il parametro con lo stesso nome/posizione, SQLiteStudio lo preinizializzerà con il valore memorizzato più recente (sarà ancora possibile comunque cambiarlo). Il valore di 1000 dovrebbe essere sufficiente.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
       <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Se c'è più di una query nella finestra dell'editor SQL, allora (se questa opzione è abilitata) verrà eseguita solo una singola query - quella sotto il cursore dell'inserimento della tastiera. Altrimenti tutte le query verranno eseguite. Puoi sempre limitare le query da eseguire selezionando prima le query e poi eseguirle.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
@@ -1115,12 +1115,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="941"/>
       <source>Allow multiple instances of the application at the same time</source>
-      <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
+      <translation>Consenti più istanze dell'applicazione nello stesso tempo</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>General.AllowMultipleSessions</source>
-      <translation type="unfinished">General.AllowMultipleSessions</translation>
+      <translation>General.AllowMultipleSessions</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
@@ -6279,89 +6279,89 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../windows/viewwindow.ui" line="123"/>
       <source>Output column names</source>
-      <translation type="unfinished">Output column names</translation>
+      <translation>Nomi colonne in output</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
       <location filename="../windows/viewwindow.cpp" line="849"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Dati</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="180"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Trigger</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="212"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="109"/>
       <location filename="../windows/viewwindow.cpp" line="115"/>
       <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</translation>
+      <translation>Impossibile ripristinare la finestra &apos;%1&apos;, perché non è stato memorizzato alcun database o vista nella sessione per questa finestra.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="122"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
+      <translation>Impossibile ripristinare la finestra &apos;%1&apos;, perché il database %2 non può essere risolto.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="128"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be open.</translation>
+      <translation>Impossibile ripristinare la finestra &apos;%1&apos;, perché il database %2 non può essere aperto.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="137"/>
       <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>Impossibile ripristinare la finestra &apos;%1&apos;, perché la vista %2 non esiste&apos;t nel database %3.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="162"/>
       <location filename="../windows/viewwindow.cpp" line="164"/>
       <source>New view %1</source>
-      <translation type="unfinished">New view %1</translation>
+      <translation>Nuova vista %1</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="275"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="328"/>
       <source>Refresh the view</source>
       <comment>view window</comment>
-      <translation type="unfinished">Refresh the view</translation>
+      <translation>Aggiorna la vista</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="330"/>
       <source>Commit the view changes</source>
       <comment>view window</comment>
-      <translation type="unfinished">Commit the view changes</translation>
+      <translation>Commit delle modifiche alla vista</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="331"/>
       <source>Rollback the view changes</source>
       <comment>view window</comment>
-      <translation type="unfinished">Rollback the view changes</translation>
+      <translation>Ripristina le modifiche della vista</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="335"/>
       <source>Explicit column names</source>
-      <translation type="unfinished">Explicit column names</translation>
+      <translation>Nomi espliciti delle colonne</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="341"/>
       <source>Generate output column names automatically basing on result columns of the view.</source>
-      <translation type="unfinished">Generate output column names automatically basing on result columns of the view.</translation>
+      <translation>Genera i nomi delle colonne di output automaticamente basandosi sulle colonne di risultato della vista.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="342"/>
       <source>Add column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Aggiungi colonna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="343"/>
@@ -6456,7 +6456,7 @@ Vuoi eseguire il commit della struttura, o vuoi tornare alla scheda Struttura?</
     <message>
       <location filename="../windows/viewwindow.cpp" line="639"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
-      <translation type="unfinished">View &apos;%1&apos; was committed successfully.</translation>
+      <translation>Vista &apos;%1&apos; commit effettuato con successo.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="641"/>
