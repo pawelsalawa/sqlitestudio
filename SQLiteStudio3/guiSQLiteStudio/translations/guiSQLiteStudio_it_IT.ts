@@ -6130,12 +6130,12 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="115"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Seleziona tutto</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="128"/>
       <source>Deselect all</source>
-      <translation type="unfinished">Deselect all</translation>
+      <translation>Deseleziona tutto</translation>
     </message>
   </context>
   <context>
@@ -6144,100 +6144,100 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
       <location filename="../dialogs/triggerdialog.ui" line="14"/>
       <location filename="../dialogs/triggerdialog.ui" line="24"/>
       <source>Trigger</source>
-      <translation type="unfinished">Trigger</translation>
+      <translation>Trigger</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="30"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Su tabella:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="40"/>
       <source>Action:</source>
-      <translation type="unfinished">Action:</translation>
+      <translation>Azione:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="56"/>
       <location filename="../dialogs/triggerdialog.ui" line="127"/>
       <source>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Condizione SQL che sarà valutata prima del codice di trigger attuale. Nel caso in cui la condizione restituisca false, il trigger non verrà eseguito per quella riga.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="59"/>
       <source>Pre-condition:</source>
-      <translation type="unfinished">Pre-condition:</translation>
+      <translation>Pre-condizione:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="66"/>
       <source>The scope is still not fully supported by the SQLite database.</source>
-      <translation type="unfinished">The scope is still not fully supported by the SQLite database.</translation>
+      <translation>Il campo di applicazione non è ancora completamente supportato dal database SQLite.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="73"/>
       <source>Trigger name:</source>
-      <translation type="unfinished">Trigger name:</translation>
+      <translation>Nome del trigger:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="80"/>
       <source>When:</source>
-      <translation type="unfinished">When:</translation>
+      <translation>Quando:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="87"/>
       <source>List of columns for UPDATE OF action.</source>
-      <translation type="unfinished">List of columns for UPDATE OF action.</translation>
+      <translation>Elenco delle colonne per l'azione UPDATE OF.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="97"/>
       <source>Scope:</source>
-      <translation type="unfinished">Scope:</translation>
+      <translation>Ambito:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="104"/>
       <source>Code:</source>
-      <translation type="unfinished">Code:</translation>
+      <translation>Codice:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="111"/>
       <source>Trigger statements to be executed.</source>
-      <translation type="unfinished">Trigger statements to be executed.</translation>
+      <translation>Dichiarazioni di trigger da eseguire.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="138"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="153"/>
       <source>On view:</source>
-      <translation type="unfinished">On view:</translation>
+      <translation>Su vista:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="177"/>
       <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
-      <translation type="unfinished">Could not process trigger %1 correctly. Unable to open a trigger dialog.</translation>
+      <translation>Impossibile elaborare correttamente il trigger %1. Impossibile aprire una finestra di trigger.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="345"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Inserisci una condizione valida.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="346"/>
       <source>Enter a valid trigger code.</source>
-      <translation type="unfinished">Enter a valid trigger code.</translation>
+      <translation>Inserisci un codice di trigger valido.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="418"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Errore</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="418"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
-      <translation type="unfinished">An error occurred while executing SQL statements:
+      <translation>Si è verificato un errore durante l'esecuzione dei comandi SQL:
 %1</translation>
     </message>
   </context>
@@ -6246,7 +6246,7 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="14"/>
       <source>Database version convert</source>
-      <translation type="unfinished">Database version convert</translation>
+      <translation>Converti versione database</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
