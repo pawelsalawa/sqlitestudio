@@ -4373,143 +4373,143 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
       <source>Cell text value editor</source>
-      <translation type="unfinished">Cell text value editor</translation>
+      <translation>Editor dei valori testuali della cella</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
       <location filename="../sqleditor.h" line="29"/>
       <source>Cut selected text</source>
-      <translation type="unfinished">Cut selected text</translation>
+      <translation>Taglia il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="14"/>
       <location filename="../sqleditor.h" line="30"/>
       <source>Copy selected text</source>
-      <translation type="unfinished">Copy selected text</translation>
+      <translation>Copia il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
       <location filename="../sqleditor.h" line="32"/>
       <source>Delete selected text</source>
-      <translation type="unfinished">Delete selected text</translation>
+      <translation>Elimina il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="17"/>
       <location filename="../sqleditor.h" line="34"/>
       <source>Undo</source>
-      <translation type="unfinished">Undo</translation>
+      <translation>Annulla</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="18"/>
       <location filename="../sqleditor.h" line="35"/>
       <source>Redo</source>
-      <translation type="unfinished">Redo</translation>
+      <translation>Ripeti</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="28"/>
       <source>SQL editor input field</source>
-      <translation type="unfinished">SQL editor input field</translation>
+      <translation>Campo d'immissione dell'editor SQL</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="33"/>
       <source>Select whole editor contents</source>
-      <translation type="unfinished">Select whole editor contents</translation>
+      <translation>Seleziona tutto il contenuto dell'editor</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="36"/>
       <source>Save contents into a file</source>
-      <translation type="unfinished">Save contents into a file</translation>
+      <translation>Salva i contenuti in un file</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="37"/>
       <source>Load contents from a file</source>
-      <translation type="unfinished">Load contents from a file</translation>
+      <translation>Carica contenuti da un file</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="38"/>
       <source>Find in text</source>
-      <translation type="unfinished">Find in text</translation>
+      <translation>Trova nel testo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="39"/>
       <source>Find next</source>
-      <translation type="unfinished">Find next</translation>
+      <translation>Trova successivo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="40"/>
       <source>Find previous</source>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Trova precedente</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="41"/>
       <source>Replace in text</source>
-      <translation type="unfinished">Replace in text</translation>
+      <translation>Sostituisci nel testo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="42"/>
       <source>Delete current line</source>
-      <translation type="unfinished">Delete current line</translation>
+      <translation>Elimina la riga corrente</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="43"/>
       <source>Request code assistant</source>
-      <translation type="unfinished">Request code assistant</translation>
+      <translation>Richiedi assistente codice</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="44"/>
       <source>Format contents</source>
-      <translation type="unfinished">Format contents</translation>
+      <translation>Formato contenuti</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="45"/>
       <source>Move selected block of text one line down</source>
-      <translation type="unfinished">Move selected block of text one line down</translation>
+      <translation>Sposta il blocco di testo selezionato una riga verso il basso</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="46"/>
       <source>Move selected block of text one line up</source>
-      <translation type="unfinished">Move selected block of text one line up</translation>
+      <translation>Sposta il blocco di testo selezionato di una riga in alto</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="47"/>
       <source>Copy selected block of text and paste it a line below</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line below</translation>
+      <translation>Copia il blocco di testo selezionato e incollalo una riga sotto</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="48"/>
       <source>Copy selected block of text and paste it a line above</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line above</translation>
+      <translation>Copia il blocco di testo selezionato e incollalo una riga sopra</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="49"/>
       <source>Toggle comment</source>
-      <translation type="unfinished">Toggle comment</translation>
+      <translation>Attiva/Disattiva commento</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="35"/>
       <source>All SQLite databases</source>
-      <translation type="unfinished">All SQLite databases</translation>
+      <translation>Tutti i database SQLite</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="37"/>
       <source>All files</source>
-      <translation type="unfinished">All files</translation>
+      <translation>Tutti i file</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="41"/>
       <location filename="../uiutils.cpp" line="43"/>
       <source>Database file</source>
-      <translation type="unfinished">Database file</translation>
+      <translation>File database</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
       <source>SQL editor window</source>
-      <translation type="unfinished">SQL editor window</translation>
+      <translation>Finestra editor SQL</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="28"/>
       <source>Execute query</source>
-      <translation type="unfinished">Execute query</translation>
+      <translation>Esegui query</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
@@ -4793,79 +4793,79 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="127"/>
       <source>Delete</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete</translation>
+      <translation>Elimina</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="128"/>
       <source>Select all</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Select all</translation>
+      <translation>Seleziona tutto</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="129"/>
       <source>Undo</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Undo</translation>
+      <translation>Annulla</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="130"/>
       <source>Redo</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Redo</translation>
+      <translation>Ripeti</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="131"/>
       <source>Complete</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Complete</translation>
+      <translation>Complete</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="132"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Format SQL</translation>
+      <translation>Formato SQL</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="133"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Save SQL to file</translation>
+      <translation>Salva SQL su file</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="134"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Select file to save SQL</translation>
+      <translation>Seleziona file per salvare l'SQL</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="135"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Load SQL from file</translation>
+      <translation>Carica SQL da file</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="136"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete line</translation>
+      <translation>Elimina riga</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="137"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Move block down</translation>
+      <translation>Sposta blocco giù</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="138"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Move block up</translation>
+      <translation>Sposta blocco su</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="139"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy block down</translation>
+      <translation>Copia blocco giù</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="140"/>
