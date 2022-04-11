@@ -953,22 +953,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="545"/>
       <source>Inserting new row in data grid</source>
-      <translation type="unfinished">Inserting new row in data grid</translation>
+      <translation>Inserimento di una nuova riga nella griglia dei dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>Before currently selected row</source>
-      <translation type="unfinished">Before currently selected row</translation>
+      <translation>Prima della riga attualmente selezionata</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>After currently selected row</source>
-      <translation type="unfinished">After currently selected row</translation>
+      <translation>Dopo la riga attualmente selezionata</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="580"/>
       <source>At the end of data view</source>
-      <translation type="unfinished">At the end of data view</translation>
+      <translation>Alla fine della vista dati</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="596"/>
