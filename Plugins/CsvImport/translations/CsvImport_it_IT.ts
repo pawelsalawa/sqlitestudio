@@ -34,7 +34,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation>; (Punto e virgola)</translation>
+      <translation>; (punto e virgola)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
