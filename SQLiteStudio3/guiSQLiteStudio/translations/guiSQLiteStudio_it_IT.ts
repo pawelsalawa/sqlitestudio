@@ -3671,17 +3671,17 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
       <source>Rename window</source>
-      <translation type="unfinished">Rename window</translation>
+      <translation>Rinomina finestra</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="698"/>
       <source>Enter new name for the window:</source>
-      <translation type="unfinished">Enter new name for the window:</translation>
+      <translation>Inserisci un nuovo nome per la finestra:</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="803"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
-      <translation type="unfinished">New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</translation>
+      <translation>Sono disponibili nuovi aggiornamenti. &lt;a href=&quot;%1&quot;&gt;Clicca qui per maggiori dettagli&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="811"/>
@@ -4614,57 +4614,57 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../windows/tablewindow.h" line="44"/>
       <source>Edit selected index</source>
-      <translation type="unfinished">Edit selected index</translation>
+      <translation>Modifica l'indice selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="45"/>
       <source>Delete selected index</source>
-      <translation type="unfinished">Delete selected index</translation>
+      <translation>Elimina l'indice selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="46"/>
       <source>Refresh table trigger list</source>
-      <translation type="unfinished">Refresh table trigger list</translation>
+      <translation>Aggiorna elenco trigger tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="47"/>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Add new trigger</source>
-      <translation type="unfinished">Add new trigger</translation>
+      <translation>Aggiungi nuovo trigger</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="48"/>
       <location filename="../windows/viewwindow.h" line="26"/>
       <source>Edit selected trigger</source>
-      <translation type="unfinished">Edit selected trigger</translation>
+      <translation>Modifica il trigger selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="49"/>
       <location filename="../windows/viewwindow.h" line="27"/>
       <source>Delete selected trigger</source>
-      <translation type="unfinished">Delete selected trigger</translation>
+      <translation>Elimina il trigger selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="50"/>
       <location filename="../windows/viewwindow.h" line="28"/>
       <source>Go to next tab</source>
-      <translation type="unfinished">Go to next tab</translation>
+      <translation>Vai alla scheda successiva</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="51"/>
       <location filename="../windows/viewwindow.h" line="29"/>
       <source>Go to previous tab</source>
-      <translation type="unfinished">Go to previous tab</translation>
+      <translation>Vai alla scheda precedente</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="23"/>
       <source>A view window</source>
-      <translation type="unfinished">A view window</translation>
+      <translation>Una finestra di visualizzazione</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="24"/>
       <source>Refresh view trigger list</source>
-      <translation type="unfinished">Refresh view trigger list</translation>
+      <translation>Aggiorna vista elenco trigger</translation>
     </message>
   </context>
   <context>
@@ -4672,16 +4672,16 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Modifiche senza commit</translation>
     </message>
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-      <translation type="unfinished">Are you sure you want to quit the application?
+      <translation>Sei sicuro di voler uscire dall'applicazione?
 
-Following items are pending:</translation>
+I seguenti elementi sono in sospeso:</translation>
     </message>
   </context>
   <context>
@@ -4689,49 +4689,49 @@ Following items are pending:</translation>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="14"/>
       <source>Find or replace</source>
-      <translation type="unfinished">Find or replace</translation>
+      <translation>Trova o sostituisci</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="23"/>
       <source>Find:</source>
-      <translation type="unfinished">Find:</translation>
+      <translation>Trova:</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="36"/>
       <source>Case sensitive</source>
-      <translation type="unfinished">Case sensitive</translation>
+      <translation>Distingui maiuscole</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="43"/>
       <source>Search backwards</source>
-      <translation type="unfinished">Search backwards</translation>
+      <translation>Cerca all'indietro</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="50"/>
       <source>Regular expression matching</source>
-      <translation type="unfinished">Regular expression matching</translation>
+      <translation>Espressione regolare corrispondente</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="60"/>
       <source>Replace &amp;&amp;
 find next</source>
-      <translation type="unfinished">Replace &amp;&amp;
-find next</translation>
+      <translation>Sostituisci &amp;&amp;
+trova il prossimo</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="78"/>
       <source>Replace with:</source>
-      <translation type="unfinished">Replace with:</translation>
+      <translation>Sostituisci con:</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="91"/>
       <source>Replace all</source>
-      <translation type="unfinished">Replace all</translation>
+      <translation>Sostituisci tutti</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="98"/>
       <source>Find</source>
-      <translation type="unfinished">Find</translation>
+      <translation>Trova</translation>
     </message>
   </context>
   <context>
@@ -4739,34 +4739,34 @@ find next</translation>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="14"/>
       <source>Sort by columns</source>
-      <translation type="unfinished">Sort by columns</translation>
+      <translation>Ordina per colonne</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="45"/>
       <location filename="../dialogs/sortdialog.cpp" line="48"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Colonna</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="50"/>
       <location filename="../dialogs/sortdialog.cpp" line="48"/>
       <source>Order</source>
-      <translation type="unfinished">Order</translation>
+      <translation>Ordine</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="178"/>
       <source>Sort by: %1</source>
-      <translation type="unfinished">Sort by: %1</translation>
+      <translation>Ordina per: %1</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="242"/>
       <source>Move column up</source>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sposta colonna in alto</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="243"/>
       <source>Move column down</source>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sposta colonna in basso</translation>
     </message>
   </context>
   <context>
@@ -4775,19 +4775,19 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="124"/>
       <source>Cut</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Cut</translation>
+      <translation>Taglia</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="125"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copia</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="126"/>
       <source>Paste</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Paste</translation>
+      <translation>Incolla</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="127"/>
