@@ -6251,17 +6251,17 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
       <source>Following changes to the SQL statements will be made:</source>
-      <translation type="unfinished">Following changes to the SQL statements will be made:</translation>
+      <translation>Le seguenti modifiche alle istruzioni SQL saranno effettuate:</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="10"/>
       <source>Before</source>
-      <translation type="unfinished">Before</translation>
+      <translation>Prima</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="11"/>
       <source>After</source>
-      <translation type="unfinished">After</translation>
+      <translation>Dopo</translation>
     </message>
   </context>
   <context>
@@ -6269,12 +6269,12 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../windows/viewwindow.ui" line="36"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Query</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="70"/>
       <source>View name:</source>
-      <translation type="unfinished">View name:</translation>
+      <translation>Nome della vista:</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="123"/>
