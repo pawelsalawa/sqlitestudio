@@ -1048,7 +1048,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="812"/>
       <source>DDL history size:</source>
-      <translation>Tamaño del historial de DDL:</translation>
+      <translation>Tamaño del historial DDL:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="819"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Número máximo de parámetros en la consulta (:param, @param, $param, ?) almacenados en el historial. Cuando reutilizas un parámetro con el mismo nombre/posición, SQLiteStudio lo pre-inicializará con el valor más reciente almacenado en memoria (aún podrás cambiarlo). Un valor de 1000 debería bastar.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de parámetros en la consulta (:param, @param, $param, ?) almacenados en el historial. Cuando reusas un parámetro con el mismo nombre/posición, SQLiteStudio lo pre-inicializará con el valor más reciente almacenado en memoria (aún podrás cambiarlo). Un valor de 1000 debería bastar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -2013,12 +2013,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation type="unfinished">&amp;Refresh all database schemas</translation>
+      <translation>A&amp;ctualizar todos los esquemas de bases de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation type="unfinished">Re&amp;fresh selected database schema</translation>
+      <translation>Ac&amp;tualizar el esquema de base de datos seleccionado</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
@@ -2373,15 +2373,15 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="35"/>
       <source>Filter by database:</source>
-      <translation type="unfinished">Filter by database:</translation>
+      <translation>Filtrar por base de datos:</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- Consultas ejecutadas en la base de datos %1 (%2)
+-- Fecha y hora de la ejecución: %3
 %4</translation>
     </message>
     <message>
@@ -2535,7 +2535,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-      <translation type="unfinished">Are you sure you want to erase the entire SQL execution history? This cannot be undone.</translation>
+      <translation>¿Estás seguro de que quieres borrar todo el historial de ejecución SQL? Esto no se puede deshacer.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
@@ -3460,7 +3460,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="239"/>
       <source>Open DDL &amp;history</source>
-      <translation type="unfinished">Open DDL &amp;history</translation>
+      <translation>Abrir &amp;historial DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="240"/>
@@ -3610,7 +3610,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Salir</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="275"/>
@@ -4368,7 +4368,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>Salir de la aplicación</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -4549,7 +4549,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Delete selected SQL history entries</source>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Borrar entradas seleccionadas del historial SQL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="32"/>
@@ -4672,16 +4672,16 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-      <translation type="unfinished">Are you sure you want to quit the application?
+      <translation>¿Estás seguro de querer salir de la aplicación?
 
-Following items are pending:</translation>
+Estas tareas quedan pendientes:</translation>
     </message>
   </context>
   <context>
