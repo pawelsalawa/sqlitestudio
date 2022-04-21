@@ -451,7 +451,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="373"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation>La precisión no puede definirse sin la escala.</translation>
+      <translation>No se puede definir la precisión sin la escala.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="374"/>
@@ -466,7 +466,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="397"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation>Las columnas ENTERAS DE CLAVE PRIMARIA no permiten precisión.</translation>
+      <translation>Las columnas INTEGER PRIMARY KEY no permiten precisión.</translation>
     </message>
   </context>
   <context>
@@ -525,12 +525,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation>Elige la tabla foránea.</translation>
+      <translation>Elige la tabla externa.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation>Elige la columna foránea.</translation>
+      <translation>Elige la columna externa.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
@@ -2400,7 +2400,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
       <source>Don&apos;t show again</source>
-      <translation type="unfinished">Don&apos;t show again</translation>
+      <translation>No mostrar de nuevo</translation>
     </message>
   </context>
   <context>
@@ -5500,12 +5500,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>Elige la columna externa.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>Elige la tabla externa.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
@@ -5990,8 +5990,8 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-      <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a table with blank name?</translation>
+      <translation>SQLite permite usar tablas sin nombre, pero no es lo recomendado.
+¿Estás seguro de que quieres crear una tabla sin nombre?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1004"/>
