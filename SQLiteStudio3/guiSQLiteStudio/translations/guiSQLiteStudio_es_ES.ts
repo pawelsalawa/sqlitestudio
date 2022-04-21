@@ -1858,27 +1858,27 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Añadir una base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;Editar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Quitar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>&amp;Conectar a la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>&amp;Desconectar de la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
@@ -1888,7 +1888,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>&amp;Exportar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
