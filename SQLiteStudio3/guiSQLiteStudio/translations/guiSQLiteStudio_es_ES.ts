@@ -336,7 +336,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation>Comprobar condición</translation>
+      <translation>Verificar condición</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
@@ -515,7 +515,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation>Restricción con nombre</translation>
+      <translation>Nombre de la restricción</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -535,7 +535,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -543,22 +543,22 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Código generador:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Tipo explícito:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation>Usar palabras clave &quot;GENERAR SIEMPRE&quot;</translation>
+      <translation>Usar palabras clave &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -578,7 +578,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -596,7 +596,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
@@ -606,7 +606,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
@@ -619,7 +619,7 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
@@ -629,7 +629,7 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -1347,7 +1347,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
@@ -1362,7 +1362,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -1413,7 +1413,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="184"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation>No NULO</translation>
+      <translation>No es NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
@@ -1823,7 +1823,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="102"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Operación ejecutar desde archivo cancelada. Cualquier consulta ejecutada hasta ahora ha sido revertida.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
@@ -2780,7 +2780,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="62"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
@@ -3166,7 +3166,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.cpp" line="116"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
@@ -3305,7 +3305,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Ingresa una condición válida.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="266"/>
@@ -3879,7 +3879,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
       <source>Unique</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Único</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
@@ -3892,7 +3892,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
       <source>Not NULL</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>No es NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
@@ -3910,7 +3910,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
       <source>Default</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Default</translation>
+      <translation>Predeterminado</translation>
     </message>
   </context>
   <context>
@@ -5515,7 +5515,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Escribe un nombre para la restricción.</translation>
+      <translation>Escribe el nombre para la restricción.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
@@ -5591,7 +5591,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="171"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -5628,7 +5628,7 @@ Key</translation>
       <location filename="../windows/tablestructuremodel.cpp" line="299"/>
       <source>Unique</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Único</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="301"/>
@@ -5641,7 +5641,7 @@ Key</translation>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Not
+      <translation>No es
 NULL</translation>
     </message>
     <message>
