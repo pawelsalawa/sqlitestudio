@@ -1828,7 +1828,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
@@ -1893,12 +1893,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation type="unfinished">Vac&amp;uum</translation>
+      <translation>Ejecutar Vac&amp;uum</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>Comprobación de &amp;integridad</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
@@ -2117,7 +2117,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
       <source>Integrity check (%1)</source>
-      <translation type="unfinished">Integrity check (%1)</translation>
+      <translation>Comprobación de integridad (%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1540"/>
@@ -2296,7 +2296,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1123"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
@@ -2387,7 +2387,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
       <source>DDL history</source>
-      <translation type="unfinished">DDL history</translation>
+      <translation>Historial DDL</translation>
     </message>
   </context>
   <context>
@@ -2421,7 +2421,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
       <source>History</source>
-      <translation type="unfinished">History</translation>
+      <translation>Historial</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
@@ -2458,7 +2458,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="373"/>
       <source>Clear execution history</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpiar historial de ejecución</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="375"/>
@@ -2510,7 +2510,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="396"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Borrar entradas SQL seleccionadas del historial</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="462"/>
@@ -2520,17 +2520,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation type="unfinished">Query finished in %1 second(s). Rows affected: %2</translation>
+      <translation>Consulta finalizada en %1 segundo(s). Filas afectadas: %2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s).</source>
-      <translation type="unfinished">Query finished in %1 second(s).</translation>
+      <translation>Consulta finalizada en %1 segundo(s).</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Clear execution history</source>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpiar historial de ejecución</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
@@ -3814,7 +3814,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="104"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="105"/>
@@ -4131,12 +4131,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
       <source>Copy cell(s) contents to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents to clipboard</translation>
+      <translation>Copiar contenido de la(s) celda(s) al portapapeles</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents together with header to clipboard</translation>
+      <translation>Copiar contenido de la(s) celda(s) junto con la cabecera al portapapeles</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="25"/>
@@ -4246,7 +4246,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="35"/>
       <source>Copy selected item(s)</source>
-      <translation type="unfinished">Copy selected item(s)</translation>
+      <translation>Copiar elemento(s) seleccionado(s)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
@@ -4385,7 +4385,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.h" line="14"/>
       <location filename="../sqleditor.h" line="30"/>
       <source>Copy selected text</source>
-      <translation type="unfinished">Copy selected text</translation>
+      <translation>Copiar texto seleccionado</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
@@ -4473,12 +4473,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="47"/>
       <source>Copy selected block of text and paste it a line below</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line below</translation>
+      <translation>Copiar bloque de texto seleccionado y pegarlo una línea debajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="48"/>
       <source>Copy selected block of text and paste it a line above</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line above</translation>
+      <translation>Copiar bloque de texto seleccionado y pegarlo una línea arriba</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="49"/>
@@ -4781,7 +4781,7 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="125"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="126"/>
@@ -4865,13 +4865,13 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="139"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy block down</translation>
+      <translation>Copiar bloque abajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="140"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy up down</translation>
+      <translation>Copiar arriba abajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="141"/>
@@ -5132,17 +5132,17 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="90"/>
       <source>Copy with headers</source>
-      <translation type="unfinished">Copy with headers</translation>
+      <translation>Copiar con las cabeceras</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy as...</source>
-      <translation type="unfinished">Copy as...</translation>
+      <translation>Copiar como...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
@@ -5426,12 +5426,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../statusfield.cpp" line="174"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="181"/>
       <source>Clear</source>
-      <translation type="unfinished">Clear</translation>
+      <translation>Limpiar</translation>
     </message>
   </context>
   <context>
