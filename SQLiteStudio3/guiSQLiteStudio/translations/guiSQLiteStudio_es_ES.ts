@@ -3709,7 +3709,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mdiwindow.cpp" line="199"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="204"/>
@@ -4681,7 +4681,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
 Following items are pending:</source>
       <translation>¿Estás seguro de querer salir de la aplicación?
 
-Estas tareas quedan pendientes:</translation>
+Estos elementos están pendientes:</translation>
     </message>
   </context>
   <context>
@@ -5051,7 +5051,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-      <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
+      <translation>Hay cambios de datos no confirmados. ¿Quieres continuar aún así? Todos los cambios sin confirmar se perderán.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
@@ -6033,7 +6033,7 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1317"/>
@@ -6103,17 +6103,17 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1655"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene cambios sin confirmar en su estructura y datos.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1657"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene datos sin confirmar.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1659"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene cambios de estructura sin confirmar.</translation>
     </message>
   </context>
   <context>
@@ -6435,7 +6435,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="588"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="589"/>
