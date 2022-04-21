@@ -1928,12 +1928,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Create similar table</source>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crear tabla similar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
@@ -2669,7 +2669,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="124"/>
@@ -3621,19 +3621,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>&amp;Base de datos</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="320"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Structure</translation>
+      <translation>&amp;Estructura</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;View</translation>
+      <translation>&amp;Ver</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
@@ -3645,12 +3645,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="366"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Tools</translation>
+      <translation>&amp;Herramientas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="381"/>
       <source>&amp;Help</source>
-      <translation type="unfinished">&amp;Help</translation>
+      <translation>&amp;Ayuda</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="546"/>
@@ -3984,7 +3984,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="14"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
@@ -3994,7 +3994,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="72"/>
@@ -4030,12 +4030,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="331"/>
       <source>Select database with table to populate</source>
-      <translation type="unfinished">Select database with table to populate</translation>
+      <translation>Seleccionar base de datos con la tabla a poblar</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="332"/>
       <source>Select table to populate</source>
-      <translation type="unfinished">Select table to populate</translation>
+      <translation>Selecciona la tabla a poblar</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="333"/>
@@ -4761,7 +4761,7 @@ find next</translation>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="242"/>
       <source>Move column up</source>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="243"/>
@@ -5705,62 +5705,62 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="204"/>
       <source>Export table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Export table</translation>
+      <translation>Exportar tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="205"/>
       <source>Import data to table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Import data to table</translation>
+      <translation>Importar datos a la tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="206"/>
       <source>Populate table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="220"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh structure</translation>
+      <translation>Actualizar estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Commit structure changes</translation>
+      <translation>Confirmar cambios de estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="223"/>
       <source>Rollback structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Rollback structure changes</translation>
+      <translation>Revertir cambios de estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="224"/>
       <source>Add column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Añadir columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="225"/>
       <source>Edit column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Editar columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="226"/>
       <location filename="../windows/tablewindow.cpp" line="320"/>
       <source>Delete column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Eliminar columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="227"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="228"/>
@@ -5772,13 +5772,13 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="237"/>
       <source>Create similar table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crear tabla similar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
-      <translation type="unfinished">Reset autoincrement value</translation>
+      <translation>Reiniciar valor del autoincremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="241"/>
@@ -5845,7 +5845,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="270"/>
       <source>Create index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create index</translation>
+      <translation>Crear índice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="271"/>
@@ -5870,7 +5870,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="280"/>
       <source>Create trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create trigger</translation>
+      <translation>Crear disparador</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="281"/>
@@ -5888,7 +5888,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="319"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
+      <translation>¿Estás seguro que quieres eliminar la columna &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="348"/>
@@ -6362,25 +6362,25 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="342"/>
       <source>Add column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Añadir columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="343"/>
       <source>Edit column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Editar columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="344"/>
       <source>Delete column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Eliminar columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="345"/>
       <source>Move column up</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="346"/>
@@ -6398,7 +6398,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="353"/>
       <source>Create new trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Create new trigger</translation>
+      <translation>Crear nuevo disparador</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="354"/>
