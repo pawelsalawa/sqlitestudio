@@ -558,22 +558,22 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restricción con nombre:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Ingresa la expresión para generar el valor de la columna.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Valor de generador de expresión no válido: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Valor de generador de expresión no válido.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
@@ -1347,7 +1347,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Restricción con nombre:</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
@@ -1652,7 +1652,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
       <source>Database type</source>
-      <translation type="unfinished">Database type</translation>
+      <translation>Tipo de base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="32"/>
@@ -3865,14 +3865,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
       <source>Primary Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>Clave Primaria</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
       <source>Foreign Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Clave Foránea</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
@@ -4967,7 +4967,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
       <source>Data type:</source>
       <comment>data view</comment>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Tipo de dato:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="266"/>
@@ -4979,7 +4979,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="296"/>
       <source>Constraints:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Constraints:</translation>
+      <translation>Restricciones:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="426"/>
@@ -5515,7 +5515,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Escribe un nombre para la restricción.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
@@ -5613,8 +5613,8 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <source>Primary
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Primary
-Key</translation>
+      <translation>Clave
+Primaria</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="297"/>
@@ -5684,7 +5684,7 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="217"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Restricciones</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="231"/>
