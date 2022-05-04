@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Valor generado</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -336,7 +336,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation>Comprobar condición</translation>
+      <translation>Verificar condición</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
@@ -424,7 +424,7 @@
       <location filename="../dialogs/columndialog.cpp" line="99"/>
       <source>Add a generated value constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a generated value constraint</translation>
+      <translation>Añadir una restricción de valor generado</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="100"/>
@@ -451,7 +451,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="373"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation>La precisión no puede definirse sin la escala.</translation>
+      <translation>No se puede definir la precisión sin la escala.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="374"/>
@@ -466,7 +466,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="397"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation>Las columnas ENTERAS DE CLAVE PRIMARIA no permiten precisión.</translation>
+      <translation>Las columnas INTEGER PRIMARY KEY no permiten precisión.</translation>
     </message>
   </context>
   <context>
@@ -515,7 +515,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation>Restricción con nombre</translation>
+      <translation>Nombre de la restricción</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -525,17 +525,17 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation>Elige la tabla foránea.</translation>
+      <translation>Elige la tabla externa.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation>Elige la columna foránea.</translation>
+      <translation>Elige la columna externa.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -543,42 +543,42 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Código generador:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Tipo explícito:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>Usar palabras clave &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Ingresa la expresión para generar el valor de la columna.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Valor de generador de expresión no válido: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Valor de generador de expresión no válido.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -596,7 +596,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
@@ -606,7 +606,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
@@ -619,7 +619,7 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation>Restricción con nombre:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
@@ -629,7 +629,7 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -1048,7 +1048,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="812"/>
       <source>DDL history size:</source>
-      <translation>Tamaño del historial de DDL:</translation>
+      <translation>Tamaño del historial DDL:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="819"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Número máximo de parámetros en la consulta (:param, @param, $param, ?) almacenados en el historial. Cuando reutilizas un parámetro con el mismo nombre/posición, SQLiteStudio lo pre-inicializará con el valor más reciente almacenado en memoria (aún podrás cambiarlo). Un valor de 1000 debería bastar.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Número máximo de parámetros en la consulta (:param, @param, $param, ?) almacenados en el historial. Cuando reusas un parámetro con el mismo nombre/posición, SQLiteStudio lo pre-inicializará con el valor más reciente almacenado en memoria (aún podrás cambiarlo). Un valor de 1000 debería bastar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -1347,7 +1347,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Nombre de la restricción:</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
@@ -1362,7 +1362,7 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Ingresa un nombre para la restricción.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -1413,7 +1413,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="184"/>
       <source>Not NULL</source>
       <comment>table constraints</comment>
-      <translation>No NULO</translation>
+      <translation>No es NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
@@ -1652,7 +1652,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
       <source>Database type</source>
-      <translation type="unfinished">Database type</translation>
+      <translation>Tipo de base de datos</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="32"/>
@@ -1823,12 +1823,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="102"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Operación ejecutar desde archivo cancelada. Cualquier consulta ejecutada hasta ahora ha sido revertida.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
@@ -1858,27 +1858,27 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Añadir una base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;Editar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Quitar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>&amp;Conectar a la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>&amp;Desconectar de la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
@@ -1888,17 +1888,17 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>&amp;Exportar la base de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation type="unfinished">Vac&amp;uum</translation>
+      <translation>Ejecutar Vac&amp;uum</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>Comprobación de &amp;integridad</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
@@ -1928,12 +1928,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Create similar table</source>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crear tabla similar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
@@ -2013,12 +2013,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation type="unfinished">&amp;Refresh all database schemas</translation>
+      <translation>A&amp;ctualizar todos los esquemas de bases de datos</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation type="unfinished">Re&amp;fresh selected database schema</translation>
+      <translation>Ac&amp;tualizar el esquema de base de datos seleccionado</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
@@ -2117,7 +2117,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
       <source>Integrity check (%1)</source>
-      <translation type="unfinished">Integrity check (%1)</translation>
+      <translation>Comprobación de integridad (%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1540"/>
@@ -2296,7 +2296,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1123"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
@@ -2373,21 +2373,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="35"/>
       <source>Filter by database:</source>
-      <translation type="unfinished">Filter by database:</translation>
+      <translation>Filtrar por base de datos:</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- Consultas ejecutadas en la base de datos %1 (%2)
+-- Fecha y hora de la ejecución: %3
 %4</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
       <source>DDL history</source>
-      <translation type="unfinished">DDL history</translation>
+      <translation>Historial DDL</translation>
     </message>
   </context>
   <context>
@@ -2400,7 +2400,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
       <source>Don&apos;t show again</source>
-      <translation type="unfinished">Don&apos;t show again</translation>
+      <translation>No mostrar de nuevo</translation>
     </message>
   </context>
   <context>
@@ -2421,7 +2421,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
       <source>History</source>
-      <translation type="unfinished">History</translation>
+      <translation>Historial</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="143"/>
@@ -2458,7 +2458,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="373"/>
       <source>Clear execution history</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpiar historial de ejecución</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="375"/>
@@ -2510,7 +2510,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="396"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Borrar entradas SQL seleccionadas del historial</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="462"/>
@@ -2520,22 +2520,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="569"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation type="unfinished">Query finished in %1 second(s). Rows affected: %2</translation>
+      <translation>Consulta finalizada en %1 segundo(s). Filas afectadas: %2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s).</source>
-      <translation type="unfinished">Query finished in %1 second(s).</translation>
+      <translation>Consulta finalizada en %1 segundo(s).</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Clear execution history</source>
-      <translation type="unfinished">Clear execution history</translation>
+      <translation>Limpiar historial de ejecución</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="687"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-      <translation type="unfinished">Are you sure you want to erase the entire SQL execution history? This cannot be undone.</translation>
+      <translation>¿Estás seguro de que quieres borrar todo el historial de ejecución SQL? Esto no se puede deshacer.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="712"/>
@@ -2669,7 +2669,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="124"/>
@@ -2780,7 +2780,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="62"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
@@ -3166,7 +3166,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.cpp" line="116"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>Cancelar</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="147"/>
@@ -3305,7 +3305,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Ingresa una condición válida.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="266"/>
@@ -3460,7 +3460,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="239"/>
       <source>Open DDL &amp;history</source>
-      <translation type="unfinished">Open DDL &amp;history</translation>
+      <translation>Abrir &amp;historial DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="240"/>
@@ -3610,7 +3610,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Salir</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="275"/>
@@ -3621,19 +3621,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>&amp;Base de datos</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="320"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Structure</translation>
+      <translation>&amp;Estructura</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="341"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;View</translation>
+      <translation>&amp;Ver</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="345"/>
@@ -3645,12 +3645,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="366"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Tools</translation>
+      <translation>&amp;Herramientas</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="381"/>
       <source>&amp;Help</source>
-      <translation type="unfinished">&amp;Help</translation>
+      <translation>&amp;Ayuda</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="546"/>
@@ -3709,7 +3709,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mdiwindow.cpp" line="199"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="204"/>
@@ -3814,7 +3814,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="104"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="105"/>
@@ -3865,21 +3865,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
       <source>Primary Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>Clave Primaria</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
       <source>Foreign Key</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Clave Foránea</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
       <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
       <source>Unique</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Único</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
@@ -3892,7 +3892,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
       <source>Not NULL</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>No es NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
@@ -3910,7 +3910,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
       <source>Default</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Default</translation>
+      <translation>Predeterminado</translation>
     </message>
   </context>
   <context>
@@ -3984,7 +3984,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="14"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
@@ -3994,7 +3994,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabla</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="72"/>
@@ -4030,12 +4030,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="331"/>
       <source>Select database with table to populate</source>
-      <translation type="unfinished">Select database with table to populate</translation>
+      <translation>Seleccionar base de datos con la tabla a poblar</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="332"/>
       <source>Select table to populate</source>
-      <translation type="unfinished">Select table to populate</translation>
+      <translation>Selecciona la tabla a poblar</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="333"/>
@@ -4131,12 +4131,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
       <source>Copy cell(s) contents to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents to clipboard</translation>
+      <translation>Copiar contenido de la(s) celda(s) al portapapeles</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents together with header to clipboard</translation>
+      <translation>Copiar contenido de la(s) celda(s) junto con la cabecera al portapapeles</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="25"/>
@@ -4246,7 +4246,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="35"/>
       <source>Copy selected item(s)</source>
-      <translation type="unfinished">Copy selected item(s)</translation>
+      <translation>Copiar elemento(s) seleccionado(s)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
@@ -4368,7 +4368,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Quit the application</source>
-      <translation type="unfinished">Quit the application</translation>
+      <translation>Salir de la aplicación</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -4385,7 +4385,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.h" line="14"/>
       <location filename="../sqleditor.h" line="30"/>
       <source>Copy selected text</source>
-      <translation type="unfinished">Copy selected text</translation>
+      <translation>Copiar texto seleccionado</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
@@ -4473,12 +4473,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="47"/>
       <source>Copy selected block of text and paste it a line below</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line below</translation>
+      <translation>Copiar bloque de texto seleccionado y pegarlo una línea debajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="48"/>
       <source>Copy selected block of text and paste it a line above</source>
-      <translation type="unfinished">Copy selected block of text and paste it a line above</translation>
+      <translation>Copiar bloque de texto seleccionado y pegarlo una línea arriba</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="49"/>
@@ -4549,7 +4549,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Delete selected SQL history entries</source>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Borrar entradas seleccionadas del historial SQL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="32"/>
@@ -4672,16 +4672,16 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-      <translation type="unfinished">Are you sure you want to quit the application?
+      <translation>¿Estás seguro de querer salir de la aplicación?
 
-Following items are pending:</translation>
+Estos elementos están pendientes:</translation>
     </message>
   </context>
   <context>
@@ -4761,7 +4761,7 @@ find next</translation>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="242"/>
       <source>Move column up</source>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="243"/>
@@ -4781,7 +4781,7 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="125"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="126"/>
@@ -4865,13 +4865,13 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="139"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy block down</translation>
+      <translation>Copiar bloque abajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="140"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy up down</translation>
+      <translation>Copiar arriba abajo</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="141"/>
@@ -4967,7 +4967,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
       <source>Data type:</source>
       <comment>data view</comment>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Tipo de dato:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="266"/>
@@ -4979,7 +4979,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="296"/>
       <source>Constraints:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Constraints:</translation>
+      <translation>Restricciones:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="426"/>
@@ -5051,7 +5051,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-      <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
+      <translation>Hay cambios de datos no confirmados. ¿Quieres continuar aún así? Todos los cambios sin confirmar se perderán.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
@@ -5132,17 +5132,17 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="89"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="90"/>
       <source>Copy with headers</source>
-      <translation type="unfinished">Copy with headers</translation>
+      <translation>Copiar con las cabeceras</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy as...</source>
-      <translation type="unfinished">Copy as...</translation>
+      <translation>Copiar como...</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
@@ -5426,12 +5426,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../statusfield.cpp" line="174"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copiar</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="181"/>
       <source>Clear</source>
-      <translation type="unfinished">Clear</translation>
+      <translation>Limpiar</translation>
     </message>
   </context>
   <context>
@@ -5500,12 +5500,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>Elige la columna externa.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>Elige la tabla externa.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
@@ -5515,7 +5515,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Escribe el nombre para la restricción.</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
@@ -5591,7 +5591,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="171"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Ingresa el nombre de la restricción.</translation>
     </message>
   </context>
   <context>
@@ -5613,8 +5613,8 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <source>Primary
 Key</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Primary
-Key</translation>
+      <translation>Clave
+Primaria</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="297"/>
@@ -5628,7 +5628,7 @@ Key</translation>
       <location filename="../windows/tablestructuremodel.cpp" line="299"/>
       <source>Unique</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Unique</translation>
+      <translation>Único</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="301"/>
@@ -5641,7 +5641,7 @@ Key</translation>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Not
+      <translation>No es
 NULL</translation>
     </message>
     <message>
@@ -5684,7 +5684,7 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="217"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Restricciones</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="231"/>
@@ -5705,62 +5705,62 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="204"/>
       <source>Export table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Export table</translation>
+      <translation>Exportar tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="205"/>
       <source>Import data to table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Import data to table</translation>
+      <translation>Importar datos a la tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="206"/>
       <source>Populate table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Populate table</translation>
+      <translation>Poblar tabla</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="220"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh structure</translation>
+      <translation>Actualizar estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Commit structure changes</translation>
+      <translation>Confirmar cambios de estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="223"/>
       <source>Rollback structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Rollback structure changes</translation>
+      <translation>Revertir cambios de estructura</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="224"/>
       <source>Add column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Añadir columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="225"/>
       <source>Edit column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Editar columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="226"/>
       <location filename="../windows/tablewindow.cpp" line="320"/>
       <source>Delete column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Eliminar columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="227"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="228"/>
@@ -5772,13 +5772,13 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="237"/>
       <source>Create similar table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>Crear tabla similar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
-      <translation type="unfinished">Reset autoincrement value</translation>
+      <translation>Reiniciar valor del autoincremento</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="241"/>
@@ -5845,7 +5845,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="270"/>
       <source>Create index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create index</translation>
+      <translation>Crear índice</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="271"/>
@@ -5870,7 +5870,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="280"/>
       <source>Create trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create trigger</translation>
+      <translation>Crear disparador</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="281"/>
@@ -5888,7 +5888,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="319"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
+      <translation>¿Estás seguro que quieres eliminar la columna &apos;%1&apos;?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="348"/>
@@ -5948,12 +5948,12 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
+      <translation>Se confirmaron los cambios a la tabla &apos;%1&apos; con éxito.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Se confirmaron los cambios a la tabla &apos;%1&apos; (anteriormente llamada &apos;%2&apos;) con éxito.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
@@ -5990,8 +5990,8 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="995"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-      <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a table with blank name?</translation>
+      <translation>SQLite permite usar tablas sin nombre, pero no es lo recomendado.
+¿Estás seguro de que quieres crear una tabla sin nombre?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1004"/>
@@ -6033,7 +6033,7 @@ Are you sure you want to create a table with blank name?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1316"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1317"/>
@@ -6103,17 +6103,17 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1655"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene cambios sin confirmar en su estructura y datos.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1657"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene datos sin confirmar.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1659"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>La ventana de la tabla &quot;%1&quot; tiene cambios de estructura sin confirmar.</translation>
     </message>
   </context>
   <context>
@@ -6362,25 +6362,25 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="342"/>
       <source>Add column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Añadir columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="343"/>
       <source>Edit column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Editar columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="344"/>
       <source>Delete column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Eliminar columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="345"/>
       <source>Move column up</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Subir columna</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="346"/>
@@ -6398,7 +6398,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="353"/>
       <source>Create new trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Create new trigger</translation>
+      <translation>Crear nuevo disparador</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="354"/>
@@ -6435,7 +6435,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="588"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>Cambios sin confirmar</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="589"/>
@@ -6462,12 +6462,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="641"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; successfully.</translation>
+      <translation>Se confirmaron los cambios a la vista &apos;%1&apos; con éxito.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="643"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Se confirmaron los cambios a la vista &apos;%1&apos; (anteriormente llamada &apos;%2&apos;) con éxito.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="660"/>
@@ -6568,7 +6568,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../common/widgetcover.cpp" line="234"/>
       <source>Interrupt</source>
-      <translation type="unfinished">Interrupt</translation>
+      <translation>Interrumpir</translation>
     </message>
   </context>
 </TS>
