@@ -464,7 +464,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation>При виклику без аргументів відображає поточне представлення значення NULL (тобто що виводиться замість значення NULL у результатах запиту). Якщо вказано аргумент, його буде використано як рядок для представлення значення NULL.</translation>
     </message>
   </context>
   <context>
@@ -800,7 +800,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">Command line interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Інтерфейс командного рядка для SQLiteStudio, менеджера баз даних SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
