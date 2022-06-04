@@ -464,7 +464,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation type="unfinished">If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</translation>
+      <translation>При виклику без аргументів відображає поточне представлення значення NULL (тобто що виводиться замість значення NULL у результатах запиту). Якщо вказано аргумент, його буде використано як рядок для представлення значення NULL.</translation>
     </message>
   </context>
   <context>
@@ -699,10 +699,10 @@ When the -s option is given, then system tables are also listed.</source>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation type="unfinished">Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
-When -c option is given, then also columns will be listed under each table.
-When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
-The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</translation>
+      <translation>Відображає всі об'єкти (таблиці, індекси, тригери та розріз даних) бази даних у вигляді дерева. Структура дерева подібна до того, що відображається в GUI клієнта SQLiteStudio.
+При виклику з -c також будуть виведені стовпці під кожною таблицею.
+При виклику з ключем -s також буде виведено системні об'єкти (таблиці sqlite_*, індекси автоінкремента тощо).
+При виклику з необов'язковим аргументом &apos;база даних&apos; будуть виведені об'єкти лише вказаної бази даних. Під &apos;базою даних&apos; мається на увазі не зареєстроване ім'я бази даних, а внутрішнє ім'я бази даних SQLite, наприклад &apos;main&apos;, &apos;temp&apos; або ім'я приєднаної бази даних. Для відображення дерева іншої зареєстрованої бази даних спочатку змініть робочу базу даних командою %1, а потім скористайтеся командою %2.</translation>
     </message>
   </context>
   <context>
@@ -800,7 +800,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="22"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">Command line interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>Інтерфейс командного рядка для SQLiteStudio, менеджера баз даних SQLite.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="26"/>
