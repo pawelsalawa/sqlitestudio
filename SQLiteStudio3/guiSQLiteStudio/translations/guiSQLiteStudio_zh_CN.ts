@@ -208,17 +208,17 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
       <source>Named constraint:</source>
-      <translation>命名约束：</translation>
+      <translation>命名的约束：</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="80"/>
       <source>Enter a name of the constraint.</source>
-      <translation>输入约束名称。</translation>
+      <translation>输入约束的名称。</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation>输入字符序名称。</translation>
+      <translation>输入字符序的名称。</translation>
     </message>
   </context>
   <context>
@@ -231,7 +231,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation>命名约束：</translation>
+      <translation>命名的约束：</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
@@ -456,17 +456,17 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="374"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
-      <translation>主键 (PRIMARY KEY) 已启用自动递增 (AUTOINCREMENT)，不能使用 INTEGER 以外的类型。</translation>
+      <translation>主键（PRIMARY KEY）已启用自动递增（AUTOINCREMENT），不能使用 INTEGER 以外的类型。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="375"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation>主键 (PRIMARY KEY) 已启用自动递增 (AUTOINCREMENT)，强制使用 INTEGER 类型。</translation>
+      <translation>主键（PRIMARY KEY）已启用自动递增（AUTOINCREMENT），强制使用 INTEGER 类型。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="397"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation>不允许对整型主键 (INTEGER PRIMARY KEY) 设置精度。</translation>
+      <translation>不允许对整型主键（INTEGER PRIMARY KEY）设置精度。</translation>
     </message>
   </context>
   <context>
@@ -716,7 +716,7 @@
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation>Pragma 函数：%1</translation>
+      <translation>PRAGMA 函数：%1</translation>
     </message>
   </context>
   <context>
@@ -801,7 +801,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="256"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-      <translation>&lt;p&gt;附加标签是显示在数据库列表的名称旁边的文本标签 (除非另有配置，否则为蓝色)。启用此选项将为数据库、无效数据库和聚合节点 (列组、索引组、触发器组) 显示标签。更多标签见下方选项。&lt;p&gt;</translation>
+      <translation>&lt;p&gt;附加标签是显示在数据库列表的名称旁边的文本标签（除非另有配置，否则为蓝色）。启用此选项将为数据库、无效数据库和聚合节点（列组、索引组、触发器组）显示标签。更多标签见下方选项。&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="259"/>
@@ -836,12 +836,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation>如果关闭此选项，则对象将按照 sqlite_master 表中的顺序 (即它们被创建的顺序) 排列</translation>
+      <translation>如果关闭此选项，则对象将按照 sqlite_master 表中的顺序（即它们被创建的顺序）排列</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="316"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-      <translation>按字母顺序排列对象 (表、索引、触发器及视图)</translation>
+      <translation>按字母顺序排列对象（表、索引、触发器及视图）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="326"/>
@@ -856,7 +856,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="345"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;添加新的数据库时，默认会将其标记为“永久”(存储在配置文件中)。选中此选项则新添加的数据库将默认不标记为“永久”。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;添加新的数据库时，默认会将其标记为“永久”（存储在配置文件中）。选中此选项则新添加的数据库将默认不标记为“永久”。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="348"/>
@@ -898,7 +898,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="460"/>
       <source>Limit initial data column width to (in pixels):</source>
-      <translation>限制初始化数据列宽度 (单位：像素)：</translation>
+      <translation>限制初始化数据列宽度（单位：像素）：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="450"/>
@@ -908,7 +908,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="503"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;此项启用后，用户鼠标悬停在任意数据视图 (查询结果、表数据、视图数据) 的单元格上时，工具提示将显示该单元格的详细信息——包括列数据类型、约束、ROWID 等。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;此项启用后，用户鼠标悬停在任意数据视图（查询结果、表数据、视图数据）的单元格上时，工具提示将显示该单元格的详细信息——包括列数据类型、约束、ROWID 等。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="506"/>
@@ -928,12 +928,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用此选项后，提交一个 NULL 值时，如果该列已定义 DEFAULT 值，即使该列允许包含 NULL 值，也始终采用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此选项则仅在列有非空 (NOT NULL) 约束时将 NULL 值转变为 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用此选项后，提交一个 NULL 值时，如果该列已定义 DEFAULT 值，即使该列允许包含 NULL 值，也始终采用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此选项则仅在列有非空（NOT NULL）约束时将 NULL 值转变为 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="470"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation>提交 NULL 值时使用 DEFAULT 值 (如果已定义)</translation>
+      <translation>提交 NULL 值时使用 DEFAULT 值（如果已定义）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="529"/>
@@ -948,7 +948,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
       <source>General.LimitRowsForManyColumns</source>
-      <translation>General.LimitRowsForManyColumns</translation>
+      <translation type="unfinished">General.LimitRowsForManyColumns</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="545"/>
@@ -1075,7 +1075,7 @@
       <location filename="../dialogs/configdialog.ui" line="867"/>
       <location filename="../dialogs/configdialog.ui" line="893"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;历史记录中存储查询参数 (:param, @param, $param, ?) 的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它 (仍可修改)。值 1000 应已足够。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 1000 应已足够。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="880"/>
@@ -1120,7 +1120,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>General.AllowMultipleSessions</source>
-      <translation>General.AllowMultipleSessions</translation>
+      <translation type="unfinished">General.AllowMultipleSessions</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
@@ -1304,7 +1304,7 @@
       <location filename="../dialogs/configdialog.cpp" line="1283"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation>%1 (内置)</translation>
+      <translation>%1（内置）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1296"/>
@@ -1452,7 +1452,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
       <source>Column (%1)</source>
       <comment>table constraints</comment>
-      <translation>列 (%1)</translation>
+      <translation>列（%1）</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
@@ -1673,7 +1673,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="79"/>
       <source>Name (on the list)</source>
-      <translation>名称 (显示在列表中)</translation>
+      <translation>名称（显示在列表中）</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="91"/>
@@ -1684,7 +1684,7 @@ Browsing other pages will be possible after the row counting is done.</source>
       <location filename="../dialogs/dbdialog.ui" line="97"/>
       <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
       <extracomment>aasfd</extracomment>
-      <translation>&lt;p&gt;启用此选项后，配置文件中将记住该数据库，并在每次启动 SQLiteStudio 时还原 (打开) 它。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;启用此选项后，配置文件中将记住该数据库，并在每次启动 SQLiteStudio 时还原（打开）它。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="100"/>
@@ -1783,7 +1783,7 @@ Browsing other pages will be possible after the row counting is done.</source>
       <location filename="../dbobjectdialogs.cpp" line="213"/>
       <location filename="../dbobjectdialogs.cpp" line="306"/>
       <source>Error while dropping %1: %2</source>
-      <translation>丢弃 %1 时出错：%2</translation>
+      <translation>丢弃 %1 时出错： %2</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="276"/>
@@ -1800,12 +1800,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="284"/>
       <source>Cannot start transaction. Details: %1</source>
-      <translation>无法开始事务。详细信息：%1</translation>
+      <translation>无法开始事务。详情：%1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="318"/>
       <source>Cannot commit transaction. Details: %1</source>
-      <translation>无法提交事务。详细信息：%1</translation>
+      <translation>无法提交事务。详情：%1</translation>
     </message>
   </context>
   <context>
@@ -1893,7 +1893,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation>释放空闲占用 (VACUUM) (&amp;U)</translation>
+      <translation>释放空闲占用（VACUUM）(&amp;U)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
@@ -2112,12 +2112,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1490"/>
       <source>Vacuum (%1)</source>
-      <translation>释放空闲占用 (VACUUM) (%1)</translation>
+      <translation>释放空闲占用（VACUUM）(%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
       <source>Integrity check (%1)</source>
-      <translation>完整性检查 (%1)</translation>
+      <translation>完整性检查（%1）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1540"/>
@@ -2222,19 +2222,19 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
       <source>(system table)</source>
       <comment>database tree label</comment>
-      <translation> (系统表)</translation>
+      <translation>（系统表）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
       <source>(virtual)</source>
       <comment>virtual table label</comment>
-      <translation> (虚拟)</translation>
+      <translation>（虚拟）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
       <source>(system index)</source>
       <comment>database tree label</comment>
-      <translation> (系统索引)</translation>
+      <translation>（系统索引）</translation>
     </message>
   </context>
   <context>
@@ -2279,19 +2279,19 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation>列 (%1)：</translation>
+      <translation>列（%1）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation>索引 (%1)：</translation>
+      <translation>索引（%1）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation>触发器 (%1)：</translation>
+      <translation>触发器（%1）</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1123"/>
@@ -2679,7 +2679,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="130"/>
       <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-      <translation>不选中此选项时，仅导出表的 DDL (CREATE TABLE 语句)。</translation>
+      <translation>不选中此选项时，仅导出表的 DDL（CREATE TABLE 语句）。</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="133"/>
@@ -3151,7 +3151,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="192"/>
       <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;如果启用，则导入期间遇到的任何约束违背、无效数据格式 (错误列数) 或其他问题都将被忽略，导入不中止。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;如果启用，则导入期间遇到的任何约束违背、无效数据格式（错误列数）或其他问题都将被忽略，导入不中止。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="195"/>
@@ -3690,12 +3690,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="928"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation>命令行参数传递的数据库 (%1) 已在列表中，名为：%2</translation>
+      <translation>命令行参数传递的数据库（%1）已在列表中，名为：%2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="935"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-      <translation>命令行参数传递的数据库 (%1) 已临时添加到列表中，名为：%2</translation>
+      <translation>命令行参数传递的数据库（%1）已临时添加到列表中，名为：%2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="940"/>
@@ -4047,7 +4047,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
-      <translation>无法编辑列，它是复合 %1 语句 (包含 %2、%3 或 %4 关键字) 的结果。</translation>
+      <translation>无法编辑列，它是复合 %1 语句（包含 %2、%3 或 %4 关键字）的结果。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
@@ -4190,7 +4190,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dataview.h" line="21"/>
       <source>Data view (both grid and form)</source>
-      <translation>数据视图 (网格 + 表格)</translation>
+      <translation>数据视图（网格 + 表格）</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="22"/>
@@ -5015,7 +5015,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="340"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation>在内联单元格编辑器中编辑大型内容不是一个好主意。它很可能变得缓慢和不便。最好在表单视图或者弹出式编辑器 (从右键菜单打开) 中编辑此类大内容。</translation>
+      <translation>在内联单元格编辑器中编辑大型内容不是一个好主意。它很可能变得缓慢和不便。最好在表单视图或者弹出式编辑器（从右键菜单打开）中编辑此类大内容。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="494"/>
@@ -5074,7 +5074,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-      <translation>尝试提交不可编辑的单元格 (本应该无法编辑)！这是一个错误，请报告。</translation>
+      <translation>尝试提交不可编辑的单元格！（本应该无法编辑）这是一个错误，请报告。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
@@ -5084,7 +5084,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
-      <translation>数据视图中，已因列数 (%2) 将每页行数减小 %1。</translation>
+      <translation>数据视图中，已因列数（%2）将每页行数减小（%1）。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1405"/>
@@ -5270,7 +5270,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="485"/>
       <source>Referenced row (%1)</source>
-      <translation>引用的行 (%1)</translation>
+      <translation>引用的行（%1）</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="744"/>
@@ -5547,7 +5547,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="142"/>
       <source>Valid only for a single column with INTEGER data type</source>
-      <translation>仅对整数 (INTEGER) 数据类型的单个列有效</translation>
+      <translation>仅对整数（INTEGER）数据类型的单个列有效</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="145"/>
@@ -5948,7 +5948,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation>成功提交对表 &apos;%1&apos; (原名 &apos;%2&apos;) 的更改。</translation>
+      <translation>成功提交对表 &apos;%1&apos;（原名 &apos;%2&apos;）的更改。</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
@@ -6462,7 +6462,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="643"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation>成功提交对视图“%1” (原名“%2”)的更改。</translation>
+      <translation>成功提交对视图“%1”（原名“%2”）的更改。</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="660"/>
@@ -6495,7 +6495,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="881"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Instead of</translation>
+      <translation>而非</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="882"/>
