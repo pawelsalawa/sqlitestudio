@@ -6,12 +6,12 @@
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+      <translation>Metin dosyaları (*.txt);;Tüm Dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>%1 dosyası okunamadı</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
@@ -21,12 +21,12 @@
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
       <source>Invalid pattern: %1</source>
-      <translation type="unfinished">Invalid pattern: %1</translation>
+      <translation>Geçersiz desen: %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
       <source>Requested capture index %1 is out of range.</source>
-      <translation type="unfinished">Requested capture index %1 is out of range.</translation>
+      <translation>İstenen yakalama dizini %1 aralık dışında.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation type="unfinished">Capture groups</translation>
+      <translation>Yakalama grupları</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../regexpimport.ui" line="39"/>
       <source>Import only following groups:</source>
-      <translation type="unfinished">Import only following groups:</translation>
+      <translation>Yalnızca aşağıdaki grupları içe aktar:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="52"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation type="unfinished">Example: 1, 3, 4</translation>
+      <translation>Örneğin: 1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation type="unfinished">Pattern:</translation>
+      <translation>Desen:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>
@@ -80,7 +80,7 @@ You can use named groups and refer to them in group list below. To name a group 
     <message>
       <location filename="../regexpimport.ui" line="81"/>
       <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-      <translation type="unfinished">Example: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+      <translation>Örneğin: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
   </context>
 </TS>
