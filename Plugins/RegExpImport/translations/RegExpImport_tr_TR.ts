@@ -16,7 +16,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
       <source>Enter the regular expression pattern.</source>
-      <translation type="unfinished">Enter the regular expression pattern.</translation>
+      <translation>Normal ifade desenini girin.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
       <source>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;İstenen yakalama grubu adı &apos;%1&apos;, ama o &apos; desende tanımlanmadı: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../regexpimport.ui" line="26"/>
       <source>Treat all RegExp capture groups as columns</source>
-      <translation type="unfinished">Treat all RegExp capture groups as columns</translation>
+      <translation>Tüm RegExp yakalama gruplarını sütun olarak işle</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="39"/>
@@ -55,8 +55,8 @@
       <location filename="../regexpimport.ui" line="52"/>
       <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
-&lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Yakalama grubu dizinlerinin virgülle ayrılmış listesini girin. 0 Dizini, eşleşen dizenin tamamını ifade eder.&lt;/p&gt;
+&lt;p&gt;Desende adlandırılmış gruplar kullandıysanız, dizinler yerine adları kullanabilirsiniz. Bu listedeki dizinleri ve adları karıştırabilirsiniz.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="56"/>
@@ -73,9 +73,9 @@
       <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
+      <translation>&lt;p&gt;Almak istediğiniz ifadenin bölümlerini içine almak için Normal İfade gruplarını kullanın. Eğer bir grup kullanmak istiyorsanız, o zaman&apos;t almak istemiyorsanız, o zaman kullanın &quot;yalnızca aşağıdaki grupları içe aktar&quot; aşağıdaki seçenek.
 
-You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
+Adlandırılmış grupları kullanabilir ve bunlara aşağıdaki grup listesinden başvurabilirsiniz. Bir grubu adlandırmak için kullanın: &lt;pre&gt;(?&amp;lt;benimGrupAdım&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="81"/>
