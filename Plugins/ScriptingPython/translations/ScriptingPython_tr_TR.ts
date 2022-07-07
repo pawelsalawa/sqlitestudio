@@ -6,27 +6,27 @@
     <message>
       <location filename="../scriptingpython.cpp" line="466"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation type="unfinished">Invalid use of %1 function. Expected %2 arguments, but got %3.</translation>
+      <translation>%1 işlevinin geçersiz kullanımı. Beklenen %2 argümanları, ancak %3 var.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="475"/>
       <source>Unknown error from function %1.</source>
-      <translation type="unfinished">Unknown error from function %1.</translation>
+      <translation>%1 fonksiyonundan bilinmeyen hata.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="516"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation type="unfinished">Could not calculate string representation of the Python object passed as argument to the function %1.</translation>
+      <translation>%1 işlevine bağımsız değişken olarak geçirilen Python nesnesinin dize gösterimi hesaplanamadı.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="532"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation type="unfinished">Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</translation>
+      <translation>%1 işlevinin yürütme içeriği bulunamadı. Bu bir Python eklentisi hatasıdır. Lütfen rapor edin.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="557"/>
       <source>Error from Python function %1: %2</source>
-      <translation type="unfinished">Error from Python function %1: %2</translation>
+      <translation>Python işlevinden %1 hatası: %2</translation>
     </message>
   </context>
 </TS>
