@@ -71,7 +71,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation type="unfinished">MacOS X application boundle distribution.</translation>
+      <translation>Mac Os X uygulama paketi dağıtımı.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="45"/>
@@ -274,37 +274,37 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
       <source>Precision</source>
-      <translation type="unfinished">Precision</translation>
+      <translation>Hassasiyet</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Veri tipi:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>Sütun ismi:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>Boyut:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Kısıtlamalar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Üretilen Değerler</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>Benzersiz</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -316,17 +316,17 @@
       <location filename="../dialogs/columndialog.ui" line="213"/>
       <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>Yapılandır</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Yabancı Anahtar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>Harmanla</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
