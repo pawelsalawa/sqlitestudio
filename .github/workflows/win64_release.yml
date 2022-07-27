@@ -16,7 +16,7 @@ name: Windows 64-bit release build
 
 on:
     schedule:
-        - cron: '0 2 * * *' # run at 2 AM UTC
+        - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
     repository_dispatch:
         types: [win64_release]
 

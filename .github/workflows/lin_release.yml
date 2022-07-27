@@ -12,7 +12,7 @@ name: Linux release build
 
 on:
     schedule:
-        - cron: '30 3 * * *' # run at 3:30 AM UTC
+        - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
     repository_dispatch:
         types: [lin_release]
 

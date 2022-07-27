@@ -16,7 +16,7 @@ name: Windows 32-bit release build
 
 on:
     schedule:
-        - cron: '30 2 * * *' # run at 2 AM UTC
+        - cron: '30 2 * * 1' # run at 2 AM UTC every Monday
     repository_dispatch:
         types: [win32_release]
 
