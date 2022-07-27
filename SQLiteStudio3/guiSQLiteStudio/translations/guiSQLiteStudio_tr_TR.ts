@@ -71,7 +71,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation type="unfinished">MacOS X application boundle distribution.</translation>
+      <translation>Mac Os X uygulama paketi dağıtımı.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="45"/>
@@ -274,37 +274,37 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="55"/>
       <source>Precision</source>
-      <translation type="unfinished">Precision</translation>
+      <translation>Hassasiyet</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="62"/>
       <source>Data type:</source>
-      <translation type="unfinished">Data type:</translation>
+      <translation>Veri tipi:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="69"/>
       <source>Column name:</source>
-      <translation type="unfinished">Column name:</translation>
+      <translation>Sütun ismi:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="79"/>
       <source>Size:</source>
-      <translation type="unfinished">Size:</translation>
+      <translation>Boyut:</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="102"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Kısıtlamalar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Üretilen Değerler</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
       <source>Unique</source>
-      <translation type="unfinished">Unique</translation>
+      <translation>Benzersiz</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -316,157 +316,157 @@
       <location filename="../dialogs/columndialog.ui" line="213"/>
       <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>Yapılandır</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation type="unfinished">Foreign Key</translation>
+      <translation>Yabancı Anahtar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation type="unfinished">Collate</translation>
+      <translation>Harmanla</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
       <source>Not NULL</source>
-      <translation type="unfinished">Not NULL</translation>
+      <translation>Boş(null) olamaz</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>Durumu kontrol et</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
       <source>Primary Key</source>
-      <translation type="unfinished">Primary Key</translation>
+      <translation>Birincil Anahtar</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>Varsayılan</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="284"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>Gelişmiş biçim</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="87"/>
       <source>Add constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add constraint</translation>
+      <translation>Kısıtlama ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="88"/>
       <source>Edit constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Edit constraint</translation>
+      <translation>Kısıtlmayı düzenle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
       <location filename="../dialogs/columndialog.cpp" line="243"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Delete constraint</translation>
+      <translation>Kısıtlamayı Sil</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="90"/>
       <source>Move constraint up</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint up</translation>
+      <translation>Kısıtlamayı yukarı taşı</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="91"/>
       <source>Move constraint down</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Move constraint down</translation>
+      <translation>Kısıtlamayı aşağı taşı</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
       <source>Add a primary key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a primary key</translation>
+      <translation>Birincil anahtar ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="94"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>Yabancı anahtar ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="95"/>
       <source>Add an unique constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add an unique constraint</translation>
+      <translation>Benzersiz kısıtlama ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="96"/>
       <source>Add a check constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a check constraint</translation>
+      <translation>Kontrol kısıtlaması ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="97"/>
       <source>Add a not null constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a not null constraint</translation>
+      <translation>Boş olmayan kısıtlama ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="98"/>
       <source>Add a collate constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a collate constraint</translation>
+      <translation>Harmanlama kısıtlaması ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="99"/>
       <source>Add a generated value constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a generated value constraint</translation>
+      <translation>Oluşturulan değer kısıtlaması ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="100"/>
       <source>Add a default constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a default constraint</translation>
+      <translation>Varsayılan kısıtlama ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="242"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Are you sure you want to delete constraint &apos;%1&apos;?</translation>
+      <translation>&apos;%1&apos; kısıtlamasını silmek istediğinizden emin misiniz?</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="304"/>
       <source>Correct the constraint&apos;s configuration.</source>
-      <translation type="unfinished">Correct the constraint&apos;s configuration.</translation>
+      <translation>&apos; kısıtlama yapılandırmasını düzeltin.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="372"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Scale is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>INTEGER PRIMARY KEY sütunları için ölçeğe izin verilmez.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="373"/>
       <source>Precision cannot be defined without the scale.</source>
-      <translation type="unfinished">Precision cannot be defined without the scale.</translation>
+      <translation>Hassasiyet, ölçek olmadan tanımlanamaz.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="374"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
-      <translation type="unfinished">Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</translation>
+      <translation>BİRİNCİL ANAHTAR içinde OTOMATİK ARTIRMA etkinleştirilmişse, INTEGER dışında bir tür kullanılamaz.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="375"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation type="unfinished">INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</translation>
+      <translation>BİRİNCİL ANAHTAR içinde OTOMATİK ARTIRMA etkinleştirildiğinden INTEGER türü uygulandı.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="397"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-      <translation type="unfinished">Precision is not allowed for INTEGER PRIMARY KEY columns.</translation>
+      <translation>TAMSAYI BİRİNCİL anahtar sütunları için kesinliğe izin verilmez.</translation>
     </message>
   </context>
   <context>
@@ -475,19 +475,19 @@
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="341"/>
       <source>Type</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>Tip</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="343"/>
       <source>Name</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="345"/>
       <source>Details</source>
       <comment>column dialog constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detaylar</translation>
     </message>
   </context>
   <context>
@@ -495,47 +495,47 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation type="unfinished">Foreign table:</translation>
+      <translation>Yabancı tablo:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Foreign column:</source>
-      <translation type="unfinished">Foreign column:</translation>
+      <translation>Yabancı sütun:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
       <source>Reactions</source>
-      <translation type="unfinished">Reactions</translation>
+      <translation>Tepkiler</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation type="unfinished">Deferred foreign key</translation>
+      <translation>Ertelenmiş yabancı anahtar</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation type="unfinished">Named constraint</translation>
+      <translation>Adlandırılmış kısıtlama</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Kısıtlama adı</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation type="unfinished">Pick the foreign table.</translation>
+      <translation>Yabancı tabloyu seç.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation type="unfinished">Pick the foreign column.</translation>
+      <translation>Yabancı sütunu seç.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Kısıtlamanın adını girin.</translation>
     </message>
   </context>
   <context>
@@ -543,12 +543,12 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Kod oluşturma:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Açık tip:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
@@ -558,27 +558,27 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Adlandırılmış kısıtlama:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Sütun değeri üreten ifadeyi girin.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Geçersiz değer üreten ifade: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Geçersiz değer üreten ifade.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Kısıtlamanın adını girin.</translation>
     </message>
   </context>
   <context>
@@ -586,32 +586,32 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
       <source>Autoincrement</source>
-      <translation type="unfinished">Autoincrement</translation>
+      <translation>Otomatik artış</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
       <source>Sort order:</source>
-      <translation type="unfinished">Sort order:</translation>
+      <translation>Sıralama düzeni:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Adlandırılmış kısıtlama:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Uyuşmazlıkda:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="88"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Kısıtlamanın adını girin.</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
       <source>Descending order is not allowed with AUTOINCREMENT.</source>
-      <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+      <translation>AUTOINCREMENT ile azalan sıraya izin verilmez.</translation>
     </message>
   </context>
   <context>
@@ -619,17 +619,17 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Adlandırılmış kısıtlama:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
       <source>On conflict:</source>
-      <translation type="unfinished">On conflict:</translation>
+      <translation>Uyuşmazlıkda:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Kısıtlamanın adını girin.</translation>
     </message>
   </context>
   <context>
@@ -638,85 +638,85 @@
       <location filename="../completer/completerwindow.cpp" line="159"/>
       <source>Column: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Column: %1</translation>
+      <translation>Sütun: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="161"/>
       <source>Table: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tablo: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="163"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Dizin: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="165"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Tetikleyici: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="167"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">View: %1</translation>
+      <translation>Görünüm: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="169"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Veritabanı: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="181"/>
       <source>Keyword: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Keyword: %1</translation>
+      <translation>Anahtar Kelime: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="183"/>
       <source>Function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Function: %1</translation>
+      <translation>Fonksyion: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="185"/>
       <source>Operator: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Operator: %1</translation>
+      <translation>Operatör: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="187"/>
       <source>String</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">String</translation>
+      <translation>Yazı</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="189"/>
       <source>Number</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Sayı</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="191"/>
       <source>Binary data</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Binary data</translation>
+      <translation>İkili veri</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="193"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Collation: %1</translation>
+      <translation>Karşılaştırma: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="195"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Pragma function: %1</translation>
+      <translation>Pragma işlevi: %1</translation>
     </message>
   </context>
   <context>
@@ -725,78 +725,78 @@
       <location filename="../dialogs/configdialog.ui" line="14"/>
       <location filename="../dialogs/configdialog.ui" line="1574"/>
       <source>Configuration</source>
-      <translation type="unfinished">Configuration</translation>
+      <translation>Yapılandırma</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="63"/>
       <source>Search</source>
-      <translation type="unfinished">Search</translation>
+      <translation>Ara</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="94"/>
       <source>General</source>
-      <translation type="unfinished">General</translation>
+      <translation>Genel</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="106"/>
       <source>Keyboard shortcuts</source>
-      <translation type="unfinished">Keyboard shortcuts</translation>
+      <translation>Klavye kısayolları</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="118"/>
       <source>Look &amp; feel</source>
-      <translation type="unfinished">Look &amp; feel</translation>
+      <translation>Görünüş &amp; İzlenim</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
       <source>Style</source>
-      <translation type="unfinished">Style</translation>
+      <translation>Biçim</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="141"/>
       <source>Fonts</source>
-      <translation type="unfinished">Fonts</translation>
+      <translation>Yazı tipi</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="154"/>
       <location filename="../dialogs/configdialog.ui" line="227"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Veritabanı listesi</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <source>Data browsing</source>
-      <translation type="unfinished">Data browsing</translation>
+      <translation>Veri tarama</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="177"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Veri düzenleyicileri</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
       <source>Plugins</source>
-      <translation type="unfinished">Plugins</translation>
+      <translation>Eklentiler</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="201"/>
       <source>Code formatters</source>
-      <translation type="unfinished">Code formatters</translation>
+      <translation>Kod biçimleyici</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-      <translation type="unfinished">If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</translation>
+      <translation>Kapatılırsa, sütunlar CREATE TABLE deyimine yazıldıkları sıraya göre sıralanır.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="236"/>
       <source>Sort table columns alphabetically</source>
-      <translation type="unfinished">Sort table columns alphabetically</translation>
+      <translation>Tablo sütunlarını alfabetik olarak sırala</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="246"/>
       <source>Expand tables node when connected to a database</source>
-      <translation type="unfinished">Expand tables node when connected to a database</translation>
+      <translation>Bir veritabanına bağlandığında tablolar düğümünü genişlet</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="256"/>
@@ -806,17 +806,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="259"/>
       <source>Display additional labels on the list</source>
-      <translation type="unfinished">Display additional labels on the list</translation>
+      <translation>Listede ek etiketleri görüntüle</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="274"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
+      <translation>Düzenli tablolar için etiketler, her tablo için sütun, dizin ve tetikleyici sayısını gösterir.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="277"/>
       <source>Display labels for regular tables</source>
-      <translation type="unfinished">Display labels for regular tables</translation>
+      <translation>Normal tablolar için etiketleri görüntüle</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="287"/>
@@ -826,7 +826,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="290"/>
       <source>Display labels for virtual tables</source>
-      <translation type="unfinished">Display labels for virtual tables</translation>
+      <translation>Sanal tablolar için etiketleri görüntüleme</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="303"/>
@@ -1069,7 +1069,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="860"/>
       <source>History size:</source>
-      <translation type="unfinished">History size:</translation>
+      <translation>Geçmiş boyutu:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="867"/>
@@ -1095,7 +1095,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="906"/>
       <source>Updates</source>
-      <translation type="unfinished">Updates</translation>
+      <translation>Güncellemeler</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="912"/>
@@ -1105,7 +1105,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="925"/>
       <source>Session</source>
-      <translation type="unfinished">Session</translation>
+      <translation>Oturum</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="931"/>
@@ -1145,18 +1145,18 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1046"/>
       <source>Action</source>
-      <translation type="unfinished">Action</translation>
+      <translation>Eylem</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1051"/>
       <source>Key combination</source>
-      <translation type="unfinished">Key combination</translation>
+      <translation>Anahtar Kombinasyonu</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1095"/>
       <location filename="../dialogs/configdialog.ui" line="1564"/>
       <source>Language</source>
-      <translation type="unfinished">Language</translation>
+      <translation>Dil</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1101"/>
@@ -1206,17 +1206,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1337"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Ön İzleme</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1347"/>
       <source>Enabled</source>
-      <translation type="unfinished">Enabled</translation>
+      <translation>Etkin</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1520"/>
       <source>Disabled</source>
-      <translation type="unfinished">Disabled</translation>
+      <translation>Devre dışı</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1569"/>
@@ -1226,12 +1226,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1607"/>
       <source>SQL editor font</source>
-      <translation type="unfinished">SQL editor font</translation>
+      <translation>SQL düzenleyici yazı tipi</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1623"/>
       <source>Database list font</source>
-      <translation type="unfinished">Database list font</translation>
+      <translation>Veritabanı listesi yazı tipi</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1639"/>
@@ -1252,48 +1252,48 @@
       <location filename="../dialogs/configdialog.cpp" line="795"/>
       <source>Description:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Description:</translation>
+      <translation>Açıklama:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="796"/>
       <source>Category:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Category:</translation>
+      <translation>Kategori:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Sürüm:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
       <source>Author:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Author:</translation>
+      <translation>Yazar:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="800"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Internal name:</translation>
+      <translation>Dahili İsim:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="801"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Dependencies:</translation>
+      <translation>Gereksinimler:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="802"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Conflicts:</translation>
+      <translation>Çakışmalar:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="806"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>Eklenti Ayrıntıları</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1219"/>
@@ -1309,22 +1309,22 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1296"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Detaylar</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1308"/>
       <source>No plugins in this category.</source>
-      <translation type="unfinished">No plugins in this category.</translation>
+      <translation>Bu kategoride hiçbir eklenti yok.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1410"/>
       <source>Add new data type</source>
-      <translation type="unfinished">Add new data type</translation>
+      <translation>Yeni veri türü ekle</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1414"/>
       <source>Rename selected data type</source>
-      <translation type="unfinished">Rename selected data type</translation>
+      <translation>Seçili veri türünü yeniden adlandır</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1418"/>
@@ -1470,13 +1470,13 @@
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Detaylar</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
   </context>
   <context>
@@ -1484,7 +1484,7 @@
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>SQLiteStudio CSS uç birimi</translation>
     </message>
   </context>
   <context>
@@ -1493,47 +1493,47 @@
       <location filename="../dataview.cpp" line="105"/>
       <source>Filter data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter data</translation>
+      <translation>Verilere filtrele</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="114"/>
       <source>Grid view</source>
-      <translation type="unfinished">Grid view</translation>
+      <translation>Izgara görünümü</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation type="unfinished">Form view</translation>
+      <translation>Form Görüntüsü</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Refresh table data</translation>
+      <translation>Tablo verilerini Yenile</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="223"/>
       <source>First page</source>
       <comment>data view</comment>
-      <translation type="unfinished">First page</translation>
+      <translation>İlk sayfa</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="224"/>
       <source>Previous page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Previous page</translation>
+      <translation>Önceki sayfa</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="226"/>
       <source>Next page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Next page</translation>
+      <translation>Sonraki sayfa</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="227"/>
       <source>Last page</source>
       <comment>data view</comment>
-      <translation type="unfinished">Last page</translation>
+      <translation>Son sayfa</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="236"/>
@@ -1563,13 +1563,13 @@
       <location filename="../dataview.cpp" line="328"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs on top</translation>
+      <translation>Üstteki sekmeler</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="329"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
-      <translation type="unfinished">Tabs at bottom</translation>
+      <translation>Alttaki sekmeler</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="354"/>
@@ -1599,12 +1599,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dataview.cpp" line="674"/>
       <source>Row: %1</source>
-      <translation type="unfinished">Row: %1</translation>
+      <translation>Satır: %1</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="954"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filtre</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="957"/>
@@ -1615,13 +1615,13 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dataview.cpp" line="985"/>
       <source>Filter by text</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text</translation>
+      <translation>Metni filtrele</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="986"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by the Regular Expression</translation>
+      <translation>Düzenli ifadeleri filtrele</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="987"/>
@@ -1639,7 +1639,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dataview.cpp" line="1007"/>
       <source>Apply filter</source>
       <comment>data view</comment>
-      <translation type="unfinished">Apply filter</translation>
+      <translation>Filtreyi uygula</translation>
     </message>
   </context>
   <context>
@@ -1647,28 +1647,28 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="20"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="26"/>
       <source>Database type</source>
-      <translation type="unfinished">Database type</translation>
+      <translation>Veritabanı türü</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="32"/>
       <source>Database driver</source>
-      <translation type="unfinished">Database driver</translation>
+      <translation>Veritabanı Sürücüsü</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="42"/>
       <location filename="../dialogs/dbdialog.cpp" line="155"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>Dosya</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Create new database file</source>
-      <translation type="unfinished">Create new database file</translation>
+      <translation>Yeni veritabanı dosyası oluştur</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="79"/>
@@ -1678,7 +1678,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="91"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Şeçenekler</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="97"/>
@@ -1694,7 +1694,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="144"/>
       <source>Test connection</source>
-      <translation type="unfinished">Test connection</translation>
+      <translation>Test bağlantısı</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="156"/>
@@ -1704,7 +1704,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="308"/>
       <source>Browse</source>
-      <translation type="unfinished">Browse</translation>
+      <translation>Gözat</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="517"/>
@@ -1742,17 +1742,17 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="173"/>
       <source>Delete table</source>
-      <translation type="unfinished">Delete table</translation>
+      <translation>Tabloyu sil</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="174"/>
       <source>Are you sure you want to delete table %1?</source>
-      <translation type="unfinished">Are you sure you want to delete table %1?</translation>
+      <translation>%1 tabloyu silmek istediğinizden emin misiniz?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="178"/>
       <source>Delete index</source>
-      <translation type="unfinished">Delete index</translation>
+      <translation>Dizini sil</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="179"/>
