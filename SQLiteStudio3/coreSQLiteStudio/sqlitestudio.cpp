@@ -305,7 +305,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     QThreadPool::globalInstance()->setMaxThreadCount(10);
 
-    Q_INIT_RESOURCE(coreSQLiteStudio);
+    SQLS_INIT_RESOURCE(coreSQLiteStudio);
 
     CfgLazyInitializer::init();
 
@@ -416,7 +416,7 @@ void SQLiteStudio::cleanUp()
         safe_delete(env);
         NotifyManager::destroy();
     }
-    Q_CLEANUP_RESOURCE(coreSQLiteStudio);
+    SQLS_CLEANUP_RESOURCE(coreSQLiteStudio);
 }
 
 void SQLiteStudio::updateCodeFormatter()

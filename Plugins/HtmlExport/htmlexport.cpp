@@ -608,11 +608,11 @@ QString HtmlExport::compressCss(QString css)
 
 bool HtmlExport::init()
 {
-    Q_INIT_RESOURCE(htmlexport);
+    SQLS_INIT_RESOURCE(htmlexport);
     return GenericExportPlugin::init();
 }
 
 void HtmlExport::deinit()
 {
-    Q_CLEANUP_RESOURCE(htmlexport);
+    SQLS_CLEANUP_RESOURCE(htmlexport);
 }

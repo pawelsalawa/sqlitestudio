@@ -478,11 +478,11 @@ QString XmlExport::toString(bool value)
 
 bool XmlExport::init()
 {
-    Q_INIT_RESOURCE(xmlexport);
+    SQLS_INIT_RESOURCE(xmlexport);
     return GenericExportPlugin::init();
 }
 
 void XmlExport::deinit()
 {
-    Q_CLEANUP_RESOURCE(xmlexport);
+    SQLS_CLEANUP_RESOURCE(xmlexport);
 }

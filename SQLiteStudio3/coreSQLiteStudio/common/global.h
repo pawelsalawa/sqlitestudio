@@ -74,4 +74,19 @@
 #define STRINGIFY(s) _STRINGIFY(s)
 #define _STRINGIFY(s) #s
 
+#define __SQLS_INIT_RESOURCE(proj, name) Q_INIT_RESOURCE(proj ## _ ## name)
+#define __SQLS_CLEANUP_RESOURCE(proj, name) Q_CLEANUP_RESOURCE(proj ## _ ## name)
+#define _SQLS_INIT_RESOURCE(pname, name) __SQLS_INIT_RESOURCE(pname, name)
+#define _SQLS_CLEANUP_RESOURCE(pname, name) __SQLS_CLEANUP_RESOURCE(pname, name)
+
+// These are replacements for Qt's macros to cover customized resource naming,
+// which is used to avoid duplication of qmake_qmake_qm_files resource initialization function across different shared libraries.
+#ifdef PROJECT_MODULE_NAME
+#    define SQLS_INIT_RESOURCE(name) _SQLS_INIT_RESOURCE(PROJECT_MODULE_NAME, name)
+#    define SQLS_CLEANUP_RESOURCE(name) _SQLS_CLEANUP_RESOURCE(PROJECT_MODULE_NAME, name)
+#else
+#    define SQLS_INIT_RESOURCE(name)
+#    define SQLS_CLEANUP_RESOURCE(name)
+#endif
+
 #endif // GLOBAL_H

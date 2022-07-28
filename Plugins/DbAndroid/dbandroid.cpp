@@ -79,7 +79,7 @@ QString DbAndroid::generateDbName(const QVariant& baseValue)
 
 bool DbAndroid::init()
 {
-    Q_INIT_RESOURCE(dbandroid);
+    SQLS_INIT_RESOURCE(dbandroid);
 
     qRegisterMetaType<QList<AdbManager::Device>>("QList<Device>");
 
@@ -116,7 +116,7 @@ void DbAndroid::deinit()
     safe_delete(jarAction);
     safe_delete(connectionFactory);
     safe_delete(adbManager);
-    Q_CLEANUP_RESOURCE(dbandroid);
+    SQLS_CLEANUP_RESOURCE(dbandroid);
 }
 
 QString DbAndroid::getCurrentAdb()

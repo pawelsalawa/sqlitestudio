@@ -70,10 +70,5 @@ QMAKE_CFLAGS += -msse4.1 -msse4.2 -maes
 QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-but-set-variable \
     -Wno-parentheses -Wno-unused-variable -Wno-unknown-pragmas
 
-CONFIG += lrelease embed_translations
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)
-
 OTHER_FILES += \
     dbsqlitewx.json

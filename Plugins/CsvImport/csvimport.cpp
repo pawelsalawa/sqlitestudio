@@ -192,11 +192,11 @@ QString CsvImport::getFileFilter() const
 
 bool CsvImport::init()
 {
-    Q_INIT_RESOURCE(csvimport);
+    SQLS_INIT_RESOURCE(csvimport);
     return GenericPlugin::init();
 }
 
 void CsvImport::deinit()
 {
-    Q_CLEANUP_RESOURCE(csvimport);
+    SQLS_CLEANUP_RESOURCE(csvimport);
 }

@@ -139,8 +139,3 @@ win32: {
 
 RESOURCES += \
     scriptingtcl.qrc
-
-CONFIG += lrelease embed_translations
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)

@@ -20,7 +20,7 @@ ScriptingTcl::~ScriptingTcl()
 
 bool ScriptingTcl::init()
 {
-    Q_INIT_RESOURCE(scriptingtcl);
+    SQLS_INIT_RESOURCE(scriptingtcl);
     QMutexLocker locker(mainInterpMutex);
     mainContext = new ContextTcl();
     return true;
@@ -31,7 +31,7 @@ void ScriptingTcl::deinit()
     QMutexLocker locker(mainInterpMutex);
     safe_delete(mainContext);
     Tcl_Finalize();
-    Q_CLEANUP_RESOURCE(scriptingtcl);
+    SQLS_CLEANUP_RESOURCE(scriptingtcl);
 }
 
 QString ScriptingTcl::getLanguage() const

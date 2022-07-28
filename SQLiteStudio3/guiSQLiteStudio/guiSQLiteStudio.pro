@@ -6,7 +6,7 @@
 
 QT       += core gui uitools widgets xml svg
 
-include($$PWD/../dirs.pri)
+include($$PWD/../common.pri)
 include($$PWD/../utils.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/guiSQLiteStudio
@@ -26,13 +26,10 @@ portable: {
 TARGET = guiSQLiteStudio
 TEMPLATE = lib
 
-CONFIG += c++17 lrelease embed_translations
+CONFIG += c++17
 QMAKE_CXXFLAGS += -pedantic
-QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 DEFINES += GUISQLITESTUDIO_LIBRARY
-
-TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES +=\
     common/dbcombobox.cpp \

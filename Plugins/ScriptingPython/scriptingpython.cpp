@@ -39,7 +39,7 @@ ScriptingPython::~ScriptingPython()
 
 bool ScriptingPython::init()
 {
-    Q_INIT_RESOURCE(scriptingpython);
+    SQLS_INIT_RESOURCE(scriptingpython);
     QMutexLocker locker(mainInterpMutex);
 
     PyImport_AppendInittab("db", &pyDbModuleInit);
@@ -56,7 +56,7 @@ void ScriptingPython::deinit()
     QMutexLocker locker(mainInterpMutex);
     contexts.clear();
     Py_Finalize();
-    Q_CLEANUP_RESOURCE(scriptingpython);
+    SQLS_CLEANUP_RESOURCE(scriptingpython);
 }
 
 QString ScriptingPython::getLanguage() const

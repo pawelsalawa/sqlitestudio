@@ -13,13 +13,13 @@ RegExpImport::RegExpImport()
 
 bool RegExpImport::init()
 {
-    Q_INIT_RESOURCE(regexpimport);
+    SQLS_INIT_RESOURCE(regexpimport);
     return GenericPlugin::init();
 }
 
 void RegExpImport::deinit()
 {
-    Q_CLEANUP_RESOURCE(regexpimport);
+    SQLS_CLEANUP_RESOURCE(regexpimport);
 }
 
 QString RegExpImport::getDataSourceTypeName() const

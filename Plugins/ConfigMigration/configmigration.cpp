@@ -17,7 +17,7 @@ ConfigMigration::ConfigMigration()
 
 bool ConfigMigration::init()
 {
-    Q_INIT_RESOURCE(configmigration);
+    SQLS_INIT_RESOURCE(configmigration);
     loadTranslation("ConfigMigration");
 
     if (cfg.CfgMigration.Migrated.get())
@@ -47,7 +47,7 @@ bool ConfigMigration::init()
 
 void ConfigMigration::deinit()
 {
-    Q_CLEANUP_RESOURCE(configmigration);
+    SQLS_CLEANUP_RESOURCE(configmigration);
     safe_delete(db);
 
     for (ConfigMigrationItem* item : itemsToMigrate)

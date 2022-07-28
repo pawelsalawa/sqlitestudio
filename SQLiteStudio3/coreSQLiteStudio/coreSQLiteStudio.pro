@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../dirs.pri)
+include($$PWD/../common.pri)
 include($$PWD/../utils.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
@@ -54,11 +54,8 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG  += c++17 lrelease embed_translations
+CONFIG  += c++17
 QMAKE_CXXFLAGS += -pedantic
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += sqlitestudio.cpp \
     chillout/chillout.cpp \

@@ -264,7 +264,7 @@ QString MultiEditorImagePlugin::getTabLabel()
 
 bool MultiEditorImagePlugin::init()
 {
-    Q_INIT_RESOURCE(multieditorimage);
+    SQLS_INIT_RESOURCE(multieditorimage);
     return GenericPlugin::init();
 }
 
@@ -276,5 +276,5 @@ void MultiEditorImagePlugin::deinit()
         delete editor;
     }
 
-    Q_CLEANUP_RESOURCE(multieditorimage);
+    SQLS_CLEANUP_RESOURCE(multieditorimage);
 }

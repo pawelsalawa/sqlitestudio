@@ -17,7 +17,7 @@
 
 bool Printing::init()
 {
-    Q_INIT_RESOURCE(printing);
+    SQLS_INIT_RESOURCE(printing);
 
     printingExport = new PrintingExport();
     bool printingExportInit = printingExport->init();
@@ -57,7 +57,7 @@ void Printing::deinit()
     safe_delete(printDataAction);
     safe_delete(separatorAction);
     safe_delete(printQueryAction);
-    Q_CLEANUP_RESOURCE(printing);
+    SQLS_CLEANUP_RESOURCE(printing);
 }
 
 void Printing::dataPrintRequested(ExtActionContainer* actionContainer)

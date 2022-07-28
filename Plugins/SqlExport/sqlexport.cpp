@@ -322,11 +322,11 @@ void SqlExport::validateOptions()
 
 bool SqlExport::init()
 {
-    Q_INIT_RESOURCE(sqlexport);
+    SQLS_INIT_RESOURCE(sqlexport);
     return GenericExportPlugin::init();
 }
 
 void SqlExport::deinit()
 {
-    Q_CLEANUP_RESOURCE(sqlexport);
+    SQLS_CLEANUP_RESOURCE(sqlexport);
 }

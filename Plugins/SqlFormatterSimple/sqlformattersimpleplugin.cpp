@@ -1,5 +1,5 @@
 #include "sqlformattersimpleplugin.h"
-
+#include "common/global.h"
 SqlFormatterSimplePlugin::SqlFormatterSimplePlugin()
 {
 }
@@ -30,13 +30,13 @@ QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
 
 bool SqlFormatterSimplePlugin::init()
 {
-    Q_INIT_RESOURCE(sqlformattersimple);
+    SQLS_INIT_RESOURCE(sqlformattersimple);
     return GenericPlugin::init();
 }
 
 void SqlFormatterSimplePlugin::deinit()
 {
-    Q_CLEANUP_RESOURCE(sqlformattersimple);
+    SQLS_CLEANUP_RESOURCE(sqlformattersimple);
 }
 
 QString SqlFormatterSimplePlugin::getConfigUiForm() const

@@ -1,5 +1,5 @@
-include($$PWD/../../dirs.pri)
-include($$PWD/../testdirs.pri)
+include($$PWD/../../common.pri)
+include($$PWD/../testcommon.pri)
 
 CONFIG += c++17
 

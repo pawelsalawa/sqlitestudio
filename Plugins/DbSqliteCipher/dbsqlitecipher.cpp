@@ -45,7 +45,7 @@ QList<DbPluginOption> DbSqliteCipher::getOptionsList() const
 
 bool DbSqliteCipher::init()
 {
-    Q_INIT_RESOURCE(dbsqlitecipher);
+    SQLS_INIT_RESOURCE(dbsqlitecipher);
 
     if (!SQLITESTUDIO->getExtraLicenseManager()->addLicense(LICENSE_TITLE, ":/license/sqlcipher.txt"))
     {
@@ -66,7 +66,7 @@ bool DbSqliteCipher::init()
 void DbSqliteCipher::deinit()
 {
     SQLITESTUDIO->getExtraLicenseManager()->removeLicense(LICENSE_TITLE);
-    Q_CLEANUP_RESOURCE(dbsqlitecipher);
+    SQLS_CLEANUP_RESOURCE(dbsqlitecipher);
 }
 
 Db *DbSqliteCipher::newInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options)

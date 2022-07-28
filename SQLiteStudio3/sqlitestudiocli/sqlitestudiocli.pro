@@ -7,7 +7,7 @@
 QT       += core
 QT       -= gui
 
-include($$PWD/../dirs.pri)
+include($$PWD/../common.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudiocli
 MOC_DIR = $$MOC_DIR/sqlitestudiocli
@@ -19,20 +19,17 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-CONFIG   += c++17 lrelease embed_translations
+CONFIG   += c++17
 QMAKE_CXXFLAGS += -pedantic
 linux {
     portable {
         QMAKE_LFLAGS += -Wl,-rpath,./lib
     }
 }
-QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 portable {
     DEFINES += PORTABLE_CONFIG
 }
-
-TRANSLATIONS += $$files(translations/*.ts)
 
 SOURCES += main.cpp \
     cli.cpp \

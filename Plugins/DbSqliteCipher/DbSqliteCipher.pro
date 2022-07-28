@@ -81,14 +81,6 @@ QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused
 DISTFILES += \
     openssl_lic.txt
 
-CONFIG += lrelease embed_translations
-QM_FILES_RESOURCE_PREFIX = /msg/translations
-
-TRANSLATIONS += $$files(translations/*.ts)
-
-
-
-
 
 
 

@@ -6,7 +6,7 @@
 
 QT       += core gui widgets network
 
-include($$PWD/../dirs.pri)
+include($$PWD/../common.pri)
 include($$PWD/../utils.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudio
@@ -20,9 +20,8 @@ linux {
 }
 TEMPLATE = app
 
-CONFIG   += c++17 lrelease embed_translations
+CONFIG   += c++17
 QMAKE_CXXFLAGS += -pedantic
-QM_FILES_RESOURCE_PREFIX = /msg/translations
 
 DEFINES += QAPPLICATION_CLASS=QApplication
 
@@ -42,8 +41,6 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
 SOURCES += main.cpp \
     singleapplication/singleapplication.cpp
-
-TRANSLATIONS += $$files(translations/*.ts)
 
 win32 {
     RC_FILE = windows.rc

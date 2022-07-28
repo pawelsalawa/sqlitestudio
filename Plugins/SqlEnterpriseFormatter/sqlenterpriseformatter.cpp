@@ -36,7 +36,7 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 
 bool SqlEnterpriseFormatter::init()
 {
-    Q_INIT_RESOURCE(sqlenterpriseformatter);
+    SQLS_INIT_RESOURCE(sqlenterpriseformatter);
 
     static_qstring(query1, "SELECT (2 + 4) AND (3 + 5), 4 NOT IN (SELECT t1.'some[_]name' + t2.[some'name2] FROM xyz t1 JOIN zxc t2 ON (t1.aaa = t2.aaa)) "
                            "FROM a, (SELECT id FROM table2);");
@@ -65,9 +65,8 @@ bool SqlEnterpriseFormatter::init()
 
 void SqlEnterpriseFormatter::deinit()
 {
-    Q_CLEANUP_RESOURCE(sqlenterpriseformatter);
+    SQLS_CLEANUP_RESOURCE(sqlenterpriseformatter);
 }
-
 
 void SqlEnterpriseFormatter::updatePreview()
 {

@@ -22,10 +22,10 @@ void loadTranslation(const QString& baseName)
     QStringList filters = QStringList({baseName+"_"+lang+".qm"});
     QDir dir;
 
-    for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
+    for (QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
         dir.setPath(dirPath);
-        for (const QString& f : dir.entryList(filters))
+        for (QString& f : dir.entryList(filters))
         {
             res = translator->load(f, dirPath);
             if (res)
@@ -40,7 +40,10 @@ void loadTranslation(const QString& baseName)
     }
 
     if (!res)
+    {
+        delete translator;
         return;
+    }
 
     qApp->installTranslator(translator);
     SQLITESTUDIO_TRANSLATIONS[baseName] = translator;
@@ -71,10 +74,10 @@ QStringList getAvailableTranslations()
     QRegularExpressionMatch match;
     QDir dir;
     QStringList filters = QStringList({"*_*.qm"});
-    for (const QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
+    for (QString& dirPath : SQLITESTUDIO_TRANSLATION_DIRS)
     {
         dir.setPath(dirPath);
-        for (const QString& f : dir.entryList(filters))
+        for (QString& f : dir.entryList(filters))
         {
             match = re.match(f);
             if (!match.isValid())

@@ -11,6 +11,7 @@ QString PdfExport::bulletChar = "\u2022";
 
 bool PdfExport::init()
 {
+    SQLS_INIT_RESOURCE(pdfexport);
     textOption = new QTextOption();
     textOption->setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
     return GenericExportPlugin::init();
@@ -19,6 +20,7 @@ bool PdfExport::init()
 void PdfExport::deinit()
 {
     safe_delete(textOption);
+    SQLS_CLEANUP_RESOURCE(pdfexport);
 }
 
 QPagedPaintDevice* PdfExport::createPaintDevice(const QString& documentTitle, bool &takeOwnership)

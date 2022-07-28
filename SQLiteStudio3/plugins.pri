@@ -1,4 +1,4 @@
-include($$PWD/dirs.pri)
+include($$PWD/common.pri)
 
 CONFIG += c++17 plugin
 
