@@ -1,7 +1,7 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3350500'
-    SQLITE_RELEASE_YEAR: '2021'
+    SQLITE_VERSION: '3390200'
+    SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 

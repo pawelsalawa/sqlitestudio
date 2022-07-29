@@ -1,7 +1,7 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3350500'
-    SQLITE_RELEASE_YEAR: '2021'
+    SQLITE_VERSION: '3390200'
+    SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
     pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x86'
@@ -10,7 +10,7 @@ env:
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw810/8.1.0-1-202004170606i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-installer.exe
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-windows-installer.exe
 
 name: Windows 32-bit release build
 

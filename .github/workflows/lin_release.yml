@@ -1,12 +1,12 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3350500'
-    SQLITE_RELEASE_YEAR: '2021'
+    SQLITE_VERSION: '3390200'
+    SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-linux-x64-installer.run
 
 name: Linux release build
 
