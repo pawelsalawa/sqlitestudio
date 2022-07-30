@@ -55,5 +55,10 @@ void FormatUpdate::formatInternal()
     if (upd->where)
         withNewLine().withLinedUpKeyword("WHERE").withStatement(upd->where);
 
+    if (!upd->returning.isEmpty())
+    {
+        withNewLine().withLinedUpKeyword("RETURNING");
+        withStatementList(upd->returning, "returningColumns");
+    }
     withSemicolon();
 }

@@ -12,15 +12,23 @@ class SqliteWith : public SqliteStatement
         class CommonTableExpression : public SqliteStatement
         {
             public:
+                enum AsMode {
+                    ANY,
+                    MATERIALIZED,
+                    NOT_MATERIALIZED
+                };
+
                 CommonTableExpression();
                 CommonTableExpression(const CommonTableExpression& other);
-                CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
+                CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select,
+                                      AsMode asMode);
 
                 SqliteStatement* clone();
 
                 QString table;
                 QList<SqliteIndexedColumn*> indexedColumns;
                 SqliteSelect* select = nullptr;
+                AsMode asMode = ANY;
 
             protected:
                 TokenList rebuildTokensFromContents();

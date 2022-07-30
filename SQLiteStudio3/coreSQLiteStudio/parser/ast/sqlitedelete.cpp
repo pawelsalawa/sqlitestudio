@@ -16,20 +16,21 @@ SqliteDelete::SqliteDelete(const SqliteDelete& other) :
 {
     DEEP_COPY_FIELD(SqliteExpr, where);
     DEEP_COPY_FIELD(SqliteWith, with);
+    DEEP_COPY_COLLECTION(SqliteResultColumn, returning);
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& indexedByName, SqliteExpr *where, SqliteWith* with)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& indexedByName, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
     : SqliteDelete()
 {
-    init(name1, name2, where, with);
+    init(name1, name2, where, with, returning);
     this->indexedBy = indexedByName;
     this->indexedByKw = true;
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, bool notIndexedKw, SqliteExpr *where, SqliteWith* with)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, bool notIndexedKw, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
     : SqliteDelete()
 {
-    init(name1, name2, where, with);
+    init(name1, name2, where, with, returning);
     this->notIndexedKw = notIndexedKw;
 }
 
@@ -37,7 +38,7 @@ SqliteDelete::~SqliteDelete()
 {
 }
 
-SqliteStatement*SqliteDelete::clone()
+SqliteStatement* SqliteDelete::clone()
 {
     return new SqliteDelete(*this);
 }
@@ -91,7 +92,7 @@ QList<SqliteStatement::FullObject> SqliteDelete::getFullObjectsInStatement()
     return result;
 }
 
-void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *where, SqliteWith* with)
+void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
 {
     this->where = where;
     if (where)
@@ -108,6 +109,10 @@ void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *
     }
     else
         table = name1;
+
+    this->returning = returning;
+    for (SqliteResultColumn*& retCol : this->returning)
+        retCol->setParent(this);
 }
 
 TokenList SqliteDelete::rebuildTokensFromContents()
@@ -130,6 +135,13 @@ TokenList SqliteDelete::rebuildTokensFromContents()
 
     if (where)
         builder.withSpace().withKeyword("WHERE").withStatement(where);
+
+    if (!returning.isEmpty())
+    {
+        builder.withKeyword("RETURNING");
+        for (SqliteResultColumn*& retCol : returning)
+            builder.withSpace().withStatement(retCol);
+    }
 
     builder.withOperator(";");
 

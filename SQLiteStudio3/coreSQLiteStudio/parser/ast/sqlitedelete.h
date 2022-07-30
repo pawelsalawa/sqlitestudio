@@ -2,8 +2,9 @@
 #define SQLITEDELETE_H
 
 #include "sqlitequery.h"
-
+#include "sqliteselect.h"
 #include <QString>
+#include <QList>
 
 class SqliteExpr;
 class SqliteWith;
@@ -13,8 +14,10 @@ class API_EXPORT SqliteDelete : public SqliteQuery
     public:
         SqliteDelete();
         SqliteDelete(const SqliteDelete& other);
-        SqliteDelete(const QString& name1, const QString& name2, const QString& indexedByName, SqliteExpr* where, SqliteWith* with);
-        SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where, SqliteWith* with);
+        SqliteDelete(const QString& name1, const QString& name2, const QString& indexedByName, SqliteExpr* where, SqliteWith* with,
+                     const QList<SqliteResultColumn*>& returning);
+        SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where, SqliteWith* with,
+                     const QList<SqliteResultColumn*>& returning);
         ~SqliteDelete();
 
         SqliteStatement* clone();
@@ -28,7 +31,8 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         TokenList rebuildTokensFromContents();
 
     private:
-        void init(const QString& name1, const QString& name2, SqliteExpr* where, SqliteWith* with);
+        void init(const QString& name1, const QString& name2, SqliteExpr* where, SqliteWith* with,
+                  const QList<SqliteResultColumn*>& returning);
 
     public:
         QString database = QString();
@@ -38,6 +42,7 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         QString indexedBy = QString();
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;
+        QList<SqliteResultColumn*> returning;
 };
 
 typedef QSharedPointer<SqliteDelete> SqliteDeletePtr;

@@ -27,6 +27,7 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
     DEEP_COPY_FIELD(SqliteExpr, where);
     DEEP_COPY_FIELD(SqliteWith, with);
     DEEP_COPY_FIELD(SqliteSelect::Core::JoinSource, from);
+    DEEP_COPY_COLLECTION(SqliteResultColumn, returning);
 }
 
 SqliteUpdate::~SqliteUpdate()
@@ -34,7 +35,7 @@ SqliteUpdate::~SqliteUpdate()
 }
 
 SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
-                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with)
+                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -64,8 +65,12 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     if (with)
         with->setParent(this);
 
-    for (const ColumnAndValue& keyValue : keyValueMap)
+    for (ColumnAndValue& keyValue : keyValueMap)
         keyValue.second->setParent(this);
+
+    this->returning = returning;
+    for (SqliteResultColumn*& retCol : this->returning)
+        retCol->setParent(this);
 }
 
 SqliteStatement*SqliteUpdate::clone()
@@ -75,7 +80,7 @@ SqliteStatement*SqliteUpdate::clone()
 
 SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
 {
-    for (const ColumnAndValue& keyValue : keyValueMap)
+    for (ColumnAndValue& keyValue : keyValueMap)
     {
         if (keyValue.first == column)
             return keyValue.second;
@@ -86,7 +91,7 @@ SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
 QStringList SqliteUpdate::getColumnsInStatement()
 {
     QStringList columns;
-    for (const ColumnAndValue& keyValue : keyValueMap)
+    for (ColumnAndValue& keyValue : keyValueMap)
     {
         if (keyValue.first.type() == QVariant::StringList)
             columns += keyValue.first.toStringList();
@@ -120,7 +125,7 @@ TokenList SqliteUpdate::getColumnTokensInStatement()
     int end;
     int start = 0;
     SqliteExpr* expr = nullptr;
-    for (const ColumnAndValue& keyValue : keyValueMap)
+    for (ColumnAndValue& keyValue : keyValueMap)
     {
         expr = keyValue.second;
         end = setListTokens.indexOf(expr->tokens[0]);
@@ -205,7 +210,7 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
     builder.withKeyword("SET").withSpace();
 
     bool first = true;
-    for (const ColumnAndValue& keyVal : keyValueMap)
+    for (ColumnAndValue& keyVal : keyValueMap)
     {
         if (!first)
             builder.withOperator(",").withSpace();
@@ -224,6 +229,13 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
 
     if (where)
         builder.withSpace().withKeyword("WHERE").withStatement(where);
+
+    if (!returning.isEmpty())
+    {
+        builder.withKeyword("RETURNING");
+        for (SqliteResultColumn*& retCol : returning)
+            builder.withSpace().withStatement(retCol);
+    }
 
     builder.withOperator(";");
 

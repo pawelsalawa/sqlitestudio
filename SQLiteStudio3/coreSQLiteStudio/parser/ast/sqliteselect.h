@@ -232,5 +232,6 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 };
 
 typedef QSharedPointer<SqliteSelect> SqliteSelectPtr;
+typedef SqliteSelect::Core::ResultColumn SqliteResultColumn;
 
 #endif // SQLITESELECT_H

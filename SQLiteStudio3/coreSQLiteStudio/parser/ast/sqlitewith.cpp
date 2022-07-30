@@ -36,19 +36,19 @@ SqliteWith::CommonTableExpression::CommonTableExpression()
 }
 
 SqliteWith::CommonTableExpression::CommonTableExpression(const SqliteWith::CommonTableExpression& other) :
-    SqliteStatement(other), table(other.table)
+    SqliteStatement(other), table(other.table), asMode(other.asMode)
 {
     DEEP_COPY_COLLECTION(SqliteIndexedColumn, indexedColumns);
     DEEP_COPY_FIELD(SqliteSelect, select);
 }
 
-SqliteWith::CommonTableExpression::CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select) :
-    table(tableName), indexedColumns(indexedColumns), select(select)
+SqliteWith::CommonTableExpression::CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select, AsMode asMode) :
+    table(tableName), indexedColumns(indexedColumns), select(select), asMode(asMode)
 {
     select->setParent(this);
 }
 
-SqliteStatement*SqliteWith::CommonTableExpression::clone()
+SqliteStatement* SqliteWith::CommonTableExpression::clone()
 {
     return new SqliteWith::CommonTableExpression(*this);
 }
@@ -61,7 +61,19 @@ TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents()
     if (indexedColumns.size() > 0)
         builder.withSpace().withParLeft().withStatementList(indexedColumns).withParRight();
 
-    builder.withSpace().withKeyword("AS").withSpace().withParLeft().withStatement(select).withParRight();
+    builder.withSpace().withKeyword("AS");
+    switch (asMode) {
+        case ANY:
+            break;
+        case MATERIALIZED:
+            builder.withKeyword("MATERIALIZED");
+            break;
+        case NOT_MATERIALIZED:
+            builder.withKeyword("NOT").withSpace().withKeyword("MATERIALIZED");
+            break;
+    }
+
+    builder.withSpace().withParLeft().withStatement(select).withParRight();
 
     return builder.build();
 }

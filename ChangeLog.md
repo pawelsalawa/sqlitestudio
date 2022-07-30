@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.0
+- ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
 - ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin. Requires Python installed in the system to use the plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
 - ADDED: #3615 console.log() function for JS scripts.
@@ -13,6 +14,7 @@
 - ADDED: #4006 Colors configuration for syntax highlighting is reintroduced in a new, improved form.
 - ADDED: #3793 Close windows on the left/right options added to the View menu and Taskbar context menu. Also renamed 'all but selected' to 'other'.
 - ADDED: Allow drag and drop a file to the add database dialog.
+- CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
@@ -20,7 +22,6 @@
 - CHANGE: #4129 Improved memory saving algorithm, so when the colum is result of expression, the full value is always loaded immediately, to avoid subsequent query execution for loading full value when user copies cell value to clipboad.
 - CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
-- CHANGE: SQLite updated to 3.35.5.
 - CHANGE: #4300 Db Dialog now has just 1 browse button, but uses Qt file dialog, not native one.
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.

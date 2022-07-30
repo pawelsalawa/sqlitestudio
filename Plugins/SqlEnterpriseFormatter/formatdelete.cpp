@@ -30,5 +30,11 @@ void FormatDelete::formatInternal()
     if (del->where)
         withNewLine().withLinedUpKeyword("WHERE").withStatement(del->where);
 
+    if (!del->returning.isEmpty())
+    {
+        withNewLine().withLinedUpKeyword("RETURNING");
+        withStatementList(del->returning, "returningColumns");
+    }
+
     withSemicolon();
 }

@@ -8,7 +8,8 @@ SqliteAlterTable::SqliteAlterTable()
 }
 
 SqliteAlterTable::SqliteAlterTable(const SqliteAlterTable& other)
-    : SqliteQuery(other), command(other.command), newName(other.newName), database(other.database), table(other.table), columnKw(other.columnKw)
+    : SqliteQuery(other), command(other.command), newName(other.newName), database(other.database), table(other.table),
+    dropColumnName(other.dropColumnName), columnKw(other.columnKw)
 {
     DEEP_COPY_FIELD(SqliteCreateTable::Column, newColumn);
 }
@@ -32,15 +33,31 @@ SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, b
         column->setParent(this);
 }
 
+SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, const QString& dropColumn)
+    : SqliteAlterTable()
+{
+    command = Command::DROP_COLUMN;
+    initName(name1, name2);
+    this->columnKw = columnKw;
+    this->dropColumnName = dropColumn;
+}
+
 SqliteAlterTable::~SqliteAlterTable()
 {
-//    if (newColumn)
-    //        delete newColumn;
 }
 
 SqliteStatement* SqliteAlterTable::clone()
 {
     return new SqliteAlterTable(*this);
+}
+
+QStringList SqliteAlterTable::getColumnsInStatement()
+{
+    QStringList list;
+    if (!dropColumnName.isNull())
+        list << dropColumnName;
+
+    return list;
 }
 
 QStringList SqliteAlterTable::getTablesInStatement()
@@ -58,6 +75,14 @@ QStringList SqliteAlterTable::getTablesInStatement()
 QStringList SqliteAlterTable::getDatabasesInStatement()
 {
     return getStrListFromValue(database);
+}
+
+TokenList SqliteAlterTable::getColumnTokensInStatement()
+{
+    if (command == Command::DROP_COLUMN && tokensMap.contains("nm"))
+        return extractPrintableTokens(tokensMap["nm"]);
+
+    return TokenList();
 }
 
 TokenList SqliteAlterTable::getTableTokensInStatement()
@@ -110,17 +135,32 @@ TokenList SqliteAlterTable::rebuildTokensFromContents()
 
     builder.withOther(table).withSpace();
 
-    if (newColumn)
-    {
-        builder.withKeyword("ADD").withSpace();
-        if (columnKw)
-            builder.withKeyword("COLUMN").withSpace();
+    switch (command) {
+        case Command::RENAME:
+        {
+            builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName);
+            break;
+        }
+        case Command::ADD_COLUMN:
+        {
+            builder.withKeyword("ADD").withSpace();
+            if (columnKw)
+                builder.withKeyword("COLUMN").withSpace();
 
-        builder.withStatement(newColumn);
-    }
-    else if (!newName.isNull())
-    {
-        builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName);
+            builder.withStatement(newColumn);
+            break;
+        }
+        case Command::DROP_COLUMN:
+        {
+            builder.withKeyword("DROP").withSpace();
+            if (columnKw)
+                builder.withKeyword("COLUMN").withSpace();
+
+            builder.withOther(dropColumnName);
+            break;
+        }
+        case Command::null:
+            break;
     }
 
     builder.withOperator(";");

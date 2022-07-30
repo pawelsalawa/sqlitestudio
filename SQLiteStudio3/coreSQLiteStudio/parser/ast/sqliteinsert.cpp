@@ -20,14 +20,14 @@ SqliteInsert::SqliteInsert(const SqliteInsert& other) :
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(SqliteWith, with);
     DEEP_COPY_FIELD(SqliteUpsert, upsert);
+    DEEP_COPY_COLLECTION(SqliteResultColumn, returning);
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           const QList<SqliteExpr *> &row, SqliteWith* with) :
+                           const QList<SqliteExpr *> &row, SqliteWith* with, const QList<SqliteResultColumn*>& returning) :
     SqliteInsert()
 {
-    initName(name1, name2);
-    initMode(replace, onConflict);
+    init(name1, name2, replace, onConflict, returning);
     columnNames = columns;
     values = row;
 
@@ -40,11 +40,10 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           SqliteSelect *select, SqliteWith* with, SqliteUpsert* upsert) :
+                           SqliteSelect *select, SqliteWith* with, SqliteUpsert* upsert, const QList<SqliteResultColumn*>& returning) :
     SqliteInsert()
 {
-    initName(name1, name2);
-    initMode(replace, onConflict);
+    init(name1, name2, replace, onConflict, returning);
 
     this->with = with;
     if (with)
@@ -61,11 +60,10 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           SqliteWith* with) :
+                           SqliteWith* with, const QList<SqliteResultColumn*>& returning) :
     SqliteInsert()
 {
-    initName(name1, name2);
-    initMode(replace, onConflict);
+    init(name1, name2, replace, onConflict, returning);
 
     this->with = with;
     if (with)
@@ -104,7 +102,7 @@ QStringList SqliteInsert::getDatabasesInStatement()
 TokenList SqliteInsert::getColumnTokensInStatement()
 {
     TokenList list;
-    for (TokenPtr token : getTokenListFromNamedKey("idlist_opt", -1))
+    for (TokenPtr& token : getTokenListFromNamedKey("idlist_opt", -1))
     {
         if (token->type != Token::OTHER && token->type != Token::KEYWORD)
             continue;
@@ -153,7 +151,7 @@ QList<SqliteStatement::FullObject> SqliteInsert::getFullObjectsInStatement()
     return result;
 }
 
-void SqliteInsert::initName(const QString& name1, const QString& name2)
+void SqliteInsert::init(const QString& name1, const QString& name2, bool replace, SqliteConflictAlgo onConflict, const QList<SqliteResultColumn*>& returning)
 {
     if (!name2.isNull())
     {
@@ -162,12 +160,13 @@ void SqliteInsert::initName(const QString& name1, const QString& name2)
     }
     else
         table = name1;
-}
 
-void SqliteInsert::initMode(bool replace, SqliteConflictAlgo onConflict)
-{
     replaceKw = replace;
     this->onConflict = onConflict;
+
+    this->returning = returning;
+    for (SqliteResultColumn*& retCol : this->returning)
+        retCol->setParent(this);
 }
 
 TokenList SqliteInsert::rebuildTokensFromContents()
@@ -210,6 +209,13 @@ TokenList SqliteInsert::rebuildTokensFromContents()
             if (upsert)
                 builder.withSpace().withStatement(upsert);
         }
+    }
+
+    if (!returning.isEmpty())
+    {
+        builder.withKeyword("RETURNING");
+        for (SqliteResultColumn*& retCol : returning)
+            builder.withSpace().withStatement(retCol);
     }
 
     builder.withOperator(";");

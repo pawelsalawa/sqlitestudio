@@ -52,5 +52,10 @@ void FormatInsert::formatInternal()
         withDecrIndent();
     }
 
+    if (!insert->returning.isEmpty())
+    {
+        withNewLine().withLinedUpKeyword("RETURNING");
+        withStatementList(insert->returning, "returningColumns");
+    }
     withSemicolon();
 }

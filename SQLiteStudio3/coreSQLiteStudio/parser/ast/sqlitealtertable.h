@@ -11,6 +11,7 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         {
             RENAME,
             ADD_COLUMN,
+            DROP_COLUMN,
             null
         };
 
@@ -18,12 +19,15 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         SqliteAlterTable(const SqliteAlterTable& other);
         SqliteAlterTable(const QString& name1, const QString& name2, const QString& newName);
         SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, SqliteCreateTable::Column* column);
+        SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, const QString& dropColumn);
         ~SqliteAlterTable();
         SqliteStatement* clone();
 
     protected:
+        QStringList getColumnsInStatement();
         QStringList getTablesInStatement();
         QStringList getDatabasesInStatement();
+        TokenList getColumnTokensInStatement();
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
@@ -37,6 +41,7 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         QString newName = QString();
         QString database = QString();
         QString table = QString();
+        QString dropColumnName = QString();
         bool columnKw = false;
         SqliteCreateTable::Column* newColumn = nullptr;
 };

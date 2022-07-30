@@ -21,7 +21,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         ~SqliteUpdate();
         SqliteUpdate(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2,
                      bool notIndexedKw, const QString& indexedBy, const QList<ColumnAndValue>& values,
-                     SqliteSelect::Core::JoinSource* from, SqliteExpr* where, SqliteWith* with);
+                     SqliteSelect::Core::JoinSource* from, SqliteExpr* where, SqliteWith* with, const QList<SqliteResultColumn*>& returning);
 
         SqliteStatement* clone();
         SqliteExpr* getValueForColumnSet(const QString& column);
@@ -36,6 +36,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         SqliteSelect::Core::JoinSource* from = nullptr;
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;
+        QList<SqliteResultColumn*> returning;
 
     protected:
         QStringList getColumnsInStatement();

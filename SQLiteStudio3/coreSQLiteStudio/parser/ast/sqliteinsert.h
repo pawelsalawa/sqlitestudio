@@ -3,10 +3,10 @@
 
 #include "sqlitequery.h"
 #include "sqliteconflictalgo.h"
+#include "sqliteselect.h"
 #include <QString>
 #include <QList>
 
-class SqliteSelect;
 class SqliteExpr;
 class SqliteWith;
 class SqliteUpsert;
@@ -18,11 +18,14 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         SqliteInsert(const SqliteInsert& other);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns,
-                     const QList<SqliteExpr*>& row, SqliteWith* with);
+                     const QList<SqliteExpr*>& row, SqliteWith* with,
+                     const QList<SqliteResultColumn*>& returning);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with, SqliteUpsert* upsert = nullptr);
+                     const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with,
+                     SqliteUpsert* upsert, const QList<SqliteResultColumn*>& returning);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns, SqliteWith* with);
+                     const QString& name2, const QList<QString>& columns, SqliteWith* with,
+                     const QList<SqliteResultColumn*>& returning);
         ~SqliteInsert();
 
         SqliteStatement* clone();
@@ -38,8 +41,8 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         TokenList rebuildTokensFromContents();
 
     private:
-        void initName(const QString& name1, const QString& name2);
-        void initMode(bool replace, SqliteConflictAlgo onConflict);
+        void init(const QString& name1, const QString& name2, bool replace, SqliteConflictAlgo onConflict,
+                  const QList<SqliteResultColumn*>& returning);
 
     public:
         bool replaceKw = false;
@@ -52,6 +55,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         SqliteSelect* select = nullptr;
         SqliteWith* with = nullptr;
         SqliteUpsert* upsert = nullptr;
+        QList<SqliteResultColumn*> returning;
 };
 
 typedef QSharedPointer<SqliteInsert> SqliteInsertPtr;
