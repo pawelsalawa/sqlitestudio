@@ -106,7 +106,6 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqliteselect.cpp \
     parser/ast/sqliteupdate.cpp \
     parser/ast/sqlitevacuum.cpp \
-    parser/ast/sqlitecopy.cpp \
     parser/ast/sqliteemptyquery.cpp \
     parser/parser_helper_stubs.cpp \
     parser/ast/sqliteexpr.cpp \
@@ -284,7 +283,6 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqliteselect.h \
     parser/ast/sqliteupdate.h \
     parser/ast/sqlitevacuum.h \
-    parser/ast/sqlitecopy.h \
     parser/ast/sqlitequerytype.h \
     parser/ast/sqliteemptyquery.h \
     parser/parser_helper_stubs.h \

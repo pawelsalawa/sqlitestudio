@@ -16,7 +16,6 @@
 #include "formatattach.h"
 #include "formatbegintrans.h"
 #include "formatcommittrans.h"
-#include "formatcopy.h"
 #include "formatcreateindex.h"
 #include "formatcreatetrigger.h"
 #include "formatcreateview.h"
@@ -48,7 +47,6 @@
 #include "parser/ast/sqliteattach.h"
 #include "parser/ast/sqlitebegintrans.h"
 #include "parser/ast/sqlitecommittrans.h"
-#include "parser/ast/sqlitecopy.h"
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "parser/ast/sqlitecreateview.h"
@@ -145,7 +143,6 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteAttach, FormatAttach);
     FORMATTER_FACTORY_ENTRY(query, SqliteBeginTrans, FormatBeginTrans);
     FORMATTER_FACTORY_ENTRY(query, SqliteCommitTrans, FormatCommitTrans);
-    FORMATTER_FACTORY_ENTRY(query, SqliteCopy, FormatCopy);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateVirtualTable, FormatCreateVirtualTable);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateIndex, FormatCreateIndex);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateTrigger, FormatCreateTrigger);

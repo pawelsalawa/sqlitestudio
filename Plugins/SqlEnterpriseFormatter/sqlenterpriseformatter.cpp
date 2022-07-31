@@ -71,7 +71,7 @@ void SqlEnterpriseFormatter::deinit()
 void SqlEnterpriseFormatter::updatePreview()
 {
     QStringList output;
-    for (const SqliteQueryPtr& q : previewQueries)
+    for (SqliteQueryPtr& q : previewQueries)
         output << format(q);
 
     cfg.SqlEnterpriseFormatter.PreviewCode.set(output.join("\n\n"));
