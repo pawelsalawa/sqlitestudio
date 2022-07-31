@@ -373,7 +373,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 
         colNameList << wrapObjIfNeeded(modelColumn->column);
         sqlValues << ":arg" + QString::number(i);
-        args << item->getFullValue();
+        args << item->getValue();
     }
 }
 

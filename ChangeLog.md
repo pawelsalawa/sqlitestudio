@@ -25,6 +25,7 @@
 - CHANGE: #4300 Db Dialog now has just 1 browse button, but uses Qt file dialog, not native one.
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
+- CHANGE: #4240 #4458 #4419 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues, that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.

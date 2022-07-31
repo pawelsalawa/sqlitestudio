@@ -63,9 +63,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
         bool isExecutionInProgress() const;
-        void loadFullDataForEntireRow(int row);
-        void loadFullDataForEntireColumn(int column);
-        bool doesColumnHaveLimitedValues(int column) const;
         StrHash<QString> attachDependencyTables();
         void detachDependencyTables();
 

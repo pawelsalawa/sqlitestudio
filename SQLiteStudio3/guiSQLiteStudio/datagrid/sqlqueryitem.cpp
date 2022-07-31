@@ -55,7 +55,7 @@ void SqlQueryItem::setUncommitted(bool uncommitted)
 
 void SqlQueryItem::rollback()
 {
-    setValue(getOldValue(), getOldValueLimited(), true);
+    setValue(getOldValue(), true);
     setUncommitted(false);
     setDeletedRow(false);
 }
@@ -126,7 +126,7 @@ QVariant SqlQueryItem::getValue() const
     return QStandardItem::data(DataRole::VALUE);
 }
 
-void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFromDb)
+void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
 {
     if (!valueSettingLock.tryLock())
     {
@@ -160,22 +160,12 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
     QStandardItem::setData("x", DataRole::VALUE);
 
     QStandardItem::setData(newValue, DataRole::VALUE);
-    setLimitedValue(limited);
     setUncommitted(modified);
-
-    // Value for display (in a cell) will always be limited, for performance reasons
-    setValueForDisplay("x"); // the same trick as with the DataRole::VALUE
-    setValueForDisplay(newValue);
 
     if (modified && getModel())
         getModel()->itemValueEdited(this);
 
     valueSettingLock.unlock();
-}
-
-bool SqlQueryItem::isLimitedValue() const
-{
-    return QStandardItem::data(DataRole::LIMITED_VALUE).toBool();
 }
 
 QVariant SqlQueryItem::getOldValue() const
@@ -186,31 +176,6 @@ QVariant SqlQueryItem::getOldValue() const
 void SqlQueryItem::setOldValue(const QVariant& value)
 {
     QStandardItem::setData(value, DataRole::OLD_VALUE);
-}
-
-bool SqlQueryItem::getOldValueLimited() const
-{
-    return QStandardItem::data(DataRole::OLD_VALUE_LIMITED).toBool();
-}
-
-void SqlQueryItem::setOldValueLimited(bool value)
-{
-    QStandardItem::setData(value, DataRole::OLD_VALUE_LIMITED);
-}
-
-QVariant SqlQueryItem::getValueForDisplay() const
-{
-    return QStandardItem::data(DataRole::VALUE_FOR_DISPLAY);
-}
-
-void SqlQueryItem::setValueForDisplay(const QVariant &value)
-{
-    QStandardItem::setData(value, DataRole::VALUE_FOR_DISPLAY);
-}
-
-void SqlQueryItem::setLimitedValue(bool limited)
-{
-    QStandardItem::setData(QVariant(limited), DataRole::LIMITED_VALUE);
 }
 
 QVariant SqlQueryItem::adjustVariantType(const QVariant& value)
@@ -304,13 +269,11 @@ QString SqlQueryItem::getToolTip() const
 void SqlQueryItem::rememberOldValue()
 {
     setOldValue(getValue());
-    setOldValueLimited(isLimitedValue());
 }
 
 void SqlQueryItem::clearOldValue()
 {
     setOldValue(QVariant());
-    setOldValueLimited(false);
 }
 
 SqlQueryModelColumn* SqlQueryItem::getColumn() const
@@ -340,7 +303,7 @@ void SqlQueryItem::setData(const QVariant &value, int role)
             // -1 column is used by Qt for header items (ie. when setHeaderData() is called)
             // and we want this to mean that the value was loaded from db, because it forces
             // the value to be interpreted as not modified.
-            setValue(value, false, (column() == -1));
+            setValue(value, (column() == -1));
             return;
         }
     }
@@ -364,7 +327,7 @@ QVariant SqlQueryItem::data(int role) const
             if (isDeletedRow())
                 return "";
 
-            QVariant value = getValueForDisplay();
+            QVariant value = getValue();
             if (value.isNull())
                 return "NULL";
 
@@ -413,73 +376,4 @@ QVariant SqlQueryItem::data(int role) const
     }
 
     return QStandardItem::data(role);
-}
-
-QString SqlQueryItem::loadFullData()
-{
-    SqlQueryModelColumn* col = getColumn();
-    SqlQueryModel *model = getModel();
-    Db* db = model->getDb();
-    if (!db->isOpen())
-    {
-        qWarning() << "Tried to load the data for a cell that refers to the already closed database.";
-        return tr("Cannot load the data for a cell that refers to the already closed database.");
-    }
-
-    // Query
-    QString query;
-    QHash<QString,QVariant> queryArgs;
-    if (col->editionForbiddenReason.size() > 0)
-    {
-        static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
-
-        // The query
-        QString colName = !col->alias.isNull() ? col->alias : col->column;
-        if (colName.isNull())
-            colName = col->displayName;
-
-        QString column = wrapObjIfNeeded(colName);
-        query = tpl.arg(column, model->getQuery(), QString::number(index().row()));
-    }
-    else
-    {
-        static_qstring(tpl, "SELECT %1 FROM %2 WHERE %3");
-
-        // Column
-        QString column = wrapObjIfNeeded(col->column);
-
-        // Db and table
-        QString source = wrapObjIfNeeded(col->table);
-        if (!col->database.isNull())
-            source.prepend(wrapObjIfNeeded(col->database)+".");
-
-        // ROWID
-        RowIdConditionBuilder rowIdBuilder;
-        rowIdBuilder.setRowId(getRowId());
-        QString rowId = rowIdBuilder.build();
-        queryArgs = rowIdBuilder.getQueryArgs();
-
-        // The query
-        query = tpl.arg(column, source, rowId);
-    }
-
-    // Get the data
-    SqlQueryPtr results = db->exec(query, queryArgs);
-    if (results->isError())
-        return results->getErrorText();
-
-    setValue(results->getSingleCell(), false, true);
-    return QString();
-}
-
-QVariant SqlQueryItem::getFullValue()
-{
-    if (!isLimitedValue())
-        return getValue();
-
-    QVariant originalValue = getValue();
-    loadFullData();
-    QVariant result = getValue();
-    setValue(originalValue, true, !isUncommitted());
-    return result;
 }

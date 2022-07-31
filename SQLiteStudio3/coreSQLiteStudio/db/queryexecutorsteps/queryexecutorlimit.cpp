@@ -1,5 +1,4 @@
 #include "queryexecutorlimit.h"
-#include "parser/ast/sqlitelimit.h"
 #include <QDebug>
 
 bool QueryExecutorLimit::exec()

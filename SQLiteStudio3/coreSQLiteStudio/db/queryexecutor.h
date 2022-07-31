@@ -679,7 +679,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             AFTER_REPLACED_COLUMNS,     /**< After all columns have been explicitly listed in result list, together with unique alias names */
             AFTER_ORDER,                /**< After order clause was applied/modified */
             AFTER_DISTINCT_WRAP,        /**< After wrapping SELECT was added in case of DISTINCT or GROUP BY clauses were used */
-            AFTER_CELL_SIZE_LIMIT,      /**< After cell result size was limited to save memory usage */
             AFTER_COLUMN_TYPES,         /**< After typeof() result meta columns were added */
             AFTER_ROW_LIMIT_AND_OFFSET, /**< After LIMIT and ORDER clauses were added/modified. This is the last possible moment, directly ahead of final query execution */
             JUST_BEFORE_EXECUTION,      /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */

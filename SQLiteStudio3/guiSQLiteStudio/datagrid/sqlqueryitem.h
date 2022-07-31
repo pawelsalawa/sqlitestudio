@@ -19,17 +19,14 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
             {
                 ROWID = 1001,
                 VALUE = 1002,
-                LIMITED_VALUE = 1003,
-                COLUMN = 1004,
-                UNCOMMITTED = 1005,
-                COMMITTING_ERROR = 1006,
-                NEW_ROW = 1007,
-                DELETED = 1008,
-                OLD_VALUE = 1009,
-                JUST_INSERTED_WITHOUT_ROWID = 1010,
-                VALUE_FOR_DISPLAY = 1011,
-                COMMITTING_ERROR_MESSAGE = 1012,
-                OLD_VALUE_LIMITED = 1013
+                COLUMN = 1003,
+                UNCOMMITTED = 1004,
+                COMMITTING_ERROR = 1005,
+                NEW_ROW = 1006,
+                DELETED = 1007,
+                OLD_VALUE = 1008,
+                JUST_INSERTED_WITHOUT_ROWID = 1009,
+                COMMITTING_ERROR_MESSAGE = 1010
             };
         };
 
@@ -62,31 +59,10 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         void setDeletedRow(bool isDeleted);
 
         QVariant getValue() const;
-        void setValue(const QVariant& value, bool limited = false, bool loadedFromDb = false);
-        bool isLimitedValue() const;
+        void setValue(const QVariant& value, bool loadedFromDb = false);
 
         QVariant getOldValue() const;
         void setOldValue(const QVariant& value);
-
-        bool getOldValueLimited() const;
-        void setOldValueLimited(bool value);
-
-        QVariant getValueForDisplay() const;
-        void setValueForDisplay(const QVariant& value);
-
-        /**
-         * @brief loadFullData Reloads entire value of the cell from database.
-         * @return QString() on sucess, or error string on failure.
-         */
-        QString loadFullData();
-
-        /**
-         * @brief getFullValue Loads and returns full value from database, but keeps the original value.
-         * @return Full value, reloaded from database.
-         * Calls loadFullData(), then getValue() for the result,
-         * but just before returning - restores initial, limited value.
-         */
-        QVariant getFullValue();
 
         SqlQueryModelColumn* getColumn() const;
         void setColumn(SqlQueryModelColumn* column);
@@ -97,7 +73,6 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         QVariant data(int role = Qt::UserRole + 1) const;
 
     private:
-        void setLimitedValue(bool limited);
         QVariant adjustVariantType(const QVariant& value);
         QString getToolTip() const;
         void rememberOldValue();

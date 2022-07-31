@@ -141,7 +141,6 @@ SOURCES += sqlitestudio.cpp \
     db/queryexecutorsteps/queryexecutoraddrowids.cpp \
     db/queryexecutorsteps/queryexecutorlimit.cpp \
     db/queryexecutorsteps/queryexecutorcolumns.cpp \
-    db/queryexecutorsteps/queryexecutorcellsize.cpp \
     db/queryexecutorsteps/queryexecutororder.cpp \
     db/sqlerrorcodes.cpp \
     common/readwritelocker.cpp \
@@ -329,7 +328,6 @@ HEADERS += sqlitestudio.h\
     db/queryexecutorsteps/queryexecutoraddrowids.h \
     db/queryexecutorsteps/queryexecutorlimit.h \
     db/queryexecutorsteps/queryexecutorcolumns.h \
-    db/queryexecutorsteps/queryexecutorcellsize.h \
     common/unused.h \
     db/queryexecutorsteps/queryexecutororder.h \
     common/readwritelocker.h \

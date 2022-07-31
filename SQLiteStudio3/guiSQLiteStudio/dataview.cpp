@@ -1,11 +1,9 @@
 #include "dataview.h"
-#include "datagrid/sqltablemodel.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
 #include "formview.h"
 #include "common/extlineedit.h"
 #include "mainwindow.h"
-#include "statusfield.h"
 #include "common/intvalidator.h"
 #include "common/extaction.h"
 #include "iconmanager.h"
@@ -424,7 +422,6 @@ void DataView::goToFormRow(IndexModifier idxMod)
         return;
 
     gridView->setCurrentIndex(newRowIdx);
-    model->loadFullDataForEntireRow(row);
     formView->updateFromGrid();
     updateCurrentFormViewRow();
 }
@@ -1045,8 +1042,6 @@ void DataView::tabChanged(int newIndex)
             if (!gridView->getCurrentIndex().isValid() && model->rowCount() > 0)
                 gridView->setCurrentRow(0);
 
-            int row = gridView->getCurrentIndex().row();
-            model->loadFullDataForEntireRow(row);
             formView->updateFromGrid();
             updateCurrentFormViewRow();
             break;

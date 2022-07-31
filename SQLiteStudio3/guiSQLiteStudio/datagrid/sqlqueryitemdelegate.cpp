@@ -28,9 +28,6 @@ bool SqlQueryItemDelegate::warnedAboutHugeContents = false;
 SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
-    fullValueButtonOption.icon = ICONS.LOAD_FULL_VALUE;
-    fullValueButtonOption.iconSize = QSize(LOAD_FULL_VALUE_ICON_SIZE, LOAD_FULL_VALUE_ICON_SIZE);
-    fullValueButtonOption.state = QStyle::State_Enabled;
 }
 
 void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -44,111 +41,6 @@ void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         painter->setBrush(Qt::NoBrush);
         painter->drawRect(option.rect.x(), option.rect.y(), option.rect.width()-1, option.rect.height()-1);
     }
-
-    if (item->isLimitedValue())
-    {
-        QStyleOptionViewItem opt = option;
-        initStyleOption(&opt, index);
-        QString text = displayText(item->getValue(), opt.locale);
-        int textWidth = opt.fontMetrics.horizontalAdvance(text);
-        int margin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin, nullptr, opt.widget) + 1; // from QCommonStyle source code
-        if (opt.rect.width() >= (textWidth + LOAD_FULL_VALUE_BUTTON_SIZE + margin))
-        {
-            QStyleOptionButton button = fullValueButtonOption;
-            button.rect = getLoadFullValueButtonRegion(opt.rect);
-            button.state = QStyle::State_Enabled | QStyle::State_MouseOver;
-            if (lmbPressedOnButton)
-                button.state |= QStyle::State_Sunken | QStyle::State_Active;
-
-            QApplication::style()->drawControl(
-                        (mouseOverFullDataButton == index) ? QStyle::CE_PushButton : QStyle::CE_PushButtonLabel,
-                        &button, painter);
-        }
-    }
-}
-
-bool SqlQueryItemDelegate::editorEvent(QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index)
-{
-    switch (event->type())
-    {
-        case QEvent::MouseButtonDblClick:
-            if (isOverFullValueButton(option.rect, dynamic_cast<QMouseEvent*>(event)) && isLimited(index))
-                return true;
-
-            break;
-        case QEvent::MouseButtonPress:
-        {
-            if (isOverFullValueButton(option.rect, dynamic_cast<QMouseEvent*>(event)) && isLimited(index))
-            {
-                lmbPressedOnButton = true;
-                return true;
-            }
-
-            break;
-        }
-        case QEvent::MouseButtonRelease:
-            if (lmbPressedOnButton && isOverFullValueButton(option.rect, dynamic_cast<QMouseEvent*>(event)) && isLimited(index))
-            {
-                lmbPressedOnButton = false;
-                getItem(index)->loadFullData();
-                return true;
-            }
-            lmbPressedOnButton = false;
-            break;
-        case QEvent::MouseMove:
-        {
-            bool isOverButton = isOverFullValueButton(option.rect, dynamic_cast<QMouseEvent*>(event));
-            if (mouseOverFullDataButton.isValid() != isOverButton)
-            {
-                mouseOverFullDataButton = isOverButton ? index : QModelIndex();
-                dynamic_cast<SqlQueryModel*>(model)->getView()->update(index);
-            }
-
-            if (!isOverButton && showingFullButtonTooltip)
-            {
-                QToolTip::hideText();
-                showingFullButtonTooltip = false;
-            }
-            break;
-        }
-        default:
-            break;
-    }
-
-    return QStyledItemDelegate::editorEvent(event, model, option, index);
-}
-
-bool SqlQueryItemDelegate::shouldLoadFullData(const QRect& rect, QMouseEvent* event, const QModelIndex& index)
-{
-    return shouldLoadFullData(rect, event->x(), event->y(), index);
-}
-
-bool SqlQueryItemDelegate::shouldLoadFullData(const QRect& rect, int x, int y, const QModelIndex& index)
-{
-    return isOverFullValueButton(rect, x, y) && isLimited(index);
-}
-
-void SqlQueryItemDelegate::mouseLeftIndex(const QModelIndex& index)
-{
-    if (mouseOverFullDataButton == index)
-        mouseOverFullDataButton = QModelIndex();
-}
-
-bool SqlQueryItemDelegate::isLimited(const QModelIndex& index)
-{
-    return index.data(SqlQueryItem::DataRole::LIMITED_VALUE).toBool();
-}
-
-bool SqlQueryItemDelegate::helpEvent(QHelpEvent* event, QAbstractItemView* view, const QStyleOptionViewItem& option, const QModelIndex& index)
-{
-    if (shouldLoadFullData(option.rect, event->x(), event->y(), index))
-    {
-        QToolTip::showText(view->mapToGlobal(event->pos() - QPoint(0, 15)), tr("Load remaining part of the value"));
-        showingFullButtonTooltip = true;
-        return true;
-    }
-
-    return QStyledItemDelegate::helpEvent(event, view, option, index);
 }
 
 QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -172,7 +64,7 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         return nullptr;
     }
 
-    if (item->isLimitedValue() && !item->loadFullData().isNull() && model->isStructureOutOfDate())
+    if (model->isStructureOutOfDate())
     {
         notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("Structure of this table has changed since last data was loaded. Reload the data to proceed.")));
         return nullptr;
@@ -291,7 +183,7 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
         return;
     }
 
-    QVariant comboData = row[1]->getFullValue();
+    QVariant comboData = row[1]->getValue();
     theItem->setValue(comboData);
 }
 
@@ -429,11 +321,11 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     }
 
     // Current value column (will be 1 for row which matches current cell value)
-    QVariant fullValue = item->getFullValue();
+    QVariant value = item->getValue();
     QString currValueColName = generateUniqueName("curr", usedNames);
-    QString currValueExpr = fullValue.isNull() ?
+    QString currValueExpr = value.isNull() ?
                 currNullValueTpl.arg(firstSrcCol, currValueColName) :
-                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(fullValue), currValueColName);
+                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(value), currValueColName);
 
     return sql.arg(
                 selectedCols.join(", "),
@@ -453,24 +345,6 @@ qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& qu
         *isError = result->isError();
 
     return result->getSingleCell().toLongLong();
-}
-
-QRect SqlQueryItemDelegate::getLoadFullValueButtonRegion(const QRect& cell)
-{
-    int x = cell.left() + cell.width() - LOAD_FULL_VALUE_BUTTON_SIZE - LOAD_FULL_VALUE_BUTTON_SIDE_MARGIN;
-    int y = cell.top() + (cell.height() / 2) - (LOAD_FULL_VALUE_BUTTON_SIZE / 2);
-    return QRect(x, y, LOAD_FULL_VALUE_BUTTON_SIZE, LOAD_FULL_VALUE_BUTTON_SIZE);
-}
-
-bool SqlQueryItemDelegate::isOverFullValueButton(const QRect& cell, QMouseEvent* event)
-{
-    return isOverFullValueButton(cell, event->x(), event->y());
-}
-
-bool SqlQueryItemDelegate::isOverFullValueButton(const QRect& cell, int x, int y)
-{
-    QRect buttonRect = getLoadFullValueButtonRegion(cell);
-    return buttonRect.contains(x, y);
 }
 
 int SqlQueryItemDelegate::getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const
@@ -531,12 +405,6 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
         modelToFkInitialValue.remove(comboModel);
     });
 
-    connect(cb, QOverload<int>::of(&QComboBox::currentIndexChanged), [comboModel](int idx)
-    {
-        if (idx > -1 && idx < comboModel->getTotalRowsReturned() && comboModel->isAllDataLoaded())
-            comboModel->itemFromIndex(idx, 1)->loadFullData();
-    });
-
     // When execution is done, update combo.
     connect(comboModel, SIGNAL(aboutToLoadResults()), this, SLOT(fkDataAboutToLoad()));
     connect(comboModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
@@ -547,7 +415,6 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     cb->setView(comboView);
     cb->setModelColumn(1);
     cb->setCurrentText(item->getValue().toString());
-    cb->view()->viewport()->installEventFilter(new FkComboFilter(this, comboView, cb));
     cb->view()->viewport()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
     cb->view()->verticalScrollBar()->installEventFilter(new FkComboShowFilter(this, comboView, cb));
     if (!item->getValue().isNull())
@@ -607,7 +474,6 @@ void SqlQueryItemDelegate::fkDataReady()
 
         if (idxList.size() > 0)
         {
-            model->itemFromIndex(idxList.first().row(), 1)->loadFullData();
             cb->setCurrentIndex(idxList.first().row());
         }
         else
@@ -644,32 +510,6 @@ void SqlQueryItemDelegate::updateComboViewGeometry(SqlQueryView* comboView, bool
         container->setMaximumWidth(comboView->minimumWidth());
         container->resize(comboView->minimumWidth(), container->height());
     }
-}
-
-
-SqlQueryItemDelegate::FkComboFilter::FkComboFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent)
-    : QObject(parent), delegate(delegate), comboView(comboView)
-{
-}
-
-bool SqlQueryItemDelegate::FkComboFilter::eventFilter(QObject* obj, QEvent* event)
-{
-    UNUSED(obj);
-    if (event->type() == QEvent::MouseButtonRelease)
-    {
-        QMouseEvent* e = dynamic_cast<QMouseEvent*>(event);
-        QModelIndex idx = comboView->indexAt(QPoint(e->pos()));
-        if (!idx.isValid())
-            return false;
-
-        SqlQueryItem* item = comboView->getModel()->itemFromIndex(idx);
-        if (shouldLoadFullData(comboView->visualRect(idx), e, idx))
-        {
-            item->loadFullData();
-            return true;
-        }
-    }
-    return false;
 }
 
 SqlQueryItemDelegate::FkComboShowFilter::FkComboShowFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent)

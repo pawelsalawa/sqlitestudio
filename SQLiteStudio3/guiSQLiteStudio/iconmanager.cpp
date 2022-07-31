@@ -48,7 +48,7 @@ void IconManager::init()
     iconFileExtensions << "*.png" << "*.PNG" << "*.jpg" << "*.JPG" << "*.svg" << "*.SVG";
     movieFileExtensions << "*.gif" << "*.GIF" << "*.mng" << "*.MNG";
 
-    for (QString dirPath : iconDirs)
+    for (QString& dirPath : iconDirs)
     {
         loadRecurently(dirPath, "", false);
         loadRecurently(dirPath, "", true);

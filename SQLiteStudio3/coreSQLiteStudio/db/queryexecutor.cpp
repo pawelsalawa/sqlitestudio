@@ -1,5 +1,4 @@
 #include "queryexecutor.h"
-#include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
 #include "services/dbmanager.h"
 #include "db/sqlerrorcodes.h"
@@ -10,7 +9,6 @@
 #include "queryexecutorsteps/queryexecutorattaches.h"
 #include "queryexecutorsteps/queryexecutorcountresults.h"
 #include "queryexecutorsteps/queryexecutorexecute.h"
-#include "queryexecutorsteps/queryexecutorcellsize.h"
 #include "queryexecutorsteps/queryexecutorlimit.h"
 #include "queryexecutorsteps/queryexecutororder.h"
 #include "queryexecutorsteps/queryexecutorwrapdistinctresults.h"
@@ -105,14 +103,8 @@ void QueryExecutor::setupExecutionChain()
     executionChain.append(additionalStatelessSteps[AFTER_DISTINCT_WRAP]);
     executionChain.append(createSteps(AFTER_DISTINCT_WRAP));
 
-    executionChain << new QueryExecutorCellSize()
-                   << new QueryExecutorCountResults()
-                   << new QueryExecutorParseQuery("after CellSize");
-
-    executionChain.append(additionalStatelessSteps[AFTER_CELL_SIZE_LIMIT]);
-    executionChain.append(createSteps(AFTER_CELL_SIZE_LIMIT));
-
-    executionChain << new QueryExecutorColumnType()
+    executionChain << new QueryExecutorCountResults()
+                   << new QueryExecutorColumnType()
                    << new QueryExecutorParseQuery("after ColumnType");
 
     executionChain.append(additionalStatelessSteps[AFTER_COLUMN_TYPES]);
