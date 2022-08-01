@@ -208,12 +208,12 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
       <source>Named constraint:</source>
-      <translation>Constraint nominata:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="80"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Inserire un nome per la Constraint.</translation>
+      <translation>Inserire un nome per il vincolo.</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
@@ -231,7 +231,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation>Constraint nominata:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
@@ -251,7 +251,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
       <source>Enter a name of the constraint.</source>
-      <translation>Inserisci un nome per la Constraint.</translation>
+      <translation>Inserisci un nome per il vincolo.</translation>
     </message>
   </context>
   <context>
@@ -321,7 +321,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation>Chiave Secondaria</translation>
+      <translation>Chiave Esterna</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
@@ -382,7 +382,7 @@
       <location filename="../dialogs/columndialog.cpp" line="91"/>
       <source>Move constraint down</source>
       <comment>column dialog</comment>
-      <translation>Sposta vincolo verso il basso</translation>
+      <translation>Sposta vincolo giù</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="93"/>
@@ -406,7 +406,7 @@
       <location filename="../dialogs/columndialog.cpp" line="96"/>
       <source>Add a check constraint</source>
       <comment>column dialog</comment>
-      <translation>Aggiungi un vincolo di spunta</translation>
+      <translation>Aggiungi un vincolo di restrizione</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="97"/>
@@ -495,12 +495,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation>Tabella secondaria:</translation>
+      <translation>Tabella esterna:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Foreign column:</source>
-      <translation>Colonna secondaria:</translation>
+      <translation>Colonna esterna:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -510,12 +510,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
       <source>Deferred foreign key</source>
-      <translation>Chiave secondaria differita</translation>
+      <translation>Chiave esterna differita</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
       <source>Named constraint</source>
-      <translation>Vincolo con nome</translation>
+      <translation>Vincolo nominato</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
@@ -525,12 +525,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
       <source>Pick the foreign table.</source>
-      <translation>Scegli la tabella secondaria.</translation>
+      <translation>Scegli la tabella esterna.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
       <source>Pick the foreign column.</source>
-      <translation>Scegli la colonna secondaria.</translation>
+      <translation>Scegli la colonna esterna.</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
@@ -553,12 +553,12 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation>Usa parole chiave &quot;SEMPRE GENERATE&quot;</translation>
+      <translation>Usa parole chiave &quot;GENERATE ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation>Vincolo con nome:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -596,7 +596,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
       <source>Named constraint:</source>
-      <translation>Vincolo con nome:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
@@ -619,12 +619,12 @@
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
       <source>Named constraint:</source>
-      <translation>Limitazione nominata:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
       <source>On conflict:</source>
-      <translation>Sul conflitto:</translation>
+      <translation>Su conflitto:</translation>
     </message>
     <message>
       <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
@@ -1347,12 +1347,12 @@
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
       <source>Named constraint:</source>
-      <translation>Limitazione nominata:</translation>
+      <translation>Vincolo nominato:</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
       <source>On conflict</source>
-      <translation>Sul conflitto</translation>
+      <translation>Su conflitto</translation>
     </message>
     <message>
       <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
@@ -1401,7 +1401,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="176"/>
       <source>Foreign key</source>
       <comment>table constraints</comment>
-      <translation>Chiave secondaria</translation>
+      <translation>Chiave Esterna</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="180"/>
@@ -4589,12 +4589,12 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
       <source>Add new table constraint</source>
-      <translation>Aggiungi nuovo vincolo tabella</translation>
+      <translation>Aggiungi nuovo vincolo di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="40"/>
       <source>Edit selected table constraint</source>
-      <translation>Modifica il vincolo della tabella selezionata</translation>
+      <translation>Modifica il vincolo di tabella selezionato</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="41"/>
@@ -5490,7 +5490,7 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="163"/>
       <source>Named constraint</source>
-      <translation>Vincolo con nome</translation>
+      <translation>Vincolo nominato</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="170"/>
@@ -5539,7 +5539,7 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
       <source>Collation</source>
-      <translation>Ordinamento</translation>
+      <translation>Collation</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="109"/>
@@ -5559,7 +5559,7 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
       <source>Named constraint</source>
-      <translation>Vincolo con nome</translation>
+      <translation>Vincolo nominato</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="174"/>
@@ -5569,7 +5569,7 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="199"/>
       <source>On conflict</source>
-      <translation>Sul conflitto</translation>
+      <translation>Su conflitto</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="87"/>
@@ -5781,31 +5781,31 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="241"/>
       <source>Add table constraint</source>
       <comment>table window</comment>
-      <translation>Aggiungi vincolo tabella</translation>
+      <translation>Aggiungi vincolo di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="242"/>
       <source>Edit table constraint</source>
       <comment>table window</comment>
-      <translation>Modifica vincolo tabella</translation>
+      <translation>Modifica vincolo di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="243"/>
       <source>Delete table constraint</source>
       <comment>table window</comment>
-      <translation>Elimina vincolo tabella</translation>
+      <translation>Elimina vincolo di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Move table constraint up</source>
       <comment>table window</comment>
-      <translation>Sposta vincolo tabella in alto</translation>
+      <translation>Sposta vincolo di tabella in su</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="245"/>
       <source>Move table constraint down</source>
       <comment>table window</comment>
-      <translation>Sposta vincolo tabella in basso</translation>
+      <translation>Sposta vincolo tabella in giù</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="247"/>
@@ -5823,13 +5823,13 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="249"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
-      <translation>Aggiungi vincolo univocità tabella</translation>
+      <translation>Aggiungi un vincolo univocità di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="250"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation>Aggiungi vincolo di controllo tabella</translation>
+      <translation>Aggiungi vincolo di controllo di tabella</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="268"/>
