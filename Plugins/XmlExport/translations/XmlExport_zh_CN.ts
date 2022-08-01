@@ -6,7 +6,7 @@
     <message>
       <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <translation>输入要使用的命名空间 (例如：http://my.namespace.org)</translation>
+      <translation>输入要使用的命名空间（例如：http://my.namespace.org）</translation>
     </message>
   </context>
   <context>
@@ -19,12 +19,12 @@
     <message>
       <location filename="../XmlExport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>格式化的文本 (新行，缩进)</translation>
+      <translation>格式化的文本（新行，缩进）</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation>压缩 (单行文件)</translation>
+      <translation>压缩（单行文件）</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="58"/>
