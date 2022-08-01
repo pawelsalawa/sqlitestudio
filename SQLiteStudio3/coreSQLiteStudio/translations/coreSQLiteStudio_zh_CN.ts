@@ -477,7 +477,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="585"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation>无法加载插件 %1 (初始化插件时发生错误)。</translation>
+      <translation>无法加载插件 %1（初始化插件时发生错误）。</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
@@ -699,7 +699,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation>初始化代码 (可选)</translation>
+      <translation>初始化代码（可选）</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
