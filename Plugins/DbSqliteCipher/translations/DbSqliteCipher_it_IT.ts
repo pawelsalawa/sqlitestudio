@@ -28,9 +28,9 @@
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>
-      <translation>Dichiarazioni PRAGMA per personalizzare la configurazione di SQLite3 Cifrature multiple, come iterazioni KDF, modalità legacy, ecc.
-Verranno eseguiti a ogni apertura del database.
-Vedi la documentazione per SQLite3 Cifratori Multipli per i dettagli.</translation>
+      <translation>Dichiarazioni PRAGMA per personalizzare la configurazione di SQLCipher, come iterazioni KDF, modalità legacy, ecc.
+Esse verranno eseguite dopo ogni apertura del database.
+Vedi la documentazione per SQLCipher per dettagli.</translation>
     </message>
   </context>
 </TS>
