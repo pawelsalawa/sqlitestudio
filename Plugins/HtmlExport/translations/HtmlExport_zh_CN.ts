@@ -94,12 +94,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="401"/>
       <source>On view:</source>
-      <translation>于视图：</translation>
+      <translation>视图：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation>于表：</translation>
+      <translation>表：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
@@ -109,7 +109,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="421"/>
       <source>Code executed:</source>
-      <translation>执行代码：</translation>
+      <translation>代码执行：</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
@@ -157,12 +157,12 @@
     <message>
       <location filename="../htmlexport.ui" line="92"/>
       <source>Compress (everything in one line)</source>
-      <translation>压缩 (单行文件)</translation>
+      <translation>压缩（单行文件）</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="108"/>
       <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;如果启用，导出值中不会转义诸如 &amp;lt;、&amp;gt; 和 &amp; 等 HTML 字符。请小心，这使您能导出有超链接的文档，但也可能导致不正确的 HTML 文档 (不配对的 &amp;lt; 和 &amp;gt; 字符)。&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;如果启用，导出值中不会转义诸如 &amp;lt;、&amp;gt; 和 &amp; 等 HTML 字符。请小心，这使您能导出有超链接的文档，但也可能导致不正确的 HTML 文档（不配对的 &amp;lt; 和 &amp;gt; 字符）。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="111"/>
