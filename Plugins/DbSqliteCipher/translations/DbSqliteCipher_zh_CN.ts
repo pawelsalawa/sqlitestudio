@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation>密码 (密钥)</translation>
+      <translation>密码（密钥）</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="31"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>Cipher configuration (optional)</source>
-      <translation>加密算法配置 (可选)</translation>
+      <translation>加密算法配置（可选）</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="38"/>
