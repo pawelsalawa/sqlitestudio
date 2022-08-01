@@ -66,7 +66,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
       <source>Portable distribution.</source>
-      <translation>Distribuzione portatile.</translation>
+      <translation>Distribuzione portabile.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -107,7 +107,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="75"/>
       <source>Filter collations</source>
-      <translation>Filtro collazioni</translation>
+      <translation>Filtro collations</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
@@ -117,12 +117,12 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="138"/>
       <source>Register in all databases</source>
-      <translation>Registrati in tutti i database</translation>
+      <translation>Registra in tutti i database</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="145"/>
       <source>Register in following databases:</source>
-      <translation>Registrati nei seguenti database:</translation>
+      <translation>Registra nei seguenti database:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="166"/>
@@ -132,17 +132,17 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
       <source>Collation name:</source>
-      <translation>Nome di collazione:</translation>
+      <translation>Nome collation:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Implementation language:</source>
-      <translation>Lingua di implementazione:</translation>
+      <translation>Linguaggio di implementazione:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="53"/>
       <source>Collations editor</source>
-      <translation>Editor di collazioni</translation>
+      <translation>Editor collations</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
@@ -152,27 +152,27 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
       <source>Rollback all collation changes</source>
-      <translation>Riavvolgi tutte le modiche sulla collazione</translation>
+      <translation>Ripristina tutte le modiche della collation</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Create new collation</source>
-      <translation>Crea nuova collazione</translation>
+      <translation>Crea nuova collation</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="62"/>
       <source>Delete selected collation</source>
-      <translation>Cancella collazione selezionata</translation>
+      <translation>Cancella collation selezionata</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="64"/>
       <source>Editing collations manual</source>
-      <translation>Modificare il manuale delle collazioni</translation>
+      <translation>Modifica manuale delle collations</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="284"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation>Inserisci un nome non vuoto e univoco della collazione.</translation>
+      <translation>Inserisci un nome non vuoto e univoco della collation.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="292"/>
@@ -187,7 +187,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="389"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation>La finestra dell'editor Collations ha modifiche senza conferma.</translation>
+      <translation>La finestra dell'editor collations ha modifiche non registrate.</translation>
     </message>
   </context>
   <context>
@@ -203,7 +203,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation>Nome della collazione:</translation>
+      <translation>Nome della collation:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
