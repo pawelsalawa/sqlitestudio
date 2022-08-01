@@ -26,7 +26,7 @@
     <message>
       <location filename="../printing.cpp" line="108"/>
       <source>Printing query.</source>
-      <translation>Printing query.</translation>
+      <translation>Stampa query.</translation>
     </message>
   </context>
   <context>
