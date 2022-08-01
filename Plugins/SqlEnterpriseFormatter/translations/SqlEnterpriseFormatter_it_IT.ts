@@ -26,7 +26,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation>Rientro dei contenuti del blocco parentesi</translation>
+      <translation>Indentazione dei contenuti del blocco parentesi</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
@@ -86,7 +86,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>Metti ogni constraints di colonna nella TABELLA CREATA nella nuova riga</translation>
+      <translation>Metti ogni constraints di colonna nella CREATE TABLE nella nuova riga</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
