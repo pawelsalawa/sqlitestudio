@@ -6,17 +6,17 @@
     <message>
       <location filename="../jsonexport.ui" line="20"/>
       <source>Output format</source>
-      <translation>輸出格式</translation>
+      <translation type="unfinished">Output format</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>格式化的文字 (多行，縮排)</translation>
+      <translation type="unfinished">Format document (new lines, indentation)</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation>壓縮 (單行檔案)</translation>
+      <translation type="unfinished">Compress (everything in one line)</translation>
     </message>
   </context>
 </TS>
