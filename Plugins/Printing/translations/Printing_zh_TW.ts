@@ -6,27 +6,27 @@
     <message>
       <location filename="../printing.cpp" line="35"/>
       <source>Print data</source>
-      <translation>列印資料</translation>
+      <translation type="unfinished">Print data</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="37"/>
       <source>Print query</source>
-      <translation>列印查詢</translation>
+      <translation type="unfinished">Print query</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="74"/>
       <source>No data to print.</source>
-      <translation>沒有可列印的資料。</translation>
+      <translation type="unfinished">No data to print.</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="82"/>
       <source>Printing data.</source>
-      <translation>正在列印資料。</translation>
+      <translation type="unfinished">Printing data.</translation>
     </message>
     <message>
       <location filename="../printing.cpp" line="108"/>
       <source>Printing query.</source>
-      <translation>正在列印查詢。</translation>
+      <translation type="unfinished">Printing query.</translation>
     </message>
   </context>
   <context>
@@ -34,7 +34,7 @@
     <message>
       <location filename="../printingexport.cpp" line="30"/>
       <source>Printing</source>
-      <translation>列印</translation>
+      <translation type="unfinished">Printing</translation>
     </message>
   </context>
 </TS>
