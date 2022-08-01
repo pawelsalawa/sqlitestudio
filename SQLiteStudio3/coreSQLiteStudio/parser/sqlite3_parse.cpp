@@ -22,7 +22,6 @@
 #include "parser/ast/sqliteattach.h"
 #include "parser/ast/sqlitebegintrans.h"
 #include "parser/ast/sqlitecommittrans.h"
-#include "parser/ast/sqlitecopy.h"
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreatetrigger.h"
@@ -844,7 +843,7 @@ static const short yy_shift_ofst[] = {
  /*     0 */   720,  677,  916, 1897,  867, 1607, 1561, 2079, 2079, 2079,
  /*    10 */   958,  246, 1972, 2186, 2186, 2186, 2186, 2186, 2186, 2293,
  /*    20 */  2186, 1280,   -4,  121, 1865, 1758, 2186, 2186, 2186, 2186,
- /*    30 */  2186, 2186, 2186, 2186, 2186, 2293, 2186, 2186, 2186, 2186,
+ /*    30 */  2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186,
  /*    40 */  2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186,
  /*    50 */  2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186,
  /*    60 */  2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 2186, 1708,

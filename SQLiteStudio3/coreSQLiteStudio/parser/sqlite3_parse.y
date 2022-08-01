@@ -27,7 +27,6 @@
 #include "parser/ast/sqliteattach.h"
 #include "parser/ast/sqlitebegintrans.h"
 #include "parser/ast/sqlitecommittrans.h"
-#include "parser/ast/sqlitecopy.h"
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreatetrigger.h"
