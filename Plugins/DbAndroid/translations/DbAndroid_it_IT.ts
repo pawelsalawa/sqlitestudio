@@ -11,7 +11,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
       <source>Android database URL</source>
-      <translation>Url database Android</translation>
+      <translation>URL database Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
