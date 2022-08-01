@@ -26,17 +26,17 @@
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>使用 Android 调试桥 (ADB)：%1</translation>
+      <translation>使用 Android 调试桥（ADB）：%1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
-      <translation>您可以从工具菜单取得 Android 连接器 JAR 文件。Android 插件支持的 3 种连接方式有 2 个需要它。更多细节见 SQLiteStudio wiki 页面上的&lt;a href=&quot;%1&quot;&gt;插件文档&lt;/a&gt;。</translation>
+      <translation>您可以从工具菜单取得 Android 连接器 JAR 文件。 It&apos;s required for 2 of 3 connections supported by the Android plugin. 更多细节见 SQLiteStudio wiki 页面上的&lt;a href=&quot;%1&quot;&gt;插件文档&lt;/a&gt;。</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation>找不到 ADB 应用程序。&lt;a href=&quot;%1&quot;&gt;点击此处&lt;/a&gt; 来指定 ADB 应用程序的位置。否则 %2 插件将不支持 USB 线缆连接，只能使用网络连接..</translation>
+      <translation>找不到 ADB 应用程序。&lt;a href=&quot;%1&quot;&gt;点击此处&lt;/a&gt; 来指定 ADB 应用程序的位置。 否则 %2 插件将不支持 USB 线缆连接，只能使用网络连接..</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -109,7 +109,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
       <source>Unable to execute query on Android device (connection was closed): %1</source>
-      <translation>无法在 Android 设备上执行查询 (连接已关闭)：%1</translation>
+      <translation>无法在 Android 设备上执行查询（连接已关闭）：%1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="313"/>
@@ -158,7 +158,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation>网络 (IP 地址)</translation>
+      <translation>网络（IP 地址）</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
@@ -208,7 +208,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
       <source>Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</source>
-      <translation>从设备中删除当前选中的数据库。当前选中的数据库显示在此按钮左侧的列表中。</translation>
+      <translation>从设备中删除当前选中的数据库。当前选中的数据库是此按钮左侧的列表中所选择的数据库。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
@@ -228,7 +228,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation>所选的 Android 应用程序未知或者不可调试。</translation>
+      <translation>所选的 Android 应用程序未知或者非可调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -240,7 +240,7 @@ Would you like to select another one, or leave it unconfigured?</source>
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
       <translation>请提供新数据库的名称。
-Android 应用程序将用此来连接该数据库：</translation>
+这将是 Android 应用程序用来连接该数据库的名称：</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -253,8 +253,8 @@ Android 应用程序将用此来连接该数据库：</translation>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <source>Database with the same name (%1) already exists on the device.
 The name must be unique.</source>
-      <translation>设备上已存在相同名称的数据库 (%1)。
-名称必须唯一。</translation>
+      <translation>设备上已存在相同名称的数据库（%1）。
+名称不能重复。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
@@ -266,7 +266,7 @@ The name must be unique.</source>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
       <translation>无法创建数据库 &apos;%1&apos;。
-详细信息：%2</translation>
+详情：%2</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
@@ -322,12 +322,12 @@ Android 设备拒绝或无法完成删除。</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation>无法连接设备 %1，无法访问该设备上的 &apos;%2&apos; 数据库。</translation>
+      <translation>无法连接设备 %1，因无法访问该设备上的 &apos;%2&apos; 数据库。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation>无法连接设备 %1，无法访问该设备上的 &apos;%2&apos; 数据库。详细信息：%3</translation>
+      <translation>无法连接设备 %1，因无法访问该设备上的 &apos;%2&apos; 数据库。详细信息：%3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
