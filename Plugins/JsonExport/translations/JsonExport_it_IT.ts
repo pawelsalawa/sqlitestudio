@@ -11,7 +11,7 @@
     <message>
       <location filename="../jsonexport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>Formato documento (nuova riga, rientro)</translation>
+      <translation>Formato documento (nuove linee, indentazione)</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="42"/>
