@@ -394,7 +394,7 @@
       <location filename="../dialogs/columndialog.cpp" line="94"/>
       <source>Add a foreign key</source>
       <comment>column dialog</comment>
-      <translation>Aggiunge una chiave secondaria</translation>
+      <translation>Aggiungi una chiave esterna</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="95"/>
@@ -1858,7 +1858,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Add a database</source>
-      <translation>&amp;Aggiunge un database</translation>
+      <translation>&amp;Aggiungi database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
@@ -1868,7 +1868,7 @@ L'esplorazione di altre pagine sarà possibile dopo il conteggio delle righe.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Remove the database</source>
-      <translation>&amp;Rimuove il database</translation>
+      <translation>&amp;Rimuovi il database</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
@@ -3280,7 +3280,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="67"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
-      <translation>Ho cercato di aprire la finestra di dialogo dell'indice per un database chiuso o inesistente.</translation>
+      <translation>Tentativo di aprire la finestra di dialogo dell'indice per un database chiuso o inesistente.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="137"/>
@@ -3535,7 +3535,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../mainwindow.cpp" line="257"/>
       <source>Close all windows &amp;but selected</source>
-      <translation>Chiudi tutte le finestre escluse le selezionate</translation>
+      <translation>Chiudi tutte le finestre esclusa la selezionata</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="258"/>
@@ -3719,7 +3719,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../mdiwindow.cpp" line="206"/>
       <source>Don&apos;t close</source>
-      <translation>Don&apos;t close</translation>
+      <translation>Non chiudere</translation>
     </message>
   </context>
   <context>
@@ -3953,7 +3953,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l'operaz
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="106"/>
       <source>Just close this window.</source>
-      <translation>Chiudete questa finestra e basta.</translation>
+      <translation>Chiudi solo questa finestra.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="116"/>
