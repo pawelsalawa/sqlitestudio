@@ -130,9 +130,11 @@ class API_EXPORT SelectResolver
 
         QList<Column> resolveAvailableColumns(SqliteSelect::Core* selectCore);
         QList<QList<Column> > resolveAvailableColumns(SqliteSelect* select);
+        QList<Column> resolveAvailableColumns(SqliteSelect::Core::JoinSource* joinSrc);
 
         QSet<Table> resolveTables(SqliteSelect::Core* selectCore);
         QList<QSet<Table> > resolveTables(SqliteSelect* select);
+        QSet<Table> resolveTables(SqliteSelect::Core::JoinSource* joinSrc);
 
         /**
          * @brief Translates tokens representing column name in the SELECT into full column objects.

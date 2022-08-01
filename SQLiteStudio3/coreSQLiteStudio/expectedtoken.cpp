@@ -64,7 +64,7 @@ int operator==(const ExpectedTokenPtr& ptr1, const ExpectedTokenPtr& ptr2)
 
 int qHash(const ExpectedToken& token)
 {
-    return token.type ^ qHash(token.value + "/" + token.value + "/" + token.contextInfo + "/" + token.label + "/" + token.prefix);
+    return token.type ^ qHash(token.value + "/" + token.contextInfo + "/" + token.label + "/" + token.prefix);
 }
 
 int qHash(const ExpectedTokenPtr& ptr)

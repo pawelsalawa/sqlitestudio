@@ -1,8 +1,6 @@
 #include "completioncomparer.h"
 #include "completionhelper.h"
 #include "parser/ast/sqliteselect.h"
-#include "db/db.h"
-#include "parser/token.h"
 #include <QDebug>
 
 CompletionComparer::CompletionComparer(CompletionHelper *helper)
@@ -82,7 +80,7 @@ bool CompletionComparer::initSelect()
     contextTables = helper->originalCurrentSelectCore->getContextTables(false);
     contextDatabases = helper->originalCurrentSelectCore->getContextDatabases(false);
 
-    for (SqliteSelect::Core* core : helper->parentSelectCores)
+    for (SqliteSelect::Core*& core : helper->parentSelectCores)
     {
         parentContextColumns += core->getContextColumns(false);
         parentContextTables += core->getContextTables(false);
@@ -124,6 +122,11 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
         case CompletionHelper::Context::CREATE_TABLE:
             result = compareColumnsForCreateTable(token1, token2, &ok);
             break;
+        case CompletionHelper::Context::INSERT_RETURNING:
+        case CompletionHelper::Context::UPDATE_RETURNING:
+        case CompletionHelper::Context::DELETE_RETURNING:
+            result = compareColumnsForReturning(token1, token2, &ok);
+            break;
         default:
             return compareValues(token1, token2);
     }
@@ -136,8 +139,8 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
         return result;
 
     // Context info of the column has a strong meaning when sorting (system tables are pushed to the end)
-    bool firstIsSystem = token1->contextInfo.toLower().startsWith("sqlite_");
-    bool secondIsSystem = token2->contextInfo.toLower().startsWith("sqlite_");
+    bool firstIsSystem = token1->contextInfo.startsWith("sqlite_", Qt::CaseInsensitive);
+    bool secondIsSystem = token2->contextInfo.startsWith("sqlite_", Qt::CaseInsensitive);
     if (firstIsSystem && !secondIsSystem)
         return false;
 
@@ -152,8 +155,8 @@ bool CompletionComparer::compareColumnsForSelectResCol(const ExpectedTokenPtr &t
     *result = true;
 
     // Checking if columns are on list of columns available in FROM clause
-    bool token1available = isTokenOnAvailableList(token1);
-    bool token2available = isTokenOnAvailableList(token2);
+    bool token1available = isTokenOnAvailableColumnList(token1);
+    bool token2available = isTokenOnAvailableColumnList(token2);
     if (token1available && !token2available)
         return true;
 
@@ -161,8 +164,8 @@ bool CompletionComparer::compareColumnsForSelectResCol(const ExpectedTokenPtr &t
         return false;
 
     // Checking if columns are on list of columns available in FROM clause of any parent SELECT core
-    bool token1parentAvailable = isTokenOnParentAvailableList(token1);
-    bool token2parentAvailable = isTokenOnParentAvailableList(token2);
+    bool token1parentAvailable = isTokenOnParentAvailableColumnList(token1);
+    bool token2parentAvailable = isTokenOnParentAvailableColumnList(token2);
     if (token1parentAvailable && !token2parentAvailable)
         return true;
 
@@ -211,6 +214,23 @@ bool CompletionComparer::compareColumnsForCreateTable(const ExpectedTokenPtr& to
         return true;
 
     if (!token1OnAvailableList && token2OnAvailableList)
+        return false;
+
+    *result = false;
+    return false;
+}
+
+bool CompletionComparer::compareColumnsForReturning(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result)
+{
+    *result = true;
+
+    // Checking if columns are on list of columns available in FROM clause
+    bool token1available = isTokenOnAvailableColumnList(token1);
+    bool token2available = isTokenOnAvailableColumnList(token2);
+    if (token1available && !token2available)
+        return true;
+
+    if (!token1available && token2available)
         return false;
 
     *result = false;
@@ -380,12 +400,15 @@ bool CompletionComparer::compareByContextOnly(const QString &token1, const QStri
     return false;
 }
 
-bool CompletionComparer::isTokenOnAvailableList(const ExpectedTokenPtr &token)
+bool CompletionComparer::isTokenOnAvailableColumnList(const ExpectedTokenPtr &token)
 {
-    return isTokenOnColumnList(token, helper->selectAvailableColumns);
+    if (helper->parsedQuery->queryType == SqliteQueryType::Select)
+        return isTokenOnColumnList(token, helper->selectAvailableColumns);
+    else
+        return isTokenOnColumnList(token, helper->theFromAvailableColumns);
 }
 
-bool CompletionComparer::isTokenOnParentAvailableList(const ExpectedTokenPtr &token)
+bool CompletionComparer::isTokenOnParentAvailableColumnList(const ExpectedTokenPtr &token)
 {
     return isTokenOnColumnList(token, helper->parentSelectAvailableColumns);
 }

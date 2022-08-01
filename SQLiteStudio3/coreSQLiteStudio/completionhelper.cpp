@@ -1,6 +1,9 @@
 #include "completionhelper.h"
 #include "completioncomparer.h"
 #include "db/db.h"
+#include "parser/ast/sqlitedelete.h"
+#include "parser/ast/sqliteinsert.h"
+#include "parser/ast/sqliteupdate.h"
 #include "parser/keywords.h"
 #include "parser/parser.h"
 #include "parser/lexer.h"
@@ -497,6 +500,16 @@ QList<ExpectedTokenPtr> CompletionHelper::getObjects(ExpectedToken::Type type, c
 QList<ExpectedTokenPtr> CompletionHelper::getColumns()
 {
     QList<ExpectedTokenPtr> results;
+    switch (context) {
+        case Context::UPDATE_RETURNING:
+        case Context::INSERT_RETURNING:
+        case Context::DELETE_RETURNING:
+            results += getExpectedToken(ExpectedToken::OPERATOR, "*", QString(), QString(), 1);
+            break;
+        default:
+            break;
+    }
+
     if (previousId)
     {
         if (twoIdsBack)
@@ -1055,6 +1068,21 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::EXPR;
     }
+    else if (isInUpdateReturning())
+    {
+        context = Context::UPDATE_RETURNING;
+        extractUpdateAvailableColumnsAndTables();
+    }
+    else if (isInInsertReturning())
+    {
+        context = Context::INSERT_RETURNING;
+        extractInsertAvailableColumnsAndTables();
+    }
+    else if (isInDeleteReturning())
+    {
+        context = Context::DELETE_RETURNING;
+        extractDeleteAvailableColumnsAndTables();
+    }
 }
 
 void CompletionHelper::detectSelectContext()
@@ -1132,6 +1160,21 @@ bool CompletionHelper::isInCreateTrigger()
         return false;
 
     return true;
+}
+
+bool CompletionHelper::isInUpdateReturning()
+{
+    return isIn(SqliteQueryType::Update, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInDeleteReturning()
+{
+    return isIn(SqliteQueryType::Delete, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInInsertReturning()
+{
+    return isIn(SqliteQueryType::Insert, "returning", "RETURNING");
 }
 
 bool CompletionHelper::isIn(SqliteQueryType queryType, const QString &tokenMapKey, const QString &prefixKeyword)
@@ -1402,6 +1445,39 @@ void CompletionHelper::extractSelectAvailableColumnsAndTables()
 
         // Moving on, until we're on top of the syntax tree.
         stmt = stmt->parentStatement();
+    }
+}
+
+void CompletionHelper::extractInsertAvailableColumnsAndTables()
+{
+    auto insert = parsedQuery.dynamicCast<SqliteInsert>();
+    extractAvailableColumnsAndTables(insert->database, insert->table);
+}
+
+void CompletionHelper::extractDeleteAvailableColumnsAndTables()
+{
+    auto del = parsedQuery.dynamicCast<SqliteDelete>();
+    extractAvailableColumnsAndTables(del->database, del->table);
+}
+
+void CompletionHelper::extractUpdateAvailableColumnsAndTables()
+{
+    auto update = parsedQuery.dynamicCast<SqliteUpdate>();
+    theFromAvailableColumns = selectResolver->resolveAvailableColumns(update ->from);
+    theFromAvailableTables = selectResolver->resolveTables(update ->from);
+}
+
+void CompletionHelper::extractAvailableColumnsAndTables(const QString& database, const QString& table)
+{
+    QStringList columnNames = schemaResolver->getTableColumns(database, table);
+    for (QString& colName : columnNames) {
+        SelectResolver::Column column;
+        column.type = SelectResolver::Column::COLUMN;
+        column.database = database;
+        column.table = table;
+        column.column = colName;
+        theFromAvailableColumns << column;
+        theFromAvailableTables << column.getTable();
     }
 }
 

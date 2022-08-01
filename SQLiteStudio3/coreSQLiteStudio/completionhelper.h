@@ -64,7 +64,10 @@ class API_EXPORT CompletionHelper : public QObject
             DELETE_WHERE,
             CREATE_TABLE,
             CREATE_TRIGGER,
-            EXPR
+            EXPR,
+            INSERT_RETURNING,
+            UPDATE_RETURNING,
+            DELETE_RETURNING
         };
 
         static void initFunctions(Db* db);
@@ -125,6 +128,10 @@ class API_EXPORT CompletionHelper : public QObject
         void extractPreviousIdTokens(const TokenList& parsedTokens);
         void extractQueryAdditionalInfo();
         void extractSelectAvailableColumnsAndTables();
+        void extractInsertAvailableColumnsAndTables();
+        void extractDeleteAvailableColumnsAndTables();
+        void extractUpdateAvailableColumnsAndTables();
+        void extractAvailableColumnsAndTables(const QString& database, const QString& table);
         bool extractSelectCore();
         SqliteSelect::Core* extractSelectCore(SqliteQueryPtr query);
         void extractTableAliasMap();
@@ -135,6 +142,9 @@ class API_EXPORT CompletionHelper : public QObject
         bool isInDeleteWhere();
         bool isInCreateTable();
         bool isInCreateTrigger();
+        bool isInUpdateReturning();
+        bool isInDeleteReturning();
+        bool isInInsertReturning();
         bool isIn(SqliteQueryType queryType, const QString& tokenMapKey, const QString &prefixKeyword);
         bool isInExpr();
         bool testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
@@ -229,6 +239,20 @@ class API_EXPORT CompletionHelper : public QObject
          * Availble tables are tables mentioned in FROM clause.
          */
         QSet<SelectResolver::Table> selectAvailableTables;
+
+        /**
+         * @brief theFromAvailableColumns
+         * Available columns are columns that can be selected basing on what tables are mentioned in FROM clause
+         * of queries other than SELECT (so INSERT, UPDATE, DELETE), in their RETURNING clause.
+         */
+        QList<SelectResolver::Column> theFromAvailableColumns;
+
+        /**
+         * @brief theFromAvailableTables
+         * Availble tables are tables mentioned in FROM clause of queries other than SELECT (so INSERT, UPDATE, DELETE),
+         * in their RETURNING clause.
+         */
+        QSet<SelectResolver::Table> theFromAvailableTables;
 
         /**
          * @brief parentSelectCores

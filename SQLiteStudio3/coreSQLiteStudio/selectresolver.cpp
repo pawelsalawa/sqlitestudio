@@ -83,6 +83,12 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(Sq
     return results;
 }
 
+QList<SelectResolver::Column> SelectResolver::resolveAvailableColumns(SqliteSelect::Core::JoinSource* joinSrc)
+{
+    errors.clear();
+    return resolveJoinSource(joinSrc);
+}
+
 QSet<SelectResolver::Table> SelectResolver::resolveTables(SqliteSelect::Core *selectCore)
 {
     QSet<Table> tables;
@@ -119,6 +125,21 @@ QList<QSet<SelectResolver::Table> > SelectResolver::resolveTables(SqliteSelect *
     }
 
     return results;
+}
+
+QSet<SelectResolver::Table> SelectResolver::resolveTables(SqliteSelect::Core::JoinSource* joinSrc)
+{
+    errors.clear();
+    QSet<Table> tables;
+    QList<Column> columns = resolveAvailableColumns(joinSrc);
+    for (const Column& col : columns)
+    {
+        if (col.type != Column::Type::COLUMN)
+            continue;
+
+        tables << col.getTable();
+    }
+    return tables;
 }
 
 QList<SelectResolver::Column> SelectResolver::translateToColumns(SqliteSelect* select, const TokenList& columnTokens)

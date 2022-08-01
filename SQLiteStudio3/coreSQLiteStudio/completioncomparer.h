@@ -46,6 +46,7 @@ class CompletionComparer
         bool compareColumnsForUpdateCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForDeleteCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForCreateTable(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
+        bool compareColumnsForReturning(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareTables(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
         bool compareIndexes(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
         bool compareTriggers(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
@@ -63,8 +64,8 @@ class CompletionComparer
                               const QList<QStringList>& contextValues, bool handleSystemNames, bool* ok = nullptr);
         bool compareByContextOnly(const QString &token1, const QString &token2,
                               const QStringList& contextValues, bool handleSystemNames, bool* ok);
-        bool isTokenOnAvailableList(const ExpectedTokenPtr& token);
-        bool isTokenOnParentAvailableList(const ExpectedTokenPtr& token);
+        bool isTokenOnAvailableColumnList(const ExpectedTokenPtr& token);
+        bool isTokenOnParentAvailableColumnList(const ExpectedTokenPtr& token);
         bool isTokenOnResultColumns(const ExpectedTokenPtr& token);
         static bool isTokenOnColumnList(const ExpectedTokenPtr& token, const QList<SelectResolver::Column>& columnList);
 };
