@@ -1,6 +1,6 @@
 #include "sqlitecreatetable.h"
+#include "parser/parser_helper_stubs.h"
 #include "parser/statementtokenbuilder.h"
-#include "common/utils_sql.h"
 #include "common/global.h"
 
 const QRegExp SqliteCreateTable::Column::GENERATED_ALWAYS_REGEXP = QRegExp("GENERATED\\s+ALWAYS");
@@ -12,7 +12,7 @@ SqliteCreateTable::SqliteCreateTable()
 
 SqliteCreateTable::SqliteCreateTable(const SqliteCreateTable& other) :
     SqliteQuery(other), ifNotExistsKw(other.ifNotExistsKw), tempKw(other.tempKw), temporaryKw(other.temporaryKw),
-    database(other.database), table(other.table), withOutRowId(other.withOutRowId)
+    database(other.database), table(other.table), withOutRowId(other.withOutRowId), strict(other.strict)
 {
     DEEP_COPY_COLLECTION(Column, columns);
     DEEP_COPY_COLLECTION(Constraint, constraints);
@@ -40,10 +40,11 @@ SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString
     }
 }
 
-SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2, const QList<SqliteCreateTable::Column*>& columns, const QList<SqliteCreateTable::Constraint*>& constraints, const QString& withOutRowId) :
+SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2, const QList<SqliteCreateTable::Column*>& columns, const QList<SqliteCreateTable::Constraint*>& constraints, const QList<ParserStubCreateTableOption*>& options) :
     SqliteCreateTable(ifNotExistsKw, temp, name1, name2, columns, constraints)
 {
-    this->withOutRowId = withOutRowId;
+    this->withOutRowId = parserStubFindCreateTableOption(options, ParserStubCreateTableOption::WITHOUT_ROWID) != nullptr;
+    this->strict = parserStubFindCreateTableOption(options, ParserStubCreateTableOption::STRICT) != nullptr;
 }
 
 SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString &name1, const QString &name2, SqliteSelect *select)
@@ -236,8 +237,21 @@ TokenList SqliteCreateTable::rebuildTokensFromContents()
 
         builder.withParRight();
 
-        if (!withOutRowId.isNull())
+        bool atLeastOneOption = false;
+        if (withOutRowId)
+        {
             builder.withSpace().withKeyword("WITHOUT").withSpace().withOther("ROWID");
+            atLeastOneOption = true;
+        }
+
+        if (strict)
+        {
+            if (atLeastOneOption)
+                builder.withOperator(",");
+
+            builder.withSpace().withOther("STRICT");
+            //atLeastOneOption = true; // to uncomment if there are further options down below
+        }
     }
 
     builder.withOperator(";");

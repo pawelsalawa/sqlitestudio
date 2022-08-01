@@ -1150,7 +1150,7 @@ bool SchemaResolver::isWithoutRowIdTable(const QString& database, const QString&
     if (!createTable)
         return false;
 
-    return !createTable->withOutRowId.isNull();
+    return createTable->withOutRowId;
 }
 
 bool SchemaResolver::isVirtualTable(const QString& database, const QString& table)
@@ -1195,7 +1195,7 @@ QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& database,
     if (!createTable)
         return columns;
 
-    if (createTable->withOutRowId.isNull())
+    if (!createTable->withOutRowId)
         return columns; // it's not WITHOUT ROWID table
 
     return createTable->getPrimaryKeyColumns();

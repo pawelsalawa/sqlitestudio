@@ -251,7 +251,7 @@ cmd(X) ::= CREATE temp(T) TABLE
             ifnotexists(E) fullname(N)
             LP columnlist(CL)
             conslist_opt(CS) RP
-            table_options(F).               {
+            table_options(O).               {
                                                 X = new SqliteCreateTable(
                                                         *(E),
                                                         *(T),
@@ -259,14 +259,14 @@ cmd(X) ::= CREATE temp(T) TABLE
                                                         N->name2,
                                                         *(CL),
                                                         *(CS),
-                                                        *(F)
+                                                        *(O)
                                                     );
                                                 delete E;
                                                 delete T;
                                                 delete CL;
                                                 delete CS;
                                                 delete N;
-                                                delete F;
+                                                delete O;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= CREATE temp(T) TABLE
@@ -289,16 +289,37 @@ cmd ::= CREATE temp TABLE ifnotexists
 cmd ::= CREATE temp TABLE ifnotexists
             ID_DB|ID_TAB_NEW.               {}
 
-%type table_options {QString*}
+%type table_options {ParserCreateTableOptionList*}
 %destructor table_options {parser_safe_delete($$);}
-table_options(X) ::= .                      {X = new QString();}
-table_options(X) ::= WITHOUT nm(N).         {
+table_options(X) ::= .                      {X = new ParserCreateTableOptionList();}
+table_options(X) ::= table_option(O).       {
+                                                X = new ParserCreateTableOptionList();
+                                                X->append(O);
+                                            }
+table_options(X) ::= table_options(L) COMMA
+                     table_option(O).       {
+                                                L->append(O);
+                                                X = L;
+                                                DONT_INHERIT_TOKENS("table_options");
+                                            }
+
+%type table_option {ParserStubCreateTableOption*}
+%destructor table_option {parser_safe_delete($$);}
+table_option(X) ::= WITHOUT nm(N).          {
                                                 if (N->toLower() != "rowid")
                                                     parserContext->errorAtToken(QString("Invalid table option: %1").arg(*(N)));
 
-                                                X = N;
+                                                X = new ParserStubCreateTableOption(ParserStubCreateTableOption::WITHOUT_ROWID);
+                                                delete N;
                                             }
-table_options ::= WITHOUT CTX_ROWID_KW.     {}
+table_option(X) ::= nm(N).                  {
+                                                if (N->toLower() != "strict")
+                                                    parserContext->errorAtToken(QString("Invalid table option: %1").arg(*(N)));
+
+                                                X = new ParserStubCreateTableOption(ParserStubCreateTableOption::STRICT);
+                                                delete N;
+                                            }
+table_option ::= WITHOUT CTX_ROWID_KW.      {}
 
 %type ifnotexists {bool*}
 %destructor ifnotexists {parser_safe_delete($$);}

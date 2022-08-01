@@ -2,21 +2,16 @@
 #include "ui_tablewindow.h"
 #include "services/dbmanager.h"
 #include "services/notifymanager.h"
-#include "sqlitestudio.h"
 #include "common/unused.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
-#include "common/intvalidator.h"
-#include "common/extlineedit.h"
 #include "datagrid/sqltablemodel.h"
-#include "common/extaction.h"
 #include "mainwindow.h"
 #include "tablestructuremodel.h"
 #include "tableconstraintsmodel.h"
 #include "dialogs/columndialog.h"
 #include "dialogs/constraintdialog.h"
 #include "mdiarea.h"
-#include "sqlitesyntaxhighlighter.h"
 #include "dialogs/newconstraintdialog.h"
 #include "db/chainexecutor.h"
 #include "common/widgetcover.h"
@@ -37,7 +32,6 @@
 #include "themetuner.h"
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
-#include "datagrid/sqlqueryitem.h"
 #include "common/dbcombobox.h"
 #include <QMenu>
 #include <QToolButton>
@@ -614,7 +608,7 @@ void TableWindow::parseDdl()
     structureModel->setCreateTable(createTable.data());
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
-    ui->withoutRowIdCheck->setChecked(!createTable->withOutRowId.isNull());
+    ui->withoutRowIdCheck->setChecked(createTable->withOutRowId);
     ui->tableConstraintsView->resizeColumnsToContents();
     ui->structureView->resizeColumnsToContents();
     ui->constraintsView->resizeColumnsToContents();
@@ -885,7 +879,7 @@ void TableWindow::rollbackStructure()
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
     ui->tableNameEdit->setText(createTable->table);
-    ui->withoutRowIdCheck->setChecked(!createTable->withOutRowId.isNull());
+    ui->withoutRowIdCheck->setChecked(createTable->withOutRowId);
 
     updateStructureCommitState();
     updateStructureToolbarState();
@@ -1358,7 +1352,7 @@ void TableWindow::withOutRowIdChanged()
     if (!createTable)
         return;
 
-    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked() ? QStringLiteral("ROWID") : QString();
+    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked();
     updateDdlTab();
     emit modifyStatusChanged();
 }

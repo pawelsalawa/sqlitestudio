@@ -36,8 +36,21 @@ void FormatCreateTable::formatInternal()
 
         withParDefRight();
 
-        if (!createTable->withOutRowId.isNull())
+        bool atLeastOneOption = false;
+        if (createTable->withOutRowId)
+        {
             withKeyword("WITHOUT").withId("ROWID");
+            atLeastOneOption = true;
+        }
+
+        if (createTable->strict)
+        {
+            if (atLeastOneOption)
+                withOperator(",");
+
+            withId("STRICT");
+            //atLeastOneOption = true; // to uncomment if there are further options down below
+        }
     }
 
     withSemicolon();

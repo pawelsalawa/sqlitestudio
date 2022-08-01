@@ -1,7 +1,6 @@
 #include "queryexecutoraddrowids.h"
 #include "parser/ast/sqliteselect.h"
 #include "selectresolver.h"
-#include "common/utils_sql.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "schemaresolver.h"
 #include "common/compatibility.h"
@@ -55,7 +54,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         return rowIdColsMap;
 
     // Go trough subselects to add ROWID result columns there and collect rowId mapping to use here.
-    for (SqliteSelect* subSelect : getSubSelects(core))
+    for (SqliteSelect*& subSelect : getSubSelects(core))
     {
         unite(rowIdColsMap, addRowIdForTables(subSelect, ok, false));
         if (!ok)
@@ -94,7 +93,7 @@ QList<SqliteSelect*> QueryExecutorAddRowIds::getSubSelects(SqliteSelect::Core* c
     if (core->from->singleSource && core->from->singleSource->select)
         selects << core->from->singleSource->select;
 
-    for (SqliteSelect::Core::JoinSourceOther* otherSource : core->from->otherSources)
+    for (SqliteSelect::Core::JoinSourceOther*& otherSource : core->from->otherSources)
     {
         if (!otherSource->singleSource->select)
             continue;
@@ -118,7 +117,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
         return colNames;
     }
 
-    if (createTable->withOutRowId.isNull())
+    if (!createTable->withOutRowId)
     {
         // It's a regular ROWID table
         colNames[getNextColName()] = "ROWID";
@@ -142,7 +141,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
     SqliteCreateTable::Constraint* tableConstr = dynamic_cast<SqliteCreateTable::Constraint*>(primaryKey);
     if (tableConstr)
     {
-        for (SqliteIndexedColumn* idxCol : tableConstr->indexedColumns)
+        for (SqliteIndexedColumn*& idxCol : tableConstr->indexedColumns)
             colNames[getNextColName()] = idxCol->name;
 
         return colNames;
@@ -169,12 +168,12 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     // Aliased matching should be performed also against pushed (to old) aliases, due to multi-level subselects.
     if (!rowIdColsMap.contains(keyTable))
     {
-        for (const SelectResolver::Table& rowIdColsMapTable : rowIdColsMap.keys())
+        for (auto rowIdColsMapTable = rowIdColsMap.keyBegin(), end = rowIdColsMap.keyEnd(); rowIdColsMapTable != end; ++rowIdColsMapTable)
         {
-            if (!table.oldTableAliases.contains(rowIdColsMapTable.tableAlias, Qt::CaseInsensitive))
+            if (!table.oldTableAliases.contains(rowIdColsMapTable->tableAlias, Qt::CaseInsensitive))
                 continue;
 
-            keyTable = rowIdColsMapTable;
+            keyTable = *rowIdColsMapTable;
         }
     }
 
@@ -228,7 +227,7 @@ bool QueryExecutorAddRowIds::checkInWithClause(const SelectResolver::Table &tabl
 
     SqliteWith::CommonTableExpression* cte = nullptr;
     QString nameToCompareWith = table.tableAlias.isNull() ? table.table : table.tableAlias;
-    for (SqliteWith::CommonTableExpression* cteItem : with->cteList)
+    for (SqliteWith::CommonTableExpression*& cteItem : with->cteList)
     {
         if (cteItem->table == nameToCompareWith)
         {

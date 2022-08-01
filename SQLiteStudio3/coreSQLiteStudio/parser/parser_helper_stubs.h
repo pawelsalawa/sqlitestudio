@@ -68,6 +68,21 @@ struct ParserStubTransDetails
     SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
 };
 
+struct ParserStubCreateTableOption
+{
+    enum Type
+    {
+        WITHOUT_ROWID,
+        STRICT
+    };
+
+    ParserStubCreateTableOption(Type type);
+
+    Type type;
+};
+
+ParserStubCreateTableOption* parserStubFindCreateTableOption(const QList<ParserStubCreateTableOption*>& options, ParserStubCreateTableOption::Type type);
+
 typedef QList<SqliteCreateTable::Column*> ParserCreateTableColumnList;
 typedef QList<SqliteCreateTable::Constraint*> ParserCreateTableConstraintList;
 typedef QList<SqliteCreateTable::Column::Constraint*> ParserCreateTableColumnConstraintList;
@@ -83,6 +98,7 @@ typedef QList<ParserSetValue> ParserSetValueList;
 typedef QList<SqliteIndexedColumn*> ParserIndexedColumnList;
 typedef QList<ParserExprList> ParserExprNestedList;
 typedef QList<SqliteWindowDefinition*> ParserWindowDefList;
+typedef QList<ParserStubCreateTableOption*> ParserCreateTableOptionList;
 
 /**
  * @brief Stores parameters for defferable foreign keys.

@@ -117,9 +117,9 @@
 #define TK3_DOT                            117
 #define TK3_ID_TAB_NEW                     118
 #define TK3_ID_DB                          119
-#define TK3_CTX_ROWID_KW                   120
-#define TK3_EXISTS                         121
-#define TK3_COMMA                          122
+#define TK3_COMMA                          120
+#define TK3_CTX_ROWID_KW                   121
+#define TK3_EXISTS                         122
 #define TK3_ID_COL_NEW                     123
 #define TK3_STRING                         124
 #define TK3_JOIN_KW                        125

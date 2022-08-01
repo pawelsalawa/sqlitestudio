@@ -15,6 +15,8 @@
 #include <QList>
 #include <QRegExp>
 
+struct ParserStubCreateTableOption;
+
 class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbContext
 {
     public:
@@ -189,7 +191,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                           const QList<Column*>& columns, const QList<Constraint*>& constraints);
         SqliteCreateTable(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2,
                           const QList<Column*>& columns, const QList<Constraint*>& constraints,
-                          const QString& withOutRowId);
+                          const QList<ParserStubCreateTableOption*>& options);
         SqliteCreateTable(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2,
                           SqliteSelect* select);
         ~SqliteCreateTable();
@@ -213,8 +215,9 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         QString table = QString();
         QList<Column*> columns;
         QList<Constraint*> constraints;
+        bool withOutRowId = false;
+        bool strict = false;
         SqliteSelect* select = nullptr;
-        QString withOutRowId = QString();
 
     protected:
         QStringList getTablesInStatement();
