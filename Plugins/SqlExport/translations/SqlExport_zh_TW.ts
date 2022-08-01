@@ -6,42 +6,42 @@
     <message>
       <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
-      <translation>-- 查詢的執行結果：</translation>
+      <translation type="unfinished">-- Results of query:</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
       <source>-- Table: %1</source>
-      <translation>-- 表：%1</translation>
+      <translation type="unfinished">-- Table: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="168"/>
       <source>-- Index: %1</source>
-      <translation>-- 索引：%1</translation>
+      <translation type="unfinished">-- Index: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="185"/>
       <source>-- Trigger: %1</source>
-      <translation>-- 觸發器：%1</translation>
+      <translation type="unfinished">-- Trigger: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="202"/>
       <source>-- View: %1</source>
-      <translation>-- 檢視：%1</translation>
+      <translation type="unfinished">-- View: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="216"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
-      <translation>-- SQLiteStudio v%1 生成的檔案，%2</translation>
+      <translation type="unfinished">-- File generated with SQLiteStudio v%1 on %2</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Text encoding used: %1</source>
-      <translation>-- 所用的文字編碼：%1</translation>
+      <translation type="unfinished">-- Text encoding used: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation>INSERT 語句的表名稱是強制性的。</translation>
+      <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
     </message>
   </context>
   <context>
@@ -49,17 +49,17 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>在 &quot;CREATE&quot; 語句前生成 &quot;DROP IF EXISTS&quot; 語句</translation>
+      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>僅格式 DDL 語句 (排除 &quot;INSERT&quot; 語句)</translation>
+      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>使用 SQL 格式化器格式化匯出的 SQL 語句</translation>
+      <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
     </message>
   </context>
   <context>
@@ -67,32 +67,32 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="20"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>使用 SQL 格式化器格式化匯出的 SQL 語句</translation>
+      <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation>INSERT 語句的表名：</translation>
+      <translation type="unfinished">Table name to use for INSERT statements:</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="37"/>
       <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-      <translation>在匯出檔案開始部分生成 &quot;CREATE TABLE&quot; 語句</translation>
+      <translation type="unfinished">Generate &quot;CREATE TABLE&quot; statement at the begining</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Include the query in comments</source>
-      <translation>在註釋中包含查詢</translation>
+      <translation type="unfinished">Include the query in comments</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="57"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>在 &quot;CREATE&quot; 語句前生成 &quot;DROP IF EXISTS&quot; 語句</translation>
+      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>僅格式 DDL 語句 (排除 &quot;INSERT&quot; 語句)</translation>
+      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
     </message>
   </context>
 </TS>
