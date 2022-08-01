@@ -74,7 +74,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="104"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
-      <translation>Impossibile aprire il vecchio file di configurazione per migrare da esso le impostazioni.</translation>
+      <translation>Impossibile aprire il vecchio file di configurazione dal quale migrare le impostazioni.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="112"/>
@@ -84,7 +84,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="121"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation>Impossibile eseguire il commit dei dati migrati nel nuovo file di configurazione: %1</translation>
+      <translation>Impossibile registrare i dati migrati nel nuovo file di configurazione: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="165"/>
