@@ -190,6 +190,7 @@ void Lexer::staticInit()
     createTokenType(TK3_ID_TRIG, Token::CTX_TRIGGER, "");
     createTokenType(TK3_ID_TRIG_NEW, Token::CTX_TRIGGER_NEW, "");
     createTokenType(TK3_CTX_ROWID_KW, Token::CTX_ROWID_KW, "ROWID");
+    createTokenType(TK3_CTX_STRICT_KW, Token::CTX_STRICT_KW, "STRICT");
     createTokenType(TK3_ID, Token::CTX_OLD_KW, "OLD");
     createTokenType(TK3_ID, Token::CTX_NEW_KW, "NEW");
 

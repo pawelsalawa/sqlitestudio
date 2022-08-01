@@ -150,6 +150,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
     switch (token->type)
     {
         case Token::CTX_ROWID_KW:
+        case Token::CTX_STRICT_KW:
             results += getExpectedToken(ExpectedToken::KEYWORD, token->value);
             break;
         case Token::CTX_NEW_KW:
@@ -909,6 +910,7 @@ void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, cons
             case Token::CTX_FK_MATCH:
             case Token::CTX_PRAGMA:
             case Token::CTX_ROWID_KW:
+            case Token::CTX_STRICT_KW:
             case Token::CTX_NEW_KW:
             case Token::CTX_OLD_KW:
             case Token::CTX_ERROR_MESSAGE:

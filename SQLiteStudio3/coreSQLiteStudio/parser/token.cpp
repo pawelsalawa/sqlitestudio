@@ -58,6 +58,8 @@ const QString Token::typeToString(Token::Type type)
     {
         case Token::CTX_ROWID_KW:
             return "CTX_ROWID_KW";
+        case Token::CTX_STRICT_KW:
+            return "CTX_STRICT_KW";
         case Token::CTX_NEW_KW:
             return "CTX_NEW_KW";
         case Token::CTX_OLD_KW:

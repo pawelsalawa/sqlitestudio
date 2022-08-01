@@ -95,7 +95,8 @@ bool JsonExport::exportTable(const QString& database, const QString& table, cons
     writeValue("type", "table");
     writeValue("database", database);
     writeValue("name", table);
-    writeValue("withoutRowId", createTable->withOutRowId.isNull());
+    writeValue("withoutRowId", createTable->withOutRowId);
+    writeValue("strict", createTable->strict);
     writeValue("ddl", ddl);
 
     beginArray("columns");

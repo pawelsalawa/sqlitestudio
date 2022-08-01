@@ -320,6 +320,7 @@ table_option(X) ::= nm(N).                  {
                                                 delete N;
                                             }
 table_option ::= WITHOUT CTX_ROWID_KW.      {}
+table_option ::= CTX_STRICT_KW.             {}
 
 %type ifnotexists {bool*}
 %destructor ifnotexists {parser_safe_delete($$);}

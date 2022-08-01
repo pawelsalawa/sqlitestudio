@@ -101,7 +101,8 @@ struct API_EXPORT Token
         CTX_ROWID_KW = 0x0034,          /**< ROWID keywords is valid at this token position (see isRowIdKeyword()). */
         CTX_NEW_KW = 0x0035,            /**< The <tt>NEW</tt> keyword is valid at this token position. */
         CTX_OLD_KW = 0x0036,            /**< The <tt>OLD</tt> keyword is valid at this token position. */
-        CTX_ERROR_MESSAGE = 0x0037      /**< Error message string is valid at this token position. */
+        CTX_ERROR_MESSAGE = 0x0037,     /**< Error message string is valid at this token position. */
+        CTX_STRICT_KW = 0x0038,         /**< STRICT keyword is valid at this token position. */
     };
 
     /**

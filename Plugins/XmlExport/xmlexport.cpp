@@ -136,8 +136,11 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
 
     writeTagWithValue("database", database);
     writeTagWithValue("name", table);
-    if (!createTable->withOutRowId.isNull())
+    if (createTable->withOutRowId)
         writeln("<withoutRowId>true</withoutRowId>");
+
+    if (createTable->strict)
+        writeln("<strict>true</strict>");
 
     writeTagWithValue("ddl", ddl);
 
