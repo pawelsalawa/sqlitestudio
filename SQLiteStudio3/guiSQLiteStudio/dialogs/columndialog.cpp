@@ -647,6 +647,10 @@ void ColumnDialog::setColumn(SqliteCreateTable::Column* value)
         ui->precision->setValue(value->type->precision, false);
     }
 
+    SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(value->parentStatement());
+    ui->scale->setVisible(!createTable->strict);
+    ui->precision->setVisible(!createTable->strict);
+
     updateValidations();
 }
 

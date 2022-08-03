@@ -230,6 +230,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void constraintsViewDoubleClicked(const QModelIndex &index);
         void nameChanged();
         void withOutRowIdChanged();
+        void strictChanged();
         void addIndex();
         void editCurrentIndex();
         void indexViewDoubleClicked(const QModelIndex& idx);

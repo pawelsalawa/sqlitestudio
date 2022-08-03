@@ -1,5 +1,4 @@
 #include "multieditorimage.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
 #include "services/notifymanager.h"
@@ -205,6 +204,7 @@ bool MultiEditorImagePlugin::validFor(const DataType& dataType)
     switch (dataType.getType())
     {
         case DataType::BLOB:
+        case DataType::ANY:
         case DataType::NONE:
         case DataType::unknown:
             return true;
@@ -235,6 +235,7 @@ int MultiEditorImagePlugin::getPriority(const DataType& dataType)
         case DataType::BLOB:
             return 10;
         case DataType::NONE:
+        case DataType::ANY:
         case DataType::unknown:
             return 50;
         case DataType::BOOLEAN:

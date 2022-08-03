@@ -48,6 +48,7 @@ bool MultiEditorTimePlugin::validFor(const DataType& dataType)
         case DataType::VARCHAR:
         case DataType::DATE:
         case DataType::DATETIME:
+        case DataType::ANY:
         case DataType::unknown:
             break;
         case DataType::TIME:
@@ -76,6 +77,7 @@ int MultiEditorTimePlugin::getPriority(const DataType& dataType)
         case DataType::VARCHAR:
         case DataType::DATE:
         case DataType::DATETIME:
+        case DataType::ANY:
         case DataType::unknown:
             break;
         case DataType::TIME:

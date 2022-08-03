@@ -13,6 +13,7 @@ class API_EXPORT DataType : public QObject
     public:
         enum Enum
         {
+            ANY,
             BIGINT,
             BLOB,
             BOOLEAN,
@@ -46,19 +47,24 @@ class API_EXPORT DataType : public QObject
         QString toString() const;
         QString toFullTypeString() const;
         void setEmpty();
-        bool isNumeric();
-        bool isBinary();
-        bool isNull();
-        bool isEmpty();
+        bool isNumeric() const;
+        bool isBinary() const;
+        bool isStrict() const;
+        bool isNull() const;
+        bool isEmpty() const;
         DataType& operator=(const DataType& other);
 
         static QString toString(Enum e);
         static Enum fromString(QString key, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         static bool isNumeric(Enum e);
+        static bool isStrict(Enum e);
+        static bool isStrict(const QString& type);
         static bool isBinary(const QString& type);
         static QList<Enum> getAllTypes();
         static QStringList getAllNames();
         static QList<Enum> getAllTypesForUiDropdown();
+        static QList<Enum> getStrictValues();
+        static QStringList getStrictValueNames();
 
     private:
         Enum type = unknown;
@@ -69,6 +75,8 @@ class API_EXPORT DataType : public QObject
         static QList<Enum> values;
         static const QStringList names;
         static QList<Enum> valuesForUiDropdown;
+        static QList<Enum> strictValues;
+        static const QStringList strictNames;
 };
 
 #endif // DATATYPE_H

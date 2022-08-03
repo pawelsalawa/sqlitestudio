@@ -36,7 +36,17 @@ const QStringList DataType::names = []() -> QStringList
     return list;
 }();
 
+const QStringList DataType::strictNames = []() -> QStringList
+{
+    QStringList list;
+    for (DataType::Enum& type : strictValues)
+        list << DataType::toString(type);
+
+    return list;
+}();
+
 QList<DataType::Enum> DataType::valuesForUiDropdown = {BLOB, INTEGER, NUMERIC, REAL, TEXT};
+QList<DataType::Enum> DataType::strictValues = {INT, INTEGER, REAL, TEXT, BLOB, ANY};
 
 DataType::DataType()
 {
@@ -132,22 +142,27 @@ QString DataType::toFullTypeString() const
     return str;
 }
 
-bool DataType::isNumeric()
+bool DataType::isNumeric() const
 {
     return isNumeric(type);
 }
 
-bool DataType::isBinary()
+bool DataType::isBinary() const
 {
     return isBinary(typeStr);
 }
 
-bool DataType::isNull()
+bool DataType::isStrict() const
+{
+    return isStrict(type);
+}
+
+bool DataType::isNull() const
 {
     return type == ::DataType::unknown;
 }
 
-bool DataType::isEmpty()
+bool DataType::isEmpty() const
 {
     return typeStr.isEmpty();
 }
@@ -157,7 +172,7 @@ DataType& DataType::operator=(const DataType& other)
     this->type = other.type;
     this->typeStr = other.typeStr;
     this->precision = other.precision;
-    this->scale = scale;
+    this->scale = other.scale;
     return *this;
 }
 
@@ -208,10 +223,21 @@ bool DataType::isNumeric(DataType::Enum e)
         case TEXT:
         case TIME:
         case VARCHAR:
+        case ANY:
         case unknown:
             break;
     }
-    return false;
+        return false;
+}
+
+bool DataType::isStrict(Enum e)
+{
+    return strictValues.contains(e);
+}
+
+bool DataType::isStrict(const QString& type)
+{
+    return isStrict(fromString(type, Qt::CaseInsensitive));
 }
 
 bool DataType::isBinary(const QString& type)
@@ -228,6 +254,16 @@ QList<DataType::Enum> DataType::getAllTypes()
 QList<DataType::Enum> DataType::getAllTypesForUiDropdown()
 {
     return valuesForUiDropdown;
+}
+
+QList<DataType::Enum> DataType::getStrictValues()
+{
+    return strictValues;
+}
+
+QStringList DataType::getStrictValueNames()
+{
+    return strictNames;
 }
 
 QStringList DataType::getAllNames()

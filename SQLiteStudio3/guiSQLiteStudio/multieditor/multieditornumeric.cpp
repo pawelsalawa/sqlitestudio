@@ -70,6 +70,7 @@ bool MultiEditorNumericPlugin::validFor(const DataType& dataType)
         case DataType::DATE:
         case DataType::DATETIME:
         case DataType::TIME:
+        case DataType::ANY:
         case DataType::unknown:
             break;
     }
@@ -98,6 +99,7 @@ int MultiEditorNumericPlugin::getPriority(const DataType& dataType)
         case DataType::DATE:
         case DataType::DATETIME:
         case DataType::TIME:
+        case DataType::ANY:
         case DataType::unknown:
             break;
     }

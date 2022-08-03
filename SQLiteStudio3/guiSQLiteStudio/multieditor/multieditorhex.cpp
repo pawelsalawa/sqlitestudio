@@ -65,6 +65,7 @@ int MultiEditorHexPlugin::getPriority(const DataType& dataType)
         case DataType::BLOB:
             return 1;
         case DataType::BIGINT:
+        case DataType::ANY:
         case DataType::DECIMAL:
         case DataType::DOUBLE:
         case DataType::INTEGER:

@@ -175,6 +175,7 @@ bool MultiEditorBoolPlugin::validFor(const DataType& dataType)
         case DataType::DATE:
         case DataType::DATETIME:
         case DataType::TIME:
+        case DataType::ANY:
         case DataType::unknown:
             break;
     }
@@ -188,6 +189,7 @@ int MultiEditorBoolPlugin::getPriority(const DataType& dataType)
         case DataType::BOOLEAN:
             return 1;
         case DataType::BLOB:
+        case DataType::ANY:
         case DataType::BIGINT:
         case DataType::DECIMAL:
         case DataType::DOUBLE:

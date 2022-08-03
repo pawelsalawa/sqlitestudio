@@ -173,6 +173,7 @@ int MultiEditorTextPlugin::getPriority(const DataType& dataType)
         case DataType::TEXT:
         case DataType::CHAR:
         case DataType::VARCHAR:
+        case DataType::ANY:
         case DataType::unknown:
             break;
     }
