@@ -1128,6 +1128,14 @@ RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQuery
         for (SqlQueryItem* item : items)
         {
             col = item->getColumn();
+            QStringList tableRowIdColumns = tableToRowIdColumn[col->getAliasedTable()].values();
+            if (tableRowIdColumns.contains(col->column, Qt::CaseInsensitive))
+            {
+                RowId newRowId;
+                newRowId[col->column] = item->getValue();
+                return newRowId;
+            }
+
             if (isRowIdKeyword(col->column) || col->isRowIdPk())
             {
                 RowId newRowId;

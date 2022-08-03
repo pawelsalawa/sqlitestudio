@@ -195,6 +195,11 @@ SqlQueryModelColumn::ConstraintDefault* SqlQueryModelColumn::getDefaultConstrain
     return list[0];
 }
 
+AliasedTable SqlQueryModelColumn::getAliasedTable() const
+{
+    return AliasedTable(database, table, tableAlias);
+}
+
 int qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
 {
     return static_cast<int>(reason);

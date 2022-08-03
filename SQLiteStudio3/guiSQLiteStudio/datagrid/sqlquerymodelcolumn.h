@@ -166,6 +166,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QString getAliasedName() const;
         QList<ConstraintFk*> getFkConstraints() const;
         ConstraintDefault* getDefaultConstraint() const;
+        AliasedTable getAliasedTable() const;
 
         QString displayName;
         QString column;
