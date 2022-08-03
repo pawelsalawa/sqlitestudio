@@ -36,6 +36,9 @@ const QStringList DataType::names = []() -> QStringList
     return list;
 }();
 
+QList<DataType::Enum> DataType::valuesForUiDropdown = {BLOB, INTEGER, NUMERIC, REAL, TEXT};
+QList<DataType::Enum> DataType::strictValues = {INT, INTEGER, REAL, TEXT, BLOB, ANY};
+
 const QStringList DataType::strictNames = []() -> QStringList
 {
     QStringList list;
@@ -44,9 +47,6 @@ const QStringList DataType::strictNames = []() -> QStringList
 
     return list;
 }();
-
-QList<DataType::Enum> DataType::valuesForUiDropdown = {BLOB, INTEGER, NUMERIC, REAL, TEXT};
-QList<DataType::Enum> DataType::strictValues = {INT, INTEGER, REAL, TEXT, BLOB, ANY};
 
 DataType::DataType()
 {
