@@ -4,8 +4,6 @@
 #include "dbtree/dbtreemodel.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
-#include "windows/tablewindow.h"
-#include "windows/viewwindow.h"
 #include "windows/functionseditor.h"
 #include "windows/collationseditor.h"
 #include "windows/ddlhistorywindow.h"
@@ -13,8 +11,6 @@
 #include "mdiarea.h"
 #include "statusfield.h"
 #include "uiconfig.h"
-#include "common/extaction.h"
-#include "dbobjectdialogs.h"
 #include "services/notifymanager.h"
 #include "dialogs/configdialog.h"
 #include "services/pluginmanager.h"
@@ -35,7 +31,6 @@
 #include "dialogs/aboutdialog.h"
 #include "dialogs/newversiondialog.h"
 #include "dialogs/quitconfirmdialog.h"
-#include "common/widgetcover.h"
 #include "dialogs/cssdebugdialog.h"
 #include "themetuner.h"
 #include "style.h"
@@ -479,7 +474,14 @@ void MainWindow::restoreSession()
     }
 
     if (sessionValue.contains("style"))
-        setStyle(sessionValue["style"].toString());
+    {
+        QString styleName = sessionValue["style"].toString();
+        if (!setStyle(styleName))
+        {
+            styleName = currentStyle();
+            CFG_UI.General.Style.set(styleName);
+        }
+    }
     else
         THEME_TUNER->tuneCurrentTheme();
 
@@ -564,22 +566,24 @@ MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
     {
         window->setCloseWithoutSessionSaving(true);
         delete window;
+        return nullptr;
     }
 
     return window;
 }
 
-void MainWindow::setStyle(const QString& styleName)
+bool MainWindow::setStyle(const QString& styleName)
 {
     QStyle* style = QStyleFactory::create(styleName);
     if (!style)
     {
         notifyWarn(tr("Could not set style: %1", "main window").arg(styleName));
-        return;
+        return false;
     }
 
     STYLE->setStyle(style, styleName);
     statusField->refreshColors();
+    return true;
 }
 
 QString MainWindow::currentStyle() const

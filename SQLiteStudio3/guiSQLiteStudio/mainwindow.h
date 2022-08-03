@@ -112,7 +112,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         DbTree* getDbTree() const;
         StatusField* getStatusField() const;
         void restoreSession();
-        void setStyle(const QString& styleName);
+        bool setStyle(const QString& styleName);
         FormManager* getFormManager() const;
         bool eventFilter(QObject* obj, QEvent* e);
         void pushClosedWindowSessionValue(const QVariant& value);
