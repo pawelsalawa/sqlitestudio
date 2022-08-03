@@ -36,6 +36,7 @@ void FormatCreateTable::formatInternal()
 
         withParDefRight();
 
+        markAndKeepIndent("tableOptions");
         bool atLeastOneOption = false;
         if (createTable->withOutRowId)
         {
@@ -46,7 +47,7 @@ void FormatCreateTable::formatInternal()
         if (createTable->strict)
         {
             if (atLeastOneOption)
-                withOperator(",");
+                withListComma(FormatToken::NO_SPACE_BEFORE);
 
             withId("STRICT");
             //atLeastOneOption = true; // to uncomment if there are further options down below
