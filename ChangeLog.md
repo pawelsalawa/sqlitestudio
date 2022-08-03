@@ -2,6 +2,7 @@
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
+- ADDED: #4058 Added support for STRICT tables.
 - ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin. Requires Python installed in the system to use the plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
 - ADDED: #3615 console.log() function for JS scripts.
@@ -36,6 +37,8 @@
 - BUGFIX: #4084 Fixed View window refreshing when a dependant table was modified.
 - BUGFIX: Fixed error messages in debug console when executing query with less columns in results than the previously executed query.
 - BUGFIX: Fixed WITHOUT ROWID checkbox updating when table structure changes are rolled back.
+- BUGFIX: Fixed updating data values for a single PK column in WITHOUT ROWID table.
+- BUGFIX: Fixed a bug when a style plugin was missing and style was in use - the config window was being confusedabout it.
 - BUGFIX: #4267 Path now shows familiar backslashes on Windows for Add a database and About dialog.
 - BUGFIX: #4314 Fixed missing OpenSSL license exemptions.
 - BUGFIX: #4433 Fixed loading translations under Linux.

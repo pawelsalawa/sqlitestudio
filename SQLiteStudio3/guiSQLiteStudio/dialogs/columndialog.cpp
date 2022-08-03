@@ -1,5 +1,6 @@
 #include "columndialog.h"
 #include "common/unused.h"
+#include "services/notifymanager.h"
 #include "ui_columndialog.h"
 #include "columndialogconstraintsmodel.h"
 #include "iconmanager.h"
@@ -35,10 +36,6 @@ void ColumnDialog::init()
 
     ui->scale->setStrict(true, true);
     ui->precision->setStrict(true, true);
-
-    ui->typeCombo->addItem("");
-    for (DataType::Enum& type : DataType::getAllTypesForUiDropdown())
-        ui->typeCombo->addItem(DataType::toString(type));
 
     connect(ui->typeCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateDataType()));
 
@@ -617,7 +614,7 @@ void ColumnDialog::updateValidations()
         setValidState(tb, true);
     }
 
-    for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
+    for (SqliteCreateTable::Column::Constraint*& constr : column->constraints)
         updateConstraint(constr);
 
     updateTypeValidations();
@@ -640,16 +637,41 @@ void ColumnDialog::setColumn(SqliteCreateTable::Column* value)
     constraintsModel->setColumn(column.data());
 
     ui->name->setText(value->name);
-    if (value->type)
-    {
-        ui->typeCombo->setEditText(value->type->name);
-        ui->scale->setValue(value->type->scale, false);
-        ui->precision->setValue(value->type->precision, false);
-    }
 
     SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(value->parentStatement());
-    ui->scale->setVisible(!createTable->strict);
-    ui->precision->setVisible(!createTable->strict);
+    if (createTable->strict)
+    {
+        ui->typeCombo->setEditable(false);
+        for (DataType::Enum& type : DataType::getStrictValues())
+            ui->typeCombo->addItem(DataType::toString(type));
+
+        ui->scale->setVisible(false);
+        ui->precision->setVisible(false);
+        ui->sizeLabel->setVisible(false);
+        ui->sizeCommaLabel->setVisible(false);
+
+        if (value->type)
+        {
+            int idx = ui->typeCombo->findText(value->type->name, Qt::MatchFixedString);
+            if (idx > -1)
+                ui->typeCombo->setCurrentIndex(idx);
+            else
+                notifyError(tr("Could not match valid STRICT table datatype from declared type: %1.").arg(value->type->name));
+        }
+    }
+    else
+    {
+        ui->typeCombo->addItem("");
+        for (DataType::Enum& type : DataType::getAllTypesForUiDropdown())
+            ui->typeCombo->addItem(DataType::toString(type));
+
+        if (value->type)
+        {
+            ui->typeCombo->setEditText(value->type->name);
+            ui->scale->setValue(value->type->scale, false);
+            ui->precision->setValue(value->type->precision, false);
+        }
+    }
 
     updateValidations();
 }
