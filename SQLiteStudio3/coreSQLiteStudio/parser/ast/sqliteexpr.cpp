@@ -231,6 +231,19 @@ void SqliteExpr::initUnaryOp(SqliteExpr *expr, const QString& op)
         expr->setParent(this);
 }
 
+void SqliteExpr::initPtrOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2)
+{
+    mode = SqliteExpr::Mode::PTR_OP;
+    this->expr1 = expr1;
+    this->expr2 = expr2;
+    ptrOp = op;
+    if (expr1)
+        expr1->setParent(this);
+
+    if (expr2)
+        expr2->setParent(this);
+}
+
 void SqliteExpr::initLike(SqliteExpr *expr1, bool notKw, LikeOp likeOp, SqliteExpr *expr2, SqliteExpr *expr3)
 {
     mode = SqliteExpr::Mode::LIKE;
@@ -548,6 +561,9 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             break;
         case SqliteExpr::Mode::BINARY_OP:
             builder.withStatement(expr1).withSpace().withOperator(binaryOp).withSpace().withStatement(expr2);
+            break;
+        case SqliteExpr::Mode::PTR_OP:
+            builder.withStatement(expr1).withSpace().withOperator(ptrOp).withSpace().withStatement(expr2);
             break;
         case SqliteExpr::Mode::FUNCTION:
             builder.withOther(function).withParLeft();

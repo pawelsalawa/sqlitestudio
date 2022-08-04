@@ -2,7 +2,8 @@
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
-- ADDED: #4058 Added support for STRICT tables.
+- ADDED: #4058 Added support for STRICT tables introduced in SQLite 3.37.
+- ADDED: #4058 Added support for -> and ->> operators from SQLite 3.38.
 - ADDED: #513 Python scripting plugin added, along side with Python syntax highlighting plugin. Requires Python installed in the system to use the plugin.
 - ADDED: #4050 Functions Editor allows marking functions as deterministic (thus using them for GENERATED columns).
 - ADDED: #3615 console.log() function for JS scripts.

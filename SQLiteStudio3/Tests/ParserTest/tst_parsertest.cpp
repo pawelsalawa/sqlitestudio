@@ -61,6 +61,7 @@ class ParserTest : public QObject
         void testFilterClause();
         void testUpdateFrom();
         void testStringAsTableId();
+        void testJsonPtrOp();
 };
 
 ParserTest::ParserTest()
@@ -669,6 +670,15 @@ void ParserTest::testUpdateFrom()
 void ParserTest::testStringAsTableId()
 {
     QString sql = "select 'bb'.id1 = 'bb'.id2;";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testJsonPtrOp()
+{
+    QString sql = "SELECT '[\"a11\", \"a22\", {\"x\":\"a33\"}]' -> 2,"
+                  "       '[\"a11\", \"a22\", {\"x\":\"a33\"}]' ->> 2";
     bool res = parser3->parse(sql);
     QVERIFY(res);
     QVERIFY(parser3->getErrors().isEmpty());

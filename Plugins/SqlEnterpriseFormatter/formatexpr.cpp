@@ -78,6 +78,11 @@ void FormatExpr::formatInternal()
                 withDecrIndent();
             break;
         }
+        case SqliteExpr::Mode::PTR_OP:
+        {
+            withStatement(expr->expr1).withOperator(expr->ptrOp).withStatement(expr->expr2);
+            break;
+        }
         case SqliteExpr::Mode::FUNCTION:
         {
             withFuncId(expr->function).withParFuncLeft();

@@ -109,7 +109,7 @@
 %left BITAND BITOR LSHIFT RSHIFT.
 %left PLUS MINUS.
 %left STAR SLASH REM.
-%left CONCAT.
+%left CONCAT PTR.
 %left COLLATE.
 %right BITNOT.
 
@@ -1815,6 +1815,11 @@ exprx(X) ::= MINUS(O) expr(E). [BITNOT]     {
 exprx(X) ::= PLUS(O) expr(E). [BITNOT]      {
                                                 X = new SqliteExpr();
                                                 X->initUnaryOp(E, O->value);
+                                                objectForTokens = X;
+                                            }
+exprx(X) ::= expr(E1) PTR(O) expr(E2).      {
+                                                X = new SqliteExpr();
+                                                X->initPtrOp(E1, O->value, E2);
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= expr(E1) not_opt(N) BETWEEN

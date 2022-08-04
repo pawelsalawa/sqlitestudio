@@ -23,6 +23,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             ID,
             UNARY_OP,
             BINARY_OP,
+            PTR_OP,
             FUNCTION,
             SUB_EXPR,
             ROW_VALUE,
@@ -85,6 +86,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initWindowFunction(const QString& fnName, SqliteFilterOver* filterOver);
         void initBinOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2);
         void initUnaryOp(SqliteExpr* expr, const QString& op);
+        void initPtrOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2);
         void initLike(SqliteExpr* expr1, bool notKw, SqliteExpr::LikeOp likeOp, SqliteExpr* expr2, SqliteExpr* expr3 = nullptr);
         void initNull(SqliteExpr* expr, const QString& value);
         void initIs(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2);
@@ -108,6 +110,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         QString column = QString();
         QString unaryOp = QString();
         QString binaryOp = QString();
+        QString ptrOp = QString();
         QString function = QString();
         QString collation = QString();
         QString ctime = QString();

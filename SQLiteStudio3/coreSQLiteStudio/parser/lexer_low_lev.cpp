@@ -54,6 +54,12 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                 token->type = Token::COMMENT;
                 return i;
             }
+            else if (charAt(z, 1) == '>')
+            {
+                token->lemonType = TK3_PTR;
+                token->type = Token::OPERATOR;
+                return (charAt(z, 2) == '>') ? 3 : 2;
+            }
             token->lemonType = TK3_MINUS;
             token->type = Token::OPERATOR;
             return 1;
