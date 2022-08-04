@@ -1788,6 +1788,18 @@ exprx(X) ::= expr(E1) IS not_opt(N)
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= expr(E1) IS NOT DISTINCT FROM
+             expr(E2).                      {
+                                                X = new SqliteExpr();
+                                                X->initDistinct(E1, true, E2);
+                                                objectForTokens = X;
+                                            }
+exprx(X) ::= expr(E1) IS DISTINCT FROM
+             expr(E2).                      {
+                                                X = new SqliteExpr();
+                                                X->initDistinct(E1, false, E2);
+                                                objectForTokens = X;
+                                            }
 exprx(X) ::= NOT(O) expr(E).                {
                                                 X = new SqliteExpr();
                                                 X->initUnaryOp(E, O->value);

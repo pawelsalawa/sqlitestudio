@@ -284,6 +284,19 @@ void SqliteExpr::initIs(SqliteExpr *expr1, bool notKw, SqliteExpr *expr2)
         expr2->setParent(this);
 }
 
+void SqliteExpr::initDistinct(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2)
+{
+    mode = SqliteExpr::Mode::DISTINCT;
+    this->expr1 = expr1;
+    this->notKw = notKw;
+    this->expr2 = expr2;
+    if (expr1)
+        expr1->setParent(this);
+
+    if (expr2)
+        expr2->setParent(this);
+}
+
 void SqliteExpr::initBetween(SqliteExpr *expr1, bool notKw, SqliteExpr *expr2, SqliteExpr *expr3)
 {
     mode = SqliteExpr::Mode::BETWEEN;
@@ -614,6 +627,9 @@ TokenList SqliteExpr::rebuildTokensFromContents()
         case SqliteExpr::Mode::IS:
             builder.withTokens(rebuildIs());
             break;
+        case SqliteExpr::Mode::DISTINCT:
+            builder.withTokens(rebuildDistinct());
+            break;
         case SqliteExpr::Mode::BETWEEN:
             builder.withTokens(rebuildBetween());
             break;
@@ -704,6 +720,17 @@ TokenList SqliteExpr::rebuildIs()
         builder.withSpace().withKeyword("NOT");
 
     builder.withStatement(expr2);
+    return builder.build();
+}
+
+TokenList SqliteExpr::rebuildDistinct()
+{
+    StatementTokenBuilder builder;
+    builder.withStatement(expr1).withSpace().withKeyword("IS");
+    if (notKw)
+        builder.withSpace().withKeyword("NOT");
+
+    builder.withSpace().withKeyword("DISTINCT").withSpace().withKeyword("FROM").withSpace().withStatement(expr2);
     return builder.build();
 }
 

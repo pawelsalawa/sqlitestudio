@@ -170,6 +170,16 @@ void FormatExpr::formatInternal()
             withStatement(expr->expr2, "is");
             break;
         }
+        case SqliteExpr::Mode::DISTINCT:
+        {
+            withStatement(expr->expr1).withKeyword("IS");
+            if (expr->notKw)
+                withKeyword("NOT");
+
+            withKeyword("DISTINCT").withKeyword("FROM");
+            withStatement(expr->expr2, "isDistinct");
+            break;
+        }
         case SqliteExpr::Mode::BETWEEN:
         {
             withStatement(expr->expr1);

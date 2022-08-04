@@ -33,6 +33,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             NULL_,
             NOTNULL,
             IS,
+            DISTINCT,
             BETWEEN,
             IN,
             EXISTS,
@@ -90,6 +91,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initLike(SqliteExpr* expr1, bool notKw, SqliteExpr::LikeOp likeOp, SqliteExpr* expr2, SqliteExpr* expr3 = nullptr);
         void initNull(SqliteExpr* expr, const QString& value);
         void initIs(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2);
+        void initDistinct(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2);
         void initBetween(SqliteExpr* expr1, bool notKw, SqliteExpr* expr2, SqliteExpr* expr3);
         void initIn(SqliteExpr* expr, bool notKw, const QList<SqliteExpr*>& exprList);
         void initIn(SqliteExpr* expr, bool notKw, SqliteSelect* select);
@@ -147,6 +149,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         TokenList rebuildLike();
         TokenList rebuildNotNull();
         TokenList rebuildIs();
+        TokenList rebuildDistinct();
         TokenList rebuildBetween();
         TokenList rebuildIn();
         TokenList rebuildCase();
