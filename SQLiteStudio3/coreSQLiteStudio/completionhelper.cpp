@@ -1311,7 +1311,8 @@ void CompletionHelper::initFunctions(Db* db)
                      << "lag(expr)" << "lag(expr, offset)" << "lag(expr, offset, default)"
                      << "lead(expr)" << "lead(expr, offset)" << "lead(expr, offset, default)"
                      << "first_value(expr)" << "last_value(expr)" << "nth_value(expr, N)"
-                     << "substring(X,Y,Z)" << "substring(X,Y)";
+                     << "substring(X,Y,Z)" << "substring(X,Y)" << "unixepoch(mod,mod,...)"
+                     << "printf(format,...)" << "format(format,...)";
 
     if (!db->isOpen())
         return;
