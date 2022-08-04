@@ -118,7 +118,7 @@ SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op)
 
 void SqliteSelect::reset()
 {
-    for (Core* core : coreSelects)
+    for (Core*& core : coreSelects)
         delete core;
 
     coreSelects.clear();
@@ -443,7 +443,7 @@ QStringList SqliteSelect::Core::JoinConstraint::getColumnsInStatement()
 TokenList SqliteSelect::Core::JoinConstraint::getColumnTokensInStatement()
 {
     TokenList list;
-    for (TokenPtr token : getTokenListFromNamedKey("idlist", -1))
+    for (TokenPtr& token : getTokenListFromNamedKey("idlist", -1))
     {
         if (token->type == Token::OPERATOR) // a COMMA
             continue;
@@ -573,7 +573,7 @@ SqliteSelect::Core::JoinSource::JoinSource(SqliteSelect::Core::SingleSource *sin
     if (singleSource)
         singleSource->setParent(this);
 
-    for (JoinSourceOther* other : otherSources)
+    for (JoinSourceOther*& other : otherSources)
         other->setParent(this);
 }
 
@@ -667,11 +667,6 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
 
 TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents()
 {
-    return rebuildTokensForSqlite3();
-}
-
-TokenList SqliteSelect::Core::JoinOp::rebuildTokensForSqlite3()
-{
     StatementTokenBuilder builder;
     if (comma)
     {
@@ -682,9 +677,16 @@ TokenList SqliteSelect::Core::JoinOp::rebuildTokensForSqlite3()
         if (naturalKw)
             builder.withKeyword("NATURAL").withSpace();
 
-        if (leftKw)
+        if (leftKw || fullKw || rightKw)
         {
-            builder.withKeyword("LEFT").withSpace();
+            if (leftKw)
+                builder.withKeyword("LEFT");
+            else if (fullKw)
+                builder.withKeyword("FULL");
+            else if (rightKw)
+                builder.withKeyword("RIGHT");
+
+            builder.withSpace();
             if (outerKw)
                 builder.withKeyword("OUTER").withSpace();
         }
@@ -780,7 +782,7 @@ TokenList SqliteSelect::rebuildTokensFromContents()
     if (with)
         builder.withStatement(with);
 
-    for (SqliteSelect::Core* core : coreSelects)
+    for (SqliteSelect::Core*& core : coreSelects)
     {
         if (core->compoundOp == CompoundOperator::UNION_ALL)
         {

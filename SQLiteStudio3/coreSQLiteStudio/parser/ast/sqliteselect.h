@@ -123,9 +123,6 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 
                     protected:
                         TokenList rebuildTokensFromContents();
-
-                    private:
-                        TokenList rebuildTokensForSqlite3();
                 };
 
                 class API_EXPORT JoinConstraint : public SqliteStatement

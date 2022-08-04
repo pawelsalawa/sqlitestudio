@@ -1,5 +1,4 @@
 #include "formatselect.h"
-#include "formatwith.h"
 #include "parser/ast/sqlitewith.h"
 #include "parser/ast/sqlitewindowdefinition.h"
 
@@ -208,9 +207,15 @@ void FormatSelectCoreJoinOp::formatInternal()
     if (joinOp->naturalKw)
         keywords << "NATURAL";
 
-    if (joinOp->leftKw)
+    if (joinOp->leftKw || joinOp->fullKw || joinOp->rightKw)
     {
-        keywords << "LEFT";
+        if (joinOp->leftKw)
+            keywords << "LEFT";
+        else if (joinOp->fullKw)
+            keywords << "FULL";
+        else if (joinOp->rightKw)
+            keywords << "RIGHT";
+
         if (joinOp->outerKw)
             keywords << "OUTER";
     }
