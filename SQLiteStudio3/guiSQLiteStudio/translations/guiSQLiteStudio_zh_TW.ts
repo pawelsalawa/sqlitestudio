@@ -6495,7 +6495,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="881"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
-      <translation>Instead of</translation>
+      <translation type="unfinished">Instead of</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="882"/>
