@@ -6,7 +6,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="466"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation>无效的 %1 函数用法。期望 %2 个参数，得到 %3。</translation>
+      <translation>无效的 %1 函数用法。预期是 %2 参数，但实际是 %3。</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="475"/>
@@ -16,7 +16,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="516"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation>无法计算作为参数传递给函数 %1 的 Python 对象所表示的字符串。</translation>
+      <translation>无法计算作为参数传递给 %1 函数的 Python 对象所表示的字符串。</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="532"/>

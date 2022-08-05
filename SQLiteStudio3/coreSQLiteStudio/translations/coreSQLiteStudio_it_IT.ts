@@ -273,7 +273,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation>Il plugin di esportazione %1 i risultati delle interrogazioni.</translation>
+      <translation>Il plugin di esportazione %1 non supporta l'esplorazione dei risultati delle interrogazioni.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
@@ -365,7 +365,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation>Espressione regolare ( regular expression): %1</translation>
+      <translation>Modello di espressione regolare non valido: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
@@ -394,7 +394,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
-      <translation>Impossibile inizializzare il codec di testo per l'esportazione. Usare il codec predefinito: %1</translation>
+      <translation>Impossibile inizializzare il codec di testo per l'esportazione. Utilizzando il codec predefinito: %1</translation>
     </message>
   </context>
   <context>
@@ -430,7 +430,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation>La tabella &apos;%1&apos; ha più colonne di quelle che ci sono colonne nei dati da importare. Alcune colonne nella tabella saranno lasciate vuote.</translation>
+      <translation>La tabella &apos;%1&apos; ha più colonne di quelle che ci sono nei dati da importare. Alcune colonne nella tabella saranno lasciate vuote.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
@@ -910,7 +910,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation>Tabella di popolamento</translation>
+      <translation>Popolamento tabella</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>

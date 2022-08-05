@@ -39,7 +39,7 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation>Cattura gruppi</translation>
+      <translation>Gruppi di cattura</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
@@ -66,7 +66,7 @@
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation>Pattern:</translation>
+      <translation>Modello:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>

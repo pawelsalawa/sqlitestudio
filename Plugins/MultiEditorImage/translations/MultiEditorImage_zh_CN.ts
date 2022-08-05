@@ -16,12 +16,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom in by 25%</source>
-      <translation>放大 25%</translation>
+      <translation>放大25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Zoom out by 25%</source>
-      <translation>缩小 25%</translation>
+      <translation>缩小25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
@@ -56,7 +56,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="155"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation>试图以与原始格式 (%2) 不同的格式 (%1) 保存图像，但应用程序转换失败。图像将以未改变的格式 (%3) 保存在给定名称下 (%4)</translation>
+      <translation>试图以与原始格式 (%2) 不同的格式 (%1) 保存图像，但应用程序转换失败。 图像将以未改变的格式 (%3) 保存在给定名称下 (%4)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="166"/>
