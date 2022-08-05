@@ -19,7 +19,7 @@
     <message>
       <location filename="../XmlExport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>Formato documento (nuova riga, rientro)</translation>
+      <translation>Formato documento (nuova riga, indentazione)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="42"/>

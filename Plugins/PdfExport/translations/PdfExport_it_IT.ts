@@ -44,7 +44,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
       <source>Global table constraints</source>
-      <translation>Constraints della tabella globale</translation>
+      <translation>Constraints globali della tabella</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
@@ -196,7 +196,7 @@
     <message>
       <location filename="../pdfexport.ui" line="84"/>
       <source>Limit characters in single cell:</source>
-      <translation>Limita i caratteri in una singola cella:</translation>
+      <translation>Limite di caratteri in una singola cella:</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="91"/>
@@ -250,7 +250,7 @@
     <message>
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
-      <translation>Print page numbers</translation>
+      <translation>Stampa numeri pagina</translation>
     </message>
   </context>
 </TS>

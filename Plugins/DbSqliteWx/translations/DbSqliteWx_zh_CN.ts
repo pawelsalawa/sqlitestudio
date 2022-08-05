@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation>密码 (密钥)</translation>
+      <translation>密码（密钥）</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation>加密算法配置 (可选)</translation>
+      <translation>加密算法配置（可选）</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>

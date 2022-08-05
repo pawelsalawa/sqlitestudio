@@ -11,17 +11,17 @@
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation>启用控制台中的调试信息 (通过 F12 访问)。</translation>
+      <translation>启用控制台中的调试信息（通过 F12 访问）。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation>重定向调试信息到标准输出 (强制调试模式)。</translation>
+      <translation>重定向调试信息到标准输出（强制调试模式）。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation>重定向调试信息到指定文件 (强制调试模式)。</translation>
+      <translation>重定向调试信息到指定文件（强制调试模式）。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation>将 SQL 查询消息限制为指定的&lt;数据库&gt;。</translation>
+      <translation>将 SQL 查询消息限制为指定的 &lt;数据库&gt;。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>

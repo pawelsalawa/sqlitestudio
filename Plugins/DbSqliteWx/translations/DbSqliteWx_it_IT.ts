@@ -39,7 +39,7 @@
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
       <translation>Dichiarazioni PRAGMA per personalizzare la configurazione di SQLite3 Cifrature multiple, come iterazioni KDF, modalità legacy, ecc.
-Verranno eseguiti a ogni apertura del database.
+Verranno eseguite dopo ogni apertura del database.
 Vedi la documentazione per SQLite3 Cifratori Multipli per i dettagli.</translation>
     </message>
   </context>

@@ -21,7 +21,7 @@
     <message>
       <location filename="../cli.cpp" line="253"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation>通过命令行参数传入的数据库(%1)已在列表中，名为：%2</translation>
+      <translation>通过命令行参数传入的数据库（%1）已在列表中，名为：%2</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="260"/>
@@ -62,7 +62,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation>添加指定&lt;路径&gt;的数据库到数据库列表，用指定的&lt;名称&gt;。&lt;名称&gt;是您之后可以用来引用它的名称。选择一个不重复的名称。查阅已在数据库列表中的数据库，请用 %1 命令。</translation>
+      <translation>添加指定 &lt;路径&gt; 的数据库到数据库列表，用指定的 &lt;名称&gt;。&lt;名称&gt; 是您之后可以用来引用它的名称。选择一个不重复的名称。查阅已在数据库列表中的数据库，请用 %1 命令。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
@@ -97,7 +97,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>非常类似 Unix 和 Windows 系统中的 &apos;cd&apos; 命令。需要传入一个&lt;路径&gt;参数，因此调用 %1 将始终导致目录的更改。 要了解当前工作目录，请使用 %2 命令并使用 %3 命令列出当前工作目录的内容。</translation>
+      <translation>非常类似 Unix 和 Windows 系统中的 &apos;cd&apos; 命令。需要传入一个 &lt;路径&gt; 参数，然后调用 %1 将始终 cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>关闭数据库连接。如果数据库已关闭，什么也不做。如果提供了&lt;名称&gt;，则表示需要关闭的数据库的名称(见 %1 命令的结果)。如果没有提供&lt;名称&gt;。则关闭当前操作的数据库(详见 %2 的帮助)。</translation>
+      <translation>关闭数据库连接。如果数据库已关闭，什么也不做。如果提供了 &lt;名称&gt;，则表示需要关闭的数据库的名称（见 %1 命令的结果）。如果没有提供 &lt;名称&gt;。则关闭当前操作的数据库（详见 %2 帮助）。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>列出在 SQLiteStudio 中注册的数据库的列表。列表中的每个数据库都可以处于打开或关闭状态，用 %1 查看状态。 当前工作数据库(又名默认数据库)也在列表中，在它名字的开头用&apos;*&apos;标记。请参阅 %2 命令的帮助以了解默认数据库。</translation>
+      <translation>列出在 SQLiteStudio 中注册的数据库的列表。. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</translation>
     </message>
   </context>
   <context>
@@ -279,7 +279,7 @@ Call %2 to see list of all databases.</source>
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
       <translation>这非常类似 Windows 中的 &apos;dir&apos; 命令与 Unix 中的 &apos;ls&apos; 命令。
 
-可以传入一个带有通配符的&lt;模式&gt;来过滤输出内容。</translation>
+可以传入一个带有通配符的 &lt;模式&gt; 来过滤输出内容。</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
@@ -297,7 +297,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation>退出本程序。设置已存储在配置文件，将在下一次启动时恢复。</translation>
+      <translation>退出本程序。设置已被存储在配置文件并且会在下一次启动时恢复。</translation>
     </message>
   </context>
   <context>
@@ -315,10 +315,10 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-      <translation>使用 %1 了解 SQLiteStudio 的命令行接口(CLI)所支持的特定命令。
+      <translation>使用 %1 了解 SQLiteStudio 的命令行接口（CLI）所支持的特定命令。
 输入 %2 不带任何参数来查看支持的命令列表。
 
-传入&lt;命令&gt;名称时，您可以跳过特殊的前缀字符(&apos;%3&apos;)。
+传入 &lt;名称&gt; 名称时，您可以跳过特殊的前缀字符（&apos;%3&apos;）。
 
 您可以为任何命令指定 &apos;--help&apos; 选项并执行来查看特定命令的帮助。另一种方法：%1 &lt;命令&gt;。</translation>
     </message>
@@ -341,7 +341,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
       <source>Usage: %1%2</source>
-      <translation>用法：%1%2</translation>
+      <translation>用法： %1%2</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
@@ -433,20 +433,20 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>调用不提供参数时，列出当前的查询结果输出格式。传入&lt;模式&gt;时，按提供的参数更改模式。支持的模式如下：
+      <translation>调用不提供参数时，列出当前的查询结果输出格式。传入 &lt;mode&gt; 时，按提供的参数更改模式。支持的模式如下：
 - CLASSIC - 经典：列使用逗号分隔，不对齐。
 - FIXED   - 固定：所有列使用同等的列宽，始终按终端窗口宽度适配，可能裁剪列中的数据。
-- COLUMNS - 列：类似 FIXED，但更智能(不适合大型结果集，详见下文)。
+- COLUMNS - 列：类似 FIXED，但更智能（不适合大型结果集，详见下文）。
 - ROW     - 行：每个行的每个列都显示为一行，因此能显示完整的数据。
 
-CLASSIC 模式适合查看完整的数据而不为每个列浪费行数。每行输出会为每个列显示完整的数据，因此各输出行的列可能不会对齐。CLASSIC 模式不关心终端(控制台)窗口的宽度，因此如果列的值比窗口宽度还长，会自动折行到下一行显示。
+CLASSIC 模式适合查看完整的数据而不为每个列浪费行数。每行输出会为每个列显示完整的数据，因此各输出行的列可能不会对齐。CLASSIC 模式不关心终端（控制台）窗口的宽度，因此如果列的值比窗口宽度还长，会自动折行到下一行显示。
 
 FIXED 模式提供更美观的数据展示，但不提供长数据的完整值。各列会彼此对齐，使输出形成一个美观的表格。列宽度根据控制台窗口的宽度及列数计算。
 
-COLUMNS 模式类似 FIXED 模式，但会智能将短值的列更窄，长值的列更长。首先收缩最长标题的列(因此列名称会被裁切)，然后是最长值的列，直至所有列的总计宽度适合终端窗口。
+COLUMNS 模式类似 FIXED 模式，但会智能将短值的列更窄，长值的列更长。首先收缩最长标题的列（因此列名称会被裁切），然后是最长值的列，直至所有列的总计宽度适合终端窗口。
 注意！COLUMNS 模式需一次性读取查询的全部结果以评估列的宽度，因此对大型数据集使用此模式存在风险，它会将整个结果集加载到内存！
 
-ROW 模式适合没有太多行且想要查看完整值的需求。该模式会为每个列输出一行，所以只有 1 个数据行但有 10 个数据列的数据会输出 10 行；而如果有 10 个数据行，输出会产生 100 行(及每个数据行之间还会有一行间隔)。</translation>
+ROW 模式适合没有太多行且想要查看完整值的需求。该模式会为每个列输出一行，所以只有 1 个数据行但有 10 个数据列的数据会输出 10 行；而如果有 10 个数据行，输出会产生 100 行（及每个数据行之间还会有一行间隔）。</translation>
     </message>
   </context>
   <context>
@@ -464,7 +464,7 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>如果不传入任何参数，则会告知当前的 NULL 值表示方法(即查询结果中以什么代表 NULL 值)。如果提供了参数，则参数将作为新的代表 NULL 值的字符串。</translation>
+      <translation>如果不传入任何参数，则会告知当前的 NULL 值表示方法（即查询结果中以什么代表 NULL 值）。如果提供了参数，则参数将作为新的代表 NULL 值的字符串。</translation>
     </message>
   </context>
   <context>
@@ -497,7 +497,7 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation>打开到数据库的连接。如果不提供额外的参数，则打开到当前的默认数据库(详见 %1)的连接。如果提供一个参数，它可以是已注册的数据库的&lt;名称&gt;，也可以是要打开的数据库文件的&lt;路径&gt;。第二种情况下，&lt;路径&gt;将使用自动生成的名称临时注册到数据库列表，并在应用程序退出时从列表中消失。</translation>
+      <translation>打开到数据库的连接。如果不提供额外的参数，则打开到当前的默认数据库（详见 %1）的连接。如果提供一个参数，它可以是已注册的数据库的 &lt;name&gt;，也可以是要打开的数据库文件的 &lt;path&gt;。第二种情况下，&lt;path&gt; 将使用自动生成的名称临时注册到数据库列表，并在应用程序退出时从列表中消失。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
@@ -550,7 +550,7 @@ ROW 模式适合没有太多行且想要查看完整值的需求。该模式会�
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>从已注册数据库列表中移除名为&lt;名称&gt;的数据库。如果列表(见 %1 命令)中没有所指定的数据库 ，会给出错误消息。</translation>
+      <translation>从已注册数据库列表中移除名为 &lt;名称&gt; 的数据库。如果列表（见 %1 命令）中没有所指定的数据库 ，会给出错误消息。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -583,7 +583,7 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation>您每次在命令行提示符中输入 SQL 查询时会执行此命令。它负责在当前操作的数据库(详见 %1)上执行查询。专门执行此命令没有任何意义。您可以在命令行提示符中直接输入 SQL 查询，无需添加命令前缀。</translation>
+      <translation>您每次在命令行提示符中输入 SQL 查询时会执行此命令。它负责在当前操作的数据库（详见 %1）上执行查询。专门执行此命令没有任何意义。您可以在命令行提示符中直接输入 SQL 查询，无需添加命令前缀。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
@@ -613,7 +613,7 @@ Call %2 to see list of all databases.</source>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation>没有这样一个数据库：%1。使用 %2 查看已知的数据库列表。</translation>
+      <translation>没有这样一个数据库：%1。使用 %2 去查看已知的数据库列表。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
@@ -645,8 +645,7 @@ Call %2 to see list of all databases.</source>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation>列出指定的&lt;数据库&gt;或当前操作的数据库的表。注意，&lt;数据库&gt;应是已注册的数据库的名称(见 %1)。输出的列表同时包含已附加到被查询数据库的其他数据库的所有表。
-提供 -s 选项时，将同时列出系统表。</translation>
+      <translation>列出指定的 &lt;database&gt; 或当前操作的数据库的表。注意，&lt;database&gt; 应是已注册的数据库的名称（见 %1）。输出的列表同时包含已附加到被查询数据库的其他数据库的所有表。提供 -s 选项时，将同时列出系统表。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
@@ -699,9 +698,9 @@ When the -s option is given, then system tables are also listed.</source>
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation>列出数据库中的所有对象(表、索引、触发器和视图)为一个树。此树非常类似您在 SQLiteStudio 的图形用户界面(GUI)版本中看到的效果。
+      <translation>列出数据库中的所有对象（表、索引、触发器和视图）为一个树。此树非常类似您在 SQLiteStudio 的图形用户界面（GUI）版本中看到的效果。
 提供 -c 选项时，会同时在每个表下列出它的列。
-提供 -s 选项时，会同时列出系统对象(sqlite_* 表、自动增量索引等)。
+提供 -s 选项时，会同时列出系统对象（sqlite_* 表、自动增量索引等）。
 数据库参数为可选，如果提供则仅列出所给出的数据库。这不是数据库在列表中注册的名称，而是其在 SQLIte 数据库内部的名称，例如 &apos;main&apos;、&apos;temp&apos; 等。如果要列出列表中注册的其他数据库，先调用 %1 切换当前操作的数据库，然后再使用 %2 命令。</translation>
     </message>
   </context>
@@ -741,10 +740,10 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>更改当前操作的数据库至&lt;名称&gt;。如果&lt;名称&gt;数据库没有在本程序中注册，将给出错误消息并且什么也不做。
+      <translation>更改当前操作的数据库至 &lt;name&gt;。如果 &lt;name&gt; 数据库没有在本程序中注册，将给出错误消息并且什么也不做。
 
-什么是当前操作的数据库？
-当您输入一条 SQL 查询以期执行时，它会在默认数据库上执行，这也被称为当前操作(或称作业)的数据库。大多数与数据库相关的命令也在没有额外指明时使用默认数据库。当前的数据库会始终在命令行中标明。会始终有一个默认数据库，除非数据库列表为空。
+什么是当前操作的数据库。
+当您输入一条 SQL 查询以期执行时，它会在默认数据库上执行，这也被称为当前操作（或称作业）的数据库。大多数与数据库相关的命令也在没有额外指明时使用默认数据库。当前的数据库会始终在命令行中标明。会始终有一个默认数据库，除非数据库列表为空。
 
 有多种方式选择默认数据库。
 - 使用 %1 命令；

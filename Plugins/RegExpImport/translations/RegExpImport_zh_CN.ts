@@ -75,7 +75,7 @@
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
       <translation>&lt;p&gt;使用正则表达式的捕获组来表示要导入的部分。如果包含不想导入的捕获组，使用下方的“仅导入下列组”选项。
 
-您可以使用命名组特性并在下方的列表中引用。引用命名的捕获组：&lt;pre&gt;(?&amp;lt;组名&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
+您可以使用命名组特性并在下方的列表中引用。引用命名的捕获组：&lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="81"/>

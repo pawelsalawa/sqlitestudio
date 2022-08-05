@@ -29,22 +29,22 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation>, (逗号)</translation>
+      <translation>,（逗号）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation>; (分号)</translation>
+      <translation>;（分号）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation>\t (制表符)</translation>
+      <translation>\t（制表符）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation>  (空格)</translation>
+      <translation> （空格）</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
