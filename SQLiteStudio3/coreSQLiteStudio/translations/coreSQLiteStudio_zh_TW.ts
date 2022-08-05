@@ -215,7 +215,7 @@
       <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation>Error while dropping source view %1: %2
+      <translation type="unfinished">Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</translation>
     </message>
     <message>
@@ -273,22 +273,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation>Export plugin %1 doesn&apos;t support exporing query results.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation>Export plugin %1 doesn&apos;t support exporing tables.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-      <translation>Export plugin %1 doesn&apos;t support exporing databases.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="155"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-      <translation>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
+      <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
@@ -298,7 +298,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
-      <translation>Export to the file &apos;%1&apos; was successful.</translation>
+      <translation type="unfinished">Export to the file &apos;%1&apos; was successful.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
@@ -308,7 +308,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
-      <translation>Could not export to file %1. File cannot be open for writting.</translation>
+      <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
     </message>
   </context>
   <context>
@@ -321,28 +321,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../exportworker.cpp" line="203"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation>Error while counting data column width to export from query results: %1</translation>
+      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="347"/>
       <location filename="../exportworker.cpp" line="405"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-      <translation>Could not parse %1 in order to export it. It will be excluded from the export output.</translation>
+      <translation type="unfinished">Could not parse %1 in order to export it. It will be excluded from the export output.</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="609"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation>Error while reading data to export from table %1: %2</translation>
+      <translation type="unfinished">Error while reading data to export from table %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation>Error while counting data to export from table %1: %2</translation>
+      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation>Error while counting data column width to export from table %1: %2</translation>
+      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
     </message>
   </context>
   <context>
@@ -350,7 +350,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-      <translation>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
+      <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
@@ -360,7 +360,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-      <translation>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
+      <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
@@ -394,7 +394,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
-      <translation>Could not initialize text codec for exporting. Using default codec: %1</translation>
+      <translation type="unfinished">Could not initialize text codec for exporting. Using default codec: %1</translation>
     </message>
   </context>
   <context>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
     </message>
   </context>
   <context>
@@ -410,32 +410,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation>No columns provided by the import plugin.</translation>
+      <translation type="unfinished">No columns provided by the import plugin.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
       <source>Could not start transaction in order to import a data: %1</source>
-      <translation>Could not start transaction in order to import a data: %1</translation>
+      <translation type="unfinished">Could not start transaction in order to import a data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="53"/>
       <source>Could not commit transaction for imported data: %1</source>
-      <translation>Could not commit transaction for imported data: %1</translation>
+      <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
+      <translation type="unfinished">Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
+      <translation type="unfinished">Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation>Could not create table to import to: %1</translation>
+      <translation type="unfinished">Could not create table to import to: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -454,7 +454,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../importworker.cpp" line="172"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation>Could not import data row number %1. The row was ignored. Problem details: %2</translation>
+      <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
     </message>
   </context>
   <context>
@@ -462,22 +462,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="549"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
+      <translation type="unfinished">Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-      <translation>Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
+      <translation type="unfinished">Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="569"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation>Cannot load plugin %1. Error details: %2</translation>
+      <translation type="unfinished">Cannot load plugin %1. Error details: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="585"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation>Cannot load plugin %1 (error while initializing plugin).</translation>
+      <translation type="unfinished">Cannot load plugin %1 (error while initializing plugin).</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
@@ -653,7 +653,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation>A whitespace, a tab and a new line character.</translation>
+      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
@@ -683,7 +683,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation>If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
     </message>
   </context>
   <context>
@@ -704,7 +704,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation>Per step code</translation>
+      <translation type="unfinished">Per step code</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
