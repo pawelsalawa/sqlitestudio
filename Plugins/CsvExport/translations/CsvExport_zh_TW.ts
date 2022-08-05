@@ -6,12 +6,12 @@
     <message>
       <location filename="../CsvExport.ui" line="20"/>
       <source>Column names in first row</source>
-      <translation>第一列的欄位名稱</translation>
+      <translation>第一行是列名</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="30"/>
       <source>Column separator:</source>
-      <translation>資料行分隔符號：</translation>
+      <translation>列分隔符：</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="41"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../CsvExport.ui" line="51"/>
       <source>\t (tab)</source>
-      <translation>\t (Tab 鍵)</translation>
+      <translation>\t (製表符)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="56"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../CsvExport.ui" line="82"/>
       <source>Export NULL values as:</source>
-      <translation>匯出 NULL 值為：</translation>
+      <translation>NULL 值匯出為：</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="89"/>
@@ -51,7 +51,7 @@
     <message>
       <location filename="../csvexport.cpp" line="42"/>
       <source>Enter the custom separator character.</source>
-      <translation>設定自訂分隔字元</translation>
+      <translation>請輸入自訂的分隔符。</translation>
     </message>
   </context>
 </TS>
