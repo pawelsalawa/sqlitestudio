@@ -147,7 +147,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>src_prefix</name>
-            <value>C:/projects/sqlitestudio-master</value>
+            <value>C:/projects/sqlitestudio</value>
             <ruleList>
                 <compareText logic="equals" text="${env(INSTALLER_SRC_PREFIX)}" value=""/>
             </ruleList>
@@ -209,13 +209,13 @@
                         <platformTest type="windows"/>
                     </ruleList>
                 </associateWindowsFileExtension>
-				<actionGroup>
-					<explanation>Linux</explanation>
-					<actionList>
-						<writeFile>
-							<encoding>utf-8</encoding>
-							<path>${desktop_prefix}/SQLiteStudio.desktop</path>
-							<text>
+                <actionGroup>
+                    <explanation>Linux</explanation>
+                    <actionList>
+                        <writeFile>
+                            <encoding>utf-8</encoding>
+                            <path>${desktop_prefix}/SQLiteStudio.desktop</path>
+                            <text>
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -229,16 +229,16 @@ Type=Application
 Categories=Application;Development;Database
 MimeType=application/vnd.sqlite3
 							</text>
-						</writeFile>
-						<runProgram>
-							<program>xdg-mime</program>
-							<programArguments>default SQLiteStudio.desktop application/vnd.sqlite3</programArguments>
-						</runProgram>
-					</actionList>
-					<ruleList>
-						<platformTest type="linux"/>
-					</ruleList>
-				</actionGroup>
+                        </writeFile>
+                        <runProgram>
+                            <program>xdg-mime</program>
+                            <programArguments>default SQLiteStudio.desktop application/vnd.sqlite3</programArguments>
+                        </runProgram>
+                    </actionList>
+                    <ruleList>
+                        <platformTest type="linux"/>
+                    </ruleList>
+                </actionGroup>
             </actionList>
             <ruleList>
                 <isTrue value="${file_assoc}"/>
@@ -254,12 +254,12 @@ MimeType=application/vnd.sqlite3
                 <platformTest type="windows"/>
             </ruleList>
         </removeWindowsFileAssociation>
-		<deleteFile>
-			<path>${desktop_prefix}/SQLiteStudio.desktop</path>
+        <deleteFile>
+            <path>${desktop_prefix}/SQLiteStudio.desktop</path>
             <ruleList>
-				<platformTest type="linux"/>
+                <platformTest type="linux"/>
             </ruleList>
-		</deleteFile>
+        </deleteFile>
     </preUninstallationActionList>
     <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
     <createOsxBundleDmg>1</createOsxBundleDmg>
@@ -320,8 +320,14 @@ MimeType=application/vnd.sqlite3
                             <ordering>default</ordering>
                             <width>40</width>
                             <optionList>
-                                <option text="all users (requires root privileges)" value="all"/>
-                                <option text="local user only" value="local"/>
+                                <option text="all users (requires root privileges)" value="all">
+                                    <description></description>
+                                    <image></image>
+                                </option>
+                                <option text="local user only" value="local">
+                                    <description></description>
+                                    <image></image>
+                                </option>
                             </optionList>
                         </choiceParameter>
                     </parameterList>
@@ -350,8 +356,8 @@ MimeType=application/vnd.sqlite3
                 </booleanParameter>
             </parameterList>
             <ruleList>
-                 <platformTest negate="1" type="osx"/>
-	    </ruleList>
+                <platformTest negate="1" type="osx"/>
+            </ruleList>
         </parameterGroup>
         <directoryParameter>
             <name>installdir</name>
