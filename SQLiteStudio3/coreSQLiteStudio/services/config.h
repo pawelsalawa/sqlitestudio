@@ -3,8 +3,6 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "config_builder.h"
-#include "services/functionmanager.h"
-#include "collationmanager.h"
 #include "sqlitestudio.h"
 #include "common/utils.h"
 #include <QObject>

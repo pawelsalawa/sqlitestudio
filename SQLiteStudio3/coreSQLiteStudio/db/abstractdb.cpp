@@ -1,5 +1,5 @@
 #include "abstractdb.h"
-#include "services/dbmanager.h"
+#include "services/collationmanager.h"
 #include "common/utils.h"
 #include "asyncqueryrunner.h"
 #include "sqlresultsrow.h"
@@ -9,7 +9,6 @@
 #include "sqlerrorcodes.h"
 #include "services/notifymanager.h"
 #include "services/sqliteextensionmanager.h"
-#include "log.h"
 #include "parser/lexer.h"
 #include "common/compatibility.h"
 #include <QDebug>

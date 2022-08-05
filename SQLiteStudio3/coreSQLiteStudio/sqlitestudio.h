@@ -10,6 +10,7 @@
 
 class DbManager;
 class Config;
+class CollationManager;
 class QProcessEnvironment;
 class PluginManager;
 class QThreadPool;
@@ -29,6 +30,7 @@ class UpdateManager;
 #endif
 class ExtraLicenseManager;
 class SqliteExtensionManager;
+class Db;
 
 /** @file */
 
