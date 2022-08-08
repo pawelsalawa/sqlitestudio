@@ -4,7 +4,6 @@
 #include "asyncqueryrunner.h"
 #include "sqlresultsrow.h"
 #include "common/utils_sql.h"
-#include "services/config.h"
 #include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
 #include "services/notifymanager.h"

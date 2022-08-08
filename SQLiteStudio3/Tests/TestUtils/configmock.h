@@ -9,7 +9,6 @@ class ConfigMock : public Config
 {
     public:
         void init();
-        void cleanUp();
         const QString& getConfigDir();
         void beginMassSave();
         void commitMassSave();

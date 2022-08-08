@@ -610,10 +610,7 @@ QString ConfigImpl::getConfigPath()
 QString ConfigImpl::getLegacyConfigPath()
 {
 #ifdef Q_OS_WIN
-    if (QSysInfo::windowsVersion() & QSysInfo::WV_NT_based)
-        return SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
-    else
-        return SQLITESTUDIO->getEnv("HOME")+"/sqlitestudio";
+    return SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
 #else
     return SQLITESTUDIO->getEnv("HOME")+"/.config/sqlitestudio";
 #endif

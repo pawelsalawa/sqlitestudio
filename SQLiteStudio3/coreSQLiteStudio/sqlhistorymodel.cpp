@@ -16,8 +16,6 @@ QVariant SqlHistoryModel::data(const QModelIndex& index, int role) const
     if (role == Qt::TextAlignmentRole && (index.column() == 2 || index.column() == 3))
         return (int)(Qt::AlignRight|Qt::AlignVCenter);
 
-     QVariant d = QueryModel::data(index, role);
-
     return QueryModel::data(index, role);
 }
 

@@ -1,6 +1,7 @@
 #include "querymodel.h"
 #include "db/db.h"
 #include "common/unused.h"
+#include "db/sqlquery.h"
 
 QueryModel::QueryModel(Db* db, QObject *parent) :
     QAbstractTableModel(parent), db(db)
@@ -15,7 +16,7 @@ void QueryModel::refresh()
     beginResetModel();
     loadedRows.clear();
     SqlQueryPtr results = db->exec(query);
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
         loadedRows += row;
 
     columns = results->columnCount();

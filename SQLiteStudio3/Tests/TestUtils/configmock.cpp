@@ -4,10 +4,6 @@ void ConfigMock::init()
 {
 }
 
-void ConfigMock::cleanUp()
-{
-}
-
 const QString& ConfigMock::getConfigDir()
 {
     static const QString cfg;

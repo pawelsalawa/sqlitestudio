@@ -2,7 +2,6 @@
 #define COLLATIONMANAGER_H
 
 #include "coreSQLiteStudio_global.h"
-#include "common/global.h"
 #include <QList>
 #include <QSharedPointer>
 #include <QObject>

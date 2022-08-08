@@ -117,7 +117,7 @@ jobs:
               run: |
                 LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
                 REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
-                cp -P $REAL_LIBCRYPTO lib/$LIBCRYPTO
+                cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}

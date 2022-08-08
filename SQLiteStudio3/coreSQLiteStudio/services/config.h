@@ -113,7 +113,6 @@ class API_EXPORT Config : public QObject
         static void setAskUserForConfigDirFunc(const AskUserForConfigDirFunc& value);
 
         virtual void init() = 0;
-        virtual void cleanUp() = 0;
         virtual const QString& getConfigDir() const = 0;
         virtual QString getConfigFilePath() const = 0;
         virtual bool isInMemory() const = 0;

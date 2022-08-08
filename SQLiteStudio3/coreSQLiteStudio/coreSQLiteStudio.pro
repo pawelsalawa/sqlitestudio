@@ -69,6 +69,7 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
     returncode.cpp \
+    services/codesnippetmanager.cpp \
     services/config.cpp \
     common/nulldevice.cpp \
     parser/lexer_low_lev.cpp \
@@ -246,6 +247,7 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqlitenulls.h \
     parser/ast/sqlitewindowdefinition.h \
     returncode.h \
+    services/codesnippetmanager.h \
     services/config.h \
     common/nulldevice.h \
     parser/lexer_low_lev.h \
