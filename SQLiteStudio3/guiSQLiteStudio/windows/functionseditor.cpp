@@ -8,10 +8,8 @@
 #include "services/pluginmanager.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
-#include "dbtree/dbtreeitem.h"
 #include "iconmanager.h"
 #include "syntaxhighlighterplugin.h"
-#include "sqlitesyntaxhighlighter.h"
 #include "plugins/scriptingplugin.h"
 #include "common/userinputfilter.h"
 #include "selectabledbmodel.h"
@@ -19,6 +17,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QStyleFactory>
+#include <QSyntaxHighlighter>
 
 // TODO handle plugin loading/unloading to update editor state
 
@@ -142,13 +141,13 @@ void FunctionsEditor::init()
     model->setData(FUNCTIONS->getAllScriptFunctions());
 
     // Language plugins
-    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    for (ScriptingPlugin*& plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
         scriptingPlugins[plugin->getLanguage()] = plugin;
 
     ui->langCombo->addItems(scriptingPlugins.keys());
 
     // Syntax highlighting plugins
-    for (SyntaxHighlighterPlugin* plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
+    for (SyntaxHighlighterPlugin*& plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
         highlighterPlugins[plugin->getLanguageName()] = plugin;
 
     updateState();

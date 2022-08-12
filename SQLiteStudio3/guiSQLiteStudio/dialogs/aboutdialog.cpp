@@ -1,16 +1,17 @@
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
 #include "common/utils.h"
-#include "sqlitestudio.h"
 #include "iconmanager.h"
 #include "services/extralicensemanager.h"
 #include "services/pluginmanager.h"
 #include "formmanager.h"
 #include "iconmanager.h"
+#include "mainwindow.h"
 #include <QDebug>
 #include <QFile>
 #include <QApplication>
 #include <QClipboard>
+#include <QAction>
 
 AboutDialog::AboutDialog(InitialMode initialMode, QWidget *parent) :
     QDialog(parent),

@@ -6,6 +6,7 @@
 #include "datagrid/sqlqueryitem.h"
 #include "uiconfig.h"
 #include "common/datawidgetmapper.h"
+#include "iconmanager.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QResizeEvent>

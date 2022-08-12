@@ -15,6 +15,7 @@
 #include "parser/lexer.h"
 #include "common/compatibility.h"
 #include "mainwindow.h"
+#include "iconmanager.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>

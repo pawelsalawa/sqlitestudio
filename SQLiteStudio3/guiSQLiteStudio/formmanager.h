@@ -2,11 +2,13 @@
 #define FORMMANAGER_H
 
 #include "guiSQLiteStudio_global.h"
-#include "mainwindow.h"
 #include <QHash>
 #include <QString>
+#include <QWidget>
 
 class UiLoader;
+class Plugin;
+class PluginType;
 
 class GUI_API_EXPORT FormManager : public QObject
 {

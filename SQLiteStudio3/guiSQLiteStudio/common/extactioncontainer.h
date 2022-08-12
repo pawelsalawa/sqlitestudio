@@ -1,7 +1,6 @@
 #ifndef extactionCONTAINER_H
 #define extactionCONTAINER_H
 
-#include "iconmanager.h"
 #include "config_builder.h"
 #include "extactionprototype.h"
 #include <QString>
@@ -18,6 +17,7 @@ class QActionGroup;
 class QToolBar;
 class QSignalMapper;
 class QMenu;
+class Icon;
 
 #define CFG_SHORTCUTS_METANAME "Shortcuts"
 
@@ -238,7 +238,7 @@ void ExtActionContainer::removeAction(ExtActionPrototype* action, int toolbar)
         return;
 
     ActionDetails* dets = nullptr;
-    for (ActionDetails* d : extraActions[clsName][toolbar])
+    for (ActionDetails*& d : extraActions[clsName][toolbar])
     {
         if (d->action == action)
         {
@@ -262,7 +262,7 @@ QList<T*> ExtActionContainer::getInstances()
 {
     QList<T*> typedInstances;
     T* typedInstance = nullptr;
-    for (ExtActionContainer* instance : instances)
+    for (ExtActionContainer*& instance : instances)
     {
         typedInstance = dynamic_cast<T*>(instance);
         if (typedInstance)

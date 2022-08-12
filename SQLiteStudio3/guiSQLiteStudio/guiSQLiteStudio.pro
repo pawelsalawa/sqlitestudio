@@ -86,6 +86,8 @@ SOURCES +=\
     completer/completerview.cpp \
     dialogs/searchtextdialog.cpp \
     searchtextlocator.cpp \
+    windows/codesnippeteditor.cpp \
+    windows/codesnippeteditormodel.cpp \
     windows/tablewindow.cpp \
     windows/editorwindow.cpp \
     datagrid/sqltablemodel.cpp \
@@ -240,6 +242,8 @@ HEADERS  += mainwindow.h \
     completer/completerview.h \
     dialogs/searchtextdialog.h \
     searchtextlocator.h \
+    windows/codesnippeteditor.h \
+    windows/codesnippeteditormodel.h \
     windows/tablewindow.h \
     windows/editorwindow.h \
     datagrid/sqltablemodel.h \
@@ -350,6 +354,7 @@ FORMS    += mainwindow.ui \
     statusfield.ui \
     completer/completerwindow.ui \
     dialogs/searchtextdialog.ui \
+    windows/codesnippeteditor.ui \
     windows/tablewindow.ui \
     windows/editorwindow.ui \
     dialogs/columndialog.ui \

@@ -28,7 +28,7 @@ FunctionsEditorModel::FunctionsEditorModel(QObject *parent) :
 void FunctionsEditorModel::clearModified()
 {
     beginResetModel();
-    for (Function* func : functionList)
+    for (Function*& func : functionList)
         func->modified = false;
 
     listModified = false;
@@ -204,7 +204,7 @@ void FunctionsEditorModel::setData(const QList<FunctionManager::ScriptFunction*>
 {
     beginResetModel();
 
-    for (Function* functionPtr : functionList)
+    for (Function*& functionPtr : functionList)
         delete functionPtr;
 
     functionList.clear();
@@ -269,7 +269,7 @@ void FunctionsEditorModel::validateNames()
     StrHash<QList<int>> counter;
 
     int row = 0;
-    for (Function* func : functionList)
+    for (Function*& func : functionList)
     {
         func->valid &= true;
         counter[func->data.name] << row++;
@@ -332,7 +332,7 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 
 void FunctionsEditorModel::init()
 {
-    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    for (ScriptingPlugin*& plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
         langToIcon[plugin->getLanguage()] = QIcon(plugin->getIconPath());
 }
 

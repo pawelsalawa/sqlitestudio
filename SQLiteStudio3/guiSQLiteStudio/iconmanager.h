@@ -37,6 +37,8 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(CLEAR_HISTORY,                     "clear_history")
             DEF_ICON(CLEAR_LINEEDIT,                    "clear_lineedit")
             DEF_ICON(CLOSE,                             "close")
+            DEF_ICON(CODE_ASSISTANT,                    "code_assistant")
+            DEF_ICON(CODE_SNIPPET,                      "code_snippet")
             DEF_ICON(COLUMN,                            "column")
             DEF_ICON(COLUMN_CONSTRAINT,                 "column_constraint")
             DEF_ICO2(COLUMN_CONSTRAINT_ADD,             COLUMN_CONSTRAINT, PLUS)

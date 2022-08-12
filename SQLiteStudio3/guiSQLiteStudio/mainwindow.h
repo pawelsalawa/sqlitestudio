@@ -5,7 +5,6 @@
 #include "db/db.h"
 #include "ui_mainwindow.h"
 #include "mdiwindow.h"
-#include "services/updatemanager.h"
 #include "guiSQLiteStudio_global.h"
 #include <QMainWindow>
 #include <QHash>
@@ -33,6 +32,7 @@ class QLabel;
 class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
+class CodeSnippetEditor;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -71,6 +71,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             HIDE_STATUS_FIELD,
             OPEN_CONFIG,
             OPEN_DDL_HISTORY,
+            OPEN_SNIPPETS_EDITOR,
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
             OPEN_EXTENSION_MANAGER,
@@ -150,6 +151,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void closeNonSessionWindows();
         DdlHistoryWindow* openDdlHistory();
         FunctionsEditor* openFunctionEditor();
+        CodeSnippetEditor* openCodeSnippetEditor();
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
@@ -206,6 +208,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void openConfig();
         void openDdlHistorySlot();
         void openFunctionEditorSlot();
+        void openCodeSnippetsEditorSlot();
         void openCollationEditorSlot();
         void openExtensionManagerSlot();
         void exportAnything();

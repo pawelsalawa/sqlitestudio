@@ -1,7 +1,6 @@
 #ifndef FUNCTIONSEDITORMODEL_H
 #define FUNCTIONSEDITORMODEL_H
 
-#include "services/config.h"
 #include "services/functionmanager.h"
 #include "guiSQLiteStudio_global.h"
 #include <QIcon>

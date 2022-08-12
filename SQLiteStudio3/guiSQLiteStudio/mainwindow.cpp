@@ -36,6 +36,7 @@
 #include "style.h"
 #include "services/codeformatter.h"
 #include "common/compatibility.h"
+#include "windows/codesnippeteditor.h"
 #include "uiutils.h"
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -260,6 +261,7 @@ void MainWindow::createActions()
     createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL &editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL &functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_SNIPPETS_EDITOR, ICONS.CODE_SNIPPET, tr("Open code &snippets editor"), this, SLOT(openCodeSnippetsEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
@@ -395,6 +397,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_SQL_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_DDL_HISTORY]);
     toolsMenu->addAction(actionMap[OPEN_FUNCTION_EDITOR]);
+    toolsMenu->addAction(actionMap[OPEN_SNIPPETS_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
@@ -688,6 +691,11 @@ void MainWindow::openFunctionEditorSlot()
     openFunctionEditor();
 }
 
+void MainWindow::openCodeSnippetsEditorSlot()
+{
+    openCodeSnippetEditor();
+}
+
 void MainWindow::openCollationEditorSlot()
 {
     openCollationEditor();
@@ -923,6 +931,11 @@ DdlHistoryWindow* MainWindow::openDdlHistory()
 FunctionsEditor* MainWindow::openFunctionEditor()
 {
     return openMdiWindow<FunctionsEditor>();
+}
+
+CodeSnippetEditor* MainWindow::openCodeSnippetEditor()
+{
+    return openMdiWindow<CodeSnippetEditor>();
 }
 
 CollationsEditor* MainWindow::openCollationEditor()

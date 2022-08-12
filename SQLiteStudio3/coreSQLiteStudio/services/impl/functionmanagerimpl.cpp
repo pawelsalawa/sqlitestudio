@@ -384,7 +384,7 @@ void FunctionManagerImpl::loadFromConfig()
 
 void FunctionManagerImpl::clearFunctions()
 {
-    for (ScriptFunction* fn : functions)
+    for (ScriptFunction*& fn : functions)
         delete fn;
 
     functions.clear();

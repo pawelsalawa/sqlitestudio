@@ -5,6 +5,7 @@
 #include "uiconfig.h"
 #include "uiutils.h"
 #include "services/config.h"
+#include "services/codesnippetmanager.h"
 #include "iconmanager.h"
 #include "completer/completerwindow.h"
 #include "completionhelper.h"
@@ -520,6 +521,12 @@ void SqlEditor::updateCompleterPosition()
 
 void SqlEditor::completeSelected()
 {
+    if (completer->getMode() == CompleterWindow::SNIPPETS)
+    {
+        insertPlainText(CODESNIPPETS->getCodeByName(completer->getSnippetName()));
+        return;
+    }
+
     deletePreviousChars(completer->getNumberOfCharsToRemove());
 
     ExpectedTokenPtr token = completer->getSelected();
@@ -538,7 +545,7 @@ void SqlEditor::completeSelected()
 
 void SqlEditor::checkForAutoCompletion()
 {
-    if (!db || !autoCompletion || deletionKeyPressed || !richFeaturesEnabled)
+    if (!db || !autoCompletion || deletionKeyPressed || !richFeaturesEnabled || !CFG_CORE.CodeAssistant.AutoTrigger.get())
         return;
 
     Lexer lexer;

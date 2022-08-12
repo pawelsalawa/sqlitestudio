@@ -207,5 +207,7 @@
         <file>img/quit.png</file>
         <file>img/window_close_all_left.png</file>
         <file>img/window_close_all_right.png</file>
+        <file>img/code_assistant.png</file>
+        <file>img/code_snippet.png</file>
     </qresource>
 </RCC>

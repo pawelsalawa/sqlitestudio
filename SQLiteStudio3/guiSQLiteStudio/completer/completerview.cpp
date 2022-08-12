@@ -1,6 +1,9 @@
 #include "completerview.h"
 #include "completeritemdelegate.h"
+#include "sqleditor.h"
+#include <QKeySequence>
 #include <QMouseEvent>
+#include <QDebug>
 
 CompleterView::CompleterView(QWidget *parent) :
     QListView(parent)
@@ -46,6 +49,11 @@ void CompleterView::focusOutEvent(QFocusEvent* e)
 
 void CompleterView::keyPressEvent(QKeyEvent* e)
 {
+    QKeySequence hotkey = GET_SHORTCUTS_CATEGORY(SqlEditor).COMPLETE.get();
+    QKeySequence theKey = QKeySequence(e->key() | e->modifiers());
+    if (hotkey == theKey)
+        return;
+
     QString txt = e->text();
     if (!txt.isEmpty() && txt[0].isPrint())
     {

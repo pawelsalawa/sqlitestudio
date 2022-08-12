@@ -7,13 +7,12 @@
 #include "multieditorbool.h"
 #include "multieditorhex.h"
 #include "mainwindow.h"
-#include "common/unused.h"
+#include "iconmanager.h"
 #include "services/notifymanager.h"
 #include "services/pluginmanager.h"
 #include "multieditorwidgetplugin.h"
 #include "uiconfig.h"
 #include "dialogs/configdialog.h"
-#include "formview.h"
 #include "themetuner.h"
 #include "common/compatibility.h"
 #include <QVBoxLayout>
@@ -280,7 +279,7 @@ void MultiEditor::setDataType(const DataType& dataType)
 {
     this->dataType = dataType;
 
-    for (MultiEditorWidget* editorWidget : getEditorTypes(dataType))
+    for (MultiEditorWidget*& editorWidget : getEditorTypes(dataType))
         addEditor(editorWidget);
 
     showTab(0);
@@ -324,7 +323,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
     if (editorsOrder.contains(typeStr))
     {
         MultiEditorWidgetPlugin* plugin = nullptr;
-        for (const QString& editorPluginName : editorsOrder[typeStr].toStringList())
+        for (QString& editorPluginName : editorsOrder[typeStr].toStringList())
         {
             plugin = dynamic_cast<MultiEditorWidgetPlugin*>(PLUGINS->getLoadedPlugin(editorPluginName));
             if (!plugin)
@@ -371,7 +370,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
         return ed1.first < ed2.first;
     });
 
-    for (const EditorWithPriority& e : sortedEditors)
+    for (EditorWithPriority& e : sortedEditors)
         editors << e.second;
 
     return editors;
@@ -439,7 +438,7 @@ QVariant MultiEditor::getValueOmmitNull() const
 void MultiEditor::initAddTabMenu()
 {
     addTabMenu = new QMenu(addTabBtn);
-    for (MultiEditorWidgetPlugin* plugin : PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>())
+    for (MultiEditorWidgetPlugin*& plugin : PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>())
         addPluginToMenu(plugin);
 
     sortAddTabMenu();

@@ -1,5 +1,6 @@
 #include "multieditortext.h"
 #include "common/unused.h"
+#include "iconmanager.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>

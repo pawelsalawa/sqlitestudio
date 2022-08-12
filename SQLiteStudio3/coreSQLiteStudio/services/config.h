@@ -32,11 +32,16 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(QVariantList, Functions,               QVariantList())
         CFG_ENTRY(QVariantList, Collations,              QVariantList())
         CFG_ENTRY(QVariantList, Extensions,              QVariantList())
+        CFG_ENTRY(QVariantList, CodeSnippets,            QVariantList())
         CFG_ENTRY(QString,      BugReportUser,           QString())
         CFG_ENTRY(QString,      BugReportPassword,       QString())
         CFG_ENTRY(QString,      BugReportRecentTitle,    QString())
         CFG_ENTRY(QString,      BugReportRecentContents, QString())
         CFG_ENTRY(bool,         BugReportRecentError,    false)
+        CFG_ENTRY(bool,         DefaultSnippetsCreated,  false)
+    )
+    CFG_CATEGORY(CodeAssistant,
+        CFG_ENTRY(bool,         AutoTrigger,             true)
     )
 )
 

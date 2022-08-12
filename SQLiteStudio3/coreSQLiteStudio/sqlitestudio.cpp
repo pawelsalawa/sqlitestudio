@@ -1,5 +1,6 @@
 #include "sqlitestudio.h"
 #include "plugins/plugin.h"
+#include "services/codesnippetmanager.h"
 #include "services/pluginmanager.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
@@ -207,6 +208,16 @@ void SQLiteStudio::setExportManager(ExportManager* value)
     exportManager = value;
 }
 
+CodeSnippetManager* SQLiteStudio::getCodeSnippetManager() const
+{
+    return codeSnippetManager;
+}
+
+void SQLiteStudio::setCodeSnippetManager(CodeSnippetManager* newCodeSnippetManager)
+{
+    codeSnippetManager = newCodeSnippetManager;
+}
+
 int SQLiteStudio::getVersion() const
 {
     return sqlitestudioVersion;
@@ -370,6 +381,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     updateManager = new UpdateManager();
 #endif
     extraLicenseManager = new ExtraLicenseManager();
+    codeSnippetManager = new CodeSnippetManager(config);
 
     extraLicenseManager->addLicense("SQLiteStudio license (GPL v3)", ":/docs/licenses/sqlitestudio_license.txt");
     extraLicenseManager->addLicense("Fugue icons", ":/docs/licenses/fugue_icons.txt");

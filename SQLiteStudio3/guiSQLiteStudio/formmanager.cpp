@@ -1,7 +1,5 @@
 #include "formmanager.h"
-#include "services/config.h"
 #include "services/pluginmanager.h"
-#include "sqlitestudio.h"
 #include "uiloader.h"
 #include "common/unused.h"
 #include "common/global.h"

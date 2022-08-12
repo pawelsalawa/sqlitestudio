@@ -1,12 +1,9 @@
 #include "importdialog.h"
 #include "dblistmodel.h"
 #include "dbobjlistmodel.h"
-#include "common/widgetstateindicator.h"
 #include "uiutils.h"
 #include "common/widgetcover.h"
 #include "services/dbmanager.h"
-#include "services/pluginmanager.h"
-#include "sqlitestudio.h"
 #include "plugins/importplugin.h"
 #include "ui_importdialog.h"
 #include "configmapper.h"
@@ -14,6 +11,8 @@
 #include "common/utils.h"
 #include "uiconfig.h"
 #include "themetuner.h"
+#include "iconmanager.h"
+#include "mainwindow.h"
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>

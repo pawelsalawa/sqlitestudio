@@ -31,6 +31,7 @@ class UpdateManager;
 class ExtraLicenseManager;
 class SqliteExtensionManager;
 class Db;
+class CodeSnippetManager;
 
 /** @file */
 
@@ -127,6 +128,9 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* getExportManager() const;
         void setExportManager(ExportManager* value);
 
+        CodeSnippetManager* getCodeSnippetManager() const;
+        void setCodeSnippetManager(CodeSnippetManager* newCodeSnippetManager);
+
         int getVersion() const;
         QString getVersionString() const;
 
@@ -217,6 +221,7 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
+        CodeSnippetManager* codeSnippetManager = nullptr;
 #ifdef PORTABLE_CONFIG
         UpdateManager* updateManager = nullptr;
 #endif

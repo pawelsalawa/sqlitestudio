@@ -1320,7 +1320,7 @@ void CompletionHelper::initFunctions(Db* db)
     // Parse what we already have
     QSet<QString> handledSignatures;
     static_qstring(sigTpl, "%1_%2");
-    for (const QString& fn : sqlite3Functions)
+    for (QString& fn : sqlite3Functions)
     {
         int argStart = fn.lastIndexOf("(");
         int argEnd = fn.lastIndexOf(")");
@@ -1486,7 +1486,7 @@ void CompletionHelper::extractAvailableColumnsAndTables(const QString& database,
 
 void CompletionHelper::extractTableAliasMap()
 {
-    for (SelectResolver::Column column : selectAvailableColumns)
+    for (SelectResolver::Column& column : selectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1502,7 +1502,7 @@ void CompletionHelper::extractTableAliasMap()
     // Given the above, we can extract table aliases in an order from deepest
     // to shallowest, skipping any duplicates, becase the deeper alias is mentioned,
     // the higher is its priority.
-    for (SelectResolver::Column column : parentSelectAvailableColumns)
+    for (SelectResolver::Column& column : parentSelectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1524,7 +1524,7 @@ void CompletionHelper::extractCreateTableColumns()
         return;
 
     SqliteCreateTablePtr createTable = parsedQuery.dynamicCast<SqliteCreateTable>();
-    for (SqliteCreateTable::Column* col : createTable->columns)
+    for (SqliteCreateTable::Column*& col : createTable->columns)
         favoredColumnNames << col->name;
 }
 

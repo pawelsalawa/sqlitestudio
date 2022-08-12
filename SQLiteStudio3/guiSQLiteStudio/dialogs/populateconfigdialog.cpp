@@ -2,9 +2,9 @@
 #include "ui_populateconfigdialog.h"
 #include "plugins/populateplugin.h"
 #include "services/populatemanager.h"
-#include "sqlitestudio.h"
 #include "formmanager.h"
 #include "configmapper.h"
+#include "mainwindow.h"
 #include "uiutils.h"
 #include <QPushButton>
 #include <QDebug>

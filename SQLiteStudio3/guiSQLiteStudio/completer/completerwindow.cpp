@@ -4,16 +4,20 @@
 #include "common/unused.h"
 #include "sqleditor.h"
 #include "common/utils_sql.h"
+#include "services/codesnippetmanager.h"
+#include "sqlitestudio.h"
 #include <QKeyEvent>
+#include <QSignalMapper>
 #include <QListView>
+#include <QShortcut>
 #include <QDebug>
+#include <QListWidget>
 
 CompleterWindow::CompleterWindow(SqlEditor *parent) :
     QDialog(parent, Qt::FramelessWindowHint),
     ui(new Ui::CompleterWindow),
     sqlEditor(parent)
 {
-    ui->setupUi(this);
     init();
 }
 
@@ -24,6 +28,11 @@ CompleterWindow::~CompleterWindow()
 
 void CompleterWindow::init()
 {
+    ui->setupUi(this);
+
+    modeChangeShortcut = new QShortcut(GET_SHORTCUTS_CATEGORY(SqlEditor).COMPLETE.get(), this);
+    snippetSignalMapper = new QSignalMapper(this);
+
     model = new CompleterModel(this);
     ui->list->setModel(model);
     model->setCompleterView(ui->list);
@@ -36,7 +45,40 @@ void CompleterWindow::init()
     connect(ui->list, SIGNAL(backspace()), this, SIGNAL(backspacePressed()));
     connect(ui->list, SIGNAL(left()), this, SIGNAL(leftPressed()));
     connect(ui->list, SIGNAL(right()), this, SIGNAL(rightPressed()));
+    connect(modeChangeShortcut, SIGNAL(activated()), this, SLOT(modeChangeRequested()));
+    connect(ui->snippets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(snippetDoubleClicked(QListWidgetItem*)));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    connect(snippetSignalMapper, SIGNAL(mappedInt(int)), this, SLOT(snippetHotkeyPressed(int)));
+#else
+    connect(snippetSignalMapper, SIGNAL(mapped(int)), this, SLOT(snippetHotkeyPressed(int)));
+#endif
     reset();
+}
+
+void CompleterWindow::refreshSnippets()
+{
+    ui->snippets->clear();
+    for (QShortcut*& sc : snippetShortcuts)
+        delete sc;
+
+    snippetShortcuts.clear();
+
+    int i = 0;
+    for (CodeSnippetManager::CodeSnippet* snip : CODESNIPPETS->getSnippets())
+    {
+        ui->snippets->addItem(snip->name);
+        if (!snip->hotkey.isEmpty())
+        {
+            QShortcut* shortcut = new QShortcut(snip->hotkey, ui->snippets);
+            snippetShortcuts << shortcut;
+            snippetSignalMapper->setMapping(shortcut, i);
+            connect(shortcut, SIGNAL(activated()), snippetSignalMapper, SLOT(map()));
+        }
+        i++;
+    }
+
+    if (ui->snippets->count() > 0)
+        ui->snippets->setCurrentRow(0);
 }
 
 void CompleterWindow::reset()
@@ -110,7 +152,17 @@ bool CompleterWindow::immediateResolution()
     return false;
 }
 
-ExpectedTokenPtr CompleterWindow::getSelected()
+CompleterWindow::Mode CompleterWindow::getMode() const
+{
+    return static_cast<Mode>(ui->modeStack->currentIndex());
+}
+
+QString CompleterWindow::getSnippetName() const
+{
+    return ui->snippets->currentItem()->text();
+}
+
+ExpectedTokenPtr CompleterWindow::getSelected() const
 {
     QModelIndex current = ui->list->currentIndex();
     if (!current.isValid())
@@ -228,10 +280,42 @@ void CompleterWindow::currentRowChanged(const QModelIndex& current, const QModel
     ui->status->showMessage(getStatusMsg(current));
 }
 
+void CompleterWindow::modeChangeRequested()
+{
+    ui->modeStack->setCurrentIndex((ui->modeStack->currentIndex() + 1) % ui->modeStack->count());
+
+    switch (ui->modeStack->currentIndex())
+    {
+        case SNIPPETS:
+            ui->status->showMessage(tr("Insert a code snippet"));
+            refreshSnippets();
+            break;
+        case CODE:
+            ui->status->showMessage(getStatusMsg(ui->list->currentIndex()));
+            break;
+        }
+}
+
+void CompleterWindow::snippetHotkeyPressed(int index)
+{
+    ui->snippets->setCurrentRow(index);
+    accept();
+}
+
+void CompleterWindow::snippetDoubleClicked(QListWidgetItem* item)
+{
+    UNUSED(item);
+    accept();
+}
+
 void CompleterWindow::showEvent(QShowEvent*e)
 {
+    ui->modeStack->setCurrentIndex(0);
     QDialog::showEvent(e);
 
     // A hack for Gnome3 to give this widget a focus. Harmless for others.
     ui->list->activateWindow();
+
+    // Refresh hotkey if changed
+    modeChangeShortcut->setKey(GET_SHORTCUTS_CATEGORY(SqlEditor).COMPLETE.get());
 }
