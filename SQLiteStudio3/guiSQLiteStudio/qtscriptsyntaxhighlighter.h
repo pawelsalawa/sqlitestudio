@@ -56,6 +56,7 @@ class GUI_API_EXPORT JavaScriptHighlighterPlugin : public BuiltInPlugin, public 
             EXPRESSION
         };
 
+        bool init();
         QString getLanguageName() const;
         QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const;
         void refreshFormats();

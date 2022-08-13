@@ -413,6 +413,12 @@ void JavaScriptSyntaxHighlighter::highlightTemplateExpressions(const QString& te
     }
 }
 
+bool JavaScriptHighlighterPlugin::init()
+{
+    refreshFormats();
+    return true;
+}
+
 QString JavaScriptHighlighterPlugin::getLanguageName() const
 {
     return QStringLiteral("JavaScript");

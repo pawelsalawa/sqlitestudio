@@ -383,6 +383,12 @@ int TextBlockData::Parenthesis::operator==(const TextBlockData::Parenthesis& oth
     return other.position == position && other.character == character;
 }
 
+bool SqliteHighlighterPlugin::init()
+{
+    refreshFormats();
+    return true;
+}
+
 QString SqliteHighlighterPlugin::getLanguageName() const
 {
     return "SQL";

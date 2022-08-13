@@ -1084,12 +1084,6 @@ void ConfigDialog::adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors)
         configMapper->applyConfigDefaultValueToWidget(w);
 }
 
-void ConfigDialog::initPreviewEditorsForSyntaxHighlighters()
-{
-    for (SyntaxHighlighterPlugin*& plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
-        highlighterPluginLoaded(plugin);
-}
-
 void ConfigDialog::highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin)
 {
     QPlainTextEdit* editor = nullptr;
@@ -1150,7 +1144,6 @@ QList<QWidget*> ConfigDialog::prepareCodeSyntaxColorsForStyle()
 void ConfigDialog::initColors()
 {
     CFG_UI.Colors.begin();
-    initPreviewEditorsForSyntaxHighlighters();
     connect(configMapper, &ConfigMapper::modified,
             [this](QWidget* widget)
             {

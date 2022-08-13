@@ -174,6 +174,7 @@ class GUI_API_EXPORT SqliteHighlighterPlugin : public BuiltInPlugin, public Synt
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
+        bool init();
         QString getLanguageName() const;
         QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const;
         void refreshFormats();

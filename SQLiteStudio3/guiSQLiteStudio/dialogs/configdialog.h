@@ -102,7 +102,6 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void colorChanged();
         QList<QWidget*> prepareCodeSyntaxColorsForStyle();
         void adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors);
-        void initPreviewEditorsForSyntaxHighlighters();
         void highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin);
         void highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin);
 
