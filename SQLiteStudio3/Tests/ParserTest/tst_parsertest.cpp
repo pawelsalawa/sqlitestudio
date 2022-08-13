@@ -62,6 +62,8 @@ class ParserTest : public QObject
         void testUpdateFrom();
         void testStringAsTableId();
         void testJsonPtrOp();
+        void testUnfinishedSelectWithAliasForCompleter();
+        void testUnfinishedSelectWithAliasStrict();
 };
 
 ParserTest::ParserTest()
@@ -682,6 +684,22 @@ void ParserTest::testJsonPtrOp()
     bool res = parser3->parse(sql);
     QVERIFY(res);
     QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testUnfinishedSelectWithAliasForCompleter()
+{
+    QString sql = "select * from a1 x where x.";
+    bool res = parser3->parse(sql, true);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+}
+
+void ParserTest::testUnfinishedSelectWithAliasStrict()
+{
+    QString sql = "select * from a1 x where x.";
+    bool res = parser3->parse(sql);
+    QVERIFY(!res);
+    QVERIFY(!parser3->getErrors().isEmpty());
 }
 
 void ParserTest::initTestCase()

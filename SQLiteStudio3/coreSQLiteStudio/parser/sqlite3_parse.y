@@ -1627,8 +1627,8 @@ exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
             ID_TAB. [IN]                    {}
 exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
-exprx ::= tnm DOT ID_TAB|ID_COL.             {}
-exprx ::= tnm DOT nm DOT ID_COL.             {}
+exprx ::= tnm DOT ID_TAB|ID_COL.            {}
+exprx ::= tnm DOT nm DOT ID_COL.            {}
 exprx ::= expr COLLATE ID_COLLATE.          {}
 exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
@@ -1667,6 +1667,19 @@ exprx(X) ::= tnm(N1) DOT nm(N2).            {
                                                 delete N2;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= tnm(N1) DOT.                   {
+                                                X = new SqliteExpr();
+                                                objectForTokens = X;
+                                                if (N1->isName())
+                                                {
+                                                    X->initId(N1->toName(), QString());
+                                                    parserContext->minorErrorAfterLastToken("Syntax error <expr>");
+                                                }
+                                                else
+                                                    parserContext->errorAtToken("Syntax error <expected name>", -3);
+
+                                                delete N1;
+                                            }
 exprx(X) ::= tnm(N1) DOT nm(N2) DOT nm(N3). {
                                                 X = new SqliteExpr();
 												if (N1->isName())
@@ -1678,6 +1691,20 @@ exprx(X) ::= tnm(N1) DOT nm(N2) DOT nm(N3). {
                                                 delete N2;
                                                 delete N3;
                                                 objectForTokens = X;
+                                            }
+exprx(X) ::= tnm(N1) DOT nm(N2) DOT.        {
+                                                X = new SqliteExpr();
+                                                objectForTokens = X;
+                                                if (N1->isName())
+                                                {
+                                                    X->initId(N1->toName(), *(N2), QString());
+                                                    parserContext->minorErrorAfterLastToken("Syntax error <expr>");
+                                                }
+                                                else
+                                                    parserContext->errorAtToken("Syntax error <expected name>", -5);
+
+                                                delete N1;
+                                                delete N2;
                                             }
 exprx(X) ::= VARIABLE(V).                   {
                                                 X = new SqliteExpr();
