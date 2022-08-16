@@ -10,6 +10,7 @@
 #include <QSortFilterProxyModel>
 #include <QItemSelection>
 #include <QDesktopServices>
+#include <QStyleFactory>
 
 CodeSnippetEditor::CodeSnippetEditor(QWidget *parent) :
     MdiChild(parent),
