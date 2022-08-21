@@ -28,6 +28,8 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
         QAction* getTaskByWindow(MdiWindow* window);
         QList<MdiWindow*> getWindows() const;
         QList<MdiChild*> getMdiChilds() const;
+        void enforceTaskSelectionAfterWindowClose(QAction* task);
+        void enforceCurrentTaskSelectionAfterWindowClose();
 
         template<class T>
         QList<T*> getMdiChilds() const;
@@ -38,6 +40,7 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
         TaskBar* taskBar = nullptr;
         QHash<QAction*,MdiWindow*> actionToWinMap;
         QHash<MdiWindow*,QAction*> winToActionMap;
+        QAction* taskToSelectAfterWindowClose = nullptr;
 
     signals:
         void windowListChanged();

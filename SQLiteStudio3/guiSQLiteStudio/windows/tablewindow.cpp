@@ -755,6 +755,7 @@ void TableWindow::checkIfTableDeleted(const QString& database, const QString& ob
     if (object.compare(table, Qt::CaseInsensitive) == 0)
     {
         dbClosedFinalCleanup();
+        MDIAREA->enforceCurrentTaskSelectionAfterWindowClose();
         getMdiWindow()->close();
     }
 }

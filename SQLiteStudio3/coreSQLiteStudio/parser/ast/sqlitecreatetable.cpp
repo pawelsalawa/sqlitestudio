@@ -77,7 +77,7 @@ QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getConstraints(SqliteCr
 
 SqliteStatement* SqliteCreateTable::getPrimaryKey() const
 {
-    for (Constraint* constr : getConstraints(Constraint::PRIMARY_KEY))
+    for (Constraint*& constr : getConstraints(Constraint::PRIMARY_KEY))
         return constr;
 
     Column::Constraint* colConstr = nullptr;
@@ -116,7 +116,7 @@ QStringList SqliteCreateTable::getPrimaryKeyColumns() const
 
 SqliteCreateTable::Column* SqliteCreateTable::getColumn(const QString& colName)
 {
-    for (Column* col : columns)
+    for (Column*& col : columns)
     {
         if (col->name.compare(colName, Qt::CaseInsensitive) == 0)
             return col;
@@ -578,7 +578,7 @@ bool SqliteCreateTable::Constraint::doesAffectColumn(const QString& columnName)
 int SqliteCreateTable::Constraint::getAffectedColumnIdx(const QString& columnName)
 {
     int i = 0;
-    for (SqliteIndexedColumn* idxCol : indexedColumns)
+    for (SqliteIndexedColumn*& idxCol : indexedColumns)
     {
         if (idxCol->name.compare(columnName, Qt::CaseInsensitive) == 0)
             return i;

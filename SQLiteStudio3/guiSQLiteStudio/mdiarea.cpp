@@ -90,6 +90,16 @@ QList<MdiChild*> MdiArea::getMdiChilds() const
     return childs;
 }
 
+void MdiArea::enforceTaskSelectionAfterWindowClose(QAction* task)
+{
+    taskToSelectAfterWindowClose = task;
+}
+
+void MdiArea::enforceCurrentTaskSelectionAfterWindowClose()
+{
+    enforceTaskSelectionAfterWindowClose(getTaskBar()->getActiveTask());
+}
+
 QList<MdiWindow*> MdiArea::getWindowsToTile() const
 {
     QList<MdiWindow*> list;
@@ -125,7 +135,11 @@ void MdiArea::windowDestroyed(MdiWindow* window)
     QAction* taskToSelect = nullptr;
     if (!MAINWINDOW->isClosingApp())
     {
-        taskToSelect = taskBar->getNextTask(action);
+        taskToSelect = taskToSelectAfterWindowClose;
+        taskToSelectAfterWindowClose = nullptr;
+        if (!taskToSelect)
+            taskToSelect = taskBar->getNextTask(action);
+
         if (!taskToSelect)
             taskToSelect = taskBar->getPrevTask(action);
     }

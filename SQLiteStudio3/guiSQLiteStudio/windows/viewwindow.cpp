@@ -725,6 +725,7 @@ void ViewWindow::checkIfViewDeleted(const QString& database, const QString& obje
     if (object.compare(view, Qt::CaseInsensitive) == 0)
     {
         dbClosedFinalCleanup();
+        MDIAREA->enforceCurrentTaskSelectionAfterWindowClose();
         getMdiWindow()->close();
     }
 }
