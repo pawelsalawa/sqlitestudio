@@ -220,12 +220,12 @@ void FormatCreateTableConstraint::formatInternal()
     {
         case SqliteCreateTable::Constraint::PRIMARY_KEY:
         {
-            withKeyword("PRIMARY").withKeyword("KEY").withParDefLeft().withStatementList(constr->indexedColumns).withParDefRight();
+            withKeyword("PRIMARY").withKeyword("KEY").withParDefLeft().withStatementList(constr->indexedColumns);
 
             if (constr->autoincrKw)
                 withKeyword("AUTOINCREMENT");
 
-            withConflict(constr->onConflict);
+            withParDefRight().withConflict(constr->onConflict);
             break;
         }
         case SqliteCreateTable::Constraint::UNIQUE:

@@ -618,12 +618,12 @@ TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents()
     {
         case SqliteCreateTable::Constraint::PRIMARY_KEY:
         {
-            builder.withKeyword("PRIMARY").withSpace().withKeyword("KEY").withSpace().withParLeft().withStatementList(indexedColumns).withParRight();
+            builder.withKeyword("PRIMARY").withSpace().withKeyword("KEY").withSpace().withParLeft().withStatementList(indexedColumns);
 
             if (autoincrKw)
                 builder.withSpace().withKeyword("AUTOINCREMENT");
 
-            builder.withConflict(onConflict);
+            builder.withParRight().withConflict(onConflict);
             break;
         }
         case SqliteCreateTable::Constraint::UNIQUE:
