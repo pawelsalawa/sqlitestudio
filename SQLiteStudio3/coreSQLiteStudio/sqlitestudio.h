@@ -228,20 +228,21 @@ class API_EXPORT SQLiteStudio : public QObject
         ExtraLicenseManager* extraLicenseManager = nullptr;
         QString currentLang;
         QStringList initialTranslationFiles;
+        bool finalCleanupDone = false;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);
         void pluginToBeUnloaded(Plugin* plugin,PluginType* pluginType);
         void pluginUnloaded(const QString& pluginName,PluginType* pluginType);
 
+    public slots:
         /**
          * @brief Cleans up all internal objects.
          *
-         * Deletes all internal objects. It's called from destructor.
+         * Deletes all internal objects. It's called from qApp signal or from UI window closing event.
          */
         void cleanUp();
 
-    public slots:
         /**
          * @brief Updates code formatter with available plugins.
          *

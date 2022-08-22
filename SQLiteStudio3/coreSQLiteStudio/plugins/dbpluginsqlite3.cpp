@@ -20,6 +20,7 @@ Db* DbPluginSqlite3::getInstance(const QString& name, const QString& path, const
         delete db;
         return nullptr;
     }
+    results.clear();
 
     db->closeQuiet();
     return db;

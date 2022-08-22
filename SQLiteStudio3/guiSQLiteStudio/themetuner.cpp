@@ -60,10 +60,26 @@ void ThemeTuner::darkThemeFix(QWizard* wizard)
 
 void ThemeTuner::registerQWizardThemeTuneRequired(const QString& styleName)
 {
+    if (MAINWINDOW->isClosingApp())
+        return;
+
+    getInstance()->registerQWizardThemeTuneRequiredInternal(styleName);
+}
+
+void ThemeTuner::registerQWizardThemeTuneRequiredInternal(const QString& styleName)
+{
     qwizardThemeTuneRequired << styleName;
 }
 
 void ThemeTuner::deregisterQWizardThemeTuneRequired(const QString& styleName)
+{
+    if (MAINWINDOW->isClosingApp())
+        return;
+
+    getInstance()->deregisterQWizardThemeTuneRequiredInternal(styleName);
+}
+
+void ThemeTuner::deregisterQWizardThemeTuneRequiredInternal(const QString& styleName)
 {
     qwizardThemeTuneRequired.removeOne(styleName);
 }

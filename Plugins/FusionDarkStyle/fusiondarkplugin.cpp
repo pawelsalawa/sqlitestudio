@@ -58,12 +58,12 @@ QPalette FusionDarkStyle::standardPalette() const
 FusionDarkPlugin::FusionDarkPlugin(QObject *parent)
     : QStylePlugin(parent)
 {
-    THEME_TUNER->registerQWizardThemeTuneRequired(STYLE_NAME);
+    ThemeTuner::registerQWizardThemeTuneRequired(STYLE_NAME);
 }
 
 FusionDarkPlugin::~FusionDarkPlugin()
 {
-    THEME_TUNER->deregisterQWizardThemeTuneRequired(STYLE_NAME);
+    ThemeTuner::deregisterQWizardThemeTuneRequired(STYLE_NAME);
 }
 
 QStyle *FusionDarkPlugin::create(const QString &key)

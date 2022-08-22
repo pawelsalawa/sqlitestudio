@@ -250,9 +250,13 @@ void MainWindow::closeEvent(QCloseEvent* event)
         return;
     }
 
+    saveSessionTimer->stop();
+    safe_delete(saveSessionTimer);
+
     closingApp = true;
     closeNonSessionWindows();
     saveSession(true);
+    SQLITESTUDIO->cleanUp();
     QMainWindow::closeEvent(event);
 }
 
@@ -624,7 +628,8 @@ void MainWindow::saveSession()
 
 void MainWindow::scheduleSessionSave()
 {
-    saveSessionTimer->start(saveSessionDelayMs);
+    if (saveSessionTimer)
+        saveSessionTimer->start(saveSessionDelayMs);
 }
 
 void MainWindow::closeNonSessionWindows()

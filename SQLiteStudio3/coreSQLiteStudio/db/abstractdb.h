@@ -203,6 +203,8 @@ class API_EXPORT AbstractDb : public Db
 
         virtual void initAfterOpen();
 
+        virtual bool flushWalInternal() = 0;
+
         void checkForDroppedObject(const QString& query);
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
@@ -420,6 +422,14 @@ class API_EXPORT AbstractDb : public Db
         void registerFunction(const RegisteredFunction& function);
 
         /**
+         * @brief Flushes any pending WAL log files into the db file.
+         *
+         * It actually makes a 'PRAGMA wal_checkpoint(FULL)' call on the database.
+         * It's called automatically upon closing the database.
+         */
+        void flushWal();
+
+        /**
          * @brief Connection state lock.
          *
          * It's locked whenever the connection state is changed or tested.
@@ -461,6 +471,8 @@ class API_EXPORT AbstractDb : public Db
          * and if there's not, emits asyncExecFinished() signal.
          */
         void asyncQueryFinished(AsyncQueryRunner* runner);
+
+        void appIsAboutToQuit();
 
     public slots:
         bool open();

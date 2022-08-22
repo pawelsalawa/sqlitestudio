@@ -170,7 +170,7 @@ void MdiWindow::closeEvent(QCloseEvent* e)
 
 void MdiWindow::dbAboutToBeDisconnected(Db* db, bool& deny)
 {
-    if (!db || getMdiChild()->getAssociatedDb() != db)
+    if (!isAssociatedWithDb(db))
         return;
 
     if (MAINWINDOW->isClosingApp())
@@ -184,14 +184,13 @@ void MdiWindow::dbAboutToBeDisconnected(Db* db, bool& deny)
 
 void MdiWindow::dbDisconnected(Db* db)
 {
-    if (!db || getMdiChild()->getAssociatedDb() != db)
+    if (!isAssociatedWithDb(db))
         return;
 
     if (MAINWINDOW->isClosingApp())
         return;
 
-    getMdiChild()->dbClosedFinalCleanup();
-    close();
+    closeWindow();
 }
 
 bool MdiWindow::confirmClose()
@@ -208,6 +207,21 @@ bool MdiWindow::confirmClose()
 
     return (msgBox.exec() == QMessageBox::Yes);
 }
+
+void MdiWindow::closeWindow()
+{
+    getMdiChild()->dbClosedFinalCleanup();
+    close();
+}
+
+bool MdiWindow::isAssociatedWithDb(Db* db)
+{
+    if (dbBeingClosed)
+        return true; // it was already confirmed by dbAboutToBeDisconnected() and any changes to the "db" member afterwards should not inflict decision change here
+
+    return db && getMdiChild()->getAssociatedDb() == db;
+}
+
 bool MdiWindow::getCloseWithoutSessionSaving() const
 {
     return closeWithoutSessionSaving;

@@ -161,6 +161,12 @@ bool DbAndroidInstance::closeInternal()
     return true;
 }
 
+bool DbAndroidInstance::flushWalInternal()
+{
+    // WAL mode is not fully supporeted by Android plugin.
+    return true;
+}
+
 bool DbAndroidInstance::registerCollationInternal(const QString& name)
 {
     // Unsupported by native Android driver

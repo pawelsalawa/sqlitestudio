@@ -33,6 +33,8 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
 
     private:
         bool confirmClose();
+        void closeWindow();
+        bool isAssociatedWithDb(Db* db);
 
         QPointer<QWidget> lastFocusedWidget;
         MdiArea* mdiArea = nullptr;

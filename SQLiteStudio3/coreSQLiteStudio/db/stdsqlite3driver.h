@@ -20,6 +20,10 @@
         static const int BUSY = UppercasePrefix##SQLITE_BUSY; \
         static const int ROW = UppercasePrefix##SQLITE_ROW; \
         static const int DONE = UppercasePrefix##SQLITE_DONE; \
+        static const int CHECKPOINT_PASSIVE = UppercasePrefix##SQLITE_CHECKPOINT_PASSIVE; \
+        static const int CHECKPOINT_FULL = UppercasePrefix##SQLITE_CHECKPOINT_FULL; \
+        static const int CHECKPOINT_RESTART = UppercasePrefix##SQLITE_CHECKPOINT_RESTART; \
+        static const int CHECKPOINT_TRUNCATE = UppercasePrefix##SQLITE_CHECKPOINT_TRUNCATE; \
         \
         typedef Prefix##sqlite3 handle; \
         typedef Prefix##sqlite3_stmt stmt; \
@@ -75,6 +79,8 @@
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
         static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
+        static int wal_checkpoint(handle* arg1, const char* arg2) {return Prefix##sqlite3_wal_checkpoint(arg1, arg2);} \
+        static int wal_checkpoint_v2(handle* a1, const char* a2, int a3, int* a4, int* a5) {return Prefix##sqlite3_wal_checkpoint_v2(a1, a2, a3, a4, a5);} \
         static int enable_load_extension(handle* arg1, int arg2) {return Prefix##sqlite3_enable_load_extension(arg1, arg2);} \
         static int load_extension(handle *arg1, const char *arg2, const char *arg3, char **arg4) {return Prefix##sqlite3_load_extension(arg1, arg2, arg3, arg4);} \
         static void* user_data(context* arg) {return Prefix##sqlite3_user_data(arg);} \
