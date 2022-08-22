@@ -14,7 +14,7 @@ void DbSqliteCipherInstance::initAfterOpen()
     QString key = connOptions[DbSqliteCipher::PASSWORD_OPT].toString();
     if (!key.isEmpty())
     {
-        res = exec(QString("PRAGMA key = '%1';").arg(key), Flag::NO_LOCK);
+        res = exec(QString("PRAGMA key = '%1';").arg(escapeString(key)), Flag::NO_LOCK);
         if (res->isError())
             qWarning() << "Error while defining SQLCipher key:" << res->getErrorText();
     }

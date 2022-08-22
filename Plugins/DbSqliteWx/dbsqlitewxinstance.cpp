@@ -30,7 +30,7 @@ void DbSqliteWxInstance::initAfterOpen()
     QString key = connOptions[DbSqliteWx::PASSWORD_OPT].toString();
     if (!key.isEmpty())
     {
-        res = exec(QString("PRAGMA key = '%1';").arg(key), Flag::NO_LOCK);
+        res = exec(QString("PRAGMA key = '%1';").arg(escapeString(key)), Flag::NO_LOCK);
         if (res->isError())
             qWarning() << "Error while defining WxSqlite3 key:" << res->getErrorText();
     }
