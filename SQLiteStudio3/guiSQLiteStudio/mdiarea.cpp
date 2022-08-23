@@ -137,7 +137,7 @@ void MdiArea::windowDestroyed(MdiWindow* window)
     {
         taskToSelect = taskToSelectAfterWindowClose;
         taskToSelectAfterWindowClose = nullptr;
-        if (!taskToSelect)
+        if (!taskToSelect || action == taskToSelect || !taskBar->getTasks().contains(taskToSelect))
             taskToSelect = taskBar->getNextTask(action);
 
         if (!taskToSelect)

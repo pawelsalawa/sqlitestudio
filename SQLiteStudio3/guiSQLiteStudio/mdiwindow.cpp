@@ -211,6 +211,7 @@ bool MdiWindow::confirmClose()
 void MdiWindow::closeWindow()
 {
     getMdiChild()->dbClosedFinalCleanup();
+    MDIAREA->enforceCurrentTaskSelectionAfterWindowClose();
     close();
 }
 
