@@ -23,7 +23,7 @@ StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QStri
     if (value.contains("\""))
         return withOther(wrapObjIfNeeded(value));
     else
-        return withOther(wrapObjName(value, NameWrapper::DOUBLE_QUOTE));
+        return withOther(wrapObjName(value, NameWrapper::DOUBLE_QUOTE), false);
 }
 
 StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, const QString& separator)
