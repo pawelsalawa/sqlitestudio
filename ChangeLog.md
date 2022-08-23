@@ -50,6 +50,7 @@
 - BUGFIX: #4386 Fixed handling database password with an apostrophe.
 - BUGFIX: #4369 WAL mode is now handled properly upon application quit or database disconnection.
 - BUGFIX: #4340 Fixed crash when populating two columns with random text.
+- BUGFIX: #4362 #4363 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.

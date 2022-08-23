@@ -41,8 +41,11 @@ bool doesObjectNeedWrapping(const QString& str)
     if (str.isEmpty())
         return true;
 
-    if (isObjWrapped(str))
-        return false;
+    // It used to return false if object name looked to be wrapped already,
+    // but actually name [abc] is proper name that needs to be wrapped (i.e. "[abc]").
+    // Bug reported for this was #4362
+    //if (isObjWrapped(str))
+    //    return false;
 
     if (isKeyword(str))
         return true;

@@ -272,12 +272,14 @@ QList<SelectResolver::Column> SchemaResolver::getViewColumnObjects(const QString
 
 SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &database, const QString &table)
 {
-    QString strippedName = stripObjName(table);
+    // The "table" name here used to be stripped with stripObjName(), but actually [abc] is a proper table name,
+    // that should not be stripped. Any names passed to SchemaResolver cannot be wrapped.
+
     QString dbName = getPrefixDb(database);
 
     // Create temp table to see columns.
-    QString newTable = db->getUniqueNewObjectName(strippedName);
-    QString origTable = wrapObjIfNeeded(strippedName);
+    QString newTable = db->getUniqueNewObjectName(table);
+    QString origTable = wrapObjIfNeeded(table);
     SqlQueryPtr tempTableRes = db->exec(QString("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;").arg(newTable, dbName, origTable), dbFlags);
     if (tempTableRes->isError())
         qWarning() << "Could not create temp table to identify virtual table columns of virtual table " << origTable << ". Error details:" << tempTableRes->getErrorText();
@@ -303,6 +305,9 @@ QString SchemaResolver::getObjectDdl(const QString& name, ObjectType type)
 
 QString SchemaResolver::getObjectDdl(const QString &database, const QString &name, ObjectType type)
 {
+    // The "name" here used to be stripped with stripObjName(), but actually [abc] is a proper object name,
+    // that should not be stripped. Any names passed to SchemaResolver cannot be wrapped.
+
     if (name.isNull())
         return QString();
 
@@ -310,13 +315,13 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     QString dbName = getPrefixDb(database);
 
     // In case of sqlite_master or sqlite_temp_master we have static definitions
-    QString lowerName = stripObjName(name).toLower();
+    QString lowerName = name.toLower();
     if (lowerName == "sqlite_master")
         return getSqliteMasterDdl(false);
     else if (lowerName == "sqlite_temp_master")
         return getSqliteMasterDdl(true);
     else if (lowerName.startsWith("sqlite_autoindex_"))
-        return getSqliteAutoIndexDdl(dbName, stripObjName(name));
+        return getSqliteAutoIndexDdl(dbName, name);
 
     // Standalone or temp table?
     QString targetTable = "sqlite_master";
