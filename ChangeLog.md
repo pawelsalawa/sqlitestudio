@@ -48,7 +48,8 @@
 - BUGFIX: #4447 Fixed AUTOINCREMENT generation of DDL statement for table-level PRIMARY KEY.
 - BUGFIX: #4418 Fixed current editor window deselection after dropping table/view with a query in that editor, which (that table/view) was open in another window, that got closed with the DROP statement.
 - BUGFIX: #4386 Fixed handling database password with an apostrophe.
-- BUGFIX: 
+- BUGFIX: #4369 WAL mode is now handled properly upon application quit or database disconnection.
+- BUGFIX: #4340 Fixed crash when populating two columns with random text.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
