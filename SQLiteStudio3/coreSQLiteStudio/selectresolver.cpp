@@ -1,9 +1,7 @@
 #include "selectresolver.h"
 #include "parser/token.h"
-#include "parser/lexer.h"
 #include "parser/keywords.h"
 #include "schemaresolver.h"
-#include "parser/ast/sqlitecreateview.h"
 #include "common/global.h"
 #include <QDebug>
 #include <QHash>
@@ -55,8 +53,8 @@ QList<QList<SelectResolver::Column>> SelectResolver::resolve(SqliteSelect *selec
 {
     errors.clear();
     extractCte(select);
-    QList<QList<SelectResolver::Column> > results;
-    for (SqliteSelect::Core* core : select->coreSelects)
+    QList<QList<SelectResolver::Column>> results;
+    for (SqliteSelect::Core*& core : select->coreSelects)
     {
         results << resolveCore(core);
         currentCoreResults.clear();
@@ -77,7 +75,7 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(Sq
     errors.clear();
     extractCte(select);
     QList<QList<SelectResolver::Column> > results;
-    for (SqliteSelect::Core* core : select->coreSelects)
+    for (SqliteSelect::Core*& core : select->coreSelects)
         results << resolveAvailableCoreColumns(core);
 
     return results;
@@ -169,12 +167,17 @@ const QStringList& SelectResolver::getErrors() const
     return errors;
 }
 
+QList<SelectResolver::Column> SelectResolver::sqliteResolveColumns(const QString& query)
+{
+    return sqliteResolveColumns(db, query, dbNameToAttach);
+}
+
 QList<SelectResolver::Column> SelectResolver::resolveCore(SqliteSelect::Core* selectCore)
 {
     if (selectCore->from)
         currentCoreSourceColumns = resolveJoinSource(selectCore->from);
 
-    for (SqliteSelect::Core::ResultColumn* resCol : selectCore->resultColumns)
+    for (SqliteSelect::Core::ResultColumn*& resCol : selectCore->resultColumns)
         resolve(resCol);
 
     if (selectCore->distinctKw)
@@ -319,7 +322,7 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
     bool foundAtLeastOne = false;
-    for (SelectResolver::Column column : currentCoreSourceColumns)
+    for (SelectResolver::Column column : qAsConst(currentCoreSourceColumns))
     {
         if (!resCol->table.isNull())
         {
@@ -361,7 +364,6 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
         else
             column.displayName = column.column;
 
-        column.originalColumn = resCol;
         currentCoreResults << column;
         foundAtLeastOne = true;
     }
@@ -378,7 +380,6 @@ void SelectResolver::resolveExpr(SqliteSelect::Core::ResultColumn *resCol)
         // Not a simple column, but some expression
         SelectResolver::Column column;
         column.alias = resCol->alias;
-        column.originalColumn = resCol;
         column.column = getResColTokensWithoutAlias(resCol).detokenize().trimmed();
         column.displayName = !resCol->alias.isNull() ? column.alias : column.column;
 
@@ -401,7 +402,6 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
     Column col;
     col.alias = resCol->alias;
     col.column = expr->column;
-    col.originalColumn = resCol;
     col.type = Column::COLUMN;
 
     // Display name
@@ -448,7 +448,7 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
 SelectResolver::Column SelectResolver::resolveRowIdColumn(SqliteExpr *expr)
 {
     // Looking for first source that can provide ROWID.
-    for (const Column& column : currentCoreSourceColumns)
+    for (Column& column : currentCoreSourceColumns)
     {
         if (column.table.isNull())
             continue; // ROWID cannot be related to source with no table
@@ -461,7 +461,7 @@ SelectResolver::Column SelectResolver::resolveRowIdColumn(SqliteExpr *expr)
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &columnName)
 {
-    for (const Column& column : currentCoreSourceColumns)
+    for (Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -473,7 +473,7 @@ SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &colu
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &table, const QString &columnName)
 {
-    for (const Column& column : currentCoreSourceColumns)
+    for (Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -488,7 +488,7 @@ SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &tabl
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &database, const QString &table, const QString &columnName)
 {
-    for (const Column& column : currentCoreSourceColumns)
+    for (Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -552,7 +552,7 @@ void SelectResolver::extractCte(SqliteSelect *select)
     if (!select->with)
         return;
 
-    for (SqliteWith::CommonTableExpression* cte : select->with->cteList)
+    for (SqliteWith::CommonTableExpression*& cte : select->with->cteList)
         cteList[cte->table] = cte;
 }
 
@@ -568,7 +568,7 @@ QList<SelectResolver::Column> SelectResolver::resolveJoinSource(SqliteSelect::Co
 {
     QList<SelectResolver::Column> columnSources;
     columnSources += resolveSingleSource(joinSrc->singleSource);
-    for (SqliteSelect::Core::JoinSourceOther* otherSrc : joinSrc->otherSources)
+    for (SqliteSelect::Core::JoinSourceOther*& otherSrc : joinSrc->otherSources)
         columnSources += resolveOtherSource(otherSrc);
 
     return columnSources;
@@ -589,7 +589,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
         return resolveTableFunctionColumns(joinSrc);
 
     if (isView(joinSrc->database, joinSrc->table))
-        return resolveView(joinSrc->database, joinSrc->table, joinSrc->alias);
+        return resolveView(joinSrc);
 
     if (joinSrc->database.isNull() && cteList.contains(joinSrc->table))
         return resolveCteColumns(joinSrc);
@@ -598,7 +598,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     QStringList columns = getTableColumns(joinSrc->database, joinSrc->table, joinSrc->alias);
     Column column;
     column.type = Column::COLUMN;
-    column.table = joinSrc->table;;
+    column.table = joinSrc->table;
     column.database = joinSrc->database;
     column.originalDatabase = resolveDatabase(joinSrc->database);
     if (!joinSrc->alias.isNull())
@@ -615,40 +615,25 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
 
 QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Core::SingleSource* joinSrc)
 {
-    SqliteWith::CommonTableExpression* cte = cteList[joinSrc->table];
-
-    Column column;
-    column.type = Column::COLUMN;
-    column.flags |= FROM_CTE_SELECT;
-    column.tableAlias = cte->table;
-
-    QList<Column> columnSources;
-
     static_qstring(cteSelectTpl, "WITH %1 SELECT * FROM %2");
+
+    SqliteWith::CommonTableExpression* cte = cteList[joinSrc->table];
     QString selectQuery = cte->detokenize();
-    QString query = cteSelectTpl.arg(selectQuery, cte->table);
-    QList<AliasedColumn> queryColumns = db->columnsForQuery(query);
-    if (queryColumns.isEmpty())
-    {
-        qWarning() << "Could not detect query columns. Probably due to db error:" << db->getErrorText();
-        return columnSources;
-    }
+    QString theQuery = cteSelectTpl.arg(selectQuery, cte->table);
+    QList<Column> columnSources = sqliteResolveColumns(theQuery);
 
-    for (const AliasedColumn& queryColumn : queryColumns)
+    for (Column& column : columnSources)
     {
-        if (!queryColumn.getDatabase().isNull())
-            column.database = resolveDatabase(queryColumn.getDatabase());
-        else
-            column.database = queryColumn.getDatabase();
-
-        column.table = queryColumn.getTable();
+        column.flags |= FROM_CTE_SELECT;
+        column.tableAlias = cte->table;
 
         // From CTE perspective, however the column is received as "result column name" from SQLite API
         // is what we report back to user of the CTE as available column. No matter if it's actual alias,
         // or simply name of a column.
-        column.column = queryColumn.getAlias();
-        column.displayName = queryColumn.getAlias();
-        columnSources << column;
+        column.column = column.displayName;
+
+        // Column aliases inside of CTE are disregarded, because they do not matter outside of CTE
+        column.alias = QString();
     }
 
     return columnSources;
@@ -703,16 +688,40 @@ QList<SelectResolver::Column> SelectResolver::resolveOtherSource(SqliteSelect::C
 
 QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *select)
 {
-    QList<Column> columnSources;
     Q_ASSERT(select->coreSelects.size() > 0);
 
     bool compound = (select->coreSelects.size() > 1);
 
     if (compound && !resolveMultiCore)
-        return columnSources;
+        return QList<Column>();
 
+    // SQLite API used for fully correct & precise resolution of source table, column and displayName.
+    QString coreQuery = select->detokenize();
+    QList<Column> columnSources = sqliteResolveColumns(coreQuery);
+
+    // Internal, recursive SelectResolver used for fine tuning the tableAlias and oldTableAliases of columns.
     SelectResolver internalResolver(db, query);
-    columnSources += internalResolver.resolve(select->coreSelects[0]);
+    QList<Column> columnSourcesFromInternal = internalResolver.resolve(select->coreSelects[0]);
+
+    if (columnSourcesFromInternal.size() == columnSources.size())
+    {
+        // Copy tableAlias and oldTableAliases from internal resolver.
+        QMutableListIterator<Column> it(columnSources);
+        QMutableListIterator<Column> intIt(columnSourcesFromInternal);
+        while (it.hasNext() && intIt.hasNext())
+        {
+            Column& col = it.next();
+            Column& intCol = intIt.next();
+            col.tableAlias = intCol.tableAlias;
+            col.oldTableAliases = intCol.oldTableAliases;
+        }
+    }
+    else
+    {
+        qCritical() << "Number of columns resolved by internal SchemaResolver is different than resolved by SQLite API:"
+                    << columnSourcesFromInternal.size() << "!=" << columnSources.size()
+                    << ", therefore table alias";
+    }
 
     if (compound)
     {
@@ -724,27 +733,47 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
     return columnSources;
 }
 
-QList<SelectResolver::Column> SelectResolver::resolveView(const QString& database, const QString& name, const QString& alias)
+QList<SelectResolver::Column> SelectResolver::resolveView(SqliteSelect::Core::SingleSource *joinSrc)
 {
-    QList<Column> results;
-    SqliteQueryPtr query = schemaResolver->getParsedObject(database, name, SchemaResolver::VIEW);
-    if (!query)
-    {
-        qDebug() << "Could not get parsed CREATE VIEW in SelectResolver::resolveView().";
-        return results;
-    }
-
-    SqliteCreateViewPtr createView = query.dynamicCast<SqliteCreateView>();
-    if (!createView)
-    {
-        qDebug() << "Parsed object not a CREATE VIEW as expected, but instead it's:" << sqliteQueryTypeToString(query->queryType);
-        return results;
-    }
-
-    results = resolveSubSelect(createView->select);
-    applySubSelectAlias(results, (!alias.isNull() ? alias : name));
-
+    static_qstring(columnSqlTpl, "SELECT * FROM %1 LIMIT 0");
+    QList<Column> results = sqliteResolveColumns(columnSqlTpl.arg(joinSrc->detokenize()));
+    applySubSelectAlias(results, (!joinSrc->alias.isNull() ? joinSrc->alias : joinSrc->table));
     return results;
+}
+
+QList<SelectResolver::Column> SelectResolver::sqliteResolveColumns(Db* db, const QString& query, const BiStrHash& dbNameToAttach)
+{
+    QList<Column> columnSources;
+    QList<AliasedColumn> queryColumns = db->columnsForQuery(query);
+    if (queryColumns.isEmpty())
+        qWarning() << "Could not detect query columns. Probably due to db error:" << db->getErrorText();
+
+    Column column;
+    for (const AliasedColumn& queryColumn : queryColumns)
+    {
+        if (!queryColumn.getDatabase().isNull())
+            column.database = dbNameToAttach.valueByRight(queryColumn.getDatabase(), queryColumn.getDatabase(), Qt::CaseInsensitive);
+        else
+            column.database = QString();
+
+        if (queryColumn.getTable().isNull())
+        {
+            column.type = Column::OTHER;
+            column.table = QString();
+            column.column = queryColumn.getAlias();
+        }
+        else
+        {
+            column.type = Column::COLUMN;
+            column.table = queryColumn.getTable();
+            column.column = queryColumn.getColumn();
+        }
+        column.displayName = queryColumn.getAlias();
+        column.alias = (column.column != column.displayName) ? column.displayName : QString();
+        columnSources << column;
+    }
+
+    return columnSources;
 }
 
 bool SelectResolver::isView(const QString& database, const QString& name)
@@ -796,10 +825,7 @@ void SelectResolver::applySubSelectAlias(QList<SelectResolver::Column>& columns,
 
 QString SelectResolver::resolveDatabase(const QString& database)
 {
-    if (dbNameToAttach.containsRight(database, Qt::CaseInsensitive))
-        return dbNameToAttach.valueByRight(database, Qt::CaseInsensitive);
-
-    return database;
+    return dbNameToAttach.valueByRight(database, database, Qt::CaseInsensitive);
 }
 
 bool SelectResolver::parseOriginalQuery()
@@ -823,16 +849,6 @@ bool SelectResolver::parseOriginalQuery()
 
     originalQueryParsed = theQuery.dynamicCast<SqliteSelect>();
     return true;
-}
-
-SelectResolver::Table::Table()
-{
-}
-
-SelectResolver::Table::Table(const SelectResolver::Table &other) :
-    database(other.database), originalDatabase(other.originalDatabase), table(other.table),
-    tableAlias(other.tableAlias), oldTableAliases(other.oldTableAliases), flags(other.flags)
-{
 }
 
 int SelectResolver::Table::operator ==(const SelectResolver::Table &other)

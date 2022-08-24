@@ -159,8 +159,7 @@ QString QueryGenerator::generateSelectFromSelect(Db* db, const QString& initialS
     static_qstring(tpl, "SELECT %1 FROM (%2)%3");
 
     // Resolve all columns of the select
-    SelectResolver resolver(db, initialSelect, dbNameToAttach);
-    QList<SelectResolver::Column> columns = resolver.resolveColumnsFromFirstCore();
+    QList<SelectResolver::Column> columns = SelectResolver::sqliteResolveColumns(db, initialSelect, dbNameToAttach);
 
     // Generate result columns
     QStringList resCols;

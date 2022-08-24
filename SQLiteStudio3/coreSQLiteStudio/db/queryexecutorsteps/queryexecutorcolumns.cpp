@@ -120,13 +120,10 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
     }
 
     if (isRowIdColumnAlias(resultColumn->alias))
-    {
         resultColumn->queryExecutorAlias = resultColumn->alias;
-    }
     else
-    {
         resultColumn->queryExecutorAlias = getNextColName();
-    }
+
     return resultColumn;
 }
 
@@ -135,7 +132,7 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
     QString colString = resultColumn->column;
-    if (col.aliasDefinedInSubQuery) // #2931
+    if (col.aliasDefinedInSubQuery) // #2819 (id from old tracker was 2931)
         colString = col.alias;
 
     if (!resultColumn->expression)

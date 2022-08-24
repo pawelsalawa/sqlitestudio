@@ -3,7 +3,6 @@
 
 #include "parser/ast/sqliteselect.h"
 #include "common/bistrhash.h"
-#include "expectedtoken.h"
 #include "parser/ast/sqlitewith.h"
 #include <QString>
 #include <QHash>
@@ -71,9 +70,6 @@ class API_EXPORT SelectResolver
          */
         struct API_EXPORT Table
         {
-            Table();
-            Table(const Table& other);
-
             /**
              * @brief Database name.
              *
@@ -112,7 +108,6 @@ class API_EXPORT SelectResolver
             QString alias;
             QString displayName;
             bool aliasDefinedInSubQuery = false;
-            SqliteSelect::Core::ResultColumn* originalColumn = nullptr;
 
             int operator==(const Column& other);
             Table getTable() const;
@@ -123,17 +118,17 @@ class API_EXPORT SelectResolver
         ~SelectResolver();
 
         QList<Column> resolveColumnsFromFirstCore();
-        QList<QList<Column> > resolveColumns();
+        QList<QList<Column>> resolveColumns();
 
         QList<Column> resolve(SqliteSelect::Core* selectCore);
-        QList<QList<Column> > resolve(SqliteSelect* select);
+        QList<QList<Column>> resolve(SqliteSelect* select);
 
         QList<Column> resolveAvailableColumns(SqliteSelect::Core* selectCore);
-        QList<QList<Column> > resolveAvailableColumns(SqliteSelect* select);
+        QList<QList<Column>> resolveAvailableColumns(SqliteSelect* select);
         QList<Column> resolveAvailableColumns(SqliteSelect::Core::JoinSource* joinSrc);
 
         QSet<Table> resolveTables(SqliteSelect::Core* selectCore);
-        QList<QSet<Table> > resolveTables(SqliteSelect* select);
+        QList<QSet<Table>> resolveTables(SqliteSelect* select);
         QSet<Table> resolveTables(SqliteSelect::Core::JoinSource* joinSrc);
 
         /**
@@ -182,6 +177,30 @@ class API_EXPORT SelectResolver
         const QStringList& getErrors() const;
 
         /**
+         * @brief This is a convenient overload of method that uses database object passed to the constructor.
+         * @param query SQL query to analyze.
+         * @return Column with limited metadata (database, table name - if applicable, column name - if applicable, and displayName)
+         *
+         * See static overloaded method for more details.
+         */
+        QList<Column> sqliteResolveColumns(const QString& query);
+
+        /**
+         * @brief Does quick analysis of result columns for the query, using SQLite built-in API.
+         * @param db Database to analyze the query against.
+         * @param query SQL query to analyze.
+         * @param dbNameToAttach A mapping of database name to its attach name, used to resolve db name if SQLite API returns it as attach name.
+         * @return Column with limited metadata (database, table name - if applicable, column name - if applicable, and displayName)
+         *
+         * Instead of doing full scale anaysis of the query, it leverages SQLite API for a query metadata,
+         * but it lacks information about source table aliases, subquery aliases,
+         * flags (compund query, aggregate query, cte query, etc).
+         * It's convenient, but must be complemented by sophisticated logic of the SchemaResolver to provide full info.
+         * Yet it's good enough if these extended information are not needed, as it can be much faster, than full analysis.
+         */
+        static QList<Column> sqliteResolveColumns(Db* db, const QString& query, const BiStrHash& dbNameToAttach = BiStrHash());
+
+        /**
          * @brief resolveMultiCore
          * If true (by default), the multi-core subselects will be resolved using
          * first core from the list. If false, then the subselect will be ignored by resolver,
@@ -216,7 +235,7 @@ class API_EXPORT SelectResolver
         QList<Column> resolveSingleSourceSubSelect(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveOtherSource(SqliteSelect::Core::JoinSourceOther *otherSrc);
         QList<Column> resolveSubSelect(SqliteSelect* select);
-        QList<Column> resolveView(const QString& database, const QString& name, const QString &alias);
+        QList<Column> resolveView(SqliteSelect::Core::SingleSource *joinSrc);
         bool isView(const QString& database, const QString& name);
         QStringList getTableColumns(const QString& database, const QString& table, const QString &alias);
         void applySubSelectAlias(QList<Column>& columns, const QString& alias);

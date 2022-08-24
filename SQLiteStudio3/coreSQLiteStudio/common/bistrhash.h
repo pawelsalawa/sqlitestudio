@@ -1,7 +1,6 @@
 #ifndef BISTRHASH_H
 #define BISTRHASH_H
 
-#include "bihash.h"
 #include "coreSQLiteStudio_global.h"
 #include <QHash>
 #include <QString>
@@ -123,12 +122,30 @@ class API_EXPORT BiStrHash
         QString valueByLeft(const QString& left, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 
         /**
+         * @brief Finds right-side value by matching the left-side value or returns defaultValue if not matched.
+         * @param left Left-side value to match.
+         * @param defaultValue Value to be returned if requested left key cannot be found.
+         * @param cs Case sensitivity flag.
+         * @return Right-side value, or provided default value if left-side value was not matched.
+         */
+        QString valueByLeft(const QString& left, const QString& defaultValue, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
+
+        /**
          * @brief Finds left-side value by matching the right-side value.
          * @param right Right-side value to match.
          * @param cs Case sensitivity flag.
          * @return Left-side value, or null string if right-side value was not matched.
          */
         QString valueByRight(const QString& right, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
+
+        /**
+         * @brief Finds left-side value by matching the right-side value or returns defaultValue if not matched.
+         * @param right Right-side value to match.
+         * @param defaultValue Value to be returned if requested right key cannot be found.
+         * @param cs Case sensitivity flag.
+         * @return Left-side value, or provided default value if right-side value was not matched.
+         */
+        QString valueByRight(const QString& right, const QString& defaultValue, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 
         /**
          * @brief Gives all left-side values.

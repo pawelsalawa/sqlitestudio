@@ -214,7 +214,7 @@ void SelectResolverTest::testWithCte2()
     QList<SelectResolver::Column> coreColumns = columns.first();
     QVERIFY(coreColumns.size() == 2);
 
-    QCOMPARE(coreColumns[0].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[0].type, SelectResolver::Column::OTHER);
     QCOMPARE(coreColumns[0].flags, SelectResolver::FROM_CTE_SELECT);
     QCOMPARE(coreColumns[0].database, "main");
     QVERIFY(coreColumns[0].table.isNull());
@@ -222,7 +222,7 @@ void SelectResolverTest::testWithCte2()
     QVERIFY(coreColumns[0].alias.isNull());
     QCOMPARE(coreColumns[0].displayName, "c1");
 
-    QCOMPARE(coreColumns[1].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[1].type, SelectResolver::Column::OTHER);
     QCOMPARE(coreColumns[1].flags, SelectResolver::FROM_CTE_SELECT);
     QCOMPARE(coreColumns[1].database, "main");
     QVERIFY(coreColumns[1].table.isNull());
@@ -242,10 +242,11 @@ void SelectResolverTest::testWithCte3()
     QList<SelectResolver::Column> coreColumns = columns.first();
     QCOMPARE(coreColumns.size(), 3);
 
-    QCOMPARE(coreColumns[0].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[0].type, SelectResolver::Column::OTHER);
     QCOMPARE(coreColumns[0].flags, SelectResolver::FROM_CTE_SELECT);
     QCOMPARE(coreColumns[0].database, "main");
     QVERIFY(coreColumns[0].table.isNull());
+    QCOMPARE(coreColumns[0].tableAlias, "t");
     QCOMPARE(coreColumns[0].column, "x");
     QVERIFY(coreColumns[0].alias.isNull());
     QCOMPARE(coreColumns[0].displayName, "x");
@@ -254,14 +255,16 @@ void SelectResolverTest::testWithCte3()
     QCOMPARE(coreColumns[1].flags, SelectResolver::FROM_CTE_SELECT);
     QCOMPARE(coreColumns[1].database, "main");
     QCOMPARE(coreColumns[1].table, "test2");
+    QCOMPARE(coreColumns[1].tableAlias, "t");
     QCOMPARE(coreColumns[1].column, "y");
     QVERIFY(coreColumns[1].alias.isNull());
     QCOMPARE(coreColumns[1].displayName, "y");
 
-    QCOMPARE(coreColumns[2].type, SelectResolver::Column::COLUMN);
+    QCOMPARE(coreColumns[2].type, SelectResolver::Column::OTHER);
     QCOMPARE(coreColumns[2].flags, SelectResolver::FROM_CTE_SELECT);
     QCOMPARE(coreColumns[2].database, "main");
     QVERIFY(coreColumns[2].table.isNull());
+    QCOMPARE(coreColumns[2].tableAlias, "t");
     QCOMPARE(coreColumns[2].column, "'z'");
     QVERIFY(coreColumns[2].alias.isNull());
     QCOMPARE(coreColumns[2].displayName, "'z'");

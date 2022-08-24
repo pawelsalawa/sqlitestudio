@@ -163,12 +163,28 @@ QString BiStrHash::valueByLeft(const QString& left, Qt::CaseSensitivity cs) cons
         return hash.value(lowerHash.value(left.toLower()));
 }
 
+QString BiStrHash::valueByLeft(const QString& left, const QString& defaultValue, Qt::CaseSensitivity cs) const
+{
+    if (containsLeft(left, cs))
+        return valueByLeft(left, cs);
+
+    return defaultValue;
+}
+
 QString BiStrHash::valueByRight(const QString& right, Qt::CaseSensitivity cs) const
 {
     if (cs == Qt::CaseSensitive)
         return inverted.value(right);
     else
         return inverted.value(lowerInverted.value(right.toLower()));
+}
+
+QString BiStrHash::valueByRight(const QString& right, const QString& defaultValue, Qt::CaseSensitivity cs) const
+{
+    if (containsRight(right, cs))
+        return valueByRight(right, cs);
+
+    return defaultValue;
 }
 
 QStringList BiStrHash::leftValues() const
