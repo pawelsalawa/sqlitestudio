@@ -4,14 +4,13 @@
 #include "parser/token.h"
 #include "parser/lexer.h"
 #include "parser/keywords.h"
-#include "log.h"
 #include <QHash>
 #include <QPair>
 #include <QString>
 #include <QDebug>
 #include <QMetaType>
 
-QString invalidIdCharacters = "[]()\"'@*.,+-=/%&|:; \t\n<>";
+QString invalidIdCharacters = "[]()\"'@*.,+-=/#$%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;

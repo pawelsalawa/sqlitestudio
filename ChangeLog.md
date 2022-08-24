@@ -52,6 +52,7 @@
 - BUGFIX: #4340 Fixed crash when populating two columns with random text.
 - BUGFIX: #4362 #4363 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
 - BUGFIX: #4356 Fixed resolving column names by SelectResolver in rare cases, when the column name is undefined and should be left for SQLite engine to determin.
+- BUGFIX: #4331 Fixed handling object names with # and $ inside.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
