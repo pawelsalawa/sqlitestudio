@@ -3656,7 +3656,12 @@ static void yy_reduce(
 {yygotominor.yy393 = new QVariant(QVariant(yymsp[0].minor.yy0->value).toDouble());}
         break;
       case 91: /* term ::= STRING|BLOB */
-{yygotominor.yy393 = new QVariant(stripString(yymsp[0].minor.yy0->value));}
+{
+                                                if (yymsp[0].minor.yy0->value.length() >= 3 && yymsp[0].minor.yy0->value.startsWith("x'", Qt::CaseInsensitive))
+                                                    yygotominor.yy393 = new QVariant(blobFromLiteral(yymsp[0].minor.yy0->value));
+                                                else
+                                                    yygotominor.yy393 = new QVariant(stripString(yymsp[0].minor.yy0->value));
+                                            }
         break;
       case 92: /* tnm ::= term */
 {

@@ -851,3 +851,15 @@ SqliteDataType toSqliteDataType(const QString& typeStr)
 
     return SqliteDataType::UNKNOWN;
 }
+
+QByteArray blobFromLiteral(const QString& value)
+{
+    if (value.length() <= 3)
+    {
+        qCritical() << "Call to blobFromLiteral() with blob literal shorter or equal to 3 characters:" << value;
+        return QByteArray();
+    }
+
+    QString hex = value.mid(2, value.length() - 3);
+    return QByteArray::fromHex(hex.toLatin1());
+}

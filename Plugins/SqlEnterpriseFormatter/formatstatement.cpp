@@ -359,6 +359,13 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
         return *this;
     }
 
+    if (value.userType() == QVariant::ByteArray)
+    {
+        static_qstring(blobLiteral, "X'%1'");
+        withBlob(blobLiteral.arg(QString::fromLatin1(value.toByteArray().toHex())));
+        return *this;
+    }
+
     bool ok;
     if (value.userType() == QVariant::Double)
     {
@@ -377,14 +384,7 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
         return *this;
     }
 
-    QString str = value.toString();
-    if (str.startsWith("x'", Qt::CaseInsensitive) && str.endsWith("'"))
-    {
-        withBlob(str);
-        return *this;
-    }
-
-    withString(str);
+    withString(value.toString());
     return *this;
 }
 

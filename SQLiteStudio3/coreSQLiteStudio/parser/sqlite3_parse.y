@@ -589,7 +589,12 @@ ccons(X) ::= CHECK LP RP.                   {
 term(X) ::= NULL.                           {X = new QVariant();}
 term(X) ::= INTEGER(N).                     {X = parserContext->handleNumberToken(N->value);}
 term(X) ::= FLOAT(N).                       {X = new QVariant(QVariant(N->value).toDouble());}
-term(X) ::= STRING|BLOB(S).                 {X = new QVariant(stripString(S->value));}
+term(X) ::= STRING|BLOB(S).                 {
+                                                if (S->value.length() >= 3 && S->value.startsWith("x'", Qt::CaseInsensitive))
+                                                    X = new QVariant(blobFromLiteral(S->value));
+                                                else
+                                                    X = new QVariant(stripString(S->value));
+                                            }
 
 // Term Literal or Name. String falls under Term, but can be falled back to Name if necessary in the context.
 // On the other hand - if name is ID, it cannot be falled back to Term, as ID is never a Literal value.

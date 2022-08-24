@@ -89,6 +89,7 @@ API_EXPORT QString getBindTokenName(const TokenPtr& token);
 API_EXPORT QueryAccessMode getQueryAccessMode(const QString& query, bool* isSelect = nullptr);
 API_EXPORT QStringList valueListToSqlList(const QList<QVariant>& values);
 API_EXPORT QString trimQueryEnd(const QString& query);
+API_EXPORT QByteArray blobFromLiteral(const QString& value);
 
 
 #endif // UTILS_SQL_H

@@ -459,7 +459,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
 
             for (i = 1; isIdChar(charAt(z, i)); i++) {}
 
-                token->lemonType = getKeywordId3(z.mid(0, i));
+            token->lemonType = getKeywordId3(z.mid(0, i));
 
             if (token->lemonType == TK3_ID)
                 token->type = Token::OTHER;

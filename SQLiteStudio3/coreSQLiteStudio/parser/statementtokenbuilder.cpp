@@ -1,6 +1,7 @@
 #include "statementtokenbuilder.h"
 #include "parser/ast/sqlitestatement.h"
 #include "common/utils_sql.h"
+#include "common/global.h"
 #include <QVariant>
 
 StatementTokenBuilder& StatementTokenBuilder::withKeyword(const QString& value)
@@ -145,6 +146,13 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
         return *this;
     }
 
+    if (value.userType() == QVariant::ByteArray)
+    {
+        static_qstring(blobLiteral, "X'%1'");
+        withBlob(blobLiteral.arg(QString::fromLatin1(value.toByteArray().toHex())));
+        return *this;
+    }
+
     bool ok;
     if (value.userType() == QVariant::Double)
     {
@@ -163,14 +171,7 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
         return *this;
     }
 
-    QString str = value.toString();
-    if (str.startsWith("x'", Qt::CaseInsensitive) && str.endsWith("'"))
-    {
-        withBlob(str);
-        return *this;
-    }
-
-    withString(str);
+    withString(value.toString());
     return *this;
 }
 
