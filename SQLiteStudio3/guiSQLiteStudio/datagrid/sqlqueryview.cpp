@@ -7,7 +7,6 @@
 #include "iconmanager.h"
 #include "common/unused.h"
 #include "common/extaction.h"
-#include "multieditor/multieditor.h"
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
@@ -15,8 +14,6 @@
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
 #include "common/utils_sql.h"
-#include "querygenerator.h"
-#include "services/codeformatter.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QGridLayout>

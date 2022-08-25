@@ -38,8 +38,7 @@ CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
 
 class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         friend class DbTreeView;
@@ -94,6 +93,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             EXEC_SQL_FROM_FILE,
             _separator // Never use it directly, it's just for menu setup
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

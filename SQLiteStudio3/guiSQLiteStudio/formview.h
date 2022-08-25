@@ -27,7 +27,6 @@ CFG_KEY_LIST(FormView, QObject::tr("Data form view"),
 class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
 {
     Q_OBJECT
-    Q_ENUMS(Action)
 
     public:
         enum Action
@@ -41,6 +40,7 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
             INSERT_ROW,
             DELETE_ROW
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

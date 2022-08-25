@@ -26,8 +26,7 @@ CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
 
 class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -59,6 +58,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FORM_TOTAL_ROWS,
             FORM_CURRENT_ROW
         };
+        Q_ENUM(Action)
 
         enum class ActionGroup
         {

@@ -55,8 +55,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
 
 class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -98,6 +97,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             CHECK_FOR_UPDATES,
             QUIT
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

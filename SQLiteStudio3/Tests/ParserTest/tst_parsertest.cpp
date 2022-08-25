@@ -64,6 +64,7 @@ class ParserTest : public QObject
         void testUnfinishedSelectWithAliasForCompleter();
         void testUnfinishedSelectWithAliasStrict();
         void testBlobLiteral();
+        void testBigDec();
 };
 
 ParserTest::ParserTest()
@@ -723,6 +724,20 @@ void ParserTest::testBlobLiteral()
 
     core->resultColumns[0]->expr->rebuildTokens();
     QCOMPARE(core->resultColumns[0]->expr->tokens[0]->value, "X'010e0f'");
+}
+
+void ParserTest::testBigDec()
+{
+    QString sql = "select 9999999999999999999 + 9999999999999999999, 9999999999999999999.1 + 9999999999999999999.2, 9999.1 + 9999.2;";
+    bool res = parser3->parse(sql);
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+    SqliteSelectPtr select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
+    SqliteSelect::Core* core = select->coreSelects[0];
+    QCOMPARE(core->resultColumns[0]->expr->expr1->literalValue.type(), QVariant::Double);
+    QCOMPARE(core->resultColumns[1]->expr->expr1->literalValue.type(), QVariant::Double);
+    QCOMPARE(core->resultColumns[2]->expr->expr1->literalValue.type(), QVariant::Double);
 }
 
 void ParserTest::initTestCase()

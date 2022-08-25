@@ -167,9 +167,9 @@ const QList<ParserError *> &ParserContext::getErrors()
 QVariant *ParserContext::handleNumberToken(const QString &tokenValue)
 {
     recentNumberIsCandidateForMaxNegative = false;
+    bool ok;
     if (tokenValue.startsWith("0x", Qt::CaseInsensitive))
     {
-        bool ok;
         qint64 i64 = tokenValue.toLongLong(&ok, 16);
         if (!ok)
         {
@@ -183,10 +183,12 @@ QVariant *ParserContext::handleNumberToken(const QString &tokenValue)
         recentNumberIsCandidateForMaxNegative = true;
         return new QVariant(static_cast<qint64>(0L));
     }
-    else
-    {
-        return new QVariant(QVariant(tokenValue).toLongLong());
-    }
+
+    QVariant varLong = QVariant(tokenValue).toLongLong(&ok);
+    if (!ok)
+        varLong = QVariant(tokenValue).toDouble();
+
+    return new QVariant(varLong);
 }
 
 bool ParserContext::isCandidateForMaxNegativeNumber() const
@@ -196,7 +198,7 @@ bool ParserContext::isCandidateForMaxNegativeNumber() const
 
 void ParserContext::cleanUp()
 {
-    for (ParserError* err : errors)
+    for (ParserError*& err : errors)
         delete err;
 
     parsedQueries.clear();

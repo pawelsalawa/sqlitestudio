@@ -52,8 +52,7 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
 
 class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -82,6 +81,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             TOGGLE_COMMENT,
             WORD_WRAP
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

@@ -5,7 +5,6 @@
 #include "common/extactioncontainer.h"
 #include "db/queryexecutor.h"
 #include "guiSQLiteStudio_global.h"
-#include "common/table.h"
 #include <QTableView>
 #include <QHeaderView>
 
@@ -35,8 +34,7 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
 
 class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -63,6 +61,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             GENERATE_UPDATE,
             GENERATE_DELETE
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

@@ -31,8 +31,7 @@ CFG_KEY_LIST(ViewWindow, QObject::tr("A view window"),
 
 class GUI_API_EXPORT ViewWindow : public MdiChild
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -56,6 +55,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
             NEXT_TAB,
             PREV_TAB
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

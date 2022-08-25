@@ -7,8 +7,7 @@
 
 class API_EXPORT DataType : public QObject
 {
-        Q_OBJECT
-        Q_ENUMS(Enum)
+    Q_OBJECT
 
     public:
         enum Enum
@@ -33,6 +32,7 @@ class API_EXPORT DataType : public QObject
             VARCHAR,
             unknown
         };
+        Q_ENUM(Enum)
 
         DataType();
         DataType(const QString& fullTypeString);

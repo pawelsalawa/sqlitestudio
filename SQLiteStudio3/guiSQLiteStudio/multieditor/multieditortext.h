@@ -20,8 +20,7 @@ CFG_KEY_LIST(MultiEditorText, QObject::tr("Cell text value editor"),
 
 class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActionContainer
 {
-        Q_OBJECT
-        Q_ENUMS(Action)
+    Q_OBJECT
 
     public:
         enum Action
@@ -34,6 +33,7 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
             UNDO,
             REDO
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {
