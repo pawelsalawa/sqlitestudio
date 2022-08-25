@@ -23,13 +23,12 @@
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.
 - CHANGE: #4083 Added support for regexp literals and template literals in JS syntax highlighter.
-- CHANGE: #4129 Improved memory saving algorithm, so when the colum is result of expression, the full value is always loaded immediately, to avoid subsequent query execution for loading full value when user copies cell value to clipboad.
 - CHANGE: #4071 #3437 Data column width has now more configuration options, so that it can retain its width upon entered value, or to have header contents (column name) visible.
 - CHANGE: Finalized transition to new model of translation files (using Crowdin). Generation of qm files and updating qrc files is now fully automated.
 - CHANGE: #4300 Db Dialog now has just 1 browse button, but uses Qt file dialog, not native one.
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
-- CHANGE: #4240 #4458 #4419 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues (refer to GitHub issues mentioned for this ChangeLog item), that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
+- CHANGE: #4240 #4458 #4419 #4129 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues (refer to GitHub issues mentioned for this ChangeLog item), that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
@@ -54,6 +53,7 @@
 - BUGFIX: #4356 Fixed resolving column names by SelectResolver in rare cases, when the column name is undefined and should be left for SQLite engine to determin.
 - BUGFIX: #4331 Fixed handling object names with # and $ inside.
 - BUGFIX: #4306 Fixed parsing BLOB literals and formatting it back to SQL statements from internal AST.
+- BUGFIX: #4278 Fixed language dropdown being empty sometimes when English language was selected.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.

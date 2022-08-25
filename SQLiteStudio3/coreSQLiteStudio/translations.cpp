@@ -69,8 +69,8 @@ void loadTranslations(const QStringList& baseNames)
 
 QStringList getAvailableTranslations()
 {
+    static QRegularExpression re("[^\\_]+\\_(\\w+)\\.qm");
     QSet<QString> locales;
-    QRegularExpression re("[^\\_]+\\_(\\w+)\\.qm");
     QRegularExpressionMatch match;
     QDir dir;
     QStringList filters = QStringList({"*_*.qm"});
@@ -87,6 +87,10 @@ QStringList getAvailableTranslations()
         }
     }
     locales << "en";
+
+    // #4278 - the en_us translation as explicit qm file is unnecessary,
+    // but produced by CrowdIn. The "en" is default and used for American English.
+    locales.remove("en_us");
 
     return locales.values();
 }
