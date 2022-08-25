@@ -17,3 +17,8 @@ QList<SqliteExtensionManager::ExtensionPtr> ExtensionManagerMock::getExtensionFo
 {
     return QList<SqliteExtensionManager::ExtensionPtr>();
 }
+
+QStringList ExtensionManagerMock::getExtensionDirs() const
+{
+    return QStringList();
+}

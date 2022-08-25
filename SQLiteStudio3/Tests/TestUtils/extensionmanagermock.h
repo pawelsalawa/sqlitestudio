@@ -12,6 +12,7 @@ class ExtensionManagerMock : public SqliteExtensionManager
         void setExtensions(const QList<ExtensionPtr>&);
         QList<ExtensionPtr> getAllExtensions() const;
         QList<ExtensionPtr> getExtensionForDatabase(const QString&) const;
+        QStringList getExtensionDirs() const;
 };
 
 #endif // EXTENSIONMANAGERMOCK_H

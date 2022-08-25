@@ -194,11 +194,11 @@ void initKeywords()
     softKeywords3 << "ABORT" << "ACTION" << "AFTER" << "ALWAYS" << "ANALYZE" << "ASC" << "ATTACH" << "BEFORE" << "BEGIN" << "BY" << "CASCADE"
                   << "CAST" << "COLUMNKW" << "CONFLICT" << "CURRENT" << "DATABASE" << "DEFERRED" << "DESC" << "DETACH" << "DO" << "EACH"
                   << "END" << "EXCLUDE" << "EXCLUSIVE" << "EXPLAIN" << "FAIL" << "FIRST" << "FOLLOWING" << "FOR" << "GENERATED" << "GROUPS"
-                  << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "NO" << "NULLS"
-                  << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE" << "RANGE"
-                  << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP" << "TIES"
-                  << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME" << "IF"
-                  << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
+                  << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "MATERIALIZED" << "NO"
+                  << "NULLS" << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE"
+                  << "RANGE" << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP"
+                  << "TIES" << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME"
+                  << "IF" << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
 }
 
 

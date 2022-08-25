@@ -1113,3 +1113,17 @@ QString toNativePath(const QString& path)
 {
     return QDir::toNativeSeparators(path);
 }
+
+QStringList sharedLibFileFilters()
+{
+    static QStringList filters({
+#ifdef Q_OS_WIN
+        "*.dll"
+#elif defined Q_OS_MACOS
+        "*.dylib"
+#elif defined Q_OS_LINUX || Q_OS_BSD
+        "*.so"
+#endif
+    });
+    return filters;
+}

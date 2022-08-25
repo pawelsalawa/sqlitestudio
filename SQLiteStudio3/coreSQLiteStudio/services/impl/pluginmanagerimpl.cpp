@@ -109,14 +109,11 @@ PluginType* PluginManagerImpl::getPluginType(Plugin* plugin) const
 
 void PluginManagerImpl::scanPlugins()
 {
-    QStringList nameFilters;
-    nameFilters << "*.so" << "*.dll" << "*.dylib";
-
     QPluginLoader* loader = nullptr;
-    for (QString pluginDirPath : pluginDirs)
+    for (QString& pluginDirPath : pluginDirs)
     {
         QDir pluginDir(pluginDirPath);
-        for (QString fileName : pluginDir.entryList(nameFilters, QDir::Files))
+        for (QString& fileName : pluginDir.entryList(sharedLibFileFilters(), QDir::Files))
         {
             fileName = pluginDir.absoluteFilePath(fileName);
             loader = new QPluginLoader(fileName);
@@ -131,7 +128,7 @@ void PluginManagerImpl::scanPlugins()
     }
 
     QStringList names;
-    for (PluginContainer* container : pluginContainer.values())
+    for (PluginContainer*& container : pluginContainer.values())
     {
         if (!container->builtIn)
             names << container->name;
@@ -143,7 +140,7 @@ void PluginManagerImpl::scanPlugins()
 void PluginManagerImpl::loadPlugins()
 {
     QStringList alreadyAttempted;
-    for (const QString& pluginName : pluginContainer.keys())
+    for (QString& pluginName : pluginContainer.keys())
     {
         if (shouldAutoLoad(pluginName))
             load(pluginName, alreadyAttempted);
@@ -158,7 +155,7 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     QJsonObject pluginMetaData = loader->metaData();
     QString pluginTypeName = pluginMetaData.value("MetaData").toObject().value("type").toString();
     PluginType* pluginType = nullptr;
-    for (PluginType* type : registeredPluginTypes)
+    for (PluginType*& type : registeredPluginTypes)
     {
         if (type->getName() == pluginTypeName)
         {

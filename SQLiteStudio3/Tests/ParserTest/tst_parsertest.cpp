@@ -58,6 +58,7 @@ class ParserTest : public QObject
         void testGeneratedColumn();
         void testWindowClause();
         void testFilterClause();
+        void testFilterAsId();
         void testUpdateFrom();
         void testStringAsTableId();
         void testJsonPtrOp();
@@ -648,6 +649,18 @@ void ParserTest::testFilterClause()
     QVERIFY(resCol->expr->filterOver->over->mode == SqliteFilterOver::Over::Mode::WINDOW);
     QVERIFY(resCol->expr->filterOver->over->window);
     QVERIFY(resCol->expr->filterOver->over->window->mode == SqliteWindowDefinition::Window::Mode::ORDER_BY);
+}
+
+void ParserTest::testFilterAsId()
+{
+    QString sql = "CREATE TABLE aa2 (sdfsdfdf, filter)";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteCreateTablePtr create = parser3->getQueries().first().dynamicCast<SqliteCreateTable>();
+    QCOMPARE(create->columns.size(), 2);
+    QCOMPARE(create->columns[1]->name, "filter");
 }
 
 void ParserTest::testUpdateFrom()

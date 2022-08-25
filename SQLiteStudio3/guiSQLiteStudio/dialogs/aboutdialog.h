@@ -34,9 +34,6 @@ class GUI_API_EXPORT AboutDialog : public QDialog
         Ui::AboutDialog *ui = nullptr;
         QStringList indexContents;
         QString licenseContents;
-
-    private slots:
-        void copy();
 };
 
 #endif // ABOUTDIALOG_H

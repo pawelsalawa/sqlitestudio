@@ -24,6 +24,7 @@ class API_EXPORT SqliteExtensionManager : public QObject
         virtual void setExtensions(const QList<ExtensionPtr>& newExtensions) = 0;
         virtual QList<ExtensionPtr> getAllExtensions() const = 0;
         virtual QList<ExtensionPtr> getExtensionForDatabase(const QString& dbName) const = 0;
+        virtual QStringList getExtensionDirs() const = 0;
 
     signals:
         void extensionListChanged();

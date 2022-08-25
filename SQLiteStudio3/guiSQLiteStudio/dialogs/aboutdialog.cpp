@@ -4,6 +4,7 @@
 #include "iconmanager.h"
 #include "services/extralicensemanager.h"
 #include "services/pluginmanager.h"
+#include "services/sqliteextensionmanager.h"
 #include "formmanager.h"
 #include "iconmanager.h"
 #include "mainwindow.h"
@@ -78,26 +79,19 @@ void AboutDialog::init(InitialMode initialMode)
     // Environment
     ui->appDirEdit->setText(toNativePath(qApp->applicationDirPath()));
     ui->cfgDirEdit->setText(toNativePath(CFG->getConfigDir()));
-    ui->pluginDirList->addItems(filterResourcePaths(PLUGINS->getPluginDirs()));
-    ui->iconDirList->addItems(filterResourcePaths(ICONMANAGER->getIconDirs()));
-    ui->formDirList->addItems(filterResourcePaths(FORMS->getFormDirs()));
+    ui->pluginDirList->setPlainText(filterResourcePaths(PLUGINS->getPluginDirs()).join("\n"));
+    ui->iconDirList->setPlainText(filterResourcePaths(ICONMANAGER->getIconDirs()).join("\n"));
+    ui->formDirList->setPlainText(filterResourcePaths(FORMS->getFormDirs()).join("\n"));
+    ui->extensionDirList->setPlainText(filterResourcePaths(SQLITE_EXTENSIONS->getExtensionDirs()).join("\n"));
     ui->qtVerEdit->setText(QT_VERSION_STR);
     ui->sqlite3Edit->setText(CFG->getSqlite3Version());
-
-    QAction* copyAct;
-    for (QListWidget* w : {ui->pluginDirList, ui->iconDirList, ui->formDirList})
-    {
-        copyAct = new QAction(tr("Copy"), w);
-        w->addAction(copyAct);
-        connect(copyAct, SIGNAL(triggered()), this, SLOT(copy()));
-    }
 }
 
 void AboutDialog::buildIndex()
 {
     static const QString entryTpl = QStringLiteral("<li>%1</li>");
     QStringList entries;
-    for (const QString& idx : indexContents)
+    for (QString& idx : indexContents)
         entries += entryTpl.arg(idx);
 
     licenseContents.prepend(tr("<h3>Table of contents:</h3><ol>%2</ol>").arg(entries.join("")));
@@ -140,21 +134,4 @@ QStringList AboutDialog::filterResourcePaths(const QStringList& paths)
         output << newPath;
     }
     return output;
-}
-
-void AboutDialog::copy()
-{
-    QListWidget* list = dynamic_cast<QListWidget*>(sender()->parent());
-    if (!list)
-        return;
-
-    QList<QListWidgetItem*> items = list->selectedItems();
-    if (items.size() == 0)
-        return;
-
-    QStringList lines;
-    for (QListWidgetItem* item : items)
-        lines << item->text();
-
-    QApplication::clipboard()->setText(lines.join("\n"));
 }
