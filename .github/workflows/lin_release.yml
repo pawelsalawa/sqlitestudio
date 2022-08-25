@@ -11,6 +11,8 @@ env:
 name: Linux release build
 
 on:
+    workflow_dispatch:
+        inputs:
     schedule:
         - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
     repository_dispatch:

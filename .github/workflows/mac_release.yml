@@ -11,6 +11,8 @@ env:
 name: MacOSX release build
 
 on:
+    workflow_dispatch:
+        inputs:
     schedule:
         - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
