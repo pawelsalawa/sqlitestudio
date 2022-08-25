@@ -472,9 +472,9 @@ void PluginManagerImpl::unload(const QString& pluginName)
     removePluginFromCollections(container->plugin);
 
     // Deinitializing and unloading plugin
+    unloadTranslation(container->name);
     emit aboutToUnload(container->plugin, container->type);
     container->plugin->deinit();
-    unloadTranslation(container->name);
 
     QPluginLoader* loader = container->loader;
     if (!loader->isLoaded())
