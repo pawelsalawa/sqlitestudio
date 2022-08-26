@@ -98,7 +98,8 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                ls -l
                 7z x sqlite-src-$SQLITE_VERSION.zip
                 ls -l
                 ls -l sqlite-src-$SQLITE_VERSION/
