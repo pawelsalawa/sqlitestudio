@@ -99,14 +99,20 @@ jobs:
                 cd ..
                 mkdir ext
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                ls -l
                 7z x sqlite-src-$SQLITE_VERSION.zip
-                ls -l
-                ls -l sqlite-src-$SQLITE_VERSION/
                 cd sqlite-src-$SQLITE_VERSION/ext
-                ls -l misc
-                gcc.exe misc/compress.c -Os -fpic -DWIN64 -m64 -I. -L../../lib -lsqlite3 -lzlib1 -shared -o ../../ext/compress.dll
-                gcc.exe misc/csv.c -Os -fpic -DWIN64 -m64 -I. -L../../lib -lsqlite3 -shared -o ../../ext/csv.dll
+                FLAGS="-shared -Os -fpic -DWIN64 -m64 -Imisc -I../../include -L../../lib -lsqlite3"
+                for f in "compress"; do
+                    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
+                done
+                for f in "csv decimal eval ieee754 percentile rot13 series uint uuid zorder"; do
+                    echo "gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
+                    gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll
+                done
+                
+                cp misc/*.dll ../../ext/
+                ls -l ../../ext/
                 
             - name: Prepare output dir
               shell: bash
