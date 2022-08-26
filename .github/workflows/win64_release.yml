@@ -100,7 +100,10 @@ jobs:
                 mkdir ext
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-src-$SQLITE_VERSION.zip
+                ls -l
+                ls -l sqlite-src-$SQLITE_VERSION/
                 cd sqlite-src-$SQLITE_VERSION/ext
+                ls -l misc
                 gcc.exe misc/compress.c -Os -fpic -DWIN64 -m64 -I. -L../../lib -lsqlite3 -lzlib1 -shared -o ../../ext/compress.dll
                 gcc.exe misc/csv.c -Os -fpic -DWIN64 -m64 -I. -L../../lib -lsqlite3 -shared -o ../../ext/csv.dll
                 
