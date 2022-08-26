@@ -53,6 +53,12 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Pre-download SQLite vanilla sourcecode
+              shell: bash
+              run: |
+                cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+
             - name: Install SQLite3
               run: |
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
@@ -81,7 +87,6 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
                 unzip sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-ldl -lm -Os -fpic -shared -Imisc -I../../include -L../../lib -lsqlite3"

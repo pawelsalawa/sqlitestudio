@@ -20,7 +20,7 @@ on:
 
 jobs:
     build:
-        runs-on: macos-10.15
+        runs-on: macos-11
 
         steps:
             # - name: Debug
@@ -95,8 +95,11 @@ jobs:
                 cd ..
                 mkdir ext
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                ls -l
                 unzip sqlite-src-$SQLITE_VERSION.zip
+                ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
+                ls -l
                 FLAGS="-ldl -lm -Os -fpic -shared -Imisc -I../../include -L../../lib -lsqlite3"
                 for f in compress; do
                     echo "gcc misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dylib"
