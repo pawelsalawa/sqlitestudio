@@ -38,7 +38,7 @@ void PluginManagerImpl::init()
 #endif
 
 #ifdef Q_OS_MACX
-    pluginDirs += QCoreApplication::applicationDirPath()+"/../PlugIns";
+    pluginDirs += QDir(QCoreApplication::applicationDirPath()+"/../PlugIns").absolutePath();
 #endif
 
     scanPlugins();

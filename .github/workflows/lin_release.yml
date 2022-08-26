@@ -76,6 +76,25 @@ jobs:
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
 
+            - name: Compile additional SQLite3 extensions
+              shell: bash
+              run: |
+                cd ..
+                mkdir ext
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                unzip sqlite-src-$SQLITE_VERSION.zip
+                cd sqlite-src-$SQLITE_VERSION/ext
+                FLAGS="-ldl -lm -Os -fpic -shared -Imisc -I../../include -L../../lib -lsqlite3"
+                for f in compress; do
+                    echo "gcc misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.so"
+                    gcc misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.so
+                done
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
+                    gcc misc/$f.c $FLAGS -o ../../ext/$f.so
+                done
+                ls -l ../../ext/
+
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
               
@@ -103,6 +122,11 @@ jobs:
               run: |
                 qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
+
+            - name: Copy SQLite extensions to output dir
+              shell: bash
+              run: |
+                cp -R ../ext output/SQLiteStudio/extensions
               
             - name: Prepare portable dir
               working-directory: output

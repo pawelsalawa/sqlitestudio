@@ -49,6 +49,9 @@ void SqliteExtensionManagerImpl::scanExtensionDirs()
     extensionDirs += qApp->applicationDirPath() + "/ext";
     extensionDirs += QDir(CFG->getConfigDir()).absoluteFilePath("ext");
     extensionDirs += QDir(CFG->getConfigDir()).absoluteFilePath("extensions");
+#ifdef Q_OS_MACX
+    extensionDirs += QDir(QCoreApplication::applicationDirPath()+"/../extensions").absolutePath();
+#endif
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_SQLITE_EXTENSIONS");
     if (!envDirs.isNull())
