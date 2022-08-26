@@ -100,10 +100,10 @@ jobs:
                 ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
                 ls -l
-                FLAGS="-ldl -lm -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
+                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
                 for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lzlib -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -lzlib -o ../../ext/$f.dylib
+                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
+                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
