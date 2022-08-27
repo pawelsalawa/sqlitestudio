@@ -61,10 +61,10 @@ void SqliteExtensionManagerImpl::scanExtensionDirs()
     extensionDirs += STRINGIFY(SQLITE_EXTENSIONS_DIR);
 #endif
 
-    for (QString extDirPath : extensionDirs)
+    for (QString& extDirPath : extensionDirs)
     {
         QDir extDir(extDirPath);
-        for (QString fileName : extDir.entryList(sharedLibFileFilters(), QDir::Files))
+        for (QString& fileName : extDir.entryList(sharedLibFileFilters(), QDir::Files))
         {
             QString path = extDir.absoluteFilePath(fileName);
             auto findIt = std::find_if(extensions.begin(), extensions.end(), [path](ExtensionPtr& ext) {return ext->filePath == path;});
