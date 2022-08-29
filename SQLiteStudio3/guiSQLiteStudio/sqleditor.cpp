@@ -272,6 +272,9 @@ bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
 
 void SqlEditor::saveToFile(const QString &fileName)
 {
+    if (!openSaveActionsEnabled)
+        return;
+
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -306,6 +309,19 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
 bool SqlEditor::getHighlightingSyntax() const
 {
     return highlightingSyntax;
+}
+
+void SqlEditor::setOpenSaveActionsEnabled(bool value)
+{
+    openSaveActionsEnabled = value;
+    if (value)
+    {
+        noConfigShortcutActions.remove(SAVE_SQL_FILE);
+        noConfigShortcutActions.remove(SAVE_AS_SQL_FILE);
+        noConfigShortcutActions.remove(OPEN_SQL_FILE);
+    }
+    else
+        noConfigShortcutActions << SAVE_SQL_FILE << SAVE_AS_SQL_FILE << OPEN_SQL_FILE;
 }
 
 void SqlEditor::updateUndoAction(bool enabled)
@@ -1127,6 +1143,9 @@ void SqlEditor::saveToFile()
 
 void SqlEditor::saveAsToFile()
 {
+    if (!openSaveActionsEnabled)
+        return;
+
     QString dir = getFileDialogInitPath();
     QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir);
     if (fName.isNull())
@@ -1139,6 +1158,9 @@ void SqlEditor::saveAsToFile()
 
 void SqlEditor::loadFromFile()
 {
+    if (!openSaveActionsEnabled)
+        return;
+
     QString dir = getFileDialogInitPath();
     QString filters = tr("SQL scripts (*.sql);;All files (*)");
     QString fName = QFileDialog::getOpenFileName(this, tr("Open file"), dir, filters);

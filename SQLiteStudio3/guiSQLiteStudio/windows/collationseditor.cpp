@@ -15,6 +15,8 @@
 #include <QDesktopServices>
 #include <QSyntaxHighlighter>
 
+CFG_KEYS_DEFINE(CollationsEditor)
+
 CollationsEditor::CollationsEditor(QWidget *parent) :
     MdiChild(parent),
     ui(new Ui::CollationsEditor)
@@ -55,18 +57,20 @@ QString CollationsEditor::getTitleForMdiWindow()
 
 void CollationsEditor::createActions()
 {
-    createAction(COMMIT, ICONS.COMMIT, tr("Commit all collation changes"), this, SLOT(commit()), ui->toolbar);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all collation changes"), this, SLOT(rollback()), ui->toolbar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all collation changes"), this, SLOT(commit()), ui->toolbar, this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all collation changes"), this, SLOT(rollback()), ui->toolbar, this);
     ui->toolbar->addSeparator();
-    createAction(ADD, ICONS.NEW_COLLATION, tr("Create new collation"), this, SLOT(newCollation()), ui->toolbar);
-    createAction(DELETE, ICONS.DELETE_COLLATION, tr("Delete selected collation"), this, SLOT(deleteCollation()), ui->toolbar);
+    createAction(ADD, ICONS.NEW_COLLATION, tr("Create new collation"), this, SLOT(newCollation()), ui->toolbar, this);
+    createAction(DELETE, ICONS.DELETE_COLLATION, tr("Delete selected collation"), this, SLOT(deleteCollation()), ui->toolbar, this);
     ui->toolbar->addSeparator();
-    createAction(HELP, ICONS.HELP, tr("Editing collations manual"), this, SLOT(help()), ui->toolbar);
+    createAction(HELP, ICONS.HELP, tr("Editing collations manual"), this, SLOT(help()), ui->toolbar, this);
 }
 
 void CollationsEditor::setupDefShortcuts()
 {
-
+    // Widget context
+    setShortcutContext({COMMIT}, Qt::WidgetWithChildrenShortcut);
+    BIND_SHORTCUTS(CollationsEditor, Action);
 }
 
 QToolBar* CollationsEditor::getToolBar(int toolbar) const
@@ -378,10 +382,9 @@ void CollationsEditor::changeFont(const QVariant& font)
     setFont(font.value<QFont>());
 }
 
-
 bool CollationsEditor::isUncommitted() const
 {
-    return model->isModified();
+    return model->isModified() || currentModified;
 }
 
 QString CollationsEditor::getQuitUncommittedConfirmMessage() const

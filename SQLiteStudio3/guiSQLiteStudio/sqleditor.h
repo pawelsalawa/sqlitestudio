@@ -108,11 +108,10 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void restoreSelection();
         QToolBar* getToolBar(int toolbar) const;
         void setCurrentQueryHighlighting(bool enabled);
-
         bool getVirtualSqlCompleteSemicolon() const;
         void setVirtualSqlCompleteSemicolon(bool value);
-
         bool getHighlightingSyntax() const;
+        void setOpenSaveActionsEnabled(bool value);
 
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
@@ -241,6 +240,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool highlightingSyntax = true;
         QBrush currentQueryBrush;
         QTimer* currentQueryTimer = nullptr;
+        bool openSaveActionsEnabled = true;
 
         /**
          * @brief virtualSqlExpression

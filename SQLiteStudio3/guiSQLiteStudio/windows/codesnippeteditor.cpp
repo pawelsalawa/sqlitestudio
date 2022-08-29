@@ -12,6 +12,8 @@
 #include <QDesktopServices>
 #include <QStyleFactory>
 
+CFG_KEYS_DEFINE(CodeSnippetEditor)
+
 CodeSnippetEditor::CodeSnippetEditor(QWidget *parent) :
     MdiChild(parent),
     ui(new Ui::CodeSnippetEditor)
@@ -31,7 +33,7 @@ bool CodeSnippetEditor::restoreSessionNextTime()
 
 bool CodeSnippetEditor::isUncommitted() const
 {
-    return model->isModified();
+    return model->isModified() || currentModified;
 }
 
 QString CodeSnippetEditor::getQuitUncommittedConfirmMessage() const
@@ -62,16 +64,16 @@ QString CodeSnippetEditor::getTitleForMdiWindow()
 
 void CodeSnippetEditor::createActions()
 {
-    createAction(COMMIT, ICONS.COMMIT, tr("Commit all function changes"), this, SLOT(commit()), ui->toolBar);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all function changes"), this, SLOT(rollback()), ui->toolBar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all function changes"), this, SLOT(commit()), ui->toolBar, this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all function changes"), this, SLOT(rollback()), ui->toolBar, this);
     ui->toolBar->addSeparator();
-    createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new function"), this, SLOT(newSnippet()), ui->toolBar);
-    createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected function"), this, SLOT(deleteSnippet()), ui->toolBar);
+    createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new function"), this, SLOT(newSnippet()), ui->toolBar, this);
+    createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected function"), this, SLOT(deleteSnippet()), ui->toolBar, this);
     ui->toolBar->addSeparator();
-    createAction(MOVE_UP, ICONS.MOVE_UP, tr("Move the snippet up"), this, SLOT(moveSnippetUp()), ui->toolBar);
-    createAction(MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move the snippet down"), this, SLOT(moveSnippetDown()), ui->toolBar);
+    createAction(MOVE_UP, ICONS.MOVE_UP, tr("Move the snippet up"), this, SLOT(moveSnippetUp()), ui->toolBar, this);
+    createAction(MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move the snippet down"), this, SLOT(moveSnippetDown()), ui->toolBar, this);
     ui->toolBar->addSeparator();
-    createAction(HELP, ICONS.HELP, tr("Code snippets manual"), this, SLOT(help()), ui->toolBar);
+    createAction(HELP, ICONS.HELP, tr("Code snippets manual"), this, SLOT(help()), ui->toolBar, this);
 
 #ifdef Q_OS_MACX
     QStyle *fusion = QStyleFactory::create("Fusion");
@@ -81,6 +83,9 @@ void CodeSnippetEditor::createActions()
 
 void CodeSnippetEditor::setupDefShortcuts()
 {
+    // Widget context
+    setShortcutContext({COMMIT}, Qt::WidgetWithChildrenShortcut);
+    BIND_SHORTCUTS(CodeSnippetEditor, Action);
 }
 
 QToolBar* CodeSnippetEditor::getToolBar(int toolbar) const

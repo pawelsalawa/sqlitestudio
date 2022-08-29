@@ -13,6 +13,10 @@ class QSortFilterProxyModel;
 class QSyntaxHighlighter;
 class QItemSelection;
 
+CFG_KEY_LIST(CodeSnippetEditor, QObject::tr("A code snippets editor window"),
+    CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+)
+
 class CodeSnippetEditor : public MdiChild
 {
     Q_OBJECT
@@ -28,6 +32,7 @@ class CodeSnippetEditor : public MdiChild
             MOVE_DOWN,
             HELP
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

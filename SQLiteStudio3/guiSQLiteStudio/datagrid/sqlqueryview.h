@@ -18,6 +18,7 @@ class QProgressBar;
 class QMenu;
 
 CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
+    CFG_KEY_ENTRY(EDIT_CURRENT,      Qt::Key_F2,                        QObject::tr("Edit current cell inline"))
     CFG_KEY_ENTRY(COPY,              Qt::CTRL + Qt::Key_C,              QObject::tr("Copy cell(s) contents to clipboard"))
     CFG_KEY_ENTRY(COPY_WITH_HEADER,  Qt::CTRL + Qt::SHIFT + Qt::Key_C,  QObject::tr("Copy cell(s) contents together with header to clipboard"))
 //    CFG_KEY_ENTRY(COPY_AS,           Qt::CTRL + Qt::ALT + Qt::Key_C,  QObject::tr(""))
@@ -53,6 +54,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             DELETE_ROW,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
+            EDIT_CURRENT,
             OPEN_VALUE_EDITOR,
             SORT_DIALOG,
             RESET_SORTING,
@@ -136,6 +138,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void generateInsert();
         void generateUpdate();
         void generateDelete();
+        void editCurrent();
 
     public slots:
         void executionStarted();

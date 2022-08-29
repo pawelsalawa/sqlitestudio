@@ -17,6 +17,10 @@ class CollationsEditorModel;
 class QSortFilterProxyModel;
 class QSyntaxHighlighter;
 
+CFG_KEY_LIST(CollationsEditor, QObject::tr("A collation editor window"),
+    CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+)
+
 class GUI_API_EXPORT CollationsEditor : public MdiChild
 {
         Q_OBJECT
@@ -30,6 +34,7 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
             DELETE,
             HELP
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

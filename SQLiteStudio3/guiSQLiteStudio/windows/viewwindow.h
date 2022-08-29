@@ -21,7 +21,9 @@ class ViewModifier;
 class SqlViewModel;
 
 CFG_KEY_LIST(ViewWindow, QObject::tr("A view window"),
+     CFG_KEY_ENTRY(COMMIT_QUERY,     QKeySequence::Save,        QObject::tr("Commit the view's query"))
      CFG_KEY_ENTRY(REFRESH_TRIGGERS, Qt::Key_F5,                QObject::tr("Refresh view trigger list"))
+     CFG_KEY_ENTRY(EXECUTE_QUERY,    Qt::Key_F9,                QObject::tr("Execute the view's query"))
      CFG_KEY_ENTRY(ADD_TRIGGER,      Qt::Key_Insert,            QObject::tr("Add new trigger"))
      CFG_KEY_ENTRY(EDIT_TRIGGER,     Qt::Key_Return,            QObject::tr("Edit selected trigger"))
      CFG_KEY_ENTRY(DEL_TRIGGER,      Qt::Key_Delete,            QObject::tr("Delete selected trigger"))
@@ -53,7 +55,8 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
             DEL_TRIGGER,
             // All tabs
             NEXT_TAB,
-            PREV_TAB
+            PREV_TAB,
+            EXECUTE_QUERY
         };
         Q_ENUM(Action)
 
@@ -117,6 +120,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         int getDataTabIdx() const;
         int getQueryTabIdx() const;
         int getDdlTabIdx() const;
+        void switchToDataAndReload();
 
         Db* db = nullptr;
         QString database;
@@ -137,10 +141,12 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         QAction* outputColumnsCheck = nullptr;
         QAction* outputColumnsSeparator = nullptr;
         bool tabsMoving = false;
+        bool loadDataAfterNextCommit = false;
 
     private slots:
         void refreshView();
-        void commitView(bool skipWarnings = false);
+        void executeQuery();
+        void commitView(bool skipWarnings = false, bool loadDataAfterNextCommit = false);
         void rollbackView();
         void addTrigger();
         void editTrigger();

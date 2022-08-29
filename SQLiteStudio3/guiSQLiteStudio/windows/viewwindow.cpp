@@ -6,7 +6,6 @@
 #include "services/dbmanager.h"
 #include "mainwindow.h"
 #include "mdiarea.h"
-#include "sqlitesyntaxhighlighter.h"
 #include "datagrid/sqlquerymodel.h"
 #include "common/utils_sql.h"
 #include "viewmodifier.h"
@@ -184,6 +183,7 @@ void ViewWindow::setupDefShortcuts()
                            ADD_TRIGGER,
                            EDIT_TRIGGER,
                            DEL_TRIGGER,
+                           EXECUTE_QUERY
                        },
                        Qt::WidgetWithChildrenShortcut);
 
@@ -223,6 +223,7 @@ void ViewWindow::init()
 
     ui->queryEdit->setVirtualSqlExpression("CREATE VIEW name AS %1");
     ui->queryEdit->setDb(db);
+    ui->queryEdit->setOpenSaveActionsEnabled(false);
 
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
@@ -347,6 +348,7 @@ void ViewWindow::createQueryTabActions()
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "view window"), this, SLOT(delColumn()), ui->queryToolbar);
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "view window"), this, SLOT(moveColumnUp()), ui->queryToolbar);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "view window"), this, SLOT(moveColumnDown()), ui->queryToolbar);
+    createAction(EXECUTE_QUERY, QString(), this, SLOT(executeQuery()), this);
 }
 
 void ViewWindow::createTriggersTabActions()
@@ -434,8 +436,23 @@ void ViewWindow::refreshView()
     updateTriggersState();
 }
 
-void ViewWindow::commitView(bool skipWarnings)
+void ViewWindow::executeQuery()
 {
+    if (isModified())
+    {
+        if (!actionMap[COMMIT_QUERY]->isEnabled())
+            return;
+
+        commitView(false, true);
+        return;
+    }
+
+    switchToDataAndReload();
+}
+
+void ViewWindow::commitView(bool skipWarnings, bool loadDataAfterNextCommit)
+{
+    this->loadDataAfterNextCommit = loadDataAfterNextCommit;
     if (!isModified())
     {
         qWarning() << "Called ViewWindow::commitView(), but isModified() returned false.";
@@ -538,6 +555,12 @@ int ViewWindow::getDdlTabIdx() const
     return ui->tabWidget->indexOf(ui->ddlTab);
 }
 
+void ViewWindow::switchToDataAndReload()
+{
+    ui->tabWidget->setCurrentWidget(ui->dataTab);
+    // Query execution will happen automatically upon changing tab to data tab.
+}
+
 void ViewWindow::addTrigger()
 {
     DbObjectDialogs dialogs(db, this);
@@ -618,7 +641,8 @@ void ViewWindow::updateQueryToolbarStatus()
 {
     bool modified = isModified();
     bool queryOk = ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
-    actionMap[COMMIT_QUERY]->setEnabled(modified && queryOk);
+    bool dbOk = ui->dbCombo->currentIndex() > -1;
+    actionMap[COMMIT_QUERY]->setEnabled(modified && queryOk && dbOk);
     actionMap[ROLLBACK_QUERY]->setEnabled(modified && existingView);
     actionMap[REFRESH_QUERY]->setEnabled(existingView);
 }
@@ -654,6 +678,12 @@ void ViewWindow::changesSuccessfullyCommitted()
     updateAfterInit();
 
     DBTREE->refreshSchema(db);
+
+    if (loadDataAfterNextCommit)
+    {
+        loadDataAfterNextCommit = false;
+        switchToDataAndReload();
+    }
 }
 
 void ViewWindow::changesFailedToCommit(int errorCode, const QString& errorText)
@@ -1081,13 +1111,15 @@ void ViewWindow::updateFont()
 
 void ViewWindow::dbChanged()
 {
-    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
+    if (db)
+        disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 
     db = ui->dbCombo->currentDb();
     dataModel->setDb(db);
     ui->queryEdit->setDb(db);
 
-    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
+    if (db)
+        connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 }
 
 void ViewWindow::handleObjectModified(Db* db, const QString& database, const QString& object)

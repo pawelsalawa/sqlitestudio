@@ -9,12 +9,13 @@
 #include "uiconfig.h"
 #include "db/db.h"
 #include "services/dbmanager.h"
-#include "services/notifymanager.h"
 #include "common/lazytrigger.h"
 #include "common/compatibility.h"
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
+
+CFG_KEYS_DEFINE(SqliteExtensionEditor)
 
 SqliteExtensionEditor::SqliteExtensionEditor(QWidget *parent) :
     MdiChild(parent),
@@ -36,7 +37,7 @@ bool SqliteExtensionEditor::restoreSessionNextTime()
 
 bool SqliteExtensionEditor::isUncommitted() const
 {
-    return model->isModified();
+    return model->isModified() || currentModified;
 }
 
 QString SqliteExtensionEditor::getQuitUncommittedConfirmMessage() const
@@ -67,17 +68,20 @@ QString SqliteExtensionEditor::getTitleForMdiWindow()
 
 void SqliteExtensionEditor::createActions()
 {
-    createAction(COMMIT, ICONS.COMMIT, tr("Commit all extension changes"), this, SLOT(commit()), ui->toolbar);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all extension changes"), this, SLOT(rollback()), ui->toolbar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all extension changes"), this, SLOT(commit()), ui->toolbar, this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all extension changes"), this, SLOT(rollback()), ui->toolbar, this);
     ui->toolbar->addSeparator();
-    createAction(ADD, ICONS.EXTENSION_ADD, tr("Add new extension"), this, SLOT(newExtension()), ui->toolbar);
-    createAction(DELETE, ICONS.EXTENSION_DELETE, tr("Remove selected extension"), this, SLOT(deleteExtension()), ui->toolbar);
+    createAction(ADD, ICONS.EXTENSION_ADD, tr("Add new extension"), this, SLOT(newExtension()), ui->toolbar, this);
+    createAction(DELETE, ICONS.EXTENSION_DELETE, tr("Remove selected extension"), this, SLOT(deleteExtension()), ui->toolbar, this);
     ui->toolbar->addSeparator();
-    createAction(HELP, ICONS.HELP, tr("Editing extensions manual"), this, SLOT(help()), ui->toolbar);
+    createAction(HELP, ICONS.HELP, tr("Editing extensions manual"), this, SLOT(help()), ui->toolbar, this);
 }
 
 void SqliteExtensionEditor::setupDefShortcuts()
 {
+    // Widget context
+    setShortcutContext({COMMIT}, Qt::WidgetWithChildrenShortcut);
+    BIND_SHORTCUTS(SqliteExtensionEditor, Action);
 }
 
 QToolBar* SqliteExtensionEditor::getToolBar(int toolbar) const

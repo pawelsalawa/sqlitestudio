@@ -9,7 +9,6 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "uiconfig.h"
 #include "datagrid/sqlqueryview.h"
-#include "datagrid/sqlqueryrownummodel.h"
 #include "services/dbmanager.h"
 #include "querygenerator.h"
 #include "parser/lexer.h"

@@ -313,6 +313,13 @@ void SqlQueryView::generateDelete()
     MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
 }
 
+void SqlQueryView::editCurrent()
+{
+    QModelIndex idx = getCurrentIndex();
+    if (idx.isValid())
+        edit(idx);
+}
+
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
     if (item->getColumn()->dataType.getType() == DataType::BLOB)

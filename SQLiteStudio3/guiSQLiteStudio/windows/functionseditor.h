@@ -3,7 +3,6 @@
 
 #include "mdichild.h"
 #include "common/extactioncontainer.h"
-#include "services/config.h"
 #include "services/functionmanager.h"
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
@@ -19,6 +18,10 @@ class DbTreeItem;
 class QTreeWidgetItem;
 class QSyntaxHighlighter;
 class SelectableDbModel;
+
+CFG_KEY_LIST(FunctionsEditor, QObject::tr("A function editor window"),
+    CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+)
 
 class GUI_API_EXPORT FunctionsEditor : public MdiChild
 {
@@ -38,6 +41,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
             ARG_MOVE_DOWN,
             HELP
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {

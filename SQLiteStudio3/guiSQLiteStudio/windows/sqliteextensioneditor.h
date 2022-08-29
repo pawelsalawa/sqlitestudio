@@ -17,6 +17,10 @@ class SelectableDbModel;
 class Db;
 class LazyTrigger;
 
+CFG_KEY_LIST(SqliteExtensionEditor, QObject::tr("A SQLite extension editor window"),
+    CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+)
+
 class SqliteExtensionEditor : public MdiChild
 {
         Q_OBJECT
@@ -30,6 +34,7 @@ class SqliteExtensionEditor : public MdiChild
             DELETE,
             HELP
         };
+        Q_ENUM(Action)
 
         enum ToolBar
         {
