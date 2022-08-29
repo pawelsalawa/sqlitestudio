@@ -29,6 +29,7 @@
 - CHANGE: Unused the help button in title bar are removed.
 - CHANGE: #4273 Newer opened database is selected by default in the tree.
 - CHANGE: #4240 #4458 #4419 #4129 Removed mechanism that limited initial value loaded to a cell to keep the amount of memory used at safe level. While it served it purpose well, it introduced so many other issues (refer to GitHub issues mentioned for this ChangeLog item), that it was not worth it. If a user keeps lots of gigabytes in a single table and you plan to query it, the user may want to limit amount of rows you query or display at once.
+- CHANGE: #4435 Changed data griv view behavior, so when user clicks once, it will select column/row and if double-clicks, the sorting order is applied.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
@@ -49,7 +50,7 @@
 - BUGFIX: #4386 Fixed handling database password with an apostrophe.
 - BUGFIX: #4369 WAL mode is now handled properly upon application quit or database disconnection.
 - BUGFIX: #4340 Fixed crash when populating two columns with random text.
-- BUGFIX: #4362 #4363 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
+- BUGFIX: #4362 #4363 #4239 Fixed handling object names (i.e. tables) with a usual wrapping characters being part of their name, for example table named [someTable].
 - BUGFIX: #4356 Fixed resolving column names by SelectResolver in rare cases, when the column name is undefined and should be left for SQLite engine to determin.
 - BUGFIX: #4331 Fixed handling object names with # and $ inside.
 - BUGFIX: #4306 Fixed parsing BLOB literals and formatting it back to SQL statements from internal AST.
