@@ -63,7 +63,7 @@ class ConfigDialogItemDelegate : public QItemDelegate
             QVariant userData = index.data(Qt::UserRole);
             bool isCategory = userData.isValid() && userData.toBool();
             QSize size = QItemDelegate::sizeHint(option, index);
-            return isCategory ? size.grownBy({0, size.height()/3, 0, size.height()/3}) : size;
+            return isCategory ? QSize(size.width(), size.height() * 1.7) : size;
         }
 };
 
