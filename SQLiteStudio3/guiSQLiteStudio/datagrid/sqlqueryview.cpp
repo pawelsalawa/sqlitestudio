@@ -58,13 +58,14 @@ void SqlQueryView::init()
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
     connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(itemActivated(QModelIndex)));
-    connect(horizontalHeader(), &QHeaderView::sectionResized, [this](int section, int, int newSize)
+    connect(horizontalHeader(), &QHeaderView::sectionResized, this, [this](int section, int, int newSize)
     {
         if (ignoreColumnWidthChanges)
             return;
 
         getModel()->setDesiredColumnWidth(section, newSize);
     });
+    connect(verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(adjustRowToContents(int)));
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -104,14 +105,16 @@ void SqlQueryView::createActions()
     createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row"), this, SIGNAL(requestForRowInsert()), this);
     createAction(INSERT_MULTIPLE_ROWS, ICONS.INSERT_ROWS, tr("Insert multiple rows"), this, SIGNAL(requestForMultipleRowInsert()), this);
     createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete selected row"), this, SIGNAL(requestForRowDelete()), this);
-
+    createAction(ADJUST_ROWS_SIZE, tr("Adjust height of rows"), this, SLOT(toggleRowsHeightAdjustment(bool)), this);
+    actionMap[ADJUST_ROWS_SIZE]->setCheckable(true);
+    actionMap[ADJUST_ROWS_SIZE]->setChecked(false);
     actionMap[RESET_SORTING]->setEnabled(false);
 }
 
 void SqlQueryView::setupDefShortcuts()
 {
     setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, COPY, COPY_AS,
-                       PASTE, PASTE_AS}, Qt::WidgetWithChildrenShortcut);
+                       PASTE, PASTE_AS, ADJUST_ROWS_SIZE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlQueryView, Action);
 }
@@ -190,6 +193,8 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         contextMenu->addAction(actionMap[PASTE]);
         //contextMenu->addAction(actionMap[PASTE_AS]); // TODO uncomment when implemented
     }
+    contextMenu->addSeparator();
+    contextMenu->addAction(actionMap[ADJUST_ROWS_SIZE]);
     if (additionalActions.size() > 0)
     {
         contextMenu->addSeparator();
@@ -245,8 +250,13 @@ void SqlQueryView::setModel(QAbstractItemModel* model)
     QTableView::setModel(model);
     SqlQueryModel* m = getModel();
     connect(widgetCover, SIGNAL(cancelClicked()), m, SLOT(interrupt()));
-    connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
-    connect(getModel(), &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
+    connect(m, &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
+    connect(m, &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
+    connect(m, &SqlQueryModel::executionSuccessful, this, [this]()
+    {
+        if (actionMap[ADJUST_ROWS_SIZE]->isChecked())
+            verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    });
 }
 
 SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
@@ -318,6 +328,29 @@ void SqlQueryView::editCurrent()
     QModelIndex idx = getCurrentIndex();
     if (idx.isValid())
         edit(idx);
+}
+
+void SqlQueryView::toggleRowsHeightAdjustment(bool enabled)
+{
+    QHeaderView* hdr = verticalHeader();
+    if (enabled)
+    {
+        hdr->resizeSections(QHeaderView::ResizeToContents);
+    }
+    else
+    {
+        hdr->setSectionResizeMode(QHeaderView::Interactive);
+        hdr->resizeSections(QHeaderView::Interactive);
+        int height = hdr->defaultSectionSize();
+        int rows = getModel()->rowCount();
+        for (int row = 0; row < rows; row++)
+            hdr->resizeSection(row, height);
+    }
+}
+
+void SqlQueryView::adjustRowToContents(int section)
+{
+    verticalHeader()->setSectionResizeMode(section, QHeaderView::ResizeToContents);
 }
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)

@@ -17,6 +17,7 @@
 - ADDED: #4006 Colors configuration for syntax highlighting is reintroduced in a new, improved form.
 - ADDED: #3793 Close windows on the left/right options added to the View menu and Taskbar context menu. Also renamed 'all but selected' to 'other'.
 - ADDED: #4065 Code Snippets - define in dedicated window, use it from the code assistant (hit the assistant hotkey twice).
+- ADDED: #4402 Added context menu option to adjust height of rows according to their contents. Also added single-row adjusting by double-clicking on the row header section on the left.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.

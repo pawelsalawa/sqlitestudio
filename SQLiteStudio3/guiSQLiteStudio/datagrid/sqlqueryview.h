@@ -31,6 +31,7 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(DELETE_ROW,        Qt::Key_Delete,                    QObject::tr("Delete selected data row"))
     CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                    QObject::tr("Insert new data row"))
     CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return,          QObject::tr("Open contents of selected cell in a separate editor"))
+    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT + Qt::Key_H,               QObject::tr("Toggle the height adjustment of rows"))
 )
 
 class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
@@ -61,7 +62,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             GENERATE_SELECT,
             GENERATE_INSERT,
             GENERATE_UPDATE,
-            GENERATE_DELETE
+            GENERATE_DELETE,
+            ADJUST_ROWS_SIZE
         };
         Q_ENUM(Action)
 
@@ -139,6 +141,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void generateUpdate();
         void generateDelete();
         void editCurrent();
+        void toggleRowsHeightAdjustment(bool enabled);
+        void adjustRowToContents(int section);
 
     public slots:
         void executionStarted();

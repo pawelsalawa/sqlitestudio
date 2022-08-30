@@ -129,7 +129,7 @@ void ExtActionContainer::createAction(int action, QAction* qAction, const QObjec
 
     qAction->setParent(owner);
     actionMap[action] = qAction;
-    QObject::connect(qAction, SIGNAL(triggered()), receiver, slot);
+    QObject::connect(qAction, SIGNAL(triggered(bool)), receiver, slot);
     container->addAction(qAction);
 }
 
