@@ -7,14 +7,24 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>86</height>
+    <height>125</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0" colspan="2">
+   <item row="0" column="0" colspan="2">
+    <widget class="QCheckBox" name="formatCheck">
+     <property name="text">
+      <string>Use SQL formatter to format exported SQL statements</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">SqlExport.UseFormatter</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="dropCheck">
      <property name="text">
       <string>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</string>
@@ -34,13 +44,13 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QCheckBox" name="formatCheck">
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="ifNotExistsCheck">
      <property name="text">
-      <string>Use SQL formatter to format exported SQL statements</string>
+      <string>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</string>
      </property>
      <property name="cfg" stdset="0">
-      <string notr="true">SqlExport.UseFormatter</string>
+      <string notr="true">SqlExport.GenerateIfNotExists</string>
      </property>
     </widget>
    </item>

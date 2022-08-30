@@ -7,13 +7,40 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>163</height>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="queryInCommentsCheck">
+     <property name="text">
+      <string>Include the query in comments</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">SqlExport.IncludeQueryInComments</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QCheckBox" name="dropCheck">
+     <property name="text">
+      <string>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">SqlExport.GenerateDrop</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="tableLabel">
+     <property name="text">
+      <string>Table name to use for INSERT statements:</string>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="formatCheck">
      <property name="text">
@@ -24,10 +51,10 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="tableLabel">
-     <property name="text">
-      <string>Table name to use for INSERT statements:</string>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="tableEdit">
+     <property name="cfg" stdset="0">
+      <string notr="true">SqlExport.QueryTable</string>
      </property>
     </widget>
    </item>
@@ -41,33 +68,6 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QCheckBox" name="queryInCommentsCheck">
-     <property name="text">
-      <string>Include the query in comments</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">SqlExport.IncludeQueryInComments</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QCheckBox" name="dropCheck">
-     <property name="text">
-      <string>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">SqlExport.GenerateDrop</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="tableEdit">
-     <property name="cfg" stdset="0">
-      <string notr="true">SqlExport.QueryTable</string>
-     </property>
-    </widget>
-   </item>
    <item row="4" column="0" colspan="2">
     <widget class="QCheckBox" name="formatDdlOnlyCheck">
      <property name="text">
@@ -75,6 +75,16 @@
      </property>
      <property name="cfg" stdset="0">
       <string notr="true">SqlExport.FormatDdlsOnly</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QCheckBox" name="ifNotExistsCheck">
+     <property name="text">
+      <string>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">SqlExport.GenerateIfNotExists</string>
      </property>
     </widget>
    </item>

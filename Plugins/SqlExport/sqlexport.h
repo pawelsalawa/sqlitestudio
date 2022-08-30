@@ -12,6 +12,7 @@ CFG_CATEGORIES(SqlExportConfig,
          CFG_ENTRY(bool,    IncludeQueryInComments, true)
          CFG_ENTRY(bool,    UseFormatter,           false)
          CFG_ENTRY(bool,    FormatDdlsOnly,         false)
+         CFG_ENTRY(bool,    GenerateIfNotExists,    true)
          CFG_ENTRY(bool,    GenerateDrop,           false)
      )
 )
