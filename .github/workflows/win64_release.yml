@@ -139,9 +139,9 @@ jobs:
                 pythonPath='${{ env.pythonLocation }}'
                 pythonPath=${pythonPath//\\/\/}
                 pythonPath=${pythonPath/c:/\/c}
-                echo $pythonPath
-                7z a -r output/SQLiteStudio/python$(${{ env.PYTHON_VERSION }}//.).zip \
-                    $pythonPath/lib/encodings \
+                ver=${{ env.PYTHON_VERSION }}
+                7z a -r output/SQLiteStudio/python${ver//./).zip $pythonPath/lib/encodings
+                7z a output/SQLiteStudio/python${ver//./).zip \
                     $pythonPath/lib/_collections_abc.py \
                     $pythonPath/lib/_sitebuiltins.py \
                     $pythonPath/lib/abc.py \
