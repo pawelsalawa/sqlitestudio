@@ -21,8 +21,8 @@ jobs:
             - name:
               shell: bash
               run: |
+                ls -l $pythonLocation
                 ls -l $pythonLocation/lib
-                ls -l $pythonLocation/lib/python3.9
 
     mac:
         runs-on: macos-11
