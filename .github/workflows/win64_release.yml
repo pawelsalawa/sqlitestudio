@@ -4,7 +4,7 @@ env:
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win64_mingw81'
     PYTHON_VERSION: '3.9'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
+#    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
@@ -132,6 +132,23 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/
+                
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                7z a -r output/SQLiteStudio/python$(${{ env.PYTHON_VERSION }}//.).zip \
+                    ${{ env.pythonLocation }}/lib/encodings \
+                    ${{ env.pythonLocation }}/lib/_collections_abc.py \
+                    ${{ env.pythonLocation }}/lib/_sitebuiltins.py \
+                    ${{ env.pythonLocation }}/lib/abc.py \
+                    ${{ env.pythonLocation }}/lib/codecs.py \
+                    ${{ env.pythonLocation }}/lib/genericpath.py \
+                    ${{ env.pythonLocation }}/lib/io.py \
+                    ${{ env.pythonLocation }}/lib/ntpath.py \
+                    ${{ env.pythonLocation }}/lib/os.py \
+                    ${{ env.pythonLocation }}/lib/site.py \
+                    ${{ env.pythonLocation }}/lib/stat.py
+                cp ${{ env.pythonLocation }}/python39.dll output/SQLiteStudio/
               
             - name: Prepare portable dir
               shell: bash
