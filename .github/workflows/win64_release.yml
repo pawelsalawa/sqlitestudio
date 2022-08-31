@@ -136,19 +136,23 @@ jobs:
             - name: Create python files in output dir
               shell: bash
               run: |
+                pythonPath='${{ env.pythonLocation }}'
+                pythonPath=${pythonPath//\\/\/}
+                pythonPath=${pythonPath/c:/\/c}
+                echo $pythonPath
                 7z a -r output/SQLiteStudio/python$(${{ env.PYTHON_VERSION }}//.).zip \
-                    ${{ env.pythonLocation }}/lib/encodings \
-                    ${{ env.pythonLocation }}/lib/_collections_abc.py \
-                    ${{ env.pythonLocation }}/lib/_sitebuiltins.py \
-                    ${{ env.pythonLocation }}/lib/abc.py \
-                    ${{ env.pythonLocation }}/lib/codecs.py \
-                    ${{ env.pythonLocation }}/lib/genericpath.py \
-                    ${{ env.pythonLocation }}/lib/io.py \
-                    ${{ env.pythonLocation }}/lib/ntpath.py \
-                    ${{ env.pythonLocation }}/lib/os.py \
-                    ${{ env.pythonLocation }}/lib/site.py \
-                    ${{ env.pythonLocation }}/lib/stat.py
-                cp ${{ env.pythonLocation }}/python39.dll output/SQLiteStudio/
+                    $pythonPath/lib/encodings \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/python39.dll output/SQLiteStudio/
               
             - name: Prepare portable dir
               shell: bash
