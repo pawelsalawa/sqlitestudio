@@ -1,6 +1,6 @@
 env:
     PYTHON_VERSION: '3.9'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
+    winPythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
 
 name: Sandbox/playground (Win64)
 
@@ -9,7 +9,7 @@ on:
         inputs:
 
 jobs:
-    build:
+    win:
         runs-on: windows-2019
 
         steps:
@@ -21,4 +21,33 @@ jobs:
             - name:
               shell: bash
               run: |
-                find $pythonLocation
+                echo $pythonLocation
+                ls -l $winPythonLocation/lib
+
+    unix:
+        runs-on: macos-11
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                ls -l $pythonLocation/lib
+
+    mac:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                ls -l $pythonLocation/lib
