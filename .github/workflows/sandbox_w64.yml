@@ -1,0 +1,24 @@
+env:
+    PYTHON_VERSION: '3.9'
+    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
+
+name: Sandbox/playground (Win64)
+
+on:
+    workflow_dispatch:
+        inputs:
+
+jobs:
+    build:
+        runs-on: windows-2019
+
+        steps:
+            - uses: actions/setup-python@v2
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name:
+              shell: bash
+              run: |
+                find $pythonLocation
