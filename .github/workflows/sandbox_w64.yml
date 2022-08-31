@@ -2,7 +2,7 @@ env:
     PYTHON_VERSION: '3.9'
     winPythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
 
-name: Sandbox/playground (Win64)
+name: Sandbox/playground
 
 on:
     workflow_dispatch:
@@ -21,10 +21,10 @@ jobs:
             - name:
               shell: bash
               run: |
-                echo $pythonLocation
-                ls -l $winPythonLocation/lib
+                ls -l $pythonLocation/lib
+                ls -l $pythonLocation/lib/python3.9
 
-    unix:
+    mac:
         runs-on: macos-11
 
         steps:
@@ -37,8 +37,9 @@ jobs:
               shell: bash
               run: |
                 ls -l $pythonLocation/lib
+                ls -l $pythonLocation/lib/python3.9
 
-    mac:
+    linux:
         runs-on: ubuntu-20.04
 
         steps:
@@ -51,3 +52,4 @@ jobs:
               shell: bash
               run: |
                 ls -l $pythonLocation/lib
+                ls -l $pythonLocation/lib/python3.9
