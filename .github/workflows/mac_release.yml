@@ -142,6 +142,25 @@ jobs:
               run: |
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
 
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                zip -r output/SQLiteStudio/lib/python${ver//./}.zip $pythonPath/lib/encodings
+                zip output/SQLiteStudio/lib/python${ver//./}.zip \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.dylib output/SQLiteStudio/lib
+              
             - name: Build packages
               working-directory: output/build
               run: |

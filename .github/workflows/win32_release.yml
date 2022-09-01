@@ -147,7 +147,7 @@ jobs:
                     $pythonPath/lib/os.py \
                     $pythonPath/lib/site.py \
                     $pythonPath/lib/stat.py
-                cp $pythonPath/python39.dll output/SQLiteStudio/
+                cp $pythonPath/python${ver//./}.dll output/SQLiteStudio/
               
             - name: Prepare portable dir
               shell: bash
