@@ -1,6 +1,5 @@
 env:
-    PYTHON_VERSION: '3.9'
-    winPythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x64'
+    PYTHON_VERSION: '3.10'
 
 name: Sandbox/playground
 
@@ -22,7 +21,6 @@ jobs:
               shell: bash
               run: |
                 ls -l $pythonLocation
-                ls -l $pythonLocation/lib
 
     mac:
         runs-on: macos-11
@@ -36,8 +34,8 @@ jobs:
             - name:
               shell: bash
               run: |
+                zip --help
                 ls -l $pythonLocation/lib
-                ls -l $pythonLocation/lib/python3.9
 
     linux:
         runs-on: ubuntu-20.04
@@ -52,4 +50,3 @@ jobs:
               shell: bash
               run: |
                 ls -l $pythonLocation/lib
-                ls -l $pythonLocation/lib/python3.9
