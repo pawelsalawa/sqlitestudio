@@ -38,6 +38,9 @@ cp -RP styles/* SQLiteStudio.app/Contents/PlugIns/styles
 
 cp -RP lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
 
+cp -RP libpython*.dylib SQLiteStudio.app/Contents/Frameworks
+cp -RP python*.zip SQLiteStudio.app/Contents/Frameworks
+
 # CLI paths
 qtcore_path=`otool -L sqlitestudiocli | awk '/QtCore/ {print $1;}'`
 new_qtcore_path="@rpath/QtCore.framework/Versions/5/QtCore"
