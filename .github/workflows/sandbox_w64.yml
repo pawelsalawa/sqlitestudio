@@ -36,6 +36,26 @@ jobs:
               run: |
                 zip --help
                 ls -l $pythonLocation/lib
+                
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                zip -r python${ver//./}.zip \
+                    $pythonPath/lib/encodings
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.dylib .
+
 
     linux:
         runs-on: ubuntu-20.04
@@ -50,3 +70,22 @@ jobs:
               shell: bash
               run: |
                 ls -l $pythonLocation/lib
+
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                zip -r python${ver//./}.zip
+                    $pythonPath/lib/encodings \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.so* .
