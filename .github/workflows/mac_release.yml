@@ -144,7 +144,7 @@ jobs:
 
             - name: Create python files in output dir
               shell: bash
-              working-directory: output/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
+              working-directory: output/SQLiteStudio
               run: |
                 pythonPath=${{ env.pythonLocation }}
                 ver=${{ env.PYTHON_VERSION }}
