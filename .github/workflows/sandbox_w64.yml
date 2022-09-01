@@ -1,5 +1,5 @@
 env:
-    PYTHON_VERSION: '3.10'
+    PYTHON_VERSION: '3.9'
 
 name: Sandbox/playground
 
@@ -94,3 +94,19 @@ jobs:
                     $libDir/stat.py \
                     -x "**/__pycache__/*"
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
+
+            - name: Create python files in output dir2
+              shell: bash
+              run: |
+                pythonPath=${{ env.pythonLocation }}
+                ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
+                zip -r python${ver//./}.zip \
+                    $libDir/* \
+                    -x "**/__pycache__/*"
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: python39.zip
+                path: python39.zip

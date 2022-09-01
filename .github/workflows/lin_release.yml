@@ -164,25 +164,10 @@ jobs:
                 cp $libDir/os.py .
                 cp $libDir/site.py .
                 cp $libDir/stat.py .
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
-                zip -r python${ver//./}.zip \
-                    $libDir/encodings \
-                    $libDir/_collections_abc.py \
-                    $libDir/_sitebuiltins.py \
-                    $libDir/abc.py \
-                    $libDir/codecs.py \
-                    $libDir/genericpath.py \
-                    $libDir/io.py \
-                    $libDir/ntpath.py \
-                    $libDir/os.py \
-                    $libDir/site.py \
-                    $libDir/stat.py \
-                    -x "**/__pycache__/*"
-                rm -rf $pydir/encoding
-                rm -rf $pydir/*.py
+                zip -r ../lib/python${ver//./}.zip * -x "**/__pycache__/*"
                 cd ..
-                mv $pydir/* lib/
                 rm -rf $pydir
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* lib/
 
             - name: Copy libcrypto to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
