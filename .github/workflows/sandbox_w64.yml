@@ -36,6 +36,7 @@ jobs:
               run: |
                 zip --help
                 ls -l $pythonLocation/lib
+                ls -l $pythonLocation/lib/python${{ env.PYTHON_VERSION }}
                 
             - name: Create python files in output dir
               shell: bash
@@ -55,7 +56,7 @@ jobs:
                     $libDir/os.py \
                     $libDir/site.py \
                     $libDir/stat.py
-                cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.dylib .
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
 
 
     linux:
@@ -90,4 +91,4 @@ jobs:
                     $libDir/os.py \
                     $libDir/site.py \
                     $libDir/stat.py
-                cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.so* .
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
