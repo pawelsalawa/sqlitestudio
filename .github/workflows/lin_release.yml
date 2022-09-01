@@ -148,8 +148,8 @@ jobs:
               run: |
                 pythonPath=${{ env.pythonLocation }}
                 ver=${{ env.PYTHON_VERSION }}
-                zip -r output/SQLiteStudio/lib/python${ver//./}.zip $pythonPath/lib/encodings
-                zip output/SQLiteStudio/lib/python${ver//./}.zip \
+                zip -r output/SQLiteStudio/lib/python${ver//./}.zip
+                    $pythonPath/lib/encodings \
                     $pythonPath/lib/_collections_abc.py \
                     $pythonPath/lib/_sitebuiltins.py \
                     $pythonPath/lib/abc.py \
