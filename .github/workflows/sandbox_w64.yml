@@ -42,18 +42,19 @@ jobs:
               run: |
                 pythonPath=${{ env.pythonLocation }}
                 ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
                 zip -r python${ver//./}.zip \
-                    $pythonPath/lib/encodings
-                    $pythonPath/lib/_collections_abc.py \
-                    $pythonPath/lib/_sitebuiltins.py \
-                    $pythonPath/lib/abc.py \
-                    $pythonPath/lib/codecs.py \
-                    $pythonPath/lib/genericpath.py \
-                    $pythonPath/lib/io.py \
-                    $pythonPath/lib/ntpath.py \
-                    $pythonPath/lib/os.py \
-                    $pythonPath/lib/site.py \
-                    $pythonPath/lib/stat.py
+                    $libDir/encodings
+                    $libDir/_collections_abc.py \
+                    $libDir/_sitebuiltins.py \
+                    $libDir/abc.py \
+                    $libDir/codecs.py \
+                    $libDir/genericpath.py \
+                    $libDir/io.py \
+                    $libDir/ntpath.py \
+                    $libDir/os.py \
+                    $libDir/site.py \
+                    $libDir/stat.py
                 cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.dylib .
 
 
@@ -76,16 +77,17 @@ jobs:
               run: |
                 pythonPath=${{ env.pythonLocation }}
                 ver=${{ env.PYTHON_VERSION }}
+                libDir=$pythonPath/lib/python$ver
                 zip -r python${ver//./}.zip \
-                    $pythonPath/lib/encodings \
-                    $pythonPath/lib/_collections_abc.py \
-                    $pythonPath/lib/_sitebuiltins.py \
-                    $pythonPath/lib/abc.py \
-                    $pythonPath/lib/codecs.py \
-                    $pythonPath/lib/genericpath.py \
-                    $pythonPath/lib/io.py \
-                    $pythonPath/lib/ntpath.py \
-                    $pythonPath/lib/os.py \
-                    $pythonPath/lib/site.py \
-                    $pythonPath/lib/stat.py
+                    $libDir/encodings \
+                    $libDir/_collections_abc.py \
+                    $libDir/_sitebuiltins.py \
+                    $libDir/abc.py \
+                    $libDir/codecs.py \
+                    $libDir/genericpath.py \
+                    $libDir/io.py \
+                    $libDir/ntpath.py \
+                    $libDir/os.py \
+                    $libDir/site.py \
+                    $libDir/stat.py
                 cp $pythonPath/libpython${{ env.PYTHON_VERSION }}.so* .
