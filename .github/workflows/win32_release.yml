@@ -4,8 +4,6 @@ env:
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
-    pythonLocation: 'C:/hostedtoolcache/windows/python/3.9.7/x86'
-    #MINGW_DIR: ../Qt/Tools/mingw810_32
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -130,6 +128,27 @@ jobs:
               run: |
                 cp -R ../ext output/SQLiteStudio/
 
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath='${{ env.pythonLocation }}'
+                pythonPath=${pythonPath//\\/\/}
+                pythonPath=${pythonPath/c:/\/c}
+                ver=${{ env.PYTHON_VERSION }}
+                7z a -r output/SQLiteStudio/python${ver//./}.zip $pythonPath/lib/encodings
+                7z a output/SQLiteStudio/python${ver//./}.zip \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/python39.dll output/SQLiteStudio/
+              
             - name: Prepare portable dir
               shell: bash
               working-directory: output
