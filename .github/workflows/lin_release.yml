@@ -143,13 +143,14 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
 
-            - name: Create python files in output dir
+            - name: Create python files in portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
               shell: bash
               run: |
                 pythonPath=${{ env.pythonLocation }}
                 ver=${{ env.PYTHON_VERSION }}
                 libDir=$pythonPath/lib/python$ver
-                zip -r output/SQLiteStudio/lib/python${ver//./}.zip \
+                zip -r lib/python${ver//./}.zip \
                     $libDir/encodings \
                     $libDir/_collections_abc.py \
                     $libDir/_sitebuiltins.py \
@@ -162,7 +163,7 @@ jobs:
                     $libDir/site.py \
                     $libDir/stat.py \
                     -x "**/__pycache__/*"
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* output/SQLiteStudio/lib
+                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* lib/
 
             - name: Copy libcrypto to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
