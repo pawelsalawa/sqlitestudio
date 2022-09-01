@@ -56,7 +56,7 @@ jobs:
                     $libDir/os.py \
                     $libDir/site.py \
                     $libDir/stat.py \
-                    -x __pycache__
+                    -x $libDir/encodings/__pycache__
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
 
 
@@ -92,5 +92,5 @@ jobs:
                     $libDir/os.py \
                     $libDir/site.py \
                     $libDir/stat.py \
-                    -x __pycache__
+                    -x $libDir/encodings/__pycache__
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
