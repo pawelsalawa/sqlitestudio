@@ -45,7 +45,7 @@ jobs:
                 ver=${{ env.PYTHON_VERSION }}
                 libDir=$pythonPath/lib/python$ver
                 zip -r python${ver//./}.zip \
-                    $libDir/encodings
+                    $libDir/encodings \
                     $libDir/_collections_abc.py \
                     $libDir/_sitebuiltins.py \
                     $libDir/abc.py \
@@ -55,7 +55,8 @@ jobs:
                     $libDir/ntpath.py \
                     $libDir/os.py \
                     $libDir/site.py \
-                    $libDir/stat.py
+                    $libDir/stat.py \
+                    -x __pycache__
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
 
 
@@ -90,5 +91,6 @@ jobs:
                     $libDir/ntpath.py \
                     $libDir/os.py \
                     $libDir/site.py \
-                    $libDir/stat.py
+                    $libDir/stat.py \
+                    -x __pycache__
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
