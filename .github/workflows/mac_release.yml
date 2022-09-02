@@ -141,28 +141,6 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
-
-            - name: Create python files in output dir
-              shell: bash
-              working-directory: output/SQLiteStudio
-              run: |
-                pythonPath=${{ env.pythonLocation }}
-                ver=${{ env.PYTHON_VERSION }}
-                libDir=$pythonPath/lib/python$ver
-                zip -r python${ver//./}.zip \
-                    $libDir/encodings \
-                    $libDir/_collections_abc.py \
-                    $libDir/_sitebuiltins.py \
-                    $libDir/abc.py \
-                    $libDir/codecs.py \
-                    $libDir/genericpath.py \
-                    $libDir/io.py \
-                    $libDir/ntpath.py \
-                    $libDir/os.py \
-                    $libDir/site.py \
-                    $libDir/stat.py \
-                    -x "**/__pycache__/*"
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
                 
             - name: Build packages
               working-directory: output/build

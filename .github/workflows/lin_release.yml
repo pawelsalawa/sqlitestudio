@@ -143,32 +143,6 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
 
-            - name: Create python files in portable dir
-              working-directory: ${{ env.PORTABLE_DIR }}
-              shell: bash
-              run: |
-                pythonPath=${{ env.pythonLocation }}
-                ver=${{ env.PYTHON_VERSION }}
-                libDir=$pythonPath/lib/python$ver
-                pydir=python_temp
-                mkdir $pydir
-                cd $pydir
-                cp -R $libDir/encodings .
-                cp $libDir/_collections_abc.py .
-                cp $libDir/_sitebuiltins.py .
-                cp $libDir/abc.py .
-                cp $libDir/codecs.py .
-                cp $libDir/genericpath.py .
-                cp $libDir/io.py .
-                cp $libDir/ntpath.py .
-                cp $libDir/os.py .
-                cp $libDir/site.py .
-                cp $libDir/stat.py .
-                zip -r ../lib/python${ver//./}.zip * -x "**/__pycache__/*"
-                cd ..
-                rm -rf $pydir
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* lib/
-
             - name: Copy libcrypto to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |

@@ -127,27 +127,6 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/
-
-            - name: Create python files in output dir
-              shell: bash
-              run: |
-                pythonPath='${{ env.pythonLocation }}'
-                pythonPath=${pythonPath//\\/\/}
-                pythonPath=${pythonPath/c:/\/c}
-                ver=${{ env.PYTHON_VERSION }}
-                7z a -r output/SQLiteStudio/python${ver//./}.zip $pythonPath/lib/encodings
-                7z a output/SQLiteStudio/python${ver//./}.zip \
-                    $pythonPath/lib/_collections_abc.py \
-                    $pythonPath/lib/_sitebuiltins.py \
-                    $pythonPath/lib/abc.py \
-                    $pythonPath/lib/codecs.py \
-                    $pythonPath/lib/genericpath.py \
-                    $pythonPath/lib/io.py \
-                    $pythonPath/lib/ntpath.py \
-                    $pythonPath/lib/os.py \
-                    $pythonPath/lib/site.py \
-                    $pythonPath/lib/stat.py
-                cp $pythonPath/python${ver//./}.dll output/SQLiteStudio/
               
             - name: Prepare portable dir
               shell: bash
