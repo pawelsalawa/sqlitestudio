@@ -47,7 +47,7 @@ jobs:
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: output.zip
+                name: win.zip
                 path: .
     mac:
         runs-on: macos-11
@@ -89,7 +89,7 @@ jobs:
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: output.zip
+                name: mac.zip
                 path: .
 
     linux:
@@ -140,5 +140,5 @@ jobs:
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: python39.zip
-                path: python39.zip
+                name: lin.zip
+                path: .
