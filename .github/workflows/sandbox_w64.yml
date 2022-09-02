@@ -22,6 +22,33 @@ jobs:
               run: |
                 ls -l $pythonLocation
 
+            - name: Create python files in output dir
+              shell: bash
+              run: |
+                pythonPath='${{ env.pythonLocation }}'
+                pythonPath=${pythonPath//\\/\/}
+                pythonPath=${pythonPath/c:/\/c}
+                ver=${{ env.PYTHON_VERSION }}
+                7z a -r python${ver//./}.zip $pythonPath/lib/encodings
+                7z a python${ver//./}.zip \
+                    $pythonPath/lib/_collections_abc.py \
+                    $pythonPath/lib/_sitebuiltins.py \
+                    $pythonPath/lib/abc.py \
+                    $pythonPath/lib/codecs.py \
+                    $pythonPath/lib/genericpath.py \
+                    $pythonPath/lib/io.py \
+                    $pythonPath/lib/ntpath.py \
+                    $pythonPath/lib/os.py \
+                    $pythonPath/lib/site.py \
+                    $pythonPath/lib/stat.py
+                cp $pythonPath/python${ver//./}.dll .
+                cp $pythonPath/vcruntime140.dll .
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: output.zip
+                path: .
     mac:
         runs-on: macos-11
 
@@ -58,7 +85,12 @@ jobs:
                     $libDir/stat.py \
                     -x "**/__pycache__/*"
                 cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
-
+                    
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: output.zip
+                path: .
 
     linux:
         runs-on: ubuntu-20.04
