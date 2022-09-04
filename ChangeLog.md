@@ -19,6 +19,7 @@
 - ADDED: #4065 Code Snippets - define in dedicated window, use it from the code assistant (hit the assistant hotkey twice).
 - ADDED: #4402 Added context menu option to adjust height of rows according to their contents. Also added single-row adjusting by double-clicking on the row header section on the left.
 - ADDED: #3942 Added option to SQL Export plugin to add IF NOT EXISTS clause to CREATE statements.
+- ADDED: #4249 Added tooltips for WITHOUT ROWID and STRICT checkboxes in the Table Window.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.

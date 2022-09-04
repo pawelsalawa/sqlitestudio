@@ -83,15 +83,21 @@
           </item>
           <item>
            <widget class="QCheckBox" name="withoutRowIdCheck">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disabled the WITHOUT ROWID clause on the table. Such table will no longer have the &amp;quot;rowid&amp;quot; hidden column. For such table an explicit PRIMARY KEY column is mandatory. You can read more details on this in SQLite official documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
-             <string>WITHOUT ROWID</string>
+             <string notr="true">WITHOUT ROWID</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="strictTableCheck">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite bahavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
-             <string>STRICT</string>
+             <string notr="true">STRICT</string>
             </property>
            </widget>
           </item>
