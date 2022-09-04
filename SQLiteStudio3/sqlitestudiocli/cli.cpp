@@ -120,6 +120,7 @@ Db* CLI::getCurrentDb() const
 
 void CLI::exit()
 {
+    SQLITESTUDIO->cleanUp();
     doExit = true;
 }
 
