@@ -1,4 +1,6 @@
 #include "dbdialog.h"
+#include "common/immediatetooltip.h"
+#include "services/notifymanager.h"
 #include "ui_dbdialog.h"
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
@@ -131,6 +133,7 @@ void DbDialog::showEvent(QShowEvent *e)
 void DbDialog::init()
 {
     ui->setupUi(this);
+    connIconTooltip = new ImmediateTooltip(ui->testConnIcon);
 
     for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
         dbPlugins[dbPlugin->getLabel()] = dbPlugin;
@@ -490,14 +493,20 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     return options;
 }
 
-bool DbDialog::testDatabase()
+bool DbDialog::testDatabase(QString& errorMsg)
 {
     if (ui->typeCombo->currentIndex() < 0)
+    {
+        errorMsg = tr("Database type not selected.");
         return false;
+    }
 
     QString path = getPath();
     if (path.isEmpty())
+    {
+        errorMsg = tr("Database path not specified.");
         return false;
+    }
 
     QUrl url(path);
     if (url.scheme().isEmpty())
@@ -505,7 +514,7 @@ bool DbDialog::testDatabase()
 
     QHash<QString, QVariant> options = collectOptions();
     DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
-    Db* testDb = plugin->getInstance("", path, options);
+    Db* testDb = plugin->getInstance("", path, options, &errorMsg);
 
     bool res = false;
     if (testDb)
@@ -513,6 +522,7 @@ bool DbDialog::testDatabase()
         if (testDb->openForProbing())
         {
             res = !testDb->exec("SELECT sqlite_version();")->getSingleCell().toString().isEmpty();
+            errorMsg = db->getErrorText();
             testDb->closeQuiet();
         }
         delete testDb;
@@ -630,7 +640,6 @@ void DbDialog::valueForNameGenerationChanged()
     else
         generatedName = DBLIST->generateUniqueDbName(getPath());
 
-
     ui->nameEdit->setText(generatedName);
 }
 
@@ -691,8 +700,19 @@ void DbDialog::browseClicked()
 
 void DbDialog::testConnectionClicked()
 {
-    ui->testConnIcon->setPixmap(testDatabase() ? ICONS.TEST_CONN_OK : ICONS.TEST_CONN_ERROR);
+    QString errorMsg;
+    bool ok = testDatabase(errorMsg);
+    ui->testConnIcon->setPixmap(ok ? ICONS.TEST_CONN_OK : ICONS.TEST_CONN_ERROR);
+    connIconTooltip->setToolTip(ok ? QString() : errorMsg);
     ui->testConnIcon->setVisible(true);
+    if (!ok)
+    {
+        QString path = getPath();
+        if (!path.isEmpty())
+            notifyWarn(QString("%1: %2").arg(getPath(), errorMsg));
+        else
+            notifyWarn(errorMsg);
+    }
 }
 
 void DbDialog::dbTypeChanged(int index)

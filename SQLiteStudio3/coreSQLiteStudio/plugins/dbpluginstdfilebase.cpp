@@ -11,6 +11,9 @@ Db *DbPluginStdFileBase::getInstance(const QString &name, const QString &path, c
 
     if (!db->openForProbing())
     {
+        if (errorMessage)
+            *errorMessage = db->getErrorText();
+
         delete db;
         return nullptr;
     }
@@ -18,6 +21,9 @@ Db *DbPluginStdFileBase::getInstance(const QString &name, const QString &path, c
     SqlQueryPtr results = db->exec("SELECT * FROM sqlite_master");
     if (results->isError())
     {
+        if (errorMessage)
+            *errorMessage = db->getErrorText();
+
         delete db;
         return nullptr;
     }

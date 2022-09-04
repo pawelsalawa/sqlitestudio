@@ -12,6 +12,7 @@
 class DbPlugin;
 class QGridLayout;
 struct DbPluginOption;
+class ImmediateTooltip;
 
 namespace Ui {
     class DbDialog;
@@ -55,7 +56,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         QVariant getValueFrom(DbPluginOption::Type type, QWidget* editor);
         void setValueFor(DbPluginOption::Type type, QWidget* editor, const QVariant& value);
         void updateType();
-        bool testDatabase();
+        bool testDatabase(QString& errorMsg);
         bool validate();
         void updateState();
 
@@ -73,6 +74,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         bool disableTypeAutodetection = false;
         bool doAutoTest = false;
         bool nameManuallyEdited = false;
+        ImmediateTooltip* connIconTooltip = nullptr;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
 

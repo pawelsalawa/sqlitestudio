@@ -33,6 +33,7 @@ DEFINES += GUISQLITESTUDIO_LIBRARY
 
 SOURCES +=\
     common/dbcombobox.cpp \
+    common/immediatetooltip.cpp \
     constraints/columngeneratedpanel.cpp \
     extendedpalette.cpp \
         mainwindow.cpp \
@@ -189,6 +190,7 @@ SOURCES +=\
 
 HEADERS  += mainwindow.h \
     common/dbcombobox.h \
+    common/immediatetooltip.h \
     constraints/columngeneratedpanel.h \
     extendedpalette.h \
     iconmanager.h \

@@ -61,7 +61,7 @@ bool DbManagerImpl::addDb(const QString &name, const QString &path, const QHash<
     Db* db = createDb(name, path, options, &errorMessage);
     if (!db)
     {
-        notifyError(tr("Could not add database %1: %2").arg(path).arg(errorMessage));
+        notifyError(tr("Could not add database %1: %2").arg(path, errorMessage));
         return false;
     }
 
