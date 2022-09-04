@@ -198,7 +198,9 @@ jobs:
 
             - name: Final preparations for packaging
               run: |
-                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_256.png "${{ env.PORTABLE_DIR }}"/appicon.png
+                mkdir "${{ env.PORTABLE_DIR }}"/assets
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_256.png "${{ env.PORTABLE_DIR }}"/assets/appicon.png
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg "${{ env.PORTABLE_DIR }}"/assets/appicon.svg
 
             - name: Final preparations for packaging
               working-directory: ${{ env.PORTABLE_DIR }}

@@ -171,6 +171,7 @@ jobs:
               shell: bash
               run: |
                 cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg "${{ env.PORTABLE_DIR }}"/appicon.svg
 
             - name: Determine SQLiteStudio version
               shell: bash
