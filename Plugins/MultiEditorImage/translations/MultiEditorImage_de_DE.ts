@@ -36,7 +36,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="105"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>Bild öffnen</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="114"/>
@@ -46,12 +46,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="134"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Alle Dateien (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="136"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Bild speichern</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="155"/>
