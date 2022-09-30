@@ -54,7 +54,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>Index: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
@@ -106,7 +106,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="261"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>Trigger: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
@@ -153,7 +153,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="297"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>View: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
