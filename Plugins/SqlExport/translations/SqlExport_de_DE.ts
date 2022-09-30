@@ -6,37 +6,37 @@
     <message>
       <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
-      <translation type="unfinished">-- Results of query:</translation>
+      <translation>-- Ergebnisse der Abfrage:</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="122"/>
       <source>-- Table: %1</source>
-      <translation type="unfinished">-- Table: %1</translation>
+      <translation>-- Tabelle: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="168"/>
       <source>-- Index: %1</source>
-      <translation type="unfinished">-- Index: %1</translation>
+      <translation>-- Index: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="185"/>
       <source>-- Trigger: %1</source>
-      <translation type="unfinished">-- Trigger: %1</translation>
+      <translation>-- Trigger: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="202"/>
       <source>-- View: %1</source>
-      <translation type="unfinished">-- View: %1</translation>
+      <translation>-- View: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="216"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
-      <translation type="unfinished">-- File generated with SQLiteStudio v%1 on %2</translation>
+      <translation>-- Datei mit SQLiteStudio v%1 am %2 erstellt</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Text encoding used: %1</source>
-      <translation type="unfinished">-- Text encoding used: %1</translation>
+      <translation>-- verwendete Textkodierung: %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="276"/>
