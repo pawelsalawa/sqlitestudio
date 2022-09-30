@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Generierter Wert</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -1264,7 +1264,7 @@
       <location filename="../dialogs/configdialog.cpp" line="797"/>
       <source>Version:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Version:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="798"/>
@@ -1309,7 +1309,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1296"/>
       <source>Details</source>
-      <translation type="unfinished">Details</translation>
+      <translation>Details</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1308"/>
@@ -1604,7 +1604,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dataview.cpp" line="954"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filter</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="957"/>
@@ -1878,7 +1878,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>Verbindung zur &amp;Datenbank trennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
@@ -1888,12 +1888,12 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>Datenbank &amp;exportieren</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Vac&amp;uum</source>
-      <translation type="unfinished">Vac&amp;uum</translation>
+      <translation>Aufrä&amp;umen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
@@ -1978,12 +1978,12 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>Edit the v&amp;iew</source>
-      <translation type="unfinished">Edit the v&amp;iew</translation>
+      <translation>V&amp;iew bearbeiten</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>Delete the vi&amp;ew</source>
-      <translation type="unfinished">Delete the vi&amp;ew</translation>
+      <translation>Vi&amp;ew löschen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
@@ -2112,7 +2112,7 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1490"/>
       <source>Vacuum (%1)</source>
-      <translation type="unfinished">Vacuum (%1)</translation>
+      <translation>Aufräumen (%1)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1504"/>
