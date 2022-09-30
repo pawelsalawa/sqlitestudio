@@ -91,38 +91,38 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation type="unfinished">After comma</translation>
+      <translation>Nach Komma</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation type="unfinished">After comma in expressions</translation>
+      <translation>Nach Komma in Ausdrücken</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation type="unfinished">After semicolon</translation>
+      <translation>Nach Semikolon</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>Nie vor Semikolon</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
       <source>White spaces</source>
-      <translation type="unfinished">White spaces</translation>
+      <translation>Leerzeichen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>Vor Komma in Listen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation type="unfinished">After comma in lists</translation>
+      <translation>Nach Komma in Listen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
@@ -172,12 +172,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>Nie vor Komma</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>Namen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
@@ -202,7 +202,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
       <source>Comments</source>
-      <translation type="unfinished">Comments</translation>
+      <translation>Kommentare</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Vorschau</translation>
     </message>
   </context>
 </TS>
