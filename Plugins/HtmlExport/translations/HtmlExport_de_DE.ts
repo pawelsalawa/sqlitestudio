@@ -114,7 +114,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>View: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="480"/>
