@@ -16,7 +16,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="46"/>
       <source>Indentation</source>
-      <translation type="unfinished">Indentation</translation>
+      <translation>Einrückung</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
@@ -31,12 +31,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation type="unfinished">Tab size:</translation>
+      <translation>Tabulatorgröße:</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
       <source>New lines</source>
-      <translation type="unfinished">New lines</translation>
+      <translation>Neue Zeilen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
