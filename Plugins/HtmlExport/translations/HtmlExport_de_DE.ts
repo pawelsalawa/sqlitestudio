@@ -6,7 +6,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="46"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>SQL Abfragenergebnis</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="78"/>
@@ -18,13 +18,13 @@
       <location filename="../htmlexport.cpp" line="115"/>
       <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>Exportierte Tabelle: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="127"/>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabelle: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
@@ -34,7 +34,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="308"/>
       <source>Exported database: %1</source>
-      <translation type="unfinished">Exported database: %1</translation>
+      <translation>Exportierte Datenbank: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="324"/>
