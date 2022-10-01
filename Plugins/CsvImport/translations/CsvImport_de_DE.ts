@@ -29,27 +29,27 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (Komma)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (Semikolon)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (Tabulator)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (Leerzeichen)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>Benutzerdefiniert:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>Trennzeichen:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>

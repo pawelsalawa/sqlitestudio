@@ -6,7 +6,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+      <translation>Textdateien (*.txt);;Alle Dateien (*.*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
       <source>Invalid pattern: %1</source>
-      <translation type="unfinished">Invalid pattern: %1</translation>
+      <translation>Ungültiges Muster: %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
@@ -61,7 +61,7 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation type="unfinished">Example: 1, 3, 4</translation>
+      <translation>Beispiel: 1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
