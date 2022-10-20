@@ -2,6 +2,7 @@
 #include "common/unused.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
+#include "multieditor/multieditorfk.h"
 #include "widgetresizer.h"
 #include "datagrid/sqlqueryitem.h"
 #include "uiconfig.h"
@@ -86,7 +87,7 @@ void FormView::reloadInternal()
 {
     // Cleanup
     dataMapper->clearMapping();
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
     {
         contents->layout()->removeWidget(widget);
         delete widget;
@@ -98,8 +99,8 @@ void FormView::reloadInternal()
     // Recreate
     dataMapper->setModel(model.data());
     int i = 0;
-    for (SqlQueryModelColumnPtr column : model->getColumns())
-        addColumn(i++, column->displayName, column->dataType, (column->editionForbiddenReason.size() > 0));
+    for (SqlQueryModelColumnPtr& column : model->getColumns())
+        addColumn(i++, column.data());
 }
 
 bool FormView::isModified() const
@@ -107,12 +108,14 @@ bool FormView::isModified() const
     return valueModified;
 }
 
-void FormView::addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly)
+MultiEditor* FormView::addColumn(int colIdx, SqlQueryModelColumn* column)
 {
+    bool readOnly = (column->editionForbiddenReason.size() > 0);
+
     // Group with label
-    QString groupLabel = name;
-    if (!dataType.toString().isEmpty())
-        groupLabel += " (" + dataType.toString() + ")";
+    QString groupLabel = column->displayName;
+    if (!column->dataType.toString().isEmpty())
+        groupLabel += " (" + column->dataType.toString() + ")";
 
     // MultiEditor
     MultiEditor* multiEditor = new MultiEditor();
@@ -127,7 +130,10 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
     connect(multiEditor, SIGNAL(modified()), this, SLOT(editorValueModified()));
 
     // MultiEditor editors
-    multiEditor->setDataType(dataType);
+    if (!column->getFkConstraints().isEmpty())
+        multiEditor->enableFk(model->getDb(), column);
+
+    multiEditor->setDataType(column->dataType);
 
     // Resizer
     WidgetResizer* resizer = new WidgetResizer(Qt::Vertical);
@@ -135,6 +141,8 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
     resizer->setWidgetMinimumSize(0, minimumFieldHeight);
     widgets << resizer;
     contents->layout()->addWidget(resizer);
+
+    return multiEditor;
 }
 
 bool FormView::isCurrentRowModifiedInGrid()

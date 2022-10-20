@@ -34,13 +34,13 @@ bool QueryExecutorColumns::exec()
 
     // Deleting old result columns and defining new ones
     SqliteSelect::Core* core = select->coreSelects.first();
-    for (SqliteSelect::Core::ResultColumn* resCol : core->resultColumns)
+    for (SqliteSelect::Core::ResultColumn*& resCol : core->resultColumns)
         delete resCol;
 
     core->resultColumns.clear();
 
     // Count total rowId columns
-    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
         rowIdColNames += rowIdCol->queryExecutorAliasToColumn.keys();
 
     // Defining result columns
@@ -49,7 +49,7 @@ bool QueryExecutorColumns::exec()
     bool rowIdColumn = false;
     int i = 0;
     QSet<QString> usedAliases;
-    for (const SelectResolver::Column& col : columns)
+    for (SelectResolver::Column& col : columns)
     {
         // Convert column to QueryExecutor result column
         resultColumn = getResultColumn(col);
@@ -146,6 +146,7 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         if (parser.getErrors().size() > 0)
             qWarning() << "The error was:" << parser.getErrors().first()->getFrom() << ":" << parser.getErrors().first()->getMessage();
 
+        delete selectResultColumn;
         return nullptr;
     }
 
@@ -201,7 +202,7 @@ QString QueryExecutorColumns::resolveAttachedDatabases(const QString &dbName)
 
 bool QueryExecutorColumns::isRowIdColumnAlias(const QString& alias)
 {
-    for (QueryExecutor::ResultRowIdColumnPtr rowIdColumn : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
     {
         if (rowIdColumn->queryExecutorAliasToColumn.keys().contains(alias))
             return true;
@@ -221,7 +222,7 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
     QString baseColName;
     QString colName;
     static_qstring(colNameTpl, "%1:%2");
-    for (const QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
+    for (QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
     {
         if (!first)
             outerColumns += sepTokens;
@@ -250,9 +251,9 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         first = false;
     }
 
-    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
     {
-        for (const QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
+        for (QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
         {
             if (!first)
                 outerColumns += sepTokens;

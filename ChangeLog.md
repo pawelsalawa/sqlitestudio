@@ -21,6 +21,7 @@
 - ADDED: #3942 Added option to SQL Export plugin to add IF NOT EXISTS clause to CREATE statements.
 - ADDED: #4249 Added tooltips for WITHOUT ROWID and STRICT checkboxes in the Table Window.
 - ADDED: #4264 Added svg icon to portable packages.
+- ADDED: #3439 Foreign Key dropdown is now available not only in the Grid View, but also in the Form View and the modal Value Editor dialog.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
@@ -36,6 +37,7 @@
 - CHANGE: #4435 Changed data griv view behavior, so when user clicks once, it will select column/row and if double-clicks, the sorting order is applied.
 - CHANGE: #4088 Changed F2 hotkey, so it enters inline editing of a cell (no longer it opens the config dialog, which now is under F10 key). View Window, Collation Editor, Functions Editor, and Extensions Editor got now Ctrl+S hotkey to commit pending changes.
 - CHANGE: #4341 When testing or accepting database connection in Database Dialog, in case of error, the message is displayed in status field properly, but also shows up in tooltip of the connection error icon.
+- CHANGE: #3439 Compact Layout (that reduces many margins to save working space) is now excluded from the Form View, as it made it only worse.
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.

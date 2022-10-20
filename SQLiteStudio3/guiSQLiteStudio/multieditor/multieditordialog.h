@@ -20,6 +20,7 @@ class GUI_API_EXPORT MultiEditorDialog : public QDialog
 
         void setDataType(const DataType& dataType);
         void setReadOnly(bool readOnly);
+        void enableFk(Db* db, SqlQueryModelColumn* column);
 
     private:
         MultiEditor* multiEditor = nullptr;

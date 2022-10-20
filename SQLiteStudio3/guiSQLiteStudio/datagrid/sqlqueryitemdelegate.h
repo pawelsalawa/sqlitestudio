@@ -6,6 +6,7 @@
 #include <QStyledItemDelegate>
 #include <QSet>
 
+class FkComboBox;
 class SqlQueryItem;
 class QComboBox;
 class QStandardItemModel;
@@ -42,27 +43,16 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         QWidget* getFkEditor(SqlQueryItem* item, QWidget* parent, const SqlQueryModel *model) const;
         void setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const;
         void setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const;
-        void setModelDataForFk(QComboBox* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+        void setModelDataForFk(FkComboBox* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         void setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         QString getSqlForFkEditor(SqlQueryItem* item) const;
         qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool *isError) const;
         int getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const;
-        void updateComboViewGeometry(SqlQueryView* comboView, bool initial) const;
 
         QSet<QWidget*> editorsWithAsyncExecution;
-        mutable int fkViewParentItemSize = 0;
-        mutable QHash<SqlQueryModel*, QComboBox*> modelToFkCombo;
-        mutable QHash<SqlQueryModel*, QVariant> modelToFkInitialValue;
 
         static bool warnedAboutHugeContents;
-        static const qlonglong MAX_ROWS_FOR_FK = 10000L;
-        static const int FK_CELL_LENGTH_LIMIT = 30;
         static const int HUGE_CONTENTS_WARNING_LIMIT = 32767; // pow(2, 16) / 2 - 1
-
-    private slots:
-        void fkDataAboutToLoad();
-        void fkDataReady();
-        void fkDataFailed(const QString& errorText);
 };
 
 #endif // SQLQUERYITEMDELEGATE_H

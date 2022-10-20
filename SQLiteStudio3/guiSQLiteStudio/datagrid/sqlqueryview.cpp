@@ -864,11 +864,17 @@ void SqlQueryView::openValueEditor(SqlQueryItem* item)
         return;
     }
 
+    SqlQueryModelColumn* column = item->getColumn();
+
     MultiEditorDialog editor(this);
+    if (!column->getFkConstraints().isEmpty())
+        editor.enableFk(getModel()->getDb(), column);
+
+    editor.setDataType(column->dataType);
     editor.setWindowTitle(tr("Edit value"));
-    editor.setDataType(item->getColumn()->dataType);
     editor.setValue(item->getValue());
-    editor.setReadOnly(!item->getColumn()->canEdit());
+    editor.setReadOnly(!column->canEdit());
+
     if (editor.exec() == QDialog::Rejected)
         return;
 

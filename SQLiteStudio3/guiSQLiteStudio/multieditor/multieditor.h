@@ -1,11 +1,13 @@
 #ifndef MULTIEDITOR_H
 #define MULTIEDITOR_H
 
+#include "datatype.h"
 #include "guiSQLiteStudio_global.h"
-#include "datagrid/sqlquerymodelcolumn.h"
 #include <QWidget>
 #include <QVariant>
 
+class Db;
+class SqlQueryModelColumn;
 class QCheckBox;
 class QTabWidget;
 class MultiEditorWidget;
@@ -51,8 +53,22 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void setReadOnly(bool value);
         void setDeletedRow(bool value);
         void setDataType(const DataType& dataType);
+        void enableFk(Db* db, SqlQueryModelColumn* column);
         void focusThisEditor();
         void setCornerLabel(const QString& label);
+
+        template <class T>
+        T* getEditorWidget() const
+        {
+            QListIterator<MultiEditorWidget*> it(editors);
+            while (it.hasNext())
+            {
+                T* casted = dynamic_cast<T*>(it.next());
+                if (casted)
+                    return casted;
+            }
+            return nullptr;
+        }
 
         static void loadBuiltInEditors();
 

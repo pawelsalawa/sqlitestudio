@@ -27,8 +27,8 @@ class DataWidgetMapper : public QObject
     private:
         struct MappingEntry
         {
-                QWidget* widget = nullptr;
-                int columnIndex = 0;
+            QWidget* widget = nullptr;
+            int columnIndex = 0;
             QString propertyName;
         };
 

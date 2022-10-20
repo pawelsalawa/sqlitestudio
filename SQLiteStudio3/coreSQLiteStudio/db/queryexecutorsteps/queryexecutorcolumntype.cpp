@@ -1,4 +1,7 @@
 #include "queryexecutorcolumntype.h"
+#include "parser/parser.h"
+#include <QDebug>
+#include <QStringList>
 
 bool QueryExecutorColumnType::exec()
 {
@@ -9,7 +12,22 @@ bool QueryExecutorColumnType::exec()
     if (!select || select->explain)
         return true;
 
-    addTypeColumns(select.data());
+    static_qstring(selectTpl, "SELECT *, %1 FROM (%2)");
+
+    QStringList columns = addTypeColumns();
+    QString newSelect = selectTpl.arg(columns.join(", "), select->detokenize());
+
+    Parser parser;
+    if (!parser.parse(newSelect) || parser.getQueries().size() == 0)
+    {
+        qWarning() << "Could not parse SELECT after applying typeof(). Tried to parse query:\n" << newSelect;
+        return false;
+    }
+
+    context->parsedQueries.removeLast();
+    context->parsedQueries << parser.getQueries().first();
+
+    updateQueries();
 
     select->rebuildTokens();
     updateQueries();
@@ -17,31 +35,16 @@ bool QueryExecutorColumnType::exec()
     return true;
 }
 
-void QueryExecutorColumnType::addTypeColumns(SqliteSelect* select)
+QStringList QueryExecutorColumnType::addTypeColumns()
 {
-    for (const QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
+    static_qstring(typeOfColTpl, "typeof(%1) AS %2");
+    QStringList typeColumns;
+    for (QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
     {
         QString nextCol = getNextColName();
         QString targetCol = resCol->queryExecutorAlias;
-
-        for (SqliteSelect::Core* core : select->coreSelects)
-        {
-            SqliteSelect::Core::ResultColumn* realResCol = createRealTypeOfResCol(targetCol, nextCol);
-            core->resultColumns << realResCol;
-            realResCol->setParent(core);
-        }
-
+        typeColumns << typeOfColTpl.arg(targetCol, nextCol);
         context->typeColumnToResultColumnAlias[nextCol] = targetCol;
     }
-}
-
-SqliteSelect::Core::ResultColumn* QueryExecutorColumnType::createRealTypeOfResCol(const QString& targetCol, const QString& alias)
-{
-    SqliteExpr* targetColExpr = new SqliteExpr();
-    targetColExpr->initId(targetCol);
-
-    SqliteExpr* expr = new SqliteExpr();
-    expr->initFunction("typeof", false, {targetColExpr});
-
-    return new SqliteSelect::Core::ResultColumn(expr, true, alias);
+    return typeColumns;
 }

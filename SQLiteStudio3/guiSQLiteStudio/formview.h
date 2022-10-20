@@ -2,7 +2,6 @@
 #define FORMVIEW_H
 
 #include "guiSQLiteStudio_global.h"
-#include "datagrid/sqlquerymodelcolumn.h"
 #include "multieditor/multieditor.h"
 #include <QWidget>
 #include <QPointer>
@@ -67,7 +66,7 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
 
     private:
         void reloadInternal();
-        void addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly);
+        MultiEditor* addColumn(int colIdx, SqlQueryModelColumn* column);
         bool isCurrentRowModifiedInGrid();
         void updateDeletedState();
 

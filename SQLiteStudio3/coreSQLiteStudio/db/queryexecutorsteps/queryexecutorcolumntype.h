@@ -2,7 +2,7 @@
 #define QUERYEXECUTORCOLUMNTYPE_H
 
 #include "queryexecutorstep.h"
-#include "parser/ast/sqliteselect.h"
+//#include "parser/ast/sqliteselect.h"
 
 class QueryExecutorColumnType : public QueryExecutorStep
 {
@@ -12,8 +12,8 @@ class QueryExecutorColumnType : public QueryExecutorStep
         bool exec();
 
     private:
-        void addTypeColumns(SqliteSelect* select);
-        SqliteSelect::Core::ResultColumn* createRealTypeOfResCol(const QString& targetCol, const QString& alias);
+        QStringList addTypeColumns();
+//        SqliteSelect::Core::ResultColumn* createRealTypeOfResCol(const QString& targetCol, const QString& alias);
 };
 
 #endif // QUERYEXECUTORCOLUMNTYPE_H

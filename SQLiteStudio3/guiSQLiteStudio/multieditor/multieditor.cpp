@@ -1,4 +1,5 @@
 #include "multieditor.h"
+#include "multieditor/multieditorfk.h"
 #include "multieditortext.h"
 #include "multieditornumeric.h"
 #include "multieditordatetime.h"
@@ -15,6 +16,7 @@
 #include "dialogs/configdialog.h"
 #include "themetuner.h"
 #include "common/compatibility.h"
+#include "datagrid/sqlquerymodelcolumn.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -190,7 +192,6 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
     connect(editorWidget, SIGNAL(valueModified()), this, SLOT(invalidateValue()));
     editors << editorWidget;
     tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
-    THEME_TUNER->manageCompactLayout(editorWidget);
     editorWidget->installEventFilter(this);
 
     connect(editorWidget, &MultiEditorWidget::aboutToBeDeleted, [this, editorWidget]()
@@ -287,6 +288,14 @@ void MultiEditor::setDataType(const DataType& dataType)
         configBtn->setEnabled(true);
 }
 
+void MultiEditor::enableFk(Db* db, SqlQueryModelColumn* column)
+{
+    MultiEditorFk* fkEditor = new MultiEditorFk();
+    fkEditor->initFkCombo(db, column);
+    fkEditor->setTabLabel(tr("Foreign Key"));
+    addEditor(fkEditor);
+}
+
 void MultiEditor::focusThisEditor()
 {
     MultiEditorWidget* w = dynamic_cast<MultiEditorWidget*>(tabs->currentWidget());
@@ -330,7 +339,8 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
             {
                 if (!missingEditorPluginsAlreadyWarned.contains(editorPluginName))
                 {
-                    notifyWarn(tr("Data editor plugin '%1' not loaded, while it is defined for editing '%1' data type."));
+                    notifyWarn(tr("Data editor plugin '%1' not loaded, while it is defined for editing '%2' data type.")
+                                   .arg(editorPluginName, typeStr));
                     missingEditorPluginsAlreadyWarned[editorPluginName] = true;
                 }
                 continue;

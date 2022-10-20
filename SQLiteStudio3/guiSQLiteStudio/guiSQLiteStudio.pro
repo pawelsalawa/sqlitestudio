@@ -34,7 +34,9 @@ DEFINES += GUISQLITESTUDIO_LIBRARY
 SOURCES +=\
     common/dbcombobox.cpp \
     common/immediatetooltip.cpp \
+    common/mouseshortcut.cpp \
     constraints/columngeneratedpanel.cpp \
+    datagrid/fkcombobox.cpp \
     extendedpalette.cpp \
         mainwindow.cpp \
     iconmanager.cpp \
@@ -43,6 +45,7 @@ SOURCES +=\
     dbtree/dbtree.cpp \
     dbtree/dbtreeview.cpp \
     actionentry.cpp \
+    multieditor/multieditorfk.cpp \
     style.cpp \
     uiutils.cpp \
     dbtree/dbtreeitemdelegate.cpp \
@@ -191,7 +194,9 @@ SOURCES +=\
 HEADERS  += mainwindow.h \
     common/dbcombobox.h \
     common/immediatetooltip.h \
+    common/mouseshortcut.h \
     constraints/columngeneratedpanel.h \
+    datagrid/fkcombobox.h \
     extendedpalette.h \
     iconmanager.h \
     dbtree/dbtreemodel.h \
@@ -199,6 +204,7 @@ HEADERS  += mainwindow.h \
     dbtree/dbtree.h \
     dbtree/dbtreeview.h \
     actionentry.h \
+    multieditor/multieditorfk.h \
     style.h \
     uiutils.h \
     dbtree/dbtreeitemdelegate.h \

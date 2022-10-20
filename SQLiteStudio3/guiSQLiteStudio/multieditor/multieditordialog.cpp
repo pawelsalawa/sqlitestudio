@@ -47,3 +47,8 @@ void MultiEditorDialog::setReadOnly(bool readOnly)
 {
     multiEditor->setReadOnly(readOnly);
 }
+
+void MultiEditorDialog::enableFk(Db* db, SqlQueryModelColumn* column)
+{
+    multiEditor->enableFk(db, column);
+}
