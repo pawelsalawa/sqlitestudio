@@ -6,27 +6,27 @@
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>Aus Datei laden</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>In einer Datei speichern</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom in by 25%</source>
-      <translation type="unfinished">Zoom in by 25%</translation>
+      <translation>Um 25% vergrößern</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Zoom out by 25%</source>
-      <translation type="unfinished">Zoom out by 25%</translation>
+      <translation>Um 25% verkleinern</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>Zoom zurücksetzen</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="104"/>
@@ -36,7 +36,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="105"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>Bild öffnen</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="114"/>
@@ -46,12 +46,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="134"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Alle Dateien (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="136"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Bild speichern</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="155"/>
