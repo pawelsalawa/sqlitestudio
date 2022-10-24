@@ -43,11 +43,17 @@ class FkComboBox : public QComboBox
         SqlQueryModelColumn* columnModel = nullptr;
         QString beforeLoadValue;
         QVariant sourceValue;
+        bool disableValueChangeNotifications = false;
+        QString oldValue;
 
     private slots:
         void fkDataAboutToLoad();
         void fkDataReady();
         void fkDataFailed(const QString& errorText);
+        void notifyValueModified();
+
+    signals:
+        void valueModified();
 };
 
 #endif // FKCOMBOBOX_H

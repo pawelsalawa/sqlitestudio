@@ -11,7 +11,7 @@ MultiEditorFk::MultiEditorFk(QWidget* parent)
     comboBox->setEditable(false);
     layout()->addWidget(comboBox);
 
-    connect(comboBox, SIGNAL(currentTextChanged(QString)), this, SIGNAL(valueModified()));
+    connect(comboBox, SIGNAL(valueModified()), this, SIGNAL(valueModified()));
 
     setFocusProxy(comboBox);
 }

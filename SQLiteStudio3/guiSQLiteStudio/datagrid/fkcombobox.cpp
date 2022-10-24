@@ -204,6 +204,7 @@ void FkComboBox::init()
     connect(comboModel, SIGNAL(aboutToLoadResults()), this, SLOT(fkDataAboutToLoad()));
     connect(comboModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
     connect(comboModel, SIGNAL(executionFailed(QString)), this, SLOT(fkDataFailed(QString)));
+    connect(this, SIGNAL(currentTextChanged(QString)), this, SLOT(notifyValueModified()));
 
     // Setup combo, model, etc.
     setModel(comboModel);
@@ -263,6 +264,8 @@ void FkComboBox::fkDataAboutToLoad()
 
 void FkComboBox::fkDataReady()
 {
+    disableValueChangeNotifications = true;
+
     comboView->horizontalHeader()->setSectionHidden(0, true);
     comboView->resizeColumnsToContents();
     comboView->resizeRowsToContents();
@@ -287,11 +290,22 @@ void FkComboBox::fkDataReady()
     }
     else
         setEditText(beforeLoadValue);
+
+    disableValueChangeNotifications = false;
 }
 
 void FkComboBox::fkDataFailed(const QString& errorText)
 {
     notifyWarn(tr("Cannot edit this cell. Details: %1").arg(errorText));
+}
+
+void FkComboBox::notifyValueModified()
+{
+    if (disableValueChangeNotifications || !comboModel->isAllDataLoaded())
+        return;
+
+    oldValue = currentText();
+    emit valueModified();
 }
 
 FkComboBox::FkComboShowFilter::FkComboShowFilter(FkComboBox* parentCombo)
