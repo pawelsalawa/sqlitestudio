@@ -1,6 +1,8 @@
 #include "tablestructuremodel.h"
+#include "datagrid/sqlquerymodelcolumn.h"
 #include "iconmanager.h"
 #include "common/unused.h"
+#include "parser/ast/sqlitecreatetable.h"
 #include <QFont>
 #include <QDebug>
 #include <QMimeData>
@@ -44,6 +46,9 @@ QVariant TableStructureModel::data(const QModelIndex& index, int role) const
     int row = index.row();
     if (createTable->columns.size() <= row)
         return QVariant();
+
+    if (role == Qt::ToolTipRole)
+        return getToolTip(row, getHeaderColumn(index.column()));
 
     switch (getHeaderColumn(index.column()))
     {
@@ -509,6 +514,98 @@ bool TableStructureModel::isColumnGenerate(SqliteCreateTable::Column* column) co
         return true;
 
     return false;
+}
+
+QString TableStructureModel::getToolTip(int row, Columns modelColumn) const
+{
+    static const QString tooltipTpl = "<table><tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr></table>";
+
+    if (row >= createTable->columns.size())
+        return QString();
+
+    SqliteCreateTable::Column* col = createTable->columns[row];
+    if (col->constraints.isEmpty() && createTable->constraints.isEmpty())
+        return QString();
+
+    SqliteCreateTable::Column::Constraint::Type lookFor;
+    SqliteCreateTable::Constraint::Type lookForTableType;
+    bool tableConstrDefined = false;
+    switch (modelColumn)
+    {
+        case Columns::PK:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::PRIMARY_KEY;
+            lookForTableType = SqliteCreateTable::Constraint::Type::PRIMARY_KEY;
+            tableConstrDefined = true;
+            break;
+        case Columns::FK:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::FOREIGN_KEY;
+            lookForTableType = SqliteCreateTable::Constraint::Type::FOREIGN_KEY;
+            tableConstrDefined = true;
+            break;
+        case Columns::UNIQUE:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::UNIQUE;
+            lookForTableType = SqliteCreateTable::Constraint::Type::UNIQUE;
+            tableConstrDefined = true;
+            break;
+        case Columns::CHECK:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::CHECK;
+            // Not defined for Table-level constraint, because it cannot (easily) determin if it's affected by table CHECK.
+            break;
+        case Columns::NOTNULL:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::NOT_NULL;
+            break;
+        case Columns::COLLATE:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::COLLATE;
+            break;
+        case Columns::GENERATED:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::GENERATED;
+            break;
+        case Columns::DEFAULT:
+            lookFor = SqliteCreateTable::Column::Constraint::Type::DEFAULT;
+            break;
+        case Columns::NAME:
+        case Columns::TYPE:
+            return QString();
+    }
+
+    SqliteCreateTable::Column::Constraint* constraint = findFirst<SqliteCreateTable::Column::Constraint>(
+            col->constraints,
+            [lookFor](SqliteCreateTable::Column::Constraint* constr) -> bool
+            {
+                return constr->type == lookFor;
+            }
+        );
+
+    SqliteCreateTable::Constraint* tableConstraint = nullptr;
+    if (tableConstrDefined)
+    {
+        tableConstraint = findFirst<SqliteCreateTable::Constraint>(
+                createTable->constraints,
+                [lookForTableType](SqliteCreateTable::Constraint* constr) -> bool
+                {
+                    return constr->type == lookForTableType;
+                }
+            );
+    }
+
+    if (!constraint && !tableConstraint)
+        return QString();
+
+    if (constraint)
+    {
+        SqlQueryModelColumn::Constraint* constr = SqlQueryModelColumn::Constraint::create(constraint);
+        QString tooltip = tooltipTpl.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
+        delete constr;
+        return tooltip;
+    }
+
+    SqlQueryModelColumn::Constraint* constr = SqlQueryModelColumn::Constraint::create(createTable->columns[row]->name, tableConstraint);
+    if (!constr)
+        return QString();
+
+    QString tooltip = tooltipTpl.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
+    delete constr;
+    return tooltip;
 }
 
 void TableStructureModel::setCreateTable(SqliteCreateTable* value)

@@ -222,6 +222,11 @@ QDataStream&operator >>(QDataStream& in, SqlQueryModelColumn*& col)
 
 SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const QString& column, SqliteCreateTable::ConstraintPtr tableConstraint)
 {
+    return create(column, tableConstraint.data());
+}
+
+SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const QString& column, SqliteCreateTable::Constraint* tableConstraint)
+{
     Constraint* constr = nullptr;
     switch (tableConstraint->type)
     {
@@ -232,10 +237,18 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const Q
 
             constr = new ConstraintPk();
             constr->type = Type::PRIMARY_KEY;
+            dynamic_cast<ConstraintPk*>(constr)->multiColumns =
+                map<SqliteIndexedColumn*, QString>(tableConstraint->indexedColumns, [](SqliteIndexedColumn* idxCol) -> QString
+                {
+                    return idxCol->detokenize().trimmed();
+                });
             break;
         }
         case SqliteCreateTable::Constraint::UNIQUE:
         {
+            if (!tableConstraint->doesAffectColumn(column))
+                return nullptr;
+
             constr = new ConstraintUnique();
             constr->type = Type::UNIQUE;
             break;
@@ -278,6 +291,11 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const Q
 }
 
 SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteCreateTable::Column::ConstraintPtr columnConstraint)
+{
+    return create(columnConstraint.data());
+}
+
+SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteCreateTable::Column::Constraint* columnConstraint)
 {
     Constraint* constr = nullptr;
     switch (columnConstraint->type)
@@ -338,6 +356,7 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteC
         {
             ConstraintGenerated* generate = new ConstraintGenerated();
             generate->generatedType = columnConstraint->generatedType;
+            generate->expr = columnConstraint->expr ? columnConstraint->expr->detokenize() : QString();
             constr = generate;
             constr->type = Type::GENERATED;
             break;
@@ -387,6 +406,9 @@ QString SqlQueryModelColumn::ConstraintPk::getTypeString() const
 QString SqlQueryModelColumn::ConstraintPk::getDetails() const
 {
     QStringList detailList;
+    if (!multiColumns.isEmpty())
+        detailList << "("+multiColumns.join(", ")+")";
+
     if (autoIncrement)
         detailList << "AUTOINCREMENT";
 
@@ -394,7 +416,12 @@ QString SqlQueryModelColumn::ConstraintPk::getDetails() const
         detailList << QObject::tr("on conflict: %1", "data view tooltip").arg(sqliteConflictAlgo(onConflict));
 
     if (detailList.size() > 0)
-        return "("+detailList.join(", ")+")";
+    {
+        if (detailList.size() > 1)
+            return "("+detailList.join(", ")+")";
+        else
+            return detailList.join(", ");
+    }
 
     return "";
 }
@@ -513,8 +540,7 @@ QString SqlQueryModelColumn::ConstraintGenerated::getTypeString() const
 
 QString SqlQueryModelColumn::ConstraintGenerated::getDetails() const
 {
-    return "("+QObject::tr("generated column type: %1", "data view tooltip")
-            .arg(SqliteCreateTable::Column::Constraint::toString(generatedType))+")";
+    return QString("(%1) %2").arg(expr, SqliteCreateTable::Column::Constraint::toString(generatedType)).trimmed();
 }
 
 Icon* SqlQueryModelColumn::ConstraintGenerated::getIcon() const

@@ -55,8 +55,10 @@ class GUI_API_EXPORT SqlQueryModelColumn
 
             virtual ~Constraint() {}
 
+            static Constraint* create(const QString& column, SqliteCreateTable::Constraint* tableConstraint);
             static Constraint* create(const QString& column, SqliteCreateTable::ConstraintPtr tableConstraint);
             static Constraint* create(SqliteCreateTable::Column::ConstraintPtr columnConstraint);
+            static Constraint* create(SqliteCreateTable::Column::Constraint* columnConstraint);
 
             virtual QString getTypeString() const = 0;
             virtual QString getDetails() const = 0;
@@ -74,6 +76,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
             Icon* getIcon() const;
 
             bool autoIncrement;
+            QStringList multiColumns;
             SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
         };
 
@@ -139,6 +142,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
             QString getDetails() const;
             Icon* getIcon() const;
 
+            QString expr;
             SqliteCreateTable::Column::Constraint::GeneratedType generatedType = SqliteCreateTable::Column::Constraint::GeneratedType::null;
         };
 

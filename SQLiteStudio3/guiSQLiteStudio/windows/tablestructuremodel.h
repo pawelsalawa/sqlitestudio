@@ -75,6 +75,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         bool isColumnNotNull(SqliteCreateTable::Column* column) const;
         bool isColumnCollate(SqliteCreateTable::Column* column) const;
         bool isColumnGenerate(SqliteCreateTable::Column* column) const;
+        QString getToolTip(int row, TableStructureModel::Columns modelColumn) const;
 
         static const constexpr char* mimeType = "application/x-sqlitestudio-tablestructuremodel-row-index";
 
