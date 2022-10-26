@@ -96,6 +96,7 @@ void SqlQueryView::createActions()
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
+    createAction(EDIT_CURRENT, tr("Edit current cell inline"), this, SLOT(editCurrent()), this);
     createAction(GENERATE_SELECT, "SELECT", this, SLOT(generateSelect()), this);
     createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsert()), this);
     createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdate()), this);
