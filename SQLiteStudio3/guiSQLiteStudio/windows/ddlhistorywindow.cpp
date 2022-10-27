@@ -1,14 +1,12 @@
 #include "ddlhistorywindow.h"
 #include "ui_ddlhistorywindow.h"
 #include "services/config.h"
-#include "common/userinputfilter.h"
-#include "common/extlineedit.h"
-#include "dblistmodel.h"
 #include "ddlhistorymodel.h"
 #include "common/unused.h"
 #include "iconmanager.h"
 #include <QDate>
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QStringListModel>
 
 DdlHistoryWindow::DdlHistoryWindow(QWidget *parent) :
@@ -58,6 +56,7 @@ void DdlHistoryWindow::init()
 
     connect(ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(activated(QModelIndex,QModelIndex)));
+    connect(ui->clearButton, SIGNAL(clicked(bool)), this, SLOT(clearHistory()));
 }
 
 void DdlHistoryWindow::activated(const QModelIndex& current, const QModelIndex& previous)
@@ -76,12 +75,8 @@ void DdlHistoryWindow::activated(const QModelIndex& current, const QModelIndex& 
 
     QStringList contentEntries;
     QList<Config::DdlHistoryEntryPtr> entries = CFG->getDdlHistoryFor(dbName, dbFile, date);
-    for (Config::DdlHistoryEntryPtr entry : entries)
-    {
-        contentEntries << templ.arg(entry->dbName).arg(entry->dbFile)
-                          .arg(entry->timestamp.toString("yyyy-MM-dd HH:mm:ss"))
-                          .arg(entry->queries);
-    }
+    for (Config::DdlHistoryEntryPtr& entry : entries)
+        contentEntries << templ.arg(entry->dbName, entry->dbFile, entry->timestamp.toString("yyyy-MM-dd HH:mm:ss"), entry->queries);
 
     ui->ddlEdit->setPlainText(contentEntries.join("\n\n"));
 }
@@ -96,6 +91,17 @@ void DdlHistoryWindow::refreshDbList()
     QStringList dbList = dataModel->getDbNames();
     dbList.prepend("");
     dbListModel->setStringList(dbList);
+}
+
+void DdlHistoryWindow::clearHistory()
+{
+    QMessageBox::StandardButton result = QMessageBox::question(this, tr("Clear history"), tr("Are you sure you want to erase entire DDL history?"));
+    if (result != QMessageBox::Yes)
+        return;
+
+    CFG->clearDdlHistory();
+    dataModel->refresh();
+    ui->ddlEdit->setPlainText("");
 }
 
 bool DdlHistoryWindow::restoreSessionNextTime()

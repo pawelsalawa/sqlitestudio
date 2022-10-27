@@ -23,6 +23,7 @@
 - ADDED: #4264 Added svg icon to portable packages.
 - ADDED: #3439 Foreign Key dropdown is now available not only in the Grid View, but also in the Form View and the modal Value Editor dialog.
 - ADDED: #3779 Constraint icons on the Structure tab of a Table Window now shows tooltips (on mouse hover) with details of the constraint.
+- ADDED: #3956 Added button for clearing DDL history in the DDL History window.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.

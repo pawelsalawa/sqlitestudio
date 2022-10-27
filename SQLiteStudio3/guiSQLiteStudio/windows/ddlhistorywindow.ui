@@ -50,6 +50,20 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="clearButton">
+        <property name="toolTip">
+         <string>Clear entire history</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/act_clear.png</normaloff>:/icons/img/act_clear.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -121,6 +135,8 @@
    <header>sqlview.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

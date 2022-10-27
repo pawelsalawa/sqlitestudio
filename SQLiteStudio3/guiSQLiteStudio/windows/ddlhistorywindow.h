@@ -49,6 +49,7 @@ class GUI_API_EXPORT DdlHistoryWindow : public MdiChild
         void activated(const QModelIndex& current, const QModelIndex& previous);
         void applyFilter(const QString& filterValue);
         void refreshDbList();
+        void clearHistory();
 };
 
 #endif // DDLHISTORYWINDOW_H
