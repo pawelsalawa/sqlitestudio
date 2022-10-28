@@ -54,6 +54,7 @@ void initUtils()
 {
     qRegisterMetaType<QList<int>>("QList<int>");
     qRegisterMetaType<DbObjectType>("DbObjectType");
+    qRegisterMetaType<QList<QPair<QString, QString>>>("QList<QPair<QString, QString>>");
 }
 
 bool isXDigit(const QChar& c)

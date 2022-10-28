@@ -149,6 +149,7 @@ SOURCES += sqlitestudio.cpp \
     csvserializer.cpp \
     db/queryexecutorsteps/queryexecutordatasources.cpp \
     expectedtoken.cpp \
+    sqlfileexecutor.cpp \
     sqlhistorymodel.cpp \
     db/queryexecutorsteps/queryexecutorexplainmode.cpp \
     services/notifymanager.cpp \
@@ -335,6 +336,7 @@ HEADERS += sqlitestudio.h\
     csvformat.h \
     csvserializer.h \
     db/queryexecutorsteps/queryexecutordatasources.h \
+    sqlfileexecutor.h \
     sqlhistorymodel.h \
     db/queryexecutorsteps/queryexecutorexplainmode.h \
     services/notifymanager.h \

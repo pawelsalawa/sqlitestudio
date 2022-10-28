@@ -3,7 +3,6 @@
 #include "ui_dbtree.h"
 #include "actionentry.h"
 #include "common/utils_sql.h"
-#include "common/utils.h"
 #include "dbtreemodel.h"
 #include "dialogs/dbdialog.h"
 #include "services/dbmanager.h"
@@ -11,14 +10,11 @@
 #include "common/global.h"
 #include "services/notifymanager.h"
 #include "mainwindow.h"
-#include "mdiarea.h"
 #include "common/unused.h"
 #include "dbobjectdialogs.h"
 #include "common/userinputfilter.h"
 #include "common/widgetcover.h"
 #include "windows/tablewindow.h"
-#include "dialogs/indexdialog.h"
-#include "dialogs/triggerdialog.h"
 #include "dialogs/exportdialog.h"
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
@@ -30,6 +26,7 @@
 #include "dialogs/execfromfiledialog.h"
 #include "dialogs/fileexecerrorsdialog.h"
 #include "common/compatibility.h"
+#include "sqlfileexecutor.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -76,6 +73,8 @@ void DbTree::init()
 
     THEME_TUNER->manageCompactLayout(widget());
 
+    fileExecutor = new SqlFileExecutor(this);
+
     ui->nameFilter->setClearButtonEnabled(true);
 
     treeRefreshWidgetCover = new WidgetCover(this);
@@ -87,25 +86,12 @@ void DbTree::init()
     fileExecWidgetCover->initWithInterruptContainer();
     fileExecWidgetCover->displayProgress(100);
     fileExecWidgetCover->hide();
-    connect(fileExecWidgetCover, &WidgetCover::cancelClicked, [this]()
-    {
-        if (!this->executingQueriesFromFile)
-            return;
-
-        this->executingQueriesFromFile = 0;
-
-        if (this->executingQueriesFromFileDb) // should always be there, but just in case
-        {
-            this->executingQueriesFromFileDb->interrupt();
-            this->executingQueriesFromFileDb->rollback();
-            this->executingQueriesFromFileDb = nullptr;
-            notifyWarn(tr("Execution from file cancelled. Any queries executed so far have been rolled back."));
-        }
-    });
-    connect(this, &DbTree::updateFileExecProgress, this, &DbTree::setFileExecProgress, Qt::QueuedConnection);
-    connect(this, &DbTree::fileExecCoverToBeClosed, this, &DbTree::hideFileExecCover, Qt::QueuedConnection);
-    connect(this, &DbTree::fileExecErrors, this, &DbTree::showFileExecErrors, Qt::QueuedConnection);
-    connect(this, SIGNAL(schemaNeedsRefreshing(Db*)), this, SLOT(refreshSchema(Db*)), Qt::QueuedConnection);
+    connect(fileExecWidgetCover, &WidgetCover::cancelClicked, fileExecutor, &SqlFileExecutor::stopExecution);
+    connect(fileExecutor, SIGNAL(updateProgress(int)), this, SLOT(setFileExecProgress(int)), Qt::QueuedConnection);
+    connect(fileExecutor, SIGNAL(execEnded()), this, SLOT(hideFileExecCover()), Qt::QueuedConnection);
+    connect(fileExecutor, SIGNAL(execErrors(QList<QPair<QString, QString>>, bool)), this, SLOT(showFileExecErrors(QList<QPair<QString, QString>>, bool)),
+            Qt::QueuedConnection);
+    connect(fileExecutor, SIGNAL(schemaNeedsRefreshing(Db*)), this, SLOT(refreshSchema(Db*)), Qt::QueuedConnection);
 
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
@@ -261,7 +247,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     break;
                 case DbTreeItem::Type::TRIGGERS:
                 {
-                    if (parentItem->getType() == DbTreeItem::Type::TABLE)
+                    if (parentItem && parentItem->getType() == DbTreeItem::Type::TABLE)
                     {
                         enabled << EDIT_TABLE << DEL_TABLE;
                         enabled << ADD_INDEX << ADD_TRIGGER;
@@ -277,7 +263,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 }
                 case DbTreeItem::Type::TRIGGER:
                 {
-                    if (grandParentItem->getType() == DbTreeItem::Type::TABLE)
+                    if (grandParentItem && grandParentItem->getType() == DbTreeItem::Type::TABLE)
                     {
                         enabled << EDIT_TABLE << DEL_TABLE;
                         enabled << ADD_INDEX << ADD_TRIGGER;
@@ -496,7 +482,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             {
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
-                if (parentItem->getType() == DbTreeItem::Type::TABLE)
+                if (parentItem && parentItem->getType() == DbTreeItem::Type::TABLE)
                 {
                     actions += ActionEntry(ADD_TABLE);
                     actions += ActionEntry(EDIT_TABLE);
@@ -518,7 +504,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(EDIT_TRIGGER);
                 actions += ActionEntry(DEL_TRIGGER);
                 actions += ActionEntry(_separator);
-                if (grandParentItem->getType() == DbTreeItem::Type::TABLE)
+                if (grandParentItem && grandParentItem->getType() == DbTreeItem::Type::TABLE)
                 {
                     actions += ActionEntry(ADD_TABLE);
                     actions += ActionEntry(EDIT_TABLE);
@@ -1874,156 +1860,11 @@ void DbTree::execSqlFromFile()
     if (res != QDialog::Accepted)
         return;
 
-    if (executingQueriesFromFile)
+    if (fileExecutor->isExecuting())
         return;
 
-    // Exec file
-    executingQueriesFromFile = 1;
-    executingQueriesFromFileDb = db;
-    fileExecWidgetCover->setProgress(0);
     fileExecWidgetCover->show();
-    if (!db->begin())
-    {
-        notifyError(tr("Could not execute SQL, because application has failed to start transaction: %1").arg(db->getErrorText()));
-        fileExecWidgetCover->hide();
-        return;
-    }
-
-    QtConcurrent::run(this, &DbTree::execFromFileAsync, dialog.filePath(), db, dialog.ignoreErrors(), dialog.codec());
-}
-
-void DbTree::execFromFileAsync(const QString& path, Db* db, bool ignoreErrors, const QString& codec)
-{
-    // Open file
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        notifyError(tr("Could not open file '%1' for reading: %2").arg(path).arg(file.errorString()));
-        executingQueriesFromFile = 0;
-        emit fileExecCoverToBeClosed();
-        return;
-    }
-
-
-    QTextStream stream(&file);
-    stream.setCodec(codec.toLatin1().constData());
-
-    qint64 fileSize = file.size();
-    int attemptedExecutions = 0;
-    int executed = 0;
-    bool ok = true;
-
-    QElapsedTimer timer;
-    timer.start();
-    QList<QPair<QString, QString>> errors = executeFileQueries(db, stream, executed, attemptedExecutions, ok, ignoreErrors, fileSize);
-    int millis = timer.elapsed();
-    if (executingQueriesFromFile.loadAcquire())
-    {
-        handleFileQueryExecution(db, executed, attemptedExecutions, ok, ignoreErrors, millis);
-        if (!errors.isEmpty())
-            emit fileExecErrors(errors, !ok && !ignoreErrors);
-    }
-
-    file.close();
-    emit fileExecCoverToBeClosed();
-    executingQueriesFromFile = 0;
-}
-
-QList<QPair<QString, QString>> DbTree::executeFileQueries(Db* db, QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, bool ignoreErrors, qint64 fileSize)
-{
-    QList<QPair<QString, QString>> errors;
-    qint64 pos = 0;
-    QChar c;
-    QString sql;
-    sql.reserve(10000);
-    SqlQueryPtr results;
-    while (!stream.atEnd() && executingQueriesFromFile.loadAcquire())
-    {
-        while (!db->isComplete(sql) && !stream.atEnd())
-        {
-            stream >> c;
-            sql.append(c);
-            while (c != ';' && !stream.atEnd())
-            {
-                stream >> c;
-                sql.append(c);
-            }
-        }
-
-        if (shouldSkipQueryFromFileExecution(sql))
-        {
-            sql.clear();;
-            continue;
-        }
-
-        results = db->exec(sql);
-        attemptedExecutions++;
-        if (results->isError())
-        {
-            ok = false;
-            errors << QPair<QString, QString>(sql, results->getErrorText());
-
-            if (!ignoreErrors)
-                break;
-        }
-        else
-            executed++;
-
-        sql.clear();
-        if (attemptedExecutions % 100 == 0)
-        {
-            pos = stream.device()->pos();
-            emit updateFileExecProgress(static_cast<int>(100 * pos / fileSize));
-        }
-    }
-    return errors;
-}
-
-bool DbTree::shouldSkipQueryFromFileExecution(const QString& sql)
-{
-    if (sql.trimmed().isEmpty())
-        return true;
-
-    QString upper = sql.toUpper().trimmed().split("\n").last().trimmed();
-    return (upper.startsWith("BEGIN") ||
-            upper.startsWith("COMMIT") ||
-            upper.startsWith("ROLLBACK") ||
-            upper.startsWith("END"));
-}
-
-void DbTree::handleFileQueryExecution(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis)
-{
-    bool doCommit = ok ? true : ignoreErrors;
-    if (doCommit)
-    {
-        if (!db->commit())
-        {
-            notifyError(tr("Could not execute SQL, because application has failed to commit the transaction: %1").arg(db->getErrorText()));
-            db->rollback();
-        }
-        else if (!ok) // committed with errors
-        {
-            notifyInfo(tr("Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.")
-                       .arg(executed).arg(millis / 1000.0).arg(attemptedExecutions - executed));
-
-            emit schemaNeedsRefreshing(db);
-        }
-        else
-        {
-            notifyInfo(tr("Finished executing %1 queries in %2 seconds.").arg(executed).arg(millis / 1000.0));
-            emit schemaNeedsRefreshing(db);
-        }
-    }
-    else
-    {
-        db->rollback();
-        notifyError(tr("Could not execute SQL due to error."));
-    }
-}
-
-bool DbTree::execQueryFromFile(Db* db, const QString& sql)
-{
-    return !db->exec(sql)->isError();
+    fileExecutor->execSqlFromFile(db, dialog.filePath(), dialog.ignoreErrors(), dialog.codec());
 }
 
 void DbTree::setupDefShortcuts()

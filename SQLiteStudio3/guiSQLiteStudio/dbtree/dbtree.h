@@ -21,6 +21,8 @@ class ViewWindow;
 class UserInputFilter;
 class DbTreeView;
 
+
+class SqlFileExecutor;
 namespace Ui {
     class DbTree;
 }
@@ -151,11 +153,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QString getSelectedViewName() const;
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
-        void execFromFileAsync(const QString& path, Db* db, bool ignoreErrors, const QString& codec);
-        bool execQueryFromFile(Db* db, const QString& sql);
-        void handleFileQueryExecution(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis);
-        QList<QPair<QString, QString>> executeFileQueries(Db* db, QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, bool ignoreErrors, qint64 fileSize);
-        bool shouldSkipQueryFromFileExecution(const QString& sql);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
@@ -165,8 +162,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         DbTreeModel* treeModel = nullptr;
         WidgetCover* treeRefreshWidgetCover = nullptr;
         WidgetCover* fileExecWidgetCover = nullptr;
-        QAtomicInt executingQueriesFromFile = 0;
-        Db* executingQueriesFromFileDb = nullptr;
+        SqlFileExecutor* fileExecutor = nullptr;
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
@@ -240,7 +236,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void updateFileExecProgress(int value);
         void fileExecCoverToBeClosed();
         void fileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
-        void schemaNeedsRefreshing(Db* db);
         void sessionValueChanged();
 };
 
