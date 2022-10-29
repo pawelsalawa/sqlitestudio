@@ -105,7 +105,7 @@ jobs:
               
             - name: Install other tools/dependencies
               run: |
-                sudo apt install libreadline-dev libncurses5-dev patchelf
+                sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
             - uses: actions/setup-python@v2
