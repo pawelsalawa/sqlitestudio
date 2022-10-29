@@ -12,7 +12,7 @@ SqlFileExecutor::SqlFileExecutor(QObject *parent)
 {
 }
 
-void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec)
+void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec, bool async)
 {
     if (!db || !db->isOpen())
     {
@@ -40,7 +40,10 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
         return;
     }
 
-    QtConcurrent::run(this, &SqlFileExecutor::execInThread);
+    if (async)
+        QtConcurrent::run(this, &SqlFileExecutor::execInThread);
+    else
+        execInThread();
 }
 
 bool SqlFileExecutor::isExecuting() const

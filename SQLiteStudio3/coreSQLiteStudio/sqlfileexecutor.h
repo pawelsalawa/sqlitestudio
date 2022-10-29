@@ -13,7 +13,7 @@ class API_EXPORT SqlFileExecutor : public QObject
 
     public:
         explicit SqlFileExecutor(QObject *parent = nullptr);
-        void execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec);
+        void execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec, bool async = true);
         bool isExecuting() const;
 
     private:

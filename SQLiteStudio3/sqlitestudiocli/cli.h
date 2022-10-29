@@ -59,7 +59,7 @@ class CLI : public QObject
         void done();
         void executionComplete();
         void clearHistory();
-        void openDbFile(const QString& path);
+        bool openDbFile(const QString& path);
 
     signals:
         void execCommand(CliCommand* cmd);

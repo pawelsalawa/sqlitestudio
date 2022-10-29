@@ -246,23 +246,25 @@ void CLI::applyHistoryLimit()
 #endif
 }
 
-void CLI::openDbFile(const QString& path)
+bool CLI::openDbFile(const QString& path)
 {
     Db* db = DBLIST->getByPath(path);
     if (db)
     {
         println(tr("Database passed in command line parameters (%1) was already on the list under name: %2").arg(path, db->getName()));
-        return;
+        setCurrentDb(db);
+        return true;
     }
 
     QString name = DBLIST->quickAddDb(path, QHash<QString,QVariant>());
     if (name.isNull())
     {
         println(tr("Could not add database %1 to list.").arg(path));
-        return;
+        return false;
     }
     db = DBLIST->getByName(name);
     setCurrentDb(db);
+    return true;
 }
 
 void CLI::doWork()

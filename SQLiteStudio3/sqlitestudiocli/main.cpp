@@ -1,20 +1,20 @@
 #include "cli.h"
 #include "clicommandexecutor.h"
-#include "sqlitestudio.h"
 #include "commands/clicommand.h"
 #include "cli_config.h"
 #include "cliutils.h"
 #include "qio.h"
 #include "climsghandler.h"
 #include "completionhelper.h"
-#include "services/updatemanager.h"
 #include "services/pluginmanager.h"
+#include "sqlfileexecutor.h"
 #include <QCoreApplication>
 #include <QtGlobal>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
 bool listPlugins = false;
+QString sqlScriptToExecute;
 
 QString cliHandleCmdLineArgs()
 {
@@ -26,9 +26,16 @@ QString cliHandleCmdLineArgs()
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("Enables debug messages on standard error output."));
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
     QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
+    QCommandLineOption execSqlOption({"e", "execute-sql-file"},
+                                     QObject::tr("Executes provided SQL file (including all rich features of SQLiteStudio's query executor) "
+                                                 "on the specified database and quits. "
+                                                 "The database parameter becomes mandatory if this option is used."),
+                                     QObject::tr("SQL file"));
+
     parser.addOption(debugOption);
     parser.addOption(lemonDebugOption);
     parser.addOption(listPluginsOption);
+    parser.addOption(execSqlOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
@@ -36,6 +43,9 @@ QString cliHandleCmdLineArgs()
 
     if (parser.isSet(debugOption))
         setCliDebug(true);
+
+    if (parser.isSet(execSqlOption))
+        sqlScriptToExecute = parser.value(execSqlOption);
 
     if (parser.isSet(listPluginsOption))
         listPlugins = true;
@@ -47,6 +57,28 @@ QString cliHandleCmdLineArgs()
         return args[0];
 
     return QString();
+}
+
+int cliExecSqlFromFile(const QString& dbToOpen)
+{
+    if (dbToOpen.isEmpty())
+    {
+        qErr << QObject::tr("Database file argument is mandatory when executing SQL file.") << "\n";
+        qErr.flush();
+        return 1;
+    }
+    if (!CLI::getInstance()->openDbFile(dbToOpen))
+    {
+        qErr << QObject::tr("Could not open specified database for executing SQL file. You my try using -d option to find out more details.") << "\n";
+        qErr.flush();
+        return 1;
+    }
+
+    Db* db = CLI::getInstance()->getCurrentDb();
+
+    SqlFileExecutor executor;
+    executor.execSqlFromFile(db, sqlScriptToExecute, false, defaultCodecName(), false);
+    return 0;
 }
 
 int main(int argc, char *argv[])
@@ -69,11 +101,14 @@ int main(int argc, char *argv[])
 
     if (listPlugins)
     {
-        for (const PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
+        for (PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
             qOut << details.name << " " << details.versionString << "\n";
 
         return 0;
     }
+
+    if (!sqlScriptToExecute.isNull())
+        return cliExecSqlFromFile(dbToOpen);
 
     CliCommandExecutor executor;
 
