@@ -7,13 +7,26 @@
     <x>0</x>
     <y>0</y>
     <width>365</width>
-    <height>106</height>
+    <height>128</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QCheckBox" name="firstRowAsColumnsCheck">
+     <property name="toolTip">
+      <string>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don't want column names to be imported into the table as a regular data.&lt;/p&gt;</string>
+     </property>
+     <property name="text">
+      <string>First line represents CSV column names</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">CsvImport.FirstRowAsColumns</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="1">
     <widget class="QComboBox" name="separatorCombo">
      <property name="cfg" stdset="0">
@@ -46,36 +59,10 @@
      </item>
     </widget>
    </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="QCheckBox" name="firstRowAsColumnsCheck">
-     <property name="toolTip">
-      <string>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don't want column names to be imported into the table as a regular data.&lt;/p&gt;</string>
-     </property>
-     <property name="text">
-      <string>First line represents CSV column names</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">CsvImport.FirstRowAsColumns</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QLabel" name="separatorLabel">
      <property name="text">
       <string>Column separator:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLineEdit" name="separatorEdit">
-     <property name="maximumSize">
-      <size>
-       <width>30</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">CsvImport.CustomSeparator</string>
      </property>
     </widget>
    </item>
@@ -99,6 +86,32 @@
      </property>
      <property name="cfg" stdset="0">
       <string notr="true">CsvImport.NullValueString</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="separatorEdit">
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">CsvImport.CustomSeparator</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QCheckBox" name="quotationMarkCheck">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Interpret &quot; as a value quotation mark</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">CsvImport.QuotationMark</string>
      </property>
     </widget>
    </item>

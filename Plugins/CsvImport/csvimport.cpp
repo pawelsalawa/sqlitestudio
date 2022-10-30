@@ -86,6 +86,7 @@ void CsvImport::defineCsvFormat()
     csvFormat.rowSeparators = QStringList({"\r\n", "\n", "\r"});
     csvFormat.multipleRowSeparators = true;
     csvFormat.strictRowSeparator = true;
+    csvFormat.quotationMark = cfg.CsvImport.QuotationMark.get();
 
     switch (cfg.CsvImport.Separator.get())
     {

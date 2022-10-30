@@ -14,6 +14,7 @@ CFG_CATEGORIES(CsvImportConfig,
          CFG_ENTRY(QString, CustomSeparator,   QString())
          CFG_ENTRY(bool,    NullValues,        false)
          CFG_ENTRY(QString, NullValueString,   QString())
+         CFG_ENTRY(bool,    QuotationMark,     true)
      )
 )
 

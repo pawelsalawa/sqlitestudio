@@ -94,7 +94,7 @@ void typedDeserializeInternal(QTextStream& data, const CsvFormat& format, QList<
             data >> theChar;
 
         sepAsLast = false;
-        if (!quotes && theChar == '"' )
+        if (format.quotationMark && !quotes && theChar == '"' )
         {
             quotes = true;
         }

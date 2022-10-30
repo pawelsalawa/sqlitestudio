@@ -24,6 +24,7 @@ struct API_EXPORT CsvFormat
     bool multipleColumnSeparators = false;
     int maxColumnSeparatorLength = 0;
     int maxRowSeparatorLength = 0;
+    bool quotationMark = true;
 
     static const CsvFormat DEFAULT;
 };
