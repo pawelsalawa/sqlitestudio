@@ -171,6 +171,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(SAVE_SQL_FILE,                     "save_sql_file")
             DEF_ICON(SEARCH,                            "search")
             DEF_ICON(SEARCH_AND_REPLACE,                "search_and_replace")
+            DEF_ICON(SELECTION_INVERT,                  "selection_invert")
             DEF_ICON(SET_NULL,                          "set_null")
             DEF_ICON(SORT_COLUMNS,                      "sort_columns")
             DEF_ICON(SORT_COUNT_01,                     "sort_cnt_01")

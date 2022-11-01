@@ -65,6 +65,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             GENERATE_INSERT,
             GENERATE_UPDATE,
             GENERATE_DELETE,
+            INVERT_SELECTION,
             ADJUST_ROWS_SIZE,
             INCR_FONT_SIZE,
             DECR_FONT_SIZE
@@ -151,6 +152,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void fontSizeChangeRequested(int delta);
         void incrFontSize();
         void decrFontSize();
+        void invertSelection();
 
     public slots:
         void executionStarted();

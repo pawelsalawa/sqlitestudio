@@ -235,8 +235,8 @@ void DataView::createActions()
 
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit changes for selected cells", "data view"), this, SLOT(selectiveCommitGrid()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback changes for selected cells", "data view"), this, SLOT(selectiveRollbackGrid()), this);
-    createAction(SHOW_GRID_VIEW, tr("Show grid view of results", "sql editor"), this, SLOT(showGridView()), this);
-    createAction(SHOW_FORM_VIEW, tr("Show form view of results", "sql editor"), this, SLOT(showFormView()), this);
+    createAction(SHOW_GRID_VIEW, tr("Show grid view of results", "data view"), this, SLOT(showGridView()), this);
+    createAction(SHOW_FORM_VIEW, tr("Show form view of results", "data view"), this, SLOT(showFormView()), this);
 
     connect(gridView, SIGNAL(requestForRowInsert()), this, SLOT(insertRow()));
     connect(gridView, SIGNAL(requestForMultipleRowInsert()), this, SLOT(insertMultipleRows()));

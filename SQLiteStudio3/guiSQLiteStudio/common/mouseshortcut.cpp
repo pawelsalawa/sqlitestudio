@@ -8,6 +8,14 @@ MouseShortcut::MouseShortcut(ClickType type, Qt::MouseButtons buttons, Qt::Keybo
 {
 }
 
+MouseShortcut* MouseShortcut::forButton(ClickType type, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, QObject* receiver, const char* slot, QObject* parent)
+{
+    MouseShortcut* instance = new MouseShortcut(type, buttons, modifiers, parent);
+    connect(instance, SIGNAL(activated(const QPoint&)), receiver, slot);
+    parent->installEventFilter(instance);
+    return instance;
+}
+
 MouseShortcut* MouseShortcut::forWheel(Qt::KeyboardModifiers modifiers, QObject* parent)
 {
     return new MouseShortcut(Wheel, Qt::MouseButtons(), modifiers, parent);
@@ -29,12 +37,20 @@ MouseShortcut* MouseShortcut::forWheel(Qt::KeyboardModifiers modifiers, QObject*
     return instance;
 }
 
+void MouseShortcut::enableDebug()
+{
+    debug = true;
+}
+
 bool MouseShortcut::eventFilter(QObject* object, QEvent* event)
 {
+    if (debug && event->type() != QEvent::Paint)
+        qDebug() << event;
+
     if ((event->type() == QEvent::MouseButtonPress && type == SingleClick && attributesMatch(event)) ||
         (event->type() == QEvent::MouseButtonDblClick && type == DoubleClick && attributesMatch(event)))
     {
-        emit activated();
+        emit activated(dynamic_cast<QMouseEvent*>(event)->globalPos());
         return true;
     }
 

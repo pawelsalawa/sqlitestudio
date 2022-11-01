@@ -67,7 +67,9 @@ void SqlQueryView::init()
         getModel()->setDesiredColumnWidth(section, newSize);
     });
     connect(verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(adjustRowToContents(int)));
-    MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(fontSizeChangeRequested(int)), viewport());
+    MouseShortcut::forWheel(Qt::ControlModifier,
+                            this, SLOT(fontSizeChangeRequested(int)),
+                            viewport());
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -114,6 +116,7 @@ void SqlQueryView::createActions()
     actionMap[RESET_SORTING]->setEnabled(false);
     createAction(INCR_FONT_SIZE, tr("Increase font size", "data view"), this, SLOT(incrFontSize()), this);
     createAction(DECR_FONT_SIZE, tr("Decrease font size", "data view"), this, SLOT(decrFontSize()), this);
+    createAction(INVERT_SELECTION, ICONS.SELECTION_INVERT, tr("Invert selection", "data view"), this, SLOT(invertSelection()), this);
 }
 
 void SqlQueryView::setupDefShortcuts()
@@ -190,7 +193,6 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
             generateQueryMenu->addAction(actionMap[GENERATE_DELETE]);
         }
 
-
         contextMenu->addSeparator();
         contextMenu->addAction(actionMap[COPY]);
         contextMenu->addAction(actionMap[COPY_WITH_HEADER]);
@@ -199,11 +201,12 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         //contextMenu->addAction(actionMap[PASTE_AS]); // TODO uncomment when implemented
     }
     contextMenu->addSeparator();
+    contextMenu->addAction(actionMap[INVERT_SELECTION]);
     contextMenu->addAction(actionMap[ADJUST_ROWS_SIZE]);
     if (additionalActions.size() > 0)
     {
         contextMenu->addSeparator();
-        for (QAction* action : additionalActions)
+        for (QAction*& action : additionalActions)
             contextMenu->addAction(action);
     }
 }
@@ -371,6 +374,24 @@ void SqlQueryView::incrFontSize()
 void SqlQueryView::decrFontSize()
 {
     changeFontSize(-1);
+}
+
+void SqlQueryView::invertSelection()
+{
+    SqlQueryModel* model = getModel();
+    int rows = model->rowCount();
+    int cols = model->columnCount();
+    QItemSelectionModel* selection = selectionModel();
+    for (int r = 0; r < rows; r++)
+        for (int c = 0; c < cols; c++)
+            selection->select(model->index(r, c), QItemSelectionModel::Toggle);
+
+    if (!selection->isSelected(currentIndex()))
+    {
+        QModelIndexList idxList = selection->selectedIndexes();
+        if (!idxList.isEmpty())
+            selection->setCurrentIndex(selection->selectedIndexes().first(), QItemSelectionModel::NoUpdate);
+    }
 }
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)

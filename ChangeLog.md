@@ -26,6 +26,8 @@
 - ADDED: #3956 Added button for clearing DDL history in the DDL History window.
 - ADDED: #4024 Added feature to the CLI app for executing SQL files directly from the command line, using all SQLiteStudio query executor features.
 - ADDED: #3515 Added option in CSV Import plugin to treat quotation character (") as regular character.
+- ADDED: #4092 Added possibility to increase/decrease font size using Ctrl+MouseWheel or by (configurable) shortcuts Ctrl++ & Ctrl+-. Applicable for SQL Editor, Database List, Status Field, Data View.
+- ADDED: #4217 Added the Invert Selection entry in data grid context menu.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.

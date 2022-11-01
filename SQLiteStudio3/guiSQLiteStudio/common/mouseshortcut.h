@@ -15,19 +15,32 @@ class MouseShortcut : public QObject
             Wheel
         };
 
+        static MouseShortcut* forButton(MouseShortcut::ClickType type,
+                         Qt::MouseButtons buttons,
+                         Qt::KeyboardModifiers modifiers,
+                         QObject* receiver,
+                         const char* slot,
+                         QObject *parent = 0);
+
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                                       QObject *parent = 0);
+
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                                       QObject *parent,
+                                       const char *slot);
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                                       QObject* receiver,
+                                       const char* slot,
+                                       QObject* parent);
+
+        void enableDebug();
+
+    protected:
         MouseShortcut(MouseShortcut::ClickType type,
                       Qt::MouseButtons buttons,
                       Qt::KeyboardModifiers modifiers,
                       QObject *parent = 0);
 
-        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
-                      QObject *parent = 0);
-
-        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
-                                       QObject *parent, const char *slot);
-        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
-                                       QObject* receiver, const char* slot, QObject* parent);
-    protected:
         bool eventFilter(QObject *object, QEvent *event);
 
     private:
@@ -36,9 +49,10 @@ class MouseShortcut : public QObject
         MouseShortcut::ClickType type;
         Qt::MouseButtons buttons;
         Qt::KeyboardModifiers modifiers;
+        bool debug = false;
 
     signals:
-        void activated();
+        void activated(const QPoint& pos);
         void wheelActivated(int delta);
 };
 
