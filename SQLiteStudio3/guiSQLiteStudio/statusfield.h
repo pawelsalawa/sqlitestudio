@@ -38,6 +38,7 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         void flashItems(const QList<QTableWidgetItem*>& items, const QColor& color);
         void setupMenu();
         void readRecentMessages();
+        void changeFontSize(int factor);
 
         Ui::StatusField *ui = nullptr;
         QMenu* menu = nullptr;
@@ -58,6 +59,7 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         void error(const QString& text);
         void reset();
         void fontChanged(const QVariant& variant);
+        void fontSizeChangeRequested(int delta);
 
     public slots:
         void refreshColors();

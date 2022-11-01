@@ -11,13 +11,22 @@ class MouseShortcut : public QObject
         enum ClickType
         {
             SingleClick,
-            DoubleClick
+            DoubleClick,
+            Wheel
         };
 
         MouseShortcut(MouseShortcut::ClickType type,
                       Qt::MouseButtons buttons,
                       Qt::KeyboardModifiers modifiers,
                       QObject *parent = 0);
+
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                      QObject *parent = 0);
+
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                                       QObject *parent, const char *slot);
+        static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
+                                       QObject* receiver, const char* slot, QObject* parent);
     protected:
         bool eventFilter(QObject *object, QEvent *event);
 
@@ -30,6 +39,7 @@ class MouseShortcut : public QObject
 
     signals:
         void activated();
+        void wheelActivated(int delta);
 };
 
 #endif // MOUSESHORTCUT_H

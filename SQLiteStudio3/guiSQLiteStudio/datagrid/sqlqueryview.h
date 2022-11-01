@@ -32,6 +32,8 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                    QObject::tr("Insert new data row"))
     CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return,          QObject::tr("Open contents of selected cell in a separate editor"))
     CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT + Qt::Key_H,               QObject::tr("Toggle the height adjustment of rows"))
+    CFG_KEY_ENTRY(INCR_FONT_SIZE,    Qt::CTRL + Qt::Key_Plus,           QObject::tr("Increase font size", "data view"))
+    CFG_KEY_ENTRY(DECR_FONT_SIZE,    Qt::CTRL + Qt::Key_Minus,          QObject::tr("Decrease font size", "data view"))
 )
 
 class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
@@ -63,7 +65,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             GENERATE_INSERT,
             GENERATE_UPDATE,
             GENERATE_DELETE,
-            ADJUST_ROWS_SIZE
+            ADJUST_ROWS_SIZE,
+            INCR_FONT_SIZE,
+            DECR_FONT_SIZE
         };
         Q_ENUM(Action)
 
@@ -111,6 +115,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void addFkActionsToContextMenu(SqlQueryItem* currentItem);
         void goToReferencedRow(const QString& table, const QString& column, const QVariant& value);
         void copy(bool withHeaders);
+        void changeFontSize(int factor);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
         constexpr static const int minHeaderWidth = 15;
@@ -143,6 +148,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void editCurrent();
         void toggleRowsHeightAdjustment(bool enabled);
         void adjustRowToContents(int section);
+        void fontSizeChangeRequested(int delta);
+        void incrFontSize();
+        void decrFontSize();
 
     public slots:
         void executionStarted();

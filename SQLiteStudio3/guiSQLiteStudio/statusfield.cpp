@@ -1,11 +1,11 @@
 #include "statusfield.h"
 #include "ui_statusfield.h"
-#include "mainwindow.h"
 #include "uiconfig.h"
 #include "iconmanager.h"
 #include "themetuner.h"
 #include "common/tablewidget.h"
 #include "services/notifymanager.h"
+#include "common/mouseshortcut.h"
 #include <QMenu>
 #include <QAction>
 #include <QDateTime>
@@ -29,6 +29,7 @@ StatusField::StatusField(QWidget *parent) :
     connect(nm, SIGNAL(notifyError(QString)), this, SLOT(error(QString)));
     connect(nm, SIGNAL(notifyWarning(QString)), this, SLOT(warn(QString)));
     connect(CFG_UI.Fonts.StatusField, SIGNAL(changed(QVariant)), this, SLOT(fontChanged(QVariant)));
+    MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(fontSizeChangeRequested(int)), ui->tableWidget->viewport());
 
     THEME_TUNER->manageCompactLayout(widget());
 
@@ -206,7 +207,7 @@ void StatusField::customContextMenuRequested(const QPoint &pos)
 
 void StatusField::reset()
 {
-    for (QAbstractAnimation* anim : itemAnimations)
+    for (QAbstractAnimation*& anim : itemAnimations)
         anim->stop();
 
     itemAnimations.clear();
@@ -225,4 +226,16 @@ void StatusField::fontChanged(const QVariant& variant)
         for (int col = 1; col <= 2; col++)
             ui->tableWidget->item(row, col)->setFont(font);
     }
+}
+
+void StatusField::changeFontSize(int factor)
+{
+    auto f = CFG_UI.Fonts.StatusField.get();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.StatusField.set(f);
+}
+
+void StatusField::fontSizeChangeRequested(int delta)
+{
+    changeFontSize(delta >= 0 ? 1 : -1);
 }

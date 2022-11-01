@@ -14,6 +14,7 @@
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
 #include "common/utils_sql.h"
+#include "common/mouseshortcut.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QGridLayout>
@@ -66,6 +67,7 @@ void SqlQueryView::init()
         getModel()->setDesiredColumnWidth(section, newSize);
     });
     connect(verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(adjustRowToContents(int)));
+    MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(fontSizeChangeRequested(int)), viewport());
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -110,12 +112,14 @@ void SqlQueryView::createActions()
     actionMap[ADJUST_ROWS_SIZE]->setCheckable(true);
     actionMap[ADJUST_ROWS_SIZE]->setChecked(false);
     actionMap[RESET_SORTING]->setEnabled(false);
+    createAction(INCR_FONT_SIZE, tr("Increase font size", "data view"), this, SLOT(incrFontSize()), this);
+    createAction(DECR_FONT_SIZE, tr("Decrease font size", "data view"), this, SLOT(decrFontSize()), this);
 }
 
 void SqlQueryView::setupDefShortcuts()
 {
     setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, COPY, COPY_AS,
-                       PASTE, PASTE_AS, ADJUST_ROWS_SIZE}, Qt::WidgetWithChildrenShortcut);
+                       PASTE, PASTE_AS, ADJUST_ROWS_SIZE, INCR_FONT_SIZE, DECR_FONT_SIZE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlQueryView, Action);
 }
@@ -354,6 +358,21 @@ void SqlQueryView::adjustRowToContents(int section)
     verticalHeader()->setSectionResizeMode(section, QHeaderView::ResizeToContents);
 }
 
+void SqlQueryView::fontSizeChangeRequested(int delta)
+{
+    changeFontSize(delta >= 0 ? 1 : -1);
+}
+
+void SqlQueryView::incrFontSize()
+{
+    changeFontSize(1);
+}
+
+void SqlQueryView::decrFontSize()
+{
+    changeFontSize(-1);
+}
+
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
     if (item->getColumn()->dataType.getType() == DataType::BLOB)
@@ -587,6 +606,13 @@ void SqlQueryView::copy(bool withHeader)
     mimeData->setData(mimeDataId, serializedData);
 
     qApp->clipboard()->setMimeData(mimeData);
+}
+
+void SqlQueryView::changeFontSize(int factor)
+{
+    auto f = CFG_UI.Fonts.DataView.get();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.DataView.set(f);
 }
 
 bool SqlQueryView::getSimpleBrowserMode() const

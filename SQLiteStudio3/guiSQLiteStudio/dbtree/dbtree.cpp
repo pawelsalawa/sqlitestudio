@@ -27,6 +27,7 @@
 #include "dialogs/fileexecerrorsdialog.h"
 #include "common/compatibility.h"
 #include "sqlfileexecutor.h"
+#include "common/mouseshortcut.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -113,6 +114,7 @@ void DbTree::init()
     connect(IMPORT_MANAGER, SIGNAL(schemaModified(Db*)), this, SLOT(refreshSchema(Db*)));
 
     connect(CFG_UI.Fonts.DbTree, SIGNAL(changed(QVariant)), this, SLOT(refreshFont()));
+    MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(fontSizeChangeRequested(int)), ui->treeView->viewport());
 
     connect(treeModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
     connect(treeModel, SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SIGNAL(sessionValueChanged()));
@@ -171,6 +173,8 @@ void DbTree::createActions()
     createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDeleteForTable()), this);
     createAction(OPEN_DB_DIRECTORY, ICONS.DIRECTORY_OPEN_WITH_DB, tr("Open file's directory"), this, SLOT(openDbDirectory()), this);
     createAction(EXEC_SQL_FROM_FILE, ICONS.EXEC_SQL_FROM_FILE, tr("Execute SQL from file"), this, SLOT(execSqlFromFile()), this);
+    createAction(INCR_FONT_SIZE, tr("Increase font size", "database list"), this, SLOT(incrFontSize()), this);
+    createAction(DECR_FONT_SIZE, tr("Decrease font size", "database list"), this, SLOT(decrFontSize()), this);
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
@@ -1662,6 +1666,17 @@ QList<DbTreeItem*> DbTree::getSelectedItems(DbTree::ItemFilterFunc filterFunc)
     return items;
 }
 
+void DbTree::changeFontSize(int factor)
+{
+    auto f = CFG_UI.Fonts.DbTree.get();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.DbTree.set(f);
+
+    f = CFG_UI.Fonts.DbTreeLabel.get();
+    f.setPointSize(f.pointSize() + factor);
+    CFG_UI.Fonts.DbTreeLabel.set(f);
+}
+
 void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 {
     QList<DbTreeItem*> items = itemsToDelete;
@@ -1766,6 +1781,21 @@ void DbTree::showFileExecErrors(const QList<QPair<QString, QString> >& errors, b
 {
     FileExecErrorsDialog dialog(errors, rolledBack, MAINWINDOW);
     dialog.exec();
+}
+
+void DbTree::fontSizeChangeRequested(int delta)
+{
+    changeFontSize(delta >= 0 ? 1 : -1);
+}
+
+void DbTree::incrFontSize()
+{
+    changeFontSize(1);
+}
+
+void DbTree::decrFontSize()
+{
+    changeFontSize(-1);
 }
 
 void DbTree::dbConnected(Db* db)

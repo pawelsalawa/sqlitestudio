@@ -42,6 +42,7 @@
 - CHANGE: #4088 Changed F2 hotkey, so it enters inline editing of a cell (no longer it opens the config dialog, which now is under F10 key). View Window, Collation Editor, Functions Editor, and Extensions Editor got now Ctrl+S hotkey to commit pending changes.
 - CHANGE: #4341 When testing or accepting database connection in Database Dialog, in case of error, the message is displayed in status field properly, but also shows up in tooltip of the connection error icon.
 - CHANGE: #3439 Compact Layout (that reduces many margins to save working space) is now excluded from the Form View, as it made it only worse.
+- CHANGE: #4538 Linux binaries are now built onUbuntu 22.04 (used to be 20.04).
 - BUGFIX: #4218 Fixed mnemonics ampersand displayed in toolbar button tooltips (they are used for relevant menu items, but in toolbar they caused additional ampersand to be displayed).
 - BUGFIX: #4095 Fixed "per column" filter to apply updated values upon leaving filter input, or resetting it.
 - BUGFIX: #4113 Fixed importing from data sources having less columns than in the target table.
