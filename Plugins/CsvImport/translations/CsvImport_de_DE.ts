@@ -6,22 +6,22 @@
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>Kann Datei %1 nicht lesen</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation type="unfinished">Could not find any data in the file %1.</translation>
+      <translation>Konnte keine Daten in Datei %1 finden.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>Geben Sie ein benutzerdefiniertes Trennzeichen ein.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
+      <translation>CSV-Dateien (*.csv);;Textdateien (*.txt);;Alle Dateien (*)</translation>
     </message>
   </context>
   <context>
@@ -54,12 +54,12 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Aktivieren, wenn die erste Zeile in Ihrer CSV-Datei Spaltennamen repräsentiert. Sie wollen keine Spaltennamen als reguläre Daten in die Tabelle importieren.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>Erste Zeile repräsentiert CSV-Spaltennamen</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
@@ -69,17 +69,17 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation>Wenn aktiviert, wird der auf der rechten Seite angegebene Textwert als NULL interpretiert</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
       <source>NULL values:</source>
-      <translation type="unfinished">NULL values:</translation>
+      <translation>NULL-Werte:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
+      <translation>Wenn Ihre CSV-Daten Nullwerte enthalten, legen Sie fest, wie sie im CSV dargestellt werden.</translation>
     </message>
   </context>
 </TS>

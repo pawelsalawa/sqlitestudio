@@ -11,7 +11,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Leer lassen, um die entschlüsselte Datenbank zu erstellen oder sich damit zu verbinden.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="32"/>
@@ -21,16 +21,16 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Cipher-Konfiguration (optional)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="38"/>
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLCipher for details.</translation>
+      <translation>PRAGMA Anweisungen zur Anpassung der SQLCipher Konfiguration, wie z. B. KDF-Iterationen, Legacy-Modus, etc.
+Sie werden bei jedem Öffnen der Datenbank ausgeführt.
+Siehe Dokumentation für SQLCipher für Details.</translation>
     </message>
   </context>
 </TS>

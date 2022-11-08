@@ -31,7 +31,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="104"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>Bilder (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Alle Dateien (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="105"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="114"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>Datei %1 konnte nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="134"/>
@@ -56,17 +56,17 @@
     <message>
       <location filename="../multieditorimage.cpp" line="155"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
+      <translation>Es wurde versucht, das Bild in anderem Format (%1) als das Original (%2) zu speichern, aber die Anwendung konnte es nicht konvertieren. Das Bild mit unverändertem Format (%3) wird unter dem angegebenen Namen (%4) gespeichert.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="166"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
+      <translation>Datei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="171"/>
       <source>Could not write image into the file %1</source>
-      <translation type="unfinished">Could not write image into the file %1</translation>
+      <translation>Bild konnte nicht in die Datei %1 geschrieben werden</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="262"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>Bild</translation>
     </message>
   </context>
 </TS>
