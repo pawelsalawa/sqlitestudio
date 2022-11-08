@@ -2031,6 +2031,12 @@ void SqlQueryModel::applyStringFilter(const QString& value)
     // For custom query this is not supported.
 }
 
+void SqlQueryModel::applyStrictFilter(const QString& value)
+{
+    UNUSED(value);
+    // For custom query this is not supported.
+}
+
 void SqlQueryModel::applyRegExpFilter(const QString& value)
 {
     UNUSED(value);
@@ -2038,6 +2044,12 @@ void SqlQueryModel::applyRegExpFilter(const QString& value)
 }
 
 void SqlQueryModel::applyStringFilter(const QStringList& values)
+{
+    UNUSED(values);
+    // For custom query this is not supported.
+}
+
+void SqlQueryModel::applyStrictFilter(const QStringList& values)
 {
     UNUSED(values);
     // For custom query this is not supported.

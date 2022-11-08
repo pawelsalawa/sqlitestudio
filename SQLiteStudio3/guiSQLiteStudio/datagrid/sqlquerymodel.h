@@ -92,6 +92,15 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual void applySqlFilter(const QString& value);
 
         /**
+         * @brief Request for applying an "equals" filtering on a dataset.
+         * @param value Filter expression.
+         * Default implementation does nothing. Working implementation (i.e. for a table)
+         * should set the query to temporary value which respects given filter and reload the data.
+         * Filter passed to this method is meant to be treated as strict value to be compared against.
+         */
+        virtual void applyStrictFilter(const QString& value);
+
+        /**
          * @brief Request for applying "LIKE" filtering on a dataset.
          * @param value Filter expression.
          * Default implementation does nothing. Working implementation (i.e. for a table)
@@ -116,6 +125,14 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * when user enters filtering expressions for each column sparately.
          */
         virtual void applyStringFilter(const QStringList& values);
+
+        /**
+         * @brief Request for applying an "equals" filtering on a dataset.
+         * @param values Filter expressions per column.
+         * This is the same as applyStrictFilter(const QString&), but is used for per-column filtering,
+         * when user enters filtering expressions for each column sparately.
+         */
+        virtual void applyStrictFilter(const QStringList& values);
 
         /**
          * @brief Request for applying Regular Expression filtering on a dataset.

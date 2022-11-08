@@ -47,6 +47,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FILTER_STRING,
             FILTER_SQL,
             FILTER_REGEXP,
+            FILTER_EXACT,
             FILTER_PER_COLUMN,
             GRID_TOTAL_ROWS,
             SELECTIVE_COMMIT,
@@ -113,7 +114,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         {
             STRING,
             SQL,
-            REGEXP
+            REGEXP,
+            EXACT
         };
 
         static void createStaticActions();

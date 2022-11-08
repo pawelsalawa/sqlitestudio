@@ -210,5 +210,6 @@
         <file>img/code_assistant.png</file>
         <file>img/code_snippet.png</file>
         <file>img/selection_invert.png</file>
+        <file>img/apply_filter_txt_strict.png</file>
     </qresource>
 </RCC>

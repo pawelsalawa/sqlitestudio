@@ -28,6 +28,7 @@
 - ADDED: #3515 Added option in CSV Import plugin to treat quotation character (") as regular character.
 - ADDED: #4092 Added possibility to increase/decrease font size using Ctrl+MouseWheel or by (configurable) shortcuts Ctrl++ & Ctrl+-. Applicable for SQL Editor, Database List, Status Field, Data View.
 - ADDED: #4217 Added the Invert Selection entry in data grid context menu.
+- ADDED: #4096 Added data grid option for filtering by strict text (not just whether contains, but if actually equals). Old filtering options remain.
 - ADDED: Allow drag and drop a file to the add database dialog.
 - CHANGE: #4058 SQLite updated to 3.39.2.
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.

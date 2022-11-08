@@ -843,6 +843,9 @@ void DataView::applyFilter()
             case DataView::FilterMode::REGEXP:
                 model->applyRegExpFilter(filterValues);
                 break;
+            case FilterMode::EXACT:
+                model->applyStrictFilter(filterValues);
+                break;
         }
     }
     else
@@ -858,6 +861,9 @@ void DataView::applyFilter()
                 break;
             case DataView::FilterMode::REGEXP:
                 model->applyRegExpFilter(value);
+                break;
+            case DataView::FilterMode::EXACT:
+                model->applyStrictFilter(value);
                 break;
         }
     }
@@ -988,20 +994,24 @@ void DataView::recreateFilterInputs()
 
 void DataView::createFilteringActions()
 {
-    createAction(FILTER_STRING, ICONS.APPLY_FILTER_TXT, tr("Filter by text", "data view"), this, SLOT(filterModeSelected()), this);
+    createAction(FILTER_STRING, ICONS.APPLY_FILTER_TXT, tr("Filter by text (if contains)", "data view"), this, SLOT(filterModeSelected()), this);
+    createAction(FILTER_EXACT, ICONS.APPLY_FILTER_TXT_STRICT, tr("Filter strictly by text (if equals)", "data view"), this, SLOT(filterModeSelected()), this);
     createAction(FILTER_REGEXP, ICONS.APPLY_FILTER_RE, tr("Filter by the Regular Expression", "data view"), this, SLOT(filterModeSelected()), this);
     createAction(FILTER_SQL, ICONS.APPLY_FILTER_SQL, tr("Filter by SQL expression", "data view"), this, SLOT(filterModeSelected()), this);
 
     actionMap[FILTER_STRING]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::STRING));
+    actionMap[FILTER_EXACT]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::EXACT));
     actionMap[FILTER_REGEXP]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::REGEXP));
     actionMap[FILTER_SQL]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::SQL));
 
     QActionGroup* filterGroup = new QActionGroup(gridToolBar);
     filterGroup->addAction(actionMap[FILTER_STRING]);
+    filterGroup->addAction(actionMap[FILTER_EXACT]);
     filterGroup->addAction(actionMap[FILTER_SQL]);
     filterGroup->addAction(actionMap[FILTER_REGEXP]);
 
     actionMap[FILTER_STRING]->setCheckable(true);
+    actionMap[FILTER_EXACT]->setCheckable(true);
     actionMap[FILTER_REGEXP]->setCheckable(true);
     actionMap[FILTER_SQL]->setCheckable(true);
     actionMap[FILTER_STRING]->setChecked(true);
@@ -1012,6 +1022,7 @@ void DataView::createFilteringActions()
     actionMap[FILTER_VALUE] = gridToolBar->addWidget(filterEdit);
     createAction(FILTER, tr("Apply filter", "data view"), this, SLOT(applyFilter()), gridToolBar);
     attachActionInMenu(FILTER, actionMap[FILTER_STRING], gridToolBar);
+    attachActionInMenu(FILTER, actionMap[FILTER_EXACT], gridToolBar);
     attachActionInMenu(FILTER, actionMap[FILTER_REGEXP], gridToolBar);
     attachActionInMenu(FILTER, actionMap[FILTER_SQL], gridToolBar);
     addSeparatorInMenu(FILTER, gridToolBar);

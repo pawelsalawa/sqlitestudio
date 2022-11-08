@@ -17,12 +17,15 @@ class SqlDataSourceQueryModel : public SqlQueryModel
         void applyStringFilter(const QStringList& values);
         void applyRegExpFilter(const QString& value);
         void applyRegExpFilter(const QStringList& values);
+        void applyStrictFilter(const QString& value);
+        void applyStrictFilter(const QStringList& values);
         void resetFilter();
 
     protected:
         typedef std::function<QString(const QString&)> FilterValueProcessor;
 
         static QString stringFilterValueProcessor(const QString& value);
+        static QString strictFilterValueProcessor(const QString& value);
         static QString regExpFilterValueProcessor(const QString& value);
 
         void applyFilter(const QString& value, FilterValueProcessor valueProc);

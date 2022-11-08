@@ -37,7 +37,7 @@ void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProce
     }
 
     QStringList conditions;
-    for (SqlQueryModelColumnPtr column : columns)
+    for (SqlQueryModelColumnPtr& column : columns)
         conditions << wrapObjIfNeeded(column->getAliasedName())+" "+valueProc(value);
 
     setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
@@ -79,6 +79,12 @@ QString SqlDataSourceQueryModel::stringFilterValueProcessor(const QString& value
     return pattern.arg(escapeString(value));
 }
 
+QString SqlDataSourceQueryModel::strictFilterValueProcessor(const QString& value)
+{
+    static_qstring(pattern, "= '%1'");
+    return pattern.arg(escapeString(value));
+}
+
 QString SqlDataSourceQueryModel::regExpFilterValueProcessor(const QString& value)
 {
     static_qstring(pattern, "REGEXP '%1'");
@@ -115,6 +121,16 @@ void SqlDataSourceQueryModel::applyRegExpFilter(const QString& value)
 void SqlDataSourceQueryModel::applyRegExpFilter(const QStringList& values)
 {
     applyFilter(values, &regExpFilterValueProcessor);
+}
+
+void SqlDataSourceQueryModel::applyStrictFilter(const QString& value)
+{
+    applyFilter(value, &strictFilterValueProcessor);
+}
+
+void SqlDataSourceQueryModel::applyStrictFilter(const QStringList& values)
+{
+    applyFilter(values, &strictFilterValueProcessor);
 }
 
 void SqlDataSourceQueryModel::resetFilter()

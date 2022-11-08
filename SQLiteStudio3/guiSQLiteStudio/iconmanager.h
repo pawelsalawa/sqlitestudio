@@ -32,6 +32,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(APPLY_FILTER_RE,                   "apply_filter_re")
             DEF_ICON(APPLY_FILTER_SQL,                  "apply_filter_sql")
             DEF_ICON(APPLY_FILTER_TXT,                  "apply_filter_txt")
+            DEF_ICON(APPLY_FILTER_TXT_STRICT,           "apply_filter_txt_strict")
             DEF_ICON(BUG,                               "bug")
             DEF_ICON(BUG_LIST,                          "bug_list")
             DEF_ICON(CLEAR_HISTORY,                     "clear_history")
