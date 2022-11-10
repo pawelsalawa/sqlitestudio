@@ -49,7 +49,7 @@ jobs:
                 echo "INSTALLER_BIN_PREFIX=${{ env.PORTABLE_DIR }}" >> $GITHUB_ENV
 
             - name: Clone repo
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
