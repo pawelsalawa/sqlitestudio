@@ -109,6 +109,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         SqlEditor* getEditor() const;
         bool isUncommitted() const;
         QString getQuitUncommittedConfirmMessage() const;
+        Db* getCurrentDb();
 
     protected:
         void changeEvent(QEvent *e);
@@ -116,7 +117,6 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         bool restoreSession(const QVariant& sessionValue);
         Icon* getIconNameForMdiWindow();
         QString getTitleForMdiWindow();
-        Db* getCurrentDb();
 
     private:
         static void createStaticActions();
@@ -173,6 +173,9 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void updateState();
         void checkTextChangedForSession();
         void queryHighlightingConfigChanged(const QVariant& enabled);
+
+    public slots:
+        void refreshValidDbObjects();
 };
 
 GUI_API_EXPORT int qHash(EditorWindow::ActionGroup action);

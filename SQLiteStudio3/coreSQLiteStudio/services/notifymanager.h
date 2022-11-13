@@ -36,7 +36,7 @@ class API_EXPORT NotifyManager : public QObject
 
         void modified(Db* db, const QString& database, const QString& object);
         void deleted(Db* db, const QString& database, const QString& object);
-        void createded(Db* db, const QString& database, const QString& object);
+        void created(Db* db, const QString& database, const QString& object);
         void renamed(Db* db, const QString& database, const QString& oldObject, const QString& newObject);
 
     private:

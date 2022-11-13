@@ -177,7 +177,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
          */
         void markErrorAt(int start, int end, bool limitedDamage = false);
         void deletePreviousChars(int length = 1);
-        void refreshValidObjects();
         void checkForSyntaxErrors();
         void checkForValidObjects();
         void setObjectLinks(bool enabled);
@@ -203,7 +202,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void replaceSelectedText(const QString& newText);
         QString getSelectedText() const;
         void openObject(const QString& database, const QString& name);
-        void highlightSyntax();
 
         /**
          * @brief getValidObjectForPosition
@@ -267,12 +265,14 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QString createTriggerTable;
         QString loadedFile;
         QFuture<void> objectsInNamedDbFuture;
+        QFutureWatcher<void>* objectsInNamedDbWatcher = nullptr;
         void changeFontSize(int factor);
 
         static const int autoCompleterDelay = 300;
         static const int queryParserDelay = 500;
 
     private slots:
+        void highlightSyntax();
         void customContextMenuRequested(const QPoint& pos);
         void updateUndoAction(bool enabled);
         void updateRedoAction(bool enabled);
@@ -290,7 +290,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void completerLeftPressed();
         void completerRightPressed();
         void parseContents();
-        void scheduleQueryParser(bool force = false);
+        void scheduleQueryParserForSchemaRefresh();
+        void scheduleQueryParser(bool force = false, bool skipCompleter = false);
         void updateLineNumberAreaWidth();
         void updateLineNumberArea(const QRect&rect, int dy);
         void cursorMoved();
@@ -321,6 +322,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
 
     public slots:
         void colorsConfigChanged();
+        void refreshValidObjects();
 
     signals:
         void errorsChecked(bool haveErrors);

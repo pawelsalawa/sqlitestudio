@@ -84,6 +84,9 @@ void SqlEditor::init()
     initActions();
     setupMenu();
 
+    objectsInNamedDbWatcher = new QFutureWatcher<void>(this);
+    connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
+
     textLocator = new SearchTextLocator(document(), this);
     connect(textLocator, SIGNAL(found(int,int)), this, SLOT(found(int,int)));
     connect(textLocator, SIGNAL(reachedEnd()), this, SLOT(reachedEnd()));
@@ -602,6 +605,7 @@ void SqlEditor::refreshValidObjects()
             objectsInNamedDb[dbName] << objects;
         }
     });
+    objectsInNamedDbWatcher->setFuture(objectsInNamedDbFuture);
 }
 
 void SqlEditor::setObjectLinks(bool enabled)
@@ -928,6 +932,11 @@ void SqlEditor::parseContents()
     highlightSyntax();
 }
 
+void SqlEditor::scheduleQueryParserForSchemaRefresh()
+{
+    scheduleQueryParser(true, true);
+}
+
 void SqlEditor::checkForSyntaxErrors()
 {
     syntaxValidated = true;
@@ -992,7 +1001,7 @@ void SqlEditor::checkForValidObjects()
     }
 }
 
-void SqlEditor::scheduleQueryParser(bool force)
+void SqlEditor::scheduleQueryParser(bool force, bool skipCompleter)
 {
     if (!document()->isModified() && !force)
         return;
@@ -1001,7 +1010,8 @@ void SqlEditor::scheduleQueryParser(bool force)
 
     document()->setModified(false);
     queryParserTrigger->schedule();
-    autoCompleteTrigger->schedule();
+    if (!skipCompleter)
+        autoCompleteTrigger->schedule();
 }
 
 int SqlEditor::sqlIndex(int idx)

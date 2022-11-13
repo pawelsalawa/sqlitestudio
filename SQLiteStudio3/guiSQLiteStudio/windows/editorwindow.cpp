@@ -765,6 +765,11 @@ void EditorWindow::queryHighlightingConfigChanged(const QVariant& enabled)
     ui->sqlEdit->setCurrentQueryHighlighting(enabled.toBool());
 }
 
+void EditorWindow::refreshValidDbObjects()
+{
+    ui->sqlEdit->refreshValidObjects();
+}
+
 int qHash(EditorWindow::ActionGroup actionGroup)
 {
     return static_cast<int>(actionGroup);

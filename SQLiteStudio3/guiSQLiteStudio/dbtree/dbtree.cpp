@@ -1030,6 +1030,19 @@ void DbTree::refreshSchema(Db* db)
 
     treeModel->refreshSchema(db);
     updateActionsForCurrent();
+
+    for (MdiChild*& mdi : MAINWINDOW->getMdiArea()->getMdiChilds())
+    {
+        EditorWindow* editor = dynamic_cast<EditorWindow*>(mdi);
+        if (!editor)
+            continue;
+
+        Db* editorDb = editor->getCurrentDb();
+        if (!editorDb || editorDb != db)
+            continue;
+
+        editor->refreshValidDbObjects();
+    }
 }
 
 void DbTree::copy()

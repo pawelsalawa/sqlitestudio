@@ -36,7 +36,7 @@ void NotifyManager::deleted(Db* db, const QString& database, const QString& obje
     emit objectDeleted(db, database, object);
 }
 
-void NotifyManager::createded(Db* db, const QString& database, const QString& object)
+void NotifyManager::created(Db* db, const QString& database, const QString& object)
 {
     emit objectCreated(db, database, object);
 }

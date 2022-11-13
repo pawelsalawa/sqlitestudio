@@ -71,6 +71,7 @@
 - BUGFIX: #4331 Fixed handling object names with # and $ inside.
 - BUGFIX: #4306 Fixed parsing BLOB literals and formatting it back to SQL statements from internal AST.
 - BUGFIX: #4278 Fixed language dropdown being empty sometimes when English language was selected.
+- BUGFIX: Schema changes are now properly refreshed in SQL Editors to highlight database object names.
 
 ### 3.3.3
 - CHANGE: #4011 SQLite updated to 3.35.4. SQLite3MultipleCiphers updated to 1.2.4 (SQLite 3.35.4). This enables math functions from 3.35. SQLCipher updated to 4.4.3, which is only SQLite 3.34.1, so no math functions for SQLCipher.
