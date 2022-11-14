@@ -33,13 +33,6 @@ jobs:
                 QT_VERSION: ['5.12.10', '5.15.2']
 
         steps:
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v3
-              with:
-                path: ${{ github.workspace }}/../Qt
-                key: ${{ runner.os }}-Qt-${{ matrix.QT_VERSION }}-Linux-Cache
-
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
