@@ -172,7 +172,7 @@ jobs:
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                mkdir platforms imageformats iconengines printsupport platformthemes
+                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
