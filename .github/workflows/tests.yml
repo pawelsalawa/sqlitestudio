@@ -43,7 +43,7 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                cache: true
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'

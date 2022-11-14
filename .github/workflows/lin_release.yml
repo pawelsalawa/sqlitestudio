@@ -33,7 +33,7 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                cache: true
                 version: ${{ env.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
@@ -183,6 +183,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
 
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
