@@ -33,6 +33,11 @@ jobs:
                 QT_VERSION: ['5.12.10', '5.15.2']
 
         steps:
+            - uses: actions/setup-python@v4
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+                
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
@@ -40,6 +45,7 @@ jobs:
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
+                setup-python: 'false'
 
             - name: Clone repo
               uses: actions/checkout@v3
@@ -76,11 +82,6 @@ jobs:
               run: |
                 sudo apt install libreadline-dev libncurses5-dev
                 echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
-                
-            - uses: actions/setup-python@v4
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
