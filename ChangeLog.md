@@ -71,6 +71,7 @@
 - BUGFIX: #4331 Fixed handling object names with # and $ inside.
 - BUGFIX: #4306 Fixed parsing BLOB literals and formatting it back to SQL statements from internal AST.
 - BUGFIX: #4278 Fixed language dropdown being empty sometimes when English language was selected.
+- BUGFUX: #4545 Fixed Dead Keys support under Linux.
 - BUGFIX: Schema changes are now properly refreshed in SQL Editors to highlight database object names.
 
 ### 3.3.3
