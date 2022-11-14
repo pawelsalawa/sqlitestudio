@@ -30,7 +30,7 @@ jobs:
 
         strategy:
             matrix:
-                QT_VERSION: ['5.12.10', '5.15.2']
+                QT_VERSION: ['5.15.2']
 
         steps:
             - uses: actions/setup-python@v4
