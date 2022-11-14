@@ -48,6 +48,7 @@ jobs:
                 aqtversion: '==3.0.*'
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
+                extra: '--external 7z'
 
             - name: Clone repo
               uses: actions/checkout@v3
