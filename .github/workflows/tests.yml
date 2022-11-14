@@ -45,6 +45,7 @@ jobs:
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ github.workspace }}/..'
+                aqtversion: '==2.2.*'
                 setup-python: 'false'
 
             - name: Clone repo
