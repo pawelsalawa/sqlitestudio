@@ -25,13 +25,13 @@ jobs:
         steps:
             - name: Cache Qt
               id: cache-qt
-              uses: actions/cache@v1
+              uses: actions/cache@v3
               with:
                 path: ${{ github.workspace }}/../Qt
                 key: ${{ runner.os }}-Qt-${{ env.QT_VERSION }}-Linux-Cache
                 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v2
+              uses: jurplel/install-qt-action@v3
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
                 version: ${{ env.QT_VERSION }}
@@ -108,7 +108,7 @@ jobs:
                 sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
  
-            - uses: actions/setup-python@v2
+            - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'

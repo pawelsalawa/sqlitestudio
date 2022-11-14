@@ -32,13 +32,13 @@ jobs:
 
             - name: Cache Qt
               id: cache-qt
-              uses: actions/cache@v1
+              uses: actions/cache@v3
               with:
                 path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
                 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v2
+              uses: jurplel/install-qt-action@v3
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
                 version: ${{ env.QT_VERSION }}
@@ -48,7 +48,7 @@ jobs:
                 dir: 'D:/'
                 setup-python: 'false'
 
-            - uses: actions/setup-python@v2
+            - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x86'
