@@ -824,11 +824,25 @@ void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::hand
         return;
     }
 
+    SqlQueryPtr results = db->exec("PRAGMA collation_list");
+    if (results->isError())
+        qWarning() << "Unable to query existing collations while registering needed collation" << collationName << ":" << db->getErrorText();
+
+    QStringList existingCollations = results->columnAsList<QString>("name");
+    if (existingCollations.contains(collationName))
+    {
+        qDebug() << "Requested collation" << collationName << "already exists. Probably different input encoding was expected,"
+                 << "but SQLite should deal with it. Skipping default collation registration.";
+        return;
+    }
+
     int res = T::create_collation_v2(fnDbHandle, collationName, T::UTF8, nullptr,
                                           &AbstractDb3<T>::evaluateDefaultCollation, nullptr);
 
     if (res != T::OK)
         qWarning() << "Could not register default collation in AbstractDb3<T>::registerDefaultCollation().";
+    else
+        qDebug() << "Registered default collation on demand, under name:" << collationName;
 }
 
 template <class T>
