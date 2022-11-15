@@ -180,6 +180,23 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
     return strList.join(" ");
 }
 
+void ConfigDialog::showEvent(QShowEvent* event)
+{
+    UNUSED(event);
+    ui->categoriesTree->resizeColumnToContents(0);
+    int adjustedColumnWidth = ui->categoriesTree->columnWidth(0) + 4;
+    if (adjustedColumnWidth > ui->categoriesTree->width()) {
+        if (adjustedColumnWidth > (width() / 2))
+            adjustedColumnWidth = width() / 2;
+
+        QList<int> sizes = ui->splitter->sizes();
+        int rightPartSize = sizes[0] + sizes[1] - adjustedColumnWidth;
+        sizes[0] = adjustedColumnWidth;
+        sizes[1] = rightPartSize;
+        ui->splitter->setSizes(sizes);
+    }
+}
+
 void ConfigDialog::init()
 {
     ui->setupUi(this);

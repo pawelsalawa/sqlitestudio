@@ -73,6 +73,7 @@
 - BUGFIX: #4278 Fixed language dropdown being empty sometimes when English language was selected.
 - BUGFUX: #4545 Fixed Dead Keys support under Linux.
 - BUGFIX: #4529 Fixed cooperation with collations defined by ICU extension.
+- BUGFIX: #4534 Configuration Dialog categories list width is now initially adjusted to fit contents.
 - BUGFIX: Schema changes are now properly refreshed in SQL Editors to highlight database object names.
 
 ### 3.3.3

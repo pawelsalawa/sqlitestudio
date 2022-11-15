@@ -50,6 +50,9 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         static QString getFilterString(QListWidget* widget);
         static QString getFilterString(QTableWidget* widget);
 
+    protected:
+        void showEvent(QShowEvent* event);
+
     private:
         void init();
         void load();
