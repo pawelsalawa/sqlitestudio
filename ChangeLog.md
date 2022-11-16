@@ -30,7 +30,7 @@
 - ADDED: #4217 Added the Invert Selection entry in data grid context menu.
 - ADDED: #4096 Added data grid option for filtering by strict text (not just whether contains, but if actually equals). Old filtering options remain.
 - ADDED: Allow drag and drop a file to the add database dialog.
-- CHANGE: #4058 SQLite updated to 3.39.2.
+- CHANGE: #4058 SQLite updated to 3.39.4 (except for SQLCipher, which has latest version 3.39.2).
 - CHANGE: #3272 Named function parameters of Custom SQL functions are now passed to script code as named variables.
 - CHANGE: #3337 QtScript (deprecated module) usage migrated to QML module, using QJSEngine, the EcmaScript compliant implementation. Also changed plugin language name from QtScript to JavaScript and icon from Qt icon to JS icon.
 - CHANGE: #2963 Application state (session) is saved (apart from normal application exit) whenever the state changes and also during critical application crash.

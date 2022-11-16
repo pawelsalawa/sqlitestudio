@@ -3,7 +3,7 @@
 ** Purpose:     Header file for SQLite3 Multiple Ciphers support
 ** Author:      Ulrich Telle
 ** Created:     2020-03-01
-** Copyright:   (c) 2019-2021 Ulrich Telle
+** Copyright:   (c) 2019-2022 Ulrich Telle
 ** License:     MIT
 */
 
@@ -30,10 +30,10 @@
 #define SQLITE3MC_VERSION_H_
 
 #define SQLITE3MC_VERSION_MAJOR      1
-#define SQLITE3MC_VERSION_MINOR      4
-#define SQLITE3MC_VERSION_RELEASE    8
+#define SQLITE3MC_VERSION_MINOR      5
+#define SQLITE3MC_VERSION_RELEASE    3
 #define SQLITE3MC_VERSION_SUBRELEASE 0
-#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 1.4.8"
+#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 1.5.3"
 
 #endif /* SQLITE3MC_VERSION_H_ */
 /*** End of #include "wx_sqlite3mc_version.h" ***/
@@ -192,9 +192,9 @@ extern "C" {
 ** [wx_sqlite3_libversion_number()], [wx_sqlite3_sourceid()],
 ** [sqlite_version()] and [sqlite_source_id()].
 */
-#define SQLITE_VERSION        "3.39.2"
-#define SQLITE_VERSION_NUMBER 3039002
-#define SQLITE_SOURCE_ID      "2022-07-21 15:24:47 698edb77537b67c41adc68f9b892db56bcf9a55e00371a61420f3ddd668e6603"
+#define SQLITE_VERSION        "3.39.4"
+#define SQLITE_VERSION_NUMBER 3039004
+#define SQLITE_SOURCE_ID      "2022-09-29 15:55:41 a29f9949895322123f7c38fbe94c649a9d6e6c9cd0c3b41c96d694552f26b309"
 
 /*
 ** CAPI3REF: Run-Time Library Version Numbers
@@ -12989,13 +12989,13 @@ int wx_sqlite3_user_delete(
 /*
 ** Symbols for ciphers
 */
-#define CODEC_TYPE_UNKNOWN   0
-#define CODEC_TYPE_AES128    1
-#define CODEC_TYPE_AES256    2
-#define CODEC_TYPE_CHACHA20  3
-#define CODEC_TYPE_SQLCIPHER 4
-#define CODEC_TYPE_RC4       5
-#define CODEC_TYPE_MAX       5
+#define CODEC_TYPE_UNKNOWN     0
+#define CODEC_TYPE_AES128      1
+#define CODEC_TYPE_AES256      2
+#define CODEC_TYPE_CHACHA20    3
+#define CODEC_TYPE_SQLCIPHER   4
+#define CODEC_TYPE_RC4         5
+#define CODEC_TYPE_MAX_BUILTIN 5
 
 /*
 ** Definition of API functions
@@ -13064,6 +13064,9 @@ SQLITE_API void wx_sqlite3_activate_see(const char* zPassPhrase);
 /*
 ** Define functions for the configuration of the wxSQLite3 encryption extension
 */
+SQLITE_API int wx_sqlite3mc_cipher_count();
+SQLITE_API int wx_sqlite3mc_cipher_index(const char* cipherName);
+SQLITE_API const char* wx_sqlite3mc_cipher_name(int cipherIndex);
 SQLITE_API int wx_sqlite3mc_config(wx_sqlite3* db, const char* paramName, int newValue);
 SQLITE_API int wx_sqlite3mc_config_cipher(wx_sqlite3* db, const char* cipherName, const char* paramName, int newValue);
 SQLITE_API unsigned char* wx_sqlite3mc_codec_data(wx_sqlite3* db, const char* zDbName, const char* paramName);
@@ -13074,6 +13077,88 @@ SQLITE_API int wxwx_sqlite3_config(wx_sqlite3* db, const char* paramName, int ne
 SQLITE_API int wxwx_sqlite3_config_cipher(wx_sqlite3* db, const char* cipherName, const char* paramName, int newValue);
 SQLITE_API unsigned char* wxwx_sqlite3_codec_data(wx_sqlite3* db, const char* zDbName, const char* paramName);
 #endif
+
+/*
+** Structures and functions to dynamically register a cipher
+*/
+
+/*
+** Structure for a single cipher configuration parameter
+**
+** Components:
+**   m_name      - name of parameter (1st char = alpha, rest = alphanumeric or underscore, max 63 characters)
+**   m_value     - current/transient parameter value
+**   m_default   - default parameter value
+**   m_minValue  - minimum valid parameter value
+**   m_maxValue  - maximum valid parameter value
+*/
+typedef struct _CipherParams
+{
+  char* m_name;
+  int   m_value;
+  int   m_default;
+  int   m_minValue;
+  int   m_maxValue;
+} CipherParams;
+
+/*
+** Structure for a cipher API
+**
+** Components:
+**   m_name            - name of cipher (1st char = alpha, rest = alphanumeric or underscore, max 63 characters)
+**   m_allocateCipher  - Function pointer for function AllocateCipher
+**   m_freeCipher      - Function pointer for function FreeCipher
+**   m_cloneCipher     - Function pointer for function CloneCipher
+**   m_getLegacy       - Function pointer for function GetLegacy
+**   m_getPageSize     - Function pointer for function GetPageSize
+**   m_getReserved     - Function pointer for function GetReserved
+**   m_getSalt         - Function pointer for function GetSalt
+**   m_generateKey     - Function pointer for function GenerateKey
+**   m_encryptPage     - Function pointer for function EncryptPage
+**   m_decryptPage     - Function pointer for function DecryptPage
+*/
+
+typedef struct BtShared BtSharedMC;
+
+typedef void* (*AllocateCipher_t)(wx_sqlite3* db);
+typedef void  (*FreeCipher_t)(void* cipher);
+typedef void  (*CloneCipher_t)(void* cipherTo, void* cipherFrom);
+typedef int   (*GetLegacy_t)(void* cipher);
+typedef int   (*GetPageSize_t)(void* cipher);
+typedef int   (*GetReserved_t)(void* cipher);
+typedef unsigned char* (*GetSalt_t)(void* cipher);
+typedef void  (*GenerateKey_t)(void* cipher, BtSharedMC* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt);
+typedef int   (*EncryptPage_t)(void* cipher, int page, unsigned char* data, int len, int reserved);
+typedef int   (*DecryptPage_t)(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck);
+
+typedef struct _CipherDescriptor
+{
+  char* m_name;
+  AllocateCipher_t m_allocateCipher;
+  FreeCipher_t     m_freeCipher;
+  CloneCipher_t    m_cloneCipher;
+  GetLegacy_t      m_getLegacy;
+  GetPageSize_t    m_getPageSize;
+  GetReserved_t    m_getReserved;
+  GetSalt_t        m_getSalt;
+  GenerateKey_t    m_generateKey;
+  EncryptPage_t    m_encryptPage;
+  DecryptPage_t    m_decryptPage;
+} CipherDescriptor;
+
+/*
+** Register a cipher
+**
+** Arguments:
+**   desc         - Cipher descriptor structure
+**   params       - Cipher configuration parameter table
+**   makeDefault  - flag whether to make the cipher the default cipher
+**
+** Returns:
+**   SQLITE_OK     - the cipher could be registered successfully
+**   SQLITE_ERROR  - the cipher could not be registered
+*/
+SQLITE_API int wx_sqlite3mc_register_cipher(const CipherDescriptor* desc, const CipherParams* params, int makeDefault);
 
 #ifdef __cplusplus
 }
