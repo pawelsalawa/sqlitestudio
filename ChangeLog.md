@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.1
+- BUGFIX: #4549 Query executor column aliases do not need wrapping anymore, because parser in 3.4.0 does not strip wrapped aliases anymore.
+
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
 - ADDED: #4058 Added support for STRICT tables introduced in SQLite 3.37.
