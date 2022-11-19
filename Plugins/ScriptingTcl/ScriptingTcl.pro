@@ -44,7 +44,7 @@ linux: {
     !exists($$TCL_CONFIG) {
 	# Debian case
         DEBIAN_ARCH_PATH=$$system(dpkg-architecture -qDEB_HOST_MULTIARCH)
-        TCL_CONFIG = /usr/lib/$$DEBIAN_ARCH_PATH/tcl$$TCL_VERSION/tclConfig.sh
+        TCL_CONFIG = $$PREFIX/lib/$$DEBIAN_ARCH_PATH/tcl$$TCL_VERSION/tclConfig.sh
     }
     message("Looking for $$TCL_CONFIG")
     !exists($$TCL_CONFIG) {

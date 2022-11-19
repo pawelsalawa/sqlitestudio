@@ -40,11 +40,11 @@ portable {
 
 unix: {
     isEmpty(LIBDIR) {
-	LIBDIR = /usr/lib
+	LIBDIR = $$PREFIX/lib
     }
     export(LIBDIR)
     isEmpty(BINDIR) {
-	BINDIR = /usr/bin
+	BINDIR = $$PREFIX/bin
     }
     export(BINDIR)
 }
