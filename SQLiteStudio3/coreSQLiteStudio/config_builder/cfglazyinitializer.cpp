@@ -18,7 +18,7 @@ void CfgLazyInitializer::init()
     if (!instances)
         instances = new QList<CfgLazyInitializer*>();
 
-    for (CfgLazyInitializer* initializer : *instances)
+    for (CfgLazyInitializer*& initializer : *instances)
         initializer->doInitialize();
 }
 

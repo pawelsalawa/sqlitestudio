@@ -180,7 +180,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int getContentsBottom() const;
         qreal mmToPoints(qreal sizeMM);
 
-        CFG_LOCAL_PERSISTABLE(PdfExportConfig, cfg)
+        //CFG_LOCAL_PERSISTABLE(PdfExportConfig, cfg)
         QPagedPaintDevice* pagedWriter = nullptr;
         bool takeDeviceOwnership = true;
         QPainter* painter = nullptr;

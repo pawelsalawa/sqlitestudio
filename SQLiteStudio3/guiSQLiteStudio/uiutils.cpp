@@ -20,10 +20,18 @@
 #include <QToolBar>
 #include <QToolButton>
 
-const QStringList pageSizes = {
-    "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
-    "B10", "B2", "B3", "B4", "B6", "B7", "B8", "B9", "C5E", "Comm10E", "DLE", "Folio", "Ledger", "Tabloid", "Custom"
+const QList<QPageSize::PageSizeId> pageSizeIds = {
+    QPageSize::A4, QPageSize::B5, QPageSize::Letter, QPageSize::Legal, QPageSize::Executive, QPageSize::A0, QPageSize::A1,
+    QPageSize::A2, QPageSize::A3, QPageSize::A5, QPageSize::A6, QPageSize::A7, QPageSize::A8, QPageSize::A9, QPageSize::B0,
+    QPageSize::B1, QPageSize::B10, QPageSize::B2, QPageSize::B3, QPageSize::B4, QPageSize::B6, QPageSize::B7, QPageSize::B8,
+    QPageSize::B9, QPageSize::C5E, QPageSize::Comm10E, QPageSize::DLE, QPageSize::Folio, QPageSize::Ledger, QPageSize::Tabloid,
+    QPageSize::Custom
 };
+
+const QStringList pageSizes = map<QPageSize::PageSizeId, QString>(pageSizeIds, [](QPageSize::PageSizeId id) -> QString
+{
+    return QPageSize::name(id);
+});
 
 const QStringList pageSizesWithDimensions;
 
@@ -89,23 +97,14 @@ void setValidStateTooltip(QWidget* widget, const QString& tip)
     INDICATOR(widget)->setVisible(widget->isEnabled(), tip);
 }
 
-QString convertPageSize(QPagedPaintDevice::PageSize size)
+QString convertPageSize(QPageSize::PageSizeId size)
 {
-    const int pageSizesSize = pageSizes.size();
-
-    int idx = static_cast<int>(size);
-    if (idx < 0 || idx >= pageSizesSize)
-    {
-        qDebug() << "Asked to convertPageSize() with page side enum value out of range:" << idx;
-        return QString();
-    }
-
-    return pageSizes[idx];
+    return QPageSize::name(size);
 }
 
-QPagedPaintDevice::PageSize convertPageSize(const QString& size)
+QPageSize convertPageSize(const QString& size)
 {
-    return static_cast<QPagedPaintDevice::PageSize>(indexOf(pageSizes, size, Qt::CaseInsensitive));
+    return QPageSize(static_cast<QPageSize::PageSizeId>(indexOf(pageSizes, size, Qt::CaseInsensitive)));
 }
 
 const QStringList& getAllPageSizes()

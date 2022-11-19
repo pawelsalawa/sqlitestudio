@@ -1,13 +1,15 @@
 #include "pdfexport.h"
 #include "common/unused.h"
 #include "uiutils.h"
-#include "log.h"
 #include <QtMath>
 #include <QPainter>
 #include <QFont>
 #include <QDebug>
 
 QString PdfExport::bulletChar = "\u2022";
+
+CFG_DEFINE(PdfExportConfig)
+#define PDFEXPORT_CFG CFG_INSTANCE(PdfExportConfig)
 
 bool PdfExport::init()
 {
@@ -20,6 +22,7 @@ bool PdfExport::init()
 void PdfExport::deinit()
 {
     safe_delete(textOption);
+    CFG_DELETE_INSTANCE(PdfExportConfig);
     SQLS_CLEANUP_RESOURCE(pdfexport);
 }
 
@@ -102,7 +105,7 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     QStringList columnsAndTypes;
     int colNamesLength = 0;
     int dataTypeLength = 0;
-    for (SqliteCreateTable::Column* col : createTable->columns)
+    for (SqliteCreateTable::Column*& col : createTable->columns)
     {
         colDef = col->name;
         colNamesLength = qMax(colNamesLength, colDef.size());
@@ -120,7 +123,7 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     QList<int> columnDataLengths = {colNamesLength, dataTypeLength, 0};
     calculateDataColumnWidths(tableDdlColumns, columnDataLengths, 2);
 
-    for (SqliteCreateTable::Column* col : createTable->columns)
+    for (SqliteCreateTable::Column*& col : createTable->columns)
         exportTableColumnRow(col);
 
     if (createTable->constraints.size() > 0)
@@ -234,7 +237,7 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
     exportObjectColumnsHeader(indexColumns);
 
     QString sort;
-    for (SqliteOrderBy* idxCol : createIndex->indexedColumns)
+    for (SqliteOrderBy*& idxCol : createIndex->indexedColumns)
     {
         if (idxCol->order != SqliteSortOrder::null)
             sort = sqliteSortOrder(idxCol->order);
@@ -281,7 +284,7 @@ bool PdfExport::exportTrigger(const QString& database, const QString& name, cons
     exportObjectRow({tr("Activation condition"), cond});
 
     QStringList queryStrings;
-    for (SqliteQuery* q : createTrigger->queries)
+    for (SqliteQuery*& q : createTrigger->queries)
         queryStrings << q->detokenize();
 
     exportObjectColumnsHeader({tr("Code executed")});
@@ -342,36 +345,36 @@ void PdfExport::cleanupAfterExport()
 
 void PdfExport::setupConfig()
 {
-    pagedWriter->setPageSize(convertPageSize(cfg.PdfExport.PageSize.get()));
+    pagedWriter->setPageSize(convertPageSize(PDFEXPORT_CFG.PdfExport.PageSize.get()));
     pageWidth = pagedWriter->width();
     pageHeight = pagedWriter->height();
-    pointsPerMm = pageWidth / pagedWriter->pageSizeMM().width();
+    pointsPerMm = pageWidth / pagedWriter->pageLayout().pageSize().size(QPageSize::Millimeter).width();
 
-    stdFont = cfg.PdfExport.Font.get();
-    stdFont.setPointSize(cfg.PdfExport.FontSize.get());
+    stdFont = PDFEXPORT_CFG.PdfExport.Font.get();
+    stdFont.setPointSize(PDFEXPORT_CFG.PdfExport.FontSize.get());
     boldFont = stdFont;
     boldFont.setBold(true);
     italicFont = stdFont;
     italicFont.setItalic(true);
     painter->setFont(stdFont);
 
-    topMargin = mmToPoints(cfg.PdfExport.TopMargin.get());
-    rightMargin = mmToPoints(cfg.PdfExport.RightMargin.get());
-    leftMargin = mmToPoints(cfg.PdfExport.LeftMargin.get());
-    bottomMargin = mmToPoints(cfg.PdfExport.BottomMargin.get());
+    topMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.TopMargin.get());
+    rightMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.RightMargin.get());
+    leftMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.LeftMargin.get());
+    bottomMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.BottomMargin.get());
     updateMargins();
 
     maxColWidth = pageWidth / 5;
-    padding = mmToPoints(cfg.PdfExport.Padding.get());
+    padding = mmToPoints(PDFEXPORT_CFG.PdfExport.Padding.get());
 
     QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
     minRowHeight = rect.height() + padding * 2;
     maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
     rowsToPrebuffer = (int)qCeil((double)pageHeight / minRowHeight);
 
-    cellDataLimit = cfg.PdfExport.MaxCellBytes.get();
-    printRowNum = cfg.PdfExport.PrintRowNum.get();
-    printPageNumbers = cfg.PdfExport.PrintPageNumbers.get();
+    cellDataLimit = PDFEXPORT_CFG.PdfExport.MaxCellBytes.get();
+    printRowNum = PDFEXPORT_CFG.PdfExport.PrintRowNum.get();
+    printPageNumbers = PDFEXPORT_CFG.PdfExport.PrintPageNumbers.get();
 
     lastRowY = getContentsTop();
     currentPage = -1;
@@ -506,7 +509,7 @@ void PdfExport::exportTableColumnRow(SqliteCreateTable::Column* column)
 
     if (column->constraints.size() > 0)
     {
-        for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
+        for (SqliteCreateTable::Column::Constraint*& constr : column->constraints)
             cell.contents << constr->detokenize();
 
         cell.type = ObjectCell::Type::LIST;
@@ -645,7 +648,7 @@ void PdfExport::drawObjectTopLine(int y)
 void PdfExport::drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2)
 {
     painter->save();
-    painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
+    painter->setBrush(QBrush(PDFEXPORT_CFG.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
     painter->drawRect(x1, y1, x2 - x1, y2 - y1);
     painter->restore();
@@ -711,7 +714,7 @@ void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
 
             x = left;
             painter->drawLine(x, y, x, bottom);
-            for (int w : calculatedObjectColumnWidths)
+            for (int& w : calculatedObjectColumnWidths)
             {
                 x += w;
                 painter->drawLine(x, y, x, bottom);
@@ -757,7 +760,6 @@ void PdfExport::flushObjectCell(const PdfExport::ObjectCell& cell, int x, int y,
             x += padding;
             y += padding;
             w -= 2 * padding;
-            h -= 2 * padding;
             int txtX = x + prefixWidth;
             int txtW = w - prefixWidth;
 
@@ -817,7 +819,7 @@ void PdfExport::calculateObjectColumnWidths(int columnToExpand)
 int PdfExport::correctMaxObjectColumnWidths(int colCount, int columnToExpand)
 {
     int totalWidth = 0;
-    for (int w : calculatedObjectColumnWidths)
+    for (int& w : calculatedObjectColumnWidths)
         totalWidth += w;
 
     int maxWidth = pageWidth / colCount;
@@ -847,7 +849,6 @@ int PdfExport::correctMaxObjectColumnWidths(int colCount, int columnToExpand)
 
     if (columnToExpand > -1 && totalWidth > pageWidth)
     {
-        tmpWidth = calculatedObjectColumnWidths[columnToExpand];
         if ((totalWidth - calculatedObjectColumnWidths[columnToExpand] + maxWidth) <= pageWidth)
             calculatedObjectColumnWidths[columnToExpand] -= (pageWidth - totalWidth + calculatedObjectColumnWidths[columnToExpand] - maxWidth);
         else
@@ -956,7 +957,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     // Draw header background
     int x = getDataColumnsStartX();
     painter->save();
-    painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
+    painter->setBrush(QBrush(PDFEXPORT_CFG.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
     painter->drawRect(QRect(x, top, totalColumnsWidth, totalHeaderRowsHeight));
     painter->restore();
@@ -965,7 +966,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     if (printRowNum)
     {
         painter->save();
-        painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
+        painter->setBrush(QBrush(PDFEXPORT_CFG.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
         painter->setPen(Qt::NoPen);
         painter->drawRect(QRect(left, top, rowNumColumnWidth, totalRowsHeight));
         painter->restore();
@@ -1073,7 +1074,7 @@ void PdfExport::flushDataCell(const QRect& rect, const PdfExport::DataCell& cell
     painter->save();
     if (cell.isNull)
     {
-        painter->setPen(cfg.PdfExport.NullValueColor.get());
+        painter->setPen(PDFEXPORT_CFG.PdfExport.NullValueColor.get());
         painter->setFont(italicFont);
     }
 
@@ -1407,7 +1408,7 @@ qreal PdfExport::mmToPoints(qreal sizeMM)
 
 CfgMain* PdfExport::getConfig()
 {
-    return &cfg;
+    return &PDFEXPORT_CFG;
 }
 
 QString PdfExport::getExportConfigFormName() const

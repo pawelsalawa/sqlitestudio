@@ -34,6 +34,12 @@
 
 #define CFG_INSTANCE(Type) (*Cfg::get##Type##Instance())
 
+#define CFG_DELETE_INSTANCE(Type) \
+    if (Cfg::cfgMainInstance##Type) \
+        delete Cfg::cfgMainInstance##Type; \
+    Cfg::cfgMainInstance##Type = nullptr;
+
+
 // Macros below are kind of private. You should not need to use them explicitly.
 // They are called from macros above.
 
