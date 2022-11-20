@@ -522,7 +522,7 @@ bool DbDialog::testDatabase(QString& errorMsg)
         if (testDb->openForProbing())
         {
             res = !testDb->exec("SELECT sqlite_version();")->getSingleCell().toString().isEmpty();
-            errorMsg = db->getErrorText();
+            errorMsg = testDb->getErrorText();
             testDb->closeQuiet();
         }
         delete testDb;
