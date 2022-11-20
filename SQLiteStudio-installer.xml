@@ -166,13 +166,6 @@
                 <compareText logic="equals" text="${env(INSTALLER_BIN_PREFIX)}" value=""/>
             </ruleList>
         </setInstallerVariable>
-        <setInstallerVariableFromScriptOutput>
-            <name>running_user</name>
-            <exec>logname</exec>
-            <ruleList>
-                <platformTest type="linux"/>
-            </ruleList>
-        </setInstallerVariableFromScriptOutput>
     </preBuildActionList>
     <readyToInstallActionList>
         <setInstallerVariable>
@@ -193,6 +186,13 @@
                 <platformTest type="linux"/>
             </ruleList>
         </setInstallerVariable>
+        <setInstallerVariableFromScriptOutput>
+            <name>running_user</name>
+            <exec>logname</exec>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
     </readyToInstallActionList>
     <postInstallationActionList>
         <actionGroup>
