@@ -122,6 +122,7 @@ class AbstractDb3 : public AbstractDb
         };
 
         QString extractLastError();
+        QString extractLastError(typename T::handle* handle);
         void cleanUp();
         void resetError();
 
@@ -431,11 +432,11 @@ bool AbstractDb3<T>::openInternal()
     int res = T::open_v2(path.toUtf8().constData(), &handle, T::OPEN_READWRITE|T::OPEN_CREATE, nullptr);
     if (res != T::OK)
     {
+        dbErrorMessage = QObject::tr("Could not open database: %1").arg(extractLastError(handle));
+        dbErrorCode = res;
         if (handle)
             T::close(handle);
 
-        dbErrorMessage = QObject::tr("Could not open database: %1").arg(extractLastError());
-        dbErrorCode = res;
         return false;
     }
     dbHandle = handle;
@@ -577,8 +578,14 @@ bool AbstractDb3<T>::deregisterCollationInternal(const QString& name)
 template <class T>
 QString AbstractDb3<T>::extractLastError()
 {
-    dbErrorCode = T::extended_errcode(dbHandle);
-    dbErrorMessage = QString::fromUtf8(T::errmsg(dbHandle));
+    return extractLastError(dbHandle);
+}
+
+template<class T>
+QString AbstractDb3<T>::extractLastError(typename T::handle* handle)
+{
+    dbErrorCode = T::extended_errcode(handle);
+    dbErrorMessage = QString::fromUtf8(T::errmsg(handle));
     return dbErrorMessage;
 }
 
