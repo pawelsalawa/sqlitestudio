@@ -7,6 +7,11 @@ DbSqliteCipherInstance::DbSqliteCipherInstance(const QString& name, const QStrin
 {
 }
 
+Db* DbSqliteCipherInstance::clone() const
+{
+    return new DbSqliteCipherInstance(name, path, connOptions);
+}
+
 void DbSqliteCipherInstance::initAfterOpen()
 {
     SqlQueryPtr res;
