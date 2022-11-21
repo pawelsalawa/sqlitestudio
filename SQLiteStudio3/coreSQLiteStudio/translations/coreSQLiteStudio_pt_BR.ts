@@ -910,7 +910,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <location filename="../sqlitestudio.cpp" line="317"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation>Preenchendo a tabela</translation>
+      <translation>Preencher a tabela</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="119"/>
