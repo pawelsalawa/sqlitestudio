@@ -299,7 +299,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="122"/>
       <source>Generated value</source>
-      <translation type="unfinished">Generated value</translation>
+      <translation>Wygenerowana wartość</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -424,7 +424,7 @@
       <location filename="../dialogs/columndialog.cpp" line="99"/>
       <source>Add a generated value constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a generated value constraint</translation>
+      <translation>Dodaj ograniczenie wygenerowanej wartości</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="100"/>
@@ -543,42 +543,42 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Kod generujący:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Sprecyzowany typ:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>Użyj słów kluczowych &quot;GENEROWANYCH ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Wprowadź wyrażenie generujące wartość kolumny.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Nieprawidłowe wyrażenie generujące wartość: %1.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Nieprawidłowe wyrażenie generujące wartość.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
   </context>
   <context>
@@ -611,7 +611,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
       <source>Descending order is not allowed with AUTOINCREMENT.</source>
-      <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+      <translation>Kolejność malejąca jest niedozwolona z AUTOINCREMENT.</translation>
     </message>
   </context>
   <context>
@@ -938,12 +938,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="529"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli wyniki zapytania zawierają dziesiątki (lub setki) kolumn, bardziej prawdopodobne jest, że wyczerpie pamięć komputera ładując kilka gigabajtów danych jednocześnie. SQLiteStudio może próbować ograniczyć liczbę wyników wyświetlanych na jednej stronie w celu ochrony komputera. Jeśli wiesz, że nie pracujesz z dużymi wartościami w bazie danych, możesz wyłączyć ten limit i zawsze zobaczysz tyle wierszy, ile jest zdefiniowanych na stronie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="532"/>
       <source>Limit number of rows for in case of dozens of columns</source>
-      <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
+      <translation>Ogranicz liczbę wierszy w przypadku dziesiątek kolumn</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="535"/>
