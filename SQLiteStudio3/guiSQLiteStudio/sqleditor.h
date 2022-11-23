@@ -227,7 +227,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         LazyTrigger* queryParserTrigger = nullptr;
         Parser* queryParser = nullptr;
         QHash<QString,QStringList> objectsInNamedDb;
-        QMutex objectsInNamedDbMutex;
         bool objectLinksEnabled = false;
         QList<DbObject> validDbObjects;
         QWidget* lineNumberArea = nullptr;
@@ -264,8 +263,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool virtualSqlCompleteSemicolon = false;
         QString createTriggerTable;
         QString loadedFile;
-        QFuture<void> objectsInNamedDbFuture;
-        QFutureWatcher<void>* objectsInNamedDbWatcher = nullptr;
+        QFutureWatcher<QHash<QString,QStringList>>* objectsInNamedDbWatcher = nullptr;
         void changeFontSize(int factor);
 
         static const int autoCompleterDelay = 300;

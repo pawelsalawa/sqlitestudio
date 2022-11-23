@@ -22,6 +22,8 @@ class DbSqliteCipherInstance : public AbstractDb3<SqlCipher>
     public:
         DbSqliteCipherInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
 
+        Db* clone() const;
+
     protected:
         void initAfterOpen();
         QString getAttachSql(Db* otherDb, const QString& generatedAttachName);

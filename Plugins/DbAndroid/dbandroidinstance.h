@@ -28,6 +28,7 @@ class DbAndroidInstance : public AbstractDb
         bool initAfterCreated();
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;
+        Db* clone() const;
 
     protected:
         bool isOpenInternal();

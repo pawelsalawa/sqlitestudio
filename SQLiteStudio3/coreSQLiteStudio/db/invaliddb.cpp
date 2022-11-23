@@ -341,6 +341,11 @@ bool InvalidDb::isComplete(const QString& sql) const
     return false;
 }
 
+Db* InvalidDb::clone() const
+{
+    return new InvalidDb(name, path, connOptions);
+}
+
 void InvalidDb::interrupt()
 {
 }

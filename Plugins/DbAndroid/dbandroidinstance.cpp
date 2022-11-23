@@ -114,6 +114,11 @@ bool DbAndroidInstance::isComplete(const QString& sql) const
     return DbSqlite3::complete(sql);
 }
 
+Db* DbAndroidInstance::clone() const
+{
+    return new DbAndroidInstance(plugin, name, path, connOptions);
+}
+
 bool DbAndroidInstance::isOpenInternal()
 {
     return (connection && connection->isConnected());

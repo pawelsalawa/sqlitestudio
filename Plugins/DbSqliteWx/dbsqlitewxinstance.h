@@ -22,6 +22,8 @@ class DbSqliteWxInstance : public AbstractDb3<WxSQLite>
     public:
         DbSqliteWxInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &connOptions);
 
+        Db* clone() const;
+
     protected:
         void initAfterOpen();
         QString getAttachSql(Db* otherDb, const QString& generatedAttachName);
