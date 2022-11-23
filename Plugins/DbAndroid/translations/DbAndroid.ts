@@ -73,12 +73,12 @@ Would you like to select another one, or leave it unconfigured?</source>
 <context>
     <name>DbAndroidInstance</name>
     <message>
-        <location filename="../dbandroidinstance.cpp" line="106"/>
+        <location filename="../dbandroidinstance.cpp" line="108"/>
         <source>Android SQLite driver does not support loadable extensions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbandroidinstance.cpp" line="188"/>
+        <location filename="../dbandroidinstance.cpp" line="201"/>
         <source>Connection with Android database &apos;%1&apos; lost.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -87,7 +87,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <name>DbAndroidJsonConnection</name>
     <message>
         <location filename="../dbandroidjsonconnection.cpp" line="175"/>
-        <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
+        <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -296,7 +296,7 @@ Android device refused deletion, or it was impossible.</source>
     <name>DbAndroidShellConnection</name>
     <message>
         <location filename="../dbandroidshellconnection.cpp" line="31"/>
-        <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
+        <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
