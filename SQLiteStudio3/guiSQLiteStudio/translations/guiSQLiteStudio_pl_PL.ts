@@ -403,7 +403,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="122"/>
         <source>Generated value</source>
-        <translation type="unfinished">Generated value</translation>
+        <translation>Wygenerowana wartość</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -528,7 +528,7 @@
         <location filename="../dialogs/columndialog.cpp" line="96"/>
         <source>Add a generated value constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished">Add a generated value constraint</translation>
+        <translation>Dodaj ograniczenie wygenerowanej wartości</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="97"/>
@@ -652,42 +652,42 @@
     <message>
         <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
         <source>Generating code:</source>
-        <translation type="unfinished">Generating code:</translation>
+        <translation>Kod generujący:</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
         <source>Explicit type:</source>
-        <translation type="unfinished">Explicit type:</translation>
+        <translation>Sprecyzowany typ:</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
         <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-        <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+        <translation>Użyj słów kluczowych &quot;GENEROWANYCH ALWAYS&quot;</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
         <source>Named constraint:</source>
-        <translation type="unfinished">Named constraint:</translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
         <source>Enter the column value generating expression.</source>
-        <translation type="unfinished">Enter the column value generating expression.</translation>
+        <translation>Wprowadź wyrażenie generujące wartość kolumny.</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
         <source>Invalid value generating expression: %1.</source>
-        <translation type="unfinished">Invalid value generating expression: %1.</translation>
+        <translation>Nieprawidłowe wyrażenie generujące wartość: %1.</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
         <source>Invalid value generating expression.</source>
-        <translation type="unfinished">Invalid value generating expression.</translation>
+        <translation>Nieprawidłowe wyrażenie generujące wartość.</translation>
     </message>
     <message>
         <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished">Enter a name of the constraint.</translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
@@ -720,7 +720,7 @@
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
         <source>Descending order is not allowed with AUTOINCREMENT.</source>
-        <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+        <translation>Kolejność malejąca jest niedozwolona z AUTOINCREMENT.</translation>
     </message>
 </context>
 <context>
@@ -1080,12 +1080,12 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="524"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli wyniki zapytania zawierają dziesiątki (lub setki) kolumn, bardziej prawdopodobne jest, że wyczerpie pamięć komputera ładując kilka gigabajtów danych jednocześnie. SQLiteStudio może próbować ograniczyć liczbę wyników wyświetlanych na jednej stronie w celu ochrony komputera. Jeśli wiesz, że nie pracujesz z dużymi wartościami w bazie danych, możesz wyłączyć ten limit i zawsze zobaczysz tyle wierszy, ile jest zdefiniowanych na stronie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="527"/>
         <source>Limit number of rows for in case of dozens of columns</source>
-        <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
+        <translation>Ogranicz liczbę wierszy w przypadku dziesiątek kolumn</translation>
     </message>
     <message>
         <source>General.LimitRowsForManyColumns</source>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="1032"/>
         <source>Allow multiple instances of the application at the same time</source>
-        <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
+        <translation>Zezwalaj na wiele instancji aplikacji w tym samym czasie</translation>
     </message>
     <message>
         <source>General.AllowMultipleSessions</source>
@@ -1734,7 +1734,7 @@
         <location filename="../dialogs/constraintdialog.cpp" line="192"/>
         <source>Generated</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Generated</translation>
+        <translation>Generowane</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="196"/>
@@ -3999,7 +3999,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../mainwindow.cpp" line="295"/>
         <source>D&amp;onate</source>
-        <translation type="unfinished">D&amp;onate</translation>
+        <translation>Wesprzyj d&amp;otacją</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
@@ -4039,7 +4039,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../mainwindow.cpp" line="303"/>
         <source>Quit</source>
-        <translation type="unfinished">Quit</translation>
+        <translation>Wyjdź</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="305"/>
@@ -4342,7 +4342,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
         <source>Generated</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished">Generated</translation>
+        <translation>Generowane</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
@@ -4361,7 +4361,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="25"/>
         <source>New version is available!</source>
-        <translation type="unfinished">New version is available!</translation>
+        <translation>Dostępna jest nowa wersja!</translation>
     </message>
     <message>
         <source>0.0.0</source>
@@ -4370,27 +4370,27 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="51"/>
         <source>Download new version!</source>
-        <translation type="unfinished">Download new version!</translation>
+        <translation>Pobierz nową wersję!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="64"/>
         <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
-        <translation type="unfinished">New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</translation>
+        <translation>Paczka z nową wersją zostanie pobrana. Do ciebie będzie należało zainstalowanie jej, gdy uznasz to za stosowne.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="71"/>
         <source>Open SQLiteStudio home page.</source>
-        <translation type="unfinished">Open SQLiteStudio home page.</translation>
+        <translation>Otwórz stronę główną SQLiteStudio.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="84"/>
         <source>Read release notes &amp;&amp; download package yourself.</source>
-        <translation type="unfinished">Read release notes &amp;&amp; download package yourself.</translation>
+        <translation>Przeczytaj notatki o wydaniu i pobierz pakiet samodzielnie.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="104"/>
         <source>Just close this window.</source>
-        <translation type="unfinished">Just close this window.</translation>
+        <translation>Po prostu zamknij to okno.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="114"/>
@@ -4525,7 +4525,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
         <source>Cannot edit table generated columns.</source>
-        <translation type="unfinished">Cannot edit table generated columns.</translation>
+        <translation>Nie można edytować generowanych kolumn tabeli.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="416"/>
@@ -4557,7 +4557,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <source>generated column type: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="obsolete">generated column type: %1</translation>
+        <translation>generowany typ kolumny: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="20"/>
@@ -4873,7 +4873,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../mainwindow.h" line="60"/>
         <source>Quit the application</source>
-        <translation type="unfinished">Quit the application</translation>
+        <translation>Wyjdź z aplikacji</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -5551,7 +5551,7 @@ znajdź następny</translation>
         <location filename="../datagrid/sqlqueryitem.cpp" line="223"/>
         <source>Committing error:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished">Committing error:</translation>
+        <translation>Błąd zatwierdzenia:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="227"/>
@@ -5586,7 +5586,7 @@ znajdź następny</translation>
     <name>SqlQueryItemDelegate</name>
     <message>
         <source>Load remaining part of the value</source>
-        <translation type="obsolete">Load remaining part of the value</translation>
+        <translation type="obsolete">Załaduj pozostałą część wartości</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="58"/>

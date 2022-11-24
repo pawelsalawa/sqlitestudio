@@ -914,7 +914,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
         <location filename="../sqlitestudio.cpp" line="352"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
-        <translation>Importando</translation>
+        <translation>Preencher a tabela</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="353"/>
