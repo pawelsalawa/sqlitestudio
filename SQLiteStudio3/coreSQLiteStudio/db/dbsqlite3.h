@@ -2,7 +2,6 @@
 #define DBSQLITE3_H
 
 #include "abstractdb3.h"
-#include "common/global.h"
 #include "stdsqlite3driver.h"
 #include "db/sqlite3.h"
 
@@ -30,6 +29,8 @@ class API_EXPORT DbSqlite3 : public AbstractDb3<Sqlite3>
         DbSqlite3(const QString& name, const QString& path);
 
         static bool complete(const QString& sql);
+
+        Db* clone() const;
 };
 
 #endif // DBSQLITE3_H

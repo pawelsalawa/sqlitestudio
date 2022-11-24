@@ -241,7 +241,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>11</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -549,7 +549,7 @@
                      <string>Enlarge column when entering value longer than current width</string>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.EnlargeColumnForValue</string>
+                     <string notr="true">General.EnlargeColumnForValue</string>
                     </property>
                    </widget>
                   </item>
@@ -597,7 +597,7 @@
                      <string>Keep at least the width to show complete column name</string>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.ColumnWidthForName</string>
+                     <string notr="true">General.ColumnWidthForName</string>
                     </property>
                    </widget>
                   </item>
@@ -971,7 +971,7 @@
                  <string>Wrap lines in SQL editor</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.SqlEditorWrapWords</string>
+                 <string notr="true">General.SqlEditorWrapWords</string>
                 </property>
                </widget>
               </item>
@@ -984,7 +984,7 @@
                  <string>Highlight current query</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.SqlEditorCurrQueryHighlight</string>
+                 <string notr="true">General.SqlEditorCurrQueryHighlight</string>
                 </property>
                </widget>
               </item>
@@ -1128,7 +1128,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxStringFg</string>
+                 <string notr="true">Colors.SyntaxStringFg</string>
                 </property>
                </widget>
               </item>
@@ -1144,7 +1144,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxCommentFg</string>
+                 <string notr="true">Colors.SyntaxCommentFg</string>
                 </property>
                </widget>
               </item>
@@ -1160,7 +1160,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxKeywordFg</string>
+                 <string notr="true">Colors.SyntaxKeywordFg</string>
                 </property>
                </widget>
               </item>
@@ -1183,7 +1183,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxParenthesisBg</string>
+                 <string notr="true">Colors.SyntaxParenthesisBg</string>
                 </property>
                </widget>
               </item>
@@ -1209,7 +1209,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxNumberFg</string>
+                 <string notr="true">Colors.SyntaxNumberFg</string>
                 </property>
                </widget>
               </item>
@@ -1225,7 +1225,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxCurrentLineBg</string>
+                 <string notr="true">Colors.SyntaxCurrentLineBg</string>
                 </property>
                </widget>
               </item>
@@ -1248,7 +1248,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxBindParamFg</string>
+                 <string notr="true">Colors.SyntaxBindParamFg</string>
                 </property>
                </widget>
               </item>
@@ -1301,7 +1301,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxValidObject</string>
+                 <string notr="true">Colors.SyntaxValidObject</string>
                 </property>
                </widget>
               </item>
@@ -1330,7 +1330,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxCurrentQueryBg</string>
+                 <string notr="true">Colors.SyntaxCurrentQueryBg</string>
                 </property>
                </widget>
               </item>
@@ -1346,7 +1346,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxBlobFg</string>
+                 <string notr="true">Colors.SyntaxBlobFg</string>
                 </property>
                </widget>
               </item>
@@ -1362,7 +1362,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxForeground</string>
+                 <string notr="true">Colors.SyntaxForeground</string>
                 </property>
                </widget>
               </item>
@@ -1396,7 +1396,7 @@
                  <string notr="true"/>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>Colors.SyntaxParenthesisFg</string>
+                 <string notr="true">Colors.SyntaxParenthesisFg</string>
                 </property>
                </widget>
               </item>
@@ -2172,7 +2172,7 @@ hr { height: 1px; border-width: 0; }
                  <string>Automatically trigger the assistant after a dot is typed after an object name</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>CodeAssistant.AutoTrigger</string>
+                 <string notr="true">CodeAssistant.AutoTrigger</string>
                 </property>
                </widget>
               </item>

@@ -161,7 +161,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>bin_prefix</name>
-            <value>C:/projects/sqlitestudio-master/output/SQLiteStudio</value>
+            <value>C:/projects/sqlitestudio/output/SQLiteStudio</value>
             <ruleList>
                 <compareText logic="equals" text="${env(INSTALLER_BIN_PREFIX)}" value=""/>
             </ruleList>
@@ -186,6 +186,13 @@
                 <platformTest type="linux"/>
             </ruleList>
         </setInstallerVariable>
+        <setInstallerVariableFromScriptOutput>
+            <name>running_user</name>
+            <exec>logname</exec>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
     </readyToInstallActionList>
     <postInstallationActionList>
         <actionGroup>
@@ -222,7 +229,7 @@ Encoding=UTF-8
 Name=SQLiteStudio
 GenericName=SQLiteStudio
 Comment=SQLiteStudio
-Icon=${installdir}/appicon.png
+Icon=${installdir}/assets/appicon.png
 Exec=${installdir}/sqlitestudio
 Terminal=false
 Type=Application
@@ -283,6 +290,17 @@ MimeType=application/vnd.sqlite3
             <progressText>Launch ${project.fullName} now.</progressText>
             <ruleList>
                 <platformTest type="linux"/>
+				<compareText logic="equals" text="${install_for}" value="local"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${installdir}/sqlitestudio</program>
+            <programArguments>&amp;</programArguments>
+			<runAs>${running_user}</runAs>
+            <progressText>Launch ${project.fullName} now.</progressText>
+            <ruleList>
+                <platformTest type="linux"/>
+				<compareText logic="equals" text="${install_for}" value="all"/>
             </ruleList>
         </runProgram>
         <runProgram>

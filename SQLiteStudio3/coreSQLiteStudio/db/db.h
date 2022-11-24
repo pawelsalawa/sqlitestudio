@@ -707,6 +707,15 @@ class API_EXPORT Db : public QObject, public Interruptable
          */
         virtual bool loadExtension(const QString& filePath, const QString& initFunc = QString()) = 0;
 
+        /**
+         * @brief Creates instance of same (derived) class with same construction parameters passed.
+         * @return Created instance.
+         *
+         * This is useful when one needs to operate on this database out of DbManager context,
+         * so ownership, connection/disconnection, deletion, etc. all belongs to the caller of this method.
+         */
+        virtual Db* clone() const = 0;
+
     signals:
         /**
          * @brief Emitted when the connection to the database was established.

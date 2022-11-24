@@ -68,8 +68,8 @@ SqlEditor::SqlEditor(QWidget *parent) :
 
 SqlEditor::~SqlEditor()
 {
-    if (objectsInNamedDbFuture.isRunning())
-        objectsInNamedDbFuture.waitForFinished();
+    if (objectsInNamedDbWatcher->isRunning())
+        objectsInNamedDbWatcher->waitForFinished();
 
     if (queryParser)
     {
@@ -84,7 +84,7 @@ void SqlEditor::init()
     initActions();
     setupMenu();
 
-    objectsInNamedDbWatcher = new QFutureWatcher<void>(this);
+    objectsInNamedDbWatcher = new QFutureWatcher<QHash<QString,QStringList>>(this);
     connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
 
     textLocator = new SearchTextLocator(document(), this);
@@ -589,21 +589,23 @@ void SqlEditor::refreshValidObjects()
     if (!db || !db->isValid())
         return;
 
-    objectsInNamedDbFuture = QtConcurrent::run([this]()
+    Db* dbClone = db->clone();
+    QFuture<QHash<QString,QStringList>> objectsInNamedDbFuture = QtConcurrent::run([dbClone]()
     {
-        // TODO lambda may be executed when there is no longer "this", which will crash the app
-        QMutexLocker lock(&objectsInNamedDbMutex);
-        objectsInNamedDb.clear();
-
-        SchemaResolver resolver(db);
+        dbClone->openQuiet();
+        QHash<QString,QStringList> objectsByDbName;
+        SchemaResolver resolver(dbClone);
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
         QStringList objects;
         for (const QString& dbName : qAsConst(databases))
         {
             objects = resolver.getAllObjects(dbName);
-            objectsInNamedDb[dbName] << objects;
+            objectsByDbName[dbName] << objects;
         }
+        dbClone->closeQuiet();
+        delete dbClone;
+        return objectsByDbName;
     });
     objectsInNamedDbWatcher->setFuture(objectsInNamedDbFuture);
 }
@@ -934,6 +936,7 @@ void SqlEditor::parseContents()
 
 void SqlEditor::scheduleQueryParserForSchemaRefresh()
 {
+    objectsInNamedDb = objectsInNamedDbWatcher->future().result();
     scheduleQueryParser(true, true);
 }
 
@@ -973,7 +976,6 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QMutexLocker lock(&objectsInNamedDbMutex);
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
     for (const SqliteQueryPtr& query : queryParser->getQueries())

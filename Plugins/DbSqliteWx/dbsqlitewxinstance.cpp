@@ -6,6 +6,11 @@ DbSqliteWxInstance::DbSqliteWxInstance(const QString& name, const QString& path,
 {
 }
 
+Db* DbSqliteWxInstance::clone() const
+{
+    return new DbSqliteWxInstance(name, path, connOptions);
+}
+
 void DbSqliteWxInstance::initAfterOpen()
 {
     SqlQueryPtr res;

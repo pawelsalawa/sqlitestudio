@@ -19,17 +19,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="253"/>
+        <location filename="../cli.cpp" line="254"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="260"/>
+        <location filename="../cli.cpp" line="262"/>
         <source>Could not add database %1 to list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="286"/>
+        <location filename="../cli.cpp" line="289"/>
         <source>closed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,7 +417,7 @@ The CLASSIC mode is recommended if you want to see all the data, but you don&apo
 The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
 
 The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
         <translation type="unfinished"></translation>
@@ -755,33 +755,78 @@ Expected one of: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="22"/>
+        <location filename="../main.cpp" line="28"/>
         <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="26"/>
+        <location filename="../main.cpp" line="32"/>
         <source>Enables debug messages on standard error output.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="27"/>
+        <location filename="../main.cpp" line="33"/>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="28"/>
+        <location filename="../main.cpp" line="34"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="33"/>
+        <location filename="../main.cpp" line="36"/>
+        <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="39"/>
+        <source>SQL file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="40"/>
+        <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="43"/>
+        <source>codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="44"/>
+        <source>Lists available codecs to be used with -c option and quits.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="46"/>
+        <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="57"/>
         <source>file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="33"/>
+        <location filename="../main.cpp" line="57"/>
         <source>Database file to open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="78"/>
+        <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="108"/>
+        <source>Database file argument is mandatory when executing SQL file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="114"/>
+        <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
