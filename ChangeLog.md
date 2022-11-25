@@ -7,6 +7,7 @@
 - BUGFIX: Fixed icon path for Linux installer, so that SQLiteStudio shows with the icon in Linux application list.
 - BUGFIX: #4550 Fixed the Test Connection button in Database Dialog.
 - BUGFIX: #4569 Fixed casual application crash on database disconnection.
+- BUGFIX: #4529 Fixed application freeze when creating table with ICU collation.
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.

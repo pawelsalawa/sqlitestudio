@@ -831,7 +831,7 @@ void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::hand
         return;
     }
 
-    SqlQueryPtr results = db->exec("PRAGMA collation_list");
+    SqlQueryPtr results = db->exec("PRAGMA collation_list", Db::Flag::NO_LOCK|Db::Flag::SKIP_DROP_DETECTION);
     if (results->isError())
         qWarning() << "Unable to query existing collations while registering needed collation" << collationName << ":" << db->getErrorText();
 
