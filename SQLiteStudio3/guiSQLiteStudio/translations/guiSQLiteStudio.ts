@@ -105,11 +105,6 @@
 <context>
     <name>CodeSnippetEditor</name>
     <message>
-        <location filename="../windows/codesnippeteditor.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/codesnippeteditor.ui" line="81"/>
         <source>Filter snippets</source>
         <translation type="unfinished"></translation>
