@@ -832,7 +832,7 @@
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="2029"/>
+        <location filename="../dialogs/configdialog.ui" line="2031"/>
         <source>Configuration</source>
         <translation>Konfiguration</translation>
     </message>
@@ -872,9 +872,8 @@
         <translation type="unfinished">Code colors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="156"/>
         <source>codeColorsPage</source>
-        <translation type="unfinished">codeColorsPage</translation>
+        <translation type="obsolete">codeColorsPage</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>
@@ -1422,7 +1421,7 @@
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1549"/>
-        <location filename="../dialogs/configdialog.ui" line="2019"/>
+        <location filename="../dialogs/configdialog.ui" line="2021"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
@@ -1482,52 +1481,52 @@
         <translation>Aktiviert</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1975"/>
+        <location filename="../dialogs/configdialog.ui" line="1977"/>
         <source>Disabled</source>
         <translation>Deaktiviert</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2024"/>
+        <location filename="../dialogs/configdialog.ui" line="2026"/>
         <source>Active formatter plugin</source>
         <translation>Aktives Formatierungsplugin</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2062"/>
+        <location filename="../dialogs/configdialog.ui" line="2064"/>
         <source>SQL editor font</source>
         <translation>Schriftart des SQL Editors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2078"/>
+        <location filename="../dialogs/configdialog.ui" line="2080"/>
         <source>Database list font</source>
         <translation>Schriftart der Datenbankliste</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2094"/>
+        <location filename="../dialogs/configdialog.ui" line="2096"/>
         <source>Database list additional label font</source>
         <translation>Zusätzliche Bezeichnungen in der Datenbankliste</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2110"/>
+        <location filename="../dialogs/configdialog.ui" line="2112"/>
         <source>Data view font</source>
         <translation>Schriftart der Ergebnisansicht</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2126"/>
+        <location filename="../dialogs/configdialog.ui" line="2128"/>
         <source>Status field font</source>
         <translation>Schriftart des Statusfelds</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2163"/>
+        <location filename="../dialogs/configdialog.ui" line="2165"/>
         <source>Code assistant settings</source>
         <translation type="unfinished">Code assistant settings</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2169"/>
+        <location filename="../dialogs/configdialog.ui" line="2171"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2172"/>
+        <location filename="../dialogs/configdialog.ui" line="2174"/>
         <source>Automatically trigger the assistant after a dot is typed after an object name</source>
         <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
     </message>
