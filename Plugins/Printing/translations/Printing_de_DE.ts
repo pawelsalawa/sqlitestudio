@@ -32,7 +32,7 @@
   <context>
     <name>PrintingExport</name>
     <message>
-      <location filename="../printingexport.cpp" line="30"/>
+      <location filename="../printingexport.cpp" line="28"/>
       <source>Printing</source>
       <translation>Drucken</translation>
     </message>
