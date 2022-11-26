@@ -188,6 +188,21 @@ switch -- $op {
 			}
 		}
 	}
+	"validate" {
+		set ok 0
+		set fail 0
+		foreach f [find .. "*.ts"] {
+			catch {exec xmllint --noout --schema ts.xsd $f} out
+			set parts [split $out " "]
+			if {[lindex $parts 1] != "validates"} {
+				puts "$f: $out"
+				incr fail
+			} else {
+				incr ok
+			}
+		}
+		puts "Ok: $ok, Failed: $fail"
+	}
     default {
         usage
     }

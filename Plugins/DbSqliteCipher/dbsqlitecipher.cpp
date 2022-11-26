@@ -66,6 +66,7 @@ bool DbSqliteCipher::init()
 void DbSqliteCipher::deinit()
 {
     SQLITESTUDIO->getExtraLicenseManager()->removeLicense(LICENSE_TITLE);
+    SQLITESTUDIO->getExtraLicenseManager()->removeLicense(OPENSSL_TITLE);
     SQLS_CLEANUP_RESOURCE(dbsqlitecipher);
 }
 
