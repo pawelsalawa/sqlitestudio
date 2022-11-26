@@ -8,6 +8,7 @@
 - BUGFIX: #4550 Fixed the Test Connection button in Database Dialog.
 - BUGFIX: #4569 Fixed casual application crash on database disconnection.
 - BUGFIX: #4529 Fixed application freeze when creating table with ICU collation.
+- BUGFIX: #4586 Fixed unloading & loading SQLCipher plugin during single run of application.
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
