@@ -10,6 +10,7 @@
 - BUGFIX: #4529 Fixed application freeze when creating table with ICU collation.
 - BUGFIX: #4586 Fixed unloading & loading SQLCipher plugin during single run of application.
 - BUGFIX: #4577 Fixed SSL handshake issue under Linux during updates checking.
+- BUGFIX: #4590 Fixed TLS issue under Windows.
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.
