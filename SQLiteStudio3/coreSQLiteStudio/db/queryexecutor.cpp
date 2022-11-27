@@ -181,7 +181,9 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
 
     if (isInterrupted())
     {
+        executionMutex.lock();
         executionInProgress = false;
+        executionMutex.unlock();
         emit executionFailed(SqlErrorCode::INTERRUPTED, tr("Execution interrupted."));
         return;
     }
