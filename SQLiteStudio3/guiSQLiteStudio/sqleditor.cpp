@@ -22,6 +22,7 @@
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "dbtree/dbtreeview.h"
 #include "common/lazytrigger.h"
 #include "common/extaction.h"
 #include <QAction>
@@ -1757,7 +1758,7 @@ const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& po
 
 const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position, bool movedLeft)
 {
-    for (const DbObject& obj : validDbObjects)
+    for (DbObject& obj : validDbObjects)
     {
         if ((!movedLeft && position > obj.from && position-1 <= obj.to) ||
             (movedLeft && position >= obj.from && position <= obj.to))
@@ -1803,4 +1804,11 @@ void SqlEditor::showEvent(QShowEvent* event)
 {
     UNUSED(event);
     setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
+}
+
+void SqlEditor::dropEvent(QDropEvent* e)
+{
+    QPlainTextEdit::dropEvent(e);
+    if (MAINWINDOW->getDbTree()->getModel()->hasDbTreeItem(e->mimeData()))
+        e->ignore();
 }

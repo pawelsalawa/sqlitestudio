@@ -130,8 +130,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void mouseMoveEvent(QMouseEvent* e);
         void mousePressEvent(QMouseEvent* e);
         void resizeEvent(QResizeEvent *e);
-        void changeEvent(QEvent*e);
+        void changeEvent(QEvent* e);
         void showEvent(QShowEvent* event);
+        void dropEvent(QDropEvent* e);
 
     private:
         class LineNumberArea : public QWidget
