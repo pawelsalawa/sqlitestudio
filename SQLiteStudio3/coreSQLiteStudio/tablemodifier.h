@@ -35,8 +35,8 @@ class API_EXPORT TableModifier
         void parseDdl();
         QString getTempTableName();
         void copyDataTo(const QString& targetTable, const QStringList& srcCols, const QStringList& dstCols);
-        void renameTo(const QString& newName);
-        QString renameToTemp();
+        void renameTo(const QString& newName, bool doCopyData = true);
+        QString renameToTemp(bool doCopyData = true);
         void copyDataTo(const QString& table);
         void copyDataTo(SqliteCreateTablePtr newCreateTable);
 
@@ -84,7 +84,7 @@ class API_EXPORT TableModifier
         bool handleUpdateColumns(SqliteUpdate* update);
         QStringList handleUpdateColumns(const QStringList& colNames, bool& modified);
         QString handleUpdateColumn(const QString& colName, bool& modified);
-
+        QList<SqliteCreateTable::Column*> getColumnsToCopyData(SqliteCreateTablePtr newCreateTable);
 
         template <class T>
         bool handleIndexedColumns(QList<T*>& columnsToUpdate)

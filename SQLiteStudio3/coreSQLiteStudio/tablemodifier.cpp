@@ -41,12 +41,14 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     handleFkConstrains(newCreateTable.data(), createTable->table, newName);
 
     QString tempTableName;
+    bool doCopyData = !getColumnsToCopyData(newCreateTable).isEmpty();
     if (table.compare(newName, Qt::CaseInsensitive) == 0)
-        tempTableName = renameToTemp();
+        tempTableName = renameToTemp(doCopyData);
 
     newCreateTable->rebuildTokens();
     sqls << newCreateTable->detokenize();
-    copyDataTo(newCreateTable);
+    if (doCopyData)
+        copyDataTo(newCreateTable);
 
     handleFks();
 
@@ -61,24 +63,24 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     sqls << "PRAGMA foreign_keys = 1;";
 }
 
-void TableModifier::renameTo(const QString& newName)
+void TableModifier::renameTo(const QString& newName, bool doCopyData)
 {
     if (!createTable)
         return;
 
     // Using ALTER TABLE RENAME TO is not a good solution here, because it automatically renames all occurrences in REFERENCES,
     // which we don't want, because we rename a lot to temporary tables and drop them.
-    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName), wrapObjIfNeeded(table))
+    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2%3;").arg(wrapObjIfNeeded(newName), wrapObjIfNeeded(table), doCopyData ? "" : " LIMIT 0")
          << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
 
     table = newName;
     createTable->table = newName;
 }
 
-QString TableModifier::renameToTemp()
+QString TableModifier::renameToTemp(bool doCopyData)
 {
     QString name = getTempTableName();
-    renameTo(name);
+    renameTo(name, doCopyData);
     return name;
 }
 
@@ -189,13 +191,13 @@ bool TableModifier::handleFks(SqliteForeignKey* fk, const QString& oldName, cons
 bool TableModifier::handleFkConstrains(SqliteCreateTable* stmt, const QString& oldName, const QString& theNewName)
 {
     bool modified = false;
-    for (SqliteCreateTable::Constraint* fk : stmt->getForeignKeysByTable(oldName))
+    for (SqliteCreateTable::Constraint*& fk : stmt->getForeignKeysByTable(oldName))
     {
         if (handleFks(fk->foreignKey, oldName, theNewName))
             modified = true;
     }
 
-    for (SqliteCreateTable::Column::Constraint* fk : stmt->getColumnForeignKeysByTable(oldName))
+    for (SqliteCreateTable::Column::Constraint*& fk : stmt->getColumnForeignKeysByTable(oldName))
     {
         if (handleFks(fk->foreignKey, oldName, theNewName))
             modified = true;
@@ -302,7 +304,6 @@ bool TableModifier::handleColumnTokens(TokenList& columnsToUpdate)
 bool TableModifier::handleUpdateColumns(SqliteUpdate* update)
 {
     bool modified = false;
-    QString lowerName;
     QVariant colName;
     QString newName;
     QStringList newNames;
@@ -401,20 +402,29 @@ QStringList TableModifier::getModifiedTables() const
     return modifiedTables;
 }
 
-void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
+QList<SqliteCreateTable::Column*> TableModifier::getColumnsToCopyData(SqliteCreateTablePtr newCreateTable)
 {
-    QStringList existingColumns = createTable->getColumnNames();
-
-    QStringList srcCols;
-    QStringList dstCols;
-    for (SqliteCreateTable::Column* column : newCreateTable->columns)
+    QList<SqliteCreateTable::Column*> resultColumns;
+    QStringList existingColumnsBefore = createTable->getColumnNames();
+    for (SqliteCreateTable::Column*& column : newCreateTable->columns)
     {
         if (column->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
             continue;
 
-        if (!existingColumns.contains(column->originalName))
+        if (!existingColumnsBefore.contains(column->originalName))
             continue; // not copying columns that didn't exist before
 
+        resultColumns << column;
+    }
+    return resultColumns;
+}
+
+void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
+{
+    QStringList srcCols;
+    QStringList dstCols;
+    for (SqliteCreateTable::Column*& column : getColumnsToCopyData(newCreateTable))
+    {
         srcCols << wrapObjIfNeeded(column->originalName);
         dstCols << wrapObjIfNeeded(column->name);
     }
@@ -427,7 +437,7 @@ void TableModifier::handleIndexes()
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    for (SqliteCreateIndexPtr index : parsedIndexesForTable)
+    for (SqliteCreateIndexPtr& index : parsedIndexesForTable)
         handleIndex(index);
 }
 
@@ -454,7 +464,7 @@ void TableModifier::handleTriggers()
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateTriggerPtr> parsedTriggersForTable = resolver.getParsedTriggersForTable(originalTable, true);
-    for (SqliteCreateTriggerPtr trig : parsedTriggersForTable)
+    for (SqliteCreateTriggerPtr& trig : parsedTriggersForTable)
         handleTrigger(trig);
 }
 
@@ -527,7 +537,7 @@ void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
 {
     SqliteQuery* newQuery = nullptr;
     QList<SqliteQuery*> newQueries;
-    for (SqliteQuery* query : trigger->queries)
+    for (SqliteQuery*& query : trigger->queries)
     {
         // The handleTriggerQuery() may delete the input query object. Don't refer to it later.
         newQuery = handleTriggerQuery(query, trigger->trigger, trigger->table);
@@ -544,7 +554,7 @@ void TableModifier::handleViews()
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateViewPtr> parsedViewsForTable = resolver.getParsedViewsForTable(originalTable);
-    for (SqliteCreateViewPtr view : parsedViewsForTable)
+    for (SqliteCreateViewPtr& view : parsedViewsForTable)
         handleView(view);
 }
 
@@ -608,12 +618,12 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
     QList<SqliteSelect::Core::SingleSource*> selSources = select->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
     TokenList tableTokens;
     StrHash<SelectResolver::Table> resolvedTables;
-    for (SqliteSelect::Core* core : select->coreSelects)
+    for (SqliteSelect::Core*& core : select->coreSelects)
     {
         resolvedTables = tablesAsNameHash(selectResolver.resolveTables(core));
 
         tableTokens = core->getContextTableTokens(false);
-        for (TokenPtr token : tableTokens)
+        for (TokenPtr& token : tableTokens)
         {
             if (token->value.compare(originalTable, Qt::CaseInsensitive) != 0)
                 continue;
@@ -868,7 +878,7 @@ bool TableModifier::handleExpr(SqliteExpr* expr)
     if (!exprList.isEmpty())
     {
         bool res = true;
-        for (SqliteExpr* e : exprList)
+        for (SqliteExpr*& e : exprList)
         {
             res &= handleExpr(e);
             if (!res)
@@ -906,7 +916,7 @@ void TableModifier::simpleHandleIndexes()
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    for (SqliteCreateIndexPtr index : parsedIndexesForTable)
+    for (SqliteCreateIndexPtr& index : parsedIndexesForTable)
         sqls << index->detokenize();
 }
 
@@ -920,7 +930,7 @@ void TableModifier::simpleHandleTriggers(const QString& view)
     else
         parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
 
-    for (SqliteCreateTriggerPtr trig : parsedTriggers)
+    for (SqliteCreateTriggerPtr& trig : parsedTriggers)
         sqls << trig->detokenize();
 }
 
