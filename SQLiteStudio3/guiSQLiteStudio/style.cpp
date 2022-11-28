@@ -1,8 +1,6 @@
 #include "style.h"
 #include "themetuner.h"
-#include "common/global.h"
 #include "mainwindow.h"
-#include "uiconfig.h"
 #include <QApplication>
 #include <QToolTip>
 #include <QDebug>
@@ -58,4 +56,5 @@ Style::Style(QStyle *style)
     : QProxyStyle(style)
 {
     initialPalette = style->standardPalette();
+    extPalette.styleChanged(this, name());
 }
