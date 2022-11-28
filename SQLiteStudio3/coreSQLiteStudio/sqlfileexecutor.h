@@ -25,6 +25,7 @@ class API_EXPORT SqlFileExecutor : public QObject
 
         QAtomicInt executionInProgress = 0;
         Db* db = nullptr;
+        bool fkWasEnabled = true;
         bool ignoreErrors = false;
         QString codec;
         QString filePath;

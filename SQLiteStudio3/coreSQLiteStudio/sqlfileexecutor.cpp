@@ -14,7 +14,7 @@ SqlFileExecutor::SqlFileExecutor(QObject *parent)
 
 void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec, bool async)
 {
-    if (!db || !db->isOpen())
+    if (!db && !db->isOpen())
     {
         emit execEnded();
         return;
@@ -24,6 +24,18 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
     {
         emit execEnded();
         return;
+    }
+
+    fkWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+    if (fkWasEnabled)
+    {
+        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 0");
+        if (res->isError())
+        {
+            qDebug() << "Failed to temporarily disable foreign keys enforcement:" << db->getErrorText();
+            emit execEnded();
+            return;
+        }
     }
 
     // Exec file
@@ -100,6 +112,14 @@ void SqlFileExecutor::execInThread()
     timer.start();
     QList<QPair<QString, QString>> errors = executeFromStream(stream, executed, attemptedExecutions, ok, fileSize);
     int millis = timer.elapsed();
+
+    if (fkWasEnabled)
+    {
+        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 1");
+        if (res->isError())
+            qDebug() << "Failed to restore foreign keys enforcement after execution SQL from file:" << res->getErrorText();
+    }
+
     if (executionInProgress.loadAcquire())
     {
         handleExecutionResults(db, executed, attemptedExecutions, ok, ignoreErrors, millis);
@@ -164,7 +184,7 @@ QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& s
 
         if (shouldSkipQuery(sql))
         {
-            sql.clear();;
+            sql.clear();
             continue;
         }
 
@@ -174,7 +194,6 @@ QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& s
         {
             ok = false;
             errors << QPair<QString, QString>(sql, results->getErrorText());
-
             if (!ignoreErrors)
                 break;
         }
@@ -193,7 +212,7 @@ QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& s
 
 bool SqlFileExecutor::shouldSkipQuery(const QString& sql)
 {
-    if (sql.trimmed().isEmpty())
+    if (sql.trimmed().isEmpty() || !db->isComplete(sql))
         return true;
 
     QString upper = sql.toUpper().trimmed().split("\n").last().trimmed();
