@@ -821,32 +821,32 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="36"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+      <translation>Executa o arquivo SQL fornecido (incluindo todos os recursos avançados do executor de consulta SQLiteStudio &apos;s) no arquivo de banco de dados especificado e fecha a rotina. O parâmetro do banco de dados torna-se obrigatório se esta opção for utilizada.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>Arquivo SQL</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+      <translation>Codificação de caracteres utilizada ao ler o arquivo SQL (-e option). Use -cl para listar os codecs disponíveis. O padrão é %1.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>Codec</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+      <translation>Lista de codecs disponíveis para serem usados com opção -c e encerramento.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+      <translation>Quando usado em conjunto com a opção -e, a execução não parará em um erro, mas sim continuará até o fim, ignorando erros.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -861,17 +861,17 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+      <translation>Codec inválido: %1. Use a opção -cl para listar codecs disponíveis.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+      <translation>O argumento do arquivo de banco de dados é obrigatório para executar arquivo SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
+      <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Tente usar a opção -d para descobrir mais detalhes.</translation>
     </message>
   </context>
 </TS>
