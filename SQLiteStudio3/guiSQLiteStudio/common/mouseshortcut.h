@@ -20,7 +20,7 @@ class MouseShortcut : public QObject
                          Qt::KeyboardModifiers modifiers,
                          QObject* receiver,
                          const char* slot,
-                         QObject *parent = 0);
+                         QObject *parent);
 
         static MouseShortcut* forWheel(Qt::KeyboardModifiers modifiers,
                                        QObject *parent = 0);

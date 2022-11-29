@@ -15,6 +15,7 @@
 - BUGFIX: #4098 Fixed disappearing table (not really, just in UI) when dragging it and dropping onto SQL Editor.
 - BUGFIX: #4594 Initial (default) colors of current line/query in SQL Editor is fixed to not be just black.
 - BUGFIX: #4140 #4343 Disabling Foreign Keys during execution SQL directly from file.
+- BUGFIX: #4593 Fixed row/column (de)selection on header ctrl+click.
 
 ### 3.4.0
 - ADDED: #4058 Added support for RETURNING syntax in INSERT/DELETE/UPDATE and MATERIALIZED syntax in CTE - introduced in SQLite 3.35.

@@ -75,8 +75,6 @@ void DataView::initSlots()
     connect(model, SIGNAL(executionStarted()), gridView, SLOT(executionStarted()));
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
     connect(model, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
-    connect(gridView->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(rowsHeaderClicked(int)));
-    connect(gridView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(columnsHeaderClicked(int)));
     connect(gridView->horizontalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(columnsHeaderDoubleClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
@@ -1035,16 +1033,6 @@ void DataView::createFilteringActions()
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
 }
 
-
-void DataView::rowsHeaderClicked(int rowIdx)
-{
-    gridView->selectRow(rowIdx);
-}
-
-void DataView::columnsHeaderClicked(int columnIdx)
-{
-    gridView->selectColumn(columnIdx);
-}
 
 void DataView::columnsHeaderDoubleClicked(int columnIdx)
 {

@@ -11,7 +11,7 @@ MouseShortcut::MouseShortcut(ClickType type, Qt::MouseButtons buttons, Qt::Keybo
 MouseShortcut* MouseShortcut::forButton(ClickType type, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, QObject* receiver, const char* slot, QObject* parent)
 {
     MouseShortcut* instance = new MouseShortcut(type, buttons, modifiers, parent);
-    connect(instance, SIGNAL(activated(const QPoint&)), receiver, slot);
+    connect(instance, SIGNAL(activated(QPoint)), receiver, slot);
     parent->installEventFilter(instance);
     return instance;
 }
