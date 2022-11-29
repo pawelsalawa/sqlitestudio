@@ -4,7 +4,7 @@
 # https://github.com/utelle/wxsqlite3/releases
 # Link from download page will redicrect to the codeload.....
 
-set THE_URL "https://github.com/utelle/SQLite3MultipleCiphers/releases/download/v1.5.3/sqlite3mc-1.5.3-sqlite-3.39.4-amalgamation.zip"
+set THE_URL "https://github.com/utelle/SQLite3MultipleCiphers/releases/download/v1.5.4/sqlite3mc-1.5.4-sqlite-3.40.0-amalgamation.zip"
 
 set SRC_DIR "src"
 set FILES [list \
