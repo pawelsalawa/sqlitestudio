@@ -1,5 +1,4 @@
 #include "scriptingqt.h"
-#include "common/unused.h"
 #include "common/global.h"
 #include "scriptingqtdbproxy.h"
 #include "services/notifymanager.h"
@@ -10,12 +9,12 @@
 
 ScriptingQt::ScriptingQt()
 {
-    mainEngineMutex = new QMutex();
+    managedMainContextsMutex = new QMutex();
 }
 
 ScriptingQt::~ScriptingQt()
 {
-    safe_delete(mainEngineMutex);
+    safe_delete(managedMainContextsMutex);
 }
 
 QJSValueList ScriptingQt::toValueList(QJSEngine* engine, const QList<QVariant>& values)
@@ -58,14 +57,13 @@ void ScriptingQt::resetContext(ScriptingPlugin::Context* context)
 
 QVariant ScriptingQt::evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
-    QMutexLocker locker(mainEngineMutex);
-
     // Call the function
-    QVariant result = evaluate(mainContext, code, funcInfo, args, db, locking);
+    ContextQt* context = getMainContext();
+    QVariant result = evaluate(context, code, funcInfo, args, db, locking);
 
     // Handle errors
-    if (!mainContext->error.isEmpty())
-        *errorMessage = mainContext->error;
+    if (!context->error.isEmpty())
+        *errorMessage = context->error;
 
     return result;
 }
@@ -110,6 +108,20 @@ QVariant ScriptingQt::evaluate(ContextQt* ctx, const QString& code, const Functi
     return convertVariant(result.toVariant());
 }
 
+ScriptingQt::ContextQt* ScriptingQt::getMainContext()
+{
+    if (mainContext.hasLocalData())
+        return mainContext.localData();
+
+    ContextQt* context = new ContextQt();
+    mainContext.setLocalData(context);
+
+    QMutexLocker locker(managedMainContextsMutex);
+    managedMainContexts << context;
+
+    return context;
+}
+
 QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
 {
     switch (value.type())
@@ -141,7 +153,7 @@ QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
         case QVariant::List:
         {
             QStringList list;
-            for (const QVariant& var : value.toList())
+            for (QVariant& var : value.toList())
                 list << convertVariant(var, true).toString();
 
             return "[" + list.join(", ") + "]";
@@ -207,20 +219,24 @@ QString ScriptingQt::getIconPath() const
 
 bool ScriptingQt::init()
 {
-    QMutexLocker locker(mainEngineMutex);
-    mainContext = new ContextQt;
     return true;
 }
 
 void ScriptingQt::deinit()
 {
-    for (Context* ctx : contexts)
+    for (Context*& ctx : contexts)
         delete ctx;
 
     contexts.clear();
 
-    QMutexLocker locker(mainEngineMutex);
-    safe_delete(mainContext);
+    QMutexLocker locker(managedMainContextsMutex);
+    for (ContextQt*& ctx : managedMainContexts)
+    {
+        ctx->engine->isInterrupted();
+        delete ctx;
+    }
+
+    managedMainContexts.clear();
 }
 
 ScriptingQt::ContextQt* ScriptingQt::getContext(ScriptingPlugin::Context* context) const
@@ -237,10 +253,11 @@ QJSValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code, cons
     static const QString fnDef = QStringLiteral("(function (%1) {%2\n})");
 
     QString fullCode = fnDef.arg(funcInfo.getArguments().join(", "), code);
-    if (ctx->scriptCache.contains(fullCode))
-        return *(ctx->scriptCache[fullCode]);
+    QJSValue* func = ctx->scriptCache[fullCode];
+    if (func)
+        return *func;
 
-    QJSValue* func = new QJSValue(ctx->engine->evaluate(fullCode));
+    func = new QJSValue(ctx->engine->evaluate(fullCode));
     ctx->scriptCache.insert(fullCode, func);
     return *func;
 }

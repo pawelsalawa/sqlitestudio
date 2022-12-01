@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <QCache>
 #include <QJSValue>
+#include <QThreadStorage>
 
 class QMutex;
 class ScriptingQtDbProxy;
@@ -62,12 +63,14 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
         ContextQt* getContext(ScriptingPlugin::Context* context) const;
         QJSValue getFunctionValue(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo);
         QVariant evaluate(ContextQt* ctx, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking);
+        ContextQt* getMainContext();
 
         static const constexpr int cacheSize = 5;
 
-        ContextQt* mainContext = nullptr;
+        QThreadStorage<ContextQt*> mainContext;
         QList<Context*> contexts;
-        QMutex* mainEngineMutex = nullptr;
+        QList<ContextQt*> managedMainContexts;
+        QMutex* managedMainContextsMutex = nullptr;
 };
 
 class ScriptingQtConsole : public QObject
