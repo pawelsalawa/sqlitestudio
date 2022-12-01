@@ -433,20 +433,20 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
-- CLASSIC - columns are separated by a comma, not aligned,
-- FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
-- COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
-- ROW     - each column from the row is displayed in new line, so the full data is displayed.
+      <translation>Quando chamado sem argumento, informa o formato de saída atual para os resultados de uma consulta. Quando o &lt;mode&gt; é passado, o modo é alterado para o dado. Os modos suportados são:
+- CLASSIC - as colunas são separadas por vírgula, não alinhadas,
+- FIXED - as colunas têm largura igual e fixa, sempre cabem na largura da janela do terminal, mas os dados nas colunas podem ser cortados,
+- COLUMNS - como FIXED, mas mais inteligente (não use com grandes conjuntos de resultados, veja os detalhes abaixo),
+- ROW - cada coluna da linha é exibida em nova linha, portanto, os dados completos são exibidos.
 
-The CLASSIC mode is recommended if you want to see all the data, but you don&apos;t want to waste lines for each column. Each row will display full data for every column, but this also means, that columns will not be aligned to each other in next rows. The CLASSIC mode also doesn&apos;t respect the width of your terminal (console) window, so if values in columns are wider than the window, the row will be continued in next lines.
+O modo CLASSIC é recomendado se você quiser ver todos os dados, mas não quer desperdiçar linhas para cada coluna. Cada linha exibirá dados completos para cada coluna, mas isso também significa que as colunas não serão alinhadas entre si nas próximas linhas. O modo CLASSIC também não respeita a largura da janela do seu terminal (console), portanto, se os valores nas colunas forem mais largos que a janela, a linha será continuada nas próximas linhas.
 
-The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
+O modo FIXED é recomendado se você deseja uma saída legível e não se preocupa com valores de dados longos. As colunas serão alinhadas, tornando a saída uma boa tabela. A largura das colunas é calculada a partir da largura da janela do console e um número de colunas.
 
-The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+O modo COLUMNS é semelhante ao modo FIXED, exceto que tenta ser inteligente e tornar as colunas com valores mais curtos mais finas, enquanto as colunas com valores mais longos obtêm mais espaço. As primeiras a encolher são as colunas com cabeçalhos mais longos (portanto, os nomes dos cabeçalhos devem ser cortados primeiro), depois as colunas com os valores mais longos são reduzidas, até o momento em que todas as colunas cabem na janela do terminal.
+ATENÇÃO! O modo COLUMNS lê todos os resultados da consulta de uma vez para avaliar as larguras das colunas, portanto, é perigoso usar esse modo ao trabalhar com grandes conjuntos de resultados. Lembre-se de que este modo carregará todo o conjunto de resultados na memória.
 
-The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
+O modo ROW é recomendado se você precisa ver valores inteiros e não espera que muitas linhas sejam exibidas, porque este modo exibe uma linha de saída por cada coluna, então você obterá 10 linhas para uma única linha com 10 colunas, então, se você tiver 10 dessas linhas, obterá 100 linhas de saída (+1 linha extra por cada linha, para separar as linhas umas das outras).</translation>
     </message>
   </context>
   <context>
@@ -821,32 +821,32 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="36"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+      <translation>Executa o arquivo SQL fornecido (incluindo todos os recursos avançados do executor de consulta SQLiteStudio &apos;s) no arquivo de banco de dados especificado e fecha a rotina. O parâmetro do banco de dados torna-se obrigatório se esta opção for utilizada.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>Arquivo SQL</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+      <translation>Codificação de caracteres utilizada ao ler o arquivo SQL (-e option). Use -cl para listar os codecs disponíveis. O padrão é %1.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>Codec</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+      <translation>Lista de codecs disponíveis para serem usados com opção -c e encerramento.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+      <translation>Quando usado em conjunto com a opção -e, a execução não parará em um erro, mas sim continuará até o fim, ignorando erros.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -861,17 +861,17 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+      <translation>Codec inválido: %1. Use a opção -cl para listar codecs disponíveis.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+      <translation>O argumento do arquivo de banco de dados é obrigatório para executar arquivo SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
+      <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Tente usar a opção -d para descobrir mais detalhes.</translation>
     </message>
   </context>
 </TS>
