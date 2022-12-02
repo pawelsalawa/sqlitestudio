@@ -331,3 +331,15 @@ QString FkComboBox::getSql() const
 
     return getSqlForFkEditor(comboModel->getDb(), columnModel, sourceValue);
 }
+
+qlonglong FkComboBox::getRowCountForFkEditor(Db* db, const QString& query, bool* isError)
+{
+    static_qstring(tpl, "SELECT count(*) FROM (%1)");
+
+    QString sql = tpl.arg(query);
+    SqlQueryPtr result = db->exec(sql);
+    if (isError)
+        *isError = result->isError();
+
+    return result->getSingleCell().toLongLong();
+}

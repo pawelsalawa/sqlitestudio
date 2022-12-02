@@ -16,6 +16,7 @@ class FkComboBox : public QComboBox
         FkComboBox(QWidget *parent, int dropDownViewMinWidth = -1);
 
         static QString getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, const QVariant& currentValue);
+        static qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool* isError);
 
         static const qlonglong MAX_ROWS_FOR_FK = 10000L;
         static const int FK_CELL_LENGTH_LIMIT = 30;

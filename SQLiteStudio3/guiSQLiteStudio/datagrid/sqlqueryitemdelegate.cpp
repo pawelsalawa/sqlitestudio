@@ -304,24 +304,12 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
                 );
 }
 
-qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query, bool* isError) const
-{
-    static_qstring(tpl, "SELECT count(*) FROM (%1)");
-
-    QString sql = tpl.arg(query);
-    SqlQueryPtr result = db->exec(sql);
-    if (isError)
-        *isError = result->isError();
-
-    return result->getSingleCell().toLongLong();
-}
-
 QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, const SqlQueryModel* model) const
 {
     Db* db = model->getDb();
     bool countingError = false;
     QString sql = FkComboBox::getSqlForFkEditor(db, item->getColumn(), item->getValue());
-    qlonglong rowCount = getRowCountForFkEditor(db, sql, &countingError);
+    qlonglong rowCount = FkComboBox::getRowCountForFkEditor(db, sql, &countingError);
     if (rowCount > FkComboBox::MAX_ROWS_FOR_FK)
     {
         notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")

@@ -1,5 +1,6 @@
 #include "formview.h"
 #include "common/unused.h"
+#include "datagrid/fkcombobox.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
 #include "multieditor/multieditorfk.h"
@@ -64,15 +65,15 @@ void FormView::setModel(SqlQueryModel* value)
 
 void FormView::load()
 {
-    reloadInternal();
-    dataMapper->toFirst();
+    shouldReload = true;
+    indexForReload = 0;
 }
 
 void FormView::reload()
 {
-    int idx = dataMapper->getCurrentIndex();
+    shouldReload = true;
+    indexForReload = dataMapper->getCurrentIndex();
     reloadInternal();
-    dataMapper->setCurrentIndex(idx);
 }
 
 void FormView::focusFirstEditor()
@@ -85,6 +86,11 @@ void FormView::focusFirstEditor()
 
 void FormView::reloadInternal()
 {
+    if (!shouldReload)
+        return;
+
+    shouldReload = false;
+
     // Cleanup
     dataMapper->clearMapping();
     for (QWidget*& widget : widgets)
@@ -131,7 +137,21 @@ MultiEditor* FormView::addColumn(int colIdx, SqlQueryModelColumn* column)
 
     // MultiEditor editors
     if (!column->getFkConstraints().isEmpty())
-        multiEditor->enableFk(model->getDb(), column);
+    {
+        Db* db = model->getDb();
+        QString sql = FkComboBox::getSqlForFkEditor(db, column, QVariant());
+        bool countingError = false;
+        qlonglong rowCount = FkComboBox::getRowCountForFkEditor(db, sql, &countingError);
+        if (!countingError && rowCount <= FkComboBox::MAX_ROWS_FOR_FK)
+            multiEditor->enableFk(db, column);
+        else
+        {
+            qDebug() << "FkCombo excluded from FormView for column" << column->column << "due to"
+                     << (countingError ?
+                             "error with row counting query" :
+                             "too many rows in the FK table: " + QString::number(rowCount));
+        }
+    }
 
     multiEditor->setDataType(column->dataType);
 
@@ -274,4 +294,11 @@ QToolBar* FormView::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
     return nullptr;
+}
+
+void FormView::showEvent(QShowEvent* event)
+{
+    UNUSED(event);
+    reloadInternal();
+    dataMapper->setCurrentIndex(indexForReload);
 }

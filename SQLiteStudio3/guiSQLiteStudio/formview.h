@@ -63,6 +63,7 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         QToolBar* getToolBar(int toolbar) const;
+        void showEvent(QShowEvent* event);
 
     private:
         void reloadInternal();
@@ -83,6 +84,8 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         QList<bool> readOnly;
         bool valueModified = false;
         bool currentIndexUpdating = false;
+        bool shouldReload = false;
+        int indexForReload = 0;
 
     private slots:
         void dataLoaded(bool successful);
