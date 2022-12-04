@@ -313,9 +313,9 @@ QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(cons
     {
         if (item->getColumn())
         {
-            table.setDatabase(item->getColumn()->database.toLower());
-            table.setTable(item->getColumn()->table.toLower());
-            table.setTableAlias(item->getColumn()->tableAlias.toLower());
+            table.setDatabase(item->getColumn()->database);
+            table.setTable(item->getColumn()->table);
+            table.setTableAlias(item->getColumn()->tableAlias);
             itemsByTable[table] << item;
         }
         else

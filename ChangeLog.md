@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.2
+- BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
+
 ### 3.4.1
 - CHANGE: #4585 SQLite updated to 3.40.0 (except for SQLCipher, which has latest version 3.39.2).
 - BUGFIX: #4600 #4587 Fixed very slow loading of data in tables with foreign keys.
