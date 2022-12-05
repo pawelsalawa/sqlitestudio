@@ -54,12 +54,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>예</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>아니오</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="344"/>
