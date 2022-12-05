@@ -1,3 +1,8 @@
+env:
+    PYTHON_VERSION: '3.9'
+    QT_VERSION: '5.15.2'
+    TCL_VERSION: '8.6'
+
 name: Update messages
 
 on:
