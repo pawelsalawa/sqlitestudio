@@ -416,7 +416,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Foreign Key</source>
-      <translation> 外部キー</translation>
+      <translation>&#xa0;外部キー</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
