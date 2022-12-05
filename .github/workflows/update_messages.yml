@@ -1,4 +1,4 @@
-name: Run lupdate
+name: Update messages
 
 on:
     workflow_dispatch:
