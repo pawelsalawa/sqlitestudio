@@ -74,6 +74,24 @@ proc scanLangs {} {
     return $langs
 }
 
+proc finalTsFix {f} {
+	set fd [open $f r]
+	set data [read $fd]
+	close $fd
+	
+	set parts [lsort -unique [regexp -all -inline -- {>[^<]*\"[^<]*<} $data]]
+	foreach part $parts {
+		set fixedPart [string map [list \" "&quot;"] $part]
+		set data [string trim [string map [list $part $fixedPart] $data]]
+	}
+	
+	set data [string trim [string map [list ' "&apos;"] $data]]
+	
+	set fd [open $f w+]
+	puts $fd $data
+	close $fd
+}
+
 switch -- $op {
     "update" {
 		if {$argc != 1} {
@@ -93,25 +111,45 @@ switch -- $op {
 		
 		foreach f $files {
 			catch {
-				puts "updating $f:"
+				puts "updating $f"
 				exec lupdate $f
 			} res
-			foreach line [split $res \n] {
-				if {[string first Q_OBJECT $line] > -1} {
-					puts $line
-				}
-				if {[regexp -- {^.*\w+\.ts.*$} $line]} {
-					puts -nonewline [lindex [regexp -inline -- {^.*"([\w\/\\\.]+\.ts)".*$} $line] 1]
-					puts -nonewline ": "
-				}
-				if {[regexp -- {^.*\d+[^\d]+\(\d+[^\d]+\d+.*\).*$} $line]} {
-					puts -nonewline [lindex [regexp -inline -- {\S+.*} $line] 0]
-					set new [lindex [regexp -inline -- {^.*\d+[^\d]+(\d+)[^\d]+\d+.*$} $line] 1]
-					if {$new > 0} {
-						puts -nonewline " <- !!!!!!!!!!!"
-					}
-					puts ""
-				}
+			# foreach line [split $res \n] {
+				# if {[string first Q_OBJECT $line] > -1} {
+					# puts $line
+				# }
+				# if {[regexp -- {^.*\w+\.ts.*$} $line]} {
+					# puts -nonewline [lindex [regexp -inline -- {^.*"([\w\/\\\.]+\.ts)".*$} $line] 1]
+					# puts -nonewline ": "
+				# }
+				# if {[regexp -- {^.*\d+[^\d]+\(\d+[^\d]+\d+.*\).*$} $line]} {
+					# puts -nonewline [lindex [regexp -inline -- {\S+.*} $line] 0]
+					# set new [lindex [regexp -inline -- {^.*\d+[^\d]+(\d+)[^\d]+\d+.*$} $line] 1]
+					# if {$new > 0} {
+						# puts -nonewline " <- !!!!!!!!!!!"
+					# }
+					# puts ""
+				# }
+			# }
+		}
+
+		set tsFiles [list]
+		foreach d [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
+			lappend tsFiles {*}[glob -directory $d/translations -nocomplain *.ts]
+		}
+
+		foreach d [glob -directory ../Plugins -tails -nocomplain *] {
+			if {![file isdirectory ../Plugins/$d/translations]} continue
+			lappend tsFiles {*}[glob -directory ../Plugins/$d/translations -nocomplain *.ts]
+		}
+
+		foreach f $tsFiles {
+			if {[catch {
+				puts "formatting $f"
+				exec xmllint --format -o $f $f
+				finalTsFix $f
+			} res]} {
+				puts $res
 			}
 		}
     }
