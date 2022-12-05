@@ -29,7 +29,7 @@ jobs:
               uses: jurplel/install-qt-action@v3
               with:
                 cache: true
-                version: ${{ matrix.QT_VERSION }}
+                version: ${{ env.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 aqtversion: '==3.0.*'
