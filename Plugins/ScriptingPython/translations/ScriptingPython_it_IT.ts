@@ -16,7 +16,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="534"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation>Impossibile calcolare la rappresentazione della stringa dell'oggetto Python passato come argomento alla funzione %1.</translation>
+      <translation>Impossibile calcolare la rappresentazione della stringa dell&apos;oggetto Python passato come argomento alla funzione %1.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="550"/>

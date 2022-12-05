@@ -923,41 +923,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Заповнення таблиць</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="119"/>
+      <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Таблиця %1 посилається на таблицю %2, але опис зовнішнього ключа не буде оновлено для опису нової таблиці через проблеми з аналізом DDL таблиці %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="446"/>
+      <location filename="../tablemodifier.cpp" line="456"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Всі стовпчики, проіндексовані індексом %1, видалені. Індекс не буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="490"/>
+      <location filename="../tablemodifier.cpp" line="500"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Виникла проблема при обробці тригера %1. Згодом він не буде повністю оновлений і вимагає вашої уваги.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="505"/>
+      <location filename="../tablemodifier.cpp" line="515"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Всі стовпчики, зачеплені в тригері %1, видалені. Тригер буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="537"/>
+      <location filename="../tablemodifier.cpp" line="547"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Не вдалося оновити тригер %1 відповідно до зміни таблиці %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="556"/>
+      <location filename="../tablemodifier.cpp" line="566"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Неможливо оновити розріз даних (view) %1 у відповідності зі зміною таблиці %2.
 Вид залишиться таким, як є.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="718"/>
-      <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="761"/>
+      <location filename="../tablemodifier.cpp" line="728"/>
+      <location filename="../tablemodifier.cpp" line="752"/>
+      <location filename="../tablemodifier.cpp" line="771"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Виникла проблема при оновленні конструкції %1 всередині тригера %2. Одна з вкладених конструкцій %1, яка можливо посилається на таблицю %3, не може бути коректно модифікована. Можливо необхідне ручна правка тригера.</translation>
     </message>
@@ -980,28 +980,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="185"/>
+      <location filename="../db/queryexecutor.cpp" line="187"/>
       <source>Execution interrupted.</source>
       <translation>Виконання перервано.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="226"/>
+      <location filename="../db/queryexecutor.cpp" line="228"/>
       <source>Database is not open.</source>
       <translation>Базу даних не відкрито.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="234"/>
+      <location filename="../db/queryexecutor.cpp" line="236"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Одночасно може бути виконаний тільки один запит.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="338"/>
-      <location filename="../db/queryexecutor.cpp" line="585"/>
+      <location filename="../db/queryexecutor.cpp" line="340"/>
+      <location filename="../db/queryexecutor.cpp" line="587"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Сталася помилка під час виконання count(*) запиту, тому розбивка даних по сторінках буде вимкнено. Деталі помилки з бази даних: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="496"/>
+      <location filename="../db/queryexecutor.cpp" line="498"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio не вдалося витягти метадані із запиту. Результат не зможе бути редагованим.</translation>
     </message>
@@ -1022,37 +1022,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="38"/>
+      <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="69"/>
+      <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="85"/>
+      <location filename="../sqlfileexecutor.cpp" line="97"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="122"/>
+      <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="127"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="133"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="140"/>
+      <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>

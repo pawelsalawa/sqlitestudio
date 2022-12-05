@@ -923,41 +923,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>数据表填充</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="119"/>
+      <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="446"/>
+      <location filename="../tablemodifier.cpp" line="456"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>索引 %1 涵盖的所有列索引已消失。表修改后该索引也不会被重新触发。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="490"/>
+      <location filename="../tablemodifier.cpp" line="500"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>处理触发器 %1 时出现问题。它可能没有被充分更新，这需要您的注意。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="505"/>
+      <location filename="../tablemodifier.cpp" line="515"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>触发器 %1 涵盖的所有列已消失。表修改后该触发器也不会被重新触发。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="537"/>
+      <location filename="../tablemodifier.cpp" line="547"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>无法根据表 %2 的修改更新触发器 %1。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="556"/>
+      <location filename="../tablemodifier.cpp" line="566"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>无法根据表 %2 的修改更新视图 %1。
 视图将保持原样不变。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="718"/>
-      <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="761"/>
+      <location filename="../tablemodifier.cpp" line="728"/>
+      <location filename="../tablemodifier.cpp" line="752"/>
+      <location filename="../tablemodifier.cpp" line="771"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>更新 %2 触发器内的一个 %1 语句时出现问题。%1 子句中引用的表 %3 可能无法被正确修改。必要时需要手动更新触发器。</translation>
     </message>
@@ -980,28 +980,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="185"/>
+      <location filename="../db/queryexecutor.cpp" line="187"/>
       <source>Execution interrupted.</source>
       <translation>执行被中断。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="226"/>
+      <location filename="../db/queryexecutor.cpp" line="228"/>
       <source>Database is not open.</source>
       <translation>数据库没有打开。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="234"/>
+      <location filename="../db/queryexecutor.cpp" line="236"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>只能同时执行一个查询。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="338"/>
-      <location filename="../db/queryexecutor.cpp" line="585"/>
+      <location filename="../db/queryexecutor.cpp" line="340"/>
+      <location filename="../db/queryexecutor.cpp" line="587"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>执行 count(*) 查询时出错，因此将禁用数据分页。数据库错误详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="496"/>
+      <location filename="../db/queryexecutor.cpp" line="498"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio 无法从查询中提取元数据。结果将不可编辑。</translation>
     </message>
@@ -1022,37 +1022,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="38"/>
+      <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="69"/>
+      <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="85"/>
+      <location filename="../sqlfileexecutor.cpp" line="97"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="122"/>
+      <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="127"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="133"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="140"/>
+      <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>

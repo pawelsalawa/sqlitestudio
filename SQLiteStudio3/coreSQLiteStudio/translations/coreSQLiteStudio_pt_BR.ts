@@ -923,41 +923,41 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Preencher a tabela</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="119"/>
+      <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabela %1 é tabela de referência %2, mas a definição de chave estrangeira não será atualizada para uma nova definição de tabela devido a problemas ao analisar DDL da tabela %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="446"/>
+      <location filename="../tablemodifier.cpp" line="456"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Todas as colunas indexadas pelo índice %1 desapareceram. O índice não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="490"/>
+      <location filename="../tablemodifier.cpp" line="500"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Há um problema com a trigger %1. Ela pode não ser totalmente atualizada e precisará de sua atenção.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="505"/>
+      <location filename="../tablemodifier.cpp" line="515"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Todas as colunas cobertas pela trigger %1 desapareceram. A trigger não será recriada após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="537"/>
+      <location filename="../tablemodifier.cpp" line="547"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Não é possível atualizar trigger %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="556"/>
+      <location filename="../tablemodifier.cpp" line="566"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Não é possível atualizar a exibição %1 de acordo com as modificações da tabela %2 .
 A visualização permanecerá como é.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="718"/>
-      <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="761"/>
+      <location filename="../tablemodifier.cpp" line="728"/>
+      <location filename="../tablemodifier.cpp" line="752"/>
+      <location filename="../tablemodifier.cpp" line="771"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual da trigger pode ser necessária.</translation>
     </message>
@@ -980,28 +980,28 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="185"/>
+      <location filename="../db/queryexecutor.cpp" line="187"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="226"/>
+      <location filename="../db/queryexecutor.cpp" line="228"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="234"/>
+      <location filename="../db/queryexecutor.cpp" line="236"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="338"/>
-      <location filename="../db/queryexecutor.cpp" line="585"/>
+      <location filename="../db/queryexecutor.cpp" line="340"/>
+      <location filename="../db/queryexecutor.cpp" line="587"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="496"/>
+      <location filename="../db/queryexecutor.cpp" line="498"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
@@ -1022,37 +1022,37 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="38"/>
+      <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>Não foi possível executar SQL, porque a aplicação falhou ao iniciar a transação: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="69"/>
+      <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>Execução do arquivo cancelada. Quaisquer consultas executadas até agora foram desfeitas.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="85"/>
+      <location filename="../sqlfileexecutor.cpp" line="97"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="122"/>
+      <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>Não foi possível executar SQL, porque o aplicativo falhou ao confirmar a transação: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="127"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>Concluiu a execução de consultas %1 em %2 segundos. %3 não executado devido a erros.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="133"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>Terminou a consulta %1 em %2 segundos.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="140"/>
+      <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
       <translation>Não foi possível executar SQL devido a um erro.</translation>
     </message>

@@ -205,7 +205,7 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation>מ"מ</translation>
+      <translation>מ&quot;מ</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>

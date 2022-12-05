@@ -1769,158 +1769,158 @@
   <context>
     <name>DataView</name>
     <message>
-      <location filename="../dataview.cpp" line="105"/>
+      <location filename="../dataview.cpp" line="103"/>
       <source>Filter data</source>
       <comment>data view</comment>
       <translation>Filtre de données</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="114"/>
+      <location filename="../dataview.cpp" line="112"/>
       <source>Grid view</source>
       <translation>Table</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="115"/>
+      <location filename="../dataview.cpp" line="113"/>
       <source>Form view</source>
       <translation>Formulaire</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="206"/>
+      <location filename="../dataview.cpp" line="204"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
       <translation>Actualiser les données de la table</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="223"/>
+      <location filename="../dataview.cpp" line="221"/>
       <source>First page</source>
       <comment>data view</comment>
       <translation>Première page</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="224"/>
+      <location filename="../dataview.cpp" line="222"/>
       <source>Previous page</source>
       <comment>data view</comment>
       <translation>Page précédente</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="226"/>
+      <location filename="../dataview.cpp" line="224"/>
       <source>Next page</source>
       <comment>data view</comment>
       <translation>Page suivante</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="227"/>
+      <location filename="../dataview.cpp" line="225"/>
       <source>Last page</source>
       <comment>data view</comment>
       <translation>Dernière page</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="236"/>
+      <location filename="../dataview.cpp" line="234"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
       <translation>Enregistrer les modifications des cellules sélectionnées</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="237"/>
+      <location filename="../dataview.cpp" line="235"/>
       <source>Rollback changes for selected cells</source>
       <comment>data view</comment>
       <translation>Annuler les modifications des celulles sélectionnées</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="238"/>
+      <location filename="../dataview.cpp" line="236"/>
       <source>Show grid view of results</source>
       <comment>data view</comment>
       <translation>Affichage des résultats en tableau</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="239"/>
+      <location filename="../dataview.cpp" line="237"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
       <translation>Affichage des résultat en formulaire</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="995"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter by text (if contains)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="998"/>
+      <location filename="../dataview.cpp" line="996"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter strictly by text (if equals)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="325"/>
+      <location filename="../dataview.cpp" line="323"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
       <translation>Onglets en haut</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="326"/>
+      <location filename="../dataview.cpp" line="324"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
       <translation>Onglet en bas</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="351"/>
+      <location filename="../dataview.cpp" line="349"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
       <translation type="unfinished">Place new rows above selected row</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="352"/>
+      <location filename="../dataview.cpp" line="350"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
       <translation type="unfinished">Place new rows below selected row</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="353"/>
+      <location filename="../dataview.cpp" line="351"/>
       <source>Place new rows at the end of the data view</source>
       <comment>data view</comment>
       <translation type="unfinished">Place new rows at the end of the data view</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="665"/>
+      <location filename="../dataview.cpp" line="663"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>Le total des lignes en cours de comptage. La navigation d’autres pages à la fin du comptage.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="676"/>
+      <location filename="../dataview.cpp" line="674"/>
       <source>Row: %1</source>
       <translation>Lignes : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="965"/>
+      <location filename="../dataview.cpp" line="963"/>
       <source>Filter</source>
       <translation type="unfinished">Filter</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="968"/>
+      <location filename="../dataview.cpp" line="966"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="999"/>
+      <location filename="../dataview.cpp" line="997"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression standard</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1000"/>
+      <location filename="../dataview.cpp" line="998"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression SQL</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1019"/>
+      <location filename="../dataview.cpp" line="1017"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation type="unfinished">Show filter inputs per column</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1023"/>
+      <location filename="../dataview.cpp" line="1021"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Appliquer le filtre</translation>
@@ -3204,49 +3204,49 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
   <context>
     <name>FormView</name>
     <message>
-      <location filename="../formview.cpp" line="256"/>
+      <location filename="../formview.cpp" line="276"/>
       <source>Commit row</source>
       <comment>form view</comment>
       <translation>Enregistrer ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="257"/>
+      <location filename="../formview.cpp" line="277"/>
       <source>Rollback row</source>
       <comment>form view</comment>
       <translation>Annuler ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="258"/>
+      <location filename="../formview.cpp" line="278"/>
       <source>First row</source>
       <comment>form view</comment>
       <translation>Première ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="259"/>
+      <location filename="../formview.cpp" line="279"/>
       <source>Previous row</source>
       <comment>form view</comment>
       <translation>Ligne précédente</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="260"/>
+      <location filename="../formview.cpp" line="280"/>
       <source>Next row</source>
       <comment>form view</comment>
       <translation>Ligne suivante</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="261"/>
+      <location filename="../formview.cpp" line="281"/>
       <source>Last row</source>
       <comment>form view</comment>
       <translation>Dernière ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="262"/>
+      <location filename="../formview.cpp" line="282"/>
       <source>Insert new row</source>
       <comment>form view</comment>
       <translation>Insérer une nouvelle ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="263"/>
+      <location filename="../formview.cpp" line="283"/>
       <source>Delete current row</source>
       <comment>form view</comment>
       <translation>Supprimer la ligne courante</translation>
@@ -4526,12 +4526,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="642"/>
+      <location filename="../dataview.cpp" line="640"/>
       <source>Total pages available: %1</source>
       <translation>Nombre de pages disponibles : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="652"/>
+      <location filename="../dataview.cpp" line="650"/>
       <source>Total rows loaded: %1</source>
       <translation>Nombre de lignes chargées : %1</translation>
     </message>
@@ -5233,197 +5233,197 @@ recherche suivant</translation>
   <context>
     <name>SqlEditor</name>
     <message>
-      <location filename="../sqleditor.cpp" line="46"/>
+      <location filename="../sqleditor.cpp" line="47"/>
       <source>Wrap words</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Wrap words</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="152"/>
+      <location filename="../sqleditor.cpp" line="153"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>Couper</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="153"/>
+      <location filename="../sqleditor.cpp" line="154"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>Copier</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="154"/>
+      <location filename="../sqleditor.cpp" line="155"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>Coller</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="155"/>
+      <location filename="../sqleditor.cpp" line="156"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>Supprimer</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="156"/>
+      <location filename="../sqleditor.cpp" line="157"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>Tout sélectionner</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="157"/>
+      <location filename="../sqleditor.cpp" line="158"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>Annuler</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>Rétablir</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>Complet</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Format SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>Enregistrer le SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Select file to save SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>Charger le SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>Ligne suppimée</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="165"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>Descendre le bloc</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>Monter le bloc</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>Copier bloc au-dessus</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>Copier bloc au-dessous</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Find</source>
       <comment>sql editor</comment>
       <translation>Chercher</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>Chercher suivant</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>Chercher précédent</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>Remplacer</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Toggle comment</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="285"/>
+      <location filename="../sqleditor.cpp" line="286"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>Impossible d’ouvrir en écriture le fichier « %1 » : %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="295"/>
+      <location filename="../sqleditor.cpp" line="296"/>
       <source>Saved SQL contents to file: %1</source>
       <translation type="unfinished">Saved SQL contents to file: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="507"/>
+      <location filename="../sqleditor.cpp" line="508"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>L’achèvement de syntaxe peut être utilisé seulement quand une base de données valable est utilisée dans l’éditeur SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1128"/>
+      <location filename="../sqleditor.cpp" line="1129"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Le contenu l’éditeur SQL est important, aussi la détectiond’objets en erreur est temporairement mise hors de service.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1163"/>
+      <location filename="../sqleditor.cpp" line="1164"/>
       <source>Save to file</source>
       <translation>Sauvegarder</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1179"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Scripts SQL (*.sql);;Tous les fichiers (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1179"/>
+      <location filename="../sqleditor.cpp" line="1180"/>
       <source>Open file</source>
       <translation>Fichier ouvert</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1189"/>
+      <location filename="../sqleditor.cpp" line="1190"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d’ouvrir en lecture le fichier « %1 » : %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1394"/>
+      <location filename="../sqleditor.cpp" line="1395"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Fin de document atteint. Saississez de nouveau la recherche pour relancer la recherche.</translation>
     </message>
@@ -5467,7 +5467,7 @@ recherche suivant</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="58"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="64"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="335"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
       <source>Cannot edit this cell. Details: %1</source>
       <translation>Impossible de modifier cette cellule. Détails : %1</translation>
     </message>
@@ -5478,7 +5478,7 @@ recherche suivant</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="335"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
       <translation type="unfinished">Structure of this table has changed since last data was loaded. Reload the data to proceed.</translation>
     </message>
@@ -5488,7 +5488,7 @@ recherche suivant</translation>
       <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="327"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="315"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
       <translation type="unfinished">Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</translation>
     </message>

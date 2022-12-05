@@ -16,7 +16,7 @@
     <message>
       <location filename="../CsvExport.ui" line="41"/>
       <source>, (comma)</source>
-      <translation>&#xa0;(Kommatecken)</translation>
+      <translation> (Kommatecken)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="46"/>
