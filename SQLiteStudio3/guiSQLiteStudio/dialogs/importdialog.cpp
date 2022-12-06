@@ -202,6 +202,7 @@ void ImportDialog::initDataSourcePage()
 
 void ImportDialog::removeOldOptions()
 {
+    pluginConfigOk.clear();
     safe_delete(configMapper);
     safe_delete(pluginOptionsWidget);
 }
