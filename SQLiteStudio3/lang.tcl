@@ -85,7 +85,7 @@ proc finalTsFix {f} {
 		set data [string trim [string map [list $part $fixedPart] $data]]
 	}
 	
-	set data [string trim [string map [list ' "&apos;"] $data]]
+	set data [string trim [string map [list ' "&apos;" " " "&#xa0;"] $data]]
 	
 	set fd [open $f w+]
 	puts $fd $data
