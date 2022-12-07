@@ -3516,7 +3516,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
       <translation>Il percorso fornito è una directory. È richiesto un file.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>Scegli il file da cui importare</translation>
     </message>

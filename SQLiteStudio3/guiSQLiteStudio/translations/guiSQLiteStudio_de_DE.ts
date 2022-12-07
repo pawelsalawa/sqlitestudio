@@ -3515,7 +3515,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <translation>Der von Ihnen angegebene Pfad ist ein Verzeichnis. Es wird jedoch eine Datei benötigt.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>Wählen Sie eine Datei aus von der importiert werden soll.</translation>
     </message>

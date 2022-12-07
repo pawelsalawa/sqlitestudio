@@ -3516,7 +3516,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>您提供的是一个目录，而需要的是一个一般文件。</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>选择要导入的文件</translation>
     </message>
