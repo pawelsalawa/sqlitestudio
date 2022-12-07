@@ -3516,7 +3516,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Cesta, ktorú ste zadali je adresár. Prosím zadajte celú cestu.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>Výber súboru, z ktorého sa budú importovať dáta</translation>
     </message>

@@ -3516,7 +3516,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Path you provided is a directory. A regular file is required.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation type="unfinished">Pick file to import from</translation>
     </message>

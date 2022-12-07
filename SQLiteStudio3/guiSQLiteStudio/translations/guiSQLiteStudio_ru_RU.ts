@@ -3514,7 +3514,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Указанный путь является каталогом. Необходимо указать файл.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>Выберите файл для импорта</translation>
     </message>

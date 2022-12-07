@@ -3516,7 +3516,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>הנתיב שסופק מפנה למחיצה קיימת, נדרש קובץ רגיל.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="365"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation type="unfinished">Pick file to import from</translation>
     </message>
