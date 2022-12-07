@@ -93,9 +93,6 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     nameToDb.remove(db->getName(), Qt::CaseInsensitive);
     pathToDb.remove(db->getPath());
 
-    bool pathDifferent = db->getPath() != normalizedPath;
-    bool optionsDifferent = db->getConnectionOptions() != options;
-
     QString oldName = db->getName();
     db->setName(name);
     db->setPath(normalizedPath);
@@ -115,7 +112,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     InvalidDb* invalidDb = dynamic_cast<InvalidDb*>(db);
     bool wasReloaded = false;
     Db* reloadedDb = db;
-    if ((pathDifferent || optionsDifferent) && invalidDb)
+    if (invalidDb)
     {
         reloadedDb = tryToLoadDb(invalidDb, false);
         if (reloadedDb) // we need to know that, so we can emit dbLoaded() signal later, out of the listLock
@@ -131,7 +128,6 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     listLock.unlock();
 
     // If we did reload the db, we need to emit proper signal, because it was suppressed in tryToLoadDb(), because of the listLock
-    qDebug() << "db updated" << wasReloaded << result;
     if (wasReloaded)
         emit dbLoaded(db);
 
@@ -374,7 +370,7 @@ void DbManagerImpl::scanForNewDatabasesInConfig()
 
     QUrl url;
     InvalidDb* db = nullptr;
-    for (const Config::CfgDbPtr& cfgDb : cfgDbList)
+    for (Config::CfgDbPtr& cfgDb : cfgDbList)
     {
         if (getByName(cfgDb->name) || getByPath(cfgDb->path))
             continue;
@@ -475,9 +471,9 @@ QList<Db*> DbManagerImpl::getInvalidDatabases() const
 
 Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
 {
-    QUrl url = QUrl::fromUserInput(invalidDb->getPath());
-    if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
-        return nullptr;
+//    QUrl url = QUrl::fromUserInput(invalidDb->getPath());
+//    if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+//        return nullptr;
 
     Db* db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
     if (!db)
