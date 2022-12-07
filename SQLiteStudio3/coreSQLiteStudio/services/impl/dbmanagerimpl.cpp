@@ -471,10 +471,6 @@ QList<Db*> DbManagerImpl::getInvalidDatabases() const
 
 Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
 {
-//    QUrl url = QUrl::fromUserInput(invalidDb->getPath());
-//    if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
-//        return nullptr;
-
     Db* db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
     if (!db)
         return nullptr;
