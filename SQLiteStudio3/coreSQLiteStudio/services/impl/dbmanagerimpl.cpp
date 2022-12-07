@@ -344,7 +344,7 @@ void DbManagerImpl::loadInitialDbList()
 {
     QUrl url;
     InvalidDb* db = nullptr;
-    for (const Config::CfgDbPtr& cfgDb : CFG->dbList())
+    for (Config::CfgDbPtr& cfgDb : CFG->dbList())
     {
         db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
 

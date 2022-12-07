@@ -3,6 +3,6 @@
     "title":         "SQLCipher",
     "description":   "Provides support for databases encrypted with SQLCipher (https://www.zetetic.net/sqlcipher/). See 'About' dialog for SQLCipher license.",
     "minAppVersion": 30300,
-    "version":       10200,
+    "version":       10201,
     "author":        "SalSoft"
 }

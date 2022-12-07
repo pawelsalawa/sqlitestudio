@@ -104,7 +104,7 @@ void AbstractDb::registerAllFunctions()
     registeredFunctions.clear();
 
     RegisteredFunction regFn;
-    for (FunctionManager::ScriptFunction* fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
+    for (FunctionManager::ScriptFunction*& fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
     {
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
@@ -113,7 +113,7 @@ void AbstractDb::registerAllFunctions()
         registerFunction(regFn);
     }
 
-    for (FunctionManager::NativeFunction* fnPtr : FUNCTIONS->getAllNativeFunctions())
+    for (FunctionManager::NativeFunction*& fnPtr : FUNCTIONS->getAllNativeFunctions())
     {
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
@@ -128,7 +128,7 @@ void AbstractDb::registerAllFunctions()
 
 void AbstractDb::registerAllCollations()
 {
-    for (const QString& name : registeredCollations)
+    for (QString& name : registeredCollations)
     {
         if (!deregisterCollation(name))
             qWarning() << "Failed to deregister custom collation:" << name;
@@ -136,7 +136,7 @@ void AbstractDb::registerAllCollations()
 
     registeredCollations.clear();
 
-    for (const CollationManager::CollationPtr& collPtr : COLLATIONS->getCollationsForDatabase(getName()))
+    for (CollationManager::CollationPtr& collPtr : COLLATIONS->getCollationsForDatabase(getName()))
         registerCollation(collPtr->name);
 
     disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
@@ -145,7 +145,7 @@ void AbstractDb::registerAllCollations()
 
 void AbstractDb::loadExtensions()
 {
-    for (const SqliteExtensionManager::ExtensionPtr& extPtr : SQLITE_EXTENSIONS->getExtensionForDatabase(getName()))
+    for (SqliteExtensionManager::ExtensionPtr& extPtr : SQLITE_EXTENSIONS->getExtensionForDatabase(getName()))
         loadedExtensionCount += loadExtension(extPtr->filePath, extPtr->initFunc) ? 1 : 0;
 
     connect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(reloadExtensions()));

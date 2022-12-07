@@ -98,14 +98,15 @@ StrHash<QStringList> SchemaResolver::getGroupedTriggers(const QString &database)
 StrHash<QStringList> SchemaResolver::getGroupedObjects(const QString &database, const QStringList &inputList, SqliteQueryType type)
 {
     QString strType = sqliteQueryTypeToString(type);
+    ObjectType objectType = objectTypeFromQueryType(type);
     StrHash<QStringList> groupedObjects;
 
     SqliteQueryPtr parsedQuery;
     SqliteTableRelatedDdlPtr tableRelatedDdl;
 
-    for (QString object : inputList)
+    for (const QString& object : inputList)
     {
-        parsedQuery = getParsedObject(database, object, ANY);
+        parsedQuery = getParsedObject(database, object, objectType);
         if (!parsedQuery)
         {
             qWarning() << "Could not get parsed object for " << strType << ":" << object;
@@ -116,7 +117,8 @@ StrHash<QStringList> SchemaResolver::getGroupedObjects(const QString &database, 
         if (!tableRelatedDdl)
         {
             qWarning() << "Parsed object is not of expected type. Expected" << strType
-                       << ", but got" << sqliteQueryTypeToString(parsedQuery->queryType);
+                       << ", but got" << sqliteQueryTypeToString(parsedQuery->queryType)
+                       << "; Object db and name:" << database << object;
             continue;
         }
 
@@ -145,12 +147,12 @@ QSet<QString> SchemaResolver::getDatabases()
     return db->getAllAttaches();
 }
 
-QStringList SchemaResolver::getTableColumns(const QString& table)
+QStringList SchemaResolver::getTableColumns(const QString& table, bool onlyReal)
 {
-    return getTableColumns("main", table);
+    return getTableColumns("main", table, onlyReal);
 }
 
-QStringList SchemaResolver::getTableColumns(const QString &database, const QString &table)
+QStringList SchemaResolver::getTableColumns(const QString &database, const QString &table, bool onlyReal)
 {
     QStringList columns; // result
 
@@ -178,7 +180,12 @@ QStringList SchemaResolver::getTableColumns(const QString &database, const QStri
 
     // Now we have a regular table, let's extract columns.
     for (SqliteCreateTable::Column* column : createTable->columns)
+    {
+        if (onlyReal && column->hasConstraint(SqliteCreateTable::Column::Constraint::GENERATED))
+            continue;
+
         columns << column->name;
+    }
 
     return columns;
 }
@@ -849,6 +856,47 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& table, const Q
     }
 
     return tables;
+}
+
+SchemaResolver::ObjectType SchemaResolver::objectTypeFromQueryType(const SqliteQueryType& queryType)
+{
+    switch (queryType)
+    {
+        case SqliteQueryType::CreateIndex:
+            return INDEX;
+        case SqliteQueryType::CreateTrigger:
+            return TRIGGER;
+        case SqliteQueryType::CreateView:
+            return VIEW;
+        case SqliteQueryType::CreateTable:
+        case SqliteQueryType::CreateVirtualTable:
+            return TABLE;
+        case SqliteQueryType::Select:
+        case SqliteQueryType::Pragma:
+        case SqliteQueryType::UNDEFINED:
+        case SqliteQueryType::EMPTY:
+        case SqliteQueryType::AlterTable:
+        case SqliteQueryType::Analyze:
+        case SqliteQueryType::Attach:
+        case SqliteQueryType::BeginTrans:
+        case SqliteQueryType::CommitTrans:
+        case SqliteQueryType::Copy:
+        case SqliteQueryType::Delete:
+        case SqliteQueryType::Detach:
+        case SqliteQueryType::DropIndex:
+        case SqliteQueryType::DropTable:
+        case SqliteQueryType::DropTrigger:
+        case SqliteQueryType::DropView:
+        case SqliteQueryType::Insert:
+        case SqliteQueryType::Reindex:
+        case SqliteQueryType::Release:
+        case SqliteQueryType::Rollback:
+        case SqliteQueryType::Savepoint:
+        case SqliteQueryType::Update:
+        case SqliteQueryType::Vacuum:
+            return ANY;
+    }
+    return ANY;
 }
 
 QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)

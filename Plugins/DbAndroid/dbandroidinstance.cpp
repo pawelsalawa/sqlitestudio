@@ -50,7 +50,7 @@ QList<AliasedColumn> DbAndroidInstance::columnsForQuery(const QString& query)
 
     QList<AliasedColumn> columns;
     AliasedColumn column;
-    for (const QString& colName : results->getColumnNames())
+    for (QString& colName : results->getColumnNames())
     {
         column.setAlias(colName);
         columns << column;
@@ -63,9 +63,14 @@ SqlQueryPtr DbAndroidInstance::prepare(const QString& query)
     return SqlQueryPtr(new SqlQueryAndroid(this, connection, query));
 }
 
-QString DbAndroidInstance::getTypeLabel()
+QString DbAndroidInstance::getTypeLabel() const
 {
     return plugin->getLabel();
+}
+
+QString DbAndroidInstance::getTypeClassName() const
+{
+    return "DbAndroidInstance";
 }
 
 bool DbAndroidInstance::deregisterFunction(const QString& name, int argCount)

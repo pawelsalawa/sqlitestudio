@@ -23,6 +23,7 @@ class DbSqliteWxInstance : public AbstractDb3<WxSQLite>
         DbSqliteWxInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &connOptions);
 
         Db* clone() const;
+        QString getTypeClassName() const;
 
     protected:
         void initAfterOpen();

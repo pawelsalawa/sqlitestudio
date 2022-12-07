@@ -10,7 +10,7 @@ class DbPluginSqlite3 : public BuiltInPlugin, public DbPlugin
 
     SQLITESTUDIO_PLUGIN_TITLE("SQLite 3")
     SQLITESTUDIO_PLUGIN_DESC("SQLite 3 databases support.")
-    SQLITESTUDIO_PLUGIN_VERSION(10000)
+    SQLITESTUDIO_PLUGIN_VERSION(10001)
     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:

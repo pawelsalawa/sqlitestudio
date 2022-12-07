@@ -23,6 +23,7 @@ class DbSqliteCipherInstance : public AbstractDb3<SqlCipher>
         DbSqliteCipherInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
 
         Db* clone() const;
+        QString getTypeClassName() const;
 
     protected:
         void initAfterOpen();

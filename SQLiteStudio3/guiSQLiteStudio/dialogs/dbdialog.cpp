@@ -625,6 +625,7 @@ void DbDialog::typeChanged(int index)
 {
     UNUSED(index);
     updateOptions();
+    updateState();
 }
 
 void DbDialog::valueForNameGenerationChanged()

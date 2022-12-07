@@ -12,6 +12,11 @@ Db* DbSqliteCipherInstance::clone() const
     return new DbSqliteCipherInstance(name, path, connOptions);
 }
 
+QString DbSqliteCipherInstance::getTypeClassName() const
+{
+    return "DbSqliteCipherInstance";
+}
+
 void DbSqliteCipherInstance::initAfterOpen()
 {
     SqlQueryPtr res;

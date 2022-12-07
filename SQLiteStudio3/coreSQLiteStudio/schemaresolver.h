@@ -15,6 +15,7 @@
 #include "db/db.h"
 #include "common/strhash.h"
 #include "common/expiringcache.h"
+#include "parser/ast/sqlitequerytype.h"
 #include <QStringList>
 
 class SqliteCreateTable;
@@ -110,6 +111,7 @@ class API_EXPORT SchemaResolver
         /**
          * @brief getTableColumns Get column names for a table.
          * @param table Table to query.
+         * @param onlyReal If true, the method will skip columns that are not real (like GENERATED columns).
          * @return List of column names of the table.
          * This does something similar to getting list of columns with
          * PRAGMA table_info(), but the pragma in Sqlite2 doesn't support
@@ -117,16 +119,17 @@ class API_EXPORT SchemaResolver
          * to make this possible. It finds table's DDL and parses it,
          * then extracts list of columns from parsing results.
          */
-        QStringList getTableColumns(const QString& table);
+        QStringList getTableColumns(const QString& table, bool onlyReal = false);
 
         /**
          * @brief getTableColumns Get column names for a table.
          * @param database Attached database name.
          * @param table Table to query.
+         * @param onlyReal If true, the method will skip columns that are not real (like GENERATED columns).
          * @return List of column names of the table.
          * @overload
          */
-        QStringList getTableColumns(const QString& database, const QString& table);
+        QStringList getTableColumns(const QString& database, const QString& table, bool onlyReal = false);
 
         QList<DataType> getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes = -1);
         QList<DataType> getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes = -1);
@@ -178,6 +181,7 @@ class API_EXPORT SchemaResolver
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool temp = false);
         static QStringList getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables);
+        static ObjectType objectTypeFromQueryType(const SqliteQueryType& queryType);
 
         QStringList getCollations();
 

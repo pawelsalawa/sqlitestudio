@@ -11,6 +11,11 @@ Db* DbSqliteWxInstance::clone() const
     return new DbSqliteWxInstance(name, path, connOptions);
 }
 
+QString DbSqliteWxInstance::getTypeClassName() const
+{
+    return "DbSqliteWxInstance";
+}
+
 void DbSqliteWxInstance::initAfterOpen()
 {
     SqlQueryPtr res;

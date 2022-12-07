@@ -60,9 +60,8 @@ QString sqliteQueryTypeToString(const SqliteQueryType& type)
             return "Update";
         case SqliteQueryType::Vacuum:
             return "Vacuum";
-        default:
-            return QString();
     }
+    return QString();
 }
 
 bool isDataReturningQuery(const SqliteQueryType& type)
@@ -98,7 +97,7 @@ bool isDataReturningQuery(const SqliteQueryType& type)
         case SqliteQueryType::Savepoint:
         case SqliteQueryType::Update:
         case SqliteQueryType::Vacuum:
-        default:
             return false;
     }
+    return false;
 }
