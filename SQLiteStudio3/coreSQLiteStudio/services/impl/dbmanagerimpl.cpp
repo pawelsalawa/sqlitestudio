@@ -94,6 +94,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     pathToDb.remove(db->getPath());
 
     bool pathDifferent = db->getPath() != normalizedPath;
+    bool optionsDifferent = db->getConnectionOptions() != options;
 
     QString oldName = db->getName();
     db->setName(name);
@@ -114,7 +115,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     InvalidDb* invalidDb = dynamic_cast<InvalidDb*>(db);
     bool wasReloaded = false;
     Db* reloadedDb = db;
-    if (pathDifferent && invalidDb)
+    if ((pathDifferent || optionsDifferent) && invalidDb)
     {
         reloadedDb = tryToLoadDb(invalidDb, false);
         if (reloadedDb) // we need to know that, so we can emit dbLoaded() signal later, out of the listLock
@@ -130,13 +131,14 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     listLock.unlock();
 
     // If we did reload the db, we need to emit proper signal, because it was suppressed in tryToLoadDb(), because of the listLock
+    qDebug() << "db updated" << wasReloaded << result;
     if (wasReloaded)
         emit dbLoaded(db);
 
     if (result && reloadedDb)
         emit dbUpdated(oldName, db);
     else if (reloadedDb) // database reloaded correctly, but update failed
-        notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName).arg(CFG->getLastErrorString()));
+        notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName, CFG->getLastErrorString()));
 
     return result;
 }

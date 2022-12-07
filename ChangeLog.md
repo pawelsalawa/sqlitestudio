@@ -2,6 +2,8 @@
 
 ### 3.4.2
 - BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
+- BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.
+- BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
 - CHANGE: #4585 SQLite updated to 3.40.0 (except for SQLCipher, which has latest version 3.39.2).
