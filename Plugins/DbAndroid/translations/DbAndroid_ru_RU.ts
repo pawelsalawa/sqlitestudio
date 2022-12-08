@@ -74,12 +74,12 @@ Would you like to select another one, or leave it unconfigured?</source>
   <context>
     <name>DbAndroidInstance</name>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="108"/>
+      <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
       <translation>Драйвер SQLite для Android не поддерживает подгружаемые расширения.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="201"/>
+      <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Подключение к базе данных Android &apos;%1&apos; утеряно.</translation>
     </message>
