@@ -158,30 +158,30 @@
       <translation>Impossible d’ajouter une base de données %1 : %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation>La base de données %1 ne peut ëtre mise à jour à cause de l’erreur : %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>Le fichier de la base de données n’existe pas.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
       <source>No supporting plugin loaded.</source>
       <translation>Aucun plugin supporté chargé.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
       <source>Database could not be initialized.</source>
       <translation>La base de données ne peut être initialisée.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Aucun pilote de base de données approprié trouvé.</translation>
     </message>
@@ -205,43 +205,43 @@
       <translation>La base de données %1 ne peut être attachée à la base de données %2, aussi les données de la table %3 seront copiées avec SQLiteStudio comme interpréteur. Cette méthode est lente pour des tables importantes, SVP soyer patient.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="439"/>
+      <location filename="../dbobjectorganizer.cpp" line="443"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Erreur lors de la copie des données vers la table %1 : %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="458"/>
-      <location filename="../dbobjectorganizer.cpp" line="465"/>
-      <location filename="../dbobjectorganizer.cpp" line="488"/>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
+      <location filename="../dbobjectorganizer.cpp" line="469"/>
+      <location filename="../dbobjectorganizer.cpp" line="496"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Erreur lors de la copie des données de la table %1 : %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="510"/>
+      <location filename="../dbobjectorganizer.cpp" line="518"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erreur à la création de la vue %1 : %2
 Tables, index, déclencheurs et vues copiés de la base de données %3 seront maintenus.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="517"/>
+      <location filename="../dbobjectorganizer.cpp" line="525"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Erreur lors de la création de la vue de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="522"/>
+      <location filename="../dbobjectorganizer.cpp" line="530"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Erreur lors de la création de l’index de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="527"/>
+      <location filename="../dbobjectorganizer.cpp" line="535"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Erreur lors de la création du déclencheur de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="679"/>
-      <location filename="../dbobjectorganizer.cpp" line="686"/>
-      <location filename="../dbobjectorganizer.cpp" line="695"/>
+      <location filename="../dbobjectorganizer.cpp" line="687"/>
+      <location filename="../dbobjectorganizer.cpp" line="694"/>
+      <location filename="../dbobjectorganizer.cpp" line="703"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
     </message>
