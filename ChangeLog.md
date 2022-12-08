@@ -5,6 +5,7 @@
 - BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.
 - BUGFIX: #3767 Fixed copying objects between unencrypted and encrypted databases, also fixed copying tables with generated columns.
 - BUGFIX: #4422 Portable configuration also prevents SQLiteStudio from touching Windows registry.
+- BUGFIX: #3759 Fixed using independent SQLiteStudio instances by different Unix users simultaneously, regardless of one's settings.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1

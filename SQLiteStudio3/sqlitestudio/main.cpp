@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("SalSoft");
     QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
 
-    SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
+    SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion|SingleApplication::User);
 
     if (!shouldAllowMultipleSessions() && a.isSecondary()) {
 #ifdef Q_OS_WIN
