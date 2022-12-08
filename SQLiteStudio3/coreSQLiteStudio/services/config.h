@@ -49,6 +49,7 @@ CFG_CATEGORIES(Core,
 
 class QAbstractItemModel;
 class DdlHistoryModel;
+class QSettings;
 
 class API_EXPORT Config : public QObject
 {
@@ -116,6 +117,8 @@ class API_EXPORT Config : public QObject
         static void setMasterConfigFile(const QString& path);
         static QString getMasterConfigFile();
         static void setAskUserForConfigDirFunc(const AskUserForConfigDirFunc& value);
+        static QString getPortableConfigPath();
+        static QSettings* getSettings();
 
         virtual void init() = 0;
         virtual const QString& getConfigDir() const = 0;

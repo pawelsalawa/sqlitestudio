@@ -24,6 +24,7 @@
 #include "dialogs/triggerdialog.h"
 #include "services/pluginmanager.h"
 #include "singleapplication/singleapplication.h"
+#include "services/impl/configimpl.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -110,6 +111,12 @@ void initHighDpi()
 #endif
 }
 
+bool shouldAllowMultipleSessions()
+{
+    QVariant allowMultipleSessionsValue = Config::getSettings()->value(MainWindow::ALLOW_MULTIPLE_SESSIONS_SETTING);
+    return allowMultipleSessionsValue.isValid() && allowMultipleSessionsValue.toBool();
+}
+
 int main(int argc, char *argv[])
 {
     initHighDpi();
@@ -119,11 +126,7 @@ int main(int argc, char *argv[])
 
     SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
-    QSettings sett;
-    QVariant allowMultipleSessionsValue = sett.value(MainWindow::ALLOW_MULTIPLE_SESSIONS_SETTING);
-    bool allowMultipleSessions = allowMultipleSessionsValue.isValid() && allowMultipleSessionsValue.toBool();
-
-    if (!allowMultipleSessions && a.isSecondary()) {
+    if (!shouldAllowMultipleSessions() && a.isSecondary()) {
 #ifdef Q_OS_WIN
         AllowSetForegroundWindow(DWORD( a.primaryPid()));
 #endif

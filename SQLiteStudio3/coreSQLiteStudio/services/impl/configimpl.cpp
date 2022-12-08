@@ -616,46 +616,6 @@ QString ConfigImpl::getLegacyConfigPath()
 #endif
 }
 
-QString ConfigImpl::getPortableConfigPath()
-{
-    QStringList paths = QStringList({"./sqlitestudio-cfg", qApp->applicationDirPath() + "/sqlitestudio-cfg"});
-    QSet<QString> pathSet;
-    QDir dir;
-    for (const QString& path : paths)
-    {
-        dir = QDir(path);
-        pathSet << dir.absolutePath();
-    }
-
-    QString potentialPath;
-    QFileInfo file;
-    for (const QString& path : pathSet)
-    {
-        dir = QDir(path);
-        file = QFileInfo(dir.absolutePath());
-        if (!file.exists())
-        {
-            if (potentialPath.isNull())
-                potentialPath = dir.absolutePath();
-
-            continue;
-        }
-
-        if (!file.isDir() || !file.isReadable() || !file.isWritable())
-            continue;
-
-        for (const QFileInfo& entryFile : dir.entryInfoList())
-        {
-            if (!entryFile.isReadable() || !entryFile.isWritable())
-                continue;
-        }
-
-        return dir.absolutePath();
-    }
-
-    return potentialPath;
-}
-
 void ConfigImpl::initTables()
 {
     SqlQueryPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
@@ -726,34 +686,36 @@ void ConfigImpl::initTables()
 
 void ConfigImpl::initDbFile()
 {
-    QList<QPair<QString,bool>> paths;
-
-    // Do we have path selected by user? (because app was unable to find writable location before)
-    QSettings sett;
-    QString customPath = sett.value(CONFIG_DIR_SETTING).toString();
-    if (!customPath.isEmpty())
-    {
-        paths << QPair<QString,bool>(customPath + "/" + DB_FILE_NAME, false);
-        qDebug() << "Using custom configuration directory. The location is stored in" << sett.fileName();
-    }
-    else
-        paths.append(getStdDbPaths());
+    QList<ConfigDirCandidate> paths = getStdDbPaths();
 
     // A fallback to in-memory db
-    paths << QPair<QString,bool>(memoryDbName, false);
+    paths << ConfigDirCandidate{memoryDbName, false, false};
 
     // Go through all candidates and pick one
     QDir dir;
-    for (const QPair<QString,bool>& path : paths)
+    for (ConfigDirCandidate& path : paths)
     {
-        dir = QDir(path.first);
-        if (path.first != memoryDbName)
-            dir = QFileInfo(path.first).dir();
+        dir = QDir(path.path);
+        if (path.path != memoryDbName)
+            dir = QFileInfo(path.path).dir();
 
         if (tryInitDbFile(path))
         {
             configDir = dir.absolutePath();
             break;
+        }
+    }
+
+    // If not one of std paths, look for the one from previously saved.
+    if (configDir == memoryDbName)
+    {
+        // Do we have path selected by user? (because app was unable to find writable location before)
+        QSettings* sett = getSettings();
+        QString path = sett->value(CONFIG_DIR_SETTING).toString();
+        if (!path.isEmpty())
+        {
+            paths << ConfigDirCandidate{path + "/" + DB_FILE_NAME, false, false};
+            qDebug() << "Using custom configuration directory. The location is stored in" << sett->fileName();
         }
     }
 
@@ -765,12 +727,12 @@ void ConfigImpl::initDbFile()
             break;
 
         dir = QDir(path);
-        if (tryInitDbFile(QPair<QString,bool>(path + "/" + DB_FILE_NAME, false)))
+        if (tryInitDbFile(ConfigDirCandidate{path + "/" + DB_FILE_NAME, false, false}))
         {
             configDir = dir.absolutePath();
-            QSettings sett;
-            sett.setValue(CONFIG_DIR_SETTING, configDir);
-            qDebug() << "Using custom configuration directory. The location is stored in" << sett.fileName();
+            QSettings* sett = getSettings();
+            sett->setValue(CONFIG_DIR_SETTING, configDir);
+            qDebug() << "Using custom configuration directory. The location is stored in" << sett->fileName();
         }
     }
 
@@ -779,8 +741,8 @@ void ConfigImpl::initDbFile()
     {
         paths.removeLast();
         QStringList pathStrings;
-        for (const QPair<QString,bool>& path : paths)
-            pathStrings << path.first;
+        for (ConfigDirCandidate& path : paths)
+            pathStrings << path.path;
 
         notifyError(QObject::tr("Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart."
                        " Unable to create a file at following locations: %1.").arg(pathStrings.join(", ")));
@@ -790,24 +752,24 @@ void ConfigImpl::initDbFile()
     db->exec("PRAGMA foreign_keys = 1;");
 }
 
-QList<QPair<QString,bool>> ConfigImpl::getStdDbPaths()
+QList<ConfigImpl::ConfigDirCandidate> ConfigImpl::getStdDbPaths()
 {
-    QList<QPair<QString,bool>> paths;
+    QList<ConfigDirCandidate> paths;
 
     // Portable dir location has always precedense - comes first
     QString portablePath = getPortableConfigPath();
     if (!portablePath.isNull())
-        paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
+        paths << ConfigDirCandidate{portablePath+"/"+DB_FILE_NAME, false, true};
 
     // Determinate global config location
     QString globalPath = getConfigPath();
-    paths << QPair<QString,bool>(globalPath, true);
+    paths << ConfigDirCandidate{globalPath, true, false};
 
     // If needed, migrate configuration from legacy location (pre-3.3) to new location (3.3 and later)
     QString legacyGlobalPath = getLegacyConfigPath();
     if (!legacyGlobalPath.isNull())
     {
-        paths << QPair<QString,bool>(legacyGlobalPath+"/"+DB_FILE_NAME, true);
+        paths << ConfigDirCandidate{legacyGlobalPath+"/"+DB_FILE_NAME, true, false};
         if (!QFile::exists(globalPath))
             tryToMigrateOldGlobalPath(legacyGlobalPath, globalPath);
     }
@@ -815,17 +777,17 @@ QList<QPair<QString,bool>> ConfigImpl::getStdDbPaths()
     return paths;
 }
 
-bool ConfigImpl::tryInitDbFile(const QPair<QString, bool> &dbPath)
+bool ConfigImpl::tryInitDbFile(const ConfigDirCandidate& dbPath)
 {
     // Create global config directory if not existing
-    if (dbPath.second && !dbPath.first.isNull())
+    if (dbPath.createIfNotExists && !dbPath.path.isNull())
     {
-        QDir dir(dbPath.first.mid(0, dbPath.first.length() - DB_FILE_NAME.length() - 1));
+        QDir dir(dbPath.path.mid(0, dbPath.path.length() - DB_FILE_NAME.length() - 1));
         if (!dir.exists())
             QDir::root().mkpath(dir.absolutePath());
     }
 
-    db = new DbSqlite3("SQLiteStudio settings", dbPath.first, {{DB_PURE_INIT, true}});
+    db = new DbSqlite3("SQLiteStudio settings", dbPath.path, {{DB_PURE_INIT, true}});
     if (!db->open())
     {
         safe_delete(db);

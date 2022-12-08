@@ -8,6 +8,7 @@
 
 class AsyncConfigHandler;
 class SqlHistoryModel;
+class QSettings;
 
 class API_EXPORT ConfigImpl : public Config
 {
@@ -90,6 +91,13 @@ class API_EXPORT ConfigImpl : public Config
         void rollback();
 
     private:
+        struct ConfigDirCandidate
+        {
+            QString path;
+            bool createIfNotExists;
+            bool isPortable;
+        };
+
         /**
          * @brief Stores error from query in class member.
          * @param query Query to get error from.
@@ -102,11 +110,10 @@ class API_EXPORT ConfigImpl : public Config
         void storeGroup(const DbGroupPtr& group, qint64 parentId = -1);
         void readGroupRecursively(DbGroupPtr group);
         QString getConfigPath();
-        QString getPortableConfigPath();
         void initTables();
         void initDbFile();
-        QList<QPair<QString, bool> > getStdDbPaths();
-        bool tryInitDbFile(const QPair<QString, bool>& dbPath);
+        QList<ConfigDirCandidate> getStdDbPaths();
+        bool tryInitDbFile(const ConfigDirCandidate& dbPath);
         QVariant deserializeValue(const QVariant& value) const;
 
         void asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
