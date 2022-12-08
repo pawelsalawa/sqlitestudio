@@ -74,12 +74,12 @@ Möchten Sie eine andere auswählen, oder lassen Sie es unkonfiguriert?</transla
   <context>
     <name>DbAndroidInstance</name>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="108"/>
+      <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
       <translation>Der Android SQLite-Treiber unterstützt keine ladbaren Erweiterungen.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="201"/>
+      <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Verbindung mit der Android-Datenbank &apos;%1&apos; verloren.</translation>
     </message>
