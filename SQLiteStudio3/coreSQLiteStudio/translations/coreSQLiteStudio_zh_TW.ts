@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="905"/>
+      <location filename="../services/impl/configimpl.cpp" line="867"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>因無法啟動資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="912"/>
+      <location filename="../services/impl/configimpl.cpp" line="874"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>因無法commit資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
@@ -876,7 +876,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>無法解析table, Column: &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="785"/>
+      <location filename="../services/impl/configimpl.cpp" line="747"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>無法初始化設定檔. 在應用程式重啟時，任何設定檔的異動及查詢歷史將遺失. 無法建立檔案在以下位置: %1</translation>
     </message>
