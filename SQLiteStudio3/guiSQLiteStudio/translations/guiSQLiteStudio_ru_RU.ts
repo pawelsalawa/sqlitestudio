@@ -4009,27 +4009,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Введите новое имя для окна:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="882"/>
+      <location filename="../mainwindow.cpp" line="880"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Доступны обновления. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь для подробностей&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="890"/>
+      <location filename="../mainwindow.cpp" line="888"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Установлена последняя версия. Обновлений нет.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1020"/>
+      <location filename="../mainwindow.cpp" line="1018"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>База данных, переданная через аргументы командной строки (%1), уже находится в списке под именем %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1027"/>
+      <location filename="../mainwindow.cpp" line="1025"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>База данных, переданная через аргументы командной строки (%1), была временно добавлена в список под именем %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1032"/>
+      <location filename="../mainwindow.cpp" line="1030"/>
       <source>Could not add database %1 to list.</source>
       <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
