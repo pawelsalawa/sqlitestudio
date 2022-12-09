@@ -1173,7 +1173,7 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="884"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation>Don&apos;t mostrar janela de pré-visualização do DDL ao confirmar alterações de esquema</translation>
+      <translation>Não mostrar a janela de pré-visualização do DDL ao confirmar alterações de esquema</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="897"/>
@@ -3444,7 +3444,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/importdialog.ui" line="84"/>
       <source>Data source to import from</source>
-      <translation>Fonte de dados para importar de</translation>
+      <translation>Dados para importar</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="129"/>
@@ -3813,7 +3813,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mainwindow.cpp" line="274"/>
       <source>Open confi&amp;guration dialog</source>
-      <translation>Abrir diálogo de configuração</translation>
+      <translation>Configurações</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="276"/>
@@ -4744,7 +4744,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../mainwindow.h" line="56"/>
       <source>Open configuration dialog</source>
-      <translation>Abrir diálogo de configuração</translation>
+      <translation>Configurações</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="57"/>
