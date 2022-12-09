@@ -74,7 +74,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
-      <translation>Primeira linha representa os nomes das colunas CSV</translation>
+      <translation>A primeira linha será os nomes das colunas</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
