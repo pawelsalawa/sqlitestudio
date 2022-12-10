@@ -7,6 +7,7 @@
 - BUGFIX: #4422 Portable configuration also prevents SQLiteStudio from touching Windows registry.
 - BUGFIX: #3759 Fixed using independent SQLiteStudio instances by different Unix users simultaneously, regardless of one's settings.
 - BUGFIX: #4198 When copying/moving table with name-colliding index (or trigger) to another database, the name conflict resolution now actually works.
+- BUGFIX: #3541 Standardized commit/rollback hotkeys for: functions editor, extensions editor, collations editor, snippets editor, table window structure tab, view window query tab.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
