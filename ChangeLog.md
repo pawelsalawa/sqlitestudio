@@ -6,6 +6,7 @@
 - BUGFIX: #3767 Fixed copying objects between unencrypted and encrypted databases, also fixed copying tables with generated columns.
 - BUGFIX: #4422 Portable configuration also prevents SQLiteStudio from touching Windows registry.
 - BUGFIX: #3759 Fixed using independent SQLiteStudio instances by different Unix users simultaneously, regardless of one's settings.
+- BUGFIX: #4198 When copying/moving table with name-colliding index (or trigger) to another database, the name conflict resolution now actually works.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1

@@ -21,6 +21,8 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         SqliteStatement* clone();
         QString getTargetDatabase() const;
         void setTargetDatabase(const QString& database);
+        QString getObjectName() const;
+        void setObjectName(const QString& name);
 
         bool tempKw = false;
         bool temporaryKw = false;

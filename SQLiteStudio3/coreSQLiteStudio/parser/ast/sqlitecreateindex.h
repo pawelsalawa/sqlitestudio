@@ -29,6 +29,8 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         QString getTargetTable() const;
         QString getTargetDatabase() const;
         void setTargetDatabase(const QString& database);
+        QString getObjectName() const;
+        void setObjectName(const QString& name);
 
         bool uniqueKw = false;
         bool ifNotExistsKw = false;

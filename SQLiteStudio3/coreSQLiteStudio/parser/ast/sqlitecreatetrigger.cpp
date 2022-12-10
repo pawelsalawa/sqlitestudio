@@ -370,3 +370,13 @@ void SqliteCreateTrigger::setTargetDatabase(const QString& database)
 {
     this->database = database;
 }
+
+QString SqliteCreateTrigger::getObjectName() const
+{
+    return trigger;
+}
+
+void SqliteCreateTrigger::setObjectName(const QString& name)
+{
+    trigger = name;
+}

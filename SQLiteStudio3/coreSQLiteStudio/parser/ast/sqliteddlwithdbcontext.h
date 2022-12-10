@@ -9,6 +9,9 @@ class API_EXPORT SqliteDdlWithDbContext
     public:
         virtual QString getTargetDatabase() const = 0;
         virtual void setTargetDatabase(const QString& database) = 0;
+
+        virtual QString getObjectName() const = 0;
+        virtual void setObjectName(const QString& name) = 0;
 };
 
 typedef QSharedPointer<SqliteDdlWithDbContext> SqliteDdlWithDbContextPtr;

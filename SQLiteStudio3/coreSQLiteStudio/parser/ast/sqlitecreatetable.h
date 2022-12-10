@@ -207,6 +207,8 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         QHash<QString,QString> getModifiedColumnsMap(bool lowercaseKeys = false, Qt::CaseSensitivity cs = Qt::CaseInsensitive) const;
         QString getTargetDatabase() const;
         void setTargetDatabase(const QString& database);
+        QString getObjectName() const;
+        void setObjectName(const QString& name);
 
         bool ifNotExistsKw = false;
         bool tempKw = false;

@@ -875,3 +875,13 @@ void SqliteCreateTable::setTargetDatabase(const QString& database)
 {
     this->database = database;
 }
+
+QString SqliteCreateTable::getObjectName() const
+{
+    return table;
+}
+
+void SqliteCreateTable::setObjectName(const QString& name)
+{
+    table = name;
+}
