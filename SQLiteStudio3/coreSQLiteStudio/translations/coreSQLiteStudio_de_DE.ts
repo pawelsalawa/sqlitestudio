@@ -189,59 +189,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
-      <location filename="../dbobjectorganizer.cpp" line="405"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
+      <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Fehler beim Erstellen einer Tabelle in der Zieldatenbank %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
       <translation>Die Tabelle konnte nicht verarbeitet werden.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="419"/>
+      <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Datenbank %1 konnte nicht mit Datenbank %2 verbunden werden, daher werden die Daten der Tabelle %3 durch SQLiteStudio kopiert. Diese Methode kann bei großen Tabellen sehr lange dauern, bitte haben Sie Geduld.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="443"/>
+      <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Fehler beim Kopieren von Daten für Tabelle %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <location filename="../dbobjectorganizer.cpp" line="469"/>
-      <location filename="../dbobjectorganizer.cpp" line="496"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="468"/>
+      <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Fehler beim Kopieren von Daten in die Tabelle %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="518"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Fehler beim Entfernen des Quellviews %1: %2
 Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden auf der Quelldatenbank verbleiben.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="525"/>
+      <location filename="../dbobjectorganizer.cpp" line="524"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Fehler beim Erstellen eines Views  in der Zieldatenbank %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="530"/>
+      <location filename="../dbobjectorganizer.cpp" line="529"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Fehler beim Erstellen eines Indizes  in der Zieldatenbank %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="535"/>
+      <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Fehler beim Erstellen eines Triggers in der Zieldatenbank %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="687"/>
-      <location filename="../dbobjectorganizer.cpp" line="694"/>
-      <location filename="../dbobjectorganizer.cpp" line="703"/>
+      <location filename="../dbobjectorganizer.cpp" line="679"/>
+      <location filename="../dbobjectorganizer.cpp" line="686"/>
+      <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>Objekt &apos;%1&apos; konnte analysieren, um es zu verschieben oder kopieren zu können.</translation>
     </message>

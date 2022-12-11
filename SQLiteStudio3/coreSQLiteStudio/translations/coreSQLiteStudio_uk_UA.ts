@@ -189,59 +189,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
-      <location filename="../dbobjectorganizer.cpp" line="405"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
+      <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="374"/>
+      <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
       <translation>Не вдалося проаналізувати структуру таблиці.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="419"/>
+      <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Неможливо приєднати базу даних %1 до бази даних %2, тому дані таблиці %3 будуть скопійовані за допомогою SQLiteStudio. Цей метод може бути повільним для великих таблиць, так що наберіться терпіння.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="443"/>
+      <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Помилка при копіюванні даних з таблиці %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <location filename="../dbobjectorganizer.cpp" line="469"/>
-      <location filename="../dbobjectorganizer.cpp" line="496"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="468"/>
+      <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Помилка при копіюванні даних в таблицю %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="518"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Помилка при видаленні розрізу даних (view) %1: %2
 Таблиці, індекси, тригери та перегляди, що скопійовані в базу %3, залишаться.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="525"/>
+      <location filename="../dbobjectorganizer.cpp" line="524"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="530"/>
+      <location filename="../dbobjectorganizer.cpp" line="529"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Помилка створення індексу в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="535"/>
+      <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Помилка створення тригера в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="687"/>
-      <location filename="../dbobjectorganizer.cpp" line="694"/>
-      <location filename="../dbobjectorganizer.cpp" line="703"/>
+      <location filename="../dbobjectorganizer.cpp" line="679"/>
+      <location filename="../dbobjectorganizer.cpp" line="686"/>
+      <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>Не вдалося проаналізувати об&apos;єкт &apos;%1&apos; для того, щоб перемістити або скопіювати його.</translation>
     </message>
