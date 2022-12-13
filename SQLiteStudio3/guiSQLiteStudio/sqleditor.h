@@ -1,6 +1,7 @@
 #ifndef SQLEDITOR_H
 #define SQLEDITOR_H
 
+#include "common/strhash.h"
 #include "guiSQLiteStudio_global.h"
 #include "common/extactioncontainer.h"
 #include "sqlitesyntaxhighlighter.h"
@@ -227,7 +228,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool deletionKeyPressed = false;
         LazyTrigger* queryParserTrigger = nullptr;
         Parser* queryParser = nullptr;
-        QHash<QString,QStringList> objectsInNamedDb;
+        StrHash<QStringList> objectsInNamedDb;
         bool objectLinksEnabled = false;
         QList<DbObject> validDbObjects;
         QWidget* lineNumberArea = nullptr;

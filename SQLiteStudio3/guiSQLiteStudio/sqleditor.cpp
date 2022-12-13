@@ -985,7 +985,7 @@ void SqlEditor::checkForValidObjects()
         for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
             dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
-            if (!objectsInNamedDb.contains(dbName))
+            if (!objectsInNamedDb.contains(dbName, Qt::CaseInsensitive))
                 continue;
 
             if (fullObj.type == SqliteStatement::FullObject::DATABASE)
@@ -995,7 +995,7 @@ void SqlEditor::checkForValidObjects()
                 continue;
             }
 
-            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value)))
+            if (!objectsInNamedDb[dbName].contains(stripObjName(fullObj.object->value), Qt::CaseInsensitive))
                 continue;
 
             // Valid object name

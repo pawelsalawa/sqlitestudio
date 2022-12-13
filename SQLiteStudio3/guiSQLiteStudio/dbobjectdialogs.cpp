@@ -4,6 +4,7 @@
 #include "dialogs/triggerdialog.h"
 #include "common/utils_sql.h"
 #include "dbtree/dbtree.h"
+#include "schemaresolver.h"
 #include "services/notifymanager.h"
 #include "mdiarea.h"
 #include "mdiwindow.h"
@@ -128,20 +129,22 @@ void DbObjectDialogs::editObject(const QString& name)
 
 void DbObjectDialogs::editObject(const QString& database, const QString& name)
 {
-    Type type = getObjectType(database, name);
+    SchemaResolver schemaResolver(db);
+    QString normalizedName = schemaResolver.normalizeCaseObjectName(database, name);
+    Type type = getObjectType(database, normalizedName);
     switch (type)
     {
         case Type::TABLE:
-            editTable(database, name);
+            editTable(database, normalizedName);
             break;
         case Type::INDEX:
-            editIndex(name);
+            editIndex(normalizedName);
             break;
         case Type::TRIGGER:
-            editTrigger(name);
+            editTrigger(normalizedName);
             break;
         case Type::VIEW:
-            editView(database, name);
+            editView(database, normalizedName);
             break;
         default:
         {
@@ -158,7 +161,6 @@ bool DbObjectDialogs::dropObject(const QString& name)
 
 bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
 {
-    static const QString dropSql2 = "DROP %1 %2;";
     static const QString dropSql3 = "DROP %1 %2.%3;";
 
     QString dbName = wrapObjIfNeeded(database);
@@ -210,7 +212,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
     results = db->exec(finalSql);
     if (results->isError())
     {
-        notifyError(tr("Error while dropping %1: %2").arg(name).arg(results->getErrorText()));
+        notifyError(tr("Error while dropping %1: %2").arg(name, results->getErrorText()));
         qCritical() << "Error while dropping object " << database << "." << name << ":" << results->getErrorText();
         return false;
     }
@@ -366,7 +368,7 @@ void DbObjectDialogs::setNoConfirmation(bool value)
 TableWindow* DbObjectDialogs::editTable(const QString& database, const QString& table)
 {
     TableWindow* win = nullptr;
-    for (MdiWindow* mdiWin : mdiArea->getWindows())
+    for (MdiWindow*& mdiWin : mdiArea->getWindows())
     {
         win = dynamic_cast<TableWindow*>(mdiWin->getMdiChild());
         if (!win)
