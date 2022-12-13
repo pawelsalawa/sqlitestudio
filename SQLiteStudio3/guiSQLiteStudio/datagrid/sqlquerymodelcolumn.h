@@ -29,7 +29,8 @@ class GUI_API_EXPORT SqlQueryModelColumn
             SMART_EXECUTION_FAILED,
             DISTINCT_RESULTS,
             COMMON_TABLE_EXPRESSION,
-            GENERATED_COLUMN
+            GENERATED_COLUMN,
+            VIEW_NOT_EXPANDED
         };
 
         struct Constraint

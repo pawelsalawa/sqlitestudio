@@ -174,6 +174,10 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
                                * in COMPOUND_SELECT case. To learn about common table expression statement,
                                * see http://sqlite.org/lang_with.html
                                */
+            VIEW_NOT_EXPANDED,/**<
+                               * The data cell comes from a VIEW that was not expanded (because there were
+                               * multi-level views), therefore it was impossible to get ROWID for the cell.
+                               */
         };
 
         /**

@@ -499,7 +499,7 @@ bool SqlQueryView::validatePasting(QSet<QString>& warnedColumns, bool& warnedRow
         if (!warnedColumns.contains(colName))
         {
             warnedColumns << colName;
-            notifyWarn(tr("Cannot paste to column %1. Details: %2").arg(colName).arg(item->getColumn()->getEditionForbiddenReason()));
+            notifyWarn(tr("Cannot paste to column %1. Details: %2").arg(colName, item->getColumn()->getEditionForbiddenReason()));
         }
         return false;
     }
