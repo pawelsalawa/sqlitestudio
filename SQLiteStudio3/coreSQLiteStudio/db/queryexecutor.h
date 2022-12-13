@@ -652,6 +652,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * message from smart execution.
              */
             QString errorMessageFromSmartExecution;
+
+            /**
+             * @brief Flag indicating whether views were replaced/expanded.
+             *
+             * In other words, this flag tells whether the ReplaceViews step of query executor
+             * was executed, or skipped (due to many levels of views). False = skipped.
+             */
+            bool viewsExpanded = false;
         };
 
         /**

@@ -720,7 +720,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
     {
         qCritical() << "Number of columns resolved by internal SchemaResolver is different than resolved by SQLite API:"
                     << columnSourcesFromInternal.size() << "!=" << columnSources.size()
-                    << ", therefore table alias";
+                    << ", therefore table alias may be identified incorrectly (from resolver, but not by SQLite API)";
     }
 
     if (compound)
@@ -738,6 +738,9 @@ QList<SelectResolver::Column> SelectResolver::resolveView(SqliteSelect::Core::Si
     static_qstring(columnSqlTpl, "SELECT * FROM %1 LIMIT 0");
     QList<Column> results = sqliteResolveColumns(columnSqlTpl.arg(joinSrc->detokenize()));
     applySubSelectAlias(results, (!joinSrc->alias.isNull() ? joinSrc->alias : joinSrc->table));
+    for (Column& column : results)
+        column.flags |= FROM_VIEW;
+
     return results;
 }
 

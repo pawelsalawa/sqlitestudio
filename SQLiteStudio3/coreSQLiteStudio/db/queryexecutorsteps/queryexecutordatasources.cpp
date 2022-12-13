@@ -1,6 +1,7 @@
 #include "queryexecutordatasources.h"
 #include "parser/ast/sqliteselect.h"
 #include "selectresolver.h"
+#include <QDebug>
 
 bool QueryExecutorDataSources::exec()
 {
@@ -19,7 +20,7 @@ bool QueryExecutorDataSources::exec()
 
     SqliteSelect::Core* core = select->coreSelects.first();
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
-    for (SelectResolver::Table resolvedTable : tables)
+    for (const SelectResolver::Table& resolvedTable : tables)
     {
         if (resolvedTable.flags & SelectResolver::FROM_CTE_SELECT)
             continue;

@@ -68,39 +68,20 @@ SqliteCreateViewPtr QueryExecutorReplaceViews::getView(const QString& database, 
 void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
 {
     SqliteSelect::Core* core = select->coreSelects.first();
-
-    QStringList viewsInDatabase;
-    SqliteCreateViewPtr view;
-
     QList<SqliteSelect::Core::SingleSource*> sources = core->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
 
-    QList<SqliteSelect::Core::SingleSource*> viewSources;
-    QSet<SqliteStatement*> parents;
+    typedef QPair<SqliteSelect::Core::SingleSource*, SqliteCreateViewPtr> SourceViewPair;
+    SqliteCreateViewPtr view;
+    QList<SourceViewPair> sourceViewPairs;
     for (SqliteSelect::Core::SingleSource* src : sources)
     {
         if (src->table.isNull())
             continue;
 
-        viewsInDatabase = getViews(src->database);
+        QStringList viewsInDatabase = getViews(src->database);
         if (!viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
             continue;
 
-        parents << src->parentStatement();
-        viewSources << src;
-    }
-
-    if (parents.size() > 1)
-    {
-        // Multi-level views (view selecting from view, selecting from view...).
-        // Such constructs build up easily to huge, non-optimized queries.
-        // For performance reasons, we won't expand such views.
-        qDebug() << "Multi-level views. Skipping view expanding feature of query executor. Some columns won't be editable due to that. Number of different view parents:"
-                 << parents.size();
-        return;
-    }
-
-    for (SqliteSelect::Core::SingleSource* src : viewSources)
-    {
         view = getView(src->database, src->table);
         if (!view)
         {
@@ -109,15 +90,50 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
             continue;
         }
 
-        QString alias = src->alias.isNull() ? view->view : src->alias;
+        if (usesAnyView(view->select, viewsInDatabase))
+        {
+            // Multi-level views (view selecting from view, selecting from view...).
+            // Such constructs build up easily to huge, non-optimized queries.
+            // For performance reasons, we won't expand such views.
+            qDebug() << "Multi-level views. Skipping view expanding feature of query executor. Some columns won't be editable due to that.";
+            return;
+        }
 
-        src->select = view->select;
-        src->alias = alias;
-        src->database = QString();
-        src->table = QString();
-
-        replaceViews(src->select);
+        sourceViewPairs << SourceViewPair(src, view);
     }
+
+    for (SourceViewPair& pair : sourceViewPairs)
+    {
+        view = pair.second;
+
+        QString alias = pair.first->alias.isNull() ? view->view : pair.first->alias;
+
+        pair.first->select = view->select;
+        pair.first->alias = alias;
+        pair.first->database = QString();
+        pair.first->table = QString();
+
+        // replaceViews(src->select); // No recursion, as we avoid multi-level expanding.
+    }
+
+    context->viewsExpanded = true;
+}
+
+bool QueryExecutorReplaceViews::usesAnyView(SqliteSelect* select, const QStringList& viewsInDatabase)
+{
+    for (SqliteSelect::Core*& core : select->coreSelects)
+    {
+        QList<SqliteSelect::Core::SingleSource*> sources = core->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
+        for (SqliteSelect::Core::SingleSource* src : sources)
+        {
+            if (src->table.isNull())
+                continue;
+
+            if (viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
+                return true;
+        }
+    }
+    return false;
 }
 
 uint qHash(const QueryExecutorReplaceViews::View& view)
