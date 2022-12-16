@@ -129,3 +129,13 @@ void SqliteCreateView::setTargetDatabase(const QString& database)
 {
     this->database = database;
 }
+
+QString SqliteCreateView::getObjectName() const
+{
+    return view;
+}
+
+void SqliteCreateView::setObjectName(const QString& name)
+{
+    view = name;
+}

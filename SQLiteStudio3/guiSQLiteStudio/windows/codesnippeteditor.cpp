@@ -84,7 +84,7 @@ void CodeSnippetEditor::createActions()
 void CodeSnippetEditor::setupDefShortcuts()
 {
     // Widget context
-    setShortcutContext({COMMIT}, Qt::WidgetWithChildrenShortcut);
+    setShortcutContext({COMMIT, ROLLBACK}, Qt::WidgetWithChildrenShortcut);
     BIND_SHORTCUTS(CodeSnippetEditor, Action);
 }
 

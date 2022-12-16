@@ -84,7 +84,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool copyViewToDb(const QString& view);
         bool copyIndexToDb(const QString& index);
         bool copyTriggerToDb(const QString& trigger);
-        bool copySimpleObjectToDb(const QString& name, const QString& errorMessage);
+        bool copySimpleObjectToDb(const QString& name, const QString& errorMessage, SchemaResolver::ObjectType objectType);
         QSet<QString> resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables);
         void collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         void collectReferencedIndexes(const QString& table);
@@ -105,7 +105,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool rollback();
         void emitFinished(bool success);
         bool execConfirmFunctionInMainThread(const QStringList& tables);
-        QString prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl);
+        QString processSimpleObjectAttachNameAndRename(const QString& objName, const QString& ddl);
 
         ReferencedTablesConfimFunction confirmFunction;
         NameConflictResolveFunction nameConflictResolveFunction;

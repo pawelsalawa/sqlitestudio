@@ -84,7 +84,7 @@ void FunctionsEditor::createActions()
 void FunctionsEditor::setupDefShortcuts()
 {
     // Widget context
-    setShortcutContext({COMMIT}, Qt::WidgetWithChildrenShortcut);
+    setShortcutContext({COMMIT, ROLLBACK}, Qt::WidgetWithChildrenShortcut);
     BIND_SHORTCUTS(FunctionsEditor, Action);
 }
 

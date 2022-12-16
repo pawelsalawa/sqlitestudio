@@ -172,3 +172,13 @@ void SqliteCreateIndex::setTargetDatabase(const QString& database)
 {
     this->database = database;
 }
+
+QString SqliteCreateIndex::getObjectName() const
+{
+    return index;
+}
+
+void SqliteCreateIndex::setObjectName(const QString& name)
+{
+    index = name;
+}

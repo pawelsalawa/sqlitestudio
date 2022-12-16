@@ -21,6 +21,7 @@ class SelectableDbModel;
 
 CFG_KEY_LIST(FunctionsEditor, QObject::tr("A function editor window"),
     CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+    CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
 class GUI_API_EXPORT FunctionsEditor : public MdiChild

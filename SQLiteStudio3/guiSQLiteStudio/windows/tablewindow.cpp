@@ -211,10 +211,10 @@ void TableWindow::createActions()
 
 void TableWindow::createStructureActions()
 {
-    createAction(REFRESH_STRUCTURE, ICONS.RELOAD, tr("Refresh structure", "table window"), this, SLOT(refreshStructure()), ui->structureToolBar);
+    createAction(REFRESH_STRUCTURE, ICONS.RELOAD, tr("Refresh structure", "table window"), this, SLOT(refreshStructure()), ui->structureToolBar, ui->structureView);
     ui->structureToolBar->addSeparator();
-    createAction(COMMIT_STRUCTURE, ICONS.COMMIT, tr("Commit structure changes", "table window"), this, SLOT(commitStructure()), ui->structureToolBar);
-    createAction(ROLLBACK_STRUCTURE, ICONS.ROLLBACK, tr("Rollback structure changes", "table window"), this, SLOT(rollbackStructure()), ui->structureToolBar);
+    createAction(COMMIT_STRUCTURE, ICONS.COMMIT, tr("Commit structure changes", "table window"), this, SLOT(commitStructure()), ui->structureToolBar, ui->structureView);
+    createAction(ROLLBACK_STRUCTURE, ICONS.ROLLBACK, tr("Rollback structure changes", "table window"), this, SLOT(rollbackStructure()), ui->structureToolBar, ui->structureView);
     createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add column", "table window"), this, SLOT(addColumn()), ui->structureToolBar, ui->structureView);
     createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit column", "table window"), this, SLOT(editColumn()), ui->structureToolBar, ui->structureView);
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "table window"), this, SLOT(delColumn()), ui->structureToolBar, ui->structureView);
@@ -452,8 +452,9 @@ void TableWindow::setupDefShortcuts()
 {
     // Widget context
     setShortcutContext({
+                           COMMIT_STRUCTURE,
+                           ROLLBACK_STRUCTURE,
                            REFRESH_STRUCTURE,
-                           REFRESH_INDEXES,
                            REFRESH_TRIGGERS,
                            ADD_COLUMN,
                            EDIT_COLUMN,

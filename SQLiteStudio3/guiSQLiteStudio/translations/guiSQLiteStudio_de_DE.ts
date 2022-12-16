@@ -4984,12 +4984,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished">Commit the table structure</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation type="unfinished">Rollback pending changes in the table structure</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5104,7 +5104,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Rollback pending changes in the view&apos;s query</source>
-      <translation type="unfinished">Rollback pending changes in the view&apos;s query</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
@@ -5135,7 +5135,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
-      <translation type="unfinished">Rollback the pending changes</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>

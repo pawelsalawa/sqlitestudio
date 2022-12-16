@@ -1,7 +1,6 @@
 #include "dbobjectorganizer.h"
 #include "db/db.h"
 #include "common/utils_sql.h"
-#include "datatype.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
 #include "common/compatibility.h"
@@ -522,40 +521,30 @@ void DbObjectOrganizer::dropObject(const QString& name, const QString& type)
 
 bool DbObjectOrganizer::copyViewToDb(const QString& view)
 {
-    return copySimpleObjectToDb(view, tr("Error while creating view in target database: %1"));
+    return copySimpleObjectToDb(view, tr("Error while creating view in target database: %1"), SchemaResolver::VIEW);
 }
 
 bool DbObjectOrganizer::copyIndexToDb(const QString& index)
 {
-    return copySimpleObjectToDb(index, tr("Error while creating index in target database: %1"));
+    return copySimpleObjectToDb(index, tr("Error while creating index in target database: %1"),SchemaResolver::INDEX);
 }
 
 bool DbObjectOrganizer::copyTriggerToDb(const QString& trigger)
 {
-    return copySimpleObjectToDb(trigger, tr("Error while creating trigger in target database: %1"));
+    return copySimpleObjectToDb(trigger, tr("Error while creating trigger in target database: %1"), SchemaResolver::TRIGGER);
 }
 
-bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage)
+bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage, SchemaResolver::ObjectType objectType)
 {
-    QString ddl = srcResolver->getObjectDdl(name, SchemaResolver::ANY);
+    QString ddl = srcResolver->getObjectDdl(name, objectType);
     if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlQueryPtr result;
+    ddl = processSimpleObjectAttachNameAndRename(name, ddl);
+    if (ddl.isNull())
+        return false;
 
-    if (!attachName.isNull())
-    {
-        ddl = prefixSimpleObjectWithAttachName(name, ddl);
-        if (ddl.isNull())
-            return false;
-
-        result = srcDb->exec(ddl);
-    }
-    else
-    {
-        result = dstDb->exec(ddl);
-    }
-
+    SqlQueryPtr result = srcDb->exec(ddl);
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
@@ -580,7 +569,7 @@ void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrH
 {
     QList<SqliteCreateTablePtr> parsedTables;
     SqliteCreateTablePtr parsedTable;
-    for (SqliteQueryPtr query : allParsedObjects.values())
+    for (SqliteQueryPtr& query : allParsedObjects.values())
     {
         parsedTable = query.dynamicCast<SqliteCreateTable>();
         if (parsedTable)
@@ -678,8 +667,11 @@ bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& table
     return res;
 }
 
-QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl)
+QString DbObjectOrganizer::processSimpleObjectAttachNameAndRename(const QString& objName, const QString& ddl)
 {
+    if (attachName.isNull() && !renamed.contains(objName))
+        return ddl;
+
     Parser parser;
     if (!parser.parse(ddl))
     {
@@ -704,7 +696,12 @@ QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objNa
         return QString();
     }
 
-    ddlWithDb->setTargetDatabase(attachName);
+    if (!attachName.isNull())
+        ddlWithDb->setTargetDatabase(attachName);
+
+    if (renamed.contains(objName))
+        ddlWithDb->setObjectName(renamed[objName]);
+
     query->rebuildTokens();
     return query->tokens.detokenize();
 }

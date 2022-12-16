@@ -19,6 +19,7 @@ class LazyTrigger;
 
 CFG_KEY_LIST(SqliteExtensionEditor, QObject::tr("A SQLite extension editor window"),
     CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+    CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
 class SqliteExtensionEditor : public MdiChild

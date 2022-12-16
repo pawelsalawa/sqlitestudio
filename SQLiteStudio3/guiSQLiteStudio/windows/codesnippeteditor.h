@@ -15,6 +15,7 @@ class QItemSelection;
 
 CFG_KEY_LIST(CodeSnippetEditor, QObject::tr("A code snippets editor window"),
     CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+    CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
 class CodeSnippetEditor : public MdiChild

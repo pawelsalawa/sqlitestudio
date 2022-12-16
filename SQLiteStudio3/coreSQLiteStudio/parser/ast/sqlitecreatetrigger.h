@@ -66,6 +66,8 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
         QString getTargetTable() const;
         QString getTargetDatabase() const;
         void setTargetDatabase(const QString& database);
+        QString getObjectName() const;
+        void setObjectName(const QString& name);
 
         bool tempKw = false;
         bool temporaryKw = false;

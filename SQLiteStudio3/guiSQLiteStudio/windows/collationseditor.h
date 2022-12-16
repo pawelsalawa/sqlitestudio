@@ -19,6 +19,7 @@ class QSyntaxHighlighter;
 
 CFG_KEY_LIST(CollationsEditor, QObject::tr("A collation editor window"),
     CFG_KEY_ENTRY(COMMIT,     QKeySequence::Save,        QObject::tr("Commit the pending changes"))
+    CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
 class GUI_API_EXPORT CollationsEditor : public MdiChild
