@@ -86,6 +86,14 @@ class QueryExecutorReplaceViews : public QueryExecutorStep
         void replaceViews(SqliteSelect* select);
 
         /**
+         * @brief Tells whether particular SELECT statement has any View as a data source.
+         * @param select Parsed SELECT statement.
+         * @param viewsInDatabase Prepared list of views existing in the database.
+         * @return true if the SELECT uses at least one existing View.
+         */
+        bool usesAnyView(SqliteSelect* select, const QStringList& viewsInDatabase);
+
+        /**
          * @brief Used for caching view list per database.
          */
         QHash<QString,QStringList> views;

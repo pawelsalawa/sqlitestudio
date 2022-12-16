@@ -191,6 +191,9 @@ class API_EXPORT SchemaResolver
         bool getNoDbLocking() const;
         void setNoDbLocking(bool value);
 
+        QString normalizeCaseObjectName(const QString& name);
+        QString normalizeCaseObjectName(const QString& database, const QString& name);
+
         static QString objectTypeToString(ObjectType type);
         static ObjectType stringToObjectType(const QString& type);
         static void staticInit();
@@ -208,6 +211,7 @@ class API_EXPORT SchemaResolver
         QString getObjectDdlWithDifficultName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         QString getObjectDdlWithSimpleName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         StrHash<QString> getIndexesWithTables(const QString& database = QString());
+        QString normalizeCaseObjectNameByQuery(const QString& query, const QString& name);
 
         template <class T>
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);

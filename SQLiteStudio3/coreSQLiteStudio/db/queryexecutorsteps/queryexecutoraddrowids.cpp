@@ -59,7 +59,9 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         unite(rowIdColsMap, addRowIdForTables(subSelect, ok, false));
         if (!ok)
             return rowIdColsMap;
+
     }
+    core->rebuildTokens();
 
     // Getting all tables we need to get ROWID for
     SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
@@ -70,7 +72,11 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     {
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT |
                            SelectResolver::FROM_CTE_SELECT))
-            continue; // we don't get ROWID from compound, distinct or aggregated subselects
+            continue; // we don't get ROWID from compound, distinct or aggregated subselects.
+
+        // Tables from inside of view don't provide ROWID, if views were not expanded.
+        if (!context->viewsExpanded && table.flags & SelectResolver::FROM_VIEW)
+            continue;
 
         if (checkInWithClause(table, select->with))
             continue; // we don't get ROWID from WITH clause, as it's likely to be recurrent and difficult. TODO: support columns from WITH clause

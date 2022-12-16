@@ -111,6 +111,9 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
         if (resolvedColumn.flags & SelectResolver::FROM_CTE_SELECT)
             resultColumn->editionForbiddenReasons << QueryExecutor::ColumnEditionForbiddenReason::COMM_TAB_EXPR;
 
+        if (resolvedColumn.flags & SelectResolver::FROM_VIEW)
+            resultColumn->editionForbiddenReasons << QueryExecutor::ColumnEditionForbiddenReason::VIEW_NOT_EXPANDED;
+
         resultColumn->database = resolvedColumn.originalDatabase;
         resultColumn->table = resolvedColumn.table;
         resultColumn->column = resolvedColumn.column;

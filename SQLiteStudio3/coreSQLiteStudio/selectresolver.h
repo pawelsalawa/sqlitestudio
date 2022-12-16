@@ -62,7 +62,8 @@ class API_EXPORT SelectResolver
             FROM_ANONYMOUS_SELECT = 0x02,
             FROM_DISTINCT_SELECT = 0x04,
             FROM_GROUPED_SELECT = 0x08,
-            FROM_CTE_SELECT = 0x10
+            FROM_CTE_SELECT = 0x10,
+            FROM_VIEW = 0x20
         };
 
         /**

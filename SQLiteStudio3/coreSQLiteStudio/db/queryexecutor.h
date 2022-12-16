@@ -174,6 +174,10 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
                                * in COMPOUND_SELECT case. To learn about common table expression statement,
                                * see http://sqlite.org/lang_with.html
                                */
+            VIEW_NOT_EXPANDED,/**<
+                               * The data cell comes from a VIEW that was not expanded (because there were
+                               * multi-level views), therefore it was impossible to get ROWID for the cell.
+                               */
         };
 
         /**
@@ -652,6 +656,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * message from smart execution.
              */
             QString errorMessageFromSmartExecution;
+
+            /**
+             * @brief Flag indicating whether views were replaced/expanded.
+             *
+             * In other words, this flag tells whether the ReplaceViews step of query executor
+             * was executed, or skipped (due to many levels of views). False = skipped.
+             */
+            bool viewsExpanded = false;
         };
 
         /**
@@ -1221,7 +1233,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
-        QStringList applyLimitForSimpleMethod(const QStringList &queries);
+        QStringList applyLimitAndOrderForSimpleMethod(const QStringList &queries);
 
         /**
          * @brief Creates instances of steps for all registered factories for given position.

@@ -1305,6 +1305,31 @@ void SchemaResolver::setNoDbLocking(bool value)
         dbFlags ^= Db::Flag::NO_LOCK;
 }
 
+QString SchemaResolver::normalizeCaseObjectName(const QString& name)
+{
+    static_qstring(sql, "SELECT name FROM main.sqlite_master WHERE lower(name) = lower(?);");
+    return normalizeCaseObjectNameByQuery(sql, name);
+}
+
+QString SchemaResolver::normalizeCaseObjectName(const QString& database, const QString& name)
+{
+    static_qstring(sql, "SELECT name FROM %1.sqlite_master WHERE lower(name) = lower(?);");
+    QString query = sql.arg(wrapObjIfNeeded(database));
+    return normalizeCaseObjectNameByQuery(query, name);
+}
+
+QString SchemaResolver::normalizeCaseObjectNameByQuery(const QString& query, const QString& name)
+{
+    SqlQueryPtr results = db->exec(query, {name});
+    if (results->isError())
+    {
+        qCritical() << "Could not get object name normalized case. Object name:" << name << ", error:"
+                    << results->getErrorText();
+        return name;
+    }
+
+    return results->getSingleCell().toString();
+}
 
 SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, const QString& value1, const QString& value2, const QString& value3) :
     type(type), db(db), value1(value1), value2(value2), value3(value3)
