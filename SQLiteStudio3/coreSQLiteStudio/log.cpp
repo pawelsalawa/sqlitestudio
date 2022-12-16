@@ -75,3 +75,8 @@ void logExecutorAfterStep(const QString& str)
 
     qDebug() << getLogDateTime() << str;
 }
+
+bool isExecutorLoggingEnabled()
+{
+    return EXECUTOR_DEBUG;
+}

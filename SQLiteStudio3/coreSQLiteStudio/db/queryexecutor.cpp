@@ -410,7 +410,7 @@ QList<QueryExecutor::ResultRowIdColumnPtr> QueryExecutor::getRowIdResultColumns(
 int QueryExecutor::getMetaColumnCount() const
 {
     int count = 0;
-    for (ResultRowIdColumnPtr rowIdCol : context->rowIdColumns)
+    for (ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
         count += rowIdCol->queryExecutorAliasToColumn.size();
 
     return count;
@@ -444,7 +444,9 @@ void QueryExecutor::executeSimpleMethod()
     if (queriesForSimpleExecution.isEmpty())
         queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
 
-    QStringList queriesWithPagination = applyLimitForSimpleMethod(queriesForSimpleExecution);
+    QStringList queriesWithPagination = applyLimitAndOrderForSimpleMethod(queriesForSimpleExecution);
+    if (isExecutorLoggingEnabled())
+        qDebug() << "Simple Execution Method query:" << queriesWithPagination.join("; ");
 
     simpleExecutor->setQueries(queriesWithPagination);
     simpleExecutor->setDb(db);
@@ -473,7 +475,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
 
     ResultColumnPtr resCol;
     context->resultColumns.clear();
-    for (const QString& colName : results->getColumnNames())
+    for (QString& colName : results->getColumnNames())
     {
         resCol = ResultColumnPtr::create();
         resCol->displayName = colName;
@@ -552,7 +554,7 @@ bool QueryExecutor::simpleExecIsSelect()
 void QueryExecutor::cleanup()
 {
     Db* attDb = nullptr;
-    for (const QString& attDbName : context->dbNameToAttach.leftValues())
+    for (QString& attDbName : context->dbNameToAttach.leftValues())
     {
         attDb = DBLIST->getByName(attDbName, Qt::CaseInsensitive);
         if (attDbName.isNull())
@@ -591,29 +593,54 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
     return true;
 }
 
-QStringList QueryExecutor::applyLimitForSimpleMethod(const QStringList &queries)
+QStringList QueryExecutor::applyLimitAndOrderForSimpleMethod(const QStringList &queries)
 {
     static_qstring(tpl, "SELECT * FROM (%1) LIMIT %2 OFFSET %3");
-    if (page < 0)
-        return queries; // no paging requested
+    static_qstring(sortTpl, "SELECT * FROM (%1) ORDER BY %2");
+    static_qstring(sortColTpl, "%1 %2");
+
+    if (page < 0 && sortOrder.isEmpty())
+        return queries;
 
     QStringList result = queries;
     QString lastQuery = queries.last();
 
     bool isSelect = false;
     getQueryAccessMode(lastQuery, &isSelect);
-    if (isSelect)
+
+    // ORDER BY
+    if (!sortOrder.isEmpty())
     {
-        result.removeLast();
-        result << tpl.arg(trimQueryEnd(lastQuery), QString::number(resultsPerPage), QString::number(page * resultsPerPage));
+        QStringList cols;
+        for (QueryExecutor::Sort& sort : sortOrder)
+        {
+            cols << sortColTpl.arg(
+                QString::number(sort.column + 1), // in ORDER BY column indexes are 1-based
+                (sort.order == QueryExecutor::Sort::DESC) ? "DESC" : "ASC"
+                );
+        }
+        lastQuery = sortTpl.arg(trimQueryEnd(lastQuery), cols.join(", "));
     }
+
+    // LIMIT
+    if (page >= 0 && isSelect)
+    {
+        lastQuery = tpl.arg(
+            trimQueryEnd(lastQuery),
+            QString::number(resultsPerPage),
+            QString::number(page * resultsPerPage)
+            );
+    }
+
+    result.removeLast();
+    result << lastQuery;
     return result;
 }
 
 QList<QueryExecutorStep*> QueryExecutor::createSteps(QueryExecutor::StepPosition position)
 {
     QList<QueryExecutorStep*> steps;
-    for (StepFactory* factory : additionalStatefulStepFactories[position])
+    for (StepFactory*& factory : additionalStatefulStepFactories[position])
         steps << factory->produceQueryExecutorStep();
 
     return steps;
@@ -708,7 +735,7 @@ void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
     {
         QString match;
         QString replaceName;
-        for (const QString& attachName : context->dbNameToAttach.rightValues())
+        for (QString& attachName : context->dbNameToAttach.rightValues())
         {
             match = attachName + ".";
             replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName)) + ".";
@@ -746,7 +773,7 @@ bool QueryExecutor::wasDataModifyingQuery() const
 QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::ResultColumnPtr>& columns, bool noDbLocking)
 {
     QSet<Table> tables;
-    for (ResultColumnPtr col : columns)
+    for (ResultColumnPtr& col : columns)
         tables << Table(col->database, col->table);
 
     SchemaResolver resolver(db);
@@ -768,7 +795,7 @@ QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::R
     QList<DataType> datatypeList;
     Table t;
     SqliteCreateTable::Column* parsedCol = nullptr;
-    for (ResultColumnPtr col : columns)
+    for (ResultColumnPtr& col : columns)
     {
         t = Table(col->database, col->table);
         if (!parsedTables.contains(t))

@@ -1233,7 +1233,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
-        QStringList applyLimitForSimpleMethod(const QStringList &queries);
+        QStringList applyLimitAndOrderForSimpleMethod(const QStringList &queries);
 
         /**
          * @brief Creates instances of steps for all registered factories for given position.
