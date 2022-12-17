@@ -4425,7 +4425,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
@@ -4990,12 +4990,12 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Commit the table structure</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Rollback pending changes in the table structure</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5110,7 +5110,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Rollback pending changes in the view&apos;s query</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Rollback pending changes in the view&apos;s query</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
@@ -5141,7 +5141,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Rollback the pending changes</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>
