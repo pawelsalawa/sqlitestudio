@@ -996,12 +996,12 @@ The view will remain as it is.</source>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="340"/>
-      <location filename="../db/queryexecutor.cpp" line="587"/>
+      <location filename="../db/queryexecutor.cpp" line="589"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Сталася помилка під час виконання count(*) запиту, тому розбивка даних по сторінках буде вимкнено. Деталі помилки з бази даних: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="498"/>
+      <location filename="../db/queryexecutor.cpp" line="500"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio не вдалося витягти метадані із запиту. Результат не зможе бути редагованим.</translation>
     </message>

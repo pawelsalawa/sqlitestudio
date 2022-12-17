@@ -2030,70 +2030,70 @@ L&apos;esplorazione di altre pagine sarà possibile dopo il conteggio delle righ
   <context>
     <name>DbObjectDialogs</name>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="173"/>
+      <location filename="../dbobjectdialogs.cpp" line="175"/>
       <source>Delete table</source>
       <translation>Elimina tabella</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="174"/>
+      <location filename="../dbobjectdialogs.cpp" line="176"/>
       <source>Are you sure you want to delete table %1?</source>
       <translation>Sei sicuro di voler eliminare la tabella %1?</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="178"/>
+      <location filename="../dbobjectdialogs.cpp" line="180"/>
       <source>Delete index</source>
       <translation>Elimina indice</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="179"/>
+      <location filename="../dbobjectdialogs.cpp" line="181"/>
       <source>Are you sure you want to delete index %1?</source>
       <translation>Sei sicuro di voler eliminare l&apos;indice %1?</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="183"/>
+      <location filename="../dbobjectdialogs.cpp" line="185"/>
       <source>Delete trigger</source>
       <translation>Elimina trigger</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="184"/>
+      <location filename="../dbobjectdialogs.cpp" line="186"/>
       <source>Are you sure you want to delete trigger %1?</source>
       <translation>Sei sicuro di voler eliminare il trigger %1?</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="188"/>
+      <location filename="../dbobjectdialogs.cpp" line="190"/>
       <source>Delete view</source>
       <translation>Elimina vista</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="189"/>
+      <location filename="../dbobjectdialogs.cpp" line="191"/>
       <source>Are you sure you want to delete view %1?</source>
       <translation>Sei sicuro di voler eliminare la vista %1?</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="213"/>
-      <location filename="../dbobjectdialogs.cpp" line="306"/>
+      <location filename="../dbobjectdialogs.cpp" line="215"/>
+      <location filename="../dbobjectdialogs.cpp" line="308"/>
       <source>Error while dropping %1: %2</source>
       <translation>Errore nel cancellare %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="276"/>
+      <location filename="../dbobjectdialogs.cpp" line="278"/>
       <source>Delete objects</source>
       <translation>Elimina oggetti</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="277"/>
+      <location filename="../dbobjectdialogs.cpp" line="279"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
       <translation>Sei sicuro di voler eliminare i seguenti oggetti:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="284"/>
+      <location filename="../dbobjectdialogs.cpp" line="286"/>
       <source>Cannot start transaction. Details: %1</source>
       <translation>Impossibile avviare la transazione. Dettagli: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="318"/>
+      <location filename="../dbobjectdialogs.cpp" line="320"/>
       <source>Cannot commit transaction. Details: %1</source>
       <translation>Impossibile eseguire il commit della transazione. Dettagli: %1</translation>
     </message>
@@ -4378,73 +4378,78 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation>Impossibile modificare le colonne che sono il risultato di %1 istruzioni composte (una che include %2, %3 o %4 parole chiave).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation>Il meccanismo di esecuzione della query ha avuto problemi con l&apos;estrazione corretta dei ROWID. Questo potrebbe essere un bug nell&apos;applicazione. Potresti volerlo segnalare.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation>La colonna richiesta è il risultato di un&apos;espressione SQL invece di una semplice selezione di colonne. Tali colonne non possono essere modificate.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation>La colonna richiesta appartiene alla tabella SQLite limitata. Queste tabelle non possono essere modificate direttamente.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation>Impossibile modificare i risultati di query diversi da %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation>Impossibile modificare le colonne che sono il risultato di %1 istruzioni aggregate.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation>Impossibile modificare le colonne che sono il risultato dell&apos;istruzione %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation>Impossibile modificare le colonne che sono il risultato di un&apos;espressione di tabella comune (%1).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
       <source>Cannot edit table generated columns.</source>
       <translation>Impossibile modificare le colonne generate dalla tabella.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="416"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="457"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="475"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="511"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="479"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>su conflitto: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="441"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="445"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>riferimento tabella %1, colonna %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="508"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="512"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>condizione: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="528"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="532"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>nome dell&apos;ordinamento: %1</translation>
@@ -4599,7 +4604,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../dbtree/dbtree.h" line="38"/>
       <location filename="../multieditor/multieditortext.h" line="15"/>
-      <location filename="../sqleditor.h" line="32"/>
+      <location filename="../sqleditor.h" line="33"/>
       <source>Paste from clipboard</source>
       <translation>Incolla dagli appunti</translation>
     </message>
@@ -4772,122 +4777,122 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
-      <location filename="../sqleditor.h" line="30"/>
+      <location filename="../sqleditor.h" line="31"/>
       <source>Cut selected text</source>
       <translation>Taglia il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="14"/>
-      <location filename="../sqleditor.h" line="31"/>
+      <location filename="../sqleditor.h" line="32"/>
       <source>Copy selected text</source>
       <translation>Copia il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
-      <location filename="../sqleditor.h" line="33"/>
+      <location filename="../sqleditor.h" line="34"/>
       <source>Delete selected text</source>
       <translation>Elimina il testo selezionato</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="17"/>
-      <location filename="../sqleditor.h" line="35"/>
+      <location filename="../sqleditor.h" line="36"/>
       <source>Undo</source>
       <translation>Annulla</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="18"/>
-      <location filename="../sqleditor.h" line="36"/>
+      <location filename="../sqleditor.h" line="37"/>
       <source>Redo</source>
       <translation>Ripeti</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="29"/>
+      <location filename="../sqleditor.h" line="30"/>
       <source>SQL editor input field</source>
       <translation>Campo d&apos;immissione dell&apos;editor SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="34"/>
+      <location filename="../sqleditor.h" line="35"/>
       <source>Select whole editor contents</source>
       <translation>Seleziona tutto il contenuto dell&apos;editor</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="37"/>
+      <location filename="../sqleditor.h" line="38"/>
       <source>Save contents into a file</source>
       <translation>Salva i contenuti in un file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="38"/>
+      <location filename="../sqleditor.h" line="39"/>
       <source>Load contents from a file</source>
       <translation>Carica contenuti da un file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="39"/>
+      <location filename="../sqleditor.h" line="40"/>
       <source>Find in text</source>
       <translation>Trova nel testo</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="40"/>
+      <location filename="../sqleditor.h" line="41"/>
       <source>Find next</source>
       <translation>Trova successivo</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="41"/>
+      <location filename="../sqleditor.h" line="42"/>
       <source>Find previous</source>
       <translation>Trova precedente</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="42"/>
+      <location filename="../sqleditor.h" line="43"/>
       <source>Replace in text</source>
       <translation>Sostituisci nel testo</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="43"/>
+      <location filename="../sqleditor.h" line="44"/>
       <source>Delete current line</source>
       <translation>Elimina la riga corrente</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="44"/>
+      <location filename="../sqleditor.h" line="45"/>
       <source>Request code assistant</source>
       <translation>Richiedi assistente codice</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="45"/>
+      <location filename="../sqleditor.h" line="46"/>
       <source>Format contents</source>
       <translation>Formato contenuti</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="46"/>
+      <location filename="../sqleditor.h" line="47"/>
       <source>Move selected block of text one line down</source>
       <translation>Sposta il blocco di testo selezionato una riga verso il basso</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="47"/>
+      <location filename="../sqleditor.h" line="48"/>
       <source>Move selected block of text one line up</source>
       <translation>Sposta il blocco di testo selezionato di una riga in alto</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="48"/>
+      <location filename="../sqleditor.h" line="49"/>
       <source>Copy selected block of text and paste it a line below</source>
       <translation>Copia il blocco di testo selezionato e incollalo una riga sotto</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="49"/>
+      <location filename="../sqleditor.h" line="50"/>
       <source>Copy selected block of text and paste it a line above</source>
       <translation>Copia il blocco di testo selezionato e incollalo una riga sopra</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="50"/>
+      <location filename="../sqleditor.h" line="51"/>
       <source>Toggle comment</source>
       <translation>Attiva/Disattiva commento</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="51"/>
+      <location filename="../sqleditor.h" line="52"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="52"/>
+      <location filename="../sqleditor.h" line="53"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Decrease font size</translation>

@@ -2030,70 +2030,70 @@ Browsing other pages will be possible after the row counting is done.</source>
   <context>
     <name>DbObjectDialogs</name>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="173"/>
+      <location filename="../dbobjectdialogs.cpp" line="175"/>
       <source>Delete table</source>
       <translation>刪除表</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="174"/>
+      <location filename="../dbobjectdialogs.cpp" line="176"/>
       <source>Are you sure you want to delete table %1?</source>
       <translation>確定要刪除表“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="178"/>
+      <location filename="../dbobjectdialogs.cpp" line="180"/>
       <source>Delete index</source>
       <translation>刪除索引</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="179"/>
+      <location filename="../dbobjectdialogs.cpp" line="181"/>
       <source>Are you sure you want to delete index %1?</source>
       <translation>確定要刪除索引“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="183"/>
+      <location filename="../dbobjectdialogs.cpp" line="185"/>
       <source>Delete trigger</source>
       <translation>刪除觸發器</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="184"/>
+      <location filename="../dbobjectdialogs.cpp" line="186"/>
       <source>Are you sure you want to delete trigger %1?</source>
       <translation>確定要刪除觸發器“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="188"/>
+      <location filename="../dbobjectdialogs.cpp" line="190"/>
       <source>Delete view</source>
       <translation>刪除檢視</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="189"/>
+      <location filename="../dbobjectdialogs.cpp" line="191"/>
       <source>Are you sure you want to delete view %1?</source>
       <translation>確定要刪除檢視“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="213"/>
-      <location filename="../dbobjectdialogs.cpp" line="306"/>
+      <location filename="../dbobjectdialogs.cpp" line="215"/>
+      <location filename="../dbobjectdialogs.cpp" line="308"/>
       <source>Error while dropping %1: %2</source>
       <translation>丟棄 %1 時出錯：%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="276"/>
+      <location filename="../dbobjectdialogs.cpp" line="278"/>
       <source>Delete objects</source>
       <translation>刪除物件</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="277"/>
+      <location filename="../dbobjectdialogs.cpp" line="279"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
       <translation>您確認要刪除以下物件嗎：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="284"/>
+      <location filename="../dbobjectdialogs.cpp" line="286"/>
       <source>Cannot start transaction. Details: %1</source>
       <translation>無法開始事務。詳細資訊：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectdialogs.cpp" line="318"/>
+      <location filename="../dbobjectdialogs.cpp" line="320"/>
       <source>Cannot commit transaction. Details: %1</source>
       <translation>無法提交事務。詳細資訊：%1</translation>
     </message>
@@ -4377,73 +4377,78 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation>無法編輯列，它是複合 %1 語句 (包含 %2、%3 或 %4 關鍵字) 的結果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation>查詢執行機制提取 ROWID 的屬性時遇到問題。這可能是軟體中的 bug，您可以報告該問題。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation>請求的列是一個 SQL 表示式的結果，而非普通的列。不能編輯這些列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation>請求的列屬於受限制的 SQLite 表。這些表不能被直接編輯。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation>無法編輯 %1 以外的查詢結果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation>無法編輯列，它是聚合的 %1 語句的結果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation>無法編輯列，它是 %1 語句的結果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation>無法編輯列，它是通用表生成語句 %1 的結果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
       <source>Cannot edit table generated columns.</source>
       <translation>無法編輯表生成的列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="416"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="457"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="475"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="511"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="479"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>當衝突時：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="441"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="445"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>引用表 %1，列 %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="508"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="512"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>字元序：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="528"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="532"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>字元序名稱：%1</translation>
@@ -4598,7 +4603,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="38"/>
       <location filename="../multieditor/multieditortext.h" line="15"/>
-      <location filename="../sqleditor.h" line="32"/>
+      <location filename="../sqleditor.h" line="33"/>
       <source>Paste from clipboard</source>
       <translation>從剪貼簿貼上</translation>
     </message>
@@ -4771,122 +4776,122 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="13"/>
-      <location filename="../sqleditor.h" line="30"/>
+      <location filename="../sqleditor.h" line="31"/>
       <source>Cut selected text</source>
       <translation>剪下選中文字</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="14"/>
-      <location filename="../sqleditor.h" line="31"/>
+      <location filename="../sqleditor.h" line="32"/>
       <source>Copy selected text</source>
       <translation>複製選中文字</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
-      <location filename="../sqleditor.h" line="33"/>
+      <location filename="../sqleditor.h" line="34"/>
       <source>Delete selected text</source>
       <translation>刪除選中文字</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="17"/>
-      <location filename="../sqleditor.h" line="35"/>
+      <location filename="../sqleditor.h" line="36"/>
       <source>Undo</source>
       <translation>撤銷</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="18"/>
-      <location filename="../sqleditor.h" line="36"/>
+      <location filename="../sqleditor.h" line="37"/>
       <source>Redo</source>
       <translation>重做</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="29"/>
+      <location filename="../sqleditor.h" line="30"/>
       <source>SQL editor input field</source>
       <translation>SQL 編輯器輸入框</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="34"/>
+      <location filename="../sqleditor.h" line="35"/>
       <source>Select whole editor contents</source>
       <translation>選中整個編輯器的內容</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="37"/>
+      <location filename="../sqleditor.h" line="38"/>
       <source>Save contents into a file</source>
       <translation>將內容儲存至檔案</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="38"/>
+      <location filename="../sqleditor.h" line="39"/>
       <source>Load contents from a file</source>
       <translation>從檔案載入內容</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="39"/>
+      <location filename="../sqleditor.h" line="40"/>
       <source>Find in text</source>
       <translation>查詢文字</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="40"/>
+      <location filename="../sqleditor.h" line="41"/>
       <source>Find next</source>
       <translation>查詢下一個</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="41"/>
+      <location filename="../sqleditor.h" line="42"/>
       <source>Find previous</source>
       <translation>查詢上一個</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="42"/>
+      <location filename="../sqleditor.h" line="43"/>
       <source>Replace in text</source>
       <translation>替換文字</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="43"/>
+      <location filename="../sqleditor.h" line="44"/>
       <source>Delete current line</source>
       <translation>刪除當前行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="44"/>
+      <location filename="../sqleditor.h" line="45"/>
       <source>Request code assistant</source>
       <translation>請求程式碼輔助</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="45"/>
+      <location filename="../sqleditor.h" line="46"/>
       <source>Format contents</source>
       <translation>格式化內容</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="46"/>
+      <location filename="../sqleditor.h" line="47"/>
       <source>Move selected block of text one line down</source>
       <translation>選中文字塊下移一行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="47"/>
+      <location filename="../sqleditor.h" line="48"/>
       <source>Move selected block of text one line up</source>
       <translation>選中文字塊上移一行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="48"/>
+      <location filename="../sqleditor.h" line="49"/>
       <source>Copy selected block of text and paste it a line below</source>
       <translation>選中文字塊複製並貼上到下一行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="49"/>
+      <location filename="../sqleditor.h" line="50"/>
       <source>Copy selected block of text and paste it a line above</source>
       <translation>選中文字塊複製並貼上到上一行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="50"/>
+      <location filename="../sqleditor.h" line="51"/>
       <source>Toggle comment</source>
       <translation>切換註釋</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="51"/>
+      <location filename="../sqleditor.h" line="52"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.h" line="52"/>
+      <location filename="../sqleditor.h" line="53"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Decrease font size</translation>
