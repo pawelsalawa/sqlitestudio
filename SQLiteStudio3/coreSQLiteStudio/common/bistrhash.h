@@ -43,6 +43,8 @@ class API_EXPORT BiStrHash
          */
         BiStrHash(const BiStrHash& other);
 
+        BiStrHash& operator=(const BiStrHash& other);
+
         /**
          * @brief Inserts entry into the hash.
          * @param left Left-side value to insert.

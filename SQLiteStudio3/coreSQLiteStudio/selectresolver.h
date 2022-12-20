@@ -219,6 +219,8 @@ class API_EXPORT SelectResolver
     private:
         QList<Column> resolveCore(SqliteSelect::Core* selectCore);
         QList<Column> resolveAvailableCoreColumns(SqliteSelect::Core* selectCore);
+        QSet<Table> resolveTablesFromCore(SqliteSelect::Core* selectCore);
+        void markFlagsBySelect(SqliteSelect::Core* core, QList<Column>& columns);
         Column translateTokenToColumn(SqliteSelect* select, TokenPtr token);
         void resolve(SqliteSelect::Core::ResultColumn* resCol);
         void resolveStar(SqliteSelect::Core::ResultColumn* resCol);
@@ -243,9 +245,9 @@ class API_EXPORT SelectResolver
         QString resolveDatabase(const QString& database);
         bool parseOriginalQuery();
 
-        void markDistinctColumns();
-        void markCompoundColumns();
-        void markGroupedColumns();
+        void markDistinctColumns(QList<Column>* columnList = nullptr);
+        void markCompoundColumns(QList<Column>* columnList = nullptr);
+        void markGroupedColumns(QList<Column>* columnList = nullptr);
         void fixColumnNames();
         void markCurrentColumnsWithFlag(Flag flag, QList<Column>* columnList = nullptr);
         bool matchTable(const Column& sourceColumn, const QString& table);

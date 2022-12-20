@@ -33,6 +33,7 @@ class SelectResolverTest : public QObject
         void testTableFunction();
         void testSubselect();
         void testSubselectWithAlias();
+        void testIssue4607();
 };
 
 SelectResolverTest::SelectResolverTest()
@@ -338,6 +339,48 @@ void SelectResolverTest::testSubselectWithAlias()
     QVERIFY(coreColumns[2].oldTableAliases.first() == "secm");
 }
 
+void SelectResolverTest::testIssue4607()
+{
+    QString sql = "SELECT Trip.TripID AS [Trip Number],"
+                  "       P1.PlaceAlternates AS [Origin Alternates],"
+                  "       P2.PlaceAlternates AS [Destination Alternates],"
+                  "       Trip.ROWID AS ResCol_0"
+                  "  FROM Trip"
+                  "       INNER JOIN"
+                  "       ("
+                  "           SELECT 1 AS PlaceID,"
+                  "                  2 AS PlaceAlternates"
+                  "       )"
+                  "       P1 ON Trip.TripID = P1.PlaceID"
+                  "       INNER JOIN"
+                  "       ("
+                  "           SELECT 1 AS PlaceID,"
+                  "                  2 AS PlaceAlternates"
+                  "            GROUP BY PlaceID"
+                  "       )"
+                  "       P2 ON Trip.TripID = P2.PlaceID";
+
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns.size() == 4);
+    QVERIFY(coreColumns[0].table == "Trip");
+    QVERIFY(coreColumns[0].tableAlias.isNull());
+    QVERIFY(coreColumns[0].flags == 0);
+    QVERIFY(coreColumns[1].table.isNull());
+    QVERIFY(coreColumns[1].tableAlias == "P1");
+    QVERIFY(coreColumns[1].flags == 0);
+    QVERIFY(coreColumns[2].table.isNull());
+    QVERIFY(coreColumns[2].tableAlias == "P2");
+    QVERIFY(coreColumns[2].flags & SelectResolver::FROM_GROUPED_SELECT);
+    QVERIFY(coreColumns[3].table == "Trip");
+    QVERIFY(coreColumns[3].tableAlias.isNull());
+    QVERIFY(coreColumns[3].flags == 0);
+}
+
 void SelectResolverTest::initTestCase()
 {
     initKeywords();
@@ -349,6 +392,7 @@ void SelectResolverTest::initTestCase()
     db->exec("CREATE TABLE test (col1, col2, col3);");
     db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
     db->exec("CREATE TABLE test2 (col1);");
+    db->exec("CREATE TABLE Trip (TripID INTEGER PRIMARY KEY ASC);");
     //SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
 }
 

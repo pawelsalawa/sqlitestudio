@@ -1466,8 +1466,8 @@ void CompletionHelper::extractDeleteAvailableColumnsAndTables()
 void CompletionHelper::extractUpdateAvailableColumnsAndTables()
 {
     auto update = parsedQuery.dynamicCast<SqliteUpdate>();
-    theFromAvailableColumns = selectResolver->resolveAvailableColumns(update ->from);
-    theFromAvailableTables = selectResolver->resolveTables(update ->from);
+    theFromAvailableColumns = selectResolver->resolveAvailableColumns(update->from);
+    theFromAvailableTables = selectResolver->resolveTables(update->from);
 }
 
 void CompletionHelper::extractAvailableColumnsAndTables(const QString& database, const QString& table)

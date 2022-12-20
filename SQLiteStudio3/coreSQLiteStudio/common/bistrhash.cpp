@@ -17,6 +17,15 @@ BiStrHash::BiStrHash(const BiStrHash& other) : hash(other.hash), inverted(other.
 {
 }
 
+BiStrHash& BiStrHash::operator=(const BiStrHash& other)
+{
+    this->hash = other.hash;
+    this->inverted = other.inverted;
+    this->lowerHash = other.lowerHash;
+    this->lowerInverted = other.lowerInverted;
+    return *this;
+}
+
 void BiStrHash::insert(const QString& left, const QString& right)
 {
     if (lowerHash.contains(left.toLower()))
