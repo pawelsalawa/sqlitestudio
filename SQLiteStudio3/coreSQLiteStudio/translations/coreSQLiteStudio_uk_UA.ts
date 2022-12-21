@@ -866,12 +866,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Заповнюючий код не може бути порожнім.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="372"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Неможливо визначити джерело даних для стовпця: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Неможливо визначити таблицю для стовпця &apos;%1&apos;.</translation>
     </message>

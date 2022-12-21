@@ -866,12 +866,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Código de implementação não pode ser vazio.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="372"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Não foi possível resolver a fonte de dados para a coluna: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>

@@ -866,12 +866,12 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Il codice di implementazione non può essere vuoto.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="372"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Impossibile risolvere la sorgente dati per la colonna: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Impossibile risolvere la tabella per la colonna &apos;%1&apos;.</translation>
     </message>
