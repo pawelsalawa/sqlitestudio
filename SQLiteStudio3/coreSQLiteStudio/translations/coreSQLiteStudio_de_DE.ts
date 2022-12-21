@@ -866,12 +866,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Der Implementationscode darf nicht leer sein.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="372"/>
+      <location filename="../selectresolver.cpp" line="369"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Die Datenquelle für Spalte %1 kann nicht aufgelöst werden.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
