@@ -18,7 +18,7 @@ bool QueryExecutorColumns::exec()
     // Resolving result columns of the select
     SelectResolver resolver(db, queryExecutor->getOriginalQuery(), context->dbNameToAttach);
     resolver.resolveMultiCore = true;
-    QList<SelectResolver::Column> columns = resolver.resolve(select.data()).first();
+    QList<SelectResolver::Column> columns = resolver.resolve(select->coreSelects.first());
 
     if (resolver.hasErrors())
     {
@@ -47,7 +47,6 @@ bool QueryExecutorColumns::exec()
     QueryExecutor::ResultColumnPtr resultColumn;
     SqliteSelect::Core::ResultColumn* resultColumnForSelect = nullptr;
     bool rowIdColumn = false;
-    int i = 0;
     QSet<QString> usedAliases;
     for (SelectResolver::Column& col : columns)
     {
@@ -68,8 +67,6 @@ bool QueryExecutorColumns::exec()
 
         if (!rowIdColumn)
             context->resultColumns << resultColumn; // store it in context for later usage by any step
-
-        i++;
     }
 
 //    qDebug() << "before: " << context->processedQuery;
