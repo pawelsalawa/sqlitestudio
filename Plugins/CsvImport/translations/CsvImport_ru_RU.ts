@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>Разделитель столбцов:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
