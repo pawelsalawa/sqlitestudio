@@ -89,7 +89,7 @@ Would you like to select another one, or leave it unconfigured?</source>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Невозможно подключиться к устройству %1, поскольку оно невидимо на вашем компьютере.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -302,7 +302,7 @@ Android device refused deletion, or it was impossible.</source>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Невозможно подключиться к устройству %1, поскольку оно невидимо на вашем компьютере.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
