@@ -967,8 +967,7 @@ void DataView::recreateFilterInputs()
         if (filterValues.size() > i)
             edit->setText(filterValues[i]);
 
-        connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
-        connect(edit, SIGNAL(valueErased()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
         perColumnWidget->layout()->addWidget(edit);
         filterInputs << edit;
     }

@@ -13,6 +13,7 @@
 - BUGFIX: #4614 Fixed opening object links in SQL editor to be case-insensitive.
 - BUGFIX: #4618 Fixed query executor when using filer on a View.
 - BUGFIX: #4613 Fixed per-column filter behavior when clearing single filter using the in-line erase button.
+- BUGFIX: #4613 Fixed per-column filter behavior when jumping between subsequent filter inputs, so it does not apply filter for each single input, but rather waits for user Enter or Return key to be hit. Also not applying filter immediately when clicking the in-line erase button.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
