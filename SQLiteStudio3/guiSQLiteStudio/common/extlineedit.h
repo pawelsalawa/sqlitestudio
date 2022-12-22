@@ -34,10 +34,12 @@ class GUI_API_EXPORT ExtLineEdit : public QLineEdit
         bool expanding = false;
         int expandingMinWidth = 0;
         int expandingMaxWidth = -1;
+        bool nextClearingIsFromButton = false;
 
     private slots:
         void handleTextChanged();
         void checkForValueErased();
+        void checkForValueErased(const QString &text);
 
     signals:
         void valueErased();

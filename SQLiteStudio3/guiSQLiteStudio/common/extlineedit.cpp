@@ -56,15 +56,21 @@ void ExtLineEdit::setClearButtonEnabled(bool enable)
             return;
         }
         connect(clearAction, SIGNAL(triggered()), this, SLOT(checkForValueErased()));
+        connect(this, SIGNAL(textEdited(QString)), this, SLOT(checkForValueErased(QString)));
     }
 }
 
 void ExtLineEdit::checkForValueErased()
 {
-    if (text().isEmpty())
-        return;
+    nextClearingIsFromButton = true;
+}
 
-    emit valueErased();
+void ExtLineEdit::checkForValueErased(const QString& text)
+{
+    if (nextClearingIsFromButton && text.isEmpty())
+        emit valueErased();
+
+    nextClearingIsFromButton = false;
 }
 
 bool ExtLineEdit::getExpanding() const
