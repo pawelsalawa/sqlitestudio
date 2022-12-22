@@ -903,3 +903,24 @@ uint qHash(const SelectResolver::Column &column)
     return qHash(column.database.toLower() + "." + column.table.toLower() + "." + column.column.toLower() + "/" +
                  column.tableAlias.toLower() + "/" + column.oldTableAliases.join(","));
 }
+
+QDebug operator<<(QDebug debug, const SelectResolver::Column &c)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "Column " << c.displayName << "("
+                    << c.column << " = " << c.alias << ", "
+                    << c.table << " = " << c.tableAlias << ", "
+                    << c.database << " = " << c.originalDatabase
+                    << ")";
+    return debug;
+}
+
+QDebug operator<<(QDebug debug, const SelectResolver::Table &c)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "Table ("
+                    << c.table << " = " << c.tableAlias << ", "
+                    << c.database << " = " << c.originalDatabase
+                    << ")";
+    return debug;
+}

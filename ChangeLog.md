@@ -11,6 +11,7 @@
 - BUGFIX: #4607 Fixed bug in Query Executor, that caused selecting ROWID from a View, without expanding the view in the first place, thus causing smart execution to fail.
 - BUGFIX: #4607 Fixed Query Executor to apply column sorting correctly even in Simple Execution method.
 - BUGFIX: #4614 Fixed opening object links in SQL editor to be case-insensitive.
+- BUGFIX: #4618 Fixed query executor when using filer on a View.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
