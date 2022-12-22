@@ -331,4 +331,7 @@ API_EXPORT uint qHash(const SelectResolver::Table& table);
 API_EXPORT int operator==(const SelectResolver::Column& c1, const SelectResolver::Column& c2);
 API_EXPORT uint qHash(const SelectResolver::Column& column);
 
+API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Column &c);
+API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Table &c);
+
 #endif // SELECTRESOLVER_H

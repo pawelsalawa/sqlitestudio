@@ -160,7 +160,11 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
-    SelectResolver::Table keyTable = table;
+    SelectResolver::Table destilledTable = table;
+    if (destilledTable.database == "main" && destilledTable.originalDatabase.isNull())
+        destilledTable.database = QString();
+
+    SelectResolver::Table keyTable = destilledTable;
 
     // If selecting from named subselect, where table in that subselect has no alias, we need to match
     // Table by table&database, but excluding alias.
@@ -168,7 +172,9 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     {
         keyTable.tableAlias = QString();
         if (!rowIdColsMap.contains(keyTable))
-            keyTable = table;
+        {
+            keyTable = destilledTable;
+        }
     }
 
     // Aliased matching should be performed also against pushed (to old) aliases, due to multi-level subselects.
@@ -207,7 +213,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     while (it.hasNext())
     {
         it.next();
-        if (!addResultColumns(core, table, it.key(), it.value(), aliasOnlyAsSelectColumn))
+        if (!addResultColumns(core, destilledTable, it.key(), it.value(), aliasOnlyAsSelectColumn))
             return false;
     }
 
