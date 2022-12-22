@@ -41,7 +41,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="187"/>
       <source>SQLite extension directories</source>
-      <translation type="unfinished">SQLite extension directories</translation>
+      <translation>Каталоги расширений SQLite</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="140"/>
@@ -107,44 +107,44 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="81"/>
       <source>Filter snippets</source>
-      <translation type="unfinished">Filter snippets</translation>
+      <translation>Фильтр сниппетов</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
       <location filename="../windows/codesnippeteditor.ui" line="200"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Опциональное сочетание клавиш, которое будет работать только в контексте активного окна автодополнения. Позволяет пользователю использовать комбинации клавиш, которые иначе конфликтовали бы с общими горячими клавишами. Наличие окна автодополнения в качестве требуемого контекста делает выбор сочетания клавиш более универсальным.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Название сниппета будет отображено в окне автодополнения. Для доступа к списку сниппетов пользователь должен нажать сочетание клавиш для вызова автодополнения дважды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation type="unfinished">Snippet name</translation>
+      <translation>Название сниппета</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
       <source>Code assistant shortcut</source>
-      <translation type="unfinished">Code assistant shortcut</translation>
+      <translation>Сочетание клавиш в окне автодополнения</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
       <source>Snippet code</source>
-      <translation type="unfinished">Snippet code</translation>
+      <translation>Код сниппета</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>В окне редактора сниппетов имеются неподтверждённые изменения.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
       <source>Code Snippets editor</source>
-      <translation type="unfinished">Code Snippets editor</translation>
+      <translation>Редактор сниппетов</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
@@ -169,32 +169,32 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Move the snippet up</source>
-      <translation type="unfinished">Move the snippet up</translation>
+      <translation>Переместить сниппет вверх</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Move the snippet down</source>
-      <translation type="unfinished">Move the snippet down</translation>
+      <translation>Переместить сниппет вниз</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
       <source>Code snippets manual</source>
-      <translation type="unfinished">Code snippets manual</translation>
+      <translation>Руководство по использованию сниппетов</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="280"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
+      <translation>Введите непустое уникальное название сниппета.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
       <source>Enter a non-empty snippet content.</source>
-      <translation type="unfinished">Enter a non-empty snippet content.</translation>
+      <translation>Введите непустое содержимое сниппета.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="287"/>
       <source>This hotkey is not unique in context of a code assistant.</source>
-      <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
+      <translation>Это сочетание клавиш уже используется в контексте автодополнения.</translation>
     </message>
   </context>
   <context>
@@ -566,7 +566,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="659"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
-      <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
+      <translation>Не удалось найти допустимый для STRICT-таблиц тип данных, соответствующий указанному типу: %1.</translation>
     </message>
   </context>
   <context>
@@ -821,7 +821,7 @@
     <message>
       <location filename="../completer/completerwindow.cpp" line="290"/>
       <source>Insert a code snippet</source>
-      <translation type="unfinished">Insert a code snippet</translation>
+      <translation>Вставить сниппет</translation>
     </message>
   </context>
   <context>
@@ -865,7 +865,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="153"/>
       <source>Code colors</source>
-      <translation type="unfinished">Code colors</translation>
+      <translation>Цвета кода</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
       <source>Code assistant</source>
-      <translation type="unfinished">Code assistant</translation>
+      <translation>Автодополнение</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -1007,17 +1007,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="540"/>
       <source>Data column width</source>
-      <translation type="unfinished">Data column width</translation>
+      <translation>Ширина столбца данных</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="546"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Когда пользователь вводит новое значение в столбец, и оно не умещается в ячейке при текущей ширине столбца, приложение расширит столбец, чтобы уместить новое значение, но не превышая лимит, указанный в опции выше.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="549"/>
       <source>Enlarge column when entering value longer than current width</source>
-      <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
+      <translation>Расширить столбец при вводе значения длиннее текущей ширины</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="565"/>
@@ -1188,7 +1188,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="945"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если в окне редактора SQL более одного запроса, то (если эта опция включена) будет выполняться только один запрос - тот, на котором стоит курсор клавиатуры. В противном случае будут выполнены все запросы. Вы всегда можете указать запросы, подлежащие выполнению, выделив эти запросы перед запуском. Вы также можете использовать специальные сочетания клавиш для выполнения запросов в том или ином режиме (сейчас настроено на %1 для выполнения одного запроса и %2 для выполнения всех запросов).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="961"/>
@@ -1214,42 +1214,42 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="584"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При загрузке данных в табличном виде ширина столбцов автоматически подстраивается. Это значение ограничивает ширину для автоподстройки, но пользователь может вручную расширить столбец сверх этого лимита. Этот лимит также используется при расширении столбца после ввода нового, более длинного значения пользователем (см. опцию ниже).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="587"/>
       <source>Limit automatic data column width to (in pixels):</source>
-      <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
+      <translation>Ограничить автоматическую ширину столбца данных (в пикселях):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="594"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Исходная ширина столбцов будет установлена так, чтобы как минимум уместилось полное имя столбца в заголовке. При этом учитывается ограничение на автоматическую ширину столбца, указанное в пикселях (опция выше).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="597"/>
       <source>Keep at least the width to show complete column name</source>
-      <translation type="unfinished">Keep at least the width to show complete column name</translation>
+      <translation>Как минимум уместить полное имя столбца в ширину</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="968"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если опция включена, строки длиннее ширины окна редактора будут перенесены и горизонтальная прокрутка не потребуется.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="971"/>
       <source>Wrap lines in SQL editor</source>
-      <translation type="unfinished">Wrap lines in SQL editor</translation>
+      <translation>Переносить строки в редакторе SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="981"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подсвечивать весь запрос, на котором стоит курсор клавиатуры. Это запрос, который будет выполнен при нажатии кнопки или сочетания клавиш &amp;quot;Выполнить запрос&amp;quot; (если не настроено иначе).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="984"/>
       <source>Highlight current query</source>
-      <translation type="unfinished">Highlight current query</translation>
+      <translation>Подсвечивать текущий запрос</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="997"/>
@@ -1294,107 +1294,107 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1109"/>
       <source>Code syntax colors</source>
-      <translation type="unfinished">Code syntax colors</translation>
+      <translation>Синтаксическая расцветка кода</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1115"/>
       <source>Keyword foreground</source>
-      <translation type="unfinished">Keyword foreground</translation>
+      <translation>Цвет ключевого слова</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1170"/>
       <source>Regular foreground</source>
-      <translation type="unfinished">Regular foreground</translation>
+      <translation>Стандартный цвет</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Строки в SQL заключены в символы одинарных кавычек. В других языках строка может быть заключена в двойные кавычки или как-нибудь иначе.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1196"/>
       <source>String foreground</source>
-      <translation type="unfinished">String foreground</translation>
+      <translation>Цвет строки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1235"/>
       <source>Comment foreground</source>
-      <translation type="unfinished">Comment foreground</translation>
+      <translation>Цвет комментария</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1258"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Допустимыми объектами являются имена таблиц, индексов, триггеров или представлений, которые имеются в базе данных SQLite. Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1261"/>
       <source>Valid objects foreground</source>
-      <translation type="unfinished">Valid objects foreground</translation>
+      <translation>Цвет распознанных объектов</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1268"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;В редакторе SQL текущий запрос подсвечивается этим фоном, чтобы указать пользователю, какой запрос будет выполняться в данный момент.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1271"/>
       <source>Current query background</source>
-      <translation type="unfinished">Current query background</translation>
+      <translation>Фон текущего запроса</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1278"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подстановочные параметры определяют места, куда позже будут вставлены значения, переданные пользователем. Они указываются в одной из форм:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1281"/>
       <source>Bind parameter foreground</source>
-      <translation type="unfinished">Bind parameter foreground</translation>
+      <translation>Цвет подстановочных параметров</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1288"/>
       <source>Current line background</source>
-      <translation type="unfinished">Current line background</translation>
+      <translation>Фон текущей строки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1311"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При перемещении курсора клавиатуры к любой скобке в коде, приложение выделит эту скобку и соответствующую ей другую этим цветом фона.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1314"/>
       <source>Matched parenthesis background</source>
-      <translation type="unfinished">Matched parenthesis background</translation>
+      <translation>Фон парных скобок</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1327"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Вы можете полностью отключить подсветку текущего запроса на странице Общих настроек.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1372"/>
       <source>Number foreground</source>
-      <translation type="unfinished">Number foreground</translation>
+      <translation>Цвет числа</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1379"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Данные типа BLOB — это бинарные данные, представляемые в виде шестнадцатеричных чисел, например:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1382"/>
       <source>BLOB value foreground</source>
-      <translation type="unfinished">BLOB value foreground</translation>
+      <translation>Цвет данных типа BLOB</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1389"/>
       <source>Matched parenthesis foreground</source>
-      <translation type="unfinished">Matched parenthesis foreground</translation>
+      <translation>Цвет парных скобок</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1433"/>
       <source>Reset to defaults</source>
-      <translation type="unfinished">Reset to defaults</translation>
+      <translation>Сбросить к исходным</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1459"/>
@@ -1510,17 +1510,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2165"/>
       <source>Code assistant settings</source>
-      <translation type="unfinished">Code assistant settings</translation>
+      <translation>Настройки автодополнения</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2171"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если эта опция включена, окно автодополнения будет вызываться в случае, когда пользователь например набирает &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; чтобы предложить вставить имя столбца. Если опция отключена, пользователь должен нажать комбинацию клавиш для вызова автодополнения.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2174"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
-      <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
+      <translation>Автоматически показывать окно автодополнения когда вводится точка после имени объекта</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="898"/>
@@ -1613,7 +1613,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1777"/>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</translation>
+      <translation>Здесь вы можете настроить цвета для подсветки синтаксиса. Они общие для разных языков - не только для SQL, но и для JavaScript и других.</translation>
     </message>
   </context>
   <context>
@@ -1842,13 +1842,13 @@
       <location filename="../dataview.cpp" line="995"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text (if contains)</translation>
+      <translation>Текстовый фильтр (если содержит)</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="996"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter strictly by text (if equals)</translation>
+      <translation>Строгий текстовый фильтр (если равно)</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="323"/>
@@ -1979,7 +1979,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="175"/>
       <source>Select new or existing file on local computer</source>
-      <translation type="unfinished">Select new or existing file on local computer</translation>
+      <translation>Выберите новый или существующий файл на локальном компьютере</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="325"/>
@@ -1989,12 +1989,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="500"/>
       <source>Database type not selected.</source>
-      <translation type="unfinished">Database type not selected.</translation>
+      <translation>Тип базы данных не выбран.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="507"/>
       <source>Database path not specified.</source>
-      <translation type="unfinished">Database path not specified.</translation>
+      <translation>Путь к базе данных не указан.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="541"/>
@@ -2325,13 +2325,13 @@ Browsing other pages will be possible after the row counting is done.</source>
       <location filename="../dbtree/dbtree.cpp" line="176"/>
       <source>Increase font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="177"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="358"/>
@@ -2514,7 +2514,7 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtreemodel.cpp" line="423"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">URI:</translation>
+      <translation>URI:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
@@ -2649,7 +2649,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="55"/>
       <source>Clear entire history</source>
-      <translation type="unfinished">Clear entire history</translation>
+      <translation>Очистить всю историю</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="72"/>
@@ -2663,12 +2663,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="98"/>
       <source>Clear history</source>
-      <translation type="unfinished">Clear history</translation>
+      <translation>Очистить историю</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="98"/>
       <source>Are you sure you want to erase entire DDL history?</source>
-      <translation type="unfinished">Are you sure you want to erase entire DDL history?</translation>
+      <translation>Вы уверены, что хотите стереть всю историю DDL?</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="130"/>
@@ -2702,7 +2702,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="14"/>
       <source>SQL editor</source>
-      <translation type="unfinished">SQL editor</translation>
+      <translation>Редактор SQL</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
@@ -2807,12 +2807,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="409"/>
       <source>Execute single query under cursor</source>
-      <translation type="unfinished">Execute single query under cursor</translation>
+      <translation>Выполнить одиночный запрос под курсором</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="410"/>
       <source>Execute all queries in editor</source>
-      <translation type="unfinished">Execute all queries in editor</translation>
+      <translation>Выполнить все запросы в редакторе</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="460"/>
@@ -3301,7 +3301,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="283"/>
       <source>Deterministic</source>
-      <translation type="unfinished">Deterministic</translation>
+      <translation>Детерминированная</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="300"/>
@@ -3322,7 +3322,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="56"/>
       <source>SQL functions editor</source>
-      <translation type="unfinished">SQL functions editor</translation>
+      <translation>Редактор функций SQL</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
@@ -3785,7 +3785,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="268"/>
       <source>Open code &amp;snippets editor</source>
-      <translation type="unfinished">Open code &amp;snippets editor</translation>
+      <translation>Открыть редактор &amp;сниппетов</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
@@ -3860,27 +3860,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="284"/>
       <source>Close current &amp;window</source>
-      <translation type="unfinished">Close current &amp;window</translation>
+      <translation>Закрыть текущее &amp;окно</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="285"/>
       <source>Close &amp;other windows</source>
-      <translation type="unfinished">Close &amp;other windows</translation>
+      <translation>Закрыть &amp;другие окна</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="287"/>
       <source>Close windows on the &amp;left</source>
-      <translation type="unfinished">Close windows on the &amp;left</translation>
+      <translation>Закрыть окна с&amp;лева</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="288"/>
       <source>Close windows on the &amp;right</source>
-      <translation type="unfinished">Close windows on the &amp;right</translation>
+      <translation>Закрыть окна с&amp;права</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="290"/>
       <source>Re&amp;name selected window</source>
-      <translation type="unfinished">Re&amp;name selected window</translation>
+      <translation>Переи&amp;меновать выбранное окно</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="292"/>
@@ -4423,7 +4423,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
-      <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
+      <translation>Невозможно редактировать столбцы в результатах представления, если выполняемый запрос выбирает данные из любых многоуровневых представлений (т.е. представлений, в которых запрашиваются другие представления).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
@@ -4460,7 +4460,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Edit current cell inline</source>
-      <translation type="unfinished">Edit current cell inline</translation>
+      <translation>Редактировать текущую ячейку</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
@@ -4515,19 +4515,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="34"/>
       <source>Toggle the height adjustment of rows</source>
-      <translation type="unfinished">Toggle the height adjustment of rows</translation>
+      <translation>Переключить регулировку высоты строк</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="35"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="640"/>
@@ -4610,13 +4610,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dbtree/dbtree.h" line="39"/>
       <source>Increase font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="40"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
@@ -4701,27 +4701,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="47"/>
       <source>Open DDL history window</source>
-      <translation type="unfinished">Open DDL history window</translation>
+      <translation>Открыть окно истории DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="48"/>
       <source>Open snippets editor window</source>
-      <translation type="unfinished">Open snippets editor window</translation>
+      <translation>Открыть окно редактора сниппетов</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="49"/>
       <source>Open function editor window</source>
-      <translation type="unfinished">Open function editor window</translation>
+      <translation>Открыть окно редактора функций</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="50"/>
       <source>Open collation editor window</source>
-      <translation type="unfinished">Open collation editor window</translation>
+      <translation>Открыть окно редактора сравнений</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="51"/>
       <source>Open extension manager window</source>
-      <translation type="unfinished">Open extension manager window</translation>
+      <translation>Открыть окно менеджера расширений</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="52"/>
@@ -4741,7 +4741,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="55"/>
       <source>Open user manual</source>
-      <translation type="unfinished">Open user manual</translation>
+      <translation>Открыть руководство пользователя</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="56"/>
@@ -4761,7 +4761,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="59"/>
       <source>Open the About dialog</source>
-      <translation type="unfinished">Open the About dialog</translation>
+      <translation>Открыть диалог "О программе"</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="60"/>
@@ -4887,13 +4887,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../sqleditor.h" line="52"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="53"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="45"/>
@@ -4908,17 +4908,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="50"/>
       <source>Select database file</source>
-      <translation type="unfinished">Select database file</translation>
+      <translation>Выберите файл базы данных</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="53"/>
       <source>Select</source>
-      <translation type="unfinished">Select</translation>
+      <translation>Выбрать</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="54"/>
       <source>File type</source>
-      <translation type="unfinished">File type</translation>
+      <translation>Тип файла</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
@@ -4933,12 +4933,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
       <source>Execute single query under cursor</source>
-      <translation type="unfinished">Execute single query under cursor</translation>
+      <translation>Выполнить одиночный запрос под курсором</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="30"/>
       <source>Execute all queries in editor</source>
-      <translation type="unfinished">Execute all queries in editor</translation>
+      <translation>Выполнить все запросы в редакторе</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="31"/>
@@ -4988,12 +4988,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished">Commit the table structure</translation>
+      <translation>Подтвердить изменение структуры таблицы</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation type="unfinished">Rollback pending changes in the table structure</translation>
+      <translation>Откатить изменения в структуре таблицы</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5103,12 +5103,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="24"/>
       <source>Commit the view&apos;s query</source>
-      <translation type="unfinished">Commit the view&apos;s query</translation>
+      <translation>Подтвердить изменение запроса в представлении</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Rollback pending changes in the view&apos;s query</source>
-      <translation type="unfinished">Rollback pending changes in the view&apos;s query</translation>
+      <translation>Откатить изменение запроса в представлении</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
@@ -5118,12 +5118,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="27"/>
       <source>Execute the view&apos;s query</source>
-      <translation type="unfinished">Execute the view&apos;s query</translation>
+      <translation>Выполнить запрос в представлении</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="16"/>
       <source>A code snippets editor window</source>
-      <translation type="unfinished">A code snippets editor window</translation>
+      <translation>Окно редактора сниппетов</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="17"/>
@@ -5131,7 +5131,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
-      <translation type="unfinished">Commit the pending changes</translation>
+      <translation>Подтвердить изменения</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
@@ -5139,22 +5139,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
-      <translation type="unfinished">Rollback the pending changes</translation>
+      <translation>Откатить изменения</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>
       <source>A collation editor window</source>
-      <translation type="unfinished">A collation editor window</translation>
+      <translation>Окно редактора сравнений</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.h" line="22"/>
       <source>A function editor window</source>
-      <translation type="unfinished">A function editor window</translation>
+      <translation>Окно редактора функций</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.h" line="20"/>
       <source>A SQLite extension editor window</source>
-      <translation type="unfinished">A SQLite extension editor window</translation>
+      <translation>Окно редактора расширения SQLite</translation>
     </message>
   </context>
   <context>
@@ -5264,7 +5264,7 @@ find next</source>
       <location filename="../sqleditor.cpp" line="47"/>
       <source>Wrap words</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Wrap words</translation>
+      <translation>Перенос по словам</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="153"/>
@@ -5402,13 +5402,13 @@ find next</source>
       <location filename="../sqleditor.cpp" line="175"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="176"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="286"/>
@@ -5683,7 +5683,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
-      <translation type="unfinished">Edit current cell inline</translation>
+      <translation>Редактировать текущую ячейку</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
@@ -5713,25 +5713,25 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Adjust height of rows</source>
-      <translation type="unfinished">Adjust height of rows</translation>
+      <translation>Подстроить высоту строк</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
-      <translation type="unfinished">Invert selection</translation>
+      <translation>Обратить выделение</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
@@ -5806,7 +5806,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="813"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
-      <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
+      <translation>Вставить &quot;NULL&quot; в качестве значения NULL?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="814"/>
