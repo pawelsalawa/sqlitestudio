@@ -1839,13 +1839,13 @@
       <translation>Показать результаты в виде формы</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="995"/>
+      <location filename="../dataview.cpp" line="994"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>Текстовый фильтр (если содержит)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="996"/>
+      <location filename="../dataview.cpp" line="995"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>Строгий текстовый фильтр (если равно)</translation>
@@ -1903,25 +1903,25 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>Нажмите Enter или кнопку &quot;Применить фильтр&quot; на панели инструментов чтобы применить новое значение.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="996"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Фильтр по регулярному выражению</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="998"/>
+      <location filename="../dataview.cpp" line="997"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Фильтр по выражению SQL</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1017"/>
+      <location filename="../dataview.cpp" line="1016"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>Показывать поле ввода для фильтра в каждом столбце</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1021"/>
+      <location filename="../dataview.cpp" line="1020"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Применить фильтр</translation>
