@@ -1839,13 +1839,13 @@
       <translation>Zeige Ergebnismenge in der Formularansicht</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="995"/>
+      <location filename="../dataview.cpp" line="994"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter by text (if contains)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="996"/>
+      <location filename="../dataview.cpp" line="995"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter strictly by text (if equals)</translation>
@@ -1903,25 +1903,25 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
       <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="996"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Nach regulärem Ausdruck filtern</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="998"/>
+      <location filename="../dataview.cpp" line="997"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Nach einem SQL Ausdruck filtern</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1017"/>
+      <location filename="../dataview.cpp" line="1016"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation type="unfinished">Show filter inputs per column</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1021"/>
+      <location filename="../dataview.cpp" line="1020"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Filter anwenden</translation>
