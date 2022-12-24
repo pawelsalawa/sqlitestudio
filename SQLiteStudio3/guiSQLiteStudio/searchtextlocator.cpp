@@ -204,8 +204,45 @@ bool SearchTextLocator::replaceAndFind()
 
 void SearchTextLocator::replaceAll()
 {
-    while (replaceAndFind())
-        continue;
+    QString origContents = document->toPlainText();
+    QString contents = origContents;
+    Qt::CaseSensitivity cs = caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive;
+    int replLen = replaceString.length();
+    int diff = 0;
+    if (regularExpression)
+    {
+        QRegExp re(lookupString, cs);
+        contents.replace(re, replaceString);
+
+        int pos = 0;
+        while ((pos = re.indexIn(origContents, pos)) != -1 && pos < startPosition)
+        {
+            int len = re.matchedLength();
+            pos += len;
+            diff += (replLen - len);
+        }
+    }
+    else
+    {
+        contents.replace(lookupString, replaceString, cs);
+
+        int len = lookupString.length();
+        int singleDiff = (replLen - len);
+        int pos = 0;
+        while ((pos = origContents.indexOf(lookupString, pos, cs)) != -1 && pos < startPosition)
+        {
+            pos += len;
+            diff += singleDiff;
+        }
+    }
+    int newPos = startPosition + diff; // calculated before replacing contents to use original startPosition
+
+    QTextCursor cursor(document);
+    cursor.setPosition(0);
+    cursor.setPosition(origContents.length(), QTextCursor::KeepAnchor);
+    cursor.insertText(contents);
+
+    emit newCursorPositionAfterAllReplaced(newPos);
 }
 
 void SearchTextLocator::cursorMoved()

@@ -319,6 +319,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void fontSizeChangeRequested(int delta);
         void incrFontSize();
         void decrFontSize();
+        void moveCursorTo(int pos);
 
     public slots:
         void colorsConfigChanged();

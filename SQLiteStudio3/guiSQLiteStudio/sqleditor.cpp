@@ -91,6 +91,7 @@ void SqlEditor::init()
     textLocator = new SearchTextLocator(document(), this);
     connect(textLocator, SIGNAL(found(int,int)), this, SLOT(found(int,int)));
     connect(textLocator, SIGNAL(reachedEnd()), this, SLOT(reachedEnd()));
+    connect(textLocator, SIGNAL(newCursorPositionAfterAllReplaced(int)), this, SLOT(moveCursorTo(int)));
 
     lineNumberArea = new LineNumberArea(this);
     changeFont(CFG_UI.Fonts.SqlEditor.get());
@@ -1515,6 +1516,13 @@ void SqlEditor::incrFontSize()
 void SqlEditor::decrFontSize()
 {
     changeFontSize(-1);
+}
+
+void SqlEditor::moveCursorTo(int pos)
+{
+    QTextCursor cur = textCursor();
+    cur.setPosition(pos);
+    setTextCursor(cur);
 }
 
 void SqlEditor::changeFontSize(int factor)

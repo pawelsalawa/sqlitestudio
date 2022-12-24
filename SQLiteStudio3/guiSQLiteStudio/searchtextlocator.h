@@ -71,6 +71,7 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
         void found(int start, int end);
         void reachedEnd();
         void replaceAvailable(bool available);
+        void newCursorPositionAfterAllReplaced(int newPos);
 };
 
 #endif // SEARCHTEXTLOCATOR_H
