@@ -17,7 +17,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="906"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
+      <translation>Не удалось создать полную контрольную точку WAL в базе данных &apos;%1&apos;. Ошибка из движка SQLite: %2</translation>
     </message>
   </context>
   <context>
@@ -787,7 +787,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>Не удалось запустить контрольную точку WAL: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
@@ -1024,12 +1024,12 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось начать транзакцию: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Выполнение запросов из файла отменено. Все выполненные ранее из него запросы откачены.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
@@ -1039,22 +1039,22 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось завершить транзакцию: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+      <translation>Завершено выполнение %1 запросов за %2 секунд. %3 запросов не было выполнено из-за ошибок.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Завершено выполнение %1 запросов за %2 секунд.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
-      <translation type="unfinished">Could not execute SQL due to error.</translation>
+      <translation>Невозможно выполнить SQL-запрос из-за ошибки.</translation>
     </message>
   </context>
   <context>
