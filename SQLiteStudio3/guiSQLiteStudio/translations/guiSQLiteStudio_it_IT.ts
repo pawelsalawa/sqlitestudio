@@ -1839,13 +1839,13 @@
       <translation>Mostra la visualizzazione del modulo dei risultati</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="995"/>
+      <location filename="../dataview.cpp" line="994"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter by text (if contains)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="996"/>
+      <location filename="../dataview.cpp" line="995"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter strictly by text (if equals)</translation>
@@ -1903,25 +1903,25 @@ L&apos;esplorazione di altre pagine sarà possibile dopo il conteggio delle righ
       <translation>Premi entrare o premi &quot;Applica filtro&quot; pulsante sulla barra degli strumenti per applicare un nuovo valore.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="996"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Filtra per espressione regolare</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="998"/>
+      <location filename="../dataview.cpp" line="997"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Filtra per espressione SQL</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1017"/>
+      <location filename="../dataview.cpp" line="1016"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>Mostra gli input del filtro per colonna</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1021"/>
+      <location filename="../dataview.cpp" line="1020"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Applica filtro</translation>
