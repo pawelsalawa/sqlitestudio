@@ -5270,191 +5270,191 @@ nájsť ďalší</translation>
       <translation type="unfinished">Wrap words</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="153"/>
+      <location filename="../sqleditor.cpp" line="154"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>Vystrihnúť</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="154"/>
+      <location filename="../sqleditor.cpp" line="155"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>Kopírovať</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="155"/>
+      <location filename="../sqleditor.cpp" line="156"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>Vložiť</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="156"/>
+      <location filename="../sqleditor.cpp" line="157"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>Vymazať</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="157"/>
+      <location filename="../sqleditor.cpp" line="158"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>Vybrať všetko</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Undo</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Redo</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Complete</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>Formátovať SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>Uložiť SQL do súboru</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Select file to save SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>Načítať SQL zo súboru</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="165"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>Vymazať riadok</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Move block down</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Move block up</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Copy block down</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Copy up down</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Find</source>
       <comment>sql editor</comment>
       <translation>Nájsť</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>Nájsť ďalší</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>Nájsť predchádzajúci</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>Nahradiť</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Toggle comment</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="286"/>
+      <location filename="../sqleditor.cpp" line="287"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>Nemôžem otvoriť súbor &apos;%1&apos; pre zápis: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="296"/>
+      <location filename="../sqleditor.cpp" line="297"/>
       <source>Saved SQL contents to file: %1</source>
       <translation type="unfinished">Saved SQL contents to file: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="508"/>
+      <location filename="../sqleditor.cpp" line="509"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation type="unfinished">Syntax completion can be used only when a valid database is set for the SQL editor.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1129"/>
+      <location filename="../sqleditor.cpp" line="1130"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation type="unfinished">Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1164"/>
+      <location filename="../sqleditor.cpp" line="1165"/>
       <source>Save to file</source>
       <translation>Uložiť do súboru</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1179"/>
+      <location filename="../sqleditor.cpp" line="1180"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1180"/>
+      <location filename="../sqleditor.cpp" line="1181"/>
       <source>Open file</source>
       <translation>Otvoriť súbor</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1190"/>
+      <location filename="../sqleditor.cpp" line="1191"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nemôžem otvoriť súbor &apos;%1&apos; na čítanie: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1395"/>
+      <location filename="../sqleditor.cpp" line="1396"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Dosiahnutý koniec súboru. Kliknite na tlačidlo Nájsť pre hľadanie od začiatku súboru.</translation>
     </message>
