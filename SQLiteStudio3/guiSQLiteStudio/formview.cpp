@@ -3,7 +3,6 @@
 #include "datagrid/fkcombobox.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
-#include "multieditor/multieditorfk.h"
 #include "widgetresizer.h"
 #include "datagrid/sqlqueryitem.h"
 #include "uiconfig.h"
@@ -300,5 +299,4 @@ void FormView::showEvent(QShowEvent* event)
 {
     UNUSED(event);
     reloadInternal();
-    dataMapper->setCurrentIndex(indexForReload);
 }

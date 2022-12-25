@@ -3,10 +3,10 @@
 
 #include "guiSQLiteStudio_global.h"
 #include "multieditor/multieditor.h"
+#include "common/extactioncontainer.h"
 #include <QWidget>
 #include <QPointer>
 #include <QScrollArea>
-#include <common/extactioncontainer.h>
 
 class SqlQueryModel;
 class SqlQueryView;

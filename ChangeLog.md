@@ -15,6 +15,7 @@
 - BUGFIX: #4613 Fixed per-column filter behavior when clearing single filter using the in-line erase button.
 - BUGFIX: #4613 Fixed per-column filter behavior when jumping between subsequent filter inputs, so it does not apply filter for each single input, but rather waits for user Enter or Return key to be hit. Also not applying filter immediately when clicking the in-line erase button.
 - BUGFIX: #4624 Fixed (optimized) "Replace All" function in SQL Editor, reducing the "Replace All" action time from 30 seconds to 30 milliseconds in case of 380 occurrences.
+- BUGFIX: #4622 Fixed Form View to open at the same row that is selected in the Grid View.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
