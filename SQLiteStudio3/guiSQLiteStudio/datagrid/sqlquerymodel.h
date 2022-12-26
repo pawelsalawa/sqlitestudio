@@ -515,6 +515,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
     public slots:
         void itemValueEdited(SqlQueryItem* item);
+        void repaintAllItems();
         void changeSorting(int logicalIndex, Qt::SortOrder order);
         void changeSorting(int logicalIndex);
         void firstPage();

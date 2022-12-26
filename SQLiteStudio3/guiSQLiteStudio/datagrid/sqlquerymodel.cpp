@@ -1491,6 +1491,16 @@ void SqlQueryModel::itemValueEdited(SqlQueryItem* item)
     emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
+void SqlQueryModel::repaintAllItems()
+{
+    QModelIndex startIdx = index(0, 0);
+    if (!startIdx.isValid())
+        return;
+
+    QModelIndex endIdx = index(rowCount() - 1, columnCount() - 1);
+    emit dataChanged(startIdx, endIdx, QVector<int>({Qt::DisplayRole, Qt::EditRole}));
+}
+
 void SqlQueryModel::changeSorting(int logicalIndex, Qt::SortOrder order)
 {
     if (!reloadAvailable)
