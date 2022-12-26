@@ -3204,49 +3204,49 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
   <context>
     <name>FormView</name>
     <message>
-      <location filename="../formview.cpp" line="276"/>
+      <location filename="../formview.cpp" line="275"/>
       <source>Commit row</source>
       <comment>form view</comment>
       <translation>Enregistrer ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="277"/>
+      <location filename="../formview.cpp" line="276"/>
       <source>Rollback row</source>
       <comment>form view</comment>
       <translation>Annuler ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="278"/>
+      <location filename="../formview.cpp" line="277"/>
       <source>First row</source>
       <comment>form view</comment>
       <translation>Première ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="279"/>
+      <location filename="../formview.cpp" line="278"/>
       <source>Previous row</source>
       <comment>form view</comment>
       <translation>Ligne précédente</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="280"/>
+      <location filename="../formview.cpp" line="279"/>
       <source>Next row</source>
       <comment>form view</comment>
       <translation>Ligne suivante</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="281"/>
+      <location filename="../formview.cpp" line="280"/>
       <source>Last row</source>
       <comment>form view</comment>
       <translation>Dernière ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="282"/>
+      <location filename="../formview.cpp" line="281"/>
       <source>Insert new row</source>
       <comment>form view</comment>
       <translation>Insérer une nouvelle ligne</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="283"/>
+      <location filename="../formview.cpp" line="282"/>
       <source>Delete current row</source>
       <comment>form view</comment>
       <translation>Supprimer la ligne courante</translation>

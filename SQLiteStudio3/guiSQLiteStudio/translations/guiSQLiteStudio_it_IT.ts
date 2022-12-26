@@ -3205,49 +3205,49 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>FormView</name>
     <message>
-      <location filename="../formview.cpp" line="276"/>
+      <location filename="../formview.cpp" line="275"/>
       <source>Commit row</source>
       <comment>form view</comment>
       <translation>Committa riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="277"/>
+      <location filename="../formview.cpp" line="276"/>
       <source>Rollback row</source>
       <comment>form view</comment>
       <translation>Ripristina riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="278"/>
+      <location filename="../formview.cpp" line="277"/>
       <source>First row</source>
       <comment>form view</comment>
       <translation>Prima riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="279"/>
+      <location filename="../formview.cpp" line="278"/>
       <source>Previous row</source>
       <comment>form view</comment>
       <translation>Riga precedente</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="280"/>
+      <location filename="../formview.cpp" line="279"/>
       <source>Next row</source>
       <comment>form view</comment>
       <translation>Riga successiva</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="281"/>
+      <location filename="../formview.cpp" line="280"/>
       <source>Last row</source>
       <comment>form view</comment>
       <translation>Ultima riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="282"/>
+      <location filename="../formview.cpp" line="281"/>
       <source>Insert new row</source>
       <comment>form view</comment>
       <translation>Inserisci nuova riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="283"/>
+      <location filename="../formview.cpp" line="282"/>
       <source>Delete current row</source>
       <comment>form view</comment>
       <translation>Elimina riga corrente</translation>

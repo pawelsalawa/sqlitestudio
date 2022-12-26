@@ -3205,49 +3205,49 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>FormView</name>
     <message>
-      <location filename="../formview.cpp" line="276"/>
+      <location filename="../formview.cpp" line="275"/>
       <source>Commit row</source>
       <comment>form view</comment>
       <translation>提交行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="277"/>
+      <location filename="../formview.cpp" line="276"/>
       <source>Rollback row</source>
       <comment>form view</comment>
       <translation>回滚行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="278"/>
+      <location filename="../formview.cpp" line="277"/>
       <source>First row</source>
       <comment>form view</comment>
       <translation>首行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="279"/>
+      <location filename="../formview.cpp" line="278"/>
       <source>Previous row</source>
       <comment>form view</comment>
       <translation>上一行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="280"/>
+      <location filename="../formview.cpp" line="279"/>
       <source>Next row</source>
       <comment>form view</comment>
       <translation>下一行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="281"/>
+      <location filename="../formview.cpp" line="280"/>
       <source>Last row</source>
       <comment>form view</comment>
       <translation>末行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="282"/>
+      <location filename="../formview.cpp" line="281"/>
       <source>Insert new row</source>
       <comment>form view</comment>
       <translation>插入新行</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="283"/>
+      <location filename="../formview.cpp" line="282"/>
       <source>Delete current row</source>
       <comment>form view</comment>
       <translation>删除当前行</translation>
