@@ -725,6 +725,8 @@ void SqlQueryView::updateFont()
     QFont f = CFG_UI.Fonts.DataView.get();
     QFontMetrics fm(f);
     verticalHeader()->setDefaultSectionSize(fm.height() + 4);
+    if (getModel())
+        getModel()->repaintAllItems();
 }
 
 void SqlQueryView::executionStarted()
