@@ -483,14 +483,13 @@ void MainWindow::restoreSession()
     if (sessionValue.contains("style"))
     {
         QString styleName = sessionValue["style"].toString();
-        if (!setStyle(styleName))
-        {
-            styleName = currentStyle();
-            CFG_UI.General.Style.set(styleName);
-        }
+        setStyle(styleName);
     }
     else
         THEME_TUNER->tuneCurrentTheme();
+
+    QString styleName = currentStyle();
+    CFG_UI.General.Style.set(styleName);
 
     if (sessionValue.contains("geometry"))
         restoreGeometry(sessionValue["geometry"].toByteArray());

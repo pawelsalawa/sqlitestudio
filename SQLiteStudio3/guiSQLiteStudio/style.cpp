@@ -32,12 +32,19 @@ void Style::setStyle(QStyle *style, const QString &styleName)
 
     QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
 
-    QApplication::setPalette(initialPalette); // reset palette, cause styles don't provide
-                                              // full palette when changed in runtime (i.e. windowsvista)
+    if (styleName != "qt5ct-style")
+    {
+        QApplication::setPalette(initialPalette); // reset palette, cause styles don't provide
+                                                  // full palette when changed in runtime (i.e. windowsvista)
+    }
+
     QApplication::setStyle(this);
-    QApplication::setPalette(standardPalette());
+    if (styleName != "qt5ct-style")
+    {
+        QApplication::setPalette(standardPalette());
+        QToolTip::setPalette(standardPalette());
+    }
     THEME_TUNER->tuneTheme(styleName);
-    QToolTip::setPalette(standardPalette());
     extPalette.styleChanged(this, styleName);
     MAINWINDOW->getMdiArea()->setBackground(extPalette.mdiAreaBase());
 }

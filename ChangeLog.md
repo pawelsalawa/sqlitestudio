@@ -18,6 +18,7 @@
 - BUGFIX: #4622 Fixed Form View to open at the same row that is selected in the Grid View.
 - BUGFIX: #4616 Fixed font refreshing in Grid View when changing font size with ctrl+wheel.
 - BUGFIX: #4562 Fixed Config Dialog to properly show loaded/unloaded plugins in case of dependant plugins.
+- BUGFIX: #4634 Added workaround for handling qt5ct style from Qt configuration utility.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1

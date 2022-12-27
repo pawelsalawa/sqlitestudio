@@ -244,6 +244,7 @@ void ConfigDialog::init()
     QStringList styles = QStyleFactory::keys();
     styles.sort(Qt::CaseInsensitive);
     ui->activeStyleCombo->addItems(styles);
+    ui->activeStyleCombo->setCurrentText(STYLE->name());
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
 
