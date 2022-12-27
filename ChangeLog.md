@@ -17,6 +17,7 @@
 - BUGFIX: #4624 Fixed (optimized) "Replace All" function in SQL Editor, reducing the "Replace All" action time from 30 seconds to 30 milliseconds in case of 380 occurrences.
 - BUGFIX: #4622 Fixed Form View to open at the same row that is selected in the Grid View.
 - BUGFIX: #4616 Fixed font refreshing in Grid View when changing font size with ctrl+wheel.
+- BUGFIX: #4562 Fixed Config Dialog to properly show loaded/unloaded plugins in case of dependant plugins.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1
