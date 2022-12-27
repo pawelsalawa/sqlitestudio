@@ -5599,22 +5599,22 @@ find next</translation>
       <translation type="unfinished">Error while loading query results: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Insert multiple rows</source>
       <translation type="unfinished">Insert multiple rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Number of rows to insert:</source>
       <translation type="unfinished">Number of rows to insert:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1989"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>Delete rows</source>
       <translation type="unfinished">Delete rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1990"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
@@ -5797,27 +5797,27 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation type="unfinished">Referenced row (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="804"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="806"/>
       <source>Trim pasted text?</source>
       <translation type="unfinished">Trim pasted text?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="805"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="807"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="813"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="814"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="922"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
       <source>Edit value</source>
       <translation type="unfinished">Edit value</translation>
     </message>

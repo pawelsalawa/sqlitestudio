@@ -5596,22 +5596,22 @@ find next</source>
       <translation>Ошибка при загрузке результатов запроса: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Insert multiple rows</source>
       <translation>Вставить несколько строк</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Number of rows to insert:</source>
       <translation>Количество вставляемых строк:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1989"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>Delete rows</source>
       <translation>Удалить строки</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1990"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Вы собираетесь удалить недавно вставленные строки, которые ещё не были подтверждены. Номера строк: %1
@@ -5794,27 +5794,27 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Связанная строка (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="804"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="806"/>
       <source>Trim pasted text?</source>
       <translation>Обрезать вставленный текст?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="805"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="807"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>В начале либо конце вставленного текста находятся непечатаемые символы. Обрезать их автоматически?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="813"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>Вставить &quot;NULL&quot; в качестве значения NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="814"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>Вставленный текст содержит строки &quot;NULL&quot;. Вы хотите чтобы они были вставлены как значения NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="922"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
       <source>Edit value</source>
       <translation>Править содержимое</translation>
     </message>

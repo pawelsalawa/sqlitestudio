@@ -5600,22 +5600,22 @@ encontrar próximo</translation>
       <translation>Erro ao carregar os resultados da consulta: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Insert multiple rows</source>
       <translation>Inserir múltiplas linhas</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1934"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
       <source>Number of rows to insert:</source>
       <translation>Número de linhas a inserir:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1989"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>Delete rows</source>
       <translation>Excluir linha</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1990"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Você está prestes a excluir linhas recém-inseridas que ainda não foram confirmadas. Números da linha: %1
@@ -5798,27 +5798,27 @@ Essa exclusão será permanente. Tem certeza que deseja excluí-la?</translation
       <translation>Linha referenciada (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="804"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="806"/>
       <source>Trim pasted text?</source>
       <translation>Aparar texto colado?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="805"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="807"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>O texto colado contém espaço branco à esquerda ou à direita. Aparar automaticamente?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="813"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>Colar &quot;NULO&quot; como valor nulo?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="814"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>O texto colado contém &quot;NULL&quot; literais. Deseja considerá-los como valores NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="922"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
       <source>Edit value</source>
       <translation>Editar valor</translation>
     </message>
