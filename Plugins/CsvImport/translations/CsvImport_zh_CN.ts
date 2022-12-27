@@ -54,17 +54,17 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>列分隔符：</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用， &amp;引号； 字符将被解释为标准的 CSV 值引号， 使字符串被当作单个值处理，直到下一个 (正在结束) &amp;引号； 字符 如果禁用， &amp;引号将被视为任何其他字符。 通常您想要启用此功能。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+      <translation>将 &quot; 解释为一个值引号</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
