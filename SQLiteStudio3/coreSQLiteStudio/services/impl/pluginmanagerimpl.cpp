@@ -450,12 +450,12 @@ void PluginManagerImpl::unload(const QString& pluginName)
         return;
 
     // Unloading depdendent plugins
-    for (PluginContainer* otherContainer : pluginContainer.values())
+    for (PluginContainer*& otherContainer : pluginContainer.values())
     {
         if (otherContainer == container)
             continue;
 
-        for (const PluginDependency& dep : otherContainer->dependencies)
+        for (PluginDependency& dep : otherContainer->dependencies)
         {
             if (dep.name == pluginName)
             {
