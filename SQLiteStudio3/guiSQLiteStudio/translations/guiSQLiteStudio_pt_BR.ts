@@ -1524,95 +1524,95 @@ Key</translation>
       <translation>Acionar automaticamente o assistente após um ponto ser digitado após um nome de objeto</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="898"/>
+      <location filename="../dialogs/configdialog.cpp" line="899"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Descrição:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="899"/>
+      <location filename="../dialogs/configdialog.cpp" line="900"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Categoria:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="900"/>
+      <location filename="../dialogs/configdialog.cpp" line="901"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Versão:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="902"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Autor:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="903"/>
+      <location filename="../dialogs/configdialog.cpp" line="904"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Nome interno:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Dependências:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="905"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Conflitos</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="909"/>
+      <location filename="../dialogs/configdialog.cpp" line="910"/>
       <source>Plugin details</source>
       <translation>Detalhes do plugin</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1445"/>
+      <location filename="../dialogs/configdialog.cpp" line="1452"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Plugins são carregados/descarregados imediatamente quando marcados/desmarcados, mas a lista de plugins modificados para carregar na inicialização não é salva até que você confirme toda a caixa de diálogo de configuração.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1509"/>
+      <location filename="../dialogs/configdialog.cpp" line="1516"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (embutido)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1522"/>
+      <location filename="../dialogs/configdialog.cpp" line="1529"/>
       <source>Details</source>
       <translation>Detalhes</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1534"/>
+      <location filename="../dialogs/configdialog.cpp" line="1541"/>
       <source>No plugins in this category.</source>
       <translation>Sem plugins nesta categoria.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1636"/>
+      <location filename="../dialogs/configdialog.cpp" line="1643"/>
       <source>Add new data type</source>
       <translation>Adicionar novo tipo de dado</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1640"/>
+      <location filename="../dialogs/configdialog.cpp" line="1647"/>
       <source>Rename selected data type</source>
       <translation>Renomear tipo de dados selecionados</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1644"/>
+      <location filename="../dialogs/configdialog.cpp" line="1651"/>
       <source>Delete selected data type</source>
       <translation>Excluir tipo de dado selecionado</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1648"/>
+      <location filename="../dialogs/configdialog.cpp" line="1655"/>
       <source>Help for configuring data type editors</source>
       <translation>Ajuda para configurar editores de tipos de dados</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1777"/>
+      <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
       <translation>Aqui você pode configurar cores para realce de sintaxe de código. Elas são compartilhadas entre diferentes línguas - não apenas para SQL, mas também JavaScript e outras.</translation>
     </message>
@@ -3986,53 +3986,53 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <translation>Ajuda</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="587"/>
+      <location filename="../mainwindow.cpp" line="586"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>Não foi possível definir o estilo: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="718"/>
+      <location filename="../mainwindow.cpp" line="717"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="734"/>
+      <location filename="../mainwindow.cpp" line="733"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Não é possível importar porque nenhum plugin de importação está carregado.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="777"/>
+      <location filename="../mainwindow.cpp" line="776"/>
       <source>Rename window</source>
       <translation>Renomear janela</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="777"/>
+      <location filename="../mainwindow.cpp" line="776"/>
       <source>Enter new name for the window:</source>
       <translation>Digite um novo nome para a janela:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="880"/>
+      <location filename="../mainwindow.cpp" line="879"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Novas atualizações estão disponíveis. &lt;a href=&quot;%1&quot;&gt;Clique aqui para mais detalhes&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="888"/>
+      <location filename="../mainwindow.cpp" line="887"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Você está executando a versão mais recente. Não há atualizações disponíveis.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1018"/>
+      <location filename="../mainwindow.cpp" line="1017"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1025"/>
+      <location filename="../mainwindow.cpp" line="1024"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1030"/>
+      <location filename="../mainwindow.cpp" line="1029"/>
       <source>Could not add database %1 to list.</source>
       <translation>Não foi possível adicionar o banco de dados %1 à lista.</translation>
     </message>
