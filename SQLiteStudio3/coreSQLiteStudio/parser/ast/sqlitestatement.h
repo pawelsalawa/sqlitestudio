@@ -228,6 +228,12 @@ class API_EXPORT SqliteStatement : public QObject
         virtual SqliteStatement* clone() = 0;
 
         template <class T>
+        T* typeClone()
+        {
+            return dynamic_cast<T*>(clone());
+        }
+
+        template <class T>
         void attach(QList<T*>& listMemberForChild, T* childStatementToAttach)
         {
             listMemberForChild << childStatementToAttach;

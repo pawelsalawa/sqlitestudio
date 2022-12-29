@@ -19,6 +19,7 @@
 - BUGFIX: #4616 Fixed font refreshing in Grid View when changing font size with ctrl+wheel.
 - BUGFIX: #4562 Fixed Config Dialog to properly show loaded/unloaded plugins in case of dependant plugins.
 - BUGFIX: #4634 Added workaround for handling qt5ct style from Qt configuration utility.
+- BUGFIX: #4548 Automatic indexes are now marked correctly as unique and the Index Dialog is read-only for them.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1

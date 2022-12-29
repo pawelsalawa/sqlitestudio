@@ -13,7 +13,6 @@
 #include "indexexprcolumndialog.h"
 #include "windows/editorwindow.h"
 #include "services/codeformatter.h"
-#include "common/compatibility.h"
 #include <QDebug>
 #include <QGridLayout>
 #include <QSignalMapper>
@@ -37,6 +36,10 @@ IndexDialog::IndexDialog(Db* db, const QString& index, QWidget* parent) :
 {
     existingIndex = true;
     init();
+
+    bool sysIdx = isSystemIndex(index);
+    ui->indexTab->setDisabled(sysIdx);
+    ui->ddlTab->setDisabled(sysIdx);
 }
 
 IndexDialog::~IndexDialog()
@@ -709,15 +712,32 @@ void IndexDialog::preReject()
     preRejected = true;
 }
 
+QString IndexDialog::getOriginalDdl() const
+{
+    SqliteCreateIndex* initialCreateIndex = originalCreateIndex->typeClone<SqliteCreateIndex>();
+    initialCreateIndex->rebuildTokens();
+    QString initialDdl = initialCreateIndex->detokenize();
+    delete initialCreateIndex;
+    return initialDdl;
+}
+
 void IndexDialog::accept()
 {
+    QString initialDdl = getOriginalDdl();
     rebuildCreateIndex();
+    QString ddl = createIndex->detokenize();
+    if (initialDdl == ddl)
+    {
+        // Nothing changed. Just close.
+        QDialog::accept();
+        return;
+    }
 
     QStringList sqls;
     if (existingIndex)
         sqls << QString("DROP INDEX %1").arg(wrapObjIfNeeded(originalCreateIndex->index));
 
-    sqls << createIndex->detokenize();
+    sqls << ddl;
 
     if (!CFG_UI.General.DontShowDdlPreview.get())
     {
