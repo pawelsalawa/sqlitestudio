@@ -1,12 +1,10 @@
 #include "triggerdialog.h"
 #include "ui_triggerdialog.h"
-#include "parser/ast/sqliteselect.h"
 #include "services/notifymanager.h"
 #include "parser/ast/sqliteexpr.h"
 #include "triggercolumnsdialog.h"
 #include "common/utils_sql.h"
 #include "schemaresolver.h"
-#include "parser/parser.h"
 #include "iconmanager.h"
 #include "db/chainexecutor.h"
 #include "dbtree/dbtree.h"
@@ -208,11 +206,14 @@ void TriggerDialog::readTrigger()
     if (createTrigger->queries.size() > 0)
     {
         QStringList sqls;
-        for (SqliteQuery* query : createTrigger->queries)
+        for (SqliteQuery*& query : createTrigger->queries)
             sqls << query->detokenize();
 
         ui->codeEdit->setPlainText(sqls.join(";\n")+";");
     }
+
+    rebuildTrigger();
+    originalDdl = ddl;
 }
 
 void TriggerDialog::setupVirtualSqls()
@@ -299,7 +300,7 @@ void TriggerDialog::rebuildTrigger()
     if (actionType == SqliteCreateTrigger::Event::UPDATE_OF)
     {
         QStringList colNames;
-        for (const QString& colName : selectedColumns)
+        for (QString& colName : selectedColumns)
             colNames << wrapObjIfNeeded(colName);
 
         columns = " "+colNames.join(", ");
@@ -321,7 +322,7 @@ void TriggerDialog::rebuildTrigger()
     if (!scope.isNull())
         scope.prepend(" ");
 
-    ddl = tempDdl.arg(trigName).arg(when).arg(action).arg(columns).arg(target).arg(scope).arg(precondition).arg(queries);
+    ddl = tempDdl.arg(trigName, when, action, columns, target, scope, precondition, queries);
 }
 
 void TriggerDialog::updateState()
@@ -385,6 +386,12 @@ void TriggerDialog::tableChanged(const QString& newValue)
 void TriggerDialog::accept()
 {
     rebuildTrigger();
+    if (originalDdl == ddl)
+    {
+        // Nothing changed. Just close.
+        QDialog::accept();
+        return;
+    }
 
     QStringList sqls;
     if (existingTrigger)

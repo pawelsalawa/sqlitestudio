@@ -660,7 +660,7 @@ QString SchemaResolver::getSqliteAutoIndexDdl(const QString& database, const QSt
     }
 
     // Check the unique flag of the index
-    static_qstring(idxUniqueQueryTpl, "SELECT unique FROM %1.pragma_index_list(%2) WHERE name = ?");
+    static_qstring(idxUniqueQueryTpl, "SELECT [unique] FROM %1.pragma_index_list(%2) WHERE name = ?");
     SqlQueryPtr uniqRes = db->exec(idxUniqueQueryTpl.arg(dbName, wrapString(table)), {index}, dbFlags);
     bool unique = uniqRes->getSingleCell().toInt() > 0;
 

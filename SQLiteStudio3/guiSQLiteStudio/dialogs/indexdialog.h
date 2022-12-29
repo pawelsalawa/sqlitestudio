@@ -123,6 +123,7 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         QStringList getExistingColumnExprs(const QString& exceptThis = QString()) const;
         QStringList getTableColumns() const;
         void preReject();
+        QString getOriginalDdl() const;
 
         bool existingIndex = false;
         Db* db = nullptr;

@@ -50,6 +50,7 @@ class GUI_API_EXPORT TriggerDialog : public QDialog
         QStringList targetColumns;
         QStringList selectedColumns;
         QString ddl;
+        QString originalDdl;
         SqliteCreateTriggerPtr createTrigger;
         Ui::TriggerDialog *ui = nullptr;
 
