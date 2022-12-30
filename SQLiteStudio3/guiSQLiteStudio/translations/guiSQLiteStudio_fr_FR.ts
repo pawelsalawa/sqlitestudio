@@ -3594,61 +3594,61 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="67"/>
+      <location filename="../dialogs/indexdialog.cpp" line="70"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
       <translation>Vous tentez d’ouvrir le dialogue de l’index d’une base de données fermée ou inexistante.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="137"/>
+      <location filename="../dialogs/indexdialog.cpp" line="140"/>
       <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
       <translation>Impossible de définir l’index %1 correctement. Ouvrir un dialogue d’index valide.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="191"/>
+      <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
       <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="192"/>
+      <location filename="../dialogs/indexdialog.cpp" line="195"/>
       <source>Pick the table for the index.</source>
       <translation>Sélectionnez la table pour l’index.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="193"/>
+      <location filename="../dialogs/indexdialog.cpp" line="196"/>
       <source>Select at least one column.</source>
       <translation>Selectionnez au moins une colonne.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="194"/>
+      <location filename="../dialogs/indexdialog.cpp" line="197"/>
       <source>Enter a valid condition.</source>
       <translation>Saississez une condition valide.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="266"/>
+      <location filename="../dialogs/indexdialog.cpp" line="269"/>
       <source>default</source>
       <comment>index dialog</comment>
       <translation>defaut</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="270"/>
+      <location filename="../dialogs/indexdialog.cpp" line="273"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
       <translation>Ordre de tri</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="748"/>
-      <location filename="../dialogs/indexdialog.cpp" line="761"/>
+      <location filename="../dialogs/indexdialog.cpp" line="768"/>
+      <location filename="../dialogs/indexdialog.cpp" line="781"/>
       <source>Error</source>
       <comment>index dialog</comment>
       <translation>Erreur</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="749"/>
+      <location filename="../dialogs/indexdialog.cpp" line="769"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
       <translation>Impossible de créer un index, car les valeurs des colonnes sélectionnées ne sont pas uniques. Voulez-vous exécuter une requête SELECT pour voir les valeurs problématiques ?</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="761"/>
+      <location filename="../dialogs/indexdialog.cpp" line="781"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation>Une erreur survenue à l’exécution de l’SQL :
@@ -6753,33 +6753,33 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="153"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="151"/>
       <source>On view:</source>
       <translation>Sur vue :</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="177"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="175"/>
       <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
       <translation>Impossible d’exécuter correctement le déclencheur %1. Ouverture invalide du dialogue de déclencheur.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="345"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="346"/>
       <source>Enter a valid condition.</source>
       <translation>Saisissez une condition valide.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="346"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="347"/>
       <source>Enter a valid trigger code.</source>
       <translation>Saisissez un code de déclencheur valide.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="418"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="425"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
       <translation>Erreur</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="418"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="425"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation>Une erreur survenue lors de l’exécution de l’intruction SQL : %1</translation>

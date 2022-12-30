@@ -3595,61 +3595,61 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="67"/>
+      <location filename="../dialogs/indexdialog.cpp" line="70"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
       <translation type="unfinished">Tried to open index dialog for closed or inexisting database.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="137"/>
+      <location filename="../dialogs/indexdialog.cpp" line="140"/>
       <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
       <translation type="unfinished">Could not process index %1 correctly. Unable to open an index dialog.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="191"/>
+      <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
       <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="192"/>
+      <location filename="../dialogs/indexdialog.cpp" line="195"/>
       <source>Pick the table for the index.</source>
       <translation type="unfinished">Pick the table for the index.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="193"/>
+      <location filename="../dialogs/indexdialog.cpp" line="196"/>
       <source>Select at least one column.</source>
       <translation type="unfinished">Select at least one column.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="194"/>
+      <location filename="../dialogs/indexdialog.cpp" line="197"/>
       <source>Enter a valid condition.</source>
       <translation type="unfinished">Enter a valid condition.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="266"/>
+      <location filename="../dialogs/indexdialog.cpp" line="269"/>
       <source>default</source>
       <comment>index dialog</comment>
       <translation type="unfinished">default</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="270"/>
+      <location filename="../dialogs/indexdialog.cpp" line="273"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
       <translation type="unfinished">Sort order</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="748"/>
-      <location filename="../dialogs/indexdialog.cpp" line="761"/>
+      <location filename="../dialogs/indexdialog.cpp" line="768"/>
+      <location filename="../dialogs/indexdialog.cpp" line="781"/>
       <source>Error</source>
       <comment>index dialog</comment>
       <translation type="unfinished">Error</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="749"/>
+      <location filename="../dialogs/indexdialog.cpp" line="769"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
       <translation type="unfinished">Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="761"/>
+      <location filename="../dialogs/indexdialog.cpp" line="781"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation type="unfinished">An error occurred while executing SQL statements:
@@ -6756,33 +6756,33 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="153"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="151"/>
       <source>On view:</source>
       <translation type="unfinished">On view:</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="177"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="175"/>
       <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
       <translation type="unfinished">Could not process trigger %1 correctly. Unable to open a trigger dialog.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="345"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="346"/>
       <source>Enter a valid condition.</source>
       <translation type="unfinished">Enter a valid condition.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="346"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="347"/>
       <source>Enter a valid trigger code.</source>
       <translation type="unfinished">Enter a valid trigger code.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="418"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="425"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
       <translation type="unfinished">Error</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="418"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="425"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation type="unfinished">An error occurred while executing SQL statements:
