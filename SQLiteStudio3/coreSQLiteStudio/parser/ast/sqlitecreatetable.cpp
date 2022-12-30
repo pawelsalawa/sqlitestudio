@@ -143,6 +143,18 @@ QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeig
     return results;
 }
 
+void SqliteCreateTable::removeColumnConstraint(Column::Constraint* constr)
+{
+    for (Column* col : columns)
+    {
+        if (col->constraints.contains(constr))
+        {
+            col->constraints.removeOne(constr);
+            return;
+        }
+    }
+}
+
 QStringList SqliteCreateTable::getColumnNames() const
 {
     QStringList names;

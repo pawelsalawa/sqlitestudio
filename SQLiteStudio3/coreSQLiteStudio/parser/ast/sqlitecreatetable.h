@@ -203,6 +203,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         Column* getColumn(const QString& colName);
         QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
         QList<Column::Constraint*> getColumnForeignKeysByTable(const QString& foreignTable) const;
+        void removeColumnConstraint(Column::Constraint* constr);
         QStringList getColumnNames() const;
         QHash<QString,QString> getModifiedColumnsMap(bool lowercaseKeys = false, Qt::CaseSensitivity cs = Qt::CaseInsensitive) const;
         QString getTargetDatabase() const;

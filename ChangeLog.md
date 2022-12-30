@@ -21,6 +21,7 @@
 - BUGFIX: #4634 Added workaround for handling qt5ct style from Qt configuration utility.
 - BUGFIX: #4548 Automatic indexes are now marked correctly as unique and the Index Dialog is read-only for them.
 - BUGFIX: #4637 Fixed Bind Parameters dialog to apply initially a reasonable size of input editors.
+- BUGFIX: #4384 Fixed DDL modifications of Foreign Key referencing table, so the FK constraint is not retained if referenced column was dropped.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
 ### 3.4.1

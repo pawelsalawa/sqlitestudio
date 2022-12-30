@@ -194,13 +194,27 @@ bool TableModifier::handleFkConstrains(SqliteCreateTable* stmt, const QString& o
     for (SqliteCreateTable::Constraint*& fk : stmt->getForeignKeysByTable(oldName))
     {
         if (handleFks(fk->foreignKey, oldName, theNewName))
+        {
             modified = true;
+            if (fk->foreignKey->indexedColumns.isEmpty())
+            {
+                stmt->constraints.removeOne(fk);
+                delete fk;
+            }
+        }
     }
 
     for (SqliteCreateTable::Column::Constraint*& fk : stmt->getColumnForeignKeysByTable(oldName))
     {
         if (handleFks(fk->foreignKey, oldName, theNewName))
+        {
             modified = true;
+            if (fk->foreignKey->indexedColumns.isEmpty())
+            {
+                stmt->removeColumnConstraint(fk);
+                delete fk;
+            }
+        }
     }
     return modified;
 }
