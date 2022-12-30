@@ -27,7 +27,7 @@ class BindParamsDialog : public QDialog
 
         static const int margins = 2;
         static const int spacing = 2;
-        static const int minimumFieldHeight = 80;
+        static const int minimumFieldHeight = 120;
 
         Ui::BindParamsDialog *ui;
         QVector<BindParam*> bindParams;

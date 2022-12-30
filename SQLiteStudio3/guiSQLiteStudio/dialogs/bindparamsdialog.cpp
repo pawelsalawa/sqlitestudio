@@ -44,20 +44,21 @@ void BindParamsDialog::init()
 void BindParamsDialog::initEditors()
 {
     QStringList paramNames;
-    for (BindParam* param : bindParams)
+    for (BindParam*& param : bindParams)
         paramNames << param->originalName;
 
     MultiEditor* firstEditor = nullptr;
     MultiEditor* multiEditor = nullptr;
     QVector<QPair<QString, QVariant>> paramHistory = CFG->getBindParamHistory(paramNames);
-    for (BindParam* param : bindParams)
+    for (BindParam*& param : bindParams)
     {
         multiEditor = initEditor(param, paramHistory.size() > param->position ? paramHistory[param->position].second : QVariant());
         if (firstEditor == nullptr)
             firstEditor = multiEditor;
     }
 
-    firstEditor->focusThisEditor();
+    if (firstEditor)
+        firstEditor->focusThisEditor();
 }
 
 MultiEditor* BindParamsDialog::initEditor(BindParam* param, const QVariant& cachedValue)
