@@ -928,36 +928,36 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Tabela %1 odwołuje się do tabeli %2, ale definicja klucza obcego nie zostanie zaktualizowane dla definicji nowej tabeli w związku z problemami przy analizowaniu DDL tabeli %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="456"/>
+      <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Wszystkie kolumny indeksowane przez indeks %1 już nie istnieją. Indeks ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="500"/>
+      <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Wystąpił problem z poprawnym przetworzeniem wyzwalacza %1. Może on zostać zaktualizowany tylko częściowo i będzie wymagał twojej uwagi.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="515"/>
+      <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="547"/>
+      <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="566"/>
+      <location filename="../tablemodifier.cpp" line="580"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Nie można zaktualizować widoku %1 w związku z modyfikacjami tabeli %2.
 Widok pozostanie nienaruszony.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="728"/>
-      <location filename="../tablemodifier.cpp" line="752"/>
-      <location filename="../tablemodifier.cpp" line="771"/>
+      <location filename="../tablemodifier.cpp" line="742"/>
+      <location filename="../tablemodifier.cpp" line="766"/>
+      <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań %1, które może odwoływać się do tabeli %3 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
