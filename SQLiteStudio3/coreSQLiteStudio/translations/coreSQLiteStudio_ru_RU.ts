@@ -928,36 +928,36 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Таблица %1 ссылается на таблицу %2, но описание внешнего ключа не будет обновлено для описания новой таблицы из-за проблем с анализом DDL таблицы %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="456"/>
+      <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Все столбцы, проиндексированные индексом %1, удалены. Индекс не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="500"/>
+      <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Возникла проблема при обработке триггера %1. Впоследствии он не будет полностью обновлён и потребует вашего внимания.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="515"/>
+      <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Все столбцы, затронутые в триггере %1, удалены. Триггер не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="547"/>
+      <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Невозможно обновить триггер %1 в соответствии с модификацией таблицы %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="566"/>
+      <location filename="../tablemodifier.cpp" line="580"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Невозможно обновить представление %1 в соответствии с модификациями таблицы %2.
 Представление останется как есть.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="728"/>
-      <location filename="../tablemodifier.cpp" line="752"/>
-      <location filename="../tablemodifier.cpp" line="771"/>
+      <location filename="../tablemodifier.cpp" line="742"/>
+      <location filename="../tablemodifier.cpp" line="766"/>
+      <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Возникла проблема при обновлении конструкции %1 внутри триггера %2. Одна из вложенных конструкций %1, которая возможно ссылается на таблицу %3, не может быть корректно модифицирована. Возможно необходима ручная правка триггера.</translation>
     </message>
