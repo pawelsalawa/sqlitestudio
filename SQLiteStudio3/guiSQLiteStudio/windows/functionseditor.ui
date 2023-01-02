@@ -78,7 +78,7 @@
              </size>
             </property>
             <property name="placeholderText">
-             <string>Filter funtions</string>
+             <string>Filter functions</string>
             </property>
             <property name="clearButtonEnabled">
              <bool>true</bool>
@@ -228,7 +228,7 @@
                     <bool>false</bool>
                    </attribute>
                    <attribute name="headerDefaultSectionSize">
-                    <number>31</number>
+                    <number>35</number>
                    </attribute>
                   </widget>
                  </item>
