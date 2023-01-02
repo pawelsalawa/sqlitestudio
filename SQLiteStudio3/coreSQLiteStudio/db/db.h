@@ -843,7 +843,7 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool closeQuiet() = 0;
 
         /**
-         * @brief Deregisters all funtions registered in the database and registers new (possibly the same) functions.
+         * @brief Deregisters all functions registered in the database and registers new (possibly the same) functions.
          *
          * This slot is called from openAndSetup() and then every time user modifies custom SQL functions and commits changes to them.
          * It deregisters all functions registered before in this database and registers new functions, currently defined for
