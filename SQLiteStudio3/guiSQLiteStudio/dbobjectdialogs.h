@@ -17,6 +17,15 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         Q_OBJECT
 
     public:
+        enum class Type
+        {
+            TABLE = 0,
+            INDEX = 1,
+            TRIGGER = 2,
+            VIEW = 3,
+            UNKNOWN = -1
+        };
+
         explicit DbObjectDialogs(Db* db);
         DbObjectDialogs(Db* db, QWidget* parentWidget);
 
@@ -35,10 +44,10 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         ViewWindow* addView(const QString& initialSelect = QString());
         ViewWindow* editView(const QString& database, const QString& view);
 
-        void editObject(const QString& name);
-        void editObject(const QString& database, const QString& name);
-        bool dropObject(const QString& name);
-        bool dropObject(const QString& database, const QString& name);
+        void editObject(Type type, const QString& name);
+        void editObject(Type type, const QString& database, const QString& name);
+        bool dropObject(Type type, const QString& name);
+        bool dropObject(Type type, const QString& database, const QString& name);
         bool dropObjects(const QStringList& names);
         bool dropObjects(const QHash<QString, QStringList>& objects);
 
@@ -49,15 +58,6 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         void setNoSchemaRefreshing(bool value);
 
     private:
-        enum class Type
-        {
-            TABLE = 0,
-            INDEX = 1,
-            TRIGGER = 2,
-            VIEW = 3,
-            UNKNOWN = -1
-        };
-
         Type getObjectType(const QString& database, const QString& name);
         QHash<QString, QHash<QString, QStringList> > groupObjects(const QHash<QString, QStringList>& objects);
 

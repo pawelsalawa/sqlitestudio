@@ -122,16 +122,18 @@ ViewWindow* DbObjectDialogs::editView(const QString& database, const QString& vi
     return win;
 }
 
-void DbObjectDialogs::editObject(const QString& name)
+void DbObjectDialogs::editObject(Type type, const QString& name)
 {
-    editObject("main", name);
+    editObject(type, "main", name);
 }
 
-void DbObjectDialogs::editObject(const QString& database, const QString& name)
+void DbObjectDialogs::editObject(Type type, const QString& database, const QString& name)
 {
     SchemaResolver schemaResolver(db);
     QString normalizedName = schemaResolver.normalizeCaseObjectName(database, name);
-    Type type = getObjectType(database, normalizedName);
+    if (type == Type::UNKNOWN)
+        type = getObjectType(database, normalizedName);
+
     switch (type)
     {
         case Type::TABLE:
@@ -154,18 +156,20 @@ void DbObjectDialogs::editObject(const QString& database, const QString& name)
     }
 }
 
-bool DbObjectDialogs::dropObject(const QString& name)
+bool DbObjectDialogs::dropObject(Type type, const QString& name)
 {
-    return dropObject("main", name);
+    return dropObject(type, "main", name);
 }
 
-bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
+bool DbObjectDialogs::dropObject(Type type, const QString& database, const QString& name)
 {
     static const QString dropSql3 = "DROP %1 %2.%3;";
 
     QString dbName = wrapObjIfNeeded(database);
 
-    Type type = getObjectType(database, name);
+    if (type == Type::UNKNOWN)
+        type = getObjectType(database, name);
+
     QString title;
     QString message;
     QString typeForSql;

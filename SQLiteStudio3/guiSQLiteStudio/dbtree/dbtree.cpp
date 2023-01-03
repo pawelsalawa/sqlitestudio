@@ -850,27 +850,26 @@ void DbTree::editTrigger(DbTreeItem* item)
     dialogs.editTrigger(item->text());
 }
 
-void DbTree::delSelectedObject()
-{
-    Db* db = getSelectedOpenDb();
-    if (!db)
-        return;
+//void DbTree::delSelectedObject()
+//{
+//    Db* db = getSelectedOpenDb();
+//    if (!db)
+//        return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    if (!item)
-        return;
+//    DbTreeItem* item = ui->treeView->currentItem();
+//    if (!item)
+//        return;
 
-    DbObjectDialogs dialogs(db);
-    dialogs.dropObject(item->text()); // TODO add database prefix when supported
-}
+//    DbObjectDialogs dialogs(db);
+//    dialogs.dropObject(item->text()); // TODO add database prefix when supported
+//}
 
 void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
 {
     QMutableListIterator<DbTreeItem*> it(items);
-    DbTreeItem::Type type;
     while (it.hasNext())
     {
-        type = it.next()->getType();
+        DbTreeItem::Type type = it.next()->getType();
         switch (type)
         {
             case DbTreeItem::Type::TABLES:
@@ -914,27 +913,28 @@ void DbTree::filterItemsWithParentInList(QList<DbTreeItem*>& items)
 
 void DbTree::deleteItem(DbTreeItem* item)
 {
+    DbObjectDialogs::Type objType = DbObjectDialogs::Type::UNKNOWN;
     switch (item->getType())
     {
         case DbTreeItem::Type::DIR:
             treeModel->deleteGroup(item);
-            break;
+            return;
         case DbTreeItem::Type::DB:
             DBLIST->removeDb(item->getDb());
-            break;
+            return;
         case DbTreeItem::Type::TABLE:
         case DbTreeItem::Type::VIRTUAL_TABLE:
-        case DbTreeItem::Type::INDEX:
-        case DbTreeItem::Type::TRIGGER:
-        case DbTreeItem::Type::VIEW:
-        {
-            Db* db = item->getDb();
-            DbObjectDialogs dialogs(db);
-            dialogs.setNoConfirmation(true); // confirmation is done in deleteSelected()
-            dialogs.setNoSchemaRefreshing(true); // we will refresh after all items are deleted
-            dialogs.dropObject(item->text()); // TODO database name when supported
+            objType = DbObjectDialogs::Type::TABLE;
             break;
-        }
+        case DbTreeItem::Type::INDEX:
+            objType = DbObjectDialogs::Type::INDEX;
+            break;
+        case DbTreeItem::Type::TRIGGER:
+            objType = DbObjectDialogs::Type::TRIGGER;
+            break;
+        case DbTreeItem::Type::VIEW:
+            objType = DbObjectDialogs::Type::VIEW;
+            break;
         case DbTreeItem::Type::TABLES:
         case DbTreeItem::Type::INDEXES:
         case DbTreeItem::Type::TRIGGERS:
@@ -942,7 +942,16 @@ void DbTree::deleteItem(DbTreeItem* item)
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-            break;
+            return;
+    }
+
+    if (objType != DbObjectDialogs::Type::UNKNOWN)
+    {
+        Db* db = item->getDb();
+        DbObjectDialogs dialogs(db);
+        dialogs.setNoConfirmation(true); // confirmation is done in deleteSelected()
+        dialogs.setNoSchemaRefreshing(true); // we will refresh after all items are deleted
+        dialogs.dropObject(objType, item->text()); // TODO database name when supported
     }
 }
 

@@ -23,6 +23,7 @@
 - BUGFIX: #4637 Fixed Bind Parameters dialog to apply initially a reasonable size of input editors.
 - BUGFIX: #4384 Fixed DDL modifications of Foreign Key referencing table, so the FK constraint is not retained if referenced column was dropped.
 - BUGFIX: #4636 Fixed importing CSV with multi-word column names in the header line of CSV.
+- BUGFIX: #4365 Fixed support for triggers with same name as tables in the same database (which is allowed by SQLite).
 - BUGFIX: #4639 Fixed typo.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 

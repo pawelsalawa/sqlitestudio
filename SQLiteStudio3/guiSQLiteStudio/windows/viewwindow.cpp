@@ -588,7 +588,7 @@ void ViewWindow::deleteTrigger()
         return;
 
     DbObjectDialogs dialogs(db, this);
-    dialogs.dropObject(trigger);
+    dialogs.dropObject(DbObjectDialogs::Type::TRIGGER, trigger);
     refreshTriggers();
 }
 
@@ -601,7 +601,7 @@ void ViewWindow::executionSuccessful()
 void ViewWindow::executionFailed(const QString& errorMessage)
 {
     modifyingThisView = false;
-    notifyError(tr("Could not load data for view %1. Error details: %2").arg(view).arg(errorMessage));
+    notifyError(tr("Could not load data for view %1. Error details: %2").arg(view, errorMessage));
 }
 
 void ViewWindow::tabChanged(int tabIdx)

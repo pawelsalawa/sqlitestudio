@@ -144,7 +144,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         ViewWindow* newView(Db* db);
         void editIndex(DbTreeItem* item);
         void editTrigger(DbTreeItem* item);
-        void delSelectedObject();
+//        void delSelectedObject();
         void filterUndeletableItems(QList<DbTreeItem*>& items);
         void filterItemsWithParentInList(QList<DbTreeItem*>& items);
         void deleteItem(DbTreeItem* item);

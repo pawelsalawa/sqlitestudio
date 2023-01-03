@@ -1443,7 +1443,7 @@ void TableWindow::delIndex()
         return;
 
     DbObjectDialogs dialogs(db, this);
-    dialogs.dropObject(index);
+    dialogs.dropObject(DbObjectDialogs::Type::INDEX, index);
     updateIndexes();
 }
 
@@ -1490,7 +1490,7 @@ void TableWindow::delTrigger()
         return;
 
     DbObjectDialogs dialogs(db, this);
-    dialogs.dropObject(trigger);
+    dialogs.dropObject(DbObjectDialogs::Type::TRIGGER, trigger);
     updateTriggers();
 }
 

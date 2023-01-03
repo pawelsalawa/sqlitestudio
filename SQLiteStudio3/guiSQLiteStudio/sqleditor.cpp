@@ -1060,7 +1060,7 @@ QString SqlEditor::getSelectedText() const
 void SqlEditor::openObject(const QString& database, const QString& name)
 {
     DbObjectDialogs dialogs(db);
-    dialogs.editObject(database, name);
+    dialogs.editObject(DbObjectDialogs::Type::UNKNOWN, database, name);
 }
 
 void SqlEditor::highlightSyntax()
