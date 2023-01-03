@@ -22,6 +22,7 @@
 - BUGFIX: #4548 Automatic indexes are now marked correctly as unique and the Index Dialog is read-only for them.
 - BUGFIX: #4637 Fixed Bind Parameters dialog to apply initially a reasonable size of input editors.
 - BUGFIX: #4384 Fixed DDL modifications of Foreign Key referencing table, so the FK constraint is not retained if referenced column was dropped.
+- BUGFIX: #4636 Fixed importing CSV with multi-word column names in the header line of CSV.
 - BUGFIX: #4639 Fixed typo.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
