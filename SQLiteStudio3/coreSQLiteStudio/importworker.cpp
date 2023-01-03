@@ -148,7 +148,7 @@ bool ImportWorker::importData(int& rowCount)
         valList << "?";
 
     QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table),
-                                           wrapObjNamesIfNeeded(targetColumns).join(", "),
+                                           targetColumns.join(", "),
                                            valList.join(", "));
 
     SqlQueryPtr query = db->prepare(theInsert);
