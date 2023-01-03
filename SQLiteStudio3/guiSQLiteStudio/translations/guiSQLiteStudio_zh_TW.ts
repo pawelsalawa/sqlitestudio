@@ -3256,13 +3256,9 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>FunctionsEditor</name>
     <message>
-      <source>Filter funtions</source>
-      <translation type="vanished">函式篩選器</translation>
-    </message>
-    <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter functions</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Filter functions</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
