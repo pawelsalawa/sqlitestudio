@@ -3255,9 +3255,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
   <context>
     <name>FunctionsEditor</name>
     <message>
-      <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation>Filterfunktionen</translation>
+      <translation type="vanished">Filterfunktionen</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="81"/>
+      <source>Filter functions</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>

@@ -3249,7 +3249,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <name>FunctionsEditor</name>
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
-      <source>Filter funtions</source>
+      <source>Filter functions</source>
       <translation type="unfinished"/>
     </message>
     <message>

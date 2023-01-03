@@ -3256,9 +3256,13 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>FunctionsEditor</name>
     <message>
-      <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation>Opzioni di filtro</translation>
+      <translation type="vanished">Opzioni di filtro</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="81"/>
+      <source>Filter functions</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>

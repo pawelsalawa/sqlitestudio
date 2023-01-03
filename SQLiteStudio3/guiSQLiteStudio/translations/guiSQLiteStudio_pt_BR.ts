@@ -3257,9 +3257,13 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
   <context>
     <name>FunctionsEditor</name>
     <message>
-      <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation>Filtrar funções</translation>
+      <translation type="vanished">Filtrar funções</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="81"/>
+      <source>Filter functions</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>

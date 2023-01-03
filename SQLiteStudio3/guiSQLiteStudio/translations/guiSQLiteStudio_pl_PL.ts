@@ -3256,9 +3256,13 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
   <context>
     <name>FunctionsEditor</name>
     <message>
-      <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter funtions</source>
-      <translation>Filtruj funkcje</translation>
+      <translation type="vanished">Filtruj funkcje</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="81"/>
+      <source>Filter functions</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
