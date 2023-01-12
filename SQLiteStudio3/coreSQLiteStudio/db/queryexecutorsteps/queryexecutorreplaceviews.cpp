@@ -1,5 +1,6 @@
 #include "queryexecutorreplaceviews.h"
 #include "parser/ast/sqlitecreateview.h"
+#include "parser/ast/sqliteselect.h"
 #include "schemaresolver.h"
 #include <QDebug>
 
@@ -113,7 +114,7 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         pair.first->database = QString();
         pair.first->table = QString();
 
-        // replaceViews(src->select); // No recursion, as we avoid multi-level expanding.
+        // replaceViews(pair.first->select); // No recursion, as we avoid multi-level expanding.
     }
 
     context->viewsExpanded = true;

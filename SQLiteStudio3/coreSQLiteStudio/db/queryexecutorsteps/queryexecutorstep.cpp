@@ -1,6 +1,5 @@
 #include "queryexecutorstep.h"
 #include "db/queryexecutor.h"
-#include "common/unused.h"
 
 QueryExecutorStep::~QueryExecutorStep()
 {
@@ -17,7 +16,7 @@ void QueryExecutorStep::init(QueryExecutor *queryExecutor, QueryExecutor::Contex
 void QueryExecutorStep::updateQueries()
 {
     QString newQuery;
-    for (SqliteQueryPtr query : context->parsedQueries)
+    for (SqliteQueryPtr& query : context->parsedQueries)
     {
         newQuery += query->detokenize();
         newQuery += "\n";

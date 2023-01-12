@@ -1,4 +1,5 @@
 #include "queryexecutor.h"
+#include "db/queryexecutorsteps/queryexecutorfilter.h"
 #include "sqlerrorcodes.h"
 #include "services/dbmanager.h"
 #include "db/sqlerrorcodes.h"
@@ -47,7 +48,7 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     setAutoDelete(false);
 
     connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
-    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
+    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*,DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
     connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
     connect(simpleExecutor, &ChainExecutor::finished, this, &QueryExecutor::simpleExecutionFinished, Qt::DirectConnection);
 }
@@ -79,6 +80,12 @@ void QueryExecutor::setupExecutionChain()
 
     executionChain.append(additionalStatelessSteps[AFTER_REPLACED_VIEWS]);
     executionChain.append(createSteps(AFTER_REPLACED_VIEWS));
+
+    executionChain << new QueryExecutorFilter()
+                   << new QueryExecutorParseQuery("after Filter");
+
+    executionChain.append(additionalStatelessSteps[AFTER_COLUMN_FILTERS]);
+    executionChain.append(createSteps(AFTER_COLUMN_FILTERS));
 
     executionChain << new QueryExecutorAddRowIds()
                    << new QueryExecutorParseQuery("after AddRowIds");
@@ -122,13 +129,13 @@ void QueryExecutor::setupExecutionChain()
 
     executionChain << new QueryExecutorExecute();
 
-    for (QueryExecutorStep* step : executionChain)
+    for (QueryExecutorStep*& step : executionChain)
         step->init(this, context);
 }
 
 void QueryExecutor::clearChain()
 {
-    for (QueryExecutorStep* step : executionChain)
+    for (QueryExecutorStep*& step : executionChain)
     {
         if (!allAdditionalStatelsssSteps.contains(step))
             delete step;
@@ -141,7 +148,7 @@ void QueryExecutor::executeChain()
 {
     // Go through all remaining steps
     bool result;
-    for (QueryExecutorStep* currentStep : executionChain)
+    for (QueryExecutorStep*& currentStep : executionChain)
     {
         if (isInterrupted())
         {
@@ -444,7 +451,7 @@ void QueryExecutor::executeSimpleMethod()
     if (queriesForSimpleExecution.isEmpty())
         queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
 
-    QStringList queriesWithPagination = applyLimitAndOrderForSimpleMethod(queriesForSimpleExecution);
+    QStringList queriesWithPagination = applyFiltersAndLimitAndOrderForSimpleMethod(queriesForSimpleExecution);
     if (isExecutorLoggingEnabled())
         qDebug() << "Simple Execution Method query:" << queriesWithPagination.join("; ");
 
@@ -593,8 +600,9 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
     return true;
 }
 
-QStringList QueryExecutor::applyLimitAndOrderForSimpleMethod(const QStringList &queries)
+QStringList QueryExecutor::applyFiltersAndLimitAndOrderForSimpleMethod(const QStringList &queries)
 {
+    static_qstring(filtersTpl, "SELECT * FROM (%1) WHERE %2");
     static_qstring(tpl, "SELECT * FROM (%1) LIMIT %2 OFFSET %3");
     static_qstring(sortTpl, "SELECT * FROM (%1) ORDER BY %2");
     static_qstring(sortColTpl, "%1 %2");
@@ -607,6 +615,15 @@ QStringList QueryExecutor::applyLimitAndOrderForSimpleMethod(const QStringList &
 
     bool isSelect = false;
     getQueryAccessMode(lastQuery, &isSelect);
+
+    // FILTERS
+    if (isSelect)
+    {
+        lastQuery = filtersTpl.arg(
+            trimQueryEnd(lastQuery),
+            getFilters()
+            );
+    }
 
     // ORDER BY
     if (!sortOrder.isEmpty())
@@ -990,3 +1007,13 @@ int qHash(QueryExecutor::SourceTable sourceTable)
     return qHash(sourceTable.database + "." + sourceTable.table + "/" + sourceTable.alias);
 }
 
+
+QString QueryExecutor::getFilters() const
+{
+    return filters;
+}
+
+void QueryExecutor::setFilters(const QString& newFilters)
+{
+    filters = newFilters;
+}

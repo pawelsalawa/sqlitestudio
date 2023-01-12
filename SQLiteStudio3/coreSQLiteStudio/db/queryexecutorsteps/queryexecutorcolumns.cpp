@@ -133,9 +133,9 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
 
     QString colString = resultColumn->column;
     if (col.aliasDefinedInSubQuery) // #2819 (id from old tracker was 2931)
-        colString = col.alias;
+        colString = wrapObjIfNeeded(col.alias);
 
-    if (!resultColumn->expression)
+    if (!resultColumn->expression && !col.aliasDefinedInSubQuery) // if alias defined in subquery, it's already wrapped
         colString = wrapObjIfNeeded(colString);
 
     Parser parser;

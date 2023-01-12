@@ -65,6 +65,7 @@ SOURCES += sqlitestudio.cpp \
     chillout/windows/windowscrashhandler.cpp \
     common/compatibility.cpp \
     db/queryexecutorsteps/queryexecutorcolumntype.cpp \
+    db/queryexecutorsteps/queryexecutorfilter.cpp \
     parser/ast/sqlitefilterover.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
@@ -243,6 +244,7 @@ HEADERS += sqlitestudio.h\
     common/compatibility.h \
         coreSQLiteStudio_global.h \
     db/queryexecutorsteps/queryexecutorcolumntype.h \
+    db/queryexecutorsteps/queryexecutorfilter.h \
     db/sqlite3.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \

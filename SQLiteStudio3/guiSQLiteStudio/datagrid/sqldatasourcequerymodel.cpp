@@ -1,5 +1,5 @@
 #include "sqldatasourcequerymodel.h"
-#include "querygenerator.h"
+#include "common/utils_sql.h"
 
 SqlDataSourceQueryModel::SqlDataSourceQueryModel(QObject *parent) :
     SqlQueryModel(parent)
@@ -28,8 +28,7 @@ void SqlDataSourceQueryModel::updateTablesInUse(const QString& inUse)
 
 void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProcessor valueProc)
 {
-    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
-
+//    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
     if (value.isEmpty())
     {
         resetFilter();
@@ -40,13 +39,14 @@ void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProce
     for (SqlQueryModelColumnPtr& column : columns)
         conditions << wrapObjIfNeeded(column->getAliasedName())+" "+valueProc(value);
 
-    setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
+//    setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
+    queryExecutor->setFilters(conditions.join(" OR "));
     executeQuery();
 }
 
 void SqlDataSourceQueryModel::applyFilter(const QStringList& values, FilterValueProcessor valueProc)
 {
-    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
+//    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
     if (values.isEmpty())
     {
         resetFilter();
@@ -69,7 +69,8 @@ void SqlDataSourceQueryModel::applyFilter(const QStringList& values, FilterValue
         conditions << wrapObjIfNeeded(columns[i]->getAliasedName())+" "+valueProc(values[i]);
     }
 
-    setQuery(sql.arg(getDataSource(), conditions.join(" AND ")));
+//    setQuery(sql.arg(getDataSource(), conditions.join(" AND ")));
+    queryExecutor->setFilters(conditions.join(" AND "));
     executeQuery();
 }
 
@@ -99,7 +100,8 @@ void SqlDataSourceQueryModel::applySqlFilter(const QString& value)
         return;
     }
 
-    setQuery("SELECT * FROM "+getDataSource()+" WHERE "+value);
+//    setQuery("SELECT * FROM "+getDataSource()+" WHERE "+value);
+    queryExecutor->setFilters(value);
     executeQuery();
 }
 
@@ -135,7 +137,8 @@ void SqlDataSourceQueryModel::applyStrictFilter(const QStringList& values)
 
 void SqlDataSourceQueryModel::resetFilter()
 {
-    setQuery("SELECT * FROM "+getDataSource());
+//    setQuery("SELECT * FROM "+getDataSource());
+    queryExecutor->setFilters(QString());
     executeQuery();
 }
 
