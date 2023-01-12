@@ -2,10 +2,10 @@
 #define QUERYEXECUTOR_H
 
 #include "db/db.h"
-#include "parser/token.h"
-#include "selectresolver.h"
 #include "coreSQLiteStudio_global.h"
 #include "common/bistrhash.h"
+#include "parser/ast/sqlitequery.h"
+#include "parser/ast/sqlitequerytype.h"
 #include "datatype.h"
 #include <QObject>
 #include <QHash>
@@ -15,7 +15,6 @@
 /** @file */
 
 class Parser;
-class SqliteQuery;
 class QueryExecutorStep;
 class DbPlugin;
 class ChainExecutor;
@@ -692,6 +691,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             AFTER_ORDER,                /**< After order clause was applied/modified */
             AFTER_DISTINCT_WRAP,        /**< After wrapping SELECT was added in case of DISTINCT or GROUP BY clauses were used */
             AFTER_COLUMN_TYPES,         /**< After typeof() result meta columns were added */
+            AFTER_COLUMN_FILTERS,       /**< After WHERE filters applied */
             AFTER_ROW_LIMIT_AND_OFFSET, /**< After LIMIT and ORDER clauses were added/modified. This is the last possible moment, directly ahead of final query execution */
             JUST_BEFORE_EXECUTION,      /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
             LAST                        /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
@@ -1088,6 +1088,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool getNoMetaColumns() const;
         void setNoMetaColumns(bool value);
 
+        void setFilters(const QString& newFilters);
+        QString getFilters() const;
+
         void handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results);
 
         /**
@@ -1233,7 +1236,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
-        QStringList applyLimitAndOrderForSimpleMethod(const QStringList &queries);
+        QStringList applyFiltersAndLimitAndOrderForSimpleMethod(const QStringList &queries);
 
         /**
          * @brief Creates instances of steps for all registered factories for given position.
@@ -1357,6 +1360,13 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * See setDataLengthLimit() for details.
          */
         int dataLengthLimit = -1;
+
+        /**
+         * @brief Optional filters to apply to the query.
+         * If not empty, it will be appended to the WHERE clause at the very end of execution chain,
+         * skipping complex result colum analysis, etc.
+         */
+        QString filters;
 
         /**
          * @brief Limit of queries, after which simple mode is used.

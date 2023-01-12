@@ -2,7 +2,7 @@
 #define QUERYEXECUTORADDROWIDS_H
 
 #include "queryexecutorstep.h"
-#include "parser/token.h"
+#include "selectresolver.h"
 
 /**
  * @brief Adds ROWID to result columns.

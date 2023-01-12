@@ -4,6 +4,8 @@
 #include "queryexecutorstep.h"
 #include "parser/ast/sqlitecreateview.h"
 
+class SchemaResolver;
+
 /**
  * @brief Replaces all references to views in query with SELECTs from those views.
  *

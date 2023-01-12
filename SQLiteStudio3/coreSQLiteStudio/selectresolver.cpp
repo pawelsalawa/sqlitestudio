@@ -757,20 +757,21 @@ QList<SelectResolver::Column> SelectResolver::sqliteResolveColumns(Db* db, const
         else
             column.database = QString();
 
+        column.displayName = queryColumn.getAlias();
         if (queryColumn.getTable().isNull())
         {
             column.type = Column::OTHER;
             column.table = QString();
-            column.column = queryColumn.getAlias();
+            column.column = wrapObjIfNeeded(queryColumn.getAlias());
+            column.alias = queryColumn.getAlias();
         }
         else
         {
             column.type = Column::COLUMN;
             column.table = queryColumn.getTable();
             column.column = queryColumn.getColumn();
+            column.alias = (queryColumn.getColumn() != queryColumn.getAlias()) ? queryColumn.getAlias() : QString();
         }
-        column.displayName = queryColumn.getAlias();
-        column.alias = (column.column != column.displayName) ? column.displayName : QString();
         columnSources << column;
     }
 
