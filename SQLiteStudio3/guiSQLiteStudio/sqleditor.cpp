@@ -229,7 +229,7 @@ void SqlEditor::setDb(Db* value)
 {
     db = value;
     refreshValidObjects();
-    scheduleQueryParser(true);
+    scheduleQueryParser(true, true);
 }
 
 void SqlEditor::setAutoCompletion(bool enabled)
