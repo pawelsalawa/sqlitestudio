@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.2
+- CHANGE: #4535 Improved current query highlighter, so it considers query on the left of the cursor as current in a more intuitive way.
 - BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
 - BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.
 - BUGFIX: #3767 Fixed copying objects between unencrypted and encrypted databases, also fixed copying tables with generated columns.
