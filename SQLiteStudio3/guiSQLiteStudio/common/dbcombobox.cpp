@@ -8,6 +8,7 @@ DbComboBox::DbComboBox(QWidget* parent) : QComboBox(parent)
     dbComboModel->setCombo(this);
     setModel(dbComboModel);
     setEditable(false);
+    connect(dbComboModel, SIGNAL(listCleared()), this, SLOT(handleListCleared()));
 }
 
 DbListModel* DbComboBox::getModel() const
@@ -23,4 +24,9 @@ void DbComboBox::setCurrentDb(Db* db)
 Db* DbComboBox::currentDb() const
 {
     return dbComboModel->getDb(currentIndex());
+}
+
+void DbComboBox::handleListCleared()
+{
+    emit currentTextChanged(QString());
 }

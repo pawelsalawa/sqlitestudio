@@ -9,6 +9,8 @@ class Db;
 
 class DbComboBox : public QComboBox
 {
+    Q_OBJECT
+
     public:
         explicit DbComboBox(QWidget* parent = nullptr);
 
@@ -18,6 +20,9 @@ class DbComboBox : public QComboBox
 
     private:
         DbListModel* dbComboModel = nullptr;
+
+    private slots:
+        void handleListCleared();
 };
 
 #endif // DBCOMBOBOX_H

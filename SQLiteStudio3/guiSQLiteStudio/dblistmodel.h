@@ -68,6 +68,9 @@ class GUI_API_EXPORT DbListModel : public QAbstractListModel
     private slots:
         void dbConnected(Db* db);
         void dbDisconnected(Db* db);
+
+    signals:
+        void listCleared();
 };
 
 #endif // DBLISTMODEL_H

@@ -172,6 +172,9 @@ void DbListModel::dbDisconnected(Db* db)
         comboBox->setCurrentText(current);
     else if (newIdx > -1)
         comboBox->setCurrentIndex(newIdx);
+
+    if (dbList.isEmpty())
+        emit listCleared();
 }
 
 DbListModel::DbTreeComparer::DbTreeComparer()

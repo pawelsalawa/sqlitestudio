@@ -46,6 +46,6 @@ QDataStream &operator >>(QDataStream &in, Db*& myObj)
 
 QDebug operator<<(QDebug dbg, const Db* db)
 {
-    dbg.nospace() << "<DB:" << db->getName() << ">";
+    dbg.nospace() << "<DB:" << (db ? db->getName() : 0x0) << ">";
     return dbg.space();
 }
