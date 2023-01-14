@@ -8,7 +8,7 @@ void CliCommandClose::execute()
     if (!syntax.isArgumentSet(DB_NAME) && !cli->getCurrentDb())
     {
         println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
-                .arg(cmdName("close")).arg(cmdName("use")).arg(cmdName("close")));
+                .arg(cmdName("close"), cmdName("use"), cmdName("close")));
         return;
     }
 
@@ -21,7 +21,7 @@ void CliCommandClose::execute()
             println(tr("Connection to database %1 closed.").arg(db->getName()));
         }
         else
-            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(syntax.getArgument(DB_NAME)).arg(cmdName("dblist")));
+            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(syntax.getArgument(DB_NAME), cmdName("dblist")));
     }
     else if (cli->getCurrentDb())
     {
@@ -41,7 +41,7 @@ QString CliCommandClose::fullHelp() const
                 "Closes database connection. If the database was already closed, nothing happens. "
                 "If <name> is provided, it should be name of the database to close (as printed by %1 command). "
                 "The the <name> is not provided, then current working database is closed (see help for %2 for details)."
-                ).arg(cmdName("dblist")).arg(cmdName("use"));
+                ).arg(cmdName("dblist"), cmdName("use"));
 }
 
 void CliCommandClose::defineSyntax()

@@ -1,8 +1,8 @@
 #include "clicommandsql.h"
 #include "cli.h"
-#include "parser/ast/sqliteselect.h"
-#include "parser/parser.h"
-#include "parser/parsererror.h"
+//#include "parser/ast/sqliteselect.h"
+//#include "parser/parser.h"
+//#include "parser/parsererror.h"
 #include "db/queryexecutor.h"
 #include "qio.h"
 #include "common/unused.h"
@@ -19,7 +19,7 @@ void CliCommandSql::execute()
         println(tr("No working database is set.\n"
                    "Call %1 command to set working database.\n"
                    "Call %2 to see list of all databases.")
-                .arg(cmdName("use")).arg(cmdName("dblist")));
+                .arg(cmdName("use"), cmdName("dblist")));
 
         return;
     }
@@ -92,7 +92,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr res
     int resultColumnCount = executor->getResultColumns().size();
 
     // Columns
-    for (const QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
+    for (QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
         qOut << resCol->displayName << "|";
 
     qOut << "\n";
@@ -106,7 +106,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr res
         row = results->next();
         i = 0;
         values = row->valueList().mid(0, resultColumnCount);
-        for (QVariant value : values)
+        for (QVariant& value : values)
         {
             qOut << getValueString(value);
             if ((i + 1) < resultColumnCount)
@@ -149,7 +149,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr resul
 
     // Columns
     QStringList columns;
-    for (const QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
+    for (QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
         columns << resCol->displayName;
 
     printColumnHeader(widths, columns);
@@ -184,7 +184,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
     // Get widths of each column in every data row, remember the longest ones
     QList<SortedColumnWidth*> columnWidths;
     SortedColumnWidth* colWidth = nullptr;
-    for (const QueryExecutor::ResultColumnPtr& resCol : resultColumns)
+    for (QueryExecutor::ResultColumnPtr& resCol : resultColumns)
     {
         colWidth = new SortedColumnWidth();
         colWidth->setHeaderWidth(resCol->displayName.length());
@@ -204,7 +204,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 
     // Calculate width as it would be required to display entire rows
     int totalWidth = 0;
-    for (SortedColumnWidth* colWd : columnWidths)
+    for (SortedColumnWidth*& colWd : columnWidths)
         totalWidth += colWd->getWidth();
 
     totalWidth += (resultColumnsCount - 1); // column separators
@@ -224,12 +224,12 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 
     // Printing
     QList<int> finalWidths;
-    for (SortedColumnWidth* colWd : columnWidths)
+    for (SortedColumnWidth*& colWd : columnWidths)
         finalWidths << colWd->getWidth();
 
     printColumnHeader(finalWidths, headerNames);
 
-    for (SqlResultsRowPtr row : allRows)
+    for (SqlResultsRowPtr& row : allRows)
         printColumnDataRow(finalWidths, row, resultColumnsCount);
 
     qOut.flush();
@@ -240,14 +240,14 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr re
     // Columns
     int resultColumnCount = executor->getResultColumns().size();
     int colWidth = 0;
-    for (const QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
+    for (QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
     {
         if (resCol->displayName.length() > colWidth)
             colWidth = resCol->displayName.length();
     }
 
     QStringList columns;
-    for (const QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
+    for (QueryExecutor::ResultColumnPtr& resCol : executor->getResultColumns())
         columns << pad(resCol->displayName, -colWidth, ' ');
 
     // Data
@@ -263,7 +263,7 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr re
         i = 0;
         rowCntString = " " + rowCntTemplate.arg(rowCnt) + " ";
         qOut << center(rowCntString, termWidth - 1, '-') << "\n";
-        for (QVariant value : row->valueList().mid(0, resultColumnCount))
+        for (QVariant& value : row->valueList().mid(0, resultColumnCount))
         {
             qOut << columns[i] + ": " + getValueString(value) << "\n";
             i++;
@@ -294,7 +294,7 @@ void CliCommandSql::shrinkColumns(QList<CliCommandSql::SortedColumnWidth*>& colu
         sSort(columnWidths);
 
         // See if we can shrink headers only, or we already need to shrink the data
-        for (SortedColumnWidth* colWidth : columnWidths)
+        for (SortedColumnWidth*& colWidth : columnWidths)
         {
             if (colWidth->isHeaderLonger())
             {
@@ -381,7 +381,7 @@ void CliCommandSql::printColumnDataRow(const QList<int>& widths, const SqlResult
 {
     int i = 0;
     QStringList line;
-    for (const QVariant& value : row->valueList().mid(0, resultColumnCount))
+    for (QVariant& value : row->valueList().mid(0, resultColumnCount))
     {
         line << pad(getValueString(value).left(widths[i]), widths[i], ' ');
         i++;

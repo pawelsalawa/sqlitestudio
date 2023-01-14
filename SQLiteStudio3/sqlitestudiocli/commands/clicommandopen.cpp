@@ -10,7 +10,7 @@ void CliCommandOpen::execute()
     if (!syntax.isArgumentSet(DB_NAME_OR_FILE) && !cli->getCurrentDb())
     {
         println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
-                .arg(cmdName("open")).arg(cmdName("use")).arg(cmdName("open")));
+                .arg(cmdName("open"), cmdName("use"), cmdName("open")));
         return;
     }
 
@@ -36,7 +36,7 @@ void CliCommandOpen::execute()
             {
                 println(tr("File %1 doesn't exist in %2. Cannot open inexisting database with %3 command. "
                                 "To create a new database, use %4 command.").arg(arg).arg(QDir::currentPath())
-                        .arg(cmdName("open")).arg(cmdName("add")));
+                        .arg(cmdName("open"), cmdName("add")));
                 return;
             }
         }

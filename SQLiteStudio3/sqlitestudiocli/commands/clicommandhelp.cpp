@@ -24,7 +24,7 @@ QString CliCommandHelp::fullHelp() const
                 "When passing <command> name, you can skip special prefix character ('%3').\n\n"
                 "You can always execute any command with exactly single '--help' option to see help for that command. "
                 "It's an alternative for typing: %1 <command>."
-                ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get()).arg(cmdName("help"));
+                ).arg(cmdName("help"), cmdName("help"), CFG_CLI.Console.CommandPrefixChar.get(), cmdName("help"));
 }
 
 void CliCommandHelp::defineSyntax()
@@ -49,7 +49,7 @@ void CliCommandHelp::printHelp(const QString& cmd)
     QString prefix = CFG_CLI.Console.CommandPrefixChar.get();
 
     QString msg;
-    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage(cmdStr));
+    msg += tr("Usage: %1%2").arg(prefix, command->usage(cmdStr));
     msg += "\n";
     if (aliases.size() > 0)
     {
@@ -83,4 +83,5 @@ void CliCommandHelp::printHelp()
         delete allCommands[cmd];
     }
     printBox(msgList.join("\n"));
+    printHelp("help");
 }

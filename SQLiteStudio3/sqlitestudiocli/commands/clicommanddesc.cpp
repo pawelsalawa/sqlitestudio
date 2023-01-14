@@ -15,7 +15,7 @@ void CliCommandDesc::execute()
         println(tr("No working database is set.\n"
                    "Call %1 command to set working database.\n"
                    "Call %2 to see list of all databases.")
-                .arg(cmdName("use")).arg(cmdName("dblist")));
+                .arg(cmdName("use"), cmdName("dblist")));
 
         return;
     }
@@ -54,7 +54,7 @@ QString CliCommandDesc::shortHelp() const
 
 QString CliCommandDesc::fullHelp() const
 {
-    return QString();
+    return shortHelp();
 }
 
 void CliCommandDesc::defineSyntax()
@@ -84,7 +84,7 @@ void CliCommandDesc::printTable(SqliteCreateTable *table)
     // Rows
     QString constrJoinStr = "\n" + pad("", 20, ' ') + "|" + pad("", 10, ' ') + "|";
     QStringList constrList;
-    for (SqliteCreateTable::Column* column : table->columns)
+    for (SqliteCreateTable::Column*& column : table->columns)
     {
         msg = pad(column->name.left(20), 20, ' ');
         msg += "|";

@@ -24,7 +24,7 @@ QString CliCommandCd::fullHelp() const
                 "It requires a <path> argument to be passed, therefore calling %1 will always cause a change of the directory. "
                 "To learn what's the current working directory use %2 command and to list contents of the current working directory "
                 "use %3 command."
-             );
+               ).arg(cmdName("cd"), cmdName("pwd"), cmdName("ls"));
 }
 
 void CliCommandCd::defineSyntax()

@@ -104,7 +104,7 @@ void CliCommand::printBox(const QString& str)
 
 void CliCommand::printUsage()
 {
-    println(tr("Usage: %1%2").arg(CFG_CLI.Console.CommandPrefixChar.get()).arg(usage()));
+    println(tr("Usage: %1%2").arg(CFG_CLI.Console.CommandPrefixChar.get(), usage()));
     println("");
 }
 
