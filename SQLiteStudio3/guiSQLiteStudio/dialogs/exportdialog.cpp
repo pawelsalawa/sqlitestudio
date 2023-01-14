@@ -187,6 +187,7 @@ void ExportDialog::initQueryPage()
 
         return dbOk && queryOk;
     });
+    ui->queryEdit->setAlwaysEnforceErrorsChecking(true);
 
     connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), ui->queryPage, SIGNAL(completeChanged()));
     connect(ui->queryEdit, SIGNAL(textChanged()), ui->queryPage, SIGNAL(completeChanged()));

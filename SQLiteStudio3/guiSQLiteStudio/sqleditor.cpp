@@ -309,7 +309,16 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
     }
     else
         cur.insertText("--");
+}
 
+bool SqlEditor::getAlwaysEnforceErrorsChecking() const
+{
+    return alwaysEnforceErrorsChecking;
+}
+
+void SqlEditor::setAlwaysEnforceErrorsChecking(bool newAlwaysEnforceErrorsChecking)
+{
+    alwaysEnforceErrorsChecking = newAlwaysEnforceErrorsChecking;
 }
 
 bool SqlEditor::getHighlightingSyntax() const
@@ -918,7 +927,7 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
-    if (!richFeaturesEnabled)
+    if (!richFeaturesEnabled && !alwaysEnforceErrorsChecking)
         return;
 
     QString sql = toPlainText();
@@ -931,9 +940,13 @@ void SqlEditor::parseContents()
     }
 
     queryParser->parse(sql);
-    checkForValidObjects();
+    if (richFeaturesEnabled)
+        checkForValidObjects();
+
     checkForSyntaxErrors();
-    highlightSyntax();
+
+    if (richFeaturesEnabled)
+        highlightSyntax();
 }
 
 void SqlEditor::scheduleQueryParserForSchemaRefresh()

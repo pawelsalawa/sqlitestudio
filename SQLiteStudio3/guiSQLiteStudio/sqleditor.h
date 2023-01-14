@@ -121,6 +121,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
 
+        bool getAlwaysEnforceErrorsChecking() const;
+        void setAlwaysEnforceErrorsChecking(bool newAlwaysEnforceErrorsChecking);
+
     protected:
         void setupDefShortcuts();
         void createActions();
@@ -240,6 +243,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         int storedSelectionStart = 0;
         int storedSelectionEnd = 0;
         bool richFeaturesEnabled = true;
+        bool alwaysEnforceErrorsChecking = false;
         bool highlightingSyntax = true;
         QBrush currentQueryBrush;
         QTimer* currentQueryTimer = nullptr;
