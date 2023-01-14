@@ -92,7 +92,7 @@ StatementTokenBuilder& StatementTokenBuilder::withBlob(const QString& value)
 
 StatementTokenBuilder& StatementTokenBuilder::withString(const QString& value)
 {
-    return with(Token::STRING, wrapStringIfNeeded(value));
+    return with(Token::STRING, wrapString(value));
 }
 
 StatementTokenBuilder& StatementTokenBuilder::withConflict(SqliteConflictAlgo onConflict)

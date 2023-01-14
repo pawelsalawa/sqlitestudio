@@ -27,6 +27,7 @@
 - BUGFIX: #4365 Fixed support for triggers with same name as tables in the same database (which is allowed by SQLite).
 - BUGFIX: #4641 Fixed a serious bug with filtering data grid view with more complex queries/views, including expression-based column names with multi-word aliases.
 - BUGFIX: #4272 Fixed undesired code assistant after starting application with SQL Editor contents suggesting auto completion.
+- BUGFIX: #4643 Fixed executing query with apostrophe (doubled) inside of a string literal value.
 - BUGFIX: #4639 Fixed typo.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.
 
