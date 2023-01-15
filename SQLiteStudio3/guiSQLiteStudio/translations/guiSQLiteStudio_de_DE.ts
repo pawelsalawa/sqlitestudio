@@ -3088,7 +3088,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <location filename="../dialogs/exportdialog.cpp" line="185"/>
-      <location filename="../dialogs/exportdialog.cpp" line="208"/>
+      <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select database to export.</source>
       <translation>Wählen Sie die zu exportierenden Datebank aus.</translation>
     </message>
@@ -3103,42 +3103,42 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <translation>Geben Sie eine gültige Abfrage für den Export an.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="209"/>
+      <location filename="../dialogs/exportdialog.cpp" line="210"/>
       <source>Select at least one object to export.</source>
       <translation>Wählen Sie ein zu exportierendes Datebankobjekt aus.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="232"/>
+      <location filename="../dialogs/exportdialog.cpp" line="233"/>
       <source>You must provide a file name to export to.</source>
       <translation>Sie müssen einen Namen für die Exportdatei angeben.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="239"/>
+      <location filename="../dialogs/exportdialog.cpp" line="240"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>Das von Ihnen angegebene Verzeichnis existiert bereits. Es kann nicht überschrieben werden.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="245"/>
+      <location filename="../dialogs/exportdialog.cpp" line="246"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>Das Verzeichnis &apos;%1&apos; existiert nicht.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="251"/>
+      <location filename="../dialogs/exportdialog.cpp" line="252"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>Die Datei &apos;%1&apos; existiert bereits und wird überschrieben werden.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="431"/>
+      <location filename="../dialogs/exportdialog.cpp" line="432"/>
       <source>All files (*)</source>
       <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="434"/>
+      <location filename="../dialogs/exportdialog.cpp" line="435"/>
       <source>Pick file to export to</source>
       <translation>Wählen Sie eine Datei aus in die exportiert werden soll</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="782"/>
+      <location filename="../dialogs/exportdialog.cpp" line="783"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>Es trat ein interner Fehler während des Exportvorgangs auf. Dies ist ein Fehler, bitte melden Sie ihn dem Programmautor.</translation>
     </message>
@@ -5422,37 +5422,37 @@ find next</source>
       <translation>SQL Inhalte in Datei speichern: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="509"/>
+      <location filename="../sqleditor.cpp" line="518"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1130"/>
+      <location filename="../sqleditor.cpp" line="1143"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1165"/>
+      <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
       <translation>In Datei speichern</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1180"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1181"/>
+      <location filename="../sqleditor.cpp" line="1194"/>
       <source>Open file</source>
       <translation>Datei öffnen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1191"/>
+      <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1396"/>
+      <location filename="../sqleditor.cpp" line="1409"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
