@@ -56,10 +56,10 @@ jobs:
                 7z x -o".." win_deps/win32_deps.zip
                 echo "../lib" >> $GITHUB_PATH
  
-            - name: Install dependencies
+            - name: Find zlib
               shell: bash
               run: |
-                find . -name "zlib.h"
+                find / -name "zlib.h"
  
             # - name: Install SQLite3
               # shell: bash
