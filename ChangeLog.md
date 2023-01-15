@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.2
+- ADDED: #4653 For dealing with small fractional numbers there is an option now to change Grid View representation of these numbers to a scientific notation - the option is in Configuration/Data Browsing.
 - CHANGE: #4535 Improved current query highlighter, so it considers query on the left of the cursor as current in a more intuitive way.
 - BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
 - BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.

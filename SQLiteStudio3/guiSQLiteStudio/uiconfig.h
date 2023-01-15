@@ -107,6 +107,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                  ShowDataViewTooltips,        true)
         CFG_ENTRY(bool,                  KeepNullWhenEmptyValue,      true)
         CFG_ENTRY(bool,                  UseDefaultValueForNull,      false)
+        CFG_ENTRY(bool,                  UseSciFormatForDoubles,      false)
     )
 )
 
