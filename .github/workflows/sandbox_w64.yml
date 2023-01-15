@@ -59,7 +59,7 @@ jobs:
             - name: Find zlib
               shell: bash
               run: |
-                find / -name "zlib.h"
+                find ../../ -name "zlib.h"
  
             # - name: Install SQLite3
               # shell: bash
