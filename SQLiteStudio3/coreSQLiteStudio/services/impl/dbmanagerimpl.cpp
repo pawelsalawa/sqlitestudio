@@ -24,7 +24,7 @@ DbManagerImpl::DbManagerImpl(QObject *parent) :
 DbManagerImpl::~DbManagerImpl()
 {
 //    qDebug() << "DbManagerImpl::~DbManagerImpl()";
-    for (Db* db : dbList)
+    for (Db*& db : dbList)
     {
         disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
         disconnect(db, SIGNAL(aboutToDisconnect(bool&)), this, SLOT(dbAboutToDisconnect(bool&)));
@@ -295,7 +295,7 @@ DbPlugin* DbManagerImpl::getPluginForDbFile(const QString& filePath)
 
     QHash<QString,QVariant> options;
     Db* probeDb = nullptr;
-    for (DbPlugin* plugin : dbPlugins)
+    for (DbPlugin*& plugin : dbPlugins)
     {
         probeDb = plugin->getInstance("", filePath, options);
         if (probeDb)
@@ -400,13 +400,13 @@ void DbManagerImpl::rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin)
 
     QUrl url;
     QString errorMessages;
-    for (Db* invalidDb : getInvalidDatabases())
+    for (Db*& invalidDb : getInvalidDatabases())
     {
         if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
             continue;
 
         url = QUrl::fromUserInput(invalidDb->getPath());
-        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()) && invalidDb->getPath() != ":memory:")
             continue;
 
         errorMessages = QString();
@@ -582,7 +582,7 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
     dbPlugins.removeOne(dbPlugin);
     QList<Db*> toRemove;
-    for (Db* db : dbList)
+    for (Db*& db : dbList)
     {
         if (!dbPlugin->checkIfDbServedByPlugin(db))
             continue;
@@ -590,7 +590,7 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
         toRemove << db;
     }
 
-    for (Db* db : toRemove)
+    for (Db*& db : toRemove)
     {
         emit dbAboutToBeUnloaded(db, dbPlugin);
 
