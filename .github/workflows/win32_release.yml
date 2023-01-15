@@ -4,6 +4,7 @@ env:
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
+    MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -25,10 +26,10 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Set up MinGW
-              uses: egor-tensin/setup-mingw@v2
-              with:
-                platform: x86
+            # - name: Set up MinGW
+              # uses: egor-tensin/setup-mingw@v2
+              # with:
+                # platform: x86
 
             - name: Cache Qt
               id: cache-qt
@@ -47,6 +48,14 @@ jobs:
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
                 setup-python: 'false'
+                
+            - name: Install mingw
+              if: steps.cache-qt.outputs.cache-hit != 'true'
+              shell: bash
+              run: |
+                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
+                7z x -o"../Qt" ../mingw.7z
+                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
 
             - uses: actions/setup-python@v4
               with:
