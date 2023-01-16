@@ -4,7 +4,6 @@ env:
     SQLITE_RELEASE_YEAR: '2022'
     QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
-    MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -26,10 +25,10 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            # - name: Set up MinGW
-              # uses: egor-tensin/setup-mingw@v2
-              # with:
-                # platform: x86
+            - name: Set up MinGW
+              uses: egor-tensin/setup-mingw@v2
+              with:
+                platform: x86
 
             - name: Cache Qt
               id: cache-qt
@@ -48,16 +47,6 @@ jobs:
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
                 setup-python: 'false'
-                
-            - name: Install mingw
-              if: steps.cache-qt.outputs.cache-hit != 'true'
-              shell: bash
-              run: |
-                pwd
-                choco uninstall mingw
-                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"../Qt" ../mingw.7z
-                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
 
             - uses: actions/setup-python@v4
               with:
@@ -107,11 +96,11 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
                 7z x sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
-                FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L${{ env.MINGW_DIR }}/i686-w64-mingw32/lib -L../../lib -lsqlite3"
-                for f in compress; do
-                    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
-                done
+                FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L../../lib -lsqlite3"
+                #for f in compress; do
+                #    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                #    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
+                #done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
                     gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll
@@ -125,13 +114,13 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" "LIBS += ${{ env.MINGW_DIR }}/i686-w64-mingw32/lib" ..\..\SQLiteStudio3
+                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "LIBS += ${{ env.MINGW_DIR }}/i686-w64-mingw32/lib" "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
+                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
                 mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
