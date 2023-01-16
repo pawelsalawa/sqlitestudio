@@ -53,6 +53,7 @@ jobs:
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
               run: |
+                pwd
                 choco uninstall mingw
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
@@ -106,7 +107,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
                 7z x sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
-                FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L../../lib -lsqlite3"
+                FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L${{ env.MINGW_DIR }}/i686-w64-mingw32/lib -L../../lib -lsqlite3"
                 for f in compress; do
                     echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
                     gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
@@ -124,13 +125,13 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" ..\..\SQLiteStudio3
+                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" "LIBS += ${{ env.MINGW_DIR }}/i686-w64-mingw32/lib" ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
+                qmake.exe CONFIG+=portable "LIBS += ${{ env.MINGW_DIR }}/i686-w64-mingw32/lib" "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
                 mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
