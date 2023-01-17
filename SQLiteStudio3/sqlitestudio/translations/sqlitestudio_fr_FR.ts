@@ -61,7 +61,7 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Pointe vers le fichier de configuration maître. Lisez le manuel sur la page wiki pour plus de détails.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
