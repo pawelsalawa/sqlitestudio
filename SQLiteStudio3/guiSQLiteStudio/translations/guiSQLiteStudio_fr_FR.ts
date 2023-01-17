@@ -566,7 +566,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="659"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
-      <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
+      <translation>Impossible de faire correspondre le type de données, tableau STRICT valide du type déclaré : %1.</translation>
     </message>
   </context>
   <context>
@@ -986,7 +986,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="385"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+      <translation>Essayez de contourner complètement la boîte de dialogue lors du dépôt du fichier de la base de données dans la liste</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="430"/>
@@ -1530,7 +1530,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2187"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
-      <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
+      <translation>Déclenche automatiquement l'assistant après qu'un point soit écris après le nom d'un objet</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="899"/>
@@ -2389,13 +2389,13 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1191"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
-      <translation type="unfinished">Are you sure you want to remove database &apos;%1&apos; from the list?</translation>
+      <translation>Êtes-vous sûr de vouloir supprimer la base de données &apos;%1&apos; de la liste ?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1199"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
-      <translation type="unfinished">Are you sure you want to remove following databases from the list:
+      <translation>Êtes-vous sûr de vouloir supprimer les bases de données suivantes de la liste :
 %1</translation>
     </message>
     <message>
@@ -2443,7 +2443,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1570"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
+      <translation>La valeur d'auto-incrémentation pour le tableau &apos;%1&apos; a été réinitialisée avec succès.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
@@ -2453,7 +2453,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1602"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-      <translation type="unfinished">An error occurred while trying to delete data from table &apos;%1&apos;: %2</translation>
+      <translation>Une erreur est survenue lors de la suppression de données du tableau &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1606"/>
@@ -3695,7 +3695,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
       <source>It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</source>
-      <translation type="unfinished">It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</translation>
+      <translation>Il est interdit d&apos;utiliser l'instruction &apos;SELECT&apos; dans les expressions indexées.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="105"/>
@@ -4279,7 +4279,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="64"/>
       <source>New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</source>
-      <translation type="unfinished">New version package will be downloaded. It will be up to you to install it whenever you&apos;re ready.</translation>
+      <translation>Le nouveau paquet de version sera téléchargé. Il vous appartiendra de l&apos;installer dès lors que vous serez prêt.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="71"/>
@@ -6527,7 +6527,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="909"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
+      <translation>La valeur d'auto-incrémentation pour le tableau &apos;%1&apos; a été réinitialisée avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="997"/>
@@ -6656,7 +6656,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1697"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>La fenêtre du tableau &quot;%1&quot; a des modifications de structure et des données invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1699"/>
@@ -6666,7 +6666,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1701"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>La fenêtre du tableau &quot;%1&quot; a des modifications de structure invalidées.</translation>
     </message>
   </context>
   <context>
@@ -6864,7 +6864,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="127"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be open.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car la base de données %2 n'a pas pu être ouverte.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="136"/>
@@ -6967,7 +6967,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="383"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>Fenêtre de visualisation &quot;%1&quot; a des modifications de structure et des données invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="385"/>
@@ -6977,7 +6977,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="387"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted structure modifications.</translation>
+      <translation>Fenêtre de visualisation &quot;%1&quot; a des modifications de structure invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="604"/>
@@ -7035,7 +7035,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="841"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
-      <translation type="unfinished">Currently defined columns will be overriden. Do you want to continue?</translation>
+      <translation>Les colonnes actuellement définies seront remplacer. Voulez-vous continuer ?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="864"/>
