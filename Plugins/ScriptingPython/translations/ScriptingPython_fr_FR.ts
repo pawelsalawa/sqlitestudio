@@ -11,7 +11,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="493"/>
       <source>Unknown error from function %1.</source>
-      <translation type="unfinished">Unknown error from function %1.</translation>
+      <translation>Erreur inconnue de la fonction %1.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="534"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="575"/>
       <source>Error from Python function %1: %2</source>
-      <translation type="unfinished">Error from Python function %1: %2</translation>
+      <translation>Erreur de la fonction Python %1 : %2</translation>
     </message>
   </context>
 </TS>
