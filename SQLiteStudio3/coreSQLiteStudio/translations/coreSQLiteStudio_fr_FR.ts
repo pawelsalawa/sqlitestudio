@@ -766,7 +766,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../common/utils.cpp" line="1028"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Impossible d'ouvrir le fichier &apos;%1&apos; pour la lecture : %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="435"/>
@@ -782,12 +782,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
       <location filename="../db/abstractdb3.h" line="331"/>
       <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>Impossible de charger l'extension %1 : %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>Impossible d’exécuter le point de contrôle WAL : %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
@@ -1049,12 +1049,12 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Fin de l'exécution de %1 requêtes en %2 secondes.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
-      <translation type="unfinished">Could not execute SQL due to error.</translation>
+      <translation>Impossible d'exécuter SQL en raison d'une erreur.</translation>
     </message>
   </context>
   <context>
@@ -1095,7 +1095,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../services/updatemanager.cpp" line="92"/>
       <source>Could not check for updates (%1).</source>
-      <translation type="unfinished">Could not check for updates (%1).</translation>
+      <translation>Impossible de vérifier les mises à jour (%1).</translation>
     </message>
   </context>
 </TS>
