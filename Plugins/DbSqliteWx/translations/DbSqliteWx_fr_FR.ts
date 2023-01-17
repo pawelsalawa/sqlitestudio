@@ -31,7 +31,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Configuration du chiffrement (optionnel)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>
