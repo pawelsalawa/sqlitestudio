@@ -17,7 +17,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="906"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
+      <translation>Impossible de faire le point de vérification complet des journaux de transactions sur la base de données &apos;%1&apos;. Erreur retournée par le moteur SQLite : %2</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="867"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Impossible de démarrer la transaction de la base de données pour la suppression de l'historique SQL, donc il n&apos;a pas été supprimé.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="874"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Impossible de valider la transaction de la base de données pour la suppression de l'historique SQL, donc il n&apos;a pas été supprimé.</translation>
     </message>
   </context>
   <context>
@@ -243,7 +243,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
       <location filename="../dbobjectorganizer.cpp" line="686"/>
       <location filename="../dbobjectorganizer.cpp" line="695"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
+      <translation>Impossible d'analyser l'objet &apos;%1&apos; pour le déplacer ou le copier.</translation>
     </message>
   </context>
   <context>
