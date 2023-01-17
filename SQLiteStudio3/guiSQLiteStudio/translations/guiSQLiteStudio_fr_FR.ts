@@ -2608,7 +2608,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
-      <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
+      <translation>Impossible d'ajouter le fichier de base de données abandonné &apos;%1&apos; automatiquement. La configuration manuelle est nécessaire.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1237"/>
@@ -3163,7 +3163,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="26"/>
       <source>Following errors were encountered during execution of SQL statements from the file:</source>
-      <translation type="unfinished">Following errors were encountered during execution of SQL statements from the file:</translation>
+      <translation>Les erreurs suivantes ont été rencontrées lors de l'exécution d'instructions SQL depuis le fichier :</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
@@ -3566,12 +3566,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/indexdialog.ui" line="108"/>
       <source>Moves selected index column up in the order, making it more significant in the index.</source>
-      <translation type="unfinished">Moves selected index column up in the order, making it more significant in the index.</translation>
+      <translation>Déplace la colonne d'index sélectionnée vers le haut dans l'ordre, la rendant plus significative dans l'index.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="118"/>
       <source>Moves selected index column down in the order, making it less significant in the index.</source>
-      <translation type="unfinished">Moves selected index column down in the order, making it less significant in the index.</translation>
+      <translation>Déplace la colonne d'index sélectionnée vers le bas dans l'ordre, la rendant moins significative dans l'index.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="128"/>
@@ -4032,7 +4032,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../mainwindow.cpp" line="1017"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>La base de données passée dans les paramètres de la ligne de commande (%1) était déjà dans la liste sous le nom : %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1024"/>
@@ -5518,7 +5518,7 @@ recherche suivant</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of this table has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>La structure de ce tableau a changé depuis que les dernières données ont été chargés. Rechargez les données pour continuer.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
@@ -5557,7 +5557,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-      <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
+      <translation>Il y a des modifications de données invalidées. Voulez-vous quand même continuer ? Toutes les modifications non validées seront perdues.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="544"/>
@@ -5592,7 +5592,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="983"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
-      <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
+      <translation>Le nombre de lignes par page a été réduit à %1 en raison du nombre de colonnes (%2) dans la vue des données.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1407"/>
@@ -5771,7 +5771,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>La structure d'au moins un tableau utilisé a changé depuis le chargement des dernières données. Rechargez les données pour continuer.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
@@ -6480,7 +6480,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="672"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car la base de données %2 n'a pas pu être résolue.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="681"/>
@@ -6501,7 +6501,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Modifications validées pour le tableau &apos;%1&apos; (précédemment nommés &apos;%2&apos;) avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
@@ -6859,7 +6859,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="121"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car la base de données %2 n'a pas pu être résolue.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="127"/>
@@ -6908,7 +6908,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="347"/>
       <source>Generate output column names automatically basing on result columns of the view.</source>
-      <translation type="unfinished">Generate output column names automatically basing on result columns of the view.</translation>
+      <translation>Générer automatiquement les noms des colonnes de sortie en se basant sur les colonnes de résultat de la vue.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="348"/>
@@ -7019,7 +7019,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="674"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>Modifications validées pour la vue &apos;%1&apos; (précédemment nommés &apos;%2&apos;) avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="697"/>
