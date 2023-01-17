@@ -829,7 +829,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="40"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+      <translation>Encodage de caractères à utiliser lors de la lecture de fichier SQL (-e option). Utilisez -cl pour lister les codecs disponibles. Par défaut, %1.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="43"/>
@@ -844,7 +844,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+      <translation>Lorsqu'elle est utilisée avec l'option -e, l'exécution ne s'arrêtera pas sur une erreur, mais se poursuivra jusqu'à la fin, ignorant les erreurs.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -869,7 +869,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
+      <translation>Impossible d'ouvrir la base de données spécifiée pour l'exécution de fichier SQL. Vous devriez essayer d'utiliser l'option -d pour trouver plus de détails.</translation>
     </message>
   </context>
 </TS>
