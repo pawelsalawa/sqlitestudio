@@ -217,7 +217,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>Impossible de trouver le tableau nommé : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
@@ -252,12 +252,12 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Tableau virtuel : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>Arguments de construction :</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
