@@ -139,7 +139,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>La fenêtre de l'éditeur d'extraits de code a des modifications invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
@@ -976,7 +976,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="372"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>Ne pas marquer la base de données comme étant &quot;permanente&quot; par défaut</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="382"/>
@@ -1017,7 +1017,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="562"/>
       <source>Enlarge column when entering value longer than current width</source>
-      <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
+      <translation>Agrandir la colonne en entrant une valeur plus longue que la largeur actuelle</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="578"/>
@@ -1057,7 +1057,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
+      <translation>Utiliser la valeur DEFAULT (si définie), lors de la validation de la valeur NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
@@ -1172,7 +1172,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="897"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>Cacher la boîte de dialogue d'aperçu des DDL lors de la validation des modifications de schéma</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="910"/>
@@ -1219,7 +1219,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="540"/>
       <source>Use scientific notation for real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for real numbers in the grid view</translation>
+      <translation>Utiliser la notation scientifique pour les nombres réels dans la vue de grille</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="597"/>
@@ -1284,7 +1284,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1045"/>
       <source>Allow multiple instances of the application at the same time</source>
-      <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
+      <translation>Autoriser plusieurs instances de l'application en même temps</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1058"/>
@@ -2448,7 +2448,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
+      <translation>Êtes-vous sûr de vouloir supprimer toutes les données de(s) tableau(x) : %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1602"/>
@@ -3178,12 +3178,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="68"/>
       <source>Statements that were executed successfully were commited.</source>
-      <translation type="unfinished">Statements that were executed successfully were commited.</translation>
+      <translation>Les instructions qui ont été exécutées avec succès ont été validés.</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="81"/>
       <source>Statements that were executed successfully were rolled back.</source>
-      <translation type="unfinished">Statements that were executed successfully were rolled back.</translation>
+      <translation>Les instructions qui ont été exécutées avec succès ont été restaurées.</translation>
     </message>
   </context>
   <context>
@@ -4481,7 +4481,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
-      <translation type="unfinished">Copy cell(s) contents together with header to clipboard</translation>
+      <translation>Copier le contenu de(s) cellule(s) avec l'en-tête dans le presse-papiers</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="25"/>
@@ -5821,7 +5821,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
-      <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
+      <translation>Le texte collé contient des &quot;NULL&quot; littéraux. Voulez-vous les considérer comme des valeurs NULL ?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
@@ -5882,7 +5882,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="45"/>
       <source>Extension manager window has uncommitted modifications.</source>
-      <translation type="unfinished">Extension manager window has uncommitted modifications.</translation>
+      <translation>La fenêtre du gestionnaire d'extension contient des modifications invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="66"/>
@@ -5917,7 +5917,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="240"/>
       <source>File with given path does not exist or is not readable.</source>
-      <translation type="unfinished">File with given path does not exist or is not readable.</translation>
+      <translation>Le fichier avec le chemin spécifié n'existe pas ou n'est pas lisible.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="246"/>
@@ -6470,7 +6470,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="659"/>
       <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window %1, because no database or table was stored in session for this window.</translation>
+      <translation>Impossible de restaurer la fenêtre %1, car aucune base de données ou tableau n'a été stockée dans la session pour cette fenêtre.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="665"/>
@@ -6485,7 +6485,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="681"/>
       <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car le tableau %2 n&apos;existe pas dans la base de données %3.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="706"/>
@@ -6496,7 +6496,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
+      <translation>Modifications validées pour le tableau &apos;%1&apos; avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
@@ -6869,7 +6869,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="136"/>
       <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car la vue %2 n&apos;existe pas dans la base de données %3.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="161"/>
@@ -7014,7 +7014,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="672"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; successfully.</translation>
+      <translation>Modifications validées pour la vue &apos;%1&apos; avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="674"/>
