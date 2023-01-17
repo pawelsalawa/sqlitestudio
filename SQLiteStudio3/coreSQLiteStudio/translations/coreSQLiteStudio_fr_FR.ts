@@ -74,7 +74,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
-      <translation>Nouveau nom de table</translation>
+      <translation>Nouveau nom de tableau</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="174"/>
@@ -94,7 +94,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
-      <translation>Table ou alias colonne</translation>
+      <translation>Alias de tableau ou de colonne</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="186"/>
@@ -192,36 +192,36 @@
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
-      <translation>Erreur lors de la creation de la table de la base de données : %1</translation>
+      <translation>Erreur lors de la création du tableau dans la base de données cible : %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
-      <translation>Impossible d’analyser la table.</translation>
+      <translation>Impossible d'analyser le tableau.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>La base de données %1 ne peut être attachée à la base de données %2, aussi les données de la table %3 seront copiées avec SQLiteStudio comme interpréteur. Cette méthode est lente pour des tables importantes, SVP soyer patient.</translation>
+      <translation>La base de données %1 n'a pas pu être attachée à la base de données %2, donc les données de la table %3 seront copiées avec SQLiteStudio en tant que médiateur. Cette méthode peut être lente pour les grands tableaux, donc soyez patient s'il vous plaît.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation>Erreur lors de la copie des données vers la table %1 : %2</translation>
+      <translation>Erreur lors de la copie des données pour le tableau %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="461"/>
       <location filename="../dbobjectorganizer.cpp" line="468"/>
       <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation>Erreur lors de la copie des données de la table %1 : %2</translation>
+      <translation>Erreur lors de la copie des données vers le tableau %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation>Erreur à la création de la vue %1 : %2
-Tables, index, déclencheurs et vues copiés de la base de données %3 seront maintenus.</translation>
+      <translation>Erreur lors de la suppression de la vue source %1: %2
+Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 resteront.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="524"/>
@@ -283,7 +283,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation>Plugin d’export %1 ne supporte pas l’exportation de la table.</translation>
+      <translation>Exporter le plugin %1 ne prend pas en charge l&apos;exportation des tableaux.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
@@ -337,7 +337,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../exportworker.cpp" line="609"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation>Erreur lors de la lecture des données à exporter de la table %1 : %2</translation>
+      <translation>Erreur lors de la lecture des données à exporter depuis le tableau %1 : %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
@@ -407,7 +407,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation>Données importées dans le tableau &apos;%1&apos; avec succès. Nombre de lignes importées : %2</translation>
     </message>
   </context>
   <context>
@@ -925,12 +925,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation>La table %1 référence la table %2, mais la clef étrangère ne pourra être mise à jour pour la nouvelle table à cause de problèmes lors de l’analyse DDL de la table %3.</translation>
+      <translation>Le tableau %1 fait référence au tableau %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d'un tableau en raison de problèmes lors de l'analyse de DDL du tableau %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation>Toutes les colonnes indéxées par l’index %1 sont traitées. L’index ne sera pas recréé après la modification de la table.</translation>
+      <translation>Toutes les colonnes indexées par l'index %1 ont disparu. L'index ne sera pas recréé après modification du tableau.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="514"/>
@@ -940,19 +940,19 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>Toutes les colonnes couvertes par le déclencheur %1 sont faites. Le déclencheur ne sera pas recréé après la modification de la table.</translation>
+      <translation>Toutes les colonnes couvertes par le déclencheur %1 ont disparu. Le déclencheur ne sera pas recréé après la modification du tableau.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>Impossible de mettre à jour le déclencheur %1 selon la modification de la table %2.</translation>
+      <translation>Impossible de mettre à jour le déclencheur %1 selon la modification du tableau %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="580"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-      <translation>Impossible de mettre à jour les modifications de la vue %1 issue de la table %2
-La vue restera telque.</translation>
+      <translation>Impossible de mettre à jour la vue %1 selon les modifications de la table %2.
+La vue restera telle quelle.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="742"/>
@@ -1011,7 +1011,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>Aucune base de données n'est disponible dans le contexte actuel, durant l&apos;utilisation de la commande JavaScript %1.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1029,7 +1029,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Exécution depuis le fichier annulé. Toutes les requêtes exécutées jusqu'à présent ont été restaurées.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
@@ -1039,7 +1039,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>Impossible d'exécuter SQL, car l'application n'a pas pu valider la transaction : %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
