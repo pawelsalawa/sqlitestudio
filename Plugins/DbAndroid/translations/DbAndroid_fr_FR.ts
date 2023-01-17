@@ -183,7 +183,7 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
       <source>&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Ceci est un mot de passe configuré dans le service SQLiteStudio étant intégré dans l'application Android.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
@@ -208,7 +208,7 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
       <source>Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</source>
-      <translation type="unfinished">Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</translation>
+      <translation>Supprimer la base de données actuellement sélectionnée par l'appareil. La base de données actuellement sélectionnée est celle sélectionnée dans la liste à gauche de ce bouton.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
@@ -239,8 +239,8 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
-      <translation type="unfinished">Please provide name for the new database.
-It&apos;s the name which Android application will use to connect to the database:</translation>
+      <translation>Veuillez fournir un nom pour la nouvelle base de données.
+C'est le nom que l'application Android utilisera pour se connecter à la base de données :</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -293,8 +293,8 @@ Détails : %2</translation>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
-      <translation type="unfinished">Could not delete database named &apos;%1&apos; from the device.
-Android device refused deletion, or it was impossible.</translation>
+      <translation>Impossible de supprimer la base de données nommée &apos;%1&apos; de l'appareil.
+L'appareil Android a refusé la suppression ou c'était impossible.</translation>
     </message>
   </context>
   <context>
@@ -317,7 +317,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</translation>
+      <translation>Impossible de se connecter à l'appareil %1, car la commande &apos;%2&apos; semble être indisponible sur cet appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
