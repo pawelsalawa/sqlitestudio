@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>Mot de passe (clé)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="31"/>
