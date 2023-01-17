@@ -81,7 +81,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
-      <translation type="unfinished">Connection with Android database &apos;%1&apos; lost.</translation>
+      <translation>Connexion à la base de données Android &apos;%1&apos; perdue.</translation>
     </message>
   </context>
   <context>
@@ -104,7 +104,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
       <source>Cannot connect to %1:%2, because password is invalid.</source>
-      <translation type="unfinished">Cannot connect to %1:%2, because password is invalid.</translation>
+      <translation>Impossible de se connecter à %1:%2, car le mot de passe est invalide.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
@@ -125,7 +125,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
       <location filename="../dbandroidjsonconnection.cpp" line="342"/>
       <source>Missing &apos;columns&apos; in response from Android.</source>
-      <translation type="unfinished">Missing &apos;columns&apos; in response from Android.</translation>
+      <translation>Il manque des &apos;colonnes&apos; en réponse d'Android.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="363"/>
@@ -265,8 +265,8 @@ The name must be unique.</translation>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
-      <translation type="unfinished">Could not create database &apos;%1&apos;.
-Details: %2</translation>
+      <translation>Impossible de créer la base de données &apos;%1&apos;.
+Détails : %2</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
@@ -338,7 +338,7 @@ Android device refused deletion, or it was impossible.</translation>
       <location filename="../dbandroidshellconnection.cpp" line="219"/>
       <location filename="../dbandroidshellconnection.cpp" line="226"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Could not execute query on database &apos;%1&apos;: %2</translation>
+      <translation>Impossible d'exécuter la requête sur la base de données &apos;%1&apos;: %2</translation>
     </message>
   </context>
   <context>
