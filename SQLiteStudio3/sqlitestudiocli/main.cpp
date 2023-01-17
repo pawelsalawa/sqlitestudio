@@ -111,7 +111,7 @@ int cliExecSqlFromFile(const QString& dbToOpen)
     }
     if (!CLI::getInstance()->openDbFile(dbToOpen))
     {
-        qErr << QObject::tr("Could not open specified database for executing SQL file. You my try using -d option to find out more details.") << "\n";
+        qErr << QObject::tr("Could not open specified database for executing SQL file. You may try using -d option to find out more details.") << "\n";
         qErr.flush();
         return 1;
     }
