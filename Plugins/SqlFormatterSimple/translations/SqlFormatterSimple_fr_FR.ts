@@ -6,7 +6,7 @@
     <message>
       <location filename="../SqlFormatterSimple.ui" line="20"/>
       <source>Upper case keywords</source>
-      <translation>Mots-clefs en majuscule</translation>
+      <translation>Mots-clés en majuscule</translation>
     </message>
     <message>
       <location filename="../SqlFormatterSimple.ui" line="30"/>
