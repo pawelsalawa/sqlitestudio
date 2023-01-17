@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>URL de base de données Android invalide ou incomplète.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
@@ -16,7 +16,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>Sélectionnez la base de données Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>Utilisation d'Android Debug Bridge : %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -53,12 +53,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>Sélectionner un autre ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>Laisser non configuré</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
@@ -68,7 +68,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
       <source>Get Android connector JAR file</source>
-      <translation type="unfinished">Get Android connector JAR file</translation>
+      <translation>Obtenir le fichier JAR du connecteur Android</translation>
     </message>
   </context>
   <context>
@@ -99,7 +99,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
       <source>Could not connect to network host: %1:%2</source>
-      <translation type="unfinished">Could not connect to network host: %1:%2</translation>
+      <translation>Impossible de se connecter à l'hôte réseau : %1:%2</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
@@ -114,12 +114,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="313"/>
       <source>Error while parsing response from Android: %1</source>
-      <translation type="unfinished">Error while parsing response from Android: %1</translation>
+      <translation>Erreur lors de l'analyse de la réponse d'Android : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="321"/>
       <source>Generic error from Android: %1</source>
-      <translation type="unfinished">Generic error from Android: %1</translation>
+      <translation>Erreur générique d'Android : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
@@ -143,17 +143,17 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
       <source>Connection method</source>
-      <translation type="unfinished">Connection method</translation>
+      <translation>Méthode de connexion</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="32"/>
       <source>USB cable - port forwarding</source>
-      <translation type="unfinished">USB cable - port forwarding</translation>
+      <translation>Câble USB - redirection de port</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="42"/>
       <source>USB cable - sqlite3 command</source>
-      <translation type="unfinished">USB cable - sqlite3 command</translation>
+      <translation>Câble USB - commande sqlite3</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
@@ -178,7 +178,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
       <source>Remote access password</source>
-      <translation type="unfinished">Remote access password</translation>
+      <translation>Mot de passe d'accès distant</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
@@ -203,7 +203,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
       <source>Create a new database directly on the device.</source>
-      <translation type="unfinished">Create a new database directly on the device.</translation>
+      <translation>Créer une nouvelle base de données directement sur l'appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
@@ -213,7 +213,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
       <source>Enter valid IP address.</source>
-      <translation type="unfinished">Enter valid IP address.</translation>
+      <translation>Entrez une adresse IP valide.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="367"/>
@@ -223,7 +223,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="371"/>
       <source>Pick Android database.</source>
-      <translation type="unfinished">Pick Android database.</translation>
+      <translation>Choisir la base de données Android.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
