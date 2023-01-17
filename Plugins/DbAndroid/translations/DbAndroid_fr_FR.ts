@@ -89,7 +89,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Impossible de se connecter au périphérique %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -109,7 +109,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
       <source>Unable to execute query on Android device (connection was closed): %1</source>
-      <translation type="unfinished">Unable to execute query on Android device (connection was closed): %1</translation>
+      <translation>Impossible d'exécuter la requête sur l'appareil Android (la connexion a été fermée) : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="313"/>
@@ -130,7 +130,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="363"/>
       <source>Response from Android has missing data for column &apos;%1&apos; in row %2.</source>
-      <translation type="unfinished">Response from Android has missing data for column &apos;%1&apos; in row %2.</translation>
+      <translation>La réponse d'Android a des données manquantes pour la colonne &apos;%1&apos; à la ligne %2.</translation>
     </message>
   </context>
   <context>
@@ -287,7 +287,7 @@ Détails : %2</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <source>Could not connect to %1 in order to delete database &apos;%2&apos;.</source>
-      <translation type="unfinished">Could not connect to %1 in order to delete database &apos;%2&apos;.</translation>
+      <translation>Impossible de se connecter à %1 pour supprimer la base de données &apos;%2&apos;.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
@@ -302,7 +302,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Impossible de se connecter au périphérique %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
@@ -312,7 +312,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="56"/>
       <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
-      <translation type="unfinished">Cannot connect to device %1, because the application %2 is not debuggable.</translation>
+      <translation>Impossible de se connecter au périphérique %1, car l'application %2 ne peut pas être débogué.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
