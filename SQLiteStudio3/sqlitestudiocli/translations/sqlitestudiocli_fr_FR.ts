@@ -262,7 +262,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation type="unfinished">No construction arguments were passed for this virtual table.</translation>
+      <translation>Aucun argument de construction n'a été passé pour ce tableau virtuel.</translation>
     </message>
   </context>
   <context>
@@ -839,7 +839,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+      <translation>Liste les codecs disponibles à utiliser avec l'option -c et quitte.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
@@ -859,12 +859,12 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+      <translation>Codec invalide : %1. Utilisez l'option -cl pour lister les codecs disponibles.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+      <translation>L'argument du fichier de la base de données est obligatoire lors de l'exécution du fichier SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
