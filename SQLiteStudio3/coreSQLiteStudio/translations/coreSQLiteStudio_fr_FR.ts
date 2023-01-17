@@ -38,7 +38,7 @@
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>Impossible de désactiver les clés étrangères dans la base de données. Détails : %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
