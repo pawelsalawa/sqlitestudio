@@ -86,7 +86,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>Mettez chaque contrainte de colonne dans CREATE TABLE à une nouvelleligne</translation>
+      <translation>Mettez chaque contrainte de colonne de CREATE TABLE dans une nouvelle ligne</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
