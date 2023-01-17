@@ -232,22 +232,22 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tableau : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Nom de la colonne</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Type de données</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Contraintes</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
@@ -634,7 +634,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tableau</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
@@ -665,7 +665,7 @@ Lorsque l’option « -s » est ajouté, les tables système sont aussi listées
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tableaux</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
@@ -824,7 +824,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>Fichier SQL</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
@@ -834,7 +834,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>codec</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>
