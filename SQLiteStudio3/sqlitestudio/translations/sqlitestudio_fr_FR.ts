@@ -66,7 +66,7 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>Fichier de paramètres SQLiteStudio</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
@@ -81,7 +81,7 @@
     <message>
       <location filename="../main.cpp" line="142"/>
       <source>Select configuration directory</source>
-      <translation type="unfinished">Select configuration directory</translation>
+      <translation>Sélectionnez le répertoire de configuration</translation>
     </message>
   </context>
 </TS>
