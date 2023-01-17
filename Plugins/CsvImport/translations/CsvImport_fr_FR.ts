@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+      <translation>Interpréter &quot; comme un guillemet</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>La première ligne représente les noms de colonnes CSV</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
