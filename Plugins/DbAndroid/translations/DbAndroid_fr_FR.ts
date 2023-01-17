@@ -327,7 +327,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</translation>
+      <translation>Impossible de se connecter à l'appareil %1, car &apos;%2&apos; la base de données n'est pas accessible sur l'appareil. Détails : %3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
