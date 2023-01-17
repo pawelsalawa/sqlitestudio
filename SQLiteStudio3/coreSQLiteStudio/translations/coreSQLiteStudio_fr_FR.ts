@@ -459,7 +459,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../importworker.cpp" line="175"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-      <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
+      <translation>Impossible d'importer les données de la ligne numéro %1. La ligne a été ignorée. Détails du problème : %2</translation>
     </message>
   </context>
   <context>
@@ -1024,7 +1024,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>Impossible d'exécuter SQL, car l'application n'a pas pu démarrer la transaction : %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
@@ -1044,7 +1044,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+      <translation>Fin de l'exécution de %1 requêtes en %2 secondes. %3 n'ont pas été exécutées en raison d'erreurs.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="153"/>
