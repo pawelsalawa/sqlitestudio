@@ -16,12 +16,12 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>Mot de passe de chiffrement</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Configuration du chiffrement (optionnel)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="38"/>
