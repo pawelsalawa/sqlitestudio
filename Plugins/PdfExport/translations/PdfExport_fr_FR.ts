@@ -6,7 +6,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="33"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="66"/>
@@ -91,7 +91,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Classement</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
@@ -205,7 +205,7 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>mm</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>
