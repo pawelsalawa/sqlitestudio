@@ -6,7 +6,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="484"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation type="unfinished">Invalid use of %1 function. Expected %2 arguments, but got %3.</translation>
+      <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais a obtenu %3.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="493"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="550"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation type="unfinished">Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</translation>
+      <translation>Impossible de trouver le contexte d'exécution de la fonction %1. Ceci est un bug du plugin Python. Veuillez le signaler.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="575"/>
