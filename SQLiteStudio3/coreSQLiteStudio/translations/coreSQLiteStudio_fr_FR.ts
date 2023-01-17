@@ -166,7 +166,7 @@
       <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation>Le fichier de la base de données n’existe pas.</translation>
+      <translation>Le fichier de la base de données n&apos;existe pas.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
@@ -873,7 +873,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>Impossible de résoudre le tableau pour la colonne &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="747"/>
@@ -1034,7 +1034,7 @@ La vue restera telque.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Impossible d'ouvrir le fichier &apos;%1&apos; pour la lecture : %2</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
