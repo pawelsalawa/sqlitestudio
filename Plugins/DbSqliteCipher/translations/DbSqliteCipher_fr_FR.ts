@@ -11,7 +11,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Laisser vide pour créer ou se connecter à la base de données déchiffrée.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="32"/>
