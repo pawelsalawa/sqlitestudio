@@ -11,7 +11,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>URL de la base de données Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
@@ -21,7 +21,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>Sélectionner l'ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>ADB invalide</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -63,7 +63,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation type="unfinished">Save jar file</translation>
+      <translation>Enregistrer le fichier jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
@@ -138,7 +138,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>URL de la base de données Android</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
@@ -158,22 +158,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation type="unfinished">Network (IP address)</translation>
+      <translation>Réseau (adresse IP)</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
       <source>Device</source>
-      <translation type="unfinished">Device</translation>
+      <translation>Appareil</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="71"/>
       <source>IP address</source>
-      <translation type="unfinished">IP address</translation>
+      <translation>Adresse IP</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="93"/>
       <source>Port</source>
-      <translation type="unfinished">Port</translation>
+      <translation>Port</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
@@ -188,17 +188,17 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
       <source>Application</source>
-      <translation type="unfinished">Application</translation>
+      <translation>Application</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="155"/>
       <source>Filter</source>
-      <translation type="unfinished">Filter</translation>
+      <translation>Filtre</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="168"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Base de données</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
@@ -218,7 +218,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="367"/>
       <source>Pick Android device.</source>
-      <translation type="unfinished">Pick Android device.</translation>
+      <translation>Choisir un appareil Android.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="371"/>
@@ -233,7 +233,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Create new database</source>
-      <translation type="unfinished">Create new database</translation>
+      <translation>Créer une nouvelle base de données</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -247,7 +247,7 @@ It&apos;s the name which Android application will use to connect to the database
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Invalid name</source>
-      <translation type="unfinished">Invalid name</translation>
+      <translation>Nom invalide</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -271,7 +271,7 @@ Details: %2</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Delete database</source>
-      <translation type="unfinished">Delete database</translation>
+      <translation>Supprimer la base de données</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
@@ -282,7 +282,7 @@ Details: %2</translation>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Error deleting</source>
-      <translation type="unfinished">Error deleting</translation>
+      <translation>Suppression d'une erreur</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
