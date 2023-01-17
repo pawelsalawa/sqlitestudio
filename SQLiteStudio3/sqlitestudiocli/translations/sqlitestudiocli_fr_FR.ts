@@ -21,7 +21,7 @@
     <message>
       <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>La base de données passée dans les paramètres de la ligne de commande (%1) était déjà dans la liste sous le nom : %2</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="262"/>
