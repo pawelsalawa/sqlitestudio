@@ -696,7 +696,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
       <location filename="../plugins/populatescript.cpp" line="34"/>
       <source>Script</source>
-      <translation type="unfinished">Script</translation>
+      <translation>Script</translation>
     </message>
   </context>
   <context>
@@ -1087,7 +1087,7 @@ La vue restera telque.</translation>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
