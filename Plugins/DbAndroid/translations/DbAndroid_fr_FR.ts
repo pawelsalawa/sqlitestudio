@@ -76,7 +76,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
-      <translation type="unfinished">Android SQLite driver does not support loadable extensions.</translation>
+      <translation>Le pilote Android SQLite ne supporte pas les extensions chargeables.</translation>
     </message>
     <message>
       <location filename="../dbandroidinstance.cpp" line="206"/>
@@ -94,7 +94,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
       <source>Failed to create port forwarding for device %1 for port %2.</source>
-      <translation type="unfinished">Failed to create port forwarding for device %1 for port %2.</translation>
+      <translation>Impossible de créer la redirection de port pour l'appareil %1 pour le port %2.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
@@ -228,7 +228,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation type="unfinished">Selected Android application is unknown, or not debuggable.</translation>
+      <translation>L'application Android sélectionnée est inconnue, ou ne peut pas être déboguée.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -276,13 +276,13 @@ Détails : %2</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
-      <translation type="unfinished">Are you sure you want to delete database &apos;%1&apos; from %2?</translation>
+      <translation>Êtes-vous sûr de vouloir supprimer la base de données &apos;%1&apos; de %2?</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Error deleting</source>
-      <translation>Suppression d'une erreur</translation>
+      <translation>Erreur lors de la suppression</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
@@ -322,7 +322,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</translation>
+      <translation>Impossible de se connecter à l'appareil %1, car &apos;%2&apos; la base de données ne peut pas être accédée sur cet appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
@@ -332,7 +332,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
       <source>Cannot get list of databases for application %1. Details: %2</source>
-      <translation type="unfinished">Cannot get list of databases for application %1. Details: %2</translation>
+      <translation>Impossible d'obtenir la liste des bases de données pour l'application %1. Détails : %2</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="219"/>
