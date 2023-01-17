@@ -167,7 +167,7 @@
     <message>
       <location filename="../htmlexport.ui" line="111"/>
       <source>Don&apos;t escape HTML characters</source>
-      <translation>N’enlevez pas les caractères HTML</translation>
+      <translation>N&apos;enlevez pas les caractères HTML</translation>
     </message>
   </context>
 </TS>
