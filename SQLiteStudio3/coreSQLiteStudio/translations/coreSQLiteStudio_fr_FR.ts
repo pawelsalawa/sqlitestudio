@@ -342,12 +342,12 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation>Erreur lors du comptage des données à exporter de la table %1 : %2</translation>
+      <translation>Erreur lors du comptage des données à exporter à partir du tableau %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation>Erreur lors de la totalisation des données à exporter de la table %1 : %2</translation>
+      <translation>Erreur lors du comptage de la largeur de la colonne de données à exporter à partir du tableau %1: %2</translation>
     </message>
   </context>
   <context>
@@ -430,17 +430,17 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation>La table « %1 » a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
+      <translation>Le tableau &apos;%1&apos; a moins de colonnes qu'il y en a dans les données à importer. Les colonnes de données excessives seront ignorées.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation>La table « %1 » a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
+      <translation>Le tableau &apos;%1&apos; a plus de colonnes qu'il y en a dans les données à importer. Certaines colonnes de la table seront laissées vides.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation>Impossible de créer la table d’import : %1</translation>
+      <translation>Impossible de créer un tableau où importer : %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -935,7 +935,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>Il y a un problème avec le déclencheur de traitement %1. Il ne sera peut-être pas complètement mis à jour plus tard et nécessitera votre attention.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="529"/>
