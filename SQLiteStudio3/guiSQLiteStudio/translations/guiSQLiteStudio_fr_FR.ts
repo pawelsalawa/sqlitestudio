@@ -336,12 +336,12 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
       <source>Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Expression de valeur par défaut invalide : %1. Si vous souhaitez utiliser une chaîne de caractère simple comme valeur, n'oubliez pas de l'entourer de guillemets.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Expression de valeur par défaut invalide. Si vous voulez utiliser une chaîne de caractère simple comme valeur, n'oubliez pas de l'entourer de guillemets.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
@@ -997,7 +997,7 @@
       <location filename="../dialogs/configdialog.ui" line="436"/>
       <location filename="../dialogs/configdialog.ui" line="456"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Nombre maximum de configurations de Tableau de Populations de boîte de dialogue stockées dans la configuration. La valeur 100 doit être suffisante.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="459"/>
@@ -1097,7 +1097,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="680"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, les Fenêtres des Tableaux s'afficheront avec l'onglet de données, au lieu de l'onglet structure.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="683"/>
@@ -1107,7 +1107,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="693"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, l'onglet &quot;Données&quot; sera placé en tant que premier onglet dans chaque Fenêtre de Tableaux, au lieu d'être à la deuxième place.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="696"/>
@@ -1122,7 +1122,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="715"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, les Fenêtres de Vue s'afficheront avec l'onglet de données, au lieu de l'onglet structure.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="718"/>
@@ -1132,7 +1132,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="728"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, l'onglet &quot;Données&quot; sera placé en tant que premier onglet dans chaque Fenêtre de Vue, au lieu d'être à la deuxième place.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="731"/>
@@ -1379,7 +1379,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1340"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vous pouvez désactiver le surlignage de la requête actuelle sur la page des paramètres généraux.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1385"/>
@@ -1623,7 +1623,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</translation>
+      <translation>Ici, vous pouvez configurer les couleurs pour le surlignage syntaxique du code. Elles sont partagées entre différents langages - non seulement pour SQL, mais aussi pour JavaScript et d'autres.</translation>
     </message>
   </context>
   <context>
@@ -3616,7 +3616,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="194"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-      <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
+      <translation>Un index unique ne peut pas avoir d'expressions indexées. Supprimez les expressions de la liste ci-dessous ou décochez cette option.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="195"/>
@@ -3690,7 +3690,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="76"/>
       <source>Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</source>
-      <translation type="unfinished">Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</translation>
+      <translation>La colonne &apos;%1&apos; n'appartient pas au tableau couvert par cet index. Les expressions indexées ne peuvent se référer qu'aux colonnes de la table indexée.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
@@ -5624,8 +5624,8 @@ recherche suivant</translation>
       <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
-      <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
-Such deletion will be permanent. Are you sure you want to delete them?</translation>
+      <translation>Vous vous apprêtez à supprimer des lignes nouvellement insérées qui ne sont pas encore validées. Numéros de ligne : %1
+Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</translation>
     </message>
   </context>
   <context>
@@ -5927,7 +5927,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="360"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
-      <translation type="unfinished">Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</translation>
+      <translation>Nom de la fonction d'initialisation invalide. Le nom de la fonction ne peut contenir que des caractères alphanumériques et des tirets bas.</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
@@ -6380,7 +6380,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation>Ajouter une contrainte de contrôle à la table</translation>
+      <translation>Ajouter une contrainte de vérification de tableau</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="262"/>
@@ -6475,7 +6475,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="665"/>
       <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car aucune base de données ou tableau n'a été stockée dans la session pour cette fenêtre.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="672"/>
@@ -6559,7 +6559,7 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1058"/>
       <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
-      <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
+      <translation>Les colonnes suivantes ont un type de données non strictes : %1. Désactive le mode strict du tableau ou fixe les types de données des colonnes. Les types de données strictes valides sont : %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1237"/>
@@ -6854,7 +6854,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="108"/>
       <location filename="../windows/viewwindow.cpp" line="114"/>
       <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car aucune base de données ou vue n'a été stockée dans la session pour cette fenêtre.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="121"/>
@@ -7040,7 +7040,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="864"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
-      <translation type="unfinished">Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</translation>
+      <translation>Impossible de déterminer les colonnes renvoyées depuis la vue. La requête est sûrement incomplète ou contient des erreurs.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="918"/>
@@ -7098,7 +7098,7 @@ Details : %1</translation>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1053"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
-      <translation type="unfinished">The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</translation>
+      <translation>Le code vu n'a pas pu être analysé correctement pour l'exécution. Ceci est un bug de SQLiteStudio. Veuillez le signaler.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1066"/>
