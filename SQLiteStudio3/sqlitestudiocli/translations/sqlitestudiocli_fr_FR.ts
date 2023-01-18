@@ -868,8 +868,12 @@ Expected one of: %2</source>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
+      <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
+      <translation type="obsolete">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>
