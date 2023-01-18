@@ -1,5 +1,10 @@
 env:
+    QT_VERSION: '5.15.2'
+    SQLITE_VERSION: '3400000'
+    SQLITE_RELEASE_YEAR: '2022'
+    QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
+    QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
 
 name: Sandbox/playground
 
@@ -12,133 +17,89 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - uses: actions/setup-python@v2
+            - name: Set up MinGW
+              uses: egor-tensin/setup-mingw@v2
               with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+                platform: x86
 
-            - name:
-              shell: bash
-              run: |
-                ls -l $pythonLocation
-
-            - name: Create python files in output dir
-              shell: bash
-              run: |
-                pythonPath='${{ env.pythonLocation }}'
-                pythonPath=${pythonPath//\\/\/}
-                pythonPath=${pythonPath/c:/\/c}
-                ver=${{ env.PYTHON_VERSION }}
-                7z a -r python${ver//./}.zip $pythonPath/lib/encodings
-                7z a python${ver//./}.zip \
-                    $pythonPath/lib/_collections_abc.py \
-                    $pythonPath/lib/_sitebuiltins.py \
-                    $pythonPath/lib/abc.py \
-                    $pythonPath/lib/codecs.py \
-                    $pythonPath/lib/genericpath.py \
-                    $pythonPath/lib/io.py \
-                    $pythonPath/lib/ntpath.py \
-                    $pythonPath/lib/os.py \
-                    $pythonPath/lib/site.py \
-                    $pythonPath/lib/stat.py
-                cp $pythonPath/python${ver//./}.dll .
-                cp $pythonPath/vcruntime140.dll .
-                    
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+            - name: Cache Qt
+              id: cache-qt
+              uses: actions/cache@v3
               with:
-                name: win.zip
-                path: .
-    mac:
-        runs-on: macos-11
-
-        steps:
-            - uses: actions/setup-python@v2
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
-
-            - name:
-              shell: bash
-              run: |
-                zip --help
-                ls -l $pythonLocation/lib
-                ls -l $pythonLocation/lib/python${{ env.PYTHON_VERSION }}
+                path: ${{ github.workspace }}\..\Qt
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
                 
-            - name: Create python files in output dir
-              shell: bash
-              run: |
-                pythonPath=${{ env.pythonLocation }}
-                ver=${{ env.PYTHON_VERSION }}
-                libDir=$pythonPath/lib/python$ver
-                zip -r python${ver//./}.zip \
-                    $libDir/encodings \
-                    $libDir/_collections_abc.py \
-                    $libDir/_sitebuiltins.py \
-                    $libDir/abc.py \
-                    $libDir/codecs.py \
-                    $libDir/genericpath.py \
-                    $libDir/io.py \
-                    $libDir/ntpath.py \
-                    $libDir/os.py \
-                    $libDir/site.py \
-                    $libDir/stat.py \
-                    -x "**/__pycache__/*"
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.dylib .
-                    
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v3
               with:
-                name: mac.zip
-                path: .
+                cache: true
+                version: ${{ env.QT_VERSION }}
+                host: 'windows'
+                arch: ${{ env.QT_ARCH }}
+                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
+                dir: 'D:/'
+                setup-python: 'false'
 
-    linux:
-        runs-on: ubuntu-20.04
-
-        steps:
-            - uses: actions/setup-python@v2
+            - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
-
-            - name:
-              shell: bash
-              run: |
-                ls -l $pythonLocation/lib
-
-            - name: Create python files in output dir
-              shell: bash
-              run: |
-                pythonPath=${{ env.pythonLocation }}
-                ver=${{ env.PYTHON_VERSION }}
-                libDir=$pythonPath/lib/python$ver
-                zip -r python${ver//./}.zip \
-                    $libDir/encodings \
-                    $libDir/_collections_abc.py \
-                    $libDir/_sitebuiltins.py \
-                    $libDir/abc.py \
-                    $libDir/codecs.py \
-                    $libDir/genericpath.py \
-                    $libDir/io.py \
-                    $libDir/ntpath.py \
-                    $libDir/os.py \
-                    $libDir/site.py \
-                    $libDir/stat.py \
-                    -x "**/__pycache__/*"
-                cp $pythonPath/lib/libpython${{ env.PYTHON_VERSION }}.so* .
-
-            - name: Create python files in output dir2
-              shell: bash
-              run: |
-                pythonPath=${{ env.pythonLocation }}
-                ver=${{ env.PYTHON_VERSION }}
-                libDir=$pythonPath/lib/python$ver
-                zip -r python${ver//./}.zip \
-                    $libDir/* \
-                    -x "**/__pycache__/*"
-                    
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+                architecture: 'x86'
+                
+            - name: Clone repo
+              uses: actions/checkout@v3
               with:
-                name: lin.zip
-                path: .
+                ref: ${{ github.event.client_payload.branch }}
+
+            - name: Install dependencies
+              shell: bash
+              run: |
+                7z x -o".." win_deps/win32_deps.zip
+                echo "../lib" >> $GITHUB_PATH
+ 
+            - name: Find zlib
+              shell: bash
+              run: |
+                find ../../ -name "zlib.h"
+ 
+            - name: Install SQLite3
+              shell: bash
+              run: |
+                cd ..
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
+                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                gcc.exe sqlite3.c -Os -fpic -DWIN32 -m32 -I. -shared -o sqlite3.dll \
+                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_BYTECODE_VTAB \
+                    -DSQLITE_ENABLE_COLUMN_METADATA \
+                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+                    -DSQLITE_ENABLE_FTS3 \
+                    -DSQLITE_ENABLE_FTS4 \
+                    -DSQLITE_ENABLE_FTS5 \
+                    -DSQLITE_ENABLE_GEOPOLY \
+                    -DSQLITE_ENABLE_JSON1 \
+                    -DSQLITE_ENABLE_RTREE \
+                    -DSQLITE_ENABLE_MATH_FUNCTIONS
+                cp -f sqlite3.dll ../lib/
+                cp -f sqlite3.h ../include/
+                cp -f sqlite3ext.h ../include/
+                                
+            - name: Compile additional SQLite3 extensions
+              shell: bash
+              run: |
+                cd ..
+                mkdir ext
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                7z x sqlite-src-$SQLITE_VERSION.zip
+                cd sqlite-src-$SQLITE_VERSION/ext
+                FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L../../lib -lsqlite3"
+                for f in compress; do
+                    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
+                done
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    echo "gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
+                    gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll
+                done
+                ls -l ../../ext/

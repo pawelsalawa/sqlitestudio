@@ -420,7 +420,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>660</width>
-                <height>690</height>
+                <height>718</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -430,6 +430,26 @@
                   <string>Data browsing and editing</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="2" column="2">
+                   <widget class="QSpinBox" name="memPopulConfigsCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</string>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.PopulateHistorySize</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" colspan="2">
+                   <widget class="QLabel" name="rowsPerPageLabel">
+                    <property name="text">
+                     <string>Number of data rows per page:</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="2" column="0" colspan="2">
                    <widget class="QLabel" name="memPopulConfigsLabel">
                     <property name="toolTip">
@@ -437,6 +457,45 @@
                     </property>
                     <property name="text">
                      <string>Number of memorized table populating configurations</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                   <widget class="QCheckBox" name="limitColumnsVsRowsCheck">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don't work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Limit number of rows for in case of dozens of columns</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.LimitRowsForManyColumns</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="3">
+                   <widget class="QCheckBox" name="tolltipInDataViewCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Show column and row details tooltip in data view</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.ShowDataViewTooltips</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0" colspan="3">
+                   <widget class="QCheckBox" name="useDefaultForNullCheck">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Use DEFAULT value (if defined), when committing NULL value</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.UseDefaultValueForNull</string>
                     </property>
                    </widget>
                   </item>
@@ -472,62 +531,16 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0" colspan="2">
-                   <widget class="QLabel" name="rowsPerPageLabel">
-                    <property name="text">
-                     <string>Number of data rows per page:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0" colspan="3">
-                   <widget class="QCheckBox" name="tolltipInDataViewCheck">
+                  <item row="6" column="0">
+                   <widget class="QCheckBox" name="useSciFormatForDoublesCheck">
                     <property name="toolTip">
-                     <string>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
-                     <string>Show column and row details tooltip in data view</string>
+                     <string>Use scientific notation for real numbers in the grid view</string>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string notr="true">General.ShowDataViewTooltips</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0" colspan="3">
-                   <widget class="QCheckBox" name="useDefaultForNullCheck">
-                    <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Use DEFAULT value (if defined), when committing NULL value</string>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">General.UseDefaultValueForNull</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QSpinBox" name="memPopulConfigsCheck">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</string>
-                    </property>
-                    <property name="maximum">
-                     <number>999999</number>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">General.PopulateHistorySize</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" colspan="3">
-                   <widget class="QCheckBox" name="checkBox">
-                    <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don't work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Limit number of rows for in case of dozens of columns</string>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">General.LimitRowsForManyColumns</string>
+                     <string notr="true">General.UseSciFormatForDoubles</string>
                     </property>
                    </widget>
                   </item>

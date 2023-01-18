@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.2
+- ADDED: #4653 For dealing with small fractional numbers there is an option now to change Grid View representation of these numbers to a scientific notation - the option is in Configuration/Data Browsing.
 - CHANGE: #4535 Improved current query highlighter, so it considers query on the left of the cursor as current in a more intuitive way.
 - BUGFIX: #4602 Fixed editing data in table with Russian upper-case name.
 - BUGFIX: #4105 Fixed Import Dialog state update when changing import source (CSV vs RegExp), which could cause inability to proceed with the import in some cases.
@@ -30,6 +31,7 @@
 - BUGFIX: #4643 Fixed executing query with apostrophe (doubled) inside of a string literal value.
 - BUGFIX: #4546 Fixed exporting results of a query that is a huge SQL statement.
 - BUGFIX: #4642 Fixed crash when removing a last database from the application and then modifying contents of SQL Editor.
+- BUGFIX: #4064 Fixed support for ":memory:" database.
 - BUGFIX: #4254 Fixed few issues with CLI help messages.
 - BUGFIX: #4639 Fixed typo.
 - BUGFIX: Fixed refreshing invalid database state if edited & fixed its connection options.

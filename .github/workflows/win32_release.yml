@@ -29,6 +29,7 @@ jobs:
               uses: egor-tensin/setup-mingw@v2
               with:
                 platform: x86
+                version: 8.1.0
 
             - name: Cache Qt
               id: cache-qt
@@ -97,10 +98,10 @@ jobs:
                 7z x sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L../../lib -lsqlite3"
-                for f in compress; do
-                    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
-                done
+                #for f in compress; do
+                #    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                #    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
+                #done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
                     gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll

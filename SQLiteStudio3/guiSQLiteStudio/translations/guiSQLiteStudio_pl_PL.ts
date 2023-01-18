@@ -828,7 +828,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2031"/>
+      <location filename="../dialogs/configdialog.ui" line="2044"/>
       <source>Configuration</source>
       <translation>Konfiguracja</translation>
     </message>
@@ -995,530 +995,540 @@
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="436"/>
-      <location filename="../dialogs/configdialog.ui" line="511"/>
+      <location filename="../dialogs/configdialog.ui" line="456"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Maksymalna liczba konfiguracji w oknie dialogowym zaludniania tabeli, która ma być trzymana w konfiguracji. Wartość 100 powinna być wystarczająca.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="439"/>
+      <location filename="../dialogs/configdialog.ui" line="459"/>
       <source>Number of memorized table populating configurations</source>
       <translation>Liczba zapamiętanych konfiguracji zaludniania tabeli</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="540"/>
+      <location filename="../dialogs/configdialog.ui" line="553"/>
       <source>Data column width</source>
       <translation>Szerokość kolumny danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="546"/>
+      <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kiedy użytkownik wprowadzi nową wartość do kolumny, a wartość jest większa niż obecna szerokość kolumny, aplikacja powiększy kolumnę w celu dostosowania jej do nowej wartości, ale nie więcej niż limit określony w opcji powyżej.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="549"/>
+      <location filename="../dialogs/configdialog.ui" line="562"/>
       <source>Enlarge column when entering value longer than current width</source>
       <translation>Powiększ kolumnę podczas wprowadzania wartości dłuższej niż obecna szerokość</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="565"/>
+      <location filename="../dialogs/configdialog.ui" line="578"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Kiedy dane są wczytane do widoku siatki, szerokość kolumn jest automatycznie dostosowywana. Ta wartość ogranicza początkową szerokość tego dostosowywania, ale użytkownik nadal może rozszerzać kolumnę ręcznie poza ten limit.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="478"/>
+      <location filename="../dialogs/configdialog.ui" line="449"/>
       <source>Number of data rows per page:</source>
       <translation>Liczba wierszy danych na stronie:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="485"/>
+      <location filename="../dialogs/configdialog.ui" line="479"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Gdy to jest włączone i użytkownik zatrzyma kursor myszy nad komórką w widoku siatki danych (wyniki zapytania, dane tabeli, dane widoku), to pojawi się podpowiedź ze szczegółami odnośnie komórki - zawiera ona szczegóły , jak typ danych kolumny, ograniczenia, ROWID i inne.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="488"/>
+      <location filename="../dialogs/configdialog.ui" line="482"/>
       <source>Show column and row details tooltip in data view</source>
       <translation>Pokazuj podpowiedź ze szczegółami o kolumnie i wierszu w widoku siatki danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="465"/>
+      <location filename="../dialogs/configdialog.ui" line="524"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation>&lt;p&gt;Kiedy edytowana jest komórka, która miała wartość NULL, a nowa wartość wprowadzona jest pusta, to ta opcja decyduje o tym, czy wartość powinna pozostać NULL (gdy ta opcja jest włączona), czy powinna być nadpisana pustym łańcuchem znaków (gdy ta opcja wyłączona).&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="468"/>
+      <location filename="../dialogs/configdialog.ui" line="527"/>
       <source>Keep NULL value when entering empty value</source>
       <translation>Zachowaj wartość NULL gdy wstawiania jest pusta wartość</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="498"/>
+      <location filename="../dialogs/configdialog.ui" line="492"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Włącz to, aby wymusić wartość DEFAULT podczas zatwierdzania wartości NULL dla kolumn, które mają zdefiniowaną wartość DEFAULT, nawet jeśli kolumna dopuszcza wartości NULL.&lt;/p&gt;&lt;p&gt;Wyłącz tą opcję aby używać wartości DEFAULT tylko i wyłącznie, gdy wartość NULL jest zatwierdzana dla kolumny z ograniczeniem NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="501"/>
+      <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
       <translation>Używaj wartości DEFAULT (jeśli zdefiniowana), gdy zatwierdzana jest wartość NULL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="524"/>
+      <location filename="../dialogs/configdialog.ui" line="466"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli wyniki zapytania zawierają dziesiątki (lub setki) kolumn, bardziej prawdopodobne jest, że wyczerpie pamięć komputera ładując kilka gigabajtów danych jednocześnie. SQLiteStudio może próbować ograniczyć liczbę wyników wyświetlanych na jednej stronie w celu ochrony komputera. Jeśli wiesz, że nie pracujesz z dużymi wartościami w bazie danych, możesz wyłączyć ten limit i zawsze zobaczysz tyle wierszy, ile jest zdefiniowanych na stronie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="527"/>
+      <location filename="../dialogs/configdialog.ui" line="469"/>
       <source>Limit number of rows for in case of dozens of columns</source>
       <translation>Ogranicz liczbę wierszy w przypadku dziesiątek kolumn</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="610"/>
+      <location filename="../dialogs/configdialog.ui" line="623"/>
       <source>Inserting new row in data grid</source>
       <translation>Wstawianie nowego wiersza w widoku siatki danych.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="616"/>
+      <location filename="../dialogs/configdialog.ui" line="629"/>
       <source>Before currently selected row</source>
       <translation>Przed aktualnie wybranym wierszem</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="632"/>
+      <location filename="../dialogs/configdialog.ui" line="645"/>
       <source>After currently selected row</source>
       <translation>Po aktualnie wybranym wierszu.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="645"/>
+      <location filename="../dialogs/configdialog.ui" line="658"/>
       <source>At the end of data view</source>
       <translation>Na końcu widoku siatki danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="661"/>
+      <location filename="../dialogs/configdialog.ui" line="674"/>
       <source>Table windows</source>
       <translation>Okna tabel</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="667"/>
+      <location filename="../dialogs/configdialog.ui" line="680"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Gdy włączone, Okna Tabeli będą się otwierać na zakładce danych, zamiast na zakładce struktury.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="670"/>
+      <location filename="../dialogs/configdialog.ui" line="683"/>
       <source>Open Table Windows with the data tab for start</source>
       <translation>Otwieraj Okna Tabeli z zakładką danych na początek</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="680"/>
+      <location filename="../dialogs/configdialog.ui" line="693"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Gdy włączone, to zakładka &quot;Dane&quot; będzie umieszczona jako pierwsza w każdym Oknie Tabeli, zamiast jako druga.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="683"/>
+      <location filename="../dialogs/configdialog.ui" line="696"/>
       <source>Place data tab as first tab in a Table Window</source>
       <translation>Ustaw zakładkę danych jako pierwszą w Oknie Tabeli</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="696"/>
+      <location filename="../dialogs/configdialog.ui" line="709"/>
       <source>View windows</source>
       <translation>Okna Widoków</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="702"/>
+      <location filename="../dialogs/configdialog.ui" line="715"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Gdy włączone, Okna Widoku będą się otwierać na zakładce danych, zamiast na zakładce struktury.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="705"/>
+      <location filename="../dialogs/configdialog.ui" line="718"/>
       <source>Open View Windows with the data tab for start</source>
       <translation>Otwieraj Okna Widoku z zakładką danych na początek</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="715"/>
+      <location filename="../dialogs/configdialog.ui" line="728"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Gdy włączone, to zakładka &quot;Dane&quot; będzie umieszczona jako pierwsza w każdym Oknie Widoku, zamiast jako druga.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="718"/>
+      <location filename="../dialogs/configdialog.ui" line="731"/>
       <source>Place data tab as first tab in a View Window</source>
       <translation>Ustaw zakładkę danych jako pierwszą w Oknie Widoku</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="762"/>
+      <location filename="../dialogs/configdialog.ui" line="775"/>
       <source>Data types</source>
       <translation>Type danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="800"/>
+      <location filename="../dialogs/configdialog.ui" line="813"/>
       <source>Available editors:</source>
       <translation>Dostępne edytory:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="816"/>
+      <location filename="../dialogs/configdialog.ui" line="829"/>
       <source>Editors selected for this data type:</source>
       <translation>Edytory wybrane dla tego typu danych:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="852"/>
+      <location filename="../dialogs/configdialog.ui" line="865"/>
       <source>Schema editing</source>
       <translation>Edycja schematu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="864"/>
+      <location filename="../dialogs/configdialog.ui" line="877"/>
       <source>Number of DDL changes kept in history.</source>
       <translation>Liczba zmian DDL trzymanych w historii.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="877"/>
+      <location filename="../dialogs/configdialog.ui" line="890"/>
       <source>DDL history size:</source>
       <translation>Rozmiar historii DDL:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="884"/>
+      <location filename="../dialogs/configdialog.ui" line="897"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation>Nie pokazuj okna podglądu DDL podczas zatwierdzania zmian struktury</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="897"/>
+      <location filename="../dialogs/configdialog.ui" line="910"/>
       <source>SQL queries</source>
       <translation>Zapytania SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="909"/>
-      <location filename="../dialogs/configdialog.ui" line="958"/>
+      <location filename="../dialogs/configdialog.ui" line="922"/>
+      <location filename="../dialogs/configdialog.ui" line="971"/>
       <source>Number of queries kept in the history.</source>
       <translation>Liczba zapytań trzymana w historii.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="945"/>
+      <location filename="../dialogs/configdialog.ui" line="958"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli w oknie edytora SQL jest więcej niż jedno zapytanie, wtedy (jeśli ta opcja jest włączona) zostanie wykonana tylko jedno zapytanie - to pod kursorem wstawiania klawiatury. W przeciwnym razie wszystkie zapytania zostaną wykonane. Zawsze możesz ograniczyć zapytania do wykonania poprzez zaznaczenie tych zapytań przed ich wykonaniem. Możesz również użyć dedykowanych skrótów do wykonywania w jednym lub drugim trybie (obecnie skonfigurowanych pod %1 dla wykonania pojedynczego zapytania i %2 dla wykonania wszystkich zapytań).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="961"/>
+      <location filename="../dialogs/configdialog.ui" line="974"/>
       <source>History size:</source>
       <translation>Rozmiar historii:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="922"/>
-      <location filename="../dialogs/configdialog.ui" line="932"/>
+      <location filename="../dialogs/configdialog.ui" line="935"/>
+      <location filename="../dialogs/configdialog.ui" line="945"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Maksymalna liczba parametrów zapytania (:param, @param, $param, ?) trzymanych w historii. Kiedy ponownie użyjesz parametru o tej samej nazwie/pozycji, SQLiteStudio wstępnie uzupełni go używając ostatniej zapamiętanej wartości (nadal będzie można ją zmienić). Wartość 100 powinna być wystarczająca.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="948"/>
+      <location filename="../dialogs/configdialog.ui" line="961"/>
       <source>Execute only the query under the cursor</source>
       <translation>Wykonuj tylko zapytania będące pod kursorem</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="925"/>
+      <location filename="../dialogs/configdialog.ui" line="938"/>
       <source>Number of memorized query parameters</source>
       <translation>Liczba zapamiętanych parametrów zapytania</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="584"/>
+      <location filename="../dialogs/configdialog.ui" line="537"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Domyślnie (gdy ta opcja jest wyłączona) rzeczywista liczba jest wyświetlana w formacie dziesiętnym z przecinkiem. W niektórych przypadkach, gdy liczba jest naprawdę mała (kilka miejsc po przecinku), domyślna reprezentacja może wydawać się niedokładna. W takim przypadku możesz włączyć tę opcję do użycia notacji naukowej (np. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="540"/>
+      <source>Use scientific notation for real numbers in the grid view</source>
+      <translation>Użyj notacji naukowej dla liczb rzeczywistych w widoku siatki</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="597"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Gdy dane są odczytywane w widoku tabeli szerokość kolumn jest automatycznie dostosowywana. Ta wartość ogranicza wstępnie dostosowaną szerokość, ale użytkownik może zmieniać rozmiar kolumny ręcznie powyżej tego limitu. Ta wartość jest również używana podczas powiększania kolumny w przypadku nowej, dłuższej wartości wprowadzonej przez użytkownika (patrz opcja poniżej).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="587"/>
+      <location filename="../dialogs/configdialog.ui" line="600"/>
       <source>Limit automatic data column width to (in pixels):</source>
       <translation>Ogranicz automatyczną szerokość kolumny danych do (w pikselach):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="594"/>
+      <location filename="../dialogs/configdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Początkowa szerokość kolumn danych zostanie ustawiona co najmniej tak, aby pokazać pełne nazwy kolumn w nagłówku. To może być nadpisane przez wstępny limit szerokości kolumny określony w pikselach (ustawienie powyżej).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="597"/>
+      <location filename="../dialogs/configdialog.ui" line="610"/>
       <source>Keep at least the width to show complete column name</source>
       <translation>Zachowaj co najmniej szerokość wystarczającą, aby wyświetlić pełną nazwę kolumny</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="968"/>
+      <location filename="../dialogs/configdialog.ui" line="981"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli włączone, linie dłuższe niż szerokość edytora będą zawijane, więc przewijanie poziome nie będzie potrzebne.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="971"/>
+      <location filename="../dialogs/configdialog.ui" line="984"/>
       <source>Wrap lines in SQL editor</source>
       <translation>Zawijaj linie w edytorze SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="981"/>
+      <location filename="../dialogs/configdialog.ui" line="994"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Podświetla całe zapytanie, które jest obecnie pod kursorem wstawiania. To jest to samo zapytanie, które zostanie wykonane po naciśnięciu klawisza skrótu lub przycisku &amp;quot;Wykonaj zapytanie&amp;quot; (chyba że skonfigurowano inaczej).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="984"/>
+      <location filename="../dialogs/configdialog.ui" line="997"/>
       <source>Highlight current query</source>
       <translation>Podświetl bieżące zapytanie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="997"/>
+      <location filename="../dialogs/configdialog.ui" line="1010"/>
       <source>Updates</source>
       <translation>Aktualizacje</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1003"/>
+      <location filename="../dialogs/configdialog.ui" line="1016"/>
       <source>Automatically check for updates at startup</source>
       <translation>Sprawdzaj aktualizacje automatycznie przy starcie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1016"/>
+      <location filename="../dialogs/configdialog.ui" line="1029"/>
       <source>Session</source>
       <translation>Sesje</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1022"/>
+      <location filename="../dialogs/configdialog.ui" line="1035"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation>Przywróć ostatnią sesję (aktywne okna MDI) po starcie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1032"/>
+      <location filename="../dialogs/configdialog.ui" line="1045"/>
       <source>Allow multiple instances of the application at the same time</source>
       <translation>Zezwalaj na wiele instancji aplikacji w tym samym czasie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1045"/>
+      <location filename="../dialogs/configdialog.ui" line="1058"/>
       <source>Status Field</source>
       <translation>Pole Statusu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1051"/>
+      <location filename="../dialogs/configdialog.ui" line="1064"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Kiedy użytkownik ręcznie zamyka panel Statusu, ta opcja zapewnia, że zostanie ono otwarte ponownie, gdy jest wyświetlona nowa wiadomość. Jeśli jest ona wyłączona, to panel Statusu może być otwarte tylko ręcznie z menu &quot;Widok&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1054"/>
+      <location filename="../dialogs/configdialog.ui" line="1067"/>
       <source>Always open Status panel when new message is printed</source>
       <translation>Zawsze otwieraj panel Statusu, gdy wyświetlona jest nowa wiadomość</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1109"/>
+      <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
       <translation>Kolory składni kodu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1115"/>
+      <location filename="../dialogs/configdialog.ui" line="1128"/>
       <source>Keyword foreground</source>
       <translation>Słowo kluczowe</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1170"/>
+      <location filename="../dialogs/configdialog.ui" line="1183"/>
       <source>Regular foreground</source>
       <translation>Standardowy tekst</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1193"/>
+      <location filename="../dialogs/configdialog.ui" line="1206"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQL ciągi znaków są zamknięte pomiędzy apostrofami. W innych językach ciąg znaków może być zamknięty pomiędzy podwójnym cudzysłowem lub czymś innym.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1196"/>
+      <location filename="../dialogs/configdialog.ui" line="1209"/>
       <source>String foreground</source>
       <translation>Łańcuch znaków</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1235"/>
+      <location filename="../dialogs/configdialog.ui" line="1248"/>
       <source>Comment foreground</source>
       <translation>Komentarz</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1258"/>
+      <location filename="../dialogs/configdialog.ui" line="1271"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prawidłowe obiekty to nazwy tabel, indeksów, wyzwalaczy lub widoków, które istnieją w bazie danych SQLite. Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części językowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1261"/>
+      <location filename="../dialogs/configdialog.ui" line="1274"/>
       <source>Valid objects foreground</source>
       <translation>Prawidłowe obiekty</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1268"/>
+      <location filename="../dialogs/configdialog.ui" line="1281"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQLu bieżące zapytanie jest zaznaczone tym tłem, aby wskazać użytkownikowi, który zapytanie zostanie wykonany w danej chwili.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1271"/>
+      <location filename="../dialogs/configdialog.ui" line="1284"/>
       <source>Current query background</source>
       <translation>Bieżące tło zapytania</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1278"/>
+      <location filename="../dialogs/configdialog.ui" line="1291"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Parametry wiążące są symbolami zastępczymi dla wartości, które mają być jeszcze dostarczone przez użytkownika. Przyjmują jedną z form:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części składowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1281"/>
+      <location filename="../dialogs/configdialog.ui" line="1294"/>
       <source>Bind parameter foreground</source>
       <translation>Parametr wiążący</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1288"/>
+      <location filename="../dialogs/configdialog.ui" line="1301"/>
       <source>Current line background</source>
       <translation>Tło bieżącej linii</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1311"/>
+      <location filename="../dialogs/configdialog.ui" line="1324"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kiedy użytkownik przesunie w kodzie kursor wstawiania na nawias, aplikacja oznaczy ten nawias oraz jego pasującą parę tym kolorem tła.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1314"/>
+      <location filename="../dialogs/configdialog.ui" line="1327"/>
       <source>Matched parenthesis background</source>
       <translation>Tło dopasowanych nawiasów</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1327"/>
+      <location filename="../dialogs/configdialog.ui" line="1340"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Możesz całkowicie wyłączyć podświetlanie bieżącego zapytania na stronie ustawień ogólnych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1372"/>
+      <location filename="../dialogs/configdialog.ui" line="1385"/>
       <source>Number foreground</source>
       <translation>Liczba</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1379"/>
+      <location filename="../dialogs/configdialog.ui" line="1392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wartości BLOB są wartościami binarnymi reprezentowanymi jako liczby szesnastkowe, na przykład:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1382"/>
+      <location filename="../dialogs/configdialog.ui" line="1395"/>
       <source>BLOB value foreground</source>
       <translation>Kolor zawartości BLOB</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1389"/>
+      <location filename="../dialogs/configdialog.ui" line="1402"/>
       <source>Matched parenthesis foreground</source>
       <translation>Dopasowane nawiasy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1433"/>
+      <location filename="../dialogs/configdialog.ui" line="1446"/>
       <source>Reset to defaults</source>
       <translation>Przywróć ustawienia domyślne</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1459"/>
+      <location filename="../dialogs/configdialog.ui" line="1472"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>Filtruj skróty po nazwie, lub kombinacji klawiszy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1500"/>
+      <location filename="../dialogs/configdialog.ui" line="1513"/>
       <source>Action</source>
       <translation>Akcja</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1505"/>
+      <location filename="../dialogs/configdialog.ui" line="1518"/>
       <source>Key combination</source>
       <translation>Kombinacja klawiszy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1549"/>
-      <location filename="../dialogs/configdialog.ui" line="2021"/>
+      <location filename="../dialogs/configdialog.ui" line="1562"/>
+      <location filename="../dialogs/configdialog.ui" line="2034"/>
       <source>Language</source>
       <translation>Język</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1555"/>
+      <location filename="../dialogs/configdialog.ui" line="1568"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>Zmiana języka wymaga restartu aplikacji, aby zadziałać.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1572"/>
+      <location filename="../dialogs/configdialog.ui" line="1585"/>
       <source>Compact layout</source>
       <translation>Układ kompaktowy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1578"/>
+      <location filename="../dialogs/configdialog.ui" line="1591"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Układ kompaktowy zmniejsza wszystkie marginesy i odstępy na interfejsie do minimum, robiąc więcej miejsca na wyświetlanie danych. Powoduje to, że interfejs jest nieco mniej estetyczny, ale pozwala to na prezentację większej ilości danych naraz.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1581"/>
+      <location filename="../dialogs/configdialog.ui" line="1594"/>
       <source>Use compact layout</source>
       <translation>Użyj układu kompaktowego</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1597"/>
+      <location filename="../dialogs/configdialog.ui" line="1610"/>
       <source>Main window dock areas</source>
       <translation>Strefy dokowania głównego okna</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1603"/>
+      <location filename="../dialogs/configdialog.ui" line="1616"/>
       <source>Left and right areas occupy corners</source>
       <translation>Lewa i prawa strefa zajmują rogi</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1623"/>
+      <location filename="../dialogs/configdialog.ui" line="1636"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>Górna i dolna strefa zajmują rogi</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1745"/>
+      <location filename="../dialogs/configdialog.ui" line="1758"/>
       <source>Hide built-in plugins</source>
       <translation>Ukryj wtyczki wbudowane</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1774"/>
+      <location filename="../dialogs/configdialog.ui" line="1787"/>
       <source>Current style:</source>
       <translation>Aktualny styl:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1791"/>
+      <location filename="../dialogs/configdialog.ui" line="1804"/>
       <source>Preview</source>
       <translation>Podgląd</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1801"/>
+      <location filename="../dialogs/configdialog.ui" line="1814"/>
       <source>Enabled</source>
       <translation>Włączone</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1977"/>
+      <location filename="../dialogs/configdialog.ui" line="1990"/>
       <source>Disabled</source>
       <translation>Wyłączone</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2026"/>
+      <location filename="../dialogs/configdialog.ui" line="2039"/>
       <source>Active formatter plugin</source>
       <translation>Aktywna wtyczka formatera</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2064"/>
+      <location filename="../dialogs/configdialog.ui" line="2077"/>
       <source>SQL editor font</source>
       <translation>Czcionka edytora SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2080"/>
+      <location filename="../dialogs/configdialog.ui" line="2093"/>
       <source>Database list font</source>
       <translation>Czcionka listy baz danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2096"/>
+      <location filename="../dialogs/configdialog.ui" line="2109"/>
       <source>Database list additional label font</source>
       <translation>Czcionka dodatkowych etykiety listy baz danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2112"/>
+      <location filename="../dialogs/configdialog.ui" line="2125"/>
       <source>Data view font</source>
       <translation>Czcionka widoku danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2128"/>
+      <location filename="../dialogs/configdialog.ui" line="2141"/>
       <source>Status field font</source>
       <translation>Czcionka pola statusu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2165"/>
+      <location filename="../dialogs/configdialog.ui" line="2178"/>
       <source>Code assistant settings</source>
       <translation>Ustawienia asystenta kodu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2171"/>
+      <location filename="../dialogs/configdialog.ui" line="2184"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli ta opcja jest włączona, asystent kodu zostanie uruchomiony w przypadkach, gdy użytkownik wpisze na przykład &lt;span style=&quot; font-weight:700;&quot;&gt;nazwaTabeli.&lt;/span&gt;, aby zaproponować nazwy kolumn tabeli. Jeśli opcja jest wyłączona, użytkownik będzie musiał użyć skrót klawiszowy asystenta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2174"/>
+      <location filename="../dialogs/configdialog.ui" line="2187"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation>Automatycznie wyzwalaj asystenta po wpisaniu kropki po nazwie obiektu</translation>
     </message>
@@ -3089,7 +3099,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <location filename="../dialogs/exportdialog.cpp" line="185"/>
-      <location filename="../dialogs/exportdialog.cpp" line="208"/>
+      <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select database to export.</source>
       <translation>Wybierz bazę do eksportu.</translation>
     </message>
@@ -3104,42 +3114,42 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <translation>Wprowadź poprawne zapytanie do eksportu.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="209"/>
+      <location filename="../dialogs/exportdialog.cpp" line="210"/>
       <source>Select at least one object to export.</source>
       <translation>Wybierz przynajmniej jeden obiekt do eksportu.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="232"/>
+      <location filename="../dialogs/exportdialog.cpp" line="233"/>
       <source>You must provide a file name to export to.</source>
       <translation>Musisz podać nazwę pliku do którego należy wyeksportować.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="239"/>
+      <location filename="../dialogs/exportdialog.cpp" line="240"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>Ścieżka którą podałeś jest istniejącym katalogiem. Nie można go nadpisać.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="245"/>
+      <location filename="../dialogs/exportdialog.cpp" line="246"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>Katalog &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="251"/>
+      <location filename="../dialogs/exportdialog.cpp" line="252"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>Plik &apos;%1&apos; istnieje i zostanie nadpisany.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="431"/>
+      <location filename="../dialogs/exportdialog.cpp" line="432"/>
       <source>All files (*)</source>
       <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="434"/>
+      <location filename="../dialogs/exportdialog.cpp" line="435"/>
       <source>Pick file to export to</source>
       <translation>Wybierz plik do eksportu</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="782"/>
+      <location filename="../dialogs/exportdialog.cpp" line="783"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>Wystąpił wewnętrzny błąd podczas eksportu. To jest błąd programu. Proszę to zgłosić.</translation>
     </message>
@@ -3258,7 +3268,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter functions</source>
-      <translation type="unfinished">Filter functions</translation>
+      <translation>Filtruj funkcje</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
@@ -4425,7 +4435,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
-      <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
+      <translation>Nie można edytować kolumn, które są wynikiem widoku, jeśli wykonane zapytanie odczytuje z dowolnego widoku wielopoziomowego (tj. widoku który zapytał inny widok).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
@@ -4990,12 +5000,12 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished">Commit the table structure</translation>
+      <translation>Zatwierdź strukturę tabeli</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation type="unfinished">Rollback pending changes in the table structure</translation>
+      <translation>Wycofaj oczekujące zmiany w strukturze tabeli</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5110,7 +5120,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Rollback pending changes in the view&apos;s query</source>
-      <translation type="unfinished">Rollback pending changes in the view&apos;s query</translation>
+      <translation>Wycofaj oczekujące zmiany w widoku zapytania</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
@@ -5141,7 +5151,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
-      <translation type="unfinished">Rollback the pending changes</translation>
+      <translation>Wycofaj oczekujące zmiany</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>
@@ -5424,37 +5434,37 @@ znajdź następny</translation>
       <translation>Zapisano zawartość SQL do pliku: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="509"/>
+      <location filename="../sqleditor.cpp" line="518"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>Dopełnianie składni może być użyte tylko wtedy, gdy poprawna baza danych jest ustawiona w edytorze SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1130"/>
+      <location filename="../sqleditor.cpp" line="1143"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Zawartość edytora SQL jest ogromna, więc sprawdzanie błędów i podświetlanie istniejących obiektów zostało tymczasowo wyłączone.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1165"/>
+      <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
       <translation>Zapisz do pliku</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1180"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Skrypty SQL (*.sql);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1181"/>
+      <location filename="../sqleditor.cpp" line="1194"/>
       <source>Open file</source>
       <translation>Otwórz plik</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1191"/>
+      <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nie udało się otworzyć pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1396"/>
+      <location filename="../sqleditor.cpp" line="1409"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Osiągnięto koniec dokumentu. Wciśnij szukanie ponownie, aby zrestartować szukanie.</translation>
     </message>
@@ -5498,7 +5508,7 @@ znajdź następny</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="58"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="64"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Cannot edit this cell. Details: %1</source>
       <translation>Nie można edytować tej komórki. Szczegóły: %1</translation>
     </message>
@@ -5509,17 +5519,17 @@ znajdź następny</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="323"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>Struktura tej tabeli zmieniła się od ostatniego ładowania danych. Przeładuj dane, aby kontynuować.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="201"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
       <translation>Edytowanie ogromnych ilości danych w podręcznym edytorze nie jest dobrym pomysłem. Może być on powolny i nieporęczny. Lepiej edytować takie duże ilości danych w Widoku Formularza, lub w osobnym oknie edytora (dostępnym w menu prawego kliknięcia myszy).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="315"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
       <translation>Klucz obcy dla kolumny %2 ma więcej niż %1 możliwych wartości. To zbyt wiele, by wyświetlić w liście rozwijanej. Musisz edytować wartość ręcznie.</translation>
     </message>
