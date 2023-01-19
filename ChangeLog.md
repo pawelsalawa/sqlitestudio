@@ -2,6 +2,7 @@
 
 ### 3.4.3
 - CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.
+- BUGFIX: #4658 Fixed crash when SQL parser stack gets overflown.
 - BUGFIX: Removed unnecessary linking to curses library in Linux build file.
 
 ### 3.4.2

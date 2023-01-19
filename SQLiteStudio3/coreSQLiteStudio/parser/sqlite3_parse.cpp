@@ -853,7 +853,7 @@ static const short yy_shift_ofst[] = {
  /*     0 */  1591,  808, 1446,  138, 1318, 1603, 1364, 2114, 2114, 2114,
  /*    10 */  1260,  216, 2012, 2216, 2318, 2216, 2216, 2216, 2216, 2216,
  /*    20 */  2216,  949,   -4,  106, 1910, 1808, 2216, 2216, 2216, 2216,
- /*    30 */  2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216,
+ /*    30 */  2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2318, 2216,
  /*    40 */  2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216,
  /*    50 */  2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216,
  /*    60 */  2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216, 2216,
@@ -5889,7 +5889,7 @@ static void yy_reduce(
 #endif
     {
       yy_shift(yypParser,yyact,yygoto,&yygotominor);
-      if (parserContext->setupTokens)
+      if (parserContext->setupTokens && yypParser->yyidx >= 0)
       {
           QList<Token*>* tokensPtr = yypParser->yystack[yypParser->yyidx].tokens;
           *tokensPtr = allTokensWithAllInherited + *tokensPtr;

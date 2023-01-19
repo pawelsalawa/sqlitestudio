@@ -782,7 +782,7 @@ static void yy_reduce(
 #endif
     {
       yy_shift(yypParser,yyact,yygoto,&yygotominor);
-      if (parserContext->setupTokens)
+      if (parserContext->setupTokens && yypParser->yyidx >= 0)
       {
           QList<Token*>* tokensPtr = yypParser->yystack[yypParser->yyidx].tokens;
           *tokensPtr = allTokensWithAllInherited + *tokensPtr;
