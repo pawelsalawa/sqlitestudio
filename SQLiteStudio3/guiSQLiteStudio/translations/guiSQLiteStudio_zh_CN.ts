@@ -1999,12 +1999,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="500"/>
       <source>Database type not selected.</source>
-      <translation type="unfinished">Database type not selected.</translation>
+      <translation>未选择数据库类型。</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="507"/>
       <source>Database path not specified.</source>
-      <translation type="unfinished">Database path not specified.</translation>
+      <translation>未指定数据库路径。</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="541"/>
@@ -2335,13 +2335,13 @@ Browsing other pages will be possible after the row counting is done.</source>
       <location filename="../dbtree/dbtree.cpp" line="176"/>
       <source>Increase font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="177"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="358"/>
@@ -2526,7 +2526,7 @@ All objects from this group will be moved to parent group.</source>
       <location filename="../dbtree/dbtreemodel.cpp" line="423"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">URI:</translation>
+      <translation>URI：</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
@@ -2661,7 +2661,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="55"/>
       <source>Clear entire history</source>
-      <translation type="unfinished">Clear entire history</translation>
+      <translation>清除全部历史记录</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="72"/>
@@ -2675,12 +2675,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="98"/>
       <source>Clear history</source>
-      <translation type="unfinished">Clear history</translation>
+      <translation>清除历史记录</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="98"/>
       <source>Are you sure you want to erase entire DDL history?</source>
-      <translation type="unfinished">Are you sure you want to erase entire DDL history?</translation>
+      <translation>你确定要清除全部DDL历史记录吗?</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="130"/>
@@ -2714,7 +2714,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="14"/>
       <source>SQL editor</source>
-      <translation type="unfinished">SQL editor</translation>
+      <translation>SQL编辑器</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
@@ -2824,7 +2824,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="410"/>
       <source>Execute all queries in editor</source>
-      <translation type="unfinished">Execute all queries in editor</translation>
+      <translation>在编辑器中执行所有查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="460"/>
@@ -4532,13 +4532,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlqueryview.h" line="35"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="640"/>
@@ -4621,13 +4621,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dbtree/dbtree.h" line="39"/>
       <source>Increase font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="40"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
@@ -4712,27 +4712,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="47"/>
       <source>Open DDL history window</source>
-      <translation type="unfinished">Open DDL history window</translation>
+      <translation>打开DDL历史记录窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="48"/>
       <source>Open snippets editor window</source>
-      <translation type="unfinished">Open snippets editor window</translation>
+      <translation>打开代码片段编辑器窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="49"/>
       <source>Open function editor window</source>
-      <translation type="unfinished">Open function editor window</translation>
+      <translation>打开函数编辑器窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="50"/>
       <source>Open collation editor window</source>
-      <translation type="unfinished">Open collation editor window</translation>
+      <translation>打开校验编辑器窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="51"/>
       <source>Open extension manager window</source>
-      <translation type="unfinished">Open extension manager window</translation>
+      <translation>打开扩展管理窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="52"/>
@@ -4752,7 +4752,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="55"/>
       <source>Open user manual</source>
-      <translation type="unfinished">Open user manual</translation>
+      <translation>打开用户手册</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="56"/>
@@ -4772,7 +4772,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="59"/>
       <source>Open the About dialog</source>
-      <translation type="unfinished">Open the About dialog</translation>
+      <translation>打开关于对话框</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="60"/>
@@ -4898,13 +4898,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../sqleditor.h" line="52"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="53"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="45"/>
@@ -4919,17 +4919,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="50"/>
       <source>Select database file</source>
-      <translation type="unfinished">Select database file</translation>
+      <translation>选择数据库文件</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="53"/>
       <source>Select</source>
-      <translation type="unfinished">Select</translation>
+      <translation>选择</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="54"/>
       <source>File type</source>
-      <translation type="unfinished">File type</translation>
+      <translation>文件类型</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
@@ -4944,12 +4944,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="29"/>
       <source>Execute single query under cursor</source>
-      <translation type="unfinished">Execute single query under cursor</translation>
+      <translation>执行光标位置的单个查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="30"/>
       <source>Execute all queries in editor</source>
-      <translation type="unfinished">Execute all queries in editor</translation>
+      <translation>在编辑器中执行所有查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="31"/>
@@ -4999,7 +4999,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished">Commit the table structure</translation>
+      <translation>提交表结构</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
