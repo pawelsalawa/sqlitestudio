@@ -1249,7 +1249,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="984"/>
       <source>Wrap lines in SQL editor</source>
-      <translation type="unfinished">Wrap lines in SQL editor</translation>
+      <translation>在 SQL 编辑器中换行</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="994"/>
@@ -1259,7 +1259,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="997"/>
       <source>Highlight current query</source>
-      <translation type="unfinished">Highlight current query</translation>
+      <translation>高亮当前查询</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1010"/>
@@ -1858,7 +1858,7 @@
       <location filename="../dataview.cpp" line="995"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter strictly by text (if equals)</translation>
+      <translation>严格按文本筛选（如果相等）</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="323"/>
@@ -1989,7 +1989,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="175"/>
       <source>Select new or existing file on local computer</source>
-      <translation type="unfinished">Select new or existing file on local computer</translation>
+      <translation>在本地计算机上选择新的或现有的文件</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="325"/>
@@ -2680,7 +2680,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="98"/>
       <source>Are you sure you want to erase entire DDL history?</source>
-      <translation>你确定要清除全部DDL历史记录吗?</translation>
+      <translation>你确定要清除全部 DDL 历史记录吗?</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="130"/>
@@ -2714,7 +2714,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="14"/>
       <source>SQL editor</source>
-      <translation>SQL编辑器</translation>
+      <translation>SQL 编辑器</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
@@ -2819,7 +2819,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="409"/>
       <source>Execute single query under cursor</source>
-      <translation type="unfinished">Execute single query under cursor</translation>
+      <translation>执行光标位置的单个查询</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="410"/>
@@ -3268,7 +3268,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter functions</source>
-      <translation type="unfinished">Filter functions</translation>
+      <translation>筛选函数</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
@@ -3334,7 +3334,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="56"/>
       <source>SQL functions editor</source>
-      <translation type="unfinished">SQL functions editor</translation>
+      <translation>SQL 函数编辑器</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
@@ -3796,7 +3796,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="268"/>
       <source>Open code &amp;snippets editor</source>
-      <translation type="unfinished">Open code &amp;snippets editor</translation>
+      <translation>打开代码片段编辑器</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
@@ -3871,27 +3871,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="284"/>
       <source>Close current &amp;window</source>
-      <translation type="unfinished">Close current &amp;window</translation>
+      <translation>关闭当前窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="285"/>
       <source>Close &amp;other windows</source>
-      <translation type="unfinished">Close &amp;other windows</translation>
+      <translation>关闭其他窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="287"/>
       <source>Close windows on the &amp;left</source>
-      <translation type="unfinished">Close windows on the &amp;left</translation>
+      <translation>关闭左侧窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="288"/>
       <source>Close windows on the &amp;right</source>
-      <translation type="unfinished">Close windows on the &amp;right</translation>
+      <translation>关闭右侧窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="290"/>
       <source>Re&amp;name selected window</source>
-      <translation type="unfinished">Re&amp;name selected window</translation>
+      <translation>重命名选中窗口</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="292"/>
@@ -4434,7 +4434,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
-      <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
+      <translation>无法编辑此列，因为它是在另一个多级视图上执行查询的视图结果（即查询另一个视图的视图）。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
@@ -4471,7 +4471,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Edit current cell inline</source>
-      <translation type="unfinished">Edit current cell inline</translation>
+      <translation>编辑当前单元格</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
@@ -5004,7 +5004,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation type="unfinished">Rollback pending changes in the table structure</translation>
+      <translation>回滚表结构中未确认的更改</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5114,12 +5114,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="24"/>
       <source>Commit the view&apos;s query</source>
-      <translation type="unfinished">Commit the view&apos;s query</translation>
+      <translation>提交视图查询</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
       <source>Rollback pending changes in the view&apos;s query</source>
-      <translation type="unfinished">Rollback pending changes in the view&apos;s query</translation>
+      <translation>回滚视图查询中未确认的更改</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
@@ -5129,12 +5129,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="27"/>
       <source>Execute the view&apos;s query</source>
-      <translation type="unfinished">Execute the view&apos;s query</translation>
+      <translation>执行视图查询</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="16"/>
       <source>A code snippets editor window</source>
-      <translation type="unfinished">A code snippets editor window</translation>
+      <translation>代码片段编辑器窗口</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="17"/>
@@ -5142,7 +5142,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
-      <translation type="unfinished">Commit the pending changes</translation>
+      <translation>提交未确认的更改</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
@@ -5150,22 +5150,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
-      <translation type="unfinished">Rollback the pending changes</translation>
+      <translation>回滚未确认的更改</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>
       <source>A collation editor window</source>
-      <translation type="unfinished">A collation editor window</translation>
+      <translation>校验编辑器窗口</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.h" line="22"/>
       <source>A function editor window</source>
-      <translation type="unfinished">A function editor window</translation>
+      <translation>函数编辑器窗口</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.h" line="20"/>
       <source>A SQLite extension editor window</source>
-      <translation type="unfinished">A SQLite extension editor window</translation>
+      <translation>SQLite 扩展编辑器窗口</translation>
     </message>
   </context>
   <context>
@@ -5275,7 +5275,7 @@ find next</source>
       <location filename="../sqleditor.cpp" line="47"/>
       <source>Wrap words</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Wrap words</translation>
+      <translation>折行</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="154"/>
@@ -5413,13 +5413,13 @@ find next</source>
       <location filename="../sqleditor.cpp" line="176"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="177"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="287"/>
@@ -5694,7 +5694,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
-      <translation type="unfinished">Edit current cell inline</translation>
+      <translation>编辑当前单元格</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
@@ -5724,25 +5724,25 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Adjust height of rows</source>
-      <translation type="unfinished">Adjust height of rows</translation>
+      <translation>调整行高</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>增大字号</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>减小字号</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
-      <translation type="unfinished">Invert selection</translation>
+      <translation>反向选取</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
@@ -5817,12 +5817,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
-      <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
+      <translation>将 &quot;NULL&quot; 粘贴为空值？</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
-      <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
+      <translation>粘贴的文本包含 &quot;NULL&quot; 字符。要将它们视为空值吗？</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
@@ -6484,7 +6484,7 @@ Would you like to proceed?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="681"/>
       <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
-      <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
+      <translation>无法还原窗口“%1”，数据库 %3 中不存在表 %2。</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="706"/>
@@ -6558,7 +6558,7 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1058"/>
       <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
-      <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
+      <translation>以下列使用了不严格的数据类型：%1。请禁用此表的严格模式，或者修改列数据类型。有效的严格数据类型为：%2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1237"/>
