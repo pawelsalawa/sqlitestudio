@@ -29,7 +29,7 @@
       <location filename="../pdfexport.cpp" line="100"/>
       <location filename="../pdfexport.cpp" line="236"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Qatar</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="100"/>
@@ -81,12 +81,12 @@
     <message>
       <location filename="../pdfexport.cpp" line="234"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>Awa</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="234"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>Yaq</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
