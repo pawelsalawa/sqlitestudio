@@ -51,7 +51,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="135"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Súwretti saqlaw</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="263"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>Súwret</translation>
     </message>
   </context>
 </TS>
