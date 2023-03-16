@@ -66,6 +66,7 @@ class ParserTest : public QObject
         void testUnfinishedSelectWithAliasStrict();
         void testBlobLiteral();
         void testBigDec();
+        void testQuotedFunction();
 };
 
 ParserTest::ParserTest()
@@ -752,6 +753,30 @@ void ParserTest::testBigDec()
     QCOMPARE(core->resultColumns[1]->expr->expr1->literalValue.type(), QVariant::Double);
     QCOMPARE(core->resultColumns[2]->expr->expr1->literalValue.type(), QVariant::Double);
 }
+
+void ParserTest::testQuotedFunction()
+{
+    QString sql = "select \"abs\"(1)";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getQueries().size() > 0);
+
+    SqliteQueryPtr query = parser3->getQueries().first();
+    QVERIFY(query);
+
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+    QVERIFY(select);
+    QVERIFY(select->coreSelects.size() > 0);
+    QVERIFY(select->coreSelects.first()->resultColumns.size() > 0);
+
+    SqliteSelect::Core::ResultColumn* rc = select->coreSelects.first()->resultColumns.first();
+    SqliteExpr* e = rc->expr;
+    QVERIFY(e);
+
+    QVERIFY(e->mode == SqliteExpr::Mode::FUNCTION);
+    QCOMPARE(e->function, "abs");
+}
+
 
 void ParserTest::initTestCase()
 {
