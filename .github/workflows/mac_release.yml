@@ -67,6 +67,12 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Prepare ccache
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: mac_release
+                max-size: "24M"
+
             - name: Install SQLite3
               run: |
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -103,12 +109,12 @@ jobs:
                 ls -l
                 FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
                 for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
+                    echo "ccache gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
+                    ccache gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib
+                    echo "ccache gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
+                    ccache gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib
                 done
                 ls -l ../../ext/
 
@@ -129,13 +135,13 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ../../SQLiteStudio3
+                qmake CONFIG+=portable CONFIG+=ccache ../../SQLiteStudio3
                 make -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=ccache "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
 
             - name: Copy SQLite extensions to output dir

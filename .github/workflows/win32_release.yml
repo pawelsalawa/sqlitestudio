@@ -64,7 +64,13 @@ jobs:
               run: |
                 7z x -o".." win_deps/win32_deps.zip
                 echo "../lib" >> $GITHUB_PATH
- 
+
+            - name: Prepare ccache
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: win32_release
+                max-size: "24M"
+
             - name: Install SQLite3
               shell: bash
               run: |
@@ -72,7 +78,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc.exe sqlite3.c -Os -fpic -DWIN32 -m32 -I. -shared -o sqlite3.dll \
+                ccache.exe gcc.exe sqlite3.c -Os -fpic -DWIN32 -m32 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -99,12 +105,12 @@ jobs:
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-shared -Os -fpic -DWIN32 -m32 -Imisc -I../../include -L../../lib -lsqlite3"
                 #for f in compress; do
-                #    echo "gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                #    gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
+                #    echo "ccache.exe gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                #    ccache.exe gcc.exe misc/$f.c $FLAGS -lzlib1 -o ../../ext/$f.dll
                 #done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
-                    gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll
+                    echo "ccache.exe gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll"
+                    ccache.exe gcc.exe misc/$f.c $FLAGS -o ../../ext/$f.dll
                 done
                 ls -l ../../ext/
 
@@ -115,13 +121,13 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe CONFIG+=portable "QMAKE_CXXFLAGS+=-m32" ..\..\SQLiteStudio3
+                qmake.exe CONFIG+=portable "QMAKE_CXX=ccache.exe g++.exe" "QMAKE_CXXFLAGS+=-m32" ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins 
+                qmake.exe CONFIG+=portable "QMAKE_CXX=ccache.exe g++.exe" "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" "QMAKE_CXXFLAGS+=-m32" ..\..\..\Plugins
                 mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
