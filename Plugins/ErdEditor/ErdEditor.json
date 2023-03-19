@@ -1,0 +1,10 @@
+{
+    "type":          "GeneralPurposePlugin",
+    "title":         "ERD editor",
+    "description":   "Implements Entity Relations Diagram editor, allowing representing existing schema as a diagram, modifying the diagram and execyting changes on the database.",
+    "version":       10000,
+    "author":        "SalSoft",
+    "minAppVersion": 30300,
+    "gui":           true,
+    "loadByDefault": true
+}

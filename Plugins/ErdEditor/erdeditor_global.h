@@ -1,0 +1,12 @@
+#ifndef ERDEDITOR_GLOBAL_H
+#define ERDEDITOR_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(ERDEDITOR_LIBRARY)
+#  define ERDEDITORSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define ERDEDITORSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // ERDEDITOR_GLOBAL_H

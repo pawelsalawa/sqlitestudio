@@ -5,6 +5,7 @@ pluginsProject = 1
 SUBDIRS += \
     CsvExport \
     CsvImport \
+    ErdEditor \
     FusionDarkStyle \
     HtmlExport \
     PdfExport \
