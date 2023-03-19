@@ -197,7 +197,7 @@ void initKeywords()
                   << "IGNORE" << "IMMEDIATE" << "INDEXED" << "INITIALLY" << "INSTEAD" << "LAST" << "LIKE_KW" << "MATCH" << "MATERIALIZED" << "NO"
                   << "NULLS" << "OTHERS" << "PLAN" << "QUERY" << "KEY" << "OF" << "OFFSET" << "PARTITION" << "PRAGMA" << "PRECEDING" << "RAISE"
                   << "RANGE" << "RECURSIVE" << "RELEASE" << "REPLACE" << "RESTRICT" << "ROW" << "ROWS" << "ROLLBACK" << "SAVEPOINT" << "TEMP"
-                  << "TIES" << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME"
+                  << "TIES" << "TRIGGER" << "UNBOUNDED" << "VACUUM" << "VIEW" << "VIRTUAL" << "WINDOW" << "WITH" << "WITHOUT" << "REINDEX" << "RENAME"
                   << "IF" << "CURRENT_DATE" << "CURRENT_TIME" << "CURRENT_TIMESTAMP";
 }
 
