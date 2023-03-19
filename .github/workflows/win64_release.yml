@@ -18,6 +18,10 @@ name: Windows 64-bit release build
 on:
     workflow_dispatch:
         inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
     schedule:
         - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
     repository_dispatch:
@@ -69,7 +73,23 @@ jobs:
               run: |
                 7z x -o".." win_deps/win64_deps.zip
                 echo "../lib" >> $GITHUB_PATH
- 
+
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: win64_release
+                max-size: "24M"
+
+            - name: Configure ccache (or not ccache)
+              shell: bash
+              run: |
+                if [ ${{ inputs.use_ccache || false }} = false ]; then
+                    printf 'GCC_COMMAND=gcc.exe\nGXX_COMMAND=g++.exe\n'
+                else
+                    printf 'GCC_COMMAND=ccache.exe gcc.exe\nGXX_COMMAND=ccache.exe g++.exe\n'
+                fi >> $GITHUB_ENV
+
             - name: Install SQLite3
               shell: bash
               run: |
@@ -77,7 +97,7 @@ jobs:
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
                 7z x sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc.exe sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
+                $GCC_COMMAND sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -111,16 +131,16 @@ jobs:
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../../include -L../../lib -lsqlite3"
                 for f in compress sqlar; do
-                    echo "gcc.exe misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                    gcc.exe misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll
+                    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll"
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc.exe misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
-                    gcc.exe misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
+                    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
                 done
                 for f in icu; do
-                    echo "gcc.exe icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll"
-                    gcc.exe icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll
+                    echo "$GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll"
+                    $GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll
                 done
                 ls -l ../../ext/
 
@@ -131,13 +151,20 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
+                qmake.exe `
+                    CONFIG+=portable `
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
+                    ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
+                qmake.exe `
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
+                    CONFIG+=portable `
+                    "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
+                    ..\..\..\Plugins
                 mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
