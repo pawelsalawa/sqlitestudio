@@ -4,6 +4,7 @@ env:
     SQLITE_VERSION: '3400000'
     SQLITE_RELEASE_YEAR: '2022'
     PYTHON_VERSION: '3.9'
+    ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-osx-installer.dmg
@@ -90,6 +91,14 @@ jobs:
                 sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
+            - name: Install extension dependencies
+              run: |
+                brew tap-new $USER/local-tap
+                brew extract --version=$ICU_VERSION icu4c $USER/local-tap
+                brew install icu4c@$ICU_VERSION
+                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
+                    >> $GITHUB_ENV
+
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
@@ -101,14 +110,17 @@ jobs:
                 ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
                 ls -l
-                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
+                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
                 for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
+                    echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib
+                    echo "gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
+                for f in icu; do
+                    echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
+                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
                 done
                 ls -l ../../ext/
 
@@ -142,7 +154,7 @@ jobs:
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
-                
+
             - name: Build packages
               working-directory: output/build
               run: |

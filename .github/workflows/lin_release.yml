@@ -104,6 +104,10 @@ jobs:
                     echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
                     gcc misc/$f.c $FLAGS -o ../../ext/$f.so
                 done
+                for f in icu; do
+                    echo "gcc icu/$f.c $FLAGS $(pkg-config --libs --cflags icu-uc icu-io) -o ../../ext/$f.so"
+                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../../ext/$f.so
+                done
                 ls -l ../../ext/
 
             - name: Install Tcl
