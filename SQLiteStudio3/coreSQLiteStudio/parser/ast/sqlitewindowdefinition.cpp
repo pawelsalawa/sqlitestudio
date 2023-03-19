@@ -265,7 +265,7 @@ SqliteWindowDefinition::Window::Frame::Bound::Bound(SqliteExpr* expr, const QStr
     if (upper == "UNBOUNDED PRECEDING")
         type = Type::UNBOUNDED_PRECEDING;
     else if (expr && upper == "PRECEDING")
-        type = Type::EXPR_FOLLOWING;
+        type = Type::EXPR_PRECEDING;
     else if (upper == "UNBOUNDED FOLLOWING")
         type = Type::UNBOUNDED_FOLLOWING;
     else if (expr && upper == "FOLLOWING")
