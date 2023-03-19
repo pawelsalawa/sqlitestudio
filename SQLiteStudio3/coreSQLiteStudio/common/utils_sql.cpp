@@ -46,7 +46,9 @@ bool doesObjectNeedWrapping(const QString& str)
     //if (isObjWrapped(str))
     //    return false;
 
-    if (isKeyword(str))
+    // The "soft keyword" check added, as they don't require wrapping.
+    // For example: SELECT replace('abc', 'a', '1');
+    if (isKeyword(str) && !isSoftKeyword(str))
         return true;
 
     for (int i = 0; i < str.size(); i++)

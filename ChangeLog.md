@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.4
+- BUGFIX: #4676 #4716 #4693 #4701 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
+
 ### 3.4.3
 - CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.
 - BUGFIX: #4660 Removed unnecessary linking to curses library in Linux build file.
