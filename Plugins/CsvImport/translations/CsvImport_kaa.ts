@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr" sourcelanguage="en">
+<TS version="2.1" language="kaa" sourcelanguage="en">
   <context>
     <name>CsvImport</name>
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation>Impossible de lire le fichier %1</translation>
+      <translation type="unfinished">Cannot read file %1</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation>Impossible de trouver des données dans le fichier %1.</translation>
+      <translation type="unfinished">Could not find any data in the file %1.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
-      <translation>Saisir le caractère séparateur.</translation>
+      <translation type="unfinished">Enter the custom separator character.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation>Fichiers CSV (*.csv);;Fichiers texte (*.txt);;Tous les fichiers (*)</translation>
+      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
     </message>
   </context>
   <context>
@@ -29,32 +29,32 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="37"/>
       <source>, (comma)</source>
-      <translation>, (virgule)</translation>
+      <translation type="unfinished">, (comma)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="42"/>
       <source>; (semicolon)</source>
-      <translation>; (point virgule)</translation>
+      <translation type="unfinished">; (semicolon)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="47"/>
       <source>\t (tab)</source>
-      <translation>\t (tabulation)</translation>
+      <translation type="unfinished">\t (tab)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>  (whitespace)</source>
-      <translation>  (Espace)</translation>
+      <translation type="unfinished">  (whitespace)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="57"/>
       <source>Custom:</source>
-      <translation>Personalisé :</translation>
+      <translation type="unfinished">Custom:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation>Séparateur de colonnes :</translation>
+      <translation type="unfinished">Column separator:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
@@ -64,32 +64,32 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation>Interpréter &quot; comme un guillemet</translation>
+      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tableaux en tant que données régulières.&lt;/p&gt;</translation>
+      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
-      <translation>La première ligne représente les noms de colonnes CSV</translation>
+      <translation type="unfinished">First line represents CSV column names</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>Si activé, alors la valeur du texte fournie à droite sera interprétée comme NULL</translation>
+      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="75"/>
       <source>NULL values:</source>
-      <translation>Valeurs NULL :</translation>
+      <translation type="unfinished">NULL values:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation>Si votre CSV de données contient des valeurs nulles, définissez leur représentation dans le CSV.</translation>
+      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
     </message>
   </context>
 </TS>

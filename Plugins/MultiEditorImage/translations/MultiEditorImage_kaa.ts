@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr" sourcelanguage="en">
+<TS version="2.1" language="kaa" sourcelanguage="en">
   <context>
     <name>MultiEditorImage</name>
     <message>
       <location filename="../multieditorimage.cpp" line="25"/>
       <source>Load from file</source>
-      <translation>Charger à partir d’un fichier</translation>
+      <translation type="unfinished">Load from file</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Store in a file</source>
-      <translation>Stocker dans un fichier</translation>
+      <translation type="unfinished">Store in a file</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Zoom in by 25%</source>
-      <translation>Zoom avant de 25%</translation>
+      <translation type="unfinished">Zoom in by 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom out by 25%</source>
-      <translation>Zoom arrière de 25%</translation>
+      <translation type="unfinished">Zoom out by 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Reset zoom</source>
-      <translation>Réinitialiser le zoom</translation>
+      <translation type="unfinished">Reset zoom</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="103"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Tous les fichiers (*)</translation>
+      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="104"/>
       <source>Open image</source>
-      <translation>Ouvrir une image</translation>
+      <translation type="unfinished">Open image</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="113"/>
       <source>Could not open file %1 for reading.</source>
-      <translation>Impossible d'ouvrir le fichier %1 pour la lecture.</translation>
+      <translation type="unfinished">Could not open file %1 for reading.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="133"/>
       <source>All files (*)</source>
-      <translation>Tous les fichiers (*)</translation>
+      <translation type="unfinished">All files (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="135"/>
       <source>Save image</source>
-      <translation>Enregistrer l'image</translation>
+      <translation>Súwretti saqlaw</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="165"/>
       <source>Could not open file %1 for writting.</source>
-      <translation>Impossible d'ouvrir le fichier %1 pour écriture.</translation>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="170"/>
       <source>Could not write image into the file %1</source>
-      <translation>Impossible d'écrire l'image dans le fichier %1</translation>
+      <translation type="unfinished">Could not write image into the file %1</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="263"/>
       <source>Image</source>
-      <translation>Image</translation>
+      <translation>Súwret</translation>
     </message>
   </context>
 </TS>

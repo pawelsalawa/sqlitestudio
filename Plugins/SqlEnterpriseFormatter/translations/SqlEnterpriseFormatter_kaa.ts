@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr" sourcelanguage="en">
+<TS version="2.1" language="kaa" sourcelanguage="en">
   <context>
     <name>QObject</name>
     <message>
@@ -8,7 +8,7 @@
       <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
-      <translation>Nom</translation>
+      <translation type="unfinished">name</translation>
     </message>
   </context>
   <context>
@@ -16,213 +16,213 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="46"/>
       <source>Indentation</source>
-      <translation>Identation</translation>
+      <translation type="unfinished">Indentation</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation>Aligner les mots-clés dans les requêtes de plusieurs lignes</translation>
+      <translation type="unfinished">Line up keywords in multi-line queries</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation>Indenter le contenu du bloc entre parenthèses</translation>
+      <translation type="unfinished">Indent contents of parenthesis block</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation>taille d’indentation :</translation>
+      <translation type="unfinished">Tab size:</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
       <source>New lines</source>
-      <translation>Nouvelles lignes</translation>
+      <translation type="unfinished">New lines</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation>Avant l’ouverture des parenthèses dans la définition de la colonne</translation>
+      <translation type="unfinished">Before opening parenthesis in column definitions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
       <source>After opening parenthesis in column definitions</source>
-      <translation>Après l’ouverture des parenthèses dans la définition de la colonne</translation>
+      <translation type="unfinished">After opening parenthesis in column definitions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="180"/>
       <source>Before closing parenthesis in column definitions</source>
-      <translation>Avant la fermeture des parenthèses dans la définition de la colonne</translation>
+      <translation type="unfinished">Before closing parenthesis in column definitions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="190"/>
       <source>After closing parenthesis in column definitions</source>
-      <translation>Après la fermeture des parenthèses dans la définition de la colonne</translation>
+      <translation type="unfinished">After closing parenthesis in column definitions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
       <source>Before opening parenthesis in expressions</source>
-      <translation>Avant l’ouverture des parenthèses dans l’expression</translation>
+      <translation type="unfinished">Before opening parenthesis in expressions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="210"/>
       <source>After opening parenthesis in expressions</source>
-      <translation>Après l’ouverture des parenthèses dans l’expression</translation>
+      <translation type="unfinished">After opening parenthesis in expressions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="220"/>
       <source>Before closing parenthesis in expressions</source>
-      <translation>Avant la fermeture des parenthèses dans l’expression</translation>
+      <translation type="unfinished">Before closing parenthesis in expressions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="230"/>
       <source>After closing parenthesis in expressions</source>
-      <translation>Après la fermeture des parenthèses dans l’expression</translation>
+      <translation type="unfinished">After closing parenthesis in expressions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation>Après avoir JOINDRE les mots-clés dans la clause DEPUIS</translation>
+      <translation type="unfinished">After JOIN keywords in FROM clause</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>Mettez chaque contrainte de colonne de CREATE TABLE dans une nouvelle ligne</translation>
+      <translation type="unfinished">Put each column constraint in CREATE TABLE into new line</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation>Après virgule</translation>
+      <translation type="unfinished">After comma</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation>Après la virgule dans l’exoression</translation>
+      <translation type="unfinished">After comma in expressions</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation>Après un point virgule</translation>
+      <translation type="unfinished">After semicolon</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation>Jamais avant un point virgule</translation>
+      <translation type="unfinished">Never before semicolon</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
       <source>White spaces</source>
-      <translation>Espaces</translation>
+      <translation type="unfinished">White spaces</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation>Après virgule dans la liste</translation>
+      <translation type="unfinished">Before comma in lists</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation>Avant virgule dans la liste</translation>
+      <translation type="unfinished">After comma in lists</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
       <source>Before opening parenthesis</source>
-      <translation>Avant l’ouverture des parenthèses</translation>
+      <translation type="unfinished">Before opening parenthesis</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="422"/>
       <source>After opening parenthesis</source>
-      <translation>Après l’ouverture des parenthèses</translation>
+      <translation type="unfinished">After opening parenthesis</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="432"/>
       <source>Before closing parenthesis</source>
-      <translation>Avant la fermeture des parenthèses</translation>
+      <translation type="unfinished">Before closing parenthesis</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="442"/>
       <source>After closing parenthesis</source>
-      <translation>Après la fermeture des parenthèses</translation>
+      <translation type="unfinished">After closing parenthesis</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation>aucun espance entre le nom de la fonction SQL et l’ouverture des paranthèses</translation>
+      <translation type="unfinished">No space between SQL function name and opening parenthesis</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
       <source>Before dot operator (in path to database object)</source>
-      <translation>Avant le point (dans le chemin de la base de données)</translation>
+      <translation type="unfinished">Before dot operator (in path to database object)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation>Après </translation>
+      <translation type="unfinished">After dot operator (in path to database object)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation>Avant opérateurmathématique</translation>
+      <translation type="unfinished">Before mathematical operator</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation>Après opérateurmathématique</translation>
+      <translation type="unfinished">After mathematical operator</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation>Jamais avant virgule</translation>
+      <translation type="unfinished">Never before comma</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation>noms</translation>
+      <translation type="unfinished">Names</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
       <source>Preferred name wrapper</source>
-      <translation>Échappement préféré</translation>
+      <translation type="unfinished">Preferred name wrapper</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="600"/>
       <source>Always use name wrapping</source>
-      <translation>Toujours échapper les identifiants</translation>
+      <translation type="unfinished">Always use name wrapping</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="610"/>
       <source>Uppercase data type names</source>
-      <translation>Nom de type de données en majuscule</translation>
+      <translation type="unfinished">Uppercase data type names</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation>Mots-clés en majuscule</translation>
+      <translation type="unfinished">Uppercase keywords</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
       <source>Comments</source>
-      <translation>Commentaires</translation>
+      <translation type="unfinished">Comments</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation>Marqueur de commentaire préféré (si possible):</translation>
+      <translation type="unfinished">Preferred comment marker (where possible):</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>
       <source>Move all comments to the line end</source>
-      <translation>Déplacer tous les commentaires en fin de ligne</translation>
+      <translation type="unfinished">Move all comments to the line end</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="664"/>
       <source>Line up comments at the line end</source>
-      <translation>Alignez les commentaires en fin de ligne</translation>
+      <translation type="unfinished">Line up comments at the line end</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation>Aperçu</translation>
+      <translation type="unfinished">Preview</translation>
     </message>
   </context>
 </TS>

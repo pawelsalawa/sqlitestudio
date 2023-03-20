@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr" sourcelanguage="en">
+<TS version="2.1" language="kaa" sourcelanguage="en">
   <context>
     <name>RegExpImport</name>
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation>Fichiers (*.txt);;Tous les fichiers (*)</translation>
+      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
       <source>Cannot read file %1</source>
-      <translation>Impossible de lire le fichier : %1</translation>
+      <translation type="unfinished">Cannot read file %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
       <source>Enter the regular expression pattern.</source>
-      <translation>Saisissez une expression valide.</translation>
+      <translation type="unfinished">Enter the regular expression pattern.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="169"/>
       <source>Invalid pattern: %1</source>
-      <translation>Expression invalide : %1</translation>
+      <translation type="unfinished">Invalid pattern: %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="189"/>
       <source>Requested capture index %1 is out of range.</source>
-      <translation>Allocation d’index %1 hors limites.</translation>
+      <translation type="unfinished">Requested capture index %1 is out of range.</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
       <source>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Nom de groupe de saisie demandé &apos;%1&apos;, mais il est indéfini dans le modèle : &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+      <translation type="unfinished">&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -39,17 +39,17 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation>Groupes sélectionnés</translation>
+      <translation type="unfinished">Capture groups</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
       <source>Treat all RegExp capture groups as columns</source>
-      <translation>Traiter tout RegExp de groupes sélectionnés comme des colonnes</translation>
+      <translation type="unfinished">Treat all RegExp capture groups as columns</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="39"/>
       <source>Import only following groups:</source>
-      <translation>Importer seulement les groupes suivant :</translation>
+      <translation type="unfinished">Import only following groups:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="52"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation>Exemple : 1, 3, 4</translation>
+      <translation type="unfinished">Example: 1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
       <source>Pattern:</source>
-      <translation>Modèle :</translation>
+      <translation type="unfinished">Pattern:</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="76"/>
@@ -80,7 +80,7 @@ You can use named groups and refer to them in group list below. To name a group 
     <message>
       <location filename="../regexpimport.ui" line="81"/>
       <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-      <translation>Exemple : (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+      <translation type="unfinished">Example: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
   </context>
 </TS>
