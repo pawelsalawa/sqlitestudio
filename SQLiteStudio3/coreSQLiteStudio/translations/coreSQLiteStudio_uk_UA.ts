@@ -806,12 +806,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершений запит.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2525"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
       <translation>Переповнення стека аналізатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5936"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
       <source>Syntax error</source>
       <translation>Синтаксична помилка</translation>
     </message>

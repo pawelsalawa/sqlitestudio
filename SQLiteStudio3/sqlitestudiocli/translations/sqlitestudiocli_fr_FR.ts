@@ -869,7 +869,11 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation>Impossible d'ouvrir la base de données spécifiée pour l'exécution de fichier SQL. Vous devriez essayer d'utiliser l'option -d pour trouver plus de détails.</translation>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation type="obsolete">Could not open specified database for executing SQL file. You my try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>

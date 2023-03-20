@@ -39,9 +39,7 @@
         var = nullptr; \
     }
 
-#define parser_safe_delete(var) \
-    if (var) \
-        delete var
+#define parser_safe_delete(var) delete var
 
 #define static_char static constexpr const char
 

@@ -6,7 +6,7 @@ env:
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-linux-x64-installer.run
 
 name: Linux release build
 
@@ -20,7 +20,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-20.04
 
         steps:
             - uses: actions/setup-python@v4
@@ -153,8 +153,8 @@ jobs:
                 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
-                wget http://mirrors.kernel.org/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
-                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb .
+                wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb
+                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb .
                 cp ./usr/lib/x86_64-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
                 cp ./usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 

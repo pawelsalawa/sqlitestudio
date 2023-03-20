@@ -868,7 +868,11 @@ Oczekiwano jednej z: %2</translation>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
+      <translation type="vanished">Nie można otworzyć określonej bazy danych do wykonania pliku SQL. Spróbuj użyć opcji -d, aby poznać więcej szczegółów.</translation>
     </message>
   </context>
 </TS>

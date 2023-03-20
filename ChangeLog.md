@@ -1,5 +1,14 @@
 # ChangeLog
 
+### 3.4.4
+- BUGFIX: #4676 #4716 #4693 #4701 #4669 #4721 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
+- BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
+
+### 3.4.3
+- CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.
+- BUGFIX: #4660 Removed unnecessary linking to curses library in Linux build file.
+- BUGFIX: #4658 Fixed crash when SQL parser stack gets overflown.
+
 ### 3.4.2
 - ADDED: #4653 For dealing with small fractional numbers there is an option now to change Grid View representation of these numbers to a scientific notation - the option is in Configuration/Data Browsing.
 - CHANGE: #4535 Improved current query highlighter, so it considers query on the left of the cursor as current in a more intuitive way.
