@@ -66,6 +66,13 @@
 #define assert(X) Q_ASSERT(X)
 #define UNUSED_PARAMETER(X) (void)(X)
 #define DONT_INHERIT_TOKENS(X) noTokenInheritanceFields << X
+
+}
+
+%code {
+int sqlite3ParserFallback(int iToken) {
+    return yyFallback[iToken];
+}
 }
 
 // These are extra tokens used by the lexer but never seen by the
@@ -2868,4 +2875,4 @@ filter_clause(X) ::= FILTER LP WHERE
 			expr(E) RP.  					{
 												X = new SqliteFilterOver::Filter(E);
 												objectForTokens = X;
-											}
+                                            }

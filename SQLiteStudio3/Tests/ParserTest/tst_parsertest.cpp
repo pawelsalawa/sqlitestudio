@@ -57,6 +57,7 @@ class ParserTest : public QObject
         void testGetColumnTokensFromInsertUpsert();
         void testGeneratedColumn();
         void testWindowClause();
+        void testWindowKwAsColumn();
         void testFilterClause();
         void testFilterAsId();
         void testUpdateFrom();
@@ -563,6 +564,15 @@ void ParserTest::testWindowClause()
     qInfo() << "first run PASS, runing second time, after detokenizing";
     sql = select->detokenize();
     verifyWindowClause(sql, select, ok);
+}
+
+void ParserTest::testWindowKwAsColumn()
+{
+    QString sql = "SELECT window FROM test_table;";
+    parser3->setLemonDebug(true);
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
 }
 
 void ParserTest::verifyWindowClause(const QString& sql, SqliteSelectPtr& select, bool& ok)
