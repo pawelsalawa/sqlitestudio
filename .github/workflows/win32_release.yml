@@ -95,7 +95,7 @@ jobs:
               shell: bash
               run: |
                 cd ..
-                curl -L "$ICU_URL" | tar -xf -
+                curl -L "$ICU_URL" | tar -xf - --zstd
                 mv mingw64 icu
 
             - name: Compile additional SQLite3 extensions
