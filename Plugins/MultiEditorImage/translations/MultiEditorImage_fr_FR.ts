@@ -41,7 +41,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="113"/>
       <source>Could not open file %1 for reading.</source>
-      <translation>Impossible d'ouvrir le fichier %1 pour la lecture.</translation>
+      <translation>Impossible d&apos;ouvrir le fichier %1 pour la lecture.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="133"/>
@@ -51,7 +51,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="135"/>
       <source>Save image</source>
-      <translation>Enregistrer l'image</translation>
+      <translation>Enregistrer l&apos;image</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="165"/>
       <source>Could not open file %1 for writting.</source>
-      <translation>Impossible d'ouvrir le fichier %1 pour écriture.</translation>
+      <translation>Impossible d&apos;ouvrir le fichier %1 pour écriture.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="170"/>
       <source>Could not write image into the file %1</source>
-      <translation>Impossible d'écrire l'image dans le fichier %1</translation>
+      <translation>Impossible d&apos;écrire l&apos;image dans le fichier %1</translation>
     </message>
   </context>
   <context>

@@ -21,12 +21,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation>Sélectionner l'ADB</translation>
+      <translation>Sélectionner l&apos;ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>Utilisation d'Android Debug Bridge : %1</translation>
+      <translation>Utilisation d&apos;Android Debug Bridge&#xa0;: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
@@ -47,7 +47,7 @@
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.
 Would you like to select another one, or leave it unconfigured?</source>
-      <translation>L'ADB sélectionné est incorrect.
+      <translation>L&apos;ADB sélectionné est incorrect.
 Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translation>
     </message>
     <message>
@@ -89,17 +89,17 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
       <source>Failed to create port forwarding for device %1 for port %2.</source>
-      <translation>Impossible de créer la redirection de port pour l'appareil %1 pour le port %2.</translation>
+      <translation>Impossible de créer la redirection de port pour l&apos;appareil %1 pour le port %2.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="196"/>
       <source>Could not connect to network host: %1:%2</source>
-      <translation>Impossible de se connecter à l'hôte réseau : %1:%2</translation>
+      <translation>Impossible de se connecter à l&apos;hôte réseau : %1:%2</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="210"/>
@@ -109,28 +109,28 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
       <source>Unable to execute query on Android device (connection was closed): %1</source>
-      <translation>Impossible d'exécuter la requête sur l'appareil Android (la connexion a été fermée) : %1</translation>
+      <translation>Impossible d&apos;exécuter la requête sur l&apos;appareil Android (la connexion a été fermée) : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="313"/>
       <source>Error while parsing response from Android: %1</source>
-      <translation>Erreur lors de l'analyse de la réponse d'Android : %1</translation>
+      <translation>Erreur lors de l&apos;analyse de la réponse d&apos;Android : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="321"/>
       <source>Generic error from Android: %1</source>
-      <translation>Erreur générique d'Android : %1</translation>
+      <translation>Erreur générique d&apos;Android : %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
       <location filename="../dbandroidjsonconnection.cpp" line="342"/>
       <source>Missing &apos;columns&apos; in response from Android.</source>
-      <translation>Il manque des &apos;colonnes&apos; en réponse d'Android.</translation>
+      <translation>Il manque des &apos;colonnes&apos; en réponse d&apos;Android.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="363"/>
       <source>Response from Android has missing data for column &apos;%1&apos; in row %2.</source>
-      <translation>La réponse d'Android a des données manquantes pour la colonne &apos;%1&apos; à la ligne %2.</translation>
+      <translation>La réponse d&apos;Android a des données manquantes pour la colonne &apos;%1&apos; à la ligne %2.</translation>
     </message>
   </context>
   <context>
@@ -178,12 +178,12 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
       <source>Remote access password</source>
-      <translation>Mot de passe d'accès distant</translation>
+      <translation>Mot de passe d&apos;accès distant</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
       <source>&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Ceci est un mot de passe configuré dans le service SQLiteStudio étant intégré dans l'application Android.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Ceci est un mot de passe configuré dans le service SQLiteStudio étant intégré dans l&apos;application Android.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
@@ -203,12 +203,12 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
       <source>Create a new database directly on the device.</source>
-      <translation>Créer une nouvelle base de données directement sur l'appareil.</translation>
+      <translation>Créer une nouvelle base de données directement sur l&apos;appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
       <source>Delete currently selected database from the device. The currently selected database is the one picked in the list on the left of this button.</source>
-      <translation>Supprimer la base de données actuellement sélectionnée par l'appareil. La base de données actuellement sélectionnée est celle sélectionnée dans la liste à gauche de ce bouton.</translation>
+      <translation>Supprimer la base de données actuellement sélectionnée par l&apos;appareil. La base de données actuellement sélectionnée est celle sélectionnée dans la liste à gauche de ce bouton.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
@@ -228,7 +228,7 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation>L'application Android sélectionnée est inconnue, ou ne peut pas être déboguée.</translation>
+      <translation>L&apos;application Android sélectionnée est inconnue, ou ne peut pas être déboguée.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -240,7 +240,7 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
       <translation>Veuillez fournir un nom pour la nouvelle base de données.
-C'est le nom que l'application Android utilisera pour se connecter à la base de données :</translation>
+C&apos;est le nom que l&apos;application Android utilisera pour se connecter à la base de données :</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -253,20 +253,20 @@ C'est le nom que l'application Android utilisera pour se connecter à la base de
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <source>Database with the same name (%1) already exists on the device.
 The name must be unique.</source>
-      <translation>Une base de données avec le même nom (%1) existe déjà sur l'appareil.
+      <translation>Une base de données avec le même nom (%1) existe déjà sur l&apos;appareil.
 Le nom doit être unique.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <source>Could not create database &apos;%1&apos;, because could not connect to the device.</source>
-      <translation>Impossible de créer la base de données &apos;%1&apos;, car il est impossible de se connecter à l'appareil.</translation>
+      <translation>Impossible de créer la base de données &apos;%1&apos;, car il est impossible de se connecter à l&apos;appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
       <translation>Impossible de créer la base de données &apos;%1&apos;.
-Détails : %2</translation>
+Détails&#xa0;: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
@@ -293,8 +293,8 @@ Détails : %2</translation>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
-      <translation>Impossible de supprimer la base de données nommée &apos;%1&apos; de l'appareil.
-L'appareil Android a refusé la suppression ou c'était impossible.</translation>
+      <translation>Impossible de supprimer la base de données nommée &apos;%1&apos; de l&apos;appareil.
+L&apos;appareil Android a refusé la suppression ou c&apos;était impossible.</translation>
     </message>
   </context>
   <context>
@@ -302,43 +302,43 @@ L'appareil Android a refusé la suppression ou c'était impossible.</translation
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car il n&apos;est pas visible depuis votre ordinateur.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
       <source>Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car l’application %2 ne semble pas y être installée.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car l’application %2 ne semble pas y être installée.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="56"/>
       <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car l'application %2 ne peut pas être débogué.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car l&apos;application %2 ne peut pas être débogué.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car la commande &apos;%2&apos; semble être indisponible sur cet appareil.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car la commande &apos;%2&apos; semble être indisponible sur cet appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation>Impossible de se connecter à l'appareil %1, car &apos;%2&apos; la base de données ne peut pas être accédée sur cet appareil.</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car &apos;%2&apos; la base de données ne peut pas être accédée sur cet appareil.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation>Impossible de se connecter à l'appareil %1, car &apos;%2&apos; la base de données n'est pas accessible sur l'appareil. Détails : %3</translation>
+      <translation>Impossible de se connecter à l&apos;appareil %1, car &apos;%2&apos; la base de données n&apos;est pas accessible sur l&apos;appareil. Détails&#xa0;: %3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
       <source>Cannot get list of databases for application %1. Details: %2</source>
-      <translation>Impossible d'obtenir la liste des bases de données pour l'application %1. Détails : %2</translation>
+      <translation>Impossible d&apos;obtenir la liste des bases de données pour l&apos;application %1. Détails&#xa0;: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="219"/>
       <location filename="../dbandroidshellconnection.cpp" line="226"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation>Impossible d'exécuter la requête sur la base de données &apos;%1&apos;: %2</translation>
+      <translation>Impossible d&apos;exécuter la requête sur la base de données &apos;%1&apos;: %2</translation>
     </message>
   </context>
   <context>
@@ -346,7 +346,7 @@ L'appareil Android a refusé la suppression ou c'était impossible.</translation
     <message>
       <location filename="../sqlqueryandroid.cpp" line="101"/>
       <source>Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</source>
-      <translation>Impossible de lier l'argument &apos;%1&apos; de la requête, car la valeur est manquante.</translation>
+      <translation>Impossible de lier l&apos;argument &apos;%1&apos; de la requête, car la valeur est manquante.</translation>
     </message>
   </context>
 </TS>
