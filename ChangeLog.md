@@ -5,6 +5,7 @@
 - BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
 - BUGFIX: #4694 Fixed messages for toolbar buttons in Code Snippets window & fixed loading translations for plugins.
 - BUGFIX: #4698 Fixed handling object names with '{' and '}' in their names.
+- BUGFIX: #4681 Fixed risk of null reference call in the SqliteOrderBy.
 
 ### 3.4.3
 - CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.

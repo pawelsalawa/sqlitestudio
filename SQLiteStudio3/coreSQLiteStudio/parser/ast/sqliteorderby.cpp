@@ -88,18 +88,20 @@ void SqliteOrderBy::setColumnName(const QString& name)
 
 void SqliteOrderBy::setCollation(const QString& name)
 {
-    if (expr && expr->mode == SqliteExpr::Mode::COLLATE)
+    if (!expr)
+        return;
+
+    if (expr->mode == SqliteExpr::Mode::COLLATE)
     {
         expr->collation = name;
+        return;
     }
-    else
-    {
-        SqliteExpr* theExpr = expr;
-        SqliteExpr* collationExpr = new SqliteExpr();
-        collationExpr->initCollate(theExpr, name);
-        theExpr->setParent(collationExpr);
-        collationExpr->setParent(this);
-    }
+
+    SqliteExpr* collationExpr = new SqliteExpr();
+    collationExpr->initCollate(expr, name);
+    expr->setParent(collationExpr);
+    collationExpr->setParent(this);
+    expr = collationExpr;
 }
 
 TokenList SqliteOrderBy::rebuildTokensFromContents()
