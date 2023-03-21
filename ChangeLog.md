@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.4
+- ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
 - CHANGE: #4689 Sorting order is not cleared when table data is refreshed. To removed sorting order user can either double-click on header (once or twice) to restore no sorting for a column, or use context menu to clear any sorting.
 - BUGFIX: #4676 #4716 #4693 #4701 #4669 #4721 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
 - BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
@@ -8,6 +9,7 @@
 - BUGFIX: #4698 Fixed handling object names with '{' and '}' in their names.
 - BUGFIX: #4681 Fixed risk of null reference call in the SqliteOrderBy.
 - BUGFIX: #4707 Fixed database file selection dialog, so it doesn't complaint about read-only files.
+- BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
 
 ### 3.4.3
 - CHANGE: #4631 Linux binaries are built again back on Ubuntu 20.04 (instead of 22.04) to make it compatible for more Linux machines.
