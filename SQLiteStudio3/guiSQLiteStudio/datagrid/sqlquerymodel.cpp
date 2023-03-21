@@ -89,7 +89,6 @@ void SqlQueryModel::executeQuery()
         return;
     }
 
-    sortOrder.clear();
     queryExecutor->setSkipRowCounting(false);
     queryExecutor->setSortOrder(sortOrder);
     queryExecutor->setPage(0);
