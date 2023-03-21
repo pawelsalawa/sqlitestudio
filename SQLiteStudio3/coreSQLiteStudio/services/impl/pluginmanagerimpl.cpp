@@ -593,7 +593,15 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
 {
     if (!container->builtIn)
     {
-        loadTranslation(container->name);
+        QString tsName = container->translationName.isEmpty() ?
+            (
+                container->name.endsWith("Plugin") ?
+                    container->name.left(container->name.length() - 6) :
+                    container->name
+            ) :
+            container->translationName;
+
+        loadTranslation(tsName);
         container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
         container->loaded = true;
     }
@@ -630,6 +638,7 @@ bool PluginManagerImpl::readMetaData(PluginManagerImpl::PluginContainer* contain
         container->description = metaData["description"].toString();
         container->title = metaData["title"].toString();
         container->loadByDefault = metaData.contains("loadByDefault") ? metaData["loadByDefault"].toBool() : true;
+        container->translationName = metaData.contains("translationName") ? metaData["translationName"].toString() : QString();
     }
     else if (container->plugin)
     {
