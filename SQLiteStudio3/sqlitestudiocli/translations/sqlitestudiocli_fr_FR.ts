@@ -262,7 +262,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation>Aucun argument de construction n'a été passé pour ce tableau virtuel.</translation>
+      <translation>Aucun argument de construction n&apos;a été passé pour ce tableau virtuel.</translation>
     </message>
   </context>
   <context>
@@ -839,12 +839,12 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation>Liste les codecs disponibles à utiliser avec l'option -c et quitte.</translation>
+      <translation>Liste les codecs disponibles à utiliser avec l&apos;option -c et quitte.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation>Lorsqu'elle est utilisée avec l'option -e, l'exécution ne s'arrêtera pas sur une erreur, mais se poursuivra jusqu'à la fin, ignorant les erreurs.</translation>
+      <translation>Lorsqu&apos;elle est utilisée avec l&apos;option -e, l&apos;exécution ne s&apos;arrêtera pas sur une erreur, mais se poursuivra jusqu&apos;à la fin, ignorant les erreurs.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -859,12 +859,12 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation>Codec invalide : %1. Utilisez l'option -cl pour lister les codecs disponibles.</translation>
+      <translation>Codec invalide : %1. Utilisez l&apos;option -cl pour lister les codecs disponibles.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation>L'argument du fichier de la base de données est obligatoire lors de l'exécution du fichier SQL.</translation>
+      <translation>L&apos;argument du fichier de la base de données est obligatoire lors de l&apos;exécution du fichier SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>

@@ -69,7 +69,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="70"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation>Un groupe de niveau supérieur nommé &apos;%1&apos; existe déjà. Entrez un nom de groupe qui n'existe pas encore.</translation>
+      <translation>Un groupe de niveau supérieur nommé &apos;%1&apos; existe déjà. Entrez un nom de groupe qui n&apos;existe pas encore.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="104"/>

@@ -11,7 +11,7 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="451"/>
       <source>Invalid &apos;%1&apos; command syntax. Should be: %2</source>
-      <translation>Syntaxe de commande &apos;%1&apos; invalide. Devrait être : %2</translation>
+      <translation>Syntaxe de commande &apos;%1&apos; invalide. Devrait être&#xa0;: %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="463"/>
