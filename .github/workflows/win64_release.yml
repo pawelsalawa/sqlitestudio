@@ -117,6 +117,7 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "gcc.exe misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
                     gcc.exe misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
+                done
                 for f in icu; do
                     echo "gcc.exe icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll"
                     gcc.exe icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll
