@@ -14,7 +14,7 @@ class DataWidgetMapper;
 
 CFG_KEY_LIST(FormView, QObject::tr("Data form view"),
     CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,              QObject::tr("Commit changes for current row"))
-    CFG_KEY_ENTRY(ROLLBACK,          Qt::CTRL + Qt::Key_Backspace,           QObject::tr("Rollback changes for current row"))
+    CFG_KEY_ENTRY(ROLLBACK,          QKeySequence::Cancel,                   QObject::tr("Rollback changes for current row"))
     CFG_KEY_ENTRY(FIRST_ROW,         Qt::CTRL + Qt::ALT + Qt::Key_PageUp,    QObject::tr("Go to first row on current page"))
     CFG_KEY_ENTRY(NEXT_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Right,     QObject::tr("Go to next row"))
     CFG_KEY_ENTRY(PREV_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Left,      QObject::tr("Go to previous row"))
