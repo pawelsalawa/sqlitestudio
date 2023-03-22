@@ -9,6 +9,7 @@
 - BUGFIX: #4698 Fixed handling object names with '{' and '}' in their names.
 - BUGFIX: #4681 Fixed risk of null reference call in the SqliteOrderBy.
 - BUGFIX: #4707 Fixed database file selection dialog, so it doesn't complaint about read-only files.
+- BUGFIX: #4679 Fixed issue with case sensivity of CTE alias.
 - BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
 
 ### 3.4.3
