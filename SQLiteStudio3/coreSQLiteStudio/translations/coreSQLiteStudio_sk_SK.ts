@@ -485,13 +485,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>Nemôžem načítať plugin %1 (nastala chyba pri jeho inicializácii).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation type="unfinished">min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation type="unfinished">max: %1</translation>
