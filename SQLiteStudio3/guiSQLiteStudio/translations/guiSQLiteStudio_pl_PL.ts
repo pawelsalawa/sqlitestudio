@@ -147,24 +147,40 @@
       <translation>Edytor fragmentów kodu</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all function changes</source>
-      <translation>Zatwierdź zmiany we wszystkich funkcjach</translation>
+      <translation type="vanished">Zatwierdź zmiany we wszystkich funkcjach</translation>
+    </message>
+    <message>
+      <source>Rollback all function changes</source>
+      <translation type="vanished">Wycofaj zmiany we wszystkich funkcjach</translation>
+    </message>
+    <message>
+      <source>Create new function</source>
+      <translation type="vanished">Utwórz nową funkcję</translation>
+    </message>
+    <message>
+      <source>Delete selected function</source>
+      <translation type="vanished">Usuń wybraną funkcję</translation>
+    </message>
+    <message>
+      <location filename="../windows/codesnippeteditor.cpp" line="67"/>
+      <source>Commit all snippet changes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
-      <source>Rollback all function changes</source>
-      <translation>Wycofaj zmiany we wszystkich funkcjach</translation>
+      <source>Rollback all snippet changes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
-      <source>Create new function</source>
-      <translation>Utwórz nową funkcję</translation>
+      <source>Create new snippet</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
-      <source>Delete selected function</source>
-      <translation>Usuń wybraną funkcję</translation>
+      <source>Delete selected snippet</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
@@ -5538,93 +5554,93 @@ znajdź następny</translation>
     <name>SqlQueryModel</name>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="669"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="105"/>
       <source>Cannot execute query on undefined or invalid database.</source>
       <translation>Nie można wykonać zapytania na niezdefiniowanej lub nieprawidłowej bazie danych.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="112"/>
       <source>Cannot execute empty query.</source>
       <translation>Nie można wykonać pustego zapytania.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
       <source>Uncommitted data</source>
       <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
       <translation>Niektóre zmiany w danych nie zostały zatwierdzone. Czy na pewno chcesz kontynuować? Wszystkie niezatwierdzone zmiany zostaną utracone.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="544"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
       <translation>Nie można zatwierdzić danych dla komórki, która odnosi się do zamkniętej już bazy danych.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="552"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
       <source>Could not begin transaction on the database. Details: %1</source>
       <translation>Nie udało się rozpocząć transakcji na bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="597"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
       <translation>Wystąpił błąd podczas zatwierdzania transakcji: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="630"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
       <source>An error occurred while rolling back the transaction: %1</source>
       <translation>Wystąpił błąd podczas wycofywania transakcji: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="824"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation>Próbowano zatwierdzić komórkę, której nie można edytować (a mimo to została zmodyfikowana i czeka na zatwierdzenie)! To jest błąd. Proszę to zgłosić.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="849"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
       <translation>Wystąpił błąd podczas zatwierdzania danych: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="983"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation>Liczba wierszy na stronę została zmniejszona do %1, w związku z liczbą kolumn (%2) w widoku danych.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1407"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1465"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1406"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>Błąd podczas wykonywania zapytania SQL na bazie &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1461"/>
       <source>Error while loading query results: %1</source>
       <translation>Błąd podczas wczytywania wyników zapytania: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Insert multiple rows</source>
       <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Number of rows to insert:</source>
       <translation>Liczba wierszy do wstawienia:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1998"/>
       <source>Delete rows</source>
       <translation>Usuń wiersze</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>Chcesz usunąć nowo wstawione wiersze, które nie są jeszcze zatwierdzone. Numery wierszy: %1

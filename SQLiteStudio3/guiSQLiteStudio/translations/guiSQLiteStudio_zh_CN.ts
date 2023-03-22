@@ -147,24 +147,40 @@
       <translation>代码片段编辑器</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all function changes</source>
-      <translation>提交所有对函数的更改</translation>
+      <translation type="vanished">提交所有对函数的更改</translation>
+    </message>
+    <message>
+      <source>Rollback all function changes</source>
+      <translation type="vanished">回滚所有对函数的更改</translation>
+    </message>
+    <message>
+      <source>Create new function</source>
+      <translation type="vanished">新建函数</translation>
+    </message>
+    <message>
+      <source>Delete selected function</source>
+      <translation type="vanished">删除已选函数</translation>
+    </message>
+    <message>
+      <location filename="../windows/codesnippeteditor.cpp" line="67"/>
+      <source>Commit all snippet changes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
-      <source>Rollback all function changes</source>
-      <translation>回滚所有对函数的更改</translation>
+      <source>Rollback all snippet changes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
-      <source>Create new function</source>
-      <translation>新建函数</translation>
+      <source>Create new snippet</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
-      <source>Delete selected function</source>
-      <translation>删除已选函数</translation>
+      <source>Delete selected snippet</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
@@ -5536,93 +5552,93 @@ find next</source>
     <name>SqlQueryModel</name>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="669"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="668"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>只允许同时执行一条查询。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="106"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="105"/>
       <source>Cannot execute query on undefined or invalid database.</source>
       <translation>无法执行语句，因为数据库无效或未定义。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="113"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="112"/>
       <source>Cannot execute empty query.</source>
       <translation>无法执行空的查询。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
       <source>Uncommitted data</source>
       <translation>未提交的数据</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="122"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
       <translation>存在未提交的数据更改。是否仍要继续？所有未提交的更改都将丢失。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="544"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="543"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
       <translation>无法从单元格中加载数据，因为它引用了已经被关闭的数据库。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="552"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="551"/>
       <source>Could not begin transaction on the database. Details: %1</source>
       <translation>无法在此数据库上开始事务。详细信息：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="597"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
       <translation>在提交事务时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="630"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
       <source>An error occurred while rolling back the transaction: %1</source>
       <translation>在回滚事务时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="824"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation>尝试提交不可编辑的单元格！（本应该无法编辑）这是一个错误，请报告。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="849"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
       <translation>在提交数据时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="983"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation>数据视图中，已因列数（%2）将每页行数减小（%1）。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1407"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1465"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1406"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>在数据库“%1”执行 SQL 查询时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1462"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1461"/>
       <source>Error while loading query results: %1</source>
       <translation>在加载查询结果时出错：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Insert multiple rows</source>
       <translation>插入多行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1944"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Number of rows to insert:</source>
       <translation>要插入的行数：</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1998"/>
       <source>Delete rows</source>
       <translation>删除行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2000"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>您即将删除未提交的新插入的行。行数：%1
