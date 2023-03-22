@@ -389,6 +389,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     extraLicenseManager->addLicense("diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
     extraLicenseManager->addLicense("RSA library (GPL v3)", ":/docs/licenses/gpl.txt");
     extraLicenseManager->addLicense("SingleApplication (The MIT License)", ":/docs/licenses/mit.txt");
+    extraLicenseManager->addLicense("ICU (ICU License)", ":/docs/licenses/icu.txt");
 
     setupCrashHandler();
 }

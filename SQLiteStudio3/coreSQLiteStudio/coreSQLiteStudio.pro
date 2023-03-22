@@ -477,4 +477,5 @@ RESOURCES += \
     coreSQLiteStudio.qrc
 
 DISTFILES += \
+    licenses/icu.txt \
     licenses/mit.txt
