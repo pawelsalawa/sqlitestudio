@@ -100,7 +100,7 @@ jobs:
                     echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so"
                     gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so
                 done
-                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
                     echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
                     gcc misc/$f.c $FLAGS -o ../../ext/$f.so
                 done
