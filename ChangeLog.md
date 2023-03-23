@@ -3,6 +3,7 @@
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
 - ADDED: #4697 Added a 'Restore original hotkey' buttons at keyboard shortcuts page of configuration dialog.
+- ADDED: Added sqlar extension to the default set of extensions provided with binary packages.
 - CHANGE: #4689 Sorting order is not cleared when table data is refreshed. To removed sorting order user can either double-click on header (once or twice) to restore no sorting for a column, or use context menu to clear any sorting.
 - CHANGE: #4735 Order of functions loading has changed. Now it's: built-in, extension-provided, user-defined. The last loaded has the highest precedense.
 - CHANGE: #4732 SQLite updated to 3.41.2 (except for SQLCipher, which is still on 3.39.4 at the moment).
