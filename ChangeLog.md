@@ -16,6 +16,7 @@
 - BUGFIX: #4679 Fixed issue with case sensivity of CTE alias.
 - BUGFIX: #4697 Changed default hotkey for rolling back pending changes in table data from Ctrl+Backspace to Alt+Shit+Backspace. Default hotkey affects new users and will not change automatically for those who upgrade from older SQLiteStudio.
 - BUGFIX: #4739 Fixed committing changes in Extensions Manager if modifying valid extension settings, while there is another invalid, yet untouched extension on the list.
+- BUGFIX: #4715 Fixed the UPDATE OF column popup on MacOSX.
 - BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
 
 ### 3.4.3
