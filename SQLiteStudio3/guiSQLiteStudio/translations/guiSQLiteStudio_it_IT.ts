@@ -844,7 +844,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2044"/>
+      <location filename="../dialogs/configdialog.ui" line="2049"/>
       <source>Configuration</source>
       <translation>Configurazione</translation>
     </message>
@@ -1438,113 +1438,113 @@
       <translation>Combinazione di tasti</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1562"/>
-      <location filename="../dialogs/configdialog.ui" line="2034"/>
+      <location filename="../dialogs/configdialog.ui" line="1567"/>
+      <location filename="../dialogs/configdialog.ui" line="2039"/>
       <source>Language</source>
       <translation>Lingua</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1568"/>
+      <location filename="../dialogs/configdialog.ui" line="1573"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>La modifica della lingua richiede il riavvio dell&apos;applicazione per avere effetto.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1585"/>
+      <location filename="../dialogs/configdialog.ui" line="1590"/>
       <source>Compact layout</source>
       <translation>Layout compatto</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1591"/>
+      <location filename="../dialogs/configdialog.ui" line="1596"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;La disposizione compatta riduce al minimo tutti i margini e la spaziatura dell&apos;interfaccia utente, rendendo lo spazio per visualizzare più dati. Rende l&apos;interfaccia un po&apos; meno estetica, ma permette di visualizzare più dati contemporaneamente.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1594"/>
+      <location filename="../dialogs/configdialog.ui" line="1599"/>
       <source>Use compact layout</source>
       <translation>Usa layout compatto</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1610"/>
+      <location filename="../dialogs/configdialog.ui" line="1615"/>
       <source>Main window dock areas</source>
       <translation>Aree di aggancio della finestra principale</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1616"/>
+      <location filename="../dialogs/configdialog.ui" line="1621"/>
       <source>Left and right areas occupy corners</source>
       <translation>Le aree sinistra e destra occupano gli angoli</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1636"/>
+      <location filename="../dialogs/configdialog.ui" line="1641"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>Le aree superiore e inferiore occupano gli angoli</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1758"/>
+      <location filename="../dialogs/configdialog.ui" line="1763"/>
       <source>Hide built-in plugins</source>
       <translation>Nascondi plugin integrati</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1787"/>
+      <location filename="../dialogs/configdialog.ui" line="1792"/>
       <source>Current style:</source>
       <translation>Stile attuale:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1804"/>
+      <location filename="../dialogs/configdialog.ui" line="1809"/>
       <source>Preview</source>
       <translation>Anteprima</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1814"/>
+      <location filename="../dialogs/configdialog.ui" line="1819"/>
       <source>Enabled</source>
       <translation>Abilitato</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1990"/>
+      <location filename="../dialogs/configdialog.ui" line="1995"/>
       <source>Disabled</source>
       <translation>Disabilitato</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2039"/>
+      <location filename="../dialogs/configdialog.ui" line="2044"/>
       <source>Active formatter plugin</source>
       <translation>Plugin formattatore attivo</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2077"/>
+      <location filename="../dialogs/configdialog.ui" line="2082"/>
       <source>SQL editor font</source>
       <translation>Carattere editor SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2093"/>
+      <location filename="../dialogs/configdialog.ui" line="2098"/>
       <source>Database list font</source>
       <translation>Carattere elenco database</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2109"/>
+      <location filename="../dialogs/configdialog.ui" line="2114"/>
       <source>Database list additional label font</source>
       <translation>Database list carattere etichetta aggiuntivo</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2125"/>
+      <location filename="../dialogs/configdialog.ui" line="2130"/>
       <source>Data view font</source>
       <translation>Carattere vista dati</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2141"/>
+      <location filename="../dialogs/configdialog.ui" line="2146"/>
       <source>Status field font</source>
       <translation>Carattere campo di stato</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2178"/>
+      <location filename="../dialogs/configdialog.ui" line="2183"/>
       <source>Code assistant settings</source>
       <translation type="unfinished">Code assistant settings</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2184"/>
+      <location filename="../dialogs/configdialog.ui" line="2189"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2187"/>
+      <location filename="../dialogs/configdialog.ui" line="2192"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
     </message>
@@ -1637,7 +1637,17 @@
       <translation>Aiuto per la configurazione degli editor di tipi di dati</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1784"/>
+      <location filename="../dialogs/configdialog.cpp" line="1745"/>
+      <source>Clear hotkey for this action</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.cpp" line="1757"/>
+      <source>Restore original hotkey for this action</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.cpp" line="1800"/>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
       <translation type="unfinished">Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</translation>
     </message>
