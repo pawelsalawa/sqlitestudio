@@ -13,14 +13,14 @@ class SqlQueryView;
 class DataWidgetMapper;
 
 CFG_KEY_LIST(FormView, QObject::tr("Data form view"),
-    CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,              QObject::tr("Commit changes for current row"))
-    CFG_KEY_ENTRY(ROLLBACK,          QKeySequence::Cancel,                   QObject::tr("Rollback changes for current row"))
-    CFG_KEY_ENTRY(FIRST_ROW,         Qt::CTRL + Qt::ALT + Qt::Key_PageUp,    QObject::tr("Go to first row on current page"))
-    CFG_KEY_ENTRY(NEXT_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Right,     QObject::tr("Go to next row"))
-    CFG_KEY_ENTRY(PREV_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Left,      QObject::tr("Go to previous row"))
-    CFG_KEY_ENTRY(LAST_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_PageDown,  QObject::tr("Go to last row on current page"))
-    CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                         QObject::tr("Insert new row"))
-    CFG_KEY_ENTRY(DELETE_ROW,        Qt::CTRL + Qt::Key_Delete,              QObject::tr("Delete current row"))
+    CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,               QObject::tr("Commit changes for current row"))
+    CFG_KEY_ENTRY(ROLLBACK,          Qt::ALT + Qt::SHIFT + Qt::Key_Backspace, QObject::tr("Rollback changes for current row"))
+    CFG_KEY_ENTRY(FIRST_ROW,         Qt::CTRL + Qt::ALT + Qt::Key_PageUp,     QObject::tr("Go to first row on current page"))
+    CFG_KEY_ENTRY(NEXT_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Right,      QObject::tr("Go to next row"))
+    CFG_KEY_ENTRY(PREV_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_Left,       QObject::tr("Go to previous row"))
+    CFG_KEY_ENTRY(LAST_ROW,          Qt::CTRL + Qt::ALT + Qt::Key_PageDown,   QObject::tr("Go to last row on current page"))
+    CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                          QObject::tr("Insert new row"))
+    CFG_KEY_ENTRY(DELETE_ROW,        Qt::CTRL + Qt::Key_Delete,               QObject::tr("Delete current row"))
 )
 
 class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer

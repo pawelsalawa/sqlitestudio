@@ -4,6 +4,7 @@
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
 - ADDED: #4697 Added a 'Restore original hotkey' buttons at keyboard shortcuts page of configuration dialog.
 - CHANGE: #4689 Sorting order is not cleared when table data is refreshed. To removed sorting order user can either double-click on header (once or twice) to restore no sorting for a column, or use context menu to clear any sorting.
+- CHANGE: #4735 Order of functions loading has changed. Now it's: built-in, extension-provided, user-defined. The last loaded has the highest precedense.
 - BUGFIX: #4676 #4716 #4693 #4701 #4669 #4721 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
 - BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
 - BUGFIX: #4694 Fixed messages for toolbar buttons in Code Snippets window & fixed loading translations for plugins.
@@ -11,8 +12,8 @@
 - BUGFIX: #4681 Fixed risk of null reference call in the SqliteOrderBy.
 - BUGFIX: #4707 Fixed database file selection dialog, so it doesn't complaint about read-only files.
 - BUGFIX: #4679 Fixed issue with case sensivity of CTE alias.
-- BUGFIX: #4697 Changed default hotkey for rolling back pending changes in table data from Ctrl+Backspace to Esc. Default hotkey affects new users and will not change automatically for those who upgrade from older SQLiteStudio.
-- BUGFIX: #4739 Fixed committing changes in Extensions Manager if modifying valid extension settings, while there is another invalid, yet untouched extension on the lsit.
+- BUGFIX: #4697 Changed default hotkey for rolling back pending changes in table data from Ctrl+Backspace to Alt+Shit+Backspace. Default hotkey affects new users and will not change automatically for those who upgrade from older SQLiteStudio.
+- BUGFIX: #4739 Fixed committing changes in Extensions Manager if modifying valid extension settings, while there is another invalid, yet untouched extension on the list.
 - BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
 
 ### 3.4.3
