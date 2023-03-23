@@ -228,6 +228,13 @@ bool SqliteExtensionEditor::validateExtension(int row)
     return validateExtension(filePath, initFunc, nullptr, nullptr, new QString);
 }
 
+bool SqliteExtensionEditor::validateCurrentExtension()
+{
+    QString filePath = ui->fileEdit->text();
+    QString initFunc = ui->initEdit->text();
+    return validateExtension(filePath, initFunc, nullptr, nullptr, new QString);
+}
+
 bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QString& initFunc, bool* fileOk, bool* initOk, QString* fileError)
 {
     bool localFileOk = true;
@@ -330,7 +337,7 @@ void SqliteExtensionEditor::deleteExtension()
 void SqliteExtensionEditor::updateState()
 {
     bool modified = model->isModified() || currentModified;
-    bool valid = model->isValid();
+    bool valid = model->isValid() && validateCurrentExtension();
 
     actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);

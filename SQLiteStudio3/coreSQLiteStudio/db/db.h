@@ -843,22 +843,20 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool closeQuiet() = 0;
 
         /**
-         * @brief Deregisters all functions registered in the database and registers new (possibly the same) functions.
+         * @brief Deregisters previously registered user-defined functions and registers their fresh definition in the db.
          *
          * This slot is called from openAndSetup() and then every time user modifies custom SQL functions and commits changes to them.
-         * It deregisters all functions registered before in this database and registers new functions, currently defined for
-         * this database.
          *
          * @see FunctionManager
          */
-        virtual void registerAllFunctions() = 0;
+        virtual void registerUserFunctions() = 0;
 
         /**
          * @brief Deregisters all collations registered in the database and registers new (possibly the same) collations.
          *
          * This slot is called from openAndsetup() and then every time user modifies custom collations and commits changes to them.
          */
-        virtual void registerAllCollations() = 0;
+        virtual void registerUserCollations() = 0;
 };
 
 QDataStream &operator<<(QDataStream &out, const Db* myObj);

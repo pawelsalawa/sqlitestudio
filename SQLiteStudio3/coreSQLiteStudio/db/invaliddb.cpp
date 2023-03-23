@@ -316,11 +316,11 @@ bool InvalidDb::closeQuiet()
     return false;
 }
 
-void InvalidDb::registerAllFunctions()
+void InvalidDb::registerUserFunctions()
 {
 }
 
-void InvalidDb::registerAllCollations()
+void InvalidDb::registerUserCollations()
 {
 }
 QString InvalidDb::getError() const
