@@ -5941,42 +5941,42 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
       <translation>Éditer le manuel des extensions</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="240"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="247"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation>Le fichier avec le chemin spécifié n&apos;existe pas ou n&apos;est pas lisible.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="246"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="253"/>
       <source>Unable to load extension: %1</source>
       <translation>Impossible de charger l&apos;extension : %1</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="360"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="367"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation>Nom de la fonction d&apos;initialisation invalide. Le nom de la fonction ne peut contenir que des caractères alphanumériques et des tirets bas.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="436"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation>Librairies de liens dynamiques (*.dll);Tous les fichiers (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="431"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="438"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation>Objets partagés (*.so);Tous les fichiers (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="433"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="440"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation>Bibliothèques dynamiques (*.dylib);;Tous les fichiers (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="435"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
       <source>All files (*)</source>
       <translation>Tous les fichiers(*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="437"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
       <source>Open file</source>
       <translation>Fichier ouvert</translation>
     </message>
