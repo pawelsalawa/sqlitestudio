@@ -292,7 +292,7 @@ API_EXPORT void sortWithReferenceList(QList<QString>& listToSort, const QList<QS
 enum class DistributionType
 {
     PORTABLE,
-    OSX_BOUNDLE,
+    OSX_BUNDLE,
     OS_MANAGED
 };
 
