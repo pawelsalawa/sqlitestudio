@@ -5915,42 +5915,42 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="240"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="247"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="246"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="253"/>
       <source>Unable to load extension: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="360"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="367"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="429"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="436"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="431"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="438"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="433"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="440"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="435"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
       <source>All files (*)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="437"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
       <source>Open file</source>
       <translation type="unfinished"/>
     </message>
