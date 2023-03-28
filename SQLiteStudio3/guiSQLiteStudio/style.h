@@ -18,6 +18,9 @@ class Style : public QProxyStyle
         QString name() const;
         bool isDark() const;
 
+    protected:
+        bool eventFilter(QObject *obj, QEvent *ev) override;
+
     private:
         static Style* instance;
 

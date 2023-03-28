@@ -1099,7 +1099,6 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
-
         selection.format.setBackground(CFG_UI.Colors.SyntaxCurrentLineBg.get());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
