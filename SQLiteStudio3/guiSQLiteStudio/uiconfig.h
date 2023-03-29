@@ -49,8 +49,6 @@ CFG_UI_CATEGORIES(Ui,
     CFG_CATEGORY(Colors,
         CFG_ENTRY(QColor,       SyntaxParenthesisBg,  &Cfg::getDefaultSyntaxParenthesisBg)
         CFG_ENTRY(QColor,       SyntaxParenthesisFg,  &Cfg::getDefaultSyntaxParenthesisFg)
-        CFG_ENTRY(QColor,       SyntaxCurrentLineBg,  &Cfg::getDefaultSyntaxCurrentLineBg)
-        CFG_ENTRY(QColor,       SyntaxCurrentQueryBg, &Cfg::getDefaultSyntaxCurrentQueryBg)
         CFG_ENTRY(QColor,       SyntaxValidObject,    &Cfg::getDefaultSyntaxValidObject)
         CFG_ENTRY(QColor,       SyntaxForeground,     &Cfg::getDefaultSyntaxForeground)
         CFG_ENTRY(QColor,       SyntaxStringFg,       &Cfg::getDefaultSyntaxStringFg)
