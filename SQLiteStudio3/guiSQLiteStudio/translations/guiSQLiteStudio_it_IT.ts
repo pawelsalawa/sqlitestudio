@@ -5465,32 +5465,32 @@ trova il prossimo</translation>
       <translation>Il completamento della sintassi può essere usato solo quando è impostato un database valido per l&apos;editor SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1143"/>
+      <location filename="../sqleditor.cpp" line="1142"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>I contenuti dell&apos;editor SQL sono enormi, quindi gli errori di rilevamento e gli oggetti esistenti di evidenziazione sono temporaneamente disabilitati.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1177"/>
       <source>Save to file</source>
       <translation>Salva su file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1192"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Script SQL (*.sql);;Tutti i file (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1194"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>Open file</source>
       <translation>Apri file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1204"/>
+      <location filename="../sqleditor.cpp" line="1203"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1409"/>
+      <location filename="../sqleditor.cpp" line="1408"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Raggiunta la fine del documento. Premi nuovamente la ricerca per riavviare la ricerca.</translation>
     </message>

@@ -5462,32 +5462,32 @@ find next</source>
       <translation>Дополнение синтаксиса может быть использовано только после назначения корректной базы данных редактору SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1143"/>
+      <location filename="../sqleditor.cpp" line="1142"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Размер содержимого редактора SQL слишком велико, поэтому обнаружение ошибок и подсветка существующих объектов временно отключена.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1177"/>
       <source>Save to file</source>
       <translation>Сохранить в файл</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1192"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Скрипты SQL (*.sql);;Все файлы (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1194"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>Open file</source>
       <translation>Открыть файл</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1204"/>
+      <location filename="../sqleditor.cpp" line="1203"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1409"/>
+      <location filename="../sqleditor.cpp" line="1408"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Достигнут конец документа. Нажмите Найти снова для перезапуска поиска.</translation>
     </message>
