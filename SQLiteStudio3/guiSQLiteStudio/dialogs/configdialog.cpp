@@ -1824,8 +1824,10 @@ void ConfigDialog::initTooltips()
         ));
 
     setValidStateTooltip(ui->commonCodeColorsGroup,
-                         tr("Here you can configure colors for code syntax highlighting."
-                            "They are shared across different languages - not only for SQL, but also JavaScript and others."));
+                         tr("Here you can configure colors for code syntax highlighting. "
+                            "They are shared across different languages - not only for SQL, but also JavaScript and others. "
+                            "By default a theme-based color is used. To define your own color, enable a custom color "
+                            "by selecting a checkbox next to a particular color."));
 
 }
 
