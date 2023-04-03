@@ -5463,32 +5463,32 @@ find next</source>
       <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1143"/>
+      <location filename="../sqleditor.cpp" line="1142"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1177"/>
       <source>Save to file</source>
       <translation>In Datei speichern</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1192"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1194"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>Open file</source>
       <translation>Datei öffnen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1204"/>
+      <location filename="../sqleditor.cpp" line="1203"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1409"/>
+      <location filename="../sqleditor.cpp" line="1408"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
