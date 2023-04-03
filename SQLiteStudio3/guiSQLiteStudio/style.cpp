@@ -2,6 +2,8 @@
 #include "themetuner.h"
 #include "mainwindow.h"
 #include "common/unused.h"
+#include "syntaxhighlighterplugin.h"
+#include "services/pluginmanager.h"
 #include <QApplication>
 #include <QToolTip>
 #include <QDebug>
@@ -63,7 +65,21 @@ bool Style::eventFilter(QObject *obj, QEvent *ev)
 {
     UNUSED(obj);
     if (ev->type() == QEvent::PaletteChange)
-        extPalette.styleChanged(this, name());
+    {
+        if (extPalette.styleChanged(this, name()))
+        {
+            QList<SyntaxHighlighterPlugin*> plugins = PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>();
+            auto it = plugins.begin();
+            while (it != plugins.end())
+            {
+                (*it)->refreshFormats();
+                it++;
+            }
+            emit paletteChanged();
+        }
+    }
+
+    return false;
 }
 
 Style::Style(QStyle *style)
@@ -71,5 +87,5 @@ Style::Style(QStyle *style)
 {
     initialPalette = style->standardPalette();
     extPalette.styleChanged(this, name());
-    MAINWINDOW->installEventFilter(this);
+    qApp->installEventFilter(this);
 }

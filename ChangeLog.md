@@ -7,6 +7,7 @@
 - CHANGE: #4689 Sorting order is not cleared when table data is refreshed. To removed sorting order user can either double-click on header (once or twice) to restore no sorting for a column, or use context menu to clear any sorting.
 - CHANGE: #4735 Order of functions loading has changed. Now it's: built-in, extension-provided, user-defined. The last loaded has the highest precedense.
 - CHANGE: #4732 SQLite updated to 3.41.2 (except for SQLCipher, which is still on 3.39.4 at the moment).
+- CHANGE: #4683 Custom syntax highlighting colors now use theme-based colors by default (to work well with dynamically changing color palette in night/day theme changes) and can be explicitly enabled in configuration.
 - BUGFIX: #4676 #4716 #4693 #4701 #4669 #4721 Few critical fixes for Query Executor, fixing a frequent error: near ")": syntax error.
 - BUGFIX: #4685 Fixed WINDOW/OVER/FILTER keyword handling in the SQL parser.
 - BUGFIX: #4694 Fixed messages for toolbar buttons in Code Snippets window & fixed loading translations for plugins.

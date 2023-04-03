@@ -5,7 +5,6 @@
 
 ExtendedPalette::ExtendedPalette()
 {
-
 }
 
 QBrush ExtendedPalette::editorString() const
@@ -28,10 +27,14 @@ void ExtendedPalette::setEditorLineBase(const QBrush &value)
     editorLineBaseBrush = value;
 }
 
-void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
+bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
     UNUSED(themeName);
     QPalette stdPalette = style->standardPalette();
+    if (stdPalette == lastPalette)
+        return false;
+
+    lastPalette = stdPalette;
     bool isDark = stdPalette.base().color().lightness() < 128;
 
     static const QColor stdStrColor = QColor(Qt::green);
@@ -60,6 +63,8 @@ void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
         editorCurrentQueryBrush = stdPalette.base().color().darker(110);
         mdiAreaBaseBrush = QColor(138, 138, 138);
     }
+
+    return true;
 }
 
 QBrush ExtendedPalette::mdiAreaBase() const

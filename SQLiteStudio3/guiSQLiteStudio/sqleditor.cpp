@@ -127,6 +127,7 @@ void SqlEditor::init()
     connect(this, &QWidget::customContextMenuRequested, this, &SqlEditor::customContextMenuRequested);
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
     connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(configModified()));
+    connect(STYLE, SIGNAL(paletteChanged()), this, SLOT(colorsConfigChanged()));
 }
 
 void SqlEditor::removeErrorMarkers()
@@ -759,8 +760,8 @@ void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::Extr
 {
     QTextEdit::ExtraSelection selection;
 
-    selection.format.setBackground(CFG_UI.Colors.SyntaxParenthesisBg.get());
-    selection.format.setForeground(CFG_UI.Colors.SyntaxParenthesisFg.get());
+    selection.format.setBackground(Cfg::getSyntaxParenthesisBg());
+    selection.format.setForeground(Cfg::getSyntaxParenthesisFg());
 
     QTextCursor cursor = textCursor();
 
