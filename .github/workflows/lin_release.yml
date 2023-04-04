@@ -13,6 +13,10 @@ name: Linux release build
 on:
     workflow_dispatch:
         inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
     schedule:
         - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
     repository_dispatch:
@@ -27,11 +31,11 @@ jobs:
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'
-              
+
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
-              
+
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
@@ -43,7 +47,7 @@ jobs:
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
                 extra: '--external 7z'
-                
+
             - name: Install the InstalBuilder
               shell: bash
               run: |
@@ -64,6 +68,18 @@ jobs:
               run: |
                 cd ..
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: lin_release
+                max-size: "24M"
+
+            - name: Configure ccache
+              if: inputs.use_ccache || false
+              run: |
+                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
 
             - name: Install SQLite3
               run: |
@@ -112,7 +128,7 @@ jobs:
 
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
-              
+
             - name: Install other tools/dependencies
               run: |
                 sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
@@ -120,24 +136,31 @@ jobs:
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
-            
+
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ../../SQLiteStudio3
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    ../../SQLiteStudio3
                 make -j 2
-            
+
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    ../../../Plugins
                 make -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/extensions
-              
+
             - name: Prepare portable dir
               working-directory: output
               run: |
@@ -154,7 +177,7 @@ jobs:
                 LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
                 REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
                 cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
-                
+
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
                 wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb

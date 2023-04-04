@@ -14,6 +14,10 @@ name: MacOSX release build
 on:
     workflow_dispatch:
         inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
     schedule:
         - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
@@ -68,6 +72,18 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: mac_release
+                max-size: "24M"
+
+            - name: Configure ccache
+              if: inputs.use_ccache || false
+              run: |
+                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+
             - name: Install SQLite3
               run: |
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -110,7 +126,7 @@ jobs:
                 ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
                 ls -l
-                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
+                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 for f in compress sqlar; do
                     echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
@@ -142,13 +158,20 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ../../SQLiteStudio3
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    ../../SQLiteStudio3
                 make -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    ../../../Plugins
                 make -j 1
 
             - name: Copy SQLite extensions to output dir
