@@ -844,7 +844,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2049"/>
+      <location filename="../dialogs/configdialog.ui" line="2067"/>
       <source>Configuration</source>
       <translation>Konfiguracja</translation>
     </message>
@@ -1328,328 +1328,326 @@
       <translation>Słowo kluczowe</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1183"/>
+      <location filename="../dialogs/configdialog.ui" line="1218"/>
       <source>Regular foreground</source>
       <translation>Standardowy tekst</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1206"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQL ciągi znaków są zamknięte pomiędzy apostrofami. W innych językach ciąg znaków może być zamknięty pomiędzy podwójnym cudzysłowem lub czymś innym.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQL ciągi znaków są zamknięte pomiędzy apostrofami. W innych językach ciąg znaków może być zamknięty pomiędzy podwójnym cudzysłowem lub czymś innym.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1209"/>
+      <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
       <translation>Łańcuch znaków</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1248"/>
+      <location filename="../dialogs/configdialog.ui" line="1228"/>
       <source>Comment foreground</source>
       <translation>Komentarz</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1271"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prawidłowe obiekty to nazwy tabel, indeksów, wyzwalaczy lub widoków, które istnieją w bazie danych SQLite. Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części językowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prawidłowe obiekty to nazwy tabel, indeksów, wyzwalaczy lub widoków, które istnieją w bazie danych SQLite. Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części językowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1274"/>
+      <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Valid objects foreground</source>
       <translation>Prawidłowe obiekty</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1281"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQLu bieżące zapytanie jest zaznaczone tym tłem, aby wskazać użytkownikowi, który zapytanie zostanie wykonany w danej chwili.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W SQLu bieżące zapytanie jest zaznaczone tym tłem, aby wskazać użytkownikowi, który zapytanie zostanie wykonany w danej chwili.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1284"/>
+      <location filename="../dialogs/configdialog.ui" line="1407"/>
       <source>Current query background</source>
       <translation>Bieżące tło zapytania</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1291"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Parametry wiążące są symbolami zastępczymi dla wartości, które mają być jeszcze dostarczone przez użytkownika. Przyjmują jedną z form:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części składowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Parametry wiążące są symbolami zastępczymi dla wartości, które mają być jeszcze dostarczone przez użytkownika. Przyjmują jedną z form:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Języki inne niż SQL mogą używać tego ustawienia kolorów dla innych odrębnych części składowych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1294"/>
+      <location filename="../dialogs/configdialog.ui" line="1371"/>
       <source>Bind parameter foreground</source>
       <translation>Parametr wiążący</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1301"/>
+      <location filename="../dialogs/configdialog.ui" line="1397"/>
       <source>Current line background</source>
       <translation>Tło bieżącej linii</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1324"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kiedy użytkownik przesunie w kodzie kursor wstawiania na nawias, aplikacja oznaczy ten nawias oraz jego pasującą parę tym kolorem tła.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kiedy użytkownik przesunie w kodzie kursor wstawiania na nawias, aplikacja oznaczy ten nawias oraz jego pasującą parę tym kolorem tła.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1327"/>
+      <location filename="../dialogs/configdialog.ui" line="1417"/>
       <source>Matched parenthesis background</source>
       <translation>Tło dopasowanych nawiasów</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1340"/>
+      <location filename="../dialogs/configdialog.ui" line="1312"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Możesz całkowicie wyłączyć podświetlanie bieżącego zapytania na stronie ustawień ogólnych.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1385"/>
+      <location filename="../dialogs/configdialog.ui" line="1254"/>
       <source>Number foreground</source>
       <translation>Liczba</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wartości BLOB są wartościami binarnymi reprezentowanymi jako liczby szesnastkowe, na przykład:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wartości BLOB są wartościami binarnymi reprezentowanymi jako liczby szesnastkowe, na przykład:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1395"/>
+      <location filename="../dialogs/configdialog.ui" line="1325"/>
       <source>BLOB value foreground</source>
       <translation>Kolor zawartości BLOB</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1402"/>
+      <location filename="../dialogs/configdialog.ui" line="1427"/>
       <source>Matched parenthesis foreground</source>
       <translation>Dopasowane nawiasy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1446"/>
+      <location filename="../dialogs/configdialog.ui" line="1464"/>
       <source>Reset to defaults</source>
       <translation>Przywróć ustawienia domyślne</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1472"/>
+      <location filename="../dialogs/configdialog.ui" line="1490"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>Filtruj skróty po nazwie, lub kombinacji klawiszy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1513"/>
+      <location filename="../dialogs/configdialog.ui" line="1531"/>
       <source>Action</source>
       <translation>Akcja</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1518"/>
+      <location filename="../dialogs/configdialog.ui" line="1536"/>
       <source>Key combination</source>
       <translation>Kombinacja klawiszy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1567"/>
-      <location filename="../dialogs/configdialog.ui" line="2039"/>
+      <location filename="../dialogs/configdialog.ui" line="1585"/>
+      <location filename="../dialogs/configdialog.ui" line="2057"/>
       <source>Language</source>
       <translation>Język</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1573"/>
+      <location filename="../dialogs/configdialog.ui" line="1591"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>Zmiana języka wymaga restartu aplikacji, aby zadziałać.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1590"/>
+      <location filename="../dialogs/configdialog.ui" line="1608"/>
       <source>Compact layout</source>
       <translation>Układ kompaktowy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1596"/>
+      <location filename="../dialogs/configdialog.ui" line="1614"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Układ kompaktowy zmniejsza wszystkie marginesy i odstępy na interfejsie do minimum, robiąc więcej miejsca na wyświetlanie danych. Powoduje to, że interfejs jest nieco mniej estetyczny, ale pozwala to na prezentację większej ilości danych naraz.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1599"/>
+      <location filename="../dialogs/configdialog.ui" line="1617"/>
       <source>Use compact layout</source>
       <translation>Użyj układu kompaktowego</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1615"/>
+      <location filename="../dialogs/configdialog.ui" line="1633"/>
       <source>Main window dock areas</source>
       <translation>Strefy dokowania głównego okna</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1621"/>
+      <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Left and right areas occupy corners</source>
       <translation>Lewa i prawa strefa zajmują rogi</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1641"/>
+      <location filename="../dialogs/configdialog.ui" line="1659"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>Górna i dolna strefa zajmują rogi</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1763"/>
+      <location filename="../dialogs/configdialog.ui" line="1781"/>
       <source>Hide built-in plugins</source>
       <translation>Ukryj wtyczki wbudowane</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1792"/>
+      <location filename="../dialogs/configdialog.ui" line="1810"/>
       <source>Current style:</source>
       <translation>Aktualny styl:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1809"/>
+      <location filename="../dialogs/configdialog.ui" line="1827"/>
       <source>Preview</source>
       <translation>Podgląd</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1819"/>
+      <location filename="../dialogs/configdialog.ui" line="1837"/>
       <source>Enabled</source>
       <translation>Włączone</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1995"/>
+      <location filename="../dialogs/configdialog.ui" line="2013"/>
       <source>Disabled</source>
       <translation>Wyłączone</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2044"/>
+      <location filename="../dialogs/configdialog.ui" line="2062"/>
       <source>Active formatter plugin</source>
       <translation>Aktywna wtyczka formatera</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2082"/>
+      <location filename="../dialogs/configdialog.ui" line="2100"/>
       <source>SQL editor font</source>
       <translation>Czcionka edytora SQL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2098"/>
+      <location filename="../dialogs/configdialog.ui" line="2116"/>
       <source>Database list font</source>
       <translation>Czcionka listy baz danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2114"/>
+      <location filename="../dialogs/configdialog.ui" line="2132"/>
       <source>Database list additional label font</source>
       <translation>Czcionka dodatkowych etykiety listy baz danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2130"/>
+      <location filename="../dialogs/configdialog.ui" line="2148"/>
       <source>Data view font</source>
       <translation>Czcionka widoku danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2146"/>
+      <location filename="../dialogs/configdialog.ui" line="2164"/>
       <source>Status field font</source>
       <translation>Czcionka pola statusu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2183"/>
+      <location filename="../dialogs/configdialog.ui" line="2201"/>
       <source>Code assistant settings</source>
       <translation>Ustawienia asystenta kodu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2189"/>
+      <location filename="../dialogs/configdialog.ui" line="2207"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli ta opcja jest włączona, asystent kodu zostanie uruchomiony w przypadkach, gdy użytkownik wpisze na przykład &lt;span style=&quot; font-weight:700;&quot;&gt;nazwaTabeli.&lt;/span&gt;, aby zaproponować nazwy kolumn tabeli. Jeśli opcja jest wyłączona, użytkownik będzie musiał użyć skrót klawiszowy asystenta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2192"/>
+      <location filename="../dialogs/configdialog.ui" line="2210"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation>Automatycznie wyzwalaj asystenta po wpisaniu kropki po nazwie obiektu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="899"/>
+      <location filename="../dialogs/configdialog.cpp" line="900"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Opis:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="900"/>
+      <location filename="../dialogs/configdialog.cpp" line="901"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Kategoria:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="902"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Wersja:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="903"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Autor:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Nazwa wewnętrzna:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="905"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Zależności:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Konflikty:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="910"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Plugin details</source>
       <translation>Szczegóły wtyczki</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1452"/>
+      <location filename="../dialogs/configdialog.cpp" line="1479"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Wtyczki są ładowane/wyładowywane natychmiast po zaznaczeniu/odznaczeniu, ale zmodyfikowana lista wtyczek, które należy załadować przy starcie nie jest zapisana, dopóki nie zatwierdzisz całego okna configuracji.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1516"/>
+      <location filename="../dialogs/configdialog.cpp" line="1543"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (wbudowany)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1529"/>
+      <location filename="../dialogs/configdialog.cpp" line="1556"/>
       <source>Details</source>
       <translation>Szczegóły</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1541"/>
+      <location filename="../dialogs/configdialog.cpp" line="1568"/>
       <source>No plugins in this category.</source>
       <translation>Brak wtyczek w tej kategorii.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1643"/>
+      <location filename="../dialogs/configdialog.cpp" line="1670"/>
       <source>Add new data type</source>
       <translation>Dodaj nowy typ danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1647"/>
+      <location filename="../dialogs/configdialog.cpp" line="1674"/>
       <source>Rename selected data type</source>
       <translation>Zmień nazwę wybranego typu danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1651"/>
+      <location filename="../dialogs/configdialog.cpp" line="1678"/>
       <source>Delete selected data type</source>
       <translation>Usuń wybrany typ danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1655"/>
+      <location filename="../dialogs/configdialog.cpp" line="1682"/>
       <source>Help for configuring data type editors</source>
       <translation>Pomoc w konfiguracji edytorów typów danych</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1745"/>
+      <location filename="../dialogs/configdialog.cpp" line="1772"/>
       <source>Clear hotkey for this action</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1757"/>
+      <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Restore original hotkey for this action</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1800"/>
+      <location filename="../dialogs/configdialog.cpp" line="1827"/>
+      <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation>Tutaj możesz skonfigurować kolory dla podświetlania składni kodu. Są one współdzielone między różnymi językami - nie tylko dla SQL, ale również dla JavaScript i innych.</translation>
+      <translation type="vanished">Tutaj możesz skonfigurować kolory dla podświetlania składni kodu. Są one współdzielone między różnymi językami - nie tylko dla SQL, ale również dla JavaScript i innych.</translation>
     </message>
   </context>
   <context>
@@ -5306,191 +5304,191 @@ znajdź następny</translation>
       <translation>Zawijaj słowa</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="154"/>
+      <location filename="../sqleditor.cpp" line="155"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>Wytnij</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="155"/>
+      <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>Kopiuj</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="156"/>
+      <location filename="../sqleditor.cpp" line="157"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>Wklej</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="157"/>
+      <location filename="../sqleditor.cpp" line="158"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>Usuń</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>Zaznacz wszystko</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>Cofnij</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>Przywróć</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>Dopełnij</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>Formatuj SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>Zapisz SQL do pliku</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation>Wybierz plik do zapisu SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="165"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>Wczytaj SQL z pliku</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>Usuń linię</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>Przesuń blok w dół</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>Przesuń blok w górę</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>Skopiuj blok w dół</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>Skopiuj blok w górę</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Find</source>
       <comment>sql editor</comment>
       <translation>Znajdź</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>Znajdź następny</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>Znajdź poprzedni</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>Zastąp</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation>Przełącz komentarz</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation>Zwiększ rozmiar czcionki</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="177"/>
+      <location filename="../sqleditor.cpp" line="178"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation>Zmniejsz rozmiar czcionki</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="287"/>
+      <location filename="../sqleditor.cpp" line="288"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>Nie udało się otworzyć pliku &apos;%1&apos; do zapisu: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="297"/>
+      <location filename="../sqleditor.cpp" line="298"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>Zapisano zawartość SQL do pliku: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="518"/>
+      <location filename="../sqleditor.cpp" line="519"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>Dopełnianie składni może być użyte tylko wtedy, gdy poprawna baza danych jest ustawiona w edytorze SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1142"/>
+      <location filename="../sqleditor.cpp" line="1143"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Zawartość edytora SQL jest ogromna, więc sprawdzanie błędów i podświetlanie istniejących obiektów zostało tymczasowo wyłączone.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1177"/>
+      <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
       <translation>Zapisz do pliku</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1192"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Skrypty SQL (*.sql);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1194"/>
       <source>Open file</source>
       <translation>Otwórz plik</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1203"/>
+      <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nie udało się otworzyć pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1408"/>
+      <location filename="../sqleditor.cpp" line="1409"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Osiągnięto koniec dokumentu. Wciśnij szukanie ponownie, aby zrestartować szukanie.</translation>
     </message>

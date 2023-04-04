@@ -844,7 +844,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2049"/>
+      <location filename="../dialogs/configdialog.ui" line="2067"/>
       <source>Configuration</source>
       <translation>配置</translation>
     </message>
@@ -1328,328 +1328,326 @@
       <translation type="unfinished">Keyword foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1183"/>
+      <location filename="../dialogs/configdialog.ui" line="1218"/>
       <source>Regular foreground</source>
       <translation type="unfinished">Regular foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1206"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1209"/>
+      <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
       <translation type="unfinished">String foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1248"/>
+      <location filename="../dialogs/configdialog.ui" line="1228"/>
       <source>Comment foreground</source>
       <translation type="unfinished">Comment foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1271"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1274"/>
+      <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Valid objects foreground</source>
       <translation type="unfinished">Valid objects foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1281"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1284"/>
+      <location filename="../dialogs/configdialog.ui" line="1407"/>
       <source>Current query background</source>
       <translation type="unfinished">Current query background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1291"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1294"/>
+      <location filename="../dialogs/configdialog.ui" line="1371"/>
       <source>Bind parameter foreground</source>
       <translation type="unfinished">Bind parameter foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1301"/>
+      <location filename="../dialogs/configdialog.ui" line="1397"/>
       <source>Current line background</source>
       <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1324"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1327"/>
+      <location filename="../dialogs/configdialog.ui" line="1417"/>
       <source>Matched parenthesis background</source>
       <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1340"/>
+      <location filename="../dialogs/configdialog.ui" line="1312"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1385"/>
+      <location filename="../dialogs/configdialog.ui" line="1254"/>
       <source>Number foreground</source>
       <translation type="unfinished">Number foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1395"/>
+      <location filename="../dialogs/configdialog.ui" line="1325"/>
       <source>BLOB value foreground</source>
       <translation type="unfinished">BLOB value foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1402"/>
+      <location filename="../dialogs/configdialog.ui" line="1427"/>
       <source>Matched parenthesis foreground</source>
       <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1446"/>
+      <location filename="../dialogs/configdialog.ui" line="1464"/>
       <source>Reset to defaults</source>
       <translation type="unfinished">Reset to defaults</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1472"/>
+      <location filename="../dialogs/configdialog.ui" line="1490"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>以名称或按键组合筛选快捷键</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1513"/>
+      <location filename="../dialogs/configdialog.ui" line="1531"/>
       <source>Action</source>
       <translation>操作</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1518"/>
+      <location filename="../dialogs/configdialog.ui" line="1536"/>
       <source>Key combination</source>
       <translation>按键组合</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1567"/>
-      <location filename="../dialogs/configdialog.ui" line="2039"/>
+      <location filename="../dialogs/configdialog.ui" line="1585"/>
+      <location filename="../dialogs/configdialog.ui" line="2057"/>
       <source>Language</source>
       <translation>语言</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1573"/>
+      <location filename="../dialogs/configdialog.ui" line="1591"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>语言变更在程序重启后生效。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1590"/>
+      <location filename="../dialogs/configdialog.ui" line="1608"/>
       <source>Compact layout</source>
       <translation>紧凑布局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1596"/>
+      <location filename="../dialogs/configdialog.ui" line="1614"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;紧凑布局会将界面中的边框与留白减至最小，然后用这些区域展示更多数据。这会使界面看起来有一点不美观，但将可以同时展示更多的数据。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1599"/>
+      <location filename="../dialogs/configdialog.ui" line="1617"/>
       <source>Use compact layout</source>
       <translation>使用紧凑布局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1615"/>
+      <location filename="../dialogs/configdialog.ui" line="1633"/>
       <source>Main window dock areas</source>
       <translation>主窗口停靠区域</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1621"/>
+      <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Left and right areas occupy corners</source>
       <translation>左右布局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1641"/>
+      <location filename="../dialogs/configdialog.ui" line="1659"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>上下布局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1763"/>
+      <location filename="../dialogs/configdialog.ui" line="1781"/>
       <source>Hide built-in plugins</source>
       <translation>隐藏内置插件</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1792"/>
+      <location filename="../dialogs/configdialog.ui" line="1810"/>
       <source>Current style:</source>
       <translation>当前风格：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1809"/>
+      <location filename="../dialogs/configdialog.ui" line="1827"/>
       <source>Preview</source>
       <translation>预览</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1819"/>
+      <location filename="../dialogs/configdialog.ui" line="1837"/>
       <source>Enabled</source>
       <translation>已启用</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1995"/>
+      <location filename="../dialogs/configdialog.ui" line="2013"/>
       <source>Disabled</source>
       <translation>已禁用</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2044"/>
+      <location filename="../dialogs/configdialog.ui" line="2062"/>
       <source>Active formatter plugin</source>
       <translation>启用格式化插件</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2082"/>
+      <location filename="../dialogs/configdialog.ui" line="2100"/>
       <source>SQL editor font</source>
       <translation>SQL 编辑器字体</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2098"/>
+      <location filename="../dialogs/configdialog.ui" line="2116"/>
       <source>Database list font</source>
       <translation>数据库列表字体</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2114"/>
+      <location filename="../dialogs/configdialog.ui" line="2132"/>
       <source>Database list additional label font</source>
       <translation>数据库列表额外信息字体</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2130"/>
+      <location filename="../dialogs/configdialog.ui" line="2148"/>
       <source>Data view font</source>
       <translation>数据视图字体</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2146"/>
+      <location filename="../dialogs/configdialog.ui" line="2164"/>
       <source>Status field font</source>
       <translation>状态栏字体</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2183"/>
+      <location filename="../dialogs/configdialog.ui" line="2201"/>
       <source>Code assistant settings</source>
       <translation type="unfinished">Code assistant settings</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2189"/>
+      <location filename="../dialogs/configdialog.ui" line="2207"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2192"/>
+      <location filename="../dialogs/configdialog.ui" line="2210"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="899"/>
+      <location filename="../dialogs/configdialog.cpp" line="900"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>描述：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="900"/>
+      <location filename="../dialogs/configdialog.cpp" line="901"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>分类：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="902"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>版本：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="903"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>作者：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>内部名称：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="905"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>依赖：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>冲突：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="910"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Plugin details</source>
       <translation>插件详情</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1452"/>
+      <location filename="../dialogs/configdialog.cpp" line="1479"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>切换时插件会立即加载/卸载。但此列表的修改仅在点击确定按钮后被保存。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1516"/>
+      <location filename="../dialogs/configdialog.cpp" line="1543"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1（内置）</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1529"/>
+      <location filename="../dialogs/configdialog.cpp" line="1556"/>
       <source>Details</source>
       <translation>详情</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1541"/>
+      <location filename="../dialogs/configdialog.cpp" line="1568"/>
       <source>No plugins in this category.</source>
       <translation>没有此分类下的插件。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1643"/>
+      <location filename="../dialogs/configdialog.cpp" line="1670"/>
       <source>Add new data type</source>
       <translation>添加新的数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1647"/>
+      <location filename="../dialogs/configdialog.cpp" line="1674"/>
       <source>Rename selected data type</source>
       <translation>重命名所选数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1651"/>
+      <location filename="../dialogs/configdialog.cpp" line="1678"/>
       <source>Delete selected data type</source>
       <translation>删除所选数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1655"/>
+      <location filename="../dialogs/configdialog.cpp" line="1682"/>
       <source>Help for configuring data type editors</source>
       <translation>配置数据类型编辑器帮助</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1745"/>
+      <location filename="../dialogs/configdialog.cpp" line="1772"/>
       <source>Clear hotkey for this action</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1757"/>
+      <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Restore original hotkey for this action</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1800"/>
+      <location filename="../dialogs/configdialog.cpp" line="1827"/>
+      <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</translation>
+      <translation type="obsolete">Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</translation>
     </message>
   </context>
   <context>
@@ -5304,191 +5302,191 @@ find next</source>
       <translation>折行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="154"/>
+      <location filename="../sqleditor.cpp" line="155"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>剪切</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="155"/>
+      <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>复制</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="156"/>
+      <location filename="../sqleditor.cpp" line="157"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>粘贴</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="157"/>
+      <location filename="../sqleditor.cpp" line="158"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>删除</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>全选</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>撤销</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>重做</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>完成</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>格式化 SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>保存 SQL 到文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation>选择 SQL 要保存到的文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="165"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>从文件加载 SQL</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>删除行</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>整块下移</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>整块上移</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>副本贴上方</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>副本贴下方</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Find</source>
       <comment>sql editor</comment>
       <translation>查找</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>查找下一个</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>查找上一个</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>替换</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation>切换注释</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation>增大字号</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="177"/>
+      <location filename="../sqleditor.cpp" line="178"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="287"/>
+      <location filename="../sqleditor.cpp" line="288"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="297"/>
+      <location filename="../sqleditor.cpp" line="298"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>保存 SQL 内容至文件：%1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="518"/>
+      <location filename="../sqleditor.cpp" line="519"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>SQL 编辑器的语法补全功能仅当存在有效数据库时可用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1142"/>
+      <location filename="../sqleditor.cpp" line="1143"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>SQL 编辑器有大量内容，因此错误检测和现有对象的高亮显示功能被暂时禁用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1177"/>
+      <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
       <translation>保存到文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1192"/>
+      <location filename="../sqleditor.cpp" line="1193"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL文件 (*.sql);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1194"/>
       <source>Open file</source>
       <translation>打开文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1203"/>
+      <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1408"/>
+      <location filename="../sqleditor.cpp" line="1409"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>已到文档底部。再次点击查找将从头开始搜索。</translation>
     </message>
