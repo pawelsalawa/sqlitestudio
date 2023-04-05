@@ -128,7 +128,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation type="unfinished">Snippet name</translation>
+      <translation>代码片段名称</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -1418,7 +1418,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1464"/>
       <source>Reset to defaults</source>
-      <translation type="unfinished">Reset to defaults</translation>
+      <translation>重置为默认值</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1490"/>

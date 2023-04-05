@@ -59,7 +59,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>Aggiungi la clausola &quot;IF NOT EXISTS&quot; all&quot;istruzione &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>Aggiungi la clausola &quot;IF NOT EXISTS&quot; all&quot;istruzione &quot;CREATE&quot;</translation>
     </message>
   </context>
 </TS>
