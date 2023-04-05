@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation>Nom du tableau pour l'instruction INSERT est obligatoire.</translation>
+      <translation>Nom du tableau pour l&apos;instruction INSERT est obligatoire.</translation>
     </message>
   </context>
   <context>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation>Ajouter la clause &quot;SI N'EXISTE PAS&quot; à l'instruction &quot;CRÉER&quot;</translation>
+      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
@@ -77,7 +77,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="40"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation>Nom du tableau à utiliser pour l'instruction INSERT :</translation>
+      <translation>Nom du tableau à utiliser pour l&apos;instruction INSERT :</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="64"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation>Ajouter la clause &quot;SI N'EXISTE PAS&quot; à l'instruction &quot;CRÉER&quot;</translation>
+      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
     </message>
   </context>
 </TS>
