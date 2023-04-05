@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>מפריד עמודות:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+      <translation>לפרש &quot; כערך מרכאות</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
