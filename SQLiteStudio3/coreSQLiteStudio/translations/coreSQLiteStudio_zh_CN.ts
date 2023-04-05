@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="342"/>
-      <location filename="../db/abstractdb.cpp" line="359"/>
+      <location filename="../db/abstractdb.cpp" line="349"/>
+      <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
       <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="648"/>
+      <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="906"/>
+      <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -485,13 +485,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法加载插件 %1（初始化插件时发生错误）。</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>最小：%1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>最大：%1</translation>
