@@ -74,9 +74,13 @@
       <translation>ポータブル版</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation>MacOS X アプリケーションバンドル版</translation>
+      <translation type="vanished">MacOS X アプリケーションバンドル版</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
+      <source>MacOS X application bundle distribution.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>

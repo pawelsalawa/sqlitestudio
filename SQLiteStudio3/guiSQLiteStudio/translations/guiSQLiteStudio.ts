@@ -75,7 +75,7 @@
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
-      <source>MacOS X application boundle distribution.</source>
+      <source>MacOS X application bundle distribution.</source>
       <translation type="unfinished"/>
     </message>
     <message>

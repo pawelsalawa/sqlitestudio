@@ -74,9 +74,13 @@
       <translation type="unfinished">Portable distribution.</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation type="unfinished">MacOS X application boundle distribution.</translation>
+      <translation type="obsolete">MacOS X application boundle distribution.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
+      <source>MacOS X application bundle distribution.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>

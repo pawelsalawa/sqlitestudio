@@ -74,9 +74,13 @@
       <translation>Distribución portable.</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation>Distribución de los límites de la aplicación de MacOS X.</translation>
+      <translation type="vanished">Distribución de los límites de la aplicación de MacOS X.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
+      <source>MacOS X application bundle distribution.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>

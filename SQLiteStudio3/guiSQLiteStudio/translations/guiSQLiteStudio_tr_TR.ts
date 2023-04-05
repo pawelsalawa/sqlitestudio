@@ -74,9 +74,13 @@
       <translation>Taşınabilir dağıtım.</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application boundle distribution.</source>
-      <translation>Mac Os X uygulama paketi dağıtımı.</translation>
+      <translation type="vanished">Mac Os X uygulama paketi dağıtımı.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.cpp" line="44"/>
+      <source>MacOS X application bundle distribution.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
