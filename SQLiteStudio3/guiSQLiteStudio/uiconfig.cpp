@@ -7,6 +7,14 @@
 #include <QDir>
 #include <QDebug>
 
+#define DEFINE_COLOR_HELPER_FN(COLOR_NAME) \
+    QColor get##COLOR_NAME() \
+    { \
+        return CFG_UI.Colors.COLOR_NAME##Custom.get() ? \
+            CFG_UI.Colors.COLOR_NAME.get() : \
+            getDefault##COLOR_NAME().value<QColor>(); \
+    }
+
 namespace Cfg
 {
     QVariant getStyleDefaultValue()
@@ -104,6 +112,19 @@ namespace Cfg
     {
         return STYLE->standardPalette().text();
     }
+
+    DEFINE_COLOR_HELPER_FN(SyntaxParenthesisBg)
+    DEFINE_COLOR_HELPER_FN(SyntaxParenthesisFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxCurrentLineBg)
+    DEFINE_COLOR_HELPER_FN(SyntaxCurrentQueryBg)
+    DEFINE_COLOR_HELPER_FN(SyntaxValidObject)
+    DEFINE_COLOR_HELPER_FN(SyntaxForeground)
+    DEFINE_COLOR_HELPER_FN(SyntaxStringFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxKeywordFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxBindParamFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxBlobFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxCommentFg)
+    DEFINE_COLOR_HELPER_FN(SyntaxNumberFg)
 }
 
 CFG_DEFINE(Ui)

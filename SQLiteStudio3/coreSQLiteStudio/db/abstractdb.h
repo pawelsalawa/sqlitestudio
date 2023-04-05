@@ -348,6 +348,11 @@ class API_EXPORT AbstractDb : public Db
              * @brief The deterministic flag used for function registration.
              */
             bool deterministic;
+
+            /**
+             * @brief Flag indicating if this function is SQLiteStudio's built-in function or user's custom function.
+             */
+            bool builtIn = false;
         };
 
         friend int qHash(const AbstractDb::RegisteredFunction& fn);
@@ -430,6 +435,15 @@ class API_EXPORT AbstractDb : public Db
         void flushWal();
 
         /**
+         * @brief Registers SQLiteStudio's built-in functions in the db.
+         *
+         * This function is called once during opening the db.
+         *
+         * @see FunctionManager
+         */
+        void registerBuiltInFunctions();
+
+        /**
          * @brief Connection state lock.
          *
          * It's locked whenever the connection state is changed or tested.
@@ -480,8 +494,8 @@ class API_EXPORT AbstractDb : public Db
         bool openQuiet();
         bool closeQuiet();
         bool openForProbing();
-        void registerAllFunctions();
-        void registerAllCollations();
+        void registerUserFunctions();
+        void registerUserCollations();
         void reloadExtensions();
 };
 

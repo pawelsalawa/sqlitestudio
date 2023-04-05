@@ -1,10 +1,10 @@
 #include "extendedpalette.h"
+#include "common/unused.h"
 #include <QStyle>
 #include <QDebug>
 
 ExtendedPalette::ExtendedPalette()
 {
-
 }
 
 QBrush ExtendedPalette::editorString() const
@@ -27,9 +27,14 @@ void ExtendedPalette::setEditorLineBase(const QBrush &value)
     editorLineBaseBrush = value;
 }
 
-void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
+bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
+    UNUSED(themeName);
     QPalette stdPalette = style->standardPalette();
+    if (stdPalette == lastPalette)
+        return false;
+
+    lastPalette = stdPalette;
     bool isDark = stdPalette.base().color().lightness() < 128;
 
     static const QColor stdStrColor = QColor(Qt::green);
@@ -44,23 +49,22 @@ void ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
     else
         editorExpressionBrush = stdExprColor;
 
-    if (themeName.toLower() == "macintosh" && isDark)
-        editorLineNumberBaseBrush = stdPalette.alternateBase().color().darker(300);
-    else
-        editorLineNumberBaseBrush = stdPalette.alternateBase();
-
     if (isDark)
     {
-        editorLineBaseBrush = stdPalette.alternateBase();
-        editorCurrentQueryBrush = stdPalette.base().color().lighter(140);
         mdiAreaBaseBrush = stdPalette.alternateBase();
+        editorLineNumberBaseBrush = stdPalette.base().color().lighter(130);
+        editorLineBaseBrush = stdPalette.base().color().lighter(130);
+        editorCurrentQueryBrush = stdPalette.base().color().lighter(120);
     }
     else
     {
-        editorLineBaseBrush = stdPalette.alternateBase().color().darker(103);
-        editorCurrentQueryBrush = stdPalette.base().color().darker(103);
+        editorLineNumberBaseBrush = stdPalette.base().color().darker(120);
+        editorLineBaseBrush = stdPalette.base().color().darker(120);
+        editorCurrentQueryBrush = stdPalette.base().color().darker(110);
         mdiAreaBaseBrush = QColor(138, 138, 138);
     }
+
+    return true;
 }
 
 QBrush ExtendedPalette::mdiAreaBase() const

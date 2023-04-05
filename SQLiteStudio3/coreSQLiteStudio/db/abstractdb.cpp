@@ -75,7 +75,7 @@ bool AbstractDb::closeQuiet()
     registeredFunctions.clear();
     registeredCollations.clear();
     if (FUNCTIONS) // FUNCTIONS is already null when closing db while closing entire app
-        disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
+        disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerUserFunctions()));
 
     return res;
 }
@@ -93,15 +93,20 @@ bool AbstractDb::openForProbing()
     return res;
 }
 
-void AbstractDb::registerAllFunctions()
+void AbstractDb::registerUserFunctions()
 {
-    for (const RegisteredFunction& regFn : registeredFunctions)
+    QMutableSetIterator<RegisteredFunction> it(registeredFunctions);
+    while (it.hasNext())
     {
+        const RegisteredFunction& regFn = it.next();
+        if (regFn.builtIn)
+            continue;
+
         if (!deregisterFunction(regFn.name, regFn.argCount))
             qWarning() << "Failed to deregister custom SQL function:" << regFn.name;
-    }
 
-    registeredFunctions.clear();
+        it.remove();
+    }
 
     RegisteredFunction regFn;
     for (FunctionManager::ScriptFunction*& fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
@@ -112,21 +117,23 @@ void AbstractDb::registerAllFunctions()
         regFn.deterministic = fnPtr->deterministic;
         registerFunction(regFn);
     }
+}
 
+void AbstractDb::registerBuiltInFunctions()
+{
+    RegisteredFunction regFn;
     for (FunctionManager::NativeFunction*& fnPtr : FUNCTIONS->getAllNativeFunctions())
     {
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
         regFn.type = fnPtr->type;
+        regFn.builtIn = true;
         regFn.deterministic = fnPtr->deterministic;
         registerFunction(regFn);
     }
-
-    disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
-    connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
 }
 
-void AbstractDb::registerAllCollations()
+void AbstractDb::registerUserCollations()
 {
     for (QString& name : registeredCollations)
     {
@@ -139,8 +146,8 @@ void AbstractDb::registerAllCollations()
     for (CollationManager::CollationPtr& collPtr : COLLATIONS->getCollationsForDatabase(getName()))
         registerCollation(collPtr->name);
 
-    disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
-    connect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
+    disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerUserCollations()));
+    connect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerUserCollations()));
 }
 
 void AbstractDb::loadExtensions()
@@ -383,14 +390,20 @@ bool AbstractDb::openAndSetup()
     // Implementation specific initialization
     initAfterOpen();
 
+    // Built-in SQL functions
+    registerBuiltInFunctions();
+
     // Load extension
     loadExtensions();
 
     // Custom SQL functions
-    registerAllFunctions();
+    registerUserFunctions();
 
     // Custom collations
-    registerAllCollations();
+    registerUserCollations();
+
+    disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerUserFunctions()));
+    connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerUserFunctions()));
 
     return result;
 }
