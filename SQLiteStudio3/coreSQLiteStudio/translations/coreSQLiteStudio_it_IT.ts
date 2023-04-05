@@ -4,20 +4,20 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="342"/>
-      <location filename="../db/abstractdb.cpp" line="359"/>
+      <location filename="../db/abstractdb.cpp" line="349"/>
+      <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Impossibile eseguire la query su un database chiuso.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="648"/>
+      <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
       <translation>Errore nell&apos;allegare il database %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="906"/>
+      <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
+      <translation>Impossibile creare il checkpoint WAL completo sul database &apos;%1&apos;. Errore restituito dal motore SQLite: %2</translation>
     </message>
   </context>
   <context>
@@ -485,13 +485,13 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Impossibile caricare il plugin %1 (errore durante l&apos;inizializzazione del plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="734"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="735"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>max: %1</translation>
@@ -787,7 +787,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>Impossibile eseguire il punto di controllo WAL: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
@@ -1024,12 +1024,12 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>Impossibile eseguire SQL perché l'applicazione non è riuscita ad avviare la transazione: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Esecuzione dal file annullata. Tutte le query eseguite finora sono state ripristinate.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
@@ -1039,22 +1039,22 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>Impossibile eseguire SQL perché l'applicazione non è riuscita a effettuare il commit della transazione: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+      <translation>Completata l'esecuzione di %1 query in %2 secondi. %3 non è stata eseguita a causa di errori.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Terminata l'esecuzione di %1 query in %2 secondi.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
-      <translation type="unfinished">Could not execute SQL due to error.</translation>
+      <translation>Impossibile eseguire SQL a causa di errore.</translation>
     </message>
   </context>
   <context>
