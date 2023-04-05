@@ -74,13 +74,9 @@
       <translation>Портабельная версия.</translation>
     </message>
     <message>
-      <source>MacOS X application boundle distribution.</source>
-      <translation type="vanished">Пакет приложения MacOS X.</translation>
-    </message>
-    <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application bundle distribution.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">MacOS X application bundle distribution.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
@@ -151,40 +147,24 @@
       <translation>Редактор сниппетов</translation>
     </message>
     <message>
-      <source>Commit all function changes</source>
-      <translation type="vanished">Подтвердить все изменения функций</translation>
-    </message>
-    <message>
-      <source>Rollback all function changes</source>
-      <translation type="vanished">Откатить все изменения функций</translation>
-    </message>
-    <message>
-      <source>Create new function</source>
-      <translation type="vanished">Создать новую функцию</translation>
-    </message>
-    <message>
-      <source>Delete selected function</source>
-      <translation type="vanished">Удалить выбранную функцию</translation>
-    </message>
-    <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all snippet changes</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Commit all snippet changes</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Rollback all snippet changes</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Rollback all snippet changes</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
       <source>Create new snippet</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Create new snippet</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Delete selected snippet</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Delete selected snippet</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
@@ -1337,10 +1317,6 @@
       <translation>Стандартный цвет</translation>
     </message>
     <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL strings are enclosed with single quote characters. In other languages string may be enclosed with double quote, or something else.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Строки в SQL заключены в символы одинарных кавычек. В других языках строка может быть заключена в двойные кавычки или как-нибудь иначе.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
       <translation>Цвет строки</translation>
@@ -1351,26 +1327,14 @@
       <translation>Цвет комментария</translation>
     </message>
     <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database. Languages other than SQL may use this color setting for their other, distinct language parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Допустимыми объектами являются имена таблиц, индексов, триггеров или представлений, которые имеются в базе данных SQLite. Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Valid objects foreground</source>
       <translation>Цвет распознанных объектов</translation>
     </message>
     <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In SQL current query is highlighted with this background to indicate to the user which query would be executed at certain moment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;В редакторе SQL текущий запрос подсвечивается этим фоном, чтобы указать пользователю, какой запрос будет выполняться в данный момент.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1407"/>
       <source>Current query background</source>
       <translation>Фон текущего запроса</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Languages other than SQL may use this color setting for their other, distinct syntax parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подстановочные параметры определяют места, куда позже будут вставлены значения, переданные пользователем. Они указываются в одной из форм:&lt;/p&gt;&lt;p&gt;:param_name&lt;/p&gt;&lt;p&gt;$param_name&lt;/p&gt;&lt;p&gt;@param_name&lt;/p&gt;&lt;p&gt;?&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Языки, отличные от SQL, могут использовать этот цвет для других своих элементов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1371"/>
@@ -1381,10 +1345,6 @@
       <location filename="../dialogs/configdialog.ui" line="1397"/>
       <source>Current line background</source>
       <translation>Фон текущей строки</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user moves the insertion cursor at any parenthesis in the code, the application will mark this parenthesis and its matched counterparty with this background color.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При перемещении курсора клавиатуры к любой скобке в коде, приложение выделит эту скобку и соответствующую ей другую этим цветом фона.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1417"/>
@@ -1400,10 +1360,6 @@
       <location filename="../dialogs/configdialog.ui" line="1254"/>
       <source>Number foreground</source>
       <translation>Цвет числа</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Данные типа BLOB — это бинарные данные, представляемые в виде шестнадцатеричных чисел, например:&lt;/p&gt;&lt;p&gt;X&apos;12B4&apos;&lt;/p&gt;&lt;p&gt;x&apos;46A2F4&apos;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1325"/>
@@ -1637,21 +1593,17 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1772"/>
       <source>Clear hotkey for this action</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Clear hotkey for this action</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Restore original hotkey for this action</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Restore original hotkey for this action</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1827"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Here you can configure colors for code syntax highlighting.They are shared across different languages - not only for SQL, but also JavaScript and others.</source>
-      <translation type="vanished">Здесь вы можете настроить цвета для подсветки синтаксиса. Они общие для разных языков - не только для SQL, но и для JavaScript и других.</translation>
+      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
     </message>
   </context>
   <context>
