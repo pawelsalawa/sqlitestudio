@@ -439,14 +439,14 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
 - COLUMNS - come FIXED, ma più intelligente (non usare con enormi set di risultati, vedere i dettagli qui sotto),
 - ROW - ogni colonna della riga viene visualizzata in una nuova riga, quindi vengono visualizzati i dati completi.
 
-La modalità CLASSIC è consigliata se si desidera visualizzare tutti i dati, ma non si vuole sprecare le linee per ogni colonna. Ogni riga visualizzerà i dati completi per ogni colonna, ma ciò significa anche che le colonne non saranno allineate l'una all'altra nelle righe successive. La modalità CLASSIC inoltre non rispetta la larghezza della finestra terminale (console), quindi se i valori nelle colonne sono più larghi della finestra, la riga verrà continuata nelle righe successive.
+La modalità CLASSIC è consigliata se si desidera visualizzare tutti i dati, ma non si vuole sprecare le linee per ogni colonna. Ogni riga visualizzerà i dati completi per ogni colonna, ma ciò significa anche che le colonne non saranno allineate l&apos;una all&apos;altra nelle righe successive. La modalità CLASSIC inoltre non rispetta la larghezza della finestra terminale (console), quindi se i valori nelle colonne sono più larghi della finestra, la riga verrà continuata nelle righe successive.
 
-La modalità FIXED è consigliata se si desidera un output leggibile e se si ha cura dei valori di dati lunghi. Le colonne saranno allineate, rendendo l'output come bella tabella. La larghezza delle colonne è calcolata a partire dalla larghezza della finestra della console e da un numero di colonne.
+La modalità FIXED è consigliata se si desidera un output leggibile e se si ha cura dei valori di dati lunghi. Le colonne saranno allineate, rendendo l&apos;output come bella tabella. La larghezza delle colonne è calcolata a partire dalla larghezza della finestra della console e da un numero di colonne.
 
 La modalità COLUMNS è simile alla modalità FIXED, ma cerca di essere intelligente e di rendere più strette le colonne con valori più corti, mentre le colonne con valori più lunghi avranno più spazio. Le prime ad essere rimpicciolite sono le colonne con le intestazioni più lunghe (quindi i nomi delle intestazioni vengono tagliati per primi), poi vengono rimpicciolite le colonne con i valori più lunghi, fino al momento in cui tutte le colonne entrano nella finestra del terminale.
-ATTENZIONE! La modalità COLONNE legge tutti i risultati della query in una volta sola per valutare la larghezza delle colonne, quindi è pericoloso usarla quando si lavora con insiemi di risultati enormi. Tenere presente che questa modalità carica l'intero insieme di risultati in memoria.
+ATTENZIONE! La modalità COLONNE legge tutti i risultati della query in una volta sola per valutare la larghezza delle colonne, quindi è pericoloso usarla quando si lavora con insiemi di risultati enormi. Tenere presente che questa modalità carica l&apos;intero insieme di risultati in memoria.
 
-La modalità ROW è consigliata se si ha bisogno di vedere i valori interi e non ci si aspetta che vengano visualizzate molte righe, perché questa modalità visualizza una riga di output per ogni colonna, quindi si otterranno 10 righe per singola riga con 10 colonne, quindi se si hanno 10 righe di questo tipo, si otterranno 100 righe di output (+1 riga in più per ogni riga, per separare le righe l'una dall'altra).</translation>
+La modalità ROW è consigliata se si ha bisogno di vedere i valori interi e non ci si aspetta che vengano visualizzate molte righe, perché questa modalità visualizza una riga di output per ogni colonna, quindi si otterranno 10 righe per singola riga con 10 colonne, quindi se si hanno 10 righe di questo tipo, si otterranno 100 righe di output (+1 riga in più per ogni riga, per separare le righe l&apos;una dall&apos;altra).</translation>
     </message>
   </context>
   <context>
@@ -820,7 +820,7 @@ Atteso uno di: %2</translation>
     <message>
       <location filename="../main.cpp" line="36"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-      <translation>Esegue il file SQL fornito (incluse tutte le ricche caratteristiche dell'esecutore delle query di SQLiteStudio) sul file di database specificato e termina. Il parametro del database diventa obbligatorio se viene utilizzata questa opzione.</translation>
+      <translation>Esegue il file SQL fornito (incluse tutte le ricche caratteristiche dell&apos;esecutore delle query di SQLiteStudio) sul file di database specificato e termina. Il parametro del database diventa obbligatorio se viene utilizzata questa opzione.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="39"/>
@@ -840,12 +840,12 @@ Atteso uno di: %2</translation>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation>Elenca le codifiche disponibili da utilizzare con l'opzione -c ed esce.</translation>
+      <translation>Elenca le codifiche disponibili da utilizzare con l&apos;opzione -c ed esce.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation>Quando utilizzato insieme all'opzione -e, l'esecuzione non si fermerà su un errore, ma piuttosto continuerà fino alla fine, ignorando gli errori.</translation>
+      <translation>Quando utilizzato insieme all&apos;opzione -e, l&apos;esecuzione non si fermerà su un errore, ma piuttosto continuerà fino alla fine, ignorando gli errori.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -860,17 +860,17 @@ Atteso uno di: %2</translation>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation>Codifica non valida: %1. Usa l'opzione -cl per elencare le codifiche disponibili.</translation>
+      <translation>Codifica non valida: %1. Usa l&apos;opzione -cl per elencare le codifiche disponibili.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation>L'argomento del file database è obbligatorio quando si esegue il file SQL.</translation>
+      <translation>L&apos;argomento del file database è obbligatorio quando si esegue il file SQL.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation>Impossibile aprire il database specificato per eseguire il file SQL. Puoi provare a usare l'opzione -d per scoprire maggiori dettagli.</translation>
+      <translation>Impossibile aprire il database specificato per eseguire il file SQL. Puoi provare a usare l&apos;opzione -d per scoprire maggiori dettagli.</translation>
     </message>
   </context>
 </TS>
