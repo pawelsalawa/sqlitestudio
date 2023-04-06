@@ -275,6 +275,8 @@ MimeType=application/vnd.sqlite3
     <enableTimestamp>1</enableTimestamp>
     <vendor>sqlitestudio.pl</vendor>
     <windowsExecutableIcon>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_opt.ico</windowsExecutableIcon>
+	<windowsARPRegistryPrefix>${project.fullName}</windowsARPRegistryPrefix>
+	<productDisplayIcon>${installdir}\appicon.ico</productDisplayIcon>
     <finalPageActionList>
         <runProgram>
             <program>${installdir}/SQLiteStudio.exe</program>

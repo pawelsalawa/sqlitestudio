@@ -18,6 +18,7 @@
 - BUGFIX: #4697 Changed default hotkey for rolling back pending changes in table data from Ctrl+Backspace to Alt+Shit+Backspace. Default hotkey affects new users and will not change automatically for those who upgrade from older SQLiteStudio.
 - BUGFIX: #4739 Fixed committing changes in Extensions Manager if modifying valid extension settings, while there is another invalid, yet untouched extension on the list.
 - BUGFIX: #4715 Fixed the UPDATE OF column popup on MacOSX.
+- BUGFIX: #4754 Fixed Windows uninstaller to not create separate uninstall entries in Windows registry per each SQLiteStudio version and added SQLiteStudio icon for the uninstall entry in Windows Add/Remove programs.
 - BUGFIX: Tcl plugin compilation improved on Ubuntu 18.04 (thanks to @tuffnatty).
 
 ### 3.4.3
