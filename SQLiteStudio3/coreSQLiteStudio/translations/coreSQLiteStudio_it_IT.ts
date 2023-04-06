@@ -1024,7 +1024,7 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation>Impossibile eseguire SQL perché l'applicazione non è riuscita ad avviare la transazione: %1</translation>
+      <translation>Impossibile eseguire SQL perché l&apos;applicazione non è riuscita ad avviare la transazione: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
@@ -1039,17 +1039,17 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation>Impossibile eseguire SQL perché l'applicazione non è riuscita a effettuare il commit della transazione: %1</translation>
+      <translation>Impossibile eseguire SQL perché l&apos;applicazione non è riuscita a effettuare il commit della transazione: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation>Completata l'esecuzione di %1 query in %2 secondi. %3 non è stata eseguita a causa di errori.</translation>
+      <translation>Completata l&apos;esecuzione di %1 query in %2 secondi. %3 non è stata eseguita a causa di errori.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation>Terminata l'esecuzione di %1 query in %2 secondi.</translation>
+      <translation>Terminata l&apos;esecuzione di %1 query in %2 secondi.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="160"/>
