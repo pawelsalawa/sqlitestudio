@@ -1,0 +1,180 @@
+name: "Linux dependencies: Qt"
+
+env:
+    workflow_name: lin_qt
+    openssl_version: "1.1.1t"
+    icu_version: "72.1"
+    submodules: qtdeclarative qtimageformats qtsvg qttools qtx11extras
+    TARGET_ARCH: "x86_64"
+
+on:
+    workflow_dispatch:
+        inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
+    schedule:
+        - cron: '30 1 * * 1' # run at 1:30 AM UTC every Monday
+    repository_dispatch:
+        types: [lin_release]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        container: ${{ matrix.container }}
+
+        strategy:
+          fail-fast: false
+          matrix:
+            binary_compatibility:
+              - "glibc_2.23"  # Ubuntu 16.04
+              #- "glibc_2.27"  # Ubuntu 18.04
+              #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
+            version:
+              - "5.15.9"
+            include:
+              - binary_compatibility: glibc_2.23
+                container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
+              #- binary_compatibility: glibc_2.27
+              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
+              #- binary_compatibility: glibc_2.31
+              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
+
+        steps:
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: ${{ env.workflow_name }}-${{ matrix.version }}-${{ matrix.binary_compatibility }}
+                max-size: "712M"
+
+            - name: Configure ccache
+              if: inputs.use_ccache || false
+              run: |
+                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+
+            - name: Install software build dependencies
+              run: |
+                sudo apt-get -y install \
+                    libatspi2.0-dev \
+                    libcups2-dev \
+                    libegl1-mesa-dev \
+                    libfontconfig1-dev \
+                    libfreetype6-dev \
+                    libgl1-mesa-dev \
+                    libgles2-mesa-dev \
+                    libglu1-mesa-dev \
+                    libgtk-3-dev \
+                    libsqlite3-dev \
+                    libsm-dev \
+                    libssl-dev \
+                    libx11-dev \
+                    libx11-xcb-dev \
+                    libxext-dev \
+                    libxfixes-dev \
+                    libxi-dev \
+                    libxrender-dev \
+                    libxcb1-dev \
+                    libxcb-glx0-dev \
+                    libxcb-keysyms1-dev \
+                    libxcb-image0-dev \
+                    libxcb-shm0-dev \
+                    libxcb-icccm4-dev \
+                    libxcb-sync0-dev \
+                    libxcb-xfixes0-dev \
+                    libxcb-shape0-dev \
+                    libxcb-randr0-dev \
+                    libxcb-render-util0-dev \
+                    libxcb-xinerama0-dev \
+                    libxkbcommon-dev \
+                    libxkbcommon-x11-dev \
+                    unixodbc-dev
+
+            - name: Download software source
+              run: |
+                set -x
+                for _m in qtbase $submodules; do
+                    curl -L https://download.qt.io/official_releases/qt/5.15/${{ matrix.version }}/submodules/$_m-everywhere-opensource-src-${{ matrix.version }}.tar.xz \
+                    | xzcat \
+                    | tar -x
+                done
+
+            - name: Apply patches
+              run: |
+                set -x
+                cd qtbase-everywhere-src-${{ matrix.version }}
+                case ${{ matrix.version }} in 5.15.9)
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-27404-27405-27406-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-37434-qtbase-5.15.patch | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-24607-qtbase-5.15.diff | patch -p1
+                    ;;
+                esac
+
+            - name: Configure qtbase
+              run: |
+                cd qtbase-everywhere-src-${{ matrix.version }}
+                OPENSSL_LIBS="-L/usr/local/lib -lssl -lcrypto" ./configure \
+                    -I /usr/local/include \
+                    -L /usr/local/lib \
+                    -appstore-compliant \
+                    -bundled-xcb-xinput \
+                    -ccache \
+                    -confirm-license \
+                    -dbus-runtime \
+                    -fontconfig \
+                    -icu \
+                    -no-iconv \
+                    -nomake examples \
+                    -nomake tests \
+                    -opensource \
+                    -openssl-linked \
+                    -platform linux-g++ \
+                    -prefix /usr/local \
+                    -qt-doubleconversion \
+                    -qt-harfbuzz \
+                    -qt-libjpeg \
+                    -qt-libpng \
+                    -qt-pcre \
+                    -qt-zlib \
+                    -release \
+                    -rpath \
+                    -sql-odbc \
+                    -sql-sqlite \
+                    -system-sqlite \
+                    -system-freetype \
+                    -v \
+                    -xcb \
+                    -xkbcommon
+
+            - name: Build qtbase
+              run: |
+                set -x
+                cd qtbase-everywhere-src-${{ matrix.version }}
+                make -j$(nproc)
+                sudo make INSTALL_ROOT=/tmp/stage install  # for package
+                sudo make install  # for submodules build
+
+            - name: Build submodules
+              run: |
+                set -x
+                for _m in $submodules; do
+                    cd $_m-everywhere-src-${{ matrix.version }}
+                    qmake
+                    make -j$(nproc)
+                    sudo make INSTALL_ROOT=/tmp/stage install
+                    cd ..
+                done
+
+            - name: Create package
+              run: |
+                set -x
+                _pkgfile="qt5-${{ matrix.version }}-${{ matrix.binary_compatibility }}.$TARGET_ARCH.tar.zst"
+                (cd /tmp/stage; tar -c *) | zstd -9 > $_pkgfile
+                echo "SOFTWARE_PACKAGE_FILE=$_pkgfile" >> $GITHUB_ENV
+
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: ${{ env.SOFTWARE_PACKAGE_FILE }}
+                path: ${{ env.SOFTWARE_PACKAGE_FILE }}
