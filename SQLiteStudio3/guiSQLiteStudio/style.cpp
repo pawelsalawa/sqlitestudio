@@ -1,6 +1,9 @@
 #include "style.h"
 #include "themetuner.h"
 #include "mainwindow.h"
+#include "common/unused.h"
+#include "syntaxhighlighterplugin.h"
+#include "services/pluginmanager.h"
 #include <QApplication>
 #include <QToolTip>
 #include <QDebug>
@@ -45,7 +48,6 @@ void Style::setStyle(QStyle *style, const QString &styleName)
         QToolTip::setPalette(standardPalette());
     }
     THEME_TUNER->tuneTheme(styleName);
-    extPalette.styleChanged(this, styleName);
     MAINWINDOW->getMdiArea()->setBackground(extPalette.mdiAreaBase());
 }
 
@@ -59,9 +61,31 @@ bool Style::isDark() const
     return isDark(this);
 }
 
+bool Style::eventFilter(QObject *obj, QEvent *ev)
+{
+    UNUSED(obj);
+    if (ev->type() == QEvent::PaletteChange)
+    {
+        if (extPalette.styleChanged(this, name()))
+        {
+            QList<SyntaxHighlighterPlugin*> plugins = PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>();
+            auto it = plugins.begin();
+            while (it != plugins.end())
+            {
+                (*it)->refreshFormats();
+                it++;
+            }
+            emit paletteChanged();
+        }
+    }
+
+    return false;
+}
+
 Style::Style(QStyle *style)
     : QProxyStyle(style)
 {
     initialPalette = style->standardPalette();
     extPalette.styleChanged(this, name());
+    qApp->installEventFilter(this);
 }

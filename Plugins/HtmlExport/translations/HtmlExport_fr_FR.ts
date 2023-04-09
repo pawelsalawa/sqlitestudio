@@ -18,13 +18,13 @@
       <location filename="../htmlexport.cpp" line="115"/>
       <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
-      <translation>Table exportée : %1</translation>
+      <translation>Tableau exporté : %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="127"/>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
-      <translation>Table : %1</translation>
+      <translation>Tableau : %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
-      <translation>Pour la table : </translation>
+      <translation>Pour le tableau :</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
@@ -99,7 +99,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation>Sur la table :</translation>
+      <translation>Sur le tableau :</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
@@ -167,7 +167,7 @@
     <message>
       <location filename="../htmlexport.ui" line="111"/>
       <source>Don&apos;t escape HTML characters</source>
-      <translation>N’enlevez pas les caractères HTML</translation>
+      <translation>N&apos;enlevez pas les caractères HTML</translation>
     </message>
   </context>
 </TS>

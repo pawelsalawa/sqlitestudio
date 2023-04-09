@@ -11,7 +11,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="141"/>
       <source>-- Table: %1</source>
-      <translation>-- Table : %1</translation>
+      <translation>-- Tableau : %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="195"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation>Nom de table pour la déclaration INSERT est obligatoire.</translation>
+      <translation>Nom du tableau pour l&apos;instruction INSERT est obligatoire.</translation>
     </message>
   </context>
   <context>
@@ -59,12 +59,12 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>Utilisez le formatage SQL pour formater des déclarations SQL exportables</translation>
+      <translation>Utiliser le formatage SQL pour formater les instructions SQL exportées</translation>
     </message>
   </context>
   <context>
@@ -72,17 +72,17 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="47"/>
       <source>Use SQL formatter to format exported SQL statements</source>
-      <translation>Utilisez le formatage SQL pour formater des déclarations SQL exportables</translation>
+      <translation>Utiliser le formatage SQL pour formater les instructions SQL exportées</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="40"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation>Nom de table pour utiliser la déclaration INSERT :</translation>
+      <translation>Nom du tableau à utiliser pour l&apos;instruction INSERT :</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="64"/>
       <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-      <translation>Genre la déclaration &quot;CREATE TABLE&quot; au debut</translation>
+      <translation>Générer une instruction &quot;CREATE TABLE&quot; au début</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="20"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
     </message>
   </context>
 </TS>

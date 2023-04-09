@@ -202,6 +202,13 @@ class API_EXPORT Lexer
         QString sqlToTokenize;
 
         /**
+         * @brief Token produced by the lexer previously.
+         *
+         * This is used only by the stateful lexer processing (i.e. with getToken())
+         */
+        TokenPtr prevTokenProcessed;
+
+        /**
          * @brief Current tokenizer position in the sqlToTokenize.
          *
          * This position index is used to track which SQL characters should be tokenized

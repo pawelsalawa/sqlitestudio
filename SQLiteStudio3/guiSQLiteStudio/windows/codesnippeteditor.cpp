@@ -64,11 +64,11 @@ QString CodeSnippetEditor::getTitleForMdiWindow()
 
 void CodeSnippetEditor::createActions()
 {
-    createAction(COMMIT, ICONS.COMMIT, tr("Commit all function changes"), this, SLOT(commit()), ui->toolBar, this);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all function changes"), this, SLOT(rollback()), ui->toolBar, this);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all snippet changes"), this, SLOT(commit()), ui->toolBar, this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all snippet changes"), this, SLOT(rollback()), ui->toolBar, this);
     ui->toolBar->addSeparator();
-    createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new function"), this, SLOT(newSnippet()), ui->toolBar, this);
-    createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected function"), this, SLOT(deleteSnippet()), ui->toolBar, this);
+    createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new snippet"), this, SLOT(newSnippet()), ui->toolBar, this);
+    createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected snippet"), this, SLOT(deleteSnippet()), ui->toolBar, this);
     ui->toolBar->addSeparator();
     createAction(MOVE_UP, ICONS.MOVE_UP, tr("Move the snippet up"), this, SLOT(moveSnippetUp()), ui->toolBar, this);
     createAction(MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move the snippet down"), this, SLOT(moveSnippetDown()), ui->toolBar, this);

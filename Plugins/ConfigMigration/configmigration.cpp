@@ -77,7 +77,7 @@ QString ConfigMigration::findOldConfig()
     if (checkOldDir(dirPath, output))
         return output;
 
-    if (getDistributionType() == DistributionType::OSX_BOUNDLE)
+    if (getDistributionType() == DistributionType::OSX_BUNDLE)
     {
         // Portable path 4 check
         dirPath = QCoreApplication::applicationDirPath() + "/../../sqlitestudio-cfg";

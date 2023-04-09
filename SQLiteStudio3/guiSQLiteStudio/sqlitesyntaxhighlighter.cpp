@@ -412,47 +412,47 @@ void SqliteHighlighterPlugin::refreshFormats()
     QTextCharFormat format;
 
     // Standard
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[SqliteSyntaxHighlighter::State::STANDARD] = format;
 
     // Parenthesis
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     formats[SqliteSyntaxHighlighter::State::PARENTHESIS] = format;
 
     // String
-    format.setForeground(CFG_UI.Colors.SyntaxStringFg.get());
+    format.setForeground(Cfg::getSyntaxStringFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     formats[SqliteSyntaxHighlighter::State::STRING] = format;
 
     // Keyword
-    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setForeground(Cfg::getSyntaxKeywordFg());
     format.setFontWeight(QFont::ExtraBold);
     format.setFontItalic(false);
     formats[SqliteSyntaxHighlighter::State::KEYWORD] = format;
 
     // BindParam
-    format.setForeground(CFG_UI.Colors.SyntaxBindParamFg.get());
+    format.setForeground(Cfg::getSyntaxBindParamFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[SqliteSyntaxHighlighter::State::BIND_PARAM] = format;
 
     // Blob
-    format.setForeground(CFG_UI.Colors.SyntaxBlobFg.get());
+    format.setForeground(Cfg::getSyntaxBlobFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[SqliteSyntaxHighlighter::State::BLOB] = format;
 
     // Comment
-    format.setForeground(CFG_UI.Colors.SyntaxCommentFg.get());
+    format.setForeground(Cfg::getSyntaxCommentFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     formats[SqliteSyntaxHighlighter::State::COMMENT] = format;
 
     // Number
-    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    format.setForeground(Cfg::getSyntaxNumberFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     formats[SqliteSyntaxHighlighter::State::NUMBER] = format;

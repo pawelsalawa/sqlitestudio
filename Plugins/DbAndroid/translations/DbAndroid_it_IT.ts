@@ -89,7 +89,7 @@ Vuoi selezionarne un altro o lasciarlo non configurato?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Impossibile connettersi al dispositivo %1, perché esso non è visibile dal tuo computer.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -302,7 +302,7 @@ Il dispositivo Android ha rifiutato la cancellazione, o era impossibile.</transl
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Impossibile connettersi al dispositivo %1, perché esso non è visibile dal tuo computer.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>

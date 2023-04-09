@@ -26,7 +26,10 @@ CfgCategory::CfgCategory(const QString &name, const QString &title) :
 
 CfgEntry *CfgCategory::getEntryByName(const QString& name)
 {
-    return childs[name];
+    if (childs.contains(name))
+        return childs[name];
+
+    return nullptr;
 }
 
 QString CfgCategory::toString() const

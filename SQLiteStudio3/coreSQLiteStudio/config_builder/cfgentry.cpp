@@ -99,6 +99,11 @@ QString CfgEntry::getTitle() const
     return title;
 }
 
+QString CfgEntry::getName() const
+{
+    return name;
+}
+
 void CfgEntry::translateTitle()
 {
     // This needs to be "QObject::tr" and not just "tr". See CfgCategory::translateTitle() for details.

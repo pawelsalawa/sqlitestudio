@@ -156,6 +156,21 @@ class API_EXPORT PluginManagerImpl : public PluginManager
              * @brief Names of plugins that this plugin conflicts with.
              */
             QStringList conflicts;
+
+            /**
+             * @brief If not empty, contains Plugin's project name to be used for loading translation resource file.
+             *
+             * For typical SQLiteStudio plugin the auto-generated translation resource name is the same
+             * as the name of the plugin project. Typically, name of loaded plugin class is made of
+             * the name of the plugin project and the "Plugin" word suffix. Therefore SQLiteStudio
+             * by default just removes the "Plugin" suffix (if it has such) and attempts to load the translation
+             * named this way.
+             *
+             * If the main Plugin class does not follow this naming strategy (project name + Plugin suffix),
+             * then the translationName should be specified in plugin's metadata,
+             * giving actual name of translation resource (i.e. name of Plugin's source code project) to be loaded.
+             */
+            QString translationName;
         };
 
         /**

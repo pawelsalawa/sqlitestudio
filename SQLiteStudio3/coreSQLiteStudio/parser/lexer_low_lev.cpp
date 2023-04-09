@@ -4,6 +4,7 @@
 #include "sqlite3_parse.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
+#include "common/unused.h"
 
 #include <QByteArray>
 #include <QChar>
@@ -13,19 +14,131 @@
 // Low-level lexer routines based on tokenizer from SQLite 3.7.15.2
 //
 
+int lexerGetToken(const QString& z, TokenPtr& token, bool tolerant);
+
 bool isIdChar(const QChar& c)
 {
     return c.isPrint() && !c.isSpace() && !doesObjectNeedWrapping(c);
 }
 
-int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tolerant)
+// From SQLite source code:
+/*
+** The following three functions are called immediately after the tokenizer
+** reads the keywords WINDOW, OVER and FILTER, respectively, to determine
+** whether the token should be treated as a keyword or an SQL identifier.
+** This cannot be handled by the usual lemon %fallback method, due to
+** the ambiguity in some constructions. e.g.
+**
+**   SELECT sum(x) OVER ...
+**
+** In the above, "OVER" might be a keyword, or it might be an alias for the
+** sum(x) expression. If a "%fallback ID OVER" directive were added to
+** grammar, then SQLite would always treat "OVER" as an alias, making it
+** impossible to call a window-function without a FILTER clause.
+**
+** WINDOW is treated as a keyword if:
+**
+**   * the following token is an identifier, or a keyword that can fallback
+**     to being an identifier, and
+**   * the token after than one is TK_AS.
+**
+** OVER is a keyword if:
+**
+**   * the previous token was TK_RP, and
+**   * the next token is either TK_LP or an identifier.
+**
+** FILTER is a keyword if:
+**
+**   * the previous token was TK_RP, and
+**   * the next token is TK_LP.
+*/
+
+int sqlite3ParserFallback(int iToken); // defined in parse.y
+int lexerWindowSpecificGetToken(const QString& z, TokenPtr& token, const TokenPtr& prevToken, bool tolerant)
 {
-    if (sqliteVersion < 3 || sqliteVersion > 3)
-    {
-        qCritical() << "lexerGetToken() called with invalid sqliteVersion:" << sqliteVersion;
-        return 0;
+    int lgt = 0;
+    do
+        lgt += lexerGetToken(z.mid(lgt), token, prevToken, tolerant);
+    while (token->lemonType == TK3_SPACE);
+
+    if (
+        token->lemonType == TK3_ID ||
+        token->lemonType == TK3_STRING ||
+        token->lemonType == TK3_JOIN_KW ||
+        token->lemonType == TK3_WINDOW ||
+        token->lemonType == TK3_OVER ||
+        sqlite3ParserFallback(token->lemonType) == TK3_ID
+    ) {
+        token->lemonType = TK3_ID;
+        token->type = Token::OTHER;
     }
 
+    return lgt;
+}
+
+void lexerHandleWindowKeyword(const QString& z, TokenPtr& token, const TokenPtr& prevToken, bool tolerant)
+{
+    UNUSED(prevToken);
+    TokenPtr firstAfter = TokenPtr::create();
+    int lgt = lexerWindowSpecificGetToken(z, firstAfter, token, tolerant);
+    if (firstAfter->lemonType != TK3_ID)
+    {
+        token->lemonType = TK3_ID;
+        token->type = Token::OTHER;
+        return;
+    }
+
+    TokenPtr secondAfter = TokenPtr::create();
+    lexerWindowSpecificGetToken(z.mid(lgt), secondAfter, firstAfter, tolerant);
+    if (secondAfter->lemonType != TK3_AS)
+    {
+        token->lemonType = TK3_ID;
+        token->type = Token::OTHER;
+        return;
+    }
+}
+
+void lexerHandleOverKeyword(const QString& z, TokenPtr& token, const TokenPtr& prevToken, bool tolerant)
+{
+    if (prevToken && prevToken->lemonType == TK3_RP) {
+        TokenPtr firstAfter = TokenPtr::create();
+        lexerWindowSpecificGetToken(z, firstAfter, token, tolerant);
+        if (firstAfter->lemonType == TK3_LP || firstAfter->lemonType == TK3_ID)
+            return; // remains OVER keyword
+    }
+    token->lemonType = TK3_ID;
+    token->type = Token::OTHER;
+}
+
+void lexerHandleFilterKeyword(const QString& z, TokenPtr& token, const TokenPtr& prevToken, bool tolerant)
+{
+    if (prevToken && prevToken->lemonType == TK3_RP) {
+        TokenPtr firstAfter = TokenPtr::create();
+        lexerWindowSpecificGetToken(z, firstAfter, token, tolerant);
+        if (firstAfter->lemonType == TK3_LP)
+            return; // remains FILTER keyword
+    }
+    token->lemonType = TK3_ID;
+    token->type = Token::OTHER;
+}
+
+int lexerGetToken(const QString& z, TokenPtr& token, const TokenPtr& prevToken, int sqliteVersion, bool tolerant)
+{
+    UNUSED(sqliteVersion);
+
+    int lgt = lexerGetToken(z, token, tolerant);
+    if (token->lemonType == TK3_WINDOW)
+        lexerHandleWindowKeyword(z.mid(lgt), token, prevToken, tolerant);
+    else if (token->lemonType == TK3_OVER)
+        lexerHandleOverKeyword(z.mid(lgt), token, prevToken, tolerant);
+    else if (token->lemonType == TK3_FILTER)
+        lexerHandleFilterKeyword(z.mid(lgt), token, prevToken, tolerant);
+
+    return lgt;
+}
+
+int lexerGetToken(const QString& z, TokenPtr& token, bool tolerant)
+{
     if (tolerant && !token.dynamicCast<TolerantToken>())
     {
         qCritical() << "lexerGetToken() called with tolerant=true, but not a TolerantToken entity!";

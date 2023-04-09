@@ -2,7 +2,6 @@
 #define FUNCTIONMANAGER_H
 
 #include "coreSQLiteStudio_global.h"
-#include "common/global.h"
 #include <QVariant>
 #include <QList>
 #include <QSharedPointer>

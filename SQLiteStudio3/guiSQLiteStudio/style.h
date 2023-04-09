@@ -9,6 +9,8 @@ class CfgEntry;
 
 class Style : public QProxyStyle
 {
+    Q_OBJECT
+
     public:
         static Style* getInstance();
         static bool isDark(const QStyle* style);
@@ -18,6 +20,9 @@ class Style : public QProxyStyle
         QString name() const;
         bool isDark() const;
 
+    protected:
+        bool eventFilter(QObject *obj, QEvent *ev) override;
+
     private:
         static Style* instance;
 
@@ -25,6 +30,9 @@ class Style : public QProxyStyle
 
         ExtendedPalette extPalette;
         QPalette initialPalette;
+
+    signals:
+        void paletteChanged();
 };
 
 #define STYLE Style::getInstance()

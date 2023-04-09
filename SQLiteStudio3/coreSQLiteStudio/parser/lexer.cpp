@@ -25,6 +25,7 @@ TokenList Lexer::process(const QString &sql)
 {
     TokenList resultList;
     int lgt;
+    TokenPtr prevToken;
     TokenPtr token;
     QString str = sql;
 
@@ -36,7 +37,7 @@ TokenList Lexer::process(const QString &sql)
         else
             token = TokenPtr::create();
 
-        lgt = lexerGetToken(str, token, 3, tolerant);
+        lgt = lexerGetToken(str, token, prevToken, 3, tolerant);
         if (lgt == 0)
             break;
 
@@ -47,6 +48,8 @@ TokenList Lexer::process(const QString &sql)
         resultList << token;
         str = str.mid(lgt);
         pos += lgt;
+        if (!token->isWhitespace())
+            prevToken = token;
     }
 
     return resultList;
@@ -69,7 +72,7 @@ TokenPtr Lexer::getToken()
     else
         token = TokenPtr::create();
 
-    int lgt = lexerGetToken(sqlToTokenize, token, 3, tolerant);
+    int lgt = lexerGetToken(sqlToTokenize, token, prevTokenProcessed, 3, tolerant);
     if (lgt == 0)
         return TokenPtr();
 
@@ -79,6 +82,8 @@ TokenPtr Lexer::getToken()
 
     sqlToTokenize = sqlToTokenize.mid(lgt);
     tokenPosition += lgt;
+    if (!token->isWhitespace())
+        prevTokenProcessed = token;
 
     return token;
 }

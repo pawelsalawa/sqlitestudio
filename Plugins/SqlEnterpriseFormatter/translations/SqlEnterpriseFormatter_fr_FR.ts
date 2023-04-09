@@ -21,7 +21,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation>Ligne de mots-clefs en majuscule dans une requête multiligne</translation>
+      <translation>Aligner les mots-clés dans les requêtes de plusieurs lignes</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
@@ -81,12 +81,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
-      <translation>Après le mot-clef JOIN dans la clause FROM</translation>
+      <translation>Après avoir JOINDRE les mots-clés dans la clause DEPUIS</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="250"/>
       <source>Put each column constraint in CREATE TABLE into new line</source>
-      <translation>Mettez chaque contrainte de colonne dans CREATE TABLE à une nouvelleligne</translation>
+      <translation>Mettez chaque contrainte de colonne de CREATE TABLE dans une nouvelle ligne</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation>Mots-clefs en majuscule</translation>
+      <translation>Mots-clés en majuscule</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
@@ -207,7 +207,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="637"/>
       <source>Preferred comment marker (where possible):</source>
-      <translation type="unfinished">Preferred comment marker (where possible):</translation>
+      <translation>Marqueur de commentaire préféré (si possible):</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="654"/>

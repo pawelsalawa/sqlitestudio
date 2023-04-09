@@ -18,5 +18,6 @@
         <file>licenses/diff_match.txt</file>
         <file>licenses/gpl.txt</file>
         <file>licenses/mit.txt</file>
+        <file>licenses/icu.txt</file>
     </qresource>
 </RCC>

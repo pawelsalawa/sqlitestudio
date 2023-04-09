@@ -441,26 +441,26 @@ void JavaScriptHighlighterPlugin::refreshFormats()
 {
     QTextCharFormat format;
 
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     formats[NORMAL] = format;
 
-    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    format.setForeground(Cfg::getSyntaxNumberFg());
     formats[NUMBER] = format;
 
-    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setForeground(Cfg::getSyntaxKeywordFg());
     format.setFontWeight(QFont::Bold);
     formats[KEYWORDS] = format;
 
     format.setFontItalic(true);
     format.setFontWeight(QFont::Normal);
-    format.setForeground(CFG_UI.Colors.SyntaxCommentFg.get());
+    format.setForeground(Cfg::getSyntaxCommentFg());
     formats[COMMENT] = format;
 
     format.setFontItalic(false);
-    format.setForeground(CFG_UI.Colors.SyntaxStringFg.get());
+    format.setForeground(Cfg::getSyntaxStringFg());
     formats[STRING] = format;
 
-    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    format.setForeground(Cfg::getSyntaxNumberFg());
     formats[EXPRESSION] = format;
 }
 

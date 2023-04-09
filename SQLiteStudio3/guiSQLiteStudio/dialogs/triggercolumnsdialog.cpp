@@ -1,10 +1,13 @@
 #include "triggercolumnsdialog.h"
 #include "ui_triggercolumnsdialog.h"
-#include "uiutils.h"
 #include <QCheckBox>
 
 TriggerColumnsDialog::TriggerColumnsDialog(QWidget *parent, int globalX, int globalY) :
+#ifdef Q_OS_OSX
+    QDialog(parent),
+#else
     QDialog(parent, Qt::Popup),
+#endif
     globalX(globalX),
     globalY(globalY),
     ui(new Ui::TriggerColumnsDialog)

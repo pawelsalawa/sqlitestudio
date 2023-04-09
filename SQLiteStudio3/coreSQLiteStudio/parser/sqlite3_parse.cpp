@@ -61,6 +61,7 @@
 #define assert(X) Q_ASSERT(X)
 #define UNUSED_PARAMETER(X) (void)(X)
 #define DONT_INHERIT_TOKENS(X) noTokenInheritanceFields << X
+
 /* Next is all token values, in a form suitable for use by makeheaders.
 ** This section will be null unless lemon is run with the -m switch.
 */
@@ -4835,7 +4836,7 @@ static void yy_reduce(
       case 292: /* exprx ::= ID LP distinct exprlist RP */
 {
                                                 yygotominor.yy186 = new SqliteExpr();
-                                                yygotominor.yy186->initFunction(yymsp[-4].minor.yy0->value, *(yymsp[-2].minor.yy130), *(yymsp[-1].minor.yy615));
+                                                yygotominor.yy186->initFunction(stripObjName(yymsp[-4].minor.yy0->value), *(yymsp[-2].minor.yy130), *(yymsp[-1].minor.yy615));
                                                 delete yymsp[-2].minor.yy130;
                                                 delete yymsp[-1].minor.yy615;
                                                 objectForTokens = yygotominor.yy186;
@@ -4844,7 +4845,7 @@ static void yy_reduce(
       case 293: /* exprx ::= ID LP STAR RP */
 {
                                                 yygotominor.yy186 = new SqliteExpr();
-                                                yygotominor.yy186->initFunction(yymsp[-3].minor.yy0->value, true);
+                                                yygotominor.yy186->initFunction(stripObjName(yymsp[-3].minor.yy0->value), true);
                                                 objectForTokens = yygotominor.yy186;
                                             }
         break;
@@ -5028,7 +5029,7 @@ static void yy_reduce(
       case 323: /* exprx ::= ID LP distinct exprlist RP filter_over */
 {
                                                 yygotominor.yy186 = new SqliteExpr();
-                                                yygotominor.yy186->initWindowFunction(yymsp[-5].minor.yy0->value, *(yymsp[-3].minor.yy130), *(yymsp[-2].minor.yy615), yymsp[0].minor.yy181);
+                                                yygotominor.yy186->initWindowFunction(stripObjName(yymsp[-5].minor.yy0->value), *(yymsp[-3].minor.yy130), *(yymsp[-2].minor.yy615), yymsp[0].minor.yy181);
                                                 delete yymsp[-3].minor.yy130;
                                                 delete yymsp[-2].minor.yy615;
                                                 objectForTokens = yygotominor.yy186;
@@ -5037,7 +5038,7 @@ static void yy_reduce(
       case 324: /* exprx ::= ID LP STAR RP filter_over */
 {
                                                 yygotominor.yy186 = new SqliteExpr();
-                                                yygotominor.yy186->initWindowFunction(yymsp[-4].minor.yy0->value, yymsp[0].minor.yy181);
+                                                yygotominor.yy186->initWindowFunction(stripObjName(yymsp[-4].minor.yy0->value), yymsp[0].minor.yy181);
                                                 objectForTokens = yygotominor.yy186;
 											}
         break;
@@ -5795,7 +5796,7 @@ static void yy_reduce(
 {
 												yygotominor.yy39 = new SqliteFilterOver::Filter(yymsp[-1].minor.yy186);
 												objectForTokens = yygotominor.yy39;
-											}
+                                            }
         break;
       default:
       /* (0) input ::= cmdlist */ yytestcase(yyruleno==0);
@@ -6131,4 +6132,8 @@ void sqlite3_parse(
     }
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
+}
+
+int sqlite3ParserFallback(int iToken) {
+    return yyFallback[iToken];
 }

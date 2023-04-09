@@ -2,6 +2,7 @@
 #define EXTENDEDPALETTE_H
 
 #include <QBrush>
+#include <QPalette>
 
 class QStyle;
 
@@ -16,7 +17,7 @@ class ExtendedPalette
         QBrush editorLineBase() const;
         void setEditorLineBase(const QBrush &value);
 
-        void styleChanged(QStyle* style, const QString& themeName);
+        bool styleChanged(QStyle* style, const QString& themeName);
 
         QBrush mdiAreaBase() const;
         void setMdiAreaBase(const QBrush& value);
@@ -37,6 +38,8 @@ class ExtendedPalette
         QBrush editorLineNumberBaseBrush;
         QBrush editorCurrentQueryBrush;
         QBrush mdiAreaBaseBrush;
+
+        QPalette lastPalette;
 };
 
 #endif // EXTENDEDPALETTE_H

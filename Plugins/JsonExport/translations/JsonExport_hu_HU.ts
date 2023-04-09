@@ -6,17 +6,17 @@
     <message>
       <location filename="../jsonexport.ui" line="20"/>
       <source>Output format</source>
-      <translation type="unfinished">Output format</translation>
+      <translation>Kimenet formátum</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation type="unfinished">Format document (new lines, indentation)</translation>
+      <translation>Dokumentum formázása (új sorok, behúzások)</translation>
     </message>
     <message>
       <location filename="../jsonexport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation type="unfinished">Compress (everything in one line)</translation>
+      <translation>Tömör forma (mindent egy sorba)</translation>
     </message>
   </context>
 </TS>
