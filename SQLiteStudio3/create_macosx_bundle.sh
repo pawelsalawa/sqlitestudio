@@ -179,11 +179,63 @@ EOF
     run rm "$_rw_image"
 }
 
+propose_dylib_changes() {
+    local _changes _dest _ref
+    otool -L "$1" | awk '{print $1}' | while read -r _ref; do
+        case "$_ref" in
+            /opt/local/Library/Frameworks/*)   _dest="${_ref#/opt/local/Library/Frameworks/}" ;;
+            /opt/local/libexec/openssl3/lib/*) _dest="${_ref#/opt/local/libexec/openssl3/lib/}" ;;
+            */libbz2.1.0.dylib | */libexpat.1.dylib | */liblzma.5.dylib | */libz.1.dylib) printf -- "-change %s %s\n" "$_ref" "${_ref##*/}"; continue ;;
+            /opt/local/lib/*)                  _dest="${_ref#/opt/local/lib/}" ;;
+            *)                                 continue ;;
+        esac
+        if [ ! -e "$2/$_dest" ]; then
+            run cp -pLR "$_ref" "$2/$_dest" || abort "Could not copy $2/$_dest to bundle!";
+            run install_name_tool -id "${_dest##/}" "$2/$_dest"
+            _changes="$(propose_dylib_changes "$2/$_dest" "$2")"
+            # shellcheck disable=SC2086
+            [ -z "$_changes" ] || run install_name_tool $_changes "$2/$_dest"
+        fi
+        printf -- "-change %s @rpath/%s\n" "$_ref" "$_dest"
+    done
+}
+
+embed_python_framework() (
+    local _src_framework="$1" _ver="$2" _app="$3"
+    local _dest_framework="$_app/Contents/Frameworks/Python.framework"
+    run mkdir -p "$_dest_framework/Versions"
+    run cd "$_dest_framework"
+    run cp -RP "$_src_framework/Versions/$PYTHON_VERSION" Versions/
+    run rm -fr "Versions/$PYTHON_VERSION/lib/python$PYTHON_VERSION/idlelib"
+    run rm -fr "Versions/$PYTHON_VERSION/lib/python$PYTHON_VERSION/test"
+    run ln -s "$PYTHON_VERSION" Versions/Current
+    run ln -s Versions/Current/Headers Versions/Current/Python Versions/Current/Resources .
+    run install_name_tool -id "@executable_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" "Versions/$PYTHON_VERSION/Python"
+
+    # In each executable, apply /opt/local/lib changes
+    find "Versions/$PYTHON_VERSION" -type f -perm +111 | while read -r _filename; do
+        if [ "$_filename" = "Versions/$PYTHON_VERSION/Resources/Python.app/Contents/MacOS/Python" ]; then
+            _changes="-change /opt/local/lib/libintl.8.dylib @loader_path/../../../../../../../libintl.8.dylib
+-change $_src_framework/Versions/$PYTHON_VERSION/Python @loader_path/../../../../Python"
+        else
+            _changes="$(propose_dylib_changes "$_filename" ..)"
+        fi
+        # shellcheck disable=SC2086
+        [ -z "$_changes" ] || run install_name_tool $_changes "$_filename"
+    done
+)
+
 find_local_dependencies() {
     find "$1" -type f -perm +111 -print0 | xargs -0 otool -L \
     | awk '/:$/ { sub(/:$/, ""); f = $1 } /\/(opt|usr)\/local\// { print f, $1 }'
 }
 
+assert_no_dylib_problems() {
+    local _problems
+    _problems="$(find_local_dependencies "$1")"
+    # shellcheck disable=SC2086
+    [ -z "$_problems" ] || abort 'Unresolved local/ library references:' $_problems
+}
 
 if [ "$3" = "dmg" ]; then
     replaceInfo "$1"
@@ -202,6 +254,7 @@ elif [ "$3" = "dist" ]; then
         python_from_macports="yes"
         _ref="/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python"
     else
+        python_from_macports="no"
         run rm -f SQLiteStudio.app/Contents/Frameworks/libpython* SQLiteStudio.app/Contents/Frameworks/libint*
         _ref="@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib"
     fi
@@ -225,6 +278,25 @@ elif [ "$3" = "dist" ]; then
     # shellcheck disable=SC2086
     pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$_background_img" $_background_rgb
 
+    if [ "$python_from_macports" = "yes" ]; then
+        info "MacPorts Python detected. Making an image with bundled Python"
+
+        embed_python_framework /opt/local/Library/Frameworks/Python.framework "$PYTHON_VERSION" SQLiteStudio.app
+
+        run install_name_tool \
+            -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
+            "$python_plugin_lib"
+
+        assert_no_dylib_problems SQLiteStudio.app
+
+        # shellcheck disable=SC2086
+        pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION" "$_background_img" $_background_rgb
+
+        run rm -fr SQLiteStudio.app/Contents/Frameworks/Python.framework
+        run install_name_tool \
+            -change "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" "libpython$PYTHON_VERSION.dylib" \
+            "$python_plugin_lib"
+    fi
     ls -l -- *.dmg
     info "Done."
 else
