@@ -14,6 +14,8 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
   exit 1
 fi
 
+PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
+
 qt_deploy_bin="${2/qmake/macdeployqt}"
 ls $qt_deploy_bin >/dev/null 2>&1
 if [ "$?" -ne 0 ]; then
@@ -132,7 +134,7 @@ elif [ "$3" == "dist" ]; then
 	# Fix python dependencies in the image
 	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libpython*
 	rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libint*
-	install_name_tool -change "@loader_path/../Frameworks/libpython3.9.dylib" libpython3.9.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
+	install_name_tool -change "@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib" libpython$PYTHON_VERSION.dylib /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
 
 	# Detach RW image
 	hdiutil detach /Volumes/SQLiteStudio
