@@ -79,10 +79,19 @@ debug "lib:" "$(ls -l "$libdir")"
 
 debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 
-cp -RP ../../../lib/libsqlite3.0.dylib SQLiteStudio.app/Contents/Frameworks
-cd SQLiteStudio.app/Contents/Frameworks
-ln -s libsqlite3.0.dylib libsqlite3.dylib
-cd ../../..
+embed_libsqlite3() {
+    cp -RPf "$libdir/libsqlite3.0.dylib" "$1/Contents/Frameworks"
+    libsqlite3_in_bundle="$1/Contents/Frameworks/libsqlite3.0.dylib"
+    ln -sf libsqlite3.0.dylib "$1/Contents/Frameworks/libsqlite3.dylib"
+    if otool -L "$libsqlite3_in_bundle" | grep -q /opt/local; then
+        info "MacPorts libsqlite3.0.dylib detected! Fixing dylib references"
+        run install_name_tool \
+          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
+          -id "@executable_path/../Frameworks/libsqlite3.0.dylib" \
+          "$libsqlite3_in_bundle"
+    fi
+}
+embed_libsqlite3 SQLiteStudio.app
 
 debug "in frameworks - 2:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 
@@ -111,6 +120,11 @@ replaceInfo() {
     run mv "$_contents/Info.plist.new" "$_contents/Info.plist"
 }
 
+find_local_dependencies() {
+    find "$1" -type f -perm +111 -print0 | xargs -0 otool -L \
+    | awk '/:$/ { sub(/:$/, ""); f = $1 } /\/(opt|usr)\/local\// { print f, $1 }'
+}
+
 
 if [ "$3" = "dmg" ]; then
     replaceInfo "$1"
@@ -130,14 +144,28 @@ elif [ "$3" = "dist" ]; then
     # Convert image to RW and attach	
 	hdiutil convert "sqlitestudio-$VERSION.dmg" -format UDRW -o "sqlitestudio-rw-$VERSION.dmg"
 	hdiutil attach -readwrite "sqlitestudio-rw-$VERSION.dmg"
-	
-	# Fix sqlite3 file in the image
-	cp -RPf "$libdir/libsqlite3.0.dylib" /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/
+    cd /Volumes/SQLiteStudio
+
+    # Fix sqlite3 file in the image
+    embed_libsqlite3 SQLiteStudio.app
 
     # Fix python dependencies in the image
-	run rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libpython*
-	run rm -f /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/libint*
-	run install_name_tool -change "@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib" "libpython$PYTHON_VERSION.dylib" /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib
+    python_plugin_lib="SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib"
+    if otool -L "$python_plugin_lib" | grep -q /opt/local/Library/Frameworks/Python.framework; then
+        python_from_macports="yes"
+        _ref="/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python"
+    else
+        run rm -f SQLiteStudio.app/Contents/Frameworks/libpython* SQLiteStudio.app/Contents/Frameworks/libint*
+        _ref="@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib"
+    fi
+    run install_name_tool -change "$_ref" "libpython$PYTHON_VERSION.dylib" "$python_plugin_lib"
+
+    # Fix other dependencies which can be supplied by system
+    find_local_dependencies SQLiteStudio.app | while read -r _binary _ref; do
+        case "$_ref" in
+            */libbz2.1.0.dylib | */libexpat.1.dylib | */liblzma.5.dylib | */libz.1.dylib) ls -l "$_binary"; run install_name_tool -change "$_ref" "${_ref##*/}" "$_binary" ;;
+        esac
+    done
 
 	# Detach RW image
 	hdiutil detach /Volumes/SQLiteStudio
