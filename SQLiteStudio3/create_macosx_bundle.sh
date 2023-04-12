@@ -120,6 +120,65 @@ replaceInfo() {
     run mv "$_contents/Info.plist.new" "$_contents/Info.plist"
 }
 
+hdiutil_create() {
+    run hdiutil create \
+        -fs HFS+ -fsargs '-c c=64,a=16,e=16' \
+        -scrub \
+        "$@"
+}
+
+pretty_dmg() {
+    local _appname="${1%.app}" _volname="$2" _image_path="$3" _rgb_16bit
+    [ -z "$6" ] || _rgb_16bit="{$(( $4 * 257 )), $(( $5 * 257 )), $(( $6 * 257 ))}"
+    local _rw_image="$_volname-rw.dmg.sparseimage" _device
+    [ ! -f "$_rw_image" ] || run rm -f "$_rw_image"
+    hdiutil_create \
+        -format UDSP \
+        -srcfolder "$_appname.app" \
+        -size "$(du -ms "$_appname.app" | awk '{ print (2 ^ int(log($1) / log(2) + 2.5)) "m" }')" \
+        -volname "$_volname" \
+        "$_rw_image"
+
+    # detach any images with the same name
+    mount \
+    | awk '/\/Volumes\/'"$_volname"' / {match($1, /disk[0-9]+/); print substr($1, RSTART, RLENGTH)}' \
+    | run xargs -tn1 hdiutil detach
+
+    _device="$(run hdiutil attach "$_rw_image" | awk '/\/dev\// { print $1; exit }')"
+    sleep 1
+    if [ -n "$_image_path" ]; then
+        run mkdir "/Volumes/$_volname/.background"
+        run cp "$_image_path" "/Volumes/$_volname/.background/"
+    fi
+    run osascript <<EOF
+        tell application "Finder"
+            tell disk "$_volname"
+                open
+                set current view of container window to icon view
+                set toolbar visible of container window to false
+                set statusbar visible of container window to false
+                set the bounds of container window to {400, 100, 885, 430}
+                set theViewOptions to the icon view options of container window
+                set arrangement of theViewOptions to not arranged
+                set icon size of theViewOptions to 72
+                $([ -z "$_image_path" ] || echo "set background picture of theViewOptions to file \".background:$(basename "$3")\"")
+                $([ -z "$_rgb_16bit" ] || echo "set background color of theViewOptions to $_rgb_16bit")
+                make new alias file at container window to POSIX file "/Applications" with properties {name:"Applications"}
+                set position of item "$_appname" of container window to {100, 100}
+                set position of item "Applications" of container window to {375, 100}
+                update without registering applications
+                delay 3
+                close
+            end tell
+        end tell
+EOF
+    run hdiutil detach "$_device"
+    run hdiutil compact "$_rw_image" -batteryallowed
+    [ ! -f "$_volname.dmg" ] || run rm -f "$_volname.dmg"
+    run hdiutil convert "$_rw_image" -format ULFO -o "$_volname.dmg"
+    run rm "$_rw_image"
+}
+
 find_local_dependencies() {
     find "$1" -type f -perm +111 -print0 | xargs -0 otool -L \
     | awk '/:$/ { sub(/:$/, ""); f = $1 } /\/(opt|usr)\/local\// { print f, $1 }'
@@ -132,19 +191,7 @@ if [ "$3" = "dmg" ]; then
 elif [ "$3" = "dist" ]; then
     replaceInfo "$1"
 
-    run "$qt_deploy_bin" SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -verbose=$((2 - quiet))
-
-	cd "$1/SQLiteStudio"
-
-	mv SQLiteStudio.dmg "sqlitestudio-$VERSION.dmg"
-	hdiutil attach "sqlitestudio-$VERSION.dmg"
-
-	hdiutil detach /Volumes/SQLiteStudio
-
-    # Convert image to RW and attach	
-	hdiutil convert "sqlitestudio-$VERSION.dmg" -format UDRW -o "sqlitestudio-rw-$VERSION.dmg"
-	hdiutil attach -readwrite "sqlitestudio-rw-$VERSION.dmg"
-    cd /Volumes/SQLiteStudio
+    run "$qt_deploy_bin" SQLiteStudio.app -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -verbose=$((2 - quiet))
 
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
@@ -167,20 +214,18 @@ elif [ "$3" = "dist" ]; then
         esac
     done
 
-	# Detach RW image
-	hdiutil detach /Volumes/SQLiteStudio
-	hdiutil compact "sqlitestudio-rw-$VERSION.dmg"
-	
-	# Convert image back to RO and compressed
-	rm -f "sqlitestudio-$VERSION.dmg"
-	hdiutil convert "sqlitestudio-rw-$VERSION.dmg" -format UDZO -o "sqlitestudio-$VERSION.dmg"
-	rm -f "sqlitestudio-rw-$VERSION.dmg"
-	
-	echo "Verifying contents of new image:"
-	hdiutil attach "sqlitestudio-$VERSION.dmg"
-	ls -l /Volumes/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks
-	hdiutil detach /Volumes/SQLiteStudio
-	
+    assert_no_dylib_problems SQLiteStudio.app
+
+    VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
+    [ -n "$VERSION" ] || abort "could not determine SQLiteStudio version"
+
+    ls -l
+    _background_img=""  # TODO
+    _background_rgb="56 168 243"
+    # shellcheck disable=SC2086
+    pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$_background_img" $_background_rgb
+
+    ls -l -- *.dmg
     info "Done."
 else
     "$qt_deploy_bin" SQLiteStudio.app
