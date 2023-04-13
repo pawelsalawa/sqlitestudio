@@ -437,7 +437,7 @@ void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
     int pos = cursor.position();
 
     QString contents = ui->sqlEdit->toPlainText();
-    QPair boundries = getQueryBoundriesForPosition(contents, pos, fallBackToPreviousIfNecessary);
+    QPair<int, int> boundries = getQueryBoundriesForPosition(contents, pos, fallBackToPreviousIfNecessary);
 
     if (boundries.second < 0)
     {
