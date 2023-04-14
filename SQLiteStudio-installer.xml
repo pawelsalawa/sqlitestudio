@@ -188,7 +188,8 @@
         </setInstallerVariable>
         <setInstallerVariableFromScriptOutput>
             <name>running_user</name>
-            <exec>logname</exec>
+            <exec>/bin/sh</exec>
+            <execArgs>-c 'logname 2>/dev/null || basename "$HOME"'</execArgs>
             <ruleList>
                 <platformTest type="linux"/>
             </ruleList>
@@ -219,6 +220,9 @@
                 <actionGroup>
                     <explanation>Linux</explanation>
                     <actionList>
+                        <createDirectory>
+                            <path>${desktop_prefix}</path>
+                        </createDirectory>
                         <writeFile>
                             <encoding>utf-8</encoding>
                             <path>${desktop_prefix}/SQLiteStudio.desktop</path>
@@ -411,4 +415,3 @@ MimeType=application/vnd.sqlite3
         </directoryParameter>
     </parameterList>
 </project>
-
