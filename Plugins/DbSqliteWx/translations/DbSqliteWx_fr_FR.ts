@@ -6,32 +6,32 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>Mot de passe (clé)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Laisser vide pour créer ou se connecter à la base de données déchiffrée.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>Mot de passe de chiffrement</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="38"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>Chiffrement</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation type="unfinished">Cipher determines encryption algorithm used to encrypt the database.</translation>
+      <translation>Le chiffrement détermine l&apos;algorithme de chiffrement utilisé pour chiffrer la base de données.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Configuration du chiffrement (optionnel)</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="48"/>

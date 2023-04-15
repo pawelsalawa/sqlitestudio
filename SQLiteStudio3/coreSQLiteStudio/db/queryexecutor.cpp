@@ -617,11 +617,12 @@ QStringList QueryExecutor::applyFiltersAndLimitAndOrderForSimpleMethod(const QSt
     getQueryAccessMode(lastQuery, &isSelect);
 
     // FILTERS
-    if (isSelect)
+    QString filters = getFilters();
+    if (isSelect && !filters.isEmpty())
     {
         lastQuery = filtersTpl.arg(
             trimQueryEnd(lastQuery),
-            getFilters()
+            filters
             );
     }
 

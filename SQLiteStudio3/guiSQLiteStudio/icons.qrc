@@ -211,5 +211,6 @@
         <file>img/code_snippet.png</file>
         <file>img/selection_invert.png</file>
         <file>img/apply_filter_txt_strict.png</file>
+        <file>img/restore_default.png</file>
     </qresource>
 </RCC>

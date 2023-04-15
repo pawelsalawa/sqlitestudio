@@ -66,6 +66,13 @@
 #define assert(X) Q_ASSERT(X)
 #define UNUSED_PARAMETER(X) (void)(X)
 #define DONT_INHERIT_TOKENS(X) noTokenInheritanceFields << X
+
+}
+
+%code {
+int sqlite3ParserFallback(int iToken) {
+    return yyFallback[iToken];
+}
 }
 
 // These are extra tokens used by the lexer but never seen by the
@@ -1731,14 +1738,14 @@ exprx(X) ::= CAST LP expr(E) AS typetoken(T)
 exprx(X) ::= ID(I) LP distinct(D)
             exprlist(L) RP.                 {
                                                 X = new SqliteExpr();
-                                                X->initFunction(I->value, *(D), *(L));
+                                                X->initFunction(stripObjName(I->value), *(D), *(L));
                                                 delete D;
                                                 delete L;
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= ID(I) LP STAR RP.              {
                                                 X = new SqliteExpr();
-                                                X->initFunction(I->value, true);
+                                                X->initFunction(stripObjName(I->value), true);
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= expr(E1) AND(O) expr(E2).      {
@@ -1931,7 +1938,7 @@ exprx(X) ::= RAISE LP raisetype(R) COMMA
 exprx(X) ::= ID(I) LP distinct(D)
 			exprlist(E) RP filter_over(F).  {
                                                 X = new SqliteExpr();
-                                                X->initWindowFunction(I->value, *(D), *(E), F);
+                                                X->initWindowFunction(stripObjName(I->value), *(D), *(E), F);
                                                 delete D;
                                                 delete E;
                                                 objectForTokens = X;
@@ -1939,7 +1946,7 @@ exprx(X) ::= ID(I) LP distinct(D)
 exprx(X) ::= ID(I) LP STAR RP
 			filter_over(F). 				{
                                                 X = new SqliteExpr();
-                                                X->initWindowFunction(I->value, F);
+                                                X->initWindowFunction(stripObjName(I->value), F);
                                                 objectForTokens = X;
 											}
 
@@ -2868,4 +2875,4 @@ filter_clause(X) ::= FILTER LP WHERE
 			expr(E) RP.  					{
 												X = new SqliteFilterOver::Filter(E);
 												objectForTokens = X;
-											}
+                                            }

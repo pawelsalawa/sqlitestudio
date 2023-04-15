@@ -126,7 +126,7 @@ bool SqliteExtensionEditorModel::isValid() const
 {
     for (Extension* ext : extensionList)
     {
-        if (!ext->valid)
+        if (ext->modified && !ext->valid)
             return false;
     }
     return true;

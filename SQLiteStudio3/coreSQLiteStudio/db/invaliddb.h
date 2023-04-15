@@ -70,8 +70,8 @@ class API_EXPORT InvalidDb : public Db
         bool openQuiet();
         bool openForProbing();
         bool closeQuiet();
-        void registerAllFunctions();
-        void registerAllCollations();
+        void registerUserFunctions();
+        void registerUserCollations();
 
     private:
         QString name;

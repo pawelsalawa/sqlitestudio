@@ -1,6 +1,7 @@
 #ifndef SELECTRESOLVER_H
 #define SELECTRESOLVER_H
 
+#include "common/strhash.h"
 #include "parser/ast/sqliteselect.h"
 #include "common/bistrhash.h"
 #include "parser/ast/sqlitewith.h"
@@ -258,7 +259,7 @@ class API_EXPORT SelectResolver
         Db* db = nullptr;
         QString query;
         SqliteSelectPtr originalQueryParsed;
-        QHash<QString, SqliteWith::CommonTableExpression*> cteList;
+        StrHash<SqliteWith::CommonTableExpression*> cteList;
 
         /**
          * @brief Database name to attach name map.

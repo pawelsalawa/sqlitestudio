@@ -244,42 +244,42 @@ void PythonSyntaxHighlighterPlugin::refreshFormats()
     QTextCharFormat format;
 
     // Standard
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(false);
     styles[PythonSyntaxHighlighterPlugin::STANDARD] = format;
 
     // Class
-    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setForeground(Cfg::getSyntaxKeywordFg());
     format.setFontWeight(QFont::Bold);
     styles[PythonSyntaxHighlighterPlugin::DEFCLASS] = format;
     styles[PythonSyntaxHighlighterPlugin::KEYWORD] = format;
 
     // Self
-    format.setForeground(CFG_UI.Colors.SyntaxKeywordFg.get());
+    format.setForeground(Cfg::getSyntaxKeywordFg());
     format.setFontWeight(QFont::Normal);
     format.setFontItalic(true);
     styles[PythonSyntaxHighlighterPlugin::SELF] = format;
 
     // Operator
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     format.setFontItalic(false);
     styles[PythonSyntaxHighlighterPlugin::OPERATOR] = format;
 
     // Parenthesis
-    format.setForeground(CFG_UI.Colors.SyntaxForeground.get());
+    format.setForeground(Cfg::getSyntaxForeground());
     styles[PythonSyntaxHighlighterPlugin::BRACE] = format;
 
     // String
-    format.setForeground(CFG_UI.Colors.SyntaxStringFg.get());
+    format.setForeground(Cfg::getSyntaxStringFg());
     styles[PythonSyntaxHighlighterPlugin::STRING] = format;
 
     // Numbers
-    format.setForeground(CFG_UI.Colors.SyntaxNumberFg.get());
+    format.setForeground(Cfg::getSyntaxNumberFg());
     styles[PythonSyntaxHighlighterPlugin::NUMBER] = format;
 
     // Comment
-    format.setForeground(CFG_UI.Colors.SyntaxCommentFg.get());
+    format.setForeground(Cfg::getSyntaxCommentFg());
     format.setFontItalic(true);
     styles[PythonSyntaxHighlighterPlugin::COMMENT] = format;
 }

@@ -588,7 +588,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     if (isView(joinSrc->database, joinSrc->table))
         return resolveView(joinSrc);
 
-    if (joinSrc->database.isNull() && cteList.contains(joinSrc->table))
+    if (joinSrc->database.isNull() && cteList.contains(joinSrc->table, Qt::CaseInsensitive))
         return resolveCteColumns(joinSrc);
 
     QList<Column> columnSources;
@@ -614,7 +614,7 @@ QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Co
 {
     static_qstring(cteSelectTpl, "WITH %1 SELECT * FROM %2");
 
-    SqliteWith::CommonTableExpression* cte = cteList[joinSrc->table];
+    SqliteWith::CommonTableExpression* cte = cteList.value(joinSrc->table, Qt::CaseInsensitive);
     QString selectQuery = cte->detokenize();
     QString theQuery = cteSelectTpl.arg(selectQuery, cte->table);
     QList<Column> columnSources = sqliteResolveColumns(theQuery);

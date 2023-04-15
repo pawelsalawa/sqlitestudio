@@ -1,18 +1,23 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3400000'
-    SQLITE_RELEASE_YEAR: '2022'
+    SQLITE_VERSION: '3410200'
+    SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
+    ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-22.6.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-osx-installer.dmg
 
 name: MacOSX release build
 
 on:
     workflow_dispatch:
         inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
     schedule:
         - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
@@ -67,6 +72,18 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: mac_release
+                max-size: "24M"
+
+            - name: Configure ccache
+              if: inputs.use_ccache || false
+              run: |
+                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+
             - name: Install SQLite3
               run: |
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -90,6 +107,14 @@ jobs:
                 sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
+            - name: Install extension dependencies
+              run: |
+                brew tap-new $USER/local-tap
+                brew extract --version=$ICU_VERSION icu4c $USER/local-tap
+                brew install icu4c@$ICU_VERSION
+                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
+                    >> $GITHUB_ENV
+
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
@@ -101,14 +126,18 @@ jobs:
                 ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
                 ls -l
-                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include/ -L/usr/local/lib -lsqlite3"
-                for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.dylib
+                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                for f in compress sqlar; do
+                    echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib"
-                    gcc misc/$f.c $FLAGS -o ../../ext/$f.dylib
+                    echo "gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
+                done
+                for f in icu; do
+                    echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
+                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
                 done
                 ls -l ../../ext/
 
@@ -129,20 +158,27 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ../../SQLiteStudio3
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    ../../SQLiteStudio3
                 make -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    ../../../Plugins
                 make -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
               run: |
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
-                
+
             - name: Build packages
               working-directory: output/build
               run: |

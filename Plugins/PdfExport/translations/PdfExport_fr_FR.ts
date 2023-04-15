@@ -6,7 +6,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="33"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="66"/>
@@ -17,13 +17,13 @@
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="149"/>
       <source>Exported table: %1</source>
-      <translation>Table exportée : %1</translation>
+      <translation>Tableau exporté : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="98"/>
       <location filename="../pdfexport.cpp" line="164"/>
       <source>Table: %1</source>
-      <translation>Table : %1</translation>
+      <translation>Tableau : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="100"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="131"/>
       <source>Global table constraints</source>
-      <translation>Contraintes globales de la table</translation>
+      <translation>Contraintes globales du tableau</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="220"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="233"/>
       <source>Indexed table</source>
-      <translation>Table indexée</translation>
+      <translation>Tableau indexé</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="234"/>
@@ -91,7 +91,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>Classement</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
@@ -138,7 +138,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="279"/>
       <source>On table</source>
-      <translation>De la vue</translation>
+      <translation>Sur le tableau</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="284"/>
@@ -205,7 +205,7 @@
       <location filename="../pdfexport.ui" line="132"/>
       <location filename="../pdfexport.ui" line="156"/>
       <source>mm</source>
-      <translation type="unfinished">mm</translation>
+      <translation>mm</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="139"/>

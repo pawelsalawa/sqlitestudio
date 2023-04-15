@@ -71,6 +71,7 @@ class SqliteExtensionEditor : public MdiChild
                                bool* initOk = nullptr,
                                QString* fileError = nullptr);
         bool validateExtension(int row);
+        bool validateCurrentExtension();
         bool validateExtension(const QString& filePath,
                                const QString& initFunc,
                                bool* fileOk = nullptr,

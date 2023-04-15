@@ -49,7 +49,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Options</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
@@ -69,7 +69,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="70"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation>Le nom du groupe « %1 » existe déjà. Saissiez un nom de groupe non déjà utilisé.</translation>
+      <translation>Un groupe de niveau supérieur nommé &apos;%1&apos; existe déjà. Entrez un nom de groupe qui n&apos;existe pas encore.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="104"/>

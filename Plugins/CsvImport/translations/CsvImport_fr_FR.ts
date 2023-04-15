@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>Séparateur de colonnes :</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
@@ -64,22 +64,22 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+      <translation>Interpréter &quot; comme un guillemet</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Ceci est possible si la permière ligne de votre fichier CSV représente le nom des colonnes.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tableaux en tant que données régulières.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>La première ligne représente les noms de colonnes CSV</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation>Si activé, alors la valeur du texte fournie à droite sera interprétée comme NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="75"/>

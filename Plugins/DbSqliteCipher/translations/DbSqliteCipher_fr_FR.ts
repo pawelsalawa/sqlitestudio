@@ -6,22 +6,22 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>Mot de passe (clé)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>Laisser vide pour créer ou se connecter à la base de données déchiffrée.</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="32"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>Mot de passe de chiffrement</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>Cipher configuration (optional)</source>
-      <translation type="unfinished">Cipher configuration (optional)</translation>
+      <translation>Configuration du chiffrement (optionnel)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="38"/>

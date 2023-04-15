@@ -5,7 +5,7 @@
 # Download page:
 # https://github.com/sqlcipher/sqlcipher/releases
 
-set THE_URL "https://codeload.github.com/sqlcipher/sqlcipher/zip/v4.5.2"
+set THE_URL "https://codeload.github.com/sqlcipher/sqlcipher/zip/v4.5.3"
 
 proc process {} {
 	if {[catch {

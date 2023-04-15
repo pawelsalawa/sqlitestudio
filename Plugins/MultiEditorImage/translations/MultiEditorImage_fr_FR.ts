@@ -6,52 +6,52 @@
     <message>
       <location filename="../multieditorimage.cpp" line="25"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>Charger à partir d’un fichier</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>Stocker dans un fichier</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Zoom in by 25%</source>
-      <translation type="unfinished">Zoom in by 25%</translation>
+      <translation>Zoom avant de 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom out by 25%</source>
-      <translation type="unfinished">Zoom out by 25%</translation>
+      <translation>Zoom arrière de 25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>Réinitialiser le zoom</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="103"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Tous les fichiers (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="104"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>Ouvrir une image</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="113"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>Impossible d&apos;ouvrir le fichier %1 pour la lecture.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="133"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="135"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Enregistrer l&apos;image</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
@@ -61,12 +61,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="165"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
+      <translation>Impossible d&apos;ouvrir le fichier %1 pour écriture.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="170"/>
       <source>Could not write image into the file %1</source>
-      <translation type="unfinished">Could not write image into the file %1</translation>
+      <translation>Impossible d&apos;écrire l&apos;image dans le fichier %1</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="263"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>Image</translation>
     </message>
   </context>
 </TS>

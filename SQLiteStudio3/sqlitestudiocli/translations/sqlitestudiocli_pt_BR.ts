@@ -870,8 +870,8 @@ Espera-se um de: %2</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
-      <source>Could not open specified database for executing SQL file. You my try using -d option to find out more details.</source>
-      <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Tente usar a opção -d para descobrir mais detalhes.</translation>
+      <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
+      <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
     </message>
   </context>
 </TS>

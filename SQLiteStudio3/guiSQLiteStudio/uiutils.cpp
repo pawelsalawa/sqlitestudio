@@ -48,7 +48,7 @@ QString getDbPath(const QString &startWith)
     });
 
     QFileDialog dialog(nullptr, QObject::tr("Select database file"), dir, QString());
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setOption(QFileDialog::DontConfirmOverwrite, true);
     dialog.setLabelText(QFileDialog::Accept, QObject::tr("Select"));
     dialog.setLabelText(QFileDialog::FileType, QObject::tr("File type"));
