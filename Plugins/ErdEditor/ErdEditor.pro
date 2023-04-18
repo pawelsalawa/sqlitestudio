@@ -8,15 +8,25 @@ TARGET = ErdEditor
 DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
+    erdarrowitem.cpp \
+    erdconnection.cpp \
     erdeditorplugin.cpp \
     erdeditorwindow.cpp \
-    erdscene.cpp
+    erdentity.cpp \
+    erditem.cpp \
+    erdscene.cpp \
+    erdview.cpp
 
 HEADERS += \
+    erdarrowitem.h \
+    erdconnection.h \
     erdeditor_global.h \
     erdeditorplugin.h \
     erdeditorwindow.h \
-    erdscene.h
+    erdentity.h \
+    erditem.h \
+    erdscene.h \
+    erdview.h
 
 OTHER_FILES += \
     ErdEditor.json

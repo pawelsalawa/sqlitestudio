@@ -30,13 +30,38 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="toolBar" native="true"/>
+    <widget class="QToolBar" name="toolBar"/>
    </item>
    <item>
-    <widget class="QGraphicsView" name="graphView"/>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="ErdView" name="graphView"/>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ErdView</class>
+   <extends>QGraphicsView</extends>
+   <header>erdview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

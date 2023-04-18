@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>img/erdeditor.png</file>
+        <file>icons/erdeditor.png</file>
     </qresource>
 </RCC>

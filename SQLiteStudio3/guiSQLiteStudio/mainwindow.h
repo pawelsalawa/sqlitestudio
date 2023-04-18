@@ -137,6 +137,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
 
+        template <class T>
+        T* openMdiWindow();
+
         static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
 
     protected:
@@ -163,9 +166,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
         void fixToolbars();
-
-        template <class T>
-        T* openMdiWindow();
 
         static bool confirmQuit(const QList<Committable*>& instances);
 

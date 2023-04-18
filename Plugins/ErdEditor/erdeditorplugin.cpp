@@ -2,12 +2,15 @@
 #include "common/global.h"
 #include "common/extaction.h"
 #include "mainwindow.h"
+#include "erdeditorwindow.h"
 
 bool ErdEditorPlugin::init()
 {
     SQLS_INIT_RESOURCE(erdeditor);
 
-    openErdEditorAction = new ExtAction(QIcon(":/img/erdeditor.png"), tr("Open ERD editor"), this);
+    ErdEditorWindow::staticInit();
+
+    openErdEditorAction = new ExtAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
 
     QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);
@@ -24,5 +27,5 @@ void ErdEditorPlugin::deinit()
 
 void ErdEditorPlugin::openEditor()
 {
-    qDebug() << "open";
+    MAINWINDOW->openMdiWindow<ErdEditorWindow>();
 }
