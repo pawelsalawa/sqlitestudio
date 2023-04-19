@@ -11,6 +11,14 @@ ErdConnection::ErdConnection(ErdEntity* startEntity, const QPointF& endPos) :
     startEntity->addConnection(this);
 }
 
+ErdConnection::ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow) :
+    startEntity(startEntity), endEntity(endEntity), startEntityRow(startRow), endEntityRow(endRow)
+{
+    arrow = new ErdArrowItem(calcPositions());
+    startEntity->addConnection(this);
+    endEntity->addConnection(this);
+}
+
 ErdConnection::~ErdConnection()
 {
     startEntity->removeConnection(this);

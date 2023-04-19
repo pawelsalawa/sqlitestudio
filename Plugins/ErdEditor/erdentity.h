@@ -2,7 +2,6 @@
 #define ERDENTITY_H
 
 #include "erditem.h"
-
 #include <QGraphicsProxyWidget>
 
 class SqliteCreateTable;
@@ -19,8 +18,9 @@ class ErdEntity : public QGraphicsProxyWidget, public ErdItem
 
     public:
         ErdEntity(SqliteCreateTable* tableModel);
+        ErdEntity(QSharedPointer<SqliteCreateTable> tableModel);
 
-        SqliteCreateTable* getTableModel() const;
+        QSharedPointer<SqliteCreateTable> getTableModel() const;
         int rowIndexAt(const QPointF& point);
         QRectF rowRect(int rowIndex);
         bool isClickable();
@@ -37,7 +37,7 @@ class ErdEntity : public QGraphicsProxyWidget, public ErdItem
         QLayoutItem* setBlankIcon();
         QLayoutItem* setLabel(const QString& text);
 
-        SqliteCreateTable* tableModel = nullptr;
+        QSharedPointer<SqliteCreateTable> tableModel;
         QGridLayout* layout = nullptr;
         QFrame* frame = nullptr;
         int currRow = 0;

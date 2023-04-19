@@ -137,8 +137,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
 
-        template <class T>
-        T* openMdiWindow();
+        template <class T, typename... Args>
+        T* openMdiWindow(Args&&... args);
 
         static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
 
@@ -248,11 +248,11 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void sessionValueChanged();
 };
 
-template <class T>
-T* MainWindow::openMdiWindow()
+template <class T, typename... Args>
+T* MainWindow::openMdiWindow(Args&&... args)
 {
     T* win = nullptr;
-    for (MdiWindow* mdiWin : ui->mdiArea->getWindows())
+    for (MdiWindow*& mdiWin : ui->mdiArea->getWindows())
     {
         win = dynamic_cast<T*>(mdiWin->getMdiChild());
         if (win)
@@ -262,7 +262,7 @@ T* MainWindow::openMdiWindow()
         }
     }
 
-    win = new T(ui->mdiArea);
+    win = new T(ui->mdiArea, args...);
     if (win->isInvalid())
     {
         delete win;

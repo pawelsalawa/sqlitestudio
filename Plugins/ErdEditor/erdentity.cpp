@@ -9,8 +9,14 @@
 #include <QGridLayout>
 #include <QDebug>
 #include <QSizePolicy>
+#include <QSharedPointer>
 
 ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
+    ErdEntity(QSharedPointer<SqliteCreateTable>(tableModel))
+{
+}
+
+ErdEntity::ErdEntity(QSharedPointer<SqliteCreateTable> tableModel) :
     QGraphicsProxyWidget(), tableModel(tableModel)
 {
     setZValue(10);
@@ -35,7 +41,7 @@ ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
     rebuild();
 }
 
-SqliteCreateTable* ErdEntity::getTableModel() const
+QSharedPointer<SqliteCreateTable> ErdEntity::getTableModel() const
 {
     return tableModel;
 }

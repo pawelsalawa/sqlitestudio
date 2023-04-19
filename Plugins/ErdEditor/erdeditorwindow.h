@@ -23,35 +23,36 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         };
         Q_ENUM(Action)
 
-        explicit ErdEditorWindow(QWidget *parent = nullptr);
+        explicit ErdEditorWindow();
+        ErdEditorWindow(QWidget *parent, Db* db);
         ErdEditorWindow(const ErdEditorWindow& other);
         ~ErdEditorWindow();
 
         static void staticInit();
 
-        bool isUncommitted() const;
-        QString getQuitUncommittedConfirmMessage() const;
+        bool isUncommitted() const override;
+        QString getQuitUncommittedConfirmMessage() const override;
+        void setMdiWindow(MdiWindow* value) override;
 
     protected:
-        void createActions();
-        void setupDefShortcuts();
-        QToolBar* getToolBar(int toolbar) const;
-        QVariant saveSession();
-        bool restoreSession(const QVariant& sessionValue);
-        Icon* getIconNameForMdiWindow();
-        QString getTitleForMdiWindow();
+        void createActions() override;
+        void setupDefShortcuts() override;
+        QToolBar* getToolBar(int toolbar) const override;
+        QVariant saveSession() override;
+        bool restoreSession(const QVariant& sessionValue) override;
+        Icon* getIconNameForMdiWindow() override;
+        QString getTitleForMdiWindow() override;
 
     private:
         void init();
 
         Ui::ErdEditorWindow *ui;
+        Db* db = nullptr;
         Icon* windowIcon = nullptr;
         ErdScene* scene = nullptr;
-        int lastCreatedX = -600;
-        QList<ErdEntity*> entities;
 
     private slots:
-        void newTable();
+        void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
 };
 
 #endif // ERDEDITORWINDOW_H

@@ -3,6 +3,7 @@
 #include "common/extaction.h"
 #include "mainwindow.h"
 #include "erdeditorwindow.h"
+#include "dbtree/dbtree.h"
 
 bool ErdEditorPlugin::init()
 {
@@ -15,6 +16,7 @@ bool ErdEditorPlugin::init()
 
     QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->insertAction(ddlHistoryAction, openErdEditorAction);
+    MAINWINDOW->getToolsMenu()->insertAction(ddlHistoryAction, openErdEditorAction);
 
     return true;
 }
@@ -27,5 +29,6 @@ void ErdEditorPlugin::deinit()
 
 void ErdEditorPlugin::openEditor()
 {
-    MAINWINDOW->openMdiWindow<ErdEditorWindow>();
+    Db* db = DBTREE->getSelectedOpenDb();
+    MAINWINDOW->openMdiWindow<ErdEditorWindow>(db);
 }

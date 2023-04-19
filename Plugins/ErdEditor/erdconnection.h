@@ -11,6 +11,7 @@ class ErdConnection
 {
     public:
         ErdConnection(ErdEntity* startEntity, const QPointF& endPos);
+        ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow);
         virtual ~ErdConnection();
 
         ErdArrowItem* getArrow() const;

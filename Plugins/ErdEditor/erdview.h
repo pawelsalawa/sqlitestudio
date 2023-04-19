@@ -33,7 +33,11 @@ class ErdView : public QGraphicsView
         ErdConnection* currentConnection = nullptr;
         QPoint dragOffset;
         QPoint clickPos;
+        qreal zoom = 1.0;
         bool spaceIsPressed = false;
+
+    private slots:
+        void resetZoom();
 };
 
 #endif // ERDVIEW_H

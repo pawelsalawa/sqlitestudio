@@ -124,6 +124,19 @@ SqliteCreateTable::Column* SqliteCreateTable::getColumn(const QString& colName)
     return nullptr;
 }
 
+int SqliteCreateTable::getColumnIndex(const QString& colName)
+{
+    int idx = 0;
+    for (Column*& col : columns)
+    {
+        if (col->name.compare(colName, Qt::CaseInsensitive) == 0)
+            return idx;
+
+        idx++;
+    }
+    return -1;
+}
+
 QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(const QString& foreignTable) const
 {
     QList<Constraint*> results;

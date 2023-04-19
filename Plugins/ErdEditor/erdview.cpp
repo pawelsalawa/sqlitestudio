@@ -12,6 +12,7 @@ ErdView::ErdView(QWidget* parent) :
 {
     setMouseTracking(true);
     setRenderHints(QPainter::Antialiasing);
+    setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
 }
 
 void ErdView::mousePressEvent(QMouseEvent* event)
@@ -116,6 +117,11 @@ void ErdView::wheelEvent(QWheelEvent* event)
 {
     qreal diff = ((qreal)event->angleDelta().y()) / 300;
     qreal ratio = diff >= 0 ? (1.0 + diff) : (1 / (1.0 - diff));
+    zoom *= ratio;
+    if (zoom > 1.0) {
+        resetZoom();
+        return;
+    }
     scale(ratio, ratio);
 }
 
@@ -125,6 +131,10 @@ void ErdView::viewClicked(const QPoint& pos)
     ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
     if (entity)
     {
+        int rowIdx = entity->rowIndexAt(mapToScene(pos));
+        if (rowIdx <= 0)
+            return;
+
         if (currentConnection)
         {
             ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
@@ -162,4 +172,10 @@ void ErdView::spaceReleased()
 {
     spaceIsPressed = false;
     setDragMode(QGraphicsView::NoDrag);
+}
+
+void ErdView::resetZoom()
+{
+    resetTransform();
+    zoom = 1.0;
 }
