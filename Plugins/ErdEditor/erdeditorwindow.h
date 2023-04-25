@@ -19,7 +19,8 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
     public:
         enum Action
         {
-            NEW_TABLE
+            NEW_TABLE,
+            ARRANGE
         };
         Q_ENUM(Action)
 

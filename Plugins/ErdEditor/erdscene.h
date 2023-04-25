@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 
 class ErdEntity;
+class ErdConnection;
 class Db;
 
 class ErdScene : public QGraphicsScene
@@ -16,6 +17,7 @@ class ErdScene : public QGraphicsScene
         explicit ErdScene(QObject *parent = nullptr);
 
         void parseSchema(Db* db);
+        QList<ErdEntity*> getAllEntities() const;
 
     private:
         void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable);
@@ -26,9 +28,12 @@ class ErdScene : public QGraphicsScene
 
         int lastCreatedX = -600;
         QList<ErdEntity*> entities;
+        static constexpr qreal sceneMargin = 200;
 
     public slots:
         void newTable();
+        void arrangeEntities();
+        void refreshSceneRect();
 };
 
 #endif // ERDSCENE_H

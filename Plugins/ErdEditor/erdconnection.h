@@ -19,6 +19,8 @@ class ErdConnection
         void finalizeConnection(ErdEntity* entity, const QPointF& endPos);
         bool isFinalized() const;
         void refreshPosition();
+        ErdEntity* getStartEntity() const;
+        ErdEntity* getEndEntity() const;
 
     private:
         QLineF calcPositions();

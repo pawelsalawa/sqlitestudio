@@ -81,6 +81,7 @@ void ErdEditorWindow::createActions()
 {
     // TODO
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
+    createAction(ARRANGE, ICONS.TABLE_ADD, tr("Arrange entities"), scene, SLOT(arrangeEntities()), ui->toolBar);
 }
 
 void ErdEditorWindow::setupDefShortcuts()

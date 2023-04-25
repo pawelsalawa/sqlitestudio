@@ -2,6 +2,7 @@
 #include "erdconnection.h"
 #include "erdentity.h"
 #include "erdarrowitem.h"
+#include "erdscene.h"
 #include "common/unused.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
@@ -29,8 +30,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     if (item && item->flags() & QGraphicsItem::ItemIsSelectable)
     {
         selectedItem = item;
-        dragOffset = transform().map(event->pos() - mapFromScene(item->pos()));
-        qDebug() << "do" << dragOffset;
+        dragOffset = transform().inverted().map(event->pos() - mapFromScene(item->pos()));
     }
     else if (!spaceIsPressed)
         setDragMode(QGraphicsView::RubberBandDrag);
@@ -46,6 +46,8 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
         ErdEntity* entity = dynamic_cast<ErdEntity*>(selectedItem);
         if (entity)
             entity->updateConnectionsGeometry();
+
+        dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
     }
     else if (currentConnection)
         currentConnection->updatePosition(mapToScene(event->pos()));

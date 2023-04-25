@@ -3,6 +3,7 @@
 #include "schemaresolver.h"
 #include "erdarrowitem.h"
 #include "erdconnection.h"
+#include "erdgraphvizlayoutplanner.h"
 #include <QApplication>
 
 ErdScene::ErdScene(QObject *parent)
@@ -36,6 +37,13 @@ void ErdScene::parseSchema(Db* db)
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     for (ErdEntity*& entity : entities)
         entity->updateConnectionsGeometry();
+
+    arrangeEntities();
+}
+
+QList<ErdEntity*> ErdScene::getAllEntities() const
+{
+    return entities;
 }
 
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable)
@@ -120,6 +128,13 @@ void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable,
     addItem(conn->getArrow());
 }
 
+void ErdScene::refreshSceneRect()
+{
+    QRectF boundingRect = itemsBoundingRect();
+    boundingRect.adjust(-sceneMargin, -sceneMargin, sceneMargin, sceneMargin);
+    setSceneRect(boundingRect);
+}
+
 void ErdScene::newTable()
 {
     // Create the first entity item
@@ -142,4 +157,13 @@ void ErdScene::newTable()
     lastCreatedX += 150;
 
     entities << entityItem;
+}
+
+void ErdScene::arrangeEntities()
+{
+    ErdGraphvizLayoutPlanner planner;
+    planner.arrangeScene(this);
+    setSceneRect(sceneRect().adjusted(-100, -100, 100, 100));
+    update();
+    refreshSceneRect();
 }

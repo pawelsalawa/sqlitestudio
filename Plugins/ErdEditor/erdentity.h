@@ -27,6 +27,8 @@ class ErdEntity : public QGraphicsProxyWidget, public ErdItem
         void updateConnectionsGeometry();
         void addConnection(ErdConnection* conn);
         void removeConnection(ErdConnection* conn);
+        QList<ErdConnection*> getConnections() const;
+        QString getTableName() const;
 
     private:
         void clearLayout();

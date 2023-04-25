@@ -13,7 +13,9 @@ SOURCES += \
     erdeditorplugin.cpp \
     erdeditorwindow.cpp \
     erdentity.cpp \
+    erdgraphvizlayoutplanner.cpp \
     erditem.cpp \
+    erdlayoutplanner.cpp \
     erdscene.cpp \
     erdview.cpp
 
@@ -24,16 +26,16 @@ HEADERS += \
     erdeditorplugin.h \
     erdeditorwindow.h \
     erdentity.h \
+    erdgraphvizlayoutplanner.h \
     erditem.h \
+    erdlayoutplanner.h \
     erdscene.h \
     erdview.h
 
 OTHER_FILES += \
     ErdEditor.json
 
-win32: {
-    LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
-}
+LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
     erdeditorwindow.ui

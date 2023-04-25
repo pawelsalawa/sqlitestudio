@@ -87,6 +87,16 @@ void ErdEntity::removeConnection(ErdConnection* conn)
     connections.removeOne(conn);
 }
 
+QList<ErdConnection*> ErdEntity::getConnections() const
+{
+    return connections;
+}
+
+QString ErdEntity::getTableName() const
+{
+    return tableModel->table;
+}
+
 void ErdEntity::clearLayout()
 {
     QLayoutItem* child = nullptr;

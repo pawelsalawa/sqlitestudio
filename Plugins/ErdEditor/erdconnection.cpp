@@ -89,3 +89,13 @@ QPointF ErdConnection::findThisPosAgainstOther(ErdEntity* thisEntity, int thisRo
     return pos;
 }
 
+ErdEntity* ErdConnection::getEndEntity() const
+{
+    return endEntity;
+}
+
+ErdEntity* ErdConnection::getStartEntity() const
+{
+    return startEntity;
+}
+
