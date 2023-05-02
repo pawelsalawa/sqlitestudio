@@ -203,7 +203,7 @@ void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelI
     QString str = value.toString();
     if (str.size() > HUGE_CONTENTS_WARNING_LIMIT && !warnedAboutHugeContents)
     {
-        NOTIFY_MANAGER->warn(tr("Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It's better to edit such big contents in a Form View, or in popup editor (available under rick-click menu)."));
+        NOTIFY_MANAGER->warn(tr("Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It's better to edit such big contents in a Form View, or in popup editor (available under right-click menu)."));
         warnedAboutHugeContents = true;
     }
 
