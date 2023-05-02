@@ -971,7 +971,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="369"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lors de l'ajout d'une nouvelle base de données, elle est marquée comme étant &quot;permanente&quot; (stockée dans la configuration) par défaut. Si cette option est cochée, chaque nouvelle base de données NE sera PAS &quot;permanente&quot; par défaut.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="372"/>
