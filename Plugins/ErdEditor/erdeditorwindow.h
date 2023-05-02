@@ -20,7 +20,8 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         enum Action
         {
             NEW_TABLE,
-            ARRANGE
+            ARRANGE_FDP,
+            ARRANGE_NEATO
         };
         Q_ENUM(Action)
 
@@ -34,6 +35,7 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         bool isUncommitted() const override;
         QString getQuitUncommittedConfirmMessage() const override;
         void setMdiWindow(MdiWindow* value) override;
+        bool shouldReuseForArgs(int argCount, ...) override;
 
     protected:
         void createActions() override;
@@ -50,10 +52,13 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         Ui::ErdEditorWindow *ui;
         Db* db = nullptr;
         Icon* windowIcon = nullptr;
+        Icon* fdpIcon = nullptr;
+        Icon* neatoIcon = nullptr;
         ErdScene* scene = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
+        void uiPaletteChanged();
 };
 
 #endif // ERDEDITORWINDOW_H

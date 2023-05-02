@@ -255,7 +255,7 @@ T* MainWindow::openMdiWindow(Args&&... args)
     for (MdiWindow*& mdiWin : ui->mdiArea->getWindows())
     {
         win = dynamic_cast<T*>(mdiWin->getMdiChild());
-        if (win)
+        if (win && win->shouldReuseForArgs(sizeof...(args), args...))
         {
             ui->mdiArea->setActiveSubWindow(mdiWin);
             return win;

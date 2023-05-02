@@ -20,6 +20,8 @@ class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, publi
         QVariant getSessionValue();
         bool applySessionValue(const QVariant& sessionValue);
 
+        virtual bool shouldReuseForArgs(int argCount, ...);
+
         MdiWindow* getMdiWindow() const;
         virtual void setMdiWindow(MdiWindow* value);
         bool isInvalid() const;

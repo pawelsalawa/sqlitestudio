@@ -85,6 +85,7 @@ class GUI_API_EXPORT Icon
 
         bool loaded = false;
         bool movie = false;
+        bool owningHandle = false;
         QString name;
         Attributes attr = NONE;
         QString fileName;

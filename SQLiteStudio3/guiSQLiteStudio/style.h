@@ -1,13 +1,14 @@
 #ifndef STYLE_H
 #define STYLE_H
 
+#include "guiSQLiteStudio_global.h"
 #include "extendedpalette.h"
 #include <QPalette>
 #include <QProxyStyle>
 
 class CfgEntry;
 
-class Style : public QProxyStyle
+class GUI_API_EXPORT Style : public QProxyStyle
 {
     Q_OBJECT
 

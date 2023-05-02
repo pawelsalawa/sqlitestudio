@@ -1,7 +1,7 @@
 #include "erdview.h"
 #include "erdconnection.h"
 #include "erdentity.h"
-#include "erdarrowitem.h"
+#include "erdlinearrowitem.h"
 #include "erdscene.h"
 #include "common/unused.h"
 #include <QGraphicsItem>
@@ -147,7 +147,7 @@ void ErdView::viewClicked(const QPoint& pos)
         {
             ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
             currentConnection = new ErdConnection(entity, mapToScene(pos));
-            scene()->addItem(currentConnection->getArrow());
+            currentConnection->addToScene(scene());
         }
     }
 }

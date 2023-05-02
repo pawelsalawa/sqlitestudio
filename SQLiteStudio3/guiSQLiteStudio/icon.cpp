@@ -36,8 +36,11 @@ Icon::~Icon()
 
     dynamicallyAttributed.clear();
 
-    safe_delete(iconHandle);
-    safe_delete(movieHandle);
+    if (owningHandle)
+    {
+        delete iconHandle;
+        delete movieHandle;
+    }
 }
 
 void Icon::load()
@@ -65,6 +68,7 @@ void Icon::load()
         }
 
         iconHandle = new QIcon(mergeAttribute(icon, attr));
+        owningHandle = true;
     }
     else
     {

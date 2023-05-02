@@ -6,6 +6,7 @@
 #include "common/unused.h"
 #include "services/dbmanager.h"
 #include "mdiwindow.h"
+#include "style.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 
@@ -32,6 +33,9 @@ ErdEditorWindow::ErdEditorWindow(const ErdEditorWindow& other) :
 ErdEditorWindow::~ErdEditorWindow()
 {
     delete ui;
+    delete windowIcon;
+    delete fdpIcon;
+    delete neatoIcon;
 }
 
 void ErdEditorWindow::staticInit()
@@ -45,12 +49,18 @@ void ErdEditorWindow::init()
     ui->setupUi(this);
 
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
+    fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
+    neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
     windowIcon->load();
+    fdpIcon->load();
+    neatoIcon->load();
 
     scene = new ErdScene(this);
     ui->graphView->setScene(scene);
 
     initActions();
+
+    connect(STYLE, &Style::paletteChanged, this, &ErdEditorWindow::uiPaletteChanged);
 
     scene->parseSchema(db);
 }
@@ -59,6 +69,12 @@ void ErdEditorWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStat
 {
     if (!oldState.testFlag(Qt::WindowActive) && newState.testFlag(Qt::WindowActive))
         ui->graphView->setFocus();
+}
+
+void ErdEditorWindow::uiPaletteChanged()
+{
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    scene->update();
 }
 
 bool ErdEditorWindow::isUncommitted() const
@@ -77,11 +93,26 @@ void ErdEditorWindow::setMdiWindow(MdiWindow* value)
     connect(value, &QMdiSubWindow::windowStateChanged, this, &ErdEditorWindow::checkIfActivated);
 }
 
+bool ErdEditorWindow::shouldReuseForArgs(int argCount, ...)
+{
+    if (argCount != 1)
+        return false;
+
+    va_list args;
+    va_start(args, argCount);
+    Db* argDb = va_arg(args, Db*);
+    va_end(args);
+
+    return argDb == db;
+}
+
 void ErdEditorWindow::createActions()
 {
     // TODO
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
-    createAction(ARRANGE, ICONS.TABLE_ADD, tr("Arrange entities"), scene, SLOT(arrangeEntities()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
+    createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
 }
 
 void ErdEditorWindow::setupDefShortcuts()

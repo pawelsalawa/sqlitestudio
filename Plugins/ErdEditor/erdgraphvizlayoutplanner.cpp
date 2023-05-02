@@ -10,7 +10,7 @@ ErdGraphvizLayoutPlanner::ErdGraphvizLayoutPlanner()
 {
 }
 
-void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene)
+void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
 {
     QList<ErdEntity*> entities = scene->getAllEntities();
     QSet<ErdConnection*> connections;
@@ -24,6 +24,8 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene)
     GVC_t* gvc = gvContext();
     Agraph_t* graph = agopen(const_cast<char*>("ERD"), Agdirected, nullptr);
     agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.3"), "");
+    if (algo == NEATO)
+        agsafeset(graph, const_cast<char*>("overlap"), const_cast<char*>("scalexy"), "");
 
     // Add nodes to graph
     QHash<ErdEntity*, Agnode_t*> entityNodes;
@@ -50,7 +52,7 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene)
     }
 
     // Apply neato layout algorithm
-    gvLayout(gvc, graph, "fdp");
+    gvLayout(gvc, graph, algo == NEATO ? "neato" : "fdp");
 
     // Get node positions and update entities
     for (Agnode_t* node = agfstnode(graph); node; node = agnxtnode(graph, node))

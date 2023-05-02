@@ -1,7 +1,7 @@
 #include "erdscene.h"
 #include "erdentity.h"
 #include "schemaresolver.h"
-#include "erdarrowitem.h"
+#include "erdlinearrowitem.h"
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
 #include <QApplication>
@@ -38,7 +38,7 @@ void ErdScene::parseSchema(Db* db)
     for (ErdEntity*& entity : entities)
         entity->updateConnectionsGeometry();
 
-    arrangeEntities();
+    arrangeEntitiesFdp();
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -125,7 +125,7 @@ void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable,
     }
 
     ErdConnection* conn = new ErdConnection(srcEntity, srcRowIdx + 1, trgEntity, trgRowIdx + 1);
-    addItem(conn->getArrow());
+    conn->addToScene(this);
 }
 
 void ErdScene::refreshSceneRect()
@@ -159,11 +159,20 @@ void ErdScene::newTable()
     entities << entityItem;
 }
 
-void ErdScene::arrangeEntities()
+void ErdScene::arrangeEntities(int algo)
 {
     ErdGraphvizLayoutPlanner planner;
-    planner.arrangeScene(this);
-    setSceneRect(sceneRect().adjusted(-100, -100, 100, 100));
+    planner.arrangeScene(this, static_cast<ErdGraphvizLayoutPlanner::Algo>(algo));
     update();
     refreshSceneRect();
+}
+
+void ErdScene::arrangeEntitiesFdp()
+{
+    arrangeEntities(ErdGraphvizLayoutPlanner::FDP);
+}
+
+void ErdScene::arrangeEntitiesNeato()
+{
+    arrangeEntities(ErdGraphvizLayoutPlanner::NEATO);
 }

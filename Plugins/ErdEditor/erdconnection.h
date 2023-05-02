@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QPointF>
+#include "erdarrowitem.h"
 
 class ErdEntity;
-class ErdArrowItem;
+class ErdCurvyArrowItem;
+class QGraphicsScene;
 
 class ErdConnection
 {
@@ -14,7 +16,7 @@ class ErdConnection
         ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow);
         virtual ~ErdConnection();
 
-        ErdArrowItem* getArrow() const;
+        void addToScene(QGraphicsScene* scene);
         void updatePosition(const QPointF& endPos);
         void finalizeConnection(ErdEntity* entity, const QPointF& endPos);
         bool isFinalized() const;
@@ -23,9 +25,7 @@ class ErdConnection
         ErdEntity* getEndEntity() const;
 
     private:
-        QLineF calcPositions();
-
-        static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition);
+        static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
 
         ErdEntity* startEntity = nullptr;
         ErdEntity* endEntity = nullptr;

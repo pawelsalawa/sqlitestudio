@@ -4,6 +4,8 @@
 class ErdItem
 {
     public:
+        virtual ~ErdItem();
+
         virtual bool isClickable() = 0;
 };
 

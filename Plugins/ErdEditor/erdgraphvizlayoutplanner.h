@@ -1,14 +1,20 @@
 #ifndef ERDGRAPHVIZLAYOUTPLANNER_H
 #define ERDGRAPHVIZLAYOUTPLANNER_H
 
-#include "erdlayoutplanner.h"
+class ErdScene;
 
-class ErdGraphvizLayoutPlanner : public ErdLayoutPlanner
+class ErdGraphvizLayoutPlanner
 {
     public:
+        enum Algo
+        {
+            FDP,
+            NEATO
+        };
+
         ErdGraphvizLayoutPlanner();
 
-        void arrangeScene(ErdScene* scene);
+        void arrangeScene(ErdScene* scene, Algo algo);
 };
 
 #endif // ERDGRAPHVIZLAYOUTPLANNER_H

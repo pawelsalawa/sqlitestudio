@@ -1,4 +1,5 @@
 #include "mdichild.h"
+#include "common/unused.h"
 #include "mdiwindow.h"
 #include "iconmanager.h"
 #include "mainwindow.h"
@@ -25,6 +26,12 @@ bool MdiChild::applySessionValue(const QVariant& sessionValue)
 {
     bool result = restoreSession(sessionValue);
     return result;
+}
+
+bool MdiChild::shouldReuseForArgs(int argCount, ...)
+{
+    UNUSED(argCount);
+    return true;
 }
 
 MdiWindow* MdiChild::getMdiWindow() const

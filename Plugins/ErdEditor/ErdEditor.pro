@@ -10,25 +10,27 @@ DEFINES += ERDEDITOR_LIBRARY
 SOURCES += \
     erdarrowitem.cpp \
     erdconnection.cpp \
+    erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
     erdeditorwindow.cpp \
     erdentity.cpp \
     erdgraphvizlayoutplanner.cpp \
     erditem.cpp \
-    erdlayoutplanner.cpp \
+    erdlinearrowitem.cpp \
     erdscene.cpp \
     erdview.cpp
 
 HEADERS += \
     erdarrowitem.h \
     erdconnection.h \
+    erdcurvyarrowitem.h \
     erdeditor_global.h \
     erdeditorplugin.h \
     erdeditorwindow.h \
     erdentity.h \
     erdgraphvizlayoutplanner.h \
     erditem.h \
-    erdlayoutplanner.h \
+    erdlinearrowitem.h \
     erdscene.h \
     erdview.h
 

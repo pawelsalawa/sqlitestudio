@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/erdeditor.png</file>
+        <file>icons/erdlayout_fdp.png</file>
+        <file>icons/erdlayout_neato.png</file>
     </qresource>
 </RCC>
