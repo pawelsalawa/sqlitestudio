@@ -1772,7 +1772,7 @@
     <message>
       <location filename="../dataview.cpp" line="113"/>
       <source>Form view</source>
-      <translation>Formulaire</translation>
+      <translation>Vue formulaire</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="204"/>
@@ -1826,7 +1826,7 @@
       <location filename="../dataview.cpp" line="237"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
-      <translation>Affichage des résultat en formulaire</translation>
+      <translation>Affichage des résultats en vue formulaire</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="994"/>
@@ -4533,7 +4533,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dataview.h" line="21"/>
       <source>Data view (both grid and form)</source>
-      <translation>Vue des données (tableau et formulaire)</translation>
+      <translation>Vue des données (grille et formulaire)</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="22"/>
@@ -4548,7 +4548,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dataview.h" line="24"/>
       <source>Switch to form view of the data</source>
-      <translation>Basculer sur la vue des données en formulaire</translation>
+      <translation>Basculer vers le mode formulaire des données</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="30"/>
@@ -4637,7 +4637,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../formview.h" line="15"/>
       <source>Data form view</source>
-      <translation>Formulaire vue de données</translation>
+      <translation>Mode formulaire des données</translation>
     </message>
     <message>
       <location filename="../formview.h" line="16"/>
@@ -5503,7 +5503,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
+      <translation>La modification d'une grande quantité de contenu dans un éditeur de cellules en ligne n'est pas une bonne idée. Elle peut devenir lente et problématique. Il est préférable d'éditer de tels contenus en Mode Formulaire, ou dans l'éditeur contextuel (disponible dans le menu du clic droit).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
