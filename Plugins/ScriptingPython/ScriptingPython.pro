@@ -17,17 +17,21 @@ HEADERS += scriptingpython.h\
 OTHER_FILES += \
     scriptingpython.json
 
+isEmpty(PYTHON_VERSION) {
+    PYTHON_VERSION = 3.9
+}
+
 linux: {
-    LIBS += -lpython3.9
+    LIBS += -lpython$$PYTHON_VERSION
 }
 
 macx: {
-    LIBS += -lpython3.9
+    LIBS += -lpython$$PYTHON_VERSION
 }
 
 win32: {
     INCLUDEPATH += $$PWD/../../../include/python
-    LIBS += -lpython39 -L$$PWD/../../../lib/python
+    LIBS += -lpython$$replace(PYTHON_VERSION, \., ) -L$$PWD/../../../lib/python
 }
 
 RESOURCES += \

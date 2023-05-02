@@ -1,12 +1,9 @@
 env:
-    QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
-    QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
     ICU_VER: '72'
     ICU_URL: https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-icu-72.1-1-any.pkg.tar.zst
-    QT_BIN_DIR: ../Qt/5.15.2/mingw81_32/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw810/8.1.0-1-202004170606i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z
@@ -30,25 +27,86 @@ jobs:
     build:
         runs-on: windows-2019
 
+        strategy:
+          fail-fast: false
+          matrix:
+            qt_version:
+              - "5.15.2"
+              - "5.15.9"
+
         steps:
+            - name: Configure environment
+              shell: bash
+              run: |
+                {
+                    case ${{ matrix.qt_version }} in
+                        5.15.2) echo QT_FROM_PACKAGES=0
+                                echo QT_ARCH=win32_mingw81 ;;
+                        *) echo QT_FROM_PACKAGES=1 ;;
+                    esac
+                    echo TARGET_ARCH=i686
+                    echo MINGWxx=mingw32
+                } >> $GITHUB_ENV
+
+            - uses: msys2/setup-msys2@v2
+              if: env.QT_FROM_PACKAGES == 1
+              with:
+                msystem: MINGW32
+                location: d:/
+                install: >
+                  mingw-w64-${{ env.TARGET_ARCH }}-gcc
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-base
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-declarative
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-imageformats
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-script
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-svg
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-tools
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
+                  mingw-w64-${{ env.TARGET_ARCH }}-wineditline
+                  unzip
+                update: ${{ env.QT_FROM_PACKAGES == 1 }}
+
+            - name: Configure Qt from packages
+              if: env.QT_FROM_PACKAGES == 1
+              shell: msys2 {0}
+              run: |
+                set -x
+                qt_version_local="$(pacman -Si mingw-w64-$TARGET_ARCH-qt5-base | awk '/Version/ {print $3}')"
+                case "$qt_version_local" in
+                    ${{ matrix.qt_version }}*) ;;
+                    *) echo "Repos have $qt_version_local, can't install ${{ matrix.qt_version }} from repos"; exit 1 ;;
+                esac
+                echo 'd:\msys64\$MINGWxx\bin' >> $GITHUB_PATH
+                tee -a $GITHUB_ENV <<EOF_ENV
+                ICU_FLAGS=-licuio -licuin -licuuc -licudt
+                ICU_LIBDIR=/d/msys64/$MINGWxx/bin
+                QMAKE_EXTRA_FLAGS=INCLUDEPATH+=D:/msys64/$MINGWxx/include/editline
+                QT5_LIBDIR=/d/msys64/$MINGWxx/bin
+                QT5_PLUGINDIR=/d/msys64/$MINGWxx/share/qt5/plugins
+                ZLIB_FLAGS=-lz
+                EOF_ENV
+
             - name: Set up MinGW
+              if: env.QT_FROM_PACKAGES == 0
               uses: egor-tensin/setup-mingw@v2
               with:
                 platform: x86
                 version: 8.1.0
 
             - name: Cache Qt
+              if: env.QT_FROM_PACKAGES == 0
               id: cache-qt
               uses: actions/cache@v3
               with:
                 path: ${{ github.workspace }}\..\Qt
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
+                key: ${{ runner.os }}-${{ matrix.qt_version }}-Qt-Cache
 
             - name: Install Qt
+              if: env.QT_FROM_PACKAGES == 0
               uses: jurplel/install-qt-action@v3
               with:
                 cache: true
-                version: ${{ env.QT_VERSION }}
+                version: ${{ matrix.qt_version }}
                 host: 'windows'
                 arch: ${{ env.QT_ARCH }}
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
@@ -66,6 +124,7 @@ jobs:
                 ref: ${{ github.event.client_payload.branch }}
 
             - name: Install dependencies
+              if: env.QT_FROM_PACKAGES == 0
               shell: bash
               run: |
                 7z x -o".." win_deps/win32_deps.zip
@@ -75,7 +134,7 @@ jobs:
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2.8
               with:
-                key: win32_release
+                key: win32-qt${{ matrix.qt_version }}-release
                 max-size: "24M"
 
             - name: Configure ccache (or not ccache)
@@ -107,16 +166,25 @@ jobs:
                     -DSQLITE_ENABLE_JSON1 \
                     -DSQLITE_ENABLE_RTREE \
                     -DSQLITE_ENABLE_MATH_FUNCTIONS
+                mkdir -p ../lib ../include
                 cp -f sqlite3.dll ../lib/
                 cp -f sqlite3.h ../include/
                 cp -f sqlite3ext.h ../include/
 
             - name: Install extension dependencies
+              if: env.QT_FROM_PACKAGES == 0
               shell: bash
               run: |
                 cd ..
                 curl -L "$ICU_URL" | tar -xf - --zstd
                 mv mingw32 icu
+                tee -a $GITHUB_ENV <<EOF_ENV
+                ICU_FLAGS=-I$(pwd)/icu/include -L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
+                ICU_LIBDIR=$(pwd)/icu/bin
+                QT5_LIBDIR=$Qt5_Dir/bin
+                QT5_PLUGINDIR=$Qt5_Dir/plugins
+                ZLIB_FLAGS=-lzlib1
+                EOF_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -127,17 +195,17 @@ jobs:
                 7z x sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-shared -Os -fpic -DWIN32 -m32 -I../../include -L../../lib -lsqlite3"
-                #for f in compress sqlar; do
-                #    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                #    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll
-                #done
+                for f in compress sqlar; do
+                    echo "$GCC_COMMAND misc/$f.c -Imisc $ZLIB_FLAGS $FLAGS -o ../../ext/$f.dll"
+                    $GCC_COMMAND misc/$f.c -Imisc $ZLIB_FLAGS $FLAGS -o ../../ext/$f.dll
+                done
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
                 done
                 for f in icu; do
-                    echo "$GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll
+                    echo "$GCC_COMMAND icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.dll"
+                    $GCC_COMMAND icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.dll
                 done
                 ls -l ../../ext/
 
@@ -147,23 +215,26 @@ jobs:
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
+              shell: bash
               run: |
-                qmake.exe `
-                    CONFIG+=portable `
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
-                    "QMAKE_CXXFLAGS+=-m32" `
-                    ..\..\SQLiteStudio3
+                qmake.exe \
+                    CONFIG+=portable \
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                    "QMAKE_CXXFLAGS+=-m32" \
+                    $QMAKE_EXTRA_FLAGS \
+                    ../../SQLiteStudio3
                 mingw32-make.exe -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
+              shell: bash
               run: |
-                qmake.exe `
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
-                    CONFIG+=portable `
-                    "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
-                    "QMAKE_CXXFLAGS+=-m32" `
-                    ..\..\..\Plugins
+                qmake.exe \
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                    CONFIG+=portable \
+                    PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
+                    "QMAKE_CXXFLAGS+=-m32" \
+                    ../../../Plugins
                 mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
@@ -189,28 +260,65 @@ jobs:
 
             - name: Prepare portable distro (Qt)
               shell: bash
-              working-directory: ${{ env.Qt5_Dir }}
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Qml Qt5Svg Qt5Widgets Qt5Xml libgcc_s_dw2-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
-                cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
+                cd "$QT5_LIBDIR"
+                cp \
+                    Qt5Core.dll \
+                    Qt5Gui.dll \
+                    Qt5Network.dll \
+                    Qt5PrintSupport.dll \
+                    Qt5Qml.dll \
+                    Qt5Svg.dll \
+                    Qt5Widgets.dll \
+                    Qt5Xml.dll \
+                    libgcc_s_dw2-1.dll \
+                    libstdc++-6.dll \
+                    libwinpthread-1.dll \
+                    "$ABSOLUTE_PORTABLE_DIR"
+                if [ "$QT_FROM_PACKAGES" = 1 ]; then
+                    cp \
+                        libbrotlicommon.dll \
+                        libbrotlidec.dll \
+                        libbz2-1.dll \
+                        libdouble-conversion.dll \
+                        libfreetype-6.dll \
+                        libglib-2.0-0.dll \
+                        libgraphite2.dll \
+                        libharfbuzz-0.dll \
+                        libiconv-2.dll \
+                        libintl-8.dll \
+                        libmd4c.dll \
+                        libpcre2-8-0.dll \
+                        libpcre2-16-0.dll \
+                        libpng16-16.dll \
+                        libzstd.dll \
+                        zlib1.dll \
+                        "$ABSOLUTE_PORTABLE_DIR"
+                else
+                    cp qt.conf "$ABSOLUTE_PORTABLE_DIR"
+                fi
+                cd "$QT5_PLUGINDIR"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/imageformats"
-                cp plugins/iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
-                cp plugins/platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
-                cp plugins/styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
-                cp plugins/printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
+                cp iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
+                cp platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
+                cp styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
+                cp printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
 
             - name: Prepare portable distro (Deps)
               shell: bash
               run: |
                 cd ../lib
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
-                cd ../icu/bin
+                cd "$ICU_LIBDIR"
                 cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
+                if [ "$QT_FROM_PACKAGES" = 1 ]; then
+                    cp libcrypto-3.dll libssl-3.dll tcl86.dll "$ABSOLUTE_PORTABLE_DIR"
+                fi
 
             - name: Prepare portable distro (Resources)
               shell: bash
@@ -222,13 +330,16 @@ jobs:
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR
-                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+                SQLITESTUDIO_VERSION="$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')"
+                [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=$SQLITESTUDIO_VERSION-qt${{ matrix.qt_version }}" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
-                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
 
             - name: Install the InstalBuilder
               shell: bash
@@ -250,15 +361,17 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe \
+                    SQLiteStudio-$PACKAGE_VERSION-windows-installer.exe \
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v1
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-windows-installer.exe
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-windows-installer.exe

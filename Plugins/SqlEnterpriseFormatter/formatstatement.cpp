@@ -66,6 +66,7 @@
 #include "common/global.h"
 #include <QRegularExpression>
 #include <QDebug>
+#include <QtGlobal>
 
 #define FORMATTER_FACTORY_ENTRY(query, Type, FormatType) \
     if (dynamic_cast<Type*>(query)) \
@@ -580,7 +581,7 @@ QString FormatStatement::detokenize()
                 {
                     // No 'break', so we go to next case, the regular KEYWORD
                 }
-                __attribute__((__fallthrough__));
+                Q_FALLTHROUGH();
             }
             case FormatToken::KEYWORD:
             {

@@ -1,9 +1,11 @@
 env:
-    QT_VERSION: '5.15.2'
-    TCL_VERSION: '8.6'
+    TARGET_ARCH: 'x86_64'
+    TCL_VERSION: '8.6.13'
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
+    ICU_VERSION: '72.1'
+    OPENSSL_VERSION: '1.1.1t'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-linux-x64-installer.run
@@ -24,29 +26,102 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
+        container: ${{ matrix.container }}
+
+        strategy:
+          fail-fast: false
+          matrix:
+            binary_compatibility:
+              - "glibc_2.23"  # Ubuntu 16.04
+              - "glibc_2.27"  # Ubuntu 18.04
+              #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
+            qt_version:
+              - "5.15.2"
+              - "5.15.9"
+            exclude:
+              - binary_compatibility: glibc_2.23
+                qt_version: "5.15.2"
+              - binary_compatibility: glibc_2.27
+                qt_version: "5.15.9"
+            include:
+              - binary_compatibility: glibc_2.23
+                container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
+                icu_version_short: 66
+              - binary_compatibility: glibc_2.27
+                container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
+                icu_version_short: 60
+              #- binary_compatibility: glibc_2.31
+              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
+              #  icu_version_short: 66
 
         steps:
-            - uses: actions/setup-python@v4
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+            - name: Configure environment
+              run: |
+                {
+                    case ${{ matrix.binary_compatibility }},${{ matrix.qt_version }} in
+                        *,5.15.2) echo USE_PREBUILT_QT=0; echo ICU_VERSION_SHORT=56 ;;
+                               *) echo USE_PREBUILT_QT=1; echo ICU_VERSION_SHORT=${ICU_VERSION%%.*} ;;
+                    esac
+                    echo TCL_VERSION_SHORT="${TCL_VERSION%.*}"
+                    echo TARGET_ARCH=x86_64
+                } >> $GITHUB_ENV
+
+            - name: Install python${{ env.PYTHON_VERSION }}
+              run: |
+                set -ex
+                default_python="$(ls /usr/bin/python3.* | head -1)"
+                export DEBIAN_FRONTEND=noninteractive
+                yes | case "$default_python" in
+                    *"$PYTHON_VERSION") sudo apt-get -qqy install python3-dev python3-distutils ;;
+                    *)  sudo apt-get -qqy install python$PYTHON_VERSION python$PYTHON_VERSION-dev python$PYTHON_VERSION-distutils
+                        sudo update-alternatives --install /usr/bin/python3 python3 "$default_python" 1
+                        sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python$PYTHON_VERSION 2
+                        sudo update-alternatives --set python3 /usr/bin/python$PYTHON_VERSION
+                        ;;
+                esac
+                curl https://bootstrap.pypa.io/get-pip.py | sudo python$PYTHON_VERSION
+                echo "pythonLocation=/usr" >> $GITHUB_ENV
 
             - name: Qt installation dir
+              if: env.USE_PREBUILT_QT == 0
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
-            - name: Install Qt
+            - name: Install Qt with aqtinstall
+              if: env.USE_PREBUILT_QT == 0
               uses: jurplel/install-qt-action@v3
               with:
                 cache: true
-                version: ${{ env.QT_VERSION }}
+                version: ${{ matrix.qt_version }}
                 host: 'linux'
-                dir: '${{ steps.qt-installation-dir.DIR }}'
+                dir: '${{ steps.qt-installation-dir.outputs.DIR }}'
                 aqtversion: '==3.0.*'
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
-                extra: '--external 7z'
+
+            - name: Install apt dependencies for prebuilt Qt
+              if: env.USE_PREBUILT_QT == 1
+              run: |
+                sudo apt-get -y install \
+                    libgl1-mesa-dev \
+                    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
+                    libxcb-render-util0 libxcb-xinerama0 libxcb-xkb1 \
+                    libxkbcommon0 libxkbcommon-x11-0
+
+            - name: Download prebuilt Qt
+              if: env.USE_PREBUILT_QT == 1
+              uses: dawidd6/action-download-artifact@v2
+              with:
+                workflow: lin_qt.yml
+                workflow_conclusion: success
+                name: qt5-${{ matrix.qt_version }}-${{ matrix.binary_compatibility }}.${{ env.TARGET_ARCH }}.tar.zst
+
+            - name: Install prebuilt Qt
+              if: env.USE_PREBUILT_QT == 1
+              run: |
+                zstdcat qt5-*.tar.zst | tar -C / -xv
+                echo "Qt5_Dir=/usr/local" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
               shell: bash
@@ -73,7 +148,7 @@ jobs:
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2.8
               with:
-                key: lin_release
+                key: lin_release-${{ matrix.binary_compatibility }}
                 max-size: "24M"
 
             - name: Configure ccache
@@ -83,7 +158,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
+                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/$TARGET_ARCH-linux-gnu/libsqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
@@ -104,12 +179,19 @@ jobs:
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
 
+            - name: Install extension dependencies
+              run: |
+                if [ "$USE_PREBUILT_QT" = 0 ]; then
+                    sudo apt-get -y install libicu-dev libicu${{ matrix.icu_version_short }}
+                fi
+                sudo apt-get -y install zlib1g-dev
+
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
                 cd ..
                 mkdir ext
-                unzip sqlite-src-$SQLITE_VERSION.zip
+                unzip sqlite-src-$SQLITE_VERSION.zip -x '*.test'
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 for f in compress; do
@@ -126,13 +208,12 @@ jobs:
                 done
                 ls -l ../../ext/
 
-            - name: Install Tcl
-              run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
-
             - name: Install other tools/dependencies
               run: |
-                sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
-                echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
+                sudo apt install -y libreadline-dev libncurses5-dev libssl-dev patchelf chrpath
+                if [ $USE_PREBUILT_QT = 0 ]; then
+                    echo "${{ github.workspace }}/../Qt/${{ matrix.qt_version }}/gcc_64/bin" >> $GITHUB_PATH
+                fi
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
@@ -144,7 +225,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
-                make -j 2
+                make -j $(nproc)
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -152,9 +233,9 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    PYTHON_VERSION=$PYTHON_VERSION "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     ../../../Plugins
-                make -j 1
+                make -j 1  # Parallel plugin build crashes randomly
 
             - name: Copy SQLite extensions to output dir
               shell: bash
@@ -167,6 +248,9 @@ jobs:
                 mkdir portable
                 cp -R SQLiteStudio portable/
 
+                # Update PORTABLE_DIR since we're in a container
+                echo "PORTABLE_DIR=$(cd portable/SQLiteStudio; pwd -P)" >> $GITHUB_ENV
+
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
@@ -178,12 +262,19 @@ jobs:
                 REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
                 cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
 
+            - name: Copy prebuilt OpenSSL to portable dir
+              if: env.USE_PREBUILT_QT == 1
+              working-directory: /usr/local/lib
+              run: |
+                cp libssl.so.1.1 libcrypto.so.1.1 $PORTABLE_DIR/lib/
+
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
+              if: env.USE_PREBUILT_QT == 0
               run: |
                 wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb
                 dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.17_amd64.deb .
-                cp ./usr/lib/x86_64-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
-                cp ./usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                cp ./usr/lib/$TARGET_ARCH-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                cp ./usr/lib/$TARGET_ARCH-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -199,9 +290,9 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5XcbQpa.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so.$ICU_VERSION_SHORT* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so.$ICU_VERSION_SHORT* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so.$ICU_VERSION_SHORT* lib/
 
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -219,6 +310,25 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
+
+            - name: Copy extra Qt dependencies to portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                libdir=/usr/lib/$TARGET_ARCH-linux-gnu
+                if ldd lib/libQt5XcbQpa.so | grep -q libxcb-; then
+                    # These are not installed by default on my Xubuntu 16.04:
+                    cp -P $libdir/libxcb-icccm.so* lib/
+                    cp -P $libdir/libxcb-image.so* lib/
+                    cp -P $libdir/libxcb-keysyms.so* lib/
+                    cp -P $libdir/libxcb-randr.so* lib/
+                    cp -P $libdir/libxcb-render-util.so* lib/
+                    cp -P $libdir/libxcb-xinerama.so* lib/
+                    # These are not installed by default on my Xubuntu 22.04:
+                    if [ "$USE_PREBUILT_QT" = 0 ]; then apt-get install -y libxkbcommon-x11-0; fi
+                    cp -P $libdir/libxcb-xkb.so* lib/
+                    cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
+                    cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
+                fi
 
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -243,19 +353,24 @@ jobs:
               run: |
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
+
+                # strip does not like binaries processed by patchelf, so strip first
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
                 patchelf --set-rpath '$ORIGIN' lib/libreadline*
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+              run: |
+                SQLITESTUDIO_VERSION="$(./sqlitestudiocli --version | cut -f 2 -d ' ')"
+                [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=$SQLITESTUDIO_VERSION-qt${{ matrix.qt_version }}-linux_${{ matrix.binary_compatibility }}.$TARGET_ARCH" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}/..
               run: |
-                tar cf sqlitestudio-$SQLITESTUDIO_VERSION.tar SQLiteStudio
-                xz -z sqlitestudio-$SQLITESTUDIO_VERSION.tar
+                tar cf - SQLiteStudio | xz > sqlitestudio-$PACKAGE_VERSION.tar.xz
                 pwd
                 ls -l
 
@@ -270,15 +385,17 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run \
+                    SQLiteStudio-$PACKAGE_VERSION-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v1
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
