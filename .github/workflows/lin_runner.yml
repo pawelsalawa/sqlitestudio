@@ -1,0 +1,75 @@
+name: "Linux build runner image"
+
+env:
+    icu_version: "72.1"
+    openssl_version: "1.1.1t"
+    tcl_version: "8.6.13"
+
+on:
+    workflow_dispatch:
+        inputs:
+    repository_dispatch:
+        types:
+           - lin_runner
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+          fail-fast: false
+          matrix:
+            release:
+              - xenial
+              - bionic
+              #- focal
+            include:
+              - release: xenial
+                container: ubuntu:xenial
+                python_repo: ppa:savoury1/python
+              - release: bionic
+                container: ubuntu:bionic
+                python_repo: ppa:deadsnakes/ppa
+              #- release: focal
+              #  container: ubuntu:focal
+              #  python_repo: ppa:deadsnakes/ppa
+        steps:
+            - name: Prepare Dockerfile
+              run: |
+                v=${{ env.icu_version }}
+                icu_url="https://github.com/unicode-org/icu/releases/download/release-${v%.*}-${v#*.}/icu4c-${v%.*}_${v#*.}-src.tgz"
+                openssl_url="https://github.com/openssl/openssl/releases/download/OpenSSL_$(echo ${{ env.openssl_version }} | tr . _)/openssl-${{ env.openssl_version }}.tar.gz"
+                tcl_url="https://downloads.sourceforge.net/project/tcl/Tcl/${{ env.tcl_version }}/tcl${{ env.tcl_version }}-src.tar.gz"
+
+                tee Dockerfile <<EOF_Dockerfile
+                FROM ${{ matrix.container }}
+                ENV LD_LIBRARY_PATH=/usr/local/lib
+                ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+                ENV TARGET_ARCH=x86_64
+                ENV TZ=UTC
+                RUN true \
+                    && apt-get -y update \
+                    && apt-get -y install curl software-properties-common \
+                    && add-apt-repository ${{ matrix.python_repo }} \
+                    && ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone \
+                    && yes | { export DEBIAN_FRONTEND=noninteractive; apt-get -y update; apt-get -yqq upgrade; apt-get -yqq dist-upgrade; apt-get -yqq install keyboard-configuration; } \
+                    && apt-get -y install sudo build-essential g++ git pkg-config unzip wget zstd \
+                    && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >>/etc/sudoers
+                RUN curl -L $tcl_url | tar -xz \
+                    && cd tcl${{ env.tcl_version }}/unix && ./configure --prefix=/usr/local && make -j$(nproc) && make install \
+                    && ln -sf tclsh${tcl_version%.*} /usr/local/bin/tclsh \
+                    && cd ../.. && rm -fr tcl${{ env.tcl_version }}
+                RUN curl -L $icu_url | tar -xz \
+                    && cd icu/source && ./configure --prefix=/usr/local --enable-rpath && make -j$(nproc) && make install \
+                    && cd ../.. && rm -fr icu
+                RUN curl -L $openssl_url | tar -xz \
+                    && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl && make -j$(nproc) && make install \
+                    && cd ../.. && rm -fr openssl-${{ env.openssl_version }}
+                EOF_Dockerfile
+
+            - name: Build and publish
+              uses: VaultVulp/gp-docker-action@1.6.0
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
+                image-name: gha-build-runner-${{ matrix.release }} # Provide Docker image name
+                image-tag: latest

@@ -27,32 +27,72 @@ jobs:
     build:
         runs-on: macos-11
 
+        strategy:
+          fail-fast: false
+          matrix:
+            binary_compatibility:
+              - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
+              - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
+              #- "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
+              #- "darwin_20.x86_64"  # macOS 11, the earliest version supported by QT 6.5
+            include:
+              - common_pkgs:
+                  - brotli 1.0.9_2
+                  - dbus 1.14.6_0
+                  - double-conversion 3.2.1_0
+                  - freetype 2.12.1_0
+                  - gettext-runtime 0.21.1_0
+                  - glib2 2.70.5_1+x11
+                  - graphite2 1.3.14_0
+                  - harfbuzz 6.0.0_0
+                  - icu 72.1_0
+                  - jasper 4.0.0_0
+                  - lcms2 2.14_0
+                  - lerc 4.0.0_1
+                  - libedit 20221030-3.1_0
+                  - libffi 3.4.4_0
+                  - libiconv 1.17_0
+                  - libjpeg-turbo 2.1.5.1_0
+                  - libmng 2.0.3_1
+                  - libpng 1.6.39_0
+                  - ncurses 6.4_0
+                  - openssl3 3.1.0_2
+                  - pcre 8.45_0
+                  - pcre2 10.42_0
+                  - python39 3.9.16_0+lto+optimizations
+                  - tcl 8.6.13_0+corefoundation+threads
+                  - tiff 4.5.0_0
+                  - webp 1.3.0_0
+                  - xz 5.4.2_0
+                  - zstd 1.5.4_1
+              - binary_compatibility: darwin_17.x86_64
+                cflags: -arch x86_64
+                dmg_postfix: ""
+                qmake_flags: ""
+                pkgs:
+                  - qt5-qtbase 5.15.8_0+openssl
+                  - qt5-qtdeclarative 5.15.8_0
+                  - qt5-qtimageformats 5.15.8_0
+                  - qt5-qtscript 5.15.8_0
+                  - qt5-qtsvg 5.15.8_0
+                  - qt5-qttools 5.15.8_0
+              - binary_compatibility: darwin_16.x86_64
+                cflags: -arch x86_64
+                dmg_postfix: "-macos10.12"
+                qmake_flags: ""
+                pkgs:
+                  - legacy-support 1.0.9_0
+                  - lerc 3.0_0
+                  - qt513-qtbase 5.13.2_8+openssl
+                  - qt513-qtdeclarative 5.13.2_0
+                  - qt513-qtimageformats 5.13.2_2
+                  - qt513-qtscript 5.13.2_0
+                  - qt513-qtsvg 5.13.2_0
+                  - qt513-qttools 5.13.2_0
+                  - tiff 4.4.0_2
+
         steps:
-            # - name: Debug
-              # run: |
-                # ls -l /usr/local/
-                # ls -l /usr/local/include
-                # ls -l /usr/local/opt/
-                # ls -l /usr/local/opt/openssl/include/
-                # ls -l /usr/local/opt/expat/include
-
-            - name: Qt installation dir
-              id: qt-installation-dir
-              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
-
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v3
-              with:
-                cache: true
-                version: ${{ env.QT_VERSION }}
-                host: 'mac'
-                dir: '${{ steps.qt-installation-dir.DIR }}'
-                aqtversion: '==3.0.*'
-                py7zrversion: '==0.20.*'
-                setup-python: 'false'
-                extra: '--external 7z'
-
-            - name: Install the InstalBuilder
+            - name: Install the InstallBuilder
               shell: bash
               run: |
                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
@@ -61,11 +101,6 @@ jobs:
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
-
-            - uses: actions/setup-python@v4
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
 
             - name: Clone repo
               uses: actions/checkout@v3
@@ -76,7 +111,7 @@ jobs:
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2.8
               with:
-                key: mac_release
+                key: ${{ matrix.binary_compatibility }}
                 max-size: "24M"
 
             - name: Configure ccache
@@ -89,7 +124,7 @@ jobs:
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.0.dylib \
+                gcc sqlite3.c ${{ matrix.cflags }} -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.0.dylib \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
                     -DSQLITE_ENABLE_DBSTAT_VTAB \
                     -DSQLITE_ENABLE_BYTECODE_VTAB \
@@ -107,13 +142,61 @@ jobs:
                 sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
 
-            - name: Install extension dependencies
+            - name: Restore distfiles packages cache
+              id: cache-distfiles
+              uses: actions/cache/restore@v3
+              with:
+                path: distfiles
+                key: distfiles-${{ matrix.binary_compatibility }}-${{ github.sha }}
+                restore-keys: distfiles-${{ matrix.binary_compatibility }}-
+
+            - name: Fetch distfiles
               run: |
-                brew tap-new $USER/local-tap
-                brew extract --version=$ICU_VERSION icu4c $USER/local-tap
-                brew install icu4c@$ICU_VERSION
-                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
-                    >> $GITHUB_ENV
+                mkdir -p distfiles
+                fetch_binpkg() {
+                    _any="no"
+                    while [ -n "$1" ]; do
+                        _url="https://packages.macports.org/$1/$1-$2.${{ matrix.binary_compatibility }}.tbz2"
+                        _name="$1"
+                        shift 2
+                        case " $*" in *" $_name "*_) echo "$_name: Skipping as an override follows"; continue ;; esac
+                        _file="distfiles/$(basename "$_url")"
+                        if [ ! -e "$_file" ]; then
+                            echo "Fetching $_url"
+                            if curl -fsL -o "$_file" "$_url"; then _any="yes"
+                            else echo "Could not fetch, skipping"; rm -f "$_file"; fi
+                        fi
+                    done
+                    echo "UPDATE_DISTFILES_CACHE=$_any" >> $GITHUB_ENV
+                }
+                fetch_binpkg ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
+
+            - name: Save distfiles cache
+              if: env.UPDATE_DISTFILES_CACHE == 'yes'
+              uses: actions/cache/save@v3
+              with:
+                path: distfiles
+                key: ${{ steps.cache-distfiles.outputs.cache-primary-key }}
+
+            - name: Install MacPorts packages
+              run: |
+                mkdir macports
+                install_binpkg() {
+                    while [ -n "$1" ]; do
+                        _pkg="distfiles/$1-$2.${{ matrix.binary_compatibility }}.tbz2"
+                        echo "Installing $_pkg"
+                        tar -C macports -xjf "$_pkg"
+                        shift 2
+                    done
+                }
+                install_binpkg ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
+
+            - name: Configure MacPorts packages
+              run: |
+                cd macports
+                sudo ln -s $(pwd)/opt/local /opt/
+                echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV
+                echo "pythonLocation=/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION" >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -122,11 +205,11 @@ jobs:
                 mkdir ext
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
                 ls -l
-                unzip sqlite-src-$SQLITE_VERSION.zip
+                unzip sqlite-src-$SQLITE_VERSION.zip -x '*.test'
                 ls -l
                 cd sqlite-src-$SQLITE_VERSION/ext
                 ls -l
-                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                FLAGS="${{ matrix.cflags }} -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 for f in compress sqlar; do
                     echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
@@ -136,15 +219,11 @@ jobs:
                     gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
                 done
                 for f in icu; do
+                    ICU_FLAGS="-I/opt/local/include -L/opt/local/lib -licuio -licui18n -licuuc -licudata"
                     echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
                 done
                 ls -l ../../ext/
-
-            - name: Install Tcl
-              run: |
-                brew install tcl-tk
-                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
 
             - name: Prepare deps
               run: |
@@ -158,7 +237,7 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake \
+                qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
@@ -167,10 +246,10 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake \
+                qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    PYTHON_VERSION=$PYTHON_VERSION "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     ../../../Plugins
                 make -j 1
 
@@ -195,7 +274,8 @@ jobs:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
+                    -mountpoint /Volumes/SQLiteStudio
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
@@ -205,11 +285,17 @@ jobs:
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
                 path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+
+            - name: Upload package artifact with Python
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}${{ matrix.dmg_postfix }}.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}.dmg
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v1
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg

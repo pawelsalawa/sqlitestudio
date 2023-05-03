@@ -1122,7 +1122,7 @@ void ConfigImpl::updateConfigDb()
             // 1->2
             db->exec("UPDATE settings SET [key] = 'DataUncommittedError' WHERE [key] = 'DataUncommitedError'");
             db->exec("UPDATE settings SET [key] = 'DataUncommitted' WHERE [key] = 'DataUncommited'");
-            __attribute__((__fallthrough__));
+            Q_FALLTHROUGH();
         }
         case 2:
         {

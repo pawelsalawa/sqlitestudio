@@ -878,7 +878,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../services/impl/configimpl.cpp" line="747"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Impossible d&apos;initialiser le fichier de configuration. Tous les changements de configuration et l&apos;historique des requêtes seront perdus après le redémarrage de l&apos;application. Impossible de créer un fichier aux emplacements suivants : %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="347"/>
@@ -959,7 +959,7 @@ La vue restera telle quelle.</translation>
       <location filename="../tablemodifier.cpp" line="766"/>
       <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+      <translation>Il y a un problème avec la mise à jour de l&apos;instruction %1 dans le déclencheur %2. L&apos;une des substances %1 qui pourraient référencer le tableau %3 ne peut pas être correctement modifiée. La mise à jour manuelle du déclencheur peut être nécessaire.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>

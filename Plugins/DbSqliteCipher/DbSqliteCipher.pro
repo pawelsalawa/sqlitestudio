@@ -36,13 +36,15 @@ mac: {
         LIBS += -L/usr/local/opt/openssl/lib
     }
 }
-!macx: {
-    LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
-}
 win32: {
-    INCLUDEPATH += $${PWD}/../deps/include/$${PLATFORM}/
-    DEPENDPATH += $${PWD}/../deps/include/$${PLATFORM}/
-    LIBS += -leay32 -lcoreSQLiteStudio
+    LIBS += -lcoreSQLiteStudio
+    !exists( ${{PWD}}/../../../../lib/libeay32.dll ): {
+        LIBS += -lcrypto
+    }
+    exists( ${{PWD}}/../../../../lib/libeay32.dll ): {
+        INCLUDEPATH += $${PWD}/../../../../include
+        LIBS += -leay32
+    }
 }
 
 !win32:isEmpty(SQLCIPHER_LIB) {
@@ -87,12 +89,3 @@ QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused
 
 DISTFILES += \
     openssl_lic.txt
-
-
-
-
-
-
-
-
-

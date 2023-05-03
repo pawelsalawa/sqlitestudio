@@ -1,0 +1,41 @@
+name: Clean caches
+on:
+  workflow_dispatch:
+    inputs:
+      destructive:
+        type: boolean
+      except_most_recent:
+        type: boolean
+      prefix:
+        required: false
+        type: string
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      # `actions:write` permission is required to delete caches
+      #   See also: https://docs.github.com/en/rest/actions/cache?apiVersion=2022-11-28#delete-a-github-actions-cache-for-a-repository-using-a-cache-id
+      actions: write
+      contents: read
+    steps:
+      - name: Cleanup
+        run: |
+          gh extension install actions/gh-actions-cache
+          REPO=${{ github.repository }}
+          cacheKeys=$(gh actions-cache list -R $REPO -L 100 --sort last-used --order desc | cut -f 1 | grep -E '^${{ inputs.prefix }}')
+
+          for cacheKey in $cacheKeys; do
+              if [ ${{ inputs.except_most_recent }} = true ] && [ -z "$_any" ]; then
+                  _any=1
+                  continue
+              fi
+              if [ ${{ inputs.destructive }} = true ]; then
+                  echo "Deleting $cacheKey..."
+                  gh actions-cache delete $cacheKey -R $REPO --confirm || true
+              else
+                  echo "Would remove $cacheKey..."
+              fi
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

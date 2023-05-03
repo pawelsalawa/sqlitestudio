@@ -819,7 +819,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="36"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+      <translation>Exécute le fichier SQL fourni (y compris toutes les fonctionnalités riches de l&apos;exécuteur de requête SQLiteStudio) sur le fichier de base de données spécifié et quitte. Le paramètre de la base de données devient obligatoire si cette option est utilisée.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="39"/>
