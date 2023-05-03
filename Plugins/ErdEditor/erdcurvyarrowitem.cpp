@@ -10,19 +10,24 @@ ErdCurvyArrowItem::ErdCurvyArrowItem() :
 {
 }
 
-void ErdCurvyArrowItem::setPoints(const QLineF& line, Side startEntitySide, Side endEntitySide)
+void ErdCurvyArrowItem::setPoints(const QLineF& line, Side startSide, Side endSide)
 {
-    this->startEntitySide = startEntitySide;
-    this->endEntitySide = endEntitySide;
+    this->startEntitySide = startSide;
+    this->endEntitySide = endSide;
     startPoint = line.p1();
     endPoint = line.p2();
 
-    if (startEntitySide != endEntitySide)
+    if (endSide == ErdArrowItem::UNDEFINED)
     {
-        int sideSign = startEntitySide == LEFT ? -1 : 1;
-        if (endEntitySide == ErdArrowItem::UNDEFINED)
-            sideSign = startPoint.x() < endPoint.x() ? -1 : 1;
+        if (startSide == LEFT && (startPoint.x() - 10) < endPoint.x())
+            endSide = LEFT;
+        else if (startSide == RIGHT && (startPoint.x() + 10) >= endPoint.x())
+            endSide = RIGHT;
+    }
 
+    if (startSide != endSide)
+    {
+        int sideSign = startSide == LEFT ? -1 : 1;
         refreshArrowHead(0, -sideSign);
 
         QPointF controlPoint1 = startPoint + QPointF(50 * sideSign, 0);
@@ -42,7 +47,7 @@ void ErdCurvyArrowItem::setPoints(const QLineF& line, Side startEntitySide, Side
     }
     else
     {
-        int sideSign = endEntitySide == LEFT ? -1 : 1;
+        int sideSign = endSide == LEFT ? -1 : 1;
         refreshArrowHead(0, sideSign);
 
         QPointF controlPoint1 = startPoint + QPointF(50 * sideSign, 0);

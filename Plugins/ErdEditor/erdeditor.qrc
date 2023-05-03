@@ -3,5 +3,8 @@
         <file>icons/erdeditor.png</file>
         <file>icons/erdlayout_fdp.png</file>
         <file>icons/erdlayout_neato.png</file>
+        <file>icons/erdeditor_connection.png</file>
+        <file>icons/erdeditor_line_curvy.png</file>
+        <file>icons/erdeditor_line_straight.png</file>
     </qresource>
 </RCC>

@@ -51,9 +51,12 @@ void ErdEditorWindow::init()
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
     fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
     neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
-    windowIcon->load();
-    fdpIcon->load();
-    neatoIcon->load();
+    connectionIcon = new Icon("ERDEDITOR_CONNECTION", "erdeditor_connection");
+    lineStraightIcon = new Icon("ERDEDITOR_LINE_STRAIGHT", "erdeditor_line_straight");
+    lineCurvyIcon = new Icon("ERDEDITOR_LINE_CURVY", "erdeditor_line_curvy");
+
+    for (auto icon : {windowIcon, fdpIcon, neatoIcon, connectionIcon, lineStraightIcon, lineCurvyIcon})
+        icon->load();
 
     scene = new ErdScene(this);
     ui->graphView->setScene(scene);
@@ -75,6 +78,21 @@ void ErdEditorWindow::uiPaletteChanged()
 {
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     scene->update();
+}
+
+void ErdEditorWindow::addFk()
+{
+
+}
+
+void ErdEditorWindow::useStraightLine()
+{
+
+}
+
+void ErdEditorWindow::useCurvyLine()
+{
+
 }
 
 bool ErdEditorWindow::isUncommitted() const
@@ -108,8 +126,12 @@ bool ErdEditorWindow::shouldReuseForArgs(int argCount, ...)
 
 void ErdEditorWindow::createActions()
 {
-    // TODO
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    createAction(ADD_CONNECTION, *connectionIcon, tr("Add foreign key"), scene, SLOT(addFk()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    createAction(LINE_STRAIGHT, *lineStraightIcon, tr("Use straight line"), scene, SLOT(useStraightLine()), ui->toolBar);
+    createAction(LINE_CURVY, *lineCurvyIcon, tr("Use curvy line"), scene, SLOT(useCurvyLine()), ui->toolBar);
     ui->toolBar->addSeparator();
     createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);

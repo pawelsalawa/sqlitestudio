@@ -27,7 +27,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     clickPos = event->pos();
 
     QGraphicsItem* item = clickableItemAt(event->pos());
-    if (item && item->flags() & QGraphicsItem::ItemIsSelectable)
+    if (item && item->flags() & QGraphicsItem::ItemIsMovable)
     {
         selectedItem = item;
         dragOffset = transform().inverted().map(event->pos() - mapFromScene(item->pos()));

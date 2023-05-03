@@ -23,9 +23,12 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
     // Init diagram
     GVC_t* gvc = gvContext();
     Agraph_t* graph = agopen(const_cast<char*>("ERD"), Agdirected, nullptr);
-    agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.3"), "");
+    agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.5"), "");
     if (algo == NEATO)
+    {
+        agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.3"), "");
         agsafeset(graph, const_cast<char*>("overlap"), const_cast<char*>("scalexy"), "");
+    }
 
     // Add nodes to graph
     QHash<ErdEntity*, Agnode_t*> entityNodes;

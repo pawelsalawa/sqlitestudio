@@ -21,7 +21,10 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         {
             NEW_TABLE,
             ARRANGE_FDP,
-            ARRANGE_NEATO
+            ARRANGE_NEATO,
+            ADD_CONNECTION,
+            LINE_STRAIGHT,
+            LINE_CURVY
         };
         Q_ENUM(Action)
 
@@ -54,11 +57,17 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         Icon* windowIcon = nullptr;
         Icon* fdpIcon = nullptr;
         Icon* neatoIcon = nullptr;
+        Icon* connectionIcon = nullptr;
+        Icon* lineCurvyIcon = nullptr;
+        Icon* lineStraightIcon = nullptr;
         ErdScene* scene = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
+        void addFk();
+        void useStraightLine();
+        void useCurvyLine();
 };
 
 #endif // ERDEDITORWINDOW_H

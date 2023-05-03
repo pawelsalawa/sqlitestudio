@@ -22,6 +22,9 @@ void ErdScene::parseSchema(Db* db)
     StrHash<ErdEntity*> entitiesByTable;
     for (SqliteCreateTablePtr& table : tables.values())
     {
+        if (isSystemTable(table->table))
+            continue;
+
         ErdEntity* entityItem = new ErdEntity(table);
         entityItem->setPos(lastCreatedX, -200);
         entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);

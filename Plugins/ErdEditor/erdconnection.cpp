@@ -10,6 +10,7 @@ ErdConnection::ErdConnection(ErdEntity* startEntity, const QPointF& endPos) :
 {
     startEntityRow = startEntity->rowIndexAt(endPos);
     arrow = new ErdCurvyArrowItem();
+    arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
     refreshPosition();
     startEntity->addConnection(this);
 }
