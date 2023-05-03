@@ -5503,8 +5503,8 @@ find next</source>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
-      <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
+      <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
+      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
