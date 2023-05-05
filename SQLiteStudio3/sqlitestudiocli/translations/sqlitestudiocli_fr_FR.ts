@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Fermeture de base de données connectée. . Si la base est déjà fermée, aucune action. Si &lt;name&gt; est fourni, c’est celle ainsi qui sera close (as printed by %1 command). Si &lt;name&gt; n’est pas fourni, la base actuelle est close (voir l’aide %2 pour plus de détails).</translation>
+      <translation>Ferme la connexion à la base de données. Si la base de données est déjà fermée, rien ne se passe. Si &lt;name&gt; est fourni, ça doit être le nom de la base de données à fermer (tel qu'imprimé par la commande %1). Si &lt;name&gt; n'est pas fourni alors, la base de données actuel qui travail est fermée (voir l'aide %2 pour plus de détails).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -454,17 +454,17 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="9"/>
       <source>Current NULL representation string: %1</source>
-      <translation>Représentation actuelle d’une chaine NULL : %1</translation>
+      <translation>Représentation actuelle d’une chaine de caractère NULL: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="15"/>
       <source>tells or changes the NULL representation string</source>
-      <translation>Modifiez la représentation d’une chaine NULL</translation>
+      <translation>indique ou modifie la représentation d'une chaîne de caractère NULL</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="20"/>
       <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-      <translation>Si on n’a passé aucun argument, c’est la représentation de valeur NULL actuelle qui est utilisée (ce qui est imprimé à la place de valeurs NULL dans des résultats de requête). Si on donne un argument, il sera utilisé comme une nouvelle chaine représentant NULL.</translation>
+      <translation>Si aucun argument n'a été passé, la représentation de la valeur NULL actuelle vous sera indiqué (c'est-à-dire ce qui est imprimé à la place des valeurs NULL dans les résultats de la requête). Si l'argument est fourni alors, c'est utilisé en tant que nouvelle chaîne de caractère à utiliser pour la représentation NULL.</translation>
     </message>
   </context>
   <context>
@@ -550,7 +550,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
       <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-      <translation>Enlève la base de données &lt;nom&gt; de la liste des bases enregistrées.si la base de données n’est pas dans la liste (voir la commande %1), alors message d’erreur est imprimé sans aucunes autres lignes.</translation>
+      <translation>Supprime la base de données &lt;name&gt; de la liste des bases de données enregistrées. Si la base de données n'est pas dans la liste (voir la commande %1), alors le message d'erreur est imprimé et rien de plus ne se produit.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="50"/>
@@ -699,10 +699,10 @@ Lorsque l’option « -s » est ajouté, les tables système sont aussi listées
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-      <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données comme un arbre. L’arbre est très semblable à celui que vous pouvez voir dans lGUI client de SQLiteStudio.
-Quand on ajoute l’option -c, alors les colonnes seront aussi inscrites sous chaque table.
-Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (sqlite_* tables, des index d’auto-incrément, etc).
-L’argument de base de données est facultatif et si fourni, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
+      <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données en tant qu'arbre. L’arbre est très semblable à celui que vous pouvez voir dans le GUI client de SQLiteStudio.
+Quand on ajoute l’option -c, alors les colonnes seront aussi listés sous chaque tableaux.
+Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (tableaux sqlite_*, les index d’auto-incrément, etc).
+Les arguments de base de données sont facultatif mais s'ils sont fournis, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, utilisez %1 d’abord pour changer la base de données actuelle et utiliser la commande %2.</translation>
     </message>
   </context>
   <context>
@@ -741,17 +741,17 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Changet la base de données actuelle &lt;nom&gt;. Si le &lt;nom &gt; de la base de données n’est pas enregistrée dans l’application, le message d’erreur est imprimé et aucun changement n’est fait.
+      <translation>Modifie la base de données de travail actuelle en &lt;name&gt;. Si la base de données &lt;name&gt; n'est pas enregistrée dans l'application, alors le message d'erreur est imprimé et aucun changement n'est effectué.
 
-Quel est la base de données actuelle ?
-Quand vous saississez une requête SQL à exécuter, celle-ci est exécutée sur la base de données par défaut, que l’on connaît aussi comme la base de données actuelle. La plupart de commandes concernant la base de données utilise la base de données de défaut d’utilisation, si on n’a fourni aucune base de données dans leurs arguments. La base de données actuelle est toujours identifiée par la ligne de commande. La base de données par défaut est toujours définie (à moins qu’il n’y ait aucune base de données dans la liste).
+Qu'est-ce que la base de données de travail actuelle ?
+Lorsque vous tapez une requête SQL à exécuter, elle est exécutée sur la base de données par défaut, qui est également connue sous le nom de base de données de travail actuelle. La plupart des commandes liées à la base de données peuvent également fonctionner en utilisant la base de données par défaut, si aucune base de données n'a été fournie dans leurs arguments. La base de données actuelle est toujours identifiée par l'invite de commande en ligne de commande. La base de données par défaut est toujours définie (à moins qu'il n'y ait aucune base de données dans la liste).
 
-La base de données par défaut peut être choisie de diverses manières :
-- Utilisation de la commande %1,
-- En passant nom de fichier de base de données aux paramètres de démarrage d’application,
-- En passantle nom la base de données enregistrée aux paramètres de démarrage d’application,
-- En restaurant la base de données par défaut précédemment choisie dans la configuration sauvée,
-- Ou quand la base de données par défaut n’a été choisie par aucun du susdit, l’alors première base de données de la liste de bases de données enregistrée devient le par défaut.</translation>
+La base de données par défaut peut être sélectionnée de différentes manières :
+- en utilisant la commande %1,
+- en passant le nom du fichier de la base de données aux paramètres de démarrage de l'application,
+- en passant le nom de la base de données enregistrée aux paramètres de démarrage de l'application,
+- en restaurant la base de données par défaut précédemment sélectionnée à partir de la configuration sauvegardée,
+- ou lorsque la base de données par défaut n'a pas été sélectionnée par aucun des éléments ci-dessus, puis la première base de données de la liste des bases de données enregistrées devient celle par défaut.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="63"/>
