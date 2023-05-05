@@ -981,7 +981,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="382"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, les fichiers déposés depuis le gestionnaire de fichiers dans la liste de base de données seront automatiquement ajoutés à la liste, en contournant la boîte de dialogue de base de données standard. Si pour diverses raisons, le processus automatique échoue, la boîte de dialogue standard sera présentée à l'utilisateur.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="385"/>
@@ -1012,7 +1012,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lorsque l'utilisateur entre une nouvelle valeur dans la colonne et que la valeur est plus grande que la largeur de la colonne actuelle, l'application va agrandir la colonne pour qu'elle corresponde à la nouvelle valeur, mais pas plus grande que la limite définie dans l'option ci-dessus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="562"/>
@@ -1042,7 +1042,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="524"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lors de l'édition d'une cellule qui avait une valeur NULL et la saisie d'une chaîne de caractère vide comme nouvelle valeur, alors cette option détermine si la nouvelle valeur doit rester NULL (option activer), ou devrait-elle être remplacée par une valeur de chaîne de caractère vide (option désactivée).&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="527"/>
@@ -1199,7 +1199,7 @@
       <location filename="../dialogs/configdialog.ui" line="935"/>
       <location filename="../dialogs/configdialog.ui" line="945"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Nombre maximum de paramètres de requête (:param, @param, $param, ?) stockés dans l'historique. Lorsque vous réutilisez un paramètre avec le même nom/position, SQLiteStudio la pré-initialisera avec la valeur mémorisée la plus récente (vous serez toujours en mesure de la changer). La valeur de 1000 devrait être suffisante.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="961"/>
@@ -1234,7 +1234,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La largeur initiale des colonnes de données sera définie pour au moins le nom au complet de la colonne dans l'en-tête. Cela peut toujours être écrasé par la limite initiale de la largeur de colonne spécifiée en pixels (paramètre ci-dessus).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="610"/>
@@ -1289,17 +1289,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1058"/>
       <source>Status Field</source>
-      <translation>Champ d'état</translation>
+      <translation>Champ de statut</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1064"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque l'utilisateur ferme manuellement le panneau d'état, cette option s'assure que si un nouveau message est imprimé dans le panneau d'état, il sera rouvert. Si elle est désactivée, alors le panneau d'état n'est ouvrable que manuellement par l'utilisateur à partir du menu &quot;Voir&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1067"/>
       <source>Always open Status panel when new message is printed</source>
-      <translation>Toujours ouvrir le panneau d'état quand un nouveau message est imprimé</translation>
+      <translation>Toujours ouvrir le panneau de Statut quand un nouveau message est écrit</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
@@ -1603,7 +1603,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1827"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
+      <translation>Ici, vous pouvez configurer les couleurs pour la coloration syntaxique du code. Elles sont partagées entre les différentes languages - non seulement pour SQL, mais aussi pour JavaScript et autres. Par défaut, les couleurs sont basées sur le thème utilisée. Pour définir vos propres couleurs, activez l'une des couleurs personnalisées en cochant la case située à côté.</translation>
     </message>
   </context>
   <context>

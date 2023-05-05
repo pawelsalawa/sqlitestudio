@@ -73,9 +73,9 @@
       <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
+      <translation>&lt;p&gt;Utiliser des groupes d'expressions normales pour entourer des parties de l'expression que vous souhaitez importer. Si vous voulez utiliser un groupe, que vous ne voulez pas importer, alors utilisez l'option ci-dessous &quot;importer seulement les groupes suivants&quot;.
 
-You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
+Vous pouvez utiliser des groupes nommés et les consulter dans la liste des groupes ci-dessous. Pour nommer un groupe, utilisez : &lt;pre&gt;(?&amp;lt;monNomdeGroupe&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="81"/>
