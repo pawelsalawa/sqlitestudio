@@ -4451,7 +4451,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Edit current cell inline</source>
-      <translation>Modifier la cellule actuelle en ligne</translation>
+      <translation>Éditer la cellule actuelle intégrer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
@@ -5673,7 +5673,7 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
-      <translation>Modifier la cellule actuelle en ligne</translation>
+      <translation>Éditer la cellule actuelle intégrer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
