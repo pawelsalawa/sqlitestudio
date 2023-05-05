@@ -1032,7 +1032,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="479"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée et que l'utilisateur maintient le pointeur de la souris sur une cellule dans n'importe quelle vue de données (résultats de requête, données d'un tableau, une donnée de vue) une infobulle apparaîtra avec des détails sur la cellule - elle inclut des détails tels que le type de données de la colonne, les contraintes, ROWID et autres.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="482"/>
@@ -1289,7 +1289,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1058"/>
       <source>Status Field</source>
-      <translation>Champ de statut</translation>
+      <translation>Champ d'état</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1064"/>
@@ -1299,7 +1299,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1067"/>
       <source>Always open Status panel when new message is printed</source>
-      <translation>Toujours ouvrir le panneau de Statut quand un nouveau message est écrit</translation>
+      <translation>Toujours ouvrir le panneau d'état quand un nouveau message est imprimé</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
@@ -3751,7 +3751,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../mainwindow.cpp" line="127"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-      <translation>Passage en mode débogue. Les messages de débogage sont imprimés dans la sortie standard.</translation>
+      <translation>Fonctionnement en mode débogage. Les messages de débogage sont imprimés dans la sortie standard.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="220"/>
