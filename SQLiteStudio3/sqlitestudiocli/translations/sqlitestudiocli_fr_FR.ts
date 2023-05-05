@@ -794,7 +794,7 @@ Expected one of: %2</source>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation>Chaîne</translation>
+      <translation>chaîne de caractère</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
