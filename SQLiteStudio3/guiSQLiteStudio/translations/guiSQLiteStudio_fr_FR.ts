@@ -119,7 +119,7 @@
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Le nom de l'extrait sera affiché dans l'assistant de code. Pour accéder à la liste des extraits l'utilisateur doit cliquer sur le raccourci de l'assistant de code deux fois.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
@@ -4451,7 +4451,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Edit current cell inline</source>
-      <translation>Éditer la cellule actuelle intégrer</translation>
+      <translation>Modifier la cellule actuelle en ligne</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="22"/>
@@ -5503,7 +5503,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
+      <translation>La modification de beaucoup de contenu dans un éditeur de cellules en ligne est une mauvaise idée, elle peut devenir lente et gênante. Il est préférable d'éditer de tels contenus dans une vue formulaire, ou dans l'éditeur contextuel (disponible sous le menu du clic droit).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
@@ -5673,7 +5673,7 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
-      <translation>Éditer la cellule actuelle intégrer</translation>
+      <translation>Modifier la cellule actuelle en ligne</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
