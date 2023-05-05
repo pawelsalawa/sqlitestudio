@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -1410,7 +1410,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1614"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;La mise en page compacte réduit au minimum toutes les marges et l'espacement de l'interface utilisateur, laissant de l'espace pour afficher plus de données. Cela rend l'interface un peu moins esthétique, mais permet d'afficher plus de données en même temps.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1617"/>
@@ -1772,7 +1772,7 @@
     <message>
       <location filename="../dataview.cpp" line="113"/>
       <source>Form view</source>
-      <translation>Formulaire</translation>
+      <translation>Vue formulaire</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="204"/>
@@ -1826,7 +1826,7 @@
       <location filename="../dataview.cpp" line="237"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
-      <translation>Affichage des résultat en formulaire</translation>
+      <translation>Affichage des résultats en vue formulaire</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="994"/>
@@ -4533,7 +4533,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dataview.h" line="21"/>
       <source>Data view (both grid and form)</source>
-      <translation>Vue des données (tableau et formulaire)</translation>
+      <translation>Vue des données (grille et formulaire)</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="22"/>
@@ -4548,7 +4548,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dataview.h" line="24"/>
       <source>Switch to form view of the data</source>
-      <translation>Basculer sur la vue des données en formulaire</translation>
+      <translation>Basculer vers le mode formulaire des données</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="30"/>
@@ -4637,7 +4637,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../formview.h" line="15"/>
       <source>Data form view</source>
-      <translation>Formulaire vue de données</translation>
+      <translation>Mode formulaire des données</translation>
     </message>
     <message>
       <location filename="../formview.h" line="16"/>
@@ -5503,11 +5503,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="obsolete">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</translation>
+      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
