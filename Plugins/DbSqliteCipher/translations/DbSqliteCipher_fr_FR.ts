@@ -28,7 +28,7 @@
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>
-      <translation>Instructions PRAGMA pour personnaliser la configuration de SQLCipher, comme les itérations KDF, le mode legacy, etc.
+      <translation>Les instructions PRAGMA sont utilisés pour personnaliser la configuration de SQLCipher, comme les itérations KDF, le mode legacy, etc.
 Ils seront exécutés à chaque ouverture de la base de données.
 Voir la documentation pour SQLCipher pour plus de détails.</translation>
     </message>
