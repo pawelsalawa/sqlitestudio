@@ -229,7 +229,7 @@ void DbAndroid::deviceListChanged()
 
 void DbAndroid::getJar()
 {
-    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save jar file"));
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save JAR file"));
     if (path.isEmpty())
         return;
 
