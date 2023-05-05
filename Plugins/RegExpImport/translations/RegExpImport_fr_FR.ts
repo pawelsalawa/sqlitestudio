@@ -31,7 +31,7 @@
     <message>
       <location filename="../regexpimport.cpp" line="196"/>
       <source>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Nom de groupe de saisie demandé &apos;%1&apos;, mais il est indéfini dans le modèle : &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Nom du groupe sélectionné demandé est &apos;%1&apos;, mais il est indéfini dans le modèle : &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -55,8 +55,8 @@
       <location filename="../regexpimport.ui" line="52"/>
       <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
-&lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Entrez une liste d'indexes du groupe sélectionné séparés par des virgules. L'index 0 fait référence à la chaîne de caractère qui correspond entièrement.&lt;/p&gt;
+&lt;p&gt;Si vous avez utilisé des groupes nommés dans le motif, vous pouvez utiliser des noms à la place des indexes. Vous pouvez mélanger les indexes et les noms dans cette liste.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="56"/>
