@@ -26,17 +26,17 @@
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>Utilisation d&apos;Android Debug Bridge&#xa0;: %1</translation>
+      <translation>Utilisation d'Android Debug Bridge : %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
-      <translation type="unfinished">You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</translation>
+      <translation>Vous pouvez récupérer le fichier JAR du connecteur Android depuis le menu Outils. Il est requis pour 2 sur 3 des connexions prises en charge par le plugin d'Android. Pour plus de détails, lisez la documentation du plugin sur &lt;a href=&quot;%1&quot;&gt;la page wiki de SQLiteStudio.&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</translation>
+      <translation>Impossible de trouver l'application Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Cliquez ici&lt;/a&gt; pour indiquer l'emplacement de l'application ADB, sinon le plugin %2 ne prendra pas en charge les connexions par câble USB, seulement la connexion réseau.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -63,7 +63,7 @@ Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translati
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation>Enregistrer le fichier jar</translation>
+      <translation>Enregistrer le fichier JAR</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
