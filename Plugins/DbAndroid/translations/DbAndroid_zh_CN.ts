@@ -36,16 +36,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save JAR file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation type="vanished">找不到 ADB 应用程序。&lt;a href=&quot;%1&quot;&gt;点击此处&lt;/a&gt; 来指定 ADB 应用程序的位置。 否则 %2 插件将不支持 USB 线缆连接，只能使用网络连接..</translation>
+      <translation type="unfinished">Save JAR file</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -68,10 +64,6 @@ Would you like to select another one, or leave it unconfigured?</source>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
       <translation>不做配置</translation>
-    </message>
-    <message>
-      <source>Save jar file</source>
-      <translation type="vanished">保存 jar 文件</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
