@@ -131,8 +131,12 @@
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
+      <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>關閉資料庫連線。如果資料庫已關閉，什麼也不做。如果提供了&lt;名稱&gt;，則表示需要關閉的資料庫的名稱(見 %1 命令的結果)。如果沒有提供&lt;名稱&gt;。則關閉當前操作的資料庫(詳見 %2 的幫助)。</translation>
+      <translation type="vanished">關閉資料庫連線。如果資料庫已關閉，什麼也不做。如果提供了&lt;名稱&gt;，則表示需要關閉的資料庫的名稱(見 %1 命令的結果)。如果沒有提供&lt;名稱&gt;。則關閉當前操作的資料庫(詳見 %2 的幫助)。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>

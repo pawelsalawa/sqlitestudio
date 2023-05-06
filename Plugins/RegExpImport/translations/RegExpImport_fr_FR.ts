@@ -55,7 +55,7 @@
       <location filename="../regexpimport.ui" line="52"/>
       <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Entrez une liste d'indexes du groupe sélectionné séparés par des virgules. L'index 0 fait référence à la chaîne de caractère qui correspond entièrement.&lt;/p&gt;
+      <translation>&lt;p&gt;Entrez une liste d&apos;indexes du groupe sélectionné séparés par des virgules. L&apos;index 0 fait référence à la chaîne de caractère qui correspond entièrement.&lt;/p&gt;
 &lt;p&gt;Si vous avez utilisé des groupes nommés dans le motif, vous pouvez utiliser des noms à la place des indexes. Vous pouvez mélanger les indexes et les noms dans cette liste.&lt;/p&gt;</translation>
     </message>
     <message>
@@ -73,7 +73,7 @@
       <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Utiliser des groupes d'expressions normales pour entourer des parties de l'expression que vous souhaitez importer. Si vous voulez utiliser un groupe, que vous ne voulez pas importer, alors utilisez l'option ci-dessous &quot;importer seulement les groupes suivants&quot;.
+      <translation>&lt;p&gt;Utiliser des groupes d&apos;expressions normales pour entourer des parties de l&apos;expression que vous souhaitez importer. Si vous voulez utiliser un groupe, que vous ne voulez pas importer, alors utilisez l&apos;option ci-dessous &quot;importer seulement les groupes suivants&quot;.
 
 Vous pouvez utiliser des groupes nommés et les consulter dans la liste des groupes ci-dessous. Pour nommer un groupe, utilisez : &lt;pre&gt;(?&amp;lt;monNomdeGroupe&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>

@@ -35,8 +35,17 @@
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
+      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="232"/>
+      <source>Save JAR file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation>Nie można odnaleźć aplikacji Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Kliknij tutaj&lt;/a&gt; , aby wskazać lokalizację aplikacji ADB, w przeciwnym razie wtyczka %2 nie będzie obsługiwać połączeń przez kabel USB, a jedynie połączenia sieciowe.</translation>
+      <translation type="vanished">Nie można odnaleźć aplikacji Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Kliknij tutaj&lt;/a&gt; , aby wskazać lokalizację aplikacji ADB, w przeciwnym razie wtyczka %2 nie będzie obsługiwać połączeń przez kabel USB, a jedynie połączenia sieciowe.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -61,9 +70,8 @@ Czy chcesz wybrać inny, czy pozostawić go nieskonfigurowanego?</translation>
       <translation>Pozostaw nieskonfigurowane</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation>Zapisz plik jar</translation>
+      <translation type="vanished">Zapisz plik jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>

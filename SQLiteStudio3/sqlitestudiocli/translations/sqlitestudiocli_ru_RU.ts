@@ -131,8 +131,12 @@
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
+      <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation>Закрывает соединение с базой данных. Если база данных уже закрыта, ничего не произойдёт. Если указано &lt;имя&gt;, оно должно соответствовать имени закрываемой базы данных (которое выводится командой %1). Если имя не указано, будет закрыта текущая рабочая база данных (смотрите справку по команде %2 для подробностей).</translation>
+      <translation type="vanished">Закрывает соединение с базой данных. Если база данных уже закрыта, ничего не произойдёт. Если указано &lt;имя&gt;, оно должно соответствовать имени закрываемой базы данных (которое выводится командой %1). Если имя не указано, будет закрыта текущая рабочая база данных (смотрите справку по команде %2 для подробностей).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>

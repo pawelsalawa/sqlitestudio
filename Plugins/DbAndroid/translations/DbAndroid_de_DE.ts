@@ -35,8 +35,17 @@
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
+      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="232"/>
+      <source>Save JAR file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation>Android Debug Bridge App konnte nicht gefunden werden. &lt;a href=&quot;%1&quot;&gt;Klicke hier&lt;/a&gt; um auf den Standort der ADB-Anwendung hinzuweisen, da andernfalls das %2 Plugin keine USB-Kabelverbindungen, sondern nur die Netzwerkverbindung unterstützt..</translation>
+      <translation type="vanished">Android Debug Bridge App konnte nicht gefunden werden. &lt;a href=&quot;%1&quot;&gt;Klicke hier&lt;/a&gt; um auf den Standort der ADB-Anwendung hinzuweisen, da andernfalls das %2 Plugin keine USB-Kabelverbindungen, sondern nur die Netzwerkverbindung unterstützt..</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -61,9 +70,8 @@ Möchten Sie eine andere auswählen, oder lassen Sie es unkonfiguriert?</transla
       <translation>Unkonfiguriert lassen</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation>jar Datei speichern</translation>
+      <translation type="vanished">jar Datei speichern</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
