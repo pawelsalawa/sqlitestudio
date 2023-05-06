@@ -36,16 +36,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save JAR file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation type="vanished">Невозможно найти приложение Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь&lt;/a&gt; для указания расположения приложения ADB, иначе модуль %2 не будет поддерживать подключение через USB-кабель, возможно будет только подключение по сети.</translation>
+      <translation type="unfinished">Save JAR file</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -68,10 +64,6 @@ Would you like to select another one, or leave it unconfigured?</source>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
       <translation>Оставить ненастроенным</translation>
-    </message>
-    <message>
-      <source>Save jar file</source>
-      <translation type="vanished">Сохранить JAR-файл</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
