@@ -36,16 +36,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save JAR file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation type="vanished">Impossibile trovare l&apos;applicazione Debug Bridge Android. &lt;a href=&quot;%1&quot;&gt;Clicca qui&lt;/a&gt; per specificare la posizione dell&apos;applicazione ADB, altrimenti il plugin %2 non supporterà le connessioni via cavo USB, solo la connessione di rete..</translation>
+      <translation type="unfinished">Save JAR file</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -68,10 +64,6 @@ Vuoi selezionarne un altro o lasciarlo non configurato?</translation>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
       <translation>Lascialo non configurato</translation>
-    </message>
-    <message>
-      <source>Save jar file</source>
-      <translation type="vanished">Salva file jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
