@@ -12,13 +12,13 @@ SOURCES += \
     erdconnection.cpp \
     erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
-    erdeditorwindow.cpp \
     erdentity.cpp \
     erdgraphvizlayoutplanner.cpp \
     erditem.cpp \
     erdlinearrowitem.cpp \
     erdscene.cpp \
-    erdview.cpp
+    erdview.cpp \
+    erdwindow.cpp
 
 HEADERS += \
     erdarrowitem.h \
@@ -26,13 +26,13 @@ HEADERS += \
     erdcurvyarrowitem.h \
     erdeditor_global.h \
     erdeditorplugin.h \
-    erdeditorwindow.h \
     erdentity.h \
     erdgraphvizlayoutplanner.h \
     erditem.h \
     erdlinearrowitem.h \
     erdscene.h \
-    erdview.h
+    erdview.h \
+    erdwindow.h
 
 OTHER_FILES += \
     ErdEditor.json
@@ -40,7 +40,7 @@ OTHER_FILES += \
 LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
-    erdeditorwindow.ui
+    erdwindow.ui
 
 RESOURCES += \
     erdeditor.qrc

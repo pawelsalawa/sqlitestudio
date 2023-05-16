@@ -1,7 +1,8 @@
-#include "erdeditorwindow.h"
+#include "erdwindow.h"
+#include "common/extaction.h"
 #include "icon.h"
 #include "iconmanager.h"
-#include "ui_erdeditorwindow.h"
+#include "ui_erdwindow.h"
 #include "erdscene.h"
 #include "common/unused.h"
 #include "services/dbmanager.h"
@@ -10,27 +11,27 @@
 #include <QDebug>
 #include <QMdiSubWindow>
 
-ErdEditorWindow::ErdEditorWindow() :
-    ui(new Ui::ErdEditorWindow)
+ErdWindow::ErdWindow() :
+    ui(new Ui::ErdWindow)
 {
     init();
 }
 
-ErdEditorWindow::ErdEditorWindow(QWidget *parent, Db* db) :
+ErdWindow::ErdWindow(QWidget *parent, Db* db) :
     MdiChild(parent),
-    ui(new Ui::ErdEditorWindow), db(db)
+    ui(new Ui::ErdWindow), db(db)
 {
     init();
 }
 
-ErdEditorWindow::ErdEditorWindow(const ErdEditorWindow& other) :
+ErdWindow::ErdWindow(const ErdWindow& other) :
     MdiChild(other.parentWidget()),
-    ui(new Ui::ErdEditorWindow), db(other.db)
+    ui(new Ui::ErdWindow), db(other.db)
 {
     init();
 }
 
-ErdEditorWindow::~ErdEditorWindow()
+ErdWindow::~ErdWindow()
 {
     delete ui;
     delete windowIcon;
@@ -38,13 +39,13 @@ ErdEditorWindow::~ErdEditorWindow()
     delete neatoIcon;
 }
 
-void ErdEditorWindow::staticInit()
+void ErdWindow::staticInit()
 {
-    if (!QMetaType::isRegistered(QMetaType::type("ErdEditorWindow")))
-        qRegisterMetaType<ErdEditorWindow>("ErdEditorWindow");
+    if (!QMetaType::isRegistered(QMetaType::type("ErdWindow")))
+        qRegisterMetaType<ErdWindow>("ErdWindow");
 }
 
-void ErdEditorWindow::init()
+void ErdWindow::init()
 {
     ui->setupUi(this);
 
@@ -63,55 +64,55 @@ void ErdEditorWindow::init()
 
     initActions();
 
-    connect(STYLE, &Style::paletteChanged, this, &ErdEditorWindow::uiPaletteChanged);
+    connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
 
     scene->parseSchema(db);
 }
 
-void ErdEditorWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
+void ErdWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
 {
     if (!oldState.testFlag(Qt::WindowActive) && newState.testFlag(Qt::WindowActive))
         ui->graphView->setFocus();
 }
 
-void ErdEditorWindow::uiPaletteChanged()
+void ErdWindow::uiPaletteChanged()
 {
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     scene->update();
 }
 
-void ErdEditorWindow::addFk()
+void ErdWindow::addFk()
 {
 
 }
 
-void ErdEditorWindow::useStraightLine()
+void ErdWindow::useStraightLine()
 {
 
 }
 
-void ErdEditorWindow::useCurvyLine()
+void ErdWindow::useCurvyLine()
 {
 
 }
 
-bool ErdEditorWindow::isUncommitted() const
+bool ErdWindow::isUncommitted() const
 {
     return false; // TODO
 }
 
-QString ErdEditorWindow::getQuitUncommittedConfirmMessage() const
+QString ErdWindow::getQuitUncommittedConfirmMessage() const
 {
     return ""; // TODO
 }
 
-void ErdEditorWindow::setMdiWindow(MdiWindow* value)
+void ErdWindow::setMdiWindow(MdiWindow* value)
 {
     MdiChild::setMdiWindow(value);
-    connect(value, &QMdiSubWindow::windowStateChanged, this, &ErdEditorWindow::checkIfActivated);
+    connect(value, &QMdiSubWindow::windowStateChanged, this, &ErdWindow::checkIfActivated);
 }
 
-bool ErdEditorWindow::shouldReuseForArgs(int argCount, ...)
+bool ErdWindow::shouldReuseForArgs(int argCount, ...)
 {
     if (argCount != 1)
         return false;
@@ -124,31 +125,42 @@ bool ErdEditorWindow::shouldReuseForArgs(int argCount, ...)
     return argDb == db;
 }
 
-void ErdEditorWindow::createActions()
+void ErdWindow::createActions()
 {
+    actionMap[ADD_CONNECTION] = new ExtAction(*connectionIcon, tr("Add foreign key"), this);
+    actionMap[LINE_STRAIGHT] = new ExtAction(*lineStraightIcon, tr("Use straight line"), this);
+    actionMap[LINE_CURVY] = new ExtAction(*lineCurvyIcon, tr("Use curvy line"), this);
+    actionMap[ADD_CONNECTION]->setCheckable(true);
+    actionMap[LINE_STRAIGHT]->setCheckable(true);
+    actionMap[LINE_CURVY]->setCheckable(true);
+
+    QActionGroup* lineGroup = new QActionGroup(this);
+    lineGroup->addAction(actionMap[LINE_STRAIGHT]);
+    lineGroup->addAction(actionMap[LINE_CURVY]);
+
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
     ui->toolBar->addSeparator();
-    createAction(ADD_CONNECTION, *connectionIcon, tr("Add foreign key"), scene, SLOT(addFk()), ui->toolBar);
+    ui->toolBar->addAction(actionMap[ADD_CONNECTION]);
     ui->toolBar->addSeparator();
-    createAction(LINE_STRAIGHT, *lineStraightIcon, tr("Use straight line"), scene, SLOT(useStraightLine()), ui->toolBar);
-    createAction(LINE_CURVY, *lineCurvyIcon, tr("Use curvy line"), scene, SLOT(useCurvyLine()), ui->toolBar);
+    ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
+    ui->toolBar->addAction(actionMap[LINE_CURVY]);
     ui->toolBar->addSeparator();
     createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
 }
 
-void ErdEditorWindow::setupDefShortcuts()
+void ErdWindow::setupDefShortcuts()
 {
     // TODO
 }
 
-QToolBar* ErdEditorWindow::getToolBar(int toolbar) const
+QToolBar* ErdWindow::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
     return ui->toolBar;
 }
 
-QVariant ErdEditorWindow::saveSession()
+QVariant ErdWindow::saveSession()
 {
     QHash<QString,QVariant> sessionValue;
     if (db)
@@ -157,7 +169,7 @@ QVariant ErdEditorWindow::saveSession()
     return sessionValue;
 }
 
-bool ErdEditorWindow::restoreSession(const QVariant& sessionValue)
+bool ErdWindow::restoreSession(const QVariant& sessionValue)
 {
     QHash<QString, QVariant> value = sessionValue.toHash();
     if (value.size() == 0)
@@ -176,12 +188,12 @@ bool ErdEditorWindow::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-Icon* ErdEditorWindow::getIconNameForMdiWindow()
+Icon* ErdWindow::getIconNameForMdiWindow()
 {
     return windowIcon;
 }
 
-QString ErdEditorWindow::getTitleForMdiWindow()
+QString ErdWindow::getTitleForMdiWindow()
 {
     if (db)
         return tr("ERD editor (%1)").arg(db->getName());

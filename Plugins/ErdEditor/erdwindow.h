@@ -1,18 +1,18 @@
-#ifndef ERDEDITORWINDOW_H
-#define ERDEDITORWINDOW_H
+#ifndef ERDWINDOW_H
+#define ERDWINDOW_H
 
 #include "mdichild.h"
 #include "erdeditor_global.h"
 #include <QWidget>
 
 namespace Ui {
-    class ErdEditorWindow;
+    class ErdWindow;
 }
 
 class ErdScene;
 class ErdEntity;
 
-class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
+class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 {
     Q_OBJECT
 
@@ -28,10 +28,10 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         };
         Q_ENUM(Action)
 
-        explicit ErdEditorWindow();
-        ErdEditorWindow(QWidget *parent, Db* db);
-        ErdEditorWindow(const ErdEditorWindow& other);
-        ~ErdEditorWindow();
+        explicit ErdWindow();
+        ErdWindow(QWidget *parent, Db* db);
+        ErdWindow(const ErdWindow& other);
+        ~ErdWindow();
 
         static void staticInit();
 
@@ -52,7 +52,7 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
     private:
         void init();
 
-        Ui::ErdEditorWindow *ui;
+        Ui::ErdWindow *ui;
         Db* db = nullptr;
         Icon* windowIcon = nullptr;
         Icon* fdpIcon = nullptr;
@@ -70,4 +70,4 @@ class ERDEDITORSHARED_EXPORT ErdEditorWindow : public MdiChild
         void useCurvyLine();
 };
 
-#endif // ERDEDITORWINDOW_H
+#endif // ERDWINDOW_H

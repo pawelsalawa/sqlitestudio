@@ -2,14 +2,14 @@
 #include "common/global.h"
 #include "common/extaction.h"
 #include "mainwindow.h"
-#include "erdeditorwindow.h"
+#include "erdwindow.h"
 #include "dbtree/dbtree.h"
 
 bool ErdEditorPlugin::init()
 {
     SQLS_INIT_RESOURCE(erdeditor);
-
-    ErdEditorWindow::staticInit();
+    
+    ErdWindow::staticInit();
 
     openErdEditorAction = new ExtAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
@@ -30,5 +30,5 @@ void ErdEditorPlugin::deinit()
 void ErdEditorPlugin::openEditor()
 {
     Db* db = DBTREE->getSelectedOpenDb();
-    MAINWINDOW->openMdiWindow<ErdEditorWindow>(db);
+    MAINWINDOW->openMdiWindow<ErdWindow>(db);
 }
