@@ -50,7 +50,7 @@
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation>Interruption</translation>
+      <translation>Interrompu</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
-      <translation>Nouveau nom de tableau</translation>
+      <translation>Nouveau nom de table</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="174"/>
@@ -94,7 +94,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
-      <translation>Alias de tableau ou de colonne</translation>
+      <translation>Alias de table ou de colonne</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="186"/>
@@ -430,7 +430,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../importworker.cpp" line="100"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-      <translation>Le tableau &apos;%1&apos; a moins de colonnes qu&apos;il y en a dans les données à importer. Les colonnes de données excessives seront ignorées.</translation>
+      <translation>La table &apos;%1&apos; a moins de colonnes qu&apos; il y en a dans les données à importer. Les colonnes de données excessives seront ignorées.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="105"/>
@@ -925,7 +925,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation>Le tableau %1 fait référence au tableau %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d&apos;un tableau en raison de problèmes lors de l&apos;analyse de DDL du tableau %3.</translation>
+      <translation>La table %1 fait référence au tableau %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d&apos; un tableau en raison de problèmes lors de l&apos; analyse de DDL du tableau %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="470"/>
