@@ -68,7 +68,6 @@ jobs:
                     libgtk-3-dev \
                     libsqlite3-dev \
                     libsm-dev \
-                    libssl-dev \
                     libx11-dev \
                     libx11-xcb-dev \
                     libxext-dev \
@@ -108,18 +107,25 @@ jobs:
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-27404-27405-27406-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-37434-qtbase-5.15.patch | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-24607-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32762-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
+                    cd ../qtsvg-everywhere-src-${{ matrix.version }}
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32573-qtsvg-5.15.diff | patch -p1
                     ;;
                 esac
 
             - name: Configure qtbase
               run: |
                 cd qtbase-everywhere-src-${{ matrix.version }}
+                if [ ${{ inputs.use_ccache || false }} = true ]; then
+                    ADD_CONFIGURE_FLAGS="-ccache"
+                fi
                 OPENSSL_LIBS="-L/usr/local/lib -lssl -lcrypto" ./configure \
                     -I /usr/local/include \
                     -L /usr/local/lib \
                     -appstore-compliant \
                     -bundled-xcb-xinput \
-                    -ccache \
+                    $ADD_CONFIGURE_FLAGS \
                     -confirm-license \
                     -dbus-runtime \
                     -fontconfig \
