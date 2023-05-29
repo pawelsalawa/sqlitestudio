@@ -210,7 +210,7 @@ jobs:
 
             - name: Install other tools/dependencies
               run: |
-                sudo apt install -y libreadline-dev libncurses5-dev libssl-dev patchelf chrpath
+                sudo apt install -y libreadline-dev libncurses5-dev patchelf chrpath
                 if [ $USE_PREBUILT_QT = 0 ]; then
                     echo "${{ github.workspace }}/../Qt/${{ matrix.qt_version }}/gcc_64/bin" >> $GITHUB_PATH
                 fi
