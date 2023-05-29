@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l'extrait</translation>
+      <translation>Nom de l&apos;extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -1052,7 +1052,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="492"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activez ceci pour toujours appliquer la valeur PAR DÉFAUT lors de la validation d'une valeur NULL pour une colonne dont la valeur PAR DÉFAUT est définie, même si la colonne est autorisée à contenir des valeurs NULL.&lt;/p&gt;&lt;p&gt;Désactivez cette option pour utiliser exclusivement la valeur PAR DÉFAUT lorsque la valeur NULL est validée pour une colonne avec la contrainte NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activez ceci pour toujours appliquer la valeur PAR DÉFAUT lors de la validation d&apos;une valeur NULL pour une colonne dont la valeur PAR DÉFAUT est définie, même si la colonne est autorisée à contenir des valeurs NULL.&lt;/p&gt;&lt;p&gt;Désactivez cette option pour utiliser exclusivement la valeur PAR DÉFAUT lorsque la valeur NULL est validée pour une colonne avec la contrainte NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
@@ -1062,7 +1062,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si les résultats de la requête contiennent des dizaines (ou des centaines) de colonnes, il est plus probable qu'ils épuisent la mémoire libre de votre ordinateur en chargeant plusieurs gigaoctets de données à la fois. SQLiteStudio peut essayer de limiter le nombre de résultats affichés sur une page dans de tels cas pour protéger votre ordinateur. Si vous savez que vous ne travaillez pas avec de grandes valeurs dans la base de données, vous pouvez désactiver cette limite et vous verrez toujours autant de lignes que défini par page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si les résultats de la requête contiennent des dizaines (ou des centaines) de colonnes, il est plus probable qu&apos;ils épuisent la mémoire libre de votre ordinateur en chargeant plusieurs gigaoctets de données à la fois. SQLiteStudio peut essayer de limiter le nombre de résultats affichés sur une page dans de tels cas pour protéger votre ordinateur. Si vous savez que vous ne travaillez pas avec de grandes valeurs dans la base de données, vous pouvez désactiver cette limite et vous verrez toujours autant de lignes que défini par page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="469"/>
@@ -1224,7 +1224,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="597"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lorsque les données sont lues dans la grille, la largeur des colonnes est automatiquement ajustée. Cette valeur limite la largeur initiale de l'ajustement, mais l'utilisateur peut toujours redimensionner la colonne manuellement au-delà de cette limite. Cette valeur est également utilisée lors de l'agrandissement de la colonne en fonction d'une nouvelle valeur plus large saisie par l'utilisateur (voir l'option ci-dessous).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lorsque les données sont lues dans la grille, la largeur des colonnes est automatiquement ajustée. Cette valeur limite la largeur initiale de l&apos;ajustement, mais l&apos;utilisateur peut toujours redimensionner la colonne manuellement au-delà de cette limite. Cette valeur est également utilisée lors de l&apos;agrandissement de la colonne en fonction d&apos;une nouvelle valeur plus large saisie par l&apos;utilisateur (voir l&apos;option ci-dessous).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="600"/>
