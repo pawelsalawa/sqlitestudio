@@ -4,8 +4,7 @@ env:
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
-    ICU_VERSION: '72.1'
-    OPENSSL_VERSION: '1.1.1t'
+    ICU_VERSION: '73.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-linux-x64-installer.run
@@ -271,8 +270,8 @@ jobs:
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               if: env.USE_PREBUILT_QT == 0
               run: |
-                wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.18_amd64.deb
-                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.18_amd64.deb .
+                wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb .
                 cp ./usr/lib/$TARGET_ARCH-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
                 cp ./usr/lib/$TARGET_ARCH-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 

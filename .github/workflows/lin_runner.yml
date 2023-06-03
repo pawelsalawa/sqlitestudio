@@ -1,8 +1,8 @@
 name: "Linux build runner image"
 
 env:
-    icu_version: "72.1"
-    openssl_version: "1.1.1t"
+    icu_version: "73.1"
+    openssl_version: "1.1.1u"
     tcl_version: "8.6.13"
 
 on:
