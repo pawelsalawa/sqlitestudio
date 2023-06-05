@@ -2,8 +2,6 @@ name: "Linux dependencies: Qt"
 
 env:
     workflow_name: lin_qt
-    openssl_version: "1.1.1t"
-    icu_version: "72.1"
     submodules: qtdeclarative qtimageformats qtsvg qttools qtx11extras
     TARGET_ARCH: "x86_64"
 
