@@ -1053,7 +1053,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="160"/>
       <source>Could not execute SQL due to error.</source>
-      <translation type="unfinished">Could not execute SQL due to error.</translation>
+      <translation>SQL konnte aufgrund eines Fehlers nicht ausgeführt werden.</translation>
     </message>
   </context>
   <context>
