@@ -3,6 +3,7 @@ name: "Linux build runner image"
 env:
     icu_version: "73.1"
     openssl_version: "1.1.1u"
+    python_version: "3.9.17"
     tcl_version: "8.6.13"
 
 on:
@@ -26,19 +27,17 @@ jobs:
             include:
               - release: xenial
                 container: ubuntu:xenial
-                python_repo: ppa:savoury1/python
               - release: bionic
                 container: ubuntu:bionic
-                python_repo: ppa:deadsnakes/ppa
               #- release: focal
               #  container: ubuntu:focal
-              #  python_repo: ppa:deadsnakes/ppa
         steps:
             - name: Prepare Dockerfile
               run: |
                 v=${{ env.icu_version }}
                 icu_url="https://github.com/unicode-org/icu/releases/download/release-${v%.*}-${v#*.}/icu4c-${v%.*}_${v#*.}-src.tgz"
                 openssl_url="https://github.com/openssl/openssl/releases/download/OpenSSL_$(echo ${{ env.openssl_version }} | tr . _)/openssl-${{ env.openssl_version }}.tar.gz"
+                python_url="https://www.python.org/ftp/python/${{ env.python_version }}/Python-${{ env.python_version }}.tar.xz"
                 tcl_url="https://downloads.sourceforge.net/project/tcl/Tcl/${{ env.tcl_version }}/tcl${{ env.tcl_version }}-src.tar.gz"
 
                 tee Dockerfile <<EOF_Dockerfile
@@ -48,23 +47,33 @@ jobs:
                 ENV TARGET_ARCH=x86_64
                 ENV TZ=UTC
                 RUN true \
-                    && apt-get -y update \
-                    && apt-get -y install curl software-properties-common \
-                    && add-apt-repository ${{ matrix.python_repo }} \
                     && ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone \
                     && yes | { export DEBIAN_FRONTEND=noninteractive; apt-get -y update; apt-get -yqq upgrade; apt-get -yqq dist-upgrade; apt-get -yqq install keyboard-configuration; } \
-                    && apt-get -y install sudo build-essential g++ git pkg-config unzip wget zstd \
-                    && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >>/etc/sudoers
-                RUN curl -L $tcl_url | tar -xz \
-                    && cd tcl${{ env.tcl_version }}/unix && ./configure --prefix=/usr/local && make -j$(nproc) && make install \
-                    && ln -sf tclsh${tcl_version%.*} /usr/local/bin/tclsh \
-                    && cd ../.. && rm -fr tcl${{ env.tcl_version }}
+                    && apt-get -y install sudo build-essential curl g++ pkg-config unzip wget xz-utils zstd \
+                    && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >>/etc/sudoers \
+                    && apt-get -y install git
                 RUN curl -L $icu_url | tar -xz \
-                    && cd icu/source && ./configure --prefix=/usr/local --enable-rpath && make -j$(nproc) && make install \
+                    && cd icu/source && ./configure --prefix=/usr/local --enable-rpath \
+                    && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr icu
                 RUN curl -L $openssl_url | tar -xz \
-                    && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl && make -j$(nproc) && make install \
+                    && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl \
+                    && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr openssl-${{ env.openssl_version }}
+                # Installing Python under /usr improves our chances to match user's installed Python
+                RUN curl -L $python_url | xz -dc | tar -x \
+                    && apt-get -y install libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev \
+                    && if [ ${{ matrix.release }} != xenial ]; then apt-get -y install libgdbm-compat-dev; fi \
+                    && cd Python-${{ env.python_version }} && ./configure --prefix=/usr --with-openssl=/usr/local --enable-optimizations --enable-shared --without-static-libpython \
+                    && make -j$(nproc) && make install \
+                    && cd ../../ && rm -fr Python-${{ env.python_version }} \
+                    && if [ ${{ matrix.release }} != xenial ]; then apt-get -y remove libgdbm-compat-dev; fi \
+                    && apt-get -y remove libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev
+                RUN curl -L $tcl_url | tar -xz \
+                    && cd tcl${{ env.tcl_version }}/unix && ./configure --prefix=/usr/local \
+                    && make -j$(nproc) && make install \
+                    && ln -sf tclsh${tcl_version%.*} /usr/local/bin/tclsh \
+                    && cd ../.. && rm -fr tcl${{ env.tcl_version }}
                 EOF_Dockerfile
 
             - name: Build and publish
