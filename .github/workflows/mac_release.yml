@@ -335,3 +335,17 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+
+            - name: Upload ARM64-only package artifact
+              if: matrix.binary_compatibility == 'darwin_20.arm64-x86_64'
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-macos11.arm64.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-arm64.dmg
+
+            - name: Upload ARM64-only package artifact with Python
+              if: matrix.binary_compatibility == 'darwin_20.arm64-x86_64'
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}-macos11.arm64.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}-arm64.dmg

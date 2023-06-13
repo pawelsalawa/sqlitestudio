@@ -58,6 +58,8 @@ cp -RP lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
 VERSION="$(./sqlitestudiocli -v | awk '{print $2}')"
 [ -n "$VERSION" ] || abort "could not determine SQLiteStudio version"
 
+BUILD_ARCHS="$(lipo -archs SQLiteStudio.app/Contents/MacOS/SQLiteStudio)"
+
 # CLI paths
 qtcore_path=`otool -L sqlitestudiocli | awk '/QtCore/ {print $1;}'`
 new_qtcore_path="@rpath/QtCore.framework/Versions/5/QtCore"
@@ -237,6 +239,43 @@ assert_no_dylib_problems() {
     [ -z "$_problems" ] || abort 'Unresolved local/ library references:' $_problems
 }
 
+thin_app() {
+    # Given a path, thin all universal binaries there to ARM64-only and
+    # codesign them with an ad-hoc signature
+    find "$1" -type f -perm +111 -size +2100c | grep -Ev '\.py$|install-sh$|makesetup$|fetch_macholib$' \
+    | while read -r _binary; do
+        case "$(lipo -archs "$_binary")" in
+            x86_64) run rm "$_binary" ;;
+            *64" "*64)
+                run lipo -thin arm64 "$_binary" -output "$_binary.arm64"
+                run mv "$_binary.arm64" "$_binary"
+                ;;
+        esac
+    done
+    cat > entitlements.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <true/>
+  </dict>
+</plist>
+EOF
+    run codesign --force -o runtime --entitlements entitlements.plist --deep --sign - "$1"
+    rm entitlements.plist
+}
+
+thin_dmg() (
+    thin_app "$1"
+    cd "$(dirname "$1")"
+    # shellcheck disable=SC2086
+    pretty_dmg "$(basename "$1")" "$2" "$_background_img" $_background_rgb
+    mv "$2.dmg" "../$2-arm64.dmg"
+)
+
 if [ "$3" = "dmg" ]; then
     replaceInfo "$1"
     "$qt_deploy_bin" SQLiteStudio.app -dmg
@@ -278,6 +317,14 @@ elif [ "$3" = "dist" ]; then
     # shellcheck disable=SC2086
     pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$_background_img" $_background_rgb
 
+    case "$BUILD_ARCHS" in *64" "*64)
+        info "Universal build detected. Making an ARM64-only image"
+        mkdir -p thinned
+        cp -RPc "SQLiteStudio.app" thinned/
+        thin_dmg "thinned/SQLiteStudio.app" "SQLiteStudio-$VERSION"
+        ;;
+    esac
+
     if [ "$python_from_macports" = "yes" ]; then
         info "MacPorts Python detected. Making an image with bundled Python"
 
@@ -296,7 +343,18 @@ elif [ "$3" = "dist" ]; then
         run install_name_tool \
             -change "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" "libpython$PYTHON_VERSION.dylib" \
             "$python_plugin_lib"
+
+        case "$BUILD_ARCHS" in *64" "*64)
+            info "Universal build detected. Making an ARM64-only image with Python"
+            embed_python_framework /opt/local/Library/Frameworks/Python.framework "$PYTHON_VERSION" thinned/SQLiteStudio.app
+            run install_name_tool \
+                -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
+                "thinned/$python_plugin_lib"
+            thin_dmg "thinned/SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION"
+            ;;
+        esac
     fi
+    rm -fr thinned
     ls -l -- *.dmg
     info "Done."
 else
