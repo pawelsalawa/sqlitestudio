@@ -71,12 +71,12 @@ jobs:
                 dmg_postfix: ""
                 qmake_flags: ""
                 pkgs:
-                  - qt5-qtbase 5.15.9_0+openssl
-                  - qt5-qtdeclarative 5.15.9_0
-                  - qt5-qtimageformats 5.15.9_0
-                  - qt5-qtscript 5.15.9_0
-                  - qt5-qtsvg 5.15.9_0
-                  - qt5-qttools 5.15.9_0
+                  - qt5-qtbase 5.15.10_0+openssl
+                  - qt5-qtdeclarative 5.15.10_0
+                  - qt5-qtimageformats 5.15.10_0
+                  - qt5-qtscript 5.15.10_0
+                  - qt5-qtsvg 5.15.10_0
+                  - qt5-qttools 5.15.10_0
               - binary_compatibility: darwin_16.x86_64
                 cflags: -arch x86_64
                 dmg_postfix: "-macos10.12"
