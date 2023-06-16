@@ -7,7 +7,7 @@ env:
     ICU_VERSION: '73.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-osx-installer.dmg
 
 name: MacOSX release build
 
