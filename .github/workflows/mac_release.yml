@@ -83,14 +83,12 @@ jobs:
                 qmake_flags: ""
                 pkgs:
                   - legacy-support 1.0.10_0
-                  - lerc 3.0_0
                   - qt513-qtbase 5.13.2_9+openssl
                   - qt513-qtdeclarative 5.13.2_0
                   - qt513-qtimageformats 5.13.2_2
                   - qt513-qtscript 5.13.2_0
                   - qt513-qtsvg 5.13.2_0
                   - qt513-qttools 5.13.2_0
-                  - tiff 4.4.0_2
 
         steps:
             - name: Install the InstallBuilder
@@ -198,6 +196,12 @@ jobs:
                 sudo ln -s $(pwd)/opt/local /opt/
                 echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV
                 echo "pythonLocation=/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION" >> $GITHUB_ENV
+
+                if [ ${{ matrix.binary_compatibility }} = "darwin_16.x86_64" ]; then
+                    # QtImageFormats 5.13 binary is linked to an older version of libtiff
+                    sudo install_name_tool -change /opt/local/lib/libtiff.5.dylib /opt/local/lib/libtiff.6.dylib \
+                        /opt/local/libexec/qt5/plugins/imageformats/libqtiff.dylib
+                fi
 
             - name: Compile additional SQLite3 extensions
               shell: bash
