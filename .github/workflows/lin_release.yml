@@ -7,7 +7,7 @@ env:
     ICU_VERSION: '73.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-linux-x64-installer.run
 
 name: Linux release build
 
@@ -37,12 +37,12 @@ jobs:
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             qt_version:
               - "5.15.2"
-              - "5.15.9"
+              - "5.15.10"
             exclude:
               - binary_compatibility: glibc_2.23
                 qt_version: "5.15.2"
               - binary_compatibility: glibc_2.27
-                qt_version: "5.15.9"
+                qt_version: "5.15.10"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -66,21 +66,9 @@ jobs:
                     echo TARGET_ARCH=x86_64
                 } >> $GITHUB_ENV
 
-            - name: Install python${{ env.PYTHON_VERSION }}
+            - name: Configure prebuilt python${{ env.PYTHON_VERSION }}
               run: |
-                set -ex
-                default_python="$(ls /usr/bin/python3.* | head -1)"
-                export DEBIAN_FRONTEND=noninteractive
-                yes | case "$default_python" in
-                    *"$PYTHON_VERSION") sudo apt-get -qqy install python3-dev python3-distutils ;;
-                    *)  sudo apt-get -qqy install python$PYTHON_VERSION python$PYTHON_VERSION-dev python$PYTHON_VERSION-distutils
-                        sudo update-alternatives --install /usr/bin/python3 python3 "$default_python" 1
-                        sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python$PYTHON_VERSION 2
-                        sudo update-alternatives --set python3 /usr/bin/python$PYTHON_VERSION
-                        ;;
-                esac
-                curl https://bootstrap.pypa.io/get-pip.py | sudo python$PYTHON_VERSION
-                echo "pythonLocation=/usr" >> $GITHUB_ENV
+                echo "pythonLocation=/usr/" >> $GITHUB_ENV
 
             - name: Qt installation dir
               if: env.USE_PREBUILT_QT == 0
