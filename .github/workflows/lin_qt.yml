@@ -2,8 +2,6 @@ name: "Linux dependencies: Qt"
 
 env:
     workflow_name: lin_qt
-    openssl_version: "1.1.1t"
-    icu_version: "72.1"
     submodules: qtdeclarative qtimageformats qtsvg qttools qtx11extras
     TARGET_ARCH: "x86_64"
 
@@ -32,7 +30,7 @@ jobs:
               #- "glibc_2.27"  # Ubuntu 18.04
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "5.15.9"
+              - "5.15.10"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -68,7 +66,6 @@ jobs:
                     libgtk-3-dev \
                     libsqlite3-dev \
                     libsm-dev \
-                    libssl-dev \
                     libx11-dev \
                     libx11-xcb-dev \
                     libxext-dev \
@@ -104,22 +101,31 @@ jobs:
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in 5.15.9)
+                case ${{ matrix.version }} in 5.15.10)
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-27404-27405-27406-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-37434-qtbase-5.15.patch | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-24607-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32762-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-33285-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
+                    cd ../qtsvg-everywhere-src-${{ matrix.version }}
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32573-qtsvg-5.15.diff | patch -p1
                     ;;
                 esac
 
             - name: Configure qtbase
               run: |
                 cd qtbase-everywhere-src-${{ matrix.version }}
+                if [ ${{ inputs.use_ccache || false }} = true ]; then
+                    ADD_CONFIGURE_FLAGS="-ccache"
+                fi
                 OPENSSL_LIBS="-L/usr/local/lib -lssl -lcrypto" ./configure \
                     -I /usr/local/include \
                     -L /usr/local/lib \
                     -appstore-compliant \
                     -bundled-xcb-xinput \
-                    -ccache \
+                    $ADD_CONFIGURE_FLAGS \
                     -confirm-license \
                     -dbus-runtime \
                     -fontconfig \

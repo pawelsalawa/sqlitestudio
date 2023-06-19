@@ -38,9 +38,9 @@
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation type="unfinished">PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
-They will be executed upon each opening of the database.
-See documentation for SQLite3 Multiple Ciphers for details.</translation>
+      <translation>Les instructions PRAGMA sont utilisés pour personnaliser la configuration des chiffrements multiples de SQLite3, comme les itérations KDF, le mode legacy, etc.
+Ils seront exécutés à chaque ouverture de la base de données.
+Voir la documentation pour les chiffrements multiples SQLite3 pour plus de détails.</translation>
     </message>
   </context>
 </TS>

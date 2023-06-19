@@ -59,7 +59,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si activé, le caractère &amp;quot; sera interprété en tant qu&apos;un guillemet de valeur CSV standard, ce qui fait que la chaîne de caractère sera traitée comme une valeur unique jusqu&apos;au prochain (fin) &amp;quot; caractère. Si désactivé, le caractère &amp;quot; sera traité comme tout autre caractère. Habituellement, vous souhaitez que ça soit activé.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>

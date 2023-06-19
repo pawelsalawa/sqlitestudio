@@ -189,7 +189,7 @@ void DbAndroid::showJarMessage()
 void DbAndroid::handleInvalidAdb()
 {
     notifyError(tr("Could not find Android Debug Bridge application. <a href=\"%1\">Click here</a> to point out the location of the ADB application, "
-                   "otherwise the %2 plugin will not support USB cable connections, only the network connection..").arg(SELECT_ADB_URL, getLabel()));
+                   "otherwise the %2 plugin will not support USB cable connections, only the network connection.").arg(SELECT_ADB_URL, getLabel()));
 }
 
 void DbAndroid::statusFieldLinkClicked(const QString& link)
@@ -229,7 +229,7 @@ void DbAndroid::deviceListChanged()
 
 void DbAndroid::getJar()
 {
-    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save jar file"));
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save JAR file"));
     if (path.isEmpty())
         return;
 

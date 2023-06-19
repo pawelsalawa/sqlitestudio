@@ -47,6 +47,7 @@ jobs:
                     esac
                     echo TARGET_ARCH=x86_64
                     echo MINGWxx=mingw64
+                    echo CCACHE_COMMAND="$HOME/.cargo/bin/ccache.exe"
                 } >> $GITHUB_ENV
 
             - uses: msys2/setup-msys2@v2
@@ -56,6 +57,7 @@ jobs:
                 location: d:/
                 install: >
                   mingw-w64-${{ env.TARGET_ARCH }}-gcc
+                  mingw-w64-${{ env.TARGET_ARCH }}-make
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-base
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-declarative
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-imageformats
@@ -66,6 +68,16 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
+
+            - name: Configure shell
+              run: |
+                mkdir "$env:USERPROFILE/bin" -ea 0
+                echo "$env:USERPROFILE/bin" >> $env:GITHUB_PATH
+                if ( "$env:QT_FROM_PACKAGES" -eq 1 ) {
+                    echo '@msys2.cmd %*' > "$env:USERPROFILE/bin/bash_or_msys2.cmd"
+                } else {
+                    echo '@bash -eo pipefail %*' > "$env:USERPROFILE/bin/bash_or_msys2.cmd"
+                }
 
             - name: Configure Qt from packages
               if: env.QT_FROM_PACKAGES == 1
@@ -132,28 +144,31 @@ jobs:
                 7z x -o".." win_deps/win64_deps.zip
                 echo "../lib" >> $GITHUB_PATH
 
-            - name: Prepare ccache
+            - name: Prepare ccache using action
               if: inputs.use_ccache || false
-              uses: hendrikmuhs/ccache-action@v1.2.8
+              uses: hendrikmuhs/ccache-action@v1.2.9
               with:
                 key: win64-qt${{ matrix.qt_version }}-release
                 max-size: "24M"
 
             - name: Configure ccache (or not ccache)
-              shell: bash
+              shell: bash_or_msys2 {0}
               run: |
                 if [ ${{ inputs.use_ccache || false }} = false ]; then
-                    printf 'GCC_COMMAND=gcc.exe\nGXX_COMMAND=g++.exe\n'
+                    echo GCC_COMMAND="$(which gcc.exe)"
+                    echo GXX_COMMAND="$(which g++.exe)"
                 else
-                    printf 'GCC_COMMAND=ccache.exe gcc.exe\nGXX_COMMAND=ccache.exe g++.exe\n'
+                    echo GCC_COMMAND="$CCACHE_COMMAND gcc.exe"
+                    echo GXX_COMMAND="$CCACHE_COMMAND g++.exe"
                 fi >> $GITHUB_ENV
 
             - name: Install SQLite3
-              shell: bash
+              shell: bash_or_msys2 {0}
               run: |
+                set -x
                 cd ..
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
-                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
+                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
                 cd sqlite-amalgamation-$SQLITE_VERSION
                 $GCC_COMMAND sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
                     -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
@@ -189,12 +204,12 @@ jobs:
                 EOF_ENV
 
             - name: Compile additional SQLite3 extensions
-              shell: bash
+              shell: bash_or_msys2 {0}
               run: |
                 cd ..
                 mkdir ext
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                7z x sqlite-src-$SQLITE_VERSION.zip
+                unzip sqlite-src-$SQLITE_VERSION.zip
                 cd sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../../include -L../../lib -lsqlite3"
                 for f in compress sqlar; do
@@ -217,7 +232,7 @@ jobs:
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
-              shell: bash
+              shell: bash_or_msys2 {0}
               run: |
                 qmake.exe \
                     CONFIG+=portable \
@@ -228,7 +243,7 @@ jobs:
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
-              shell: bash
+              shell: bash_or_msys2 {0}
               run: |
                 qmake.exe \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
