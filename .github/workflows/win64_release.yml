@@ -33,7 +33,7 @@ jobs:
           matrix:
             qt_version:
               - "5.15.2"
-              - "5.15.9"
+              - "5.15.10"
 
         steps:
             - name: Configure environment
