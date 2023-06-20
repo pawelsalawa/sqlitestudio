@@ -227,7 +227,7 @@ jobs:
               if: env.MISSING_PACKAGES != ''
               run: |
                 set -x
-                _the_rest="$(echo "$MISSING_PACKAGES" | grep '^qt5-' | grep -v '^qt5-qttools')"
+                _the_rest="$(echo "$MISSING_PACKAGES" | grep '^qt5-' | grep -v '^qt5-qttools' || true)"
                 [ -z "$_the_rest" ] || sudo port -Nkv install $_the_rest
 
             - name: Install missing qt5-qttools
