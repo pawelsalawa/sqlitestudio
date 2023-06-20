@@ -35,14 +35,16 @@ jobs:
               - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
               #- "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
               #- "darwin_20.x86_64"  # macOS 11, the earliest version supported by QT 6.5
-              #- "darwin_20.arm64"  # macOS 11, the earliest ARM64 version
+              - "darwin_20.arm64-x86_64"  # macOS 11, the earliest ARM64 version
             include:
+              # this list is meant to be synchronized with mac_universal_deps.yml
               - common_pkgs:
                   - brotli 1.0.9_2
                   - dbus 1.14.6_0
                   - double-conversion 3.3.0_0
                   - freetype 2.12.1_0
                   - gettext-runtime 0.21.1_0
+                  - giflib 4.2.3_0
                   - glib2 2.76.3_0+x11
                   - graphite2 1.3.14_0
                   - harfbuzz 6.0.0_1
@@ -62,12 +64,25 @@ jobs:
                   - pcre2 10.42_0
                   - python39 3.9.17_0+lto+optimizations
                   - tcl 8.6.13_0+corefoundation+threads
-                  - tiff 4.5.0_0
+                  - tiff 4.5.1_0
                   - webp 1.3.0_1
                   - xz 5.4.3_0
                   - zstd 1.5.5_0
+              - binary_compatibility: darwin_20.arm64-x86_64
+                cflags: -arch arm64 -arch x86_64
+                add_variants: "+universal"
+                dmg_postfix: "-macos11.universal"
+                qmake_flags: "QMAKE_APPLE_DEVICE_ARCHS=\"arm64 x86_64\""
+                pkgs:
+                  - qt5-qtbase 5.15.10_0+openssl
+                  - qt5-qtdeclarative 5.15.10_0
+                  - qt5-qtimageformats 5.15.10_0
+                  - qt5-qtscript 5.15.10_0
+                  - qt5-qtsvg 5.15.10_0
+                  - qt5-qttools 5.15.10_0
               - binary_compatibility: darwin_17.x86_64
                 cflags: -arch x86_64
+                add_variants: ""
                 dmg_postfix: ""
                 qmake_flags: ""
                 pkgs:
@@ -79,6 +94,7 @@ jobs:
                   - qt5-qttools 5.15.10_0
               - binary_compatibility: darwin_16.x86_64
                 cflags: -arch x86_64
+                add_variants: ""
                 dmg_postfix: "-macos10.12"
                 qmake_flags: ""
                 pkgs:
@@ -111,7 +127,7 @@ jobs:
               uses: hendrikmuhs/ccache-action@v1.2.8
               with:
                 key: ${{ matrix.binary_compatibility }}
-                max-size: "24M"
+                max-size: "32M"
 
             - name: Configure ccache
               if: inputs.use_ccache || false
@@ -153,25 +169,37 @@ jobs:
               run: |
                 mkdir -p distfiles
                 fetch_binpkg() {
-                    _any="no"
+                    local _compat="$1"; shift
                     while [ -n "$1" ]; do
-                        _url="https://packages.macports.org/$1/$1-$2.${{ matrix.binary_compatibility }}.tbz2"
-                        _name="$1"
+                        local _name="$1"
+                        local _postfix="$(echo "$2${{ matrix.add_variants}}" | sed 's/+x11+universal/+universal+x11/')"
+                        local _url="https://packages.macports.org/$_name/$_name-$_postfix.$_compat.tbz2"
                         shift 2
-                        case " $*" in *" $_name "*_) echo "$_name: Skipping as an override follows"; continue ;; esac
+                        case " $*" in *" $_name "*_) echo "$_name: Skipping as an override follows" 1>&2; continue ;; esac
                         _file="distfiles/$(basename "$_url")"
                         if [ ! -e "$_file" ]; then
-                            echo "Fetching $_url"
-                            if curl -fsL -o "$_file" "$_url"; then _any="yes"
-                            else echo "Could not fetch, skipping"; rm -f "$_file"; fi
+                            echo "Fetching $_url" 1>&2
+                            if ! curl -fsL -o "$_file" "$_url"; then
+                                echo "Fetching $_url failed, skipping" 1>&2
+                                rm -f "$_file"
+                                printf '%s @%s\n' "$_name" "$_postfix"
+                            fi
                         fi
                     done
-                    echo "UPDATE_DISTFILES_CACHE=$_any" >> $GITHUB_ENV
                 }
-                fetch_binpkg ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
+                _distfiles_count="$(ls distfiles | wc -l)"
+                _any="no"
+                _missing="$(fetch_binpkg ${{ matrix.binary_compatibility }} ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }})"
+                [ "$(ls distfiles | wc -l)" -eq "$_distfiles_count" ] || _any=yes
+                tee -a $GITHUB_ENV <<EOF_ENV
+                UPDATE_DISTFILES_CACHE=$_any
+                MISSING_PACKAGES<<EOF_VAR
+                ${_missing}
+                EOF_VAR
+                EOF_ENV
 
             - name: Save distfiles cache
-              if: env.UPDATE_DISTFILES_CACHE == 'yes'
+              if: always() && env.UPDATE_DISTFILES_CACHE == 'yes'
               uses: actions/cache/save@v3
               with:
                 path: distfiles
@@ -181,19 +209,20 @@ jobs:
               run: |
                 mkdir macports
                 install_binpkg() {
+                    _compat="$1"; shift
                     while [ -n "$1" ]; do
-                        _pkg="distfiles/$1-$2.${{ matrix.binary_compatibility }}.tbz2"
+                        local _postfix="$(echo "$2${{ matrix.add_variants}}" | sed 's/+x11+universal/+universal+x11/')"
+                        _pkg="distfiles/$1-$_postfix.$_compat.tbz2"
                         echo "Installing $_pkg"
                         tar -C macports -xjf "$_pkg"
                         shift 2
                     done
                 }
-                install_binpkg ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
+                install_binpkg ${{ matrix.binary_compatibility }} ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
 
             - name: Configure MacPorts packages
               run: |
-                cd macports
-                sudo ln -s $(pwd)/opt/local /opt/
+                sudo ln -s $(pwd)/macports/opt/local /opt/
                 echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV
                 echo "pythonLocation=/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION" >> $GITHUB_ENV
 
@@ -244,6 +273,7 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    QMAKE_CXXFLAGS+="${{ matrix.cflags }}" \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
                 make -j 2
@@ -253,6 +283,7 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    QMAKE_CXXFLAGS+="${{ matrix.cflags }}" \
                     CONFIG+=portable \
                     PYTHON_VERSION=$PYTHON_VERSION "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     ../../../Plugins
@@ -304,3 +335,17 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+
+            - name: Upload ARM64-only package artifact
+              if: matrix.binary_compatibility == 'darwin_20.arm64-x86_64'
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-macos11.arm64.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-arm64.dmg
+
+            - name: Upload ARM64-only package artifact with Python
+              if: matrix.binary_compatibility == 'darwin_20.arm64-x86_64'
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}-macos11.arm64.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}-arm64.dmg
