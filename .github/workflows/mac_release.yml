@@ -64,7 +64,7 @@ jobs:
                   - pcre2 10.42_0
                   - python39 3.9.17_0+lto+optimizations
                   - tcl 8.6.13_0+corefoundation+threads
-                  - tiff 4.5.1_0
+                  - tiff 4.5.1_1
                   - webp 1.3.0_1
                   - xz 5.4.3_0
                   - zstd 1.5.5_0
