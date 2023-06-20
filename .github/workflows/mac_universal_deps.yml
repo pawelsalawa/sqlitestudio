@@ -42,6 +42,7 @@ jobs:
                   - jasper 4.0.0_1
                   - lcms2 2.15_0
                   - lerc 4.0.0_1
+                  - libdeflate 1.18_0
                   - libedit 20221030-3.1_0
                   - libffi 3.4.4_0
                   - libiconv 1.17_0
