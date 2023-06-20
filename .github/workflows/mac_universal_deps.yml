@@ -155,9 +155,9 @@ jobs:
                 mkdir -p ports/aqua ports/devel ports/gnome ports/graphics
                 cd ports
 
-                # graphite2 universal patch
+                # graphite2 universal patch: https://github.com/macports/macports-ports/pull/18070
                 cp -rp $_ports_src/graphics/graphite2 graphics/
-                curl -L https://github.com/macports/macports-ports/commit/b49e91ecc4243e7347e63a22834e73e54632dc45.diff \
+                curl -L https://github.com/macports/macports-ports/commit/c305ea5333bb4f3c3bca1dae70c74d63231e68ea.diff \
                 | patch -p1
 
                 # Make clang-16 a non-dependency of qt5-qttools to let us skip rebuilding it as universal
