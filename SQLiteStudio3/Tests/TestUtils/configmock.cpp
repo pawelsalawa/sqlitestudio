@@ -231,6 +231,15 @@ void ConfigMock::refreshDdlHistory()
 {
 }
 
+QList<QHash<QString, QVariant> > ConfigMock::getScriptFunctions()
+{
+    return QList<QHash<QString, QVariant> >();
+}
+
+void ConfigMock::setScriptFunctions(const QList<QHash<QString, QVariant> >&)
+{
+}
+
 QString ConfigMock::getSqlite3Version() const
 {
     return "3.8.8";

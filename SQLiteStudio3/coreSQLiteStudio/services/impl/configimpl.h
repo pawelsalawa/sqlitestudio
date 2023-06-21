@@ -86,6 +86,9 @@ class API_EXPORT ConfigImpl : public Config
         void deleteReport(int id);
         void clearReportHistory();
 
+        QList<QHash<QString, QVariant> > getScriptFunctions();
+        void setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions);
+
         void begin();
         void commit();
         void rollback();

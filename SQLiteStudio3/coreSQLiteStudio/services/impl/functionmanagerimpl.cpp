@@ -338,8 +338,8 @@ void FunctionManagerImpl::refreshFunctionsByKey()
 
 void FunctionManagerImpl::storeInConfig()
 {
-    QVariantList list;
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list;
+    QHash<QString, QVariant> fnHash;
     for (ScriptFunction* func : functions)
     {
         fnHash["name"] = func->name;
@@ -355,19 +355,18 @@ void FunctionManagerImpl::storeInConfig()
         fnHash["deterministic"] = func->deterministic;
         list << fnHash;
     }
-    CFG_CORE.Internal.Functions.set(list);
+    CFG->setScriptFunctions(list);
 }
 
 void FunctionManagerImpl::loadFromConfig()
 {
     clearFunctions();
 
-    QVariantList list = CFG_CORE.Internal.Functions.get();
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list = CFG->getScriptFunctions();
+    QHash<QString, QVariant> fnHash;
     ScriptFunction* func = nullptr;
-    for (const QVariant& var : list)
+    for (const QHash<QString, QVariant>& fnHash : list)
     {
-        fnHash = var.toHash();
         func = new ScriptFunction();
         func->name = fnHash["name"].toString();
         func->lang = updateScriptingQtLang(fnHash["lang"].toString());
