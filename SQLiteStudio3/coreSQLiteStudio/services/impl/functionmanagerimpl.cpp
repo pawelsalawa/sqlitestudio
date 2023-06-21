@@ -352,6 +352,7 @@ void FunctionManagerImpl::storeInConfig()
         fnHash["type"] = static_cast<int>(func->type);
         fnHash["undefinedArgs"] = func->undefinedArgs;
         fnHash["allDatabases"] = func->allDatabases;
+        fnHash["deterministic"] = func->deterministic;
         list << fnHash;
     }
     CFG_CORE.Internal.Functions.set(list);
@@ -378,6 +379,7 @@ void FunctionManagerImpl::loadFromConfig()
         func->type = static_cast<ScriptFunction::Type>(fnHash["type"].toInt());
         func->undefinedArgs = fnHash["undefinedArgs"].toBool();
         func->allDatabases = fnHash["allDatabases"].toBool();
+        func->deterministic = fnHash["deterministic"].toBool();
         functions << func;
     }
 }
