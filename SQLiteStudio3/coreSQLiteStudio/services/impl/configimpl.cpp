@@ -618,6 +618,12 @@ QString ConfigImpl::getLegacyConfigPath()
 #endif
 }
 
+void ConfigImpl::dropTables(const QList<QString>& tables)
+{
+    for (const QString& table : tables)
+        db->exec("DROP TABLE " + table);
+}
+
 void ConfigImpl::initTables()
 {
     SqlQueryPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
@@ -625,9 +631,7 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("version"))
     {
-        for (const QString& table : tables)
-            db->exec("DROP TABLE "+table);
-
+        dropTables(tables);
         tables.clear();
         db->exec("CREATE TABLE version (version NUMERIC)");
         db->exec("INSERT INTO version VALUES ("+QString::number(SQLITESTUDIO_CONFIG_VERSION)+")");
