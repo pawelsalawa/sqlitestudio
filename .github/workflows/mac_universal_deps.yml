@@ -204,10 +204,8 @@ jobs:
                 set -x
 
                 # Try to install what's possible to install from binary packages
-                case "$MISSING_PACKAGES" in *python3*)
-                    sudo port -Nkv install $(echo "$MISSING_PACKAGES" | grep '^python3') python3_select python_select
-                    ;;
-                esac
+                sudo port -Nkv install "$OUR_PYTHON" +universal
+                sudo port -Nkv install python_select python3_select
                 sudo port select --set python "$OUR_PYTHON"
                 sudo port select --set python3 "$OUR_PYTHON"
                 case "$MISSING_PACKAGES" in *glib2*)
