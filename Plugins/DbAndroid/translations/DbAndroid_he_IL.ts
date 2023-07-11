@@ -41,7 +41,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save JAR file</source>
-      <translation type="unfinished">Save JAR file</translation>
+      <translation>שמירת קובץ JAR</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
