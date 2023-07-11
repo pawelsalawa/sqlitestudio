@@ -797,7 +797,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>לא ניתן לצרף; מסד נתונים%1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
@@ -818,7 +818,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="31"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>לא ניתן לפתוח קובץ מילון %1 לקריאה.</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="92"/>
