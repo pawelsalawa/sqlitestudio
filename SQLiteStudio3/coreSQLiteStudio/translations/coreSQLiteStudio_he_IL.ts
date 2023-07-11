@@ -278,32 +278,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
+      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא תוצאות שאילתה.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
+      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא טבלאות.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
+      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא מסד נתונים.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="155"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-      <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
+      <translation>ייצוא מבנה &apos;%1&apos; לא נתמך. מבנים נתמכים הם: %2.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
-      <translation type="unfinished">Export to the clipboard was successful.</translation>
+      <translation>ייצוא ללוח־הגזירים צלח.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
-      <translation type="unfinished">Export to the file &apos;%1&apos; was successful.</translation>
+      <translation>ייצוא לקובץ &apos;%1&apos; צלח.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
@@ -313,7 +313,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
-      <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
+      <translation>לא ניתן לייצא לקובץ %1. לא ניתן לפתוח את הקובץ לכתיבה.</translation>
     </message>
   </context>
   <context>
@@ -391,7 +391,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
       <source>Unsupported scripting language: %1</source>
-      <translation type="unfinished">Unsupported scripting language: %1</translation>
+      <translation>שפת תיסרוט לא נתמכת: %1</translation>
     </message>
   </context>
   <context>
@@ -638,7 +638,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation type="unfinished">Letters from a to z.</translation>
+      <translation>אותיות א עד ת.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
@@ -766,12 +766,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../common/utils.cpp" line="1028"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>לא ניתן לפתוח קובץ &apos;%1&apos; לקריאה: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="435"/>
       <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
+      <translation>לא ניתן לפתוח מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="1214"/>
@@ -782,7 +782,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../db/abstractdb3.h" line="331"/>
       <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>לא ניתן לטעון הרחבה %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
@@ -792,7 +792,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>לא ניתן לסגור מסד נתונים: %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
