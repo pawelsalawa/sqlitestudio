@@ -64,12 +64,12 @@
     <message>
       <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>מספר הפניה חדש</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>מספר הפניה ישן</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
@@ -166,14 +166,14 @@
       <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>קובץ &apos;מסד־ נתונים לא קיים.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>לא נטענו מתקעים תומכים.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
@@ -415,12 +415,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation type="unfinished">No columns provided by the import plugin.</translation>
+      <translation>מתקע ייבוא לא סיפק עמודות.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
       <source>Could not start transaction in order to import a data: %1</source>
-      <translation type="unfinished">Could not start transaction in order to import a data: %1</translation>
+      <translation>לא ניתן להתחיל תנועה לייבוא נתונים: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="53"/>
@@ -440,7 +440,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation type="unfinished">Could not create table to import to: %1</translation>
+      <translation>לא ניתן לייצר טבלה לייבא ל: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -571,7 +571,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
+      <translation>טבלה&apos;%1&apos; אוכלסה בהצלחה.</translation>
     </message>
   </context>
   <context>
@@ -658,7 +658,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>תו, רווח־לבן, טבלר או שורה חדשה.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
@@ -668,7 +668,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>לרבות האמור לעיל ואחרים.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
@@ -688,7 +688,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>אם תו כלשהו מוקלד פעמים רבות, הסבירות שייעשה &apos;בו שימוש גבוה יותר.</translation>
     </message>
   </context>
   <context>
@@ -704,7 +704,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation type="unfinished">Initialization code (optional)</translation>
+      <translation>קוד אתחול (חלופי)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
