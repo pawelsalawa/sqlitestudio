@@ -1172,7 +1172,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="897"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>לא &apos;להציג דו־שיח תצוגת DDL מקדימה בעת קיבוע שינויים בסכמה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="910"/>
@@ -1552,7 +1552,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1479"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-      <translation type="unfinished">Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</translation>
+      <translation>מתקעים נטענים/נפרקים מיד עם סימונם (מסומן/לא מסומן), אך רשימת מתקעים מְתֻקֶּנֶת לטעינה בעת ההפעלה, לא תשמר עד קיבוע כל תצורת תיבת הדו־שיח.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1543"/>
@@ -2085,7 +2085,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="324"/>
       <source>Cannot commit transaction. Details: %1</source>
-      <translation type="unfinished">Cannot commit transaction. Details: %1</translation>
+      <translation>לא ניתן לקבע תנועה. פרטים: %1</translation>
     </message>
   </context>
   <context>
@@ -5555,7 +5555,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="596"/>
       <source>An error occurred while committing the transaction: %1</source>
-      <translation type="unfinished">An error occurred while committing the transaction: %1</translation>
+      <translation>אירעה שגיאה בעת קיבוע ההתנועה: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="629"/>
@@ -5570,7 +5570,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
       <source>An error occurred while committing the data: %1</source>
-      <translation type="unfinished">An error occurred while committing the data: %1</translation>
+      <translation>אירעה שגיאה בעת קיבוע הנתונים: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
@@ -5817,7 +5817,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="69"/>
       <source>Error while committing new row: %1</source>
-      <translation type="unfinished">Error while committing new row: %1</translation>
+      <translation>שגיאה בעת קיבוע שורה חדשה: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="134"/>
@@ -5875,7 +5875,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
       <source>Commit all extension changes</source>
-      <translation type="unfinished">Commit all extension changes</translation>
+      <translation>קִבּוּעַ כל השינויים הקיימים</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="72"/>
@@ -6261,7 +6261,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="216"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
-      <translation type="unfinished">Commit structure changes</translation>
+      <translation>קיבוע שינויי מבנה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="217"/>
@@ -6587,7 +6587,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1343"/>
       <source>Commit modifications and browse data.</source>
-      <translation type="unfinished">Commit modifications and browse data.</translation>
+      <translation>קיבוע הסגלות ודפדוף בנתונים.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1543"/>
@@ -6999,18 +6999,18 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="672"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; successfully.</translation>
+      <translation>קיבוע שינויים למצג &apos;%1&apos;, צלח.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="674"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation type="unfinished">Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
+      <translation>קיבוע שינויים למצג &apos;%1&apos; (כונה קודם &apos;%2&apos;), צלח.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="697"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
-      <translation type="unfinished">Could not commit view changes. Error message: %1</translation>
+      <translation>לא ניתן לקבע שינויים למצג. הודעת שגיאה: %1</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="841"/>
