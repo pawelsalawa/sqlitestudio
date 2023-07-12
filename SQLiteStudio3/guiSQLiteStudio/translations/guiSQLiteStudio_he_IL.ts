@@ -119,7 +119,7 @@
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;סייען הקוד יציג את שם הגזיר. לגישה לרשימת הגזירים נא להקיש פעמיים על קיצור הדרך לסייען הקוד.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
@@ -139,7 +139,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>חלון עורך גזירי־הקוד מכיל שטרם קובעו.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
@@ -184,7 +184,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="280"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
+      <translation>נא להזין שם, ייחודי ולא ריק, לגזיר.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
