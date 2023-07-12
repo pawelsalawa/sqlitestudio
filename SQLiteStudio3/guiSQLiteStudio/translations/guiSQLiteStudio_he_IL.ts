@@ -1057,7 +1057,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
+      <translation>להשתמש בערך DEFAULT (ככול שהוגדר), בעת קיבוע ערך NULL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="466"/>
@@ -6952,7 +6952,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="383"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation type="unfinished">View window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
+      <translation>בחלון מצג &quot;%1&quot; קיימים הסגלות־מבנה ונתונים שטרם קובעו.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="385"/>
