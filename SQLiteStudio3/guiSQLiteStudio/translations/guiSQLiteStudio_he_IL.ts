@@ -139,7 +139,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation>חלון עורך גזירי־הקוד מכיל שטרם קובעו.</translation>
+      <translation>חלון עורך גזירי־הקוד מכיל שינויים שטרם קובעו.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
@@ -149,7 +149,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all snippet changes</source>
-      <translation type="unfinished">Commit all snippet changes</translation>
+      <translation>קִבּוּעַ כל שינויי גזירים</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
@@ -282,7 +282,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="392"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
+      <translation>חלון עורך עמודות מכיל שינויים שטרם קובעו.</translation>
     </message>
   </context>
   <context>
@@ -1052,7 +1052,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="492"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;איפשור אכיפת ערך DEFAULT תמיד, בעת קיבוע ערך NULL בעמודה בה ערך DEFAULT כבר הוגדר, למרות שהעמודה מאפשרת הכלת ערכי NULL. &lt;/p&gt;&lt;p&gt; כדי להשתמש בערך DEFAULT אך ורק כאשר ערך NULL קובע לעמודה בעלת אילוץ NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;נא להשבית אפשרות זו</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="495"/>
@@ -3319,7 +3319,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Commit all function changes</source>
-      <translation type="unfinished">Commit all function changes</translation>
+      <translation>קִבּוּעַ כל שינויי פונקציה</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="62"/>
@@ -3405,7 +3405,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="642"/>
       <source>Functions editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
+      <translation>חלון עורך פונקציה מכיל שינויים שטרם קובעו.</translation>
     </message>
   </context>
   <context>
@@ -4031,7 +4031,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mdiwindow.cpp" line="198"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>שנויים לא מקובעים</translation>
     </message>
     <message>
       <location filename="../mdiwindow.cpp" line="203"/>
@@ -4482,7 +4482,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="29"/>
       <source>Commit changes to cell(s) contents</source>
-      <translation type="unfinished">Commit changes to cell(s) contents</translation>
+      <translation>קיבוע שינויים להערות תא</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="30"/>
@@ -4643,7 +4643,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../formview.h" line="16"/>
       <source>Commit changes for current row</source>
-      <translation type="unfinished">Commit changes for current row</translation>
+      <translation>קיבוע שינויים לשורה נוכחית</translation>
     </message>
     <message>
       <location filename="../formview.h" line="17"/>
@@ -4980,7 +4980,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation type="unfinished">Commit the table structure</translation>
+      <translation>קיבוע מבנה טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
@@ -5095,7 +5095,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="24"/>
       <source>Commit the view&apos;s query</source>
-      <translation type="unfinished">Commit the view&apos;s query</translation>
+      <translation>קיבוע מצג &apos;השאילתה</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="25"/>
@@ -5123,7 +5123,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
-      <translation type="unfinished">Commit the pending changes</translation>
+      <translation>קיבוע השינויים התלויים ועומדים</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
@@ -5154,7 +5154,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>שנויים לא מקובעים</translation>
     </message>
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
@@ -5535,7 +5535,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
       <source>Uncommitted data</source>
-      <translation type="unfinished">Uncommitted data</translation>
+      <translation>מידע לא מקובע</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
@@ -6877,7 +6877,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="336"/>
       <source>Commit the view changes</source>
       <comment>view window</comment>
-      <translation type="unfinished">Commit the view changes</translation>
+      <translation>קיבוע שינויי מצג</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="337"/>
@@ -6972,7 +6972,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="616"/>
       <source>Uncommitted changes</source>
-      <translation type="unfinished">Uncommitted changes</translation>
+      <translation>שנויים לא מקובעים</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
