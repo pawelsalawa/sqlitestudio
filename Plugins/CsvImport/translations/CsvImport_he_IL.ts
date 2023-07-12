@@ -39,7 +39,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="47"/>
       <source>\t (tab)</source>
-      <translation>\t (טאב)</translation>
+      <translation>\t (טאבלר)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
