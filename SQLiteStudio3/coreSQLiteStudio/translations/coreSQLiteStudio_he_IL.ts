@@ -748,12 +748,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
+      <translation>לא ניתן להתחיל תנועה לאכלוס טבלה. פרטי שגיאה: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
       <source>Error while populating table: %1</source>
-      <translation type="unfinished">Error while populating table: %1</translation>
+      <translation>שגיאה בעת אכלוס טבלה: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="80"/>
@@ -787,7 +787,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>לא ניתן להריץ נקודת־בקרה WAL: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
