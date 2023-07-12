@@ -1039,7 +1039,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>לא ניתן לבצע שאילתת SQL, מאחר שהיישומון כשל מלקבע תנועה: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
