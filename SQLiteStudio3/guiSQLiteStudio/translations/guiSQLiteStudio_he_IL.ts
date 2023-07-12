@@ -41,7 +41,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="187"/>
       <source>SQLite extension directories</source>
-      <translation type="unfinished">SQLite extension directories</translation>
+      <translation>מחיצות הרחבות SQLite</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="140"/>
@@ -154,7 +154,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Rollback all snippet changes</source>
-      <translation type="unfinished">Rollback all snippet changes</translation>
+      <translation>גלגול כל שינויי־גזירים לאחור</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
@@ -189,7 +189,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
       <source>Enter a non-empty snippet content.</source>
-      <translation type="unfinished">Enter a non-empty snippet content.</translation>
+      <translation>נא להזין ערך תכולת גזיר לא ריק.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="287"/>
@@ -1733,7 +1733,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
       <source>Type</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Type</translation>
+      <translation>סוג</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="157"/>
@@ -1745,7 +1745,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="159"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
   </context>
   <context>
@@ -1938,7 +1938,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dialogs/dbdialog.ui" line="45"/>
       <location filename="../dialogs/dbdialog.cpp" line="174"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>קובץ</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="68"/>
@@ -2103,7 +2103,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="130"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>העתקה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="131"/>
@@ -2506,7 +2506,7 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="423"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">URI:</translation>
+      <translation>URI:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
@@ -2559,12 +2559,12 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>העתקה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1125"/>
       <source>Move</source>
-      <translation type="unfinished">Move</translation>
+      <translation>העברה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1127"/>
@@ -3059,7 +3059,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="357"/>
       <source>File</source>
-      <translation type="unfinished">File</translation>
+      <translation>קובץ</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="382"/>
@@ -3149,7 +3149,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
       <source>SQL</source>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="54"/>
@@ -3527,7 +3527,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="75"/>
       <source>Sort</source>
-      <translation type="unfinished">Sort</translation>
+      <translation>מיון</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="80"/>
@@ -3582,7 +3582,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="180"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="70"/>
@@ -3932,7 +3932,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="303"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>יציאה</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="305"/>
@@ -4098,7 +4098,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditordate.cpp" line="88"/>
       <source>Date</source>
-      <translation type="unfinished">Date</translation>
+      <translation>תאריך</translation>
     </message>
   </context>
   <context>
@@ -4114,7 +4114,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditorhex.cpp" line="92"/>
       <source>Hex</source>
-      <translation type="unfinished">Hex</translation>
+      <translation>Hex</translation>
     </message>
   </context>
   <context>
@@ -4136,12 +4136,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="104"/>
       <source>Cut</source>
-      <translation type="unfinished">Cut</translation>
+      <translation>גזירה</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="105"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>העתקה</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="106"/>
@@ -4156,12 +4156,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="108"/>
       <source>Undo</source>
-      <translation type="unfinished">Undo</translation>
+      <translation>החזרה</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="109"/>
       <source>Redo</source>
-      <translation type="unfinished">Redo</translation>
+      <translation>בצע מחדש</translation>
     </message>
   </context>
   <context>
@@ -4169,7 +4169,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="186"/>
       <source>Text</source>
-      <translation type="unfinished">Text</translation>
+      <translation>מלל</translation>
     </message>
   </context>
   <context>
@@ -4177,7 +4177,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortime.cpp" line="91"/>
       <source>Time</source>
-      <translation type="unfinished">Time</translation>
+      <translation>שעה</translation>
     </message>
   </context>
   <context>
@@ -4787,13 +4787,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.h" line="17"/>
       <location filename="../sqleditor.h" line="36"/>
       <source>Undo</source>
-      <translation type="unfinished">Undo</translation>
+      <translation>החזרה</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="18"/>
       <location filename="../sqleditor.h" line="37"/>
       <source>Redo</source>
-      <translation type="unfinished">Redo</translation>
+      <translation>בצע מחדש</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="30"/>
@@ -5213,7 +5213,7 @@ find next</translation>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="98"/>
       <source>Find</source>
-      <translation type="unfinished">Find</translation>
+      <translation>חיפוש</translation>
     </message>
   </context>
   <context>
@@ -5263,13 +5263,13 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="155"/>
       <source>Cut</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Cut</translation>
+      <translation>גזירה</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy</translation>
+      <translation>Copy</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="157"/>
@@ -6231,7 +6231,7 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="305"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="198"/>
@@ -6743,7 +6743,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="138"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="151"/>
@@ -6833,7 +6833,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="212"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="108"/>
