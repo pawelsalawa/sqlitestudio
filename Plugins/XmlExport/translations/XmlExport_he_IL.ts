@@ -59,7 +59,7 @@
     <message>
       <location filename="../XmlExport.ui" line="102"/>
       <source>Always use ampersand</source>
-      <translation>להשתמש תמיד ב- &quot;וגם&quot; (&amp;)</translation>
+      <translation>להשתמש תמיד בתו &quot; וגם&quot; (&amp;)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="118"/>
