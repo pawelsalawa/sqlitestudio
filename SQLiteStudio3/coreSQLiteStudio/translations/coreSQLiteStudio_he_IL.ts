@@ -7,7 +7,7 @@
       <location filename="../db/abstractdb.cpp" line="349"/>
       <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>לא ניתן לבצע שאילתה על מסד־נתונים סגור.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="661"/>
@@ -192,7 +192,7 @@
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>שגיאה בעת יצירת טבלה במסד־נתונים יעד: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="373"/>
@@ -207,14 +207,14 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation type="unfinished">Error while copying data for table %1: %2</translation>
+      <translation>שגיאה בעת העתקת נתונים מטבלה %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="461"/>
       <location filename="../dbobjectorganizer.cpp" line="468"/>
       <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation type="unfinished">Error while copying data to table %1: %2</translation>
+      <translation>שגיאה בעת העתקת נתונים לטבלה %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
@@ -467,22 +467,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="546"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
+      <translation>לא ניתן לטעון מתקע %1, מאחר והוא &apos;מתנגש עם מתקע %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="557"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-      <translation type="unfinished">Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
+      <translation>לא ניתן לטעון מתקע %1, מאחר והתלויות שלו לא נטענו: %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="566"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation type="unfinished">Cannot load plugin %1. Error details: %2</translation>
+      <translation>לא ניתן לטעון מתקע %1. פרטי שגיאה: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="582"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation type="unfinished">Cannot load plugin %1 (error while initializing plugin).</translation>
+      <translation>לא ניתן לטעון מתקע %1 (שגיאה בעת אתחול מתקע).</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
