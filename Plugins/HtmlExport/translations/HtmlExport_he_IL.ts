@@ -109,7 +109,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="421"/>
       <source>Code executed:</source>
-      <translation>הקוד בוצע:</translation>
+      <translation>קוד בוצע:</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
