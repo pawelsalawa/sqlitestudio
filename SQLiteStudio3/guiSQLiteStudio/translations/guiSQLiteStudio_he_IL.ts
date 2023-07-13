@@ -1558,7 +1558,7 @@
       <location filename="../dialogs/configdialog.cpp" line="1543"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation type="unfinished">%1 (built-in)</translation>
+      <translation>%1 (מובנה)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1556"/>
@@ -1658,7 +1658,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="67"/>
       <source>Apply</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Apply</translation>
+      <translation>החלה</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="172"/>
@@ -1688,7 +1688,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="188"/>
       <source>Check</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>בדיקה</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="192"/>
@@ -1715,7 +1715,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="68"/>
       <source>Table</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Table</translation>
+      <translation>טבלה</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
@@ -1727,7 +1727,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>מתחם</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
@@ -2108,7 +2108,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="131"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>הדבקה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="132"/>
@@ -2459,7 +2459,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-      <translation type="unfinished">%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</translation>
+      <translation>%1&lt;br&gt;&lt;br&gt;האם להמשיך?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1741"/>
@@ -2512,7 +2512,7 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>גרסה:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
@@ -2584,7 +2584,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1131"/>
       <source>Abort</source>
-      <translation type="unfinished">Abort</translation>
+      <translation>נטישה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
@@ -2943,7 +2943,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="46"/>
       <source>A single table</source>
-      <translation type="unfinished">A single table</translation>
+      <translation>טבלה יחידה</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="53"/>
@@ -2958,7 +2958,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="100"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Database</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
@@ -3967,7 +3967,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="398"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Tools</translation>
+      <translation>&amp;כלים</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="414"/>
@@ -4332,12 +4332,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/populatedialog.cpp" line="48"/>
       <source>Populate</source>
       <comment>populate dialog button</comment>
-      <translation type="unfinished">Populate</translation>
+      <translation>איכלוס</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="63"/>
       <source>Abort</source>
-      <translation type="unfinished">Abort</translation>
+      <translation>נטישה</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="198"/>
@@ -4623,7 +4623,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="57"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>מַזְנֵקים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="62"/>
@@ -5090,7 +5090,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="23"/>
       <source>A view window</source>
-      <translation type="unfinished">A view window</translation>
+      <translation>חלון מצג</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="24"/>
@@ -5141,7 +5141,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.h" line="22"/>
       <source>A function editor window</source>
-      <translation type="unfinished">A function editor window</translation>
+      <translation>חלון עורך פונקציות</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.h" line="20"/>
@@ -5299,7 +5299,7 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="161"/>
       <source>Redo</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Redo</translation>
+      <translation>ביצוע חוזר</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="162"/>
@@ -6163,8 +6163,7 @@ Key</translation>
       <source>Not
 NULL</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Not
-NULL</translation>
+      <translation>לא NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="310"/>
@@ -6226,7 +6225,7 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="273"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>מַזְנֵקים</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="305"/>
@@ -6449,7 +6448,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="627"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="659"/>
@@ -6593,7 +6592,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1543"/>
       <source>Name</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1544"/>
@@ -6617,7 +6616,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1593"/>
       <source>Name</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1594"/>
@@ -6823,7 +6822,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.ui" line="170"/>
       <location filename="../windows/viewwindow.cpp" line="887"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>נתונים</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="180"/>
@@ -7031,7 +7030,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="918"/>
       <source>Name</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>שם</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="919"/>
