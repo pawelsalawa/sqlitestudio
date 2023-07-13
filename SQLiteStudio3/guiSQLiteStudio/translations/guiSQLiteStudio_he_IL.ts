@@ -1460,7 +1460,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2062"/>
       <source>Active formatter plugin</source>
-      <translation type="unfinished">Active formatter plugin</translation>
+      <translation>מתקע תבנות פעיל</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2100"/>
@@ -1914,7 +1914,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dataview.cpp" line="1020"/>
       <source>Apply filter</source>
       <comment>data view</comment>
-      <translation type="unfinished">Apply filter</translation>
+      <translation>החלת מסנן</translation>
     </message>
   </context>
   <context>
@@ -2263,7 +2263,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Add a column</source>
-      <translation type="unfinished">Add a column</translation>
+      <translation>הוספת עמודה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="163"/>
@@ -2809,7 +2809,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="460"/>
       <source>Active database (%1/%2)</source>
-      <translation type="unfinished">Active database (%1/%2)</translation>
+      <translation>מסד נתונים פעיל (%1/%2)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="576"/>
@@ -2885,7 +2885,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="36"/>
       <source>Browse for file</source>
-      <translation type="unfinished">Browse for file</translation>
+      <translation>דפדוף קובץ</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="53"/>
@@ -3074,7 +3074,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="62"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>ביטול</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="160"/>
@@ -3121,7 +3121,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="432"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="435"/>
@@ -3181,7 +3181,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../common/fontedit.cpp" line="61"/>
       <source>Choose font</source>
       <comment>font configuration</comment>
-      <translation type="unfinished">Choose font</translation>
+      <translation>בחירת גופן</translation>
     </message>
   </context>
   <context>
@@ -3189,7 +3189,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../forms/sqlformatterplugin.ui" line="20"/>
       <source>Active SQL formatter plugin</source>
-      <translation type="unfinished">Active SQL formatter plugin</translation>
+      <translation>מתקע תבנות SQL פעיל</translation>
     </message>
   </context>
   <context>
@@ -3473,7 +3473,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.cpp" line="115"/>
       <source>Cancel</source>
-      <translation type="unfinished">Cancel</translation>
+      <translation>ביטול</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="146"/>
@@ -3927,7 +3927,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="302"/>
       <source>Bugs and feature &amp;requests</source>
-      <translation type="unfinished">Bugs and feature &amp;requests</translation>
+      <translation>דיווח על תקלים ובקשות לתכונות חדשות</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="303"/>
@@ -3937,7 +3937,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="305"/>
       <source>Check for &amp;updates</source>
-      <translation type="unfinished">Check for &amp;updates</translation>
+      <translation>בדיקת זמינות &amp;עדכונים</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="327"/>
@@ -4213,7 +4213,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
       <source>Check</source>
       <comment>new constraint dialog</comment>
-      <translation type="unfinished">Check</translation>
+      <translation>בדיקה</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
@@ -4280,7 +4280,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="114"/>
       <source>Check for updates on startup</source>
-      <translation type="unfinished">Check for updates on startup</translation>
+      <translation>בדיקת זמינות עדכונים בעת אתחול</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="91"/>
@@ -4890,12 +4890,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="45"/>
       <source>All SQLite databases</source>
-      <translation type="unfinished">All SQLite databases</translation>
+      <translation>כל מסדי נתוני SQL</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="47"/>
       <source>All files</source>
-      <translation type="unfinished">All files</translation>
+      <translation>כל הקבצים</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="50"/>
@@ -5115,7 +5115,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/codesnippeteditor.h" line="16"/>
       <source>A code snippets editor window</source>
-      <translation type="unfinished">A code snippets editor window</translation>
+      <translation>חלון עורך גזירי קוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="17"/>
@@ -5136,7 +5136,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/collationseditor.h" line="20"/>
       <source>A collation editor window</source>
-      <translation type="unfinished">A collation editor window</translation>
+      <translation>חלון עורך עימותים</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.h" line="22"/>
@@ -5146,7 +5146,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/sqliteextensioneditor.h" line="20"/>
       <source>A SQLite extension editor window</source>
-      <translation type="unfinished">A SQLite extension editor window</translation>
+      <translation>חלון עורך הרחבות SQL</translation>
     </message>
   </context>
   <context>
@@ -5930,7 +5930,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>כל הקבצים (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
@@ -6521,8 +6521,8 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="997"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-      <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a table with blank name?</translation>
+      <translation>SQLite מאפשרת יצירת טבלה ללא שם (ריק), אך לא מומלץ.
+האם ליצור טבלה ללא שם (ריק)?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1006"/>
@@ -7064,8 +7064,8 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="1007"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
-      <translation type="unfinished">A blank name for the view is allowed in SQLite, but it is not recommended.
-Are you sure you want to create a view with blank name?</translation>
+      <translation>SQLite מאפשרת מצג ללא שם (ריק), אך לא מומלץ.
+האם ליצור מצג ללא שם (ריק)?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1019"/>
