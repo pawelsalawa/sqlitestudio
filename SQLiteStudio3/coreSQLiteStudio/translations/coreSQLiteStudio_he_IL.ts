@@ -843,7 +843,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="61"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation type="unfinished">Could not find plugin to support scripting language: %1</translation>
+      <translation>לא נמצע מתקע לתמיכה בשפת תסרוט: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="79"/>
