@@ -86,7 +86,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="97"/>
       <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-      <translation type="unfinished">&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
+      <translation>&lt;h3&gt;תוכן ענינים:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
   </context>
   <context>
@@ -2027,7 +2027,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="180"/>
       <source>Are you sure you want to delete table %1?</source>
-      <translation type="unfinished">Are you sure you want to delete table %1?</translation>
+      <translation>האם למחוק טבלה %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="184"/>
@@ -2037,7 +2037,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="185"/>
       <source>Are you sure you want to delete index %1?</source>
-      <translation type="unfinished">Are you sure you want to delete index %1?</translation>
+      <translation>האם למחוק מפתח %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="189"/>
@@ -2047,7 +2047,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="190"/>
       <source>Are you sure you want to delete trigger %1?</source>
-      <translation type="unfinished">Are you sure you want to delete trigger %1?</translation>
+      <translation>האם למחוק מזנק %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="194"/>
@@ -2057,7 +2057,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="195"/>
       <source>Are you sure you want to delete view %1?</source>
-      <translation type="unfinished">Are you sure you want to delete view %1?</translation>
+      <translation>האם למחוק מצג %1?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="219"/>
@@ -2074,7 +2074,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbobjectdialogs.cpp" line="283"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
-      <translation type="unfinished">Are you sure you want to delete following objects:
+      <translation>האם למחוק את העצמים הבאים:
 %1</translation>
     </message>
     <message>
@@ -2133,12 +2133,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;הוספת מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;עריכת מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="138"/>
@@ -2148,12 +2148,12 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>התחברות ל&amp;מסד הנתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>&amp;Disconnect from the database</source>
-      <translation type="unfinished">&amp;Disconnect from the database</translation>
+      <translation>התנתקות ממ&amp;סד הנתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="141"/>
@@ -2163,7 +2163,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Export the database</source>
-      <translation type="unfinished">&amp;Export the database</translation>
+      <translation>&amp;ייצוא מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
@@ -2173,7 +2173,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>&amp;בדיקות תקינות</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
@@ -2479,19 +2479,19 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
       <source>(system table)</source>
       <comment>database tree label</comment>
-      <translation type="unfinished">(system table)</translation>
+      <translation>(טבלת מערכת)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
       <source>(virtual)</source>
       <comment>virtual table label</comment>
-      <translation type="unfinished">(virtual)</translation>
+      <translation>(מְדֻמֶּה)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
       <source>(system index)</source>
       <comment>database tree label</comment>
-      <translation type="unfinished">(system index)</translation>
+      <translation>(מפתח מערכת)</translation>
     </message>
   </context>
   <context>
@@ -2648,8 +2648,8 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-      <translation type="unfinished">-- Queries executed on database %1 (%2)
--- Date and time of execution: %3
+      <translation>-- שאילתות שבוצעו על מסד נתונים %1 (%2)
+-- תאריך ושעת ביצוע: %3
 %4</translation>
     </message>
     <message>
@@ -3902,12 +3902,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;About</source>
-      <translation type="unfinished">&amp;About</translation>
+      <translation>על &amp;אודות</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="298"/>
       <source>&amp;Licenses</source>
-      <translation type="unfinished">&amp;Licenses</translation>
+      <translation>&amp;רישיונות</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="299"/>
@@ -3943,7 +3943,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="327"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>&amp;מסד נתונים</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="350"/>
@@ -3955,7 +3955,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="371"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;View</translation>
+      <translation>&amp;מצג</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="375"/>
@@ -3972,7 +3972,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="414"/>
       <source>&amp;Help</source>
-      <translation type="unfinished">&amp;Help</translation>
+      <translation>&amp;עזרה</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="586"/>
