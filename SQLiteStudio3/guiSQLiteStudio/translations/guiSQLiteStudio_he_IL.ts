@@ -926,7 +926,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="298"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-      <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
+      <translation>תוויות בטבלאות רגילות מציגות את, מספר העמודות ומפתחים ומזנקים לכול טבלה.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="301"/>
@@ -1037,7 +1037,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="482"/>
       <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
+      <translation>הצגת רמז־צץ עמודות ושורות במצג נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="524"/>
@@ -1097,7 +1097,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="680"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;כאשר מאופשר, לשונית הנתונים תופיע, בחלון טבלה, במקום לשונית המבנה.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="683"/>
@@ -1122,7 +1122,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="715"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;כאשר מאופשר, לשונית הנתונים תופיע במצג החלונות, במקום לשונית המבנה.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="718"/>
@@ -1234,12 +1234,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;רוחב עמודות־נתונים ראשוני, יוגדר כך שיציג לפחות את שם העמודה בכותרת בשלמותו. ניתן עדיין לעקוף זאת על ידי קביעת מגבלת רוחב עמודה התחלתי בפיקסלים (בהגדרה מעלה).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="610"/>
       <source>Keep at least the width to show complete column name</source>
-      <translation type="unfinished">Keep at least the width to show complete column name</translation>
+      <translation>לשמר את הרוחב להצגת שמות עמודה שלמים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="981"/>
@@ -1820,13 +1820,13 @@
       <location filename="../dataview.cpp" line="236"/>
       <source>Show grid view of results</source>
       <comment>data view</comment>
-      <translation type="unfinished">Show grid view of results</translation>
+      <translation>הצגת תוצאות במצג רשת</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="237"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
-      <translation type="unfinished">Show form view of results</translation>
+      <translation>הצגת תוצאות במצג טופס</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="994"/>
@@ -1908,7 +1908,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dataview.cpp" line="1016"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
-      <translation type="unfinished">Show filter inputs per column</translation>
+      <translation>הצגת קלט מסנן בכל עמודה</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="1020"/>
