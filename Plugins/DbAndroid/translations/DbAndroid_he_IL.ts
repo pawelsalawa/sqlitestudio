@@ -119,7 +119,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="321"/>
       <source>Generic error from Android: %1</source>
-      <translation type="unfinished">Generic error from Android: %1</translation>
+      <translation>שגיאה כללית מאנדרואיד: %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
