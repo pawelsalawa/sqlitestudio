@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
       <source>Code assistant</source>
-      <translation type="unfinished">Code assistant</translation>
+      <translation>סייען קוד</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -1157,7 +1157,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="865"/>
       <source>Schema editing</source>
-      <translation type="unfinished">Schema editing</translation>
+      <translation>עריכת סכמה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="877"/>
@@ -6177,7 +6177,7 @@ NULL</source>
       <location filename="../windows/tablestructuremodel.cpp" line="314"/>
       <source>Default value</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Default value</translation>
+      <translation>ערך ברירת מחדל</translation>
     </message>
   </context>
   <context>
@@ -6708,7 +6708,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="73"/>
       <source>Trigger name:</source>
-      <translation type="unfinished">Trigger name:</translation>
+      <translation>שם מזנק:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="80"/>
@@ -6906,7 +6906,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="350"/>
       <source>Delete column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>מחיקת עמודה</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="351"/>
