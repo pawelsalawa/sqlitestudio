@@ -1389,7 +1389,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1536"/>
       <source>Key combination</source>
-      <translation type="unfinished">Key combination</translation>
+      <translation>צירוף מקשים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1585"/>
@@ -1405,7 +1405,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1608"/>
       <source>Compact layout</source>
-      <translation type="unfinished">Compact layout</translation>
+      <translation>פריסה צמומה</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1614"/>
@@ -1932,7 +1932,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="35"/>
       <source>Database driver</source>
-      <translation type="unfinished">Database driver</translation>
+      <translation>הנע־התקן מסד הנתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="45"/>
@@ -1964,7 +1964,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="133"/>
       <source>Test connection</source>
-      <translation type="unfinished">Test connection</translation>
+      <translation>חיבור ניסיון</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="175"/>
@@ -2068,7 +2068,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="282"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>מחיקתק עצמים</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="283"/>
@@ -2098,7 +2098,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.ui" line="73"/>
       <source>Filter by name</source>
-      <translation type="unfinished">Filter by name</translation>
+      <translation>סינון לפי שם</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="130"/>
@@ -2183,7 +2183,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>Edit the t&amp;able</source>
-      <translation type="unfinished">Edit the t&amp;able</translation>
+      <translation>עריכת הטבלה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
@@ -2203,7 +2203,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>אכלוס טבלה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
@@ -2223,7 +2223,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Edit the i&amp;ndex</source>
-      <translation type="unfinished">Edit the i&amp;ndex</translation>
+      <translation>עריכת המ&amp;פתח</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="155"/>
@@ -2253,7 +2253,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Edit the v&amp;iew</source>
-      <translation type="unfinished">Edit the v&amp;iew</translation>
+      <translation>עריכת המ&amp;צג</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="161"/>
@@ -2268,7 +2268,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Edit the column</source>
-      <translation type="unfinished">Edit the column</translation>
+      <translation>עריכת העמודה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="164"/>
@@ -2382,7 +2382,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1201"/>
       <source>Remove database</source>
-      <translation type="unfinished">Remove database</translation>
+      <translation>הסרת מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1241"/>
@@ -2574,7 +2574,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1128"/>
       <source>Include indexes</source>
-      <translation type="unfinished">Include indexes</translation>
+      <translation>הכללת מפתחים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1129"/>
@@ -2953,7 +2953,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="65"/>
       <source>Table to export</source>
-      <translation type="unfinished">Table to export</translation>
+      <translation>טבלה לייצוא</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="100"/>
@@ -3253,7 +3253,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
       <source>Input arguments</source>
-      <translation type="unfinished">Input arguments</translation>
+      <translation>פרמטרי קלט</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="163"/>
@@ -4306,7 +4306,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="14"/>
       <source>Populate table</source>
-      <translation type="unfinished">Populate table</translation>
+      <translation>אכלוס טבלה</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
@@ -5980,7 +5980,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
       <source>Foreign table:</source>
-      <translation type="unfinished">Foreign table:</translation>
+      <translation>טבלה זרה:</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="42"/>
@@ -5995,7 +5995,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="70"/>
       <source>Foreign column</source>
-      <translation type="unfinished">Foreign column</translation>
+      <translation>עמודה זרה</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="106"/>
@@ -6041,7 +6041,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
       <source>Foreign column</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Foreign column</translation>
+      <translation>עמודה זרה</translation>
     </message>
   </context>
   <context>
@@ -6244,7 +6244,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="200"/>
       <source>Populate table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Populate table</translation>
+      <translation>אכלוס טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="214"/>
@@ -6287,7 +6287,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="221"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>להעביר עמודה מעלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
@@ -6409,7 +6409,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="276"/>
       <source>Delete trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete trigger</translation>
+      <translation>מחיקת מזנק</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="313"/>
@@ -6698,7 +6698,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="59"/>
       <source>Pre-condition:</source>
-      <translation type="unfinished">Pre-condition:</translation>
+      <translation>תנאי מקדים:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="66"/>
@@ -6912,7 +6912,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="351"/>
       <source>Move column up</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>להעביר עמודה מעלה</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="352"/>
