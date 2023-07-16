@@ -2978,7 +2978,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="133"/>
       <source>Export table data</source>
-      <translation type="unfinished">Export table data</translation>
+      <translation>סיור בנתוני טבלה</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="143"/>
@@ -3912,7 +3912,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="299"/>
       <source>Open home &amp;page</source>
-      <translation type="unfinished">Open home &amp;page</translation>
+      <translation>פתיחת עמוד הבית</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="300"/>
@@ -4424,7 +4424,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">on conflict: %1</translation>
+      <translation>בעת התנגשות: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="445"/>
@@ -4688,7 +4688,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="46"/>
       <source>Open SQL editor</source>
-      <translation type="unfinished">Open SQL editor</translation>
+      <translation>פתיחת עורך SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="47"/>
@@ -4718,7 +4718,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="52"/>
       <source>Previous window</source>
-      <translation type="unfinished">Previous window</translation>
+      <translation>חלון קודם</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="53"/>
@@ -4833,7 +4833,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="43"/>
       <source>Replace in text</source>
-      <translation type="unfinished">Replace in text</translation>
+      <translation>החלפה במלל</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="44"/>
@@ -5061,7 +5061,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/tablewindow.h" line="49"/>
       <location filename="../windows/viewwindow.h" line="28"/>
       <source>Add new trigger</source>
-      <translation type="unfinished">Add new trigger</translation>
+      <translation>הוספת מזנק חדש</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="50"/>
@@ -5219,7 +5219,7 @@ find next</source>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="14"/>
       <source>Sort by columns</source>
-      <translation type="unfinished">Sort by columns</translation>
+      <translation>מיון לפי עמודות</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="45"/>
@@ -5644,7 +5644,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Set NULL values</source>
-      <translation type="unfinished">Set NULL values</translation>
+      <translation>קביעת ערכי NULL</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
@@ -5838,7 +5838,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="140"/>
       <source>Extension file</source>
-      <translation type="unfinished">Extension file</translation>
+      <translation>קובץ הרחבה</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="147"/>
