@@ -1435,7 +1435,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1781"/>
       <source>Hide built-in plugins</source>
-      <translation type="unfinished">Hide built-in plugins</translation>
+      <translation>הסתרת מתקעים מובנים</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1810"/>
@@ -1547,7 +1547,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Plugin details</source>
-      <translation type="unfinished">Plugin details</translation>
+      <translation>פרטי מתקע</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1479"/>
@@ -1568,7 +1568,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1568"/>
       <source>No plugins in this category.</source>
-      <translation type="unfinished">No plugins in this category.</translation>
+      <translation>אין מתקעים בסוג־אב זה.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1670"/>
@@ -2118,7 +2118,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="133"/>
       <source>Create a group</source>
-      <translation type="unfinished">Create a group</translation>
+      <translation>יצירת קבוצה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="134"/>
@@ -2178,7 +2178,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Create a &amp;table</source>
-      <translation type="unfinished">Create a &amp;table</translation>
+      <translation>יצירת &amp;טבלה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
@@ -2208,7 +2208,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Create similar table</source>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>יצירת טבלה זהה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
@@ -2233,7 +2233,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Create a trig&amp;ger</source>
-      <translation type="unfinished">Create a trig&amp;ger</translation>
+      <translation>ייצירת מ&amp;זנק</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
@@ -2248,7 +2248,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create a &amp;view</source>
-      <translation type="unfinished">Create a &amp;view</translation>
+      <translation>יצירת מצג</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
@@ -2754,7 +2754,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="389"/>
       <source>Create view from query</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Create view from query</translation>
+      <translation>יצירת מצג משאילתה</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="400"/>
@@ -3329,7 +3329,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="64"/>
       <source>Create new function</source>
-      <translation type="unfinished">Create new function</translation>
+      <translation>יצירת פונקציה חדשה</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="65"/>
@@ -3488,7 +3488,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.cpp" line="164"/>
       <source>Select import plugin.</source>
-      <translation type="unfinished">Select import plugin.</translation>
+      <translation>בחירת מתקע ייבוא.</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="173"/>
@@ -6299,7 +6299,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="231"/>
       <source>Create similar table</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create similar table</translation>
+      <translation>יצירת טבלה זהה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="232"/>
@@ -6372,7 +6372,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="264"/>
       <source>Create index</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create index</translation>
+      <translation>ייצירת מ&amp;פתח</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="265"/>
@@ -6397,7 +6397,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="274"/>
       <source>Create trigger</source>
       <comment>table window</comment>
-      <translation type="unfinished">Create trigger</translation>
+      <translation>ייצירת מזנק</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="275"/>
@@ -6930,7 +6930,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="360"/>
       <source>Create new trigger</source>
       <comment>view window</comment>
-      <translation type="unfinished">Create new trigger</translation>
+      <translation>ייצירת מזנק חדש</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="361"/>
