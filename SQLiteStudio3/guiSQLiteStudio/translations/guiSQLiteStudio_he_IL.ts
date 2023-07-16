@@ -2258,7 +2258,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Delete the vi&amp;ew</source>
-      <translation type="unfinished">Delete the vi&amp;ew</translation>
+      <translation>מחיקת המ&amp;צג</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
@@ -2299,7 +2299,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbtree/dbtree.cpp" line="169"/>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Erase table data</source>
-      <translation type="unfinished">Erase table data</translation>
+      <translation>מחיקת נתוני טבלה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
@@ -2579,7 +2579,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1129"/>
       <source>Include triggers</source>
-      <translation type="unfinished">Include triggers</translation>
+      <translation>להכליל מזנקים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1131"/>
@@ -2678,7 +2678,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
       <source>Don&apos;t show again</source>
-      <translation type="unfinished">Don&apos;t show again</translation>
+      <translation>לא להציג שוב</translation>
     </message>
   </context>
   <context>
@@ -2776,7 +2776,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="405"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show previous tab</translation>
+      <translation>הצגת לשונית קודמות</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="406"/>
@@ -2910,7 +2910,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="50"/>
       <source>Execute SQL file</source>
-      <translation type="unfinished">Execute SQL file</translation>
+      <translation>בצוע קובץ SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.cpp" line="64"/>
@@ -3139,7 +3139,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="14"/>
       <source>Execution errors</source>
-      <translation type="unfinished">Execution errors</translation>
+      <translation>שגיאות ביצוע</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="26"/>
@@ -3248,7 +3248,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="81"/>
       <source>Filter functions</source>
-      <translation type="unfinished">Filter functions</translation>
+      <translation>פעולות מסנן</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
@@ -3438,7 +3438,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="129"/>
       <source>Data source type</source>
-      <translation type="unfinished">Data source type</translation>
+      <translation>סוג מקור מידע</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="141"/>
@@ -3707,7 +3707,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.ui" line="81"/>
       <source>Database toolbar</source>
-      <translation type="unfinished">Database toolbar</translation>
+      <translation>סרגל־כלים מסד־נתונים</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="92"/>
@@ -3762,12 +3762,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="265"/>
       <source>Open SQL &amp;editor</source>
-      <translation type="unfinished">Open SQL &amp;editor</translation>
+      <translation>פתיחת &amp;עורך SQL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="266"/>
       <source>Open DDL &amp;history</source>
-      <translation type="unfinished">Open DDL &amp;history</translation>
+      <translation>פתיחת הי&amp;סטורית DDL</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="267"/>
@@ -3837,7 +3837,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="282"/>
       <source>Hide status field</source>
-      <translation type="unfinished">Hide status field</translation>
+      <translation>הסתרת שדה מצב</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="286"/>
@@ -5732,7 +5732,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Show value in a viewer</source>
-      <translation type="unfinished">Show value in a viewer</translation>
+      <translation>הצגת ערך במַשְׁקֵף</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
