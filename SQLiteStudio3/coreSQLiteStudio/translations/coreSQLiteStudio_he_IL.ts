@@ -808,7 +808,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
-      <translation type="unfinished">Parser stack overflow</translation>
+      <translation>הצפת מערום מנתח</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
@@ -935,17 +935,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
+      <translation>קיית בעיה בעבוד מזנק %1 באופן תקין. יתתכן והוא לא התעדכן באופן מלא ויידרוש תשומת לב מאוחר יותר.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+      <translation>כל העמודות בכיסוי מזנק %1 נעלמ המזנק לא יווצר מחדש לאחר הסגלת טבלה.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
+      <translation>לא ניתן לעדכן מזנק %1 בהתאם להסגלות טבלה %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="580"/>
