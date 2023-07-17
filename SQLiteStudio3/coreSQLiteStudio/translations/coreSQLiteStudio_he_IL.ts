@@ -220,8 +220,8 @@
       <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation type="unfinished">Error while dropping source view %1: %2
-Tables, indexes, triggers and views copied to database %3 will remain.</translation>
+      <translation>שגיאה בעת השלכת מצג מקור %1: %2
+טבלאות, מיפתחים, מזנקים ומצגים שהועתקו למסד־נתונים %3 יוותרו במקומם.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="524"/>
@@ -236,7 +236,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
-      <translation type="unfinished">Error while creating trigger in target database: %1</translation>
+      <translation>שגיאה בעת יצירת מזנק במסד־נתונים יעד: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="679"/>
