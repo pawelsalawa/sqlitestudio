@@ -2188,7 +2188,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="147"/>
       <source>Delete the ta&amp;ble</source>
-      <translation type="unfinished">Delete the ta&amp;ble</translation>
+      <translation>מחיקת ה&amp;בלה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="148"/>
@@ -2228,7 +2228,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="155"/>
       <source>Delete the in&amp;dex</source>
-      <translation type="unfinished">Delete the in&amp;dex</translation>
+      <translation>מחיקת המ&amp;פתח</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
@@ -2238,7 +2238,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Edit the trigg&amp;er</source>
-      <translation type="unfinished">Edit the trigg&amp;er</translation>
+      <translation>עריכת המ&amp;נק</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
@@ -2273,7 +2273,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Delete the column</source>
-      <translation type="unfinished">Delete the column</translation>
+      <translation>מחיקת העמודה</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="165"/>
