@@ -2988,7 +2988,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="153"/>
       <source>Export table triggers</source>
-      <translation type="unfinished">Export table triggers</translation>
+      <translation>ייצוא מזנקי טבלה</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="175"/>
@@ -4584,7 +4584,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Select all items</source>
-      <translation type="unfinished">Select all items</translation>
+      <translation>בחירת כל הפריטים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>
@@ -4728,7 +4728,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="54"/>
       <source>Hide status area</source>
-      <translation type="unfinished">Hide status area</translation>
+      <translation>הסתרת שורת המצב</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="55"/>
@@ -5055,7 +5055,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="48"/>
       <source>Refresh table trigger list</source>
-      <translation type="unfinished">Refresh table trigger list</translation>
+      <translation>רענון רשימת מזנקי טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="49"/>
@@ -5067,13 +5067,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/tablewindow.h" line="50"/>
       <location filename="../windows/viewwindow.h" line="29"/>
       <source>Edit selected trigger</source>
-      <translation type="unfinished">Edit selected trigger</translation>
+      <translation>עריכת מזנקים שנבחרו</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="51"/>
       <location filename="../windows/viewwindow.h" line="30"/>
       <source>Delete selected trigger</source>
-      <translation type="unfinished">Delete selected trigger</translation>
+      <translation>מחיקת מזנקים שנבחרו</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="52"/>
@@ -5105,7 +5105,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/viewwindow.h" line="26"/>
       <source>Refresh view trigger list</source>
-      <translation type="unfinished">Refresh view trigger list</translation>
+      <translation>רענון מצג רשימת מזנקים</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.h" line="27"/>
@@ -5184,7 +5184,7 @@ Following items are pending:</source>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="43"/>
       <source>Search backwards</source>
-      <translation type="unfinished">Search backwards</translation>
+      <translation>חיפוש הפוך</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="50"/>
@@ -5246,7 +5246,7 @@ find next</source>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="243"/>
       <source>Move column down</source>
-      <translation type="unfinished">Move column down</translation>
+      <translation>העברת עמודה מטה</translation>
     </message>
   </context>
   <context>
@@ -5315,7 +5315,7 @@ find next</source>
       <location filename="../sqleditor.cpp" line="164"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Save SQL to file</translation>
+      <translation>שמירת SQL לקובץ</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="165"/>
@@ -5722,7 +5722,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
-      <translation type="unfinished">Invert selection</translation>
+      <translation>היפוך בחירה</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
@@ -5828,7 +5828,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="75"/>
       <source>Filter extensions</source>
-      <translation type="unfinished">Filter extensions</translation>
+      <translation>הרחבות סינון</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="119"/>
@@ -5868,7 +5868,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="66"/>
       <source>Extension manager</source>
-      <translation type="unfinished">Extension manager</translation>
+      <translation>מנהל הרחבות</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
@@ -5883,7 +5883,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
       <source>Add new extension</source>
-      <translation type="unfinished">Add new extension</translation>
+      <translation>הוספת הרחבה חדשה</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="75"/>
@@ -6250,7 +6250,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="214"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh structure</translation>
+      <translation>רענון מבנה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="216"/>
@@ -6293,7 +6293,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Move column down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>העברת עמודה מטה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="231"/>
@@ -6390,7 +6390,7 @@ NULL</source>
       <location filename="../windows/tablewindow.cpp" line="272"/>
       <source>Refresh trigger list</source>
       <comment>table window</comment>
-      <translation type="unfinished">Refresh trigger list</translation>
+      <translation>רענון טבלת מזנקים</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="225"/>
@@ -6918,7 +6918,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="352"/>
       <source>Move column down</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>העברת עמודה מטה</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="358"/>
@@ -7092,7 +7092,7 @@ Would you like to proceed?</translation>
       <location filename="../windows/viewwindow.cpp" line="1068"/>
       <source>View modification</source>
       <comment>view window</comment>
-      <translation type="unfinished">View modification</translation>
+      <translation>הצגת הסגלות</translation>
     </message>
   </context>
   <context>
