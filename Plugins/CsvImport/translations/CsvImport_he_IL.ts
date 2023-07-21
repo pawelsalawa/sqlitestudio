@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation>לפרש &quot; כערך מרכאות</translation>
+      <translation>לפרש &quot; כערך תו מרכאות</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
