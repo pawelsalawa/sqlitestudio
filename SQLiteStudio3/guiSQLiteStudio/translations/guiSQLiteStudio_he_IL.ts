@@ -1167,7 +1167,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="890"/>
       <source>DDL history size:</source>
-      <translation type="unfinished">DDL history size:</translation>
+      <translation>גודל היסטורית DDL:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="897"/>
@@ -1304,12 +1304,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
-      <translation type="unfinished">Code syntax colors</translation>
+      <translation>צבעי תחביר קוד</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1128"/>
       <source>Keyword foreground</source>
-      <translation type="unfinished">Keyword foreground</translation>
+      <translation>חזית מקלדת</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1218"/>
@@ -1319,7 +1319,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
-      <translation type="unfinished">String foreground</translation>
+      <translation>חזית מחרוזת</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1228"/>
@@ -1485,7 +1485,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2164"/>
       <source>Status field font</source>
-      <translation type="unfinished">Status field font</translation>
+      <translation>גופן שדה מצב</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2201"/>
@@ -1573,7 +1573,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1670"/>
       <source>Add new data type</source>
-      <translation type="unfinished">Add new data type</translation>
+      <translation>הוספת סוג נתונים חדש</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1674"/>
@@ -1753,7 +1753,7 @@
     <message>
       <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
       <source>SQLiteStudio CSS console</source>
-      <translation type="unfinished">SQLiteStudio CSS console</translation>
+      <translation>עמדת הפעלת CSS SQLiteStudio</translation>
     </message>
   </context>
   <context>
@@ -2093,7 +2093,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.ui" line="23"/>
       <source>Databases</source>
-      <translation>Databases</translation>
+      <translation>מסדי נתונים</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.ui" line="73"/>
@@ -2686,7 +2686,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../debugconsole.ui" line="14"/>
       <source>SQLiteStudio Debug Console</source>
-      <translation type="unfinished">SQLiteStudio Debug Console</translation>
+      <translation>עמדת מפעיל ניפוי־תקלים SQLiteStudio</translation>
     </message>
   </context>
   <context>
@@ -2958,7 +2958,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="100"/>
       <source>Database</source>
-      <translation>Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
@@ -3131,7 +3131,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="783"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
-      <translation type="unfinished">Internal error during export. This is a bug. Please report it.</translation>
+      <translation>שגיאה פנימית במהלך ייצוא. זהו תקל. נא לדווח על כך.</translation>
     </message>
   </context>
   <context>
@@ -3747,12 +3747,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="125"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-      <translation type="unfinished">Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</translation>
+      <translation>ריצה במצב ניפוי־תקלים. לחיצה על %1, או מתפריט &apos;עזרה / פתיחת עמדת־הפעלת ניפוי־תקלים&apos;.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="127"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-      <translation type="unfinished">Running in debug mode. Debug messages are printed to the standard output.</translation>
+      <translation>ריצה במצב ניפוי־תקלים. הודעות ניפוי־תקלים מודפסות על הפלט התיקני.</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="220"/>
@@ -3807,7 +3807,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="276"/>
       <source>&amp;Tile windows</source>
-      <translation type="unfinished">&amp;Tile windows</translation>
+      <translation>&amp;חלונות אריח</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="277"/>
@@ -3887,7 +3887,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="294"/>
       <source>Report a &amp;bug</source>
-      <translation type="unfinished">Report a &amp;bug</translation>
+      <translation>דיווח על תקל</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="295"/>
@@ -4070,7 +4070,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="342"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%2&apos; data type.</source>
-      <translation>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type. {1&apos;?} {2&apos;?} {1&apos; or 2&apos;?}</translation>
+      <translation>מתקע עורך נתונים &apos;%1&apos; לא נטען, בעוד הוא מוגדר לעריכת סוג מידע &apos;%2&apos;.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="436"/>
@@ -4311,7 +4311,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
       <source>Database</source>
-      <translation>Database</translation>
+      <translation>מסד נתונים</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
@@ -4769,7 +4769,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.h" line="13"/>
       <location filename="../sqleditor.h" line="31"/>
       <source>Cut selected text</source>
-      <translation type="unfinished">Cut selected text</translation>
+      <translation>גזירת מלל שנבחר</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="14"/>
@@ -4915,7 +4915,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
       <source>SQL editor window</source>
-      <translation type="unfinished">SQL editor window</translation>
+      <translation>חלון עורך SQL</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="28"/>
@@ -5010,7 +5010,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
       <source>Export table data</source>
-      <translation type="unfinished">Export table data</translation>
+      <translation>ייצוא נתוני טבלה</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="40"/>
@@ -5267,7 +5267,7 @@ find next</source>
       <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation>Copy</translation>
+      <translation>העתקה</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="157"/>
@@ -5589,7 +5589,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>הכנסת שורות מרובות</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
@@ -5624,7 +5624,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
       <source>Copy with headers</source>
-      <translation type="unfinished">Copy with headers</translation>
+      <translation>העתקה עם כותרות</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
@@ -5694,7 +5694,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Insert multiple rows</source>
-      <translation type="unfinished">Insert multiple rows</translation>
+      <translation>הכנסת שורות מרובות</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
