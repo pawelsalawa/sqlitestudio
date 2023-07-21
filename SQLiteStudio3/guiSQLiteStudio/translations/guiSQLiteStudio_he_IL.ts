@@ -6470,7 +6470,7 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="706"/>
       <location filename="../windows/tablewindow.cpp" line="708"/>
       <source>New table %1</source>
-      <translation type="unfinished">New table %1</translation>
+      <translation>טבלה חדשה %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
@@ -6668,7 +6668,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="128"/>
       <source>Deselect all</source>
-      <translation type="unfinished">Deselect all</translation>
+      <translation>ביטול בחירת הכול</translation>
     </message>
   </context>
   <context>
