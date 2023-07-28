@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
-      <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
+      <translation>Fecha a conexão com a base de dados. Se a base de dados já foi fechada, nada acontece. Se &lt;name&gt; for fornecido, deve ser o nome do banco de dados para fechar (como impresso pelo comando %1 ). Se &lt;name&gt; não é fornecido, então a base de dados de trabalho atual está fechada (veja ajuda para detalhes do %2).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -871,7 +871,7 @@ Espera-se um de: %2</translation>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+      <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Você pode tentar usar a opção -d para descobrir mais detalhes.</translation>
     </message>
   </context>
 </TS>

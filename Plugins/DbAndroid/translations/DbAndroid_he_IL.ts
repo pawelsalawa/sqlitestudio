@@ -31,7 +31,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
-      <translation type="unfinished">You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</translation>
+      <translation>לא ניתן לבחור קובץ מחבר אנדרואיד JAR מתפריט כלים. נדרש עבור שנים מתוך שלושת המחברים בהם מתקע אנדרואיד תומך. לפרטים נוספים נא לקרא את תיעוד המתקע בעמוד הוויקי &lt;a href=&quot;%1&quot;&gt;SQLiteStudio.&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
@@ -119,7 +119,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="321"/>
       <source>Generic error from Android: %1</source>
-      <translation type="unfinished">Generic error from Android: %1</translation>
+      <translation>שגיאה כללית מאנדרואיד: %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>

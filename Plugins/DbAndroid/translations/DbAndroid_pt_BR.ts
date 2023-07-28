@@ -36,12 +36,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
+      <translation>Não foi possível encontrar o aplicativo Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Clique aqui&lt;/a&gt; para apontar o local do aplicativo ADB, caso contrário, o plugin %2 não suportará conexões de cabo USB, apenas a conexão de rede.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save JAR file</source>
-      <translation type="unfinished">Save JAR file</translation>
+      <translation>Salvar arquivo JAR</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
