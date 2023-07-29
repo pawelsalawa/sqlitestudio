@@ -39,7 +39,7 @@
     <message>
       <location filename="../XmlExport.ui" line="67"/>
       <source>Use CDATA and ampersands</source>
-      <translation>להשתמש ב־CDATA וב 'וגם' (&amp;)</translation>
+      <translation>להשתמש ב־CDATA וב &apos;וגם&apos; (&amp;)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="83"/>
