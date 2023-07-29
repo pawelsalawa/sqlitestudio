@@ -6693,7 +6693,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../dialogs/triggerdialog.ui" line="56"/>
       <location filename="../dialogs/triggerdialog.ui" line="127"/>
       <source>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;תנאי SQL שיוערך לפני קוד המשנק הממשי. במצב בו התנאי מחזיר 'false' המזנק לא יכנס לפעולה לשורה זו.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;תנאי SQL שיוערך לפני קוד המשנק הממשי. במצב בו התנאי מחזיר &apos;false&apos; המזנק לא יכנס לפעולה לשורה זו.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="59"/>
