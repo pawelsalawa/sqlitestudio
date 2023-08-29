@@ -346,7 +346,7 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
       <source>Enter a name of the constraint.</source>
-      <translation type="unfinished">Enter a name of the constraint.</translation>
+      <translation>Увядзіце імя абмежавання.</translation>
     </message>
   </context>
   <context>
@@ -431,7 +431,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Check condition</source>
-      <translation type="unfinished">Check condition</translation>
+      <translation>Праверка ўмовы</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="171"/>
@@ -446,7 +446,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="284"/>
       <source>Advanced mode</source>
-      <translation type="unfinished">Advanced mode</translation>
+      <translation>Пашыраны рэжым</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="84"/>
