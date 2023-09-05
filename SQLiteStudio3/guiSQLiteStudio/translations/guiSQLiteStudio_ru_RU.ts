@@ -1603,7 +1603,7 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1827"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
+      <translation>Здесь вы можете настроить цвета для подсветки синтаксиса кода. Они едины для разных языков – не только для SQL, но и для JavaScript и других. По умолчанию используется цвет, установленный в теме. Для задания произвольного цвета установите флажок редактирования рядом с нужным цветом.</translation>
     </message>
   </context>
   <context>
@@ -5503,7 +5503,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
+      <translation>Редактирование значений большой длины непосредственно в табличном режиме не рекомендуется. Возможны проблемы с производительностью и удобством работы. Для работы с такими большими значениями рекомендуется использовать режим формы либо отдельное окно редактирования значения (доступно в контекстном меню по щелчку правой кнопкой мыши).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
