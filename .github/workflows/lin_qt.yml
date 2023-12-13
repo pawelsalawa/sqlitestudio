@@ -30,7 +30,7 @@ jobs:
               #- "glibc_2.27"  # Ubuntu 18.04
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "5.15.10"
+              - "5.15.11"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -101,14 +101,19 @@ jobs:
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in 5.15.10)
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-27404-27405-27406-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2022-37434-qtbase-5.15.patch | patch -p1
+                case ${{ matrix.version }} in 5.15.11)
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-24607-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32762-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-33285-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-37369-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-38197-qtbase-5.15.diff | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-43114-5.15.patch | patch -p1
+
+                    cd ../qtimageformats-everywhere-src-${{ matrix.version }}
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-4863-5.15.patch | patch -p1
+
                     cd ../qtsvg-everywhere-src-${{ matrix.version }}
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32573-qtsvg-5.15.diff | patch -p1
                     ;;
