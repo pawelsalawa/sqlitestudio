@@ -5506,11 +5506,7 @@ trova il prossimo</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-      <translation type="vanished">Modificare un ampio contenuto in un editor di celle in linea non è una buona idea. Può diventare lento e scomodo. È meglio modificare tali grandi contenuti in una vista modulo, o in un editor popup (disponibile sotto il menu tasto-destro).</translation>
+      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
