@@ -825,7 +825,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>קובץ SQL</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
@@ -835,7 +835,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>מקודד</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>

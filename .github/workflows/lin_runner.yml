@@ -61,11 +61,14 @@ jobs:
                     && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr openssl-${{ env.openssl_version }}
                 # Installing Python under /usr improves our chances to match user's installed Python
+                # On Bionic, install system python3 first so it is not reinstalled by aqtinstall later
                 RUN curl -L $python_url | xz -dc | tar -x \
                     && apt-get -y install libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev \
-                    && if [ ${{ matrix.release }} != xenial ]; then apt-get -y install libgdbm-compat-dev; fi \
+                    && case ${{ matrix.release }} in xenial*) ;; *) apt-get -y install libgdbm-compat-dev ;; esac \
+                    && case ${{ matrix.release }} in bionic*) apt-get -y install python3 python3-distutils python3-lib2to3 python3-minimal ;; esac \
                     && cd Python-${{ env.python_version }} && ./configure --prefix=/usr --with-openssl=/usr/local --enable-optimizations --enable-shared --without-static-libpython \
                     && make -j$(nproc) && make install \
+                    && ln -fns python${python_version%.*} /usr/bin/python3 \
                     && cd ../../ && rm -fr Python-${{ env.python_version }} \
                     && if [ ${{ matrix.release }} != xenial ]; then apt-get -y remove libgdbm-compat-dev; fi \
                     && apt-get -y remove libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev

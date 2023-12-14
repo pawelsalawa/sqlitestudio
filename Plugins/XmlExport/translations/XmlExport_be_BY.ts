@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="he" sourcelanguage="en">
+<TS version="2.1" language="be" sourcelanguage="en">
   <context>
     <name>XmlExport</name>
     <message>
       <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <translation>הזנת מרחב־השם לשימוש (לדוגמה: http://my.namespace.org)</translation>
+      <translation type="unfinished">Enter the namespace to use (for example: http://my.namespace.org)</translation>
     </message>
   </context>
   <context>
@@ -14,22 +14,22 @@
     <message>
       <location filename="../XmlExport.ui" line="20"/>
       <source>Output format</source>
-      <translation>תבנית פלט</translation>
+      <translation type="unfinished">Output format</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="26"/>
       <source>Format document (new lines, indentation)</source>
-      <translation>תבנות מסמך (שורה חדשה, הזחה)</translation>
+      <translation type="unfinished">Format document (new lines, indentation)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation>דחיסה (הכל בשורה אחת)</translation>
+      <translation type="unfinished">Compress (everything in one line)</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="58"/>
       <source>Special characters escaping</source>
-      <translation>בֵּאוּר־תָּוִים מיוחדים</translation>
+      <translation type="unfinished">Special characters escaping</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="64"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../XmlExport.ui" line="67"/>
       <source>Use CDATA and ampersands</source>
-      <translation>להשתמש ב־CDATA וב &apos;וגם&apos; (&amp;)</translation>
+      <translation type="unfinished">Use CDATA and ampersands</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="83"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../XmlExport.ui" line="86"/>
       <source>Always use CDATA</source>
-      <translation>להשתמש תמיד ב CDATA</translation>
+      <translation type="unfinished">Always use CDATA</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="99"/>
@@ -59,12 +59,12 @@
     <message>
       <location filename="../XmlExport.ui" line="102"/>
       <source>Always use ampersand</source>
-      <translation>להשתמש תמיד בתו &quot; וגם&quot; (&amp;)</translation>
+      <translation type="unfinished">Always use ampersand</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="118"/>
       <source>Define XML namespace</source>
-      <translation>הגדרת מרחב־שם XML</translation>
+      <translation type="unfinished">Define XML namespace</translation>
     </message>
   </context>
 </TS>

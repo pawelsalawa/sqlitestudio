@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="he" sourcelanguage="en">
+<TS version="2.1" language="be" sourcelanguage="en">
   <context>
     <name>AbstractDb</name>
     <message>
       <location filename="../db/abstractdb.cpp" line="349"/>
       <location filename="../db/abstractdb.cpp" line="366"/>
       <source>Cannot execute query on closed database.</source>
-      <translation>לא ניתן לבצע שאילתה על מסד־נתונים סגור.</translation>
+      <translation type="unfinished">Cannot execute query on closed database.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="661"/>
@@ -44,19 +44,19 @@
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>לא ניתן לאתחל תנועת מסד נתונים. פרטים:%1</translation>
+      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation>פסיקה</translation>
+      <translation type="unfinished">Interrupted</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation>לא ניתן היה לקבע תנועת מסד נתונים. פרטים:%1</translation>
+      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
     </message>
   </context>
   <context>
@@ -64,77 +64,77 @@
     <message>
       <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
-      <translation>מספר הפניה חדש</translation>
+      <translation type="unfinished">New row reference</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
-      <translation>מספר הפניה ישן</translation>
+      <translation type="unfinished">Old row reference</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
-      <translation>שם טבלה חדשה</translation>
+      <translation type="unfinished">New table name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="174"/>
       <source>New index name</source>
-      <translation>שם מפתח חדש</translation>
+      <translation type="unfinished">New index name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="177"/>
       <source>New view name</source>
-      <translation>שם מצג חדש</translation>
+      <translation type="unfinished">New view name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="180"/>
       <source>New trigger name</source>
-      <translation>שם מזנק חדש</translation>
+      <translation type="unfinished">New trigger name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
-      <translation>כינוי טבלה או עמודות</translation>
+      <translation type="unfinished">Table or column alias</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="186"/>
       <source>transaction name</source>
-      <translation>שם תנועה</translation>
+      <translation type="unfinished">transaction name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="189"/>
       <source>New column name</source>
-      <translation>שם עמודה חדשה</translation>
+      <translation type="unfinished">New column name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="192"/>
       <source>Column data type</source>
-      <translation>סוג עמודת מידע</translation>
+      <translation type="unfinished">Column data type</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="195"/>
       <source>Constraint name</source>
-      <translation>שם אילוץ</translation>
+      <translation type="unfinished">Constraint name</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>Error message</source>
-      <translation>הודעת שגיאה</translation>
+      <translation type="unfinished">Error message</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="257"/>
       <source>Any word</source>
-      <translation>מילה כלשהי</translation>
+      <translation type="unfinished">Any word</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
-      <translation>מסד נתונים ברירת מחדל</translation>
+      <translation type="unfinished">Default database</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="439"/>
       <source>Temporary objects database</source>
-      <translation>מסד נתוני עצמים זמניים</translation>
+      <translation type="unfinished">Temporary objects database</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="867"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>לא ניתן לאתחל תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
+      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="874"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>לא ניתן היה לקבע תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
+      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
   </context>
   <context>
@@ -155,7 +155,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation>לא ניתן להוסיף מסד נתונים%1: %2</translation>
+      <translation type="unfinished">Could not add database %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
@@ -166,19 +166,19 @@
       <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation>קובץ &apos;מסד־ נתונים לא קיים.</translation>
+      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
       <source>No supporting plugin loaded.</source>
-      <translation>לא נטענו מתקעים תומכים.</translation>
+      <translation type="unfinished">No supporting plugin loaded.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
       <source>Database could not be initialized.</source>
-      <translation>לא ניתן היה לאתחל את מסד הנתונים.‏.</translation>
+      <translation type="unfinished">Database could not be initialized.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
@@ -192,12 +192,12 @@
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
-      <translation>שגיאה בעת יצירת טבלה במסד־נתונים יעד: %1</translation>
+      <translation type="unfinished">Error while creating table in target database: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
-      <translation>לא ניתן לפרוס טבלה.</translation>
+      <translation type="unfinished">Could not parse table.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="418"/>
@@ -207,21 +207,21 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation>שגיאה בעת העתקת נתונים מטבלה %1: %2</translation>
+      <translation type="unfinished">Error while copying data for table %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="461"/>
       <location filename="../dbobjectorganizer.cpp" line="468"/>
       <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation>שגיאה בעת העתקת נתונים לטבלה %1: %2</translation>
+      <translation type="unfinished">Error while copying data to table %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-      <translation>שגיאה בעת השלכת מצג מקור %1: %2
-טבלאות, מיפתחים, מזנקים ומצגים שהועתקו למסד־נתונים %3 יוותרו במקומם.</translation>
+      <translation type="unfinished">Error while dropping source view %1: %2
+Tables, indexes, triggers and views copied to database %3 will remain.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="524"/>
@@ -236,7 +236,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="534"/>
       <source>Error while creating trigger in target database: %1</source>
-      <translation>שגיאה בעת יצירת מזנק במסד־נתונים יעד: %1</translation>
+      <translation type="unfinished">Error while creating trigger in target database: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="679"/>
@@ -252,25 +252,25 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../ddlhistorymodel.cpp" line="66"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation>שם מסד הנתונים</translation>
+      <translation type="unfinished">Database name</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="68"/>
       <source>Database file</source>
       <comment>ddl history header</comment>
-      <translation>קובץ מסד נתונים</translation>
+      <translation type="unfinished">Database file</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="70"/>
       <source>Date of execution</source>
       <comment>ddl history header</comment>
-      <translation>תאריך ביצוע</translation>
+      <translation type="unfinished">Date of execution</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="72"/>
       <source>Changes</source>
       <comment>ddl history header</comment>
-      <translation>שינויים</translation>
+      <translation type="unfinished">Changes</translation>
     </message>
   </context>
   <context>
@@ -278,42 +278,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/exportmanager.cpp" line="72"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא תוצאות שאילתה.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא טבלאות.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-      <translation>ייצוא מתקע %1 &apos;לא תומך בייצוא מסד נתונים.</translation>
+      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="155"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-      <translation>ייצוא מבנה &apos;%1&apos; לא נתמך. מבנים נתמכים הם: %2.</translation>
+      <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
-      <translation>ייצוא ללוח־הגזירים צלח.</translation>
+      <translation type="unfinished">Export to the clipboard was successful.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
-      <translation>ייצוא לקובץ &apos;%1&apos; צלח.</translation>
+      <translation type="unfinished">Export to the file &apos;%1&apos; was successful.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
-      <translation>הייצוא צלח.</translation>
+      <translation type="unfinished">Export was successful.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
-      <translation>לא ניתן לייצא לקובץ %1. לא ניתן לפתוח את הקובץ לכתיבה.</translation>
+      <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
     </message>
   </context>
   <context>
@@ -321,7 +321,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="123"/>
       <source>Error while exporting query results: %1</source>
-      <translation>שגיאה בעת יצוא תוצאות שאילתה: %1</translation>
+      <translation type="unfinished">Error while exporting query results: %1</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
@@ -370,28 +370,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="420"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation>תבנית ביטוי־רגיל לא תקינה: %1</translation>
+      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="472"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation>לא ניתן לפתוח קובץ%1 לקריאה: %2</translation>
+      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="494"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation>לא ניתן לפתוח קובץ%1 לכתיבה: %2</translation>
+      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="514"/>
       <source>Error while writting to file %1: %2</source>
-      <translation>שגיאה בעת כתיבה לקובץ %1: %2</translation>
+      <translation type="unfinished">Error while writting to file %1: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
       <source>Unsupported scripting language: %1</source>
-      <translation>שפת תיסרוט לא נתמכת: %1</translation>
+      <translation type="unfinished">Unsupported scripting language: %1</translation>
     </message>
   </context>
   <context>
@@ -415,17 +415,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
-      <translation>מתקע ייבוא לא סיפק עמודות.</translation>
+      <translation type="unfinished">No columns provided by the import plugin.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="30"/>
       <source>Could not start transaction in order to import a data: %1</source>
-      <translation>לא ניתן להתחיל תנועה לייבוא נתונים: %1</translation>
+      <translation type="unfinished">Could not start transaction in order to import a data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="53"/>
       <source>Could not commit transaction for imported data: %1</source>
-      <translation>לא ניתן לקבע תנועת לנתונים המיובאים: %1</translation>
+      <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="100"/>
@@ -440,21 +440,21 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation>לא ניתן לייצר טבלה לייבא ל: %1</translation>
+      <translation type="unfinished">Could not create table to import to: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="180"/>
       <location filename="../importworker.cpp" line="187"/>
       <source>Error while importing data: %1</source>
-      <translation>שגיאה בעת ייבוא נתונים: %1</translation>
+      <translation type="unfinished">Error while importing data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
       <location filename="../importworker.cpp" line="187"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
-      <translation>פסיקה.</translation>
+      <translation type="unfinished">Interrupted.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="175"/>
@@ -467,34 +467,34 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="546"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-      <translation>לא ניתן לטעון מתקע %1, מאחר והוא &apos;מתנגש עם מתקע %2.</translation>
+      <translation type="unfinished">Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="557"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-      <translation>לא ניתן לטעון מתקע %1, מאחר והתלויות שלו לא נטענו: %2.</translation>
+      <translation type="unfinished">Cannot load plugin %1, because its dependency was not loaded: %2.</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="566"/>
       <source>Cannot load plugin %1. Error details: %2</source>
-      <translation>לא ניתן לטעון מתקע %1. פרטי שגיאה: %2</translation>
+      <translation type="unfinished">Cannot load plugin %1. Error details: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="582"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
-      <translation>לא ניתן לטעון מתקע %1 (שגיאה בעת אתחול מתקע).</translation>
+      <translation type="unfinished">Cannot load plugin %1 (error while initializing plugin).</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation>מזערי: %1</translation>
+      <translation type="unfinished">min: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
-      <translation>מירבי: %1</translation>
+      <translation type="unfinished">max: %1</translation>
     </message>
   </context>
   <context>
@@ -503,7 +503,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation>קבוע</translation>
+      <translation type="unfinished">Constant</translation>
     </message>
   </context>
   <context>
@@ -511,7 +511,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation>ערך קבוע:</translation>
+      <translation type="unfinished">Constant value:</translation>
     </message>
   </context>
   <context>
@@ -520,7 +520,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../plugins/populatedictionary.cpp" line="16"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
-      <translation>מילון</translation>
+      <translation type="unfinished">Dictionary</translation>
     </message>
   </context>
   <context>
@@ -528,42 +528,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="20"/>
       <source>Dictionary file</source>
-      <translation>קובץ מילון</translation>
+      <translation type="unfinished">Dictionary file</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="29"/>
       <source>Pick dictionary file</source>
-      <translation>בחירת קובץ מילון</translation>
+      <translation type="unfinished">Pick dictionary file</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation>מפריד מילים</translation>
+      <translation type="unfinished">Word separator</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation>מרווח לבן</translation>
+      <translation type="unfinished">Whitespace</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation>מעבר שורה</translation>
+      <translation type="unfinished">Line break</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation>שיטת שימוש במילים</translation>
+      <translation type="unfinished">Method of using words</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation>ממוין</translation>
+      <translation type="unfinished">Ordered</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation>אקראי</translation>
+      <translation type="unfinished">Randomly</translation>
     </message>
   </context>
   <context>
@@ -571,7 +571,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/populatemanager.cpp" line="89"/>
       <source>Table &apos;%1&apos; populated successfully.</source>
-      <translation>טבלה&apos;%1&apos; אוכלסה בהצלחה.</translation>
+      <translation type="unfinished">Table &apos;%1&apos; populated successfully.</translation>
     </message>
   </context>
   <context>
@@ -579,7 +579,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="13"/>
       <source>Random number</source>
-      <translation>מספר אקרעי</translation>
+      <translation type="unfinished">Random number</translation>
     </message>
   </context>
   <context>
@@ -587,32 +587,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandom.ui" line="20"/>
       <source>Constant prefix</source>
-      <translation>תחילית קבועה</translation>
+      <translation type="unfinished">Constant prefix</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="26"/>
       <source>No prefix</source>
-      <translation>אין תחלית</translation>
+      <translation type="unfinished">No prefix</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation>ערך מזערי</translation>
+      <translation type="unfinished">Minimum value</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation>ערך מרבי</translation>
+      <translation type="unfinished">Maximum value</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
       <source>Constant suffix</source>
-      <translation>סופית קבועה</translation>
+      <translation type="unfinished">Constant suffix</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="92"/>
       <source>No suffix</source>
-      <translation>ללא סופית</translation>
+      <translation type="unfinished">No suffix</translation>
     </message>
   </context>
   <context>
@@ -620,7 +620,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="14"/>
       <source>Random text</source>
-      <translation>מלל אקראי</translation>
+      <translation type="unfinished">Random text</translation>
     </message>
   </context>
   <context>
@@ -633,62 +633,62 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation>אורך מזערי</translation>
+      <translation type="unfinished">Minimum length</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation>אותיות א עד ת.</translation>
+      <translation type="unfinished">Letters from a to z.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation>אלפא</translation>
+      <translation type="unfinished">Alpha</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation>ספרתי בין 0 ל 9.</translation>
+      <translation type="unfinished">Numbers from 0 to 9.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation>ספרתי</translation>
+      <translation type="unfinished">Numeric</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation>תו, רווח־לבן, טבלר או שורה חדשה.</translation>
+      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation>מרווח לבן</translation>
+      <translation type="unfinished">Whitespace</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation>לרבות האמור לעיל ואחרים.</translation>
+      <translation type="unfinished">Includes all above and all others.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation>בינארי</translation>
+      <translation type="unfinished">Binary</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation>שימוש בתווים מהסדרה המותאמת שלי:</translation>
+      <translation type="unfinished">Use characters from my custom set:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation>אורך מירבי</translation>
+      <translation type="unfinished">Maximum length</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation>אם תו כלשהו מוקלד פעמים רבות, הסבירות שייעשה &apos;בו שימוש גבוה יותר.</translation>
+      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
     </message>
   </context>
   <context>
@@ -696,7 +696,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="34"/>
       <source>Script</source>
-      <translation>תסריט</translation>
+      <translation type="unfinished">Script</translation>
     </message>
   </context>
   <context>
@@ -704,7 +704,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="26"/>
       <source>Initialization code (optional)</source>
-      <translation>קוד אתחול (חלופי)</translation>
+      <translation type="unfinished">Initialization code (optional)</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
@@ -714,12 +714,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
       <source>Language</source>
-      <translation>שפה</translation>
+      <translation type="unfinished">Language</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="89"/>
       <source>Help</source>
-      <translation>עזרה</translation>
+      <translation type="unfinished">Help</translation>
     </message>
   </context>
   <context>
@@ -727,7 +727,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
-      <translation>רצף</translation>
+      <translation type="unfinished">Sequence</translation>
     </message>
   </context>
   <context>
@@ -735,12 +735,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatesequence.ui" line="33"/>
       <source>Start value:</source>
-      <translation>הערך ההתחלתי:</translation>
+      <translation type="unfinished">Start value:</translation>
     </message>
     <message>
       <location filename="../plugins/populatesequence.ui" line="56"/>
       <source>Step:</source>
-      <translation>שלב:</translation>
+      <translation type="unfinished">Step:</translation>
     </message>
   </context>
   <context>
@@ -748,17 +748,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../populateworker.cpp" line="23"/>
       <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-      <translation>לא ניתן להתחיל תנועה לאכלוס טבלה. פרטי שגיאה: %1</translation>
+      <translation type="unfinished">Could not start transaction in order to perform table populating. Error details: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="69"/>
       <source>Error while populating table: %1</source>
-      <translation>שגיאה בעת אכלוס טבלה: %1</translation>
+      <translation type="unfinished">Error while populating table: %1</translation>
     </message>
     <message>
       <location filename="../populateworker.cpp" line="80"/>
       <source>Could not commit transaction after table populating. Error details: %1</source>
-      <translation>לא ניתן לקבע תנועות לאחר אכלוס טבלה. פרטי שגיאה: %1</translation>
+      <translation type="unfinished">Could not commit transaction after table populating. Error details: %1</translation>
     </message>
   </context>
   <context>
@@ -766,12 +766,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../common/utils.cpp" line="1028"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation>לא ניתן לפתוח קובץ &apos;%1&apos; לקריאה: %2</translation>
+      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="435"/>
       <source>Could not open database: %1</source>
-      <translation>לא ניתן לפתוח מסד נתונים: %1</translation>
+      <translation type="unfinished">Could not open database: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="1214"/>
@@ -782,43 +782,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../db/abstractdb3.h" line="331"/>
       <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
-      <translation>לא ניתן לטעון הרחבה %1: %2</translation>
+      <translation type="unfinished">Could not load extension %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation>לא ניתן להריץ נקודת־בקרה WAL: %1</translation>
+      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
       <source>Could not close database: %1</source>
-      <translation>לא ניתן לסגור מסד נתונים: %1</translation>
+      <translation type="unfinished">Could not close database: %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
       <source>Could not attach database %1: %2</source>
-      <translation>לא ניתן לצרף; מסד נתונים%1: %2</translation>
+      <translation type="unfinished">Could not attach database %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation>שאילתה חלקית.</translation>
+      <translation type="unfinished">Incomplete query.</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
       <source>Parser stack overflow</source>
-      <translation>הצפת מערום מנתח</translation>
+      <translation type="unfinished">Parser stack overflow</translation>
     </message>
     <message>
       <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
       <source>Syntax error</source>
-      <translation>שגיאת תחביר</translation>
+      <translation type="unfinished">Syntax error</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="31"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation>לא ניתן לפתוח קובץ מילון %1 לקריאה.</translation>
+      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="92"/>
@@ -843,7 +843,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="61"/>
       <source>Could not find plugin to support scripting language: %1</source>
-      <translation>לא נמצע מתקע לתמיכה בשפת תסרוט: %1</translation>
+      <translation type="unfinished">Could not find plugin to support scripting language: %1</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="79"/>
@@ -858,7 +858,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="133"/>
       <source>Select implementation language.</source>
-      <translation>בחירת שפת יישום.</translation>
+      <translation type="unfinished">Select implementation language.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="134"/>
@@ -884,43 +884,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../sqlitestudio.cpp" line="347"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
-      <translation>מטרה כללית</translation>
+      <translation type="unfinished">General purpose</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="348"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
-      <translation>תמיכת מסד נתונים</translation>
+      <translation type="unfinished">Database support</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="349"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
-      <translation>מתבנת קוד</translation>
+      <translation type="unfinished">Code formatter</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="350"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
-      <translation>שפת תסריט</translation>
+      <translation type="unfinished">Scripting languages</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="351"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
-      <translation>מייצא</translation>
+      <translation type="unfinished">Exporting</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="352"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
-      <translation>מייבא</translation>
+      <translation type="unfinished">Importing</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="353"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
-      <translation>אכלוס טבלה</translation>
+      <translation type="unfinished">Table populating</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="121"/>
@@ -935,17 +935,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../tablemodifier.cpp" line="514"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-      <translation>קיית בעיה בעבוד מזנק %1 באופן תקין. יתתכן והוא לא התעדכן באופן מלא ויידרוש תשומת לב מאוחר יותר.</translation>
+      <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>כל העמודות בכיסוי מזנק %1 נעלמ המזנק לא יווצר מחדש לאחר הסגלת טבלה.</translation>
+      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="561"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>לא ניתן לעדכן מזנק %1 בהתאם להסגלות טבלה %2.</translation>
+      <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="580"/>
@@ -982,12 +982,12 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="194"/>
       <source>Execution interrupted.</source>
-      <translation>הביצוע הופסק.</translation>
+      <translation type="unfinished">Execution interrupted.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="235"/>
       <source>Database is not open.</source>
-      <translation>מספד הנתונים אינו פתוח.</translation>
+      <translation type="unfinished">Database is not open.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="243"/>
@@ -1016,7 +1016,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
       <source>Error from %1: %2</source>
-      <translation>שגיאה מ %1: %2</translation>
+      <translation type="unfinished">Error from %1: %2</translation>
     </message>
   </context>
   <context>
@@ -1039,7 +1039,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation>לא ניתן לבצע שאילתת SQL, מאחר שהיישומון כשל מלקבע תנועה: %1</translation>
+      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
@@ -1063,31 +1063,31 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="32"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation>מסד נתונים</translation>
+      <translation type="unfinished">Database</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Execution date</source>
       <comment>sql history header</comment>
-      <translation>תאריך ביצוע</translation>
+      <translation type="unfinished">Execution date</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="36"/>
       <source>Time spent</source>
       <comment>sql history header</comment>
-      <translation>חותם זמן</translation>
+      <translation type="unfinished">Time spent</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="38"/>
       <source>Rows affected</source>
       <comment>sql history header</comment>
-      <translation>שורות הושפעו</translation>
+      <translation type="unfinished">Rows affected</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation>SQL</translation>
+      <translation type="unfinished">SQL</translation>
     </message>
   </context>
   <context>
