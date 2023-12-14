@@ -14,7 +14,7 @@ SqlFileExecutor::SqlFileExecutor(QObject *parent)
 
 void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec, bool async)
 {
-    if (!db && !db->isOpen())
+    if (!db || !db->isOpen())
     {
         emit execEnded();
         return;
