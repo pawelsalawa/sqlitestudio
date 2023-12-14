@@ -2,8 +2,8 @@ env:
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
-    ICU_VER: '72'
-    ICU_URL: https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-icu-72.1-1-any.pkg.tar.zst
+    ICU_VER: '74'
+    ICU_URL: https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-icu-74.1-1-any.pkg.tar.zst
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw810/8.1.0-1-202004170606i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z
@@ -32,7 +32,7 @@ jobs:
           matrix:
             qt_version:
               - "5.15.2"
-              - "5.15.10"
+              - "5.15.11"
 
         steps:
             - name: Configure environment
@@ -144,7 +144,7 @@ jobs:
 
             - name: Prepare ccache using action
               if: inputs.use_ccache || false
-              uses: hendrikmuhs/ccache-action@v1.2.9
+              uses: hendrikmuhs/ccache-action@v1.2
               with:
                 key: win32-qt${{ matrix.qt_version }}-release
                 max-size: "24M"

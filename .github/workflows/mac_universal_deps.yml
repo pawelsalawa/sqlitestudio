@@ -30,47 +30,47 @@ jobs:
               # this list is meant to be synchronized with mac_release.yml
               - common_pkgs:
                   - brotli 1.0.9_2
-                  - dbus 1.14.6_0
+                  - dbus 1.14.10_0
                   - double-conversion 3.3.0_0
-                  - freetype 2.12.1_0
+                  - freetype 2.13.2_0
                   - gettext-runtime 0.21.1_0
                   - giflib 4.2.3_0
-                  - glib2 2.76.3_0+x11
+                  - glib2 2.78.0_0+x11
                   - graphite2 1.3.14_0
-                  - harfbuzz 6.0.0_1
-                  - icu 73.1_1
-                  - jasper 4.0.0_1
+                  - harfbuzz 8.3.0_0
+                  - icu 73.2_0
+                  - jasper 4.1.0_0
                   - lcms2 2.15_0
                   - lerc 4.0.0_1
-                  - libdeflate 1.18_0
-                  - libedit 20221030-3.1_0
+                  - libdeflate 1.19_0
+                  - libedit 20230828-3.1_0
                   - libffi 3.4.4_0
                   - libiconv 1.17_0
                   - libjpeg-turbo 2.1.5.1_0
                   - libmng 2.0.3_1
-                  - libpng 1.6.39_0
-                  - ncurses 6.4_0
-                  - openssl3 3.1.1_0
+                  - libpng 1.6.40_0
+                  - ncurses 6.4_1
+                  - openssl3 3.2.0_0
                   - pcre 8.45_0
                   - pcre2 10.42_0
-                  - python39 3.9.17_0+lto+optimizations
+                  - python39 3.9.18_0+lto+optimizations
                   - tcl 8.6.13_0+corefoundation+threads
-                  - tiff 4.5.1_1
-                  - webp 1.3.0_1
-                  - xz 5.4.3_0
+                  - tiff 4.6.0_0
+                  - webp 1.3.2_0
+                  - xz 5.4.5_0
                   - zstd 1.5.5_0
               - binary_compatibility: darwin_20.arm64-x86_64
                 cflags: -arch arm64 -arch x86_64
                 add_variants: "+universal"
                 dmg_postfix: "-macos11.universal"
-                qmake_flags: ""
                 pkgs:
-                  - qt5-qtbase 5.15.10_0+openssl
-                  - qt5-qtdeclarative 5.15.10_0
-                  - qt5-qtimageformats 5.15.10_0
-                  - qt5-qtscript 5.15.10_0
-                  - qt5-qtsvg 5.15.10_0
-                  - qt5-qttools 5.15.10_0
+                  - qt5-qtbase 5.15.11_0+openssl
+                  - qt5-qtdeclarative 5.15.11_0
+                  - qt5-qtimageformats 5.15.11_0
+                  - qt5-qtscript 5.15.11_0
+                  - qt5-qtsvg 5.15.11_0
+                  - qt5-qttools 5.15.11_0
+                qmake_flags: ""
 
         steps:
             - name: Restore distfiles packages cache
@@ -204,22 +204,33 @@ jobs:
                 set -x
 
                 # Try to install what's possible to install from binary packages
+                echo "::group::Installing $OUR_PYTHON"
                 sudo port -Nkv install "$OUR_PYTHON" +universal
                 sudo port -Nkv install python_select python3_select
                 sudo port select --set python "$OUR_PYTHON"
                 sudo port select --set python3 "$OUR_PYTHON"
+                echo "::endgroup::"
+
                 case "$MISSING_PACKAGES" in *glib2*)
+                    echo "::group::Installing glib2"
                     sudo port -Nkv install glib2 +universal  # our and cairo's dependency, needs +universal, +x11 is the default
+                    echo "::endgroup::"
                     ;;
                 esac
                 case "$MISSING_PACKAGES" in *harfbuzz*)
+                    echo "::group::Installing harfbuzz dependencies"
                     sudo port -Nk install python310  # fontconfig seems to need it badly but -universal is ok
                     sudo port -Nkv install cairo -x11 +universal  # skip x11 dependencies
+                    echo "::endgroup::"
                     ;;
                 esac
 
                 _the_rest="$(echo "$MISSING_PACKAGES" | grep -v '^qt5-')"
-                [ -z "$_the_rest" ] || sudo port -Nkv install $_the_rest
+                [ -z "$_the_rest" ] || {
+                    echo "::group::Installing $_the_rest"
+                    sudo port -Nkv install $_the_rest
+                    echo "::endgroup::"
+                }
 
             - name: Install missing Qt packages except qt5-qttools
               if: env.MISSING_PACKAGES != ''
