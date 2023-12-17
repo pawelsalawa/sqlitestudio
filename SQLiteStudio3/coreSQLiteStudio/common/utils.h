@@ -195,7 +195,7 @@ API_EXPORT QString center(const QString& str, int length, const QChar& fillChar)
  *
  * If there are many values with the same, longest length, then the first one is picked.
  */
-API_EXPORT QString longest(const QStringList& strList);
+API_EXPORT const QString& longest(const QStringList& strList);
 
 /**
  * @brief Picks the shortest string from the list.
@@ -204,7 +204,7 @@ API_EXPORT QString longest(const QStringList& strList);
  *
  * If there are many values with the same, shortest length, then the first one is picked.
  */
-API_EXPORT QString shortest(const QStringList& strList);
+API_EXPORT const QString& shortest(const QStringList& strList);
 
 /**
  * @brief Finds the longest common part of all strings.

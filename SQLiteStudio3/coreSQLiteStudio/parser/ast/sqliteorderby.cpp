@@ -144,7 +144,7 @@ void SqliteOrderBy::pullLastCollationAsOuterExpr()
     if (!collateExpr)
     {
         qCritical() << "Could not cast statement to SqliteExpr, even though it's identified as COLLATE expr. The actual contents:"
-                    << collateExpr->detokenize();
+                    << stmt->detokenize();
         return;
     }
 

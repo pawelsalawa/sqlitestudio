@@ -385,34 +385,36 @@ QString center(const QString& str, int length, const QChar& fillChar)
     return result.prepend(fillLeft).append(fillRight);
 }
 
-QString longest(const QStringList& strList)
+const QString& longest(const QStringList& strList)
 {
     int max = 0;
-    QString result;
-    for (const QString str : strList)
+    qsizetype maxIndex = -1;
+    for (qsizetype i = 0; i < strList.size(); i++)
     {
-        if (str.size() > max)
+        int size = strList.at(i).size();
+        if (size > max)
         {
-            result = str;
-            max = str.size();
+            maxIndex = i;
+            max = size;
         }
     }
-    return result;
+    return strList.at(maxIndex);
 }
 
-QString shortest(const QStringList& strList)
+const QString& shortest(const QStringList& strList)
 {
     int max = INT_MAX;
-    QString result;
-    for (const QString str : strList)
+    qsizetype maxIndex = -1;
+    for (qsizetype i = 0; i < strList.size(); i++)
     {
-        if (str.size() < max)
+        int size = strList.at(i).size();
+        if (size < max)
         {
-            result = str;
-            max = str.size();
+            maxIndex = i;
+            max = size;
         }
     }
-    return result;
+    return strList.at(maxIndex);
 }
 
 QString longestCommonPart(const QStringList& strList)

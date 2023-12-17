@@ -420,9 +420,9 @@ PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
             int listSize = list.size();
             obj = PyList_New(listSize);
             int pos = 0;
-            for (const QVariant& item : list)
+            for (const QString& item : list)
             {
-                PyObject* subObj = variantToPythonObj(item);
+                PyObject* subObj = stringToPythonObj(item);
                 PyList_SetItem(obj, pos++, subObj);
                 Py_DECREF(subObj);
             }
