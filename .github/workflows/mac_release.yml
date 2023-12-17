@@ -4,7 +4,7 @@ env:
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
-    ICU_VERSION: '73.2'
+    ICU_VERSION: '74.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-osx-installer.dmg
@@ -48,7 +48,7 @@ jobs:
                   - glib2 2.78.0_0+x11
                   - graphite2 1.3.14_0
                   - harfbuzz 8.3.0_0
-                  - icu 73.2_0
+                  - icu 74.1_0
                   - jasper 4.1.0_0
                   - lcms2 2.15_0
                   - lerc 4.0.0_1
@@ -74,7 +74,7 @@ jobs:
                 add_variants: "+universal"
                 dmg_postfix: "-macos11.universal"
                 pkgs:
-                  - qt5-qtbase 5.15.11_0+openssl
+                  - qt5-qtbase 5.15.11_1+openssl
                   - qt5-qtdeclarative 5.15.11_0
                   - qt5-qtimageformats 5.15.11_0
                   - qt5-qtscript 5.15.11_0
@@ -86,7 +86,7 @@ jobs:
                 add_variants: ""
                 dmg_postfix: ""
                 pkgs:
-                  - qt5-qtbase 5.15.11_0+openssl
+                  - qt5-qtbase 5.15.11_1+openssl
                   - qt5-qtdeclarative 5.15.11_0
                   - qt5-qtimageformats 5.15.11_0
                   - qt5-qtscript 5.15.11_0
@@ -99,7 +99,7 @@ jobs:
                 dmg_postfix: "-macos10.12"
                 pkgs:
                   - legacy-support 1.1.1_0
-                  - qt513-qtbase 5.13.2_9+openssl
+                  - qt513-qtbase 5.13.2_10+openssl
                   - qt513-qtdeclarative 5.13.2_0
                   - qt513-qtimageformats 5.13.2_3
                   - qt513-qtscript 5.13.2_0
