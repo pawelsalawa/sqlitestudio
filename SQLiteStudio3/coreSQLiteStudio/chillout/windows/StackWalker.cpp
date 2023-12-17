@@ -81,6 +81,8 @@
  **********************************************************************/
 #ifdef _WIN32
 
+#define MINGW_HAS_SECURE_API 1  // for strncpy_s and friends in MinGW-w64 < 7.0
+
 #include <windows.h>
 #include <tchar.h>
 #include <stdio.h>
@@ -241,10 +243,12 @@ DWORD64
 #endif
 
 #ifdef __MINGW32__
+#ifndef __GOT_SECURE_LIB__
 #define strcpy_s(dst, len, src) strcpy(dst, src)
 #define strncpy_s(dst, len, src, maxLen) strncpy(dst, src, len)
 #define strcat_s(dst, len, src) strcat(dst, src)
 #define _snprintf_s _snprintf
+#endif
 #endif
 
 static void MyStrCpy(char* szDest, size_t nMaxDestSize, const char* szSrc)
