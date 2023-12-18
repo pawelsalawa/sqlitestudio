@@ -764,7 +764,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1028"/>
+      <location filename="../common/utils.cpp" line="1030"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>

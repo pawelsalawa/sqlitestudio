@@ -764,7 +764,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1028"/>
+      <location filename="../common/utils.cpp" line="1030"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>
