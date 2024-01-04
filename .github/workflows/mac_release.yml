@@ -18,8 +18,8 @@ on:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
             type: boolean
-    schedule:
-        - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
+    # schedule:
+        # - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
         types: [mac_release]
 
@@ -31,8 +31,8 @@ jobs:
           fail-fast: false
           matrix:
             binary_compatibility:
-              - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
-              - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
+              # - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
+              # - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
               #- "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
               #- "darwin_20.x86_64"  # macOS 11, the earliest version supported by QT 6.5
               - "darwin_20.arm64-x86_64"  # macOS 11, the earliest ARM64 version
@@ -81,31 +81,31 @@ jobs:
                   - qt5-qtsvg 5.15.11_0
                   - qt5-qttools 5.15.11_0
                 qmake_flags: "QMAKE_APPLE_DEVICE_ARCHS=\"arm64 x86_64\""
-              - binary_compatibility: darwin_17.x86_64
-                cflags: -arch x86_64
-                add_variants: ""
-                dmg_postfix: ""
-                pkgs:
-                  - qt5-qtbase 5.15.11_1+openssl
-                  - qt5-qtdeclarative 5.15.11_0
-                  - qt5-qtimageformats 5.15.11_0
-                  - qt5-qtscript 5.15.11_0
-                  - qt5-qtsvg 5.15.11_0
-                  - qt5-qttools 5.15.11_0
-                qmake_flags: ""
-              - binary_compatibility: darwin_16.x86_64
-                cflags: -arch x86_64
-                add_variants: ""
-                dmg_postfix: "-macos10.12"
-                pkgs:
-                  - legacy-support 1.1.1_0
-                  - qt513-qtbase 5.13.2_10+openssl
-                  - qt513-qtdeclarative 5.13.2_0
-                  - qt513-qtimageformats 5.13.2_3
-                  - qt513-qtscript 5.13.2_0
-                  - qt513-qtsvg 5.13.2_0
-                  - qt513-qttools 5.13.2_0
-                qmake_flags: ""
+              # - binary_compatibility: darwin_17.x86_64
+              #   cflags: -arch x86_64
+              #   add_variants: ""
+              #   dmg_postfix: ""
+              #   pkgs:
+              #     - qt5-qtbase 5.15.11_1+openssl
+              #     - qt5-qtdeclarative 5.15.11_0
+              #     - qt5-qtimageformats 5.15.11_0
+              #     - qt5-qtscript 5.15.11_0
+              #     - qt5-qtsvg 5.15.11_0
+              #     - qt5-qttools 5.15.11_0
+              #   qmake_flags: ""
+              # - binary_compatibility: darwin_16.x86_64
+              #   cflags: -arch x86_64
+              #   add_variants: ""
+              #   dmg_postfix: "-macos10.12"
+              #   pkgs:
+              #     - legacy-support 1.1.1_0
+              #     - qt513-qtbase 5.13.2_10+openssl
+              #     - qt513-qtdeclarative 5.13.2_0
+              #     - qt513-qtimageformats 5.13.2_3
+              #     - qt513-qtscript 5.13.2_0
+              #     - qt513-qtsvg 5.13.2_0
+              #     - qt513-qttools 5.13.2_0
+              #   qmake_flags: ""
 
         steps:
             - name: Install the InstallBuilder
