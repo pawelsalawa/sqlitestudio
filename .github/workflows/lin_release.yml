@@ -37,12 +37,12 @@ jobs:
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             qt_version:
               - "5.15.2"
-              - "5.15.11"
+              - "5.15.12"
             exclude:
               - binary_compatibility: glibc_2.23
                 qt_version: "5.15.2"
               - binary_compatibility: glibc_2.27
-                qt_version: "5.15.11"
+                qt_version: "5.15.12"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
