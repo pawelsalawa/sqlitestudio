@@ -3,7 +3,7 @@ env:
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
     ICU_VER: '74'
-    ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-74.1-1-any.pkg.tar.zst
+    ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-74.2-1-any.pkg.tar.zst
     MINGW_DIR: ../Qt/Tools/mingw810_64
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -33,7 +33,7 @@ jobs:
           matrix:
             qt_version:
               - "5.15.2"
-              - "5.15.11"
+              - "5.15.12"
 
         steps:
             - name: Configure environment
