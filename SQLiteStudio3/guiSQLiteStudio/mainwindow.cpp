@@ -57,12 +57,14 @@ MainWindow* MainWindow::instance = nullptr;
 MainWindow::MainWindow() :
     QMainWindow(),
     ui(new Ui::MainWindow)
+    llmChatAction(nullptr)
 {
     init();
 }
 
 MainWindow::~MainWindow()
 {
+    delete llmChatAction;
 }
 
 void MainWindow::init()
@@ -270,6 +272,9 @@ void MainWindow::createActions()
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
+    llmChatAction = new QAction(QIcon(":/icons/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    connect(llmChatAction, &QAction::triggered, this, &MainWindow::openLlmChat);
+    actionMap[OPEN_LLM_CHAT] = llmChatAction;
     ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open confi&guration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
 
@@ -406,6 +411,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
+    toolsMenu->addAction(llmChatAction);
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
@@ -693,6 +699,11 @@ void MainWindow::openDdlHistorySlot()
 void MainWindow::openFunctionEditorSlot()
 {
     openFunctionEditor();
+}
+
+void MainWindow::openLlmChat()
+{
+    qDebug() << "LLM Chat functionality will be implemented here.";
 }
 
 void MainWindow::openCodeSnippetsEditorSlot()
