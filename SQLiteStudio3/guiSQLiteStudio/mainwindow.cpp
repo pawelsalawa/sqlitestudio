@@ -56,7 +56,7 @@ MainWindow* MainWindow::instance = nullptr;
 
 MainWindow::MainWindow() :
     QMainWindow(),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
     llmChatAction(nullptr)
 {
     init();
