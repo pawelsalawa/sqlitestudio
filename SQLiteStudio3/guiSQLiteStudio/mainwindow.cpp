@@ -57,14 +57,24 @@ MainWindow* MainWindow::instance = nullptr;
 MainWindow::MainWindow() :
     QMainWindow(),
     ui(new Ui::MainWindow),
-    llmChatAction(nullptr)
+    llmChatAction(nullptr),
+    llmChatDialog(nullptr),
+    llmChatInput(nullptr),
+    llmChatOutput(nullptr),
+    networkManager(new QNetworkAccessManager(this)),
+    llmChatSendButton(nullptr)
 {
     init();
+    networkManager = new QNetworkAccessManager(this);
+    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::handleLlmChatResponse);
+    setupLlmChatDialog();
 }
 
 MainWindow::~MainWindow()
 {
     delete llmChatAction;
+    delete llmChatDialog;
+    delete networkManager;
 }
 
 void MainWindow::init()
@@ -701,9 +711,107 @@ void MainWindow::openFunctionEditorSlot()
     openFunctionEditor();
 }
 
+void MainWindow::setupLlmChatDialog()
+{
+    llmChatDialog = new QDialog(this);
+    QGridLayout* layout = new QGridLayout(llmChatDialog);
+
+    // Create and populate the model selection dropdown
+    modelSelector = new QComboBox(llmChatDialog);
+    modelSelector->addItem("gpt-3.5-turbo-1106");
+    modelSelector->addItem("gpt-4-0125-preview");
+    layout->addWidget(new QLabel(tr("Model:")), 0, 0);
+    layout->addWidget(modelSelector, 0, 1);
+
+    // Text input for the chat
+    llmChatInput = new QLineEdit(llmChatDialog);
+    layout->addWidget(new QLabel(tr("Your message:")), 1, 0);
+    layout->addWidget(llmChatInput, 1, 1);
+
+    // Send button
+    llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
+    connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
+    layout->addWidget(llmChatSendButton, 1, 2);
+
+    // Text output for the chat
+    llmChatOutput = new QTextEdit(llmChatDialog);
+    llmChatOutput->setReadOnly(true); // Ensure the user can't edit the output
+    layout->addWidget(llmChatOutput, 2, 0, 1, 3); // Spanning 3 columns
+
+    llmChatDialog->setLayout(layout);
+}
+
 void MainWindow::openLlmChat()
 {
-    qDebug() << "LLM Chat functionality will be implemented here.";
+    llmChatDialog->show();
+}
+
+void MainWindow::sendLlmChatRequest()
+{
+    QString apiKey = qgetenv("OPENAI_API_KEY");
+    if (apiKey.isEmpty())
+    {
+        QMessageBox::warning(this, tr("Error"), tr("The OpenAI API key is not set."));
+        return;
+    }
+
+    if (llmChatInput->text().isEmpty())
+    {
+        QMessageBox::information(this, tr("Info"), tr("Please enter your message."));
+        return;
+    }
+
+    QString selectedModel = modelSelector->currentText();
+
+    QNetworkRequest request(QUrl("https://api.openai.com/v1/chat/completions"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("Authorization", ("Bearer " + apiKey).toUtf8());
+
+    QJsonObject messageObj;
+    messageObj["role"] = "user";
+    messageObj["content"] = llmChatInput->text();
+
+    QJsonArray messages;
+    messages.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
+    messages.append(messageObj);  // The last user message
+
+    QJsonObject json;
+    json["model"] = selectedModel;  // Use the selected model from the dropdown
+    json["messages"] = messages;
+
+    networkManager->post(request, QJsonDocument(json).toJson());
+}
+
+void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
+{
+    if (!reply->error())
+    {
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject jsonObject = jsonResponse.object();
+        QJsonArray choices = jsonObject["choices"].toArray();
+
+        if (!choices.isEmpty())
+        {
+            QJsonObject choice = choices.first().toObject();
+            QJsonObject message = choice["message"].toObject();
+            QString responseText = message["content"].toString();
+
+            if (message["role"].toString() == "assistant")
+            {
+                // Here the UI is being updated to include the latest assistant's response.
+                llmChatOutput->append("Assistant: " + responseText);
+            }
+        }
+        else
+        {
+            llmChatOutput->append("No response from the assistant.");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error"), reply->errorString());
+    }
+    reply->deleteLater();
 }
 
 void MainWindow::openCodeSnippetsEditorSlot()
