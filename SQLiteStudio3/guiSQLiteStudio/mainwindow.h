@@ -11,6 +11,18 @@
 #include <QQueue>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QComboBox>
+#include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QLabel>
+#include <QDialog>
+#include <QGridLayout>
+#include <QVBoxLayout>
 
 class QUiLoader;
 class DbTree;
