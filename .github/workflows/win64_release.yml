@@ -66,7 +66,7 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-tools
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-network
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
