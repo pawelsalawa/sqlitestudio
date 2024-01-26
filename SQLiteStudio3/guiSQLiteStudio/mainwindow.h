@@ -9,6 +9,8 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
+#include<QNetworkAccessManager>
+#include<QNetworkReply>
 
 class QUiLoader;
 class DbTree;
@@ -163,6 +165,15 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
         QAction* llmChatAction;
+        QDialog* llmChatDialog;
+        QLineEdit* llmChatInput;
+        QTextEdit* llmChatOutput;
+        QNetworkAccessManager* networkManager;
+        QPushButton* llmChatSendButton;
+        QComboBox* modelSelector;
+
+        void setupLlmChatDialog();
+        void sendLlmChatRequest();
         
         void fixFonts();
         void fixToolbars();
@@ -209,6 +220,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void reportHistory();
         void donate();
         void openLlmChat();
+        void handleLlmChatResponse(QNetworkReply* reply);
 
     private slots:
         void notifyAboutLanguageChange();
