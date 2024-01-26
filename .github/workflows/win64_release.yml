@@ -241,6 +241,11 @@ jobs:
                     $QMAKE_EXTRA_FLAGS \
                     ../../SQLiteStudio3
                 mingw32-make.exe -j 2
+            - name: List Qt Network headers
+              if: env.QT_FROM_PACKAGES == 1
+              shell: msys2 {0}
+              run: |
+                ls /d/msys64/${{ env.MINGWxx }}/include/QtNetwork
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
