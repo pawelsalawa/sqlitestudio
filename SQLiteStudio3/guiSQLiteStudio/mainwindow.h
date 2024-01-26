@@ -9,8 +9,8 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
-#include<QNetworkAccessManager>
-#include<QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 class QUiLoader;
 class DbTree;
