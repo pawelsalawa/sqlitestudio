@@ -1,0 +1,41 @@
+name: Test Qt Network Access Manager
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: >
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-make
+            mingw-w64-x86_64-qt5-base
+            mingw-w64-x86_64-qt5-declarative
+            mingw-w64-x86_64-qt5-imageformats
+            mingw-w64-x86_64-qt5-script
+            mingw-w64-x86_64-qt5-svg
+            mingw-w64-x86_64-qt5-tools
+            mingw-w64-x86_64-qt5-winextras
+            mingw-w64-x86_64-qt5-networkauth
+
+      - name: Compile Test Program
+        shell: msys2 {0}
+        run: |
+          echo '#include <QCoreApplication>' > main.cpp
+          echo '#include <QNetworkAccessManager>' >> main.cpp
+          echo 'int main(int argc, char *argv[]) {' >> main.cpp
+          echo '    QCoreApplication app(argc, argv);' >> main.cpp
+          echo '    QNetworkAccessManager manager;' >> main.cpp
+          echo '    return app.exec();' >> main.cpp
+          echo '}' >> main.cpp
+          g++ -o testprogram main.cpp -lQt5Core -lQt5Network
+          ./testprogram
