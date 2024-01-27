@@ -50,6 +50,9 @@
 #include <QToolTip>
 #include <QTimer>
 #include <QtGui>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
