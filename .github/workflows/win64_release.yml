@@ -66,6 +66,7 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-tools
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
@@ -240,6 +241,11 @@ jobs:
                     $QMAKE_EXTRA_FLAGS \
                     ../../SQLiteStudio3
                 mingw32-make.exe -j 2
+            - name: List Qt Network headers
+              if: env.QT_FROM_PACKAGES == 1
+              shell: msys2 {0}
+              run: |
+                ls /d/msys64/${{ env.MINGWxx }}/include/QtNetwork
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -248,9 +254,10 @@ jobs:
                 qmake.exe \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     CONFIG+=portable \
-                    PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
+                    PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}/libs" \
+                    "INCLUDEPATH+=/d/msys64/mingw64/include" "LIBS+=-L/d/msys64/mingw64/lib" \
                     ../../../Plugins
-                mingw32-make.exe -j 1
+                mingw32-make.exe -j 1 VERBOSE=1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
