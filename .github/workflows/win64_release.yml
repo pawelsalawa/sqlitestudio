@@ -235,13 +235,15 @@ jobs:
               shell: bash_or_msys2 {0}
               run: |
                 qmake.exe \
-                  CONFIG+=portable 
+                  CONFIG+=portable \
                   "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                   $QMAKE_EXTRA_FLAGS \
                   "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
-                  ../../SQLiteStudio3
+                  ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
                 
                 mingw64-make.exe -j2
+            
+            
 
             - name: List Qt Network headers
               if: env.QT_FROM_PACKAGES == 1
@@ -256,13 +258,16 @@ jobs:
                 qmake.exe \
                   "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                   CONFIG+=portable \
-                  PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}/libs" \
+                  "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
+                  "INCLUDEPATH+=${{ env.pythonLocation }}/include" \
+                  "LIBS += -L${{ env.pythonLocation }}/libs" \
                   "INCLUDEPATH+=/d/msys64/mingw64/include" \
                   "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
                   "LIBS+=-L/d/msys64/mingw64/lib" \
                   ../../../Plugins
                   
                 mingw64-make.exe -j1 VERBOSE=1
+              
 
             - name: Copy SQLite extensions to output dir
               shell: bash
