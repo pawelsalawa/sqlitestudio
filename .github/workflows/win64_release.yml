@@ -68,6 +68,7 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
                   unzip
+                update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
             - name: Configure shell
               run: |
@@ -238,8 +239,11 @@ jobs:
                   CONFIG+=portable \
                   "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                   $QMAKE_EXTRA_FLAGS \
-                  "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork"                
-                mingw32-make.exe -j2
+                  "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
+                  ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
+                
+                mingw64-make.exe -j2
+            
                 
             
             
@@ -263,9 +267,10 @@ jobs:
                   "INCLUDEPATH+=/d/msys64/mingw64/include" \
                   "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
                   "LIBS+=-L/d/msys64/mingw64/lib" \
-                  ../../../Plugins
+                  ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
                   
-                mingw32-make.exe -j1 VERBOSE=1
+                mingw64-make.exe -j1 VERBOSE=1
+              
               
 
             - name: Copy SQLite extensions to output dir
