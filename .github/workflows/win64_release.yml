@@ -50,11 +50,11 @@ jobs:
                     echo CCACHE_COMMAND="$HOME/.cargo/bin/ccache.exe"
                 } >> $GITHUB_ENV
 
-            - uses: msys2/setup-msys2@v2
-              if: env.QT_FROM_PACKAGES == 1
+            - name: Set up MSYS2
+              uses: msys2/setup-msys2@v2
               with:
                 msystem: MINGW64
-                location: d:/
+                update: true
                 install: >
                   mingw-w64-${{ env.TARGET_ARCH }}-gcc
                   mingw-w64-${{ env.TARGET_ARCH }}-make
@@ -67,7 +67,6 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-network
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
