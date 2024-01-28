@@ -238,10 +238,9 @@ jobs:
                   CONFIG+=portable \
                   "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                   $QMAKE_EXTRA_FLAGS \
-                  "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
-                  ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
-                
+                  "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork"                
                 mingw32-make.exe -j2
+                
             
             
 
