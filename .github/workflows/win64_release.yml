@@ -68,6 +68,7 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
+                  mingw-w64-${{ env.TARGET_ARCH }}-readline
                   unzip
 
             - name: Configure shell
