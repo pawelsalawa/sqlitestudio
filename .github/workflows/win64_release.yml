@@ -242,7 +242,7 @@ jobs:
                   "INCLUDEPATH+=/d/msys64/mingw64/include/QtNetwork" \
                   ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
                 
-                mingw64-make.exe -j2
+                mingw32-make.exe -j2
             
                 
             
@@ -269,7 +269,7 @@ jobs:
                   "LIBS+=-L/d/msys64/mingw64/lib" \
                   ../../SQLiteStudio3/guiSQLiteStudio/guiSQLiteStudio.pro
                   
-                mingw64-make.exe -j1 VERBOSE=1
+                mingw32-make.exe -j1 VERBOSE=1
               
               
 
