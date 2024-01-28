@@ -52,6 +52,7 @@ jobs:
 
             - name: Set up MSYS2
               uses: msys2/setup-msys2@v2
+              if: env.QT_FROM_PACKAGES == 1
               with:
                 msystem: MINGW64
                 update: true
@@ -68,7 +69,6 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
                   unzip
-                update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
             - name: Configure shell
               run: |
