@@ -742,6 +742,16 @@ void MainWindow::setupLlmChatDialog()
     layout->addWidget(llmChatOutput, 2, 0, 1, 3); // Spanning 3 columns
 
     llmChatDialog->setLayout(layout);
+
+     // Connect the QDialog::rejected signal to a slot for clearing chat history
+    connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
+}
+
+void MainWindow::clearChatHistory()
+{
+    // Clear chat history
+    llmChatOutput->clear();
+}
 }
 
 void MainWindow::openLlmChat()
