@@ -285,7 +285,7 @@ void MainWindow::createActions()
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
-    llmChatAction = new QAction(QIcon(":/icons/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    llmChatAction = new QAction(QIcon(":/img/llm_chat_icon.png"), tr("LLM &Chat"), this);
     connect(llmChatAction, &QAction::triggered, this, &MainWindow::openLlmChat);
     actionMap[OPEN_LLM_CHAT] = llmChatAction;
     ui->mainToolBar->addSeparator();
@@ -783,6 +783,8 @@ void MainWindow::sendLlmChatRequest()
     json["messages"] = messages;
 
     networkManager->post(request, QJsonDocument(json).toJson());
+
+    llmChatInput->clear();  // Clear the input field after the request is sent
 }
 
 void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
