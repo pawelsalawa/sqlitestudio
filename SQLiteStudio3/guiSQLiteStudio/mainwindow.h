@@ -183,6 +183,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QNetworkAccessManager* networkManager;
         QPushButton* llmChatSendButton;
         QComboBox* modelSelector;
+        QJsonArray chatHistory;
 
         void setupLlmChatDialog();
         void sendLlmChatRequest();
