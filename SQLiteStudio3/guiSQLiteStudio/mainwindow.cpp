@@ -776,7 +776,12 @@ void MainWindow::sendLlmChatRequest()
         return;
     }
 
-    chatHistory.append(QJsonObject({{"role", "user"}, {"content", llmChatInput->text()}}));
+    // Prefix user message with "You:" and append to chat history
+    QString userInput = llmChatInput->text();
+    chatHistory.append(QJsonObject({{"role", "user"}, {"content", "You: " + userInput}}));
+
+    // Display user message with "You:" prefix in the UI
+    llmChatOutput->append("You: " + userInput);
 
     QString selectedModel = modelSelector->currentText();
 
@@ -809,11 +814,11 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 
             if (message["role"].toString() == "assistant")
             {
-                // Append the assistant's response to the chat history
-                chatHistory.append(choice["message"]);
+                // Prefix LLM response with "GPT:" and append to chat history
+                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "GPT: " + responseText}}));
 
-                // Update the UI with the assistant's response
-                llmChatOutput->append("Assistant: " + responseText);
+                // Update the UI with the LLM response prefixed with "GPT:"
+                llmChatOutput->append("GPT: " + responseText);
             }
         }
         else
