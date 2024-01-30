@@ -752,7 +752,6 @@ void MainWindow::clearChatHistory()
     // Clear chat history
     llmChatOutput->clear();
 }
-}
 
 void MainWindow::openLlmChat()
 {
