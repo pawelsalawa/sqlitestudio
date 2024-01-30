@@ -776,12 +776,13 @@ void MainWindow::sendLlmChatRequest()
         return;
     }
 
-    // Prefix user message with "You:" and append to chat history
-    QString userInput = llmChatInput->text();
-    chatHistory.append(QJsonObject({{"role", "user"}, {"content", "You: " + userInput}}));
+    // Escape user input to prevent HTML injection
+    QString userInput = llmChatInput->text().toHtmlEscaped();
+    chatHistory.append(QJsonObject({{"role", "user"}, {"content", "<strong>You:</strong> " + userInput}}));
 
-    // Display user message with "You:" prefix in the UI
-    llmChatOutput->append("You: " + userInput);
+    // Display user message with "You:" prefix in bold black in the UI
+    llmChatOutput->append("<strong style=\"color:black;\">You:</strong> " + userInput);
+    llmChatOutput->append("<br><br>");  // Add two line breaks for distance
 
     QString selectedModel = modelSelector->currentText();
 
@@ -815,15 +816,17 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
             if (message["role"].toString() == "assistant")
             {
                 // Prefix LLM response with "GPT:" and append to chat history
-                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "GPT: " + responseText}}));
+                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "<strong>GPT:</strong> " + responseText}}));
 
-                // Update the UI with the LLM response prefixed with "GPT:"
-                llmChatOutput->append("GPT: " + responseText);
+                // Update the UI with the LLM response prefixed with "GPT:" in bold green
+                llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
+                llmChatOutput->append("<br><br>");  // Add two line breaks for distance
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
+            llmChatOutput->append("<br><br>");  // Add two line breaks for distance
         }
     }
     else
