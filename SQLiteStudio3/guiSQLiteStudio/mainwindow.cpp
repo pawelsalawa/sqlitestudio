@@ -745,6 +745,9 @@ void MainWindow::setupLlmChatDialog()
 
      // Connect the QDialog::rejected signal to a slot for clearing chat history
     connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
+
+    // Initialize the chat history with the system message
+    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
 }
 
 void MainWindow::clearChatHistory()
@@ -773,23 +776,17 @@ void MainWindow::sendLlmChatRequest()
         return;
     }
 
+    chatHistory.append(QJsonObject({{"role", "user"}, {"content", llmChatInput->text()}}));
+
     QString selectedModel = modelSelector->currentText();
 
     QNetworkRequest request(QUrl("https://api.openai.com/v1/chat/completions"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader("Authorization", ("Bearer " + apiKey).toUtf8());
 
-    QJsonObject messageObj;
-    messageObj["role"] = "user";
-    messageObj["content"] = llmChatInput->text();
-
-    QJsonArray messages;
-    messages.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
-    messages.append(messageObj);  // The last user message
-
     QJsonObject json;
     json["model"] = selectedModel;  // Use the selected model from the dropdown
-    json["messages"] = messages;
+    json["messages"] = chatHistory;
 
     networkManager->post(request, QJsonDocument(json).toJson());
 
@@ -812,7 +809,10 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 
             if (message["role"].toString() == "assistant")
             {
-                // Here the UI is being updated to include the latest assistant's response.
+                // Append the assistant's response to the chat history
+                chatHistory.append(choice["message"]);
+
+                // Update the UI with the assistant's response
                 llmChatOutput->append("Assistant: " + responseText);
             }
         }
