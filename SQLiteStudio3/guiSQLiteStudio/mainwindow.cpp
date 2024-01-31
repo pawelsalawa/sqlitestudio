@@ -726,20 +726,25 @@ void MainWindow::setupLlmChatDialog()
     layout->addWidget(new QLabel(tr("Model:")), 0, 0);
     layout->addWidget(modelSelector, 0, 1);
 
+    // Chat output
+    llmChatOutput = new QTextEdit(llmChatDialog);
+    llmChatOutput->setReadOnly(true); // Ensure the user can't edit the output
+    layout->addWidget(llmChatOutput);
+
+    // New chat button setup
+    newChatButton = new QPushButton(tr("New Chat"), llmChatDialog);
+    connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
+    layout->addWidget(newChatButton);
+
     // Text input for the chat
     llmChatInput = new QLineEdit(llmChatDialog);
-    layout->addWidget(new QLabel(tr("Your message:")), 1, 0);
-    layout->addWidget(llmChatInput, 1, 1);
+    layout->addWidget(new QLabel(tr("Your message:")));
+    layout->addWidget(llmChatInput);
 
     // Send button
     llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
     connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
-    layout->addWidget(llmChatSendButton, 1, 2);
-
-    // Text output for the chat
-    llmChatOutput = new QTextEdit(llmChatDialog);
-    llmChatOutput->setReadOnly(true); // Ensure the user can't edit the output
-    layout->addWidget(llmChatOutput, 2, 0, 1, 3); // Spanning 3 columns
+    layout->addWidget(llmChatSendButton);
 
     llmChatDialog->setLayout(layout);
 
@@ -754,6 +759,13 @@ void MainWindow::clearChatHistory()
 {
     // Clear chat history
     llmChatOutput->clear();
+}
+
+// Method to clear the entire chat history
+void MainWindow::clearEntireChatHistory()
+{
+    chatHistory = QJsonArray(); // Clear the JSON chat history
+    llmChatOutput->clear();     // Clear the chat output widget
 }
 
 void MainWindow::openLlmChat()
