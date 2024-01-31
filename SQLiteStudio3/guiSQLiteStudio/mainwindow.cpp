@@ -819,18 +819,20 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 
                 if (role == "assistant") {
                     // Prefix LLM response with "GPT:" and append to chat history
-                    chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", content}}));
+                    chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "GPT: " + content}}));
 
                     // Update the UI with the LLM response prefixed with "GPT:" in bold green
                     llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + content);
-                    llmChatOutput->append("<br>");  // Add two line breaks for distance
+                    // Add a custom margin for an exact two-line gap
+                    llmChatOutput->append("<div style=\"margin-top: 1.6em;\"></div>");
                 }
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            llmChatOutput->append("<br>");  // Add two line breaks for distance
+            // Add a custom margin for an exact two-line gap
+            llmChatOutput->append("<div style=\"margin-top: 1.6em;\"></div>");
         }
     }
     else
