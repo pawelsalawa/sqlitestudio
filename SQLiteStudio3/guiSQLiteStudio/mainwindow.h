@@ -184,6 +184,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QPushButton* llmChatSendButton;
         QComboBox* modelSelector;
         QJsonArray chatHistory;
+        QPushButton* newChatButton; // Add this line for the new button
 
         void setupLlmChatDialog();
         void sendLlmChatRequest();
@@ -234,8 +235,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void donate();
         void openLlmChat();
         void handleLlmChatResponse(QNetworkReply* reply);
-        // Add clearChatHistory declaration after handleLlmChatResponse
         void clearChatHistory();
+        void clearEntireChatHistory();
 
     private slots:
         void notifyAboutLanguageChange();
