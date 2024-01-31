@@ -806,33 +806,28 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
         QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObject = jsonResponse.object();
         QJsonArray choices = jsonObject["choices"].toArray();
-
         if (!choices.isEmpty())
         {
             QJsonObject choice = choices.first().toObject();
-            QJsonArray messages = choice["messages"].toArray();
+            QJsonObject message = choice["message"].toObject();
+            QString responseText = message["content"].toString();
+            if (message["role"].toString() == "assistant")
+            {
+                // Append the assistant's response to the chat history with HTML formatting
+                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "<strong style=\"color:green;\">GPT:</strong> " + responseText}}));
 
-            for (const QJsonValue &value : messages) {
-                QJsonObject message = value.toObject();
-                QString role = message["role"].toString();
-                QString content = message["content"].toString();
+                // Update the UI with the LLM response prefixed with "GPT:" in bold green
+                llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
 
-                if (role == "assistant") {
-                    // Prefix LLM response with "GPT:" and append to chat history
-                    chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "GPT: " + content}}));
-
-                    // Update the UI with the LLM response prefixed with "GPT:" in bold green
-                    llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + content);
-                    // Add a custom margin for an exact two-line gap
-                    llmChatOutput->insertHtml("<div style='margin-top: 1em;'>&nbsp;</div>");
-                }
+                // Add an HTML element with fixed height to create a gap of exactly two lines
+                llmChatOutput->append("<div style=\"height: 36px;\"></div>");
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            // Add a custom margin for an exact two-line gap
-            llmChatOutput->insertHtml("<div style='margin-top: 1em;'>&nbsp;</div>");
+            // Add an HTML element with fixed height to create a gap of exactly two lines
+            llmChatOutput->append("<div style=\"height: 36px;\"></div>");
         }
     }
     else
@@ -841,6 +836,7 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
     }
     reply->deleteLater();
 }
+
 
 void MainWindow::openCodeSnippetsEditorSlot()
 {
