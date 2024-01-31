@@ -830,13 +830,13 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 
                 // Update the UI with the response prefixed with "GPT:" in bold green
                 llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
-                llmChatOutput->append("<div style=\"height: 24px;\"></div>"); // Gap of exactly two lines
+                llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            llmChatOutput->append("<div style=\"height: 24px;\"></div>"); // Gap of exactly two lines
+            llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
         }
     }
     else
