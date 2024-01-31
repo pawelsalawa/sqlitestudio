@@ -813,21 +813,18 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
             QString responseText = message["content"].toString();
             if (message["role"].toString() == "assistant")
             {
-                // Append the assistant's response to the chat history with HTML formatting
-                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "<strong style=\"color:green;\">GPT:</strong> " + responseText}}));
+                // Append only the response text to the chat history, without the "GPT:" label
+                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", responseText}}));
 
-                // Update the UI with the LLM response prefixed with "GPT:" in bold green
+                // Update the UI with the response prefixed with "GPT:" in bold green
                 llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
-
-                // Add an HTML element with fixed height to create a gap of exactly two lines
-                llmChatOutput->append("<div style=\"height: 36px;\"></div>");
+                llmChatOutput->append("<div style=\"height: 24px;\"></div>"); // Gap of exactly two lines
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            // Add an HTML element with fixed height to create a gap of exactly two lines
-            llmChatOutput->append("<div style=\"height: 36px;\"></div>");
+            llmChatOutput->append("<div style=\"height: 24px;\"></div>"); // Gap of exactly two lines
         }
     }
     else
@@ -836,6 +833,7 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
     }
     reply->deleteLater();
 }
+
 
 
 void MainWindow::openCodeSnippetsEditorSlot()
