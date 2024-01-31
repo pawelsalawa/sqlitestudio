@@ -65,7 +65,7 @@ MainWindow::MainWindow() :
     llmChatInput(nullptr),
     llmChatOutput(nullptr),
     networkManager(new QNetworkAccessManager(this)),
-    llmChatSendButton(nullptr)
+    llmChatSendButton(nullptr),
     newChatButton(nullptr)
 {
     init();
