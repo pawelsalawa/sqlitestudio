@@ -812,7 +812,7 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
             QJsonObject choice = choices.first().toObject();
             QJsonArray messages = choice["messages"].toArray();
 
-            foreach (const QJsonValue &value, messages) {
+            for (const QJsonValue &value : messages) {
                 QJsonObject message = value.toObject();
                 QString role = message["role"].toString();
                 QString content = message["content"].toString();
@@ -824,7 +824,7 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
                     // Update the UI with the LLM response prefixed with "GPT:" in bold green
                     llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + content);
                     // Add a custom margin for an exact two-line gap
-                    llmChatOutput->append("<div style=\"margin-top: 1.6em;\"></div>");
+                    llmChatOutput->insertHtml("<div style='margin-top: 1em;'>&nbsp;</div>");
                 }
             }
         }
@@ -832,7 +832,7 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
         {
             llmChatOutput->append("No response from the assistant.");
             // Add a custom margin for an exact two-line gap
-            llmChatOutput->append("<div style=\"margin-top: 1.6em;\"></div>");
+            llmChatOutput->insertHtml("<div style='margin-top: 1em;'>&nbsp;</div>");
         }
     }
     else
