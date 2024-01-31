@@ -66,6 +66,7 @@ MainWindow::MainWindow() :
     llmChatOutput(nullptr),
     networkManager(new QNetworkAccessManager(this)),
     llmChatSendButton(nullptr)
+    newChatButton(nullptr)
 {
     init();
     networkManager = new QNetworkAccessManager(this);
@@ -719,51 +720,46 @@ void MainWindow::setupLlmChatDialog()
     llmChatDialog = new QDialog(this);
     QVBoxLayout* mainLayout = new QVBoxLayout(llmChatDialog);
 
-    // Model selector and new chat button at the top in a horizontal layout
-    QHBoxLayout* topLayout = new QHBoxLayout();
+    // Model selector and label
     modelSelector = new QComboBox(llmChatDialog);
     modelSelector->addItem("gpt-3.5-turbo-1106");
     modelSelector->addItem("gpt-4-0125-preview");
-    topLayout->addWidget(new QLabel(tr("Model:")));
-    topLayout->addWidget(modelSelector);
+    layout->addWidget(new QLabel(tr("Model:")), 0, 0);
+    layout->addWidget(modelSelector, 0, 1);
 
+    // New Chat button setup
     newChatButton = new QPushButton(tr("New Chat"), llmChatDialog);
-    connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearEntireChatHistory);
-    topLayout->addWidget(newChatButton);
-    mainLayout->addLayout(topLayout); // Add the top layout to the main layout
+    connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
+    layout->addWidget(newChatButton, 0, 2);
 
-    // Text output for the chat in the middle
-    llmChatOutput = new QTextEdit(llmChatDialog);
-    llmChatOutput->setReadOnly(true);
-    mainLayout->addWidget(llmChatOutput);
-
-    // Message input and Send button at the bottom in a horizontal layout
-    QHBoxLayout* bottomLayout = new QHBoxLayout();
+    // Chat input and label
     llmChatInput = new QLineEdit(llmChatDialog);
-    bottomLayout->addWidget(new QLabel(tr("Your message:")));
-    bottomLayout->addWidget(llmChatInput, 1); // The text field should expand to fill the space
+    layout->addWidget(new QLabel(tr("Your message:")), 2, 0);
+    layout->addWidget(llmChatInput, 2, 1);
 
+    // Send button setup
     llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
     connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
-    bottomLayout->addWidget(llmChatSendButton);
+    layout->addWidget(llmChatSendButton, 2, 2);
 
-    mainLayout->addLayout(bottomLayout); // Add the bottom layout to the main layout
+    // Connecting the returnPressed signal from llmChatInput to sendLlmChatRequest slot
+    connect(llmChatInput, &QLineEdit::returnPressed, this, &MainWindow::sendLlmChatRequest);
 
-    llmChatDialog->setLayout(mainLayout);
+    // Set layout for dialog
+    llmChatDialog->setLayout(layout);
+
+    // Connect the QDialog::rejected signal to clearChatHistory slot
+    connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
+    // Initialize the chat history with the system message
+    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
+
 }
 
 
 void MainWindow::clearChatHistory()
 {
-    // Clear chat history
+    chatHistory = QJsonArray();
     llmChatOutput->clear();
-}
-
-// Method to clear the entire chat history
-void MainWindow::clearEntireChatHistory()
-{
-    chatHistory = QJsonArray(); // Clear the JSON chat history
-    llmChatOutput->clear();     // Clear the chat output widget
 }
 
 void MainWindow::openLlmChat()
@@ -807,6 +803,10 @@ void MainWindow::sendLlmChatRequest()
     networkManager->post(request, QJsonDocument(json).toJson());
 
     llmChatInput->clear();  // Clear the input field after the request is sent
+
+    // Clear the input field and set focus after sending
+    llmChatInput->clear();
+    llmChatInput->setFocus();
 }
 
 void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
