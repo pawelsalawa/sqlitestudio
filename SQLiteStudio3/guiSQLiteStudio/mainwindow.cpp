@@ -782,7 +782,7 @@ void MainWindow::sendLlmChatRequest()
 
     // Display user message with "You:" prefix in bold black in the UI
     llmChatOutput->append("<strong style=\"color:black;\">You:</strong> " + userInput);
-    llmChatOutput->append("<br><br>");  // Add two line breaks for distance
+    llmChatOutput->append("<br>");  // Add two line breaks for distance
 
     QString selectedModel = modelSelector->currentText();
 
@@ -810,23 +810,27 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
         if (!choices.isEmpty())
         {
             QJsonObject choice = choices.first().toObject();
-            QJsonObject message = choice["message"].toObject();
-            QString responseText = message["content"].toString();
+            QJsonArray messages = choice["messages"].toArray();
 
-            if (message["role"].toString() == "assistant")
-            {
-                // Prefix LLM response with "GPT:" and append to chat history
-                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", "<strong>GPT:</strong> " + responseText}}));
+            foreach (const QJsonValue &value, messages) {
+                QJsonObject message = value.toObject();
+                QString role = message["role"].toString();
+                QString content = message["content"].toString();
 
-                // Update the UI with the LLM response prefixed with "GPT:" in bold green
-                llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
-                llmChatOutput->append("<br><br>");  // Add two line breaks for distance
+                if (role == "assistant") {
+                    // Prefix LLM response with "GPT:" and append to chat history
+                    chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", content}}));
+
+                    // Update the UI with the LLM response prefixed with "GPT:" in bold green
+                    llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + content);
+                    llmChatOutput->append("<br>");  // Add two line breaks for distance
+                }
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            llmChatOutput->append("<br><br>");  // Add two line breaks for distance
+            llmChatOutput->append("<br>");  // Add two line breaks for distance
         }
     }
     else
