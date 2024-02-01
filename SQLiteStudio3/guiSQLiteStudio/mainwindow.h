@@ -236,7 +236,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void openLlmChat();
         void handleLlmChatResponse(QNetworkReply* reply);
         void clearChatHistory();
-        void clearEntireChatHistory();
 
     private slots:
         void notifyAboutLanguageChange();
