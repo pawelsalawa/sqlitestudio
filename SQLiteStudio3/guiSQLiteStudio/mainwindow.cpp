@@ -734,11 +734,6 @@ void MainWindow::setupLlmChatDialog()
     connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
     chatLayout->addWidget(newChatButton, 0, 2);
 
-    // Text output for the chat
-    llmChatOutput = new QTextEdit(llmChatDialog);
-    llmChatOutput->setReadOnly(true);
-    chatLayout->addWidget(llmChatOutput, 1, 0, 1, 3); // Spanning 3 columns
-
     // Chat input and label
     llmChatInput = new QLineEdit(llmChatDialog);
     chatLayout->addWidget(new QLabel(tr("Your message:")), 2, 0);
@@ -749,6 +744,11 @@ void MainWindow::setupLlmChatDialog()
     connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
     chatLayout->addWidget(llmChatSendButton, 2, 2);
 
+    // Text output for the chat
+    llmChatOutput = new QTextEdit(llmChatDialog);
+    llmChatOutput->setReadOnly(true);
+    chatLayout->addWidget(llmChatOutput, 1, 0, 1, 3); // Spanning 3 columns
+    
     // Connecting the returnPressed signal from llmChatInput to sendLlmChatRequest slot
     connect(llmChatInput, &QLineEdit::returnPressed, this, &MainWindow::sendLlmChatRequest);
 
@@ -757,6 +757,8 @@ void MainWindow::setupLlmChatDialog()
 
     // Connect the QDialog::rejected signal to clearChatHistory slot
     connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
+// Initialize the chat history with the system message
+    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
 }
 
 
@@ -810,7 +812,6 @@ void MainWindow::sendLlmChatRequest()
     llmChatInput->clear();  // Clear the input field after the request is sent
 
     // Clear the input field and set focus after sending
-    llmChatInput->clear();
     llmChatInput->setFocus();
 }
 
