@@ -776,6 +776,7 @@ void MainWindow::clearChatHistory()
 void MainWindow::openLlmChat()
 {
     llmChatDialog->show();
+    llmChatInput->setFocus();
 }
 
 void MainWindow::sendLlmChatRequest()
