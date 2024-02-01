@@ -731,6 +731,8 @@ void MainWindow::setupLlmChatDialog()
 
     // New Chat button setup
     newChatButton = new QPushButton(tr("New Chat"), llmChatDialog);
+    newChatButton->setDefault(false);
+    newChatButton->setAutoDefault(false);
     connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
     chatLayout->addWidget(newChatButton, 0, 2);
 
@@ -741,6 +743,8 @@ void MainWindow::setupLlmChatDialog()
 
     // Send button setup
     llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
+    llmChatSendButton->setDefault(false);
+    llmChatSendButton->setAutoDefault(false);
     connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
     chatLayout->addWidget(llmChatSendButton, 2, 2);
 
