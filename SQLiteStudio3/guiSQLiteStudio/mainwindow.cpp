@@ -791,7 +791,7 @@ void MainWindow::sendLlmChatRequest()
 
     // Escape user input to prevent HTML injection
     QString userInput = llmChatInput->text().toHtmlEscaped();
-    chatHistory.append(QJsonObject({{"role", "user"}, {"content", "<strong>You:</strong> " + userInput}}));
+    chatHistory.append(QJsonObject({{"role", "user"}, {"content", userInput}}));
 
     // Display user message with "You:" prefix in bold black in the UI
     llmChatOutput->append("<strong style=\"color:black;\">You:</strong> " + userInput);
@@ -814,6 +814,7 @@ void MainWindow::sendLlmChatRequest()
     // Clear the input field and set focus after sending
     llmChatInput->setFocus();
 }
+
 
 void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 {
