@@ -769,35 +769,40 @@ void MainWindow::setupLlmChatDialog()
     chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
 }
 
-// Event filter implemented in the MainWindow class
-bool MainWindow::eventFilter(QObject *obj, QEvent *event)
-{
-    if (obj == llmChatInput && event->type() == QEvent::KeyPress)
-    {
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    // Handle chat input logic for QTextEdit
+    if (obj == llmChatInput && event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
-        {
-            if (keyEvent->modifiers() & Qt::ShiftModifier)
-            {
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+            if (keyEvent->modifiers() & Qt::ShiftModifier) {
                 QTextCursor cursor = llmChatInput->textCursor();
                 cursor.insertText("\n");
-                return true; // Handle the event, do not propagate further
-            }
-            else
-            {
+                return true; // Event handled, do not propagate further
+            } else {
                 // Mimic returnPressed signal for QTextEdit to trigger sending the chat message
-                if (!llmChatInput->toPlainText().trimmed().isEmpty())
-                {
+                if (!llmChatInput->toPlainText().trimmed().isEmpty()) {
                     sendLlmChatRequest();
                 }
-                return true; // Prevent the propagation of the event
+                return true; // Event handled, do not propagate further
             }
         }
     }
-    return QMainWindow::eventFilter(obj, event); // Call base class method for other events
+
+    // Handle FileOpen event logic
+    if (event->type() == QEvent::FileOpen) {
+        QUrl url = dynamic_cast<QFileOpenEvent*>(event)->url();
+        if (!url.isLocalFile())
+            return false; // Not handling non-local files, allow further propagation
+
+        DbDialog dialog(DbDialog::ADD, this);
+        dialog.setPath(url.toLocalFile());
+        dialog.exec();
+        return true; // Event handled, file open logic executed
+    }
+
+    // For all other cases, do not handle the event here
+    return QMainWindow::eventFilter(obj, event);
 }
-
-
 
 void MainWindow::clearChatHistory()
 {
@@ -1259,22 +1264,22 @@ MainWindow *MainWindow::getInstance()
     return instance;
 }
 
-bool MainWindow::eventFilter(QObject* obj, QEvent* e)
-{
-    UNUSED(obj);
-    if (e->type() == QEvent::FileOpen)
-    {
-        QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
-        if (!url.isLocalFile())
-            return false;
+// bool MainWindow::eventFilter(QObject* obj, QEvent* e)
+// {
+//     UNUSED(obj);
+//     if (e->type() == QEvent::FileOpen)
+//     {
+//         QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
+//         if (!url.isLocalFile())
+//             return false;
 
-        DbDialog dialog(DbDialog::ADD, this);
-        dialog.setPath(url.toLocalFile());
-        dialog.exec();
-        return true;
-    }
-    return false;
-}
+//         DbDialog dialog(DbDialog::ADD, this);
+//         dialog.setPath(url.toLocalFile());
+//         dialog.exec();
+//         return true;
+//     }
+//     return false;
+// }
 
 void MainWindow::pushClosedWindowSessionValue(const QVariant &value)
 {

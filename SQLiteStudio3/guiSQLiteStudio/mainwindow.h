@@ -178,7 +178,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         SqliteExtensionEditor* openExtensionManager();
         QAction* llmChatAction;
         QDialog* llmChatDialog;
-        QLineEdit* llmChatInput;
+        QTextEdit* llmChatInput;
         QTextEdit* llmChatOutput;
         QNetworkAccessManager* networkManager;
         QPushButton* llmChatSendButton;
