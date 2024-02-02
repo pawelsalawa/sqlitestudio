@@ -740,6 +740,8 @@ void MainWindow::setupLlmChatDialog()
     llmChatInput = new QLineEdit(llmChatDialog);
     chatLayout->addWidget(new QLabel(tr("Your message:")), 2, 0);
     chatLayout->addWidget(llmChatInput, 2, 1);
+    QSize currentSize = llmChatInput->sizeHint();
+    llmChatInput->setFixedHeight(currentSize.height() * 2);
 
     // Send button setup
     llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
@@ -758,6 +760,7 @@ void MainWindow::setupLlmChatDialog()
 
     // Set layout for the dialog
     llmChatDialog->setLayout(chatLayout);
+    llmChatDialog->resize(600, 700);
 
     // Connect the QDialog::rejected signal to clearChatHistory slot
     connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
@@ -840,13 +843,15 @@ void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
 
                 // Update the UI with the response prefixed with "GPT:" in bold green
                 llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText);
-                llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
+                llmChatOutput->append("<br>");
+                //llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
             }
         }
         else
         {
             llmChatOutput->append("No response from the assistant.");
-            llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
+            llmChatOutput->append("<br>");
+            //llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
         }
     }
     else
