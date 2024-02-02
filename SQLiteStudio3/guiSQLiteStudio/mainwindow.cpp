@@ -736,12 +736,12 @@ void MainWindow::setupLlmChatDialog()
     connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
     chatLayout->addWidget(newChatButton, 0, 2);
 
-    // Chat input and label
-    llmChatInput = new QLineEdit(llmChatDialog);
+    // Chat input and label, using QTextEdit for multiline input
+    llmChatInput = new QTextEdit(llmChatDialog);
+    llmChatInput->setFixedHeight(llmChatInput->fontMetrics().height() * 2); // Adjust for multiline
     chatLayout->addWidget(new QLabel(tr("Your message:")), 2, 0);
     chatLayout->addWidget(llmChatInput, 2, 1);
-    QSize currentSize = llmChatInput->sizeHint();
-    llmChatInput->setFixedHeight(currentSize.height() * 2);
+    llmChatInput->installEventFilter(this); // Install an event filter for custom handling
 
     // Send button setup
     llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
@@ -754,9 +754,9 @@ void MainWindow::setupLlmChatDialog()
     llmChatOutput = new QTextEdit(llmChatDialog);
     llmChatOutput->setReadOnly(true);
     chatLayout->addWidget(llmChatOutput, 1, 0, 1, 3); // Spanning 3 columns
-    
+
     // Connecting the returnPressed signal from llmChatInput to sendLlmChatRequest slot
-    connect(llmChatInput, &QLineEdit::returnPressed, this, &MainWindow::sendLlmChatRequest);
+    // This is handled through the eventFilter for QTextEdit now
 
     // Set layout for the dialog
     llmChatDialog->setLayout(chatLayout);
@@ -764,8 +764,37 @@ void MainWindow::setupLlmChatDialog()
 
     // Connect the QDialog::rejected signal to clearChatHistory slot
     connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
-// Initialize the chat history with the system message
+
+    // Initialize the chat history
     chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
+}
+
+// Event filter implemented in the MainWindow class
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj == llmChatInput && event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
+        {
+            if (keyEvent->modifiers() & Qt::ShiftModifier)
+            {
+                QTextCursor cursor = llmChatInput->textCursor();
+                cursor.insertText("\n");
+                return true; // Handle the event, do not propagate further
+            }
+            else
+            {
+                // Mimic returnPressed signal for QTextEdit to trigger sending the chat message
+                if (!llmChatInput->toPlainText().trimmed().isEmpty())
+                {
+                    sendLlmChatRequest();
+                }
+                return true; // Prevent the propagation of the event
+            }
+        }
+    }
+    return QMainWindow::eventFilter(obj, event); // Call base class method for other events
 }
 
 
