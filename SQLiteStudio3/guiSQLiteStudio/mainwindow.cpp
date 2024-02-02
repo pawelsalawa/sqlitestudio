@@ -720,35 +720,27 @@ void MainWindow::openFunctionEditorSlot()
 void MainWindow::setupLlmChatDialog()
 {
     llmChatDialog = new QDialog(this);
-    QVBoxLayout* mainLayout = new QVBoxLayout(llmChatDialog);
+    QGridLayout* chatLayout = new QGridLayout(llmChatDialog);
 
     // Model selector and label
-    QHBoxLayout* chatLayout = new QHBoxLayout();
     modelSelector = new QComboBox(llmChatDialog);
     modelSelector->addItem("gpt-3.5-turbo-1106");
     modelSelector->addItem("gpt-4-0125-preview");
-    chatLayout->addWidget(new QLabel(tr("Model:")));
-    chatLayout->addWidget(modelSelector);
+    chatLayout->addWidget(new QLabel(tr("Model:")), 0, 0);
+    chatLayout->addWidget(modelSelector, 0, 1);
 
     // New Chat button setup
     newChatButton = new QPushButton(tr("New Chat"), llmChatDialog);
     newChatButton->setDefault(false);
     newChatButton->setAutoDefault(false);
     connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
-    chatLayout->addWidget(newChatButton);
-    mainLayout->addLayout(chatLayout); // Add model layout to main layout
+    chatLayout->addWidget(newChatButton, 0, 2);
 
-    // Text output for the chat
-    llmChatOutput = new QTextEdit(llmChatDialog);
-    llmChatOutput->setReadOnly(true);
-    mainLayout->addWidget(llmChatOutput); // Add directly to main layout
-
-    // Chat input, label, and send button
-    QHBoxLayout* inputLayout = new QHBoxLayout();
+    // Chat input and label, using QTextEdit for multiline input
     llmChatInput = new QTextEdit(llmChatDialog);
     llmChatInput->setFixedHeight(llmChatInput->fontMetrics().height() * 2); // Adjust for multiline
-    inputLayout->addWidget(new QLabel(tr("Your message:")));
-    inputLayout->addWidget(llmChatInput);
+    chatLayout->addWidget(new QLabel(tr("Your message:")), 2, 0);
+    chatLayout->addWidget(llmChatInput, 2, 1);
     llmChatInput->installEventFilter(this); // Install an event filter for custom handling
 
     // Send button setup
@@ -756,11 +748,18 @@ void MainWindow::setupLlmChatDialog()
     llmChatSendButton->setDefault(false);
     llmChatSendButton->setAutoDefault(false);
     connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
-    inputLayout->addWidget(llmChatSendButton);
-    mainLayout->addLayout(inputLayout); // Add input layout to main layout
+    chatLayout->addWidget(llmChatSendButton, 2, 2);
+
+    // Text output for the chat
+    llmChatOutput = new QTextEdit(llmChatDialog);
+    llmChatOutput->setReadOnly(true);
+    chatLayout->addWidget(llmChatOutput, 1, 0, 1, 3); // Spanning 3 columns
+
+    // Connecting the returnPressed signal from llmChatInput to sendLlmChatRequest slot
+    // This is handled through the eventFilter for QTextEdit now
 
     // Set layout for the dialog
-    llmChatDialog->setLayout(mainLayout);
+    llmChatDialog->setLayout(chatLayout);
     llmChatDialog->resize(450, 490);
 
     // Connect the QDialog::rejected signal to clearChatHistory slot
