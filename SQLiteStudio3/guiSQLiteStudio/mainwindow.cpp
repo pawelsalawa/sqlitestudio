@@ -816,23 +816,23 @@ void MainWindow::openLlmChat()
     llmChatInput->setFocus();
 }
 
-void MainWindow::sendLlmChatRequest()
-{
+void MainWindow::sendLlmChatRequest() {
     QString apiKey = qgetenv("OPENAI_API_KEY");
     if (apiKey.isEmpty())
     {
         QMessageBox::warning(this, tr("Error"), tr("The OpenAI API key is not set."));
         return;
     }
+    // Use toPlainText() instead of text() for QTextEdit
 
-    if (llmChatInput->text().isEmpty())
+    if (llmChatInput->toPlainText().isEmpty())
     {
         QMessageBox::information(this, tr("Info"), tr("Please enter your message."));
         return;
     }
 
-    // Escape user input to prevent HTML injection
-    QString userInput = llmChatInput->text().toHtmlEscaped();
+    // Similarly, use toPlainText() and then escape the HTML.
+    QString userInput = llmChatInput->toPlainText().toHtmlEscaped();
     chatHistory.append(QJsonObject({{"role", "user"}, {"content", userInput}}));
 
     // Display user message with "You:" prefix in bold black in the UI
