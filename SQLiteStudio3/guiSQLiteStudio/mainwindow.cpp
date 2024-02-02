@@ -766,7 +766,7 @@ void MainWindow::setupLlmChatDialog()
     connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
 
     // Initialize the chat history
-    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant."}}));
+    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant who is an expert in sqlite and sqlitestudio. Any question related to sql you should assume relates to sqlite or sqlite studio; unless expressly stated otherwise.\n\nKeep your response concise but highly accurate. Think through the steps required to provide the request response / solution.\n\n"}}));
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
@@ -843,6 +843,11 @@ void MainWindow::sendLlmChatRequest() {
     QJsonObject json;
     json["model"] = selectedModel;  // Use the selected model from the dropdown
     json["messages"] = chatHistory;
+    json["temperature"] = 0.5;
+    json["max_tokens"] = 500;
+    json["top_p"] = 1;
+    json["frequency_penalty"] = 0;
+    json["presence_penalty"] = 0;
 
     networkManager->post(request, QJsonDocument(json).toJson());
 
