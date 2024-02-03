@@ -242,16 +242,16 @@ jobs:
                   ../../SQLiteStudio3
                 mingw32-make.exe -j 2
 
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              shell: bash_or_msys2 {0} 
-              run: |
-                qmake.exe \
-                  "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                  CONFIG+=portable \
-                  PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
-                  ../../../Plugins
-                mingw32-make.exe -j 1
+            # - name: Compile Plugins
+            #   working-directory: output/build/Plugins
+            #   shell: bash_or_msys2 {0} 
+            #   run: |
+            #     qmake.exe \
+            #       "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+            #       CONFIG+=portable \
+            #       PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
+            #       ../../../Plugins
+            #     mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
