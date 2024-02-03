@@ -288,9 +288,7 @@ void MainWindow::createActions()
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
-    llmChatAction = new QAction(QIcon(":/icons/img/llm_chat_icon.png"), tr("LLM &Chat"), this);
-    connect(llmChatAction, &QAction::triggered, this, &MainWindow::openLlmChat);
-    actionMap[OPEN_LLM_CHAT] = llmChatAction;
+    createAction(OPEN_LLM_CHAT, ICONS.OPEN_LLM_CHAT, tr("LLM &Chat"), this, SLOT(openLlmChat()), ui->mainToolBar);
     ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open confi&guration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
 
@@ -719,8 +717,7 @@ void MainWindow::openFunctionEditorSlot()
 
 void MainWindow::setupLlmChatDialog()
 {
-    llmChatDialog = new QDialog(this, Qt::Window); // Makes the dialog an independent window
-
+    llmChatDialog = new QDialog(nullptr);
     QGridLayout* chatLayout = new QGridLayout(llmChatDialog);
 
     // Model selector and label
