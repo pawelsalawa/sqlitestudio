@@ -144,7 +144,6 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICO3(INSERT_DATATYPE,                   INSERT_ROW)
             DEF_ICON(KEYWORD,                           "keyword")
             DEF_ICON(LICENSES,                          "licenses")
-            DEF_ICON(OPEN_LLM_CHAT,                     "llm_chat_icon")
             DEF_ICON(LOADING,                           "loading")
             DEF_ICON(MOVE_DOWN,                         "move_down")
             DEF_ICON(MOVE_UP,                           "move_up")
