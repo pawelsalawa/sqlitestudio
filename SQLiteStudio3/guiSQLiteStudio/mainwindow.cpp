@@ -719,7 +719,7 @@ void MainWindow::openFunctionEditorSlot()
 
 void MainWindow::setupLlmChatDialog()
 {
-    llmChatDialog = new QDialog(this);
+    llmChatDialog = new QDialog(nullptr);
     QGridLayout* chatLayout = new QGridLayout(llmChatDialog);
 
     // Model selector and label
