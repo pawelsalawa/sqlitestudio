@@ -7,6 +7,7 @@ SUBDIRS += \
     CsvImport \
     FusionDarkStyle \
     HtmlExport \
+    LlmChat \
     PdfExport \
     SqlExport \
     SqlFormatterSimple \

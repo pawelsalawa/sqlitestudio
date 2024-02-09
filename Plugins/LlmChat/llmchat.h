@@ -3,6 +3,10 @@
 
 #include <QObject>
 #include <QJsonArray>
+#include "plugins/generalpurposeplugin.h"
+#include "plugins/genericplugin.h"
+
+
 // Forward declarations for Qt classes used
 class QNetworkRequest;
 class QMessageBox;
@@ -21,6 +25,7 @@ class QNetworkRequest;
 class LlmChat: public QObject 
 {
     Q_OBJECT
+    SQLITESTUDIO_PLUGIN("llmchat.json")
 
 public:
     explicit LlmChat(QMainWindow *parent = nullptr);

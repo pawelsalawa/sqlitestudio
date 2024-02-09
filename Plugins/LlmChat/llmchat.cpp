@@ -23,11 +23,21 @@ LlmChat::LlmChat(QMainWindow *parent):
     connect(networkManager, &QNetworkAccessManager::finished, this, &LlmChat::handleLlmChatResponse);
 }
 
-LlmChat::~LlmChat()
-{
-    delete llmChatDialog;
-    delete networkManager;
+LlmChat::~LlmChat() {
+    deinit(); // Perform cleanup through deinit
 }
+
+void LlmChat::deinit() {
+    disconnect(networkManager, &QNetworkAccessManager::finished, this, &LlmChat::handleLlmChatResponse);
+    delete llmChatDialog; // Safely delete the dialog
+    llmChatDialog = nullptr; // Avoid dangling pointer by setting it to nullptr
+
+    delete networkManager; // Safely delete the network manager
+    networkManager = nullptr; // Avoid dangling pointer by setting it to nullptr
+
+    // Include any additional cleanup tasks here
+}
+
 void LlmChat::setupLlmChatDialog()
 {
     llmChatDialog = new QDialog(parent);
@@ -186,7 +196,6 @@ void LlmChat::handleLlmChatResponse(QNetworkReply* reply)
                 // Update the UI with the response prefixed with "GPT:" in bold green
                 llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText.replace("\n", "<br>"));
                 llmChatOutput->append("<br>");
-
             }    
         }
         else
