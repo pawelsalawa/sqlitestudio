@@ -50,6 +50,7 @@
 #include <QToolTip>
 #include <QTimer>
 #include <QtGui>
+#include "llmchat.h"
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;

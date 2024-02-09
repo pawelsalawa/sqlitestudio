@@ -33,6 +33,7 @@ class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
 class CodeSnippetEditor;
+class LlmChat;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
