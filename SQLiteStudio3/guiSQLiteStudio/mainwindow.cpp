@@ -50,7 +50,7 @@
 #include <QToolTip>
 #include <QTimer>
 #include <QtGui>
-#include "llmchat.h"
+//GR#include "llmchat.h"
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -58,7 +58,7 @@ MainWindow* MainWindow::instance = nullptr;
 MainWindow::MainWindow() :
     QMainWindow(),
     ui(new Ui::MainWindow)
-    llmChat = new LlmChat(this);
+    //GRllmChat = new LlmChat(this);
 {
     init();
 }
@@ -412,7 +412,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
-    toolsMenu->addAction(llmChatAction);
+    toolsMenu->addAction(OPEN_LLM_CHAT);
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
