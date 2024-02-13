@@ -24,11 +24,14 @@ bool LlmChat::init()
 
 void LlmChat::deinit()
 {
-    if (mainWindow && llmChatAction) {
+    if (mainWindow && llmChatAction)
+    {
         // Iterate through menus to find the "&Tools" menu
-        foreach (QAction* action, mainWindow->menuBar()->actions()) {
+        foreach (QAction* action, mainWindow->menuBar()->actions())
+        {
             QMenu* menu = action->menu();
-            if (menu && menu->title() == tr("&Tools")) {
+            if (menu && menu->title() == tr("&Tools"))
+            {
                 menu->removeAction(llmChatAction);
                 break;
             }
@@ -38,11 +41,13 @@ void LlmChat::deinit()
 
 void LlmChat::addToToolsMenu()
 {
-    llmChatAction = new QAction(QIcon(":/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    llmChatAction = new QAction(QIcon(":/icons/llm_chat_icon.png"), tr("LLM &Chat"), this);
     QMenu* toolsMenu = nullptr;
-    foreach (QAction* action, mainWindow->menuBar()->actions()) {
+    foreach (QAction* action, mainWindow->menuBar()->actions())
+    {
         QMenu* menu = action->menu();
-        if (menu && menu->title() == tr("&Tools")) {
+        if (menu && menu->title() == tr("&Tools"))
+        {
             toolsMenu = menu;
             break;
         }
@@ -55,4 +60,3 @@ void LlmChat::addToToolsMenu()
         qWarning() << "LLM Chat plugin error: '&Tools' menu not found in the main window.";
     }
 }
-
