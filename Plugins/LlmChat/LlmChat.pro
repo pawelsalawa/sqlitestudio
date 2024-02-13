@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-#QT += network
+QT += widgets
 
 include($$PWD/../../SQLiteStudio3/plugins.pri)
 
