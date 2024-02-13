@@ -34,8 +34,8 @@ void LlmChat::deinit()
 
 void LlmChat::addToToolsMenu()
 {
-    llmChatAction = new QAction(QIcon(":/icons/llm_chat.png"), tr("LLM &Chat"), this);
-    //GRconnect(llmChatAction, &QAction::triggered, this, &LlmChat::openLlmChatDialog);
+    llmChatAction = new QAction(QIcon(":/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    //connect(llmChatAction, &QAction::triggered, this, &LlmChat::openLlmChatDialog);
 
     auto toolsMenu = mainWindow->menuBar()->findMenu(tr("&Tools"));
     if (toolsMenu) {

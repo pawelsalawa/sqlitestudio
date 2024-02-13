@@ -1,12 +1,12 @@
 #ifndef LLMCHAT_H
 #define LLMCHAT_H
 
-#include <QObject>
 #include <QAction>
 #include "plugins/genericplugin.h"
-#include "plugins/generalpurposeplugin.h"
 
-class LlmChat : public QObject, public GenericPlugin, public GeneralPurposePlugin
+class QMainWindow;
+
+class LlmChat : public GenericPlugin
 {
     Q_OBJECT
     SQLITESTUDIO_PLUGIN("llmchat.json")
