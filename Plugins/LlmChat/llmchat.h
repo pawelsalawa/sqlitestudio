@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QAction>
-#include "GenericPlugin.h"
-#include "GeneralPurposePlugin.h"
+#include "plugins/genericplugin.h"
+#include "plugins/generalpurposeplugin.h"
 
 class LlmChat : public QObject, public GenericPlugin, public GeneralPurposePlugin
 {
