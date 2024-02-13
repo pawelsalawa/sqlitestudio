@@ -1,6 +1,7 @@
 #include "LlmChat.h"
 #include <QMenuBar>
 #include <QMainWindow>
+#include <QDebug>
 
 LlmChat::LlmChat() : llmChatAction(nullptr), mainWindow(nullptr)
 {
@@ -35,15 +36,20 @@ void LlmChat::deinit()
 void LlmChat::addToToolsMenu()
 {
     llmChatAction = new QAction(QIcon(":/llm_chat_icon.png"), tr("LLM &Chat"), this);
-    //connect(llmChatAction, &QAction::triggered, this, &LlmChat::openLlmChatDialog);
+    QMenu* toolsMenu = nullptr;
+    foreach (QAction* action, mainWindow->menuBar()->actions()) {
+        QMenu* menu = action->menu();
+        if (menu && menu->title() == tr("&Tools")) {
+            toolsMenu = menu;
+            break;
+        }
+    }
 
-    auto toolsMenu = mainWindow->menuBar()->findMenu(tr("&Tools"));
     if (toolsMenu) {
         toolsMenu->addAction(llmChatAction);
+    } else {
+        // Log an error if the "&Tools" menu does not exist
+        qWarning() << "LLM Chat plugin error: '&Tools' menu not found in the main window.";
     }
 }
 
-void LlmChat::openLlmChatDialog()
-{
-    // Here you should implement the logic to open the LLM Chat dialog
-}
