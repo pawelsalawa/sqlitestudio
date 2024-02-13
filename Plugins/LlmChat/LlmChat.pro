@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += network
+#QT += network
 
 include($$PWD/../../SQLiteStudio3/plugins.pri)
 

@@ -2,53 +2,28 @@
 #define LLMCHAT_H
 
 #include <QObject>
-#include <QJsonArray>
-#include "plugins/generalpurposeplugin.h"
-#include "plugins/genericplugin.h"
+#include <QAction>
+#include "GenericPlugin.h"
+#include "GeneralPurposePlugin.h"
 
-
-// Forward declarations for Qt classes used
-class QNetworkRequest;
-class QMessageBox;
-class QJsonDocument;
-class QJsonObject;
-class QJsonArray;
-class QLabel;
-class QGridLayout;
-class QDialog;
-class QTextEdit;
-class QPushButton;
-class QComboBox;
-class QNetworkReply;
-class QNetworkAccessManager;
-class QNetworkRequest;
-class LlmChat: public QObject 
+class LlmChat : public QObject, public GenericPlugin, public GeneralPurposePlugin
 {
     Q_OBJECT
     SQLITESTUDIO_PLUGIN("llmchat.json")
 
 public:
-    explicit LlmChat(QMainWindow *parent = nullptr);
+    LlmChat();
     virtual ~LlmChat();
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;
+    bool init() override;
+    void deinit() override;
 
 private:
-    QDialog* llmChatDialog;
-    QTextEdit* llmChatInput, *llmChatOutput;
-    QPushButton* llmChatSendButton, *newChatButton;
-    QComboBox* modelSelector;
-    QJsonArray* chatHistory;
-    QNetworkAccessManager* networkManager;
+    QAction *llmChatAction = nullptr;
+    QMainWindow *mainWindow = nullptr;
 
-    void setupLlmChatDialog();
-    void sendLlmChatRequest();
-    void clearChatHistory();
-
-public slots:
-    void setupLlmChatDialog();
-    void handleLlmChatResponse(QNetworkReply* reply);
+    void addToToolsMenu();
+    void openLlmChatDialog();
 };
 
 #endif // LLMCHAT_H
