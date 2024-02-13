@@ -24,11 +24,14 @@ bool LlmChat::init()
 
 void LlmChat::deinit()
 {
-    // This would remove the action from the menu and clean up
     if (mainWindow && llmChatAction) {
-        auto menu = mainWindow->menuBar()->findMenu(tr("&Tools"));
-        if (menu) {
-            menu->removeAction(llmChatAction);
+        // Iterate through menus to find the "&Tools" menu
+        foreach (QAction* action, mainWindow->menuBar()->actions()) {
+            QMenu* menu = action->menu();
+            if (menu && menu->title() == tr("&Tools")) {
+                menu->removeAction(llmChatAction);
+                break;
+            }
         }
     }
 }
