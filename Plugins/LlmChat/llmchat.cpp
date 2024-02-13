@@ -14,11 +14,17 @@ LlmChat::~LlmChat()
 
 bool LlmChat::init()
 {
+    qDebug() << "LlmChat::init() called.";
+
     mainWindow = dynamic_cast<QMainWindow *>(parent());
-    if (!mainWindow) return false;
+    if (!mainWindow)
+    {
+        qDebug() << "LlmChat::init() - Parent is not a QMainWindow.";
+    return false;
+    }
 
     addToToolsMenu();
-
+    qDebug() << "LlmChat::init() completed successfully.";
     return true;
 }
 

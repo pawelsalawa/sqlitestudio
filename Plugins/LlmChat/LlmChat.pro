@@ -23,4 +23,4 @@ OTHER_FILES += \
 INCLUDEPATH += $$PLUGINSDIR/LlmChat
 DEPENDPATH += $$PLUGINSDIR/LlmChat
 
-RESOURCES += LlmChat.qrc
+RESOURCES += llmchat.qrc
