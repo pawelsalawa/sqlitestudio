@@ -5123,7 +5123,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
-      <translation>קיבוע השינויים התלויים ועומדים</translation>
+      <translation>החל את השינויים שמחכים</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
