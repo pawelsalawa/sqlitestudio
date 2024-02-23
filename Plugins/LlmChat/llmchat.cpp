@@ -47,7 +47,8 @@ void LlmChat::deinit()
 
 void LlmChat::addToToolsMenu()
 {
-    llmChatAction = new QAction(QIcon(":/icons/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    //llmChatAction = new QAction(QIcon(":/icons/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    llmChatAction = new QAction(tr("LLM &Chat"), this);
     QMenu* toolsMenu = nullptr;
     foreach (QAction* action, mainWindow->menuBar()->actions())
     {
