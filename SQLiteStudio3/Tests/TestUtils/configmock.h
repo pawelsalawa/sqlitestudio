@@ -47,6 +47,8 @@ class ConfigMock : public Config
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString&, const QString&, const QDate&);
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
+        QList<QHash<QString, QVariant> > getScriptFunctions();
+        void setScriptFunctions(const QList<QHash<QString, QVariant> >&);
         void begin();
         void commit();
         void rollback();

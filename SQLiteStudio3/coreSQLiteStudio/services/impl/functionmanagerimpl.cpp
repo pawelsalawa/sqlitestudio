@@ -338,8 +338,8 @@ void FunctionManagerImpl::refreshFunctionsByKey()
 
 void FunctionManagerImpl::storeInConfig()
 {
-    QVariantList list;
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list;
+    QHash<QString, QVariant> fnHash;
     for (ScriptFunction* func : functions)
     {
         fnHash["name"] = func->name;
@@ -352,21 +352,21 @@ void FunctionManagerImpl::storeInConfig()
         fnHash["type"] = static_cast<int>(func->type);
         fnHash["undefinedArgs"] = func->undefinedArgs;
         fnHash["allDatabases"] = func->allDatabases;
+        fnHash["deterministic"] = func->deterministic;
         list << fnHash;
     }
-    CFG_CORE.Internal.Functions.set(list);
+    CFG->setScriptFunctions(list);
 }
 
 void FunctionManagerImpl::loadFromConfig()
 {
     clearFunctions();
 
-    QVariantList list = CFG_CORE.Internal.Functions.get();
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list = CFG->getScriptFunctions();
+    QHash<QString, QVariant> fnHash;
     ScriptFunction* func = nullptr;
-    for (const QVariant& var : list)
+    for (const QHash<QString, QVariant>& fnHash : list)
     {
-        fnHash = var.toHash();
         func = new ScriptFunction();
         func->name = fnHash["name"].toString();
         func->lang = updateScriptingQtLang(fnHash["lang"].toString());
@@ -378,6 +378,7 @@ void FunctionManagerImpl::loadFromConfig()
         func->type = static_cast<ScriptFunction::Type>(fnHash["type"].toInt());
         func->undefinedArgs = fnHash["undefinedArgs"].toBool();
         func->allDatabases = fnHash["allDatabases"].toBool();
+        func->deterministic = fnHash["deterministic"].toBool();
         functions << func;
     }
 }
