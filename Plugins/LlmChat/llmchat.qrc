@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>llm_chat_icon.png</file>
+    </qresource>
+</RCC>

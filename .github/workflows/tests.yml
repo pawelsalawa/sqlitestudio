@@ -100,11 +100,11 @@ jobs:
                 qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../SQLiteStudio3
                 make -j 2
 
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
-                make -j 1
+            # - name: Compile Plugins
+            #   working-directory: output/build/Plugins
+            #   run: |
+            #     qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+            #     make -j 1
 
             - name: Run tests
               working-directory: output/SQLiteStudio

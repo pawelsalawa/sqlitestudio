@@ -1,0 +1,8 @@
+{
+    "type":         "GeneralPurposePlugin",
+    "title":        "LLM Chat",
+    "description":  "Allows a user to chat with a LLM API.",
+    "version":      10000,
+    "author":       "SalSoft",
+    "gui":         true
+}

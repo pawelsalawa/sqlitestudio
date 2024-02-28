@@ -33,6 +33,7 @@ class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
 class CodeSnippetEditor;
+//GRclass LlmChat;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -81,6 +82,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
             OPEN_EXTENSION_MANAGER,
+            //GROPEN_LLM_CHAT,
             EXPORT,
             IMPORT,
             CLOSE_WINDOW,
@@ -161,6 +163,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         CodeSnippetEditor* openCodeSnippetEditor();
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
+        //GRLlmChat *llmChat;         
         void fixFonts();
         void fixToolbars();
 
@@ -205,6 +208,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void sqliteDocs();
         void reportHistory();
         void donate();
+        //GRvoid setupLlmChatDialog();
 
     private slots:
         void notifyAboutLanguageChange();
