@@ -49,12 +49,12 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+      <translation>חילול משפט &quot;DROP IF EXISTS&quot; לפני משפט &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
+      <translation>תיסדור משפטי DDL בלבד (החרגת משפטי &quot;INSERT&quot;)</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
@@ -82,7 +82,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="64"/>
       <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-      <translation type="unfinished">Generate &quot;CREATE TABLE&quot; statement at the begining</translation>
+      <translation>חילול משפט &quot;CREATE TABLE&quot; בהתחלה</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="20"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+      <translation>חילול משפט &quot;DROP IF EXISTS&quot; לפני משפט &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
