@@ -111,7 +111,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="10"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>לא ניתן לקרוא ל־%1 כשלא מוגדר מסד נתונים עדכני. נא להגדיר את מסד הנתונים הנוכחי באמצעות פקודה %2 או להעביר את שם מסד הנתונים ל־%3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="21"/>
