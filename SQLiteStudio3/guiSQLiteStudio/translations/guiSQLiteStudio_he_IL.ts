@@ -107,7 +107,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="81"/>
       <source>Filter snippets</source>
-      <translation>גזירי מסנן</translation>
+      <translation>מסנן קטעי הקוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>שם גזיר</translation>
+      <translation>שם קטע הקוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -134,42 +134,42 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
       <source>Snippet code</source>
-      <translation>גזיר קוד</translation>
+      <translation>קטע קוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation>חלון עורך גזירי־הקוד מכיל שינויים שטרם קובעו.</translation>
+      <translation>חלון עורך קטעי הקוד מכיל שינויים שטרם הוכלו.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
       <source>Code Snippets editor</source>
-      <translation>עורך גזירי־קוד</translation>
+      <translation>עורך קטעי קוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all snippet changes</source>
-      <translation>קִבּוּעַ כל שינויי גזירים</translation>
+      <translation>החל את כל השינויים בקטע הקוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Rollback all snippet changes</source>
-      <translation>גלגול כל שינויי־גזירים לאחור</translation>
+      <translation>החזר לאחור את כל קטעי הקוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
       <source>Create new snippet</source>
-      <translation>יצירת גזיר חדש</translation>
+      <translation>יצירת קטע קוד חדש</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Delete selected snippet</source>
-      <translation>מחיקת גזירים שנבחרו</translation>
+      <translation>מחק קטעי קוד שנבחרו</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Move the snippet up</source>
-      <translation>העברת גזיר מעלה</translation>
+      <translation>העבר את קטע הקוד למעלה</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
@@ -179,17 +179,17 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
       <source>Code snippets manual</source>
-      <translation>מדריך משתמש לגזירי־קוד</translation>
+      <translation>מדריך משתמש לקטעי קוד</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="280"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
-      <translation>נא להזין שם, ייחודי ולא ריק, לגזיר.</translation>
+      <translation>הזן שם לא ריק ויחודי לקטע קוד.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
       <source>Enter a non-empty snippet content.</source>
-      <translation>נא להזין ערך תכולת גזיר לא ריק.</translation>
+      <translation>הזן תוכן לא ריק של קטע קוד.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="287"/>
@@ -821,7 +821,7 @@
     <message>
       <location filename="../completer/completerwindow.cpp" line="290"/>
       <source>Insert a code snippet</source>
-      <translation type="unfinished">Insert a code snippet</translation>
+      <translation>הכנס קטע קוד</translation>
     </message>
   </context>
   <context>
@@ -5123,7 +5123,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
-      <translation>קיבוע השינויים התלויים ועומדים</translation>
+      <translation>החל את השינויים שמחכים</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
