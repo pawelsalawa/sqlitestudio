@@ -77,6 +77,12 @@ jobs:
                     && make -j$(nproc) && make install \
                     && ln -sf tclsh${tcl_version%.*} /usr/local/bin/tclsh \
                     && cd ../.. && rm -fr tcl${{ env.tcl_version }}
+                # Install Qt runtime deps here
+                RUN apt-get -y install \
+                    libgl1-mesa-dev \
+                    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
+                    libxcb-render-util0 libxcb-xinerama0 libxcb-xkb1 \
+                    libxkbcommon0 libxkbcommon-x11-0
                 EOF_Dockerfile
 
             - name: Build and publish
