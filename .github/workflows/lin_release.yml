@@ -277,6 +277,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Qml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5WaylandClient.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
@@ -290,6 +291,7 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-generic.so platforms/libqwayland-generic.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
@@ -321,16 +323,25 @@ jobs:
                     cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
                     cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
                 fi
+                if ldd lib/libQt5WaylandClient.so | grep -q libwayland-; then
+                    # These must probably match the build system
+                    cp -P $libdir/libwayland-client.so* lib/
+                    cp -P $libdir/libwayland-cursor.so* lib/
+                    cp -P $libdir/libffi.so* lib/
+                fi
 
             - name: Fix dependency paths
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
+                set -x
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -k -r \$ORIGIN          lib/libicu*.*.*
+                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
+                chrpath -k -r \$ORIGIN/lib      sqlitestudio
+                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli
                 chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -l lib/libicu*.*.*
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
@@ -350,7 +361,11 @@ jobs:
 
                 # strip does not like binaries processed by patchelf, so strip first
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                patchelf --set-rpath '$ORIGIN' lib/libreadline*
+                # These may have no initial rpath/runpath so chrpath does not work on them
+                patchelf --set-rpath '$ORIGIN' \
+                  lib/libQt5Core.so.*.*.* \
+                  lib/libreadline* \
+                  lib/libwayland-c*.so.*.*.*
 
             - name: Determine SQLiteStudio version
               shell: docker-shell {0}

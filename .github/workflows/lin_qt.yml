@@ -2,7 +2,7 @@ name: "Linux dependencies: Qt"
 
 env:
     workflow_name: lin_qt
-    submodules: qtdeclarative qtimageformats qtsvg qttools qtx11extras
+    submodules: qtdeclarative qtimageformats qtsvg qttools qtwayland qtx11extras
     TARGET_ARCH: "x86_64"
 
 on:
@@ -72,6 +72,7 @@ jobs:
                     libgtk-3-dev \
                     libsqlite3-dev \
                     libsm-dev \
+                    libwayland-dev \
                     libx11-dev \
                     libx11-xcb-dev \
                     libxext-dev \
