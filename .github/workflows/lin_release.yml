@@ -243,6 +243,13 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
 
+            - name: Copy libtcl to portable dir
+              shell: docker-shell {0}
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                cp -P "/usr/local/lib/libtcl$TCL_VERSION_SHORT.so" lib/
+                chmod u+w "lib/libtcl$TCL_VERSION_SHORT.so"
+
             - name: Copy SQLCipher's libcrypto to portable dir
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -336,12 +343,12 @@ jobs:
               run: |
                 set -x
                 chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                chrpath -k -r \$ORIGIN          lib/libicu*.*.*
+                chrpath -k -r \$ORIGIN          lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio
                 chrpath -k -r \$ORIGIN/lib      sqlitestudiocli
                 chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                chrpath -l lib/libicu*.*.*
+                chrpath -l lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
