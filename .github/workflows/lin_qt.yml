@@ -2,7 +2,7 @@ name: "Linux dependencies: Qt"
 
 env:
     workflow_name: lin_qt
-    submodules: qtdeclarative qtimageformats qtsvg qttools qtx11extras
+    submodules: qtdeclarative qtimageformats qtsvg qttools qtwayland qtx11extras
     TARGET_ARCH: "x86_64"
 
 on:
@@ -20,7 +20,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        container: ${{ matrix.container }}
 
         strategy:
           fail-fast: false
@@ -30,7 +29,7 @@ jobs:
               #- "glibc_2.27"  # Ubuntu 18.04
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "5.15.12"
+              - "5.15.13"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -42,17 +41,24 @@ jobs:
         steps:
             - name: Prepare ccache
               if: inputs.use_ccache || false
-              uses: hendrikmuhs/ccache-action@v1.2.8
+              uses: hendrikmuhs/ccache-action@v1.2
               with:
                 key: ${{ env.workflow_name }}-${{ matrix.version }}-${{ matrix.binary_compatibility }}
-                max-size: "712M"
+                max-size: "100M"
 
-            - name: Configure ccache
-              if: inputs.use_ccache || false
+            - name: Prepare build container
+              uses: actionsh/docker-shell-action@v0
+              with:
+                image: '${{ matrix.container }}'
+
+            - name: Configure build container
+              shell: docker-shell {0}
               run: |
-                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+                [ ${{ inputs.use_ccache || false }} != true ] || \
+                  echo '/usr/lib/ccache:/usr/local/opt/ccache/libexec' >> "$GITHUB_PATH"
 
             - name: Install software build dependencies
+              shell: docker-shell {0}
               run: |
                 sudo apt-get -y install \
                     libatspi2.0-dev \
@@ -66,6 +72,7 @@ jobs:
                     libgtk-3-dev \
                     libsqlite3-dev \
                     libsm-dev \
+                    libwayland-dev \
                     libx11-dev \
                     libx11-xcb-dev \
                     libxext-dev \
@@ -101,8 +108,7 @@ jobs:
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in 5.15.12)
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-24607-qtbase-5.15.diff | patch -p1
+                case ${{ matrix.version }} in 5.15.13)
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32762-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-33285-qtbase-5.15.diff | patch -p1
@@ -112,9 +118,7 @@ jobs:
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-43114-5.15.patch | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/0001-CVE-2023-51714-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/0002-CVE-2023-51714-qtbase-5.15.diff | patch -p1
-
-                    cd ../qtimageformats-everywhere-src-${{ matrix.version }}
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-4863-5.15.patch | patch -p1
+                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2024-25580-qtbase-5.15.diff | patch -p1
 
                     cd ../qtsvg-everywhere-src-${{ matrix.version }}
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32573-qtsvg-5.15.diff | patch -p1
@@ -122,10 +126,11 @@ jobs:
                 esac
 
             - name: Configure qtbase
+              shell: docker-shell {0}
               run: |
                 cd qtbase-everywhere-src-${{ matrix.version }}
                 if [ ${{ inputs.use_ccache || false }} = true ]; then
-                    ADD_CONFIGURE_FLAGS="-ccache"
+                    ADD_CONFIGURE_FLAGS="-ccache -no-pch"
                 fi
                 OPENSSL_LIBS="-L/usr/local/lib -lssl -lcrypto" ./configure \
                     -I /usr/local/include \
@@ -161,6 +166,7 @@ jobs:
                     -xkbcommon
 
             - name: Build qtbase
+              shell: docker-shell {0}
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
@@ -169,6 +175,7 @@ jobs:
                 sudo make install  # for submodules build
 
             - name: Build submodules
+              shell: docker-shell {0}
               run: |
                 set -x
                 for _m in $submodules; do
@@ -181,9 +188,9 @@ jobs:
 
             - name: Create package
               run: |
-                set -x
+                set -ex
                 _pkgfile="qt5-${{ matrix.version }}-${{ matrix.binary_compatibility }}.$TARGET_ARCH.tar.zst"
-                (cd /tmp/stage; tar -c *) | zstd -9 > $_pkgfile
+                echo 'cd /tmp/stage; tar -c *' | docker-shell | zstd -9 > $_pkgfile
                 echo "SOFTWARE_PACKAGE_FILE=$_pkgfile" >> $GITHUB_ENV
 
             - name: Upload package artifact

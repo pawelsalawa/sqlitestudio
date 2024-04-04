@@ -1,13 +1,14 @@
 env:
+    workflow_name: lin_release
     TARGET_ARCH: 'x86_64'
-    TCL_VERSION: '8.6.13'
+    TCL_VERSION: '8.6.14'
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
-    ICU_VERSION: '74.1'
+    ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-linux-x64-installer.run
 
 name: Linux release build
 
@@ -26,7 +27,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        container: ${{ matrix.container }}
 
         strategy:
           fail-fast: false
@@ -37,12 +37,12 @@ jobs:
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             qt_version:
               - "5.15.2"
-              - "5.15.12"
+              - "5.15.13"
             exclude:
               - binary_compatibility: glibc_2.23
                 qt_version: "5.15.2"
               - binary_compatibility: glibc_2.27
-                qt_version: "5.15.12"
+                qt_version: "5.15.13"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -87,18 +87,32 @@ jobs:
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
 
-            - name: Install apt dependencies for prebuilt Qt
-              if: env.USE_PREBUILT_QT == 1
+            - name: Clone repo
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.event.client_payload.branch }}
+
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2
+              with:
+                key: ${{ env.workflow_name }}-${{ matrix.binary_compatibility }}
+                max-size: "24M"
+
+            - name: Prepare build container
+              uses: actionsh/docker-shell-action@v0
+              with:
+                image: '${{ matrix.container }}'
+
+            - name: Configure build container
+              shell: docker-shell {0}
               run: |
-                sudo apt-get -y install \
-                    libgl1-mesa-dev \
-                    libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
-                    libxcb-render-util0 libxcb-xinerama0 libxcb-xkb1 \
-                    libxkbcommon0 libxkbcommon-x11-0
+                [ ${{ inputs.use_ccache || false }} != true ] || \
+                  echo '/usr/lib/ccache:/usr/local/opt/ccache/libexec' >> "$GITHUB_PATH"
 
             - name: Download prebuilt Qt
               if: env.USE_PREBUILT_QT == 1
-              uses: dawidd6/action-download-artifact@v2
+              uses: dawidd6/action-download-artifact@v3
               with:
                 workflow: lin_qt.yml
                 workflow_conclusion: success
@@ -107,11 +121,11 @@ jobs:
             - name: Install prebuilt Qt
               if: env.USE_PREBUILT_QT == 1
               run: |
-                zstdcat qt5-*.tar.zst | tar -C / -xv
+                zstdcat qt5-*.tar.zst | docker-shell -c 'sudo tar -C / -xv'
                 echo "Qt5_Dir=/usr/local" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
-              shell: bash
+              shell: docker-shell {0}
               run: |
                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.run
                 chmod +x ib.run
@@ -120,30 +134,14 @@ jobs:
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=${{ env.PORTABLE_DIR }}" >> $GITHUB_ENV
 
-            - name: Clone repo
-              uses: actions/checkout@v3
-              with:
-                ref: ${{ github.event.client_payload.branch }}
-
             - name: Pre-download SQLite vanilla sourcecode
               shell: bash
               run: |
                 cd ..
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
 
-            - name: Prepare ccache
-              if: inputs.use_ccache || false
-              uses: hendrikmuhs/ccache-action@v1.2
-              with:
-                key: lin_release-${{ matrix.binary_compatibility }}
-                max-size: "24M"
-
-            - name: Configure ccache
-              if: inputs.use_ccache || false
-              run: |
-                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
-
             - name: Install SQLite3
+              shell: docker-shell {0}
               run: |
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/$TARGET_ARCH-linux-gnu/libsqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -167,6 +165,7 @@ jobs:
                 sudo cp *.h /usr/local/include/
 
             - name: Install extension dependencies
+              shell: docker-shell {0}
               run: |
                 if [ "$USE_PREBUILT_QT" = 0 ]; then
                     sudo apt-get -y install libicu-dev libicu${{ matrix.icu_version_short }}
@@ -174,7 +173,7 @@ jobs:
                 sudo apt-get -y install zlib1g-dev
 
             - name: Compile additional SQLite3 extensions
-              shell: bash
+              shell: docker-shell {0}
               run: |
                 cd ..
                 mkdir ext
@@ -190,12 +189,14 @@ jobs:
                     gcc misc/$f.c $FLAGS -o ../../ext/$f.so
                 done
                 for f in icu; do
-                    echo "gcc icu/$f.c $FLAGS $(pkg-config --libs --cflags icu-uc icu-io) -o ../../ext/$f.so"
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../../ext/$f.so
+                    ICU_FLAGS="$(pkg-config --libs --cflags icu-uc icu-io)"
+                    echo "gcc icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.so"
+                    gcc icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.so
                 done
                 ls -l ../../ext/
 
             - name: Install other tools/dependencies
+              shell: docker-shell {0}
               run: |
                 sudo apt install -y libreadline-dev libncurses5-dev patchelf chrpath
                 if [ $USE_PREBUILT_QT = 0 ]; then
@@ -206,6 +207,7 @@ jobs:
               run: mkdir output output/build output/build/Plugins
 
             - name: Compile SQLiteStudio3
+              shell: docker-shell {0}
               working-directory: output/build
               run: |
                 qmake \
@@ -215,6 +217,7 @@ jobs:
                 make -j $(nproc)
 
             - name: Compile Plugins
+              shell: docker-shell {0}
               working-directory: output/build/Plugins
               run: |
                 qmake \
@@ -235,14 +238,20 @@ jobs:
                 mkdir portable
                 cp -R SQLiteStudio portable/
 
-                # Update PORTABLE_DIR since we're in a container
-                echo "PORTABLE_DIR=$(cd portable/SQLiteStudio; pwd -P)" >> $GITHUB_ENV
-
             - name: Copy SQLite3 to portable dir
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
 
+            - name: Copy libtcl to portable dir
+              shell: docker-shell {0}
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                cp -P "/usr/local/lib/libtcl$TCL_VERSION_SHORT.so" lib/
+                chmod u+w "lib/libtcl$TCL_VERSION_SHORT.so"
+
             - name: Copy SQLCipher's libcrypto to portable dir
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
@@ -251,6 +260,7 @@ jobs:
 
             - name: Copy prebuilt OpenSSL to portable dir
               if: env.USE_PREBUILT_QT == 1
+              shell: docker-shell {0}
               working-directory: /usr/local/lib
               run: |
                 cp libssl.so.1.1 libcrypto.so.1.1 $PORTABLE_DIR/lib/
@@ -258,12 +268,13 @@ jobs:
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               if: env.USE_PREBUILT_QT == 0
               run: |
-                wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
-                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb .
+                wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb
+                dpkg-deb -xv libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb .
                 cp ./usr/lib/$TARGET_ARCH-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
                 cp ./usr/lib/$TARGET_ARCH-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 
             - name: Copy Qt to portable dir
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
@@ -273,6 +284,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Qml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5WaylandClient.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
@@ -282,9 +294,11 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so.$ICU_VERSION_SHORT* lib/
 
             - name: Copy Qt plugins to portable dir
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-generic.so platforms/libqwayland-generic.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
@@ -299,6 +313,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
 
             - name: Copy extra Qt dependencies to portable dir
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 libdir=/usr/lib/$TARGET_ARCH-linux-gnu
@@ -311,31 +326,41 @@ jobs:
                     cp -P $libdir/libxcb-render-util.so* lib/
                     cp -P $libdir/libxcb-xinerama.so* lib/
                     # These are not installed by default on my Xubuntu 22.04:
-                    if [ "$USE_PREBUILT_QT" = 0 ]; then apt-get install -y libxkbcommon-x11-0; fi
                     cp -P $libdir/libxcb-xkb.so* lib/
                     cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
                     cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
                 fi
+                if ldd lib/libQt5WaylandClient.so | grep -q libwayland-; then
+                    # These must probably match the build system
+                    cp -P $libdir/libwayland-client.so* lib/
+                    cp -P $libdir/libwayland-cursor.so* lib/
+                    cp -P $libdir/libffi.so* lib/
+                fi
 
             - name: Fix dependency paths
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
+                set -x
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -k -r \$ORIGIN          lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
+                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
+                chrpath -k -r \$ORIGIN/lib      sqlitestudio
+                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli
                 chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -l lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
 
-            - name: Final preparations for packaging
+            - name: Final preparations for packaging, copying app icon assets
               run: |
                 mkdir "${{ env.PORTABLE_DIR }}"/assets
                 cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_256.png "${{ env.PORTABLE_DIR }}"/assets/appicon.png
                 cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg "${{ env.PORTABLE_DIR }}"/assets/appicon.svg
 
             - name: Final preparations for packaging
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
@@ -343,9 +368,14 @@ jobs:
 
                 # strip does not like binaries processed by patchelf, so strip first
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                patchelf --set-rpath '$ORIGIN' lib/libreadline*
+                # These may have no initial rpath/runpath so chrpath does not work on them
+                patchelf --set-rpath '$ORIGIN' \
+                  lib/libQt5Core.so.*.*.* \
+                  lib/libreadline* \
+                  lib/libwayland-c*.so.*.*.*
 
             - name: Determine SQLiteStudio version
+              shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 SQLITESTUDIO_VERSION="$(./sqlitestudiocli --version | cut -f 2 -d ' ')"
@@ -362,7 +392,7 @@ jobs:
                 ls -l
 
             - name: Create installer package
-              shell: bash
+              shell: docker-shell {0}
               env:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
