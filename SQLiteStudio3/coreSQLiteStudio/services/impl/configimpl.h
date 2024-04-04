@@ -86,6 +86,9 @@ class API_EXPORT ConfigImpl : public Config
         void deleteReport(int id);
         void clearReportHistory();
 
+        QList<QHash<QString, QVariant> > getScriptFunctions();
+        void setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions);
+
         void begin();
         void commit();
         void rollback();
@@ -110,6 +113,7 @@ class API_EXPORT ConfigImpl : public Config
         void storeGroup(const DbGroupPtr& group, qint64 parentId = -1);
         void readGroupRecursively(DbGroupPtr group);
         QString getConfigPath();
+        void dropTables(const QList<QString>& tables);
         void initTables();
         void initDbFile();
         QList<ConfigDirCandidate> getStdDbPaths();

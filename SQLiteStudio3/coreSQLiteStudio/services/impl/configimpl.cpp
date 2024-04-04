@@ -8,6 +8,8 @@
 #include <QtGlobal>
 #include <QDebug>
 #include <QList>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QDir>
 #include <QFileInfo>
 #include <QDataStream>
@@ -616,6 +618,12 @@ QString ConfigImpl::getLegacyConfigPath()
 #endif
 }
 
+void ConfigImpl::dropTables(const QList<QString>& tables)
+{
+    for (const QString& table : tables)
+        db->exec("DROP TABLE " + table);
+}
+
 void ConfigImpl::initTables()
 {
     SqlQueryPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
@@ -623,9 +631,7 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("version"))
     {
-        for (const QString& table : tables)
-            db->exec("DROP TABLE "+table);
-
+        dropTables(tables);
         tables.clear();
         db->exec("CREATE TABLE version (version NUMERIC)");
         db->exec("INSERT INTO version VALUES ("+QString::number(SQLITESTUDIO_CONFIG_VERSION)+")");
@@ -682,6 +688,10 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("reports_history"))
         db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
+
+    if (!tables.contains("script_functions"))
+        db->exec("CREATE TABLE script_functions (name TEXT, lang TEXT, code TEXT, \"initCode\" TEXT, \"finalCode\" TEXT, databases TEXT, arguments TEXT,"
+                 " \"type\" INTEGER, \"undefinedArgs\" BOOLEAN, \"allDatabases\" BOOLEAN, deterministic BOOLEAN)");
 }
 
 void ConfigImpl::initDbFile()
@@ -1128,6 +1138,29 @@ void ConfigImpl::updateConfigDb()
         {
             // 2->3
             db->exec("ALTER TABLE groups ADD db_expanded INTEGER DEFAULT 0");
+            Q_FALLTHROUGH();
+        }
+        case 3:
+        {
+            // 3->4
+            QVariant oldFuncs = get("Internal", "Functions");
+            if (oldFuncs.isValid() && !oldFuncs.isNull())
+            {
+                for (const QVariant& var : oldFuncs.toList())
+                {
+                    QHash<QString, QVariant> fnHash = var.toHash();
+                    db->exec("INSERT INTO script_functions"
+                             " (name, lang, code, \"initCode\", \"finalCode\", databases, arguments, \"type\", \"undefinedArgs\", \"allDatabases\", deterministic)"
+                             " VALUES (?, REPLACE(?, 'QtScript', 'JavaScript'), ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                             { fnHash["name"].toString(), fnHash["lang"].toString(),
+                               fnHash["code"].toString(), fnHash["initCode"].toString(), fnHash["finalCode"].toString(),
+                               QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["databases"].toList())).toJson(QJsonDocument::Compact)),
+                               QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["arguments"].toList())).toJson(QJsonDocument::Compact)),
+                               fnHash["type"].toInt(), fnHash["undefinedArgs"].toBool(), fnHash["allDatabases"].toBool(),
+                               fnHash["deterministic"].toBool() });
+                }
+            }
+            db->exec("DELETE FROM settings WHERE [group] = 'Internal' AND [key] = 'Functions'");
         }
         // Add cases here for next versions,
         // without a "break" instruction,
@@ -1173,4 +1206,38 @@ void ConfigImpl::refreshDdlHistory()
 {
     if (ddlHistoryModel)
         ddlHistoryModel->refresh();
+}
+
+QList<QHash<QString, QVariant> > ConfigImpl::getScriptFunctions()
+{
+    QList<QHash<QString, QVariant> > list;
+    SqlQueryPtr results = db->exec("SELECT * FROM script_functions");
+    while (results->hasNext())
+    {
+        SqlResultsRowPtr row = results->next();
+        QHash<QString, QVariant> fnHash = row->valueMap();
+        fnHash["databases"] = QJsonDocument::fromJson(row->value("databases").toByteArray()).toVariant();
+        fnHash["arguments"] = QJsonDocument::fromJson(row->value("arguments").toByteArray()).toVariant();
+        list << fnHash;
+    }
+    return list;
+}
+
+void ConfigImpl::setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions)
+{
+    db->begin();
+    db->exec("DELETE FROM script_functions");
+    for (const QHash<QString, QVariant>& fnHash : newFunctions)
+    {
+        db->exec("INSERT INTO script_functions"
+                 " (name, lang, code, \"initCode\", \"finalCode\", databases, arguments,"
+                 "  \"type\", \"undefinedArgs\", \"allDatabases\", deterministic)"
+                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                 {fnHash["name"].toString(), fnHash["lang"].toString(),
+                  fnHash["code"].toString(), fnHash["initCode"].toString(), fnHash["finalCode"].toString(),
+                  QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["databases"].toList())).toJson(QJsonDocument::Compact)),
+                  QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["arguments"].toList())).toJson(QJsonDocument::Compact)),
+                  fnHash["type"], fnHash["undefinedArgs"], fnHash["allDatabases"], fnHash["deterministic"]});
+    }
+    db->commit();
 }
