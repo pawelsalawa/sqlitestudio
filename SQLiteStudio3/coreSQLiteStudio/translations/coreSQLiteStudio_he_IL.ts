@@ -12,7 +12,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="661"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>שגיאה בצרוף מסד־נתונים %1: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="919"/>
@@ -226,12 +226,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="524"/>
       <source>Error while creating view in target database: %1</source>
-      <translation type="unfinished">Error while creating view in target database: %1</translation>
+      <translation>שגיאה בעת יצירת מצג במסד־נתונים יעד: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="529"/>
       <source>Error while creating index in target database: %1</source>
-      <translation type="unfinished">Error while creating index in target database: %1</translation>
+      <translation>שגיאה בעת יצירת מפתח במסד־נתונים יעד: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="534"/>
@@ -326,7 +326,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="203"/>
       <source>Error while counting data column width to export from query results: %1</source>
-      <translation type="unfinished">Error while counting data column width to export from query results: %1</translation>
+      <translation>שגיאה בעת אימוד רוחב עמודת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="347"/>
@@ -337,17 +337,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../exportworker.cpp" line="609"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation type="unfinished">Error while reading data to export from table %1: %2</translation>
+      <translation>שגיאה בעת קריאת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table %1: %2</translation>
+      <translation>שגיאה בעת ספירת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table %1: %2</translation>
+      <translation>שגיאה בעת אימוד רוחב עמודת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
   </context>
   <context>
@@ -709,7 +709,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.ui" line="45"/>
       <source>Per step code</source>
-      <translation type="unfinished">Per step code</translation>
+      <translation>קוד לפי שלב</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.ui" line="70"/>
