@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="867"/>
+      <location filename="../services/impl/configimpl.cpp" line="877"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>因無法啟動資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="874"/>
+      <location filename="../services/impl/configimpl.cpp" line="884"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>因無法commit資料庫交易, 造成刪除SQL 歷史失敗</translation>
     </message>
@@ -358,38 +358,38 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="396"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="397"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>於 SQLiteStudio: %1(%2) ，找不到此function 被註冊的紀錄</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="403"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="420"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="421"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>無效的正規表示式：%1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="472"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="440"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="473"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>無法開啟檔案 %1 以讀取：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="494"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="495"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>無法開啟檔案 %1 以寫入：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="514"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="515"/>
       <source>Error while writting to file %1: %2</source>
       <translation>當寫入檔案 %1:%2時發生錯誤。</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="533"/>
       <source>Unsupported scripting language: %1</source>
       <translation>不支援的scripting language: %1</translation>
     </message>
@@ -876,7 +876,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>無法解析table, Column: &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="747"/>
+      <location filename="../services/impl/configimpl.cpp" line="757"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>無法初始化設定檔. 在應用程式重啟時，任何設定檔的異動及查詢歷史將遺失. 無法建立檔案在以下位置: %1</translation>
     </message>

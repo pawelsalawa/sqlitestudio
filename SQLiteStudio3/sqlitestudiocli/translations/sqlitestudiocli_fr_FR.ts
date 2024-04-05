@@ -433,9 +433,9 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation>Lorsqu'il est appelé sans argument, indique le format de sortie actuel des résultats d'une requête. Lorsque le &lt;mode&gt; est passé, le mode passe à celui donné. Les modes pris en charge sont :
+      <translation>Lorsqu&apos;il est appelé sans argument, indique le format de sortie actuel des résultats d&apos;une requête. Lorsque le &lt;mode&gt; est passé, le mode passe à celui donné. Les modes pris en charge sont&#xa0;:
 - CLASSIQUE - les colonnes sont séparées par une virgule, non alignées,
-- FIXE - les colonnes ont une largeur égale et fixe, elles s'adaptent toujours à la largeur de la fenêtre du terminal, mais les données dans les colonnes peuvent être coupées,
+- FIXE - les colonnes ont une largeur égale et fixe, elles s&apos;adaptent toujours à la largeur de la fenêtre du terminal, mais les données dans les colonnes peuvent être coupées,
 - COLONNES - comme FIXED, mais plus intelligentes (ne pas utiliser avec des ensembles de résultats énormes, voir les détails ci-dessous),
 - ROW - chaque colonne de la ligne est affichée sur une nouvelle ligne, de sorte que les données complètes sont affichées.
 
@@ -443,8 +443,8 @@ Le mode CLASSIC est recommandé si vous souhaitez voir toutes les données, mais
 
 Le mode FIXED est recommandé si vous souhaitez une sortie lisible et que vous ne vous souciez pas des valeurs de données longues. Les colonnes seront alignées, ce qui fera du résultat un joli tableau. La largeur des colonnes est calculée à partir de la largeur de la fenêtre de la console et du nombre de colonnes.
 
-Le mode COLUMNS est similaire au mode FIXED, sauf qu'il essaie d'être intelligent et de rendre les colonnes avec des valeurs plus courtes plus fines, tandis que les colonnes avec des valeurs plus longues obtiennent plus d'espace. Les premières à être réduites sont les colonnes avec les en-têtes les plus longs (les noms d'en-tête doivent donc être coupés en premier), puis les colonnes avec les valeurs les plus longues sont réduites, jusqu'au moment où toutes les colonnes tiennent dans la fenêtre du terminal.
-ATTENTION! Le mode COLUMNS lit tous les résultats de la requête en même temps afin d'évaluer la largeur des colonnes. Il est donc dangereux d'utiliser ce mode lorsque vous travaillez avec des ensembles de résultats volumineux. Gardez à l’esprit que ce mode chargera l’ensemble des résultats en mémoire.
+Le mode COLUMNS est similaire au mode FIXED, sauf qu&apos;il essaie d&apos;être intelligent et de rendre les colonnes avec des valeurs plus courtes plus fines, tandis que les colonnes avec des valeurs plus longues obtiennent plus d&apos;espace. Les premières à être réduites sont les colonnes avec les en-têtes les plus longs (les noms d&apos;en-tête doivent donc être coupés en premier), puis les colonnes avec les valeurs les plus longues sont réduites, jusqu&apos;au moment où toutes les colonnes tiennent dans la fenêtre du terminal.
+ATTENTION! Le mode COLUMNS lit tous les résultats de la requête en même temps afin d&apos;évaluer la largeur des colonnes. Il est donc dangereux d&apos;utiliser ce mode lorsque vous travaillez avec des ensembles de résultats volumineux. Gardez à l’esprit que ce mode chargera l’ensemble des résultats en mémoire.
 
 Le mode ROW est recommandé si vous avez besoin de voir des valeurs entières et que vous ne vous attendez pas à ce que de nombreuses lignes soient affichées, car ce mode affiche une ligne de sortie pour chaque colonne, vous obtiendrez donc 10 lignes pour une seule ligne avec 10 colonnes. alors si vous avez 10 de ces lignes, vous obtiendrez 100 lignes de sortie (+1 ligne supplémentaire pour chaque ligne, pour séparer les lignes les unes des autres).</translation>
     </message>

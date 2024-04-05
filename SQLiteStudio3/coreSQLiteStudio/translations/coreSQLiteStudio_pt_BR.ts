@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="867"/>
+      <location filename="../services/impl/configimpl.cpp" line="877"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível iniciar a transação do banco de dados para excluir o histórico do SQL. Portanto, ela não será excluída.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="874"/>
+      <location filename="../services/impl/configimpl.cpp" line="884"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível submeter a transação do banco de dados para excluir o histórico do SQL. Portanto, não será excluída.</translation>
     </message>
@@ -358,38 +358,38 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Número inválido de argumentos para a função &apos;%1&apos;. Esperado %2, mas tem %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="396"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="397"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Nenhuma função registrada no SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="403"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>A função %1(%2) foi registrada no idioma %3, mas o plugin que suporta essa linguagem não está atualmente carregado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="420"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="421"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Expressão regular inválida: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="472"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="440"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="473"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="494"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="495"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para escrita: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="514"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="515"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Erro ao gravar o arquivo %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="532"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="533"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Idioma do script não suportado: %1</translation>
     </message>
@@ -876,7 +876,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="747"/>
+      <location filename="../services/impl/configimpl.cpp" line="757"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Não foi possível inicializar o arquivo de configuração. Quaisquer alterações de configuração e histórico de consultas serão perdidos após a reinicialização do aplicativo. Não foi possível criar um arquivo nos seguintes locais: %1.</translation>
     </message>
