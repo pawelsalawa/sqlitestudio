@@ -17,7 +17,7 @@
     <message>
       <location filename="../db/abstractdb.cpp" line="919"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
+      <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
   </context>
   <context>
@@ -787,7 +787,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>无法运行 WAL 检查点： %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
@@ -1024,12 +1024,12 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="50"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>应用程序启动事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="81"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>从文件执行已取消。执行的所有查询已回滚。</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
@@ -1039,7 +1039,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>应用程序提交事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="147"/>
