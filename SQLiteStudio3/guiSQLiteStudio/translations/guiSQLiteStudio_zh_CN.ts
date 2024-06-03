@@ -76,7 +76,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application bundle distribution.</source>
-      <translation type="unfinished">MacOS X application bundle distribution.</translation>
+      <translation>MacOS X 应用程序捆绑分发。</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
@@ -113,13 +113,13 @@
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
       <location filename="../windows/codesnippeteditor.ui" line="200"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可选快捷键，仅在激活的代码助手窗口中使用。它允许用户使用组合键，否则会与其他快捷键发生冲突。将代码助手窗口作为所需的上下文，可以使按键的选择更加灵活。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代码片段的名称将显示在代码助手中。要访问片段列表，用户必须点击两次代码助手快捷键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
       <source>Code assistant shortcut</source>
-      <translation type="unfinished">Code assistant shortcut</translation>
+      <translation>代码助手快捷键</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
@@ -139,7 +139,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>代码片段编辑器窗口有未提交的修改。</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
@@ -149,32 +149,32 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all snippet changes</source>
-      <translation type="unfinished">Commit all snippet changes</translation>
+      <translation>提交所有片段更改</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Rollback all snippet changes</source>
-      <translation type="unfinished">Rollback all snippet changes</translation>
+      <translation>回滚所有片段更改</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
       <source>Create new snippet</source>
-      <translation type="unfinished">Create new snippet</translation>
+      <translation>创建新的片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Delete selected snippet</source>
-      <translation type="unfinished">Delete selected snippet</translation>
+      <translation>删除所选代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Move the snippet up</source>
-      <translation type="unfinished">Move the snippet up</translation>
+      <translation>向上移动代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Move the snippet down</source>
-      <translation type="unfinished">Move the snippet down</translation>
+      <translation>向下移动代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
