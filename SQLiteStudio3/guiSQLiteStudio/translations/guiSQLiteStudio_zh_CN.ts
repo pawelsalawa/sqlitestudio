@@ -76,7 +76,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application bundle distribution.</source>
-      <translation type="unfinished">MacOS X application bundle distribution.</translation>
+      <translation>MacOS X 应用程序捆绑分发。</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
@@ -113,13 +113,13 @@
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
       <location filename="../windows/codesnippeteditor.ui" line="200"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可选快捷键，仅在激活的代码助手窗口中使用。它允许用户使用组合键，否则会与其他快捷键发生冲突。将代码助手窗口作为所需的上下文，可以使按键的选择更加灵活。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代码片段的名称将显示在代码助手中。要访问片段列表，用户必须点击两次代码助手快捷键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
       <source>Code assistant shortcut</source>
-      <translation type="unfinished">Code assistant shortcut</translation>
+      <translation>代码助手快捷键</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
@@ -139,7 +139,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>代码片段编辑器窗口有未提交的修改。</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
@@ -149,32 +149,32 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
       <source>Commit all snippet changes</source>
-      <translation type="unfinished">Commit all snippet changes</translation>
+      <translation>提交所有片段更改</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Rollback all snippet changes</source>
-      <translation type="unfinished">Rollback all snippet changes</translation>
+      <translation>回滚所有片段更改</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
       <source>Create new snippet</source>
-      <translation type="unfinished">Create new snippet</translation>
+      <translation>创建新的片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Delete selected snippet</source>
-      <translation type="unfinished">Delete selected snippet</translation>
+      <translation>删除所选代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Move the snippet up</source>
-      <translation type="unfinished">Move the snippet up</translation>
+      <translation>向上移动代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Move the snippet down</source>
-      <translation type="unfinished">Move the snippet down</translation>
+      <translation>向下移动代码片段</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
@@ -184,17 +184,17 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="280"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
+      <translation>输入一个非空、唯一的片段名称。</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
       <source>Enter a non-empty snippet content.</source>
-      <translation type="unfinished">Enter a non-empty snippet content.</translation>
+      <translation>输入非空的片段内容。</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="287"/>
       <source>This hotkey is not unique in context of a code assistant.</source>
-      <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
+      <translation>在代码助手中，这个热键并不是唯一的。</translation>
     </message>
   </context>
   <context>
@@ -566,7 +566,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="659"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
-      <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
+      <translation>无法从声明的类型中匹配有效的 STRICT 表数据类型：%1。</translation>
     </message>
   </context>
   <context>
@@ -1012,12 +1012,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;当用户在列中输入新值，且该值大于当前列宽时，应用程序将放大该列以适应新值，但宽度不得超过上述选项中定义的限制。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="562"/>
       <source>Enlarge column when entering value longer than current width</source>
-      <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
+      <translation>当输入的数值长于当前宽度时，放大列</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="578"/>
@@ -1188,7 +1188,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="958"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果 SQL 编辑器窗口中有多个查询，那么（如果启用此选项）将只执行一个查询，即键盘插入光标下的查询。否则将执行所有查询。您可以在调用执行之前选择要执行的查询，从而限制要执行的查询。您还可以使用专用快捷键在一种或另一种模式下执行查询（目前配置为 %1 用于执行单个查询，%2 用于执行所有查询）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="974"/>
@@ -1214,37 +1214,37 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="537"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;默认情况下（禁用该选项时），实数以带小数点的小数格式显示。在某些情况下，当数字非常小（小数点后几位）时，默认表示法可能会显得不准确。在这种情况下，您可能需要启用该选项来使用科学记数法 (例如 &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="540"/>
       <source>Use scientific notation for real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for real numbers in the grid view</translation>
+      <translation>在网格视图中使用科学记数法表示实数</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="597"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;数据读入网格视图时，列宽会自动调整。该值限制了调整的初始宽度，但用户仍可手动调整列宽，使其超过该限制。当用户输入新的、更长的值时，该值也会用于扩大列宽（请参阅下面的选项）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="600"/>
       <source>Limit automatic data column width to (in pixels):</source>
-      <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
+      <translation>限制自动数据列宽度为（像素）：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;数据列的初始宽度将至少设置为在标题中显示列的完整名称。这仍然可以被以像素为单位指定的列宽初始限制（上述设置）所覆盖。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="610"/>
       <source>Keep at least the width to show complete column name</source>
-      <translation type="unfinished">Keep at least the width to show complete column name</translation>
+      <translation>至少保持显示完整列名的宽度</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="981"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用，长度超过编辑器宽度的行将被包裹，因此不需要水平滚动。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="984"/>
@@ -1254,7 +1254,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="994"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;高亮显示当前插入光标下的整个查询。当您按下 &apos;s 时将执行相同的查询。 &amp;quot;执行查询&amp;quot; 热键或按钮（除非另有配置）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="997"/>
@@ -1304,72 +1304,72 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
-      <translation type="unfinished">Code syntax colors</translation>
+      <translation>代码语法颜色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1128"/>
       <source>Keyword foreground</source>
-      <translation type="unfinished">Keyword foreground</translation>
+      <translation>关键字前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1218"/>
       <source>Regular foreground</source>
-      <translation type="unfinished">Regular foreground</translation>
+      <translation>常规前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1335"/>
       <source>String foreground</source>
-      <translation type="unfinished">String foreground</translation>
+      <translation>字符串前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1228"/>
       <source>Comment foreground</source>
-      <translation type="unfinished">Comment foreground</translation>
+      <translation>注释前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1280"/>
       <source>Valid objects foreground</source>
-      <translation type="unfinished">Valid objects foreground</translation>
+      <translation>有效对象前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1407"/>
       <source>Current query background</source>
-      <translation type="unfinished">Current query background</translation>
+      <translation>当前查询背景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1371"/>
       <source>Bind parameter foreground</source>
-      <translation type="unfinished">Bind parameter foreground</translation>
+      <translation>绑定参数前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1397"/>
       <source>Current line background</source>
-      <translation type="unfinished">Current line background</translation>
+      <translation>当前行背景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1417"/>
       <source>Matched parenthesis background</source>
-      <translation type="unfinished">Matched parenthesis background</translation>
+      <translation>匹配括号背景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1312"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以在常规设置页面完全禁用当前查询高亮显示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1254"/>
       <source>Number foreground</source>
-      <translation type="unfinished">Number foreground</translation>
+      <translation>数字前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1325"/>
       <source>BLOB value foreground</source>
-      <translation type="unfinished">BLOB value foreground</translation>
+      <translation>BLOB 值前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1427"/>
       <source>Matched parenthesis foreground</source>
-      <translation type="unfinished">Matched parenthesis foreground</translation>
+      <translation>匹配括号前景色</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1464"/>
@@ -1490,17 +1490,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2201"/>
       <source>Code assistant settings</source>
-      <translation type="unfinished">Code assistant settings</translation>
+      <translation>代码助手设置</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2207"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用该选项，当用户键入例如 &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; 到提出表格的列。 如果禁用该选项，用户就必须明确点击助手热键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2210"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
-      <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
+      <translation>在对象名称后输入点后自动触发助手</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="900"/>
@@ -1593,17 +1593,17 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1772"/>
       <source>Clear hotkey for this action</source>
-      <translation type="unfinished">Clear hotkey for this action</translation>
+      <translation>清除该操作的热键</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1784"/>
       <source>Restore original hotkey for this action</source>
-      <translation type="unfinished">Restore original hotkey for this action</translation>
+      <translation>恢复此操作的原始热键</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1827"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
+      <translation>您可以在此配置代码语法高亮的颜色。这些颜色在不同语言中共享，不仅适用于 SQL，也适用于 JavaScript 和其他语言。默认情况下使用基于主题的颜色。要定义自己的颜色，请选择特定颜色旁边的复选框，启用自定义颜色。</translation>
     </message>
   </context>
   <context>
@@ -1832,7 +1832,7 @@
       <location filename="../dataview.cpp" line="994"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text (if contains)</translation>
+      <translation>按文本筛选（如果包含）</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="995"/>
@@ -3293,7 +3293,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="283"/>
       <source>Deterministic</source>
-      <translation type="unfinished">Deterministic</translation>
+      <translation>确定</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="300"/>
@@ -4506,7 +4506,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="34"/>
       <source>Toggle the height adjustment of rows</source>
-      <translation type="unfinished">Toggle the height adjustment of rows</translation>
+      <translation>切换行的高度调整</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="35"/>
@@ -5504,7 +5504,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
+      <translation>在内联单元格编辑器中编辑庞大的内容并不是一个好主意。它可能会变得缓慢而不方便。它&apos;s 最好在表单视图或弹出编辑器（右键菜单下可用）中编辑这些大内容。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
@@ -6195,12 +6195,12 @@ NULL</source>
     <message>
       <location filename="../windows/tablewindow.ui" line="87"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disabled the WITHOUT ROWID clause on the table. Such table will no longer have the &amp;quot;rowid&amp;quot; hidden column. For such table an explicit PRIMARY KEY column is mandatory. You can read more details on this in SQLite official documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disabled the WITHOUT ROWID clause on the table. Such table will no longer have the &amp;quot;rowid&amp;quot; hidden column. For such table an explicit PRIMARY KEY column is mandatory. You can read more details on this in SQLite official documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用/禁用表上的 WITHOUT ROWID 子句。此类表将不再具有 &amp;quot;rowid&amp;quot; 隐藏列。对于此类表，必须有明确的 PRIMARY KEY 列。有关详细信息，请参阅 SQLite 官方文档。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="97"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite bahavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite bahavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用/禁用表的 STRICT 子句。此类表将根据列的声明数据类型对列中存储的数据进行严格验证。这与大多数其他数据库引擎通常执行数据类型的方式类似。将其禁用可使用经典的 SQLite 行为（即不执行数据类型）。更多详情，请参阅 SQLite 官方文档。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>

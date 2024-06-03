@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
-      <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
+      <translation>关闭数据库连接。如果数据库已经关闭，则不会发生任何操作。如果提供了 &lt;name&gt;，则应是要关闭的数据库名称（由 %1 命令打印）。如果未提供 &lt;name&gt;，则关闭当前工作数据库（详情请查看 %2 的帮助）。</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -433,20 +433,20 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-      <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
-- CLASSIC - columns are separated by a comma, not aligned,
-- FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
-- COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
-- ROW     - each column from the row is displayed in new line, so the full data is displayed.
+      <translation>调用时不带参数，用于显示查询结果的当前输出格式。如果传递了 &lt;mode&gt; ，则会将模式更改为给定的模式。支持的模式有
+- CLASSIC - 各列以逗号分隔，不对齐、
+- FIXED（固定）- 列的宽度相等且固定，始终适合终端窗口的宽度，但列中的数据可以截断、
+- COLUMNS - 与 FIXED 类似，但更智能（请勿用于庞大的结果集，详见下文）、
+- ROW - 行中的每一列都以新行显示，因此可以显示完整的数据。
 
-The CLASSIC mode is recommended if you want to see all the data, but you don&apos;t want to waste lines for each column. Each row will display full data for every column, but this also means, that columns will not be aligned to each other in next rows. The CLASSIC mode also doesn&apos;t respect the width of your terminal (console) window, so if values in columns are wider than the window, the row will be continued in next lines.
+如果想查看所有数据，但又不想浪费每列的行数，建议使用经典模式。每一行将显示每一列的全部数据，但这也意味着下一行的列之间不会对齐。经典模式也不会考虑终端（控制台）窗口的宽度，因此如果列中的值比窗口宽，该行将在下一行继续显示。
 
-The FIXED mode is recommended if you want a readable output and you don&apos;t care about long data values. Columns will be aligned, making the output a nice table. The width of columns is calculated from width of the console window and a number of columns.
+如果希望输出结果清晰易读，且不在意数据值是否过长，建议使用固定模式。列将对齐，使输出成为漂亮的表格。列宽根据控制台窗口宽度和列数计算。
 
-The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make columns with shorter values more thin, while columns with longer values get more space. First to shrink are columns with longest headers (so the header names are to be cut off as first), then columns with the longest values are shrinked, up to the moment when all columns fit into terminal window.
-ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
+COLUMNS 模式与 FIXED 模式类似，但它会尽量聪明地让数值较短的列变得更细，而让数值较长的列获得更多空间。首先缩减的是标题最长的列（因此标题名称将首先被切掉），然后缩减数值最长的列，直至所有列都适合终端窗口。
+注意 为了评估列宽，“列 ”模式会一次性读取查询的所有结果，因此在处理庞大的结果集时使用该模式很危险。请记住，该模式会将整个结果集加载到内存中。
 
-The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</translation>
+如果需要查看全部数值，且不希望显示很多行，则推荐使用 ROW（行）模式，因为该模式下每列显示一行输出结果，因此 10 列的单行将显示 10 行输出结果，如果有 10 行这样的行，则将显示 100 行输出结果（每行+1 行额外输出结果，用于区分行与行）。</translation>
     </message>
   </context>
   <context>
@@ -819,7 +819,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="36"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-      <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+      <translation>在指定的数据库文件上执行提供的 SQL 文件（包括 SQLiteStudio&apos;s 查询执行器的所有丰富功能）并退出。如果使用此选项，数据库参数将成为必填项。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="39"/>
@@ -829,22 +829,22 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="40"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+      <translation>读取 SQL 文件时使用的字符编码（-e 选项）。使用 -cl 列出可用的编解码器。默认为 %1。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>解码器</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+      <translation>列出与 -c 选项一起使用的可用编解码器，然后退出。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-      <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+      <translation>与 -e 选项一起使用时，执行不会因出错而停止，而是继续到结束，忽略错误。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
@@ -859,17 +859,17 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+      <translation>无效编解码器：%1。使用 -cl 选项列出可用的编解码器。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+      <translation>在执行 SQL 文件时，数据库文件参数是强制性的。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+      <translation>无法打开指定数据库以执行 SQL 文件。您可以尝试使用 -d 选项了解更多详情。</translation>
     </message>
   </context>
 </TS>
