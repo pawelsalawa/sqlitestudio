@@ -9,6 +9,20 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QComboBox>
+#include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QLabel>
+#include <QDialog>
+#include <QGridLayout>
+#include <QVBoxLayout>
 
 class QUiLoader;
 class DbTree;
@@ -81,6 +95,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
             OPEN_EXTENSION_MANAGER,
+            OPEN_LLM_CHAT,
             EXPORT,
             IMPORT,
             CLOSE_WINDOW,
@@ -161,6 +176,19 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         CodeSnippetEditor* openCodeSnippetEditor();
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
+        QAction* llmChatAction;
+        QDialog* llmChatDialog;
+        QTextEdit* llmChatInput;
+        QTextEdit* llmChatOutput;
+        QNetworkAccessManager* networkManager;
+        QPushButton* llmChatSendButton;
+        QComboBox* modelSelector;
+        QJsonArray chatHistory;
+        QPushButton* newChatButton; // Add this line for the new button
+
+        void setupLlmChatDialog();
+        void sendLlmChatRequest();
+        
         void fixFonts();
         void fixToolbars();
 
@@ -205,6 +233,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void sqliteDocs();
         void reportHistory();
         void donate();
+        void openLlmChat();
+        void handleLlmChatResponse(QNetworkReply* reply);
+        void clearChatHistory();
 
     private slots:
         void notifyAboutLanguageChange();

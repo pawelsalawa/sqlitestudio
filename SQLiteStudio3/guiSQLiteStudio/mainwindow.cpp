@@ -50,19 +50,37 @@
 #include <QToolTip>
 #include <QTimer>
 #include <QtGui>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
 
 MainWindow::MainWindow() :
     QMainWindow(),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    llmChatAction(nullptr),
+    llmChatDialog(nullptr),
+    llmChatInput(nullptr),
+    llmChatOutput(nullptr),
+    networkManager(new QNetworkAccessManager(this)),
+    llmChatSendButton(nullptr),
+    modelSelector(new QComboBox(this)),
+    chatHistory(QJsonArray()),
+    newChatButton(nullptr)
 {
     init();
+    networkManager = new QNetworkAccessManager(this);
+    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::handleLlmChatResponse);
+    setupLlmChatDialog();
 }
 
 MainWindow::~MainWindow()
 {
+    delete llmChatAction;
+    delete llmChatDialog;
+    delete networkManager;
 }
 
 void MainWindow::init()
@@ -270,6 +288,9 @@ void MainWindow::createActions()
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
+    llmChatAction = new QAction(QIcon(":/icons/img/llm_chat_icon.png"), tr("LLM &Chat"), this);
+    connect(llmChatAction, &QAction::triggered, this, &MainWindow::openLlmChat);
+    actionMap[OPEN_LLM_CHAT] = llmChatAction;
     ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open confi&guration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
 
@@ -406,6 +427,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
+    toolsMenu->addAction(llmChatAction);
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
@@ -694,6 +716,186 @@ void MainWindow::openFunctionEditorSlot()
 {
     openFunctionEditor();
 }
+
+void MainWindow::setupLlmChatDialog()
+{
+    llmChatDialog = new QDialog(this);
+    QGridLayout* chatLayout = new QGridLayout(llmChatDialog);
+
+    // Model selector and label
+    modelSelector = new QComboBox(llmChatDialog);
+    modelSelector->addItem("gpt-3.5-turbo-1106");
+    modelSelector->addItem("gpt-4-0125-preview");
+    chatLayout->addWidget(new QLabel(tr("Model:")), 0, 0);
+    chatLayout->addWidget(modelSelector, 0, 1);
+
+    // New Chat button setup
+    newChatButton = new QPushButton(tr("New Chat"), llmChatDialog);
+    newChatButton->setDefault(false);
+    newChatButton->setAutoDefault(false);
+    connect(newChatButton, &QPushButton::clicked, this, &MainWindow::clearChatHistory);
+    chatLayout->addWidget(newChatButton, 0, 2);
+
+    // Chat input and label, using QTextEdit for multiline input
+    llmChatInput = new QTextEdit(llmChatDialog);
+    llmChatInput->setFixedHeight(llmChatInput->fontMetrics().height() * 2); // Adjust for multiline
+    chatLayout->addWidget(new QLabel(tr("Your message:")), 2, 0);
+    chatLayout->addWidget(llmChatInput, 2, 1);
+    llmChatInput->installEventFilter(this); // Install an event filter for custom handling
+
+    // Send button setup
+    llmChatSendButton = new QPushButton(tr("Send"), llmChatDialog);
+    llmChatSendButton->setDefault(false);
+    llmChatSendButton->setAutoDefault(false);
+    connect(llmChatSendButton, &QPushButton::clicked, this, &MainWindow::sendLlmChatRequest);
+    chatLayout->addWidget(llmChatSendButton, 2, 2);
+
+    // Text output for the chat
+    llmChatOutput = new QTextEdit(llmChatDialog);
+    llmChatOutput->setReadOnly(true);
+    chatLayout->addWidget(llmChatOutput, 1, 0, 1, 3); // Spanning 3 columns
+
+    // Connecting the returnPressed signal from llmChatInput to sendLlmChatRequest slot
+    // This is handled through the eventFilter for QTextEdit now
+
+    // Set layout for the dialog
+    llmChatDialog->setLayout(chatLayout);
+    llmChatDialog->resize(450, 490);
+
+    // Connect the QDialog::rejected signal to clearChatHistory slot
+    connect(llmChatDialog, &QDialog::rejected, this, &MainWindow::clearChatHistory);
+
+    // Initialize the chat history
+    chatHistory.append(QJsonObject({{"role", "system"}, {"content", "You are a helpful assistant who is an expert in sqlite and sqlitestudio. Any question related to sql you should assume relates to sqlite or sqlite studio; unless expressly stated otherwise.\n\nKeep your response concise but highly accurate. Think through the steps required to provide the request response / solution.\n\n"}}));
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == llmChatInput && event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+            if (keyEvent->modifiers() & Qt::ShiftModifier) {
+                QTextCursor cursor = llmChatInput->textCursor();
+                cursor.insertText("\n");
+                
+                // Resize chat input box, maximum height for 7 lines
+                int lineHeight = llmChatInput->fontMetrics().lineSpacing();
+                int newHeight = qMin(lineHeight * 7, llmChatInput->height() + lineHeight);
+                llmChatInput->setFixedHeight(newHeight);
+                
+                return true; // Event handled, do not propagate further
+            } else {
+                // Check if the input is not empty before sending
+                if (!llmChatInput->toPlainText().trimmed().isEmpty()) {
+                    sendLlmChatRequest();
+                    // Reset the height of the text input box to its initial value after sending a message
+                    int initialHeight = llmChatInput->fontMetrics().lineSpacing() * 2; // Assuming initial height for 2 lines
+                    llmChatInput->setFixedHeight(initialHeight);
+                }
+                return true; // Prevent further processing
+            }
+        }
+    }
+    // Your existing file open event handling remains here unchanged
+    return QMainWindow::eventFilter(obj, event); // For events not explicitly handled above
+}
+
+void MainWindow::clearChatHistory()
+{
+    chatHistory = QJsonArray();
+    llmChatOutput->clear();
+}
+
+void MainWindow::openLlmChat()
+{
+    llmChatDialog->show();
+    llmChatInput->setFocus();
+}
+
+void MainWindow::sendLlmChatRequest() {
+    QString apiKey = qgetenv("OPENAI_API_KEY");
+    if (apiKey.isEmpty())
+    {
+        QMessageBox::warning(this, tr("Error"), tr("The OpenAI API key is not set."));
+        return;
+    }
+    // Use toPlainText() instead of text() for QTextEdit
+
+    if (llmChatInput->toPlainText().isEmpty())
+    {
+        QMessageBox::information(this, tr("Info"), tr("Please enter your message."));
+        return;
+    }
+
+    // Similarly, use toPlainText() and then escape the HTML.
+    QString userInput = llmChatInput->toPlainText().toHtmlEscaped();
+    chatHistory.append(QJsonObject({{"role", "user"}, {"content", userInput}}));
+
+    // Display user message with "You:" prefix in bold black in the UI
+    llmChatOutput->append("<strong style=\"color:black;\">You:</strong> " + userInput.replace("\n", "<br>"));
+    llmChatOutput->append("<br>");  // Add two line breaks for distance
+
+    QString selectedModel = modelSelector->currentText();
+
+    QNetworkRequest request(QUrl("https://api.openai.com/v1/chat/completions"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("Authorization", ("Bearer " + apiKey).toUtf8());
+
+    QJsonObject json;
+    json["model"] = selectedModel;  // Use the selected model from the dropdown
+    json["messages"] = chatHistory;
+    json["temperature"] = 0.5;
+    json["max_tokens"] = 500;
+    json["top_p"] = 1;
+    json["frequency_penalty"] = 0;
+    json["presence_penalty"] = 0;
+
+    networkManager->post(request, QJsonDocument(json).toJson());
+
+    llmChatInput->clear();  // Clear the input field after the request is sent
+
+    // Clear the input field and set focus after sending
+    llmChatInput->setFocus();
+}
+
+
+void MainWindow::handleLlmChatResponse(QNetworkReply* reply)
+{
+    if (!reply->error())
+    {
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject jsonObject = jsonResponse.object();
+        QJsonArray choices = jsonObject["choices"].toArray();
+        if (!choices.isEmpty())
+        {
+            QJsonObject choice = choices.first().toObject();
+            QJsonObject message = choice["message"].toObject();
+            QString responseText = message["content"].toString();
+            if (message["role"].toString() == "assistant")
+            {
+                // Append only the response text to the chat history, without the "GPT:" label
+                chatHistory.append(QJsonObject({{"role", "assistant"}, {"content", responseText}}));
+
+                // Update the UI with the response prefixed with "GPT:" in bold green
+                 llmChatOutput->append("<strong style=\"color:green;\">GPT:</strong> " + responseText.replace("\n", "<br>"));
+                llmChatOutput->append("<br>");
+                //llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
+            }
+        }
+        else
+        {
+            llmChatOutput->append("No response from the assistant.");
+            llmChatOutput->append("<br>");
+            //llmChatOutput->append("<div style=\"height: 12px;\"></div>"); // Gap of exactly two lines
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error"), reply->errorString());
+    }
+    reply->deleteLater();
+}
+
+
 
 void MainWindow::openCodeSnippetsEditorSlot()
 {
@@ -1062,22 +1264,22 @@ MainWindow *MainWindow::getInstance()
     return instance;
 }
 
-bool MainWindow::eventFilter(QObject* obj, QEvent* e)
-{
-    UNUSED(obj);
-    if (e->type() == QEvent::FileOpen)
-    {
-        QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
-        if (!url.isLocalFile())
-            return false;
+// bool MainWindow::eventFilter(QObject* obj, QEvent* e)
+// {
+//     UNUSED(obj);
+//     if (e->type() == QEvent::FileOpen)
+//     {
+//         QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
+//         if (!url.isLocalFile())
+//             return false;
 
-        DbDialog dialog(DbDialog::ADD, this);
-        dialog.setPath(url.toLocalFile());
-        dialog.exec();
-        return true;
-    }
-    return false;
-}
+//         DbDialog dialog(DbDialog::ADD, this);
+//         dialog.setPath(url.toLocalFile());
+//         dialog.exec();
+//         return true;
+//     }
+//     return false;
+// }
 
 void MainWindow::pushClosedWindowSessionValue(const QVariant &value)
 {

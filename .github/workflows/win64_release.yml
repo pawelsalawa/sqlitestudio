@@ -8,7 +8,7 @@ env:
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-windows-x64-installer.exe
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-windows-x64-installer.exe
 
 name: Windows 64-bit release build
 
@@ -66,6 +66,7 @@ jobs:
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-tools
                   mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-networkauth
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
 
@@ -235,22 +236,22 @@ jobs:
               shell: bash_or_msys2 {0}
               run: |
                 qmake.exe \
-                    CONFIG+=portable \
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    $QMAKE_EXTRA_FLAGS \
-                    ../../SQLiteStudio3
+                  CONFIG+=portable \
+                  "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                  $QMAKE_EXTRA_FLAGS \
+                  ../../SQLiteStudio3
                 mingw32-make.exe -j 2
 
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              shell: bash_or_msys2 {0}
-              run: |
-                qmake.exe \
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    CONFIG+=portable \
-                    PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
-                    ../../../Plugins
-                mingw32-make.exe -j 1
+            # - name: Compile Plugins
+            #   working-directory: output/build/Plugins
+            #   shell: bash_or_msys2 {0} 
+            #   run: |
+            #     qmake.exe \
+            #       "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+            #       CONFIG+=portable \
+            #       PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
+            #       ../../../Plugins
+            #     mingw32-make.exe -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
