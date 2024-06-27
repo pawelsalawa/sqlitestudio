@@ -41,7 +41,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="187"/>
       <source>SQLite extension directories</source>
-      <translation type="unfinished">SQLite extension directories</translation>
+      <translation>Directorios de extensiones SQLite</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="140"/>
@@ -865,7 +865,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="153"/>
       <source>Code colors</source>
-      <translation type="unfinished">Code colors</translation>
+      <translation>Colores de código</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
       <source>Code assistant</source>
-      <translation type="unfinished">Code assistant</translation>
+      <translation>Asistente de código</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -1012,12 +1012,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cuando el usuario introduce un nuevo valor en la columna y el valor es mayor que el ancho de la columna actual, la aplicación agrandará la columna para que se ajuste al nuevo valor, pero no más ancho que el límite definido en la opción anterior.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="562"/>
       <source>Enlarge column when entering value longer than current width</source>
-      <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
+      <translation>Ampliar columna cuando ingrese un valor más largo que el ancho actual</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="578"/>
@@ -1259,7 +1259,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="997"/>
       <source>Highlight current query</source>
-      <translation type="unfinished">Highlight current query</translation>
+      <translation>Resaltar consulta actual</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1010"/>
@@ -1304,7 +1304,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
-      <translation type="unfinished">Code syntax colors</translation>
+      <translation>Colores de sintaxis de código</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1128"/>
