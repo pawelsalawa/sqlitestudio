@@ -11,12 +11,12 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="451"/>
       <source>Invalid &apos;%1&apos; command syntax. Should be: %2</source>
-      <translation type="unfinished">Invalid &apos;%1&apos; command syntax. Should be: %2</translation>
+      <translation>פקודת תחביר &apos;%1&apos; שגויה. אמור להיות: %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="463"/>
       <source>Error from Tcl&apos;s &apos;%1&apos; command: %2</source>
-      <translation type="unfinished">Error from Tcl&apos;s &apos;%1&apos; command: %2</translation>
+      <translation>שגיאה מפקודת Tcl&apos;&apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="594"/>
