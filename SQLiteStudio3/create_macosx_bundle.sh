@@ -4,16 +4,139 @@ set -e
 
 printUsage() {
     echo "$0 [-q]... <sqlitestudio build output directory> <qmake path> [dmg|dist|dist_full]"
+    echo "$0 -u <sqlitestudio.x86_64.dmg> <sqlitestudio.arm64.dmg> <sqlitestudio.universal.dmg>"
 }
 
 quiet=0
-while getopts q _flag; do
+universalize=0
+while getopts qu _flag; do
     case "$_flag" in
         q) : $(( quiet += 1 )) ;;
+        u) : $(( universalize += 1 )) ;;
         *) printUsage; exit 1 ;;
     esac
 done
 shift $(( OPTIND - 1 ))
+
+PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
+BACKGROUND_IMG=""  # TODO
+BACKGROUND_RGB="56 168 243"
+
+abort() { printf "ERROR: %s\n" "$@" 1>&2; exit 1; }
+debug() { [ "$quiet" -gt 0 ] || printf "DEBUG: %s\n" "$@" 1>&2; }
+info() { [ "$quiet" -gt 1 ] || printf "INFO: %s\n" "$@" 1>&2; }
+run() { [ "$quiet" -gt 2 ] || { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; } 1>&2; "$@"; }
+
+codesign_app() {
+    cat > entitlements.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <true/>
+  </dict>
+</plist>
+EOF
+    run codesign --force -o runtime --entitlements entitlements.plist --deep --sign - "$1"
+    rm entitlements.plist
+}
+
+hdiutil_attach() {
+    # detach any images with the same name
+    mount \
+    | awk -v MOUNTPOINT="$2" '$0 ~ MOUNTPOINT {match($1, /disk[0-9]+/); print substr($1, RSTART, RLENGTH)}' \
+    | run xargs -tn1 hdiutil detach \
+    > /dev/null
+
+    run hdiutil attach "$1" -mountpoint "$2" | awk '/\/dev\// { print $1; exit }'
+    sleep 1
+}
+
+hdiutil_create() {
+    run hdiutil create \
+        -fs HFS+ -fsargs '-c c=64,a=16,e=16' \
+        -scrub \
+        "$@"
+}
+
+pretty_dmg() {
+    local _appname="${1%.app}" _volname="$2" _image_path="$3" _rgb_16bit
+    [ -z "$6" ] || _rgb_16bit="{$(( $4 * 257 )), $(( $5 * 257 )), $(( $6 * 257 ))}"
+    local _rw_image="$_volname-rw.dmg.sparseimage" _device
+    [ ! -f "$_rw_image" ] || run rm -f "$_rw_image"
+    hdiutil_create \
+        -format UDSP \
+        -srcfolder "$_appname.app" \
+        -size "$(du -ms "$_appname.app" | awk '{ print (2 ^ int(log($1) / log(2) + 2.5)) "m" }')" \
+        -volname "$_volname" \
+        "$_rw_image"
+
+    _device="$(hdiutil_attach "$_rw_image" "/Volumes/$_volname")"
+    if [ -n "$_image_path" ]; then
+        run mkdir "/Volumes/$_volname/.background"
+        run cp "$_image_path" "/Volumes/$_volname/.background/"
+    fi
+    run osascript <<EOF
+        tell application "Finder"
+            tell disk "$_volname"
+                open
+                set current view of container window to icon view
+                set toolbar visible of container window to false
+                set statusbar visible of container window to false
+                set the bounds of container window to {400, 100, 885, 430}
+                set theViewOptions to the icon view options of container window
+                set arrangement of theViewOptions to not arranged
+                set icon size of theViewOptions to 72
+                $([ -z "$_image_path" ] || echo "set background picture of theViewOptions to file \".background:$(basename "$3")\"")
+                $([ -z "$_rgb_16bit" ] || echo "set background color of theViewOptions to $_rgb_16bit")
+                make new alias file at container window to POSIX file "/Applications" with properties {name:"Applications"}
+                set position of item "$_appname" of container window to {100, 100}
+                set position of item "Applications" of container window to {375, 100}
+                update without registering applications
+                delay 3
+                close
+            end tell
+        end tell
+EOF
+    run hdiutil detach "$_device"
+    run hdiutil compact "$_rw_image" -batteryallowed
+    [ ! -f "$_volname.dmg" ] || run rm -f "$_volname.dmg"
+    run hdiutil convert "$_rw_image" -format ULFO -o "$_volname.dmg"
+    run rm "$_rw_image"
+}
+
+universalize() {
+    _mountpoint1=/Volumes/sqlitestudio-arch1
+    _mountpoint2=/Volumes/sqlitestudio-arch2
+    _device1="$(hdiutil_attach "$1" "$_mountpoint1")"
+    _device2="$(hdiutil_attach "$2" "$_mountpoint2")"
+    rm -fr _universalized
+    cp -RP "$_mountpoint1" _universalized
+    find "$_mountpoint1" -type f \( -perm +u+x -or -name '*.dylib' \) | while read -r _name1; do
+        case "$(file -b "$_name1")" in Mach-O*)
+            _relative_name="${_name1#"$_mountpoint1/"}"
+            run lipo "$_name1" "$_mountpoint2/$_relative_name" -create -output "_universalized/$_relative_name"
+            ;;
+        esac
+    done
+    run hdiutil detach "$_device1"
+    run hdiutil detach "$_device2"
+    cd _universalized
+    codesign_app "SQLiteStudio.app"
+    # shellcheck disable=SC2086
+    pretty_dmg "SQLiteStudio.app" "universal_out" "$BACKGROUND_IMG" $BACKGROUND_RGB
+    cd ..
+    mv "_universalized/universal_out.dmg" "$3"
+    rm -fr _universalized
+}
+
+if [ "$universalize" -gt 0 ] && [ -f "$1" ] && [ -f "$2" ] && [ -n "$3" ]; then
+    universalize "$@"
+    exit
+fi
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   printUsage
@@ -24,13 +147,6 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
   printUsage
   exit 1
 fi
-
-abort() { printf "ERROR: %s\n" "$@" 1>&2; exit 1; }
-debug() { [ "$quiet" -gt 0 ] || printf "DEBUG: %s\n" "$@" 1>&2; }
-info() { [ "$quiet" -gt 1 ] || printf "INFO: %s\n" "$@" 1>&2; }
-run() { [ "$quiet" -gt 2 ] || { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; } 1>&2; "$@"; }
-
-PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
 
 qt_deploy_bin="$(echo "$2" | sed 's/qmake$/macdeployqt/')"
 if [ ! -x "$qt_deploy_bin" ]; then
@@ -122,65 +238,6 @@ replaceInfo() {
     run mv "$_contents/Info.plist.new" "$_contents/Info.plist"
 }
 
-hdiutil_create() {
-    run hdiutil create \
-        -fs HFS+ -fsargs '-c c=64,a=16,e=16' \
-        -scrub \
-        "$@"
-}
-
-pretty_dmg() {
-    local _appname="${1%.app}" _volname="$2" _image_path="$3" _rgb_16bit
-    [ -z "$6" ] || _rgb_16bit="{$(( $4 * 257 )), $(( $5 * 257 )), $(( $6 * 257 ))}"
-    local _rw_image="$_volname-rw.dmg.sparseimage" _device
-    [ ! -f "$_rw_image" ] || run rm -f "$_rw_image"
-    hdiutil_create \
-        -format UDSP \
-        -srcfolder "$_appname.app" \
-        -size "$(du -ms "$_appname.app" | awk '{ print (2 ^ int(log($1) / log(2) + 2.5)) "m" }')" \
-        -volname "$_volname" \
-        "$_rw_image"
-
-    # detach any images with the same name
-    mount \
-    | awk '/\/Volumes\/'"$_volname"' / {match($1, /disk[0-9]+/); print substr($1, RSTART, RLENGTH)}' \
-    | run xargs -tn1 hdiutil detach
-
-    _device="$(run hdiutil attach "$_rw_image" | awk '/\/dev\// { print $1; exit }')"
-    sleep 1
-    if [ -n "$_image_path" ]; then
-        run mkdir "/Volumes/$_volname/.background"
-        run cp "$_image_path" "/Volumes/$_volname/.background/"
-    fi
-    run osascript <<EOF
-        tell application "Finder"
-            tell disk "$_volname"
-                open
-                set current view of container window to icon view
-                set toolbar visible of container window to false
-                set statusbar visible of container window to false
-                set the bounds of container window to {400, 100, 885, 430}
-                set theViewOptions to the icon view options of container window
-                set arrangement of theViewOptions to not arranged
-                set icon size of theViewOptions to 72
-                $([ -z "$_image_path" ] || echo "set background picture of theViewOptions to file \".background:$(basename "$3")\"")
-                $([ -z "$_rgb_16bit" ] || echo "set background color of theViewOptions to $_rgb_16bit")
-                make new alias file at container window to POSIX file "/Applications" with properties {name:"Applications"}
-                set position of item "$_appname" of container window to {100, 100}
-                set position of item "Applications" of container window to {375, 100}
-                update without registering applications
-                delay 3
-                close
-            end tell
-        end tell
-EOF
-    run hdiutil detach "$_device"
-    run hdiutil compact "$_rw_image" -batteryallowed
-    [ ! -f "$_volname.dmg" ] || run rm -f "$_volname.dmg"
-    run hdiutil convert "$_rw_image" -format ULFO -o "$_volname.dmg"
-    run rm "$_rw_image"
-}
-
 propose_dylib_changes() {
     local _changes _dest _ref
     otool -L "$1" | awk '{print $1}' | while read -r _ref; do
@@ -252,27 +309,14 @@ thin_app() {
                 ;;
         esac
     done
-    cat > entitlements.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>com.apple.security.cs.disable-library-validation</key>
-    <true/>
-    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
-    <true/>
-  </dict>
-</plist>
-EOF
-    run codesign --force -o runtime --entitlements entitlements.plist --deep --sign - "$1"
-    rm entitlements.plist
+    codesign_app "$1"
 }
 
 thin_dmg() (
     thin_app "$1"
     cd "$(dirname "$1")"
     # shellcheck disable=SC2086
-    pretty_dmg "$(basename "$1")" "$2" "$_background_img" $_background_rgb
+    pretty_dmg "$(basename "$1")" "$2" "$BACKGROUND_IMG" $BACKGROUND_RGB
     mv "$2.dmg" "../$2-arm64.dmg"
 )
 
@@ -306,16 +350,16 @@ elif [ "$3" = "dist" ]; then
         esac
     done
 
+    case "$BUILD_ARCHS" in arm64) codesign_app "SQLiteStudio.app" ;; esac
+
     assert_no_dylib_problems SQLiteStudio.app
 
     VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
     [ -n "$VERSION" ] || abort "could not determine SQLiteStudio version"
 
     ls -l
-    _background_img=""  # TODO
-    _background_rgb="56 168 243"
     # shellcheck disable=SC2086
-    pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$_background_img" $_background_rgb
+    pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$BACKGROUND_IMG" $BACKGROUND_RGB
 
     case "$BUILD_ARCHS" in *64" "*64)
         info "Universal build detected. Making an ARM64-only image"
@@ -334,10 +378,12 @@ elif [ "$3" = "dist" ]; then
             -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
             "$python_plugin_lib"
 
+        case "$BUILD_ARCHS" in arm64) codesign_app "SQLiteStudio.app" ;; esac
+
         assert_no_dylib_problems SQLiteStudio.app
 
         # shellcheck disable=SC2086
-        pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION" "$_background_img" $_background_rgb
+        pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION" "$BACKGROUND_IMG" $BACKGROUND_RGB
 
         run rm -fr SQLiteStudio.app/Contents/Frameworks/Python.framework
         run install_name_tool \
