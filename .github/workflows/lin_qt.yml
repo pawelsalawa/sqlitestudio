@@ -29,7 +29,7 @@ jobs:
               #- "glibc_2.27"  # Ubuntu 18.04
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "5.15.13"
+              - "5.15.14"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -108,10 +108,8 @@ jobs:
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in 5.15.13)
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32762-qtbase-5.15.diff | patch -p1
+                case ${{ matrix.version }} in 5.15.14)
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-33285-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-37369-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-38197-qtbase-5.15.diff | patch -p1
@@ -119,9 +117,6 @@ jobs:
                     curl -L https://download.qt.io/official_releases/qt/5.15/0001-CVE-2023-51714-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/0002-CVE-2023-51714-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2024-25580-qtbase-5.15.diff | patch -p1
-
-                    cd ../qtsvg-everywhere-src-${{ matrix.version }}
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32573-qtsvg-5.15.diff | patch -p1
                     ;;
                 esac
 
@@ -132,12 +127,15 @@ jobs:
                 if [ ${{ inputs.use_ccache || false }} = true ]; then
                     ADD_CONFIGURE_FLAGS="-ccache -no-pch"
                 fi
+                sudo apt-get -y remove openssl openssl-dev || true
+                ls -l /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto* || true
+                sudo rm -fr /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto*
                 OPENSSL_LIBS="-L/usr/local/lib -lssl -lcrypto" ./configure \
                     -I /usr/local/include \
                     -L /usr/local/lib \
                     -appstore-compliant \
                     -bundled-xcb-xinput \
-                    $ADD_CONFIGURE_FLAGS \
+                    ${ADD_CONFIGURE_FLAGS:-} \
                     -confirm-license \
                     -dbus-runtime \
                     -fontconfig \

@@ -2,7 +2,7 @@ name: "Linux build runner image"
 
 env:
     icu_version: "74.2"
-    openssl_version: "1.1.1w"
+    openssl_version: "3.0.14"
     python_version: "3.9.19"
     tcl_version: "8.6.14"
 
@@ -36,7 +36,7 @@ jobs:
               run: |
                 v=${{ env.icu_version }}
                 icu_url="https://github.com/unicode-org/icu/releases/download/release-${v%.*}-${v#*.}/icu4c-${v%.*}_${v#*.}-src.tgz"
-                openssl_url="https://github.com/openssl/openssl/releases/download/OpenSSL_$(echo ${{ env.openssl_version }} | tr . _)/openssl-${{ env.openssl_version }}.tar.gz"
+                openssl_url="https://www.openssl.org/source/openssl-${{ env.openssl_version }}.tar.gz"
                 python_url="https://www.python.org/ftp/python/${{ env.python_version }}/Python-${{ env.python_version }}.tar.xz"
                 tcl_url="https://downloads.sourceforge.net/project/tcl/Tcl/${{ env.tcl_version }}/tcl${{ env.tcl_version }}-src.tar.gz"
 
@@ -57,7 +57,7 @@ jobs:
                     && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr icu
                 RUN curl -L $openssl_url | tar -xz \
-                    && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl \
+                    && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl --libdir=lib \
                     && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr openssl-${{ env.openssl_version }}
                 # Installing Python under /usr improves our chances to match user's installed Python

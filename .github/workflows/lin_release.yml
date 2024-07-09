@@ -37,12 +37,12 @@ jobs:
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             qt_version:
               - "5.15.2"
-              - "5.15.13"
+              - "5.15.14"
             exclude:
               - binary_compatibility: glibc_2.23
                 qt_version: "5.15.2"
               - binary_compatibility: glibc_2.27
-                qt_version: "5.15.13"
+                qt_version: "5.15.14"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
@@ -254,7 +254,9 @@ jobs:
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
+                set -x
+                LDD_OUTPUT="$(ldd plugins/libDbSqliteCipher.so | grep crypto || true)"
+                LIBCRYPTO=$(echo "$LDD_OUTPUT" | awk '{print $3}')
                 REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
                 cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
 
@@ -263,7 +265,7 @@ jobs:
               shell: docker-shell {0}
               working-directory: /usr/local/lib
               run: |
-                cp libssl.so.1.1 libcrypto.so.1.1 $PORTABLE_DIR/lib/
+                cp libssl.so.3 libcrypto.so.3 $PORTABLE_DIR/lib/
 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               if: env.USE_PREBUILT_QT == 0
@@ -406,13 +408,13 @@ jobs:
                     SQLiteStudio-$PACKAGE_VERSION-installer.run
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
                 path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
 
             - name: Upload installer artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
