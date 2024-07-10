@@ -2,13 +2,13 @@ env:
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
     PYTHON_VERSION: '3.9'
-    ICU_VER: '74'
-    ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-74.2-1-any.pkg.tar.zst
+    ICU_VER: '75'
+    ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
     MINGW_DIR: ../Qt/Tools/mingw810_64
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-23.4.0-windows-x64-installer.exe
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-windows-x64-installer.exe
 
 name: Windows 64-bit release build
 
@@ -33,7 +33,7 @@ jobs:
           matrix:
             qt_version:
               - "5.15.2"
-              - "5.15.12"
+              - "5.15.14"
 
         steps:
             - name: Configure environment
@@ -380,13 +380,13 @@ jobs:
                     SQLiteStudio-$PACKAGE_VERSION-windows-x64-installer.exe \
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
                 path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload installer artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-windows-x64-installer.exe
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-windows-x64-installer.exe
