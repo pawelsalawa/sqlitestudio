@@ -42,9 +42,9 @@ if [ -d $parent_dir/output ]; then
 	    * ) echo "Aborted."; exit;;
 	esac
 fi
-#rm -rf $parent_dir/output
+rm -rf $parent_dir/output
 cd $parent_dir
-#mkdir output output/build output/build/Plugins
+mkdir output output/build output/build/Plugins
 
 cd output/build
 $QMAKE CONFIG+=portable ../../SQLiteStudio3
