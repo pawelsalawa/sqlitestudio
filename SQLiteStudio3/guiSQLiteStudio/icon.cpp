@@ -217,7 +217,11 @@ Icon::operator Icon*()
 void Icon::init()
 {
     qRegisterMetaType<const Icon*>();
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<const Icon*>();
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 QString Icon::getFileName() const

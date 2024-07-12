@@ -25,7 +25,11 @@ SqlQueryModelColumn::~SqlQueryModelColumn()
 void SqlQueryModelColumn::initMeta()
 {
     qRegisterMetaType<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryExecutor::EditionForbiddenReason reason)

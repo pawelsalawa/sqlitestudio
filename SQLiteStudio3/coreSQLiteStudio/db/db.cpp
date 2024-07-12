@@ -16,7 +16,11 @@ Db::~Db()
 void Db::metaInit()
 {
     qRegisterMetaType<Db*>("Db*");
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     qRegisterMetaTypeStreamOperators<Db*>("Db*");
+#else
+    // automatic in Qt 6
+#endif
 }
 
 QString Db::flagsToString(Db::Flags flags)
