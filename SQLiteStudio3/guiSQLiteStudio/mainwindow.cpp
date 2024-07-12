@@ -79,7 +79,7 @@ void MainWindow::init()
     setWindowTitle(QString("SQLiteStudio (%1)").arg(SQLITESTUDIO->getVersionString()));
 
 #ifdef Q_OS_MACX
-    ui->centralWidget->layout()->setMargin(0);
+    ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 #endif
 
     Committable::init(MainWindow::confirmQuit);

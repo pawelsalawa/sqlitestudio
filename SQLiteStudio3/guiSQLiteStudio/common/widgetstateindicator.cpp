@@ -45,7 +45,7 @@ void WidgetStateIndicator::initLabel()
 
     labelParent = new QWidget(windowParent);
     labelParent->setLayout(new QHBoxLayout());
-    labelParent->layout()->setMargin(0);
+    labelParent->layout()->setContentsMargins(0, 0, 0, 0);
     labelParent->layout()->addWidget(label);
     labelParent->setGraphicsEffect(glowEffect);
 }

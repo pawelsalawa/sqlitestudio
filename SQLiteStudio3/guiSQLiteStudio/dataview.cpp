@@ -149,7 +149,7 @@ void DataView::createFilterPanel()
     perColumnAreaParent->setVisible(false);
     perColumnAreaParent->setLayout(new QHBoxLayout());
     perColumnAreaParent->layout()->setSpacing(0);
-    perColumnAreaParent->layout()->setMargin(0);
+    perColumnAreaParent->layout()->setContentsMargins(0, 0, 0, 0);
     perColumnAreaParent->setFixedHeight(0);
 
     filterLeftSpacer = new QWidget();
@@ -164,7 +164,7 @@ void DataView::createFilterPanel()
     perColumnWidget->setLayout(new QHBoxLayout());
     perColumnWidget->layout()->setSizeConstraint(QLayout::SetFixedSize);
     perColumnWidget->layout()->setSpacing(0);
-    perColumnWidget->layout()->setMargin(0);
+    perColumnWidget->layout()->setContentsMargins(0, 0, 0, 0);
     perColumnWidget->setAutoFillBackground(true);
     perColumnWidget->setBackgroundRole(QPalette::Window);
     perColumnFilterArea->setWidget(perColumnWidget);

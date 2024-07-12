@@ -277,7 +277,7 @@ void ImportDialog::updatePluginOptions(int& rows)
     ui->dsPluginOptionsGroup->setVisible(true);
 
     if (pluginOptionsWidget->layout())
-        pluginOptionsWidget->layout()->setMargin(0);
+        pluginOptionsWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     ui->dsPluginOptionsGroup->layout()->addWidget(pluginOptionsWidget);
     rows++;

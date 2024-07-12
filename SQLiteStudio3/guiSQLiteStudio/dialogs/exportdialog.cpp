@@ -613,7 +613,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
     pluginOptionsWidget = FORMS->createWidget(formName);
 
     if (pluginOptionsWidget->layout())
-        pluginOptionsWidget->layout()->setMargin(0);
+        pluginOptionsWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     grid->addWidget(pluginOptionsWidget, 1, 0, 1, 2);
     optionsRow++;

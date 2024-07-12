@@ -41,7 +41,7 @@ MultiEditor::MultiEditor(QWidget *parent, TabsMode tabsMode) :
 void MultiEditor::init(TabsMode tabsMode)
 {
     QVBoxLayout* vbox = new QVBoxLayout();
-    vbox->setMargin(margins);
+    vbox->setContentsMargins(margins, margins, margins, margins);
     vbox->setSpacing(spacing);
     setLayout(vbox);
 
@@ -49,7 +49,7 @@ void MultiEditor::init(TabsMode tabsMode)
     layout()->addWidget(top);
 
     QHBoxLayout* hbox = new QHBoxLayout();
-    hbox->setMargin(0);
+    hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(10);
     top->setLayout(hbox);
 
