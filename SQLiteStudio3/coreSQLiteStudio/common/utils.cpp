@@ -904,7 +904,11 @@ QString readFileContents(const QString& path, QString* err)
     }
 
     QTextStream stream(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     stream.setCodec("UTF-8");
+#else
+    // UTF-8 is the default QTextStream encoding in Qt 6
+#endif
     QString contents = stream.readAll();
     file.close();
 

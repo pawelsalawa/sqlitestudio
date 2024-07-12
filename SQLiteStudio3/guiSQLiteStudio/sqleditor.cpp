@@ -290,7 +290,11 @@ void SqlEditor::saveToFile(const QString &fileName)
     }
 
     QTextStream stream(&file);
+#if QT_VERSION < 0x060000
     stream.setCodec("UTF-8");
+#else
+    // The stream is UTF-8 by default in Qt 6
+#endif
     stream << toPlainText();
     stream.flush();
     file.close();
