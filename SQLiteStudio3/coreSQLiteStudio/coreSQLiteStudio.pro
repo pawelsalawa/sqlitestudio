@@ -232,7 +232,8 @@ SOURCES += sqlitestudio.cpp \
     common/xmldeserializer.cpp \
     services/impl/sqliteextensionmanagerimpl.cpp \
     common/lazytrigger.cpp \
-    parser/ast/sqliteupsert.cpp
+    parser/ast/sqliteupsert.cpp \
+    common/encodedtextstream.cpp
 
 HEADERS += sqlitestudio.h\
     chillout/chillout.h \
@@ -443,7 +444,8 @@ HEADERS += sqlitestudio.h\
     services/sqliteextensionmanager.h \
     services/impl/sqliteextensionmanagerimpl.h \
     common/lazytrigger.h \
-    parser/ast/sqliteupsert.h
+    parser/ast/sqliteupsert.h \
+    common/encodedtextstream.h
 
 unix: {
     target.path = $$LIBDIR

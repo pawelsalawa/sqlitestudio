@@ -2,7 +2,7 @@
 #include <QList>
 #include <QStringList>
 #include <QtTest>
-#include <QTextStream>
+#include "common/encodedtextstream.h"
 #include "tsvserializer.h"
 #include "csvserializer.h"
 
@@ -155,7 +155,7 @@ void DsvFormatsTestTest::testCsv2Mac()
 void DsvFormatsTestTest::testCsv3Unix()
 {
     QString data = "v1,v2\nv3,v4\n";
-    QTextStream stream(&data);
+    EncodedTextStream stream(&data);
     QList<QStringList> result;
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
@@ -172,7 +172,7 @@ void DsvFormatsTestTest::testCsv3Unix()
 void DsvFormatsTestTest::testCsv3Win()
 {
     QString data = "v1,v2\r\nv3,v4\r\n";
-    QTextStream stream(&data);
+    EncodedTextStream stream(&data);
     QList<QStringList> result;
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
@@ -189,7 +189,7 @@ void DsvFormatsTestTest::testCsv3Win()
 void DsvFormatsTestTest::testCsv3Mac()
 {
     QString data = "v1,v2\rv3,v4\r";
-    QTextStream stream(&data);
+    EncodedTextStream stream(&data);
     QList<QStringList> result;
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
     result << CsvSerializer::deserializeOneEntry(stream, CsvFormat::DEFAULT);
@@ -213,7 +213,7 @@ void DsvFormatsTestTest::testCsvPerformance()
     theFile.open();
     theFile.write(input.toLatin1());
     theFile.seek(0);
-    QTextStream stream(&theFile);
+    EncodedTextStream stream(&theFile);
 
     QElapsedTimer timer;
     timer.start();

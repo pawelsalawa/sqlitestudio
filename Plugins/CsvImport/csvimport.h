@@ -19,7 +19,7 @@ CFG_CATEGORIES(CsvImportConfig,
 )
 
 class QFile;
-class QTextStream;
+class EncodedTextStream;
 
 class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlugin
 {
@@ -47,7 +47,7 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         void defineCsvFormat();
 
         QFile* file = nullptr;
-        QTextStream* stream = nullptr;
+        EncodedTextStream* stream = nullptr;
         QStringList columnNames;
         CsvFormat csvFormat;
         CFG_LOCAL_PERSISTABLE(CsvImportConfig, cfg)
