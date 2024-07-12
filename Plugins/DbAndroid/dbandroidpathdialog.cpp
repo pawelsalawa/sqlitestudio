@@ -221,7 +221,11 @@ void DbAndroidPathDialog::refreshDbList()
     }
 
     updatingDbList = true;
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&DbAndroidPathDialog::asyncDbUpdate, this, dbUrl.toUrlString(), dbUrl.getMode());
+#else
     QtConcurrent::run(this, &DbAndroidPathDialog::asyncDbUpdate, dbUrl.toUrlString(), dbUrl.getMode());
+#endif
 }
 
 void DbAndroidPathDialog::refreshAppList()
@@ -245,7 +249,11 @@ void DbAndroidPathDialog::refreshAppList()
     }
 
     updatingAppList = true;
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&DbAndroidPathDialog::asyncAppUpdate, this, dbUrl.toUrlString(), dbUrl.getMode());
+#else
     QtConcurrent::run(this, &DbAndroidPathDialog::asyncAppUpdate, dbUrl.toUrlString(), dbUrl.getMode());
+#endif
 }
 
 void DbAndroidPathDialog::asyncDbUpdate(const QString& connectionUrl, DbAndroidMode enforcedMode)

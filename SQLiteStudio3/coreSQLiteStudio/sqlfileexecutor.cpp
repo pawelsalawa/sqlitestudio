@@ -53,7 +53,11 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
     }
 
     if (async)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        QtConcurrent::run(&SqlFileExecutor::execInThread, this);
+#else
         QtConcurrent::run(this, &SqlFileExecutor::execInThread);
+#endif
     else
         execInThread();
 }

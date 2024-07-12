@@ -103,7 +103,11 @@ bool DbAndroid::init()
     }
     else
     {
+#if QT_VERSION >= 0x060000
+        QtConcurrent::run(&DbAndroid::initAdb, this);
+#else
         QtConcurrent::run(this, &DbAndroid::initAdb);
+#endif
     }
     return true;
 }
