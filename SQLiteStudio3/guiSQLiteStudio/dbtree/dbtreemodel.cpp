@@ -942,7 +942,7 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QStringList textList;
 
     DbTreeItem* item = nullptr;
-    stream << reinterpret_cast<qint32>(indexes.size());
+    stream << indexes.size();
     for (const QModelIndex& idx : indexes)
     {
         item = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
