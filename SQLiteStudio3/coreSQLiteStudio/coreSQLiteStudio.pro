@@ -11,6 +11,11 @@ OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
 MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
+versionAtLeast(QT_VERSION, 6.0.0) {
+    # We miss QTextCodec here and there
+    QT += core5compat
+}
+
 QT       -= gui
 QT       += qml network
 
