@@ -20,7 +20,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
-#include <QTextCodec>
 #include <QUiLoader>
 #include <QMimeData>
 

@@ -13,7 +13,6 @@
 #include <QSet>
 #include <QDebug>
 #include <QPainter>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QStyle>
 #include <QScreen>

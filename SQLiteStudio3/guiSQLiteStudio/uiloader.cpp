@@ -14,7 +14,6 @@
 #include <QDebug>
 #include <QFile>
 #include <QMetaProperty>
-#include <QXmlSimpleReader>
 
 #define REGISTER_WIDGET(Class) \
     registerWidgetClass(#Class, [](QWidget* parent, const QString& name) -> QWidget*\
