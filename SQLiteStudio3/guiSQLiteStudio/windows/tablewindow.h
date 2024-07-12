@@ -36,8 +36,8 @@ CFG_KEY_LIST(TableWindow, QObject::tr("Table window"),
      CFG_KEY_ENTRY(ADD_COLUMN,              Qt::Key_Insert,               QObject::tr("Add new column"))
      CFG_KEY_ENTRY(EDIT_COLUMN,             Qt::Key_Return,               QObject::tr("Edit selected column"))
      CFG_KEY_ENTRY(DEL_COLUMN,              Qt::Key_Delete,               QObject::tr("Delete selected column"))
-     CFG_KEY_ENTRY(EXPORT,                  Qt::CTRL + Qt::Key_E,         QObject::tr("Export table data"))
-     CFG_KEY_ENTRY(IMPORT,                  Qt::CTRL + Qt::Key_I,         QObject::tr("Import data to the table"))
+     CFG_KEY_ENTRY(EXPORT,                  Qt::CTRL | Qt::Key_E,         QObject::tr("Export table data"))
+     CFG_KEY_ENTRY(IMPORT,                  Qt::CTRL | Qt::Key_I,         QObject::tr("Import data to the table"))
      CFG_KEY_ENTRY(ADD_TABLE_CONSTRAINT,    Qt::Key_Insert,               QObject::tr("Add new table constraint"))
      CFG_KEY_ENTRY(EDIT_TABLE_CONSTRAINT,   Qt::Key_Return,               QObject::tr("Edit selected table constraint"))
      CFG_KEY_ENTRY(DEL_TABLE_CONSTRAINT,    Qt::Key_Delete,               QObject::tr("Delete selected table constraint"))
@@ -49,8 +49,8 @@ CFG_KEY_LIST(TableWindow, QObject::tr("Table window"),
      CFG_KEY_ENTRY(ADD_TRIGGER,             Qt::Key_Insert,               QObject::tr("Add new trigger"))
      CFG_KEY_ENTRY(EDIT_TRIGGER,            Qt::Key_Return,               QObject::tr("Edit selected trigger"))
      CFG_KEY_ENTRY(DEL_TRIGGER,             Qt::Key_Delete,               QObject::tr("Delete selected trigger"))
-     CFG_KEY_ENTRY(NEXT_TAB,                Qt::ALT + Qt::Key_Right,      QObject::tr("Go to next tab"))
-     CFG_KEY_ENTRY(PREV_TAB,                Qt::ALT + Qt::Key_Left,       QObject::tr("Go to previous tab"))
+     CFG_KEY_ENTRY(NEXT_TAB,                Qt::ALT | Qt::Key_Right,      QObject::tr("Go to next tab"))
+     CFG_KEY_ENTRY(PREV_TAB,                Qt::ALT | Qt::Key_Left,       QObject::tr("Go to previous tab"))
 )
 
 class GUI_API_EXPORT TableWindow : public MdiChild
