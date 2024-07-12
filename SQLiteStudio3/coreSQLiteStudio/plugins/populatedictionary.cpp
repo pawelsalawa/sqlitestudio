@@ -46,7 +46,7 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     dictionaryPos = 0;
     dictionarySize = dictionary.size();
     if (cfg.PopulateDictionary.Random.get())
-        QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
+        QRandomGenerator::system()->seed(QDateTime::currentDateTime().toSecsSinceEpoch());
 
     return true;
 }

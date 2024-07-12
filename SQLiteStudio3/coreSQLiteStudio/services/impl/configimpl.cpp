@@ -504,7 +504,7 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
         entry = DdlHistoryEntryPtr::create();
         entry->dbName = dbName;
         entry->dbFile = dbFile;
-        entry->timestamp = QDateTime::fromTime_t(row->value("timestamp").toUInt());
+        entry->timestamp = QDateTime::fromSecsSinceEpoch(row->value("timestamp").toLongLong());
         entry->queries = row->value("queries").toString();
         entries << entry;
     }
@@ -1024,7 +1024,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
     static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
     db->begin();
-    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
+    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toSecsSinceEpoch(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
@@ -1053,7 +1053,7 @@ void ConfigImpl::asyncClearDdlHistory()
 void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
     static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
-    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toTime_t(), title, url});
+    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toSecsSinceEpoch(), title, url});
     emit reportsHistoryRefreshNeeded();
 }
 

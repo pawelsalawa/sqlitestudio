@@ -340,7 +340,7 @@ bool ConfigMigrationWizard::migrateSqlHistory(Db* oldCfgDb, Db* newCfgDb)
     {
         row = results->next();
         timeSpent = qRound(row->value("time").toDouble() * 1000);
-        date = QDateTime::fromString(row->value("date").toString(), "yyyy-MM-dd HH:mm").toTime_t();
+        date = QDateTime::fromString(row->value("date").toString(), "yyyy-MM-dd HH:mm").toSecsSinceEpoch();
 
         insertResults = newCfgDb->exec(newHistoryInsert, {nextId++, row->value("dbname"), date, timeSpent, row->value("rows"), row->value("sql")});
         if (insertResults->isError())
