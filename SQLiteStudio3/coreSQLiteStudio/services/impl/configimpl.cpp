@@ -13,7 +13,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QDataStream>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDateTime>
 #include <QSysInfo>
 #include <QCoreApplication>

@@ -2,7 +2,7 @@
 #include "common/unused.h"
 #include <QTextCursor>
 #include <QTextBlock>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDebug>
 
 SearchTextLocator::SearchTextLocator(QTextDocument* document, QObject* parent) :
@@ -105,7 +105,7 @@ QTextCursor SearchTextLocator::findInWholeDoc(QTextDocument::FindFlags flags)
     // Simply find a match
     QTextCursor cursor;
     if (regularExpression)
-        cursor = document->find(QRegExp(lookupString), startPosition, flags);
+        cursor = document->find(QRegularExpression(lookupString), startPosition, flags);
     else
         cursor = document->find(lookupString, startPosition, flags);
 
@@ -118,7 +118,7 @@ QTextCursor SearchTextLocator::findInWholeDoc(QTextDocument::FindFlags flags)
             start = document->lastBlock().position() + document->lastBlock().length();
 
         if (regularExpression)
-            cursor = document->find(QRegExp(lookupString), start, flags);
+            cursor = document->find(QRegularExpression(lookupString), start, flags);
         else
             cursor = document->find(lookupString, start, flags);
     }
@@ -206,24 +206,26 @@ void SearchTextLocator::replaceAll()
 {
     QString origContents = document->toPlainText();
     QString contents = origContents;
-    Qt::CaseSensitivity cs = caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive;
     int replLen = replaceString.length();
     int diff = 0;
     if (regularExpression)
     {
-        QRegExp re(lookupString, cs);
+        QRegularExpression re(lookupString,
+                              caseSensitive ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption);
         contents.replace(re, replaceString);
 
         int pos = 0;
-        while ((pos = re.indexIn(origContents, pos)) != -1 && pos < startPosition)
+        QRegularExpressionMatch match;
+        while ((pos = origContents.indexOf(re, pos, &match)) != -1 && pos < startPosition)
         {
-            int len = re.matchedLength();
+            int len = match.capturedLength();
             pos += len;
             diff += (replLen - len);
         }
     }
     else
     {
+        Qt::CaseSensitivity cs = caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive;
         contents.replace(lookupString, replaceString, cs);
 
         int len = lookupString.length();

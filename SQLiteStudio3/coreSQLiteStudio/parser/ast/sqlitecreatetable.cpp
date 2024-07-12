@@ -3,7 +3,7 @@
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
 
-const QRegExp SqliteCreateTable::Column::GENERATED_ALWAYS_REGEXP = QRegExp("GENERATED\\s+ALWAYS");
+const QRegularExpression SqliteCreateTable::Column::GENERATED_ALWAYS_REGEXP = QRegularExpression("GENERATED\\s+ALWAYS");
 
 SqliteCreateTable::SqliteCreateTable()
 {

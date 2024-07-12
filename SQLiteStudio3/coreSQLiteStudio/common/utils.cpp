@@ -654,7 +654,7 @@ QString defaultCodecName()
 
 QStringList splitByLines(const QString& str)
 {
-    return str.split(QRegExp("\r?\n"));
+    return str.split(QRegularExpression("\r?\n"));
 }
 
 QString joinLines(const QStringList& lines)
@@ -842,7 +842,7 @@ QString doubleToString(const QVariant& val)
     QString str = val.toString();
     if (str.contains("e") || str.midRef(str.indexOf('.') + 1).length() > 14)
     {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
+        str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
         if (str.endsWith("."))
             str += "0";
     }
@@ -944,7 +944,7 @@ uint qHash(const QVariant& var)
         case QVariant::DateTime:
         case QVariant::Url:
         case QVariant::Locale:
-        case QVariant::RegExp:
+        case QVariant::RegularExpression:
             return qHash(var.toString());
         case QVariant::Hash:
             return qHash(var.toHash());

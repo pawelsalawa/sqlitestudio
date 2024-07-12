@@ -733,7 +733,7 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
         QString option;
         QString value;
         CfgEntry* cfg;
-        QStringList lines = args[4].toString().split(QRegExp("[\r\n]+"));
+        QStringList lines = args[4].toString().split(QRegularExpression("[\r\n]+"));
         for (const QString& line : lines)
         {
             idx = line.indexOf("=");
