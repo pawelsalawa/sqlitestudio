@@ -3,6 +3,7 @@
 #include <QList>
 #include <QDebug>
 #include <QTime>
+#include <QIODevice>
 
 template <class C>
 bool isCsvSeparator(QList<C>& ahead, const C& theChar, const QStringList& separators)

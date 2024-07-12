@@ -3,6 +3,7 @@
 
 #include "guiSQLiteStudio_global.h"
 #include "db/sqlquery.h"
+#include "sqlqueryitem.h"
 #include <QStyledItemDelegate>
 #include <QSet>
 

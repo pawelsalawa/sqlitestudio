@@ -12,6 +12,7 @@
 #include "common/colorbutton.h"
 #include <QComboBox>
 #include <QDebug>
+#include <QFile>
 #include <QMetaProperty>
 #include <QXmlSimpleReader>
 

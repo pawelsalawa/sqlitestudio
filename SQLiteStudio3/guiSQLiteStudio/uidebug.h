@@ -3,6 +3,7 @@
 
 #include "guiSQLiteStudio_global.h"
 #include <QtDebug>
+#include <QObject>
 #include <QTextStream>
 
 class QFile;

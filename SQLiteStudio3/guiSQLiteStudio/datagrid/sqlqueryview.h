@@ -5,6 +5,7 @@
 #include "common/extactioncontainer.h"
 #include "db/queryexecutor.h"
 #include "guiSQLiteStudio_global.h"
+#include "sqlqueryitem.h"
 #include <QTableView>
 #include <QHeaderView>
 
