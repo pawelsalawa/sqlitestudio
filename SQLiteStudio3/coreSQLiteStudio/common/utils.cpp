@@ -840,7 +840,7 @@ QStringList concat(const QList<QStringList>& list)
 QString doubleToString(const QVariant& val)
 {
     QString str = val.toString();
-    if (str.contains("e") || str.midRef(str.indexOf('.') + 1).length() > 14)
+    if (str.contains("e") || str.length() - (str.indexOf('.') + 1) > 14)
     {
         str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
         if (str.endsWith("."))
