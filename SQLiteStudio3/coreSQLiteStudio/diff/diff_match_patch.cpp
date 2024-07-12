@@ -71,7 +71,7 @@ QString Diff::strOperation(Operation op) {
 QString Diff::toString() const {
   QString prettyText = text;
   // Replace linebreaks with Pilcrow signs.
-  prettyText.replace('\n', L'\u00b6');
+  prettyText.replace('\n', QChar(0xB6));
   return QString("Diff(") + strOperation(operation) + QString(",\"")
       + prettyText + QString("\")");
 }
@@ -1436,7 +1436,7 @@ int diff_match_patch::match_main(const QString &text, const QString &pattern,
     throw "Null inputs. (match_main)";
   }
 
-  loc = std::max(0, std::min(loc, text.length()));
+  loc = std::max(0, std::min(loc, static_cast<int>(text.length())));
   if (text == pattern) {
     // Shortcut (potentially not guaranteed by the algorithm)
     return 0;
@@ -1504,7 +1504,7 @@ int diff_match_patch::match_bitap(const QString &text, const QString &pattern,
     // Use the result from this iteration as the maximum for the next.
     bin_max = bin_mid;
     int start = std::max(1, loc - bin_mid + 1);
-    int finish = std::min(loc + bin_mid, text.length()) + pattern.length();
+    int finish = std::min(loc + bin_mid, static_cast<int>(text.length())) + pattern.length();
 
     rd = new int[finish + 2];
     rd[finish + 1] = (1 << d) - 1;
@@ -1599,7 +1599,7 @@ void diff_match_patch::patch_addContext(Patch &patch, const QString &text) {
       && pattern.length() < Match_MaxBits - Patch_Margin - Patch_Margin) {
     padding += Patch_Margin;
     pattern = safeMid(text, std::max(0, patch.start2 - padding),
-        std::min(text.length(), patch.start2 + patch.length1 + padding)
+        std::min(static_cast<int>(text.length()), patch.start2 + patch.length1 + padding)
         - std::max(0, patch.start2 - padding));
   }
   // Add one chunk for good luck.
@@ -1613,7 +1613,7 @@ void diff_match_patch::patch_addContext(Patch &patch, const QString &text) {
   }
   // Add the suffix.
   QString suffix = safeMid(text, patch.start2 + patch.length1,
-      std::min(text.length(), patch.start2 + patch.length1 + padding)
+      std::min(static_cast<int>(text.length()), patch.start2 + patch.length1 + padding)
       - (patch.start2 + patch.length1));
   if (!suffix.isEmpty()) {
     patch.diffs.append(Diff(EQUAL, suffix));
@@ -1981,7 +1981,7 @@ void diff_match_patch::patch_splitMax(QList<Patch> &patches) {
           bigpatch.diffs.removeFirst();
         } else {
           // Deletion or equality.  Only take as much as we can stomach.
-          diff_text = diff_text.left(std::min(diff_text.length(),
+          diff_text = diff_text.left(std::min(static_cast<int>(diff_text.length()),
               patch_size - patch.length1 - Patch_Margin));
           patch.length1 += diff_text.length();
           start1 += diff_text.length();
