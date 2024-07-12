@@ -49,7 +49,7 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& idx) const
         {
             flags |= Qt::ItemIsUserCheckable;
             if (index(0, 0, idx).isValid())
-                flags |= Qt::ItemIsTristate;
+                flags |= Qt::ItemIsAutoTristate;
 
             break;
         }
