@@ -112,6 +112,12 @@ jobs:
                 qmake_flags: ""
 
         steps:
+            - name: Uninstall unwanted Homebrew packages and their dependents
+              run: |
+                if brew list tcl-tk 2>/dev/null; then
+                    brew uninstall tcl-tk r
+                fi
+
             - name: Install the InstallBuilder
               shell: bash
               run: |
