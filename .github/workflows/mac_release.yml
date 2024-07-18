@@ -316,7 +316,7 @@ jobs:
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
 
     build-universal:
-        runs-on: macos-latest
+        runs-on: macos-12  # Don't use newer versions yet, https://github.com/actions/runner-images/issues/7522
         needs: build
         strategy:
           fail-fast: false
