@@ -33,10 +33,29 @@ jobs:
             binary_compatibility:
               - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
               - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
-              #- "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
+              - "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
               #- "darwin_20.x86_64"  # macOS 11, the earliest version supported by QT 6.5
               #- "darwin_20.arm64"  # macOS 11, the earliest ARM64 version; temporarily no upstream binary packages
               - "darwin_21.arm64"  # macOS 12, the earliest ARM64 version we have MacPorts binary packages for
+            qt_version:
+              - "5.13.2"
+              - "5.15.12"
+              - "6.4.3"
+            exclude:
+              - binary_compatibility: "darwin_16.x86_64"
+                qt_version: "5.15.12"
+              - binary_compatibility: "darwin_16.x86_64"
+                qt_version: "6.4.3"
+              - binary_compatibility: "darwin_17.x86_64"
+                qt_version: "5.13.2"
+              - binary_compatibility: "darwin_17.x86_64"
+                qt_version: "6.4.3"
+              - binary_compatibility: "darwin_18.x86_64"
+                qt_version: "5.13.2"
+              - binary_compatibility: "darwin_18.x86_64"
+                qt_version: "5.15.12"
+              - binary_compatibility: "darwin_21.arm64"
+                qt_version: "5.13.2"
             include:
               # this list is meant to be synchronized with mac_deps.yml
               - common_pkgs:
@@ -75,7 +94,8 @@ jobs:
                   - zlib 1.3.1_0
                   - zstd 1.5.6_0
               - binary_compatibility: darwin_21.arm64
-                cflags: -arch arm64
+                qt_version: "5.15.12"
+                cflags: -arch arm64 -mmacosx-version-min=11
                 dmg_postfix: "-macos11.arm64"
                 pkgs:
                   - qt5-qtbase 5.15.12_1+openssl
@@ -85,8 +105,36 @@ jobs:
                   - qt5-qtsvg 5.15.12_0
                   - qt5-qttools 5.15.12_0
                 runner: macos-14
+              - binary_compatibility: darwin_21.arm64
+                qt_version: "6.4.3"
+                cflags: -arch arm64 -mmacosx-version-min=11
+                dmg_postfix: "-macos11.arm64-qt6"
+                pkgs:
+                  - libb2 0.98.1_1
+                  - md4c 0.4.8_0
+                  - qt6-qtbase 6.4.3_6+openssl
+                  - qt6-qtdeclarative 6.4.3_0
+                  - qt6-qtimageformats 6.4.3_0
+                  - qt6-qtsvg 6.4.3_1
+                  - qt6-qttools 6.4.3_1
+                  - qt6-qt5compat 6.4.3_2
+                runner: macos-14
+              - binary_compatibility: darwin_18.x86_64
+                qt_version: "6.4.3"
+                cflags: -mmacosx-version-min=10.14
+                dmg_postfix: "-macos10.14-qt6"
+                pkgs:
+                  - libb2 0.98.1_1
+                  - md4c 0.4.8_0
+                  - qt6-qtbase 6.4.3_6+openssl
+                  - qt6-qtdeclarative 6.4.3_0
+                  - qt6-qtimageformats 6.4.3_0
+                  - qt6-qtsvg 6.4.3_1
+                  - qt6-qttools 6.4.3_1
+                  - qt6-qt5compat 6.4.3_2
               - binary_compatibility: darwin_17.x86_64
-                cflags: -arch x86_64
+                qt_version: "5.15.12"
+                cflags: -arch x86_64 -mmacosx-version-min=10.13
                 add_variants: ""
                 dmg_postfix: "-macos10.13"
                 pkgs:
@@ -98,7 +146,8 @@ jobs:
                   - qt5-qttools 5.15.12_0
                 qmake_flags: ""
               - binary_compatibility: darwin_16.x86_64
-                cflags: -arch x86_64
+                qt_version: "5.13.2"
+                cflags: -arch x86_64 -mmacosx-version-min=10.12
                 add_variants: ""
                 dmg_postfix: "-macos10.12"
                 pkgs:
@@ -159,7 +208,10 @@ jobs:
             - name: Configure MacPorts packages
               run: |
                 sudo ln -s $(pwd)/macports/opt/local /opt/
-                echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV
+                case "${{ join(matrix.pkgs, ' ') }}" in
+                  *qt6*) echo "PATH=/opt/local/libexec/qt6/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV ;;
+                  *)     echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV ;;
+                esac
                 echo "pythonLocation=/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION" >> $GITHUB_ENV
 
                 if [ ${{ matrix.binary_compatibility }} = "darwin_16.x86_64" ]; then
