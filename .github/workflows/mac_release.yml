@@ -112,6 +112,12 @@ jobs:
                 qmake_flags: ""
 
         steps:
+            - name: Uninstall unwanted Homebrew packages and their dependents
+              run: |
+                if brew list tcl-tk 2>/dev/null; then
+                    brew uninstall tcl-tk r
+                fi
+
             - name: Install the InstallBuilder
               shell: bash
               run: |
@@ -310,7 +316,7 @@ jobs:
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
 
     build-universal:
-        runs-on: macos-latest
+        runs-on: macos-12  # Don't use newer versions yet, https://github.com/actions/runner-images/issues/7522
         needs: build
         strategy:
           fail-fast: false
