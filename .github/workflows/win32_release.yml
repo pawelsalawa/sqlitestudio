@@ -33,6 +33,7 @@ jobs:
             qt_version:
               - "5.15.2"
               - "5.15.14"
+              #- "6.7.2"  # No Qt 6 for 32-bit
 
         steps:
             - name: Configure environment
@@ -44,7 +45,18 @@ jobs:
                                 echo QT_ARCH=win32_mingw81 ;;
                         *) echo QT_FROM_PACKAGES=1 ;;
                     esac
-                    echo TARGET_ARCH=i686
+                    TARGET_ARCH=i686
+                    case ${{ matrix.qt_version }} in
+                        5.*) echo QT_VERSION_MAJ=5
+                             echo QMAKE_COMMAND="qmake.exe QMAKE_CXXFLAGS+=-m32"
+                             echo QT_ADD_PACKAGES="mingw-w64-$TARGET_ARCH-qt5-winextras"
+                             ;;
+                        6.*) echo QT_VERSION_MAJ=6
+                             echo QMAKE_COMMAND=qmake6.exe
+                             echo QT_ADD_PACKAGES="mingw-w64-$TARGET_ARCH-qt6-5compat"
+                             ;;
+                    esac
+                    echo TARGET_ARCH=$TARGET_ARCH
                     echo MINGWxx=mingw32
                     echo CCACHE_COMMAND="$HOME/.cargo/bin/ccache.exe"
                 } >> $GITHUB_ENV
@@ -57,13 +69,12 @@ jobs:
                 install: >
                   mingw-w64-${{ env.TARGET_ARCH }}-gcc
                   mingw-w64-${{ env.TARGET_ARCH }}-make
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-base
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-declarative
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-imageformats
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-script
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-svg
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-tools
-                  mingw-w64-${{ env.TARGET_ARCH }}-qt5-winextras
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt${{ env.QT_VERSION_MAJ }}-base
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt${{ env.QT_VERSION_MAJ }}-declarative
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt${{ env.QT_VERSION_MAJ }}-imageformats
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt${{ env.QT_VERSION_MAJ }}-svg
+                  mingw-w64-${{ env.TARGET_ARCH }}-qt${{ env.QT_VERSION_MAJ }}-tools
+                  ${{ env.QT_ADD_PACKAGES }}
                   mingw-w64-${{ env.TARGET_ARCH }}-wineditline
                   unzip
                 update: ${{ env.QT_FROM_PACKAGES == 1 }}
@@ -83,18 +94,23 @@ jobs:
               shell: msys2 {0}
               run: |
                 set -x
-                qt_version_local="$(pacman -Si mingw-w64-$TARGET_ARCH-qt5-base | awk '/Version/ {print $3}')"
+                qt_version_local="$(pacman -Si mingw-w64-$TARGET_ARCH-qt${{ env.QT_VERSION_MAJ }}-base | awk '/Version/ {print $3}')"
                 case "$qt_version_local" in
                     ${{ matrix.qt_version }}*) ;;
                     *) echo "Repos have $qt_version_local, can't install ${{ matrix.qt_version }} from repos"; exit 1 ;;
                 esac
+                if [ "$QT_VERSION_MAJ" = 6 ]; then
+                    for tool in lrelease; do
+                        ln /d/msys64/$MINGWxx/bin/$tool-qt6.exe /d/msys64/$MINGWxx/bin/$tool.exe
+                    done
+                fi
                 echo 'd:\msys64\$MINGWxx\bin' >> $GITHUB_PATH
                 tee -a $GITHUB_ENV <<EOF_ENV
                 ICU_FLAGS=-licuio -licuin -licuuc -licudt
                 ICU_LIBDIR=/d/msys64/$MINGWxx/bin
                 QMAKE_EXTRA_FLAGS=INCLUDEPATH+=D:/msys64/$MINGWxx/include/editline
                 QT5_LIBDIR=/d/msys64/$MINGWxx/bin
-                QT5_PLUGINDIR=/d/msys64/$MINGWxx/share/qt5/plugins
+                QT5_PLUGINDIR=/d/msys64/$MINGWxx/share/qt${{ env.QT_VERSION_MAJ }}/plugins
                 ZLIB_FLAGS=-lz
                 EOF_ENV
 
@@ -232,10 +248,9 @@ jobs:
               working-directory: output/build
               shell: bash_or_msys2 {0}
               run: |
-                qmake.exe \
+                ${{ env.QMAKE_COMMAND }} \
                     CONFIG+=portable \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    "QMAKE_CXXFLAGS+=-m32" \
                     $QMAKE_EXTRA_FLAGS \
                     ../../SQLiteStudio3
                 mingw32-make.exe -j 2
@@ -244,11 +259,10 @@ jobs:
               working-directory: output/build/Plugins
               shell: bash_or_msys2 {0}
               run: |
-                qmake.exe \
+                ${{ env.QMAKE_COMMAND }} \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     CONFIG+=portable \
                     PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
-                    "QMAKE_CXXFLAGS+=-m32" \
                     ../../../Plugins
                 mingw32-make.exe -j 1
 
@@ -278,18 +292,26 @@ jobs:
               run: |
                 cd "$QT5_LIBDIR"
                 cp \
-                    Qt5Core.dll \
-                    Qt5Gui.dll \
-                    Qt5Network.dll \
-                    Qt5PrintSupport.dll \
-                    Qt5Qml.dll \
-                    Qt5Svg.dll \
-                    Qt5Widgets.dll \
-                    Qt5Xml.dll \
+                    Qt${QT_VERSION_MAJ}Core.dll \
+                    Qt${QT_VERSION_MAJ}Gui.dll \
+                    Qt${QT_VERSION_MAJ}Network.dll \
+                    Qt${QT_VERSION_MAJ}PrintSupport.dll \
+                    Qt${QT_VERSION_MAJ}Qml.dll \
+                    Qt${QT_VERSION_MAJ}Svg.dll \
+                    Qt${QT_VERSION_MAJ}Widgets.dll \
+                    Qt${QT_VERSION_MAJ}Xml.dll \
                     libgcc_s_dw2-1.dll \
                     libstdc++-6.dll \
                     libwinpthread-1.dll \
                     "$ABSOLUTE_PORTABLE_DIR"
+                if [ "$QT_VERSION_MAJ" = 6 ]; then
+                    cp \
+                        Qt6Core5Compat.dll \
+                        Qt6OpenGL.dll \
+                        Qt6OpenGLWidgets.dll \
+                        Qt6UiTools.dll \
+                        "$ABSOLUTE_PORTABLE_DIR"
+                fi
                 if [ "$QT_FROM_PACKAGES" = 1 ]; then
                     cp \
                         libbrotlicommon.dll \
@@ -309,20 +331,36 @@ jobs:
                         libzstd.dll \
                         zlib1.dll \
                         "$ABSOLUTE_PORTABLE_DIR"
+                    case "$QT_VERSION_MAJ" in
+                        6) cp \
+                            libb2-1.dll \
+                            "$ABSOLUTE_PORTABLE_DIR" ;;
+                    esac
                 else
                     cp qt.conf "$ABSOLUTE_PORTABLE_DIR"
                 fi
                 cd "$QT5_PLUGINDIR"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
-                mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/imageformats"
                 cp iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 cp platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
-                cp styles/qwindowsvistastyle.dll "$ABSOLUTE_PORTABLE_DIR/styles"
-                cp printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"; done
+                cp styles/q*windows*style.dll "$ABSOLUTE_PORTABLE_DIR/styles"
+                if [ "$QT_VERSION_MAJ" = 5 ]; then
+                    mkdir -p "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                    cp printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
+                fi
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do
+                    cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
+                done
+                if [ "$QT_VERSION_MAJ" = 6 ]; then
+                    for f in qjp2 qmng qwebp; do
+                        cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
+                    done
+                    mkdir -p "$ABSOLUTE_PORTABLE_DIR/tls"
+                    cp tls/qopensslbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
+                fi
 
             - name: Prepare portable distro (Deps)
               shell: bash
@@ -344,7 +382,9 @@ jobs:
             - name: Determine SQLiteStudio version
               shell: bash
               run: |
+                set -x
                 cd $ABSOLUTE_PORTABLE_DIR
+                ./sqlitestudiocli.exe --version
                 SQLITESTUDIO_VERSION="$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')"
                 [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
