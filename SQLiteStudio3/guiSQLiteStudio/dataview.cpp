@@ -23,6 +23,7 @@
 #include <QLineEdit>
 #include <QSizePolicy>
 #include <QScrollBar>
+#include <QToolButton>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::TabsPosition DataView::tabsPosition;
@@ -501,11 +502,21 @@ void DataView::updateTabsMode()
     }
 }
 
+void DataView::setActionIcon(QAction *action, const QIcon &icon, QToolBar *toolbar)
+{
+    action->setIcon(icon);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    // In Qt 6, setting the action icon is not enough, use brute force
+    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(action));
+    button->setIcon(icon);
+#endif
+}
+
 void DataView::filterModeSelected()
 {
     QAction* modeAction = dynamic_cast<QAction*>(sender());
     filterMode = static_cast<FilterMode>(modeAction->property(DATA_VIEW_FILTER_PROP).toInt());
-    actionMap[FILTER]->setIcon(modeAction->icon());
+    setActionIcon(actionMap[FILTER], modeAction->icon(), gridToolBar);
 }
 
 void DataView::coverForGridCommit(int total)
@@ -1026,7 +1037,7 @@ void DataView::createFilteringActions()
     attachActionInMenu(FILTER, actionMap[FILTER_PER_COLUMN], gridToolBar);
     gridToolBar->addSeparator();
 
-    actionMap[FILTER]->setIcon(actionMap[FILTER_STRING]->icon());
+    setActionIcon(actionMap[FILTER], actionMap[FILTER_STRING]->icon(), gridToolBar);
 
     gridView->getHeaderContextMenu()->addSeparator();
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
