@@ -225,7 +225,7 @@ class API_EXPORT SchemaResolver
         static ExpiringCache<QString, QString> autoIndexDdlCache;
 };
 
-int qHash(const SchemaResolver::ObjectCacheKey& key);
+TYPE_OF_QHASH qHash(const SchemaResolver::ObjectCacheKey& key);
 int operator==(const SchemaResolver::ObjectCacheKey& k1, const SchemaResolver::ObjectCacheKey& k2);
 
 template <class T>

@@ -916,7 +916,7 @@ QString readFileContents(const QString& path, QString* err)
 }
 
 
-uint qHash(const QVariant& var)
+TYPE_OF_QHASH qHash(const QVariant& var)
 {
     if (!var.isValid() || var.isNull())
         return -1;

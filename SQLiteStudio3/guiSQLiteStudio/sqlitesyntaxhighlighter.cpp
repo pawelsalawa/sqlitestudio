@@ -321,9 +321,9 @@ SqliteSyntaxHighlighter::Error::Error(int from, int to, bool limitedDamage) :
 {
 }
 
-int qHash(SqliteSyntaxHighlighter::State state)
+TYPE_OF_QHASH qHash(SqliteSyntaxHighlighter::State state)
 {
-    return static_cast<int>(state);
+    return static_cast<TYPE_OF_QHASH>(state);
 }
 
 

@@ -207,13 +207,13 @@ bool Token::operator <(const Token &other) const
         return start < other.start;
 }
 
-uint qHash(const TokenPtr& token)
+TYPE_OF_QHASH qHash(const TokenPtr& token)
 {
     // This doesn't look nice, but it's good enough to satisfy a hash table.
     // It's fast and quite distinguishable.
     // It's rare to have two pointers with the same int type representation,
     // and if that happens, there's always a comparision operator.
-    return (uint)reinterpret_cast<qint64>(token.data());
+    return (TYPE_OF_QHASH)reinterpret_cast<qint64>(token.data());
 }
 
 TokenList::TokenList()

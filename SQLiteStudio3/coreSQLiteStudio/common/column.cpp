@@ -42,7 +42,7 @@ void Column::setDeclaredType(const QString& value)
     declaredType = value;
 }
 
-int qHash(Column column)
+TYPE_OF_QHASH qHash(Column column)
 {
     return qHash(column.getDatabase() + "." + column.getTable() + "." + column.getColumn() + "/" + column.getDeclaredType());
 }
@@ -79,7 +79,7 @@ void AliasedColumn::setAlias(const QString& value)
     alias = value;
 }
 
-int qHash(AliasedColumn column)
+TYPE_OF_QHASH qHash(AliasedColumn column)
 {
     return qHash(column.getDatabase() + "." + column.getTable() + "." + column.getColumn() + "/" + column.getDeclaredType()
                  + "/" + column.getAlias());

@@ -41,7 +41,7 @@ struct API_EXPORT AliasedColumn : public Column
         QString alias;
 };
 
-int API_EXPORT qHash(Column column);
-int API_EXPORT qHash(AliasedColumn column);
+API_EXPORT TYPE_OF_QHASH qHash(Column column);
+API_EXPORT TYPE_OF_QHASH qHash(AliasedColumn column);
 
 #endif // COLUMN_H

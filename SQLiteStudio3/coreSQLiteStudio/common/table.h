@@ -60,8 +60,8 @@ class API_EXPORT AliasedTable : public Table
         QString tableAlias;
 };
 
-int API_EXPORT qHash(Table table);
-int API_EXPORT qHash(AliasedTable table);
+API_EXPORT TYPE_OF_QHASH qHash(Table table);
+API_EXPORT TYPE_OF_QHASH qHash(AliasedTable table);
 
 
 #endif // TABLE_H

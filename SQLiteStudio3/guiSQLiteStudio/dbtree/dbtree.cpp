@@ -1929,7 +1929,7 @@ void DbTree::setupDefShortcuts()
     BIND_SHORTCUTS(DbTree, Action);
 }
 
-int qHash(DbTree::Action action)
+TYPE_OF_QHASH qHash(DbTree::Action action)
 {
-    return static_cast<int>(action);
+    return static_cast<TYPE_OF_QHASH>(action);
 }

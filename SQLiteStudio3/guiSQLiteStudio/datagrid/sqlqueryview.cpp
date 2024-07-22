@@ -937,9 +937,9 @@ void SqlQueryView::openValueEditor()
     openValueEditor(currentItem);
 }
 
-int qHash(SqlQueryView::Action action)
+TYPE_OF_QHASH qHash(SqlQueryView::Action action)
 {
-    return static_cast<int>(action);
+    return static_cast<TYPE_OF_QHASH>(action);
 }
 
 SqlQueryView::Header::Header(SqlQueryView* parent) :

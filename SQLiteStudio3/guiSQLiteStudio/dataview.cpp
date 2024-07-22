@@ -1125,7 +1125,7 @@ SqlQueryView* DataView::getGridView() const
     return gridView;
 }
 
-int qHash(DataView::ActionGroup action)
+TYPE_OF_QHASH qHash(DataView::ActionGroup action)
 {
-    return static_cast<int>(action);
+    return static_cast<TYPE_OF_QHASH>(action);
 }

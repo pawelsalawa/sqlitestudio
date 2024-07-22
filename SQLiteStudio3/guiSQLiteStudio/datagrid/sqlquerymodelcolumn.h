@@ -190,7 +190,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
 
 typedef QSharedPointer<SqlQueryModelColumn> SqlQueryModelColumnPtr;
 
-int qHash(SqlQueryModelColumn::EditionForbiddenReason reason);
+TYPE_OF_QHASH qHash(SqlQueryModelColumn::EditionForbiddenReason reason);
 
 QDataStream &operator<<(QDataStream &out, const SqlQueryModelColumn* col);
 QDataStream &operator>>(QDataStream &in, SqlQueryModelColumn*& col);

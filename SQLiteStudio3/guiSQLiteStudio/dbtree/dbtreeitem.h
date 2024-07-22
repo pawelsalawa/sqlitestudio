@@ -105,7 +105,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
 GUI_API_EXPORT QDataStream &operator<<(QDataStream &out, const DbTreeItem* item);
 GUI_API_EXPORT QDataStream &operator>>(QDataStream &in, DbTreeItem*& item);
 
-GUI_API_EXPORT int qHash(DbTreeItem::Type type);
+GUI_API_EXPORT TYPE_OF_QHASH qHash(DbTreeItem::Type type);
 
 Q_DECLARE_METATYPE(DbTreeItem*)
 

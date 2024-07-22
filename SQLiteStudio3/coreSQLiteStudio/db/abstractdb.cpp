@@ -923,7 +923,7 @@ void AbstractDb::flushWal()
         notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 
-int qHash(const AbstractDb::RegisteredFunction& fn)
+TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn)
 {
     return qHash(fn.name) ^ fn.argCount ^ fn.type;
 }

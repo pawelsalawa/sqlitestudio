@@ -352,7 +352,7 @@ void removeDuplicates(QList<T>& list)
     }
 }
 
-API_EXPORT uint qHash(const QVariant& var);
+API_EXPORT TYPE_OF_QHASH qHash(const QVariant& var);
 
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 

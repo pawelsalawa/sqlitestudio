@@ -330,7 +330,7 @@ QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
     return in;
 }
 
-int qHash(DbTreeItem::Type type)
+TYPE_OF_QHASH qHash(DbTreeItem::Type type)
 {
-    return static_cast<int>(type);
+    return static_cast<TYPE_OF_QHASH>(type);
 }

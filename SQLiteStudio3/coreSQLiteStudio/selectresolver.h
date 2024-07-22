@@ -327,10 +327,10 @@ class API_EXPORT SelectResolver
 };
 
 API_EXPORT int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2);
-API_EXPORT uint qHash(const SelectResolver::Table& table);
+API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Table& table);
 
 API_EXPORT int operator==(const SelectResolver::Column& c1, const SelectResolver::Column& c2);
-API_EXPORT uint qHash(const SelectResolver::Column& column);
+API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Column& column);
 
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Column &c);
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Table &c);

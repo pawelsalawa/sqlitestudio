@@ -208,7 +208,7 @@ AliasedTable SqlQueryModelColumn::getAliasedTable() const
     return AliasedTable(database, table, tableAlias);
 }
 
-int qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
+TYPE_OF_QHASH qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
 {
     return static_cast<int>(reason);
 }
