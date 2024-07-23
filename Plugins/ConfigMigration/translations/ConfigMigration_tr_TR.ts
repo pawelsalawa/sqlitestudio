@@ -16,17 +16,17 @@
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>Veritabanı listesi (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>Özel SQL fonksiyonları (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>SQL sorguları geçmişi (%1)</translation>
     </message>
   </context>
   <context>
@@ -49,22 +49,22 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Seçenekler</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>İçe aktarılan veritabanlarını ayrı gruba koy</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Grup adı</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="62"/>
       <source>Enter a non-empty name.</source>
-      <translation type="unfinished">Enter a non-empty name.</translation>
+      <translation>Boş olmayan bir ad giriniz.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="70"/>
@@ -114,7 +114,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="249"/>
       <source>Could not insert a database entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert a database entry into new configuration file: %1</translation>
+      <translation>Veritabanı girdisi yeni yapılandırma dosyasına eklenemedi: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="261"/>
@@ -144,7 +144,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="348"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert SQL history entry into new configuration file: %1</translation>
+      <translation>SQL geçmişi girdisi yeni yapılandırma dosyasına eklenemedi: %1</translation>
     </message>
   </context>
 </TS>
