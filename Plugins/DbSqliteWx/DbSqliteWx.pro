@@ -67,7 +67,7 @@ DEFINES += SQLITE_HAS_CODEC SQLITE_ALLOW_XTHREAD_CONNECT=1 SQLITE_THREADSAFE=1 S
     SQLITE_ENABLE_MATH_FUNCTIONS=1
 
 # We cannot reliably detect the target architecture, assume that host == target
-contains(QMAKE_HOST.arch,x86) | contains(QMAKE_HOST.arch,amd64): {
+contains(QMAKE_HOST.arch,x86|x86_64|amd64): {
     QMAKE_CFLAGS += -msse4.1 -msse4.2 -maes
 }
 
