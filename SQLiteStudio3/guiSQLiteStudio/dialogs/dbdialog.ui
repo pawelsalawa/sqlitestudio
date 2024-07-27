@@ -44,20 +44,41 @@
      <property name="title">
       <string>File</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QLineEdit" name="fileEdit"/>
-      </item>
-      <item>
-       <widget class="QToolButton" name="browseOpenButton">
+       <widget class="QRadioButton" name="existingDatabaseRadio">
         <property name="text">
-         <string/>
+         <string>Select an existing database file</string>
         </property>
-        <property name="icon">
-         <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/open_sql_file.png</normaloff>:/icons/img/open_sql_file.png</iconset>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="createDatabaseRadio">
+        <property name="text">
+         <string>Create a new database file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLineEdit" name="fileEdit"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="browseOpenButton">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../icons.qrc">
+            <normaloff>:/icons/img/open_sql_file.png</normaloff>:/icons/img/open_sql_file.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

@@ -74,6 +74,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         bool disableTypeAutodetection = false;
         bool doAutoTest = false;
         bool nameManuallyEdited = false;
+        bool createMode = false;
         ImmediateTooltip* connIconTooltip = nullptr;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
@@ -88,6 +89,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void propertyChanged();
         void dbTypeChanged(int index);
         void nameModified(const QString &value);
+        void updateCreateMode();
 
     public slots:
         void accept();
