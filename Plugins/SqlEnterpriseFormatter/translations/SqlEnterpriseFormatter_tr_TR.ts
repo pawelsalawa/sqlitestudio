@@ -107,7 +107,7 @@
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>Asla noktalı virgülden önce değil</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
@@ -117,7 +117,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>Listelerde virgülden önce</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
@@ -172,12 +172,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>Asla virgülden önce değil</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>Adlar</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
