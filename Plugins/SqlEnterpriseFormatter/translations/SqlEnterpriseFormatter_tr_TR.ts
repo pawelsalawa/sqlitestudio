@@ -8,7 +8,7 @@
       <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ad</translation>
     </message>
   </context>
   <context>
@@ -96,7 +96,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation type="unfinished">After comma in expressions</translation>
+      <translation>İfadelerde virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
@@ -122,7 +122,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation type="unfinished">After comma in lists</translation>
+      <translation>Listelerde virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
