@@ -36,7 +36,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
       <source>New lines</source>
-      <translation type="unfinished">New lines</translation>
+      <translation>Yeni satırlar</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
@@ -91,7 +91,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation type="unfinished">After comma</translation>
+      <translation>Virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
@@ -101,7 +101,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation type="unfinished">After semicolon</translation>
+      <translation>Noktalı virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
