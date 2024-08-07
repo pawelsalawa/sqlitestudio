@@ -81,7 +81,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="206"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
-      <translation type="unfinished">Connection with Android database &apos;%1&apos; lost.</translation>
+      <translation>&apos;%1&apos; Android veritabanıyla bağlantı koptu.</translation>
     </message>
   </context>
   <context>
@@ -138,12 +138,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>Android veritabanı URL'i</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
       <source>Connection method</source>
-      <translation type="unfinished">Connection method</translation>
+      <translation>Bağlantı yöntemi</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="32"/>
@@ -158,17 +158,17 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>
       <source>Network (IP address)</source>
-      <translation type="unfinished">Network (IP address)</translation>
+      <translation>Ağ (IP adresi)</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="59"/>
       <source>Device</source>
-      <translation type="unfinished">Device</translation>
+      <translation>Aygıt</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="71"/>
       <source>IP address</source>
-      <translation type="unfinished">IP address</translation>
+      <translation>IP adresi</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="93"/>
@@ -178,17 +178,17 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
       <source>Remote access password</source>
-      <translation type="unfinished">Remote access password</translation>
+      <translation>Uzaktan erişim parolası</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
       <source>&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Bu parola Android uygulamasına gömülen SQLiteStudio servisinde yapılandırılır.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
       <source>Application</source>
-      <translation type="unfinished">Application</translation>
+      <translation>Uygulama</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="155"/>
@@ -198,12 +198,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="168"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="177"/>
       <source>Create a new database directly on the device.</source>
-      <translation type="unfinished">Create a new database directly on the device.</translation>
+      <translation>Doğrudan aygıtta yeni bir veritabanı oluştur.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="187"/>
@@ -213,17 +213,17 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="362"/>
       <source>Enter valid IP address.</source>
-      <translation type="unfinished">Enter valid IP address.</translation>
+      <translation>Geçerli IP adresi gir.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="367"/>
       <source>Pick Android device.</source>
-      <translation type="unfinished">Pick Android device.</translation>
+      <translation>Android aygıtı seç.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="371"/>
       <source>Pick Android database.</source>
-      <translation type="unfinished">Pick Android database.</translation>
+      <translation>Android veritabanı seç.</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
@@ -233,7 +233,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Create new database</source>
-      <translation type="unfinished">Create new database</translation>
+      <translation>Yeni veritabanı oluştur</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -247,7 +247,7 @@ It&apos;s the name which Android application will use to connect to the database
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Invalid name</source>
-      <translation type="unfinished">Invalid name</translation>
+      <translation>Geçersiz ad</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -265,13 +265,12 @@ The name must be unique.</translation>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
-      <translation type="unfinished">Could not create database &apos;%1&apos;.
-Details: %2</translation>
+      <translation>&apos;%1&apos; veritabanı oluşturulamadı. Ayrıntılar: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Delete database</source>
-      <translation type="unfinished">Delete database</translation>
+      <translation>Veritabanını sil</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
