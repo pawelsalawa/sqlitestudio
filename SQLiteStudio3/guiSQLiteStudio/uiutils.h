@@ -8,7 +8,7 @@
 class QWidget;
 class QToolBar;
 
-GUI_API_EXPORT QString getDbPath(const QString& startWith = QString());
+GUI_API_EXPORT QString getDbPath(bool newFileMode, const QString& startWith = QString());
 GUI_API_EXPORT void setValidState(QWidget* widget, bool valid, const QString& message = QString());
 GUI_API_EXPORT void setValidStateWihtTooltip(QWidget* widget, const QString& tooltip, bool valid, const QString& message = QString());
 GUI_API_EXPORT void setValidStateWarning(QWidget* widget, const QString& warning);
