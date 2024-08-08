@@ -5321,13 +5321,13 @@ find next</source>
       <location filename="../sqleditor.cpp" line="165"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
-      <translation>SQL aus Datei laden</translation>
+      <translation>Datei zum Speichern von SQL auswählen</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="166"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
-      <translation>Zeile löschen</translation>
+      <translation>SQL aus Datei laden</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="167"/>
