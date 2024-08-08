@@ -252,7 +252,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Sanal tablo: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
@@ -477,7 +477,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>%1 veritabanı listeye eklenemedi.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
@@ -492,7 +492,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>veritabanı bağlantısı açar</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
@@ -503,7 +503,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ad</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
@@ -589,7 +589,7 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="135"/>
@@ -623,23 +623,23 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>%1 veritabanı kapalı.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tablo</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>veritabanındaki tabloların listesini yazdırır</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
@@ -652,7 +652,7 @@ When the -s option is given, then system tables are also listed.</translation>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>veritabanı</translation>
     </message>
   </context>
   <context>
@@ -665,7 +665,7 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tablolar</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
@@ -675,7 +675,7 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
@@ -757,7 +757,7 @@ The default database can be selected in various ways:
       <location filename="../commands/clicommanduse.cpp" line="63"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ad</translation>
     </message>
   </context>
   <context>
@@ -783,7 +783,7 @@ Expected one of: %2</translation>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>Bilinmeyen seçenek: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
@@ -825,7 +825,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>SQL dosyası</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
@@ -850,12 +850,12 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>dosya</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Açılacak veritabanı dosyası</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="78"/>

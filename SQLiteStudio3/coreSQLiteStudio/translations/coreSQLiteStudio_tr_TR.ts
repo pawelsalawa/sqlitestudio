@@ -207,14 +207,14 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation type="unfinished">Error while copying data for table %1: %2</translation>
+      <translation>%1 tablosu için veri kopyalanırken hata: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="461"/>
       <location filename="../dbobjectorganizer.cpp" line="468"/>
       <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation type="unfinished">Error while copying data to table %1: %2</translation>
+      <translation>%1 tablosuna veri kopyalanırken hata: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
@@ -252,7 +252,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../ddlhistorymodel.cpp" line="66"/>
       <source>Database name</source>
       <comment>ddl history header</comment>
-      <translation type="unfinished">Database name</translation>
+      <translation>Veritabanı adı</translation>
     </message>
     <message>
       <location filename="../ddlhistorymodel.cpp" line="68"/>
@@ -376,17 +376,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../services/impl/functionmanagerimpl.cpp" line="440"/>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="473"/>
       <source>Could not open file %1 for reading: %2</source>
-      <translation type="unfinished">Could not open file %1 for reading: %2</translation>
+      <translation>%1 dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="495"/>
       <source>Could not open file %1 for writting: %2</source>
-      <translation type="unfinished">Could not open file %1 for writting: %2</translation>
+      <translation>%1 dosyası yazılmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="515"/>
       <source>Error while writting to file %1: %2</source>
-      <translation type="unfinished">Error while writting to file %1: %2</translation>
+      <translation>%1 dosyasına yazılırken hata: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="533"/>
@@ -766,7 +766,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../common/utils.cpp" line="1030"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="435"/>
@@ -782,7 +782,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../db/abstractdb3.h" line="331"/>
       <location filename="../db/abstractdb3.h" line="335"/>
       <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
+      <translation>%1 uzantısı yüklenemedi: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="421"/>
@@ -792,7 +792,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../db/abstractdb3.h" line="459"/>
       <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
+      <translation>Veritabanı kapanamadı: %1</translation>
     </message>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="114"/>
@@ -828,12 +828,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.cpp" line="54"/>
       <source>Maximum value cannot be less than minimum value.</source>
-      <translation type="unfinished">Maximum value cannot be less than minimum value.</translation>
+      <translation>Maksimum değer minimum değerden az olamaz.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="79"/>
       <source>Maximum length cannot be less than minimum length.</source>
-      <translation type="unfinished">Maximum length cannot be less than minimum length.</translation>
+      <translation>Maksimum uzunluk minimum uzunluktan az olamaz.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="90"/>
@@ -1034,7 +1034,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="97"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="142"/>

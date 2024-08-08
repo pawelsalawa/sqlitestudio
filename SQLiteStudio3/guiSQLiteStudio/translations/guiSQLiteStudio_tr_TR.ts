@@ -41,7 +41,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="187"/>
       <source>SQLite extension directories</source>
-      <translation type="unfinished">SQLite extension directories</translation>
+      <translation>SQLite uzantı klasörleri</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="140"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
       <source>Code assistant shortcut</source>
-      <translation type="unfinished">Code assistant shortcut</translation>
+      <translation>Kod yardımcısı kısayolu</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
@@ -865,7 +865,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="153"/>
       <source>Code colors</source>
-      <translation type="unfinished">Code colors</translation>
+      <translation>Kod renkleri</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
@@ -876,7 +876,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="178"/>
       <source>Code assistant</source>
-      <translation type="unfinished">Code assistant</translation>
+      <translation>Kod yardımcısı</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="190"/>
@@ -966,7 +966,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="363"/>
       <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
+      <translation>Veritabanı diyalog penceresi</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="369"/>
@@ -1007,7 +1007,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="553"/>
       <source>Data column width</source>
-      <translation type="unfinished">Data column width</translation>
+      <translation>Veri sütunu genişliği</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="559"/>
@@ -1092,7 +1092,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="674"/>
       <source>Table windows</source>
-      <translation type="unfinished">Table windows</translation>
+      <translation>Tablo pencereleri</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="680"/>
@@ -1157,7 +1157,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="865"/>
       <source>Schema editing</source>
-      <translation type="unfinished">Schema editing</translation>
+      <translation>Şema düzenleme</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="877"/>
@@ -1177,13 +1177,13 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="910"/>
       <source>SQL queries</source>
-      <translation type="unfinished">SQL queries</translation>
+      <translation>SQL sorguları</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="922"/>
       <location filename="../dialogs/configdialog.ui" line="971"/>
       <source>Number of queries kept in the history.</source>
-      <translation type="unfinished">Number of queries kept in the history.</translation>
+      <translation>Geçmişte tutulan sorgu sayısı.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="958"/>
@@ -1304,7 +1304,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1122"/>
       <source>Code syntax colors</source>
-      <translation type="unfinished">Code syntax colors</translation>
+      <translation>Kod sözdizimi renkleri</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1128"/>
@@ -1374,7 +1374,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1464"/>
       <source>Reset to defaults</source>
-      <translation type="unfinished">Reset to defaults</translation>
+      <translation>Varsayılanlara sıfırla</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1490"/>
@@ -1490,7 +1490,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2201"/>
       <source>Code assistant settings</source>
-      <translation type="unfinished">Code assistant settings</translation>
+      <translation>Kod yardımcısı ayarları</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2207"/>
@@ -1646,7 +1646,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="63"/>
       <source>Create</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Create</translation>
+      <translation>Oluştur</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="66"/>
@@ -1658,7 +1658,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="67"/>
       <source>Apply</source>
       <comment>constraint dialog</comment>
-      <translation type="unfinished">Apply</translation>
+      <translation>Uygula</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="172"/>
@@ -1715,19 +1715,19 @@
       <location filename="../windows/constrainttabmodel.cpp" line="68"/>
       <source>Table</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Table</translation>
+      <translation>Tablo</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
       <source>Column (%1)</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Column (%1)</translation>
+      <translation>Sütun (%1)</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Scope</translation>
+      <translation>Kapsam</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
@@ -1856,13 +1856,13 @@
       <location filename="../dataview.cpp" line="349"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows above selected row</translation>
+      <translation>Yeni satırları seçili satırın üstüne koy</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="350"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
-      <translation type="unfinished">Place new rows below selected row</translation>
+      <translation>Yeni satırları seçili satırın altına koy</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="351"/>
@@ -1943,7 +1943,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="68"/>
       <source>Name (on the list)</source>
-      <translation type="unfinished">Name (on the list)</translation>
+      <translation>Ad (listede)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="80"/>
@@ -1959,7 +1959,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
       <source>Permanent (keep it in configuration)</source>
-      <translation type="unfinished">Permanent (keep it in configuration)</translation>
+      <translation>Kalıcı (yapılandırmada tut)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="133"/>
@@ -2068,14 +2068,13 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="282"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>Nesneleri sil</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="283"/>
       <source>Are you sure you want to delete following objects:
 %1</source>
-      <translation type="unfinished">Are you sure you want to delete following objects:
-%1</translation>
+      <translation>Şu nesneleri silmek istediğinize emin misiniz: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="290"/>
@@ -2093,7 +2092,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.ui" line="23"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Veritabanları</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.ui" line="73"/>
@@ -2103,52 +2102,52 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="130"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="131"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Yapıştır</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="132"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Tümünü seç</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="133"/>
       <source>Create a group</source>
-      <translation type="unfinished">Create a group</translation>
+      <translation>Grup oluştur</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="134"/>
       <source>Delete the group</source>
-      <translation type="unfinished">Delete the group</translation>
+      <translation>Grubu sil</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="135"/>
       <source>Rename the group</source>
-      <translation type="unfinished">Rename the group</translation>
+      <translation>Grubun adını değiştir</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Veritabanı ekle</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;Veritabanını düzenle</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="138"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Veritabanını kaldır</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>&amp;Veritabanına bağlan</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="140"/>
@@ -2178,7 +2177,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Create a &amp;table</source>
-      <translation type="unfinished">Create a &amp;table</translation>
+      <translation>&amp;Tablo oluştur</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
@@ -2299,12 +2298,12 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbtree/dbtree.cpp" line="169"/>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Erase table data</source>
-      <translation type="unfinished">Erase table data</translation>
+      <translation>Tablo verisini sil</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Open file&apos;s directory</source>
-      <translation type="unfinished">Open file&apos;s directory</translation>
+      <translation>Dosyanın klasörünü aç</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="175"/>
@@ -2327,7 +2326,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbtree/dbtree.cpp" line="358"/>
       <location filename="../dbtree/dbtree.cpp" line="363"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="373"/>
@@ -2348,7 +2347,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1106"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Grup adı</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1109"/>
@@ -2370,7 +2369,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1191"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
-      <translation type="unfinished">Are you sure you want to remove database &apos;%1&apos; from the list?</translation>
+      <translation>&apos;%1&apos; veritabanını listeden çıkarmak istediğinize emin misiniz?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1199"/>
@@ -2429,7 +2428,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
+      <translation>Şu tablo(lar)dan tüm veriyi silmek istediğinize emin misiniz: %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1602"/>
@@ -2444,12 +2443,12 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1731"/>
       <source>Following objects will be deleted: %1.</source>
-      <translation type="unfinished">Following objects will be deleted: %1.</translation>
+      <translation>Şu nesneler silinecektir: %1.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1734"/>
       <source>Following databases will be removed from list: %1.</source>
-      <translation type="unfinished">Following databases will be removed from list: %1.</translation>
+      <translation>Şu veritabanları listeden çıkarılacaktır: %1.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1737"/>
@@ -2459,12 +2458,12 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-      <translation type="unfinished">%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</translation>
+      <translation>%1&lt;br&gt;&lt;br&gt;Devam etmek istediğinize emin misiniz?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1741"/>
       <source>Delete objects</source>
-      <translation type="unfinished">Delete objects</translation>
+      <translation>Nesneleri sil</translation>
     </message>
   </context>
   <context>
@@ -2473,19 +2472,19 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
       <source>error</source>
       <comment>dbtree labels</comment>
-      <translation type="unfinished">error</translation>
+      <translation>hata</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
       <source>(system table)</source>
       <comment>database tree label</comment>
-      <translation type="unfinished">(system table)</translation>
+      <translation>(sistem tablosu)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
       <source>(virtual)</source>
       <comment>virtual table label</comment>
-      <translation type="unfinished">(virtual)</translation>
+      <translation>(sanal)</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
@@ -2500,25 +2499,25 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="422"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Veritabanı: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="423"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">URI:</translation>
+      <translation>URI:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Version:</translation>
+      <translation>Sürüm:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">File size:</translation>
+      <translation>Dosya büyüklüğü:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
@@ -2530,19 +2529,19 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Error:</translation>
+      <translation>Hata:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Table : %1</translation>
+      <translation>Tablo: %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Columns (%1):</translation>
+      <translation>Sütunlar (%1):</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
@@ -2559,12 +2558,12 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1124"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1125"/>
       <source>Move</source>
-      <translation type="unfinished">Move</translation>
+      <translation>Taşı</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="1127"/>
@@ -2699,12 +2698,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.ui" line="42"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Sorgu</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="115"/>
       <source>History</source>
-      <translation type="unfinished">History</translation>
+      <translation>Geçmiş</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="149"/>
@@ -2726,7 +2725,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.ui" line="80"/>
       <location filename="../windows/editorwindow.cpp" line="346"/>
       <source>Results</source>
-      <translation type="unfinished">Results</translation>
+      <translation>Sonuçlar</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="381"/>
@@ -2736,7 +2735,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="382"/>
       <source>Explain query</source>
-      <translation type="unfinished">Explain query</translation>
+      <translation>Sorguyu açıkla</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="385"/>
@@ -2759,24 +2758,24 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="400"/>
       <source>Previous database</source>
-      <translation type="unfinished">Previous database</translation>
+      <translation>Önceki veritabanı</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="401"/>
       <source>Next database</source>
-      <translation type="unfinished">Next database</translation>
+      <translation>Sıradaki veritabanı</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="404"/>
       <source>Show next tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show next tab</translation>
+      <translation>Sıradaki sekmeyi göster</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="405"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Show previous tab</translation>
+      <translation>Önceki sekmeyi göster</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="406"/>
@@ -2794,7 +2793,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="408"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Seçili SQL geçmişi girdilerini sil</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="409"/>
@@ -2809,17 +2808,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.cpp" line="460"/>
       <source>Active database (%1/%2)</source>
-      <translation type="unfinished">Active database (%1/%2)</translation>
+      <translation>Etkin veritabanı (%1/%2)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="576"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
-      <translation type="unfinished">Query finished in %1 second(s). Rows affected: %2</translation>
+      <translation>Sorgu %1 saniyede tamamlandı. Etkilenen satırlar: %2</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="580"/>
       <source>Query finished in %1 second(s).</source>
-      <translation type="unfinished">Query finished in %1 second(s).</translation>
+      <translation>Sorgu %1 saniyede tamamlandı.</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.cpp" line="694"/>
@@ -2852,12 +2851,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
       <source>Errors</source>
-      <translation type="unfinished">Errors</translation>
+      <translation>Hatalar</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
       <source>Following errors occured:</source>
-      <translation type="unfinished">Following errors occured:</translation>
+      <translation>Şu hatalar gerçekleşti:</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
@@ -2875,7 +2874,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="23"/>
       <source>Input file</source>
-      <translation type="unfinished">Input file</translation>
+      <translation>Girdi dosyası</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="29"/>
@@ -2890,7 +2889,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="53"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Seçenekler</translation>
     </message>
     <message>
       <location filename="../dialogs/execfromfiledialog.ui" line="59"/>
@@ -2938,17 +2937,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="36"/>
       <source>A database</source>
-      <translation type="unfinished">A database</translation>
+      <translation>Bir veritabanı</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="46"/>
       <source>A single table</source>
-      <translation type="unfinished">A single table</translation>
+      <translation>Tek bir tablo</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="53"/>
       <source>Query results</source>
-      <translation type="unfinished">Query results</translation>
+      <translation>Sorgu sonuçları</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="65"/>
@@ -2958,12 +2957,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="100"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tablo</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="124"/>
@@ -3121,7 +3120,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="432"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Tüm dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.cpp" line="435"/>
@@ -3149,12 +3148,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
       <source>SQL</source>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="54"/>
       <source>Error</source>
-      <translation type="unfinished">Error</translation>
+      <translation>Hata</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="68"/>
@@ -3172,7 +3171,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/fkcombobox.cpp" line="299"/>
       <source>Cannot edit this cell. Details: %1</source>
-      <translation type="unfinished">Cannot edit this cell. Details: %1</translation>
+      <translation>Bu hücre düzenlenemiyor. Ayrıntılar: %1</translation>
     </message>
   </context>
   <context>
@@ -3210,25 +3209,25 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../formview.cpp" line="277"/>
       <source>First row</source>
       <comment>form view</comment>
-      <translation type="unfinished">First row</translation>
+      <translation>İlk satır</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="278"/>
       <source>Previous row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Previous row</translation>
+      <translation>Önceki satır</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="279"/>
       <source>Next row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Next row</translation>
+      <translation>Sıradaki satır</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="280"/>
       <source>Last row</source>
       <comment>form view</comment>
-      <translation type="unfinished">Last row</translation>
+      <translation>Son satır</translation>
     </message>
     <message>
       <location filename="../formview.cpp" line="281"/>
@@ -3258,12 +3257,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="163"/>
       <source>Undefined</source>
-      <translation type="unfinished">Undefined</translation>
+      <translation>Tanımsız</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="205"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Veritabanları</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="211"/>
@@ -3283,7 +3282,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.ui" line="266"/>
       <source>Function name:</source>
-      <translation type="unfinished">Function name:</translation>
+      <translation>Fonksiyon adı:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="276"/>
@@ -3314,7 +3313,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="56"/>
       <source>SQL functions editor</source>
-      <translation type="unfinished">SQL functions editor</translation>
+      <translation>SQL fonksiyonları düzenleyici</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
@@ -3329,12 +3328,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="64"/>
       <source>Create new function</source>
-      <translation type="unfinished">Create new function</translation>
+      <translation>Yeni fonksiyon oluştur</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="65"/>
       <source>Delete selected function</source>
-      <translation type="unfinished">Delete selected function</translation>
+      <translation>Seçili fonksiyonu sil</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="67"/>
@@ -3428,7 +3427,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="43"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="84"/>
@@ -3443,7 +3442,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="141"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Seçenekler</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="175"/>
@@ -3453,7 +3452,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="182"/>
       <source>Input file:</source>
-      <translation type="unfinished">Input file:</translation>
+      <translation>Girdi dosyası:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="192"/>
@@ -3463,12 +3462,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="195"/>
       <source>Ignore errors</source>
-      <translation type="unfinished">Ignore errors</translation>
+      <translation>Hataları yoksay</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="205"/>
       <source>Data source options</source>
-      <translation type="unfinished">Data source options</translation>
+      <translation>Veri kaynağı seçenekleri</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.cpp" line="115"/>
@@ -3522,7 +3521,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="70"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Sütun</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="75"/>
@@ -3537,7 +3536,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.ui" line="88"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Tabloda:</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="98"/>
@@ -3607,7 +3606,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="196"/>
       <source>Select at least one column.</source>
-      <translation type="unfinished">Select at least one column.</translation>
+      <translation>En az bir sütun seçiniz.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="197"/>
@@ -3618,7 +3617,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/indexdialog.cpp" line="269"/>
       <source>default</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">default</translation>
+      <translation>varsayılan</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="273"/>
@@ -3631,7 +3630,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/indexdialog.cpp" line="781"/>
       <source>Error</source>
       <comment>index dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Hata</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="769"/>
@@ -3722,7 +3721,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.ui" line="120"/>
       <source>Window list</source>
-      <translation type="unfinished">Window list</translation>
+      <translation>Pencere listesi</translation>
     </message>
     <message>
       <location filename="../mainwindow.ui" line="134"/>
@@ -3742,7 +3741,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="113"/>
       <source>Data editors</source>
-      <translation type="unfinished">Data editors</translation>
+      <translation>Veri düzenleyiciler</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="125"/>
@@ -3827,12 +3826,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="280"/>
       <source>Next window</source>
-      <translation type="unfinished">Next window</translation>
+      <translation>Sıradaki pencere</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="281"/>
       <source>Previous window</source>
-      <translation type="unfinished">Previous window</translation>
+      <translation>Önceki pencere</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="282"/>
@@ -3882,7 +3881,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="293"/>
       <source>Open CSS Console</source>
-      <translation type="unfinished">Open CSS Console</translation>
+      <translation>CSS Konsolunu Aç</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="294"/>
@@ -3932,7 +3931,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="303"/>
       <source>Quit</source>
-      <translation type="unfinished">Quit</translation>
+      <translation>Çık</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="305"/>
@@ -3961,7 +3960,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="375"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
-      <translation type="unfinished">Window list</translation>
+      <translation>Pencere listesi</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="398"/>
@@ -3993,12 +3992,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="776"/>
       <source>Rename window</source>
-      <translation type="unfinished">Rename window</translation>
+      <translation>Pencere adını değiştir</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="776"/>
       <source>Enter new name for the window:</source>
-      <translation type="unfinished">Enter new name for the window:</translation>
+      <translation>Pencere için yeni ad giriniz:</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="879"/>
@@ -4060,7 +4059,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="96"/>
       <source>Open another tab</source>
-      <translation type="unfinished">Open another tab</translation>
+      <translation>Başka bir sekme aç</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="295"/>
@@ -4098,7 +4097,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditordate.cpp" line="88"/>
       <source>Date</source>
-      <translation type="unfinished">Date</translation>
+      <translation>Tarih</translation>
     </message>
   </context>
   <context>
@@ -4123,7 +4122,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditornumeric.cpp" line="111"/>
       <source>Number</source>
       <comment>numeric multi editor tab name</comment>
-      <translation type="unfinished">Number</translation>
+      <translation>Sayı</translation>
     </message>
   </context>
   <context>
@@ -4136,22 +4135,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="104"/>
       <source>Cut</source>
-      <translation type="unfinished">Cut</translation>
+      <translation>Kes</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="105"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="106"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Yapıştır</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="107"/>
       <source>Delete</source>
-      <translation type="unfinished">Delete</translation>
+      <translation>Sil</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="108"/>
@@ -4169,7 +4168,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="186"/>
       <source>Text</source>
-      <translation type="unfinished">Text</translation>
+      <translation>Yazı</translation>
     </message>
   </context>
   <context>
@@ -4177,7 +4176,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditortime.cpp" line="91"/>
       <source>Time</source>
-      <translation type="unfinished">Time</translation>
+      <translation>Zaman</translation>
     </message>
   </context>
   <context>
@@ -4245,7 +4244,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="14"/>
       <source>SQLiteStudio updates</source>
-      <translation type="unfinished">SQLiteStudio updates</translation>
+      <translation>SQLiteStudio güncellemeleri</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="25"/>
@@ -4255,7 +4254,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="51"/>
       <source>Download new version!</source>
-      <translation type="unfinished">Download new version!</translation>
+      <translation>Yeni sürümü indir!</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="64"/>
@@ -4265,7 +4264,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="71"/>
       <source>Open SQLiteStudio home page.</source>
-      <translation type="unfinished">Open SQLiteStudio home page.</translation>
+      <translation>SQLiteStudio anasayfasını aç.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="84"/>
@@ -4285,7 +4284,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="91"/>
       <source>Not now.</source>
-      <translation type="unfinished">Not now.</translation>
+      <translation>Şimdi değil.</translation>
     </message>
   </context>
   <context>
@@ -4298,7 +4297,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
       <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
-      <translation type="unfinished">Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</translation>
+      <translation>&lt;b&gt;%2&lt;/b&gt; sütunu için &lt;b&gt;%1&lt;/b&gt; yapılandırılıyor</translation>
     </message>
   </context>
   <context>
@@ -4311,17 +4310,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tablo</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="72"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="102"/>
@@ -4342,7 +4341,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="198"/>
       <source>Configure</source>
-      <translation type="unfinished">Configure</translation>
+      <translation>Yapılandır</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="305"/>
@@ -4472,12 +4471,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="27"/>
       <source>Set empty value to selected cell(s)</source>
-      <translation type="unfinished">Set empty value to selected cell(s)</translation>
+      <translation>Seçili hücre(ler)e boş değer ver</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="28"/>
       <source>Set NULL value to selected cell(s)</source>
-      <translation type="unfinished">Set NULL value to selected cell(s)</translation>
+      <translation>Seçili hücre(ler)e NULL değer ver</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="29"/>
@@ -4492,7 +4491,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="31"/>
       <source>Delete selected data row</source>
-      <translation type="unfinished">Delete selected data row</translation>
+      <translation>Seçili veri satırını sil</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="32"/>
@@ -4502,7 +4501,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="33"/>
       <source>Open contents of selected cell in a separate editor</source>
-      <translation type="unfinished">Open contents of selected cell in a separate editor</translation>
+      <translation>Seçili hücrenin içeriklerini ayrı düzenleyicide aç</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="34"/>
@@ -4539,7 +4538,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dataview.h" line="22"/>
       <source>Refresh data</source>
-      <translation type="unfinished">Refresh data</translation>
+      <translation>Veriyi yenile</translation>
     </message>
     <message>
       <location filename="../dataview.h" line="23"/>
@@ -4554,7 +4553,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="30"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Veritabanı listesi</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="31"/>
@@ -4569,17 +4568,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="33"/>
       <source>Refresh schema</source>
-      <translation type="unfinished">Refresh schema</translation>
+      <translation>Şemayı yenile</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="34"/>
       <source>Refresh all schemas</source>
-      <translation type="unfinished">Refresh all schemas</translation>
+      <translation>Tüm şemaları yenile</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="35"/>
       <source>Add database</source>
-      <translation type="unfinished">Add database</translation>
+      <translation>Veritabanı ekle</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
@@ -4613,7 +4612,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tablolar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
@@ -4633,7 +4632,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="67"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../formview.h" line="15"/>
@@ -4658,12 +4657,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../formview.h" line="19"/>
       <source>Go to next row</source>
-      <translation type="unfinished">Go to next row</translation>
+      <translation>Sıradaki satıra git</translation>
     </message>
     <message>
       <location filename="../formview.h" line="20"/>
       <source>Go to previous row</source>
-      <translation type="unfinished">Go to previous row</translation>
+      <translation>Önceki satıra git</translation>
     </message>
     <message>
       <location filename="../formview.h" line="21"/>
@@ -4683,12 +4682,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="45"/>
       <source>Main window</source>
-      <translation type="unfinished">Main window</translation>
+      <translation>Ana pencere</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="46"/>
       <source>Open SQL editor</source>
-      <translation type="unfinished">Open SQL editor</translation>
+      <translation>SQL düzenleyiciyi aç</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="47"/>
@@ -4703,7 +4702,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="49"/>
       <source>Open function editor window</source>
-      <translation type="unfinished">Open function editor window</translation>
+      <translation>Fonksiyon düzenleyici penceresini aç</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="50"/>
@@ -4713,7 +4712,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.h" line="51"/>
       <source>Open extension manager window</source>
-      <translation type="unfinished">Open extension manager window</translation>
+      <translation>Uzantı yönetici penceresini aç</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="52"/>
@@ -4808,27 +4807,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="38"/>
       <source>Save contents into a file</source>
-      <translation type="unfinished">Save contents into a file</translation>
+      <translation>İçerikleri bir dosyaya kaydet</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="39"/>
       <source>Load contents from a file</source>
-      <translation type="unfinished">Load contents from a file</translation>
+      <translation>İçerikleri bir dosyadan yükle</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="40"/>
       <source>Find in text</source>
-      <translation type="unfinished">Find in text</translation>
+      <translation>Yazıda bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="41"/>
       <source>Find next</source>
-      <translation type="unfinished">Find next</translation>
+      <translation>Sıradakini bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="42"/>
       <source>Find previous</source>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Öncekini bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="43"/>
@@ -4848,7 +4847,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../sqleditor.h" line="46"/>
       <source>Format contents</source>
-      <translation type="unfinished">Format contents</translation>
+      <translation>İçerikleri biçimlendir</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="47"/>
@@ -4890,22 +4889,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="45"/>
       <source>All SQLite databases</source>
-      <translation type="unfinished">All SQLite databases</translation>
+      <translation>Tüm SQLite veritabanları</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="47"/>
       <source>All files</source>
-      <translation type="unfinished">All files</translation>
+      <translation>Tüm dosyalar</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="50"/>
       <source>Select database file</source>
-      <translation type="unfinished">Select database file</translation>
+      <translation>Veritabanı dosyası seç</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="53"/>
       <source>Select</source>
-      <translation type="unfinished">Select</translation>
+      <translation>Seç</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="54"/>
@@ -4915,7 +4914,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="27"/>
       <source>SQL editor window</source>
-      <translation type="unfinished">SQL editor window</translation>
+      <translation>SQL düzenleyici penceresi</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="28"/>
@@ -4950,12 +4949,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="34"/>
       <source>Go to next editor tab</source>
-      <translation type="unfinished">Go to next editor tab</translation>
+      <translation>Sıradaki düzenleyici sekmesine git</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="35"/>
       <source>Go to previous editor tab</source>
-      <translation type="unfinished">Go to previous editor tab</translation>
+      <translation>Önceki düzenleyici sekmesine git</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
@@ -4965,17 +4964,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/editorwindow.h" line="37"/>
       <source>Move keyboard input focus to the SQL editor above</source>
-      <translation type="unfinished">Move keyboard input focus to the SQL editor above</translation>
+      <translation>Klavye girdi odağını yukarıdaki SQL düzenleyiciye taşı</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="38"/>
       <source>Delete selected SQL history entries</source>
-      <translation type="unfinished">Delete selected SQL history entries</translation>
+      <translation>Seçili SQL geçmişi girdilerini sil</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="32"/>
       <source>Table window</source>
-      <translation type="unfinished">Table window</translation>
+      <translation>Tablo penceresi</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
@@ -4990,22 +4989,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
       <source>Refresh table structure</source>
-      <translation type="unfinished">Refresh table structure</translation>
+      <translation>Tablo yapısını yenile</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="36"/>
       <source>Add new column</source>
-      <translation type="unfinished">Add new column</translation>
+      <translation>Yeni sütun ekle</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="37"/>
       <source>Edit selected column</source>
-      <translation type="unfinished">Edit selected column</translation>
+      <translation>Seçili sütunu düzenle</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="38"/>
       <source>Delete selected column</source>
-      <translation type="unfinished">Delete selected column</translation>
+      <translation>Seçili sütunu sil</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="39"/>
@@ -5213,7 +5212,7 @@ find next</translation>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="98"/>
       <source>Find</source>
-      <translation type="unfinished">Find</translation>
+      <translation>Bul</translation>
     </message>
   </context>
   <context>
@@ -5227,7 +5226,7 @@ find next</translation>
       <location filename="../dialogs/sortdialog.ui" line="45"/>
       <location filename="../dialogs/sortdialog.cpp" line="48"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Sütun</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.ui" line="50"/>
@@ -5243,12 +5242,12 @@ find next</translation>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="242"/>
       <source>Move column up</source>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sütunu yukarı taşı</translation>
     </message>
     <message>
       <location filename="../dialogs/sortdialog.cpp" line="243"/>
       <source>Move column down</source>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sütunu aşağı taşı</translation>
     </message>
   </context>
   <context>
@@ -5263,31 +5262,31 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="155"/>
       <source>Cut</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Cut</translation>
+      <translation>Kes</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="156"/>
       <source>Copy</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="157"/>
       <source>Paste</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Paste</translation>
+      <translation>Yapıştır</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="158"/>
       <source>Delete</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete</translation>
+      <translation>Sil</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="159"/>
       <source>Select all</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Select all</translation>
+      <translation>Tümünü seç</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="160"/>
@@ -5305,7 +5304,7 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="162"/>
       <source>Complete</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Complete</translation>
+      <translation>Tamamla</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="163"/>
@@ -5329,13 +5328,13 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="166"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Load SQL from file</translation>
+      <translation>Dosyadan SQL yükle</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="167"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Delete line</translation>
+      <translation>Satırı sil</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="168"/>
@@ -5365,19 +5364,19 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="172"/>
       <source>Find</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find</translation>
+      <translation>Bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="173"/>
       <source>Find next</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find next</translation>
+      <translation>Sıradakini bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="174"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Find previous</translation>
+      <translation>Öncekini bul</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>
@@ -5406,17 +5405,17 @@ find next</translation>
     <message>
       <location filename="../sqleditor.cpp" line="288"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
+      <translation>&apos;%1&apos; dosyası yazılmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="298"/>
       <source>Saved SQL contents to file: %1</source>
-      <translation type="unfinished">Saved SQL contents to file: %1</translation>
+      <translation>SQL içerikleri dosyaya kaydedildi: %1</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="519"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
-      <translation type="unfinished">Syntax completion can be used only when a valid database is set for the SQL editor.</translation>
+      <translation>Sözdizimi tamamlama, ancak SQL düzenleyici için geçerli bir veritabanı ayarlıyken kullanılabilir.</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1143"/>
@@ -5426,7 +5425,7 @@ find next</translation>
     <message>
       <location filename="../sqleditor.cpp" line="1178"/>
       <source>Save to file</source>
-      <translation type="unfinished">Save to file</translation>
+      <translation>Dosyaya kaydet</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1193"/>
@@ -5441,7 +5440,7 @@ find next</translation>
     <message>
       <location filename="../sqleditor.cpp" line="1204"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1409"/>
@@ -5461,7 +5460,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="227"/>
       <source>Column:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Column:</translation>
+      <translation>Sütun:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="228"/>
@@ -5601,7 +5600,7 @@ find next</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1998"/>
       <source>Delete rows</source>
-      <translation type="unfinished">Delete rows</translation>
+      <translation>Satırları sil</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
@@ -5621,7 +5620,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
@@ -5636,7 +5635,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Paste</source>
-      <translation type="unfinished">Paste</translation>
+      <translation>Yapıştır</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
@@ -5646,12 +5645,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Set NULL values</source>
-      <translation type="unfinished">Set NULL values</translation>
+      <translation>NULL değerler ver</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Erase values</source>
-      <translation type="unfinished">Erase values</translation>
+      <translation>Değerleri sil</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
@@ -5701,7 +5700,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Delete selected row</source>
-      <translation type="unfinished">Delete selected row</translation>
+      <translation>Seçili satırı sil</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
@@ -5729,7 +5728,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Edit value in editor</source>
-      <translation type="unfinished">Edit value in editor</translation>
+      <translation>Değeri düzenleyicide düzenle</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
@@ -5749,7 +5748,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
       <source>Cannot paste data. Details: %1</source>
-      <translation type="unfinished">Cannot paste data. Details: %1</translation>
+      <translation>Veri yapıştırılamıyor. Ayrıntılar: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
@@ -5759,7 +5758,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
       <source>Cannot paste to a cell. Details: %1</source>
-      <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
+      <translation>Hücreye yapıştırılamıyor. Ayrıntılar: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
@@ -5769,7 +5768,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="502"/>
       <source>Cannot paste to column %1. Details: %2</source>
-      <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
+      <translation>%1 sütununa yapıştırılamıyor. Ayrıntılar: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="520"/>
@@ -5809,7 +5808,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
       <source>Edit value</source>
-      <translation type="unfinished">Edit value</translation>
+      <translation>Değeri düzenle</translation>
     </message>
   </context>
   <context>
@@ -5822,7 +5821,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqltablemodel.cpp" line="134"/>
       <source>Error while deleting row from table %1: %2</source>
-      <translation type="unfinished">Error while deleting row from table %1: %2</translation>
+      <translation>%1 tablosundan satır silinirken hata: %2</translation>
     </message>
   </context>
   <context>
@@ -5835,12 +5834,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="119"/>
       <source>Leave empty to use default function</source>
-      <translation type="unfinished">Leave empty to use default function</translation>
+      <translation>Varsayılan fonksiyonu kullanmak için boş bırakınız</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="140"/>
       <source>Extension file</source>
-      <translation type="unfinished">Extension file</translation>
+      <translation>Uzantı dosyası</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="147"/>
@@ -5850,7 +5849,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="163"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Veritabanları</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="169"/>
@@ -5930,7 +5929,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Tüm dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
@@ -5948,12 +5947,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../statusfield.cpp" line="175"/>
       <source>Copy</source>
-      <translation type="unfinished">Copy</translation>
+      <translation>Kopyala</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="182"/>
       <source>Clear</source>
-      <translation type="unfinished">Clear</translation>
+      <translation>Temizle</translation>
     </message>
   </context>
   <context>
@@ -5968,13 +5967,13 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../windows/tableconstraintsmodel.cpp" line="77"/>
       <source>Details</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Ayrıntılar</translation>
     </message>
     <message>
       <location filename="../windows/tableconstraintsmodel.cpp" line="79"/>
       <source>Name</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
   </context>
   <context>
@@ -5987,12 +5986,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="42"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="57"/>
       <source>Local column</source>
-      <translation type="unfinished">Local column</translation>
+      <translation>Yerel sütun</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="70"/>
@@ -6002,7 +6001,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="106"/>
       <source>Reactions</source>
-      <translation type="unfinished">Reactions</translation>
+      <translation>Tepkiler</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="145"/>
@@ -6051,12 +6050,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="32"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="59"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Sütun</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
@@ -6108,7 +6107,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="170"/>
       <source>Select at least one column.</source>
-      <translation type="unfinished">Select at least one column.</translation>
+      <translation>En az bir sütun seçiniz.</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.cpp" line="171"/>
@@ -6122,7 +6121,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../windows/tablestructuremodel.cpp" line="296"/>
       <source>Name</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="298"/>
@@ -6182,7 +6181,7 @@ NULL</translation>
       <location filename="../windows/tablestructuremodel.cpp" line="314"/>
       <source>Default value</source>
       <comment>table structure columns</comment>
-      <translation type="unfinished">Default value</translation>
+      <translation>Varsayılan değer</translation>
     </message>
   </context>
   <context>
@@ -6190,12 +6189,12 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="36"/>
       <source>Structure</source>
-      <translation type="unfinished">Structure</translation>
+      <translation>Yapı</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="70"/>
       <source>Table name:</source>
-      <translation type="unfinished">Table name:</translation>
+      <translation>Tablo adı:</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="87"/>
@@ -6211,7 +6210,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.ui" line="213"/>
       <location filename="../windows/tablewindow.cpp" line="1655"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Veri</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="230"/>
@@ -6420,7 +6419,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="313"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
-      <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
+      <translation>&apos;%1&apos; sütununu silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="342"/>
@@ -6439,7 +6438,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="484"/>
       <source>Could not load data for table %1. Error details: %2</source>
-      <translation type="unfinished">Could not load data for table %1. Error details: %2</translation>
+      <translation>%1 tablosu için veri yüklenemedi. Hata ayrıntıları: %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="597"/>
@@ -6449,7 +6448,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="627"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="659"/>
@@ -6516,7 +6515,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="997"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>Boş ad</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="997"/>
@@ -6528,7 +6527,7 @@ Are you sure you want to create a table with blank name?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1006"/>
       <source>Cannot create a table without at least one column.</source>
-      <translation type="unfinished">Cannot create a table without at least one column.</translation>
+      <translation>En az bir sütunu olmayan bir tablo oluşturulamaz.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1032"/>
@@ -6582,7 +6581,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1343"/>
       <source>Go back to structure tab</source>
-      <translation type="unfinished">Go back to structure tab</translation>
+      <translation>Yapı sekmesine geri git</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1343"/>
@@ -6593,7 +6592,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1543"/>
       <source>Name</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1544"/>
@@ -6668,12 +6667,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="115"/>
       <source>Select all</source>
-      <translation type="unfinished">Select all</translation>
+      <translation>Tümünü seç</translation>
     </message>
     <message>
       <location filename="../dialogs/triggercolumnsdialog.ui" line="128"/>
       <source>Deselect all</source>
-      <translation type="unfinished">Deselect all</translation>
+      <translation>Tümünün seçimini kaldır</translation>
     </message>
   </context>
   <context>
@@ -6687,12 +6686,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="30"/>
       <source>On table:</source>
-      <translation type="unfinished">On table:</translation>
+      <translation>Tabloda:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="40"/>
       <source>Action:</source>
-      <translation type="unfinished">Action:</translation>
+      <translation>Eylem:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="56"/>
@@ -6723,17 +6722,17 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="87"/>
       <source>List of columns for UPDATE OF action.</source>
-      <translation type="unfinished">List of columns for UPDATE OF action.</translation>
+      <translation>UPDATE OF eylemi için sütun listesi.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="97"/>
       <source>Scope:</source>
-      <translation type="unfinished">Scope:</translation>
+      <translation>Kapsam:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="104"/>
       <source>Code:</source>
-      <translation type="unfinished">Code:</translation>
+      <translation>Kod:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="111"/>
@@ -6758,7 +6757,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="346"/>
       <source>Enter a valid condition.</source>
-      <translation type="unfinished">Enter a valid condition.</translation>
+      <translation>Geçerli bir koşul giriniz.</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="347"/>
@@ -6769,7 +6768,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../dialogs/triggerdialog.cpp" line="425"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
-      <translation type="unfinished">Error</translation>
+      <translation>Hata</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="425"/>
@@ -6794,12 +6793,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="10"/>
       <source>Before</source>
-      <translation type="unfinished">Before</translation>
+      <translation>Önce</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="11"/>
       <source>After</source>
-      <translation type="unfinished">After</translation>
+      <translation>Sonra</translation>
     </message>
   </context>
   <context>
@@ -6807,7 +6806,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="36"/>
       <source>Query</source>
-      <translation type="unfinished">Query</translation>
+      <translation>Sorgu</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="70"/>
@@ -6817,13 +6816,13 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="123"/>
       <source>Output column names</source>
-      <translation type="unfinished">Output column names</translation>
+      <translation>Çıktı sütun adları</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
       <location filename="../windows/viewwindow.cpp" line="887"/>
       <source>Data</source>
-      <translation type="unfinished">Data</translation>
+      <translation>Veri</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="180"/>
@@ -6865,7 +6864,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="279"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Veritabanı</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="334"/>
@@ -6899,19 +6898,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="348"/>
       <source>Add column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Sütun ekle</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="349"/>
       <source>Edit column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Sütunu düzenle</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="350"/>
       <source>Delete column</source>
       <comment>view window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Sütunu sil</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="351"/>
@@ -7031,7 +7030,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="918"/>
       <source>Name</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="919"/>
@@ -7043,13 +7042,13 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="920"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
-      <translation type="unfinished">Condition</translation>
+      <translation>Koşul</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="921"/>
       <source>Details</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Ayrıntılar</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="961"/>
@@ -7059,7 +7058,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="1007"/>
       <source>Empty name</source>
-      <translation type="unfinished">Empty name</translation>
+      <translation>Boş ad</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="1007"/>
