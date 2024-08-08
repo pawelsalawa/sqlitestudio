@@ -212,5 +212,6 @@
         <file>img/selection_invert.png</file>
         <file>img/apply_filter_txt_strict.png</file>
         <file>img/restore_default.png</file>
+        <file>img/llm_chat_icon.png</file>
     </qresource>
 </RCC>
