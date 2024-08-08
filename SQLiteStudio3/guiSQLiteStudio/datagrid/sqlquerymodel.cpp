@@ -1622,7 +1622,11 @@ void SqlQueryModel::storeStep1NumbersFromExecution()
 {
     lastExecutionTime = queryExecutor->getLastExecutionTime();
     page = queryExecutor->getPage();
-    sortOrder = queryExecutor->getSortOrder();
+
+    QueryExecutor::SortList newSortOrder = queryExecutor->getSortOrder();
+    if (!sortOrder.isEmpty() && newSortOrder.isEmpty())
+        notifyWarn(tr("There are less columns in the new query, sort order has been reset."));
+    sortOrder = newSortOrder;
     rowsAffected = queryExecutor->getRowsAffected();
 
     if (!queryExecutor->getSkipRowCounting())
