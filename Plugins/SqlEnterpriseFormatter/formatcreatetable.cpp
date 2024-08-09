@@ -199,8 +199,26 @@ void FormatCreateTableColumnConstraint::formatInternal()
             break;
         }
         case SqliteCreateTable::Column::Constraint::NULL_:
-        case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+        {
+            // Is the default and unofficial. Pass through
+            withKeyword("NULL");
+            break;
+        }
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
+        {
+            // Pass through
+            if (constr->deferrable == SqliteDeferrable::NOT_DEFERRABLE)
+                withKeyword("NOT");
+            withKeyword("DEFERRABLE");
+            if (constr->initially != SqliteInitially::null)
+            {
+                withKeyword("INITIALLY");
+                withKeyword(constr->initially == SqliteInitially::DEFERRED ? "DEFERRED" : "IMMEDIATE");
+            }
+            break;
+        }
+        case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+            // The CONSTRAINT <name> clause has already been output
             break;
     }
 }
