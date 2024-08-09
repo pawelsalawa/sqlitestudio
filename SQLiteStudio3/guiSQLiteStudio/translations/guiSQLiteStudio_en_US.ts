@@ -1936,85 +1936,100 @@ Browsing other pages will be possible after the row counting is done.</translati
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="45"/>
-      <location filename="../dialogs/dbdialog.cpp" line="174"/>
+      <location filename="../dialogs/dbdialog.cpp" line="176"/>
       <source>File</source>
       <translation type="unfinished">File</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="68"/>
+      <location filename="../dialogs/dbdialog.ui" line="51"/>
+      <source>Select an existing database file</source>
+      <translation type="unfinished">Select an existing database file</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="61"/>
+      <source>Create a new database file</source>
+      <translation type="unfinished">Create a new database file</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="89"/>
       <source>Name (on the list)</source>
       <translation type="unfinished">Name (on the list)</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="80"/>
+      <location filename="../dialogs/dbdialog.ui" line="101"/>
       <source>Options</source>
       <translation type="unfinished">Options</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="86"/>
+      <location filename="../dialogs/dbdialog.ui" line="107"/>
       <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
       <extracomment>aasfd</extracomment>
       <translation type="unfinished">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="89"/>
+      <location filename="../dialogs/dbdialog.ui" line="110"/>
       <source>Permanent (keep it in configuration)</source>
       <translation type="unfinished">Permanent (keep it in configuration)</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="133"/>
+      <location filename="../dialogs/dbdialog.ui" line="154"/>
       <source>Test connection</source>
       <translation type="unfinished">Test connection</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="175"/>
-      <source>Select new or existing file on local computer</source>
-      <translation type="unfinished">Select new or existing file on local computer</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/dbdialog.cpp" line="325"/>
+      <location filename="../dialogs/dbdialog.cpp" line="333"/>
       <source>Browse</source>
       <translation type="unfinished">Browse</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="500"/>
+      <location filename="../dialogs/dbdialog.cpp" line="508"/>
       <source>Database type not selected.</source>
       <translation type="unfinished">Database type not selected.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="507"/>
+      <location filename="../dialogs/dbdialog.cpp" line="515"/>
       <source>Database path not specified.</source>
       <translation type="unfinished">Database path not specified.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="541"/>
+      <location filename="../dialogs/dbdialog.cpp" line="549"/>
       <source>Enter an unique database name.</source>
       <translation type="unfinished">Enter an unique database name.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="551"/>
+      <location filename="../dialogs/dbdialog.cpp" line="559"/>
       <source>This name is already in use. Please enter unique name.</source>
       <translation type="unfinished">This name is already in use. Please enter unique name.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="558"/>
+      <location filename="../dialogs/dbdialog.cpp" line="566"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="567"/>
+      <location filename="../dialogs/dbdialog.cpp" line="575"/>
       <source>Enter a database file path.</source>
       <translation type="unfinished">Enter a database file path.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="576"/>
+      <location filename="../dialogs/dbdialog.cpp" line="584"/>
       <source>This database is already on the list under name: %1</source>
       <translation type="unfinished">This database is already on the list under name: %1</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="598"/>
+      <location filename="../dialogs/dbdialog.cpp" line="606"/>
       <source>Select a database type.</source>
       <translation type="unfinished">Select a database type.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.cpp" line="743"/>
+      <source>Choose a location for the new database file</source>
+      <translation type="unfinished">Choose a location for the new database file</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.cpp" line="744"/>
+      <source>Browse for existing database file on local computer</source>
+      <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
   </context>
   <context>
@@ -4903,12 +4918,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Select database file</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="53"/>
+      <location filename="../uiutils.cpp" line="60"/>
       <source>Select</source>
       <translation type="unfinished">Select</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="54"/>
+      <location filename="../uiutils.cpp" line="61"/>
       <source>File type</source>
       <translation type="unfinished">File type</translation>
     </message>
@@ -5589,22 +5604,27 @@ find next</translation>
       <translation type="unfinished">Error while loading query results: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1628"/>
+      <source>There are less columns in the new query, sort order has been reset.</source>
+      <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
+    </message>
+    <message>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
       <source>Insert multiple rows</source>
       <translation type="unfinished">Insert multiple rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1943"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
       <source>Number of rows to insert:</source>
       <translation type="unfinished">Number of rows to insert:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1998"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2002"/>
       <source>Delete rows</source>
       <translation type="unfinished">Delete rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1999"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2003"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
@@ -6203,13 +6223,9 @@ NULL</translation>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disabled the WITHOUT ROWID clause on the table. Such table will no longer have the &amp;quot;rowid&amp;quot; hidden column. For such table an explicit PRIMARY KEY column is mandatory. You can read more details on this in SQLite official documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite behavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite behavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../windows/tablewindow.ui" line="97"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite bahavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disables the STRICT clause for the table. Such table makes strict verification of data stored in columns against declared data types for these columns. This is similar to how data types are usually enforced in most other database engines. Keep it disabled to use the classical SQLite bahavior (i.e. no data type enforcement). You can find more details in the official SQLite documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
