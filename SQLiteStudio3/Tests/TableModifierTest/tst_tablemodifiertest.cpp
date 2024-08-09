@@ -17,7 +17,7 @@ class TableModifierTest : public QObject
         TableModifierTest();
 
     private:
-        void verifyRe(const QString& re, const QString& sql, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+        void verifyRe(const QString& re, const QString& sql, QRegularExpression::PatternOptions options = QRegularExpression::NoPatternOption);
 
         Db* db = nullptr;
         static const constexpr char* mainTableDdl = "CREATE TABLE test (id int, val text, val2 text);";
@@ -40,10 +40,11 @@ TableModifierTest::TableModifierTest()
 {
 }
 
-void TableModifierTest::verifyRe(const QString& re, const QString& sql, Qt::CaseSensitivity cs)
+void TableModifierTest::verifyRe(const QString& re, const QString& sql, QRegularExpression::PatternOptions options)
 {
-    QRegExp regExp(re, cs);
-    QVERIFY2(regExp.exactMatch(sql), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2").arg(re).arg(sql).toLatin1().data());
+    QString fullMatchRe = QString("^%1$").arg(re);
+    QRegularExpression regExp(fullMatchRe, options);
+    QVERIFY2(regExp.match(sql).hasMatch(), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2").arg(fullMatchRe).arg(sql).toLatin1().data());
 }
 
 void TableModifierTest::testCase1()

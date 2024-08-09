@@ -13,7 +13,7 @@
 #include "sqliteddlwithdbcontext.h"
 #include <QVariant>
 #include <QList>
-#include <QRegExp>
+#include <QRegularExpression>
 
 struct ParserStubCreateTableOption;
 
@@ -133,7 +133,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 TokenList rebuildTokensFromContents();
 
             private:
-                static const QRegExp GENERATED_ALWAYS_REGEXP;
+                static const QRegularExpression GENERATED_ALWAYS_REGEXP;
         };
 
         typedef QSharedPointer<Column> ColumnPtr;

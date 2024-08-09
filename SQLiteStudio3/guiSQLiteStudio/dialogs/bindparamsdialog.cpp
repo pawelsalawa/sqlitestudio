@@ -33,7 +33,7 @@ void BindParamsDialog::init()
     contents = new QWidget();
     QVBoxLayout *contentsLayout = new QVBoxLayout();
     contentsLayout->setSpacing(spacing);
-    contentsLayout->setMargin(margins);
+    contentsLayout->setContentsMargins(margins, margins, margins, margins);
     contentsLayout->setAlignment(Qt::AlignTop);
     contents->setLayout(contentsLayout);
 

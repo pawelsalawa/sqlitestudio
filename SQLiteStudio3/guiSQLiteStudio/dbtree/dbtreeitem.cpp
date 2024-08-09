@@ -35,7 +35,11 @@ DbTreeItem::DbTreeItem()
 void DbTreeItem::initMeta()
 {
     qRegisterMetaType<DbTreeItem*>("DbTreeItem*");
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<DbTreeItem*>("DbTreeItem*");
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 DbTreeItem::Type DbTreeItem::getType() const
@@ -326,7 +330,7 @@ QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
     return in;
 }
 
-int qHash(DbTreeItem::Type type)
+TYPE_OF_QHASH qHash(DbTreeItem::Type type)
 {
-    return static_cast<int>(type);
+    return static_cast<TYPE_OF_QHASH>(type);
 }

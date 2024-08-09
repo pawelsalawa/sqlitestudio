@@ -1,6 +1,7 @@
 name: "Linux build runner image"
 
 env:
+    freetype_version: "2.13.2"
     icu_version: "74.2"
     openssl_version: "3.0.14"
     python_version: "3.9.19"
@@ -35,6 +36,7 @@ jobs:
             - name: Prepare Dockerfile
               run: |
                 v=${{ env.icu_version }}
+                freetype_url="https://download.savannah.gnu.org/releases/freetype/freetype-${{ env.freetype_version }}.tar.xz"
                 icu_url="https://github.com/unicode-org/icu/releases/download/release-${v%.*}-${v#*.}/icu4c-${v%.*}_${v#*.}-src.tgz"
                 openssl_url="https://www.openssl.org/source/openssl-${{ env.openssl_version }}.tar.gz"
                 python_url="https://www.python.org/ftp/python/${{ env.python_version }}/Python-${{ env.python_version }}.tar.xz"
@@ -48,6 +50,7 @@ jobs:
                 ENV TZ=UTC
                 RUN true \
                     && ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone \
+                    && case ${{ matrix.release }} in bionic*) apt-get -y update && apt-get -y install software-properties-common && add-apt-repository ppa:savoury1/gcc-defaults-10 ;; esac \
                     && yes | { export DEBIAN_FRONTEND=noninteractive; apt-get -y update; apt-get -yqq upgrade; apt-get -yqq dist-upgrade; apt-get -yqq install keyboard-configuration; } \
                     && apt-get -y install sudo build-essential curl g++ pkg-config unzip wget xz-utils zstd \
                     && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >>/etc/sudoers \
@@ -77,10 +80,19 @@ jobs:
                     && make -j$(nproc) && make install \
                     && ln -sf tclsh${tcl_version%.*} /usr/local/bin/tclsh \
                     && cd ../.. && rm -fr tcl${{ env.tcl_version }}
+                RUN curl -L $freetype_url | xz -dc | tar -x \
+                    && apt-get -y install libharfbuzz-dev \
+                    && cd freetype-${{ env.freetype_version }} && ./configure --prefix=/usr/local \
+                    && make -j$(nproc) && make install \
+                    && cd ../.. && rm -fr freetype-${{ env.freetype_version }} \
+                    && apt-get -y remove libharfbuzz-dev
                 # Install Qt runtime deps here
                 RUN apt-get -y install \
+                    libfontconfig1 \
                     libgl1-mesa-dev \
+                    libmng2 \
                     libwayland-client0 libwayland-cursor0 \
+                    libxcb-cursor0 \
                     libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
                     libxcb-render-util0 libxcb-xinerama0 libxcb-xkb1 \
                     libxkbcommon0 libxkbcommon-x11-0

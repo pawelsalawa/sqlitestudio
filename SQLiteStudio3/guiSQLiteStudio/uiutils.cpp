@@ -13,7 +13,6 @@
 #include <QSet>
 #include <QDebug>
 #include <QPainter>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QStyle>
 #include <QScreen>
@@ -170,7 +169,7 @@ void fixToolbarTooltips(QToolBar* toolbar)
             continue;
 
         QString text = action->text();
-        text = text.replace(QRegExp("\\s?\\(&.\\)$"),""); // issue #4261, for Chinese
+        text = text.replace(QRegularExpression("\\s?\\(&.\\)$"),""); // issue #4261, for Chinese
         text = text.replace("&", ""); // issue #4218
         if (!action->shortcut().isEmpty())
             text += QString(" (%1)").arg(action->shortcut().toString());

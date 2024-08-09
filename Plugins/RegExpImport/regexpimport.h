@@ -8,7 +8,7 @@
 
 class QRegularExpression;
 class QFile;
-class QTextStream;
+class EncodedTextStream;
 
 CFG_CATEGORIES(RegExpImportConfig,
      CFG_CATEGORY(RegExpImport,
@@ -45,7 +45,7 @@ class REGEXPIMPORTSHARED_EXPORT RegExpImport : public GenericPlugin, public Impo
         QList<QVariant> groups;
         QStringList columns;
         QFile* file = nullptr;
-        QTextStream* stream = nullptr;
+        EncodedTextStream* stream = nullptr;
         QString buffer;
 };
 

@@ -733,7 +733,7 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
         QString option;
         QString value;
         CfgEntry* cfg;
-        QStringList lines = args[4].toString().split(QRegExp("[\r\n]+"));
+        QStringList lines = args[4].toString().split(QRegularExpression("[\r\n]+"));
         for (const QString& line : lines)
         {
             idx = line.indexOf("=");
@@ -840,9 +840,9 @@ QString FunctionManagerImpl::updateScriptingQtLang(const QString& lang) const
     return lang;
 }
 
-int qHash(const FunctionManagerImpl::Key& key)
+TYPE_OF_QHASH qHash(const FunctionManagerImpl::Key& key)
 {
-    return qHash(key.name) ^ key.argCount ^ static_cast<int>(key.type);
+    return qHash(key.name) ^ key.argCount ^ static_cast<TYPE_OF_QHASH>(key.type);
 }
 
 bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2)

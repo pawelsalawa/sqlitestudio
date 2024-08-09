@@ -148,6 +148,11 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
   exit 1
 fi
 
+qt_version="$("$2" -v | awk '/Qt version/ { print $4 }')"
+case "$qt_version" in
+  5*) qt_version_path=5 ;;
+  6*) qt_version_path=A ;;
+esac
 qt_deploy_bin="$(echo "$2" | sed 's/qmake$/macdeployqt/')"
 if [ ! -x "$qt_deploy_bin" ]; then
     abort "macdeployqt program missing!"
@@ -178,7 +183,7 @@ BUILD_ARCHS="$(lipo -archs SQLiteStudio.app/Contents/MacOS/SQLiteStudio)"
 
 # CLI paths
 qtcore_path=`otool -L sqlitestudiocli | awk '/QtCore/ {print $1;}'`
-new_qtcore_path="@rpath/QtCore.framework/Versions/5/QtCore"
+new_qtcore_path="@rpath/QtCore.framework/Versions/$qt_version_path/QtCore"
 
 cp -P sqlitestudiocli SQLiteStudio.app/Contents/MacOS
 install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/sqlitestudiocli

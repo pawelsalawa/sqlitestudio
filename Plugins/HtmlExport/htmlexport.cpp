@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QTextCodec>
 #include <QDebug>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <schemaresolver.h>
 
 QString HtmlExport::getFormatName() const
@@ -591,16 +591,16 @@ QString HtmlExport::escape(const QString& str)
 
 QString HtmlExport::compressCss(QString css)
 {
-    static const QRegExp spacesLeftRe(R"REGEXP(([^a-zA-Z0-9_\s]+)\s+(\S+))REGEXP");
-    static const QRegExp spacesRightRe(R"REGEXP((\S+)\s+([^a-zA-Z0-9_\s]+))REGEXP");
-    static const QRegExp spacesBetweenWordsRe(R"REGEXP((\S+)\s{2,}(\S+))REGEXP");
-    while (spacesLeftRe.indexIn(css) > -1)
+    static const QRegularExpression spacesLeftRe(R"REGEXP(([^a-zA-Z0-9_\s]+)\s+(\S+))REGEXP");
+    static const QRegularExpression spacesRightRe(R"REGEXP((\S+)\s+([^a-zA-Z0-9_\s]+))REGEXP");
+    static const QRegularExpression spacesBetweenWordsRe(R"REGEXP((\S+)\s{2,}(\S+))REGEXP");
+    while (css.indexOf(spacesLeftRe) > -1)
         css.replace(spacesLeftRe, R"(\1\2)");
 
-    while (spacesRightRe.indexIn(css) > -1)
+    while (css.indexOf(spacesRightRe) > -1)
         css.replace(spacesRightRe, R"(\1\2)");
 
-    while (spacesBetweenWordsRe.indexIn(css) > -1)
+    while (css.indexOf(spacesBetweenWordsRe) > -1)
         css.replace(spacesBetweenWordsRe, R"(\1 \2)");
 
     return css.trimmed();

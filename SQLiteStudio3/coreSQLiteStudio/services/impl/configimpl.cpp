@@ -13,7 +13,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QDataStream>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDateTime>
 #include <QSysInfo>
 #include <QCoreApplication>
@@ -308,24 +308,40 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
     }
 
     sqlHistoryMutex.lock();
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddSqlHistory, this, sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddSqlHistory, sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected);
+#endif
     return sqlHistoryId++;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
     sqlHistoryMutex.lock();
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncUpdateSqlHistory, this, id, sql, dbName, timeSpentMillis, rowsAffected);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncUpdateSqlHistory, id, sql, dbName, timeSpentMillis, rowsAffected);
+#endif
 }
 
 void ConfigImpl::clearSqlHistory()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncClearSqlHistory, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncClearSqlHistory);
+#endif
 }
 
 void ConfigImpl::deleteSqlHistory(const QList<qint64>& ids)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncDeleteSqlHistory, this, ids);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncDeleteSqlHistory, ids);
+#endif
 }
 
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
@@ -338,17 +354,29 @@ QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 
 void ConfigImpl::addCliHistory(const QString& text)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddCliHistory, this, text);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddCliHistory, text);
+#endif
 }
 
 void ConfigImpl::applyCliHistoryLimit()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncApplyCliHistoryLimit, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncApplyCliHistoryLimit);
+#endif
 }
 
 void ConfigImpl::clearCliHistory()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncClearCliHistory, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncClearCliHistory);
+#endif
 }
 
 QStringList ConfigImpl::getCliHistory() const
@@ -364,12 +392,20 @@ QStringList ConfigImpl::getCliHistory() const
 
 void ConfigImpl::addBindParamHistory(const QVector<QPair<QString, QVariant> >& params)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddBindParamHistory, this, params);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddBindParamHistory, params);
+#endif
 }
 
 void ConfigImpl::applyBindParamHistoryLimit()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncApplyBindParamHistoryLimit, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncApplyBindParamHistoryLimit);
+#endif
 }
 
 QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringList& paramNames) const
@@ -424,12 +460,20 @@ QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringL
 
 void ConfigImpl::addPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant> >& columnsPluginsConfig)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddPopulateHistory, this, database, table, rows, columnsPluginsConfig);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddPopulateHistory, database, table, rows, columnsPluginsConfig);
+#endif
 }
 
 void ConfigImpl::applyPopulateHistoryLimit()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncApplyPopulateHistoryLimit, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncApplyPopulateHistoryLimit);
+#endif
 }
 
 QHash<QString, QPair<QString, QVariant>> ConfigImpl::getPopulateHistory(const QString& database, const QString& table, int& rows) const
@@ -480,7 +524,11 @@ QVariant ConfigImpl::getPopulateHistory(const QString& pluginName) const
 
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddDdlHistory, this, queries, dbName, dbFile);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddDdlHistory, queries, dbName, dbFile);
+#endif
 }
 
 QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
@@ -504,7 +552,7 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
         entry = DdlHistoryEntryPtr::create();
         entry->dbName = dbName;
         entry->dbFile = dbFile;
-        entry->timestamp = QDateTime::fromTime_t(row->value("timestamp").toUInt());
+        entry->timestamp = QDateTime::fromSecsSinceEpoch(row->value("timestamp").toLongLong());
         entry->queries = row->value("queries").toString();
         entries << entry;
     }
@@ -521,12 +569,20 @@ DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 
 void ConfigImpl::clearDdlHistory()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncClearDdlHistory, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncClearDdlHistory);
+#endif
 }
 
 void ConfigImpl::addReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncAddReportHistory, this, isFeatureRequest, title, url);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncAddReportHistory, isFeatureRequest, title, url);
+#endif
 }
 
 QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
@@ -554,12 +610,20 @@ QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
 
 void ConfigImpl::deleteReport(int id)
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncDeleteReport, this, id);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncDeleteReport, id);
+#endif
 }
 
 void ConfigImpl::clearReportHistory()
 {
+#if QT_VERSION >= 0x060000
+    QtConcurrent::run(&ConfigImpl::asyncClearReportHistory, this);
+#else
     QtConcurrent::run(this, &ConfigImpl::asyncClearReportHistory);
+#endif
 }
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
@@ -1024,7 +1088,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
     static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
     db->begin();
-    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
+    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toSecsSinceEpoch(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
@@ -1053,7 +1117,7 @@ void ConfigImpl::asyncClearDdlHistory()
 void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
     static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
-    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toTime_t(), title, url});
+    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toSecsSinceEpoch(), title, url});
     emit reportsHistoryRefreshNeeded();
 }
 

@@ -265,7 +265,6 @@ API_EXPORT QStringList splitByLines(const QString& str);
 API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT QStringList sharedLibFileFilters();
 API_EXPORT int sum(const QList<int>& integers);
-API_EXPORT QString getOsString();
 API_EXPORT bool validateEmail(const QString& email);
 API_EXPORT bool isHex(const QString& str);
 API_EXPORT bool isHex(const QChar& c);
@@ -353,7 +352,7 @@ void removeDuplicates(QList<T>& list)
     }
 }
 
-API_EXPORT uint qHash(const QVariant& var);
+API_EXPORT TYPE_OF_QHASH qHash(const QVariant& var);
 
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 

@@ -896,14 +896,14 @@ QString QueryExecutor::getOriginalQuery() const
     return originalQuery;
 }
 
-int qHash(QueryExecutor::EditionForbiddenReason reason)
+TYPE_OF_QHASH qHash(QueryExecutor::EditionForbiddenReason reason)
 {
-    return static_cast<int>(reason);
+    return static_cast<TYPE_OF_QHASH>(reason);
 }
 
-int qHash(QueryExecutor::ColumnEditionForbiddenReason reason)
+TYPE_OF_QHASH qHash(QueryExecutor::ColumnEditionForbiddenReason reason)
 {
-    return static_cast<int>(reason);
+    return static_cast<TYPE_OF_QHASH>(reason);
 }
 
 int QueryExecutor::getDataLengthLimit() const
@@ -1003,7 +1003,7 @@ int operator==(const QueryExecutor::SourceTable& t1, const QueryExecutor::Source
     return t1.database == t2.database && t1.table == t2.table && t1.alias == t2.alias;
 }
 
-int qHash(QueryExecutor::SourceTable sourceTable)
+TYPE_OF_QHASH qHash(QueryExecutor::SourceTable sourceTable)
 {
     return qHash(sourceTable.database + "." + sourceTable.table + "/" + sourceTable.alias);
 }

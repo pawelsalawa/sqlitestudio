@@ -17,6 +17,7 @@ jobs:
             binary_compatibility:
               - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
               - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
+              - "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
               #- "darwin_20.arm64"  # macOS 11, the earliest ARM64 version; temporarily no upstream binary packages
               - "darwin_21.arm64"  # macOS 12, the earliest ARM64 version we have MacPorts binary packages for
             include:
@@ -64,8 +65,28 @@ jobs:
                   - qt5-qtscript 5.15.12_0
                   - qt5-qtsvg 5.15.12_0
                   - qt5-qttools 5.15.12_0
+                  - libb2 0.98.1_1
+                  - md4c 0.4.8_0
+                  - qt6-qtbase 6.4.3_6+openssl
+                  - qt6-qtdeclarative 6.4.3_0
+                  - qt6-qtimageformats 6.4.3_0
+                  - qt6-qtsvg 6.4.3_1
+                  - qt6-qttools 6.4.3_1
+                  - qt6-qt5compat 6.4.3_2
                 runner: macos-14
                 runner_binary_compatibility: darwin_23.arm64
+              - binary_compatibility: darwin_18.x86_64
+                pkgs:
+                  - libb2 0.98.1_1
+                  - md4c 0.4.8_0
+                  - qt6-qtbase 6.4.3_6+openssl
+                  - qt6-qtdeclarative 6.4.3_0
+                  - qt6-qtimageformats 6.4.3_0
+                  - qt6-qtsvg 6.4.3_1
+                  - qt6-qttools 6.4.3_1
+                  - qt6-qt5compat 6.4.3_2
+                qmake_flags: ""
+                runner_binary_compatibility: darwin_21.x86_64
               - binary_compatibility: darwin_17.x86_64
                 pkgs:
                   - qt5-qtbase 5.15.12_1+openssl

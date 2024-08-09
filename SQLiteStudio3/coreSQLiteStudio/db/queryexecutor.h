@@ -1594,9 +1594,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results);
 };
 
-int qHash(QueryExecutor::EditionForbiddenReason reason);
-int qHash(QueryExecutor::ColumnEditionForbiddenReason reason);
-int qHash(QueryExecutor::SourceTable sourceTable);
+TYPE_OF_QHASH qHash(QueryExecutor::EditionForbiddenReason reason);
+TYPE_OF_QHASH qHash(QueryExecutor::ColumnEditionForbiddenReason reason);
+TYPE_OF_QHASH qHash(QueryExecutor::SourceTable sourceTable);
 int operator==(const QueryExecutor::SourceTable& t1, const QueryExecutor::SourceTable& t2);
 
 #endif // QUERYEXECUTOR_H

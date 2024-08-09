@@ -3,7 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include <QObject>
-#include <QTextStream>
+#include "common/encodedtextstream.h"
 
 class Db;
 
@@ -20,7 +20,7 @@ class API_EXPORT SqlFileExecutor : public QObject
         bool execQueryFromFile(Db* db, const QString& sql);
         void execInThread();
         void handleExecutionResults(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis);
-        QList<QPair<QString, QString>> executeFromStream(QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize);
+        QList<QPair<QString, QString>> executeFromStream(EncodedTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize);
         bool shouldSkipQuery(const QString& sql);
 
         QAtomicInt executionInProgress = 0;

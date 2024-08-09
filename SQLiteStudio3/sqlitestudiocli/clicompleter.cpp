@@ -100,11 +100,11 @@ QStringList CliCompleter::completeCommand(const QString& str, int curPos)
             return results;
 
         command->setup(cli);
-        results = command->complete(cmdWords.mid(1)).filter(QRegExp("^"+cmdWords.last()+".*"));
+        results = command->complete(cmdWords.mid(1)).filter(QRegularExpression("^"+cmdWords.last()+".*"));
     }
     else
     {
-        QStringList cmdNames = CliCommandFactory::getCommandNames().filter(QRegExp("^"+cmdStr+".*"));
+        QStringList cmdNames = CliCommandFactory::getCommandNames().filter(QRegularExpression("^"+cmdStr+".*"));
         cmdNames.sort(Qt::CaseInsensitive);
         for (const QString& cmdName : cmdNames)
             results << CFG_CLI.Console.CommandPrefixChar.get() + cmdName;

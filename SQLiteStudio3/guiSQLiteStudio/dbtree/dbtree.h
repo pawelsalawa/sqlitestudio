@@ -31,13 +31,13 @@ CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
     CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,           QObject::tr("Delete selected item"))
     CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,           QObject::tr("Clear filter contents"))
     CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,               QObject::tr("Refresh schema"))
-    CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5,   QObject::tr("Refresh all schemas"))
-    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL + Qt::Key_O,     QObject::tr("Add database"))
-    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL + Qt::Key_A,     QObject::tr("Select all items"))
-    CFG_KEY_ENTRY(COPY,            Qt::CTRL + Qt::Key_C,     QObject::tr("Copy selected item(s)"))
-    CFG_KEY_ENTRY(PASTE,           Qt::CTRL + Qt::Key_V,     QObject::tr("Paste from clipboard"))
-    CFG_KEY_ENTRY(INCR_FONT_SIZE,  Qt::CTRL + Qt::Key_Plus,  QObject::tr("Increase font size", "database list"))
-    CFG_KEY_ENTRY(DECR_FONT_SIZE,  Qt::CTRL + Qt::Key_Minus, QObject::tr("Decrease font size", "database list"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT | Qt::Key_F5,   QObject::tr("Refresh all schemas"))
+    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL | Qt::Key_O,     QObject::tr("Add database"))
+    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL | Qt::Key_A,     QObject::tr("Select all items"))
+    CFG_KEY_ENTRY(COPY,            Qt::CTRL | Qt::Key_C,     QObject::tr("Copy selected item(s)"))
+    CFG_KEY_ENTRY(PASTE,           Qt::CTRL | Qt::Key_V,     QObject::tr("Paste from clipboard"))
+    CFG_KEY_ENTRY(INCR_FONT_SIZE,  Qt::CTRL | Qt::Key_Plus,  QObject::tr("Increase font size", "database list"))
+    CFG_KEY_ENTRY(DECR_FONT_SIZE,  Qt::CTRL | Qt::Key_Minus, QObject::tr("Decrease font size", "database list"))
 )
 
 class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
@@ -247,7 +247,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void sessionValueChanged();
 };
 
-int qHash(DbTree::Action action);
+TYPE_OF_QHASH qHash(DbTree::Action action);
 
 #define DBTREE MainWindow::getInstance()->getDbTree()
 

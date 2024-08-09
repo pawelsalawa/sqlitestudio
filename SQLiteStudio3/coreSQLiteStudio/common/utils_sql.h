@@ -68,7 +68,7 @@ API_EXPORT QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, Na
 API_EXPORT QList<NameWrapper> getAllNameWrappers();
 API_EXPORT QString wrapValueIfNeeded(const QString& str);
 API_EXPORT QString wrapValueIfNeeded(const QVariant& value);
-API_EXPORT int qHash(NameWrapper wrapper);
+API_EXPORT TYPE_OF_QHASH qHash(NameWrapper wrapper);
 API_EXPORT QString getPrefixDb(const QString& origDbName);
 API_EXPORT bool isSystemTable(const QString& name);
 API_EXPORT bool isSystemIndex(const QString& name);

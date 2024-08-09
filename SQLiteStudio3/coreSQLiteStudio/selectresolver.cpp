@@ -873,7 +873,7 @@ int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2)
            t1.oldTableAliases.join(",").compare(t2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
 
-uint qHash(const SelectResolver::Table& table)
+TYPE_OF_QHASH qHash(const SelectResolver::Table& table)
 {
     return qHash(table.database.toLower() + "." + table.table.toLower() + "/" + table.tableAlias.toLower() + "/" +
                  table.oldTableAliases.join(","));
@@ -899,7 +899,7 @@ int operator ==(const SelectResolver::Column &c1, const SelectResolver::Column &
            c1.oldTableAliases.join(",").compare(c2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
 
-uint qHash(const SelectResolver::Column &column)
+TYPE_OF_QHASH qHash(const SelectResolver::Column &column)
 {
     return qHash(column.database.toLower() + "." + column.table.toLower() + "." + column.column.toLower() + "/" +
                  column.tableAlias.toLower() + "/" + column.oldTableAliases.join(","));

@@ -309,9 +309,9 @@ bool isWrapperChar(const QChar& c)
     return false;
 }
 
-int qHash(NameWrapper wrapper)
+TYPE_OF_QHASH qHash(NameWrapper wrapper)
 {
-    return (uint)wrapper;
+    return (TYPE_OF_QHASH)wrapper;
 }
 
 QString getPrefixDb(const QString& origDbName)

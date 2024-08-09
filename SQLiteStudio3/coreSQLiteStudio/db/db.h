@@ -859,8 +859,8 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual void registerUserCollations() = 0;
 };
 
-QDataStream &operator<<(QDataStream &out, const Db* myObj);
-QDataStream &operator>>(QDataStream &in, Db*& myObj);
+API_EXPORT QDataStream &operator<<(QDataStream &out, const Db* myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, Db*& myObj);
 
 QDebug operator<<(QDebug dbg, const Db* db);
 

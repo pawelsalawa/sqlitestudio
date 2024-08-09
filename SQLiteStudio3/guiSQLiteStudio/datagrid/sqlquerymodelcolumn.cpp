@@ -25,7 +25,11 @@ SqlQueryModelColumn::~SqlQueryModelColumn()
 void SqlQueryModelColumn::initMeta()
 {
     qRegisterMetaType<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryExecutor::EditionForbiddenReason reason)
@@ -204,7 +208,7 @@ AliasedTable SqlQueryModelColumn::getAliasedTable() const
     return AliasedTable(database, table, tableAlias);
 }
 
-int qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
+TYPE_OF_QHASH qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
 {
     return static_cast<int>(reason);
 }

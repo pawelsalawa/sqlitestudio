@@ -290,7 +290,11 @@ void SqlEditor::saveToFile(const QString &fileName)
     }
 
     QTextStream stream(&file);
+#if QT_VERSION < 0x060000
     stream.setCodec("UTF-8");
+#else
+    // The stream is UTF-8 by default in Qt 6
+#endif
     stream << toPlainText();
     stream.flush();
     file.close();
@@ -377,7 +381,7 @@ void SqlEditor::homePressed(Qt::KeyboardModifiers modifiers)
 
     int curPos = cursor.positionInBlock();
     QString line = cursor.block().text();
-    int firstPrintable = line.indexOf(QRegExp("\\S"));
+    int firstPrintable = line.indexOf(QRegularExpression("\\S"));
 
     if (firstPrintable <= 0)
     {
@@ -420,7 +424,7 @@ void SqlEditor::tabPressed(bool shiftPressed)
     // Get current line, its first printable character
     int curPos = cursor.positionInBlock();
     QString line = cursor.block().text();
-    int firstPrintable = line.indexOf(QRegExp("\\S"));
+    int firstPrintable = line.indexOf(QRegularExpression("\\S"));
 
     // Handle shift+tab (unindent)
     if (shiftPressed)
@@ -451,7 +455,7 @@ void SqlEditor::tabPressed(bool shiftPressed)
     }
 
     // If previous block has first pritable character further than current cursor position, insert spaces to meet above position
-    int previousFirstPrintable = previousBlock.text().indexOf(QRegExp("\\S"));
+    int previousFirstPrintable = previousBlock.text().indexOf(QRegularExpression("\\S"));
     if (curPos < previousFirstPrintable)
     {
         insertPlainText(QString(" ").repeated(previousFirstPrintable - curPos));
@@ -475,7 +479,7 @@ void SqlEditor::backspacePressed()
     // No selection. Collect line, cursor position, first and last printable characters in line.
     int curPos = cursor.positionInBlock();
     QString line = cursor.block().text();
-    int firstPrintable = line.indexOf(QRegExp("\\S"));
+    int firstPrintable = line.indexOf(QRegularExpression("\\S"));
 
     // If there is any printable character (which means that line length is greater than 0) and cursor is after first character,
     // or when cursor is at the begining of line, delete previous character, always.
@@ -500,7 +504,7 @@ void SqlEditor::backspacePressed()
 
     // If first printable character in previous block is prior to the current cursor position (but not first in the line),
     // delete as many spaces, as necessary to reach the same position, but never more than defined spaces number earlier.
-    int previousFirstPrintable = previousBlock.text().indexOf(QRegExp("\\S"));
+    int previousFirstPrintable = previousBlock.text().indexOf(QRegularExpression("\\S"));
     if (curPos > previousFirstPrintable && previousFirstPrintable > 0)
     {
         int spacesToDelete = curPos - previousFirstPrintable;
@@ -820,7 +824,7 @@ void SqlEditor::unindentBlock(const QTextBlock& block)
         return;
 
     int spaces = 0;
-    int firstPrintable = str.indexOf(QRegExp("\\S"));
+    int firstPrintable = str.indexOf(QRegularExpression("\\S"));
     if (firstPrintable == -1)
         spaces = str.length();
     else
@@ -842,7 +846,7 @@ void SqlEditor::indentNewLine()
         return;
 
     // If previous block has first pritable character further than current cursor position, insert spaces to meet above position
-    int previousFirstPrintable = previousBlock.text().indexOf(QRegExp("\\S"));
+    int previousFirstPrintable = previousBlock.text().indexOf(QRegularExpression("\\S"));
     if (previousFirstPrintable > 0)
     {
         insertPlainText(QString(" ").repeated(previousFirstPrintable));

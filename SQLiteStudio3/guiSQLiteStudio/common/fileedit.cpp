@@ -10,7 +10,7 @@ FileEdit::FileEdit(QWidget *parent) :
     QWidget(parent)
 {
     setLayout(new QHBoxLayout());
-    layout()->setMargin(0);
+    layout()->setContentsMargins(0, 0, 0, 0);
 
     lineEdit = new QLineEdit();
     button = new QToolButton();

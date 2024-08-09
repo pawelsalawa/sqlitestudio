@@ -2,7 +2,7 @@ name: "Linux dependencies: Qt"
 
 env:
     workflow_name: lin_qt
-    submodules: qtdeclarative qtimageformats qtsvg qttools qtwayland qtx11extras
+    submodules: qtdeclarative qtimageformats qtsvg qttools qtwayland
     TARGET_ARCH: "x86_64"
 
 on:
@@ -26,19 +26,39 @@ jobs:
           matrix:
             binary_compatibility:
               - "glibc_2.23"  # Ubuntu 16.04
-              #- "glibc_2.27"  # Ubuntu 18.04
+              - "glibc_2.27"  # Ubuntu 18.04
               #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
               - "5.15.14"
+              - "6.7.2"
             include:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
-              #- binary_compatibility: glibc_2.27
-              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
+              - binary_compatibility: glibc_2.27
+                container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
               #- binary_compatibility: glibc_2.31
               #  container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
+            exclude:
+              - binary_compatibility: glibc_2.23
+                version: "6.7.2"
+              - binary_compatibility: glibc_2.27
+                version: "5.15.14"
 
         steps:
+            - name: Prepare environment
+              run: |
+                case ${{ matrix.version }} in
+                  5.*) echo ADD_SUBMODULES="qtx11extras"
+                       echo QT_VERSION_MAJ="5"
+                       echo OPENSOURCE_SUFFIX="-opensource"
+                       echo STAGE_INSTALL_CMD="sudo make INSTALL_ROOT=/tmp/stage install"
+                       ;;
+                  6.*) echo ADD_SUBMODULES="qt5compat"
+                       echo QT_VERSION_MAJ="6"
+                       echo OPENSOURCE_SUFFIX=""
+                       ;;
+                esac >> $GITHUB_ENV
+
             - name: Prepare ccache
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2
@@ -70,6 +90,7 @@ jobs:
                     libgles2-mesa-dev \
                     libglu1-mesa-dev \
                     libgtk-3-dev \
+                    libmng-dev \
                     libsqlite3-dev \
                     libsm-dev \
                     libwayland-dev \
@@ -80,26 +101,43 @@ jobs:
                     libxi-dev \
                     libxrender-dev \
                     libxcb1-dev \
+                    libxcb-cursor-dev \
                     libxcb-glx0-dev \
                     libxcb-keysyms1-dev \
                     libxcb-image0-dev \
                     libxcb-shm0-dev \
                     libxcb-icccm4-dev \
-                    libxcb-sync0-dev \
+                    libxcb-sync-dev \
                     libxcb-xfixes0-dev \
                     libxcb-shape0-dev \
                     libxcb-randr0-dev \
                     libxcb-render-util0-dev \
+                    libxcb-util-dev \
                     libxcb-xinerama0-dev \
+                    libxcb-xkb-dev \
                     libxkbcommon-dev \
                     libxkbcommon-x11-dev \
                     unixodbc-dev
 
+            - name: Install cmake for Qt 6 build
+              if: env.QT_VERSION_MAJ == 6
+              run: |
+                set -x
+                CMAKE_VERSION="3.30.0"
+                CMAKE_DISTNAME="cmake-$CMAKE_VERSION-linux-$(uname -m)"
+                CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_DISTNAME.tar.gz"
+                curl -L "$CMAKE_URL" | tar -xz
+                CMAKE_PATH="$(pwd)/$CMAKE_DISTNAME"
+                echo "$CMAKE_PATH/bin" >> "$GITHUB_PATH"
+                echo "STAGE_INSTALL_CMD=sudo $CMAKE_PATH/bin/cmake --install . --prefix /tmp/stage/usr/local" >> "$GITHUB_ENV"
+
             - name: Download software source
               run: |
                 set -x
-                for _m in qtbase $submodules; do
-                    curl -L https://download.qt.io/official_releases/qt/5.15/${{ matrix.version }}/submodules/$_m-everywhere-opensource-src-${{ matrix.version }}.tar.xz \
+                qt_version="${{ matrix.version }}"
+                ver_maj_min="${qt_version%.*}"
+                for _m in qtbase $submodules $ADD_SUBMODULES; do
+                    curl -L https://download.qt.io/official_releases/qt/$ver_maj_min/${{ matrix.version }}/submodules/$_m-everywhere${OPENSOURCE_SUFFIX}-src-${{ matrix.version }}.tar.xz \
                     | xzcat \
                     | tar -x
                 done
@@ -108,7 +146,8 @@ jobs:
               run: |
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in 5.15.14)
+                case ${{ matrix.version }} in
+                  5.15.14)
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-37369-qtbase-5.15.diff | patch -p1
@@ -118,15 +157,23 @@ jobs:
                     curl -L https://download.qt.io/official_releases/qt/5.15/0002-CVE-2023-51714-qtbase-5.15.diff | patch -p1
                     curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2024-25580-qtbase-5.15.diff | patch -p1
                     ;;
+                  6.7.2)
+                    # curl -L https://download.qt.io/official_releases/qt/6.7/CVE-2024-33861-qtbase-6.7.diff | patch -p1
+                    ;;
                 esac
 
             - name: Configure qtbase
               shell: docker-shell {0}
               run: |
+                set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
                 if [ ${{ inputs.use_ccache || false }} = true ]; then
                     ADD_CONFIGURE_FLAGS="-ccache -no-pch"
                 fi
+                case "$QT_VERSION_MAJ" in
+                    5) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -no-iconv -v" ;;
+                    #6) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -qt-freetype" ;;
+                esac
                 sudo apt-get -y remove openssl openssl-dev || true
                 ls -l /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto* || true
                 sudo rm -fr /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto*
@@ -138,9 +185,7 @@ jobs:
                     ${ADD_CONFIGURE_FLAGS:-} \
                     -confirm-license \
                     -dbus-runtime \
-                    -fontconfig \
                     -icu \
-                    -no-iconv \
                     -nomake examples \
                     -nomake tests \
                     -opensource \
@@ -157,9 +202,8 @@ jobs:
                     -rpath \
                     -sql-odbc \
                     -sql-sqlite \
+                    -system-freetype -fontconfig \
                     -system-sqlite \
-                    -system-freetype \
-                    -v \
                     -xcb \
                     -xkbcommon
 
@@ -169,30 +213,43 @@ jobs:
                 set -x
                 cd qtbase-everywhere-src-${{ matrix.version }}
                 make -j$(nproc)
-                sudo make INSTALL_ROOT=/tmp/stage install  # for package
+                $STAGE_INSTALL_CMD  # for package
                 sudo make install  # for submodules build
 
             - name: Build submodules
               shell: docker-shell {0}
               run: |
                 set -x
-                for _m in $submodules; do
+                for _m in $submodules $ADD_SUBMODULES; do
+                    echo "::group::Building $_m"
                     cd $_m-everywhere-src-${{ matrix.version }}
-                    qmake
-                    make -j$(nproc)
-                    sudo make INSTALL_ROOT=/tmp/stage install
+                    case "$QT_VERSION_MAJ" in
+                        5)
+                            qmake
+                            make -j$(nproc)
+                            ;;
+                        6)
+                            qt-configure-module . -list-features
+                            qt-configure-module .
+                            cmake --build . --parallel $(nproc)
+                            ;;
+                    esac
+                    echo "::endgroup::"
+                    echo "::group::Installing $_m"
+                    $STAGE_INSTALL_CMD
                     cd ..
+                    echo "::endgroup::"
                 done
 
             - name: Create package
               run: |
                 set -ex
-                _pkgfile="qt5-${{ matrix.version }}-${{ matrix.binary_compatibility }}.$TARGET_ARCH.tar.zst"
+                _pkgfile="qt$QT_VERSION_MAJ-${{ matrix.version }}-${{ matrix.binary_compatibility }}.$TARGET_ARCH.tar.zst"
                 echo 'cd /tmp/stage; tar -c *' | docker-shell | zstd -9 > $_pkgfile
                 echo "SOFTWARE_PACKAGE_FILE=$_pkgfile" >> $GITHUB_ENV
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: ${{ env.SOFTWARE_PACKAGE_FILE }}
                 path: ${{ env.SOFTWARE_PACKAGE_FILE }}

@@ -654,7 +654,7 @@ QString defaultCodecName()
 
 QStringList splitByLines(const QString& str)
 {
-    return str.split(QRegExp("\r?\n"));
+    return str.split(QRegularExpression("\r?\n"));
 }
 
 QString joinLines(const QStringList& lines)
@@ -674,135 +674,6 @@ int sum(const QList<int>& integers)
         res += i;
 
     return res;
-}
-
-QString getOsString()
-{
-#if defined(Q_OS_WIN)
-    QString os = "Windows";
-    switch (QSysInfo::WindowsVersion)
-    {
-        case QSysInfo::WV_XP:
-            os += " XP";
-            break;
-        case QSysInfo::WV_2003:
-            os += " 2003";
-            break;
-        case QSysInfo::WV_VISTA:
-            os += " Vista";
-            break;
-        case QSysInfo::WV_WINDOWS7:
-            os += " 7";
-            break;
-        case QSysInfo::WV_WINDOWS8:
-            os += " 8";
-            break;
-        case QSysInfo::WV_WINDOWS8_1:
-            os += " 8.1";
-            break;
-#if QT_VERSION >= 0x050500
-        case QSysInfo::WV_WINDOWS10:
-            os += " 10";
-        break;
-#endif
-        case QSysInfo::WV_32s:
-        case QSysInfo::WV_95:
-        case QSysInfo::WV_98:
-        case QSysInfo::WV_Me:
-        case QSysInfo::WV_DOS_based:
-        case QSysInfo::WV_NT:
-        case QSysInfo::WV_2000:
-        case QSysInfo::WV_NT_based:
-        case QSysInfo::WV_CE:
-        case QSysInfo::WV_CENET:
-        case QSysInfo::WV_CE_5:
-        case QSysInfo::WV_CE_6:
-        case QSysInfo::WV_CE_based:
-#if QT_VERSION >= 0x050500
-        case QSysInfo::WV_None:
-#endif
-            break;
-    }
-#elif defined(Q_OS_LINUX)
-    QString os = "Linux";
-    utsname uts;
-    if (uname(&uts) != 0)
-    {
-        qWarning() << "Error while calling uname() for OS version. Error code: " << errno;
-    }
-    else
-    {
-        os += " " + QString::fromLatin1(uts.release);
-    }
-#elif defined(Q_OS_OSX)
-    QString os = "MacOS X";
-    switch (QSysInfo::MacintoshVersion)
-    {
-        case QSysInfo::MV_10_4:
-            os += " 10.4 Tiger";
-            break;
-        case QSysInfo::MV_10_5:
-            os += " 10.5 Leopard";
-            break;
-        case QSysInfo::MV_10_6:
-            os += " 10.6 Snow Leopard";
-            break;
-        case QSysInfo::MV_10_7:
-            os += " 10.7 Lion";
-            break;
-        case QSysInfo::MV_10_8:
-            os += " 10.8 Mountain Lion";
-            break;
-        case QSysInfo::MV_10_9:
-            os += " 10.9 Mavericks";
-            break;
-        case QSysInfo::MV_10_10:
-            os += " 10.10 Yosemite";
-            break;
-        case QSysInfo::MV_10_11:
-            os += " 10.11 El Capitan";
-            break;
-        case QSysInfo::MV_10_12:
-            os += " 10.12 Sierra";
-            break;
-        case QSysInfo::MV_9:
-        case QSysInfo::MV_10_0:
-        case QSysInfo::MV_10_1:
-        case QSysInfo::MV_10_2:
-        case QSysInfo::MV_10_3:
-        case QSysInfo::MV_IOS:
-        case QSysInfo::MV_IOS_4_3:
-        case QSysInfo::MV_IOS_5_0:
-        case QSysInfo::MV_IOS_5_1:
-        case QSysInfo::MV_IOS_6_0:
-        case QSysInfo::MV_IOS_6_1:
-        case QSysInfo::MV_IOS_7_0:
-        case QSysInfo::MV_IOS_7_1:
-        case QSysInfo::MV_IOS_8_0:
-        case QSysInfo::MV_IOS_8_1:
-        case QSysInfo::MV_IOS_8_2:
-        case QSysInfo::MV_IOS_8_3:
-        case QSysInfo::MV_IOS_8_4:
-        case QSysInfo::MV_IOS_9_0:
-        case QSysInfo::MV_None:
-        case QSysInfo::MV_Unknown:
-            break;
-    }
-#elif defined(Q_OS_UNIX)
-    QString os = "Unix";
-#else
-    QString os = "Unknown";
-#endif
-
-    os += ", ";
-#ifdef Q_OS_WIN
-    os += (is64BitWindows() ? "64" : "32");
-#else
-    os += QString::number(QSysInfo::WordSize);
-#endif
-    os += "bit";
-
-    return os;
 }
 
 DistributionType getDistributionType()
@@ -969,9 +840,9 @@ QStringList concat(const QList<QStringList>& list)
 QString doubleToString(const QVariant& val)
 {
     QString str = val.toString();
-    if (str.contains("e") || str.midRef(str.indexOf('.') + 1).length() > 14)
+    if (str.contains("e") || str.length() - (str.indexOf('.') + 1) > 14)
     {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
+        str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
         if (str.endsWith("."))
             str += "0";
     }
@@ -1033,7 +904,11 @@ QString readFileContents(const QString& path, QString* err)
     }
 
     QTextStream stream(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     stream.setCodec("UTF-8");
+#else
+    // UTF-8 is the default QTextStream encoding in Qt 6
+#endif
     QString contents = stream.readAll();
     file.close();
 
@@ -1041,7 +916,7 @@ QString readFileContents(const QString& path, QString* err)
 }
 
 
-uint qHash(const QVariant& var)
+TYPE_OF_QHASH qHash(const QVariant& var)
 {
     if (!var.isValid() || var.isNull())
         return -1;
@@ -1073,7 +948,7 @@ uint qHash(const QVariant& var)
         case QVariant::DateTime:
         case QVariant::Url:
         case QVariant::Locale:
-        case QVariant::RegExp:
+        case QVariant::RegularExpression:
             return qHash(var.toString());
         case QVariant::Hash:
             return qHash(var.toHash());

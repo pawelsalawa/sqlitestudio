@@ -1,6 +1,8 @@
 #ifndef COLLATIONMANAGERIMPL_H
 #define COLLATIONMANAGERIMPL_H
 
+#include <QHash>
+
 #include "services/collationmanager.h"
 
 class ScriptingPlugin;

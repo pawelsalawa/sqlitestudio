@@ -1,11 +1,11 @@
 #include "regexpimport.h"
 #include "services/notifymanager.h"
+#include "common/encodedtextstream.h"
 #include "common/utils.h"
 #include "services/importmanager.h"
 #include "sqlitestudio.h"
 #include <QRegularExpression>
 #include <QFile>
-#include <QTextStream>
 
 RegExpImport::RegExpImport()
 {
@@ -55,7 +55,7 @@ bool RegExpImport::beforeImport(const ImportManager::StandardImportConfig& confi
         return false;
     }
 
-    stream = new QTextStream(file);
+    stream = new EncodedTextStream(file);
     stream->setCodec(config.codec.toLatin1().data());
 
 

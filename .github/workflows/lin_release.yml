@@ -38,9 +38,12 @@ jobs:
             qt_version:
               - "5.15.2"
               - "5.15.14"
+              - "6.7.2"
             exclude:
               - binary_compatibility: glibc_2.23
                 qt_version: "5.15.2"
+              - binary_compatibility: glibc_2.23
+                qt_version: "6.7.2"
               - binary_compatibility: glibc_2.27
                 qt_version: "5.15.14"
             include:
@@ -61,6 +64,10 @@ jobs:
                     case ${{ matrix.binary_compatibility }},${{ matrix.qt_version }} in
                         *,5.15.2) echo USE_PREBUILT_QT=0; echo ICU_VERSION_SHORT=56 ;;
                                *) echo USE_PREBUILT_QT=1; echo ICU_VERSION_SHORT=${ICU_VERSION%%.*} ;;
+                    esac
+                    case ${{ matrix.qt_version }} in
+                        5.*) echo QT_VERSION_MAJ=5 ;;
+                        6.*) echo QT_VERSION_MAJ=6 ;;
                     esac
                     echo TCL_VERSION_SHORT="${TCL_VERSION%.*}"
                     echo TARGET_ARCH=x86_64
@@ -116,12 +123,13 @@ jobs:
               with:
                 workflow: lin_qt.yml
                 workflow_conclusion: success
-                name: qt5-${{ matrix.qt_version }}-${{ matrix.binary_compatibility }}.${{ env.TARGET_ARCH }}.tar.zst
+                name: qt${{ env.QT_VERSION_MAJ }}-${{ matrix.qt_version }}-${{ matrix.binary_compatibility }}.${{ env.TARGET_ARCH }}.tar.zst
 
             - name: Install prebuilt Qt
               if: env.USE_PREBUILT_QT == 1
               run: |
-                zstdcat qt5-*.tar.zst | docker-shell -c 'sudo tar -C / -xv'
+                set -x
+                zstdcat qt${{ env.QT_VERSION_MAJ }}-*.tar.zst | docker-shell -c 'sudo tar -C / -xv'
                 echo "Qt5_Dir=/usr/local" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
@@ -279,18 +287,24 @@ jobs:
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5DBus.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Gui.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Qml.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5WaylandClient.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt5XcbQpa.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Core.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}DBus.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Concurrent.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Gui.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Network.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}PrintSupport.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Qml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}WaylandClient.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Widgets.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Xml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Svg.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}XcbQpa.so* lib/
+                if [ "$QT_VERSION_MAJ" = 6 ]; then
+                    cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}Core5Compat.so* lib/
+                    cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}OpenGL.so* lib/
+                    cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}OpenGLWidgets.so* lib/
+                    cp -P ${{ env.Qt5_Dir }}/lib/libQt${QT_VERSION_MAJ}UiTools.so* lib/
+                fi
                 cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so.$ICU_VERSION_SHORT* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so.$ICU_VERSION_SHORT* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so.$ICU_VERSION_SHORT* lib/
@@ -299,28 +313,34 @@ jobs:
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
+                cd $PORTABLE_DIR
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-generic.so platforms/libqwayland-generic.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqjpeg.so imageformats/libqjpeg.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqsvg.so imageformats/libqsvg.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtga.so imageformats/libqtga.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtiff.so imageformats/libqtiff.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
+
+                cd "${{ env.Qt5_Dir }}/plugins"
+                cp platforms/libqwayland-generic.so platforms/libqxcb.so "$PORTABLE_DIR/platforms/"
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do
+                    cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats/"
+                done
+                cp iconengines/libqsvgicon.so "$PORTABLE_DIR/iconengines/"
+                cp printsupport/libcupsprintersupport.so "$PORTABLE_DIR/printsupport/"
+                cp platformthemes/libqgtk3.so "$PORTABLE_DIR/platformthemes/"
+                cp platforminputcontexts/libcomposeplatforminputcontextplugin.so "$PORTABLE_DIR/platforminputcontexts/"
+                if [ "$QT_VERSION_MAJ" = 6 ]; then
+                    for f in qmng qwebp; do
+                        cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats"
+                    done
+                    mkdir "$PORTABLE_DIR/tls"
+                    cp tls/libqopensslbackend.so "$PORTABLE_DIR/tls"
+                fi
 
             - name: Copy extra Qt dependencies to portable dir
               shell: docker-shell {0}
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 libdir=/usr/lib/$TARGET_ARCH-linux-gnu
-                if ldd lib/libQt5XcbQpa.so | grep -q libxcb-; then
+                if ldd lib/libQt${QT_VERSION_MAJ}XcbQpa.so | grep -q libxcb-; then
                     # These are not installed by default on my Xubuntu 16.04:
+                    cp -P $libdir/libxcb-cursor.so* lib/
                     cp -P $libdir/libxcb-icccm.so* lib/
                     cp -P $libdir/libxcb-image.so* lib/
                     cp -P $libdir/libxcb-keysyms.so* lib/
@@ -332,7 +352,7 @@ jobs:
                     cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
                     cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
                 fi
-                if ldd lib/libQt5WaylandClient.so | grep -q libwayland-; then
+                if ldd lib/libQt${QT_VERSION_MAJ}WaylandClient.so | grep -q libwayland-; then
                     # These must probably match the build system
                     cp -P $libdir/libwayland-client.so* lib/
                     cp -P $libdir/libwayland-cursor.so* lib/
@@ -344,12 +364,13 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                [ "$QT_VERSION_MAJ" = 5 ] || QT6_PLUGINS=tls/*.so
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so ${QT6_PLUGINS:-}
                 chrpath -k -r \$ORIGIN          lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio
                 chrpath -k -r \$ORIGIN/lib      sqlitestudiocli
-                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so ${QT6_PLUGINS:-}
                 chrpath -l lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
@@ -372,7 +393,7 @@ jobs:
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
                 # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
-                  lib/libQt5Core.so.*.*.* \
+                  lib/libQt?Core.so.*.*.* \
                   lib/libreadline* \
                   lib/libwayland-c*.so.*.*.*
 

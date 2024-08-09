@@ -5,6 +5,7 @@
 #include "common/extactioncontainer.h"
 #include "db/queryexecutor.h"
 #include "guiSQLiteStudio_global.h"
+#include "sqlqueryitem.h"
 #include <QTableView>
 #include <QHeaderView>
 
@@ -19,21 +20,21 @@ class QMenu;
 
 CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(EDIT_CURRENT,      Qt::Key_F2,                              QObject::tr("Edit current cell inline"))
-    CFG_KEY_ENTRY(COPY,              Qt::CTRL + Qt::Key_C,                    QObject::tr("Copy cell(s) contents to clipboard"))
-    CFG_KEY_ENTRY(COPY_WITH_HEADER,  Qt::CTRL + Qt::SHIFT + Qt::Key_C,        QObject::tr("Copy cell(s) contents together with header to clipboard"))
-//    CFG_KEY_ENTRY(COPY_AS,           Qt::CTRL + Qt::ALT + Qt::Key_C,        QObject::tr(""))
-    CFG_KEY_ENTRY(PASTE,             Qt::CTRL + Qt::Key_V,                    QObject::tr("Paste cell(s) contents from clipboard"))
-//    CFG_KEY_ENTRY(PASTE_AS,          Qt::CTRL + Qt::ALT + Qt::Key_V,        QObject::tr(""))
-    CFG_KEY_ENTRY(ERASE,             Qt::ALT + Qt::Key_Backspace,             QObject::tr("Set empty value to selected cell(s)"))
+    CFG_KEY_ENTRY(COPY,              Qt::CTRL | Qt::Key_C,                    QObject::tr("Copy cell(s) contents to clipboard"))
+    CFG_KEY_ENTRY(COPY_WITH_HEADER,  Qt::CTRL | Qt::SHIFT | Qt::Key_C,        QObject::tr("Copy cell(s) contents together with header to clipboard"))
+//    CFG_KEY_ENTRY(COPY_AS,           Qt::CTRL | Qt::ALT | Qt::Key_C,        QObject::tr(""))
+    CFG_KEY_ENTRY(PASTE,             Qt::CTRL | Qt::Key_V,                    QObject::tr("Paste cell(s) contents from clipboard"))
+//    CFG_KEY_ENTRY(PASTE_AS,          Qt::CTRL | Qt::ALT | Qt::Key_V,        QObject::tr(""))
+    CFG_KEY_ENTRY(ERASE,             Qt::ALT | Qt::Key_Backspace,             QObject::tr("Set empty value to selected cell(s)"))
     CFG_KEY_ENTRY(SET_NULL,          Qt::Key_Backspace,                       QObject::tr("Set NULL value to selected cell(s)"))
-    CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,               QObject::tr("Commit changes to cell(s) contents"))
-    CFG_KEY_ENTRY(ROLLBACK,          Qt::ALT + Qt::SHIFT + Qt::Key_Backspace, QObject::tr("Rollback changes to cell(s) contents"))
+    CFG_KEY_ENTRY(COMMIT,            Qt::CTRL | Qt::Key_Return,               QObject::tr("Commit changes to cell(s) contents"))
+    CFG_KEY_ENTRY(ROLLBACK,          Qt::ALT | Qt::SHIFT | Qt::Key_Backspace, QObject::tr("Rollback changes to cell(s) contents"))
     CFG_KEY_ENTRY(DELETE_ROW,        Qt::Key_Delete,                          QObject::tr("Delete selected data row"))
     CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                          QObject::tr("Insert new data row"))
-    CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return,                QObject::tr("Open contents of selected cell in a separate editor"))
-    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT + Qt::Key_H,                     QObject::tr("Toggle the height adjustment of rows"))
-    CFG_KEY_ENTRY(INCR_FONT_SIZE,    Qt::CTRL + Qt::Key_Plus,                 QObject::tr("Increase font size", "data view"))
-    CFG_KEY_ENTRY(DECR_FONT_SIZE,    Qt::CTRL + Qt::Key_Minus,                QObject::tr("Decrease font size", "data view"))
+    CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT | Qt::Key_Return,                QObject::tr("Open contents of selected cell in a separate editor"))
+    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT | Qt::Key_H,                     QObject::tr("Toggle the height adjustment of rows"))
+    CFG_KEY_ENTRY(INCR_FONT_SIZE,    Qt::CTRL | Qt::Key_Plus,                 QObject::tr("Increase font size", "data view"))
+    CFG_KEY_ENTRY(DECR_FONT_SIZE,    Qt::CTRL | Qt::Key_Minus,                QObject::tr("Decrease font size", "data view"))
 )
 
 class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
@@ -180,6 +181,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void scrolledBy(int dx, int dy);
 };
 
-GUI_API_EXPORT int qHash(SqlQueryView::Action action);
+GUI_API_EXPORT TYPE_OF_QHASH qHash(SqlQueryView::Action action);
 
 #endif // SQLQUERYVIEW_H

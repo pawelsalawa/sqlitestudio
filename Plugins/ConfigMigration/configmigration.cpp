@@ -92,10 +92,13 @@ QString ConfigMigration::findOldConfig()
 
     // Global path check
 #ifdef Q_OS_WIN
-    if (QSysInfo::windowsVersion() & QSysInfo::WV_NT_based)
-        dirPath = SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
-    else
+#if QT_VERSION < 0x060000
+    // Under Qt 5, we may still be running on Win9x (?)
+    if (!(QSysInfo::windowsVersion() & QSysInfo::WV_NT_based))
         dirPath = SQLITESTUDIO->getEnv("HOME")+"/sqlitestudio";
+    else
+#endif
+        dirPath = SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
 #else
     dirPath = SQLITESTUDIO->getEnv("HOME")+"/.sqlitestudio";
 #endif

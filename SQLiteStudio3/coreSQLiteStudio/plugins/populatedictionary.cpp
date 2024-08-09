@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QRandomGenerator>
+#include <QRegularExpression>
 
 PopulateDictionary::PopulateDictionary()
 {
@@ -36,9 +37,9 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     file.close();
 
     if (cfg.PopulateDictionary.Lines.get())
-        dictionary = dataStr.split(QRegExp("(\r\n|\n|\r)"));
+        dictionary = dataStr.split(QRegularExpression("(\r\n|\n|\r)"));
     else
-        dictionary = dataStr.split(QRegExp("\\s+"));
+        dictionary = dataStr.split(QRegularExpression("\\s+"));
 
     if (dictionary.size() == 0)
         dictionary << QString();
@@ -46,7 +47,7 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     dictionaryPos = 0;
     dictionarySize = dictionary.size();
     if (cfg.PopulateDictionary.Random.get())
-        QRandomGenerator::system()->seed(QDateTime::currentDateTime().toTime_t());
+        QRandomGenerator::system()->seed(QDateTime::currentDateTime().toSecsSinceEpoch());
 
     return true;
 }
