@@ -138,7 +138,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation>Android veritabanı URL'i</translation>
+      <translation>Android veritabanı URL&apos;i</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
