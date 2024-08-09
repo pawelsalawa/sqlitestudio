@@ -701,12 +701,15 @@ SqliteCreateTable::Column::Column(const QString &name, SqliteColumnType *type, c
             this->constraints.last()->type != SqliteCreateTable::Column::Constraint::NAME_ONLY)
         {
             SqliteCreateTable::Column::Constraint* last = this->constraints.last();
-            last->foreignKey->deferrable = constr->deferrable;
-            last->foreignKey->initially = constr->initially;
-            delete constr;
+            if (last->type == Constraint::FOREIGN_KEY)
+            {
+                last->foreignKey->deferrable = constr->deferrable;
+                last->foreignKey->initially = constr->initially;
+                delete constr;
 
-            // We don't want deleted constr to be added to list. We finish this now.
-            continue;
+                // We don't want deleted constr to be added to list. We finish this now.
+                continue;
+            }
         }
 
         this->constraints << constr;
@@ -870,8 +873,26 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
             break;
         }
         case SqliteCreateTable::Column::Constraint::NULL_:
-        case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+        {
+            // Is the default and unofficial. Pass through
+            builder.withKeyword("NULL");
+            break;
+        }
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
+        {
+            // Pass through
+            if (deferrable == SqliteDeferrable::NOT_DEFERRABLE)
+                builder.withKeyword("NOT").withSpace();
+            builder.withKeyword("DEFERRABLE");
+            if (initially != SqliteInitially::null)
+            {
+                builder.withSpace().withKeyword("INITIALLY").withSpace();
+                builder.withKeyword(initially == SqliteInitially::DEFERRED ? "DEFERRED" : "IMMEDIATE");
+            }
+            break;
+        }
+        case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+            // The CONSTRAINT <name> clause has already been output
             break;
     }
 
