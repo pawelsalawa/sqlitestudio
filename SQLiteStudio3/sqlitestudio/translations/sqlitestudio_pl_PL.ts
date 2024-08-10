@@ -79,7 +79,7 @@
       <translation>Baza danych do otwarcia</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="142"/>
+      <location filename="../main.cpp" line="146"/>
       <source>Select configuration directory</source>
       <translation>Wybierz katalog konfiguracyjny</translation>
     </message>

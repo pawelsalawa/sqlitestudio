@@ -15,7 +15,7 @@
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="919"/>
+      <location filename="../db/abstractdb.cpp" line="923"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="877"/>
+      <location filename="../services/impl/configimpl.cpp" line="941"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>删除 SQL 历史的数据库事务启动失败，因此未删除。</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="884"/>
+      <location filename="../services/impl/configimpl.cpp" line="948"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>删除 SQL 历史的数据库事务提交失败，因此未删除。</translation>
     </message>
@@ -517,7 +517,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>PopulateDictionary</name>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="16"/>
+      <location filename="../plugins/populatedictionary.cpp" line="17"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
       <translation>字典</translation>
@@ -764,7 +764,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1030"/>
+      <location filename="../common/utils.cpp" line="901"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
@@ -816,12 +816,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>语法错误</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="31"/>
+      <location filename="../plugins/populatedictionary.cpp" line="32"/>
       <source>Could not open dictionary file %1 for reading.</source>
       <translation>无法以读模式打开字典文件 %1。</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="92"/>
+      <location filename="../plugins/populatedictionary.cpp" line="93"/>
       <source>Dictionary file must exist and be readable.</source>
       <translation>字典文件必须存在且可读。</translation>
     </message>
@@ -876,7 +876,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法解析表的列 &apos;%1&apos;。</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="757"/>
+      <location filename="../services/impl/configimpl.cpp" line="821"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>无法初始化配置文件。所有的配置更改和查询历史都将在应用程序重启时丢失。无法在下列位置创建文件：%1。</translation>
     </message>
@@ -1022,37 +1022,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="50"/>
+      <location filename="../sqlfileexecutor.cpp" line="51"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>应用程序启动事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="81"/>
+      <location filename="../sqlfileexecutor.cpp" line="86"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>从文件执行已取消。执行的所有查询已回滚。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="97"/>
+      <location filename="../sqlfileexecutor.cpp" line="102"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="142"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>应用程序提交事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <location filename="../sqlfileexecutor.cpp" line="152"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。其中 %3 个由于错误未被执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <location filename="../sqlfileexecutor.cpp" line="158"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="160"/>
+      <location filename="../sqlfileexecutor.cpp" line="165"/>
       <source>Could not execute SQL due to error.</source>
       <translation>由于错误无法执行 SQL。</translation>
     </message>

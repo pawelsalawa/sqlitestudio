@@ -19,54 +19,54 @@
       <translation>Выберите базу данных Android</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="151"/>
+      <location filename="../dbandroid.cpp" line="155"/>
       <source>Select ADB</source>
       <translation>Выберите ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="173"/>
+      <location filename="../dbandroid.cpp" line="177"/>
       <source>Using Android Debug Bridge: %1</source>
       <translation>Используется Android Debug Bridge: %1</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="183"/>
+      <location filename="../dbandroid.cpp" line="187"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
       <translation>JAR-файл адаптера для Android можно получить в меню Инструменты. Он необходим для 2 из 3 типов подключений, поддерживаемых модулем для Android. Подробности см. в документации к модулю &lt;a href=&quot;%1&quot;&gt;на вики-странице SQLiteStudio.&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="191"/>
+      <location filename="../dbandroid.cpp" line="195"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
       <translation>Невозможно найти приложение Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь&lt;/a&gt; для указания расположения приложения ADB, иначе модуль %2 не будет поддерживать подключение через USB-кабель, возможно будет только подключение по сети.</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="232"/>
+      <location filename="../dbandroid.cpp" line="236"/>
       <source>Save JAR file</source>
       <translation>Сохранить JAR-файл</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="209"/>
+      <location filename="../dbandroid.cpp" line="213"/>
       <source>Invalid ADB</source>
       <translation>Некорректный ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="209"/>
+      <location filename="../dbandroid.cpp" line="213"/>
       <source>The selected ADB is incorrect.
 Would you like to select another one, or leave it unconfigured?</source>
       <translation>Выбранный ADB некорректен
 Хотите выбрать другой или оставить ненастроенным?</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="211"/>
+      <location filename="../dbandroid.cpp" line="215"/>
       <source>Select another ADB</source>
       <translation>Выбрать другой ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="211"/>
+      <location filename="../dbandroid.cpp" line="215"/>
       <source>Leave unconfigured</source>
       <translation>Оставить ненастроенным</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="251"/>
+      <location filename="../dbandroid.cpp" line="255"/>
       <source>Get Android connector JAR file</source>
       <translation>Получить JAR-файл адаптера для Android</translation>
     </message>
@@ -211,86 +211,86 @@ Would you like to select another one, or leave it unconfigured?</source>
       <translation>Удалить выбранную базу данных с устройства. Выбранной является база данных, выделенная в списке слева от этой кнопки.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="362"/>
+      <location filename="../dbandroidpathdialog.cpp" line="370"/>
       <source>Enter valid IP address.</source>
       <translation>Введите корректный IP-адрес.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="367"/>
+      <location filename="../dbandroidpathdialog.cpp" line="375"/>
       <source>Pick Android device.</source>
       <translation>Выберите устройство Android.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="371"/>
+      <location filename="../dbandroidpathdialog.cpp" line="379"/>
       <source>Pick Android database.</source>
       <translation>Выберите базу данных Android.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="395"/>
+      <location filename="../dbandroidpathdialog.cpp" line="403"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
       <translation>Выбранное приложение для Android неизвестно, или не поддерживает отладку.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="422"/>
+      <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <source>Create new database</source>
       <translation>Создать новую базу данных</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="422"/>
+      <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
       <translation>Пожалуйста, укажите имя новой базы данных.
 Это имя, которое приложение для Android будет использовать для подключения к базе данных:</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="430"/>
-      <location filename="../dbandroidpathdialog.cpp" line="439"/>
-      <location filename="../dbandroidpathdialog.cpp" line="448"/>
+      <location filename="../dbandroidpathdialog.cpp" line="438"/>
+      <location filename="../dbandroidpathdialog.cpp" line="447"/>
+      <location filename="../dbandroidpathdialog.cpp" line="456"/>
       <source>Invalid name</source>
       <translation>Некорректное имя</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="430"/>
+      <location filename="../dbandroidpathdialog.cpp" line="438"/>
       <source>Database with the same name (%1) already exists on the device.
 The name must be unique.</source>
       <translation>База данных с таким именем (%1) уже существует на устройстве.
 Имя должно быть уникальным.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="439"/>
+      <location filename="../dbandroidpathdialog.cpp" line="447"/>
       <source>Could not create database &apos;%1&apos;, because could not connect to the device.</source>
       <translation>Невозможно создать базу данных &apos;%1&apos;, поскольку невозможно подключиться к устройству.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="448"/>
+      <location filename="../dbandroidpathdialog.cpp" line="456"/>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
       <translation>Невозможно создать базу данных &apos;%1&apos;.
 Подробности: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="463"/>
+      <location filename="../dbandroidpathdialog.cpp" line="471"/>
       <source>Delete database</source>
       <translation>Удалить базу данных</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="463"/>
+      <location filename="../dbandroidpathdialog.cpp" line="471"/>
       <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
       <translation>Вы действительно хотите удалить базу данных &apos;%1&apos; из %2?</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="484"/>
-      <location filename="../dbandroidpathdialog.cpp" line="490"/>
+      <location filename="../dbandroidpathdialog.cpp" line="492"/>
+      <location filename="../dbandroidpathdialog.cpp" line="498"/>
       <source>Error deleting</source>
       <translation>Ошибка при удалении</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="484"/>
+      <location filename="../dbandroidpathdialog.cpp" line="492"/>
       <source>Could not connect to %1 in order to delete database &apos;%2&apos;.</source>
       <translation>Невозможно подключиться к %1 для удаления базы данных &apos;%2&apos;.</translation>
     </message>
     <message>
-      <location filename="../dbandroidpathdialog.cpp" line="490"/>
+      <location filename="../dbandroidpathdialog.cpp" line="498"/>
       <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
       <translation>Невозможно удалить базу данных с именем &apos;%1&apos; с устройства.

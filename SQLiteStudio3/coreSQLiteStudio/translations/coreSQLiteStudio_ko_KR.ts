@@ -15,7 +15,7 @@
       <translation>데이터베이스 등록 중 오류 %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="919"/>
+      <location filename="../db/abstractdb.cpp" line="923"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="877"/>
+      <location filename="../services/impl/configimpl.cpp" line="941"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="884"/>
+      <location filename="../services/impl/configimpl.cpp" line="948"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
@@ -517,7 +517,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>PopulateDictionary</name>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="16"/>
+      <location filename="../plugins/populatedictionary.cpp" line="17"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
       <translation type="unfinished">Dictionary</translation>
@@ -764,7 +764,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1030"/>
+      <location filename="../common/utils.cpp" line="901"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
@@ -816,12 +816,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Syntax error</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="31"/>
+      <location filename="../plugins/populatedictionary.cpp" line="32"/>
       <source>Could not open dictionary file %1 for reading.</source>
       <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="92"/>
+      <location filename="../plugins/populatedictionary.cpp" line="93"/>
       <source>Dictionary file must exist and be readable.</source>
       <translation type="unfinished">Dictionary file must exist and be readable.</translation>
     </message>
@@ -876,7 +876,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="757"/>
+      <location filename="../services/impl/configimpl.cpp" line="821"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
@@ -1022,37 +1022,37 @@ The view will remain as it is.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="50"/>
+      <location filename="../sqlfileexecutor.cpp" line="51"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="81"/>
+      <location filename="../sqlfileexecutor.cpp" line="86"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="97"/>
+      <location filename="../sqlfileexecutor.cpp" line="102"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="142"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <location filename="../sqlfileexecutor.cpp" line="152"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <location filename="../sqlfileexecutor.cpp" line="158"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="160"/>
+      <location filename="../sqlfileexecutor.cpp" line="165"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>

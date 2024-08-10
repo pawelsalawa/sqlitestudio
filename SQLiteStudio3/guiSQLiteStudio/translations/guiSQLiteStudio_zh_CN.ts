@@ -1759,159 +1759,159 @@
   <context>
     <name>DataView</name>
     <message>
-      <location filename="../dataview.cpp" line="103"/>
+      <location filename="../dataview.cpp" line="104"/>
       <source>Filter data</source>
       <comment>data view</comment>
       <translation>筛选数据</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="112"/>
+      <location filename="../dataview.cpp" line="113"/>
       <source>Grid view</source>
       <translation>网格视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="113"/>
+      <location filename="../dataview.cpp" line="114"/>
       <source>Form view</source>
       <translation>表单视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="204"/>
+      <location filename="../dataview.cpp" line="205"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
       <translation>刷新表数据</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="221"/>
+      <location filename="../dataview.cpp" line="222"/>
       <source>First page</source>
       <comment>data view</comment>
       <translation>第一页</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="222"/>
+      <location filename="../dataview.cpp" line="223"/>
       <source>Previous page</source>
       <comment>data view</comment>
       <translation>上一页</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="224"/>
+      <location filename="../dataview.cpp" line="225"/>
       <source>Next page</source>
       <comment>data view</comment>
       <translation>下一页</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="225"/>
+      <location filename="../dataview.cpp" line="226"/>
       <source>Last page</source>
       <comment>data view</comment>
       <translation>最后一页</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="234"/>
+      <location filename="../dataview.cpp" line="235"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
       <translation>提交选中单元格的更改</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="235"/>
+      <location filename="../dataview.cpp" line="236"/>
       <source>Rollback changes for selected cells</source>
       <comment>data view</comment>
       <translation>回滚选中单元格的修改</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="236"/>
+      <location filename="../dataview.cpp" line="237"/>
       <source>Show grid view of results</source>
       <comment>data view</comment>
       <translation>显示结果的网格视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="237"/>
+      <location filename="../dataview.cpp" line="238"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
       <translation>显示结果的表格视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="994"/>
+      <location filename="../dataview.cpp" line="1005"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>按文本筛选（如果包含）</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="995"/>
+      <location filename="../dataview.cpp" line="1006"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>严格按文本筛选（如果相等）</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="323"/>
+      <location filename="../dataview.cpp" line="324"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
       <translation>顶部标签</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="324"/>
+      <location filename="../dataview.cpp" line="325"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
       <translation>底部标签</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="349"/>
+      <location filename="../dataview.cpp" line="350"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
       <translation>放置新行于选中行之上</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="350"/>
+      <location filename="../dataview.cpp" line="351"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
       <translation>放置新行于选中行之下</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="351"/>
+      <location filename="../dataview.cpp" line="352"/>
       <source>Place new rows at the end of the data view</source>
       <comment>data view</comment>
       <translation>放置新行于数据视图末尾</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="663"/>
+      <location filename="../dataview.cpp" line="674"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>正在统计总行数。
 请在此操作完成后再浏览其他页面。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="674"/>
+      <location filename="../dataview.cpp" line="685"/>
       <source>Row: %1</source>
       <translation>行：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="963"/>
+      <location filename="../dataview.cpp" line="974"/>
       <source>Filter</source>
       <translation>筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="966"/>
+      <location filename="../dataview.cpp" line="977"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation>按回车键或点击工具栏上的“应用筛选”按钮来应用新值。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="996"/>
+      <location filename="../dataview.cpp" line="1007"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>以正则表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="1008"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>以 SQL 表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1016"/>
+      <location filename="../dataview.cpp" line="1027"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>在每个列上展示筛选器输入框</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1020"/>
+      <location filename="../dataview.cpp" line="1031"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>应用筛选器</translation>
@@ -3091,64 +3091,64 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>导出格式选项</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="62"/>
+      <location filename="../dialogs/exportdialog.cpp" line="61"/>
       <source>Cancel</source>
       <translation>取消</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="160"/>
-      <location filename="../dialogs/exportdialog.cpp" line="185"/>
-      <location filename="../dialogs/exportdialog.cpp" line="209"/>
+      <location filename="../dialogs/exportdialog.cpp" line="159"/>
+      <location filename="../dialogs/exportdialog.cpp" line="184"/>
+      <location filename="../dialogs/exportdialog.cpp" line="208"/>
       <source>Select database to export.</source>
       <translation>选择要导出的数据库。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="161"/>
+      <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <source>Select table to export.</source>
       <translation>选择要导出的表。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="186"/>
+      <location filename="../dialogs/exportdialog.cpp" line="185"/>
       <source>Enter valid query to export.</source>
       <translation>输入要导出的有效查询。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="210"/>
+      <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select at least one object to export.</source>
       <translation>至少选择一个对象进行导出。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="233"/>
+      <location filename="../dialogs/exportdialog.cpp" line="232"/>
       <source>You must provide a file name to export to.</source>
       <translation>您必须选择一个导出文件。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="240"/>
+      <location filename="../dialogs/exportdialog.cpp" line="239"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>您提供的路径是一个现存的目录，不能覆盖。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="246"/>
+      <location filename="../dialogs/exportdialog.cpp" line="245"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>目录 &apos;%1&apos; 不存在。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="252"/>
+      <location filename="../dialogs/exportdialog.cpp" line="251"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>文件“%1”存在且将被覆盖。</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="432"/>
+      <location filename="../dialogs/exportdialog.cpp" line="431"/>
       <source>All files (*)</source>
       <translation>所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="435"/>
+      <location filename="../dialogs/exportdialog.cpp" line="434"/>
       <source>Pick file to export to</source>
       <translation>选择文件导出到</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="783"/>
+      <location filename="../dialogs/exportdialog.cpp" line="782"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>导出时发生内部错误。这是一个 Bug，请反馈。</translation>
     </message>
@@ -4386,166 +4386,166 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation>无法编辑列，它是复合 %1 语句（包含 %2、%3 或 %4 关键字）的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation>查询执行机制提取 ROWID 的属性时遇到问题。这可能是软件中的 bug，您可以报告该问题。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation>请求的列是一个 SQL 表达式的结果，而非普通的列。不能编辑这些列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation>请求的列属于受限制的 SQLite 表。这些表不能被直接编辑。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation>无法编辑 %1 以外的查询结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation>无法编辑列，它是聚合的 %1 语句的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation>无法编辑列，它是 %1 语句的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation>无法编辑列，它是通用表生成语句 %1 的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="91"/>
       <source>Cannot edit table generated columns.</source>
       <translation>无法编辑表生成的列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="93"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
       <translation>无法编辑此列，因为它是在另一个多级视图上执行查询的视图结果（即查询另一个视图的视图）。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="479"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="424"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="465"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="483"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="519"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>当冲突时：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="445"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="449"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>引用表 %1，列 %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="512"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="516"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>字符序：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="532"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="536"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>字符序名称：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="20"/>
+      <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Data grid view</source>
       <translation>数据网格视图</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="21"/>
+      <location filename="../datagrid/sqlqueryview.h" line="22"/>
       <source>Edit current cell inline</source>
       <translation>编辑当前单元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="22"/>
+      <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents to clipboard</source>
       <translation>复制单元格内容至剪贴板</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="23"/>
+      <location filename="../datagrid/sqlqueryview.h" line="24"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
       <translation>复制单元格内容与表头至剪贴板</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="25"/>
+      <location filename="../datagrid/sqlqueryview.h" line="26"/>
       <source>Paste cell(s) contents from clipboard</source>
       <translation>粘贴剪贴板中的单元格内容</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="27"/>
+      <location filename="../datagrid/sqlqueryview.h" line="28"/>
       <source>Set empty value to selected cell(s)</source>
       <translation>设定选中单元格为空值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="28"/>
+      <location filename="../datagrid/sqlqueryview.h" line="29"/>
       <source>Set NULL value to selected cell(s)</source>
       <translation>设定选中单元格为 NULL 值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="29"/>
+      <location filename="../datagrid/sqlqueryview.h" line="30"/>
       <source>Commit changes to cell(s) contents</source>
       <translation>提交单元格内容更改</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="30"/>
+      <location filename="../datagrid/sqlqueryview.h" line="31"/>
       <source>Rollback changes to cell(s) contents</source>
       <translation>回滚单元格内容更改</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="31"/>
+      <location filename="../datagrid/sqlqueryview.h" line="32"/>
       <source>Delete selected data row</source>
       <translation>删除所选数据行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="32"/>
+      <location filename="../datagrid/sqlqueryview.h" line="33"/>
       <source>Insert new data row</source>
       <translation>插入新数据行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="33"/>
+      <location filename="../datagrid/sqlqueryview.h" line="34"/>
       <source>Open contents of selected cell in a separate editor</source>
       <translation>在单独编辑器中打开所选单元格的内容</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="34"/>
+      <location filename="../datagrid/sqlqueryview.h" line="35"/>
       <source>Toggle the height adjustment of rows</source>
       <translation>切换行的高度调整</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="35"/>
+      <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>增大字号</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="36"/>
+      <location filename="../datagrid/sqlqueryview.h" line="37"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="640"/>
+      <location filename="../dataview.cpp" line="651"/>
       <source>Total pages available: %1</source>
       <translation>总计可用页数：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="650"/>
+      <location filename="../dataview.cpp" line="661"/>
       <source>Total rows loaded: %1</source>
       <translation>已加载行数：%1</translation>
     </message>
@@ -4906,27 +4906,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="45"/>
+      <location filename="../uiutils.cpp" line="44"/>
       <source>All SQLite databases</source>
       <translation>所有 SQLite 数据库</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="47"/>
+      <location filename="../uiutils.cpp" line="46"/>
       <source>All files</source>
       <translation>所有文件</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="50"/>
+      <location filename="../uiutils.cpp" line="49"/>
       <source>Select database file</source>
       <translation>选择数据库文件</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="60"/>
+      <location filename="../uiutils.cpp" line="59"/>
       <source>Select</source>
       <translation>选择</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="61"/>
+      <location filename="../uiutils.cpp" line="60"/>
       <source>File type</source>
       <translation>文件类型</translation>
     </message>
@@ -5426,42 +5426,42 @@ find next</source>
       <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="298"/>
+      <location filename="../sqleditor.cpp" line="302"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>保存 SQL 内容至文件：%1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="519"/>
+      <location filename="../sqleditor.cpp" line="523"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>SQL 编辑器的语法补全功能仅当存在有效数据库时可用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1143"/>
+      <location filename="../sqleditor.cpp" line="1147"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>SQL 编辑器有大量内容，因此错误检测和现有对象的高亮显示功能被暂时禁用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1182"/>
       <source>Save to file</source>
       <translation>保存到文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1197"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL文件 (*.sql);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1194"/>
+      <location filename="../sqleditor.cpp" line="1198"/>
       <source>Open file</source>
       <translation>打开文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1204"/>
+      <location filename="../sqleditor.cpp" line="1208"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1409"/>
+      <location filename="../sqleditor.cpp" line="1413"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>已到文档底部。再次点击查找将从头开始搜索。</translation>
     </message>

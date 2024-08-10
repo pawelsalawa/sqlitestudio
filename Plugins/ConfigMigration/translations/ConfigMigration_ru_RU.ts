@@ -9,22 +9,22 @@
       <translation>Обнаружена конфигурация от старой версии SQLiteStudio (2.x.x). Вы хотите перенести старые настройки в новую версию? &lt;a href=&quot;%1&quot;&gt;Нажмите здесь для переноса&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="136"/>
+      <location filename="../configmigration.cpp" line="139"/>
       <source>Bug reports history (%1)</source>
       <translation>История отчётов об ошибках (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="145"/>
+      <location filename="../configmigration.cpp" line="148"/>
       <source>Database list (%1)</source>
       <translation>Список баз данных (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="154"/>
+      <location filename="../configmigration.cpp" line="157"/>
       <source>Custom SQL functions (%1)</source>
       <translation>Произвольные функции SQL (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="163"/>
+      <location filename="../configmigration.cpp" line="166"/>
       <source>SQL queries history (%1)</source>
       <translation>История запросов SQL (%1)</translation>
     </message>

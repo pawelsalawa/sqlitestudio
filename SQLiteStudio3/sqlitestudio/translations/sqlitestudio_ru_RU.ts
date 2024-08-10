@@ -79,7 +79,7 @@
       <translation>Файл базы данных для открытия</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="142"/>
+      <location filename="../main.cpp" line="146"/>
       <source>Select configuration directory</source>
       <translation>Выберите каталог конфигурации</translation>
     </message>
