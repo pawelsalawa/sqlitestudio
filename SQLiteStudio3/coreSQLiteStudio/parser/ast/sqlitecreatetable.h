@@ -91,12 +91,13 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         GeneratedType generatedType = GeneratedType::null;
                         SqliteForeignKey* foreignKey = nullptr;
 
+                        // DEFERRABLE_ONLY fields. A DEFERRABLE_ONLY pseudo-constraint following a
+                        // a FK is merged to the FK at parse time.
+                        SqliteDeferrable deferrable = SqliteDeferrable::null;
+                        SqliteInitially initially = SqliteInitially::null;
+
                     protected:
                         TokenList rebuildTokensFromContents();
-
-                    private:
-                        SqliteDeferrable deferrable = SqliteDeferrable::null; // only a temporary field for parse time, before merging with actual FK
-                        SqliteInitially initially = SqliteInitially::null; // only a temporary field for parse time, before merging with actual FK
 
                 };
 
