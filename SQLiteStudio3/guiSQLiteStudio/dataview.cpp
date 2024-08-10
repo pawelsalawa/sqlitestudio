@@ -509,6 +509,8 @@ void DataView::setActionIcon(QAction *action, const QIcon &icon, QToolBar *toolb
     // In Qt 6, setting the action icon is not enough, use brute force
     QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(action));
     button->setIcon(icon);
+#else
+    Q_UNUSED(toolbar);
 #endif
 }
 
