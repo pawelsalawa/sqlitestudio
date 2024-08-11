@@ -1829,13 +1829,13 @@
       <translation>Affichage des résultats en vue formulaire</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1005"/>
+      <location filename="../dataview.cpp" line="1007"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>Filtrer par texte (si contenu)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1006"/>
+      <location filename="../dataview.cpp" line="1008"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>Filtrer strictement par texte (si égal)</translation>
@@ -1871,46 +1871,46 @@
       <translation>Placer les nouvelles lignes à la fin de la vue des données</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="674"/>
+      <location filename="../dataview.cpp" line="676"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>Le total des lignes en cours de comptage. La navigation d’autres pages à la fin du comptage.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="685"/>
+      <location filename="../dataview.cpp" line="687"/>
       <source>Row: %1</source>
       <translation>Lignes : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="974"/>
+      <location filename="../dataview.cpp" line="976"/>
       <source>Filter</source>
       <translation>Filtre</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="977"/>
+      <location filename="../dataview.cpp" line="979"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation>Appuyez sur la touche Entrée ou appuyez sur &quot;Appliquer le filtre&quot; dans la barre d&apos;outils pour appliquer une nouvelle valeur.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1007"/>
+      <location filename="../dataview.cpp" line="1009"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression standard</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1008"/>
+      <location filename="../dataview.cpp" line="1010"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression SQL</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1027"/>
+      <location filename="../dataview.cpp" line="1029"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>Afficher les entrées de filtre par colonne</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1031"/>
+      <location filename="../dataview.cpp" line="1033"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Appliquer le filtre</translation>
@@ -4540,12 +4540,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <translation>Réduire la taille de la police de caractère</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="651"/>
+      <location filename="../dataview.cpp" line="653"/>
       <source>Total pages available: %1</source>
       <translation>Nombre de pages disponibles : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="661"/>
+      <location filename="../dataview.cpp" line="663"/>
       <source>Total rows loaded: %1</source>
       <translation>Nombre de lignes chargées : %1</translation>
     </message>

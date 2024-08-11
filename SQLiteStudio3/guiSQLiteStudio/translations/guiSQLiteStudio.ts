@@ -1829,13 +1829,13 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1005"/>
+      <location filename="../dataview.cpp" line="1007"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1006"/>
+      <location filename="../dataview.cpp" line="1008"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
@@ -1871,46 +1871,46 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="674"/>
+      <location filename="../dataview.cpp" line="676"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="685"/>
+      <location filename="../dataview.cpp" line="687"/>
       <source>Row: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="974"/>
+      <location filename="../dataview.cpp" line="976"/>
       <source>Filter</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="977"/>
+      <location filename="../dataview.cpp" line="979"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1007"/>
+      <location filename="../dataview.cpp" line="1009"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1008"/>
+      <location filename="../dataview.cpp" line="1010"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1027"/>
+      <location filename="../dataview.cpp" line="1029"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1031"/>
+      <location filename="../dataview.cpp" line="1033"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation type="unfinished"/>
@@ -4528,12 +4528,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="651"/>
+      <location filename="../dataview.cpp" line="653"/>
       <source>Total pages available: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="661"/>
+      <location filename="../dataview.cpp" line="663"/>
       <source>Total rows loaded: %1</source>
       <translation type="unfinished"/>
     </message>

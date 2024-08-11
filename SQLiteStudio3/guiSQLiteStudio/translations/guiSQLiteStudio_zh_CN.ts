@@ -1829,13 +1829,13 @@
       <translation>显示结果的表格视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1005"/>
+      <location filename="../dataview.cpp" line="1007"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>按文本筛选（如果包含）</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1006"/>
+      <location filename="../dataview.cpp" line="1008"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>严格按文本筛选（如果相等）</translation>
@@ -1871,47 +1871,47 @@
       <translation>放置新行于数据视图末尾</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="674"/>
+      <location filename="../dataview.cpp" line="676"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>正在统计总行数。
 请在此操作完成后再浏览其他页面。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="685"/>
+      <location filename="../dataview.cpp" line="687"/>
       <source>Row: %1</source>
       <translation>行：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="974"/>
+      <location filename="../dataview.cpp" line="976"/>
       <source>Filter</source>
       <translation>筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="977"/>
+      <location filename="../dataview.cpp" line="979"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation>按回车键或点击工具栏上的“应用筛选”按钮来应用新值。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1007"/>
+      <location filename="../dataview.cpp" line="1009"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>以正则表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1008"/>
+      <location filename="../dataview.cpp" line="1010"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>以 SQL 表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1027"/>
+      <location filename="../dataview.cpp" line="1029"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>在每个列上展示筛选器输入框</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1031"/>
+      <location filename="../dataview.cpp" line="1033"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>应用筛选器</translation>
@@ -4540,12 +4540,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="651"/>
+      <location filename="../dataview.cpp" line="653"/>
       <source>Total pages available: %1</source>
       <translation>总计可用页数：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="661"/>
+      <location filename="../dataview.cpp" line="663"/>
       <source>Total rows loaded: %1</source>
       <translation>已加载行数：%1</translation>
     </message>
