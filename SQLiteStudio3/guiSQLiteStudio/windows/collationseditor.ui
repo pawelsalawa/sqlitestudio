@@ -203,13 +203,38 @@
               <widget class="QLineEdit" name="nameEdit"/>
              </item>
              <item row="0" column="1">
+              <widget class="QLabel" name="typeLabel">
+               <property name="text">
+                <string>Collation type:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QRadioButton" name="functionBasedRadio">
+                 <property name="text">
+                  <string>Function-based</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="extensionBasedRadio">
+                 <property name="text">
+                  <string>Extension-based</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="2">
               <widget class="QLabel" name="langLabel">
                <property name="text">
                 <string>Implementation language:</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="1" column="2">
               <widget class="QComboBox" name="langCombo"/>
              </item>
             </layout>
