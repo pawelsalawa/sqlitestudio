@@ -19,6 +19,7 @@ class API_EXPORT CollationManagerImpl : public CollationManager
         QList<CollationPtr> getCollationsForDatabase(const QString& dbName) const;
         int evaluate(const QString& name, const QString& value1, const QString& value2);
         int evaluateDefault(const QString& value1, const QString& value2);
+        CollationPtr getCollation(const QString &name) const;
 
     private:
         void init();
