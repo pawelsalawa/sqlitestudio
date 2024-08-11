@@ -671,6 +671,19 @@ void DbDialog::fileChanged(const QString &arg1)
     valueForNameGenerationChanged();
     updateType();
     propertyChanged();
+
+    if (!customBrowseHandler)
+    {
+        QString path = getPath();
+        if (!path.isEmpty())
+        {
+            QFileInfo fileInfo(path);
+            bool isFile = fileInfo.exists() && fileInfo.isFile();
+            ui->existingDatabaseRadio->setChecked(isFile);
+            ui->createDatabaseRadio->setChecked(!isFile);
+            updateCreateMode();
+        }
+    }
 }
 
 void DbDialog::browseClicked()
