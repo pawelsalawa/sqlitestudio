@@ -557,6 +557,12 @@ bool AbstractDb3<T>::registerCollationInternal(const QString& name)
     if (!dbHandle)
         return false;
 
+    CollationManager::CollationPtr collation = COLLATIONS->getCollation(name);
+    if (collation == nullptr)
+        return false;
+    if (collation->type == CollationManager::CollationType::EXTENSION_BASED)
+        return !(exec(collation->code, Flag::NO_LOCK)->isError());
+
     CollationUserData* userData = new CollationUserData;
     userData->name = name;
 

@@ -1,6 +1,7 @@
 #include "collationseditormodel.h"
 #include "common/unused.h"
 #include "common/strhash.h"
+#include "iconmanager.h"
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "icon.h"
@@ -67,6 +68,16 @@ void CollationsEditorModel::setName(int row, const QString& name)
 QString CollationsEditorModel::getName(int row) const
 {
     GETTER(collationList[row]->data->name, QString());
+}
+
+void CollationsEditorModel::setType(int row, CollationManager::CollationType type)
+{
+    SETTER(collationList[row]->data->type, type);
+}
+
+CollationManager::CollationType CollationsEditorModel::getType(int row) const
+{
+    GETTER(collationList[row]->data->type, CollationManager::CollationType::FUNCTION_BASED);
 }
 
 void CollationsEditorModel::setLang(int row, const QString& lang)
@@ -248,13 +259,17 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole)
         return collationList[index.row()]->data->name;
 
-    if (role == Qt::DecorationRole && langToIcon.contains(collationList[index.row()]->data->lang))
+    if (role == Qt::DecorationRole)
     {
-        QIcon icon = langToIcon[collationList[index.row()]->data->lang];
-        if (!collationList[index.row()]->valid)
-            icon = Icon::merge(icon, Icon::ERROR);
-
-        return icon;
+        auto coll = collationList[index.row()]->data;
+        bool isExtension = coll->type == CollationManager::CollationType::EXTENSION_BASED;
+        if (isExtension || langToIcon.contains(coll->lang))
+        {
+            QIcon icon = isExtension ? ICONS.EXTENSION : langToIcon[coll->lang];
+            if (!collationList[index.row()]->valid)
+                icon = Icon::merge(icon, Icon::ERROR);
+            return icon;
+        }
     }
 
     return QVariant();

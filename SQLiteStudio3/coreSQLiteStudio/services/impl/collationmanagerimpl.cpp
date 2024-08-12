@@ -34,6 +34,16 @@ QList<CollationManager::CollationPtr> CollationManagerImpl::getAllCollations() c
     return collations;
 }
 
+CollationManager::CollationPtr CollationManagerImpl::getCollation(const QString &name) const
+{
+   if (!collationsByKey.contains(name))
+   {
+       qCritical() << "Could not find requested collation" << name << ".";
+       return nullptr;
+   }
+   return collationsByKey[name];
+}
+
 QList<CollationManager::CollationPtr> CollationManagerImpl::getCollationsForDatabase(const QString& dbName) const
 {
     QList<CollationPtr> results;
@@ -98,6 +108,7 @@ void CollationManagerImpl::storeInConfig()
     for (CollationPtr coll : collations)
     {
         collHash["name"] = coll->name;
+        collHash["type"] = coll->type;
         collHash["lang"] = coll->lang;
         collHash["code"] = coll->code;
         collHash["allDatabases"] = coll->allDatabases;
@@ -119,6 +130,10 @@ void CollationManagerImpl::loadFromConfig()
         collHash = var.toHash();
         coll = CollationPtr::create();
         coll->name = collHash["name"].toString();
+        if (collHash.contains("type") && collHash["type"].toInt() == CollationType::EXTENSION_BASED)
+            coll->type = CollationType::EXTENSION_BASED;
+        else
+            coll->type = CollationType::FUNCTION_BASED;
         coll->lang = updateScriptingQtLang(collHash["lang"].toString());
         coll->code = collHash["code"].toString();
         coll->databases = collHash["databases"].toStringList();

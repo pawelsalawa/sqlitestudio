@@ -3,6 +3,7 @@
 
 #include "mdichild.h"
 #include "common/extactioncontainer.h"
+#include "services/collationmanager.h"
 #include <QItemSelection>
 #include <QModelIndex>
 #include <QWidget>
@@ -61,12 +62,14 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
     private:
         void init();
         int getCurrentCollationRow() const;
+        CollationManager::CollationType getCurrentType() const;
         void collationDeselected(int row);
         void collationSelected(int row);
         void clearEdits();
         void selectCollation(int row);
         QStringList getCurrentDatabases() const;
         void setFont(const QFont& font);
+        void updateLangCombo();
 
         Ui::CollationsEditor *ui = nullptr;
         CollationsEditorModel* model = nullptr;
