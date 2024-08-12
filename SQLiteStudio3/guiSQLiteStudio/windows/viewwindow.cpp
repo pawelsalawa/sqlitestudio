@@ -299,7 +299,7 @@ void ViewWindow::initView()
     if (existingView)
     {
         dataModel->setDb(db);
-        dataModel->setQuery(originalCreateView->select->detokenize());
+        dataModel->setQuery(originalCreateView->equivalentSelectTokens().detokenize());
         dataModel->setDatabaseAndView(database, view);
         ui->dbCombo->setDisabled(true);
     }

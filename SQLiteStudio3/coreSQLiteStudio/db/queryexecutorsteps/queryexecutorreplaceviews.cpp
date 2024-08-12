@@ -109,12 +109,19 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
 
         QString alias = pair.first->alias.isNull() ? view->view : pair.first->alias;
 
-        pair.first->select = view->select;
-        pair.first->alias = alias;
-        pair.first->database = QString();
-        pair.first->table = QString();
+        QString sql = view->equivalentSelectTokens().detokenize();
+        Parser parser;
+        if (!parser.parse(sql) || parser.getQueries().size() == 0)
+            qWarning() << "Couldn't replace view " << view->view << " by equivalent select " << sql;
+        else
+        {
+            pair.first->select = new SqliteSelect(*dynamic_cast<SqliteSelect *>(parser.getQueries().first().get()));
+            pair.first->alias = alias;
+            pair.first->database = QString();
+            pair.first->table = QString();
 
-        // replaceViews(pair.first->select); // No recursion, as we avoid multi-level expanding.
+            // replaceViews(pair.first->select); // No recursion, as we avoid multi-level expanding.
+        }
     }
 
     context->viewsExpanded = true;
