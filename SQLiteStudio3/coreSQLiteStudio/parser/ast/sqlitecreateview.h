@@ -23,6 +23,7 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         void setTargetDatabase(const QString& database);
         QString getObjectName() const;
         void setObjectName(const QString& name);
+        TokenList equivalentSelectTokens() const;
 
         bool tempKw = false;
         bool temporaryKw = false;
