@@ -4,6 +4,7 @@
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
 #include "sqliteindexedcolumn.h"
+#include <QDebug>
 
 SqliteCreateView::SqliteCreateView()
 {
@@ -138,4 +139,58 @@ QString SqliteCreateView::getObjectName() const
 void SqliteCreateView::setObjectName(const QString& name)
 {
     view = name;
+}
+
+TokenList SqliteCreateView::equivalentSelectTokens() const
+{
+    if (columns.size() == 0)
+        return select->tokens;
+
+    SqliteSelect::Core *core = select->coreSelects.first();
+    bool hasStar = std::any_of(core->resultColumns.cbegin(),
+                               core->resultColumns.cend(),
+                               [](auto col) { return col->star; });
+    bool useCTE = false;
+    if (!hasStar && columns.size() != core->resultColumns.size())
+    {
+        qWarning() << "View with a column list clause and non-matching count of columns in SELECT. "
+                   << "Expect an error if result column count does not match column list length.";
+        useCTE = true;
+    }
+    if (hasStar)
+    {
+        qWarning() << "View with a column list clause and SELECT *. "
+                   << "Expect an error if result column count does not match column list length.";
+        useCTE = true;
+    }
+    if (useCTE)
+    {
+        StatementTokenBuilder builder;
+        builder.withKeyword("WITH").withSpace().withOther(view).withParLeft();
+        bool first = true;
+        for (SqliteIndexedColumn *column : columns)
+        {
+            if (!first)
+                builder.withOperator(",");
+            first = false;
+            builder.withOther(column->name);
+        }
+        builder.withParRight().withKeyword("AS").withParLeft().withTokens(select->tokens).withParRight()
+            .withKeyword("SELECT").withSpace().withOperator("*").withSpace()
+            .withKeyword("FROM").withSpace().withOther(view);
+        return builder.build();
+    }
+
+    // There are no * in SELECT, and view column list length matches SELECT column list length.
+    // Apply view column names to SELECT as aliases.
+    SqliteSelect* selectCopy = dynamic_cast<SqliteSelect*>(select->clone());
+    QList<SqliteSelect::Core::ResultColumn*> resultColumns = selectCopy->coreSelects.first()->resultColumns;
+    int n = 0;
+    for (SqliteSelect::Core::ResultColumn* column : resultColumns)
+    {
+        column->asKw = true;
+        column->alias = columns.at(n++)->name;
+    }
+    selectCopy->rebuildTokens();
+    return selectCopy->tokens;
 }
