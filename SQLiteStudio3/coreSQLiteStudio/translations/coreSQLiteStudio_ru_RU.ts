@@ -15,7 +15,7 @@
       <translation>Ошибка во время присоединения базы данных %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="919"/>
+      <location filename="../db/abstractdb.cpp" line="923"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Не удалось создать полную контрольную точку WAL в базе данных &apos;%1&apos;. Ошибка из движка SQLite: %2</translation>
     </message>
@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="877"/>
+      <location filename="../services/impl/configimpl.cpp" line="941"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Невозможно начать транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="884"/>
+      <location filename="../services/impl/configimpl.cpp" line="948"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Невозможно завершить транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
@@ -517,7 +517,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>PopulateDictionary</name>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="16"/>
+      <location filename="../plugins/populatedictionary.cpp" line="17"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
       <translation>Словарь</translation>
@@ -764,33 +764,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="1030"/>
+      <location filename="../common/utils.cpp" line="901"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="435"/>
+      <location filename="../db/abstractdb3.h" line="436"/>
       <source>Could not open database: %1</source>
       <translation>Невозможно открыть базу данных: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1221"/>
       <source>Result set expired or no row available.</source>
       <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="331"/>
-      <location filename="../db/abstractdb3.h" line="335"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>Невозможно загрузить расширение %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="421"/>
+      <location filename="../db/abstractdb3.h" line="422"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation>Не удалось запустить контрольную точку WAL: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="459"/>
+      <location filename="../db/abstractdb3.h" line="460"/>
       <source>Could not close database: %1</source>
       <translation>Невозможно закрыть базу данных: %1</translation>
     </message>
@@ -816,12 +816,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Синтаксическая ошибка</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="31"/>
+      <location filename="../plugins/populatedictionary.cpp" line="32"/>
       <source>Could not open dictionary file %1 for reading.</source>
       <translation>Невозможно открыть файл словаря %1 для чтения.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="92"/>
+      <location filename="../plugins/populatedictionary.cpp" line="93"/>
       <source>Dictionary file must exist and be readable.</source>
       <translation>Файл словаря должен существовать и быть доступным для чтения.</translation>
     </message>
@@ -876,7 +876,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Невозможно определить таблицу для столбца &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="757"/>
+      <location filename="../services/impl/configimpl.cpp" line="821"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Не удалось инициализировать конфигурационный файл. Любые изменения конфигурации и история запросов будут потеряны после перезагрузки приложения. Невозможно создать файл в следующих местах: %1.</translation>
     </message>
@@ -1022,37 +1022,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="50"/>
+      <location filename="../sqlfileexecutor.cpp" line="51"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось начать транзакцию: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="81"/>
+      <location filename="../sqlfileexecutor.cpp" line="86"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>Выполнение запросов из файла отменено. Все выполненные ранее из него запросы откачены.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="97"/>
+      <location filename="../sqlfileexecutor.cpp" line="102"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="142"/>
+      <location filename="../sqlfileexecutor.cpp" line="147"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось завершить транзакцию: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <location filename="../sqlfileexecutor.cpp" line="152"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>Завершено выполнение %1 запросов за %2 секунд. %3 запросов не было выполнено из-за ошибок.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <location filename="../sqlfileexecutor.cpp" line="158"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>Завершено выполнение %1 запросов за %2 секунд.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="160"/>
+      <location filename="../sqlfileexecutor.cpp" line="165"/>
       <source>Could not execute SQL due to error.</source>
       <translation>Невозможно выполнить SQL-запрос из-за ошибки.</translation>
     </message>
@@ -1088,6 +1088,14 @@ The view will remain as it is.</source>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>
+    </message>
+  </context>
+  <context>
+    <name>T</name>
+    <message>
+      <location filename="../db/abstractdb3.h" line="859"/>
+      <source>Registered default collation on demand, under name: %1</source>
+      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>
   </context>
   <context>
