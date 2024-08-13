@@ -769,28 +769,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="435"/>
+      <location filename="../db/abstractdb3.h" line="436"/>
       <source>Could not open database: %1</source>
       <translation>Veritabanı açılamadı: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1221"/>
       <source>Result set expired or no row available.</source>
       <translation type="unfinished">Result set expired or no row available.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="331"/>
-      <location filename="../db/abstractdb3.h" line="335"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>%1 uzantısı yüklenemedi: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="421"/>
+      <location filename="../db/abstractdb3.h" line="422"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="459"/>
+      <location filename="../db/abstractdb3.h" line="460"/>
       <source>Could not close database: %1</source>
       <translation>Veritabanı kapanamadı: %1</translation>
     </message>
@@ -1088,6 +1088,14 @@ The view will remain as it is.</translation>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>
+    </message>
+  </context>
+  <context>
+    <name>T</name>
+    <message>
+      <location filename="../db/abstractdb3.h" line="859"/>
+      <source>Registered default collation on demand, under name: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>

@@ -769,28 +769,28 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="435"/>
+      <location filename="../db/abstractdb3.h" line="436"/>
       <source>Could not open database: %1</source>
       <translation>Impossibile aprire il database: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1221"/>
       <source>Result set expired or no row available.</source>
       <translation>Risultato impostato scaduto o nessuna riga disponibile.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="331"/>
-      <location filename="../db/abstractdb3.h" line="335"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>Impossibile caricare l&apos;estensione %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="421"/>
+      <location filename="../db/abstractdb3.h" line="422"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation>Impossibile eseguire il punto di controllo WAL: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="459"/>
+      <location filename="../db/abstractdb3.h" line="460"/>
       <source>Could not close database: %1</source>
       <translation>Impossibile chiudere il database: %1</translation>
     </message>
@@ -1088,6 +1088,14 @@ La vista rimarrà così com&apos;è.</translation>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>
+    </message>
+  </context>
+  <context>
+    <name>T</name>
+    <message>
+      <location filename="../db/abstractdb3.h" line="859"/>
+      <source>Registered default collation on demand, under name: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>

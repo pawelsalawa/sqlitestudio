@@ -769,28 +769,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="435"/>
+      <location filename="../db/abstractdb3.h" line="436"/>
       <source>Could not open database: %1</source>
       <translation>无法打开数据库：%1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1221"/>
       <source>Result set expired or no row available.</source>
       <translation>结果集过期或者无可用的行。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="331"/>
-      <location filename="../db/abstractdb3.h" line="335"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>无法加载扩展 %1：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="421"/>
+      <location filename="../db/abstractdb3.h" line="422"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation>无法运行 WAL 检查点： %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="459"/>
+      <location filename="../db/abstractdb3.h" line="460"/>
       <source>Could not close database: %1</source>
       <translation>无法关闭数据库：%1</translation>
     </message>
@@ -1088,6 +1088,14 @@ The view will remain as it is.</source>
       <source>SQL</source>
       <comment>sql history header</comment>
       <translation>SQL</translation>
+    </message>
+  </context>
+  <context>
+    <name>T</name>
+    <message>
+      <location filename="../db/abstractdb3.h" line="859"/>
+      <source>Registered default collation on demand, under name: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
