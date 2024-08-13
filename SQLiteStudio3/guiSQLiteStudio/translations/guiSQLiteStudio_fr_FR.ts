@@ -231,6 +231,21 @@
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
+      <source>Collation type:</source>
+      <translation type="unfinished">Collation type:</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.ui" line="217"/>
+      <source>Function-based</source>
+      <translation type="unfinished">Function-based</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.ui" line="224"/>
+      <source>Extension-based</source>
+      <translation type="unfinished">Extension-based</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.ui" line="233"/>
       <source>Implementation language:</source>
       <translation>Language d’implémentation :</translation>
     </message>
@@ -265,22 +280,37 @@
       <translation>Manuel pour l&apos;édition de collations</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="288"/>
+      <location filename="../windows/collationseditor.cpp" line="298"/>
       <source>Enter a non-empty, unique name of the collation.</source>
       <translation>Saisissez un nom unique, non vide, de regroupement.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="296"/>
+      <location filename="../windows/collationseditor.cpp" line="308"/>
       <source>Pick the implementation language.</source>
       <translation>Choisir le language d’implémentation.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="299"/>
+      <location filename="../windows/collationseditor.cpp" line="313"/>
+      <source>Registration code</source>
+      <translation type="unfinished">Registration code</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.cpp" line="314"/>
+      <source>Enter a non-empty registration code.</source>
+      <translation type="unfinished">Enter a non-empty registration code.</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.cpp" line="318"/>
+      <source>Implementation code</source>
+      <translation type="unfinished">Implementation code</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.cpp" line="319"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>Saisissez un nom, non vide, de language d’implémentation.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="392"/>
+      <location filename="../windows/collationseditor.cpp" line="442"/>
       <source>Collations editor window has uncommitted modifications.</source>
       <translation>L’éditeur de collations a des modifications non enregistrées.</translation>
     </message>
@@ -1759,158 +1789,158 @@
   <context>
     <name>DataView</name>
     <message>
-      <location filename="../dataview.cpp" line="103"/>
+      <location filename="../dataview.cpp" line="104"/>
       <source>Filter data</source>
       <comment>data view</comment>
       <translation>Filtre de données</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="112"/>
+      <location filename="../dataview.cpp" line="113"/>
       <source>Grid view</source>
       <translation>Table</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="113"/>
+      <location filename="../dataview.cpp" line="114"/>
       <source>Form view</source>
       <translation>Vue formulaire</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="204"/>
+      <location filename="../dataview.cpp" line="205"/>
       <source>Refresh table data</source>
       <comment>data view</comment>
       <translation>Actualiser les données de la table</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="221"/>
+      <location filename="../dataview.cpp" line="222"/>
       <source>First page</source>
       <comment>data view</comment>
       <translation>Première page</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="222"/>
+      <location filename="../dataview.cpp" line="223"/>
       <source>Previous page</source>
       <comment>data view</comment>
       <translation>Page précédente</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="224"/>
+      <location filename="../dataview.cpp" line="225"/>
       <source>Next page</source>
       <comment>data view</comment>
       <translation>Page suivante</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="225"/>
+      <location filename="../dataview.cpp" line="226"/>
       <source>Last page</source>
       <comment>data view</comment>
       <translation>Dernière page</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="234"/>
+      <location filename="../dataview.cpp" line="235"/>
       <source>Commit changes for selected cells</source>
       <comment>data view</comment>
       <translation>Valider les modifications pour les cellules sélectionnées</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="235"/>
+      <location filename="../dataview.cpp" line="236"/>
       <source>Rollback changes for selected cells</source>
       <comment>data view</comment>
       <translation>Annuler les modifications des celulles sélectionnées</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="236"/>
+      <location filename="../dataview.cpp" line="237"/>
       <source>Show grid view of results</source>
       <comment>data view</comment>
       <translation>Affichage des résultats en tableau</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="237"/>
+      <location filename="../dataview.cpp" line="238"/>
       <source>Show form view of results</source>
       <comment>data view</comment>
       <translation>Affichage des résultats en vue formulaire</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="994"/>
+      <location filename="../dataview.cpp" line="1007"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>Filtrer par texte (si contenu)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="995"/>
+      <location filename="../dataview.cpp" line="1008"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>Filtrer strictement par texte (si égal)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="323"/>
+      <location filename="../dataview.cpp" line="324"/>
       <source>Tabs on top</source>
       <comment>data view</comment>
       <translation>Onglets en haut</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="324"/>
+      <location filename="../dataview.cpp" line="325"/>
       <source>Tabs at bottom</source>
       <comment>data view</comment>
       <translation>Onglet en bas</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="349"/>
+      <location filename="../dataview.cpp" line="350"/>
       <source>Place new rows above selected row</source>
       <comment>data view</comment>
       <translation>Placer les nouvelles lignes au-dessus de la ligne sélectionnée</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="350"/>
+      <location filename="../dataview.cpp" line="351"/>
       <source>Place new rows below selected row</source>
       <comment>data view</comment>
       <translation>Placer les nouvelles lignes sous la ligne sélectionnée</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="351"/>
+      <location filename="../dataview.cpp" line="352"/>
       <source>Place new rows at the end of the data view</source>
       <comment>data view</comment>
       <translation>Placer les nouvelles lignes à la fin de la vue des données</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="663"/>
+      <location filename="../dataview.cpp" line="676"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>Le total des lignes en cours de comptage. La navigation d’autres pages à la fin du comptage.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="674"/>
+      <location filename="../dataview.cpp" line="687"/>
       <source>Row: %1</source>
       <translation>Lignes : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="963"/>
+      <location filename="../dataview.cpp" line="976"/>
       <source>Filter</source>
       <translation>Filtre</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="966"/>
+      <location filename="../dataview.cpp" line="979"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation>Appuyez sur la touche Entrée ou appuyez sur &quot;Appliquer le filtre&quot; dans la barre d&apos;outils pour appliquer une nouvelle valeur.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="996"/>
+      <location filename="../dataview.cpp" line="1009"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression standard</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="997"/>
+      <location filename="../dataview.cpp" line="1010"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>Filtrer par une expression SQL</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1016"/>
+      <location filename="../dataview.cpp" line="1029"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>Afficher les entrées de filtre par colonne</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1020"/>
+      <location filename="../dataview.cpp" line="1033"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Appliquer le filtre</translation>
@@ -2021,12 +2051,12 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>Sélectionnez un type de base de données.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="743"/>
+      <location filename="../dialogs/dbdialog.cpp" line="756"/>
       <source>Choose a location for the new database file</source>
       <translation type="unfinished">Choose a location for the new database file</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="744"/>
+      <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
       <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
@@ -3086,64 +3116,64 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <translation>Exporter options de format</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="62"/>
+      <location filename="../dialogs/exportdialog.cpp" line="61"/>
       <source>Cancel</source>
       <translation>Annuler</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="160"/>
-      <location filename="../dialogs/exportdialog.cpp" line="185"/>
-      <location filename="../dialogs/exportdialog.cpp" line="209"/>
+      <location filename="../dialogs/exportdialog.cpp" line="159"/>
+      <location filename="../dialogs/exportdialog.cpp" line="184"/>
+      <location filename="../dialogs/exportdialog.cpp" line="208"/>
       <source>Select database to export.</source>
       <translation>Sélecctionnez la base de données à exporter.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="161"/>
+      <location filename="../dialogs/exportdialog.cpp" line="160"/>
       <source>Select table to export.</source>
       <translation>Sélectionnez la table à exporter.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="186"/>
+      <location filename="../dialogs/exportdialog.cpp" line="185"/>
       <source>Enter valid query to export.</source>
       <translation>Saississez une requête valide à exporter.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="210"/>
+      <location filename="../dialogs/exportdialog.cpp" line="209"/>
       <source>Select at least one object to export.</source>
       <translation>Sélectionnez au moins un objet à exporter.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="233"/>
+      <location filename="../dialogs/exportdialog.cpp" line="232"/>
       <source>You must provide a file name to export to.</source>
       <translation>Vous devez fournir le nom d’un fichier à exporter.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="240"/>
+      <location filename="../dialogs/exportdialog.cpp" line="239"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>Le chemin fourni est un répertoire existant. Vous ne pouvez pas l’écraser.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="246"/>
+      <location filename="../dialogs/exportdialog.cpp" line="245"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>Le répertoire « %1 » n’existe pas.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="252"/>
+      <location filename="../dialogs/exportdialog.cpp" line="251"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>Le fichier « %1 » existe et sera écrasé.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="432"/>
+      <location filename="../dialogs/exportdialog.cpp" line="431"/>
       <source>All files (*)</source>
       <translation>Tous les fichiers(*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="435"/>
+      <location filename="../dialogs/exportdialog.cpp" line="434"/>
       <source>Pick file to export to</source>
       <translation>Sélectionnez un fichier à exporter</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="783"/>
+      <location filename="../dialogs/exportdialog.cpp" line="782"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>Erreur interne pendant l’exportation. c’est un bug. SVP veuillez le reporter.</translation>
     </message>
@@ -4382,166 +4412,166 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation>impossible d’éditer les colonnes qui ont le résultat composé des déclarations %1 (inclus %2, %3 ou %4 mots-clefs).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation>Le mécanisme d&apos;exécution de requête a eu des problèmes avec l&apos;extraction de ROWID. Ceci peut être un bug dans l&apos;application. Vous pouvez le signaler.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation>La colonne demandée est un résultat d’expression de SQL, au lieu d’une sélection de colonne simple. De telles colonnes ne peuvent pas être éditées.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation>La colonne demandée appartient à une table limitée SQLite. Ces tables ne peuvent pas être éditées directement.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation>Impossible d’éditer les résultats de la requëte autrement que %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation>Impossible d’éditer les colonnes qui sont le résultat de déclarations agrégées %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation>Impossible d’éditer les colonnesqui sont le résultat de déclaration %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation>Impossible d’éditer les colonnes qui sont le résultat de table commune de déclaration (%1).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="91"/>
       <source>Cannot edit table generated columns.</source>
       <translation>Impossible de modifier les colonnes générées par le tableau.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="93"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
       <translation>Impossible de modifier les colonnes qui sont le résultat d&apos;une vue si la requête exécutée lit à partir d&apos;une vue à plusieurs niveaux (c.-à-d. une vue qui interroge une autre vue).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="479"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="424"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="465"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="483"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="519"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>Sur conflit : %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="445"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="449"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>Références table %1, colonne %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="512"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="516"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>Condition : %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="532"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="536"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>Nom de collation : %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="20"/>
+      <location filename="../datagrid/sqlqueryview.h" line="21"/>
       <source>Data grid view</source>
       <translation>Vue de tableau de données</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="21"/>
+      <location filename="../datagrid/sqlqueryview.h" line="22"/>
       <source>Edit current cell inline</source>
       <translation>Éditer la cellule actuelle intégrer</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="22"/>
+      <location filename="../datagrid/sqlqueryview.h" line="23"/>
       <source>Copy cell(s) contents to clipboard</source>
       <translation>Copie le contenu de cellule(s) dans le presse-papier</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="23"/>
+      <location filename="../datagrid/sqlqueryview.h" line="24"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
       <translation>Copier le contenu de(s) cellule(s) avec l&apos;en-tête dans le presse-papiers</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="25"/>
+      <location filename="../datagrid/sqlqueryview.h" line="26"/>
       <source>Paste cell(s) contents from clipboard</source>
       <translation>Colle</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="27"/>
+      <location filename="../datagrid/sqlqueryview.h" line="28"/>
       <source>Set empty value to selected cell(s)</source>
       <translation>Efface le contenu de cellule(s)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="28"/>
+      <location filename="../datagrid/sqlqueryview.h" line="29"/>
       <source>Set NULL value to selected cell(s)</source>
       <translation>Met à NULL les cellules séléctionnées</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="29"/>
+      <location filename="../datagrid/sqlqueryview.h" line="30"/>
       <source>Commit changes to cell(s) contents</source>
       <translation>Valider les modifications sur le contenu de(s) cellule(s)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="30"/>
+      <location filename="../datagrid/sqlqueryview.h" line="31"/>
       <source>Rollback changes to cell(s) contents</source>
       <translation>Annule les modifications de cellule(s)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="31"/>
+      <location filename="../datagrid/sqlqueryview.h" line="32"/>
       <source>Delete selected data row</source>
       <translation>Supprime les données de la ligne sélectionnée</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="32"/>
+      <location filename="../datagrid/sqlqueryview.h" line="33"/>
       <source>Insert new data row</source>
       <translation>Insére une nouvelle ligne de données</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="33"/>
+      <location filename="../datagrid/sqlqueryview.h" line="34"/>
       <source>Open contents of selected cell in a separate editor</source>
       <translation>Contenu ouvert de cellule choisie dans un éditeur séparé</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="34"/>
+      <location filename="../datagrid/sqlqueryview.h" line="35"/>
       <source>Toggle the height adjustment of rows</source>
       <translation>Activer/désactiver le réglage de la hauteur des lignes</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="35"/>
+      <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>Augmenter la taille de la police de caractère</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="36"/>
+      <location filename="../datagrid/sqlqueryview.h" line="37"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>Réduire la taille de la police de caractère</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="640"/>
+      <location filename="../dataview.cpp" line="653"/>
       <source>Total pages available: %1</source>
       <translation>Nombre de pages disponibles : %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="650"/>
+      <location filename="../dataview.cpp" line="663"/>
       <source>Total rows loaded: %1</source>
       <translation>Nombre de lignes chargées : %1</translation>
     </message>
@@ -4902,27 +4932,27 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <translation>Réduire la taille de la police de caractère</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="45"/>
+      <location filename="../uiutils.cpp" line="44"/>
       <source>All SQLite databases</source>
       <translation>Toutes les bases de données SQLite</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="47"/>
+      <location filename="../uiutils.cpp" line="46"/>
       <source>All files</source>
       <translation>Tous les fichiers</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="50"/>
+      <location filename="../uiutils.cpp" line="49"/>
       <source>Select database file</source>
       <translation>Sélectionner le fichier de la base de données</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="60"/>
+      <location filename="../uiutils.cpp" line="59"/>
       <source>Select</source>
       <translation>Sélectionner</translation>
     </message>
     <message>
-      <location filename="../uiutils.cpp" line="61"/>
+      <location filename="../uiutils.cpp" line="60"/>
       <source>File type</source>
       <translation>Type de fichier</translation>
     </message>
@@ -5133,7 +5163,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="17"/>
-      <location filename="../windows/collationseditor.h" line="21"/>
+      <location filename="../windows/collationseditor.h" line="22"/>
       <location filename="../windows/functionseditor.h" line="23"/>
       <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>Commit the pending changes</source>
@@ -5141,14 +5171,14 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="18"/>
-      <location filename="../windows/collationseditor.h" line="22"/>
+      <location filename="../windows/collationseditor.h" line="23"/>
       <location filename="../windows/functionseditor.h" line="24"/>
       <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Rollback the pending changes</source>
       <translation>Restaurer les modifications en attente</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.h" line="20"/>
+      <location filename="../windows/collationseditor.h" line="21"/>
       <source>A collation editor window</source>
       <translation>Une fenêtre d&apos;éditeur de regroupement</translation>
     </message>
@@ -5421,42 +5451,42 @@ recherche suivant</translation>
       <translation>Impossible d’ouvrir en écriture le fichier « %1 » : %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="298"/>
+      <location filename="../sqleditor.cpp" line="302"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>Contenu SQL sauvegardé dans le fichier : %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="519"/>
+      <location filename="../sqleditor.cpp" line="523"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>L’achèvement de syntaxe peut être utilisé seulement quand une base de données valable est utilisée dans l’éditeur SQL.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1143"/>
+      <location filename="../sqleditor.cpp" line="1147"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Le contenu l’éditeur SQL est important, aussi la détectiond’objets en erreur est temporairement mise hors de service.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1178"/>
+      <location filename="../sqleditor.cpp" line="1182"/>
       <source>Save to file</source>
       <translation>Sauvegarder</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1193"/>
+      <location filename="../sqleditor.cpp" line="1197"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>Scripts SQL (*.sql);;Tous les fichiers (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1194"/>
+      <location filename="../sqleditor.cpp" line="1198"/>
       <source>Open file</source>
       <translation>Fichier ouvert</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1204"/>
+      <location filename="../sqleditor.cpp" line="1208"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d’ouvrir en lecture le fichier « %1 » : %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1409"/>
+      <location filename="../sqleditor.cpp" line="1413"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Fin de document atteint. Saississez de nouveau la recherche pour relancer la recherche.</translation>
     </message>
