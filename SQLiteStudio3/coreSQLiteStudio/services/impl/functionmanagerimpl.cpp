@@ -191,6 +191,13 @@ void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, D
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
 
     ScriptingPlugin::Context* ctx = plugin->createContext();
+    if (!ctx)
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = tr("Could not create scripting context, probably the plugin is not configured properly");
+        return;
+    }
+
     aggregateStorage["context"] = QVariant::fromValue(ctx);
     FunctionInfoImpl info(func);
 
