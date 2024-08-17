@@ -7,8 +7,6 @@ TEMPLATE = lib
 
 DEFINES += SCRIPTINGPYTHON_LIBRARY
 
-QMAKE_CXXFLAGS += -Wno-cast-function-type
-
 SOURCES += scriptingpython.cpp
 
 HEADERS += scriptingpython.h\
@@ -17,22 +15,40 @@ HEADERS += scriptingpython.h\
 OTHER_FILES += \
     scriptingpython.json
 
-isEmpty(PYTHON_VERSION) {
-    PYTHON_VERSION = 3.9
+portable {
+    CONFIG += dynamic_python
 }
 
-linux: {
-    LIBS += -lpython$$PYTHON_VERSION
+dynamic_python {
+    DEFINES += PYTHON_DYNAMIC_BINDING
+    SOURCES += dynamicpythonapi.cpp
+    HEADERS += dynamicpythonapi.h
 }
 
-macx: {
-    LIBS += -lpython$$PYTHON_VERSION
+!dynamic_python {
+    HEADERS += staticpythonapi.h
+
+    isEmpty(PYTHON_VERSION) {
+        PYTHON_VERSION = 3.9
+    }
+    linux: {
+        LIBS += -lpython$$PYTHON_VERSION
+    }
+
+    macx: {
+        LIBS += -lpython$$PYTHON_VERSION
+    }
+    win32: {
+        LIBS += -lpython$$replace(PYTHON_VERSION, \., ) -L$$PWD/../../../lib/python
+    }
 }
 
 win32: {
     INCLUDEPATH += $$PWD/../../../include/python
-    LIBS += -lpython$$replace(PYTHON_VERSION, \., ) -L$$PWD/../../../lib/python
 }
+
+FORMS += \
+    scriptingpython.ui
 
 RESOURCES += \
     scriptingpython.qrc
