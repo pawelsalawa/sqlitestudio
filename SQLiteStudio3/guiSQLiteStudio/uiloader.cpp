@@ -84,7 +84,8 @@ QWidget* UiLoader::load(const QString& path)
     }
 
     QWidget* w = QUiLoader::load(&file, nullptr);
-    handlePropertiesRecursively(w);
+    if (w)
+        handlePropertiesRecursively(w);
     return w;
 }
 
