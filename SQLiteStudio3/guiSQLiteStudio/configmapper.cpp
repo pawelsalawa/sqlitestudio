@@ -362,6 +362,7 @@ QString ConfigMapper::getConfigFullKeyForWidget(QWidget* widget)
 void ConfigMapper::handleSpecialWidgets(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
     handleConfigComboBox(widget, allConfigEntries);
+    handleFileEdit(widget, allConfigEntries);
 }
 
 void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
@@ -381,6 +382,26 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
     {
         specialConfigEntryToWidgets.insert(key, widget);
         connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateConfigComboModel(QVariant)));
+    }
+}
+
+void ConfigMapper::handleFileEdit(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
+{
+    FileEdit* fileEdit = dynamic_cast<FileEdit*>(widget);
+    if (!fileEdit)
+        return;
+
+    CfgEntry* key = getEntryForProperty(widget, "modelName", allConfigEntries);
+    if (!key)
+        return;
+
+    QStringList list = key->get().toStringList();
+    fileEdit->setChoicesModel(new QStringListModel(list));
+
+    if (realTimeUpdates)
+    {
+        specialConfigEntryToWidgets.insert(key, widget);
+        connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateFileEditChoicesModel(QVariant)));
     }
 }
 
@@ -716,6 +737,21 @@ void ConfigMapper::updateConfigComboModel(const QVariant& value)
     ccb->setModel(new QStringListModel(newList));
     if (newList.contains(cText))
         ccb->setCurrentText(cText);
+}
+
+void ConfigMapper::updateFileEditChoicesModel(const QVariant& value)
+{
+    CfgEntry* key = dynamic_cast<CfgEntry*>(sender());
+    if (!specialConfigEntryToWidgets.contains(key))
+        return;
+
+    QWidget* w = specialConfigEntryToWidgets.value(key);
+    FileEdit* fileEdit = dynamic_cast<FileEdit*>(w);
+    if (!w)
+        return;
+
+    QStringList newList = value.toStringList();
+    fileEdit->setChoicesModel(new QStringListModel(newList));
 }
 
 void ConfigMapper::notifiableConfigKeyChanged()

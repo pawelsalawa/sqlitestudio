@@ -84,6 +84,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
         void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void handleConfigComboBox(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
+        void handleFileEdit(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void connectCommonNotifierToWidget(QWidget *widget, CfgEntry* key);
         bool connectCustomNotifierToWidget(QWidget *widget, CfgEntry* cfgEntry);
         void applyCommonConfigToWidget(QWidget *widget, const QVariant& value, CfgEntry* cfgEntry);
@@ -128,6 +129,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void entryChanged(const QVariant& newValue);
         void uiConfigEntryChanged();
         void updateConfigComboModel(const QVariant& value);
+        void updateFileEditChoicesModel(const QVariant& value);
         void notifiableConfigKeyChanged();
 
     signals:
