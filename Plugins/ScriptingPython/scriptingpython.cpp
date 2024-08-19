@@ -241,7 +241,9 @@ QString ScriptingPython::extractError()
         return QString();
 
     PyObject* strErr = PyObject_Repr(value);
-    QString err = QString::fromUtf8(PyUnicode_AsUTF8(strErr));
+    Py_ssize_t size;
+    const char *buf = PyUnicode_AsUTF8AndSize(strErr, &size);
+    QString err = QString::fromUtf8(buf, size);
     PyErr_Clear();
 
     Py_XDECREF(type);
@@ -305,7 +307,11 @@ QVariant ScriptingPython::pythonObjToVariant(PyObject* obj)
         return QVariant();
 
     if (PyUnicode_Check(obj))
-        return QString::fromUtf8(PyUnicode_AsUTF8(obj));
+    {
+        Py_ssize_t size;
+        const char *buf = PyUnicode_AsUTF8AndSize(obj, &size);
+        return QString::fromUtf8(buf, size);
+    }
 
     if (PyLong_Check(obj))
         return PyLong_AsLongLong(obj);
@@ -390,7 +396,9 @@ QVariant ScriptingPython::pythonObjToVariant(PyObject* obj)
     }
 
     PyObject* strObj = PyObject_Repr(obj);
-    QString result = QString::fromUtf8(PyUnicode_AsUTF8(strObj));
+    Py_ssize_t size;
+    const char *buf = PyUnicode_AsUTF8AndSize(strObj, &size);
+    QString result = QString::fromUtf8(buf, size);
     Py_DECREF(strObj);
     return result;
 }
@@ -401,7 +409,9 @@ QString ScriptingPython::pythonObjToString(PyObject* obj)
     if (!strObj)
         return QString();
 
-    QString result = QString::fromUtf8(PyUnicode_AsUTF8(strObj));
+    Py_ssize_t size;
+    const char *buf = PyUnicode_AsUTF8AndSize(strObj, &size);
+    QString result = QString::fromUtf8(buf, size);
     Py_DECREF(strObj);
     return result;
 }
@@ -569,11 +579,17 @@ SqlQueryPtr ScriptingPython::dbCommonEval(PyObject* sqlArg, const char* fnName)
                         SQLITE_ERROR);
         }
 
-        sql = QString::fromUtf8(PyUnicode_AsUTF8(strObj));
+        Py_ssize_t size;
+        const char *buf = PyUnicode_AsUTF8AndSize(strObj, &size);
+        sql = QString::fromUtf8(buf, size);
         Py_DECREF(strObj);
     }
     else
-        sql = QString::fromUtf8(PyUnicode_AsUTF8(sqlArg));
+    {
+        Py_ssize_t size;
+        const char *buf = PyUnicode_AsUTF8AndSize(sqlArg, &size);
+        sql = QString::fromUtf8(buf, size);
+    }
 
     PyThreadState* state = PyThreadState_Get();
     ContextPython* ctx = contexts[state];
