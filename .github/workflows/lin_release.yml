@@ -4,7 +4,6 @@ env:
     TCL_VERSION: '8.6.14'
     SQLITE_VERSION: '3410200'
     SQLITE_RELEASE_YEAR: '2023'
-    PYTHON_VERSION: '3.9'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -50,9 +49,11 @@ jobs:
               - binary_compatibility: glibc_2.23
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
                 icu_version_short: 66
+                python_version: 3.5
               - binary_compatibility: glibc_2.27
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
                 icu_version_short: 60
+                python_version: 3.6
               #- binary_compatibility: glibc_2.31
               #  container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
               #  icu_version_short: 66
@@ -73,7 +74,7 @@ jobs:
                     echo TARGET_ARCH=x86_64
                 } >> $GITHUB_ENV
 
-            - name: Configure prebuilt python${{ env.PYTHON_VERSION }}
+            - name: Configure python${{ matrix.python_version }} from distribution
               run: |
                 echo "pythonLocation=/usr/" >> $GITHUB_ENV
 
@@ -231,7 +232,7 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
-                    PYTHON_VERSION=$PYTHON_VERSION "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "INCLUDEPATH+=$pythonLocation/include/python${{ matrix.python_version}}" \
                     ../../../Plugins
                 make -j 1  # Parallel plugin build crashes randomly
 

@@ -3,6 +3,7 @@
 #include "uiconfig.h"
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <QComboBox>
 #include <QToolButton>
 #include <QFileDialog>
 
@@ -40,6 +41,16 @@ QString FileEdit::getDialogTitle() const
 QString FileEdit::getFilters() const
 {
     return filters;
+}
+
+QAbstractItemModel* FileEdit::getChoicesModel() const
+{
+    return choicesModel;
+}
+
+QVariant FileEdit::getChoicesModelName() const
+{
+    return choicesModelName;
 }
 
 void FileEdit::browse()
@@ -95,4 +106,40 @@ void FileEdit::setFilters(QString arg)
         filters = arg;
         emit filtersChanged(arg);
     }
+}
+
+void FileEdit::setChoicesModel(QAbstractItemModel* arg)
+{
+    if (choicesModel != arg)
+    {
+        disconnect(lineEdit, SIGNAL(textChanged(QString)), this, SLOT(lineTextChanged()));
+        choicesModel = arg;
+        if (choicesModel != nullptr && combo == nullptr)
+        {
+            combo = new QComboBox();
+            combo->setEditable(true);
+            layout()->replaceWidget(lineEdit, combo);
+            delete lineEdit;
+            lineEdit = combo->lineEdit();
+        }
+        else if (choicesModel == nullptr && combo != nullptr)
+        {
+            lineEdit = new QLineEdit();
+            lineEdit->setText(file);
+            layout()->replaceWidget(combo, lineEdit);
+            delete combo;
+            combo = nullptr;
+        }
+        if (combo != nullptr)
+        {
+            combo->setModel(choicesModel);
+            lineEdit->setText(file);
+        }
+        connect(lineEdit, SIGNAL(textChanged(QString)), this, SLOT(lineTextChanged()));
+    }
+}
+
+void FileEdit::setChoicesModelName(QVariant arg)
+{
+    choicesModelName = arg;
 }

@@ -1,7 +1,11 @@
 #ifndef SCRIPTINGPYTHON_H
 #define SCRIPTINGPYTHON_H
 
-#include <Python.h>
+#ifdef PYTHON_DYNAMIC_BINDING
+#include "dynamicpythonapi.h"
+#else
+#include "staticpythonapi.h"
+#endif
 
 #include "scriptingpython_global.h"
 #include "plugins/genericplugin.h"
@@ -11,13 +15,35 @@
 
 class QMutex;
 
-class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, public DbAwareScriptingPlugin
+#ifdef PYTHON_DYNAMIC_BINDING
+
+#include "plugins/uiconfiguredplugin.h"
+#include "config_builder.h"
+#include <QLibrary>
+#include <QVersionNumber>
+
+CFG_CATEGORIES(ScriptingPythonConfig,
+     CFG_CATEGORY(ScriptingPython,
+         CFG_ENTRY(QString,     LibraryPath,         QString())
+         CFG_ENTRY(QStringList, DiscoveredLibraries, QStringList(), false)
+     )
+)
+
+#endif
+
+class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin,
+#ifdef PYTHON_DYNAMIC_BINDING
+                                                     public DynamicPythonApi,
+                                                     public UiConfiguredPlugin,
+#endif
+                                                     public DbAwareScriptingPlugin
 {
         Q_OBJECT
         SQLITESTUDIO_PLUGIN("scriptingpython.json")
 
     public:
         static PyObject* dbEval(PyObject *self, PyObject* const* args, Py_ssize_t nargs);
+        static PyObject* dbEvalCompat(PyObject *self, PyObject* args);
 
         ScriptingPython();
         ~ScriptingPython();
@@ -35,8 +61,18 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, publi
         QString getIconPath() const;
         QVariant evaluate(Context* context, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking = false);
         QVariant evaluate(const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking = false, QString* errorMessage = nullptr);
+#ifdef PYTHON_DYNAMIC_BINDING
+        QString getConfigUiForm() const;
+        CfgMain* getMainUiConfig();
+        void configDialogOpen();
+        void configDialogClosed();
+#endif
 
     private:
+#ifdef PYTHON_DYNAMIC_BINDING
+        CFG_LOCAL_PERSISTABLE(ScriptingPythonConfig, cfg)
+#endif
+
         class ContextPython;
         class ScriptObject
         {
@@ -76,6 +112,13 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, publi
                                 const QList<QVariant>& args, Db* db, bool locking);
         void clearError(ContextPython* ctx);
         ScriptObject* getScriptObject(const QString code, const ScriptingPlugin::FunctionInfo& funcInfo, ContextPython* ctx);
+        void initPython();
+        void deinitPython();
+#ifdef PYTHON_DYNAMIC_BINDING
+        bool bindLibrary();
+        QStringList discoverLibraries() const;
+        void setLibraryPath(QString path);
+#endif
 
         static QString extractError();
         static PyObject* argsToPyArgs(const QVariantList& args, const QStringList& namedParameters);
@@ -91,6 +134,14 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin, publi
 
         ContextPython* mainContext = nullptr;
         QMutex* mainInterpMutex = nullptr;
+#ifdef PYTHON_DYNAMIC_BINDING
+        QString libraryPath;
+        QLibrary library;
+        QVersionNumber libraryVersion;
+
+    private slots:
+        void configModified(CfgEntry* entry);
+#endif
 };
 
 #endif // SCRIPTINGPYTHON_H

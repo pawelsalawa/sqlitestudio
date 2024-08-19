@@ -4,7 +4,6 @@ env:
     freetype_version: "2.13.2"
     icu_version: "74.2"
     openssl_version: "3.0.14"
-    python_version: "3.9.19"
     tcl_version: "8.6.14"
 
 on:
@@ -39,7 +38,6 @@ jobs:
                 freetype_url="https://download.savannah.gnu.org/releases/freetype/freetype-${{ env.freetype_version }}.tar.xz"
                 icu_url="https://github.com/unicode-org/icu/releases/download/release-${v%.*}-${v#*.}/icu4c-${v%.*}_${v#*.}-src.tgz"
                 openssl_url="https://www.openssl.org/source/openssl-${{ env.openssl_version }}.tar.gz"
-                python_url="https://www.python.org/ftp/python/${{ env.python_version }}/Python-${{ env.python_version }}.tar.xz"
                 tcl_url="https://downloads.sourceforge.net/project/tcl/Tcl/${{ env.tcl_version }}/tcl${{ env.tcl_version }}-src.tar.gz"
 
                 tee Dockerfile <<EOF_Dockerfile
@@ -63,18 +61,7 @@ jobs:
                     && cd openssl-${{ env.openssl_version }} && ./config --prefix=/usr/local --openssldir=/usr/local/ssl --libdir=lib \
                     && make -j$(nproc) && make install \
                     && cd ../.. && rm -fr openssl-${{ env.openssl_version }}
-                # Installing Python under /usr improves our chances to match user's installed Python
-                # On Bionic, install system python3 first so it is not reinstalled by aqtinstall later
-                RUN curl -L $python_url | xz -dc | tar -x \
-                    && apt-get -y install libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev \
-                    && case ${{ matrix.release }} in xenial*) ;; *) apt-get -y install libgdbm-compat-dev ;; esac \
-                    && case ${{ matrix.release }} in bionic*) apt-get -y install python3 python3-distutils python3-lib2to3 python3-minimal ;; esac \
-                    && cd Python-${{ env.python_version }} && ./configure --prefix=/usr --with-openssl=/usr/local --enable-optimizations --enable-shared --without-static-libpython \
-                    && make -j$(nproc) && make install \
-                    && ln -fns python${python_version%.*} /usr/bin/python3 \
-                    && cd ../../ && rm -fr Python-${{ env.python_version }} \
-                    && if [ ${{ matrix.release }} != xenial ]; then apt-get -y remove libgdbm-compat-dev; fi \
-                    && apt-get -y remove libbz2-dev libffi-dev libgdbm-dev liblzma-dev libsqlite3-dev uuid-dev zlib1g-dev
+                RUN apt-get -y install python3-dev
                 RUN curl -L $tcl_url | tar -xz \
                     && cd tcl${{ env.tcl_version }}/unix && ./configure --prefix=/usr/local \
                     && make -j$(nproc) && make install \

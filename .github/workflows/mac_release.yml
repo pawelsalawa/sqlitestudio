@@ -316,7 +316,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_CXXFLAGS+="${{ matrix.cflags }}" \
                     CONFIG+=portable \
-                    PYTHON_VERSION=$PYTHON_VERSION "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
                     ../../../Plugins
                 make -j 1
 
@@ -349,24 +349,16 @@ jobs:
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
                 ls -l
 
-            - name: Rename packages
+            - name: Rename package
               run: |
                 mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
                   sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
-                mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}.dmg \
-                  sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}${{ matrix.dmg_postfix }}.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
                 path: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
-
-            - name: Upload package artifact with Python
-              uses: actions/upload-artifact@v4
-              with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}${{ matrix.dmg_postfix }}.dmg
-                path: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}-py${{ env.PYTHON_VERSION }}${{ matrix.dmg_postfix }}.dmg
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
@@ -377,12 +369,6 @@ jobs:
     build-universal:
         runs-on: macos-12  # Don't use newer versions yet, https://github.com/actions/runner-images/issues/7522
         needs: build
-        strategy:
-          fail-fast: false
-          matrix:
-            variant:
-              - '-py*'
-              - ''
         steps:
             - uses: actions/checkout@v4
               with:
@@ -390,17 +376,17 @@ jobs:
 
             - uses: actions/download-artifact@v4
               with:
-                pattern: sqlitestudio-[0-9].[0-9].[0-9]${{ matrix.variant }}-macos10.13.dmg
+                pattern: sqlitestudio-[0-9].[0-9].[0-9]-macos10.13.dmg
                 merge-multiple: true
 
             - uses: actions/download-artifact@v4
               with:
-                pattern: sqlitestudio-[0-9].[0-9].[0-9]${{ matrix.variant }}-macos11.arm64.dmg
+                pattern: sqlitestudio-[0-9].[0-9].[0-9]-macos11.arm64.dmg
                 merge-multiple: true
 
             - run: |
                 set -x
-                _prefix="$(echo sqlitestudio-[0-9].[0-9].[0-9]${{ matrix.variant }}-macos11.arm64.dmg | sed 's/11.arm64.dmg$//')"
+                _prefix="$(echo sqlitestudio-[0-9].[0-9].[0-9]-macos11.arm64.dmg | sed 's/11.arm64.dmg$//')"
                 SQLiteStudio3/create_macosx_bundle.sh -u "${_prefix}10.13.dmg" "${_prefix}11.arm64.dmg" "${_prefix}-universal.dmg"
                 echo "PACKAGE_NAME=${_prefix}-universal.dmg" >> $GITHUB_ENV
 

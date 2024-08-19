@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ScriptingPython</class>
+ <widget class="QWidget" name="ScriptingPython">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>354</width>
+    <height>290</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Python library path</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="FileEdit" name="pythonLibraryPath">
+        <property name="cfg" stdset="0">
+         <string notr="true">ScriptingPython.LibraryPath</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Choose a Python library file</string>
+        </property>
+        <property name="modelName" stdset="0">
+         <string notr="true">ScriptingPython.DiscoveredLibraries</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileEdit</class>
+   <extends>QWidget</extends>
+   <header>common/fileedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

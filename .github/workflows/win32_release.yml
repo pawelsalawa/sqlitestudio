@@ -262,7 +262,7 @@ jobs:
                 ${{ env.QMAKE_COMMAND }} \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     CONFIG+=portable \
-                    PYTHON_VERSION=${{ env.PYTHON_VERSION }} "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
+                    "INCLUDEPATH+=${{ env.pythonLocation }}/include" \
                     ../../../Plugins
                 mingw32-make.exe -j 1
 
