@@ -336,14 +336,14 @@ elif [ "$3" = "dist" ]; then
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
 
-    # Fix python dependencies in the image
+    # Fix python dependencies in the image if linked to a Python library
     python_plugin_lib="SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib"
     if otool -L "$python_plugin_lib" | grep -q /opt/local/Library/Frameworks/Python.framework; then
         python_from_macports="yes"
         _ref="/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python"
     else
         python_from_macports="no"
-        run rm -f SQLiteStudio.app/Contents/Frameworks/libpython* SQLiteStudio.app/Contents/Frameworks/libint*
+        run rm -f SQLiteStudio.app/Contents/Frameworks/libpython*
         _ref="@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib"
     fi
     run install_name_tool -change "$_ref" "libpython$PYTHON_VERSION.dylib" "$python_plugin_lib"
