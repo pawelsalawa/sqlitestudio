@@ -43,7 +43,10 @@ bool ScriptingPython::init()
     QMutexLocker locker(mainInterpMutex);
 
     PyImport_AppendInittab("db", &pyDbModuleInit);
+
     Py_Initialize();
+    // GIL is held, thread state is set.
+
     PyRun_SimpleString("import db");
 
     mainContext = new ContextPython();
@@ -55,7 +58,12 @@ void ScriptingPython::deinit()
 {
     QMutexLocker locker(mainInterpMutex);
     contexts.clear();
+
+    // Acquire GIL and set thread state
+    PyEval_RestoreThread(mainContext->interp);
     Py_Finalize();
+    // GIL and thread state no longer exist
+
     SQLS_CLEANUP_RESOURCE(scriptingpython);
 }
 
@@ -66,7 +74,16 @@ QString ScriptingPython::getLanguage() const
 
 ScriptingPlugin::Context* ScriptingPython::createContext()
 {
+#ifdef PYTHON_DYNAMIC_BINDING
+    if (!library.isLoaded())
+        return nullptr;
+#endif
+
+    // ContextPython() expects that GIL is held and thread state is set
+    PyEval_RestoreThread(mainContext->interp);
     ContextPython* ctx = new ContextPython();
+    // No GIL is held
+
     contexts[ctx->interp] = ctx;
     return ctx;
 }
@@ -79,7 +96,8 @@ void ScriptingPython::releaseContext(ScriptingPlugin::Context* context)
 
     contexts.remove(ctx->interp);
     delete ctx;
-    PyThreadState_Swap(mainContext->interp);
+    // Thread state has been destroyed. Don't switch to main thread state,
+    // as we'll do it as needed anyway, and it needs GIL.
 }
 
 void ScriptingPython::resetContext(ScriptingPlugin::Context* context)
@@ -109,8 +127,15 @@ QVariant ScriptingPython::getVariable(ScriptingPlugin::Context* context, const Q
     if (!ctx)
         return QVariant();
 
-    PyThreadState_Swap(ctx->interp);
-    return getVariable(name);
+    // Acquire GIL and set thread state
+    PyEval_RestoreThread(ctx->interp);
+
+    QVariant value = getVariable(name);
+
+    // Release GIL
+    PyEval_ReleaseThread(ctx->interp);
+
+    return value;
 }
 
 bool ScriptingPython::hasError(ScriptingPlugin::Context* context) const
@@ -168,13 +193,17 @@ ScriptingPython::ContextPython* ScriptingPython::getContext(ScriptingPlugin::Con
 QVariant ScriptingPython::compileAndEval(ScriptingPython::ContextPython* ctx, const QString& code, const FunctionInfo& funcInfo,
                                          const QList<QVariant>& args, Db* db, bool locking)
 {
-    PyThreadState_Swap(ctx->interp);
+    // Acquire GIL and set thread state
+    PyEval_RestoreThread(ctx->interp);
+
     clearError(ctx);
 
     ScriptObject* scriptObj = getScriptObject(code, funcInfo, ctx);
     if (PyErr_Occurred() || !scriptObj->getCompiled())
     {
         ctx->error = extractError();
+        // Release GIL
+        PyEval_ReleaseThread(ctx->interp);
         return QVariant();
     }
 
@@ -192,11 +221,15 @@ QVariant ScriptingPython::compileAndEval(ScriptingPython::ContextPython* ctx, co
     {
         Py_XDECREF(result);
         ctx->error = extractError();
+        // Release GIL
+        PyEval_ReleaseThread(ctx->interp);
         return QVariant();
     }
 
     QVariant resultVariant = pythonObjToVariant(result);
     Py_XDECREF(result);
+    // Release GIL
+    PyEval_ReleaseThread(ctx->interp);
     return resultVariant;
 }
 
@@ -658,19 +691,30 @@ void ScriptingPython::ContextPython::reset()
 
 void ScriptingPython::ContextPython::init()
 {
+    // Py_NewInterpreter() expects that GIL is held and thread state is set
     interp = Py_NewInterpreter();
-    PyThreadState_Swap(interp);
+    // GIL is still held, thread state has changed
+
     mainModule = PyImport_AddModule("__main__");
     envDict = PyModule_GetDict(mainModule);
     PyRun_SimpleString("import db");
+
+    // Release GIL
+    PyEval_ReleaseThread(interp);
 }
 
 void ScriptingPython::ContextPython::clear()
 {
-    PyThreadState_Swap(interp);
+    // Acquire GIL and set thread state
+    PyEval_RestoreThread(interp);
+
     PyDict_Clear(envDict);
     scriptCache.clear();
     PyErr_Clear();
+
+    // Py_EndInterpreter expects thread state to be already set
     Py_EndInterpreter(interp);
+    // Thread state is destroyed, no GIL is held
+
     error = QString();
 }
