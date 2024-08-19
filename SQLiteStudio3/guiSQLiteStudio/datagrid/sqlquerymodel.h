@@ -76,6 +76,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         void setAsyncMode(bool enabled);
         virtual QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
+        virtual QString generateSelectFunctionQueryForItems(const QString& function, const QList<SqlQueryItem*>& items);
         virtual QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
         virtual QString generateUpdateQueryForItems(const QList<SqlQueryItem*>& items);
         virtual QString generateDeleteQueryForItems(const QList<SqlQueryItem*>& items);
@@ -310,6 +311,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
         QHash<QString, QVariantList> toValuesGroupedByColumns(const QList<SqlQueryItem*>& items);
+        QStringList toOrderedColumnNames(const QList<SqlQueryItem*>& items);
         void refreshGeneratedColumns(const QList<SqlQueryItem*>& items);
         void refreshGeneratedColumns(const QList<SqlQueryItem*>& items, QHash<SqlQueryItem*, QVariant>& values, const RowId& insertedRowId);
 

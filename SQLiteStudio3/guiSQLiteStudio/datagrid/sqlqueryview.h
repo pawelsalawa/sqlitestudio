@@ -144,6 +144,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void updateFont();
         void itemActivated(const QModelIndex& index);
         void generateSelect();
+        void generateSelectFunction();
         void generateInsert();
         void generateUpdate();
         void generateDelete();
