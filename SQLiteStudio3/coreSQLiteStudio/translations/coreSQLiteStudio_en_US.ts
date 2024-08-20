@@ -355,7 +355,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
@@ -853,7 +853,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
@@ -1105,7 +1105,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/abstractdb3.h" line="859"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>
   </context>
   <context>
