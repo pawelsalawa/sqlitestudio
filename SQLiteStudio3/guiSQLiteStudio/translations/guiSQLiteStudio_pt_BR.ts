@@ -232,17 +232,17 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Collation type:</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Collation type:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="217"/>
       <source>Function-based</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Function-based</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="224"/>
       <source>Extension-based</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Extension-based</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="233"/>
@@ -292,17 +292,17 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="313"/>
       <source>Registration code</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Registration code</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="314"/>
       <source>Enter a non-empty registration code.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Enter a non-empty registration code.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="318"/>
       <source>Implementation code</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Implementation code</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="319"/>
@@ -932,7 +932,7 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>Scripting languages</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Scripting languages</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="265"/>
@@ -1979,12 +1979,12 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Select an existing database file</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Select an existing database file</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="61"/>
       <source>Create a new database file</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Create a new database file</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
@@ -2011,10 +2011,6 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
       <location filename="../dialogs/dbdialog.ui" line="154"/>
       <source>Test connection</source>
       <translation>Testar conexão</translation>
-    </message>
-    <message>
-      <source>Select new or existing file on local computer</source>
-      <translation type="vanished">Selecionar arquivo novo ou existente no computador local</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="333"/>
@@ -2064,12 +2060,12 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="756"/>
       <source>Choose a location for the new database file</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Choose a location for the new database file</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
   </context>
   <context>
@@ -5646,7 +5642,7 @@ encontrar próximo</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1628"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
