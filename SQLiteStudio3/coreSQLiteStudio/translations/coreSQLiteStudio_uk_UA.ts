@@ -353,43 +353,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="283"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
+      <source>Could not create scripting context, probably the plugin is not configured properly</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>Некоректна кількість аргументів для функції &apos;%1&apos;. Очікувалось %2, але отримано %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="397"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="404"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Немає такої функції, зареєстрованої в SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="403"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="410"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>Функція %1(%2) була зареєстрована на мові %3, але плагін, що підтримує мову, наразі не завантажений.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="421"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="428"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Невірний шаблон регулярного виразу: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="440"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="473"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="447"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="480"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Неможливо відкрити файл %1 для читання: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="495"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="502"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Неможливо відкрити файл %1 для запису: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="515"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="522"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Помилка при запису в файл %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="533"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="540"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Непідтримуваний скриптова мова: %1</translation>
     </message>
@@ -846,22 +851,27 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Неможливо знайти модуль підтримки скриптового мови: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="79"/>
+      <location filename="../plugins/populatescript.cpp" line="70"/>
+      <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../plugins/populatescript.cpp" line="84"/>
       <source>Error while executing populating initial code: %1</source>
       <translation>Помилка при виконанні ініціалізації коду заповнення: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="101"/>
+      <location filename="../plugins/populatescript.cpp" line="106"/>
       <source>Error while executing populating code: %1</source>
       <translation>Помилка при виконанні коду заповнення: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="133"/>
+      <location filename="../plugins/populatescript.cpp" line="138"/>
       <source>Select implementation language.</source>
       <translation>Виберіть мову реалізації.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="134"/>
+      <location filename="../plugins/populatescript.cpp" line="139"/>
       <source>Implementation code cannot be empty.</source>
       <translation>Заповнюючий код не може бути порожнім.</translation>
     </message>
@@ -905,19 +915,19 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Скриптові мови</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="351"/>
+      <location filename="../sqlitestudio.cpp" line="352"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation>Експорт</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="352"/>
+      <location filename="../sqlitestudio.cpp" line="353"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation>Імпорт</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="353"/>
+      <location filename="../sqlitestudio.cpp" line="354"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
       <translation>Заповнення таблиць</translation>

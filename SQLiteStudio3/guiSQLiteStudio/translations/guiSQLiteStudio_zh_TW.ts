@@ -858,7 +858,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2067"/>
+      <location filename="../dialogs/configdialog.ui" line="2075"/>
       <source>Configuration</source>
       <translation>設定檔</translation>
     </message>
@@ -899,7 +899,7 @@
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
-      <location filename="../dialogs/configdialog.ui" line="251"/>
+      <location filename="../dialogs/configdialog.ui" line="259"/>
       <source>Database list</source>
       <translation>資料庫清單</translation>
     </message>
@@ -929,606 +929,611 @@
       <translation>程式碼格式化器</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="257"/>
+      <location filename="../dialogs/configdialog.ui" line="233"/>
+      <source>Scripting languages</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="265"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
       <translation>如果關閉，列將按照 CREATE TABLE 中的順序排序。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="260"/>
+      <location filename="../dialogs/configdialog.ui" line="268"/>
       <source>Sort table columns alphabetically</source>
       <translation>按字母順序列出表的列</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="270"/>
+      <location filename="../dialogs/configdialog.ui" line="278"/>
       <source>Expand tables node when connected to a database</source>
       <translation>連線到資料庫時展開表節點</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="280"/>
+      <location filename="../dialogs/configdialog.ui" line="288"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
       <translation>&lt;p&gt;附加標籤是顯示在資料庫清單的名稱旁邊的文字標籤 (除非另有設定檔，否則為藍色)。啟用此選項將為資料庫、無效資料庫和聚合節點 (列組、索引組、觸發器組) 顯示標籤。更多標籤見下方選項。&lt;p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="283"/>
+      <location filename="../dialogs/configdialog.ui" line="291"/>
       <source>Display additional labels on the list</source>
       <translation>在清單中顯示附加標籤</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="298"/>
+      <location filename="../dialogs/configdialog.ui" line="306"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
       <translation>對於普通表，標籤將顯示每個表的列、索引和觸發器的數量。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="301"/>
+      <location filename="../dialogs/configdialog.ui" line="309"/>
       <source>Display labels for regular tables</source>
       <translation>為普通表顯示標籤</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="311"/>
+      <location filename="../dialogs/configdialog.ui" line="319"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
       <translation>虛擬表將附以“虛擬”標籤。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="314"/>
+      <location filename="../dialogs/configdialog.ui" line="322"/>
       <source>Display labels for virtual tables</source>
       <translation>為虛擬表顯示標籤</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="327"/>
+      <location filename="../dialogs/configdialog.ui" line="335"/>
       <source>Expand views node when connected to a database</source>
       <translation>連線到資料庫時展開檢視節點</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="337"/>
+      <location filename="../dialogs/configdialog.ui" line="345"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
       <translation>如果關閉此選項，則物件將按照 sqlite_master 表中的順序 (即它們被建立的順序) 排列</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="340"/>
+      <location filename="../dialogs/configdialog.ui" line="348"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
       <translation>按字母順序排列物件 (表、索引、觸發器及檢視)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="350"/>
+      <location filename="../dialogs/configdialog.ui" line="358"/>
       <source>Display system tables and indexes on the list</source>
       <translation>在清單中顯示系統表和索引</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="363"/>
+      <location filename="../dialogs/configdialog.ui" line="371"/>
       <source>Database dialog window</source>
       <translation>資料庫對話方塊視窗</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="369"/>
+      <location filename="../dialogs/configdialog.ui" line="377"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
       <translation>&lt;p&gt;新增新的資料庫時，預設會將其標記為“永久”(儲存在設定檔檔案中)。選中此選項則新新增的資料庫將預設不標記為“永久”。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="372"/>
+      <location filename="../dialogs/configdialog.ui" line="380"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
       <translation>預設不將新新增的資料庫標為“永久”</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="382"/>
+      <location filename="../dialogs/configdialog.ui" line="390"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
       <translation>&lt;p&gt;啟用此選項後，將檔案從檔案管理器拖放到資料庫清單中時，將自動繞過標準的資料庫對話方塊，直接新增到清單中。如果由於各種原因自動處理失敗，則還會向用戶顯示標準對話方塊。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="385"/>
+      <location filename="../dialogs/configdialog.ui" line="393"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
       <translation>拖放資料庫檔案到清單中時嘗試完全繞過對話方塊</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="430"/>
+      <location filename="../dialogs/configdialog.ui" line="438"/>
       <source>Data browsing and editing</source>
       <translation>瀏覽和編輯資料</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="436"/>
-      <location filename="../dialogs/configdialog.ui" line="456"/>
+      <location filename="../dialogs/configdialog.ui" line="444"/>
+      <location filename="../dialogs/configdialog.ui" line="464"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;在設定檔檔案中儲存，“表填充”對話方塊中的最大數量。值 100 應已足夠。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="459"/>
+      <location filename="../dialogs/configdialog.ui" line="467"/>
       <source>Number of memorized table populating configurations</source>
       <translation>表填充設定檔中的預設填充行數</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="553"/>
+      <location filename="../dialogs/configdialog.ui" line="561"/>
       <source>Data column width</source>
       <translation type="unfinished">Data column width</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="559"/>
+      <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="562"/>
+      <location filename="../dialogs/configdialog.ui" line="570"/>
       <source>Enlarge column when entering value longer than current width</source>
       <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="578"/>
+      <location filename="../dialogs/configdialog.ui" line="586"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
       <translation>&lt;p&gt;當資料被載入到網格檢視時，列寬會自動調整。此值限制初始化時的列寬度，之後您仍可以手動調整列寬，不受此限制。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="449"/>
+      <location filename="../dialogs/configdialog.ui" line="457"/>
       <source>Number of data rows per page:</source>
       <translation>每頁資料行數：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="479"/>
+      <location filename="../dialogs/configdialog.ui" line="487"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
       <translation>&lt;p&gt;此項啟用後，使用者滑鼠懸停在任意資料檢視 (查詢結果、表資料、檢視資料) 的單元格上時，工具提示將顯示該單元格的詳細資訊——包括列資料型別、約束、ROWID 等。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="482"/>
+      <location filename="../dialogs/configdialog.ui" line="490"/>
       <source>Show column and row details tooltip in data view</source>
       <translation>在資料檢視中展示列與行的詳細資訊</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="524"/>
+      <location filename="../dialogs/configdialog.ui" line="532"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation>&lt;p&gt;編輯一個過去為 NULL 值的單元格且新輸入的值為空字串時，此選項啟用則該單元格的值保持 NULL 不變，此選項未啟用則空字串覆蓋原 NULL 值。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="527"/>
+      <location filename="../dialogs/configdialog.ui" line="535"/>
       <source>Keep NULL value when entering empty value</source>
       <translation>當輸入空值時保持 NULL 值</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="492"/>
+      <location filename="../dialogs/configdialog.ui" line="500"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;啟用此選項後，提交一個 NULL 值時，如果該列已定義 DEFAULT 值，即使該列允許包含 NULL 值，也始終採用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此選項則僅在列有非空 (NOT NULL) 約束時將 NULL 值轉變為 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="495"/>
+      <location filename="../dialogs/configdialog.ui" line="503"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
       <translation>提交 NULL 值時使用 DEFAULT 值 (如果已定義)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="466"/>
+      <location filename="../dialogs/configdialog.ui" line="474"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果查詢結果包含數十乃至上百個列，則載入可能佔用數個 GB 的空閒記憶體。SQLiteStudio 在這種情況下可能限制一頁上顯示的結果數量以保護您的計算機。如果您瞭解自己不會在如此大的資料庫上作業，則可以禁用此限制以始終在一頁上看到大量的行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="469"/>
+      <location filename="../dialogs/configdialog.ui" line="477"/>
       <source>Limit number of rows for in case of dozens of columns</source>
       <translation>列數過多時限制每頁顯示的行數</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="623"/>
+      <location filename="../dialogs/configdialog.ui" line="631"/>
       <source>Inserting new row in data grid</source>
       <translation>網格檢視中插入新行時</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="629"/>
+      <location filename="../dialogs/configdialog.ui" line="637"/>
       <source>Before currently selected row</source>
       <translation>在選中行之前</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="645"/>
+      <location filename="../dialogs/configdialog.ui" line="653"/>
       <source>After currently selected row</source>
       <translation>在選中行之後</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="658"/>
+      <location filename="../dialogs/configdialog.ui" line="666"/>
       <source>At the end of data view</source>
       <translation>在資料檢視的末尾</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="674"/>
+      <location filename="../dialogs/configdialog.ui" line="682"/>
       <source>Table windows</source>
       <translation>表視窗</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="680"/>
+      <location filename="../dialogs/configdialog.ui" line="688"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;啟用後，表視窗將顯示資料選項卡，而不是結構選項卡。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="683"/>
+      <location filename="../dialogs/configdialog.ui" line="691"/>
       <source>Open Table Windows with the data tab for start</source>
       <translation>開啟表視窗時顯示“資料”選項卡</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="693"/>
+      <location filename="../dialogs/configdialog.ui" line="701"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;啟用後，“資料”選項卡將作為第一個選項卡放置在每個表視窗中，而不是位於第二位。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="696"/>
+      <location filename="../dialogs/configdialog.ui" line="704"/>
       <source>Place data tab as first tab in a Table Window</source>
       <translation>將資料作為表視窗的第一項</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="709"/>
+      <location filename="../dialogs/configdialog.ui" line="717"/>
       <source>View windows</source>
       <translation>檢視視窗</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="715"/>
+      <location filename="../dialogs/configdialog.ui" line="723"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;啟用後，檢視視窗將顯示資料選項卡，而不是結構選項卡。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="718"/>
+      <location filename="../dialogs/configdialog.ui" line="726"/>
       <source>Open View Windows with the data tab for start</source>
       <translation>開啟檢視視窗時顯示“資料”選項卡</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="728"/>
+      <location filename="../dialogs/configdialog.ui" line="736"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;啟用後，“資料”選項卡將作為第一個選項卡放置在每個檢視視窗中，而不是位於第二個位置。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="731"/>
+      <location filename="../dialogs/configdialog.ui" line="739"/>
       <source>Place data tab as first tab in a View Window</source>
       <translation>將“資料”選項卡放置為檢視視窗的首個選項卡</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="775"/>
+      <location filename="../dialogs/configdialog.ui" line="783"/>
       <source>Data types</source>
       <translation>資料型別</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="813"/>
+      <location filename="../dialogs/configdialog.ui" line="821"/>
       <source>Available editors:</source>
       <translation>可用的編輯器：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="829"/>
+      <location filename="../dialogs/configdialog.ui" line="837"/>
       <source>Editors selected for this data type:</source>
       <translation>已為該資料型別選擇的編輯器：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="865"/>
+      <location filename="../dialogs/configdialog.ui" line="873"/>
       <source>Schema editing</source>
       <translation>結構編輯</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="877"/>
+      <location filename="../dialogs/configdialog.ui" line="885"/>
       <source>Number of DDL changes kept in history.</source>
       <translation>DDL 變更歷史的記錄數量。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="890"/>
+      <location filename="../dialogs/configdialog.ui" line="898"/>
       <source>DDL history size:</source>
       <translation>DDL 歷史大小：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="897"/>
+      <location filename="../dialogs/configdialog.ui" line="905"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation>提交結構更改時不顯示 DDL 預覽對話方塊</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="910"/>
+      <location filename="../dialogs/configdialog.ui" line="918"/>
       <source>SQL queries</source>
       <translation>SQL 查詢</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="922"/>
-      <location filename="../dialogs/configdialog.ui" line="971"/>
+      <location filename="../dialogs/configdialog.ui" line="930"/>
+      <location filename="../dialogs/configdialog.ui" line="979"/>
       <source>Number of queries kept in the history.</source>
       <translation>查詢歷史記錄數量。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="958"/>
+      <location filename="../dialogs/configdialog.ui" line="966"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="974"/>
+      <location filename="../dialogs/configdialog.ui" line="982"/>
       <source>History size:</source>
       <translation>歷史大小：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="935"/>
-      <location filename="../dialogs/configdialog.ui" line="945"/>
+      <location filename="../dialogs/configdialog.ui" line="943"/>
+      <location filename="../dialogs/configdialog.ui" line="953"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;歷史記錄中儲存查詢引數 (:param, @param, $param, ?) 的最大數量。當您重新在同一名稱/位置下使用引數時，SQLiteStudio 將使用最近記憶的值預填充初始化它 (仍可修改)。值 1000 應已足夠。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="961"/>
+      <location filename="../dialogs/configdialog.ui" line="969"/>
       <source>Execute only the query under the cursor</source>
       <translation>只執行輸入符所在行的語句</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="938"/>
+      <location filename="../dialogs/configdialog.ui" line="946"/>
       <source>Number of memorized query parameters</source>
       <translation>預設的查詢引數數量</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="537"/>
+      <location filename="../dialogs/configdialog.ui" line="545"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="540"/>
+      <location filename="../dialogs/configdialog.ui" line="548"/>
       <source>Use scientific notation for real numbers in the grid view</source>
       <translation type="unfinished">Use scientific notation for real numbers in the grid view</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="597"/>
+      <location filename="../dialogs/configdialog.ui" line="605"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="600"/>
+      <location filename="../dialogs/configdialog.ui" line="608"/>
       <source>Limit automatic data column width to (in pixels):</source>
       <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="607"/>
+      <location filename="../dialogs/configdialog.ui" line="615"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="610"/>
+      <location filename="../dialogs/configdialog.ui" line="618"/>
       <source>Keep at least the width to show complete column name</source>
       <translation type="unfinished">Keep at least the width to show complete column name</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="981"/>
+      <location filename="../dialogs/configdialog.ui" line="989"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="984"/>
+      <location filename="../dialogs/configdialog.ui" line="992"/>
       <source>Wrap lines in SQL editor</source>
       <translation type="unfinished">Wrap lines in SQL editor</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="994"/>
+      <location filename="../dialogs/configdialog.ui" line="1002"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="997"/>
+      <location filename="../dialogs/configdialog.ui" line="1005"/>
       <source>Highlight current query</source>
       <translation type="unfinished">Highlight current query</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1010"/>
+      <location filename="../dialogs/configdialog.ui" line="1018"/>
       <source>Updates</source>
       <translation>更新</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1016"/>
+      <location filename="../dialogs/configdialog.ui" line="1024"/>
       <source>Automatically check for updates at startup</source>
       <translation>啟動時自動檢查更新</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1029"/>
+      <location filename="../dialogs/configdialog.ui" line="1037"/>
       <source>Session</source>
       <translation>會話</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1035"/>
+      <location filename="../dialogs/configdialog.ui" line="1043"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation>啟動後恢復上一次會話</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1045"/>
+      <location filename="../dialogs/configdialog.ui" line="1053"/>
       <source>Allow multiple instances of the application at the same time</source>
       <translation>允許同時開啟多個此程式</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1058"/>
+      <location filename="../dialogs/configdialog.ui" line="1066"/>
       <source>Status Field</source>
       <translation>狀態列</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1064"/>
+      <location filename="../dialogs/configdialog.ui" line="1072"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
       <translation>&lt;p&gt;在使用者手動關閉了狀態面板後，此選項能確保有新訊息被出現時狀態面板自動被重新開啟。如果禁用，狀態面板只能由使用者手動透過“檢視”選單來重新開啟。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1067"/>
+      <location filename="../dialogs/configdialog.ui" line="1075"/>
       <source>Always open Status panel when new message is printed</source>
       <translation>有新訊息輸出時就開啟狀態面板</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1122"/>
+      <location filename="../dialogs/configdialog.ui" line="1130"/>
       <source>Code syntax colors</source>
       <translation type="unfinished">Code syntax colors</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1128"/>
+      <location filename="../dialogs/configdialog.ui" line="1136"/>
       <source>Keyword foreground</source>
       <translation type="unfinished">Keyword foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1218"/>
+      <location filename="../dialogs/configdialog.ui" line="1226"/>
       <source>Regular foreground</source>
       <translation type="unfinished">Regular foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1335"/>
+      <location filename="../dialogs/configdialog.ui" line="1343"/>
       <source>String foreground</source>
       <translation type="unfinished">String foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1228"/>
+      <location filename="../dialogs/configdialog.ui" line="1236"/>
       <source>Comment foreground</source>
       <translation type="unfinished">Comment foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1280"/>
+      <location filename="../dialogs/configdialog.ui" line="1288"/>
       <source>Valid objects foreground</source>
       <translation type="unfinished">Valid objects foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1407"/>
+      <location filename="../dialogs/configdialog.ui" line="1415"/>
       <source>Current query background</source>
       <translation type="unfinished">Current query background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1371"/>
+      <location filename="../dialogs/configdialog.ui" line="1379"/>
       <source>Bind parameter foreground</source>
       <translation type="unfinished">Bind parameter foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1397"/>
+      <location filename="../dialogs/configdialog.ui" line="1405"/>
       <source>Current line background</source>
       <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1417"/>
+      <location filename="../dialogs/configdialog.ui" line="1425"/>
       <source>Matched parenthesis background</source>
       <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1312"/>
+      <location filename="../dialogs/configdialog.ui" line="1320"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1254"/>
+      <location filename="../dialogs/configdialog.ui" line="1262"/>
       <source>Number foreground</source>
       <translation type="unfinished">Number foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1325"/>
+      <location filename="../dialogs/configdialog.ui" line="1333"/>
       <source>BLOB value foreground</source>
       <translation type="unfinished">BLOB value foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1427"/>
+      <location filename="../dialogs/configdialog.ui" line="1435"/>
       <source>Matched parenthesis foreground</source>
       <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1464"/>
+      <location filename="../dialogs/configdialog.ui" line="1472"/>
       <source>Reset to defaults</source>
       <translation>重置為預設值</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1490"/>
+      <location filename="../dialogs/configdialog.ui" line="1498"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>以名稱或按鍵組合篩選快捷鍵</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1531"/>
+      <location filename="../dialogs/configdialog.ui" line="1539"/>
       <source>Action</source>
       <translation>操作</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1536"/>
+      <location filename="../dialogs/configdialog.ui" line="1544"/>
       <source>Key combination</source>
       <translation>按鍵組合</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1585"/>
-      <location filename="../dialogs/configdialog.ui" line="2057"/>
+      <location filename="../dialogs/configdialog.ui" line="1593"/>
+      <location filename="../dialogs/configdialog.ui" line="2065"/>
       <source>Language</source>
       <translation>語言</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1591"/>
+      <location filename="../dialogs/configdialog.ui" line="1599"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>語言變更在程式重啟後生效。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1608"/>
+      <location filename="../dialogs/configdialog.ui" line="1616"/>
       <source>Compact layout</source>
       <translation>緊湊佈局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1614"/>
+      <location filename="../dialogs/configdialog.ui" line="1622"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;緊湊佈局會將介面中的邊框與留白減至最小，然後用這些區域展示更多資料。這會使介面看起來有一點不美觀，但將可以同時展示更多的資料。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1617"/>
+      <location filename="../dialogs/configdialog.ui" line="1625"/>
       <source>Use compact layout</source>
       <translation>使用緊湊佈局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1633"/>
+      <location filename="../dialogs/configdialog.ui" line="1641"/>
       <source>Main window dock areas</source>
       <translation>主視窗停靠區域</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1639"/>
+      <location filename="../dialogs/configdialog.ui" line="1647"/>
       <source>Left and right areas occupy corners</source>
       <translation>左右佈局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1659"/>
+      <location filename="../dialogs/configdialog.ui" line="1667"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>上下佈局</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1781"/>
+      <location filename="../dialogs/configdialog.ui" line="1789"/>
       <source>Hide built-in plugins</source>
       <translation>隱藏內建外掛</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1810"/>
+      <location filename="../dialogs/configdialog.ui" line="1818"/>
       <source>Current style:</source>
       <translation>當前風格：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1827"/>
+      <location filename="../dialogs/configdialog.ui" line="1835"/>
       <source>Preview</source>
       <translation>預覽</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1837"/>
+      <location filename="../dialogs/configdialog.ui" line="1845"/>
       <source>Enabled</source>
       <translation>已啟用</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2013"/>
+      <location filename="../dialogs/configdialog.ui" line="2021"/>
       <source>Disabled</source>
       <translation>已禁用</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2062"/>
+      <location filename="../dialogs/configdialog.ui" line="2070"/>
       <source>Active formatter plugin</source>
       <translation>啟用格式化外掛</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2100"/>
+      <location filename="../dialogs/configdialog.ui" line="2108"/>
       <source>SQL editor font</source>
       <translation>SQL 編輯器字型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2116"/>
+      <location filename="../dialogs/configdialog.ui" line="2124"/>
       <source>Database list font</source>
       <translation>資料庫清單字型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2132"/>
+      <location filename="../dialogs/configdialog.ui" line="2140"/>
       <source>Database list additional label font</source>
       <translation>資料庫清單額外資訊字型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2148"/>
+      <location filename="../dialogs/configdialog.ui" line="2156"/>
       <source>Data view font</source>
       <translation>資料檢視字型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2164"/>
+      <location filename="../dialogs/configdialog.ui" line="2172"/>
       <source>Status field font</source>
       <translation>狀態列字型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2201"/>
+      <location filename="../dialogs/configdialog.ui" line="2209"/>
       <source>Code assistant settings</source>
       <translation type="unfinished">Code assistant settings</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2207"/>
+      <location filename="../dialogs/configdialog.ui" line="2215"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2210"/>
+      <location filename="../dialogs/configdialog.ui" line="2218"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
     </message>
