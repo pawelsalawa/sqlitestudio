@@ -10,6 +10,8 @@
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
+#include "sqlitestudio.h"
+#include "services/functionmanager.h"
 #include "services/notifymanager.h"
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
@@ -186,6 +188,25 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     {
         QMenu* generateQueryMenu = contextMenu->addMenu(ICONS.GENERATE_QUERY, tr("Generate query for selected cells"));
         generateQueryMenu->addAction(actionMap[GENERATE_SELECT]);
+
+        Db* db = getModel()->getDb();
+        if (db && db->isValid())
+        {
+            QList<FunctionManager::ScriptFunction*> functions = FUNCTIONS->getScriptFunctionsForDatabase(db->getName());
+            if (functions.size() > 0)
+            {
+                QStringList fnNames;
+                // Offer functions with undefined arguments or at least 1 defined argument
+                for (FunctionManager::ScriptFunction* fn : functions)
+                    if (fn->undefinedArgs || fn->arguments.size() >= 1)
+                        fnNames << fn->name;
+                fnNames.sort();
+                QMenu* generateSelectFunctionMenu = generateQueryMenu->addMenu("SELECT function(...)");
+                for (const QString& name : fnNames)
+                    generateSelectFunctionMenu->addAction(name, this, SLOT(generateSelectFunction()));
+            }
+        }
+
         if (getModel()->supportsModifyingQueriesInMenu())
         {
             generateQueryMenu->addAction(actionMap[GENERATE_INSERT]);
@@ -310,7 +331,20 @@ void SqlQueryView::generateSelect()
 {
     QString sql = getModel()->generateSelectQueryForItems(getSelectedItems());
     MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+}
 
+void SqlQueryView::generateSelectFunction()
+{
+    QString function = reinterpret_cast<QAction*>(sender())->text();
+    QString sql = getModel()->generateSelectFunctionQueryForItems(function, getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+    EditorWindow* win = MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+    if (!win)
+        return;
+
+    static_qstring(tpl, "%1(...)");
+    win->getMdiWindow()->rename(tpl.arg(function));
+    win->execute();
 }
 
 void SqlQueryView::generateInsert()

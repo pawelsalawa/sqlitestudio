@@ -61,6 +61,15 @@ class API_EXPORT QueryGenerator
          */
         QString generateSelectFromSelect(Db* db, const QString& initialSelect, const StrHash<QVariantList> values = StrHash<QVariantList>(), const BiStrHash& dbNameToAttach = BiStrHash());
 
+        /**
+         * @brief Generates SELECT of a function applied to values
+         * @param function The function name to apply to every value.
+         * @param columns Ordered column names.
+         * @param values Map of column names and values for them, for generating a VALUES clause.
+         * @return Generated SELECT statement string.
+         */
+        QString generateSelectFunction(const QString& function, const QStringList& columns, const QHash<QString, QVariantList> values);
+
     private:
         QString generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const StrHash<QVariantList> values = StrHash<QVariantList>());
         QString getAlias(const QString& name, QSet<QString>& usedAliases);
@@ -68,7 +77,8 @@ class API_EXPORT QueryGenerator
         QString valuesToConditionStr(const StrHash<QVariantList>& values);
         QString toResultColumnString(const SelectResolver::Column& column);
         QString toFullObjectName(const QString& database, const QString& object);
-        QStringList toValueSets(const QStringList& columns, const StrHash<QVariantList> values);
+        QStringList toValueSets(const QStringList& columns, const StrHash<QVariantList> values,
+                                const QString& format = QString());
 };
 
 #endif // QUERYGENERATOR_H

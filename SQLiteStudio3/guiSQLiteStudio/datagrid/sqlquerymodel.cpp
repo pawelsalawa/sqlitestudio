@@ -724,6 +724,17 @@ QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& i
     return sql;
 }
 
+QString SqlQueryModel::generateSelectFunctionQueryForItems(const QString& function, const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+    QStringList orderedColumns = toOrderedColumnNames(items);
+
+    QueryGenerator generator;
+    QString sql = generator.generateSelectFunction(function, orderedColumns, values);
+
+    return sql;
+}
+
 QString SqlQueryModel::generateInsertQueryForItems(const QList<SqlQueryItem*>& items)
 {
     UNUSED(items);
@@ -1176,6 +1187,22 @@ QHash<QString, QVariantList> SqlQueryModel::toValuesGroupedByColumns(const QList
         values[item->getColumn()->displayName] << item->getValue();
 
     return values;
+}
+
+QStringList SqlQueryModel::toOrderedColumnNames(const QList<SqlQueryItem*>& items)
+{
+    QStringList cols;
+    int row = -1;
+    QMap<int,QList<SqlQueryItem*>> itemsByRow;
+    for (SqlQueryItem* item : items)
+    {
+        if (row != -1 && item->row() != row)
+            break;
+        row = item->row();
+        cols << item->getColumn()->displayName;
+    }
+
+    return cols;
 }
 
 bool SqlQueryModel::supportsModifyingQueriesInMenu() const
