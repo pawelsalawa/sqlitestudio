@@ -5611,53 +5611,53 @@ find next</source>
       <translation>在回滚事务时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="834"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation>尝试提交不可编辑的单元格！（本应该无法编辑）这是一个错误，请报告。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="859"/>
       <source>An error occurred while committing the data: %1</source>
       <translation>在提交数据时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="993"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation>数据视图中，已因列数（%2）将每页行数减小（%1）。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1406"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1433"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1491"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>在数据库“%1”执行 SQL 查询时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1461"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1488"/>
       <source>Error while loading query results: %1</source>
       <translation>在加载查询结果时出错：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1628"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
       <source>Insert multiple rows</source>
       <translation>插入多行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
       <source>Number of rows to insert:</source>
       <translation>要插入的行数：</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2002"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2029"/>
       <source>Delete rows</source>
       <translation>删除行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2003"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2030"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>您即将删除未提交的新插入的行。行数：%1
@@ -5667,200 +5667,200 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
   <context>
     <name>SqlQueryView</name>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
       <translation>转到引用的行...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Copy</source>
       <translation>复制</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Copy with headers</source>
       <translation>带表头复制</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Copy as...</source>
       <translation>复制为...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Paste</source>
       <translation>粘贴</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Paste as...</source>
       <translation>粘贴为...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Set NULL values</source>
       <translation>设为 NULL 值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Erase values</source>
       <translation>擦除值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Commit</source>
       <translation>提交</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Rollback</source>
       <translation>回滚</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Commit selected cells</source>
       <translation>提交选中单元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
       <source>Rollback selected cells</source>
       <translation>回滚选中单元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Edit current cell inline</source>
       <translation>编辑当前单元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Define columns to sort by</source>
       <translation>定义列排序方式</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Remove custom sorting</source>
       <translation>移除自定义排序</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Insert row</source>
       <translation>插入行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Insert multiple rows</source>
       <translation>插入多行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
       <source>Delete selected row</source>
       <translation>删除已选行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
       <source>Adjust height of rows</source>
       <translation>调整行高</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>增大字号</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="121"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation>反向选取</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Edit value in editor</source>
       <translation>在编辑器中编辑数值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Show value in a viewer</source>
       <translation>在查看器中显示值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="189"/>
       <source>Generate query for selected cells</source>
       <translation>为选中单元格生成查询</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="415"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="449"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation>没有选择用来粘贴剪贴板内容的项。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
       <source>Cannot paste data. Details: %1</source>
       <translation>无法粘贴数据。详情：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>至少一个表的结构在上次的数据加载后已变更。重新加载数据以继续。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="525"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation>无法粘贴到单元格。详情：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="525"/>
       <source>The row is marked for deletion.</source>
       <translation>该行已被标记为删除。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="502"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="536"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation>无法粘贴到列 %1。详情：%2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="520"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="554"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation>转至表 &apos;%1&apos; 中的引用的行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="532"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="566"/>
       <source>table &apos;%1&apos;</source>
       <translation>表“%1”</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="555"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="589"/>
       <source>Referenced row (%1)</source>
       <translation>引用的行（%1）</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="806"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="840"/>
       <source>Trim pasted text?</source>
       <translation>移除粘贴文本两端的空白？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="807"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="841"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>粘贴的文本两端含有空白符号。自动移除？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="849"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>将 &quot;NULL&quot; 粘贴为空值？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="850"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>粘贴的文本包含 &quot;NULL&quot; 字符。要将它们视为空值吗？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="958"/>
       <source>Edit value</source>
       <translation>编辑值</translation>
     </message>
