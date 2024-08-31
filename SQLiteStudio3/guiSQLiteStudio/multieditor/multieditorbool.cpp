@@ -26,11 +26,11 @@ void MultiEditorBool::setValue(const QVariant& value)
 {
     switch (value.userType())
     {
-        case QVariant::Bool:
-        case QVariant::Int:
-        case QVariant::LongLong:
-        case QVariant::UInt:
-        case QVariant::ULongLong:
+        case QMetaType::Bool:
+        case QMetaType::Int:
+        case QMetaType::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::ULongLong:
             boolValue = value.toBool();
             upperCaseValue = false;
             valueFormat = BOOL;

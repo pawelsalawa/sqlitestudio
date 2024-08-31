@@ -327,7 +327,7 @@ bool TableModifier::handleUpdateColumns(SqliteUpdate* update)
         it.next();
 
         colName = it.value().first;
-        if (colName.type() == QVariant::StringList)
+        if (colName.userType() == QMetaType::QStringList)
         {
             // List of columns set to a single value
             newNames = handleUpdateColumns(colName.toStringList(), modified);

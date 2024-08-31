@@ -831,19 +831,19 @@ QStringList valueListToSqlList(const QVariantList& values)
 
         switch (value.userType())
         {
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
+            case QMetaType::Int:
+            case QMetaType::UInt:
+            case QMetaType::LongLong:
+            case QMetaType::ULongLong:
                 argList << value.toString();
                 break;
-            case QVariant::Double:
+            case QMetaType::Double:
                 argList << doubleToString(value);
                 break;
-            case QVariant::Bool:
+            case QMetaType::Bool:
                 argList << QString::number(value.toInt());
                 break;
-            case QVariant::ByteArray:
+            case QMetaType::QByteArray:
                 argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
                 break;
             default:

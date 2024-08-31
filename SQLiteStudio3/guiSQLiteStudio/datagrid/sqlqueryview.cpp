@@ -598,7 +598,7 @@ void SqlQueryView::copy(bool withHeader)
         for (SqlQueryItem* item : itemsInRows)
         {
             itemValue = item->getValue();
-            if (itemValue.userType() == QVariant::Double)
+            if (itemValue.userType() == QMetaType::Double)
                 cells << doubleToString(itemValue);
             else
                 cells << itemValue.toString();

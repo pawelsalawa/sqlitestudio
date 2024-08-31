@@ -39,7 +39,7 @@ void FormatUpdate::formatInternal()
         if (!first)
             withListComma();
 
-        if (keyVal.first.type() == QVariant::StringList)
+        if (keyVal.first.userType() == QMetaType::QStringList)
             withParDefLeft().withIdList(keyVal.first.toStringList()).withParDefRight().withOperator("=").withStatement(keyVal.second);
         else
             withId(keyVal.first.toString()).withOperator("=").withStatement(keyVal.second);

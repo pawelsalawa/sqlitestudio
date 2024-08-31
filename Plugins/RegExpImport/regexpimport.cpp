@@ -129,7 +129,7 @@ QList<QVariant> RegExpImport::next()
     QList<QVariant> values;
     for (const QVariant& group : groups)
     {
-        if (group.type() == QVariant::Int)
+        if (group.userType() == QMetaType::Int)
             values << match.captured(group.toInt());
         else
             values << match.captured(group.toString());

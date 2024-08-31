@@ -60,10 +60,10 @@ void MultiEditorDateTime::setValue(const QVariant& value)
 {
     switch (value.userType())
     {
-        case QVariant::DateTime:
+        case QMetaType::QDateTime:
             dateTimeEdit->setDateTime(value.toDateTime());
             break;
-        case QVariant::Date:
+        case QMetaType::QDate:
             dateTimeEdit->setDate(value.toDate());
             break;
         default:

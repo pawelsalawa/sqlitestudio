@@ -264,7 +264,7 @@ bool SqlTableModel::processNullValueAfterInsert(SqlQueryItem* item, QVariant& va
     else
         value = modelColumn->getDefaultConstraint()->defaultValue;
 
-    if (value.userType() == QVariant::String)
+    if (value.userType() == QMetaType::QString)
         value = stripString(value.toString());
 
     return true;

@@ -93,7 +93,7 @@ TokenList SqliteUpsert::rebuildTokensFromContents()
             if (!first)
                 builder.withOperator(",").withSpace();
 
-            if (keyVal.first.type() == QVariant::StringList)
+            if (keyVal.first.userType() == QMetaType::QStringList)
                 builder.withParLeft().withOtherList(keyVal.first.toStringList()).withParRight();
             else
                 builder.withOther(keyVal.first.toString());
@@ -114,7 +114,7 @@ QStringList SqliteUpsert::getColumnsInStatement()
     QStringList columns;
     for (const ColumnAndValue& keyValue : keyValueMap)
     {
-        if (keyValue.first.type() == QVariant::StringList)
+        if (keyValue.first.userType() == QMetaType::QStringList)
             columns += keyValue.first.toStringList();
         else
             columns += keyValue.first.toString();

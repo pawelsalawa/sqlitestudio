@@ -17,11 +17,11 @@ void NumericSpinBox::stepBy(int steps)
 
     switch (value.userType())
     {
-        case QVariant::Double:
+        case QMetaType::Double:
             stepDoubleBy(steps);
             break;
-        case QVariant::Int:
-        case QVariant::LongLong:
+        case QMetaType::Int:
+        case QMetaType::LongLong:
             stepIntBy(steps);
             break;
         default:
@@ -114,7 +114,7 @@ QVariant NumericSpinBox::getFixedVariant(const QVariant& value)
 {
     if (allowEmpty)
     {
-        if (value.userType() == QVariant::String && value.toString().isEmpty() && !value.isNull())
+        if (value.userType() == QMetaType::QString && value.toString().isEmpty() && !value.isNull())
             return "";
 
         if (value.isNull())
@@ -133,12 +133,12 @@ void NumericSpinBox::setValueInternal(const QVariant& newValue)
 {
     switch (newValue.userType())
     {
-        case QVariant::String:
+        case QMetaType::QString:
             value = getFixedVariant(newValue);
             break;
-        case QVariant::Double:
-        case QVariant::Int:
-        case QVariant::LongLong:
+        case QMetaType::Double:
+        case QMetaType::Int:
+        case QMetaType::LongLong:
             value = newValue;
             break;
         default:

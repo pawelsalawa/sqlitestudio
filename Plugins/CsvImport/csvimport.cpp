@@ -133,7 +133,11 @@ QList<QVariant> CsvImport::next()
         for (const QString& val : deserializedEntry)
         {
             if (val == nullVal)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
                 values << QVariant(QVariant::String);
+#else
+                values << QVariant(QMetaType::fromType<QString>());
+#endif
             else
                 values << val;
         }

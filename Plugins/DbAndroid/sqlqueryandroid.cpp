@@ -113,23 +113,24 @@ QString SqlQueryAndroid::convertArg(const QVariant& value)
     if (value.isNull() || !value.isValid())
         return "NULL";
 
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::Int:
-        case QVariant::UInt:
-        case QVariant::LongLong:
-        case QVariant::ULongLong:
-        case QVariant::Double:
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+        case QMetaType::Double:
             return value.toString();
-        case QVariant::String:
+        case QMetaType::QString:
             return "'" + value.toString().replace("'", "''")  + "'";
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
             return "x'" + value.toByteArray().toHex() + "'";
         default:
             break;
     }
 
-    qCritical() << "Unhandled argument type in SqlQueryAndroid::convertArg():" << value.type();
+    qCritical() << "Unhandled argument type in SqlQueryAndroid::convertArg():"
+                << static_cast<QMetaType::Type>(value.userType());
     return "";
 }
 

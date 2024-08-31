@@ -251,7 +251,11 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 
 void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QVariant parent = QVariant(QVariant::LongLong);
+#else
+    QVariant parent = QVariant(QMetaType::fromType<qlonglong>());
+#endif
     if (parentId > -1)
         parent = parentId;
 
