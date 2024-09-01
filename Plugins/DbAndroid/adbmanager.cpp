@@ -431,11 +431,7 @@ void AdbManager::handleNewDeviceList(const QStringList& devices)
         return;
 
     currentDeviceList = devices;
-#if QT_VERSION >= 0x060000
-    QtConcurrent::run(&AdbManager::updateDetails, this, devices);
-#else
-    QtConcurrent::run(this, &AdbManager::updateDetails, devices);
-#endif
+    runInThread([=]{ updateDetails(devices); });
 
     emit deviceListChanged(devices);
 }

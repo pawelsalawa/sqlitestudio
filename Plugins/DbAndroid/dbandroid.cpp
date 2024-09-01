@@ -9,12 +9,12 @@
 #include "services/dbmanager.h"
 #include "dbandroidconnectionfactory.h"
 #include "iconmanager.h"
+#include "common/utils.h"
 #include <QUrl>
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDesktopServices>
-#include <QtConcurrent/QtConcurrent>
 
 DbAndroid::DbAndroid()
 {
@@ -102,13 +102,7 @@ bool DbAndroid::init()
         showJarMessage();
     }
     else
-    {
-#if QT_VERSION >= 0x060000
-        QtConcurrent::run(&DbAndroid::initAdb, this);
-#else
-        QtConcurrent::run(this, &DbAndroid::initAdb);
-#endif
-    }
+        runInThread([=]{ initAdb(); });
     return true;
 }
 

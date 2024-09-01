@@ -1,10 +1,11 @@
 #include "sqlfileexecutor.h"
 #include "common/encodedtextstream.h"
+#include "common/utils.h"
 #include "db/db.h"
 #include "db/sqlquery.h"
 #include "services/notifymanager.h"
 
-#include <QtConcurrent/QtConcurrentRun>
+#include <QDebug>
 #include <QElapsedTimer>
 #include <QFile>
 
@@ -54,11 +55,7 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
     }
 
     if (async)
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        QtConcurrent::run(&SqlFileExecutor::execInThread, this);
-#else
-        QtConcurrent::run(this, &SqlFileExecutor::execInThread);
-#endif
+        runInThread([=]{ execInThread(); });
     else
         execInThread();
 }

@@ -16,6 +16,7 @@
 #include <QBitArray>
 #include <QDataStream>
 #include <QRandomGenerator>
+#include <QThreadPool>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -1004,4 +1005,23 @@ QStringList sharedLibFileFilters()
 #endif
     });
     return filters;
+}
+
+void runInThread(std::function<void()> func)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    class FunctionRunnable : public QRunnable
+    {
+        std::function<void()> func;
+    public:
+        FunctionRunnable(std::function<void()> func) : func(std::move(func)) {}
+        void run() override
+        {
+            func();
+        }
+    };
+    QThreadPool::globalInstance()->start(new FunctionRunnable(func));
+#else
+    QThreadPool::globalInstance()->start(func);
+#endif
 }
