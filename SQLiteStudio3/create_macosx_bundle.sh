@@ -149,13 +149,16 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
 fi
 
 qt_version="$("$2" -v | awk '/Qt version/ { print $4 }')"
+info "Qt version detected: $qt_version"
 case "$qt_version" in
   5*) qt_version_path=5 ;;
   6*) qt_version_path=A ;;
 esac
-qt_deploy_bin="$(echo "$2" | sed 's/qmake$/macdeployqt/')"
+qmake_basename="${2##*/}"
+qt_deploy_bin="$(echo "$2" | sed "s/$qmake_basename\$/macdeployqt/")"
+info "macdeployqt executable found: $qt_deploy_bin"
 if [ ! -x "$qt_deploy_bin" ]; then
-    abort "macdeployqt program missing!"
+    abort "$qt_deploy_bin program missing!"
 fi
 
 cd "$1/SQLiteStudio" || abort "Could not chdir to $1/SQLiteStudio!"
@@ -325,13 +328,17 @@ thin_dmg() (
     mv "$2.dmg" "../$2-arm64.dmg"
 )
 
+deploy_qt() {
+    run "$qt_deploy_bin" "$@" -verbose=$((2 - quiet))
+}
+
 if [ "$3" = "dmg" ]; then
     replaceInfo "$1"
-    "$qt_deploy_bin" SQLiteStudio.app -dmg
+    deploy_qt SQLiteStudio.app -dmg
 elif [ "$3" = "dist" ]; then
     replaceInfo "$1"
 
-    run "$qt_deploy_bin" SQLiteStudio.app -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -verbose=$((2 - quiet))
+    deploy_qt SQLiteStudio.app -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio
 
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
@@ -409,6 +416,6 @@ elif [ "$3" = "dist" ]; then
     ls -l -- *.dmg
     info "Done."
 else
-    "$qt_deploy_bin" SQLiteStudio.app
+    deploy_qt SQLiteStudio.app
     replaceInfo "$1"
 fi
