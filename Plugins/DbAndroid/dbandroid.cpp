@@ -10,11 +10,12 @@
 #include "dbandroidconnectionfactory.h"
 #include "iconmanager.h"
 #include "common/utils.h"
-#include <QUrl>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QDesktopServices>
+#include <QPushButton>
+#include <QUrl>
 
 DbAndroid::DbAndroid()
 {
@@ -204,11 +205,14 @@ void DbAndroid::statusFieldLinkClicked(const QString& link)
                 return;
             }
 
-            int res = QMessageBox::warning(MAINWINDOW, tr("Invalid ADB"), tr("The selected ADB is incorrect.\n"
-                                                                             "Would you like to select another one, or leave it unconfigured?"),
-                                           tr("Select another ADB"), tr("Leave unconfigured"));
+            QMessageBox box(QMessageBox::Warning, tr("Invalid ADB"),
+                            tr("The selected ADB is incorrect."), QMessageBox::NoButton, MAINWINDOW);
+            box.setInformativeText(tr("Would you like to select another one, or leave it unconfigured?"));
+            box.setDefaultButton(box.addButton(tr("Select another ADB"), QMessageBox::ResetRole));
+            QAbstractButton* rejectButton = box.addButton(tr("Leave unconfigured"), QMessageBox::RejectRole);
+            box.exec();
 
-            if (res == 1)
+            if (box.clickedButton() == rejectButton)
                 return;
 
             file = askForAdbPath();
