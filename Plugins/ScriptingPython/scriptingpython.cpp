@@ -615,30 +615,30 @@ QString ScriptingPython::pythonObjToString(PyObject* obj)
 PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
 {
     PyObject* obj = nullptr;
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::Bool:
+        case QMetaType::Bool:
             obj = PyBool_FromLong(value.toBool() ? 1L : 0L);
             break;
-        case QVariant::Int:
-        case QVariant::LongLong:
+        case QMetaType::Int:
+        case QMetaType::LongLong:
             obj = PyLong_FromLongLong(value.toLongLong());
             break;
-        case QVariant::UInt:
-        case QVariant::ULongLong:
+        case QMetaType::UInt:
+        case QMetaType::ULongLong:
             obj = PyLong_FromUnsignedLongLong(value.toULongLong());
             break;
-        case QVariant::Double:
+        case QMetaType::Double:
             obj = PyFloat_FromDouble(value.toDouble());
             break;
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray bytes = value.toByteArray();
             char* data = bytes.data();
             obj = PyBytes_FromStringAndSize(data, bytes.size());
             break;
         }
-        case QVariant::List:
+        case QMetaType::QVariantList:
         {
             QList<QVariant> list = value.toList();
             int listSize = list.size();
@@ -653,7 +653,7 @@ PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
 
             break;
         }
-        case QVariant::StringList:
+        case QMetaType::QStringList:
         {
             QStringList list = value.toStringList();
             int listSize = list.size();
@@ -668,7 +668,7 @@ PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
 
             break;
         }
-        case QVariant::Hash:
+        case QMetaType::QVariantHash:
         {
             QHash<QString, QVariant> hash = value.toHash();
             obj = PyDict_New();
@@ -682,7 +682,7 @@ PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
             }
             break;
         }
-        case QVariant::Map:
+        case QMetaType::QVariantMap:
         {
             QMap<QString, QVariant> map = value.toMap();
             obj = PyDict_New();
@@ -696,7 +696,7 @@ PyObject* ScriptingPython::variantToPythonObj(const QVariant& value)
             }
             break;
         }
-        case QVariant::String:
+        case QMetaType::QString:
         default:
             obj = stringToPythonObj(value.toString());
             break;

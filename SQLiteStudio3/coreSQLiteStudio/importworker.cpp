@@ -160,7 +160,11 @@ bool ImportWorker::importData(int& rowCount)
     {
         // Fill up missing values in the line
         for (int i = row.size(); i < colCount; i++)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             row << QVariant(QVariant::String);
+#else
+            row << QVariant(QMetaType::fromType<QString>());
+#endif
 
         // Assign argument values
         query->setArgs(row.mid(0, colCount));

@@ -9,7 +9,7 @@ SqlQuery::~SqlQuery()
 
 bool SqlQuery::execute()
 {
-    if (queryArgs.type() == QVariant::Hash)
+    if (queryArgs.userType() == QMetaType::QVariantHash)
         return execInternal(queryArgs.toHash());
     else
         return execInternal(queryArgs.toList());

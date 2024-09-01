@@ -341,14 +341,14 @@ QString JsonExport::formatValue(const QVariant& val)
     if (val.isNull())
         return "null";
 
-    switch (val.type())
+    switch (val.userType())
     {
-        case QVariant::Int:
-        case QVariant::UInt:
-        case QVariant::LongLong:
-        case QVariant::ULongLong:
-        case QVariant::Double:
-        case QVariant::Bool:
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+        case QMetaType::Double:
+        case QMetaType::Bool:
             return val.toString();
         default:
             break;

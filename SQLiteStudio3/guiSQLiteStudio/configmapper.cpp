@@ -111,7 +111,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     QComboBox* cb = dynamic_cast<QComboBox*>(widget);
     if (cb)
     {
-        if (cfgEntry->get().type() == QVariant::Int)
+        if (cfgEntry->get().userType() == QMetaType::Int)
         {
             cb->setCurrentIndex(value.toInt());
             if (cb->currentIndex() != value.toInt())
@@ -144,7 +144,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, key, ColorButton, SIGNAL(colorChanged(QColor)));
     APPLY_NOTIFIER(widget, key, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
     APPLY_NOTIFIER_COND(widget, key, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
-    if (key->get().type() == QVariant::Int)
+    if (key->get().userType() == QMetaType::Int)
     {
         APPLY_NOTIFIER(widget, key, QComboBox, SIGNAL(currentIndexChanged(int)));
     }
@@ -179,7 +179,7 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
     GET_CFG_VALUE(widget, key, ColorButton, getColor);
     GET_CFG_VALUE_COND_OK(widget, key, ConfigRadioButton, getAssignedValue, isChecked, ok, QVariant());
     GET_CFG_VALUE_COND(widget, key, QGroupBox, isChecked, isCheckable);
-    if (key->get().type() == QVariant::Int)
+    if (key->get().userType() == QMetaType::Int)
     {
         GET_CFG_VALUE(widget, key, QComboBox, currentIndex);
     }
@@ -574,7 +574,7 @@ void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, Q
 
     CfgEntry* cfg = allConfigEntries[boolDependency];
     QVariant cfgValue = cfg->get();
-    if (cfgValue.userType() != QVariant::Bool)
+    if (cfgValue.userType() != QMetaType::Bool)
     {
         qWarning() << "Config widget" << widget->objectName() << "has bool dependency defined for" << boolDependency << "but that dependency has different type:" << cfgValue.userType();
         return;

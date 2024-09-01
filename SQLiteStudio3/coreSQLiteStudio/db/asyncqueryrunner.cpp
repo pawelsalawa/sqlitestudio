@@ -23,11 +23,11 @@ void AsyncQueryRunner::run()
     }
 
     SqlQueryPtr res;
-    if (args.userType() == QVariant::List)
+    if (args.userType() == QMetaType::QVariantList)
     {
         res = db->exec(query, args.toList(), flags);
     }
-    else if (args.userType() == QVariant::Hash)
+    else if (args.userType() == QMetaType::QVariantHash)
     {
         res = db->exec(query, args.toHash(), flags);
     }

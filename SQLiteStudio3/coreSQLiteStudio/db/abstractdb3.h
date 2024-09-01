@@ -629,32 +629,32 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
         return;
     }
 
-    switch (result.type())
+    switch (result.userType())
     {
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray ba = result.toByteArray();
             T::result_blob(context, ba.constData(), ba.size(), T::TRANSIENT());
             break;
         }
-        case QVariant::Int:
-        case QVariant::Bool:
+        case QMetaType::Int:
+        case QMetaType::Bool:
         {
             T::result_int(context, result.toInt());
             break;
         }
-        case QVariant::Double:
+        case QMetaType::Double:
         {
             T::result_double(context, result.toDouble());
             break;
         }
-        case QVariant::UInt:
-        case QVariant::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
         {
             T::result_int64(context, result.toLongLong());
             break;
         }
-        case QVariant::List:
+        case QMetaType::QVariantList:
         {
             QList<QVariant> list = result.toList();
             QStringList strList;
@@ -665,7 +665,7 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
             T::result_text16(context, str.utf16(), str.size() * sizeof(QChar), T::TRANSIENT());
             break;
         }
-        case QVariant::StringList:
+        case QMetaType::QStringList:
         {
             QString str = result.toStringList().join(" ");
             T::result_text16(context, str.utf16(), str.size() * sizeof(QChar), T::TRANSIENT());
@@ -707,7 +707,11 @@ QList<QVariant> AbstractDb3<T>::getArgs(int argCount, typename T::value** args)
                 value = T::value_double(args[i]);
                 break;
             case T::NULL_TYPE:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
                 value = QVariant(QVariant::String);
+#else
+                value = QVariant(QMetaType::fromType<QString>());
+#endif
                 break;
             default:
                 value = QString(
@@ -1077,24 +1081,24 @@ int AbstractDb3<T>::Query::bindParam(int paramIdx, const QVariant& value)
         return T::bind_null(stmt, paramIdx);
     }
 
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray ba = value.toByteArray();
             return T::bind_blob(stmt, paramIdx, ba.constData(), ba.size(), T::TRANSIENT());
         }
-        case QVariant::Int:
-        case QVariant::Bool:
+        case QMetaType::Int:
+        case QMetaType::Bool:
         {
             return T::bind_int(stmt, paramIdx, value.toInt());
         }
-        case QVariant::Double:
+        case QMetaType::Double:
         {
             return T::bind_double(stmt, paramIdx, value.toDouble());
         }
-        case QVariant::UInt:
-        case QVariant::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
         {
             return T::bind_int64(stmt, paramIdx, value.toLongLong());
         }
@@ -1285,7 +1289,11 @@ int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVaria
                         );
             break;
         case T::NULL_TYPE:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             value = QVariant(QVariant::String);
+#else
+            value = QVariant(QMetaType::fromType<QString>());
+#endif
             break;
         case T::FLOAT:
             value = T::column_double(stmt, col);

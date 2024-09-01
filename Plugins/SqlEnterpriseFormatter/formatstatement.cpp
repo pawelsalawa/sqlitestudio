@@ -354,13 +354,13 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
     if (value.isNull())
         return *this;
 
-    if (value.userType() == QVariant::String)
+    if (value.userType() == QMetaType::QString)
     {
         withString(value.toString());
         return *this;
     }
 
-    if (value.userType() == QVariant::ByteArray)
+    if (value.userType() == QMetaType::QByteArray)
     {
         static_qstring(blobLiteral, "X'%1'");
         withBlob(blobLiteral.arg(QString::fromLatin1(value.toByteArray().toHex())));
@@ -368,7 +368,7 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
     }
 
     bool ok;
-    if (value.userType() == QVariant::Double)
+    if (value.userType() == QMetaType::Double)
     {
         value.toDouble(&ok);
         if (ok)

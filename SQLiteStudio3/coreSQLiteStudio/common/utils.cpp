@@ -16,6 +16,7 @@
 #include <QBitArray>
 #include <QDataStream>
 #include <QRandomGenerator>
+#include <QThreadPool>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -921,55 +922,55 @@ TYPE_OF_QHASH qHash(const QVariant& var)
     if (!var.isValid() || var.isNull())
         return -1;
 
-    switch (var.type())
+    switch (var.userType())
     {
-        case QVariant::Int:
+        case QMetaType::Int:
             return qHash(var.toInt());
-        case QVariant::UInt:
+        case QMetaType::UInt:
             return qHash(var.toUInt());
-        case QVariant::Bool:
+        case QMetaType::Bool:
             return qHash(var.toUInt());
-        case QVariant::Double:
+        case QMetaType::Double:
             return qHash(var.toUInt());
-        case QVariant::LongLong:
+        case QMetaType::LongLong:
             return qHash(var.toLongLong());
-        case QVariant::ULongLong:
+        case QMetaType::ULongLong:
             return qHash(var.toULongLong());
-        case QVariant::String:
+        case QMetaType::QString:
             return qHash(var.toString());
-        case QVariant::Char:
+        case QMetaType::QChar:
             return qHash(var.toChar());
-        case QVariant::StringList:
+        case QMetaType::QStringList:
             return qHash(var.toString());
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
             return qHash(var.toByteArray());
-        case QVariant::Date:
-        case QVariant::Time:
-        case QVariant::DateTime:
-        case QVariant::Url:
-        case QVariant::Locale:
-        case QVariant::RegularExpression:
+        case QMetaType::QDate:
+        case QMetaType::QTime:
+        case QMetaType::QDateTime:
+        case QMetaType::QUrl:
+        case QMetaType::QLocale:
+        case QMetaType::QRegularExpression:
             return qHash(var.toString());
-        case QVariant::Hash:
+        case QMetaType::QVariantHash:
             return qHash(var.toHash());
-        case QVariant::Map:
+        case QMetaType::QVariantMap:
             return qHash(var.toMap());
-        case QVariant::List:
+        case QMetaType::QVariantList:
             return qHash(var.toList());
-        case QVariant::BitArray:
+        case QMetaType::QBitArray:
             return qHash(var.toBitArray());
-        case QVariant::Size:
-        case QVariant::SizeF:
-        case QVariant::Rect:
-        case QVariant::LineF:
-        case QVariant::Line:
-        case QVariant::RectF:
-        case QVariant::Point:
-        case QVariant::PointF:
+        case QMetaType::QSize:
+        case QMetaType::QSizeF:
+        case QMetaType::QRect:
+        case QMetaType::QLineF:
+        case QMetaType::QLine:
+        case QMetaType::QRectF:
+        case QMetaType::QPoint:
+        case QMetaType::QPointF:
             // not supported yet
             break;
-        case QVariant::UserType:
-        case QVariant::Invalid:
+        case QMetaType::User:
+        case QMetaType::UnknownType:
         default:
             return -3;
     }
@@ -1004,4 +1005,23 @@ QStringList sharedLibFileFilters()
 #endif
     });
     return filters;
+}
+
+void runInThread(std::function<void()> func)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    class FunctionRunnable : public QRunnable
+    {
+        std::function<void()> func;
+    public:
+        FunctionRunnable(std::function<void()> func) : func(std::move(func)) {}
+        void run() override
+        {
+            func();
+        }
+    };
+    QThreadPool::globalInstance()->start(new FunctionRunnable(func));
+#else
+    QThreadPool::globalInstance()->start(func);
+#endif
 }

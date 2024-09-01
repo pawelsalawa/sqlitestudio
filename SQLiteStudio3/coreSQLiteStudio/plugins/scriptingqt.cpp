@@ -124,9 +124,9 @@ ScriptingQt::ContextQt* ScriptingQt::getMainContext()
 
 QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
 {
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::Hash:
+        case QMetaType::QVariantHash:
         {
             QHash<QString, QVariant> hash = value.toHash();
             QHashIterator<QString, QVariant> it(hash);
@@ -138,7 +138,7 @@ QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
             }
             return "{" + list.join(", ") + "}";
         }
-        case QVariant::Map:
+        case QMetaType::QVariantMap:
         {
             QMap<QString, QVariant> map = value.toMap();
             QMapIterator<QString, QVariant> it(map);
@@ -150,7 +150,7 @@ QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
             }
             return "{" + list.join(", ") + "}";
         }
-        case QVariant::List:
+        case QMetaType::QVariantList:
         {
             QStringList list;
             for (QVariant& var : value.toList())
@@ -158,11 +158,11 @@ QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
 
             return "[" + list.join(", ") + "]";
         }
-        case QVariant::StringList:
+        case QMetaType::QStringList:
         {
             return "[\"" + value.toStringList().join("\", \"") + "\"]";
         }
-        case QVariant::String:
+        case QMetaType::QString:
         {
             if (wrapStrings)
                 return "\"" + value.toString() + "\"";

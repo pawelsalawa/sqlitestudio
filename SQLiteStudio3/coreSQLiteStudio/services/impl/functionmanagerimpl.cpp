@@ -503,9 +503,9 @@ QVariant FunctionManagerImpl::nativeWriteFile(const QList<QVariant>& args, Db* d
     }
 
     QByteArray data;
-    switch (args[1].type())
+    switch (args[1].userType())
     {
-        case QVariant::String:
+        case QMetaType::QString:
             data = args[1].toString().toLocal8Bit();
             break;
         default:

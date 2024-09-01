@@ -9,12 +9,13 @@
 #include "services/dbmanager.h"
 #include "dbandroidconnectionfactory.h"
 #include "iconmanager.h"
-#include <QUrl>
+#include "common/utils.h"
 #include <QDebug>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QDesktopServices>
-#include <QtConcurrent/QtConcurrent>
+#include <QPushButton>
+#include <QUrl>
 
 DbAndroid::DbAndroid()
 {
@@ -102,13 +103,7 @@ bool DbAndroid::init()
         showJarMessage();
     }
     else
-    {
-#if QT_VERSION >= 0x060000
-        QtConcurrent::run(&DbAndroid::initAdb, this);
-#else
-        QtConcurrent::run(this, &DbAndroid::initAdb);
-#endif
-    }
+        runInThread([=]{ initAdb(); });
     return true;
 }
 
@@ -210,11 +205,14 @@ void DbAndroid::statusFieldLinkClicked(const QString& link)
                 return;
             }
 
-            int res = QMessageBox::warning(MAINWINDOW, tr("Invalid ADB"), tr("The selected ADB is incorrect.\n"
-                                                                             "Would you like to select another one, or leave it unconfigured?"),
-                                           tr("Select another ADB"), tr("Leave unconfigured"));
+            QMessageBox box(QMessageBox::Warning, tr("Invalid ADB"),
+                            tr("The selected ADB is incorrect."), QMessageBox::NoButton, MAINWINDOW);
+            box.setInformativeText(tr("Would you like to select another one, or leave it unconfigured?"));
+            box.setDefaultButton(box.addButton(tr("Select another ADB"), QMessageBox::ResetRole));
+            QAbstractButton* rejectButton = box.addButton(tr("Leave unconfigured"), QMessageBox::RejectRole);
+            box.exec();
 
-            if (res == 1)
+            if (box.clickedButton() == rejectButton)
                 return;
 
             file = askForAdbPath();

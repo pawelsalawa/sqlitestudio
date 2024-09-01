@@ -95,13 +95,13 @@ MultiEditor* BindParamsDialog::initEditor(BindParam* param, const QVariant& cach
 
     if (cachedValue.isValid())
     {
-        switch (cachedValue.type())
+        switch (cachedValue.userType())
         {
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::Double:
+            case QMetaType::LongLong:
+            case QMetaType::ULongLong:
+            case QMetaType::Int:
+            case QMetaType::UInt:
+            case QMetaType::Double:
                 multiEditor->showTab(0);
                 break;
             default:
@@ -124,7 +124,8 @@ void BindParamsDialog::accept()
     for (BindParam* param : bindParams)
     {
         param->value = editors[param]->getValue();
-        rememberValue = (param->value.type() != QVariant::ByteArray || param->value.toByteArray().size() <= 102400);
+        rememberValue = (param->value.userType() != QMetaType::QByteArray ||
+                         param->value.toByteArray().size() <= 102400);
         paramHistory << QPair<QString, QVariant>(param->originalName, rememberValue ? param->value : emptyValue);
     }
 

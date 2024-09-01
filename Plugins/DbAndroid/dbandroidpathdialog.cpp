@@ -10,11 +10,11 @@
 #include "dbandroidconnectionfactory.h"
 #include "common/lazytrigger.h"
 #include "common/userinputfilter.h"
+#include "common/utils.h"
 #include <QDebug>
 #include <QPushButton>
 #include <QInputDialog>
 #include <QMessageBox>
-#include <QtConcurrent/QtConcurrent>
 
 DbAndroidPathDialog::DbAndroidPathDialog(const DbAndroid* plugin, QWidget *parent) :
     QDialog(parent),
@@ -221,11 +221,7 @@ void DbAndroidPathDialog::refreshDbList()
     }
 
     updatingDbList = true;
-#if QT_VERSION >= 0x060000
-    QtConcurrent::run(&DbAndroidPathDialog::asyncDbUpdate, this, dbUrl.toUrlString(), dbUrl.getMode());
-#else
-    QtConcurrent::run(this, &DbAndroidPathDialog::asyncDbUpdate, dbUrl.toUrlString(), dbUrl.getMode());
-#endif
+    runInThread([=]{ asyncDbUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
 }
 
 void DbAndroidPathDialog::refreshAppList()
@@ -249,11 +245,7 @@ void DbAndroidPathDialog::refreshAppList()
     }
 
     updatingAppList = true;
-#if QT_VERSION >= 0x060000
-    QtConcurrent::run(&DbAndroidPathDialog::asyncAppUpdate, this, dbUrl.toUrlString(), dbUrl.getMode());
-#else
-    QtConcurrent::run(this, &DbAndroidPathDialog::asyncAppUpdate, dbUrl.toUrlString(), dbUrl.getMode());
-#endif
+    runInThread([=]{ asyncAppUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
 }
 
 void DbAndroidPathDialog::asyncDbUpdate(const QString& connectionUrl, DbAndroidMode enforcedMode)
