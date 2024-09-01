@@ -125,7 +125,9 @@ class DynamicPythonApi
 #undef PyBytes_Check
 #undef PyDict_Check
 #undef PyFloat_Check
+#undef PyObject_TypeCheck
 #undef PyList_Check
+#undef PyList_GET_SIZE
 #undef PyLong_Check
 #undef PySet_Check
 #undef PyTuple_Check
@@ -135,16 +137,18 @@ class DynamicPythonApi
 #define Py_INCREF Py_IncRef
 #define Py_XDECREF Py_DecRef
 
-#define PyBool_Check(x)      (Py_TYPE((x)) == pPyBool_Type)
-#define PyByteArray_Check(x) PyObject_TypeCheck((x), pPyByteArray_Type)
-#define PyBytes_Check(x)     PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_BYTES_SUBCLASS)
-#define PyDict_Check(x)	     PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_DICT_SUBCLASS)
-#define PyFloat_Check(x)     PyObject_TypeCheck((x), pPyFloat_Type)
-#define PyList_Check(x)      PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_LIST_SUBCLASS)
-#define PyLong_Check(x)      PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_LONG_SUBCLASS)
-#define PySet_Check(x)       PyObject_TypeCheck((x), pPySet_Type)
-#define PyTuple_Check(x)     PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_TUPLE_SUBCLASS)
-#define PyUnicode_Check(x)   PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_UNICODE_SUBCLASS)
+#define PyObject_TypeCheck(o, t) (Py_IS_TYPE((o), (t)) || PyType_IsSubtype(Py_TYPE((o)), (t)))
+#define PyBool_Check(x)          (Py_TYPE((x)) == pPyBool_Type)
+#define PyByteArray_Check(x)     PyObject_TypeCheck((x), pPyByteArray_Type)
+#define PyBytes_Check(x)         PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_BYTES_SUBCLASS)
+#define PyDict_Check(x)	         PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_DICT_SUBCLASS)
+#define PyFloat_Check(x)         PyObject_TypeCheck((x), pPyFloat_Type)
+#define PyList_Check(x)          PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_LIST_SUBCLASS)
+#define PyList_GET_SIZE(x)       (_PyVarObject_CAST((x))->ob_size)
+#define PyLong_Check(x)          PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_LONG_SUBCLASS)
+#define PySet_Check(x)           PyObject_TypeCheck((x), pPySet_Type)
+#define PyTuple_Check(x)         PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_TUPLE_SUBCLASS)
+#define PyUnicode_Check(x)       PyType_HasFeature(Py_TYPE((x)), Py_TPFLAGS_UNICODE_SUBCLASS)
 
 // There are a few constructs for which placing the stuff in the class scope is not enough
 #ifndef DYNAMICPYTHONAPI_INTERNAL
