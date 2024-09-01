@@ -198,11 +198,13 @@ static void globParts(QStringList& files, QList<QStringList> parts,
     }
 }
 
+#if !defined(Q_OS_MACX) && defined(Q_OS_UNIX)
 static inline QStringList dirNames(QStringList paths)
 {
    // Returns a path list where every last path component is removed
    return paths.replaceInStrings(QRegularExpression("/?[^/]+/?$"), "");
 }
+#endif
 
 QStringList ScriptingPython::discoverLibraries() const
 {
