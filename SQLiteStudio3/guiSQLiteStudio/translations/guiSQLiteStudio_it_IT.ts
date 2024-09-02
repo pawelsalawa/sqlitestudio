@@ -6627,33 +6627,24 @@ Sei sicuro di voler creare una tabella con il nome vuoto?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="vanished">Ci sono modifiche non committate alla struttura. Non puoi sfogliare o modificare i dati finché non hai sistemato la struttura della tabella.
-Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</translation>
+      <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>Go back to structure tab</source>
       <translation>Torna alla scheda struttura</translation>
-    </message>
-    <message>
-      <source>Commit modifications and browse data.</source>
-      <translation type="vanished">Salva le modifiche e sfoglia i dati.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1548"/>
@@ -7043,33 +7034,24 @@ Vuoi committare la struttura o vuoi tornare alla scheda della struttura?</transl
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="vanished">Ci sono modifiche della struttura senza commit. Non è possibile sfogliare o modificare i dati fino a quando non si dispone di una struttura di visualizzazione regolata.
-Vuoi eseguire il commit della struttura, o vuoi tornare alla scheda Struttura?</translation>
+      <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
       <translation>Torna alla scheda struttura</translation>
-    </message>
-    <message>
-      <source>Commit modifications and browse data.</source>
-      <translation type="vanished">Commit delle modifiche e sfoglia i dati.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="675"/>
