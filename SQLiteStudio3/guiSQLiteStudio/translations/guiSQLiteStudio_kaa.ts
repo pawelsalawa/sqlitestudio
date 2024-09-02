@@ -4025,53 +4025,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">&amp;Help</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="586"/>
+      <location filename="../mainwindow.cpp" line="595"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation type="unfinished">Could not set style: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="717"/>
+      <location filename="../mainwindow.cpp" line="726"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="733"/>
+      <location filename="../mainwindow.cpp" line="742"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Rename window</source>
       <translation type="unfinished">Rename window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Enter new name for the window:</source>
       <translation type="unfinished">Enter new name for the window:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="879"/>
+      <location filename="../mainwindow.cpp" line="888"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation type="unfinished">New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="887"/>
+      <location filename="../mainwindow.cpp" line="896"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1017"/>
+      <location filename="../mainwindow.cpp" line="1026"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1024"/>
+      <location filename="../mainwindow.cpp" line="1033"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1029"/>
+      <location filename="../mainwindow.cpp" line="1038"/>
       <source>Could not add database %1 to list.</source>
       <translation type="unfinished">Could not add database %1 to list.</translation>
     </message>
@@ -5613,53 +5613,53 @@ find next</translation>
       <translation type="unfinished">An error occurred while rolling back the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="823"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="834"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation type="unfinished">Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="848"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="859"/>
       <source>An error occurred while committing the data: %1</source>
       <translation type="unfinished">An error occurred while committing the data: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="982"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="993"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1406"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1433"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1491"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation type="unfinished">Error while executing SQL query on database &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1461"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1488"/>
       <source>Error while loading query results: %1</source>
       <translation type="unfinished">Error while loading query results: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1628"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
       <source>Insert multiple rows</source>
       <translation type="unfinished">Insert multiple rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1947"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
       <source>Number of rows to insert:</source>
       <translation type="unfinished">Number of rows to insert:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2002"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2029"/>
       <source>Delete rows</source>
       <translation type="unfinished">Delete rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2003"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2030"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
@@ -5669,200 +5669,200 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
   <context>
     <name>SqlQueryView</name>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
       <translation type="unfinished">Go to referenced row in...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Copy</source>
       <translation type="unfinished">Copy</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Copy with headers</source>
       <translation type="unfinished">Copy with headers</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Copy as...</source>
       <translation type="unfinished">Copy as...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Paste</source>
       <translation type="unfinished">Paste</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Paste as...</source>
       <translation type="unfinished">Paste as...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Set NULL values</source>
       <translation type="unfinished">Set NULL values</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Erase values</source>
       <translation type="unfinished">Erase values</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Commit</source>
       <translation type="unfinished">Commit</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Rollback</source>
       <translation type="unfinished">Rollback</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Commit selected cells</source>
       <translation type="unfinished">Commit selected cells</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
       <source>Rollback selected cells</source>
       <translation type="unfinished">Rollback selected cells</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Edit current cell inline</source>
       <translation type="unfinished">Edit current cell inline</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Define columns to sort by</source>
       <translation type="unfinished">Define columns to sort by</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Remove custom sorting</source>
       <translation type="unfinished">Remove custom sorting</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Insert row</source>
       <translation type="unfinished">Insert row</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Insert multiple rows</source>
       <translation type="unfinished">Insert multiple rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
       <source>Delete selected row</source>
       <translation type="unfinished">Delete selected row</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
       <source>Adjust height of rows</source>
       <translation type="unfinished">Adjust height of rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="121"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation type="unfinished">Invert selection</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Edit value in editor</source>
       <translation type="unfinished">Edit value in editor</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Show value in a viewer</source>
       <translation type="unfinished">Show value in a viewer</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="189"/>
       <source>Generate query for selected cells</source>
       <translation type="unfinished">Generate query for selected cells</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="415"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="449"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation type="unfinished">No items selected to paste clipboard contents to.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
       <source>Cannot paste data. Details: %1</source>
       <translation type="unfinished">Cannot paste data. Details: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="421"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="525"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="491"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="525"/>
       <source>The row is marked for deletion.</source>
       <translation type="unfinished">The row is marked for deletion.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="502"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="536"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="520"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="554"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation type="unfinished">Go to referenced row in table &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="532"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="566"/>
       <source>table &apos;%1&apos;</source>
       <translation type="unfinished">table &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="555"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="589"/>
       <source>Referenced row (%1)</source>
       <translation type="unfinished">Referenced row (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="806"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="840"/>
       <source>Trim pasted text?</source>
       <translation type="unfinished">Trim pasted text?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="807"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="841"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="815"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="849"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="816"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="850"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="924"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="958"/>
       <source>Edit value</source>
       <translation type="unfinished">Edit value</translation>
     </message>
@@ -6264,7 +6264,7 @@ NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1655"/>
+      <location filename="../windows/tablewindow.cpp" line="1660"/>
       <source>Data</source>
       <translation type="unfinished">Data</translation>
     </message>
@@ -6629,81 +6629,86 @@ Are you sure you want to create a table with blank name?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1342"/>
+      <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
+      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
+      <location filename="../windows/tablewindow.cpp" line="1346"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished">Commit modifications and browse data</translation>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>Go back to structure tab</source>
       <translation type="unfinished">Go back to structure tab</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
-      <source>Commit modifications and browse data.</source>
-      <translation type="unfinished">Commit modifications and browse data.</translation>
-    </message>
-    <message>
-      <location filename="../windows/tablewindow.cpp" line="1543"/>
+      <location filename="../windows/tablewindow.cpp" line="1548"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1544"/>
+      <location filename="../windows/tablewindow.cpp" line="1549"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Unique</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1545"/>
+      <location filename="../windows/tablewindow.cpp" line="1550"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Columns</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1546"/>
+      <location filename="../windows/tablewindow.cpp" line="1551"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Partial index condition</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1593"/>
+      <location filename="../windows/tablewindow.cpp" line="1598"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1594"/>
+      <location filename="../windows/tablewindow.cpp" line="1599"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Event</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1595"/>
+      <location filename="../windows/tablewindow.cpp" line="1600"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Condition</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1596"/>
+      <location filename="../windows/tablewindow.cpp" line="1601"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Details</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1697"/>
+      <location filename="../windows/tablewindow.cpp" line="1702"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1699"/>
+      <location filename="../windows/tablewindow.cpp" line="1704"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1701"/>
+      <location filename="../windows/tablewindow.cpp" line="1706"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
     </message>
@@ -6876,7 +6881,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
-      <location filename="../windows/viewwindow.cpp" line="887"/>
+      <location filename="../windows/viewwindow.cpp" line="892"/>
       <source>Data</source>
       <translation type="unfinished">Data</translation>
     </message>
@@ -7031,117 +7036,122 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="619"/>
+      <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
+      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
+      <location filename="../windows/viewwindow.cpp" line="623"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished">Commit modifications and browse data</translation>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
       <translation type="unfinished">Go back to structure tab</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
-      <source>Commit modifications and browse data.</source>
-      <translation type="unfinished">Commit modifications and browse data.</translation>
-    </message>
-    <message>
-      <location filename="../windows/viewwindow.cpp" line="670"/>
+      <location filename="../windows/viewwindow.cpp" line="675"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
       <translation type="unfinished">View &apos;%1&apos; was committed successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="672"/>
+      <location filename="../windows/viewwindow.cpp" line="677"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
       <translation type="unfinished">Committed changes for view &apos;%1&apos; successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="674"/>
+      <location filename="../windows/viewwindow.cpp" line="679"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation type="unfinished">Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="697"/>
+      <location filename="../windows/viewwindow.cpp" line="702"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
       <translation type="unfinished">Could not commit view changes. Error message: %1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Override columns</source>
       <translation type="unfinished">Override columns</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
       <translation type="unfinished">Currently defined columns will be overriden. Do you want to continue?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="864"/>
+      <location filename="../windows/viewwindow.cpp" line="869"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
       <translation type="unfinished">Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="918"/>
+      <location filename="../windows/viewwindow.cpp" line="923"/>
       <source>Name</source>
       <comment>view window triggers</comment>
       <translation type="unfinished">Name</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="919"/>
+      <location filename="../windows/viewwindow.cpp" line="924"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
       <translation type="unfinished">Instead of</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="920"/>
+      <location filename="../windows/viewwindow.cpp" line="925"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
       <translation type="unfinished">Condition</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="921"/>
+      <location filename="../windows/viewwindow.cpp" line="926"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Details</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="961"/>
+      <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>Could not process the %1 view correctly. Unable to open a view window.</source>
       <translation type="unfinished">Could not process the %1 view correctly. Unable to open a view window.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>Empty name</source>
       <translation type="unfinished">Empty name</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
       <translation type="unfinished">A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1019"/>
+      <location filename="../windows/viewwindow.cpp" line="1024"/>
       <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
       <translation type="unfinished">The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1027"/>
+      <location filename="../windows/viewwindow.cpp" line="1032"/>
       <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
       <translation type="unfinished">The view could not be modified due to internal SQLiteStudio error. Please report this!</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1053"/>
+      <location filename="../windows/viewwindow.cpp" line="1058"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
       <translation type="unfinished">The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1066"/>
+      <location filename="../windows/viewwindow.cpp" line="1071"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
@@ -7149,7 +7159,7 @@ Would you like to proceed?</source>
 Would you like to proceed?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1068"/>
+      <location filename="../windows/viewwindow.cpp" line="1073"/>
       <source>View modification</source>
       <comment>view window</comment>
       <translation type="unfinished">View modification</translation>
