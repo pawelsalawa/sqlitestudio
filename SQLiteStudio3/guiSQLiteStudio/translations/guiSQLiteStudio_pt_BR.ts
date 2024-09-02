@@ -4026,53 +4026,53 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <translation>Ajuda</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="586"/>
+      <location filename="../mainwindow.cpp" line="595"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>Não foi possível definir o estilo: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="717"/>
+      <location filename="../mainwindow.cpp" line="726"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="733"/>
+      <location filename="../mainwindow.cpp" line="742"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Não é possível importar porque nenhum plugin de importação está carregado.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Rename window</source>
       <translation>Renomear janela</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Enter new name for the window:</source>
       <translation>Digite um novo nome para a janela:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="879"/>
+      <location filename="../mainwindow.cpp" line="888"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Novas atualizações estão disponíveis. &lt;a href=&quot;%1&quot;&gt;Clique aqui para mais detalhes&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="887"/>
+      <location filename="../mainwindow.cpp" line="896"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Você está executando a versão mais recente. Não há atualizações disponíveis.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1017"/>
+      <location filename="../mainwindow.cpp" line="1026"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1024"/>
+      <location filename="../mainwindow.cpp" line="1033"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Banco de dados passado nos parâmetros da linha de comando (%1) já estava na lista com o nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1029"/>
+      <location filename="../mainwindow.cpp" line="1038"/>
       <source>Could not add database %1 to list.</source>
       <translation>Não foi possível adicionar o banco de dados %1 à lista.</translation>
     </message>
@@ -6263,7 +6263,7 @@ NULL</source>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1655"/>
+      <location filename="../windows/tablewindow.cpp" line="1660"/>
       <source>Data</source>
       <translation>Dados</translation>
     </message>
@@ -6628,81 +6628,95 @@ Tem certeza de que deseja criar uma tabela com nome em branco?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1342"/>
+      <source>You cannot browse or edit data until you have table structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1346"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>Há modificações de estrutura não autorizadas. Você não pode navegar ou editar dados até que sua estrutura de tabela seja estabelecida.
+      <translation type="vanished">Há modificações de estrutura não autorizadas. Você não pode navegar ou editar dados até que sua estrutura de tabela seja estabelecida.
 Você deseja comprometer a estrutura, ou deseja voltar para a guia estrutura?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
+      <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>Go back to structure tab</source>
       <translation>Voltar à aba de estrutura</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
       <source>Commit modifications and browse data.</source>
-      <translation>Conclua modificações e navegue dados.</translation>
+      <translation type="vanished">Conclua modificações e navegue dados.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1543"/>
+      <location filename="../windows/tablewindow.cpp" line="1548"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1544"/>
+      <location filename="../windows/tablewindow.cpp" line="1549"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation>Unique</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1545"/>
+      <location filename="../windows/tablewindow.cpp" line="1550"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>Colunas</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1546"/>
+      <location filename="../windows/tablewindow.cpp" line="1551"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>Condição do índice parcial</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1593"/>
+      <location filename="../windows/tablewindow.cpp" line="1598"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1594"/>
+      <location filename="../windows/tablewindow.cpp" line="1599"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation>Evento</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1595"/>
+      <location filename="../windows/tablewindow.cpp" line="1600"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation>Condição</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1596"/>
+      <location filename="../windows/tablewindow.cpp" line="1601"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>Detalhes</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1697"/>
+      <location filename="../windows/tablewindow.cpp" line="1702"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation>Janela de tabela &quot;%1&quot; possui dados e modificações de estrutura não autorizadas.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1699"/>
+      <location filename="../windows/tablewindow.cpp" line="1704"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation>Janela de tabela &quot;%1&quot; tem dados não confirmados.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1701"/>
+      <location filename="../windows/tablewindow.cpp" line="1706"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation>Janela de tabela &quot;%1&quot; tem modificações de estrutura não autorizadas.</translation>
     </message>
@@ -6875,7 +6889,7 @@ Você deseja comprometer a estrutura, ou deseja voltar para a guia estrutura?</t
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
-      <location filename="../windows/viewwindow.cpp" line="887"/>
+      <location filename="../windows/viewwindow.cpp" line="892"/>
       <source>Data</source>
       <translation>Dado</translation>
     </message>
@@ -7030,117 +7044,131 @@ Você deseja comprometer a estrutura, ou deseja voltar para a guia estrutura?</t
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="619"/>
+      <source>You cannot browse or edit data until you have the view structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="623"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>Há modificações de estrutura não autorizadas. Você não pode navegar ou editar dados até que tenha a estrutura da visualização configurada.
+      <translation type="vanished">Há modificações de estrutura não autorizadas. Você não pode navegar ou editar dados até que tenha a estrutura da visualização configurada.
 Você deseja comprometer a estrutura, ou deseja voltar para a guia estrutura?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
+      <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
       <translation>Voltar à aba de estrutura</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
       <source>Commit modifications and browse data.</source>
-      <translation>Modificações e buscas por dados.</translation>
+      <translation type="vanished">Modificações e buscas por dados.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="670"/>
+      <location filename="../windows/viewwindow.cpp" line="675"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
       <translation>A visualização &apos;%1&apos; foi confirmada com sucesso.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="672"/>
+      <location filename="../windows/viewwindow.cpp" line="677"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
       <translation>Alterações comprometidas para visualização &apos;%1&apos; com sucesso.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="674"/>
+      <location filename="../windows/viewwindow.cpp" line="679"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation>Alterações comprometidas para visualização &apos;%1&apos; (nomeado antes &apos;%2&apos;) com sucesso.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="697"/>
+      <location filename="../windows/viewwindow.cpp" line="702"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
       <translation>Não foi possível enviar alterações de visualização. Mensagem de erro: %1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Override columns</source>
       <translation>Substituir colunas</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
       <translation>Colunas atualmente definidas serão substituídas. Deseja continuar?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="864"/>
+      <location filename="../windows/viewwindow.cpp" line="869"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
       <translation>Não foi possível determinar as colunas retornadas da visualização. A consulta está provavelmente incompleta ou contém erros.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="918"/>
+      <location filename="../windows/viewwindow.cpp" line="923"/>
       <source>Name</source>
       <comment>view window triggers</comment>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="919"/>
+      <location filename="../windows/viewwindow.cpp" line="924"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
       <translation>Em vez de</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="920"/>
+      <location filename="../windows/viewwindow.cpp" line="925"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
       <translation>Condição</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="921"/>
+      <location filename="../windows/viewwindow.cpp" line="926"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>Detalhes</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="961"/>
+      <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>Could not process the %1 view correctly. Unable to open a view window.</source>
       <translation>Não foi possível processar a visualização de %1 corretamente. Não é possível abrir uma janela de visualização.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>Empty name</source>
       <translation>Nome vazio</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
       <translation>Um nome em branco para a visualização é permitido no SQLite, mas não é recomendado.
 Tem certeza de que deseja criar uma view com nome em branco?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1019"/>
+      <location filename="../windows/viewwindow.cpp" line="1024"/>
       <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
       <translation>A declaração SELECT não pôde ser analisada. Por favor, corrija a consulta e tente novamente.
 Detalhes: %1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1027"/>
+      <location filename="../windows/viewwindow.cpp" line="1032"/>
       <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
       <translation>A vista não pôde ser modificada devido a um erro interno do SQLiteStudio. Por favor reporte isto!</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1053"/>
+      <location filename="../windows/viewwindow.cpp" line="1058"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
       <translation>A visualização do código não pôde ser analisada corretamente para execução. Este é um bug SQLiteStudio&apos;s. Por favor, reporte-o.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1066"/>
+      <location filename="../windows/viewwindow.cpp" line="1071"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
@@ -7148,7 +7176,7 @@ Would you like to proceed?</source>
 Gostaria de continuar?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1068"/>
+      <location filename="../windows/viewwindow.cpp" line="1073"/>
       <source>View modification</source>
       <comment>view window</comment>
       <translation>Visualizar modificação</translation>

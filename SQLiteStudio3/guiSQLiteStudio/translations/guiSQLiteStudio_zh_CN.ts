@@ -4024,53 +4024,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="586"/>
+      <location filename="../mainwindow.cpp" line="595"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>未能设置风格：%1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="717"/>
+      <location filename="../mainwindow.cpp" line="726"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>无法导出，没有加载导出插件。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="733"/>
+      <location filename="../mainwindow.cpp" line="742"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>无法导入，没有加载导入插件。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Rename window</source>
       <translation>重命名窗口</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="776"/>
+      <location filename="../mainwindow.cpp" line="785"/>
       <source>Enter new name for the window:</source>
       <translation>请输入窗口的新名称：</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="879"/>
+      <location filename="../mainwindow.cpp" line="888"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;点此查看更新详情&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="887"/>
+      <location filename="../mainwindow.cpp" line="896"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1017"/>
+      <location filename="../mainwindow.cpp" line="1026"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>命令行参数传递的数据库（%1）已在列表中，名为：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1024"/>
+      <location filename="../mainwindow.cpp" line="1033"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>命令行参数传递的数据库（%1）已临时添加到列表中，名为：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1029"/>
+      <location filename="../mainwindow.cpp" line="1038"/>
       <source>Could not add database %1 to list.</source>
       <translation>未能将数据 %1 添加到列表</translation>
     </message>
@@ -6259,7 +6259,7 @@ NULL</source>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1655"/>
+      <location filename="../windows/tablewindow.cpp" line="1660"/>
       <source>Data</source>
       <translation>数据</translation>
     </message>
@@ -6624,81 +6624,95 @@ Are you sure you want to create a table with blank name?</source>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1342"/>
+      <source>You cannot browse or edit data until you have table structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="1346"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>有未提交的结构修改。您不能浏览或编辑数据，直至表结构完工。
+      <translation type="vanished">有未提交的结构修改。您不能浏览或编辑数据，直至表结构完工。
 立即提交现有结构？或者返回结构选项卡？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
+      <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>Go back to structure tab</source>
       <translation>返回结构选项卡</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1343"/>
       <source>Commit modifications and browse data.</source>
-      <translation>提交修改并浏览数据。</translation>
+      <translation type="vanished">提交修改并浏览数据。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1543"/>
+      <location filename="../windows/tablewindow.cpp" line="1548"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation>名称</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1544"/>
+      <location filename="../windows/tablewindow.cpp" line="1549"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation>唯一</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1545"/>
+      <location filename="../windows/tablewindow.cpp" line="1550"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1546"/>
+      <location filename="../windows/tablewindow.cpp" line="1551"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>部分索引条件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1593"/>
+      <location filename="../windows/tablewindow.cpp" line="1598"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation>名称</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1594"/>
+      <location filename="../windows/tablewindow.cpp" line="1599"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation>事件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1595"/>
+      <location filename="../windows/tablewindow.cpp" line="1600"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation>条件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1596"/>
+      <location filename="../windows/tablewindow.cpp" line="1601"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>详情</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1697"/>
+      <location filename="../windows/tablewindow.cpp" line="1702"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation>表窗口“%1”有未提交的结构更改与数据。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1699"/>
+      <location filename="../windows/tablewindow.cpp" line="1704"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation>表窗口“%1”有未提交的数据。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1701"/>
+      <location filename="../windows/tablewindow.cpp" line="1706"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation>表窗口“%1”有未提交的结构更改。</translation>
     </message>
@@ -6871,7 +6885,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
-      <location filename="../windows/viewwindow.cpp" line="887"/>
+      <location filename="../windows/viewwindow.cpp" line="892"/>
       <source>Data</source>
       <translation>数据</translation>
     </message>
@@ -7026,117 +7040,131 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
+      <source>There are uncommitted structure modifications.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="619"/>
+      <source>You cannot browse or edit data until you have the view structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../windows/viewwindow.cpp" line="623"/>
+      <source>Commit modifications and browse data</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>有未提交的结构修改。您不能浏览或编辑数据，直至表结构完工。
+      <translation type="vanished">有未提交的结构修改。您不能浏览或编辑数据，直至表结构完工。
 立即提交现有结构？或者返回结构选项卡？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
+      <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
       <translation>返回结构选项卡</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="620"/>
       <source>Commit modifications and browse data.</source>
-      <translation>提交更改并浏览数据。</translation>
+      <translation type="vanished">提交更改并浏览数据。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="670"/>
+      <location filename="../windows/viewwindow.cpp" line="675"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
       <translation>成功提交视图“%1”。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="672"/>
+      <location filename="../windows/viewwindow.cpp" line="677"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
       <translation>成功提交对视图“%1”的更改。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="674"/>
+      <location filename="../windows/viewwindow.cpp" line="679"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation>成功提交对视图“%1”（原名“%2”）的更改。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="697"/>
+      <location filename="../windows/viewwindow.cpp" line="702"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
       <translation>无法提交视图更改。错误信息：%1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Override columns</source>
       <translation>覆盖列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="841"/>
+      <location filename="../windows/viewwindow.cpp" line="846"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
       <translation>当前定义的列将被覆盖。您要继续吗？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="864"/>
+      <location filename="../windows/viewwindow.cpp" line="869"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
       <translation>无法确定视图所返回的列。查询可能不完整或包含错误。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="918"/>
+      <location filename="../windows/viewwindow.cpp" line="923"/>
       <source>Name</source>
       <comment>view window triggers</comment>
       <translation>名称</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="919"/>
+      <location filename="../windows/viewwindow.cpp" line="924"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
       <translation>而非</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="920"/>
+      <location filename="../windows/viewwindow.cpp" line="925"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
       <translation>条件</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="921"/>
+      <location filename="../windows/viewwindow.cpp" line="926"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>详情</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="961"/>
+      <location filename="../windows/viewwindow.cpp" line="966"/>
       <source>Could not process the %1 view correctly. Unable to open a view window.</source>
       <translation>无法正确处理视图 %1。无法打开视图窗口。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>Empty name</source>
       <translation>空名称</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1007"/>
+      <location filename="../windows/viewwindow.cpp" line="1012"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
       <translation>SQLite 允许为视图使用空白名称，但不推荐使用空白名称。
 您确定要创建一个空白名称的视图？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1019"/>
+      <location filename="../windows/viewwindow.cpp" line="1024"/>
       <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
       <translation>SELECT 语句解析失败。请更正查询并重试。
 详情：%1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1027"/>
+      <location filename="../windows/viewwindow.cpp" line="1032"/>
       <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
       <translation>因 SQLiteStudio 内部错误，无法修改该视图。请报告该问题！</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1053"/>
+      <location filename="../windows/viewwindow.cpp" line="1058"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
       <translation>用于执行的视图代码无法正确解析。这是 SQLiteStudio 的 bug，请报告。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1066"/>
+      <location filename="../windows/viewwindow.cpp" line="1071"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
@@ -7144,7 +7172,7 @@ Would you like to proceed?</source>
 是否继续？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1068"/>
+      <location filename="../windows/viewwindow.cpp" line="1073"/>
       <source>View modification</source>
       <comment>view window</comment>
       <translation>视图更改</translation>

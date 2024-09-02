@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="941"/>
+      <location filename="../services/impl/configimpl.cpp" line="880"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="948"/>
+      <location filename="../services/impl/configimpl.cpp" line="887"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation type="unfinished"/>
     </message>
@@ -448,20 +448,20 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="180"/>
-      <location filename="../importworker.cpp" line="187"/>
+      <location filename="../importworker.cpp" line="184"/>
+      <location filename="../importworker.cpp" line="191"/>
       <source>Error while importing data: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="187"/>
+      <location filename="../importworker.cpp" line="191"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="175"/>
+      <location filename="../importworker.cpp" line="179"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation type="unfinished"/>
     </message>
@@ -768,7 +768,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="901"/>
+      <location filename="../common/utils.cpp" line="902"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished"/>
     </message>
@@ -778,7 +778,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1221"/>
+      <location filename="../db/abstractdb3.h" line="1225"/>
       <source>Result set expired or no row available.</source>
       <translation type="unfinished"/>
     </message>
@@ -885,7 +885,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="821"/>
+      <location filename="../services/impl/configimpl.cpp" line="760"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -1030,37 +1030,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="51"/>
+      <location filename="../sqlfileexecutor.cpp" line="52"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="86"/>
+      <location filename="../sqlfileexecutor.cpp" line="83"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="102"/>
+      <location filename="../sqlfileexecutor.cpp" line="99"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="147"/>
+      <location filename="../sqlfileexecutor.cpp" line="144"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="152"/>
+      <location filename="../sqlfileexecutor.cpp" line="149"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="158"/>
+      <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="165"/>
+      <location filename="../sqlfileexecutor.cpp" line="162"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished"/>
     </message>
@@ -1101,7 +1101,7 @@ The view will remain as it is.</source>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="859"/>
+      <location filename="../db/abstractdb3.h" line="863"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished"/>
     </message>
