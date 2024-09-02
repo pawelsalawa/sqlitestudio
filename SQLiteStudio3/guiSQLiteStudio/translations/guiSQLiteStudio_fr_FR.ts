@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -6626,33 +6626,24 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="vanished">Il y a des modifications de structure invalidées. Vous ne pouvez pas naviguer ou éditer des données tant que la structure du tableau est instable.
-Souhaitez-vous valider la structure, ou revenir à l’onglet structure ?</translation>
+      <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>Go back to structure tab</source>
       <translation>Retour à l’onglet de structure</translation>
-    </message>
-    <message>
-      <source>Commit modifications and browse data.</source>
-      <translation type="vanished">Enregistrer les modifications et continuer</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1548"/>
@@ -7041,33 +7032,24 @@ Souhaitez-vous valider la structure, ou revenir à l’onglet structure ?</trans
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
+Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="vanished">Il y a des modifications de structure invalidées. Vous ne pouvez pas naviguer ou modifier des données tant que la structure de la vue est instable.
-Souhaitez-vous valider la structure, ou revenir à l’onglet structure ?</translation>
+      <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
       <translation>Retour à l’onlet de structure</translation>
-    </message>
-    <message>
-      <source>Commit modifications and browse data.</source>
-      <translation type="vanished">Enregistrement des modifications et navigation des données.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="675"/>

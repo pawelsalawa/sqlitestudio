@@ -41,12 +41,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">The selected ADB is incorrect.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="210"/>
       <source>Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="234"/>
@@ -57,12 +57,6 @@
       <location filename="../dbandroid.cpp" line="208"/>
       <source>Invalid ADB</source>
       <translation>无效的 ADB</translation>
-    </message>
-    <message>
-      <source>The selected ADB is incorrect.
-Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="vanished">选择的 ADB 不正确。
-选择另一个？或者不做配置？</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
