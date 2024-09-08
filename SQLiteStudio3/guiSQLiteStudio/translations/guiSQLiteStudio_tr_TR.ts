@@ -5225,7 +5225,7 @@ Following items are pending:</translation>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="23"/>
       <source>Find:</source>
-      <translation type="unfinished">Find:</translation>
+      <translation>Bul:</translation>
     </message>
     <message>
       <location filename="../dialogs/searchtextdialog.ui" line="36"/>
@@ -5480,7 +5480,7 @@ find next</translation>
     <message>
       <location filename="../sqleditor.cpp" line="1197"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
-      <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
+      <translation>SQL betikleri (*.sql);;Tüm dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1198"/>
@@ -5522,7 +5522,7 @@ find next</translation>
       <location filename="../datagrid/sqlqueryitem.cpp" line="231"/>
       <source>Table:</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">Table:</translation>
+      <translation>Tablo:</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitem.cpp" line="261"/>
@@ -5793,7 +5793,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="189"/>
       <source>Generate query for selected cells</source>
-      <translation type="unfinished">Generate query for selected cells</translation>
+      <translation>Seçili hücreler için sorgu üret</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="449"/>
@@ -5833,7 +5833,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="566"/>
       <source>table &apos;%1&apos;</source>
-      <translation type="unfinished">table &apos;%1&apos;</translation>
+      <translation>tablo &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="589"/>
@@ -5924,7 +5924,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="66"/>
       <source>Extension manager</source>
-      <translation type="unfinished">Extension manager</translation>
+      <translation>Uzantı yöneticisi</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
@@ -5939,12 +5939,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
       <source>Add new extension</source>
-      <translation type="unfinished">Add new extension</translation>
+      <translation>Yeni uzantı ekle</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="75"/>
       <source>Remove selected extension</source>
-      <translation type="unfinished">Remove selected extension</translation>
+      <translation>Seçili uzantıyı kaldır</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="77"/>
@@ -5959,7 +5959,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="253"/>
       <source>Unable to load extension: %1</source>
-      <translation type="unfinished">Unable to load extension: %1</translation>
+      <translation>Uzantı yüklenemedi: %1</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.cpp" line="367"/>
@@ -6327,32 +6327,32 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="218"/>
       <source>Add column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add column</translation>
+      <translation>Sütun ekle</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="219"/>
       <source>Edit column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Edit column</translation>
+      <translation>Sütunu düzenle</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="220"/>
       <location filename="../windows/tablewindow.cpp" line="314"/>
       <source>Delete column</source>
       <comment>table window</comment>
-      <translation type="unfinished">Delete column</translation>
+      <translation>Sütunu sil</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="221"/>
       <source>Move column up</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sütunu yukarı taşı</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="222"/>
       <source>Move column down</source>
       <comment>table window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sütunu aşağı taşı</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="231"/>
@@ -6529,7 +6529,7 @@ Would you like to proceed?</translation>
       <location filename="../windows/tablewindow.cpp" line="706"/>
       <location filename="../windows/tablewindow.cpp" line="708"/>
       <source>New table %1</source>
-      <translation type="unfinished">New table %1</translation>
+      <translation>Yeni tablo %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
@@ -6664,7 +6664,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1550"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
-      <translation type="unfinished">Columns</translation>
+      <translation>Sütunlar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1551"/>
@@ -6676,25 +6676,25 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1598"/>
       <source>Name</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Ad</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1599"/>
       <source>Event</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Event</translation>
+      <translation>Olay</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1600"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Condition</translation>
+      <translation>Koşul</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1601"/>
       <source>Details</source>
       <comment>table window triggers</comment>
-      <translation type="unfinished">Details</translation>
+      <translation>Ayrıntılar</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1702"/>
@@ -6762,7 +6762,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="59"/>
       <source>Pre-condition:</source>
-      <translation type="unfinished">Pre-condition:</translation>
+      <translation>Ön koşul:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="66"/>
@@ -6848,7 +6848,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
       <source>Following changes to the SQL statements will be made:</source>
-      <translation type="unfinished">Following changes to the SQL statements will be made:</translation>
+      <translation>SQL ifadelerine şu değişiklikler uygulanacaktır:</translation>
     </message>
     <message>
       <location filename="../dialogs/versionconvertsummarydialog.cpp" line="10"/>
@@ -6976,13 +6976,13 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="351"/>
       <source>Move column up</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column up</translation>
+      <translation>Sütunu yukarı taşı</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="352"/>
       <source>Move column down</source>
       <comment>view window</comment>
-      <translation type="unfinished">Move column down</translation>
+      <translation>Sütunu aşağı taşı</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="358"/>
@@ -7053,7 +7053,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
       <source>Go back to structure tab</source>
-      <translation type="unfinished">Go back to structure tab</translation>
+      <translation>Yapı sekmesine geri git</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="675"/>
