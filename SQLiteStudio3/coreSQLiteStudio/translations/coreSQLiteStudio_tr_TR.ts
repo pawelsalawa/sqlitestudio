@@ -558,7 +558,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
       <source>Method of using words</source>
-      <translation type="unfinished">Method of using words</translation>
+      <translation>Sözcük kullanma yöntemi</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
@@ -693,7 +693,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>Bir karakteri çok kez yazarsanız kullanılması daha olasıdır.</translation>
     </message>
   </context>
   <context>
@@ -823,12 +823,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="32"/>
       <source>Could not open dictionary file %1 for reading.</source>
-      <translation type="unfinished">Could not open dictionary file %1 for reading.</translation>
+      <translation>Sözlük dosyası %1 okunmak üzere açılamadı.</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.cpp" line="93"/>
       <source>Dictionary file must exist and be readable.</source>
-      <translation type="unfinished">Dictionary file must exist and be readable.</translation>
+      <translation>Sözlük dosyası var olmalı ve okunabilmelidir.</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.cpp" line="54"/>
@@ -1013,7 +1013,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="507"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-      <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
+      <translation>SQLiteStudio sorgudan üstveri çıkaramadı. Sonuçlar düzenlenemeyecektir.</translation>
     </message>
   </context>
   <context>

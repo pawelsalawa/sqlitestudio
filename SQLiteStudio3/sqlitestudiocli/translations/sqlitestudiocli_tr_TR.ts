@@ -535,7 +535,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>Veritabanı kaldırıldı: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
@@ -573,7 +573,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="30"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Veritabanı açık değil.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="65"/>
@@ -600,7 +600,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="254"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Satır %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="404"/>

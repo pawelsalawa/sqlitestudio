@@ -16,12 +16,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="46"/>
       <source>Indentation</source>
-      <translation type="unfinished">Indentation</translation>
+      <translation>Girinti</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>Çok satırlı sorgularda anahtar sözcükleri hizala</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>Büyük harfli anahtar sözcükler</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Önizleme</translation>
     </message>
   </context>
 </TS>
