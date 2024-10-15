@@ -36,22 +36,22 @@
     <message>
       <location filename="../dbandroid.cpp" line="190"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
+      <translation>Impossibile trovare l&apos;applicazione Debug Bridge Android. &lt;a href=&quot;%1&quot;&gt;Clicca qui&lt;/a&gt; per specificare la posizione dell&apos;applicazione ADB, altrimenti il plugin %2 non supporterà le connessioni via cavo USB, solo la connessione di rete.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.</source>
-      <translation type="unfinished">The selected ADB is incorrect.</translation>
+      <translation>L'ADB selezionato non è corretto.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="210"/>
       <source>Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
+      <translation>Vuoi selezionarne un altro o lasciarlo non configurato?</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="234"/>
       <source>Save JAR file</source>
-      <translation type="unfinished">Save JAR file</translation>
+      <translation>Salva file JAR</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="208"/>
