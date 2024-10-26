@@ -96,7 +96,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation>Après la virgule dans l’exoression</translation>
+      <translation>Après la virgule dans l’expression</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
@@ -177,7 +177,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation>noms</translation>
+      <translation>Noms</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
