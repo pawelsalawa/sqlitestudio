@@ -160,7 +160,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation>La base de données %1 ne peut ëtre mise à jour à cause de l’erreur : %2</translation>
+      <translation>La base de données %1 ne peut être mise à jour à cause de l’erreur : %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
@@ -192,12 +192,12 @@
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <location filename="../dbobjectorganizer.cpp" line="404"/>
       <source>Error while creating table in target database: %1</source>
-      <translation>Erreur lors de la création du tableau dans la base de données cible : %1</translation>
+      <translation>Erreur lors de la création de la table dans la base de données cible : %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="373"/>
       <source>Could not parse table.</source>
-      <translation>Impossible d&apos;analyser le tableau.</translation>
+      <translation>Impossible d&apos;analyser la table.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="418"/>
@@ -207,21 +207,21 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
       <source>Error while copying data for table %1: %2</source>
-      <translation>Erreur lors de la copie des données pour le tableau %1: %2</translation>
+      <translation>Erreur lors de la copie des données pour la table %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="461"/>
       <location filename="../dbobjectorganizer.cpp" line="468"/>
       <location filename="../dbobjectorganizer.cpp" line="495"/>
       <source>Error while copying data to table %1: %2</source>
-      <translation>Erreur lors de la copie des données vers le tableau %1: %2</translation>
+      <translation>Erreur lors de la copie des données vers la table %1: %2</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erreur lors de la suppression de la vue source %1: %2
-Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 resteront.</translation>
+Tables, indexes, déclencheurs et vues copiés dans la base de données %3 resteront.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="524"/>
@@ -283,7 +283,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../services/exportmanager.cpp" line="98"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-      <translation>Exporter le plugin %1 ne prend pas en charge l&apos;exportation des tableaux.</translation>
+      <translation>Exporter le plugin %1 ne prend pas en charge l&apos;exportation des tables.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="122"/>
@@ -337,17 +337,17 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../exportworker.cpp" line="609"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation>Erreur lors de la lecture des données à exporter depuis le tableau %1 : %2</translation>
+      <translation>Erreur lors de la lecture des données à exporter depuis la table %1 : %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="617"/>
       <source>Error while counting data to export from table %1: %2</source>
-      <translation>Erreur lors du comptage des données à exporter à partir du tableau %1: %2</translation>
+      <translation>Erreur lors du comptage des données à exporter à partir de la table %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="633"/>
       <source>Error while counting data column width to export from table %1: %2</source>
-      <translation>Erreur lors du comptage de la largeur de la colonne de données à exporter à partir du tableau %1: %2</translation>
+      <translation>Erreur lors du comptage de la largeur de la colonne de données à exporter à partir de la table %1: %2</translation>
     </message>
   </context>
   <context>
@@ -412,7 +412,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../services/importmanager.cpp" line="96"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation>Données importées dans le tableau &apos;%1&apos; avec succès. Nombre de lignes importées : %2</translation>
+      <translation>Données importées dans la table &apos;%1&apos; avec succès. Nombre de lignes importées : %2</translation>
     </message>
   </context>
   <context>
@@ -440,12 +440,12 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../importworker.cpp" line="105"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-      <translation>Le tableau &apos;%1&apos; a plus de colonnes qu&apos;il y en a dans les données à importer. Certaines colonnes de la table seront laissées vides.</translation>
+      <translation>La table &apos;%1&apos; a plus de colonnes qu&apos;il y en a dans les données à importer. Certaines colonnes de la table seront laissées vides.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="124"/>
       <source>Could not create table to import to: %1</source>
-      <translation>Impossible de créer un tableau où importer : %1</translation>
+      <translation>Impossible de créer une table où importer : %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="133"/>
@@ -883,7 +883,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../selectresolver.cpp" line="439"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation>Impossible de résoudre le tableau pour la colonne &apos;%1&apos;.</translation>
+      <translation>Impossible de résoudre la table pour la colonne &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="760"/>
@@ -935,12 +935,12 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../tablemodifier.cpp" line="121"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-      <translation>La table %1 fait référence au tableau %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d&apos; un tableau en raison de problèmes lors de l&apos; analyse de DDL du tableau %3.</translation>
+      <translation>La table %1 fait référence à la table %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d&apos; une table en raison de problèmes lors de l&apos; analyse de DDL de la table %3.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="470"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-      <translation>Toutes les colonnes indexées par l&apos;index %1 ont disparu. L&apos;index ne sera pas recréé après modification du tableau.</translation>
+      <translation>Toutes les colonnes indexées par l&apos;index %1 ont disparu. L&apos;index ne sera pas recréé après modification de la table.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="514"/>
@@ -950,7 +950,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../tablemodifier.cpp" line="529"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation>Toutes les colonnes couvertes par le déclencheur %1 ont disparu. Le déclencheur ne sera pas recréé après la modification du tableau.</translation>
+      <translation>Toutes les colonnes couvertes par le déclencheur %1 ont disparu. Le déclencheur ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="561"/>
@@ -969,7 +969,7 @@ La vue restera telle quelle.</translation>
       <location filename="../tablemodifier.cpp" line="766"/>
       <location filename="../tablemodifier.cpp" line="785"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-      <translation>Il y a un problème avec la mise à jour de l&apos;instruction %1 dans le déclencheur %2. L&apos;une des substances %1 qui pourraient référencer le tableau %3 ne peut pas être correctement modifiée. La mise à jour manuelle du déclencheur peut être nécessaire.</translation>
+      <translation>Il y a un problème avec la mise à jour de l&apos;instruction %1 dans le déclencheur %2. L&apos;une des sous-instructions %1 qui pourraient référencer la table %3 ne peut pas être correctement modifiée. La mise à jour manuelle du déclencheur peut être nécessaire.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="24"/>
