@@ -6,7 +6,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="729"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais a obtenu %3.</translation>
+      <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais en a obtenu %3.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="738"/>
