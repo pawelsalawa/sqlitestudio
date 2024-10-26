@@ -112,7 +112,7 @@
       <location filename="../pdfexport.cpp" line="268"/>
       <source>Property</source>
       <comment>trigger header</comment>
-      <translation>Proprièté</translation>
+      <translation>Propriété</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
