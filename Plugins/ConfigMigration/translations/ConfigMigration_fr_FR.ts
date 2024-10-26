@@ -6,7 +6,7 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation>Une configuration d’un ancien SQLiteStudio 2.x.x a été détectée. Voulez-vous migrer l’ancienne configuration pour la version courante ? &lt;a href=&quot;%1&quot;&gt;Cliquer ici pour l’exécuter&lt;/a&gt;.</translation>
+      <translation>Une configuration d’un ancien SQLiteStudio 2.x.x a été détectée. Voulez-vous migrer l’ancienne configuration pour la version courante ? &lt;a href=&quot;%1&quot;&gt;Cliquer ici pour migrer&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="139"/>
