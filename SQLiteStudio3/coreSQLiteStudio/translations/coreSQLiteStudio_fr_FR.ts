@@ -69,7 +69,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
-      <translation>Anncienne référence de ligne</translation>
+      <translation>Ancienne référence de ligne</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
@@ -99,7 +99,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="186"/>
       <source>transaction name</source>
-      <translation>Nom de transaction</translation>
+      <translation>nom de transaction</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="189"/>
@@ -202,7 +202,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="418"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>La base de données %1 n&apos;a pas pu être attachée à la base de données %2, donc les données de la table %3 seront copiées avec SQLiteStudio en tant que médiateur. Cette méthode peut être lente pour les grands tableaux, donc soyez patient s&apos;il vous plaît.</translation>
+      <translation>La base de données %1 n&apos;a pas pu être attachée à la base de données %2, donc les données de la table %3 seront copiées avec SQLiteStudio en tant que médiateur. Cette méthode peut être lente pour les grandes tables, donc soyez patient s&apos;il vous plaît.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="442"/>
@@ -355,7 +355,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+      <translation>Ne peut pas créer un contexte de script, probablement le plugin n'est pas configuré correctement</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
@@ -853,7 +853,7 @@ Tableaux, indexes, déclencheurs et vues copiés dans la base de données %3 res
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+      <translation>Contexte d'évaluation non trouvé, probablement le plugin de script %1 n'est pas configuré correctement</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
