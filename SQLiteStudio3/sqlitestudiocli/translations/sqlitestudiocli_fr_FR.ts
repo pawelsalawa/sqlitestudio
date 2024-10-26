@@ -6,7 +6,7 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation>Base de données actuelle : %1</translation>
+      <translation>Base de données actuelle : %1mmée</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
-      <translation>Fermé</translation>
+      <translation>fermé</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation>Uttilisation : %1%2</translation>
+      <translation>Utilisation : %1%2</translation>
     </message>
   </context>
   <context>
@@ -57,7 +57,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="19"/>
       <source>adds new database to the list</source>
-      <translation>Ajoutez la nouvelle base de données à la liste</translation>
+      <translation>ajoutez la nouvelle base de données à la liste</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
@@ -68,13 +68,13 @@
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation>Nom</translation>
+      <translation>nom</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation>Chemin</translation>
+      <translation>chemin</translation>
     </message>
   </context>
   <context>
@@ -92,18 +92,18 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation>Modifiezle répertoire de travail actuel</translation>
+      <translation>modifiez le répertoire de travail actuel</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>La commande « cd » est connu du système UNIX et Windows. Elle nécessite le paramètre &lt;chemin&gt; passé avant l’appel %1 qui occasionnera une modification du répertoire. Pour connaitre qu’elle est le répertoire courant utiliser la commande %2 et pour lister le contenu de celui-ci utilisez la commande %3.</translation>
+      <translation>La commande « cd » est connu du système UNIX et Windows. Elle nécessite le paramètre &lt;chemin&gt; passé avant l’appel %1 qui occasionnera une modification du répertoire. Pour connaitre quel est le répertoire courant utiliser la commande %2 et pour lister le contenu de celui-ci utilisez la commande %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation>Chemin</translation>
+      <translation>chemin</translation>
     </message>
   </context>
   <context>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation>Fermeture d’une de données sélectionnées (ou actuelle)</translation>
+      <translation>ferme la base de données sélectionnée (ou actuelle)</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -138,7 +138,7 @@
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation>Nom</translation>
+      <translation>nom</translation>
     </message>
   </context>
   <context>
@@ -190,12 +190,12 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation>Imprimer la liste des bases de données enregistrées</translation>
+      <translation>imprimer la liste des bases de données enregistrées</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou close et %1 vous indique lesquellest.La base de données actuelle est aussi marquée dans la liste par « * » en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données actuelle.</translation>
+      <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou fermée et %1 vous indique ceci. La base de données actuelle est aussi marquée dans la liste par « * » en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données actuelle.</translation>
     </message>
   </context>
   <context>
@@ -217,22 +217,22 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation>Impossible de trouver le tableau nommé : %1</translation>
+      <translation>Impossible de trouver la table nommée : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation>Affichage des détails de la table</translation>
+      <translation>affichage des détails de la table</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation>Table</translation>
+      <translation>table</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation>Tableau : %1</translation>
+      <translation>Table : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
@@ -252,7 +252,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation>Tableau virtuel : %1</translation>
+      <translation>Table virtuelle : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
@@ -262,7 +262,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
       <source>No construction arguments were passed for this virtual table.</source>
-      <translation>Aucun argument de construction n&apos;a été passé pour ce tableau virtuel.</translation>
+      <translation>Aucun argument de construction n&apos;a été passé pour cette table virtuelle.</translation>
     </message>
   </context>
   <context>
@@ -270,7 +270,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation>Listes des répertoires et fichiers dans le répertoire de travail</translation>
+      <translation>listes des répertoires et fichiers dans le répertoire de travail</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
@@ -279,12 +279,12 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
       <translation>Ceci est très semblable à la commande « dir » de Windows et à la commande de « ls » de systèmes Unix.
 
-You pouvez utiliser les caractères de remplacement &lt;pattern&gt; npour filtrer la sortie.</translation>
+You pouvez utiliser les caractères de remplacement &lt;pattern&gt; pour filtrer la sortie.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation>Modèle</translation>
+      <translation>modèle</translation>
     </message>
   </context>
   <context>
@@ -292,12 +292,12 @@ You pouvez utiliser les caractères de remplacement &lt;pattern&gt; npour filtre
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation>Quitter l’application</translation>
+      <translation>quitter l’application</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation>Quittez l’apllication. Le paramètrage est stocké dans la configuration et sera restauré au prochain lancement.</translation>
+      <translation>Quittez l’application. Le paramétrage est stocké dans la configuration et sera restauré au prochain lancement.</translation>
     </message>
   </context>
   <context>
@@ -634,7 +634,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation>Tableau</translation>
+      <translation>Table</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
@@ -665,7 +665,7 @@ Lorsque l’option « -s » est ajouté, les tables système sont aussi listées
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation>Tableaux</translation>
+      <translation>Tables</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
@@ -700,8 +700,8 @@ When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
       <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données en tant qu&apos;arbre. L’arbre est très semblable à celui que vous pouvez voir dans le GUI client de SQLiteStudio.
-Quand on ajoute l’option -c, alors les colonnes seront aussi listés sous chaque tableaux.
-Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (tableaux sqlite_*, les index d’auto-incrément, etc).
+Quand on ajoute l’option -c, alors les colonnes seront aussi listés sous chaque table.
+Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (tables sqlite_*, les index d’auto-incrément, etc).
 Les arguments de base de données sont facultatif mais s&apos;ils sont fournis, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, utilisez %1 d’abord pour changer la base de données actuelle et utiliser la commande %2.</translation>
     </message>
   </context>
