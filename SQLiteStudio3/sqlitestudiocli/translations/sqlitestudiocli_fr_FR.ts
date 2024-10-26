@@ -62,7 +62,7 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
       <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-      <translation>Ajoutez la base de données pointée par &lt;chemin&gt; nommée &lt;nom&gt; à la liste des baszs de données. Le &lt;nom&gt;est seulement un nom symbolique que vous pourrez y référer. Choississez un nom unique. Pour une base de données figuant dans la liste utilisez la commande %1.</translation>
+      <translation>Ajoutez la base de données pointée par &lt;chemin&gt; nommée &lt;nom&gt; à la liste des bases de données. Le &lt;nom&gt;est seulement un nom symbolique que vous pourrez y référer. Choisissez un nom unique. Pour une base de données figurant dans la liste utilisez la commande %1.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="34"/>
