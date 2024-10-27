@@ -44,7 +44,7 @@
     <message>
       <location filename="../regexpimport.ui" line="26"/>
       <source>Treat all RegExp capture groups as columns</source>
-      <translation>Traiter tout RegExp de groupes sélectionnés comme des colonnes</translation>
+      <translation>Traiter tous les groupes de capture RegExp comme des colonnes</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="39"/>
