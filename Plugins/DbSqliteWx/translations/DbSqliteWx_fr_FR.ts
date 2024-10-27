@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbsqlitewx.cpp" line="39"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation>Le chiffrement détermine l&apos;algorithme de chiffrement utilisé pour chiffrer la base de données.</translation>
+      <translation>Cipher détermine l&apos;algorithme de chiffrement utilisé pour chiffrer la base de données.</translation>
     </message>
     <message>
       <location filename="../dbsqlitewx.cpp" line="47"/>
