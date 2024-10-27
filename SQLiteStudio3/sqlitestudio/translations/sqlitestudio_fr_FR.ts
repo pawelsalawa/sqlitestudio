@@ -71,7 +71,7 @@
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation>Fichier</translation>
+      <translation>fichier</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
