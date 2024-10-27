@@ -684,7 +684,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation>Utilisez des mots-clés &quot;TOUOURS GÉNÉRÉ&quot;</translation>
+      <translation>Utilisez les mots-clés &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
