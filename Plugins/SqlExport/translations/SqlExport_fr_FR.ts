@@ -49,7 +49,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Genere une déclaration &quot;DROP IF EXISTS&quot; avant la déclaration &quot;CREATE&quot;</translation>
+      <translation>Genere une instruction &quot;DROP IF EXISTS&quot; avant l'instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
