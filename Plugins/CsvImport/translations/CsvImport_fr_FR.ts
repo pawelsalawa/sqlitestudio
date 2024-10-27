@@ -49,7 +49,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="57"/>
       <source>Custom:</source>
-      <translation>Personalisé :</translation>
+      <translation>Personnalisé :</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
@@ -69,7 +69,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tableaux en tant que données régulières.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tables en tant que données régulières.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>
