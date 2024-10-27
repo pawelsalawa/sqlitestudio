@@ -11,7 +11,7 @@
     <message>
       <location filename="../configmigration.cpp" line="139"/>
       <source>Bug reports history (%1)</source>
-      <translation>Historique des rappots de bug (%1)</translation>
+      <translation>Historique des rapports de bug (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="148"/>
