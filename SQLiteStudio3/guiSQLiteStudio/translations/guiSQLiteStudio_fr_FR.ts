@@ -3318,12 +3318,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/functionseditor.ui" line="211"/>
       <source>Register in all databases</source>
-      <translation>Enregistre toutes les bases de données</translation>
+      <translation>Enregistre dans toutes les bases de données</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="218"/>
       <source>Register in following databases:</source>
-      <translation>Enregistre les bases de données suivantes :</translation>
+      <translation>Enregistre dans les bases de données suivantes :</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="253"/>
