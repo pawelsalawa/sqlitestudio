@@ -252,13 +252,13 @@ jobs:
                 ls -l
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
                 path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
 
             - name: Upload installer artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
