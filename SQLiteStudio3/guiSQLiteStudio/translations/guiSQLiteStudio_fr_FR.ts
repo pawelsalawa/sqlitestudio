@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -596,7 +596,8 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="659"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
-      <translation>Impossible de faire correspondre le type de données, tableau STRICT valide du type déclaré : %1.</translation>
+      <translation>Impossible de faire correspondre un type de données valide (table STRICT) au type déclaré : %1.
+</translation>
     </message>
   </context>
   <context>
@@ -683,7 +684,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation>Utilisez des mots-clés &quot;TOUOURS GÉNÉRÉ&quot;</translation>
+      <translation>Utilisez les mots-clés &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
@@ -1032,12 +1033,12 @@
       <location filename="../dialogs/configdialog.ui" line="444"/>
       <location filename="../dialogs/configdialog.ui" line="464"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Nombre maximum de configurations de Tableau de Populations de boîte de dialogue stockées dans la configuration. La valeur 100 doit être suffisante.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Nombre maximum de configurations de dialogue de population de table stockées dans la configuration. La valeur 100 doit être suffisante.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="467"/>
       <source>Number of memorized table populating configurations</source>
-      <translation>Nombre de tableaux mémorisés remplissant les configurations</translation>
+      <translation>Nombre de configurations de population de table mémorisées</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="561"/>
@@ -1067,7 +1068,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="487"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Lorsque cette option est activée et que l&apos;utilisateur maintient le pointeur de la souris sur une cellule dans n&apos;importe quelle vue de données (résultats de requête, données d&apos;un tableau, une donnée de vue) une infobulle apparaîtra avec des détails sur la cellule - elle inclut des détails tels que le type de données de la colonne, les contraintes, ROWID et autres.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée et que l&apos;utilisateur maintient le pointeur de la souris sur une cellule dans n&apos;importe quelle vue de données (résultats de requête, données d&apos;une table, une donnée de vue) une infobulle apparaîtra avec des détails sur la cellule - elle inclut des détails tels que le type de données de la colonne, les contraintes, ROWID et autres.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="490"/>
@@ -1132,7 +1133,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="688"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Lorsque cette option est activée, les Fenêtres des Tableaux s&apos;afficheront avec l&apos;onglet de données, au lieu de l&apos;onglet structure.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, les fenêtres de Table s&apos;afficheront avec l&apos;onglet de données, au lieu de l&apos;onglet structure.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="691"/>
@@ -1142,7 +1143,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="701"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Lorsque cette option est activée, l&apos;onglet &quot;Données&quot; sera placé en tant que premier onglet dans chaque Fenêtre de Tableaux, au lieu d&apos;être à la deuxième place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, l&apos;onglet &quot;Données&quot; sera placé en tant que premier onglet dans chaque fenêtre de Table, au lieu d&apos;être à la deuxième place.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="704"/>
@@ -1530,7 +1531,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2215"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si cette option est activée, l&apos;assistant de code sera déclenché dans certains cas, par exemple lorsque l&apos;utilisateur écris &lt;span style=&quot; font-weight:700;&quot;&gt;NomdeTableau.&lt;/span&gt; pour proposer certaines colonnes du tableau. Si l&apos;option est désactivée, l&apos;utilisateur devra appuyer explicitement sur la touche de raccourci assistant.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si cette option est activée, l&apos;assistant de code sera déclenché dans certains cas, par exemple lorsque l&apos;utilisateur écris &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; pour proposer certaines colonnes de la table. Si l&apos;option est désactivée, l&apos;utilisateur devra appuyer explicitement sur la touche de raccourci assistant.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2218"/>
@@ -1750,7 +1751,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="68"/>
       <source>Table</source>
       <comment>table constraints</comment>
-      <translation>Tableau</translation>
+      <translation>&lt;p&gt;Lorsque cette option est activée, les fenêtres de Table s&apos;afficheront avec l&apos;onglet de données, au lieu de l&apos;onglet structure.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="109"/>
@@ -2227,7 +2228,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Create a &amp;table</source>
-      <translation>Créer un &amp;tableau</translation>
+      <translation>Créer une &amp;table</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="146"/>
@@ -2348,7 +2349,7 @@ Browsing other pages will be possible after the row counting is done.</source>
       <location filename="../dbtree/dbtree.cpp" line="169"/>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Erase table data</source>
-      <translation>Effacer les données du tableau</translation>
+      <translation>Effacer les données de la table</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
@@ -2386,7 +2387,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="378"/>
       <source>Generate query for table</source>
-      <translation>Générer une requête pour le tableau</translation>
+      <translation>Générer une requête pour la table</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1106"/>
@@ -2473,22 +2474,22 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1570"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation>La valeur d&apos;auto-incrémentation pour le tableau &apos;%1&apos; a été réinitialisée avec succès.</translation>
+      <translation>La valeur d&apos;auto-incrémentation pour la table &apos;%1&apos; a été réinitialisée avec succès.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1590"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation>Êtes-vous sûr de vouloir supprimer toutes les données de(s) tableau(x) : %1?</translation>
+      <translation>Êtes-vous sûr de vouloir supprimer toutes les données de(s) table(s) : %1?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1602"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-      <translation>Une erreur est survenue lors de la suppression de données du tableau &apos;%1&apos;: %2</translation>
+      <translation>Une erreur est survenue lors de la suppression de données de la table &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1606"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
-      <translation>Toutes les données ont été supprimées pour le tableau &apos;%1&apos;.</translation>
+      <translation>Toutes les données ont été supprimées pour la table &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1731"/>
@@ -2585,7 +2586,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
       <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
-      <translation>Tableau : %1</translation>
+      <translation>Table : %1</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
@@ -3012,7 +3013,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/exportdialog.ui" line="107"/>
       <source>Table</source>
-      <translation>Tableau</translation>
+      <translation>Table</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="124"/>
@@ -3317,12 +3318,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/functionseditor.ui" line="211"/>
       <source>Register in all databases</source>
-      <translation>Enregistre toutes les bases de données</translation>
+      <translation>Enregistre dans toutes les bases de données</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="218"/>
       <source>Register in following databases:</source>
-      <translation>Enregistre les bases de données suivantes :</translation>
+      <translation>Enregistre dans les bases de données suivantes :</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="253"/>
@@ -3472,7 +3473,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/importdialog.ui" line="36"/>
       <source>Table</source>
-      <translation>Tableau</translation>
+      <translation>Table</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="43"/>
@@ -3720,7 +3721,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="76"/>
       <source>Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</source>
-      <translation>La colonne &apos;%1&apos; n&apos;appartient pas au tableau couvert par cet index. Les expressions indexées ne peuvent se référer qu&apos;aux colonnes de la table indexée.</translation>
+      <translation>La colonne &apos;%1&apos; n&apos;appartient pas à la table couverte par cet index. Les expressions indexées ne peuvent se référer qu&apos;aux colonnes de la table indexée.</translation>
     </message>
     <message>
       <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
@@ -4067,7 +4068,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../mainwindow.cpp" line="1033"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-      <translation>La base de données passée en paramètre dans la ligne de commande (%1)a été temporaire ajoutée à la liste sous le nom : %2</translation>
+      <translation>La base de données passée en paramètre dans la ligne de commande (%1)a été temporairement ajoutée à la liste sous le nom : %2</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1038"/>
@@ -4365,7 +4366,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
       <source>Table</source>
-      <translation>Tableau</translation>
+      <translation>Table</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="72"/>
@@ -4459,7 +4460,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="91"/>
       <source>Cannot edit table generated columns.</source>
-      <translation>Impossible de modifier les colonnes générées par le tableau.</translation>
+      <translation>Impossible de modifier les colonnes générées par la table.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="93"/>
@@ -4662,7 +4663,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
       <source>Tables</source>
-      <translation>Tableaux</translation>
+      <translation>Tables</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
@@ -5029,12 +5030,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/tablewindow.h" line="33"/>
       <source>Commit the table structure</source>
-      <translation>Valider la structure du tableau</translation>
+      <translation>Valider la structure de la table</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="34"/>
       <source>Rollback pending changes in the table structure</source>
-      <translation>Restaurer les modifications en attente dans la structure du tableau</translation>
+      <translation>Restaurer les modifications en attente dans la structure de table</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="35"/>
@@ -5548,7 +5549,7 @@ recherche suivant</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="70"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="328"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation>La structure de ce tableau a changé depuis que les dernières données ont été chargés. Rechargez les données pour continuer.</translation>
+      <translation>La structure de cette table a changé depuis que les dernières données ont été chargés. Rechargez les données pour continuer.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
@@ -5806,7 +5807,7 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation>La structure d&apos;au moins un tableau utilisé a changé depuis le chargement des dernières données. Rechargez les données pour continuer.</translation>
+      <translation>La structure d&apos;au moins une table utilisée a changé depuis le chargement des dernières données. Rechargez les données pour continuer.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="525"/>
@@ -5826,12 +5827,12 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="554"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
-      <translation>Aller à la ligne référencée dans le tableau &apos;%1&apos;</translation>
+      <translation>Aller à la ligne référencée dans la table &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="566"/>
       <source>table &apos;%1&apos;</source>
-      <translation>tableau &apos;%1&apos;</translation>
+      <translation>table &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="589"/>
@@ -6251,7 +6252,7 @@ NULL</translation>
     <message>
       <location filename="../windows/tablewindow.ui" line="87"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables/disabled the WITHOUT ROWID clause on the table. Such table will no longer have the &amp;quot;rowid&amp;quot; hidden column. For such table an explicit PRIMARY KEY column is mandatory. You can read more details on this in SQLite official documentation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Active/désactive la clause SANS ID DE LIGNE du tableau. Un tel tableau n&apos;aura plus le &amp;quot;idligne&amp;quot; la colonne cachée. Pour un tel tableau, une colonne CLÉ PRIMAIRE explicite est obligatoire. Vous pouvez lire plus de détails à ce sujet dans la documentation officielle de SQLite.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Active/désactive la clause WITHOUT ROWID de la table. Une telle table n&apos;aura plus la colonne cachée &amp;quot;rowid&amp;quot;. Pour une telle table, une colonne CLÉ PRIMAIRE explicite est obligatoire. Vous pouvez lire plus de détails à ce sujet dans la documentation officielle de SQLite.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="97"/>
@@ -6415,7 +6416,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation>Ajouter une contrainte de vérification de tableau</translation>
+      <translation>Ajouter une contrainte de vérification de table</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="262"/>
@@ -6505,12 +6506,12 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="659"/>
       <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
-      <translation>Impossible de restaurer la fenêtre %1, car aucune base de données ou tableau n&apos;a été stockée dans la session pour cette fenêtre.</translation>
+      <translation>Impossible de restaurer la fenêtre %1, car aucune base de données ou table n&apos;a été stockée dans la session pour cette fenêtre.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="665"/>
       <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
-      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car aucune base de données ou tableau n&apos;a été stockée dans la session pour cette fenêtre.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car aucune base de données ou table n&apos;a été stockée dans la session pour cette fenêtre.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="672"/>
@@ -6520,7 +6521,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="681"/>
       <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
-      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car le tableau %2 n&apos;existe pas dans la base de données %3.</translation>
+      <translation>Impossible de restaurer la fenêtre &apos;%1&apos;, car la table %2 n&apos;existe pas dans la base de données %3.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="706"/>
@@ -6531,12 +6532,12 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="838"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
-      <translation>Modifications validées pour le tableau &apos;%1&apos; avec succès.</translation>
+      <translation>Modifications validées pour la table &apos;%1&apos; avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="842"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-      <translation>Modifications validées pour le tableau &apos;%1&apos; (précédemment nommés &apos;%2&apos;) avec succès.</translation>
+      <translation>Modifications validées pour la table &apos;%1&apos; (précédemment nommée &apos;%2&apos;) avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="876"/>
@@ -6552,7 +6553,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="900"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-      <translation>Êtes-vous sûr de vouloir réinitialiser la valeur de l&apos;auto-incrémentation pour le tableau &apos;%1&apos; ?</translation>
+      <translation>Êtes-vous sûr de vouloir réinitialiser la valeur de l&apos;auto-incrémentation pour la table &apos;%1&apos; ?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="907"/>
@@ -6562,7 +6563,7 @@ Voudriez-vous procéder ?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="909"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-      <translation>La valeur d&apos;auto-incrémentation pour le tableau &apos;%1&apos; a été réinitialisée avec succès.</translation>
+      <translation>La valeur d&apos;auto-incrémentation pour la table &apos;%1&apos; a été réinitialisée avec succès.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="997"/>
@@ -6594,7 +6595,7 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1058"/>
       <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
-      <translation>Les colonnes suivantes ont un type de données non strictes : %1. Désactive le mode strict du tableau ou fixe les types de données des colonnes. Les types de données strictes valides sont : %2</translation>
+      <translation>Les colonnes suivantes ont un type de données non strictes : %1. Désactive le mode strict de la table ou fixe les types de données des colonnes. Les types de données strictes valides sont : %2</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1237"/>
@@ -6696,17 +6697,17 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/tablewindow.cpp" line="1702"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-      <translation>La fenêtre du tableau &quot;%1&quot; a des modifications de structure et des données invalidées.</translation>
+      <translation>La fenêtre de la table &quot;%1&quot; a des modifications de structure et des données invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1704"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
-      <translation>La fenêtre du tableau &quot;%1&quot; a des données invalidées.</translation>
+      <translation>La fenêtre de la table &quot;%1&quot; a des données invalidées.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1706"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-      <translation>La fenêtre du tableau &quot;%1&quot; a des modifications de structure invalidées.</translation>
+      <translation>La fenêtre de la table &quot;%1&quot; a des modifications de structure invalidées.</translation>
     </message>
   </context>
   <context>

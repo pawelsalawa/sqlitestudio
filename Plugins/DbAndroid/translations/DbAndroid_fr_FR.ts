@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="172"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>Utilisation d&apos;Android Debug Bridge&#xa0;: %1</translation>
+      <translation>Utilisation d'Android Debug Bridge : %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="182"/>
@@ -41,12 +41,12 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.</source>
-      <translation type="unfinished">The selected ADB is incorrect.</translation>
+      <translation>L'ADB sélectionné est incorrect</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="210"/>
       <source>Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
+      <translation>Voulez-vous en sélectionner un autre, ou le laisser non configuré ?</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="234"/>

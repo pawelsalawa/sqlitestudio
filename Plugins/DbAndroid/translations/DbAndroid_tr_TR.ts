@@ -16,7 +16,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="56"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>Android veritabanı seç</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="150"/>
@@ -56,17 +56,17 @@
     <message>
       <location filename="../dbandroid.cpp" line="208"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>Geçersiz ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>Başka bir ADB seç</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="212"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>Yapılandırmasız bırak</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="253"/>
@@ -79,7 +79,7 @@
     <message>
       <location filename="../dbandroidinstance.cpp" line="113"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
-      <translation type="unfinished">Android SQLite driver does not support loadable extensions.</translation>
+      <translation>Android SQLite sürücüsü yüklenebilir uzantıları desteklemiyor.</translation>
     </message>
     <message>
       <location filename="../dbandroidinstance.cpp" line="206"/>
@@ -156,7 +156,7 @@
     <message>
       <location filename="../dbandroidpathdialog.ui" line="42"/>
       <source>USB cable - sqlite3 command</source>
-      <translation type="unfinished">USB cable - sqlite3 command</translation>
+      <translation>USB kablosu - sqlite3 komutu</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="49"/>

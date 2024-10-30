@@ -6,7 +6,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="729"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais a obtenu %3.</translation>
+      <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais en a obtenu %3.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="738"/>
@@ -34,17 +34,17 @@
     <message>
       <location filename="../scriptingpython.ui" line="20"/>
       <source>Python library path</source>
-      <translation type="unfinished">Python library path</translation>
+      <translation>Chemin de librairie Python</translation>
     </message>
     <message>
       <location filename="../scriptingpython.ui" line="29"/>
       <source>Choose a Python library file</source>
-      <translation type="unfinished">Choose a Python library file</translation>
+      <translation>Choisissez un fichier de librairie Python</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="369"/>
       <source>The plugin is not configured properly.</source>
-      <translation type="unfinished">The plugin is not configured properly.</translation>
+      <translation>Le plugin n'est pas configurer correctement</translation>
     </message>
   </context>
 </TS>

@@ -46,7 +46,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>database</source>
-      <translation>Base de données</translation>
+      <translation>base de données</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation>Fichier</translation>
+      <translation>fichier</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>

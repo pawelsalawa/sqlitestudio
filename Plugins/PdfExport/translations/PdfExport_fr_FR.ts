@@ -60,7 +60,7 @@
       <location filename="../pdfexport.cpp" line="230"/>
       <source>Property</source>
       <comment>index header</comment>
-      <translation>Proprièté</translation>
+      <translation>Propriété</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="230"/>
@@ -106,13 +106,13 @@
     <message>
       <location filename="../pdfexport.cpp" line="266"/>
       <source>Trigger: %1</source>
-      <translation>Déchencheur : %1</translation>
+      <translation>Déclencheur : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
       <source>Property</source>
       <comment>trigger header</comment>
-      <translation>Proprièté</translation>
+      <translation>Propriété</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
@@ -138,7 +138,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="279"/>
       <source>On table</source>
-      <translation>Sur le tableau</translation>
+      <translation>Sur la table</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="284"/>
