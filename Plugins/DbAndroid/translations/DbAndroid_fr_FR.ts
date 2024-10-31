@@ -41,7 +41,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>The selected ADB is incorrect.</source>
-      <translation>L'ADB sélectionné est incorrect</translation>
+      <translation>L&apos;ADB sélectionné est incorrect</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="210"/>
