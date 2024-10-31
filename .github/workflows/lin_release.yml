@@ -7,7 +7,7 @@ env:
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-linux-x64-installer.run
-    LIBSSL_DIR_URL: https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
+    LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
 
 name: Linux release build
