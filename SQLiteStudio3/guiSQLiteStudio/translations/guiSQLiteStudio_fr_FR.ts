@@ -932,7 +932,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>Scripting languages</source>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Langages de script</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="265"/>
@@ -1978,12 +1978,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Select an existing database file</source>
-      <translation type="unfinished">Select an existing database file</translation>
+      <translation>Sélectionnez un fichier de base de données existant</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="61"/>
       <source>Create a new database file</source>
-      <translation type="unfinished">Create a new database file</translation>
+      <translation>Créer un nouveau fichier de base de données</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
@@ -2059,12 +2059,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="756"/>
       <source>Choose a location for the new database file</source>
-      <translation type="unfinished">Choose a location for the new database file</translation>
+      <translation>Choisissez un emplacement pour le nouveau fichier de base de données</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>Chercher un fichier de base de données sur l'ordinateur local</translation>
     </message>
   </context>
   <context>
@@ -5639,7 +5639,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
-      <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
+      <translation>Il y a moins de colonnes dans la nouvelle requête, l'ordre tri a été réinitialisé.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
@@ -6627,19 +6627,19 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Il y a des modifications de structure non validées.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n'avez pas défini la structure de la table.
+Voulez-vous valider la structure ou voulez-vous retourner à l'onglet structure ?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Valider les modifications et lister les données</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
@@ -7033,19 +7033,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Il y a des modifications de structure non validées.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n'avez pas défini la structure de la vue.
+Voulez-vous valider la structure ou retourner à l'onglet structure ?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Valider les modifications et lister les données</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
