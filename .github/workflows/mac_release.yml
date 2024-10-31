@@ -7,7 +7,7 @@ env:
     ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-osx-installer.dmg
 
 name: MacOSX release build
 
@@ -203,13 +203,13 @@ jobs:
                 ls -l
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
                 path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
 
             - name: Upload installer artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg

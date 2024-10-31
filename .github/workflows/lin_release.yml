@@ -6,7 +6,7 @@ env:
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-23.1.0-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-linux-x64-installer.run
 
 name: Linux release build
 
@@ -272,13 +272,13 @@ jobs:
                 ls -l
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
                 path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
 
             - name: Upload installer artifact
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
