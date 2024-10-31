@@ -162,7 +162,7 @@
     <message>
       <location filename="../htmlexport.ui" line="108"/>
       <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Quand activé, les caractères HTML tel que &amp;lt;, &amp;gt; and &amp; ne sont pas échappé dans les valeurs exportées. Ceci vous permet par exemple d'exporter des documents avec hyper-liens, mais cela peut aussi produire des documents HTML  incorrects (déséquilibre entre les caractères &lt; and &gt;). Soyez attentif.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quand activé, les caractères HTML tel que &amp;lt;, &amp;gt; and &amp; ne sont pas échappé dans les valeurs exportées. Ceci vous permet par exemple d&apos;exporter des documents avec hyper-liens, mais cela peut aussi produire des documents HTML  incorrects (déséquilibre entre les caractères &lt; and &gt;). Soyez attentif.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="111"/>
