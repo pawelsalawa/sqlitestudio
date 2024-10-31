@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -5010,12 +5010,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Move keyboard input focus to the results view below</source>
-      <translation>Déplacement au-dessus du focus des résultats de vue par les touches</translation>
+      <translation>Déplacer le focus d'entrée clavier  sur la vue de résultat ci-dessous</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="37"/>
       <source>Move keyboard input focus to the SQL editor above</source>
-      <translation>Déplacement au-dessous du focus des résultats de vue par les touches</translation>
+      <translation>Déplacer le focus d'entrée clavier  sur l'éditeur SQL ci-dessus</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="38"/>
