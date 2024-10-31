@@ -7,8 +7,8 @@ env:
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-linux-x64-installer.run
+    LIBSSL_DIR_URL: https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
-    LIBSSL_URL: https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/${{ env.LIBSSL_DEB }}
 
 name: Linux release build
 
@@ -182,7 +182,7 @@ jobs:
 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
-                wget ${{ env.LIBSSL_URL }}
+                wget ${{ env.LIBSSL_DIR_URL }}${{ env.LIBSSL_DEB }}
                 dpkg-deb -xv ${{ env.LIBSSL_DEB }} .
                 cp ./usr/lib/x86_64-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
                 cp ./usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
