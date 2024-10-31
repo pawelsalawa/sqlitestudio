@@ -49,7 +49,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Genere une instruction &quot;DROP IF EXISTS&quot; avant l'instruction &quot;CREATE&quot;</translation>
+      <translation>Genere une instruction &quot;DROP IF EXISTS&quot; avant l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Génere une instruction &quot;DROP IF EXISTS&quot; avant la l'instruction &quot;CREATE&quot;</translation>
+      <translation>Génere une instruction &quot;DROP IF EXISTS&quot; avant la l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation>Ajouter l'instruction &quot;IF NOT EXISTS&quot; à l&apos;instruction &quot;CREATE&quot;</translation>
+      <translation>Ajouter l&apos;instruction &quot;IF NOT EXISTS&quot; à l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
   </context>
 </TS>
