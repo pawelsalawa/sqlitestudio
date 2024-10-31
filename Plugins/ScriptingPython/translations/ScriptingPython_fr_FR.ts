@@ -44,7 +44,7 @@
     <message>
       <location filename="../scriptingpython.cpp" line="369"/>
       <source>The plugin is not configured properly.</source>
-      <translation>Le plugin n'est pas configurer correctement</translation>
+      <translation>Le plugin n&apos;est pas configurer correctement</translation>
     </message>
   </context>
 </TS>

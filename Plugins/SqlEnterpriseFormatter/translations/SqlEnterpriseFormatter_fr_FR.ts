@@ -157,7 +157,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation>Après l'opérateur point (dans le chemin vers l'objet database)</translation>
+      <translation>Après l&apos;opérateur point (dans le chemin vers l&apos;objet database)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>

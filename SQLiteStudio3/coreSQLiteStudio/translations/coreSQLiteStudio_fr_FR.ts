@@ -355,7 +355,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation>Ne peut pas créer un contexte de script, probablement le plugin n'est pas configuré correctement</translation>
+      <translation>Ne peut pas créer un contexte de script, probablement le plugin n&apos;est pas configuré correctement</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
@@ -853,7 +853,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation>Contexte d'évaluation non trouvé, probablement le plugin de script %1 n'est pas configuré correctement</translation>
+      <translation>Contexte d&apos;évaluation non trouvé, probablement le plugin de script %1 n&apos;est pas configuré correctement</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
