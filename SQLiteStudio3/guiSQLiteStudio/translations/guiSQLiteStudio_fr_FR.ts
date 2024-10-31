@@ -2097,7 +2097,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="190"/>
       <source>Are you sure you want to delete trigger %1?</source>
-      <translation>Confirmez la suppression du déclencheur %1 ?</translation>
+      <translation>Confirmez-vous la suppression du déclencheur %1 ?</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="194"/>
@@ -4527,7 +4527,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="29"/>
       <source>Set NULL value to selected cell(s)</source>
-      <translation>Met à NULL les cellules séléctionnées</translation>
+      <translation>Mettre à NULL les cellules sélectionnées</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="30"/>
@@ -4825,13 +4825,13 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <location filename="../multieditor/multieditortext.h" line="14"/>
       <location filename="../sqleditor.h" line="32"/>
       <source>Copy selected text</source>
-      <translation>Copier du texte sélectionné</translation>
+      <translation>Copier le texte sélectionné</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="16"/>
       <location filename="../sqleditor.h" line="34"/>
       <source>Delete selected text</source>
-      <translation>Suppression du texte sélectionné</translation>
+      <translation>Supprimer le texte sélectionné</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditortext.h" line="17"/>
@@ -4893,7 +4893,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../sqleditor.h" line="45"/>
       <source>Request code assistant</source>
-      <translation>Assistant de code nécessaire</translation>
+      <translation>Assistant de code</translation>
     </message>
     <message>
       <location filename="../sqleditor.h" line="46"/>
@@ -7003,7 +7003,7 @@ Voulez-vous valider la structure ou voulez-vous retourner à l'onglet structure 
       <location filename="../windows/viewwindow.cpp" line="362"/>
       <source>Delete selected trigger</source>
       <comment>view window</comment>
-      <translation>Suppression du déclencheur sélectionné</translation>
+      <translation>Supprimer le déclencheur sélectionné</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="383"/>
