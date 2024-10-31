@@ -6,7 +6,7 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation>Base de données actuelle : %1mmée</translation>
+      <translation>Base de données courante : %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation>ferme la base de données sélectionnée (ou actuelle)</translation>
+      <translation>ferme la base de données sélectionnée (ou courante)</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -146,7 +146,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation>Aucune base de données actuelle n’est définie.</translation>
+      <translation>Aucune base de données courante définie.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
@@ -195,7 +195,7 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-      <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou fermée et %1 vous indique ceci. La base de données actuelle est aussi marquée dans la liste par « * » en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données actuelle.</translation>
+      <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou fermée et %1 vous indique ceci. La base de données courante est aussi marquée dans la liste par « * » en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données courante.</translation>
     </message>
   </context>
   <context>
@@ -415,7 +415,7 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="26"/>
       <source>tells or changes the query results format</source>
-      <translation>Modifie le format du résultat de la requête</translation>
+      <translation>Modifier le format du résultat de la requête</translation>
     </message>
     <message>
       <location filename="../commands/clicommandmode.cpp" line="31"/>
@@ -472,7 +472,7 @@ Le mode ROW est recommandé si vous avez besoin de voir des valeurs entières et
     <message>
       <location filename="../commands/clicommandopen.cpp" line="12"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation>Impossible d’appeler %1 lorsque aucune base de données n’est sélectionnée. Spécifiez la base de données actuelle avec la commande %2 ou nommez la base de données %3.</translation>
+      <translation>Impossible d’appeler %1 lorsque aucune base de données n’est sélectionnée. Spécifiez la base de données courante avec la commande %2 ou nommez la base de données %3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="29"/>
@@ -487,7 +487,7 @@ Le mode ROW est recommandé si vous avez besoin de voir des valeurs entières et
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation>La base de données %1 a été ouverte et sélectionnée comme base de données actuelle.</translation>
+      <translation>La base de données %1 a été ouverte et sélectionnée comme base de données courante.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
@@ -497,7 +497,7 @@ Le mode ROW est recommandé si vous avez besoin de voir des valeurs entières et
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
       <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-      <translation>Ouvre la connexion de la base de données. Si aucun argument n’est passé, alors la connexion est ouverte comme base de données actuelle (voir l’aide %1 pour plus de détails). Cependant si on a passé un argument il peut être le &lt;name&gt; d’une base de données enregistrée, ou cela peut être le &lt;chemin&gt; du fichier de base de données. Dans le deuxième cas, le &lt;chemin&gt; est enregistré dans la liste avec un nom généré mais seulement pendant la période de la session actuelle. Après la reprise de la l’application une telle base de données n’est pas rétablie dans la liste.</translation>
+      <translation>Ouvre la connexion de la base de données. Si aucun argument n’est passé, alors la connexion est ouverte comme base de données courante (voir l’aide %1 pour plus de détails). Cependant si on a passé un argument il peut être le &lt;name&gt; d’une base de données enregistrée, ou cela peut être le &lt;chemin&gt; du fichier de base de données. Dans le deuxième cas, le &lt;chemin&gt; est enregistré dans la liste avec un nom généré mais seulement pendant la période de la session actuelle. Après la reprise de la l’application une telle base de données n’est pas rétablie dans la liste.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
@@ -540,7 +540,7 @@ Le mode ROW est recommandé si vous avez besoin de voir des valeurs entières et
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
       <source>New current database set:</source>
-      <translation>Nouvelle base de données actuelle :</translation>
+      <translation>Nouvelle base de données courante :</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
@@ -583,7 +583,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="70"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-      <translation>Cette commande est exécutée chaque fois vous saississez une requête SQL au prompt de commande. Il exécute la requête sur la base de données actuelle (voir l’aide %1 pour les détails). Il n’y a aucun sens dans l’exécution de cette commande explicitement. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+      <translation>Cette commande est exécutée chaque fois vous saississez une requête SQL au prompt de commande. Il exécute la requête sur la base de données courante (voir l’aide %1 pour les détails). Il n’y a aucun sens dans l’exécution de cette commande explicitement. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="86"/>
@@ -645,7 +645,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
       <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-      <translation>Imprime la liste des tables de la &lt;base de données&gt; sélectionnée ou de la base de données actuelle. Notez que la &lt;base de données&gt; devrait être le nom enregistré de la base de données (voir %1). L’affichage de la liste inclus toutes les tables d’autres bases de données attachées à celle-ci.
+      <translation>Imprime la liste des tables de la &lt;base de données&gt; sélectionnée ou de la base de données courante. Notez que la &lt;base de données&gt; devrait être le nom enregistré de la base de données (voir %1). L’affichage de la liste inclus toutes les tables d’autres bases de données attachées à celle-ci.
 Lorsque l’option « -s » est ajouté, les tables système sont aussi listées.</translation>
     </message>
     <message>
@@ -660,7 +660,7 @@ Lorsque l’option « -s » est ajouté, les tables système sont aussi listées
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation>Aucune base de données actuelle n’est sélectionnée. Utilisez %1 pour en définir uneet lancez avec %2.</translation>
+      <translation>Aucune base de données courante n’est sélectionnée. Utilisez %1 pour en définir une et lancez avec %2.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
@@ -702,7 +702,7 @@ The database argument is optional and if provided, then only given database will
       <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données en tant qu&apos;arbre. L’arbre est très semblable à celui que vous pouvez voir dans le GUI client de SQLiteStudio.
 Quand on ajoute l’option -c, alors les colonnes seront aussi listés sous chaque table.
 Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (tables sqlite_*, les index d’auto-incrément, etc).
-Les arguments de base de données sont facultatif mais s&apos;ils sont fournis, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, utilisez %1 d’abord pour changer la base de données actuelle et utiliser la commande %2.</translation>
+Les arguments de base de données sont facultatif mais s&apos;ils sont fournis, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, utilisez %1 d’abord pour changer la base de données courante et utiliser la commande %2.</translation>
     </message>
   </context>
   <context>
@@ -716,7 +716,7 @@ Les arguments de base de données sont facultatif mais s&apos;ils sont fournis, 
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation>Base de données actuelle : %1</translation>
+      <translation>Base de données courante : %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
@@ -741,10 +741,10 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation>Modifie la base de données de travail actuelle en &lt;name&gt;. Si la base de données &lt;name&gt; n&apos;est pas enregistrée dans l&apos;application, alors le message d&apos;erreur est imprimé et aucun changement n&apos;est effectué.
+      <translation>Modifie la base de données de travail courante en &lt;name&gt;. Si la base de données &lt;name&gt; n&apos;est pas enregistrée dans l&apos;application, alors le message d&apos;erreur est imprimé et aucun changement n&apos;est effectué.
 
-Qu&apos;est-ce que la base de données de travail actuelle ?
-Lorsque vous tapez une requête SQL à exécuter, elle est exécutée sur la base de données par défaut, qui est également connue sous le nom de base de données de travail actuelle. La plupart des commandes liées à la base de données peuvent également fonctionner en utilisant la base de données par défaut, si aucune base de données n&apos;a été fournie dans leurs arguments. La base de données actuelle est toujours identifiée par l&apos;invite de commande en ligne de commande. La base de données par défaut est toujours définie (à moins qu&apos;il n&apos;y ait aucune base de données dans la liste).
+Qu&apos;est-ce que la base de données de travail courante ?
+Lorsque vous tapez une requête SQL à exécuter, elle est exécutée sur la base de données par défaut, qui est également connue sous le nom de base de données de travail courante. La plupart des commandes liées à la base de données peuvent également fonctionner en utilisant la base de données par défaut, si aucune base de données n&apos;a été fournie dans leurs arguments. La base de données courante est toujours identifiée par l&apos;invite de commande en ligne de commande. La base de données par défaut est toujours définie (à moins qu&apos;il n&apos;y ait aucune base de données dans la liste).
 
 La base de données par défaut peut être sélectionnée de différentes manières :
 - en utilisant la commande %1,
