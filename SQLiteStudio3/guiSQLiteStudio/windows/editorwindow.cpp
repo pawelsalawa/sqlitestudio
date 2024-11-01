@@ -211,7 +211,7 @@ QAction* EditorWindow::getAction(EditorWindow::Action action)
     return ExtActionContainer::getAction(action);
 }
 
-QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery, QueryExecMode querySelectionMode)
+QString EditorWindow::getQueryToExecute(QueryExecMode querySelectionMode)
 {
     QString sql;
     if (ui->sqlEdit->textCursor().hasSelection())
@@ -228,9 +228,8 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery, QueryExecMode
         ui->sqlEdit->saveSelection();
         selectCurrentQuery(true);
         sql = ui->sqlEdit->textCursor().selectedText();
+        ui->sqlEdit->restoreSelection();
         fixTextCursorSelectedText(sql);
-        if (!doSelectCurrentQuery)
-            ui->sqlEdit->restoreSelection();
     }
     else
     {
@@ -463,7 +462,7 @@ void EditorWindow::updateShortcutTips()
 
 void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
 {
-    QString sql = getQueryToExecute(true, querySelectionMode);
+    QString sql = getQueryToExecute(querySelectionMode);
     QHash<QString, QVariant> bindParams;
     bool proceed = processBindParams(sql, bindParams);
     if (!proceed)
@@ -487,12 +486,12 @@ void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
 
 void EditorWindow::execOneQuery()
 {
-    execQuery(false, SINGLE);
+    execQuery(SINGLE);
 }
 
 void EditorWindow::execAllQueries()
 {
-    execQuery(false, ALL);
+    execQuery(ALL);
 }
 
 void EditorWindow::explainQuery()
@@ -741,7 +740,7 @@ void EditorWindow::createViewFromQuery()
         return;
     }
 
-    QString sql = getQueryToExecute(true);
+    QString sql = getQueryToExecute();
     DbObjectDialogs dialogs(getCurrentDb());
     dialogs.addView(sql);
 }
