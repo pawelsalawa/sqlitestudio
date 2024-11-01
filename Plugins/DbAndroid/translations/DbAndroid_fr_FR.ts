@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="172"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation>Utilisation d&apos;Android Debug Bridge&#xa0;: %1</translation>
+      <translation>Utilisation d'Android Debug Bridge : %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="182"/>

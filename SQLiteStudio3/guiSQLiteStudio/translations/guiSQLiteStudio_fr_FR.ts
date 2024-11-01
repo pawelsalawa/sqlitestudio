@@ -4985,7 +4985,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/editorwindow.h" line="31"/>
       <source>Execute &quot;%1&quot; query</source>
-      <translation>Exécution de la requête %1</translation>
+      <translation>Exécuter la requête  &quot;%1&quot;</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="32"/>
@@ -5160,7 +5160,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/viewwindow.h" line="27"/>
       <source>Execute the view&apos;s query</source>
-      <translation>Exécuter les requêtes vues</translation>
+      <translation>Exécuter la requête de vue</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.h" line="16"/>
