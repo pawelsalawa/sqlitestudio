@@ -1715,10 +1715,11 @@ void SqlEditor::saveSelection()
 }
 
 void SqlEditor::restoreSelection()
-{
+{   
     QTextCursor cur = textCursor();
     cur.setPosition(storedSelectionStart);
     cur.setPosition(storedSelectionEnd, QTextCursor::KeepAnchor);
+    setTextCursor(cur);
 }
 
 QToolBar* SqlEditor::getToolBar(int toolbar) const
