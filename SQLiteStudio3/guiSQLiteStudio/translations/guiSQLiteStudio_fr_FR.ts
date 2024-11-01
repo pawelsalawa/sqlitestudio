@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l'extrait</translation>
+      <translation>Nom de l&apos;extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -302,7 +302,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="318"/>
       <source>Implementation code</source>
-      <translation>Code d'implémentation</translation>
+      <translation>Code d&apos;implémentation</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="319"/>
@@ -2064,7 +2064,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
-      <translation>Chercher un fichier de base de données sur l'ordinateur local</translation>
+      <translation>Chercher un fichier de base de données sur l&apos;ordinateur local</translation>
     </message>
   </context>
   <context>
@@ -5010,12 +5010,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../windows/editorwindow.h" line="36"/>
       <source>Move keyboard input focus to the results view below</source>
-      <translation>Déplacer le focus d'entrée clavier  sur la vue de résultats (dessous)</translation>
+      <translation>Déplacer le focus d&apos;entrée clavier  sur la vue de résultats (dessous)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="37"/>
       <source>Move keyboard input focus to the SQL editor above</source>
-      <translation>Déplacer le focus d'entrée clavier  sur l'éditeur SQL (dessus)</translation>
+      <translation>Déplacer le focus d&apos;entrée clavier  sur l&apos;éditeur SQL (dessus)</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="38"/>
@@ -5639,7 +5639,7 @@ recherche suivant</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
-      <translation>Il y a moins de colonnes dans la nouvelle requête, l'ordre tri a été réinitialisé.</translation>
+      <translation>Il y a moins de colonnes dans la nouvelle requête, l&apos;ordre tri a été réinitialisé.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
@@ -6633,8 +6633,8 @@ Are you sure you want to create a table with blank name?</source>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n'avez pas défini la structure de la table.
-Voulez-vous valider la structure ou voulez-vous retourner à l'onglet structure ?</translation>
+      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n&apos;avez pas défini la structure de la table.
+Voulez-vous valider la structure ou voulez-vous retourner à l&apos;onglet structure ?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
@@ -7039,8 +7039,8 @@ Voulez-vous valider la structure ou voulez-vous retourner à l'onglet structure 
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n'avez pas défini la structure de la vue.
-Voulez-vous valider la structure ou retourner à l'onglet structure ?</translation>
+      <translation>Vous ne pouvez pas lister ou modifier des données tant que vous n&apos;avez pas défini la structure de la vue.
+Voulez-vous valider la structure ou retourner à l&apos;onglet structure ?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
