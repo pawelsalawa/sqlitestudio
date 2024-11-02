@@ -16,6 +16,7 @@
 #include "services/notifymanager.h"
 #include "themetuner.h"
 #include "uiconfig.h"
+#include "common/dialogsizehandler.h"
 #include <QClipboard>
 #include <QDebug>
 #include <QDir>
@@ -52,6 +53,7 @@ void ExportDialog::init()
     ui->setupUi(this);
     THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());

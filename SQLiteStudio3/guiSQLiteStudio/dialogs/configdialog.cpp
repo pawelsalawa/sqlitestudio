@@ -28,6 +28,7 @@
 #include "syntaxhighlighterplugin.h"
 #include "sqleditor.h"
 #include "style.h"
+#include "common/dialogsizehandler.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -201,6 +202,7 @@ void ConfigDialog::init()
 {
     ui->setupUi(this);
     setWindowIcon(ICONS.CONFIGURE);
+    DialogSizeHandler::applyFor(this);
 
     ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
 

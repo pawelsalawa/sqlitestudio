@@ -2,12 +2,14 @@
 #include "ui_searchtextdialog.h"
 #include "searchtextlocator.h"
 #include "common/unused.h"
+#include "common/dialogsizehandler.h"
 
 SearchTextDialog::SearchTextDialog(SearchTextLocator* textLocator, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchTextDialog), textLocator(textLocator)
 {
     ui->setupUi(this);
+    DialogSizeHandler::applyFor(this);
     connect(textLocator, SIGNAL(replaceAvailable(bool)), this, SLOT(setReplaceAvailable(bool)));
     connect(ui->findEdit, SIGNAL(textChanged(QString)), this, SLOT(markModifiedState()));
     connect(ui->caseSensitiveCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));

@@ -33,6 +33,7 @@ DEFINES += GUISQLITESTUDIO_LIBRARY
 
 SOURCES +=\
     common/dbcombobox.cpp \
+    common/dialogsizehandler.cpp \
     common/immediatetooltip.cpp \
     common/mouseshortcut.cpp \
     constraints/columngeneratedpanel.cpp \
@@ -193,6 +194,7 @@ SOURCES +=\
 
 HEADERS  += mainwindow.h \
     common/dbcombobox.h \
+    common/dialogsizehandler.h \
     common/immediatetooltip.h \
     common/mouseshortcut.h \
     constraints/columngeneratedpanel.h \

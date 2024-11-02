@@ -9,6 +9,7 @@
 #include "constraints/constraintpanel.h"
 #include "datatype.h"
 #include "uiutils.h"
+#include "common/dialogsizehandler.h"
 #include <QDebug>
 #include <QCheckBox>
 #include <QMessageBox>
@@ -33,6 +34,7 @@ void ColumnDialog::init()
     ui->setupUi(this);
     limitDialogWidth(this);
     setWindowIcon(ICONS.COLUMN);
+    DialogSizeHandler::applyFor(this);
 
     ui->scale->setStrict(true, true);
     ui->precision->setStrict(true, true);
