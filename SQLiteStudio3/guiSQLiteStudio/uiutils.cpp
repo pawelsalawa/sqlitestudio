@@ -104,6 +104,11 @@ void setValidStateTooltip(QWidget* widget, const QString& tip)
     INDICATOR(widget)->setVisible(widget->isEnabled(), tip);
 }
 
+bool isValidStateIndicatorVisible(QWidget* widget)
+{
+    return EXISTS_INDICATOR(widget) && INDICATOR(widget)->isVisible();
+}
+
 QString convertPageSize(QPageSize::PageSizeId size)
 {
     return QPageSize::name(size);

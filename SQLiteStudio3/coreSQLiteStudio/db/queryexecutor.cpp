@@ -25,6 +25,7 @@
 #include "schemaresolver.h"
 #include "parser/lexer.h"
 #include "common/table.h"
+#include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>
@@ -122,6 +123,11 @@ void QueryExecutor::setupExecutionChain()
 
     executionChain.append(additionalStatelessSteps[AFTER_ROW_LIMIT_AND_OFFSET]);
     executionChain.append(createSteps(AFTER_ROW_LIMIT_AND_OFFSET));
+
+    executionChain << new QueryExecutorSmartHints();
+
+    executionChain.append(additionalStatelessSteps[AFTER_SMART_HINTS]);
+    executionChain.append(createSteps(AFTER_SMART_HINTS));
     executionChain.append(additionalStatelessSteps[JUST_BEFORE_EXECUTION]);
     executionChain.append(createSteps(JUST_BEFORE_EXECUTION));
     executionChain.append(additionalStatelessSteps[LAST]);

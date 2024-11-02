@@ -16,6 +16,8 @@ class GUI_API_EXPORT ConstraintPanel : public QWidget
         virtual ~ConstraintPanel();
 
         void setConstraint(SqliteStatement* stmt);
+        void setCreateTableStmt(SqliteCreateTable* stmt);
+        void setColumnStmt(SqliteCreateTable::Column* stmt);
         void storeDefinition();
         virtual void setDb(Db* value);
 
@@ -68,6 +70,8 @@ class GUI_API_EXPORT ConstraintPanel : public QWidget
 
         Db* db = nullptr;
         QPointer<SqliteStatement> constraint;
+        QPointer<SqliteCreateTable> createTableStmt;
+        QPointer<SqliteCreateTable::Column> columnStmt;
 
     public slots:
 

@@ -190,6 +190,33 @@ QStringList SchemaResolver::getTableColumns(const QString &database, const QStri
     return columns;
 }
 
+StrHash<DataType> SchemaResolver::getTableColumnDataTypesByName(const QString &table)
+{
+    return getTableColumnDataTypesByName("main", table);
+}
+
+StrHash<DataType> SchemaResolver::getTableColumnDataTypesByName(const QString &database, const QString &table)
+{
+    StrHash<DataType> dataTypes;
+    SqliteCreateTablePtr createTable = getParsedObject(database, table, TABLE).dynamicCast<SqliteCreateTable>();
+    if (!createTable)
+    {
+        return dataTypes;
+    }
+
+    for (SqliteCreateTable::Column* col : createTable->columns)
+    {
+        if (!col->type)
+        {
+            dataTypes[col->name] = DataType();
+            continue;
+        }
+
+        dataTypes[col->name] = col->type->toDataType();
+    }
+    return dataTypes;
+}
+
 QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes)
 {
     return getTableColumnDataTypes("main", table, expectedNumberOfTypes);

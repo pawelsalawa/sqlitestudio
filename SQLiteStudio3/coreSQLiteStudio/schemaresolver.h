@@ -131,6 +131,8 @@ class API_EXPORT SchemaResolver
          */
         QStringList getTableColumns(const QString& database, const QString& table, bool onlyReal = false);
 
+        StrHash<DataType> getTableColumnDataTypesByName(const QString& table);
+        StrHash<DataType> getTableColumnDataTypesByName(const QString& database, const QString& table);
         QList<DataType> getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes = -1);
         QList<DataType> getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes = -1);
 

@@ -29,6 +29,16 @@ void ConstraintPanel::setConstraint(SqliteStatement* stmt)
     constraintAvailable();
 }
 
+void ConstraintPanel::setCreateTableStmt(SqliteCreateTable *stmt)
+{
+    createTableStmt = stmt;
+}
+
+void ConstraintPanel::setColumnStmt(SqliteCreateTable::Column *stmt)
+{
+    columnStmt = stmt;
+}
+
 void ConstraintPanel::storeDefinition()
 {
     storeConfiguration();

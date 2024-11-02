@@ -3,6 +3,7 @@
 ### 3.4.5
 - ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.
 - ADDED: #5041 Added support for column list syntax in CREATE VIEW.
+- ADDED: #4774 Added checking if data types are matched in both columns while creating foreign column. This applies for Column Dialog Foreign Key, Table Foreign Key and also in the Query Executor (user will receive warning if executed query breaks the Foreign Key data type alignment).
 - CHANGE: #4740 Dialog geometry is saved & restored for several dialog windows (i.e. Import, Export, Populate and more...).
 - BUGFIX: #4828 Fixed Linux installer error 'logname: no login name'.
 - BUGFIX: #4761 Fixed current query highligting color to respect configured color, instead of always using default color. Also removed query content selection after execution.

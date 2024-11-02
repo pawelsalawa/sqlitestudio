@@ -4,6 +4,7 @@
 #include "constraintpanel.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "guiSQLiteStudio_global.h"
+#include "common/strhash.h"
 #include <QStringListModel>
 #include <QWidget>
 
@@ -40,12 +41,14 @@ class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
         int getColumnIndex(const QString& colName);
         void storeCondition(SqliteForeignKey::Condition::Action action, const QString& reaction);
         void storeMatchCondition(const QString& reaction);
+        void handleFkTypeMatched(QWidget* indicatorParent, const QString& localColumn, const QString fkColumn);
 
         Ui::TableForeignKeyPanel *ui = nullptr;
         QGridLayout* columnsLayout = nullptr;
         int totalColumns = 0;
         QStringListModel fkColumnsModel;
         QSignalMapper* columnSignalMapping = nullptr;
+        StrHash<StrHash<DataType>> fkTableTypesCache;
 
     private slots:
         void updateState();
