@@ -735,7 +735,7 @@ void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selectio
         return;
 
     QTextEdit::ExtraSelection selection;
-    selection.format.setBackground(STYLE->extendedPalette().editorCurrentQueryBase());
+    selection.format.setBackground(Cfg::getSyntaxCurrentQueryBg());
 
     cursor.setPosition(boundries.first);
     cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
@@ -1100,7 +1100,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
-        selection.format.setBackground(STYLE->extendedPalette().editorLineBase());
+        selection.format.setBackground(Cfg::getSyntaxCurrentLineBg());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
