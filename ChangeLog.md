@@ -1,5 +1,15 @@
 # ChangeLog
 
+### 3.4.5
+- ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.
+- ADDED: #5041 Added support for column list syntax in CREATE VIEW.
+- BUGFIX: #4828 Fixed Linux installer error 'logname: no login name'.
+- BUGFIX: #4761 Fixed current query highligting color to respect configured color, instead of always using default color. Also removed query content selection after execution.
+- BUGFIX: #4796 Fixed Database Dialog file selection, so user has clear understanding whether new file is to be created, or existing file to open. Also fixes file selection dialog on MacOS when creating new database file.
+- BUGFIX: #4819 Fixed sorting order cached in data view when executing query with less columns than previously.
+- BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
+- BIGFIX: #3454 German translation fixes.
+
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
 - ADDED: #4697 Added a 'Restore original hotkey' buttons at keyboard shortcuts page of configuration dialog.
