@@ -20,6 +20,7 @@
 - BUGFIX: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
 - BUGFIX: #4872 Fixed executing SQL directly from file, so it does not skip CREATE TRIEGGER statements.
 - BUGFIX: #4871 Fixed executing SQL directly from file, so it no longer disables foreign key checks during execution.
+- BUGFIX: #4874 Fixed Foreign Key dropdown in data grid when foreign key references 2 different tables with same foreign column name in both referenced tables.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).

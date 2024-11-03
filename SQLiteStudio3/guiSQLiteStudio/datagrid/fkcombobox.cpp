@@ -45,8 +45,8 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
         src = wrapObjIfNeeded(fk->foreignTable);
         if (i == 0)
         {
-            firstSrcCol = col;
             fullSrcCol = src + "." + col;
+            firstSrcCol = fullSrcCol;
             selectedCols << dbColTpl.arg(fullSrcCol, wrapObjIfNeeded(columnModel->column));
         }
 
