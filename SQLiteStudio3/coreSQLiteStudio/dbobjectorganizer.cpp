@@ -544,7 +544,12 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
     if (ddl.isNull())
         return false;
 
-    SqlQueryPtr result = srcDb->exec(ddl);
+    SqlQueryPtr result;
+    if (attachName.isNull())
+        result = dstDb->exec(ddl);
+    else
+        result = srcDb->exec(ddl); // uses attachName to create object in attached db
+
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
