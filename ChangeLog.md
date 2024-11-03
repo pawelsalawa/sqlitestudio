@@ -19,6 +19,7 @@
 - BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
 - BUGFIX: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
 - BUGFIX: #4872 Fixed executing SQL directly from file, so it does not skip CREATE TRIEGGER statements.
+- BUGFIX: #4871 Fixed executing SQL directly from file, so it no longer disables foreign key checks during execution.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
