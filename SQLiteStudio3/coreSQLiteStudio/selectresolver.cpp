@@ -444,6 +444,21 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
 
 SelectResolver::Column SelectResolver::resolveRowIdColumn(SqliteExpr *expr)
 {
+    // If the ROWID is used without table prefix, we rely on single source to be in the query.
+    // If there are more sources, there is no way to tell from which one the ROWID is taken.
+    if (expr->table.isNull())
+    {
+        QSet<Table> tableSources;
+        for (Column& column : currentCoreSourceColumns)
+            tableSources += column.getTable();
+
+        if (tableSources.size() == 1)
+        {
+            // Single source. We can tell this is correct for our ROWID.
+            return currentCoreSourceColumns.first();
+        }
+    }
+
     // Looking for first source that can provide ROWID.
     for (Column& column : currentCoreSourceColumns)
     {

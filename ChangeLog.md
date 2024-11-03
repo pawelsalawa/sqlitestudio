@@ -12,6 +12,7 @@
 - BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
 - BIGFIX: #3454 German translation fixes.
 - BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
+- BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
