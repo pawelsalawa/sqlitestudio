@@ -5,6 +5,9 @@
 - ADDED: #5041 Added support for column list syntax in CREATE VIEW.
 - ADDED: #4774 Added checking if data types are matched in both columns while creating foreign column. This applies for Column Dialog Foreign Key, Table Foreign Key and also in the Query Executor (user will receive warning if executed query breaks the Foreign Key data type alignment).
 - CHANGE: #4740 Dialog geometry is saved & restored for several dialog windows (i.e. Import, Export, Populate and more...).
+- CHANGE: #4861 When loading SQL script into SQL Editor, contents of current editor are retained. Instead another editor is open to load SQL script, with exception when current editor is empty - in that case it is used for loading.
+- CHANGE: #4861 When trying to load SQLite database as SQL script into SQL Editor window, application detects it and opens Database dialog for that file instead.
+- CHANGE: #4861 When trying to load huge SQL script (over 10MB) into SQL Editor, user is asked to confirm it.
 - BUGFIX: #4828 Fixed Linux installer error 'logname: no login name'.
 - BUGFIX: #4761 Fixed current query highligting color to respect configured color, instead of always using default color. Also removed query content selection after execution.
 - BUGFIX: #4796 Fixed Database Dialog file selection, so user has clear understanding whether new file is to be created, or existing file to open. Also fixes file selection dialog on MacOS when creating new database file.
@@ -14,6 +17,7 @@
 - BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
 - BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
 - BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
+- CHANGE: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
