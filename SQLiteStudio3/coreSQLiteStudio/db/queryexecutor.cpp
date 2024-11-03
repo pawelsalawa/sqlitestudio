@@ -123,17 +123,13 @@ void QueryExecutor::setupExecutionChain()
 
     executionChain.append(additionalStatelessSteps[AFTER_ROW_LIMIT_AND_OFFSET]);
     executionChain.append(createSteps(AFTER_ROW_LIMIT_AND_OFFSET));
-
-    executionChain << new QueryExecutorSmartHints();
-
-    executionChain.append(additionalStatelessSteps[AFTER_SMART_HINTS]);
-    executionChain.append(createSteps(AFTER_SMART_HINTS));
     executionChain.append(additionalStatelessSteps[JUST_BEFORE_EXECUTION]);
     executionChain.append(createSteps(JUST_BEFORE_EXECUTION));
     executionChain.append(additionalStatelessSteps[LAST]);
     executionChain.append(createSteps(LAST));
 
     executionChain << new QueryExecutorExecute();
+    executionChain << new QueryExecutorSmartHints(); // must be last, as it queries schema and execution might modify schema
 
     for (QueryExecutorStep*& step : executionChain)
         step->init(this, context);

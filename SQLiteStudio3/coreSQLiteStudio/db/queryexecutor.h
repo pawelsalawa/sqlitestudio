@@ -693,9 +693,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             AFTER_COLUMN_TYPES,         /**< After typeof() result meta columns were added */
             AFTER_COLUMN_FILTERS,       /**< After WHERE filters applied */
             AFTER_ROW_LIMIT_AND_OFFSET, /**< After LIMIT and ORDER clauses were added/modified. This is the last possible moment, directly ahead of final query execution */
-            AFTER_SMART_HINTS,          /**< After an analysis of queries to be executed is performed for giving potential useful hints for user */
-            JUST_BEFORE_EXECUTION,      /**< Same as AFTER_SMART_HINTS */
-            LAST                        /**< Same as AFTER_SMART_HINTS */
+            JUST_BEFORE_EXECUTION,      /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
+            LAST                        /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
         };
 
         /**

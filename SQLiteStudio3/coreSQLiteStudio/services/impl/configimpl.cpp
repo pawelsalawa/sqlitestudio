@@ -478,6 +478,7 @@ QVariant ConfigImpl::getPopulateHistory(const QString& pluginName) const
 
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
+    ddlHistoryMutex.lock();
     QtConcurrent::run(this, &ConfigImpl::asyncAddDdlHistory, queries, dbName, dbFile);
 }
 
@@ -1030,6 +1031,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
         }
     }
     db->commit();
+    ddlHistoryMutex.unlock();
 
     emit ddlHistoryRefreshNeeded();
 }
