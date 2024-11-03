@@ -11,6 +11,7 @@
 - BUGFIX: #4819 Fixed sorting order cached in data view when executing query with less columns than previously.
 - BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
 - BIGFIX: #3454 German translation fixes.
+- BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).

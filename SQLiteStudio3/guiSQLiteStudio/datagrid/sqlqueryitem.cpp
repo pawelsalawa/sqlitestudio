@@ -143,8 +143,9 @@ void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
     // - this item was already marked as uncommitted
     bool modified = (
                         (
-                                newValue != origValue ||
-                                origValue.isNull() != newValue.isNull()
+                            newValue != origValue ||
+                            origValue.isNull() != newValue.isNull() ||
+                            newValue.type() != origValue.type()
                         ) &&
                         !loadedFromDb
                     ) ||
