@@ -215,7 +215,7 @@ bool SqlFileExecutor::shouldSkipQuery(const QString& sql)
     if (sql.trimmed().isEmpty() || !db->isComplete(sql))
         return true;
 
-    QString upper = sql.toUpper().trimmed().split("\n").last().trimmed();
+    QString upper = sql.toUpper().trimmed();
     return (upper.startsWith("BEGIN") ||
             upper.startsWith("COMMIT") ||
             upper.startsWith("ROLLBACK") ||

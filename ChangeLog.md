@@ -17,7 +17,8 @@
 - BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
 - BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
 - BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
-- CHANGE: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
+- BUGFIX: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
+- BUGFIX: #4872 Fixed executing SQL directly from file, so it does not skip CREATE TRIEGGER statements.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
