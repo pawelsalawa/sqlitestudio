@@ -21,6 +21,8 @@
 - BUGFIX: #4872 Fixed executing SQL directly from file, so it does not skip CREATE TRIEGGER statements.
 - BUGFIX: #4871 Fixed executing SQL directly from file, so it no longer disables foreign key checks during execution.
 - BUGFIX: #4874 Fixed Foreign Key dropdown in data grid when foreign key references 2 different tables with same foreign column name in both referenced tables.
+- BUGFIX: Fixed tiny memory leak in the import() function.
+- BUGFIX: Fixed import() function options parser, so it no longer overwrites import plugin configuration with incorrect types of configuration values (i.e. string 'true' instead of expected boolean).
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).

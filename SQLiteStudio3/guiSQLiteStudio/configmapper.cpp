@@ -441,7 +441,6 @@ void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
     saveCommonConfigFromWidget(widget, cfgEntry);
 }
 
-
 bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 {
     QList<CustomConfigWidgetPlugin*> handlers;
