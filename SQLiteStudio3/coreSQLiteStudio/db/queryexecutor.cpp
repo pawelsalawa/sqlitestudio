@@ -273,7 +273,7 @@ void QueryExecutor::execInternal()
 
     if (queryCountLimitForSmartMode > -1)
     {
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
+        queriesForSimpleExecution = splitQueries(originalQuery, false, true);
         int queryCount = queriesForSimpleExecution.size();
         if (queryCount > queryCountLimitForSmartMode)
         {
@@ -451,7 +451,7 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
     if (queriesForSimpleExecution.isEmpty())
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
+        queriesForSimpleExecution = splitQueries(originalQuery, false, true);
 
     QStringList queriesWithPagination = applyFiltersAndLimitAndOrderForSimpleMethod(queriesForSimpleExecution);
     if (isExecutorLoggingEnabled())
