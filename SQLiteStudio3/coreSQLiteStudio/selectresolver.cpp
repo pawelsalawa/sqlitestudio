@@ -752,7 +752,14 @@ QList<SelectResolver::Column> SelectResolver::resolveView(SqliteSelect::Core::Si
     QList<Column> results = sqliteResolveColumns(columnSqlTpl.arg(joinSrc->detokenize()));
     applySubSelectAlias(results, (!joinSrc->alias.isNull() ? joinSrc->alias : joinSrc->table));
     for (Column& column : results)
+    {
         column.flags |= FROM_VIEW;
+
+        if (column.alias.isEmpty())
+            continue;
+
+        column.aliasDefinedInSubQuery = true;
+    }
 
     return results;
 }

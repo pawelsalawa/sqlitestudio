@@ -24,6 +24,7 @@
 - BUGFIX: Fixed tiny memory leak in the import() function.
 - BUGFIX: Fixed import() function options parser, so it no longer overwrites import plugin configuration with incorrect types of configuration values (i.e. string 'true' instead of expected boolean).
 - BUGFIX: #5096 Fixed executing large DDL scripts (more than 100 DDL statements) with CREATE TRIGGER in them.
+- BUGFIX: #4831 Fixed warning message of forbidded cell edition when trying to do it on a multi-level View results, where the View was given an alias name. Now the warning is clear about forbidden edition due to multi-level View.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
