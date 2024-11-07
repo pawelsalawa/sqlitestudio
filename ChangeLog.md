@@ -28,6 +28,7 @@
 - BUGFIX: #4831 Fixed warning message of forbidded cell edition when trying to do it on a multi-level View results, where the View was given an alias name. Now the warning is clear about forbidden edition due to multi-level View.
 - BUGFIX: #5077 Fixed question dialog for going back to structure tab if there are uncommited structure changes (thanks to @marcpley).
 - BUGFIX: #5076 Fixed broken order of data insertion when adding new row to a table with GENERATED column (thanks to @marcpley).
+- BUGFIX: #4949 Added extra calls for cleaning up WAL files upon application exit.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
