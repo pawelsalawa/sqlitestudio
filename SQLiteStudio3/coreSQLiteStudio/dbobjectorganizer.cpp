@@ -488,7 +488,7 @@ bool DbObjectOrganizer::copyDataUsingAttach(const QString& table)
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable);
     QString wrappedDstTable = wrapObjIfNeeded(table);
     QStringList srcColumns = srcResolver->getTableColumns(srcTable, true);
-    QString srcColumnsStr = srcColumns.join(", ");
+    QString srcColumnsStr = wrapObjNamesIfNeeded(srcColumns).join(", ");
     SqlQueryPtr results = srcDb->exec(insertTpl.arg(attachName, wrappedDstTable, srcColumnsStr, wrappedSrcTable));
     if (results->isError())
     {
