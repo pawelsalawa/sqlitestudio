@@ -142,6 +142,9 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
+    int rowIdx = 0;
+    emit finishedStep(rowIdx);
+
     SqlResultsRowPtr row;
     while (results->hasNext())
     {
@@ -151,6 +154,9 @@ bool ExportWorker::exportQueryResults()
             logExportFail("exportQueryResultsRow()");
             return false;
         }
+        if (++rowIdx % 10 == 0)
+            emit finishedStep(rowIdx);
+
 
         if (isInterrupted())
         {

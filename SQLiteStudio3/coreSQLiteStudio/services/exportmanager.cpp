@@ -193,6 +193,7 @@ ExportWorker* ExportManager::prepareExport()
 
     ExportWorker* worker = new ExportWorker(plugin, config, output);
     connect(worker, SIGNAL(finished(bool,QIODevice*)), this, SLOT(finalizeExport(bool,QIODevice*)));
+    connect(worker, SIGNAL(finishedStep(int)), this, SIGNAL(finishedStep(int)));
     connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
     return worker;
 }

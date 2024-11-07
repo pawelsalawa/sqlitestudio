@@ -63,7 +63,9 @@ void ExportDialog::init()
     widgetCover = new WidgetCover(this);
     widgetCover->initWithInterruptContainer(tr("Cancel"));
     connect(widgetCover, SIGNAL(cancelClicked()), EXPORT_MANAGER, SLOT(interrupt()));
+    connect(EXPORT_MANAGER, SIGNAL(finishedStep(int)), widgetCover, SLOT(setProgress(int)));
     widgetCover->setVisible(false);
+    widgetCover->displayProgress(0, "%v");
 
     initPageOrder();
 

@@ -219,6 +219,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
         void exportFinished();
         void exportSuccessful();
         void exportFailed();
+        void finishedStep(int step);
         void storeInClipboard(const QString& str);
         void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
         void orderWorkerToInterrupt();
