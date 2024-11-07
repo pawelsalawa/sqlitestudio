@@ -9,7 +9,6 @@
 #include <QObject>
 
 class ExportPlugin;
-class QueryExecutor;
 class ExportWorker;
 class QBuffer;
 class CfgEntry;

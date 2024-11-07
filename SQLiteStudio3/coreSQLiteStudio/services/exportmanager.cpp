@@ -2,7 +2,6 @@
 #include "services/pluginmanager.h"
 #include "plugins/exportplugin.h"
 #include "services/notifymanager.h"
-#include "db/queryexecutor.h"
 #include "exportworker.h"
 #include <QThreadPool>
 #include <QTextCodec>

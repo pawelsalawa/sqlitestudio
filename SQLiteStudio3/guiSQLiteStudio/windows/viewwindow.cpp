@@ -619,7 +619,7 @@ void ViewWindow::tabChanged(int tabIdx)
                                                    "Do you want to commit the structure, or do you want to go back to the structure tab?"),
                                                 tr("Go back to structure tab"), tr("Commit modifications and browse data."));
 
-                ui->tabWidget->setCurrentIndex(0);
+                ui->tabWidget->setCurrentIndex(CFG_UI.General.DataTabAsFirstInViews.get() ? 1 : 0);
                 if (res == 1)
                     commitView(true);
 
