@@ -29,7 +29,7 @@
 - BUGFIX: #5077 Fixed question dialog for going back to structure tab if there are uncommited structure changes (thanks to @marcpley).
 - BUGFIX: #5076 Fixed broken order of data insertion when adding new row to a table with GENERATED column (thanks to @marcpley).
 - BUGFIX: #4949 Added extra calls for cleaning up WAL files upon application exit.
-- BUGFIX: #4933 Fixed copying (drag&drop or copy&paste) tables between databases when a column in the table requires quoting due to being a keyword.
+- BUGFIX: #4934 Fixed copying (drag&drop or copy&paste) tables between databases when a column in the table requires quoting due to being a keyword.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
