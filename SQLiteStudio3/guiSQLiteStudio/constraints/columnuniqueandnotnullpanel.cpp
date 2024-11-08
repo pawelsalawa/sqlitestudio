@@ -93,6 +93,8 @@ void ColumnUniqueAndNotNullPanel::storeConfiguration()
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+    else
+        constr->name.clear();
 
     if (ui->conflictCheck->isChecked() && ui->conflictCombo->currentIndex() > -1)
         constr->onConflict = sqliteConflictAlgo(ui->conflictCombo->currentText());
