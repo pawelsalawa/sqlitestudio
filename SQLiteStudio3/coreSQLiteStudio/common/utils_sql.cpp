@@ -822,36 +822,33 @@ QStringList valueListToSqlList(const QVariantList& values)
 {
     QStringList argList;
     for (const QVariant& value : values)
-    {
-        if (!value.isValid() || value.isNull())
-        {
-            argList << "NULL";
-            continue;
-        }
+        argList << valueToSqlLiteral(value);
 
-        switch (value.userType())
-        {
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
-                argList << value.toString();
-                break;
-            case QVariant::Double:
-                argList << doubleToString(value);
-                break;
-            case QVariant::Bool:
-                argList << QString::number(value.toInt());
-                break;
-            case QVariant::ByteArray:
-                argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
-                break;
-            default:
-                argList << wrapString(escapeString(value.toString()));
-                break;
-        }
-    }
     return argList;
+}
+
+QString valueToSqlLiteral(const QVariant& value)
+{
+    if (!value.isValid() || value.isNull())
+        return "NULL";
+
+    switch (value.userType())
+    {
+        case QVariant::Int:
+        case QVariant::UInt:
+        case QVariant::LongLong:
+        case QVariant::ULongLong:
+            return value.toString();
+        case QVariant::Double:
+            return doubleToString(value);
+        case QVariant::Bool:
+            return QString::number(value.toInt());
+        case QVariant::ByteArray:
+            return "X'" + value.toByteArray().toHex().toUpper() + "'";
+        default:
+            break;
+    }
+    return wrapString(escapeString(value.toString()));
 }
 
 QStringList wrapStrings(const QStringList& strList)
