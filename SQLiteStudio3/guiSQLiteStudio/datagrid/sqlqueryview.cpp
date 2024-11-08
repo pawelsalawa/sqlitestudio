@@ -553,7 +553,7 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
 
     QString wrappedTable = wrapObjIfNeeded(table);
     QString wrappedColumn = wrapObjIfNeeded(column);
-    QString valueStr = wrapValueIfNeeded(value.toString());
+    QString valueStr = valueToSqlLiteral(value.toString());
     EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(wrappedTable, wrappedColumn, valueStr));
     if (!win)
         return;

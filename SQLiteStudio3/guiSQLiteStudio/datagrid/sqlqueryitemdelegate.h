@@ -41,12 +41,11 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
 
         SqlQueryItem* getItem(const QModelIndex &index) const;
         QWidget* getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const;
-        QWidget* getFkEditor(SqlQueryItem* item, QWidget* parent, const SqlQueryModel *model) const;
+        QWidget* getFkEditor(SqlQueryItem* item, bool shouldSkipInitialSelection, QWidget* parent, const SqlQueryModel *model) const;
         void setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const;
         void setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const;
         void setModelDataForFk(FkComboBox* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         void setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const;
-        QString getSqlForFkEditor(SqlQueryItem* item) const;
         qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool *isError) const;
         int getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const;
 

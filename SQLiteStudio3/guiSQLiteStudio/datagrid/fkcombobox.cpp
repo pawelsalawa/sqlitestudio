@@ -89,7 +89,7 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
     QString currValueColName = generateUniqueName("curr", usedNames);
     QString currValueExpr = currentValue.isNull() ?
                                 currNullValueTpl.arg(firstSrcCol, currValueColName) :
-                                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(currentValue), currValueColName);
+                                currValueTpl.arg(firstSrcCol, valueToSqlLiteral(currentValue), currValueColName);
 
     return sql.arg(
         selectedCols.join(", "),
