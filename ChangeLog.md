@@ -31,6 +31,7 @@
 - BUGFIX: #4949 Added extra calls for cleaning up WAL files upon application exit.
 - BUGFIX: #4934 Fixed copying (drag&drop or copy&paste) tables between databases when a column in the table requires quoting due to being a keyword.
 - BUGFIX: #5076 Fixed unchecking Named Constraint option in constraint configuration (thanks to @marcpley).
+- BUGFIX: #5083 Improved cell editing behavior, so entering edition with Enter key or mouse Double-Click no longer preselects whole value.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).

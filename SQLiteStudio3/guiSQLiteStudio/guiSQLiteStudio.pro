@@ -38,6 +38,7 @@ SOURCES +=\
     common/mouseshortcut.cpp \
     constraints/columngeneratedpanel.cpp \
     datagrid/fkcombobox.cpp \
+    datagrid/sqlqueryitemlineedit.cpp \
     extendedpalette.cpp \
         mainwindow.cpp \
     iconmanager.cpp \
@@ -199,6 +200,7 @@ HEADERS  += mainwindow.h \
     common/mouseshortcut.h \
     constraints/columngeneratedpanel.h \
     datagrid/fkcombobox.h \
+    datagrid/sqlqueryitemlineedit.h \
     extendedpalette.h \
     iconmanager.h \
     dbtree/dbtreemodel.h \

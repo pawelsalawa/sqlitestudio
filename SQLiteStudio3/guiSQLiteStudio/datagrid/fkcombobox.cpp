@@ -110,8 +110,6 @@ void FkComboBox::setValue(const QVariant& value)
     bool doExecQuery = (sourceValue != value || comboModel->getQuery().isNull());
     sourceValue = value;
     setCurrentText(value.toString());
-    if (!value.isNull() && isEditable())
-        lineEdit()->selectAll();
 
     if (doExecQuery)
     {

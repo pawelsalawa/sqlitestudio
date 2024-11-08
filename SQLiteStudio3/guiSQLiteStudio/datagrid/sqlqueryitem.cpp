@@ -378,3 +378,19 @@ QVariant SqlQueryItem::data(int role) const
 
     return QStandardItem::data(role);
 }
+
+void SqlQueryItem::resetInitialFocusSelection()
+{
+    QStandardItem::setData(QVariant(), DataRole::EDIT_SKIP_INITIAL_SELECT);
+
+}
+
+void SqlQueryItem::skipInitialFocusSelection()
+{
+    QStandardItem::setData(true, DataRole::EDIT_SKIP_INITIAL_SELECT);
+}
+
+bool SqlQueryItem::shoulSkipInitialFocusSelection() const
+{
+    return QStandardItem::data(DataRole::EDIT_SKIP_INITIAL_SELECT).toBool();
+}

@@ -8,6 +8,7 @@
 #include "common/utils_sql.h"
 #include "fkcombobox.h"
 #include "schemaresolver.h"
+#include "sqlqueryitemlineedit.h"
 #include <QHeaderView>
 #include <QPainter>
 #include <QEvent>
@@ -74,7 +75,18 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
     if (!item->getColumn()->getFkConstraints().isEmpty())
         return getFkEditor(item, parent, model);
 
-    return getEditor(item->getValue().userType(), parent);
+    return getEditor(item->getValue().userType(), item->shoulSkipInitialFocusSelection(), parent);
+}
+
+void SqlQueryItemDelegate::destroyEditor(QWidget* editor, const QModelIndex& index) const
+{
+    QStyledItemDelegate::destroyEditor(editor, index);
+    if (!index.isValid())
+        return;
+
+    const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(index.model());
+    SqlQueryItem* item = model->itemFromIndex(index);
+    item->resetInitialFocusSelection();
 }
 
 QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& locale) const
@@ -216,10 +228,10 @@ SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const
     return queryModel->itemFromIndex(index);
 }
 
-QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
+QWidget* SqlQueryItemDelegate::getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const
 {
     UNUSED(type);
-    QLineEdit *editor = new QLineEdit(parent);
+    SqlQueryItemLineEdit *editor = new SqlQueryItemLineEdit(shouldSkipInitialSelection, parent);
     editor->setMaxLength(std::numeric_limits<int>::max());
     editor->setFrame(editor->style()->styleHint(QStyle::SH_ItemView_DrawDelegateFrame, 0, editor));
     return editor;
@@ -320,7 +332,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
         notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")
                        .arg(FkComboBox::MAX_ROWS_FOR_FK).arg(item->getColumn()->column));
 
-        return getEditor(item->getValue().userType(), parent);
+        return getEditor(item->getValue().userType(), item->shoulSkipInitialFocusSelection(), parent);
     }
 
     if (rowCount == 0 && countingError && model->isStructureOutOfDate())
