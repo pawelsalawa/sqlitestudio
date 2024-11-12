@@ -242,6 +242,19 @@ void FkComboBox::updateComboViewGeometry(bool initial) const
     }
 }
 
+void FkComboBox::updateCurrentItemIndex()
+{
+    QModelIndex startIdx = comboModel->index(0, modelColumn());
+    QModelIndex endIdx = comboModel->index(comboModel->rowCount() - 1, modelColumn());
+    QModelIndexList idxList = comboModel->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, currentText(), 1, true);
+
+    if (idxList.size() > 0)
+    {
+        setCurrentIndex(idxList.first().row());
+        view()->selectionModel()->setCurrentIndex(idxList.first(), QItemSelectionModel::SelectCurrent);
+    }
+}
+
 int FkComboBox::getFkViewHeaderWidth(bool includeScrollBar) const
 {
     int wd = comboView->horizontalHeader()->length();
@@ -287,7 +300,9 @@ void FkComboBox::fkDataReady()
         }
     }
     else
+    {
         setEditText(beforeLoadValue);
+    }
 
     disableValueChangeNotifications = false;
 }
@@ -303,6 +318,7 @@ void FkComboBox::notifyValueModified()
         return;
 
     oldValue = currentText();
+    updateCurrentItemIndex();
     emit valueModified();
 }
 

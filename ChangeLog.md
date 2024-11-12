@@ -34,6 +34,7 @@
 - BUGFIX: #5083 Improved cell editing behavior, so entering edition with Enter key or mouse Double-Click no longer preselects whole value.
 - BUGFIX: #5091 Fixed custom SQL functions editor to prevent duplicated argument names. Also fixed correct argumentName-to-value assignment if arguments share same initial part of their name. Also fixed handling of differnt type of arguments passed to custom SQL function.
 - BUGFIX: #5074 #5082 #5083 Fixed cell editing to preselect proper FK value from dropdown, to correctly load cell value if it containts single quote character and to have proper content selection depending on how editing is triggered.
+- BUGFIX: #5082 When editing FK value inline (not from dropdown), the autocompleted value also updates selection of item in the dropdown (yet to be shown if user chooses so). This also fixes up/down keyboard navigation basing on autocompleted value.
 
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
