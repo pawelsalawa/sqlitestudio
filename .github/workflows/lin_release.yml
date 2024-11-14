@@ -197,6 +197,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Qml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5WaylandClient.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
@@ -210,6 +211,7 @@ jobs:
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-generic.so platforms/libqwayland-generic.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
@@ -225,11 +227,14 @@ jobs:
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
+                set -x
                 chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN          lib/libicu*.*.*
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
                 chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                chrpath -l lib/libicu*.*.*
                 chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -l sqlitestudio
                 chrpath -l sqlitestudiocli
@@ -246,7 +251,11 @@ jobs:
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                patchelf --set-rpath '$ORIGIN' lib/libreadline*
+                # These may have no initial rpath/runpath so chrpath does not work on them
+                patchelf --set-rpath '$ORIGIN' \
+                  lib/libQt5Core.so.*.*.* \
+                  lib/libreadline* \
+                  lib/libwayland-c*.so.*.*.*
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
