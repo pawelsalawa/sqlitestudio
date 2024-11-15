@@ -224,31 +224,6 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
              
-            - name: Copy extra Qt dependencies to portable dir
-              working-directory: ${{ env.PORTABLE_DIR }}
-              run: |
-                libdir=/usr/lib/x86_64-linux-gnu
-                if ldd lib/libQt5XcbQpa.so | grep -q libxcb-; then
-                    # These are not installed by default on my Xubuntu 16.04:
-                    cp -P $libdir/libxcb-cursor.so* lib/
-                    cp -P $libdir/libxcb-icccm.so* lib/
-                    cp -P $libdir/libxcb-image.so* lib/
-                    cp -P $libdir/libxcb-keysyms.so* lib/
-                    cp -P $libdir/libxcb-randr.so* lib/
-                    cp -P $libdir/libxcb-render-util.so* lib/
-                    cp -P $libdir/libxcb-xinerama.so* lib/
-                    # These are not installed by default on my Xubuntu 22.04:
-                    cp -P $libdir/libxcb-xkb.so* lib/
-                    cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
-                    cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
-                fi
-                if ldd lib/libQt5WaylandClient.so | grep -q libwayland-; then
-                    # These must probably match the build system
-                    cp -P $libdir/libwayland-client.so* lib/
-                    cp -P $libdir/libwayland-cursor.so* lib/
-                    cp -P $libdir/libffi.so* lib/
-                fi
-
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
@@ -279,8 +254,7 @@ jobs:
                 # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
                   lib/libQt5Core.so.*.*.* \
-                  lib/libreadline* \
-                  lib/libwayland-c*.so.*.*.*
+                  lib/libreadline*
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
