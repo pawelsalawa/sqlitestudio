@@ -833,56 +833,52 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& table)
 
 QStringList SchemaResolver::getFkReferencingTables(const QString& database, const QString& table)
 {
-    // Get all tables
-    StrHash<SqliteCreateTablePtr> parsedTables = getAllParsedTables(database);
+    static_qstring(fkQueryTpl, R"(
+                WITH foreign_keys AS (
+                   SELECT m.name AS table_name, lower(fk.[table]) AS foreign_table
+                     FROM %1.sqlite_master AS m
+                     JOIN %1.pragma_foreign_key_list(m.name) AS fk
+                    WHERE m.type = 'table'
+                )
+                SELECT table_name
+                  FROM foreign_keys
+                 WHERE foreign_table = '%2';)");
 
-    // Exclude queried table from the list
-    parsedTables.remove(table);
-
-    // Resolve referencing tables
-    return getFkReferencingTables(table, parsedTables.values());
-}
-
-QStringList SchemaResolver::getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables)
-{
-    QStringList tables;
-
-    QList<SqliteCreateTable::Constraint*> tableFks;
-    QList<SqliteCreateTable::Column::Constraint*> fks;
-    bool result = false;
-    for (SqliteCreateTablePtr createTable : allParsedTables)
+    SqlQueryPtr results = db->exec(fkQueryTpl.arg(getPrefixDb(database), escapeString(table.toLower())), dbFlags);
+    if (results->isError())
     {
-        // Check table constraints
-        tableFks = createTable->getForeignKeysByTable(table);
-        result = contains<SqliteCreateTable::Constraint*>(tableFks, [&table](SqliteCreateTable::Constraint* fk)
-        {
-           return fk->foreignKey->foreignTable == table;
-        });
-
-        if (result)
-        {
-            tables << createTable->table;
-            continue;
-        }
-
-        // Check column constraints
-        for (SqliteCreateTable::Column* column : createTable->columns)
-        {
-            fks = column->getForeignKeysByTable(table);
-            result = contains<SqliteCreateTable::Column::Constraint*>(fks, [&table](SqliteCreateTable::Column::Constraint* fk)
-            {
-                return fk->foreignKey->foreignTable == table;
-            });
-
-            if (result)
-            {
-                tables << createTable->table;
-                break;
-            }
-        }
+        qCritical() << "Error while getting FK-referencing table list in SchemaResolver:" << results->getErrorCode();
+        return QStringList();
     }
 
-    return tables;
+    QStringList resList;
+    for (SqlResultsRowPtr row : results->getAll())
+        resList << row->value(0).toString();
+
+    return resList;
+}
+
+QStringList SchemaResolver::getFkReferencedTables(const QString& table)
+{
+    return getFkReferencedTables("main", table);
+}
+
+QStringList SchemaResolver::getFkReferencedTables(const QString& database, const QString& table)
+{
+    static_qstring(fkQueryTpl, "SELECT [table] FROM %1.pragma_foreign_key_list('%2');");
+
+    SqlQueryPtr results = db->exec(fkQueryTpl.arg(getPrefixDb(database), escapeString(table)), dbFlags);
+    if (results->isError())
+    {
+        qCritical() << "Error while getting FK-referenced table list in SchemaResolver:" << results->getErrorCode() << results->getErrorText();
+        return QStringList();
+    }
+
+    QStringList resList;
+    for (SqlResultsRowPtr row : results->getAll())
+        resList << row->value(0).toString();
+
+    return resList;
 }
 
 SchemaResolver::ObjectType SchemaResolver::objectTypeFromQueryType(const SqliteQueryType& queryType)
@@ -930,7 +926,7 @@ QStringList SchemaResolver::getIndexesForTable(const QString& database, const QS
 {
     static_qstring(idxForTableTpl, "SELECT name FROM %1.pragma_index_list(%2)");
 
-    QString query = idxForTableTpl.arg(wrapObjName(database), wrapString(table));
+    QString query = idxForTableTpl.arg(wrapObjName(database), wrapObjIfNeeded(table));
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList indexes;
@@ -954,9 +950,14 @@ QStringList SchemaResolver::getIndexesForTable(const QString& table)
 
 QStringList SchemaResolver::getTriggersForTable(const QString& database, const QString& table)
 {
+    static_qstring(idxForTableTpl, "SELECT name FROM %1.sqlite_master WHERE type = 'trigger' AND lower(tbl_name) = lower('%2');");
+
+    QString query = idxForTableTpl.arg(wrapObjName(database), escapeString(table));
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
     QStringList names;
-    for (SqliteCreateTriggerPtr trig : getParsedTriggersForTable(database, table))
-        names << trig->trigger;
+    for (SqlResultsRowPtr row : results->getAll())
+        names << row->value(0).toString();
 
     return names;
 }
@@ -994,6 +995,56 @@ QStringList SchemaResolver::getViewsForTable(const QString& table)
     return getViewsForTable("main", table);
 }
 
+QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems()
+{
+    return getAllTableListItems("main");
+}
+
+QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const QString& database)
+{
+    QList<TableListItem> items;
+    QString type;
+
+    QList<QVariant> rows;
+    bool useCache = usesCache();
+    ObjectCacheKey key(ObjectCacheKey::TABLE_LIST_ITEM, db, database);
+    if (useCache && cache.contains(key))
+    {
+        rows = cache.object(key, true)->toList();
+    }
+    else
+    {
+        SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list").arg(getPrefixDb(database)), dbFlags);
+        if (results->isError())
+        {
+            qCritical() << "Error while getting all table list items in SchemaResolver:" << results->getErrorCode();
+            return items;
+        }
+
+        for (const SqlResultsRowPtr& row : results->getAll())
+            rows << row->valueMap();
+
+        if (useCache)
+            cache.insert(key, new QVariant(rows));
+    }
+
+    QHash<QString, QVariant> row;
+    for (const QVariant& rowVariant : rows)
+    {
+        row = rowVariant.toHash();
+        type = row["type"].toString();
+        TableListItem item;
+        item.type = stringToTableListItemType(type);
+        if (item.type == TableListItem::UNKNOWN)
+            qCritical() << "Unhlandled table item type:" << type;
+
+        item.name = row["name"].toString();
+        items << item;
+    }
+
+    return items;
+}
+
 StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails()
 {
     return getAllObjectDetails("main");
@@ -1001,7 +1052,7 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails()
 
 StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const QString& database)
 {
-    StrHash< ObjectDetails> details;
+    StrHash<ObjectDetails> details;
     ObjectDetails detail;
     QString type;
 
@@ -1046,27 +1097,27 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
 
 QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
-    QList<SqliteCreateIndexPtr> createIndexList;
+    static_qstring(idxForTableTpl, "SELECT sql FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower('%2');");
 
-    QStringList indexes = getIndexes(database);
-    SqliteQueryPtr query;
-    SqliteCreateIndexPtr createIndex;
-    for (const QString& index : indexes)
+    QString query = idxForTableTpl.arg(wrapObjName(database), escapeString(table));
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    QList<SqliteCreateIndexPtr> createIndexList;
+    for (SqlResultsRowPtr row : results->getAll())
     {
-        query = getParsedObject(database, index, INDEX);
+        SqliteQueryPtr query = getParsedDdl(row->value(0).toString());
         if (!query)
             continue;
 
-        createIndex = query.dynamicCast<SqliteCreateIndex>();
+        SqliteCreateIndexPtr createIndex = query.dynamicCast<SqliteCreateIndex>();
         if (!createIndex)
         {
             qWarning() << "Parsed DDL was not a CREATE INDEX statement, while queried for indexes.";
             continue;
         }
-
-        if (createIndex->table.compare(table, Qt::CaseInsensitive) == 0)
-            createIndexList << createIndex;
+        createIndexList << createIndex;
     }
+
     return createIndexList;
 }
 
@@ -1077,7 +1128,7 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QString& database, const QString& table, bool includeContentReferences)
 {
-    return getParsedTriggersForTableOrView(database, table, includeContentReferences, true);
+    return getParsedTriggersForTableOrView(database, table, includeContentReferences);
 }
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QString& table, bool includeContentReferences)
@@ -1087,7 +1138,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QS
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& database, const QString& view, bool includeContentReferences)
 {
-    return getParsedTriggersForTableOrView(database, view, includeContentReferences, false);
+    return getParsedTriggersForTableOrView(database, view, includeContentReferences);
 }
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& view, bool includeContentReferences)
@@ -1096,40 +1147,88 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QSt
 }
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView,
-                                                                        bool includeContentReferences, bool table)
+                                                                        bool includeContentReferences)
 {
-    QList<SqliteCreateTriggerPtr> createTriggerList;
+    static_qstring(trigForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'trigger' AND lower(tbl_name) = lower('%2');");
+    static_qstring(allTrigTpl, "SELECT sql FROM %1.sqlite_master WHERE type = 'trigger' AND lower(name) NOT IN (%2);");
 
-    QStringList triggers = getTriggers(database);
-    SqliteQueryPtr query;
-    SqliteCreateTriggerPtr createTrigger;
-    for (const QString& trig : triggers)
+    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(tableOrView));
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    QStringList alreadyProcessed;
+    QList<SqliteCreateTriggerPtr> createTriggerList;
+    for (SqlResultsRowPtr row : results->getAll())
     {
-        query = getParsedObject(database, trig, TRIGGER);
-        if (!query)
+        alreadyProcessed << wrapString(escapeString(row->value(1).toString().toLower()));
+        SqliteQueryPtr parsedDdl = getParsedDdl(row->value(0).toString());
+        if (!parsedDdl)
             continue;
 
-        createTrigger = query.dynamicCast<SqliteCreateTrigger>();
+        SqliteCreateTriggerPtr createTrigger = parsedDdl.dynamicCast<SqliteCreateTrigger>();
         if (!createTrigger)
         {
-            qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers." << createTrigger.data();
+            qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers.";
             continue;
         }
-
-        // The condition below checks:
-        // 1. if this is a call for table triggers and event time is INSTEAD_OF - skip this iteration
-        // 2. if this is a call for view triggers and event time is _not_ INSTEAD_OF - skip this iteration
-        // In other words, it's a logical XOR for "table" flag and "eventTime == INSTEAD_OF" condition.
-        if (table == (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF))
-            continue;
-
-        if (createTrigger->table.compare(tableOrView, Qt::CaseInsensitive) == 0)
-            createTriggerList << createTrigger;
-        else if (includeContentReferences && indexOf(createTrigger->getContextTables(), tableOrView, Qt::CaseInsensitive) > -1)
-            createTriggerList << createTrigger;
-
+        createTriggerList << createTrigger;
     }
+
+    if (includeContentReferences)
+    {
+        query = allTrigTpl.arg(wrapObjName(database), alreadyProcessed.join(", "));
+        results = db->exec(query, dbFlags);
+
+        for (SqlResultsRowPtr row : results->getAll())
+        {
+            SqliteQueryPtr parsedDdl = getParsedDdl(row->value(0).toString());
+            if (!parsedDdl)
+                continue;
+
+            SqliteCreateTriggerPtr createTrigger = parsedDdl.dynamicCast<SqliteCreateTrigger>();
+            if (!createTrigger)
+            {
+                qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers.";
+                continue;
+            }
+            if (indexOf(createTrigger->getContextTables(), tableOrView, Qt::CaseInsensitive) > -1)
+                createTriggerList << createTrigger;
+        }
+    }
+
     return createTriggerList;
+
+//    QList<SqliteCreateTriggerPtr> createTriggerList;
+
+//    QStringList triggers = getTriggersForTable(database);
+//    SqliteQueryPtr query;
+//    SqliteCreateTriggerPtr createTrigger;
+//    for (const QString& trig : triggers)
+//    {
+//        query = getParsedObject(database, trig, TRIGGER);
+//        if (!query)
+//            continue;
+
+//        createTrigger = query.dynamicCast<SqliteCreateTrigger>();
+//        if (!createTrigger)
+//        {
+//            qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers." << createTrigger.data();
+//            continue;
+//        }
+
+//        // The condition below checks:
+//        // 1. if this is a call for table triggers and event time is INSTEAD_OF - skip this iteration
+//        // 2. if this is a call for view triggers and event time is _not_ INSTEAD_OF - skip this iteration
+//        // In other words, it's a logical XOR for "table" flag and "eventTime == INSTEAD_OF" condition.
+//        if (table == (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF))
+//            continue;
+
+//        if (createTrigger->table.compare(tableOrView, Qt::CaseInsensitive) == 0)
+//            createTriggerList << createTrigger;
+//        else if (includeContentReferences && indexOf(createTrigger->getContextTables(), tableOrView, Qt::CaseInsensitive) > -1)
+//            createTriggerList << createTrigger;
+
+//    }
+//    return createTriggerList;
 }
 
 QString SchemaResolver::objectTypeToString(SchemaResolver::ObjectType type)
@@ -1162,6 +1261,20 @@ SchemaResolver::ObjectType SchemaResolver::stringToObjectType(const QString& typ
         return SchemaResolver::VIEW;
     else
         return SchemaResolver::ANY;
+}
+
+SchemaResolver::TableListItem::Type SchemaResolver::stringToTableListItemType(const QString& type)
+{
+    if (type == "table")
+        return SchemaResolver::TableListItem::TABLE;
+    else if (type == "virtual")
+        return SchemaResolver::TableListItem::VIRTUAL_TABLE;
+    else if (type == "shadow")
+        return SchemaResolver::TableListItem::SHADOW_TABLE;
+    else if (type == "view")
+        return SchemaResolver::TableListItem::VIEW;
+    else
+        return SchemaResolver::TableListItem::UNKNOWN;
 }
 
 void SchemaResolver::staticInit()
@@ -1235,12 +1348,8 @@ bool SchemaResolver::isWithoutRowIdTable(const QString& database, const QString&
 
 bool SchemaResolver::isVirtualTable(const QString& database, const QString& table)
 {
-    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
-    if (!query)
-        return false;
-
-    SqliteCreateVirtualTablePtr createVirtualTable = query.dynamicCast<SqliteCreateVirtualTable>();
-    return !createVirtualTable.isNull();
+    QString ddl = getObjectDdl(database, table, TABLE);
+    return ddl.simplified().toUpper().startsWith("CREATE VIRTUAL TABLE");
 }
 
 bool SchemaResolver::isVirtualTable(const QString& table)

@@ -40,12 +40,28 @@ class API_EXPORT SchemaResolver
             QString ddl;
         };
 
+        struct TableListItem
+        {
+            enum Type
+            {
+                TABLE,
+                VIRTUAL_TABLE,
+                SHADOW_TABLE,
+                VIEW,
+                UNKNOWN
+            };
+
+            Type type;
+            QString name;
+        };
+
         struct ObjectCacheKey
         {
             enum Type
             {
                 OBJECT_NAMES,
                 OBJECT_DETAILS,
+                TABLE_LIST_ITEM,
                 OBJECT_DDL
             };
 
@@ -76,6 +92,8 @@ class API_EXPORT SchemaResolver
         QString getUniqueName(const QString& namePrefix = QString(), const QStringList& forbiddenNames = QStringList());
         QStringList getFkReferencingTables(const QString& table);
         QStringList getFkReferencingTables(const QString& database, const QString& table);
+        QStringList getFkReferencedTables(const QString& table);
+        QStringList getFkReferencedTables(const QString& database, const QString& table);
 
         QStringList getIndexesForTable(const QString& database, const QString& table);
         QStringList getIndexesForTable(const QString& table);
@@ -85,6 +103,9 @@ class API_EXPORT SchemaResolver
         QStringList getTriggersForView(const QString& view);
         QStringList getViewsForTable(const QString& database, const QString& table);
         QStringList getViewsForTable(const QString& table);
+
+        QList<TableListItem> getAllTableListItems();
+        QList<TableListItem> getAllTableListItems(const QString& database);
 
         StrHash<ObjectDetails> getAllObjectDetails();
         StrHash<ObjectDetails> getAllObjectDetails(const QString& database);
@@ -182,7 +203,6 @@ class API_EXPORT SchemaResolver
 
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool temp = false);
-        static QStringList getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables);
         static ObjectType objectTypeFromQueryType(const SqliteQueryType& queryType);
 
         QStringList getCollations();
@@ -198,6 +218,7 @@ class API_EXPORT SchemaResolver
 
         static QString objectTypeToString(ObjectType type);
         static ObjectType stringToObjectType(const QString& type);
+        static TableListItem::Type stringToTableListItemType(const QString& type);
         static void staticInit();
 
         static_char* USE_SCHEMA_CACHING = "useSchemaCaching";
@@ -209,7 +230,7 @@ class API_EXPORT SchemaResolver
         StrHash< QStringList> getGroupedObjects(const QString &database, const QStringList& inputList, SqliteQueryType type);
         bool isFilteredOut(const QString& value, const QString& type);
         void filterSystemIndexes(QStringList& indexes);
-        QList<SqliteCreateTriggerPtr> getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences, bool table);
+        QList<SqliteCreateTriggerPtr> getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences);
         QString getObjectDdlWithDifficultName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         QString getObjectDdlWithSimpleName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         StrHash<QString> getIndexesWithTables(const QString& database = QString());

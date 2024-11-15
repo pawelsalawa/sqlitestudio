@@ -137,7 +137,6 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QSet<QString>& ob
 
 void DbObjectOrganizer::processPreparation()
 {
-    StrHash<SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
     StrHash<SchemaResolver::ObjectDetails> details = srcResolver->getAllObjectDetails();
     for (const QString& srcName : srcNames)
     {
@@ -151,7 +150,7 @@ void DbObjectOrganizer::processPreparation()
         {
             case SchemaResolver::TABLE:
                 srcTables << srcName;
-                collectReferencedTables(srcName, allParsedObjects);
+                collectReferencedTables(srcName);
                 collectReferencedIndexes(srcName);
                 collectReferencedTriggersForTable(srcName);
                 break;
@@ -560,28 +559,9 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
     return true;
 }
 
-QSet<QString> DbObjectOrganizer::resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables)
+void DbObjectOrganizer::collectReferencedTables(const QString& table)
 {
-    QSet<QString> tables = toSet(SchemaResolver::getFkReferencingTables(table, parsedTables));
-    for (const QString& fkTable : tables)
-        tables += toSet(SchemaResolver::getFkReferencingTables(fkTable, parsedTables));
-
-    tables.remove(table); // if it appeared somewhere in the references - we still don't need it here, it's the table we asked by in the first place
-    return tables;
-}
-
-void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects)
-{
-    QList<SqliteCreateTablePtr> parsedTables;
-    SqliteCreateTablePtr parsedTable;
-    for (SqliteQueryPtr& query : allParsedObjects.values())
-    {
-        parsedTable = query.dynamicCast<SqliteCreateTable>();
-        if (parsedTable)
-            parsedTables << parsedTable;
-    }
-
-    QSet<QString> tables = resolveReferencedTables(table, parsedTables);
+    QStringList tables = srcResolver->getFkReferencedTables(table);
     for (const QString& refTable : tables)
     {
         if (!referencedTables.contains(refTable) && !srcTables.contains(refTable))
