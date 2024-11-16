@@ -865,6 +865,9 @@ void TableWindow::changesSuccessfullyCommitted()
             }
         }
     }
+
+    if (ui->tabWidget->currentIndex() == getDataTabIdx())
+        ui->dataView->refreshData();
 }
 
 void TableWindow::changesFailedToCommit(int errorCode, const QString& errorText)
@@ -1342,9 +1345,10 @@ void TableWindow::tabChanged(int newTab)
                                                "Do you want to commit the structure, or do you want to go back to the structure tab?"),
                                             tr("Go back to structure tab"), tr("Commit modifications and browse data."));
 
-            ui->tabWidget->setCurrentIndex(CFG_UI.General.DataTabAsFirstInTables.get() ? 1 : 0);
             if (res == 1)
                 commitStructure(true);
+            else
+                focusStructureTab();
 
             return;
         }
@@ -1642,6 +1646,16 @@ void TableWindow::delColumn(const QString& columnName)
         return;
 
     delColumn(colIdx);
+}
+
+void TableWindow::focusStructureTab()
+{
+    ui->tabWidget->setCurrentIndex(getStructureTabIdx());
+}
+
+void TableWindow::focusDataTab()
+{
+    ui->tabWidget->setCurrentIndex(getDataTabIdx());
 }
 
 void TableWindow::updateTabsOrder()

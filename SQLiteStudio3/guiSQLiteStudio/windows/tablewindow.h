@@ -255,6 +255,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void addColumn();
         void editColumn(const QString& columnName);
         void delColumn(const QString& columnName);
+        void focusStructureTab();
+        void focusDataTab();
 
     signals:
         void modifyStatusChanged();
