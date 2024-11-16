@@ -924,7 +924,7 @@ SchemaResolver::ObjectType SchemaResolver::objectTypeFromQueryType(const SqliteQ
 
 QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)
 {
-    static_qstring(idxForTableTpl, "SELECT name FROM %1.pragma_index_list(%2)");
+    static_qstring(idxForTableTpl, "SELECT name FROM %1.sqlite_master WHERE type = 'index' AND (tbl_name = '%2' OR lower(tbl_name) = lower('%2'));");
 
     QString query = idxForTableTpl.arg(wrapObjName(database), wrapObjIfNeeded(table));
     SqlQueryPtr results = db->exec(query, dbFlags);
@@ -950,9 +950,9 @@ QStringList SchemaResolver::getIndexesForTable(const QString& table)
 
 QStringList SchemaResolver::getTriggersForTable(const QString& database, const QString& table)
 {
-    static_qstring(idxForTableTpl, "SELECT name FROM %1.sqlite_master WHERE type = 'trigger' AND lower(tbl_name) = lower('%2');");
+    static_qstring(trigForTableTpl, "SELECT name FROM %1.sqlite_master WHERE type = 'trigger' AND (tbl_name = '%2' OR lower(tbl_name) = lower('%2'));");
 
-    QString query = idxForTableTpl.arg(wrapObjName(database), escapeString(table));
+    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(table));
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList names;
@@ -993,6 +993,26 @@ QStringList SchemaResolver::getViewsForTable(const QString& database, const QStr
 QStringList SchemaResolver::getViewsForTable(const QString& table)
 {
     return getViewsForTable("main", table);
+}
+
+QStringList SchemaResolver::getIndexDdlsForTable(const QString& database, const QString& table)
+{
+    return getObjectDdlsReferencingTableOrView(database, table, INDEX);
+}
+
+QStringList SchemaResolver::getIndexDdlsForTable(const QString& table)
+{
+    return getIndexDdlsForTable("main", table);
+}
+
+QStringList SchemaResolver::getTriggerDdlsForTableOrView(const QString& database, const QString& table)
+{
+    return getObjectDdlsReferencingTableOrView(database, table, TRIGGER);
+}
+
+QStringList SchemaResolver::getTriggerDdlsForTableOrView(const QString& table)
+{
+    return getTriggerDdlsForTableOrView("main", table);
 }
 
 QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems()
@@ -1465,6 +1485,27 @@ QString SchemaResolver::normalizeCaseObjectNameByQuery(const QString& query, con
     }
 
     return results->getSingleCell().toString();
+}
+
+QStringList SchemaResolver::getObjectDdlsReferencingTableOrView(const QString& database, const QString& table, ObjectType type)
+{
+    static_qstring(trigForTableTpl, "SELECT sql FROM %1.sqlite_master WHERE type = '%3' AND (tbl_name = '%2' OR lower(tbl_name) = lower('%2'));"); // non-lower variant for cyrlic alphabet
+
+    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(table), objectTypeToString(type));
+    SqlQueryPtr results = db->exec(query, dbFlags);
+
+    QStringList ddls;
+    for (SqlResultsRowPtr row : results->getAll())
+    {
+        QString ddl = row->value(0).toString();
+        if (!ddl.trimmed().endsWith(";"))
+            ddl += ";";
+
+        ddls << ddl;
+    }
+
+    return ddls;
+
 }
 
 SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, const QString& value1, const QString& value2, const QString& value3) :

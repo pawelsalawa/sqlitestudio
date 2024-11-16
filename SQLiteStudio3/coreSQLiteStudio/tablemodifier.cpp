@@ -929,29 +929,14 @@ void TableModifier::simpleHandleIndexes()
 {
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
-    QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    for (SqliteCreateIndexPtr& index : parsedIndexesForTable)
-    {
-        index->rebuildTokens();
-        sqls << index->detokenize();
-    }
+    sqls += resolver.getIndexDdlsForTable(originalTable);
 }
 
 void TableModifier::simpleHandleTriggers(const QString& view)
 {
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
-    QList<SqliteCreateTriggerPtr> parsedTriggers ;
-    if (!view.isNull())
-        parsedTriggers = resolver.getParsedTriggersForView(view);
-    else
-        parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
-
-    for (SqliteCreateTriggerPtr& trig : parsedTriggers)
-    {
-        trig->rebuildTokens();
-        sqls << trig->detokenize();
-    }
+    sqls += resolver.getTriggerDdlsForTableOrView(view.isNull() ? originalTable : view);
 }
 
 SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)

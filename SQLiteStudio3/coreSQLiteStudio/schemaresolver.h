@@ -103,6 +103,10 @@ class API_EXPORT SchemaResolver
         QStringList getTriggersForView(const QString& view);
         QStringList getViewsForTable(const QString& database, const QString& table);
         QStringList getViewsForTable(const QString& table);
+        QStringList getIndexDdlsForTable(const QString& database, const QString& table);
+        QStringList getIndexDdlsForTable(const QString& table);
+        QStringList getTriggerDdlsForTableOrView(const QString& database, const QString& table);
+        QStringList getTriggerDdlsForTableOrView(const QString& table);
 
         QList<TableListItem> getAllTableListItems();
         QList<TableListItem> getAllTableListItems(const QString& database);
@@ -235,6 +239,7 @@ class API_EXPORT SchemaResolver
         QString getObjectDdlWithSimpleName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
         StrHash<QString> getIndexesWithTables(const QString& database = QString());
         QString normalizeCaseObjectNameByQuery(const QString& query, const QString& name);
+        QStringList getObjectDdlsReferencingTableOrView(const QString& database, const QString& table, ObjectType type);
 
         template <class T>
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
