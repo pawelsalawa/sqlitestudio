@@ -43,7 +43,7 @@ TableModifierTest::TableModifierTest()
 void TableModifierTest::verifyRe(const QString& re, const QString& sql, Qt::CaseSensitivity cs)
 {
     QRegExp regExp(re, cs);
-    QVERIFY2(regExp.exactMatch(sql), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2").arg(re).arg(sql).toLatin1().data());
+    QVERIFY2(regExp.exactMatch(sql), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2\n").arg(re, sql).toLatin1().data());
 }
 
 void TableModifierTest::testCase1()

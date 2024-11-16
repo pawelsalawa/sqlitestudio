@@ -931,7 +931,10 @@ void TableModifier::simpleHandleIndexes()
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
     for (SqliteCreateIndexPtr& index : parsedIndexesForTable)
+    {
+        index->rebuildTokens();
         sqls << index->detokenize();
+    }
 }
 
 void TableModifier::simpleHandleTriggers(const QString& view)
@@ -945,7 +948,10 @@ void TableModifier::simpleHandleTriggers(const QString& view)
         parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
 
     for (SqliteCreateTriggerPtr& trig : parsedTriggers)
+    {
+        trig->rebuildTokens();
         sqls << trig->detokenize();
+    }
 }
 
 SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)

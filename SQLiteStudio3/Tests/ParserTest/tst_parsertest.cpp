@@ -569,7 +569,7 @@ void ParserTest::testWindowClause()
 void ParserTest::testWindowKwAsColumn()
 {
     QString sql = "SELECT window FROM test_table;";
-    parser3->setLemonDebug(true);
+    //parser3->setLemonDebug(true);
     bool res = parser3->parse(sql);
     QVERIFY(res);
     QVERIFY(parser3->getErrors().isEmpty());
