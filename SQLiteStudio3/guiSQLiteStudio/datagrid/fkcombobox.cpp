@@ -10,6 +10,7 @@
 #include <QScreen>
 #include <QLineEdit>
 #include <QScrollBar>
+#include <QCompleter>
 
 FkComboBox::FkComboBox(QWidget* parent, int dropDownViewMinWidth)
     : QComboBox(parent), dropDownViewMinWidth(dropDownViewMinWidth)
@@ -219,6 +220,13 @@ void FkComboBox::init()
     comboView->horizontalHeader()->setVisible(true);
     comboView->setSelectionMode(QAbstractItemView::SingleSelection);
     comboView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    connect(completer(), QOverload<const QString &>::of(&QCompleter::highlighted),
+        [=](const QString &value)
+    {
+        // #5083 In case of case-sensitive mismatch, we need to sync case, so that next/prev navigation with keybord works correctly.
+        setCurrentText(value.left(currentText().length()));
+    });
 }
 
 void FkComboBox::updateComboViewGeometry(bool initial) const
@@ -242,11 +250,11 @@ void FkComboBox::updateComboViewGeometry(bool initial) const
     }
 }
 
-void FkComboBox::updateCurrentItemIndex()
+void FkComboBox::updateCurrentItemIndex(const QString& value)
 {
     QModelIndex startIdx = comboModel->index(0, modelColumn());
     QModelIndex endIdx = comboModel->index(comboModel->rowCount() - 1, modelColumn());
-    QModelIndexList idxList = comboModel->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, currentText(), 1, true);
+    QModelIndexList idxList = comboModel->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, value.isNull() ? currentText() : value, 1, true);
 
     if (idxList.size() > 0)
     {
@@ -318,7 +326,10 @@ void FkComboBox::notifyValueModified()
         return;
 
     oldValue = currentText();
+    disableValueChangeNotifications = true;
     updateCurrentItemIndex();
+    disableValueChangeNotifications = false;
+
     emit valueModified();
 }
 
