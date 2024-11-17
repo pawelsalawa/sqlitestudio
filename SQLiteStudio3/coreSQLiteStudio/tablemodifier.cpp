@@ -74,7 +74,7 @@ void TableModifier::renameTo(const QString& newName, bool doCopyData)
     // Secondly, we need to identify if a table has column with "reserved literal" used as column name - i.e. "true" or "false".
     // This is allowed by SQLite, but it's treated strangely by SQLite. In many cases result column of such name is renamed to columnN.
     // Example of such case when reserved literal column is used in source table of CREATE TABLE trg AS SELECT * FROM src;
-    // It was identified during investigation of #5099.
+    // It was identified during investigation of #5065.
 
     bool hasReservedColName = false;
     for (SqliteCreateTable::Column* column : createTable->columns)
