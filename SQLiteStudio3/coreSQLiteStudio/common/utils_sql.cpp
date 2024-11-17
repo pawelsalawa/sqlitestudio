@@ -14,6 +14,7 @@ QString invalidIdCharacters = "[](){}\"'@*.,+-=/#$%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
+QSet<QString> sqlite3ReservedLiterals = {"true", "false"}; // true/false as column names - #5065
 
 void initUtilsSql()
 {
@@ -58,7 +59,15 @@ bool doesObjectNeedWrapping(const QString& str)
     if (str[0].isDigit())
         return true;
 
+    if (isReservedLiteral(str))
+        return true;
+
     return false;
+}
+
+bool isReservedLiteral(const QString& str)
+{
+    return sqlite3ReservedLiterals.contains(str.toLower());
 }
 
 bool doesObjectNeedWrapping(const QChar& c)

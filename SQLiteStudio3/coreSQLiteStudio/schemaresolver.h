@@ -66,9 +66,11 @@ class API_EXPORT SchemaResolver
             };
 
             ObjectCacheKey(Type type, Db* db, const QString& value1 = QString(), const QString& value2 = QString(), const QString& value3 = QString());
+            ObjectCacheKey(Type type, Db* db, bool skipSystemObj, const QString& value1 = QString(), const QString& value2 = QString(), const QString& value3 = QString());
 
             Type type;
             Db* db;
+            bool skipSystemObj;
             QString value1;
             QString value2;
             QString value3;

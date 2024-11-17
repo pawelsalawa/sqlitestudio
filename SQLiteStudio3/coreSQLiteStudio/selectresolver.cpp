@@ -356,10 +356,13 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
         }
 
         // If source column name is aliased, use it
-        if (!column.alias.isNull())
-            column.displayName = column.alias;
-        else
-            column.displayName = column.column;
+        if (column.displayName.isNull())
+        {
+            if (!column.alias.isNull())
+                column.displayName = column.alias;
+            else
+                column.displayName = column.column;
+        }
 
         currentCoreResults << column;
         foundAtLeastOne = true;
@@ -678,16 +681,40 @@ QList<SelectResolver::Column> SelectResolver::resolveTableFunctionColumns(Sqlite
 
 QList<SelectResolver::Column> SelectResolver::resolveSingleSourceSubSelect(SqliteSelect::Core::SingleSource *joinSrc)
 {
+    static_qstring(newAliasTpl, "column%1");
+    static_qstring(nextAliasTpl, "column%1:%2");
+
     QList<Column> columnSources = resolveSubSelect(joinSrc->select);
     applySubSelectAlias(columnSources, joinSrc->alias);
 
+    int colNum = 1;
+    QSet<QString> usedColumnNames;
     QMutableListIterator<Column> it(columnSources);
     while (it.hasNext())
     {
-        if (it.next().alias.isEmpty())
-            continue;
+        Column& col = it.next();
+        usedColumnNames << (col.alias.isEmpty() ? col.column : col.alias).toLower();
 
-        it.value().aliasDefinedInSubQuery = true;
+        // Columns named "true", "false" - require special treatment,
+        // as they will be renamed from subselects to columnN by SQLite query planner (#5065)
+        if (isReservedLiteral(col.alias) || (col.alias.isEmpty() && isReservedLiteral(col.column)))
+        {
+            QString newAlias = newAliasTpl.arg(colNum);
+            for (int i = 1; usedColumnNames.contains(newAlias); i++)
+                newAlias = nextAliasTpl.arg(colNum).arg(i);
+
+            if (!col.alias.isNull())
+                col.displayName = col.alias;
+            else
+                col.displayName = col.column;
+
+            col.alias = newAlias;
+        }
+
+        if (!col.alias.isEmpty())
+            col.aliasDefinedInSubQuery = true;
+
+        colNum++;
     }
 
     return columnSources;

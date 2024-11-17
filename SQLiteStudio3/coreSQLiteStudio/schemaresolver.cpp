@@ -1078,7 +1078,7 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
 
     QList<QVariant> rows;
     bool useCache = usesCache();
-    ObjectCacheKey key(ObjectCacheKey::OBJECT_DETAILS, db, database);
+    ObjectCacheKey key(ObjectCacheKey::OBJECT_DETAILS, db, ignoreSystemObjects, database);
     if (useCache && cache.contains(key))
     {
         rows = cache.object(key, true)->toList();
@@ -1093,7 +1093,12 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
         }
 
         for (const SqlResultsRowPtr& row : results->getAll())
+        {
+            if (isFilteredOut(row->value("name").toString(), row->value("type").toString()))
+                continue;
+
             rows << row->valueMap();
+        }
 
         if (useCache)
             cache.insert(key, new QVariant(rows));
@@ -1117,7 +1122,7 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
 
 QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
-    static_qstring(idxForTableTpl, "SELECT sql FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower('%2');");
+    static_qstring(idxForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower('%2');");
 
     QString query = idxForTableTpl.arg(wrapObjName(database), escapeString(table));
     SqlQueryPtr results = db->exec(query, dbFlags);
@@ -1125,7 +1130,12 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     QList<SqliteCreateIndexPtr> createIndexList;
     for (SqlResultsRowPtr row : results->getAll())
     {
-        SqliteQueryPtr query = getParsedDdl(row->value(0).toString());
+        QString ddl = row->value(0).toString();
+        QString name = row->value(1).toString();
+        if (isFilteredOut(name, "index"))
+            continue;
+
+        SqliteQueryPtr query = getParsedDdl(ddl);
         if (!query)
             continue;
 
@@ -1509,16 +1519,28 @@ QStringList SchemaResolver::getObjectDdlsReferencingTableOrView(const QString& d
 }
 
 SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, const QString& value1, const QString& value2, const QString& value3) :
-    type(type), db(db), value1(value1), value2(value2), value3(value3)
+  ObjectCacheKey(type, db, false, value1, value2, value3)
+{
+}
+
+SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, bool skipSystemObj, const QString& value1, const QString& value2, const QString& value3) :
+    type(type), db(db), skipSystemObj(skipSystemObj), value1(value1), value2(value2), value3(value3)
 {
 }
 
 int qHash(const SchemaResolver::ObjectCacheKey& key)
 {
-    return qHash(key.type) ^ qHash(key.db) ^ qHash(key.value1) ^ qHash(key.value2) ^ qHash(key.value3);
+    return qHash(key.type) ^ qHash(key.db) ^ qHash(key.value1) ^ qHash(key.value2) ^ qHash(key.value3) ^ qHash(key.skipSystemObj);
 }
 
 int operator==(const SchemaResolver::ObjectCacheKey& k1, const SchemaResolver::ObjectCacheKey& k2)
 {
-    return (k1.type == k2.type && k1.db == k2.db && k1.value1 == k2.value1 && k1.value2 == k2.value2 && k1.value3 == k2.value3);
+    return (
+        k1.type == k2.type &&
+        k1.db == k2.db &&
+        k1.value1 == k2.value1 &&
+        k1.value2 == k2.value2 &&
+        k1.value3 == k2.value3 &&
+        k1.skipSystemObj == k2.skipSystemObj
+    );
 }
