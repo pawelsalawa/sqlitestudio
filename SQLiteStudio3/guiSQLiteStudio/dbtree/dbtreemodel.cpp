@@ -281,10 +281,10 @@ void DbTreeModel::expanded(const QModelIndex &index)
     }
 
     DbTreeItem* dbTreeItem = dynamic_cast<DbTreeItem*>(item);
-    if (dbTreeItem->getType() == DbTreeItem::Type::TABLE && !dbTreeItem->isSchemaReady())
+    if (dbTreeItem->getType() == DbTreeItem::Type::TABLE)
         loadTableSchema(dbTreeItem);
 
-    if (dbTreeItem->getType() == DbTreeItem::Type::VIEW && !dbTreeItem->isSchemaReady())
+    if (dbTreeItem->getType() == DbTreeItem::Type::VIEW)
         loadViewSchema(dbTreeItem);
 
     if (dbTreeItem->getType() == DbTreeItem::Type::DIR)
@@ -450,8 +450,9 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
 
 QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
 {
-    QStringList rows;
+    const_cast<DbTreeModel*>(this)->loadTableSchema(item); // not nice to const_cast, but nothing better we can do about this
 
+    QStringList rows;
     rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath()).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
 
     QStandardItem* columnsItem = item->child(0);
@@ -635,6 +636,9 @@ void DbTreeModel::populateChildItemsWithDb(QStandardItem *parentItem, Db* db)
 
 void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
 {
+    if (tableItem->isSchemaReady())
+        return;
+
     Db* db = tableItem->getDb();
     QString table = tableItem->text();
 
@@ -669,6 +673,9 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
 
 void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
 {
+    if (viewItem->isSchemaReady())
+        return;
+
     Db* db = viewItem->getDb();
     QString view = viewItem->text();
 
