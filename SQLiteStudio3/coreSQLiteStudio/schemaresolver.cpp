@@ -1023,7 +1023,6 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems()
 QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const QString& database)
 {
     QList<TableListItem> items;
-    QString type;
 
     QList<QVariant> rows;
     bool useCache = usesCache();
@@ -1054,13 +1053,17 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
     for (const QVariant& rowVariant : rows)
     {
         row = rowVariant.toHash();
-        type = row["type"].toString();
+        QString value = row["name"].toString();
+        QString type = row["type"].toString();
+        if (isFilteredOut(value, type))
+            continue;
+
         TableListItem item;
         item.type = stringToTableListItemType(type);
         if (item.type == TableListItem::UNKNOWN)
             qCritical() << "Unhlandled table item type:" << type;
 
-        item.name = row["name"].toString();
+        item.name = value;
         items << item;
     }
 
