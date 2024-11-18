@@ -290,6 +290,7 @@
 - BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
 - BUGFIX: #3550 After successful data import, a number of rows imported is included in the notification message.
 - BUGFIX: #3415 Fixed release build scripts on all platforms.
+- BUGFIX: Fixed data grid filtering in views that use table-valued functions as data source.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

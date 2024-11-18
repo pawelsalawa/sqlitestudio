@@ -668,6 +668,7 @@ QList<SelectResolver::Column> SelectResolver::resolveTableFunctionColumns(Sqlite
     column.type = Column::OTHER;
     column.database = joinSrc->database;
     column.originalDatabase = resolveDatabase(joinSrc->database);
+    column.flags |= FROM_TABLE_VALUED_FN;
     if (!joinSrc->alias.isNull())
         column.tableAlias = joinSrc->alias;
 
