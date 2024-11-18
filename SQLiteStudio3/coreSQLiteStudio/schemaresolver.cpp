@@ -1034,7 +1034,9 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
     }
     else
     {
-        SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list").arg(getPrefixDb(database)), dbFlags);
+        //SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list").arg(getPrefixDb(database)), dbFlags); // this only when SQLite is upgraded to >= 3.37.0
+        static_qstring(queryTpl, "SELECT name, (CASE WHEN type = 'view' THEN 'view' WHEN sql LIKE 'CREATE VIRTUAL%' THEN 'virtual' ELSE 'table' END) AS type FROM %1.sqlite_master WHERE type IN ('table', 'view')");
+        SqlQueryPtr results = db->exec(queryTpl.arg(getPrefixDb(database)), dbFlags);
         if (results->isError())
         {
             qCritical() << "Error while getting all table list items in SchemaResolver:" << results->getErrorCode();
