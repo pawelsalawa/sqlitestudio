@@ -1129,7 +1129,7 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
 {
     static_qstring(idxForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower('%2');");
 
-    QString query = idxForTableTpl.arg(wrapObjName(database), escapeString(table));
+    QString query = idxForTableTpl.arg(getPrefixDb(database), escapeString(table));
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QList<SqliteCreateIndexPtr> createIndexList;
@@ -1187,7 +1187,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
     static_qstring(trigForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'trigger' AND lower(tbl_name) = lower('%2');");
     static_qstring(allTrigTpl, "SELECT sql FROM %1.sqlite_master WHERE type = 'trigger' AND lower(name) NOT IN (%2);");
 
-    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(tableOrView));
+    QString query = trigForTableTpl.arg(getPrefixDb(database), escapeString(tableOrView));
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList alreadyProcessed;
