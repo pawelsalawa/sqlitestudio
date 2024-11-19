@@ -355,7 +355,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+      <translation>无法创建脚本上下文，可能是插件配置不正确</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
@@ -853,7 +853,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+      <translation>无法获取评估上下文，可能是 %1 脚本插件配置不正确</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
@@ -1105,7 +1105,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="863"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>已根据需要注册默认排序规则，名称为：%1</translation>
     </message>
   </context>
   <context>

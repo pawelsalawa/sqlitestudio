@@ -232,17 +232,17 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Collation type:</source>
-      <translation type="unfinished">Collation type:</translation>
+      <translation>排序类型：</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="217"/>
       <source>Function-based</source>
-      <translation type="unfinished">Function-based</translation>
+      <translation>基于函数</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="224"/>
       <source>Extension-based</source>
-      <translation type="unfinished">Extension-based</translation>
+      <translation>基于扩展</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="233"/>
@@ -292,17 +292,17 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="313"/>
       <source>Registration code</source>
-      <translation type="unfinished">Registration code</translation>
+      <translation>注册代码</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="314"/>
       <source>Enter a non-empty registration code.</source>
-      <translation type="unfinished">Enter a non-empty registration code.</translation>
+      <translation>输入非空的注册码。</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="318"/>
       <source>Implementation code</source>
-      <translation type="unfinished">Implementation code</translation>
+      <translation>实现代码</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="319"/>
@@ -931,7 +931,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>Scripting languages</source>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>脚本语言</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="265"/>
@@ -1978,12 +1978,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Select an existing database file</source>
-      <translation type="unfinished">Select an existing database file</translation>
+      <translation>选择现有的数据库文件</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="61"/>
       <source>Create a new database file</source>
-      <translation type="unfinished">Create a new database file</translation>
+      <translation>创建一个新的数据库文件</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
@@ -2059,12 +2059,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="756"/>
       <source>Choose a location for the new database file</source>
-      <translation type="unfinished">Choose a location for the new database file</translation>
+      <translation>选择新数据库文件的位置</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>浏览本地计算机上的现有数据库文件</translation>
     </message>
   </context>
   <context>
@@ -5639,7 +5639,7 @@ find next</source>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
-      <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
+      <translation>新查询中的列较少，排序顺序已重置。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
@@ -6625,19 +6625,19 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>存在未提交的结构修改。</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>在确定表结构之前，您无法浏览或编辑数据。
+您想提交结构，还是想返回到结构选项卡？</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>提交修改并浏览数据</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
@@ -7032,19 +7032,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>存在未提交的结构修改。</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>在确定视图结构之前，您无法浏览或编辑数据。
+您是否要提交结构，还是要返回到结构选项卡？</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>提交修改并浏览数据</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
