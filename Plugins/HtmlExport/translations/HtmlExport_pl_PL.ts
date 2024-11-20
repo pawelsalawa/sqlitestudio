@@ -69,7 +69,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
       <source>Collating</source>
-      <translation>Zestawienie</translation>
+      <translation>Sekwencja porządkowania</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
