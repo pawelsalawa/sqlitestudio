@@ -5,6 +5,7 @@
 - ADDED: #5041 Added support for column list syntax in CREATE VIEW.
 - ADDED: #4774 Added checking if data types are matched in both columns while creating foreign column. This applies for Column Dialog Foreign Key, Table Foreign Key and also in the Query Executor (user will receive warning if executed query breaks the Foreign Key data type alignment).
 - ADDED: #4928 During exporting data in Export Dialog, the progress bar now shows number of rows already exported in real time (still filesystem may buffer writing operation, so data may appear in the output file with delay).
+- ADDED: #5079 Data cell focus and current data page is maintained during data reload.
 - CHANGE: #4740 Dialog geometry is saved & restored for several dialog windows (i.e. Import, Export, Populate and more...).
 - CHANGE: #4861 When loading SQL script into SQL Editor, contents of current editor are retained. Instead another editor is open to load SQL script, with exception when current editor is empty - in that case it is used for loading.
 - CHANGE: #4861 When trying to load SQLite database as SQL script into SQL Editor window, application detects it and opens Database dialog for that file instead.

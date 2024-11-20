@@ -65,6 +65,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         bool isExecutionInProgress() const;
         StrHash<QString> attachDependencyTables();
         void detachDependencyTables();
+        void rememberFocusedCell();
+        void forgetFocusedCell();
 
         /**
          * @brief Disables or re-enables async query execution
@@ -244,6 +246,18 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
                 int argSquence = 0;
         };
 
+        struct StoredFocus
+        {
+            int row = -1;
+            int column = -1;
+            int forPage = -1;
+            int forRowsPerPage = -1;
+            QString forFilter;
+
+            bool isValid();
+            void reset();
+        };
+
         /**
          * @brief commitAddedRow Inserts new row to a table.
          * @param itemsInRow All cells for the new row.
@@ -316,6 +330,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
         QList<SqlQueryModelColumnPtr> columns;
+        StoredFocus storedFocus;
 
         /**
          * @brief tablesInUse
@@ -385,6 +400,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void notifyItemEditionEnded(const QModelIndex& idx);
         int getRowsPerPage() const;
         bool isEmptyQuery() const;
+        void restoreFocusedCell();
 
         QString query;
         QHash<QString, QVariant> queryParams;
@@ -522,7 +538,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void prevPage();
         void nextPage();
         void lastPage();
-        void executeQuery();
+        void executeQuery(bool enforcePage0 = false);
         void interrupt();
         void commit();
         void rollback();

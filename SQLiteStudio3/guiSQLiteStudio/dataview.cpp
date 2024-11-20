@@ -682,12 +682,6 @@ void DataView::setFormViewEnabled(bool enabled)
     setTabEnabled(1, enabled);
 }
 
-void DataView::readData()
-{
-    setNavigationState(false);
-    model->executeQuery();
-}
-
 bool DataView::isUncommitted() const
 {
     return uncommittedGrid || uncommittedForm;
@@ -718,10 +712,16 @@ void DataView::totalRowsAndPagesAvailable()
     updateNavigationState();
 }
 
-void DataView::refreshData()
+void DataView::refreshData(bool keepFocus)
 {
     totalPagesAvailable = false;
-    readData();
+    if (keepFocus)
+        model->rememberFocusedCell();
+    else
+        model->forgetFocusedCell();
+
+    setNavigationState(false);
+    model->executeQuery(!keepFocus);
 }
 
 void DataView::insertRow()

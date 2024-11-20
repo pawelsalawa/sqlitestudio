@@ -1127,17 +1127,17 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
 
 QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
-    static_qstring(idxForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower('%2');");
+    static_qstring(idxForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower(?);");
 
-    QString query = idxForTableTpl.arg(getPrefixDb(database), escapeString(table));
-    SqlQueryPtr results = db->exec(query, dbFlags);
+    QString query = idxForTableTpl.arg(getPrefixDb(database));
+    SqlQueryPtr results = db->exec(query, {table}, dbFlags);
 
     QList<SqliteCreateIndexPtr> createIndexList;
     for (SqlResultsRowPtr row : results->getAll())
     {
         QString ddl = row->value(0).toString();
         QString name = row->value(1).toString();
-        if (isFilteredOut(name, "index"))
+        if (ddl.isEmpty() || isFilteredOut(name, "index"))
             continue;
 
         SqliteQueryPtr query = getParsedDdl(ddl);
@@ -1147,7 +1147,8 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
         SqliteCreateIndexPtr createIndex = query.dynamicCast<SqliteCreateIndex>();
         if (!createIndex)
         {
-            qWarning() << "Parsed DDL was not a CREATE INDEX statement, while queried for indexes.";
+            qWarning() << "Parsed DDL was not a CREATE INDEX statement, while queried for indexes. Queried db & table:"
+                       << database << table << "Index name:" << name << "DDL:" << ddl;
             continue;
         }
         createIndexList << createIndex;

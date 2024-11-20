@@ -1313,7 +1313,7 @@ void TableWindow::importTable()
     ImportDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::populateTable()
@@ -1321,7 +1321,7 @@ void TableWindow::populateTable()
     PopulateDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::createSimilarTable()
@@ -1354,7 +1354,7 @@ void TableWindow::tabChanged(int newTab)
         }
 
         if (!dataLoaded)
-            ui->dataView->refreshData();
+            ui->dataView->refreshData(false);
     }
 }
 

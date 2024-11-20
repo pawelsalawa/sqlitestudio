@@ -627,7 +627,7 @@ void ViewWindow::tabChanged(int tabIdx)
             }
 
             if (!dataLoaded)
-                ui->dataView->refreshData();
+                ui->dataView->refreshData(false);
 
             return;
     }

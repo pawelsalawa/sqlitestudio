@@ -473,7 +473,7 @@ void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
     resultsModel->setQuery(sql);
     resultsModel->setParams(bindParams);
     resultsModel->setQueryCountLimitForSmartMode(queryLimitForSmartExecution);
-    ui->dataView->refreshData();
+    ui->dataView->refreshData(false);
     updateState();
 
     if (resultsDisplayMode == ResultsDisplayMode::SEPARATE_TAB)

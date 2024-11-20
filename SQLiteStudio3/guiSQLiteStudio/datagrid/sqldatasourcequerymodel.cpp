@@ -39,7 +39,7 @@ void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProce
         conditions << wrapObjIfNeeded(column->getAliasedName())+" "+valueProc(value);
 
     queryExecutor->setFilters(conditions.join(" OR "));
-    executeQuery();
+    executeQuery(true);
 }
 
 void SqlDataSourceQueryModel::applyFilter(const QStringList& values, FilterValueProcessor valueProc)
@@ -135,7 +135,7 @@ void SqlDataSourceQueryModel::resetFilter()
 {
 //    setQuery("SELECT * FROM "+getDataSource());
     queryExecutor->setFilters(QString());
-    executeQuery();
+    executeQuery(true);
 }
 
 QString SqlDataSourceQueryModel::getDatabasePrefix()
