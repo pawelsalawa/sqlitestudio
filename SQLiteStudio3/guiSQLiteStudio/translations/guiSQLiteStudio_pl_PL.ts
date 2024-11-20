@@ -202,7 +202,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="75"/>
       <source>Filter collations</source>
-      <translation>Filtruj zestawienia</translation>
+      <translation>Filtruj sekwencje porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
@@ -227,22 +227,22 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="198"/>
       <source>Collation name:</source>
-      <translation>Nazwa zestawienia:</translation>
+      <translation>Nazwa sekwencji porządkowania:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Collation type:</source>
-      <translation type="unfinished">Collation type:</translation>
+      <translation>Typ sekwencji porządkowania:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="217"/>
       <source>Function-based</source>
-      <translation type="unfinished">Function-based</translation>
+      <translation>Oparta na funkcji</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="224"/>
       <source>Extension-based</source>
-      <translation type="unfinished">Extension-based</translation>
+      <translation>Oparta na rozszerzeniu</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="233"/>
@@ -252,37 +252,37 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="55"/>
       <source>Collations editor</source>
-      <translation>Edytor zestawień</translation>
+      <translation>Edytor sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="60"/>
       <source>Commit all collation changes</source>
-      <translation>Zatwierdź wszystkie zmiany w zestawieniach</translation>
+      <translation>Zatwierdź wszystkie zmiany w sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Rollback all collation changes</source>
-      <translation>Wycofaj wszystkie zmiany w zestawieniach</translation>
+      <translation>Wycofaj wszystkie zmiany w sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="63"/>
       <source>Create new collation</source>
-      <translation>Utwórz nowe zestawienie</translation>
+      <translation>Utwórz nową sekwencję porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="64"/>
       <source>Delete selected collation</source>
-      <translation>Usuń wybrane zestawienie</translation>
+      <translation>Usuń wybraną sekwencję porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="66"/>
       <source>Editing collations manual</source>
-      <translation>Podręcznik edycji zestawień</translation>
+      <translation>Podręcznik edycji sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="298"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation>Podaj niepustą, unikalną nazwę zestawienia.</translation>
+      <translation>Podaj niepustą, unikalną nazwę sekwencji porządkowania.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="308"/>
@@ -292,17 +292,17 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="313"/>
       <source>Registration code</source>
-      <translation type="unfinished">Registration code</translation>
+      <translation>Kod rejestracyjny</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="314"/>
       <source>Enter a non-empty registration code.</source>
-      <translation type="unfinished">Enter a non-empty registration code.</translation>
+      <translation>Wprowadź niepusty kod rejestracyjny.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="318"/>
       <source>Implementation code</source>
-      <translation type="unfinished">Implementation code</translation>
+      <translation>Kod implementacji</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="319"/>
@@ -312,7 +312,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="442"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation>Okno edytora zestawień ma niezatwierdzone zmiany.</translation>
+      <translation>Okno edytora sekwencji porządkowania ma niezatwierdzone zmiany.</translation>
     </message>
   </context>
   <context>
@@ -328,7 +328,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="41"/>
       <source>Collation name:</source>
-      <translation>Nazwa zestawienia:</translation>
+      <translation>Nazwa sekwencji porządkowania:</translation>
     </message>
     <message>
       <location filename="../constraints/columncollatepanel.ui" line="73"/>
@@ -343,7 +343,7 @@
     <message>
       <location filename="../constraints/columncollatepanel.cpp" line="81"/>
       <source>Enter a collation name.</source>
-      <translation>Wprowadź nazwę zestawienia.</translation>
+      <translation>Wprowadź nazwę sekwencji porządkowania.</translation>
     </message>
   </context>
   <context>
@@ -451,7 +451,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="143"/>
       <source>Collate</source>
-      <translation>Zestawienie</translation>
+      <translation>Porządek</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="129"/>
@@ -543,7 +543,7 @@
       <location filename="../dialogs/columndialog.cpp" line="95"/>
       <source>Add a collate constraint</source>
       <comment>column dialog</comment>
-      <translation>Dodaj ograniczenie zestawienia</translation>
+      <translation>Dodaj ograniczenie sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="96"/>
@@ -840,7 +840,7 @@
       <location filename="../completer/completerwindow.cpp" line="245"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation>Zestawienie: %1</translation>
+      <translation>Porządek: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="247"/>
@@ -931,7 +931,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="233"/>
       <source>Scripting languages</source>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Języki skryptowe</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="265"/>
@@ -1735,7 +1735,7 @@
       <location filename="../dialogs/constraintdialog.cpp" line="196"/>
       <source>Collate</source>
       <comment>table constraints</comment>
-      <translation>Zestawienie</translation>
+      <translation>Sekwencja porządkowania</translation>
     </message>
     <message>
       <location filename="../dialogs/constraintdialog.cpp" line="200"/>
@@ -1978,12 +1978,12 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Select an existing database file</source>
-      <translation type="unfinished">Select an existing database file</translation>
+      <translation>Wybierz istniejący plik bazy danych</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="61"/>
       <source>Create a new database file</source>
-      <translation type="unfinished">Create a new database file</translation>
+      <translation>Utwórz nowy plik bazy danych</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
@@ -2059,12 +2059,12 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="756"/>
       <source>Choose a location for the new database file</source>
-      <translation type="unfinished">Choose a location for the new database file</translation>
+      <translation>Wybierz lokalizację dla nowego pliku bazy danych</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="757"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>Przeglądaj lokalny komputer w poszukiwaniu istniejącej bazy</translation>
     </message>
   </context>
   <context>
@@ -3582,7 +3582,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../dialogs/indexdialog.ui" line="80"/>
       <source>Collation</source>
-      <translation>Zestawienie</translation>
+      <translation>Porządek</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.ui" line="88"/>
@@ -3832,7 +3832,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
       <source>Open &amp;collations editor</source>
-      <translation>Otwórz edytor &amp;zestawień</translation>
+      <translation>Otwórz edytor sekwencji &amp;porządkowania</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="270"/>
@@ -4275,7 +4275,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
       <source>Collate</source>
       <comment>new constraint dialog</comment>
-      <translation>Zestawienie</translation>
+      <translation>Sekwencja porządkowania</translation>
     </message>
     <message>
       <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
@@ -4492,7 +4492,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="536"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
-      <translation>nazwa zestawienia: %1</translation>
+      <translation>nazwa sekwencji porządkowania: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="21"/>
@@ -4758,7 +4758,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../mainwindow.h" line="50"/>
       <source>Open collation editor window</source>
-      <translation>Otwórz okno edytora zestawień</translation>
+      <translation>Otwórz okno edytora sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="51"/>
@@ -5186,7 +5186,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../windows/collationseditor.h" line="21"/>
       <source>A collation editor window</source>
-      <translation>Okno edytora zestawień</translation>
+      <translation>Okno edytora sekwencji porządkowania</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.h" line="22"/>
@@ -5556,7 +5556,7 @@ znajdź następny</translation>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="206"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
-      <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
+      <translation>Edytowanie ogromnych ilości danych w podręcznym edytorze nie jest dobrym pomysłem. Może być on powolny i nieporęczny. Lepiej edytować takie duże ilości danych w Widoku Formularza, lub w osobnym oknie edytora (dostępnym w menu prawego kliknięcia myszy).</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="320"/>
@@ -5641,7 +5641,7 @@ znajdź następny</translation>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1655"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
-      <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
+      <translation>W nowym zapytaniu jest mniej kolumn, kolejność sortowania została zresetowana.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodel.cpp" line="1974"/>
@@ -6116,7 +6116,7 @@ Takie usunięcie będzie trwałe. Czy na pewno chcesz je usunąć?</translation>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
       <source>Collation</source>
-      <translation>Zestawienie</translation>
+      <translation>Porządek</translation>
     </message>
     <message>
       <location filename="../constraints/tablepkanduniquepanel.ui" line="109"/>
@@ -6225,7 +6225,7 @@ NULL</source>
       <location filename="../windows/tablestructuremodel.cpp" line="310"/>
       <source>Collate</source>
       <comment>table structure columns</comment>
-      <translation>Zestawienie</translation>
+      <translation>Porządek</translation>
     </message>
     <message>
       <location filename="../windows/tablestructuremodel.cpp" line="312"/>
@@ -6630,19 +6630,19 @@ Czy na pewno chcesz utworzyć tabelę o pustej nazwie?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1340"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Istnieją niezatwierdzone zmiany struktury.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1342"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Nie możesz przeglądać ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
+Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki struktury?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1346"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Zatwierdź modyfikacje i przeglądaj dane</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
@@ -7037,19 +7037,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Istnieją niezatwierdzone zmiany struktury.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Nie możesz przeglądać ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
+Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki struktury?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Zatwierdź modyfikacje i przeglądaj dane</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>
