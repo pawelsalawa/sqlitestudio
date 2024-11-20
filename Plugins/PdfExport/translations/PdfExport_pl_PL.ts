@@ -91,7 +91,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
       <source>Collation</source>
-      <translation>Zestawienie</translation>
+      <translation>Algorytm porównywania</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
