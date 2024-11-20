@@ -355,7 +355,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+      <translation>Nie można utworzyć kontekstu skryptowego, prawdopodobnie wtyczka nie jest poprawnie skonfigurowana</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
@@ -853,7 +853,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+      <translation>Nie można znaleźć kontekstu skryptowego, prawdopodobnie wtyczka %1 nie jest poprawnie skonfigurowana</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
