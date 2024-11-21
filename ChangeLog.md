@@ -37,7 +37,7 @@
 - BUGFIX: #5074 #5082 #5083 Fixed cell editing to preselect proper FK value from dropdown, to correctly load cell value if it containts single quote character and to have proper content selection depending on how editing is triggered.
 - BUGFIX: #5082 When editing FK value inline (not from dropdown), the autocompleted value also updates selection of item in the dropdown (yet to be shown if user chooses so). This also fixes up/down keyboard navigation basing on autocompleted value.
 - BUGFIX: #4959 GitHub Actions Linux build: include qt5-qtwayland to fix segfault in AlmaLinux 9.3 (thanks to @tuffnatty).
-- BUGFIX: #4980 Banch of SchemaResolver optimizations, resulting in huge performance boost when opening/modifying databases with thousands of tables (from minutes down to milliseconds for opening database with ~6000 tables).
+- BUGFIX: #4980 Bunch of SchemaResolver optimizations, resulting in huge performance boost when opening/modifying databases with thousands of tables (from minutes down to milliseconds for opening database with ~6000 tables).
 - BUGFIX: #5065 Improved handling of columns named 'true' or 'false', which are allowed in SQLite, but are treated in a very unusual way by SQLite.
 
 ### 3.4.4
