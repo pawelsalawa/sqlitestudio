@@ -280,7 +280,14 @@ void DbTreeModel::expanded(const QModelIndex &index)
         return;
     }
 
-    if (dynamic_cast<DbTreeItem*>(item)->getType() == DbTreeItem::Type::DIR)
+    DbTreeItem* dbTreeItem = dynamic_cast<DbTreeItem*>(item);
+    if (dbTreeItem->getType() == DbTreeItem::Type::TABLE)
+        loadTableSchema(dbTreeItem);
+
+    if (dbTreeItem->getType() == DbTreeItem::Type::VIEW)
+        loadViewSchema(dbTreeItem);
+
+    if (dbTreeItem->getType() == DbTreeItem::Type::DIR)
         itemFromIndex(index)->setIcon(ICONS.DIRECTORY_OPEN);
 }
 
@@ -443,8 +450,9 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
 
 QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
 {
-    QStringList rows;
+    const_cast<DbTreeModel*>(this)->loadTableSchema(item); // not nice to const_cast, but nothing better we can do about this
 
+    QStringList rows;
     rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath()).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
 
     QStandardItem* columnsItem = item->child(0);
@@ -499,20 +507,33 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
 
     // Collect all db objects and build the db branch
     bool sort = CFG_UI.General.SortObjects.get();
-    QStringList tables = resolver.getTables();
-    QStringList virtualTables;
-    for (const QString& table : tables)
+    QList<SchemaResolver::TableListItem> tableListItems = resolver.getAllTableListItems();
+    QStringList tables;
+    QStringList views;
+    QSet<QString> virtualTables;
+
+    for (SchemaResolver::TableListItem& tableListItem : tableListItems)
     {
-        if (resolver.isVirtualTable(table))
-            virtualTables << table;
+        switch (tableListItem.type)
+        {
+            case SchemaResolver::TableListItem::VIRTUAL_TABLE:
+                virtualTables << tableListItem.name;
+                [[fallthrough]];
+            case SchemaResolver::TableListItem::TABLE:
+            case SchemaResolver::TableListItem::SHADOW_TABLE:
+                tables << tableListItem.name;
+                break;
+            case SchemaResolver::TableListItem::VIEW:
+                views << tableListItem.name;
+                break;
+            case SchemaResolver::TableListItem::UNKNOWN:
+                break;
+        }
     }
 
     QList<QStandardItem*> tableItems = refreshSchemaTables(tables, virtualTables, sort);
-    StrHash<QList<QStandardItem*>> allTableColumns = refreshSchemaTableColumns(resolver.getAllTableColumns());
-    StrHash<QList<QStandardItem*>> indexItems = refreshSchemaIndexes(resolver.getGroupedIndexes(), sort);
-    StrHash<QList<QStandardItem*>> triggerItems = refreshSchemaTriggers(resolver.getGroupedTriggers(), sort);
-    QList<QStandardItem*> viewItems = refreshSchemaViews(resolver.getViews(), sort);
-    refreshSchemaBuild(item, tableItems, indexItems, triggerItems, viewItems, allTableColumns);
+    QList<QStandardItem*> viewItems = refreshSchemaViews(views, sort);
+    refreshSchemaBuild(item, tableItems, viewItems);
     populateChildItemsWithDb(item, db);
     restoreExpandedState(expandedState, item);
 }
@@ -530,7 +551,7 @@ void DbTreeModel::collectExpandedState(QHash<QString, bool> &state, QStandardIte
         collectExpandedState(state, parentItem->child(i));
 }
 
-QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort)
+QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &tables, const QSet<QString>& virtualTables, bool sort)
 {
     QStringList sortedTables = tables;
     if (sort)
@@ -548,52 +569,44 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
     return items;
 }
 
-StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTableColumns(const StrHash<QStringList> &columns)
+QList<QStandardItem*> DbTreeModel::refreshSchemaTableColumns(const QStringList& columns)
 {
-    QStringList sortedColumns;
     bool doSort = CFG_UI.General.SortColumns.get();
-    StrHash<QList<QStandardItem*>> items;
-    for (const QString& key : columns.keys())
-    {
-        sortedColumns = columns[key];
-        if (doSort)
-            ::sSort(sortedColumns);
 
-        for (const QString& column : sortedColumns)
-            items[key] += DbTreeItemFactory::createColumn(column, this);
-    }
+    QStringList sortedColumns = columns;
+    if (doSort)
+        ::sSort(sortedColumns);
+
+    QList<QStandardItem*> items;
+    for (const QString& column : sortedColumns)
+        items += DbTreeItemFactory::createColumn(column, this);
+
     return items;
 }
 
-StrHash<QList<QStandardItem *> > DbTreeModel::refreshSchemaIndexes(const StrHash<QStringList> &indexes, bool sort)
+QList<QStandardItem*> DbTreeModel::refreshSchemaIndexes(const QStringList& indexes, bool sort)
 {
-    StrHash<QList<QStandardItem *> > items;
-    QStringList sortedIndexes;
-    for (const QString& key : indexes.keys())
-    {
-        sortedIndexes = indexes[key];
-        if (sort)
-            sortedIndexes.sort(Qt::CaseInsensitive);
+    QStringList sortedIndexes = indexes;
+    if (sort)
+        sortedIndexes.sort(Qt::CaseInsensitive);
 
-        for (const QString& index : sortedIndexes)
-            items[key] += DbTreeItemFactory::createIndex(index, this);
-    }
+    QList<QStandardItem*> items;
+    for (const QString& index : sortedIndexes)
+        items += DbTreeItemFactory::createIndex(index, this);
+
     return items;
 }
 
-StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTriggers(const StrHash<QStringList> &triggers, bool sort)
+QList<QStandardItem*> DbTreeModel::refreshSchemaTriggers(const QStringList& triggers, bool sort)
 {
-    StrHash<QList<QStandardItem*>> items;
-    QStringList sortedTriggers;
-    for (const QString& key : triggers.keys())
-    {
-        sortedTriggers = triggers[key];
-        if (sort)
-            sortedTriggers.sort(Qt::CaseInsensitive);
+    QStringList sortedTriggers = triggers;
+    if (sort)
+        sortedTriggers.sort(Qt::CaseInsensitive);
 
-        for (const QString& trigger : sortedTriggers)
-            items[key] += DbTreeItemFactory::createTrigger(trigger, this);
-    }
+    QList<QStandardItem*> items;
+    for (const QString& trigger : sortedTriggers)
+        items += DbTreeItemFactory::createTrigger(trigger, this);
+
     return items;
 }
 
@@ -621,12 +634,68 @@ void DbTreeModel::populateChildItemsWithDb(QStandardItem *parentItem, Db* db)
     }
 }
 
+void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
+{
+    if (tableItem->isSchemaReady())
+        return;
+
+    Db* db = tableItem->getDb();
+    QString table = tableItem->text();
+
+    SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
+
+    bool sort = CFG_UI.General.SortObjects.get();
+
+    DbTreeItem* columnsItem = tableItem->findFirstItem(DbTreeItem::Type::COLUMNS);
+    DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
+    DbTreeItem* triggersItem = tableItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
+
+    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getTableColumns(table));
+    QList<QStandardItem*> indexItems = refreshSchemaIndexes(resolver.getIndexesForTable(table), sort);
+    QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForTable(table), sort);
+
+    for (QStandardItem* columnItem : tableColumns)
+        columnsItem->appendRow(columnItem);
+
+    for (QStandardItem* indexItem : indexItems)
+        indexesItem->appendRow(indexItem);
+
+    for (QStandardItem* triggerItem : triggerItems)
+        triggersItem->appendRow(triggerItem);
+
+    populateChildItemsWithDb(columnsItem, db);
+    populateChildItemsWithDb(indexesItem, db);
+    populateChildItemsWithDb(triggersItem, db);
+
+    tableItem->setSchemaReady(true);
+}
+
+void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
+{
+    if (viewItem->isSchemaReady())
+        return;
+
+    Db* db = viewItem->getDb();
+    QString view = viewItem->text();
+
+    SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
+
+    bool sort = CFG_UI.General.SortObjects.get();
+
+    DbTreeItem* triggersItem = viewItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
+
+    QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForView(view), sort);
+    for (QStandardItem* triggerItem : triggerItems)
+        triggersItem->appendRow(triggerItem);
+
+    viewItem->setSchemaReady(true);
+}
+
 void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
                                      QList<QStandardItem*> tables,
-                                     StrHash<QList<QStandardItem*> > indexes,
-                                     StrHash<QList<QStandardItem*> > triggers,
-                                     QList<QStandardItem*> views,
-                                     StrHash<QList<QStandardItem*> > allTableColumns)
+                                     QList<QStandardItem*> views)
 {
     DbTreeItem* tablesItem = DbTreeItemFactory::createTables(this);
     DbTreeItem* viewsItem = DbTreeItemFactory::createViews(this);
@@ -649,14 +718,7 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
         tableItem->appendRow(indexesItem);
         tableItem->appendRow(triggersItem);
 
-        for (QStandardItem* columnItem : allTableColumns[tableItem->text()])
-            columnsItem->appendRow(columnItem);
-
-        for (QStandardItem* indexItem : indexes[tableItem->text()])
-            indexesItem->appendRow(indexItem);
-
-        for (QStandardItem* triggerItem : triggers[tableItem->text()])
-            triggersItem->appendRow(triggerItem);
+        dynamic_cast<DbTreeItem*>(tableItem)->setSchemaReady(false);
     }
     for (QStandardItem* viewItem : views)
     {
@@ -664,8 +726,8 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
 
         triggersItem = DbTreeItemFactory::createTriggers(this);
         viewItem->appendRow(triggersItem);
-        for (QStandardItem* triggerItem : triggers[viewItem->text()])
-            triggersItem->appendRow(triggerItem);
+
+        dynamic_cast<DbTreeItem*>(viewItem)->setSchemaReady(false);
     }
 }
 
@@ -678,22 +740,6 @@ void DbTreeModel::restoreExpandedState(const QHash<QString, bool>& expandedState
 
     for (QStandardItem* child : parentDbTreeItem->childs())
         restoreExpandedState(expandedState, child);
-}
-
-DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type, QStandardItem* parentItem)
-{
-    DbTreeItem* child = nullptr;
-    for (int i = 0; i < parentItem->rowCount(); i++)
-    {
-        child = dynamic_cast<DbTreeItem*>(parentItem->child(i));
-        if (child->getType() == type)
-            return child;
-
-        child = findFirstItemOfType(type, child);
-        if (child)
-            return child;
-    }
-    return nullptr;
 }
 
 void DbTreeModel::dbConnected(Db* db, bool expandItem)
@@ -819,7 +865,7 @@ DbTreeItem *DbTreeModel::findItem(DbTreeItem::Type type, Db* db)
 
 DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type)
 {
-    return findFirstItemOfType(type, root());
+    return findFirstItem(root(), type);
 }
 
 DbTreeItem *DbTreeModel::findItemBySignature(const QString &signature)
@@ -883,7 +929,7 @@ QList<DbTreeItem*> DbTreeModel::findItems(QStandardItem* parentItem, DbTreeItem:
         item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
 
         // Search recursively
-        if (item->getType() == DbTreeItem::Type::DIR)
+        if (item->hasChildren())
             items += findItems(item, type);
 
         if (item->getType() != type)
@@ -893,6 +939,28 @@ QList<DbTreeItem*> DbTreeModel::findItems(QStandardItem* parentItem, DbTreeItem:
     }
 
     return items;
+}
+
+DbTreeItem* DbTreeModel::findFirstItem(QStandardItem* parentItem, DbTreeItem::Type type)
+{
+    for (int i = 0; i < parentItem->rowCount(); i++)
+    {
+        DbTreeItem* item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
+
+        if (item->hasChildren())
+        {
+            DbTreeItem* child = findFirstItem(item, type);
+            if (child)
+                return child;
+        }
+
+        if (item->getType() != type)
+            continue;
+
+        return item;
+    }
+
+    return nullptr;
 }
 
 QStandardItem* DbTreeModel::root() const

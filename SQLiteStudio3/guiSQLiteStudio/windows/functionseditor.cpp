@@ -488,8 +488,8 @@ void FunctionsEditor::updateCurrentFunctionState()
         currentHighlighterLang = lang;
     }
 
-    updateArgsState();
-    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk);
+    bool argsOk = updateArgsState();
+    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk && argsOk);
     updateState();
 }
 
@@ -576,7 +576,7 @@ void FunctionsEditor::moveFunctionArgDown()
     ui->argsList->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
-void FunctionsEditor::updateArgsState()
+bool FunctionsEditor::updateArgsState()
 {
     bool argsEnabled = !ui->undefArgsCheck->isChecked();
     QModelIndexList indexes = ui->argsList->selectionModel()->selectedIndexes();
@@ -596,6 +596,32 @@ void FunctionsEditor::updateArgsState()
     actionMap[ARG_MOVE_UP]->setEnabled(argsEnabled && canMoveUp);
     actionMap[ARG_MOVE_DOWN]->setEnabled(argsEnabled && canMoveDown);
     ui->argsList->setEnabled(argsEnabled);
+
+    if (argsEnabled)
+    {
+        bool argsOk = true;
+        QSet<QString> usedNames;
+        for (int rowIdx = 0; rowIdx < ui->argsList->model()->rowCount(); rowIdx++)
+        {
+            QListWidgetItem* item = ui->argsList->item(rowIdx);
+            QString argName = item->text().toLower();
+            if (argName.isEmpty())
+            {
+                argsOk = false;
+                break;
+            }
+            if (usedNames.contains(argName))
+            {
+                argsOk = false;
+                break;
+            }
+            usedNames << argName;
+        }
+        setValidState(ui->argsList, argsOk, tr("Function argument cannot be empty and it cannot have duplicated name."));
+        return argsOk;
+    }
+    else
+        return true;
 }
 
 void FunctionsEditor::applyFilter(const QString& value)

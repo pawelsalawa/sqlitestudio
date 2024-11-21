@@ -57,6 +57,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
         static QList<DbTreeItem*> findItems(QStandardItem* parentItem, DbTreeItem::Type type);
+        static DbTreeItem* findFirstItem(QStandardItem* parentItem, DbTreeItem::Type type);
         static void staticInit();
 
         static const constexpr char* MIMETYPE = "application/x-sqlitestudio-dbtreeitem";
@@ -69,16 +70,16 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void refreshSchema(Db* db, QStandardItem* item);
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
         QStandardItem* refreshSchemaDb(Db* db);
-        QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort);
-        StrHash<QList<QStandardItem*>> refreshSchemaTableColumns(const StrHash<QStringList>& columns);
-        StrHash<QList<QStandardItem*>> refreshSchemaIndexes(const StrHash<QStringList>& indexes, bool sort);
-        StrHash<QList<QStandardItem*>> refreshSchemaTriggers(const StrHash<QStringList>& triggers, bool sort);
+        QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QSet<QString>& virtualTables, bool sort);
+        QList<QStandardItem*> refreshSchemaTableColumns(const QStringList& columns);
+        QList<QStandardItem*> refreshSchemaIndexes(const QStringList& indexes, bool sort);
+        QList<QStandardItem*> refreshSchemaTriggers(const QStringList& triggers, bool sort);
         QList<QStandardItem*> refreshSchemaViews(const QStringList &views, bool sort);
         void populateChildItemsWithDb(QStandardItem* parentItem, Db* db);
-        void refreshSchemaBuild(QStandardItem* dbItem, QList<QStandardItem*> tables, StrHash<QList<QStandardItem*> > indexes,
-                                StrHash<QList<QStandardItem*> > triggers, QList<QStandardItem*> views, StrHash<QList<QStandardItem*> > allTableColumns);
+        void loadTableSchema(DbTreeItem* tableItem);
+        void loadViewSchema(DbTreeItem* viewItem);
+        void refreshSchemaBuild(QStandardItem* dbItem, QList<QStandardItem*> tables, QList<QStandardItem*> views);
         void restoreExpandedState(const QHash<QString, bool>& expandedState, QStandardItem* parentItem);
-        DbTreeItem* findFirstItemOfType(DbTreeItem::Type type, QStandardItem* parentItem);
         QString getToolTip(DbTreeItem *item) const;
         QString getDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;

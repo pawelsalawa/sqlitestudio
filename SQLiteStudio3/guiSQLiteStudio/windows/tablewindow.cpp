@@ -865,6 +865,9 @@ void TableWindow::changesSuccessfullyCommitted()
             }
         }
     }
+
+    if (ui->tabWidget->currentIndex() == getDataTabIdx())
+        ui->dataView->refreshData();
 }
 
 void TableWindow::changesFailedToCommit(int errorCode, const QString& errorText)
@@ -1310,7 +1313,7 @@ void TableWindow::importTable()
     ImportDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::populateTable()
@@ -1318,7 +1321,7 @@ void TableWindow::populateTable()
     PopulateDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::createSimilarTable()
@@ -1347,15 +1350,16 @@ void TableWindow::tabChanged(int newTab)
                                                           QMessageBox::ApplyRole);
             box.exec();
 
-            ui->tabWidget->setCurrentIndex(0);
             if (box.clickedButton() == commitButton)
                 commitStructure(true);
+            else
+                focusStructureTab();
 
             return;
         }
 
         if (!dataLoaded)
-            ui->dataView->refreshData();
+            ui->dataView->refreshData(false);
     }
 }
 
@@ -1647,6 +1651,16 @@ void TableWindow::delColumn(const QString& columnName)
         return;
 
     delColumn(colIdx);
+}
+
+void TableWindow::focusStructureTab()
+{
+    ui->tabWidget->setCurrentIndex(getStructureTabIdx());
+}
+
+void TableWindow::focusDataTab()
+{
+    ui->tabWidget->setCurrentIndex(getDataTabIdx());
 }
 
 void TableWindow::updateTabsOrder()

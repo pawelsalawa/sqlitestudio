@@ -133,6 +133,8 @@ void ColumnGeneratedPanel::storeConfiguration()
 
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+    else
+        constr->name.clear();
 }
 
 void ColumnGeneratedPanel::storeExpr(SqliteCreateTable::Column::Constraint* constr)

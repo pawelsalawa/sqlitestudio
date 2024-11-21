@@ -68,13 +68,53 @@ void TableModifier::renameTo(const QString& newName, bool doCopyData)
     if (!createTable)
         return;
 
-    // Using ALTER TABLE RENAME TO is not a good solution here, because it automatically renames all occurrences in REFERENCES,
+    // Firstly, using ALTER TABLE RENAME TO is not a good solution here, because it automatically renames all occurrences in REFERENCES,
     // which we don't want, because we rename a lot to temporary tables and drop them.
-    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2%3;").arg(wrapObjIfNeeded(newName), wrapObjIfNeeded(table), doCopyData ? "" : " LIMIT 0")
-         << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+    //
+    // Secondly, we need to identify if a table has column with "reserved literal" used as column name - i.e. "true" or "false".
+    // This is allowed by SQLite, but it's treated strangely by SQLite. In many cases result column of such name is renamed to columnN.
+    // Example of such case when reserved literal column is used in source table of CREATE TABLE trg AS SELECT * FROM src;
+    // It was identified during investigation of #5065.
 
-    table = newName;
+    bool hasReservedColName = false;
+    for (SqliteCreateTable::Column* column : createTable->columns)
+    {
+        if (isReservedLiteral(column->name))
+        {
+            hasReservedColName = true;
+            break;
+        }
+    }
+
+    if (hasReservedColName)
+    {
+        SqliteCreateTable* ctCopy = createTable->typeClone<SqliteCreateTable>();
+        ctCopy->table = newName;
+        ctCopy->rebuildTokens();
+        sqls << ctCopy->detokenize();
+
+        if (doCopyData)
+        {
+            QStringList colList;
+            for (SqliteCreateTable::Column* column : createTable->columns)
+                colList << wrapObjIfNeeded(column->name);
+
+            QString cols = colList.join(", ");
+            sqls << QString("INSERT INTO %1 (%2) SELECT %2 FROM %3").arg(wrapObjIfNeeded(newName), cols, wrapObjIfNeeded(table));
+        }
+
+        sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+        delete ctCopy;
+    }
+    else
+    {
+        // No reserved literal as columns. We can use simple way.
+        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2%3;").arg(wrapObjIfNeeded(newName), wrapObjIfNeeded(table), doCopyData ? "" : " LIMIT 0")
+             << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+    }
+
     createTable->table = newName;
+    table = newName;
 }
 
 QString TableModifier::renameToTemp(bool doCopyData)
@@ -132,7 +172,7 @@ void TableModifier::handleFks()
         subModifier.tableColMap = tableColMap; // for identifying renamed columns
         subModifier.newName = fkTable;
         subModifier.tablesHandledForFk = tablesHandledForFk;
-        subModifier.handleFks(originalTable, newName);
+        subModifier.handleFkAsSubModifier(originalTable, newName);
         sqls += subModifier.generateSqls();
         modifiedTables << fkTable;
 
@@ -150,7 +190,7 @@ void TableModifier::handleFks()
     }
 }
 
-void TableModifier::handleFks(const QString& oldName, const QString& theNewName)
+void TableModifier::handleFkAsSubModifier(const QString& oldName, const QString& theNewName)
 {
     if (!handleFkConstrains(createTable.data(), oldName, theNewName))
         return;
@@ -171,7 +211,7 @@ void TableModifier::handleFks(const QString& oldName, const QString& theNewName)
     simpleHandleTriggers();
 }
 
-bool TableModifier::handleFks(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName)
+bool TableModifier::handleFkStmt(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName)
 {
     // If table was not renamed (but uses temp table name), we will rename temp name into target name.
     // If table was renamed, we will rename old name to new name.
@@ -193,7 +233,7 @@ bool TableModifier::handleFkConstrains(SqliteCreateTable* stmt, const QString& o
     bool modified = false;
     for (SqliteCreateTable::Constraint*& fk : stmt->getForeignKeysByTable(oldName))
     {
-        if (handleFks(fk->foreignKey, oldName, theNewName))
+        if (handleFkStmt(fk->foreignKey, oldName, theNewName))
         {
             modified = true;
             if (fk->foreignKey->indexedColumns.isEmpty())
@@ -206,7 +246,7 @@ bool TableModifier::handleFkConstrains(SqliteCreateTable* stmt, const QString& o
 
     for (SqliteCreateTable::Column::Constraint*& fk : stmt->getColumnForeignKeysByTable(oldName))
     {
-        if (handleFks(fk->foreignKey, oldName, theNewName))
+        if (handleFkStmt(fk->foreignKey, oldName, theNewName))
         {
             modified = true;
             if (fk->foreignKey->indexedColumns.isEmpty())
@@ -929,23 +969,14 @@ void TableModifier::simpleHandleIndexes()
 {
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
-    QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    for (SqliteCreateIndexPtr& index : parsedIndexesForTable)
-        sqls << index->detokenize();
+    sqls += resolver.getIndexDdlsForTable(originalTable);
 }
 
 void TableModifier::simpleHandleTriggers(const QString& view)
 {
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
-    QList<SqliteCreateTriggerPtr> parsedTriggers ;
-    if (!view.isNull())
-        parsedTriggers = resolver.getParsedTriggersForView(view);
-    else
-        parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
-
-    for (SqliteCreateTriggerPtr& trig : parsedTriggers)
-        sqls << trig->detokenize();
+    sqls += resolver.getTriggerDdlsForTableOrView(view.isNull() ? originalTable : view);
 }
 
 SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)

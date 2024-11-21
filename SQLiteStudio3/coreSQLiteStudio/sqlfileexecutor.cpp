@@ -28,17 +28,22 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
         return;
     }
 
-    fkWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
-    if (fkWasEnabled)
-    {
-        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 0");
-        if (res->isError())
-        {
-            qDebug() << "Failed to temporarily disable foreign keys enforcement:" << db->getErrorText();
-            emit execEnded();
-            return;
-        }
-    }
+    // #4871 is caused by this. On one hand it doesn't make sense to disable FK for script execution
+    // (after all we're trying to execute script just like from SQL Editor, but we do it directly from file),
+    // but on the other hand, it was introduced probably for some reason. It's kept commented for now to see
+    // if good reason for it reappears. It's a subject for removal in future (until end of 2025).
+    //
+    // fkWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+    // if (fkWasEnabled)
+    // {
+    //     SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 0");
+    //     if (res->isError())
+    //     {
+    //         qDebug() << "Failed to temporarily disable foreign keys enforcement:" << db->getErrorText();
+    //         emit execEnded();
+    //         return;
+    //     }
+    // }
 
     // Exec file
     executionInProgress = 1;
@@ -115,12 +120,14 @@ void SqlFileExecutor::execInThread()
     QList<QPair<QString, QString>> errors = executeFromStream(stream, executed, attemptedExecutions, ok, fileSize);
     int millis = timer.elapsed();
 
-    if (fkWasEnabled)
-    {
-        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 1");
-        if (res->isError())
-            qDebug() << "Failed to restore foreign keys enforcement after execution SQL from file:" << res->getErrorText();
-    }
+    // See comment about fkWasEnabled above.
+    //
+    // if (fkWasEnabled)
+    // {
+    //     SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 1");
+    //     if (res->isError())
+    //         qDebug() << "Failed to restore foreign keys enforcement after execution SQL from file:" << res->getErrorText();
+    // }
 
     if (executionInProgress.loadAcquire())
     {
@@ -217,7 +224,7 @@ bool SqlFileExecutor::shouldSkipQuery(const QString& sql)
     if (sql.trimmed().isEmpty() || !db->isComplete(sql))
         return true;
 
-    QString upper = sql.toUpper().trimmed().split("\n").last().trimmed();
+    QString upper = sql.toUpper().trimmed();
     return (upper.startsWith("BEGIN") ||
             upper.startsWith("COMMIT") ||
             upper.startsWith("ROLLBACK") ||

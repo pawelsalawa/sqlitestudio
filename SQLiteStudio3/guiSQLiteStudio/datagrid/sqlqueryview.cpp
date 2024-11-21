@@ -49,7 +49,6 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-//    setEditTriggers(QAbstractItemView::AnyKeyPressed);
     setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -324,6 +323,7 @@ void SqlQueryView::itemActivated(const QModelIndex& index)
     if (!editInEditorIfNecessary(item))
         return;
 
+    item->skipInitialFocusSelection();
     edit(getCurrentIndex());
 }
 
@@ -369,7 +369,13 @@ void SqlQueryView::editCurrent()
 {
     QModelIndex idx = getCurrentIndex();
     if (idx.isValid())
+    {
+        SqlQueryItem* item = getModel()->itemFromIndex(idx);
+        if (item)
+            item->skipInitialFocusSelection();
+
         edit(idx);
+    }
 }
 
 void SqlQueryView::toggleRowsHeightAdjustment(bool enabled)
@@ -581,7 +587,7 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
 
     QString wrappedTable = wrapObjIfNeeded(table);
     QString wrappedColumn = wrapObjIfNeeded(column);
-    QString valueStr = wrapValueIfNeeded(value.toString());
+    QString valueStr = valueToSqlLiteral(value.toString());
     EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(wrappedTable, wrappedColumn, valueStr));
     if (!win)
         return;

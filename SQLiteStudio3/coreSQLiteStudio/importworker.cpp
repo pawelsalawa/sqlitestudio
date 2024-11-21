@@ -12,6 +12,7 @@ ImportWorker::ImportWorker(ImportPlugin* plugin, ImportManager::StandardImportCo
 
 void ImportWorker::run()
 {
+    qDebug() << "import start";
     if (!plugin->beforeImport(*config))
     {
         emit finished(false, 0);
@@ -61,6 +62,7 @@ void ImportWorker::run()
         emit createdTable(db, table);
 
     plugin->afterImport();
+    qDebug() << "import finished";
     emit finished(true, rowCount);
 }
 

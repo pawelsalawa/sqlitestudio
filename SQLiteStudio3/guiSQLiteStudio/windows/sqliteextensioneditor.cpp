@@ -123,6 +123,7 @@ void SqliteExtensionEditor::init()
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
 
     probingDb = DBLIST->createInMemDb(true);
+
     if (!probingDb->openQuiet())
         qWarning() << "Could not open in-memory dtabase for Extension manager window. Probing files will be impossible.";
 

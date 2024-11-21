@@ -38,6 +38,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
 
         int type() const;
         DbTreeItem* findItem(Type type, const QString& name);
+        DbTreeItem* findFirstItem(Type type);
         QStandardItem* clone() const;
         QList<QStandardItem*> childs() const;
         QStringList childNames() const;
@@ -75,6 +76,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         void setHidden(bool hidden);
         bool isHidden() const;
         void setIcon(const Icon& icon);
+        bool isSchemaReady() const;
+        void setSchemaReady(bool ready);
 
     private:
         struct DataRole // not 'enum class' because we need autocasting to int for this one
@@ -84,7 +87,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
                 TYPE = 1001,
                 DB = 1002,
                 ICON_PTR = 1003,
-                HIDDEN = 1004
+                HIDDEN = 1004,
+                SCHEMA_READY = 1005
             };
         };
 

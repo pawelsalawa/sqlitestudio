@@ -736,28 +736,33 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
     if (args.size() > 4)
     {
         // Parsing plugin options
-        int idx;
-        QString option;
-        QString value;
-        CfgEntry* cfg;
         QStringList lines = args[4].toString().split(QRegularExpression("[\r\n]+"));
         for (const QString& line : lines)
         {
-            idx = line.indexOf("=");
+            int idx = line.indexOf("=");
             if (idx == -1)
             {
                 qDebug() << "Invalid options entry for import() function call:" << line;
                 continue;
             }
-            option = line.left(idx).trimmed();
-            cfg = CfgMain::getEntryByPath(option);
+            QString option = line.left(idx).trimmed();
+            CfgEntry* cfg = CfgMain::getEntryByPath(option);
             if (!cfg)
             {
                 qDebug() << "Invalid option name for import() function call:" << option;
                 continue;
             }
-            value = line.mid(idx + 1);
-            cfg->set(value);
+
+            QVariant varValue = line.mid(idx + 1);
+            QVariant defValue = cfg->getDefaultValue();
+            QVariant::Type expectedType = defValue.type();
+            if (varValue.type() != expectedType && !varValue.convert(expectedType))
+            {
+                qDebug() << "Invalid option value for import() function call:" << option << ", invalid value was:" << varValue.toString()
+                         << ", expected value type was:" << defValue.typeName() << ", but given value could not be converted to that type.";
+                continue;
+            }
+            cfg->set(varValue);
         }
     }
 

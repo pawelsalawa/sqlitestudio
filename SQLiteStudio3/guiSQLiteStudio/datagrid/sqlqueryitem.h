@@ -26,7 +26,8 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
                 DELETED = 1007,
                 OLD_VALUE = 1008,
                 JUST_INSERTED_WITHOUT_ROWID = 1009,
-                COMMITTING_ERROR_MESSAGE = 1010
+                COMMITTING_ERROR_MESSAGE = 1010,
+                EDIT_SKIP_INITIAL_SELECT = 1011 // to prevent content selection initially when editing with double-click
             };
         };
 
@@ -71,6 +72,10 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         void setData(const QVariant& value, int role = Qt::UserRole + 1);
         QVariant data(int role = Qt::UserRole + 1) const;
+
+        void resetInitialFocusSelection();
+        void skipInitialFocusSelection();
+        bool shoulSkipInitialFocusSelection() const;
 
     private:
         QVariant adjustVariantType(const QVariant& value);

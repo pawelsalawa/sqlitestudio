@@ -53,6 +53,8 @@ bool TableForeignKeyPanel::validate()
             setValidState(combo, idxOk, tr("Pick the foreign column."));
             if (!idxOk)
                 columnsSelected = false;
+            else
+                handleFkTypeMatched(combo, check->property(UI_PROP_COLUMN).toString(), combo->currentText());
 
             break;
         }
@@ -384,6 +386,36 @@ void TableForeignKeyPanel::storeMatchCondition(const QString& reaction)
     SqliteForeignKey::Condition* condition = new SqliteForeignKey::Condition(reaction);
     condition->setParent(constr->foreignKey);
     constr->foreignKey->conditions << condition;
+}
+
+void TableForeignKeyPanel::handleFkTypeMatched(QWidget* indicatorParent, const QString &localColumn, const QString fkColumn)
+{
+    SqliteCreateTable::Column* column = createTableStmt->getColumn(localColumn);
+    if (!column || !column->type)
+        return;
+
+    QString localType = column->type->toDataType().toString();
+
+    // FK column type
+    QString fkTable = ui->fkTableCombo->currentText();
+    if (!fkTableTypesCache.contains(fkTable, Qt::CaseInsensitive))
+    {
+        SchemaResolver resolver(db);
+        fkTableTypesCache[fkTable] = resolver.getTableColumnDataTypesByName(fkTable);
+    }
+
+    StrHash<DataType> fkTypes = fkTableTypesCache.value(fkTable, Qt::CaseInsensitive);
+    if (!fkTypes.contains(fkColumn, Qt::CaseInsensitive))
+        return;
+
+    QString fkType = fkTypes.value(fkColumn, Qt::CaseInsensitive).toString();
+
+    if (localType.toLower().trimmed() != fkType.toLower().trimmed())
+    {
+        setValidStateWarning(indicatorParent,
+            tr("Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.")
+                                 .arg(fkType, localType));
+    }
 }
 
 void TableForeignKeyPanel::readTables()

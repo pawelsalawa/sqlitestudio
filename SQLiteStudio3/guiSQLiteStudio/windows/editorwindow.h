@@ -100,7 +100,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
 
         QSize sizeHint() const;
         QAction* getAction(Action action);
-        QString getQueryToExecute(bool doSelectCurrentQuery = false, QueryExecMode querySelectionMode = DEFAULT);
+        QString getQueryToExecute(QueryExecMode querySelectionMode = DEFAULT);
         bool setCurrentDb(Db* db);
         void setContents(const QString& sql);
         QString getContents() const;

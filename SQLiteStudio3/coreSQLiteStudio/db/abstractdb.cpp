@@ -919,7 +919,15 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
 
 void AbstractDb::flushWal()
 {
-    if (!flushWalInternal())
+    if (flushWalInternal())
+    {
+        if (exec("PRAGMA journal_mode")->getSingleCell().toString() == "wal")
+        {
+            exec("PRAGMA journal_mode = delete;");
+            exec("PRAGMA journal_mode = wal;");
+        }
+    }
+    else
         notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 

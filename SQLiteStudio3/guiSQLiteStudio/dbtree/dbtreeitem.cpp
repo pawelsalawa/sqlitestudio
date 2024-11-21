@@ -62,6 +62,11 @@ DbTreeItem* DbTreeItem::findItem(DbTreeItem::Type type, const QString& name)
     return DbTreeModel::findItem(this, type, name);
 }
 
+DbTreeItem* DbTreeItem::findFirstItem(Type type)
+{
+    return DbTreeModel::findFirstItem(this, type);
+}
+
 QStandardItem* DbTreeItem::clone() const
 {
     return new DbTreeItem(*this);
@@ -295,6 +300,16 @@ void DbTreeItem::setIcon(const Icon& icon)
     setData(QVariant::fromValue(&icon), DataRole::ICON_PTR);
     if (!icon.isNull())
         QStandardItem::setIcon(icon);
+}
+
+bool DbTreeItem::isSchemaReady() const
+{
+    return data(DataRole::SCHEMA_READY).toBool();
+}
+
+void DbTreeItem::setSchemaReady(bool ready)
+{
+    setData(ready, DataRole::SCHEMA_READY);
 }
 
 void DbTreeItem::init()

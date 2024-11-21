@@ -44,6 +44,7 @@ API_EXPORT bool doesObjectNeedWrapping(const QChar& c);
 API_EXPORT bool isObjectWrapped(const QChar& c);
 API_EXPORT bool doesStringNeedWrapping(const QString& str);
 API_EXPORT bool isStringWrapped(const QString& str);
+API_EXPORT bool isReservedLiteral(const QString& str);
 API_EXPORT QString wrapObjIfNeeded(const QString& obj, NameWrapper favWrapper = NameWrapper::null);
 API_EXPORT QString wrapObjIfNeeded(const QString& obj, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper = NameWrapper::null);
 API_EXPORT QString wrapObjName(const QString& obj, NameWrapper favWrapper = NameWrapper::null);
@@ -88,6 +89,7 @@ API_EXPORT QString commentAllSqlLines(const QString& sql);
 API_EXPORT QString getBindTokenName(const TokenPtr& token);
 API_EXPORT QueryAccessMode getQueryAccessMode(const QString& query, bool* isSelect = nullptr);
 API_EXPORT QStringList valueListToSqlList(const QList<QVariant>& values);
+API_EXPORT QString valueToSqlLiteral(const QVariant& value);
 API_EXPORT QString trimQueryEnd(const QString& query);
 API_EXPORT QByteArray blobFromLiteral(const QString& value);
 

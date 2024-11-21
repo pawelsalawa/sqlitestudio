@@ -79,6 +79,8 @@ void ConstraintDialog::init()
     }
 
     currentPanel->setDb(db);
+    currentPanel->setCreateTableStmt(createTable.data());
+    currentPanel->setColumnStmt(columnStmt.data());
     currentPanel->setConstraint(constrStatement);
 
     connect(currentPanel, SIGNAL(updateValidation()), this, SLOT(validate()));

@@ -13,6 +13,7 @@
 #include "indexexprcolumndialog.h"
 #include "windows/editorwindow.h"
 #include "services/codeformatter.h"
+#include "common/dialogsizehandler.h"
 #include <QDebug>
 #include <QGridLayout>
 #include <QSignalMapper>
@@ -64,6 +65,7 @@ void IndexDialog::init()
 {
     ui->setupUi(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
     if (!db || !db->isOpen())
     {
         qCritical() << "Created IndexDialog for null or closed database.";

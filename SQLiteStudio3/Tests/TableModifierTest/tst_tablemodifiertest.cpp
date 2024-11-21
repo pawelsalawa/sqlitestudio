@@ -44,7 +44,7 @@ void TableModifierTest::verifyRe(const QString& re, const QString& sql, QRegular
 {
     QString fullMatchRe = QString("^%1$").arg(re);
     QRegularExpression regExp(fullMatchRe, options);
-    QVERIFY2(regExp.match(sql).hasMatch(), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2").arg(fullMatchRe).arg(sql).toLatin1().data());
+    QVERIFY2(regExp.match(sql).hasMatch(), QString("Failed RegExp validation:\n%1\nfor SQL:\n%2\n").arg(fullMatchRe).arg(sql).toLatin1().data());
 }
 
 void TableModifierTest::testCase1()

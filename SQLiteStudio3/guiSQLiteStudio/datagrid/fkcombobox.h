@@ -35,6 +35,7 @@ class FkComboBox : public QComboBox
 
         void init();
         void updateComboViewGeometry(bool initial) const;
+        void updateCurrentItemIndex(const QString& value = QString());
         int getFkViewHeaderWidth(bool includeScrollBar) const;
         QString getSql() const;
 

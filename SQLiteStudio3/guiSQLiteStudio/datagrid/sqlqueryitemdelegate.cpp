@@ -8,6 +8,7 @@
 #include "common/utils_sql.h"
 #include "fkcombobox.h"
 #include "schemaresolver.h"
+#include "sqlqueryitemlineedit.h"
 #include <QHeaderView>
 #include <QPainter>
 #include <QEvent>
@@ -71,10 +72,22 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         return nullptr;
     }
 
+    bool skipInitSelection = item->shoulSkipInitialFocusSelection();
     if (!item->getColumn()->getFkConstraints().isEmpty())
-        return getFkEditor(item, parent, model);
+        return getFkEditor(item, skipInitSelection, parent, model);
 
-    return getEditor(item->getValue().userType(), parent);
+    return getEditor(item->getValue().userType(), skipInitSelection, parent);
+}
+
+void SqlQueryItemDelegate::destroyEditor(QWidget* editor, const QModelIndex& index) const
+{
+    QStyledItemDelegate::destroyEditor(editor, index);
+    if (!index.isValid())
+        return;
+
+    const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(index.model());
+    SqlQueryItem* item = model->itemFromIndex(index);
+    item->resetInitialFocusSelection();
 }
 
 QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& locale) const
@@ -216,100 +229,16 @@ SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const
     return queryModel->itemFromIndex(index);
 }
 
-QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
+QWidget* SqlQueryItemDelegate::getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const
 {
     UNUSED(type);
-    QLineEdit *editor = new QLineEdit(parent);
+    SqlQueryItemLineEdit *editor = new SqlQueryItemLineEdit(shouldSkipInitialSelection, parent);
     editor->setMaxLength(std::numeric_limits<int>::max());
     editor->setFrame(editor->style()->styleHint(QStyle::SH_ItemView_DrawDelegateFrame, 0, editor));
     return editor;
 }
 
-QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
-{
-    static_qstring(sql, "SELECT %4, %1 FROM %2%3");
-    static_qstring(currValueTpl, "(%1 == %2) AS %3");
-    static_qstring(currNullValueTpl, "(%1 IS NULL) AS %2");
-    static_qstring(dbColTpl, "%1 AS %2");
-    static_qstring(conditionTpl, "%1.%2 = %3.%4");
-    static_qstring(conditionPrefixTpl, " WHERE %1");
-
-    QStringList selectedCols;
-    QStringList fkConditionTables;
-    QStringList fkConditionCols;
-    QStringList srcCols;
-    Db* db = item->getModel()->getDb();
-    SchemaResolver resolver(db);
-
-    QList<SqlQueryModelColumn::ConstraintFk*> fkList = item->getColumn()->getFkConstraints();
-    int i = 0;
-    QString src;
-    QString fullSrcCol;
-    QString col;
-    QString firstSrcCol;
-    QStringList usedNames;
-    for (SqlQueryModelColumn::ConstraintFk*& fk : fkList)
-    {
-        col = wrapObjIfNeeded(fk->foreignColumn);
-        src = wrapObjIfNeeded(fk->foreignTable);
-        if (i == 0)
-        {
-            firstSrcCol = col;
-            fullSrcCol = src + "." + col;
-            selectedCols << dbColTpl.arg(fullSrcCol, wrapObjIfNeeded(item->getColumn()->column));
-        }
-
-        if (fkConditionTables.contains(src, Qt::CaseInsensitive))
-            continue;
-
-        srcCols = resolver.getTableColumns(src);
-        for (QString& srcCol : srcCols)
-        {
-            if (fk->foreignColumn.compare(srcCol, Qt::CaseInsensitive) == 0)
-                continue; // Exclude matching column. We don't want the same column several times.
-
-            fullSrcCol = src + "." + wrapObjIfNeeded(srcCol);
-            selectedCols << fullSrcCol;
-            usedNames << srcCol;
-        }
-
-        fkConditionCols << col;
-        fkConditionTables << src;
-
-        i++;
-    }
-
-    QStringList conditions;
-    QString firstSrc = fkConditionTables.first();
-    QString firstCol = fkConditionCols.first();
-    for (i = 1; i < fkConditionTables.size(); i++)
-    {
-        src = fkConditionTables[i];
-        col = fkConditionCols[i];
-        conditions << conditionTpl.arg(firstSrc, firstCol, src, col);
-    }
-
-    QString conditionsStr;
-    if (!conditions.isEmpty()) {
-        conditionsStr = conditionPrefixTpl.arg(conditions.join(", "));
-    }
-
-    // Current value column (will be 1 for row which matches current cell value)
-    QVariant value = item->getValue();
-    QString currValueColName = generateUniqueName("curr", usedNames);
-    QString currValueExpr = value.isNull() ?
-                currNullValueTpl.arg(firstSrcCol, currValueColName) :
-                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(value), currValueColName);
-
-    return sql.arg(
-                selectedCols.join(", "),
-                fkConditionTables.join(", "),
-                conditionsStr,
-                currValueExpr
-                );
-}
-
-QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, const SqlQueryModel* model) const
+QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, bool shouldSkipInitialSelection, QWidget* parent, const SqlQueryModel* model) const
 {
     Db* db = model->getDb();
     bool countingError = false;
@@ -320,7 +249,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
         notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")
                        .arg(FkComboBox::MAX_ROWS_FOR_FK).arg(item->getColumn()->column));
 
-        return getEditor(item->getValue().userType(), parent);
+        return getEditor(item->getValue().userType(), item->shoulSkipInitialFocusSelection(), parent);
     }
 
     if (rowCount == 0 && countingError && model->isStructureOutOfDate())
@@ -333,5 +262,8 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     FkComboBox* cb = new FkComboBox(parent, dropDownViewMinWidth);
     cb->init(db, item->getColumn());
     cb->setValue(item->getValue());
+    if (!shouldSkipInitialSelection)
+        cb->lineEdit()->selectAll();
+
     return cb;
 }

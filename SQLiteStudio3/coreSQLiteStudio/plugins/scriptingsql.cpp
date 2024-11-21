@@ -3,6 +3,7 @@
 #include "db/db.h"
 #include "db/sqlquery.h"
 #include "services/dbmanager.h"
+#include "common/utils_sql.h"
 
 ScriptingSql::ScriptingSql()
 {
@@ -58,7 +59,9 @@ QVariant ScriptingSql::evaluate(ScriptingPlugin::Context* context, const QString
     QString sql = code;
     if (ctx->variables.size() > 0)
     {
-        for (const QString& key : ctx->variables.keys())
+        QList<QString> keys = ctx->variables.keys();
+        std::sort(keys.begin(), keys.end(), std::greater<QString>());
+        for (const QString& key : keys)
         {
             QString value = "'" + ctx->variables[key].toString() + "'";
             sql.replace(":" + key, value).replace("@" + key, value).replace("$" + key, value);
@@ -151,15 +154,26 @@ void ScriptingSql::deinit()
 
 void ScriptingSql::replaceNamedArgs(QString& sql, const ScriptingPlugin::FunctionInfo& funcInfo, const QList<QVariant>& args)
 {
+    // First build map of argName to its value in order in which arguments were passed to the function
     int i = 0;
-    for (const QString& key : funcInfo.getArguments())
+    QStringList argNames = funcInfo.getArguments();
+    QHash<QString, QString> argMap;
+    for (const QString& argName : argNames)
     {
         if (i >= args.size())
             break;
 
-        QString value = "'" + args[i++].toString() + "'";
-        sql.replace(":" + key, value)
-           .replace("@" + key, value)
-           .replace("$" + key, value);
+        argMap[argName] = valueToSqlLiteral(args[i++]);
+    }
+
+    // Then sort arguments in alphabetically descending order, to prevent replacing shorter names first
+    // and proceed with argument substitutions
+    std::sort(argNames.begin(), argNames.end(), std::greater<QString>());
+    for (const QString& argName : argNames)
+    {
+        QString value = argMap[argName];
+        sql.replace(":" + argName, value)
+           .replace("@" + argName, value)
+           .replace("$" + argName, value);
     }
 }

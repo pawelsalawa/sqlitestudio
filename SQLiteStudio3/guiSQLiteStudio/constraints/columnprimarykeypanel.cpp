@@ -61,7 +61,7 @@ void ColumnPrimaryKeyPanel::readConstraint()
 
     if (!constr->name.isNull())
     {
-        ui->namedCheck->setEnabled(true);
+        ui->namedCheck->setChecked(true);
         ui->namedEdit->setText(constr->name);
     }
 
@@ -122,6 +122,8 @@ void ColumnPrimaryKeyPanel::storeConfiguration()
 
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+    else
+        constr->name.clear();
 
     if (ui->conflictCheck->isChecked() && ui->conflictCombo->currentIndex() > -1)
         constr->onConflict = sqliteConflictAlgo(ui->conflictCombo->currentText());

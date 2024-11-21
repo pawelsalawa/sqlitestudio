@@ -64,7 +64,8 @@ class API_EXPORT SelectResolver
             FROM_DISTINCT_SELECT = 0x04,
             FROM_GROUPED_SELECT = 0x08,
             FROM_CTE_SELECT = 0x10,
-            FROM_VIEW = 0x20
+            FROM_VIEW = 0x20,
+            FROM_TABLE_VALUED_FN = 0x40
         };
 
         /**

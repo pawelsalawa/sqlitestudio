@@ -363,7 +363,7 @@ QList<AliasedColumn> AbstractDb3<T>::columnsForQuery(const QString& query)
         return result;
     }
 
-    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty() && !removeComments(QString::fromUtf8(tail)).trimmed().isEmpty())
         qWarning() << "Executed query left with tailing contents:" << tail << ", while finding columns for query:" << query;
 
 
@@ -951,7 +951,7 @@ int AbstractDb3<T>::Query::prepareStmt()
         return res;
     }
 
-    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty() && !removeComments(QString::fromUtf8(tail)).trimmed().isEmpty())
         qWarning() << "Executed query left with tailing contents:" << tail << ", while executing query:" << query;
 
     return T::OK;

@@ -74,7 +74,10 @@ void ImportManager::importToTable(Db* db, const QString& table, bool async)
     if (async)
         QThreadPool::globalInstance()->start(worker);
     else
+    {
         worker->run();
+        delete worker;
+    }
 }
 
 void ImportManager::interrupt()

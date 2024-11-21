@@ -142,7 +142,13 @@ void WidgetCover::hide()
 
 void WidgetCover::setProgress(int value)
 {
-    busyBar->setValue(value);
+    if (undetermined)
+    {
+        busyBar->setRange(0, value);
+        busyBar->setValue(value);
+    }
+    else
+        busyBar->setValue(value);
 }
 
 QEasingCurve WidgetCover::getEasingCurve() const
@@ -203,6 +209,7 @@ void WidgetCover::displayProgress(int maxValue, const QString& format)
         return;
 
     busyBar->setRange(0, maxValue);
+    undetermined = maxValue == 0;
     if (!format.isNull())
         busyBar->setFormat(format);
 
@@ -224,6 +231,7 @@ void WidgetCover::initWithProgressBarOnly(const QString& format)
     busyBar->setRange(0, 100);
     busyBar->setFormat(format);
     busyBar->setTextVisible(true);
+    undetermined = false;
 
     containerLayout->addWidget(busyBar, 0, 0);
 }
@@ -236,6 +244,7 @@ void WidgetCover::initWithInterruptContainer(const QString& interruptButtonText)
     busyBar = new QProgressBar();
     busyBar->setRange(0, 0);
     busyBar->setTextVisible(false);
+    undetermined = true;
 
     containerLayout->addWidget(busyBar, 0, 0);
     containerLayout->addWidget(cancelButton, 1, 0);

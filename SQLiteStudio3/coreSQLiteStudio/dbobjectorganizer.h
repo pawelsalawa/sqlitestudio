@@ -85,8 +85,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool copyIndexToDb(const QString& index);
         bool copyTriggerToDb(const QString& trigger);
         bool copySimpleObjectToDb(const QString& name, const QString& errorMessage, SchemaResolver::ObjectType objectType);
-        QSet<QString> resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables);
-        void collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
+        void collectReferencedTables(const QString& table);
         void collectReferencedIndexes(const QString& table);
         void collectReferencedTriggersForTable(const QString& table);
         void collectReferencedTriggersForView(const QString& view);

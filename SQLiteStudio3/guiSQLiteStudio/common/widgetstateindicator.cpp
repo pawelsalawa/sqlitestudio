@@ -157,6 +157,11 @@ void WidgetStateIndicator::setVisible(bool visible, const QString& msg)
         hide();
 }
 
+bool WidgetStateIndicator::isVisible() const
+{
+    return labelParent->isVisible();
+}
+
 void WidgetStateIndicator::release()
 {
     setVisible(false);

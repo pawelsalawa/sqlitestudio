@@ -10,6 +10,7 @@
 #include <QScreen>
 #include <QLineEdit>
 #include <QScrollBar>
+#include <QCompleter>
 
 FkComboBox::FkComboBox(QWidget* parent, int dropDownViewMinWidth)
     : QComboBox(parent), dropDownViewMinWidth(dropDownViewMinWidth)
@@ -45,8 +46,8 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
         src = wrapObjIfNeeded(fk->foreignTable);
         if (i == 0)
         {
-            firstSrcCol = col;
             fullSrcCol = src + "." + col;
+            firstSrcCol = fullSrcCol;
             selectedCols << dbColTpl.arg(fullSrcCol, wrapObjIfNeeded(columnModel->column));
         }
 
@@ -89,7 +90,7 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
     QString currValueColName = generateUniqueName("curr", usedNames);
     QString currValueExpr = currentValue.isNull() ?
                                 currNullValueTpl.arg(firstSrcCol, currValueColName) :
-                                currValueTpl.arg(firstSrcCol, wrapValueIfNeeded(currentValue), currValueColName);
+                                currValueTpl.arg(firstSrcCol, valueToSqlLiteral(currentValue), currValueColName);
 
     return sql.arg(
         selectedCols.join(", "),
@@ -110,8 +111,6 @@ void FkComboBox::setValue(const QVariant& value)
     bool doExecQuery = (sourceValue != value || comboModel->getQuery().isNull());
     sourceValue = value;
     setCurrentText(value.toString());
-    if (!value.isNull() && isEditable())
-        lineEdit()->selectAll();
 
     if (doExecQuery)
     {
@@ -221,6 +220,13 @@ void FkComboBox::init()
     comboView->horizontalHeader()->setVisible(true);
     comboView->setSelectionMode(QAbstractItemView::SingleSelection);
     comboView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    connect(completer(), QOverload<const QString &>::of(&QCompleter::highlighted),
+        [=](const QString &value)
+    {
+        // #5083 In case of case-sensitive mismatch, we need to sync case, so that next/prev navigation with keybord works correctly.
+        setCurrentText(value.left(currentText().length()));
+    });
 }
 
 void FkComboBox::updateComboViewGeometry(bool initial) const
@@ -241,6 +247,19 @@ void FkComboBox::updateComboViewGeometry(bool initial) const
     {
         container->setMaximumWidth(comboView->minimumWidth());
         container->resize(comboView->minimumWidth(), container->height());
+    }
+}
+
+void FkComboBox::updateCurrentItemIndex(const QString& value)
+{
+    QModelIndex startIdx = comboModel->index(0, modelColumn());
+    QModelIndex endIdx = comboModel->index(comboModel->rowCount() - 1, modelColumn());
+    QModelIndexList idxList = comboModel->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, value.isNull() ? currentText() : value, 1, true);
+
+    if (idxList.size() > 0)
+    {
+        setCurrentIndex(idxList.first().row());
+        view()->selectionModel()->setCurrentIndex(idxList.first(), QItemSelectionModel::SelectCurrent);
     }
 }
 
@@ -289,7 +308,9 @@ void FkComboBox::fkDataReady()
         }
     }
     else
+    {
         setEditText(beforeLoadValue);
+    }
 
     disableValueChangeNotifications = false;
 }
@@ -305,6 +326,10 @@ void FkComboBox::notifyValueModified()
         return;
 
     oldValue = currentText();
+    disableValueChangeNotifications = true;
+    updateCurrentItemIndex();
+    disableValueChangeNotifications = false;
+
     emit valueModified();
 }
 

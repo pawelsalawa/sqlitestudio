@@ -13,6 +13,7 @@
 #include "themetuner.h"
 #include "iconmanager.h"
 #include "mainwindow.h"
+#include "common/dialogsizehandler.h"
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>
@@ -102,6 +103,7 @@ void ImportDialog::init()
     ui->setupUi(this);
     THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());

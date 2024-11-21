@@ -25,6 +25,7 @@
 #include "schemaresolver.h"
 #include "parser/lexer.h"
 #include "common/table.h"
+#include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>
@@ -128,6 +129,7 @@ void QueryExecutor::setupExecutionChain()
     executionChain.append(createSteps(LAST));
 
     executionChain << new QueryExecutorExecute();
+    executionChain << new QueryExecutorSmartHints(); // must be last, as it queries schema and execution might modify schema
 
     for (QueryExecutorStep*& step : executionChain)
         step->init(this, context);
@@ -271,7 +273,7 @@ void QueryExecutor::execInternal()
 
     if (queryCountLimitForSmartMode > -1)
     {
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
+        queriesForSimpleExecution = splitQueries(originalQuery, false, true);
         int queryCount = queriesForSimpleExecution.size();
         if (queryCount > queryCountLimitForSmartMode)
         {
@@ -449,7 +451,7 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
     if (queriesForSimpleExecution.isEmpty())
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
+        queriesForSimpleExecution = splitQueries(originalQuery, false, true);
 
     QStringList queriesWithPagination = applyFiltersAndLimitAndOrderForSimpleMethod(queriesForSimpleExecution);
     if (isExecutorLoggingEnabled())

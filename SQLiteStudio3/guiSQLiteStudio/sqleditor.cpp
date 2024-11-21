@@ -25,6 +25,8 @@
 #include "dbtree/dbtreeview.h"
 #include "common/lazytrigger.h"
 #include "common/extaction.h"
+#include "db/dbsqlite3.h"
+#include "dialogs/dbdialog.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -35,6 +37,7 @@
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QtConcurrent/QtConcurrent>
+#include <QMessageBox>
 #include <QStyle>
 
 CFG_KEYS_DEFINE(SqlEditor)
@@ -731,6 +734,9 @@ void SqlEditor::highlightParenthesis(QList<QTextEdit::ExtraSelection>& selection
 
 void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selections)
 {
+    if (!richFeaturesEnabled)
+        return;
+
     QTextCursor cursor = textCursor();
     int curPos = cursor.position();
     QString contents = cursor.document()->toPlainText();
@@ -739,7 +745,7 @@ void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selectio
         return;
 
     QTextEdit::ExtraSelection selection;
-    selection.format.setBackground(STYLE->extendedPalette().editorCurrentQueryBase());
+    selection.format.setBackground(Cfg::getSyntaxCurrentQueryBg());
 
     cursor.setPosition(boundries.first);
     cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
@@ -1104,7 +1110,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
-        selection.format.setBackground(STYLE->extendedPalette().editorLineBase());
+        selection.format.setBackground(Cfg::getSyntaxCurrentLineBg());
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
@@ -1201,6 +1207,24 @@ void SqlEditor::loadFromFile()
 
     setFileDialogInitPathByFile(fName);
 
+    if (DbSqlite3::isDbFile(fName))
+    {
+        DbDialog dialog(DbDialog::ADD, MAINWINDOW);
+        dialog.setPath(fName);
+        dialog.setDoAutoTest(true);
+        dialog.exec();
+        return;
+    }
+
+    if (QFile(fName).size() > HUGE_QUERY_LENGTH)
+    {
+        QMessageBox::StandardButton resp = QMessageBox::question(this, tr("Open file"),
+                tr("This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?")
+                                                                 .arg(HUGE_QUERY_LENGTH / 1024 / 1024));
+        if (resp != QMessageBox::Yes)
+            return;
+    }
+
     QString err;
     QString sql = readFileContents(fName, &err);
     if (sql.isNull() && !err.isNull())
@@ -1209,9 +1233,13 @@ void SqlEditor::loadFromFile()
         return;
     }
 
-    setPlainText(sql);
-
-    loadedFile = fName;
+    if (toPlainText().trimmed().isEmpty())
+    {
+        setPlainText(sql);
+        loadedFile = fName;
+    }
+    else
+        MAINWINDOW->openSqlEditor(db, sql);
 }
 
 void SqlEditor::deleteLine()
@@ -1719,10 +1747,11 @@ void SqlEditor::saveSelection()
 }
 
 void SqlEditor::restoreSelection()
-{
+{   
     QTextCursor cur = textCursor();
     cur.setPosition(storedSelectionStart);
     cur.setPosition(storedSelectionEnd, QTextCursor::KeepAnchor);
+    setTextCursor(cur);
 }
 
 QToolBar* SqlEditor::getToolBar(int toolbar) const

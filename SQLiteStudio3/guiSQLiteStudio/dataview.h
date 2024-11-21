@@ -138,7 +138,6 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void updateResultsCount(int resultsCount);
         void updateCurrentFormViewRow();
         void setFormViewEnabled(bool enabled);
-        void readData();
         void initFormViewForNewRow();
         void formViewFocusFirstEditor();
         void recreateFilterInputs();
@@ -180,7 +179,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
     signals:
 
     public slots:
-        void refreshData();
+        void refreshData(bool keepFocus = true);
 
     private slots:
         void dataLoadingEnded(bool successful);

@@ -158,6 +158,7 @@ class API_EXPORT ConfigImpl : public Config
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
         QMutex sqlHistoryMutex;
+        QMutex ddlHistoryMutex;
         QString sqlite3Version;
 
     public slots:

@@ -624,7 +624,7 @@ void ViewWindow::tabChanged(int tabIdx)
                                                               QMessageBox::ApplyRole);
                 box.exec();
 
-                ui->tabWidget->setCurrentIndex(0);
+                ui->tabWidget->setCurrentIndex(CFG_UI.General.DataTabAsFirstInViews.get() ? 1 : 0);
                 if (box.clickedButton() == commitButton)
                     commitView(true);
 
@@ -632,7 +632,7 @@ void ViewWindow::tabChanged(int tabIdx)
             }
 
             if (!dataLoaded)
-                ui->dataView->refreshData();
+                ui->dataView->refreshData(false);
 
             return;
     }

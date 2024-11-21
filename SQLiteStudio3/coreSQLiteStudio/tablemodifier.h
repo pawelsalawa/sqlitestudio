@@ -70,8 +70,8 @@ class API_EXPORT TableModifier
          * Finds all tables referencing currently modified table and updates their referenced table name and columns.
          */
         void handleFks();
-        void handleFks(const QString& oldName, const QString& theNewName);
-        bool handleFks(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName);
+        void handleFkAsSubModifier(const QString& oldName, const QString& theNewName);
+        bool handleFkStmt(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName);
         bool handleFkConstrains(SqliteCreateTable* stmt, const QString& oldName, const QString& theNewName);
 
         bool handleName(const QString& oldName, QString& valueToUpdate);

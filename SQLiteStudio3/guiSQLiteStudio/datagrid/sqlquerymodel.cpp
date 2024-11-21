@@ -81,7 +81,7 @@ void SqlQueryModel::setAsyncMode(bool enabled)
     queryExecutor->setAsyncMode(enabled);
 }
 
-void SqlQueryModel::executeQuery()
+void SqlQueryModel::executeQuery(bool enforcePage0)
 {
     if (queryExecutor->isExecutionInProgress())
     {
@@ -91,7 +91,7 @@ void SqlQueryModel::executeQuery()
 
     queryExecutor->setSkipRowCounting(false);
     queryExecutor->setSortOrder(sortOrder);
-    queryExecutor->setPage(0);
+    queryExecutor->setPage(page > -1 && !enforcePage0 ? page : 0);
     queryExecutor->setForceSimpleMode(simpleExecutionMode);
     reloading = false;
 
@@ -155,6 +155,23 @@ bool SqlQueryModel::isEmptyQuery() const
         return false;
 
     return true;
+}
+
+void SqlQueryModel::restoreFocusedCell()
+{
+    if (!storedFocus.isValid() || getCurrentPage() != storedFocus.forPage || getRowsPerPage() != storedFocus.forRowsPerPage ||
+            queryExecutor->getFilters() != storedFocus.forFilter)
+    {
+        forgetFocusedCell();
+        return;
+    }
+
+    QModelIndex idx = index(storedFocus.row, storedFocus.column);
+    if (idx.isValid())
+    {
+        view->setCurrentIndex(idx);
+        view->scrollTo(idx, QAbstractItemView::EnsureVisible);
+    }
 }
 
 void SqlQueryModel::internalExecutionStopped()
@@ -710,6 +727,21 @@ void SqlQueryModel::detachDependencyTables()
 
     dbNameToAttachNameMapForCommit.clear();
     dbListToDetach.clear();
+}
+
+void SqlQueryModel::rememberFocusedCell()
+{
+    QModelIndex idx = getView()->currentIndex();
+    storedFocus.row = idx.row();
+    storedFocus.column = idx.column();
+    storedFocus.forPage = getCurrentPage();
+    storedFocus.forRowsPerPage = getRowsPerPage();
+    storedFocus.forFilter = queryExecutor->getFilters();
+}
+
+void SqlQueryModel::forgetFocusedCell()
+{
+    storedFocus.reset();
 }
 
 QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& items)
@@ -1466,6 +1498,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
         results.clear();
         detachDatabases();
     }
+    restoreFocusedCell();
 }
 
 void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
@@ -2324,4 +2357,18 @@ QString SqlQueryModel::SelectCellsQueryBuilder::getTable() const
 QString SqlQueryModel::SelectCellsQueryBuilder::getDatabase() const
 {
     return database;
+}
+
+bool SqlQueryModel::StoredFocus::isValid()
+{
+    return row > -1 && column > -1;
+}
+
+void SqlQueryModel::StoredFocus::reset()
+{
+    row = -1;
+    column = -1;
+    forFilter.clear();
+    forRowsPerPage = -1;
+    forPage = -1;
 }

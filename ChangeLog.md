@@ -1,5 +1,45 @@
 # ChangeLog
 
+### 3.4.5
+- ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.
+- ADDED: #5041 Added support for column list syntax in CREATE VIEW.
+- ADDED: #4774 Added checking if data types are matched in both columns while creating foreign column. This applies for Column Dialog Foreign Key, Table Foreign Key and also in the Query Executor (user will receive warning if executed query breaks the Foreign Key data type alignment).
+- ADDED: #4928 During exporting data in Export Dialog, the progress bar now shows number of rows already exported in real time (still filesystem may buffer writing operation, so data may appear in the output file with delay).
+- ADDED: #5079 Data cell focus and current data page is maintained during data reload.
+- CHANGE: #4740 Dialog geometry is saved & restored for several dialog windows (i.e. Import, Export, Populate and more...).
+- CHANGE: #4861 When loading SQL script into SQL Editor, contents of current editor are retained. Instead another editor is open to load SQL script, with exception when current editor is empty - in that case it is used for loading.
+- CHANGE: #4861 When trying to load SQLite database as SQL script into SQL Editor window, application detects it and opens Database dialog for that file instead.
+- CHANGE: #4861 When trying to load huge SQL script (over 10MB) into SQL Editor, user is asked to confirm it.
+- BUGFIX: #4828 Fixed Linux installer error 'logname: no login name'.
+- BUGFIX: #4761 Fixed current query highligting color to respect configured color, instead of always using default color. Also removed query content selection after execution.
+- BUGFIX: #4796 Fixed Database Dialog file selection, so user has clear understanding whether new file is to be created, or existing file to open. Also fixes file selection dialog on MacOS when creating new database file.
+- BUGFIX: #4819 Fixed sorting order cached in data view when executing query with less columns than previously.
+- BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
+- BIGFIX: #3454 German translation fixes.
+- BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
+- BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
+- BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
+- BUGFIX: #4861 Fixed application freezing when loading big files into SQL editor (over 1MB or bigger). Now it can work with huge files, although all smart helpers (e.g. syntax highlighting, etc) are disabled in such window.
+- BUGFIX: #4872 Fixed executing SQL directly from file, so it does not skip CREATE TRIEGGER statements.
+- BUGFIX: #4871 Fixed executing SQL directly from file, so it no longer disables foreign key checks during execution.
+- BUGFIX: #4874 Fixed Foreign Key dropdown in data grid when foreign key references 2 different tables with same foreign column name in both referenced tables.
+- BUGFIX: Fixed tiny memory leak in the import() function.
+- BUGFIX: Fixed import() function options parser, so it no longer overwrites import plugin configuration with incorrect types of configuration values (i.e. string 'true' instead of expected boolean).
+- BUGFIX: #5096 Fixed executing large DDL scripts (more than 100 DDL statements) with CREATE TRIGGER in them.
+- BUGFIX: #4831 Fixed warning message of forbidded cell edition when trying to do it on a multi-level View results, where the View was given an alias name. Now the warning is clear about forbidden edition due to multi-level View.
+- BUGFIX: #5077 Fixed question dialog for going back to structure tab if there are uncommited structure changes (thanks to @marcpley).
+- BUGFIX: #5076 Fixed broken order of data insertion when adding new row to a table with GENERATED column (thanks to @marcpley).
+- BUGFIX: #4949 Added extra calls for cleaning up WAL files upon application exit.
+- BUGFIX: #4934 Fixed copying (drag&drop or copy&paste) tables between databases when a column in the table requires quoting due to being a keyword.
+- BUGFIX: #5076 Fixed unchecking Named Constraint option in constraint configuration (thanks to @marcpley).
+- BUGFIX: #5083 Improved cell editing behavior, so entering edition with Enter key or mouse Double-Click no longer preselects whole value.
+- BUGFIX: #5091 Fixed custom SQL functions editor to prevent duplicated argument names. Also fixed correct argumentName-to-value assignment if arguments share same initial part of their name. Also fixed handling of differnt type of arguments passed to custom SQL function.
+- BUGFIX: #5074 #5082 #5083 Fixed cell editing to preselect proper FK value from dropdown, to correctly load cell value if it containts single quote character and to have proper content selection depending on how editing is triggered.
+- BUGFIX: #5082 When editing FK value inline (not from dropdown), the autocompleted value also updates selection of item in the dropdown (yet to be shown if user chooses so). This also fixes up/down keyboard navigation basing on autocompleted value.
+- BUGFIX: #4959 GitHub Actions Linux build: include qt5-qtwayland to fix segfault in AlmaLinux 9.3 (thanks to @tuffnatty).
+- BUGFIX: #4980 Bunch of SchemaResolver optimizations, resulting in huge performance boost when opening/modifying databases with thousands of tables (from minutes down to milliseconds for opening database with ~6000 tables).
+- BUGFIX: #5065 Improved handling of columns named 'true' or 'false', which are allowed in SQLite, but are treated in a very unusual way by SQLite.
+
 ### 3.4.4
 - ADDED: #3488 SQLite ICU extension is boundled into binary packages (thanks to @tuffnatty).
 - ADDED: #4697 Added a 'Restore original hotkey' buttons at keyboard shortcuts page of configuration dialog.
@@ -251,6 +291,7 @@
 - BUGFIX: #3787 Field state indicator now shows popup (the message) immediately after pointing it with a mouse, instead of having a delay.
 - BUGFIX: #3550 After successful data import, a number of rows imported is included in the notification message.
 - BUGFIX: #3415 Fixed release build scripts on all platforms.
+- BUGFIX: Fixed data grid filtering in views that use table-valued functions as data source.
 
 ### 3.2.1
 - BUGFIX: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).

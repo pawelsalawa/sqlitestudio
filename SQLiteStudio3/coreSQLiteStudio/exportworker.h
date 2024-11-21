@@ -56,6 +56,7 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
 
     signals:
         void finished(bool result, QIODevice* output);
+        void finishedStep(int step);
 };
 
 #endif // EXPORTWORKER_H
