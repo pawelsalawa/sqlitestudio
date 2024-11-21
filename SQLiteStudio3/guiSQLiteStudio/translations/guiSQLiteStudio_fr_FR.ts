@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
