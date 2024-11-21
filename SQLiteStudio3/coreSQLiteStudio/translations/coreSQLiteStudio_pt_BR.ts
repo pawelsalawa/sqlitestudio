@@ -1021,7 +1021,7 @@ A visualização permanecerá como é.</translation>
     <message>
       <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
       <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
     </message>
   </context>
   <context>
