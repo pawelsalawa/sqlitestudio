@@ -847,16 +847,16 @@ QString valueToSqlLiteral(const QVariant& value)
         case QMetaType::UInt:
         case QMetaType::LongLong:
         case QMetaType::ULongLong:
-            argList << value.toString();
+            return value.toString();
             break;
         case QMetaType::Double:
-            argList << doubleToString(value);
+            return doubleToString(value);
             break;
         case QMetaType::Bool:
-            argList << QString::number(value.toInt());
+            return QString::number(value.toInt());
             break;
         case QMetaType::QByteArray:
-            argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
+            return "X'" + value.toByteArray().toHex().toUpper() + "'";
             break;
         default:
             break;
