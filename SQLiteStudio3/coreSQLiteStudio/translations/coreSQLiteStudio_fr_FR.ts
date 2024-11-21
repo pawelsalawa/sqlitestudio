@@ -15,7 +15,7 @@
       <translation>Erreur base de données attachée %1 : %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="923"/>
+      <location filename="../db/abstractdb.cpp" line="931"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Impossible de faire le point de vérification complet des journaux de transactions sur la base de données &apos;%1&apos;. Erreur retournée par le moteur SQLite : %2</translation>
     </message>
@@ -140,12 +140,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="880"/>
+      <location filename="../services/impl/configimpl.cpp" line="881"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Impossible de démarrer la transaction de la base de données pour la suppression de l&apos;historique SQL, donc il n&apos;a pas été supprimé.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="887"/>
+      <location filename="../services/impl/configimpl.cpp" line="888"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Impossible de valider la transaction de la base de données pour la suppression de l&apos;historique SQL, donc il n&apos;a pas été supprimé.</translation>
     </message>
@@ -189,59 +189,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="373"/>
-      <location filename="../dbobjectorganizer.cpp" line="404"/>
+      <location filename="../dbobjectorganizer.cpp" line="372"/>
+      <location filename="../dbobjectorganizer.cpp" line="403"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Erreur lors de la création de la table dans la base de données cible : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="373"/>
+      <location filename="../dbobjectorganizer.cpp" line="372"/>
       <source>Could not parse table.</source>
       <translation>Impossible d&apos;analyser la table.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="418"/>
+      <location filename="../dbobjectorganizer.cpp" line="417"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>La base de données %1 n&apos;a pas pu être attachée à la base de données %2, donc les données de la table %3 seront copiées avec SQLiteStudio en tant que médiateur. Cette méthode peut être lente pour les grandes tables, donc soyez patient s&apos;il vous plaît.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="442"/>
+      <location filename="../dbobjectorganizer.cpp" line="441"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Erreur lors de la copie des données pour la table %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="461"/>
-      <location filename="../dbobjectorganizer.cpp" line="468"/>
-      <location filename="../dbobjectorganizer.cpp" line="495"/>
+      <location filename="../dbobjectorganizer.cpp" line="460"/>
+      <location filename="../dbobjectorganizer.cpp" line="467"/>
+      <location filename="../dbobjectorganizer.cpp" line="494"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Erreur lors de la copie des données vers la table %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="517"/>
+      <location filename="../dbobjectorganizer.cpp" line="516"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erreur lors de la suppression de la vue source %1: %2
 Tables, indexes, déclencheurs et vues copiés dans la base de données %3 resteront.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="524"/>
+      <location filename="../dbobjectorganizer.cpp" line="523"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Erreur lors de la création de la vue de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="529"/>
+      <location filename="../dbobjectorganizer.cpp" line="528"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Erreur lors de la création de l’index de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="534"/>
+      <location filename="../dbobjectorganizer.cpp" line="533"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Erreur lors de la création du déclencheur de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="679"/>
-      <location filename="../dbobjectorganizer.cpp" line="686"/>
-      <location filename="../dbobjectorganizer.cpp" line="695"/>
+      <location filename="../dbobjectorganizer.cpp" line="664"/>
+      <location filename="../dbobjectorganizer.cpp" line="671"/>
+      <location filename="../dbobjectorganizer.cpp" line="680"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>Impossible d&apos;analyser l&apos;objet &apos;%1&apos; pour le déplacer ou le copier.</translation>
     </message>
@@ -276,22 +276,22 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="72"/>
+      <location filename="../services/exportmanager.cpp" line="71"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation>Plugin d’export %1 ne supporte pas l’exportation de la requête.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="98"/>
+      <location filename="../services/exportmanager.cpp" line="97"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation>Exporter le plugin %1 ne prend pas en charge l&apos;exportation des tables.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="122"/>
+      <location filename="../services/exportmanager.cpp" line="121"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation>Plugin d’export %1 ne supporte pas l’exportation de la base de données.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="155"/>
+      <location filename="../services/exportmanager.cpp" line="154"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation>Format d’export « %1 » n’est pas supporté. Les formats supportés sont : %2.</translation>
     </message>
@@ -324,28 +324,28 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Erreur lors de l’exportation des résultats de la requête : %1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="203"/>
+      <location filename="../exportworker.cpp" line="209"/>
       <source>Error while counting data column width to export from query results: %1</source>
       <translation>Erreur lors de la totalisation des données de colonne issu de la requête : %1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="347"/>
-      <location filename="../exportworker.cpp" line="405"/>
+      <location filename="../exportworker.cpp" line="353"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>Impossible d’analyser %1 afin de l’exporter. Celle-ci sera excluse de l’exportation.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="609"/>
+      <location filename="../exportworker.cpp" line="615"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>Erreur lors de la lecture des données à exporter depuis la table %1 : %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="617"/>
+      <location filename="../exportworker.cpp" line="623"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>Erreur lors du comptage des données à exporter à partir de la table %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="633"/>
+      <location filename="../exportworker.cpp" line="639"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>Erreur lors du comptage de la largeur de la colonne de données à exporter à partir de la table %1: %2</translation>
     </message>
@@ -410,7 +410,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>ImportManager</name>
     <message>
-      <location filename="../services/importmanager.cpp" line="96"/>
+      <location filename="../services/importmanager.cpp" line="99"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
       <translation>Données importées dans la table &apos;%1&apos; avec succès. Nombre de lignes importées : %2</translation>
     </message>
@@ -418,51 +418,51 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>ImportWorker</name>
     <message>
-      <location filename="../importworker.cpp" line="24"/>
+      <location filename="../importworker.cpp" line="25"/>
       <source>No columns provided by the import plugin.</source>
       <translation>Aucune colonne fournie par le plugin d’importation.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="30"/>
+      <location filename="../importworker.cpp" line="31"/>
       <source>Could not start transaction in order to import a data: %1</source>
       <translation>Impossible d’initialiser la transaction d’import de données : %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="53"/>
+      <location filename="../importworker.cpp" line="54"/>
       <source>Could not commit transaction for imported data: %1</source>
       <translation>Impossible d’enregistrer la transaction d’import de données : %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="100"/>
+      <location filename="../importworker.cpp" line="102"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
       <translation>La table &apos;%1&apos; a moins de colonnes qu&apos; il y en a dans les données à importer. Les colonnes de données excessives seront ignorées.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="105"/>
+      <location filename="../importworker.cpp" line="107"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
       <translation>La table &apos;%1&apos; a plus de colonnes qu&apos;il y en a dans les données à importer. Certaines colonnes de la table seront laissées vides.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="124"/>
+      <location filename="../importworker.cpp" line="126"/>
       <source>Could not create table to import to: %1</source>
       <translation>Impossible de créer une table où importer : %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="184"/>
-      <location filename="../importworker.cpp" line="191"/>
+      <location filename="../importworker.cpp" line="135"/>
+      <location filename="../importworker.cpp" line="186"/>
+      <location filename="../importworker.cpp" line="193"/>
       <source>Error while importing data: %1</source>
       <translation>Erreur lors de l’import des données : %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="133"/>
-      <location filename="../importworker.cpp" line="191"/>
+      <location filename="../importworker.cpp" line="135"/>
+      <location filename="../importworker.cpp" line="193"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Transaction interrompue.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="179"/>
+      <location filename="../importworker.cpp" line="181"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Impossible d&apos;importer les données de la ligne numéro %1. La ligne a été ignorée. Détails du problème : %2</translation>
     </message>
@@ -876,17 +876,17 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>L’application de code ne peut être vide.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="369"/>
+      <location filename="../selectresolver.cpp" line="372"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Impossible de résoudre la source de données pour la colonnes : %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="439"/>
+      <location filename="../selectresolver.cpp" line="442"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Impossible de résoudre la table pour la colonne &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="760"/>
+      <location filename="../services/impl/configimpl.cpp" line="761"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Impossible d&apos;initialiser le fichier de configuration. Tous les changements de configuration et l&apos;historique des requêtes seront perdus après le redémarrage de l&apos;application. Impossible de créer un fichier aux emplacements suivants : %1.</translation>
     </message>
@@ -933,41 +933,41 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Peuplement de la table</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="121"/>
+      <location filename="../tablemodifier.cpp" line="161"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>La table %1 fait référence à la table %2, mais la définition de la clé étrangère ne sera pas mise à jour pour une nouvelle définition d&apos; une table en raison de problèmes lors de l&apos; analyse de DDL de la table %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="470"/>
+      <location filename="../tablemodifier.cpp" line="510"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Toutes les colonnes indexées par l&apos;index %1 ont disparu. L&apos;index ne sera pas recréé après modification de la table.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="514"/>
+      <location filename="../tablemodifier.cpp" line="554"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Il y a un problème avec le déclencheur de traitement %1. Il ne sera peut-être pas complètement mis à jour plus tard et nécessitera votre attention.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="529"/>
+      <location filename="../tablemodifier.cpp" line="569"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Toutes les colonnes couvertes par le déclencheur %1 ont disparu. Le déclencheur ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="561"/>
+      <location filename="../tablemodifier.cpp" line="601"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Impossible de mettre à jour le déclencheur %1 selon la modification du tableau %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="580"/>
+      <location filename="../tablemodifier.cpp" line="620"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Impossible de mettre à jour la vue %1 selon les modifications de la table %2.
 La vue restera telle quelle.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="742"/>
-      <location filename="../tablemodifier.cpp" line="766"/>
-      <location filename="../tablemodifier.cpp" line="785"/>
+      <location filename="../tablemodifier.cpp" line="782"/>
+      <location filename="../tablemodifier.cpp" line="806"/>
+      <location filename="../tablemodifier.cpp" line="825"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Il y a un problème avec la mise à jour de l&apos;instruction %1 dans le déclencheur %2. L&apos;une des sous-instructions %1 qui pourraient référencer la table %3 ne peut pas être correctement modifiée. La mise à jour manuelle du déclencheur peut être nécessaire.</translation>
     </message>
@@ -990,30 +990,38 @@ La vue restera telle quelle.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="194"/>
+      <location filename="../db/queryexecutor.cpp" line="196"/>
       <source>Execution interrupted.</source>
       <translation>Exécution interrompue.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="235"/>
+      <location filename="../db/queryexecutor.cpp" line="237"/>
       <source>Database is not open.</source>
       <translation>La base de données n’est ouverte.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="243"/>
+      <location filename="../db/queryexecutor.cpp" line="245"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Une seule requête peut être exécutée à la fois.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="347"/>
-      <location filename="../db/queryexecutor.cpp" line="596"/>
+      <location filename="../db/queryexecutor.cpp" line="349"/>
+      <location filename="../db/queryexecutor.cpp" line="598"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Une erreur s’est produite à l’exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="507"/>
+      <location filename="../db/queryexecutor.cpp" line="509"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio ne peut extraire des métadonnées d’une requête. Les résultats ne peut être affichés.</translation>
+    </message>
+  </context>
+  <context>
+    <name>QueryExecutorSmartHints</name>
+    <message>
+      <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
+      <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
+      <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
     </message>
   </context>
   <context>
@@ -1032,37 +1040,37 @@ La vue restera telle quelle.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="52"/>
+      <location filename="../sqlfileexecutor.cpp" line="57"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>Impossible d&apos;exécuter SQL, car l&apos;application n&apos;a pas pu démarrer la transaction : %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="83"/>
+      <location filename="../sqlfileexecutor.cpp" line="88"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>Exécution depuis le fichier annulé. Toutes les requêtes exécutées jusqu&apos;à présent ont été restaurées.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="99"/>
+      <location filename="../sqlfileexecutor.cpp" line="104"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="144"/>
+      <location filename="../sqlfileexecutor.cpp" line="151"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>Impossible d&apos;exécuter SQL, car l&apos;application n&apos;a pas pu valider la transaction : %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="149"/>
+      <location filename="../sqlfileexecutor.cpp" line="156"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>Fin de l&apos;exécution de %1 requêtes en %2 secondes. %3 n&apos;ont pas été exécutées en raison d&apos;erreurs.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="155"/>
+      <location filename="../sqlfileexecutor.cpp" line="162"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>Fin de l&apos;exécution de %1 requêtes en %2 secondes.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="162"/>
+      <location filename="../sqlfileexecutor.cpp" line="169"/>
       <source>Could not execute SQL due to error.</source>
       <translation>Impossible d&apos;exécuter SQL en raison d&apos;une erreur.</translation>
     </message>
