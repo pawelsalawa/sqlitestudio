@@ -1105,7 +1105,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
       <location filename="../db/abstractdb3.h" line="863"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>Zarejestrowano domyślną sekwencję porządkowania na żądanie, pod nazwą: %1</translation>
     </message>
   </context>
   <context>
