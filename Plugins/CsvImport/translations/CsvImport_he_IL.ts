@@ -21,7 +21,7 @@
     <message>
       <location filename="../csvimport.cpp" line="195"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation>קובצי CSV (*.csv);;קובצי מלל (txt.*);;כל הקבצים (*)</translation>
+      <translation>קובצי CSV (*.csv);;Text files (*.txt);;כל הקבצים(*)</translation>
     </message>
   </context>
   <context>
@@ -79,7 +79,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="72"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation>אם אופשר, ערך מלל שמוצג מימין יתפרש כ־NULL</translation>
+      <translation>אם מופעל, ערך המלל מימין יתפרש כ- NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="75"/>

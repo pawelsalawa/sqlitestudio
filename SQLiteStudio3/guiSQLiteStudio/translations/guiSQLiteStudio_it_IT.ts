@@ -596,7 +596,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="445"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="700"/>
@@ -3460,7 +3460,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../windows/functionseditor.cpp" line="620"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="668"/>
@@ -5502,7 +5502,7 @@ trova il prossimo</translation>
     <message>
       <location filename="../sqleditor.cpp" line="1222"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1232"/>
@@ -6119,7 +6119,7 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="416"/>
       <source>Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</translation>
     </message>
   </context>
   <context>
