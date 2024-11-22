@@ -594,7 +594,7 @@ QVariant ScriptingPython::getVariable(const QString& name)
     PyObject* obj = nullptr;
 
     PyFrame_FastToLocals(frame);
-#if PY_VERSION_HEX < 0x03090000
+#if PY_VERSION_HEX < 0x03110000
     PyObject* locals = frame->f_locals;
     PyObject* globals = frame->f_globals;
 #else
