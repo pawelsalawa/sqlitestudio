@@ -3,6 +3,7 @@
 ### 3.4.6
 - BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
 - BUGFIX: #5111 Applied fix for compiling with Python 3.11 (thanks to @mehw).
+- BUGFIX: #5115 Fixed smart query executor to work properly if there is an inline subquery in a SELECT result columns.
 
 ### 3.4.5
 - ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.

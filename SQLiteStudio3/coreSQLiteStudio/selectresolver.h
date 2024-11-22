@@ -65,7 +65,8 @@ class API_EXPORT SelectResolver
             FROM_GROUPED_SELECT = 0x08,
             FROM_CTE_SELECT = 0x10,
             FROM_VIEW = 0x20,
-            FROM_TABLE_VALUED_FN = 0x40
+            FROM_TABLE_VALUED_FN = 0x40,
+            FROM_RES_COL_SUBSELECT = 0x80, // for result columns that are in-line subselects (i.e. subselect that's not in FROM, but in result columns)
         };
 
         /**

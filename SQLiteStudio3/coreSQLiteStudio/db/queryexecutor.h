@@ -177,6 +177,10 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
                                * The data cell comes from a VIEW that was not expanded (because there were
                                * multi-level views), therefore it was impossible to get ROWID for the cell.
                                */
+            RES_INLINE_SUBSEL,/**<
+                               * The data cell comes from an subselect used as inline expression of result column.
+                               * Getting ROWID of such cell is not possible.
+                               */
         };
 
         /**
