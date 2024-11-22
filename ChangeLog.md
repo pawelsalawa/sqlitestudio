@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.6
+- BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
+
 ### 3.4.5
 - ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.
 - ADDED: #5041 Added support for column list syntax in CREATE VIEW.

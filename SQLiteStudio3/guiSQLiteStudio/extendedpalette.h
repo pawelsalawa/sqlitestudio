@@ -3,6 +3,7 @@
 
 #include <QBrush>
 #include <QPalette>
+#include <QVariant>
 
 class QStyle;
 
@@ -39,7 +40,7 @@ class ExtendedPalette
         QBrush editorCurrentQueryBrush;
         QBrush mdiAreaBaseBrush;
 
-        QPalette lastPalette;
+        QVariant initializedForPalette;
 };
 
 #endif // EXTENDEDPALETTE_H
