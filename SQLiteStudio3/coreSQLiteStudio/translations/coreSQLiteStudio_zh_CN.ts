@@ -1021,7 +1021,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
       <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-      <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+      <translation>表 %2 中的列 %1 引用表 %4 中的列 %3，但这些列的数据类型不同：%5 与 %6。这可能会导致与外键值匹配相关的问题。</translation>
     </message>
   </context>
   <context>
