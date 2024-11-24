@@ -509,6 +509,51 @@ bool AbstractDb::isCollationRegistered(const QString& name)
     return registeredCollations.contains(name);
 }
 
+bool AbstractDb::beginNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("BEGIN;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::commitNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while committing a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::rollbackNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
 QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)
 {
     if (!memPtr)
@@ -792,55 +837,31 @@ quint32 AbstractDb::generateAsyncId()
     return asyncId++;
 }
 
-bool AbstractDb::begin()
+bool AbstractDb::begin(bool noLock)
 {
+    if (noLock)
+        return beginNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("BEGIN;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return beginNoLock();
 }
 
-bool AbstractDb::commit()
+bool AbstractDb::commit(bool noLock)
 {
+    if (noLock)
+        return commitNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while committing a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return commitNoLock();
 }
 
-bool AbstractDb::rollback()
+bool AbstractDb::rollback(bool noLock)
 {
+    if (noLock)
+        return rollbackNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return rollbackNoLock();
 }
 
 void AbstractDb::interrupt()

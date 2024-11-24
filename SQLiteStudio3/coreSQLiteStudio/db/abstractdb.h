@@ -64,9 +64,9 @@ class API_EXPORT AbstractDb : public Db
         quint32 asyncExec(const QString& query, const QList<QVariant>& args, Flags flags = Flag::NONE);
         quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
         quint32 asyncExec(const QString& query, Flags flags = Flag::NONE);
-        bool begin();
-        bool commit();
-        bool rollback();
+        bool begin(bool noLock = false);
+        bool commit(bool noLock = false);
+        bool rollback(bool noLock = false);
         void interrupt();
         void asyncInterrupt();
         bool isReadable();
@@ -209,6 +209,9 @@ class API_EXPORT AbstractDb : public Db
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
         bool isCollationRegistered(const QString& name);
+        bool beginNoLock();
+        bool commitNoLock();
+        bool rollbackNoLock();
 
         /**
          * @brief Registers a collation sequence implementation in the database.

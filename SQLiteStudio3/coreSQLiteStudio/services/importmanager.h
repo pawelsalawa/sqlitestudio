@@ -39,6 +39,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
 
             bool ignoreErrors = false;
             bool skipTransaction = false;
+            bool noDbLock = false;
         };
 
         enum StandardConfigFlag

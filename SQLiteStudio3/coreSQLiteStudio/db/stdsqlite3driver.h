@@ -79,6 +79,7 @@
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
         static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
+        static int get_autocommit(handle* arg) {return Prefix##sqlite3_get_autocommit(arg);} \
         static int wal_checkpoint(handle* arg1, const char* arg2) {return Prefix##sqlite3_wal_checkpoint(arg1, arg2);} \
         static int wal_checkpoint_v2(handle* a1, const char* a2, int a3, int* a4, int* a5) {return Prefix##sqlite3_wal_checkpoint_v2(a1, a2, a3, a4, a5);} \
         static int enable_load_extension(handle* arg1, int arg2) {return Prefix##sqlite3_enable_load_extension(arg1, arg2);} \

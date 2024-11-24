@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.7
+- BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
+
 ### 3.4.6
 - BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
 - BUGFIX: #5111 Applied fix for compiling with Python 3.11 (thanks to @mehw).

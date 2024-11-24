@@ -453,19 +453,19 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * This method uses basic "BEGIN" statement to begin transaction, therefore recurrent transactions are not supported.
          */
-        virtual bool begin() = 0;
+        virtual bool begin(bool noLock = false) = 0;
 
         /**
          * @brief Commits SQL transaction.
          * @return true on success, or false otherwise.
          */
-        virtual bool commit() = 0;
+        virtual bool commit(bool noLock = false) = 0;
 
         /**
          * @brief Rolls back the transaction.
          * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
          */
-        virtual bool rollback() = 0;
+        virtual bool rollback(bool noLock = false) = 0;
 
         /**
          * @brief Interrupts current execution asynchronously.
@@ -724,6 +724,12 @@ class API_EXPORT Db : public QObject, public Interruptable
          * so ownership, connection/disconnection, deletion, etc. all belongs to the caller of this method.
          */
         virtual Db* clone() const = 0;
+
+        /**
+         * @brief Checkes if there is an ongoing transaction at the moment.
+         * @return true if there is an active transaction at the moment, or false otherwise.
+         */
+        virtual bool isTransactionActive() const = 0;
 
     signals:
         /**

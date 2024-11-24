@@ -65,6 +65,7 @@ class AbstractDb3 : public AbstractDb
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
+        bool isTransactionActive() const;
 
     private:
         class Query : public SqlQuery
@@ -879,6 +880,15 @@ void AbstractDb3<T>::registerDefaultCollationRequestHandler()
     int res = T::collation_needed(dbHandle, defaultCollationUserData, &AbstractDb3<T>::registerDefaultCollation);
     if (res != T::OK)
         qWarning() << "Could not register default collation request handler. Unknown collations will cause errors.";
+}
+
+template <class T>
+bool AbstractDb3<T>::isTransactionActive() const
+{
+    if (!dbHandle)
+        return false;
+
+    return !T::get_autocommit(dbHandle);
 }
 
 //------------------------------------------------------------------------------------
