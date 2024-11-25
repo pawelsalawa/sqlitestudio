@@ -582,7 +582,7 @@ SqlQueryPtr ScriptingPython::dbCommonEval(PyObject* sqlArg, const char* fnName)
 QVariant ScriptingPython::getVariable(const QString& name)
 {
     PyThreadState* state = PyThreadState_Get();
-#if PY_VERSION_HEX < 0x03090000
+#if PY_VERSION_HEX < 0x030a0000
     PyFrameObject* frame = state->frame;
 #else
     PyFrameObject* frame = PyThreadState_GetFrame(state);
@@ -594,7 +594,7 @@ QVariant ScriptingPython::getVariable(const QString& name)
     PyObject* obj = nullptr;
 
     PyFrame_FastToLocals(frame);
-#if PY_VERSION_HEX < 0x03110000
+#if PY_VERSION_HEX < 0x030b0000
     PyObject* locals = frame->f_locals;
     PyObject* globals = frame->f_globals;
 #else

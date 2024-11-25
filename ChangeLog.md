@@ -2,6 +2,7 @@
 
 ### 3.4.7
 - BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
+- BUGFIX: #5124 Fixed ScriptingPython plugin compilation against Python >= 3.12.
 
 ### 3.4.6
 - BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
@@ -23,7 +24,7 @@
 - BUGFIX: #4796 Fixed Database Dialog file selection, so user has clear understanding whether new file is to be created, or existing file to open. Also fixes file selection dialog on MacOS when creating new database file.
 - BUGFIX: #4819 Fixed sorting order cached in data view when executing query with less columns than previously.
 - BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
-- BIGFIX: #3454 German translation fixes.
+- BUGFIX: #3454 German translation fixes.
 - BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
 - BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
 - BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
