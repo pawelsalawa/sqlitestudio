@@ -122,7 +122,7 @@ jobs:
 
             - name: Download prebuilt Qt
               if: env.USE_PREBUILT_QT == 1
-              uses: dawidd6/action-download-artifact@v3
+              uses: dawidd6/action-download-artifact@v6
               with:
                 workflow: lin_qt.yml
                 workflow_conclusion: success
