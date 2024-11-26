@@ -332,6 +332,12 @@ QVariant SqlQueryItem::data(int role) const
             if (value.isNull())
                 return "NULL";
 
+            if (value.type() == QVariant::String)
+                return QVariant(value.toString().left(1000));
+
+            if (value.type() == QVariant::ByteArray)
+                return QVariant(value.toByteArray().left(1000));
+
             return value;
         }
         case Qt::ForegroundRole:
