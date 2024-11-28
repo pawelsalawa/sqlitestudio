@@ -4,6 +4,7 @@
 - BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
 - BUGFIX: #5124 Fixed ScriptingPython plugin compilation against Python >= 3.12.
 - BUGFIX: #5134 Improved performance significantly when working with big values (~1MB per cell) in multiple columns/rows of a table data grid view.
+- BUGFIX: #5122 Fixed Linux packages to run properly under Wayland.
 
 ### 3.4.6
 - BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
