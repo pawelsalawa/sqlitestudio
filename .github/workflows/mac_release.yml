@@ -112,6 +112,7 @@ jobs:
                 brew tap-new $USER/local-tap
                 brew extract --version=$ICU_VERSION icu4c $USER/local-tap
                 brew install icu4c@$ICU_VERSION
+                brew install coreutils
                 echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
                     >> $GITHUB_ENV
 
@@ -201,6 +202,12 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
                 ls -l
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4

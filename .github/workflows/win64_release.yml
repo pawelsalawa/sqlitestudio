@@ -252,6 +252,12 @@ jobs:
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
 
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
