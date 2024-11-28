@@ -1081,7 +1081,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="32"/>
       <source>Database</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">Database</translation>
+      <translation>데이터베이스</translation>
     </message>
     <message>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
@@ -1105,7 +1105,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="40"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
