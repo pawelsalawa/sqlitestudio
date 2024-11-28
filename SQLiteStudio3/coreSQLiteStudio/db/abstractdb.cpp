@@ -940,8 +940,8 @@ void AbstractDb::flushWal()
     {
         if (exec("PRAGMA journal_mode")->getSingleCell().toString() == "wal")
         {
-            exec("PRAGMA journal_mode = delete;");
-            exec("PRAGMA journal_mode = wal;");
+            exec("PRAGMA journal_mode = delete;", Flag::ZERO_TIMEOUT);
+            exec("PRAGMA journal_mode = wal;", Flag::ZERO_TIMEOUT);
         }
     }
     else

@@ -1234,7 +1234,8 @@ int AbstractDb3<T>::Query::fetchNext()
     rowAvailable = false;
     int res;
     int secondsSpent = 0;
-    while ((res = T::step(stmt)) == T::BUSY && secondsSpent < db->getTimeout())
+    bool zeroTimeout = flags.testFlag(Db::Flag::ZERO_TIMEOUT);
+    while ((res = T::step(stmt)) == T::BUSY && !zeroTimeout && secondsSpent < db->getTimeout())
     {
         QThread::sleep(1);
         if (db->getTimeout() >= 0)
