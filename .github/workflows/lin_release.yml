@@ -209,9 +209,9 @@ jobs:
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
+                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-generic.so platforms/libqwayland-generic.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-*.so platforms/
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
@@ -223,12 +223,15 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
+                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
+                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
              
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN          lib/libicu*.*.*
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
@@ -280,6 +283,12 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
