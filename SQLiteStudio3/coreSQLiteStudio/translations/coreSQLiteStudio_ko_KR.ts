@@ -50,7 +50,7 @@
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>중지되었습니다.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
@@ -64,32 +64,32 @@
     <message>
       <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>새로운 행 참조</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>기존 행 참조</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>새 테이블 이름</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="174"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>새 인덱스 이름</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="177"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>새 뷰 이름</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="180"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>새 트리거 이름</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="183"/>
@@ -104,7 +104,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="189"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>새 열 이름</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="192"/>
@@ -459,7 +459,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../importworker.cpp" line="193"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
-      <translation type="unfinished">Interrupted.</translation>
+      <translation>중지되었습니다.</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="181"/>
@@ -493,13 +493,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">min: %1</translation>
+      <translation>최소값: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">max: %1</translation>
+      <translation>최대값: %1</translation>
     </message>
   </context>
   <context>
@@ -508,7 +508,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
-      <translation type="unfinished">Constant</translation>
+      <translation>상수</translation>
     </message>
   </context>
   <context>
@@ -516,7 +516,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populateconstant.ui" line="20"/>
       <source>Constant value:</source>
-      <translation type="unfinished">Constant value:</translation>
+      <translation>상수값:</translation>
     </message>
   </context>
   <context>
@@ -543,17 +543,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="39"/>
       <source>Word separator</source>
-      <translation type="unfinished">Word separator</translation>
+      <translation>단어 구분 기호</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="45"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>공백 문자</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="58"/>
       <source>Line break</source>
-      <translation type="unfinished">Line break</translation>
+      <translation>줄바꿈</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="74"/>
@@ -563,12 +563,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatedictionary.ui" line="80"/>
       <source>Ordered</source>
-      <translation type="unfinished">Ordered</translation>
+      <translation>정렬된 순서</translation>
     </message>
     <message>
       <location filename="../plugins/populatedictionary.ui" line="93"/>
       <source>Randomly</source>
-      <translation type="unfinished">Randomly</translation>
+      <translation>무작위 순서</translation>
     </message>
   </context>
   <context>
@@ -584,7 +584,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.cpp" line="13"/>
       <source>Random number</source>
-      <translation type="unfinished">Random number</translation>
+      <translation>난수</translation>
     </message>
   </context>
   <context>
@@ -602,12 +602,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandom.ui" line="39"/>
       <source>Minimum value</source>
-      <translation type="unfinished">Minimum value</translation>
+      <translation>최소값</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="61"/>
       <source>Maximum value</source>
-      <translation type="unfinished">Maximum value</translation>
+      <translation>최대값</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandom.ui" line="86"/>
@@ -625,7 +625,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.cpp" line="14"/>
       <source>Random text</source>
-      <translation type="unfinished">Random text</translation>
+      <translation>무작위 스트링</translation>
     </message>
   </context>
   <context>
@@ -633,67 +633,67 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>문자 집합 사용:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation type="unfinished">Minimum length</translation>
+      <translation>최소 길이</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
       <source>Letters from a to z.</source>
-      <translation type="unfinished">Letters from a to z.</translation>
+      <translation>a~z</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="67"/>
       <source>Alpha</source>
-      <translation type="unfinished">Alpha</translation>
+      <translation>알파벳</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="77"/>
       <source>Numbers from 0 to 9.</source>
-      <translation type="unfinished">Numbers from 0 to 9.</translation>
+      <translation>0~9</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="80"/>
       <source>Numeric</source>
-      <translation type="unfinished">Numeric</translation>
+      <translation>숫자</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="90"/>
       <source>A whitespace, a tab and a new line character.</source>
-      <translation type="unfinished">A whitespace, a tab and a new line character.</translation>
+      <translation>공백 문자, 탭, 줄바꿈</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="93"/>
       <source>Whitespace</source>
-      <translation type="unfinished">Whitespace</translation>
+      <translation>공백 문자</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="103"/>
       <source>Includes all above and all others.</source>
-      <translation type="unfinished">Includes all above and all others.</translation>
+      <translation>상기 모두와 그 외 문자를 포함</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="106"/>
       <source>Binary</source>
-      <translation type="unfinished">Binary</translation>
+      <translation>이진 문자</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="119"/>
       <source>Use characters from my custom set:</source>
-      <translation type="unfinished">Use characters from my custom set:</translation>
+      <translation>커스텀 문자 집합 사용:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="132"/>
       <source>Maximum length</source>
-      <translation type="unfinished">Maximum length</translation>
+      <translation>최대 길이</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
-      <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
+      <translation>여러 번 입력된 글자는 출현 확률이 증가합니다.</translation>
     </message>
   </context>
   <context>
