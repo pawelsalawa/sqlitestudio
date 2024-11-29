@@ -37,6 +37,7 @@ macx: {
         INCLUDEPATH += /usr/local/opt/openssl/include
         LIBS += -L/usr/local/opt/openssl/lib
     }
+    LIBS += -lcrypto
 }
 !macx: {
     LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
