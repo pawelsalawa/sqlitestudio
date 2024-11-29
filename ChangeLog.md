@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.7
+- CHANGE: #5131 SQLite updated to 3.47.1 (except for SQLCipher, which is still on 3.46.1 at the moment).
 - BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
 - BUGFIX: #5124 Fixed ScriptingPython plugin compilation against Python >= 3.12.
 - BUGFIX: #5134 Improved performance significantly when working with big values (~1MB per cell) in multiple columns/rows of a table data grid view.
