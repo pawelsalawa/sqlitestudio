@@ -1228,17 +1228,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         /**
          * @brief Extracts counting query results.
-         * @param asyncId Asynchronous ID of the counting query execution.
          * @param results Results from the counting query execution.
-         * @return true if passed asyncId is the one for currently running counting query, or false otherwise.
+         * @return true if counting was successful, i.e. there is no ongoing query execution, or false otherwise.
          *
-         * It's called from database asynchronous execution thread. The database might have executed
-         * some other acynchronous queries too, so this method checks if the asyncId is the expected one.
-         *
+         * It may be called from database asynchronous execution thread.
          * Basicly this method is called a result of countResults() call. Extracts counted number of rows
          * and stores it in query executor's context.
          */
-        bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
+        bool handleRowCountingResults(SqlQueryPtr results);
 
         QStringList applyFiltersAndLimitAndOrderForSimpleMethod(const QStringList &queries);
 
@@ -1498,6 +1495,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         bool forceSimpleMode = false;
         ChainExecutor* simpleExecutor = nullptr;
+        Db* countingDb = nullptr;
 
     signals:
         /**
@@ -1585,17 +1583,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * In case of success emits executionFinished(), in case of error emits executionFailed().
          */
         void simpleExecutionFinished(SqlQueryPtr results);
-
-        /**
-         * @brief Handles asynchronous database execution results.
-         * @param asyncId Asynchronous ID of the execution.
-         * @param results Results from the execution.
-         *
-         * QueryExecutor checks whether the \p asyncId belongs to the counting query execution,
-         * or the simple execution.
-         * Dispatches query results to a proper handler method.
-         */
-        void dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results);
 };
 
 int qHash(QueryExecutor::EditionForbiddenReason reason);

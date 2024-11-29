@@ -3,6 +3,7 @@
 #include "sqlerrorcodes.h"
 #include "services/dbmanager.h"
 #include "db/sqlerrorcodes.h"
+#include "db/dbsqlite3.h"
 #include "services/notifymanager.h"
 #include "queryexecutorsteps/queryexecutoraddrowids.h"
 #include "queryexecutorsteps/queryexecutorcolumns.h"
@@ -19,13 +20,13 @@
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "queryexecutorsteps/queryexecutorvaluesmode.h"
 #include "queryexecutorsteps/queryexecutorcolumntype.h"
+#include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include "common/unused.h"
 #include "chainexecutor.h"
 #include "log.h"
 #include "schemaresolver.h"
 #include "parser/lexer.h"
 #include "common/table.h"
-#include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>
@@ -56,8 +57,14 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
 
 QueryExecutor::~QueryExecutor()
 {
-    delete context;
-    context = nullptr;
+    safe_delete(context);
+    if (countingDb)
+    {
+        if (countingDb->isOpen())
+            countingDb->closeQuiet();
+
+        delete countingDb;
+    }
 }
 
 void QueryExecutor::setupExecutionChain()
@@ -249,6 +256,9 @@ void QueryExecutor::exec(Db::QueryResultsHandler resultsHandler)
     executionInProgress = true;
     executionMutex.unlock();
 
+    if (countingDb && countingDb->isOpen())
+        countingDb->interrupt();
+
     this->resultsHandler = resultsHandler;
 
     if (asyncMode)
@@ -331,35 +341,30 @@ bool QueryExecutor::countResults()
     if (context->countingQuery.isEmpty()) // simple method doesn't provide that
         return false;
 
+    if (!countingDb)
+        return false; // no db defined, so no countingDb defined
+
+    if (!countingDb->isOpen() && !countingDb->openQuiet())
+    {
+        notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+                    .arg("Failed to establish dedicated connection for results counting."));
+        return false;
+    }
+
     if (asyncMode)
     {
         // Start asynchronous results counting query
-        resultsCountingAsyncId = db->asyncExec(context->countingQuery, context->queryParameters, Db::Flag::NO_LOCK);
+        countingDb->asyncExec(context->countingQuery, context->queryParameters, [=](SqlQueryPtr results)
+        {
+            handleRowCountingResults(results);
+        }, Db::Flag::PRELOAD);
     }
     else
     {
-        SqlQueryPtr results = db->exec(context->countingQuery, context->queryParameters, Db::Flag::NO_LOCK);
-        context->totalRowsReturned = results->getSingleCell().toLongLong();
-        context->totalPages = (int)qCeil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
-
-        emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
-
-        if (results->isError())
-        {
-            notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
-                        .arg(results->getErrorText()));
-            return false;
-        }
+        SqlQueryPtr results = countingDb->exec(context->countingQuery, context->queryParameters, Db::Flag::PRELOAD);
+        handleRowCountingResults(results);
     }
     return true;
-}
-
-void QueryExecutor::dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results)
-{
-    if (handleRowCountingResults(asyncId, results))
-        return;
-
-    // If this was raised by any other asyncExec, handle it here.
 }
 
 qint64 QueryExecutor::getLastExecutionTime() const
@@ -575,25 +580,17 @@ void QueryExecutor::cleanup()
     }
 }
 
-bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr results)
+bool QueryExecutor::handleRowCountingResults(SqlQueryPtr results)
 {
-    if (resultsCountingAsyncId == 0)
-        return false;
-
-    if (resultsCountingAsyncId != asyncId)
-        return false;
-
     if (isExecutionInProgress()) // shouldn't be true, but just in case
         return false;
-
-    resultsCountingAsyncId = 0;
 
     context->totalRowsReturned = results->getSingleCell().toLongLong();
     context->totalPages = (int)qCeil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
 
     emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
 
-    if (results->isError())
+    if (results->isError() && results->getErrorCode() != Sqlite3::INTERRUPT)
     {
         notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                     .arg(results->getErrorText()));
@@ -874,13 +871,15 @@ Db* QueryExecutor::getDb() const
 
 void QueryExecutor::setDb(Db* value)
 {
-    if (db)
-        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
-
     db = value;
 
+    if (countingDb)
+    {
+        countingDb->closeQuiet();
+        safe_delete(countingDb);
+    }
     if (db)
-        connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
+        countingDb = db->clone();
 }
 
 bool QueryExecutor::getSkipRowCounting() const

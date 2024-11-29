@@ -67,9 +67,10 @@ bool AbstractDb::openQuiet()
 
 bool AbstractDb::closeQuiet()
 {
-    QWriteLocker locker(&dbOperLock);
     QWriteLocker connectionLocker(&connectionStateLock);
     interruptExecution();
+
+    QWriteLocker locker(&dbOperLock);
     bool res = closeInternal();
     clearAttaches();
     registeredFunctions.clear();

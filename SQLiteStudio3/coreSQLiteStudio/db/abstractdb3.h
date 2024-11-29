@@ -1235,7 +1235,7 @@ int AbstractDb3<T>::Query::fetchNext()
     int res;
     int secondsSpent = 0;
     bool zeroTimeout = flags.testFlag(Db::Flag::ZERO_TIMEOUT);
-    while ((res = T::step(stmt)) == T::BUSY && !zeroTimeout && secondsSpent < db->getTimeout())
+    while ((res = T::step(stmt)) == T::BUSY && !zeroTimeout && secondsSpent < db->getTimeout() && !T::is_interrupted(db->dbHandle))
     {
         QThread::sleep(1);
         if (db->getTimeout() >= 0)
@@ -1250,6 +1250,9 @@ int AbstractDb3<T>::Query::fetchNext()
         case T::DONE:
             // Empty pointer as no more results are available.
             break;
+        case T::INTERRUPT:
+            setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
+            return T::INTERRUPT;
         default:
             setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
             return T::ERROR;

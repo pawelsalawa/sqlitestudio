@@ -6,6 +6,7 @@
 - BUGFIX: #5134 Improved performance significantly when working with big values (~1MB per cell) in multiple columns/rows of a table data grid view.
 - BUGFIX: #5122 Fixed Linux packages to run properly under Wayland.
 - BUGFIX: #5136 Fixed application hanging at quitting when the database is in WAL journaling mode and there is another client still accessing the database.
+- BUGFIX: #5135 Counting rows in enormous tables (which can take very long time) no longer blocks the application.
 
 ### 3.4.6
 - BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
