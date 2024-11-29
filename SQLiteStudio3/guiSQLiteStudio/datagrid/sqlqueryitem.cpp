@@ -333,10 +333,16 @@ QVariant SqlQueryItem::data(int role) const
                 return "NULL";
 
             if (value.type() == QVariant::String)
-                return QVariant(value.toString().left(1000));
+            {
+                QString str = value.toString();
+                return str.length() > DISPLAY_LEN_LIMIT ? QVariant(str.left(DISPLAY_LEN_LIMIT) + "...") : value;
+            }
 
             if (value.type() == QVariant::ByteArray)
-                return QVariant(value.toByteArray().left(1000));
+            {
+                QByteArray bytes = value.toByteArray();
+                return bytes.size() > DISPLAY_LEN_LIMIT ? QVariant(bytes.left(DISPLAY_LEN_LIMIT) + "...") : value;
+            }
 
             return value;
         }
