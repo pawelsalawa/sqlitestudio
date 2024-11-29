@@ -27,9 +27,16 @@ isEmpty(WXSQLITE_LIB): {
     HEADERS += wxsqlite3.h
 }
 
-max: {
-    INCLUDEPATH += /usr/local/opt/openssl/include
-    LIBS += -L/usr/local/opt/openssl/lib
+macx: {
+    exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
+        message( "Configuring OpenSSL from MacPorts" )
+        INCLUDEPATH += /opt/local/include/openssl-3
+        LIBS += -L/opt/local/lib/openssl-3
+    } else {
+        message( "Configuring OpenSSL from HomeBrew" )
+        INCLUDEPATH += /usr/local/opt/openssl/include
+        LIBS += -L/usr/local/opt/openssl/lib
+    }
 }
 !macx: {
     LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/

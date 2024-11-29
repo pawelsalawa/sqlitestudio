@@ -25,7 +25,7 @@ HEADERS += dbsqlitecipher.h \
     dbsqlitecipherinstance.h
     sqlcipher.h
 
-mac: {
+macx: {
     exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
         message( "Configuring OpenSSL from MacPorts" )
         INCLUDEPATH += /opt/local/include/openssl-3
