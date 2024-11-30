@@ -29,7 +29,7 @@ jobs:
               #- "glibc_2.27"  # Ubuntu 18.04
               - "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "6.2.13"
+              - "6.2.10"
               - "6.5.6"
               - "6.8.0"
             include:
@@ -137,8 +137,14 @@ jobs:
                 set -x
                 qt_version="${{ matrix.version }}"
                 ver_maj_min="${qt_version%.*}"
+                url_dir="official_releases"
+                case $ver_maj_min in
+                  6.2)
+                    url_dir="archive"
+                    ;;
+                esac
                 for _m in qtbase $submodules $ADD_SUBMODULES; do
-                    curl -L https://download.qt.io/official_releases/qt/$ver_maj_min/${{ matrix.version }}/submodules/$_m-everywhere${OPENSOURCE_SUFFIX}-src-${{ matrix.version }}.tar.xz \
+                    curl -L https://download.qt.io/$url_dir/qt/$ver_maj_min/${{ matrix.version }}/submodules/$_m-everywhere${OPENSOURCE_SUFFIX}-src-${{ matrix.version }}.tar.xz \
                     | xzcat \
                     | tar -x
                 done
