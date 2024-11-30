@@ -39,7 +39,7 @@ jobs:
               #  container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
               - binary_compatibility: glibc_2.31
                 container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
-            exclude:
+            #exclude:
               #- binary_compatibility: glibc_2.23
               #  version: "6.7.2"
               #- binary_compatibility: glibc_2.27
