@@ -4430,7 +4430,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>

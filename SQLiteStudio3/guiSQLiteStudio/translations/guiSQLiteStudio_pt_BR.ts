@@ -4431,7 +4431,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>

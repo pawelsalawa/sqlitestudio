@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -4430,7 +4430,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
