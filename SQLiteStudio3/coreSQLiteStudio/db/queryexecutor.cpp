@@ -354,7 +354,7 @@ bool QueryExecutor::countResults()
     if (asyncMode)
     {
         // Start asynchronous results counting query
-        countingDb->asyncExec(context->countingQuery, context->queryParameters, [=](SqlQueryPtr results)
+        countingDb->asyncExec(context->countingQuery, context->queryParameters, [=, this](SqlQueryPtr results)
         {
             handleRowCountingResults(results);
         }, Db::Flag::PRELOAD);

@@ -1,6 +1,6 @@
 include($$PWD/common.pri)
 
-CONFIG += c++17 plugin
+CONFIG += c++20 plugin
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build

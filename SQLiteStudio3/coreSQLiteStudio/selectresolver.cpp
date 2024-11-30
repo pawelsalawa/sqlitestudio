@@ -319,7 +319,7 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
     bool foundAtLeastOne = false;
-    for (SelectResolver::Column column : qAsConst(currentCoreSourceColumns))
+    for (SelectResolver::Column column : std::as_const(currentCoreSourceColumns))
     {
         if (!resCol->table.isNull())
         {

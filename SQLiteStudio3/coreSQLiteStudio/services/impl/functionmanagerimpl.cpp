@@ -755,8 +755,8 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
 
             QVariant varValue = line.mid(idx + 1);
             QVariant defValue = cfg->getDefaultValue();
-            QVariant::Type expectedType = defValue.type();
-            if (varValue.type() != expectedType && !varValue.convert(expectedType))
+            QMetaType expectedType = defValue.metaType();
+            if (varValue.metaType() != expectedType && !varValue.convert(expectedType))
             {
                 qDebug() << "Invalid option value for import() function call:" << option << ", invalid value was:" << varValue.toString()
                          << ", expected value type was:" << defValue.typeName() << ", but given value could not be converted to that type.";

@@ -142,7 +142,7 @@ void ImportDialog::initTablePage()
     connect(ui->dbNameCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshTables()));
     connect(ui->tableNameCombo, SIGNAL(currentTextChanged(QString)), ui->tablePage, SIGNAL(completeChanged()));
 
-    ui->tablePage->setValidator([=]() -> bool
+    ui->tablePage->setValidator([=, this]() -> bool
     {
         bool valid = !ui->tableNameCombo->currentText().isEmpty();
         setValidStateWihtTooltip(ui->tableNameCombo, tr("If you type table name that doesn't exist, it will be created."), valid, tr("Enter the table name"));
@@ -158,7 +158,7 @@ void ImportDialog::initDataSourcePage()
     ui->codecCombo->addItems(textCodecNames());
     ui->codecCombo->setCurrentText(defaultCodecName());
 
-    ui->dsPage->setValidator([=]() -> bool
+    ui->dsPage->setValidator([=, this]() -> bool
     {
         setValidState(ui->dsTypeCombo, true);
         if (!currentPlugin)

@@ -80,7 +80,7 @@ struct API_EXPORT ExpectedToken
      */
     bool needsWrapping() const;
 
-    int operator==(const ExpectedToken& other);
+    int operator==(const ExpectedToken& other) const;
     QString toString() const;
 };
 

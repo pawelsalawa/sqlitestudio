@@ -19,7 +19,7 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-CONFIG   += c++17
+CONFIG  += c++20
 QMAKE_CXXFLAGS += -pedantic
 linux {
     portable {

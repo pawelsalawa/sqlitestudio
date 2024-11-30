@@ -42,7 +42,7 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin,
         SQLITESTUDIO_PLUGIN("scriptingpython.json")
 
     public:
-        static PyObject* dbEval(PyObject *self, PyObject* const* args, Py_ssize_t nargs);
+        static PyObject* dbEval(PyObject *self, PyObject* const* args);
         static PyObject* dbEvalCompat(PyObject *self, PyObject* args);
 
         ScriptingPython();

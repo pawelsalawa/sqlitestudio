@@ -18,7 +18,7 @@ SortDialog::SortDialog(QWidget *parent) :
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateButtons()));
     connect(ui->list, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(itemChanged(QTreeWidgetItem*,int)));
     connect(ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()), this, SLOT(reset()));
-    connect(ui->list->model(), &QAbstractItemModel::rowsInserted, [=](const QModelIndex & parent, int start, int end)
+    connect(ui->list->model(), &QAbstractItemModel::rowsInserted, [=, this](const QModelIndex & parent, int start, int end)
     {
         UNUSED(parent);
         UNUSED(end);

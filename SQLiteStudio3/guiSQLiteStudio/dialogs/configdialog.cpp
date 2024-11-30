@@ -382,7 +382,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     QSet<QTreeWidgetItem*> matchedCategories;
     for (auto it = pageToCategoryItem.keyBegin(), end = pageToCategoryItem.keyEnd(); it != end; ++it)
     {
-        for (QWidget* matched : qAsConst(matchedWidgets))
+        for (QWidget* matched : std::as_const(matchedWidgets))
         {
             QWidget* page = *it;
             if (page->isAncestorOf(matched))
@@ -402,7 +402,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     for (QTreeWidgetItem*& item : getAllCategoryItems())
         item->setForeground(0, disabledColor);
 
-    for (QTreeWidgetItem* item : qAsConst(matchedCategories))
+    for (QTreeWidgetItem* item : std::as_const(matchedCategories))
     {
         item->setForeground(0, normalColor);
         while ((item = item->parent()) != nullptr)

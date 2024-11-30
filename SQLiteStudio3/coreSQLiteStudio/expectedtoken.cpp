@@ -26,7 +26,7 @@ bool ExpectedToken::needsWrapping() const
     return false;
 }
 
-int ExpectedToken::operator==(const ExpectedToken& other)
+int ExpectedToken::operator==(const ExpectedToken& other) const
 {
     return type == other.type && value == other.value && contextInfo == other.contextInfo &&
             label == other.label && prefix == other.prefix;

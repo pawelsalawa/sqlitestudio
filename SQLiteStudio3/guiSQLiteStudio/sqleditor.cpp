@@ -617,7 +617,7 @@ void SqlEditor::refreshValidObjects()
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
         QStringList objects;
-        for (const QString& dbName : qAsConst(databases))
+        for (const QString& dbName : std::as_const(databases))
         {
             objects = resolver.getAllObjects(dbName);
             objectsByDbName[dbName] << objects;

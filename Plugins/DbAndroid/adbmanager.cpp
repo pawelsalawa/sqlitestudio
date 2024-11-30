@@ -431,7 +431,7 @@ void AdbManager::handleNewDeviceList(const QStringList& devices)
         return;
 
     currentDeviceList = devices;
-    runInThread([=]{ updateDetails(devices); });
+    runInThread([=, this]{ updateDetails(devices); });
 
     emit deviceListChanged(devices);
 }

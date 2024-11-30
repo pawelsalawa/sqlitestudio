@@ -48,7 +48,7 @@ void ConfigMigrationWizard::init()
     setPixmap(QWizard::BackgroundPixmap, addOpacity(ICONMANAGER->getIcon("config_migration")->pixmap(180, 180), 0.4));
 #endif
 
-    ui->optionsPage->setValidator([=]() -> bool
+    ui->optionsPage->setValidator([=, this]() -> bool
     {
         QString grpName = ui->groupNameEdit->text();
 

@@ -116,7 +116,7 @@ void MultiEditor::init(TabsMode tabsMode)
     tabs->setGraphicsEffect(effect);
 
     connect(tabs, &QTabWidget::currentChanged, this, &MultiEditor::tabChanged);
-    connect(nullCheck, &QCheckBox::stateChanged, this, &MultiEditor::nullStateChanged);
+    connect(nullCheck, &QCheckBox::checkStateChanged, this, &MultiEditor::nullStateChanged);
     connect(this, SIGNAL(modified()), this, SLOT(setModified()));
 }
 
@@ -139,7 +139,7 @@ void MultiEditor::tabChanged(int idx)
     newEditor->setUpToDate(true);
 }
 
-void MultiEditor::nullStateChanged(int state)
+void MultiEditor::nullStateChanged(Qt::CheckState state)
 {
     bool checked = (state == Qt::Checked);
 

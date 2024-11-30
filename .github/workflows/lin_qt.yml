@@ -25,37 +25,38 @@ jobs:
           fail-fast: false
           matrix:
             binary_compatibility:
-              - "glibc_2.23"  # Ubuntu 16.04
-              - "glibc_2.27"  # Ubuntu 18.04
-              #- "glibc_2.31"  # Ubuntu 20.04, Debian 11
+              #- "glibc_2.23"  # Ubuntu 16.04
+              #- "glibc_2.27"  # Ubuntu 18.04
+              - "glibc_2.31"  # Ubuntu 20.04, Debian 11
             version:
-              - "5.15.14"
-              - "6.7.2"
+              - "6.2.13"
+              - "6.5.6"
+              - "6.8.0"
             include:
-              - binary_compatibility: glibc_2.23
-                container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
-              - binary_compatibility: glibc_2.27
-                container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
-              #- binary_compatibility: glibc_2.31
-              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
+              #- binary_compatibility: glibc_2.23
+              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-xenial
+              #- binary_compatibility: glibc_2.27
+              #  container: ghcr.io/${{ github.repository }}/gha-build-runner-bionic
+              - binary_compatibility: glibc_2.31
+                container: ghcr.io/${{ github.repository }}/gha-build-runner-focal
             exclude:
-              - binary_compatibility: glibc_2.23
-                version: "6.7.2"
-              - binary_compatibility: glibc_2.27
-                version: "5.15.14"
+              #- binary_compatibility: glibc_2.23
+              #  version: "6.7.2"
+              #- binary_compatibility: glibc_2.27
+              #  version: "5.15.14"
 
         steps:
             - name: Prepare environment
               run: |
                 case ${{ matrix.version }} in
-                  5.*) echo ADD_SUBMODULES="qtx11extras"
-                       echo QT_VERSION_MAJ="5"
-                       echo OPENSOURCE_SUFFIX="-opensource"
-                       echo STAGE_INSTALL_CMD="sudo make INSTALL_ROOT=/tmp/stage install"
-                       ;;
-                  6.*) echo ADD_SUBMODULES="qt5compat"
-                       echo QT_VERSION_MAJ="6"
+                  #5.*) echo ADD_SUBMODULES="qtx11extras"
+                  #     echo QT_VERSION_MAJ="5"
+                  #     echo OPENSOURCE_SUFFIX="-opensource"
+                  #     echo STAGE_INSTALL_CMD="sudo make INSTALL_ROOT=/tmp/stage install"
+                  #     ;;
+                  6.*) echo QT_VERSION_MAJ="6"
                        echo OPENSOURCE_SUFFIX=""
+                       # echo ADD_SUBMODULES="qt5compat"
                        ;;
                 esac >> $GITHUB_ENV
 
@@ -142,25 +143,25 @@ jobs:
                     | tar -x
                 done
 
-            - name: Apply patches
-              run: |
-                set -x
-                cd qtbase-everywhere-src-${{ matrix.version }}
-                case ${{ matrix.version }} in
-                  5.15.14)
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-37369-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-38197-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-43114-5.15.patch | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/0001-CVE-2023-51714-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/0002-CVE-2023-51714-qtbase-5.15.diff | patch -p1
-                    curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2024-25580-qtbase-5.15.diff | patch -p1
-                    ;;
-                  6.7.2)
-                    # curl -L https://download.qt.io/official_releases/qt/6.7/CVE-2024-33861-qtbase-6.7.diff | patch -p1
-                    ;;
-                esac
+            #- name: Apply patches
+            #  run: |
+            #    set -x
+            #    cd qtbase-everywhere-src-${{ matrix.version }}
+            #    case ${{ matrix.version }} in
+            #      5.15.14)
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-32763-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-34410-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-37369-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-38197-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2023-43114-5.15.patch | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/0001-CVE-2023-51714-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/0002-CVE-2023-51714-qtbase-5.15.diff | patch -p1
+            #        curl -L https://download.qt.io/official_releases/qt/5.15/CVE-2024-25580-qtbase-5.15.diff | patch -p1
+            #        ;;
+            #      6.7.2)
+            #        # curl -L https://download.qt.io/official_releases/qt/6.7/CVE-2024-33861-qtbase-6.7.diff | patch -p1
+            #        ;;
+            #    esac
 
             - name: Configure qtbase
               shell: docker-shell {0}
@@ -170,10 +171,10 @@ jobs:
                 if [ ${{ inputs.use_ccache || false }} = true ]; then
                     ADD_CONFIGURE_FLAGS="-ccache -no-pch"
                 fi
-                case "$QT_VERSION_MAJ" in
-                    5) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -no-iconv -v" ;;
-                    #6) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -qt-freetype" ;;
-                esac
+                #case "$QT_VERSION_MAJ" in
+                #    5) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -no-iconv -v" ;;
+                #    6) ADD_CONFIGURE_FLAGS="${ADD_CONFIGURE_FLAGS:-} -qt-freetype" ;;
+                #esac
                 sudo apt-get -y remove openssl openssl-dev || true
                 ls -l /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto* || true
                 sudo rm -fr /usr/lib/libssl* /usr/lib/libcrypto* /usr/lib64/libssl* /usr/lib64/libcrypto*

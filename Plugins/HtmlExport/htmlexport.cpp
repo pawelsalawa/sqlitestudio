@@ -2,7 +2,6 @@
 #include "services/pluginmanager.h"
 #include "common/unused.h"
 #include <QFile>
-#include <QTextCodec>
 #include <QDebug>
 #include <QRegularExpression>
 #include <schemaresolver.h>

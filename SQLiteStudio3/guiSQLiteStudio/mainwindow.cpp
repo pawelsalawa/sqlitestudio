@@ -923,12 +923,11 @@ void MainWindow::updateCornerDocking()
 void MainWindow::messageFromSecondaryInstance(quint32 instanceId, QByteArray message)
 {
     UNUSED(instanceId);
-    QApplication::setActiveWindow(this);
+    activateWindow();
     if (isMinimized())
         showMaximized();
 
     raise();
-    activateWindow();
     QString dbToOpen = deserializeFromBytes(message).toString();
     if (!dbToOpen.isNull())
         openDb(dbToOpen);

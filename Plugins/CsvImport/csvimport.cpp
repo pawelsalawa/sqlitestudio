@@ -1,10 +1,10 @@
 #include "csvimport.h"
-#include "common/encodedtextstream.h"
 #include "services/importmanager.h"
 #include "sqlitestudio.h"
 #include "services/notifymanager.h"
 #include <QVariant>
 #include <QFile>
+#include <QTextStream>
 
 CsvImport::CsvImport()
 {
@@ -32,8 +32,8 @@ bool CsvImport::beforeImport(const ImportManager::StandardImportConfig& config)
         return false;
     }
 
-    stream = new EncodedTextStream(file);
-    stream->setCodec(config.codec.toLatin1().data());
+    stream = new QTextStream(file);
+    stream->setEncoding(textEncodingForName(config.codec));
 
     if (!extractColumns())
     {

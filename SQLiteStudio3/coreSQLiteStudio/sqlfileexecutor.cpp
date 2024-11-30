@@ -1,5 +1,4 @@
 #include "sqlfileexecutor.h"
-#include "common/encodedtextstream.h"
 #include "common/utils.h"
 #include "db/db.h"
 #include "db/sqlquery.h"
@@ -60,7 +59,7 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
     }
 
     if (async)
-        runInThread([=]{ execInThread(); });
+        runInThread([=, this]{ execInThread(); });
     else
         execInThread();
 }
@@ -107,8 +106,8 @@ void SqlFileExecutor::execInThread()
         return;
     }
 
-    EncodedTextStream stream(&file);
-    stream.setCodec(codec.toLatin1().constData());
+    QTextStream stream(&file);
+    stream.setEncoding(textEncodingForName(codec));
 
     qint64 fileSize = file.size();
     int attemptedExecutions = 0;
@@ -170,7 +169,7 @@ void SqlFileExecutor::handleExecutionResults(Db* db, int executed, int attempted
     }
 }
 
-QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(EncodedTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize)
+QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize)
 {
     QList<QPair<QString, QString>> errors;
     qint64 pos = 0;

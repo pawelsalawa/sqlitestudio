@@ -22,7 +22,7 @@ ExtActionContainer::ExtActionContainer()
                      // We need to explicitly cast QSignalMapper::mapped to tell which overloaded version of function we want
                      static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
 #endif
-                     [=](int action) {refreshShortcut(action);});
+                     [=, this](int action) {refreshShortcut(action);});
     instances << this;
 }
 

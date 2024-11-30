@@ -155,7 +155,7 @@ void ExportDialog::initModePage()
 
 void ExportDialog::initTablePage()
 {
-    ui->tablePage->setValidator([=]() -> bool
+    ui->tablePage->setValidator([=, this]() -> bool
     {
         bool dbOk = ui->exportTableDbNameCombo->currentIndex() > -1;
         bool tableOk = ui->exportTableNameCombo->currentIndex() > -1;
@@ -179,7 +179,7 @@ void ExportDialog::initTablePage()
 
 void ExportDialog::initQueryPage()
 {
-    ui->queryPage->setValidator([=]() -> bool
+    ui->queryPage->setValidator([=, this]() -> bool
     {
         bool queryOk = !ui->queryEdit->toPlainText().trimmed().isEmpty();
         queryOk &= ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
@@ -204,7 +204,7 @@ void ExportDialog::initDbObjectsPage()
     selectableDbListModel->setSourceModel(DBTREE->getModel());
     ui->dbObjectsTree->setModel(selectableDbListModel);
 
-    ui->databaseObjectsPage->setValidator([=]() -> bool
+    ui->databaseObjectsPage->setValidator([=, this]() -> bool
     {
         bool dbOk = ui->dbObjectsDatabaseCombo->currentIndex() > -1;
         bool listOk = selectableDbListModel->getCheckedObjects().size() > 0;
@@ -224,7 +224,7 @@ void ExportDialog::initDbObjectsPage()
 
 void ExportDialog::initFormatPage()
 {
-    ui->formatAndOptionsPage->setValidator([=]() -> bool
+    ui->formatAndOptionsPage->setValidator([=, this]() -> bool
     {
         setValidState(ui->exportFileEdit, true);
         bool outputFileSupported = currentPlugin && currentPlugin->getSupportedModes().testFlag(ExportManager::FILE);

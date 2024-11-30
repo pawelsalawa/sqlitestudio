@@ -491,7 +491,7 @@ void ParserTest::testRebuildTokensUpdate()
 
     SqliteUpdatePtr update = parser3->getQueries().first().dynamicCast<SqliteUpdate>();
     QVERIFY(update->keyValueMap.size() == 2);
-    QVERIFY(update->keyValueMap[1].first.type() == QVariant::StringList);
+    QVERIFY(update->keyValueMap[1].first.metaType() == QMetaType::fromType<QStringList>());
     QStringList set2List = update->keyValueMap[1].first.toStringList();
     QVERIFY(set2List[0] == "col2");
     QVERIFY(set2List[1] == "col3");
@@ -740,10 +740,10 @@ void ParserTest::testBlobLiteral()
     QCOMPARE(core->resultColumns.size(), 2);
 
     QCOMPARE(core->resultColumns[0]->expr->mode, SqliteExpr::Mode::LITERAL_VALUE);
-    QCOMPARE(core->resultColumns[0]->expr->literalValue.type(), QVariant::ByteArray);
+    QCOMPARE(core->resultColumns[0]->expr->literalValue.metaType(), QMetaType::fromType<QByteArray>());
     QCOMPARE(core->resultColumns[0]->expr->literalValue.toByteArray().toHex(), "010e0f");
     QCOMPARE(core->resultColumns[1]->expr->mode, SqliteExpr::Mode::LITERAL_VALUE);
-    QCOMPARE(core->resultColumns[1]->expr->literalValue.type(), QVariant::String);
+    QCOMPARE(core->resultColumns[1]->expr->literalValue.metaType(), QMetaType::fromType<QString>());
     QCOMPARE(core->resultColumns[1]->expr->literalValue.toString(), "string''with''quotes");
 
     core->resultColumns[0]->expr->rebuildTokens();
@@ -759,9 +759,9 @@ void ParserTest::testBigDec()
     QVERIFY(parser3->getErrors().isEmpty());
     SqliteSelectPtr select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
     SqliteSelect::Core* core = select->coreSelects[0];
-    QCOMPARE(core->resultColumns[0]->expr->expr1->literalValue.type(), QVariant::Double);
-    QCOMPARE(core->resultColumns[1]->expr->expr1->literalValue.type(), QVariant::Double);
-    QCOMPARE(core->resultColumns[2]->expr->expr1->literalValue.type(), QVariant::Double);
+    QCOMPARE(core->resultColumns[0]->expr->expr1->literalValue.metaType(), QMetaType::fromType<double>());
+    QCOMPARE(core->resultColumns[1]->expr->expr1->literalValue.metaType(), QMetaType::fromType<double>());
+    QCOMPARE(core->resultColumns[2]->expr->expr1->literalValue.metaType(), QMetaType::fromType<double>());
 }
 
 void ParserTest::testQuotedFunction()

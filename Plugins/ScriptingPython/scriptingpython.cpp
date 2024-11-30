@@ -718,12 +718,14 @@ PyObject* ScriptingPython::stringToPythonObj(const QString& value)
 
 PyObject* ScriptingPython::dbEvalCompat(PyObject *self, PyObject *args)
 {
-    return dbEval(self, &PyList_GET_ITEM(args, 0), PyList_GET_SIZE(args));
+    return dbEval(self, &PyList_GET_ITEM(args, 0));
 }
-PyObject* ScriptingPython::dbEval(PyObject* self, PyObject *const *args, Py_ssize_t nargs)
+
+PyObject* ScriptingPython::dbEval(PyObject* self, PyObject *const *args)
 {
     UNUSED(self);
 
+    Py_ssize_t nargs = PyList_GET_SIZE(args);
     if (nargs != 1)
     {
         PyErr_SetString(PyExc_RuntimeError, QObject::tr("Invalid use of %1 function. Expected %2 arguments, but got %3.")

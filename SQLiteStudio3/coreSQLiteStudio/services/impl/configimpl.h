@@ -160,6 +160,7 @@ class API_EXPORT ConfigImpl : public Config
         QMutex sqlHistoryMutex;
         QMutex ddlHistoryMutex;
         QString sqlite3Version;
+        QDataStream::Version dataStreamVersion = QDataStream::Qt_5_15;
 
     public slots:
         void refreshDdlHistory();

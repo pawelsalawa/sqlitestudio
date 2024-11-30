@@ -66,7 +66,7 @@ bool isCsvRowSeparator(QList<C>& ahead, const C& theChar, const CsvFormat& forma
 }
 
 template <class C>
-void readAhead(EncodedTextStream& data, QList<C>& ahead, int desiredSize)
+void readAhead(QTextStream& data, QList<C>& ahead, int desiredSize)
 {
     C singleValue;
     while (!data.atEnd() && ahead.size() < desiredSize)
@@ -77,7 +77,7 @@ void readAhead(EncodedTextStream& data, QList<C>& ahead, int desiredSize)
 }
 
 template <class T, class C>
-void typedDeserializeInternal(EncodedTextStream& data, const CsvFormat& format, QList<T>* cells, QList<QList<T>>* rows)
+void typedDeserializeInternal(QTextStream& data, const CsvFormat& format, QList<T>* cells, QList<QList<T>>* rows)
 {
     bool quotes = false;
     bool sepAsLast = false;
@@ -175,7 +175,7 @@ void typedDeserializeInternal(EncodedTextStream& data, const CsvFormat& format, 
 }
 
 template <class T, class C>
-QList<QList<T>> typedDeserialize(EncodedTextStream& data, const CsvFormat& format)
+QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format)
 {
     QList<QList<T>> rows;
     QList<T> cells;
@@ -184,7 +184,7 @@ QList<QList<T>> typedDeserialize(EncodedTextStream& data, const CsvFormat& forma
 }
 
 template <class T, class C>
-QList<T> typedDeserializeOneEntry(EncodedTextStream& data, const CsvFormat& format)
+QList<T> typedDeserializeOneEntry(QTextStream& data, const CsvFormat& format)
 {
     QList<T> cells;
     typedDeserializeInternal<T, C>(data, format, &cells, nullptr);
@@ -223,7 +223,7 @@ QString CsvSerializer::serialize(const QStringList& data, const CsvFormat& forma
     return outputCells.join(format.columnSeparator);
 }
 
-QStringList CsvSerializer::deserializeOneEntry(EncodedTextStream& data, const CsvFormat& format)
+QStringList CsvSerializer::deserializeOneEntry(QTextStream& data, const CsvFormat& format)
 {
     QList<QString> deserialized = typedDeserializeOneEntry<QString, QChar>(data, format);
     return QStringList(deserialized);
@@ -231,12 +231,12 @@ QStringList CsvSerializer::deserializeOneEntry(EncodedTextStream& data, const Cs
 
 QList<QList<QByteArray>> CsvSerializer::deserialize(const QByteArray& data, const CsvFormat& format)
 {
-    EncodedTextStream stream(data, QIODevice::ReadWrite);
-    stream.setCodec("latin1");
+    QTextStream stream(data, QIODevice::ReadWrite);
+    stream.setEncoding(QStringConverter::Latin1);
     return typedDeserialize<QByteArray,char>(stream, format);
 }
 
-QList<QStringList> CsvSerializer::deserialize(EncodedTextStream& data, const CsvFormat& format)
+QList<QStringList> CsvSerializer::deserialize(QTextStream& data, const CsvFormat& format)
 {
     QList<QList<QString>> deserialized = typedDeserialize<QString, QChar>(data, format);
 
@@ -250,7 +250,7 @@ QList<QStringList> CsvSerializer::deserialize(EncodedTextStream& data, const Csv
 QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvFormat& format)
 {
     QString dataString = data;
-    EncodedTextStream stream(&dataString, QIODevice::ReadWrite);
-    stream.setCodec("latin1");
+    QTextStream stream(&dataString, QIODevice::ReadWrite);
+    stream.setEncoding(QStringConverter::Latin1);
     return deserialize(stream, format);
 }

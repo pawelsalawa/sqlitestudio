@@ -145,7 +145,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
                         (
                             newValue != origValue ||
                             origValue.isNull() != newValue.isNull() ||
-                            newValue.type() != origValue.type()
+                            newValue.typeId() != origValue.typeId()
                         ) &&
                         !loadedFromDb
                     ) ||
@@ -332,13 +332,13 @@ QVariant SqlQueryItem::data(int role) const
             if (value.isNull())
                 return "NULL";
 
-            if (value.type() == QVariant::String)
+            if (value.metaType() == QMetaType::fromType<QString>())
             {
                 QString str = value.toString();
                 return str.length() > DISPLAY_LEN_LIMIT ? QVariant(str.left(DISPLAY_LEN_LIMIT) + "...") : value;
             }
 
-            if (value.type() == QVariant::ByteArray)
+            if (value.metaType() == QMetaType::fromType<QByteArray>())
             {
                 QByteArray bytes = value.toByteArray();
                 return bytes.size() > DISPLAY_LEN_LIMIT ? QVariant(bytes.left(DISPLAY_LEN_LIMIT) + "...") : value;

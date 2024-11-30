@@ -97,7 +97,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
             /**
              * @brief Text encoding.
              *
-             * Always one of QTextCodec::availableCodecs().
+             * Always one of QStringConverter::availableCodecs().
              */
             QString codec;
 

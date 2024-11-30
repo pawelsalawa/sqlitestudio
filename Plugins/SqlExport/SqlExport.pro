@@ -6,10 +6,6 @@
 
 QT       -= gui
 
-versionAtLeast(QT_VERSION, 6.0.0) {
-    QT += core5compat
-}
-
 include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = SqlExport

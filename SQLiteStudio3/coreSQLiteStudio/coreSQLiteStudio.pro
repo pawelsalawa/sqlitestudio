@@ -11,11 +11,6 @@ OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
 MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
-versionAtLeast(QT_VERSION, 6.0.0) {
-    # We miss QTextCodec here and there
-    QT += core5compat
-}
-
 QT       -= gui
 QT       += qml network
 
@@ -59,7 +54,7 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG  += c++17
+CONFIG  += c++20
 QMAKE_CXXFLAGS += -pedantic
 
 SOURCES += sqlitestudio.cpp \
@@ -238,8 +233,7 @@ SOURCES += sqlitestudio.cpp \
     common/xmldeserializer.cpp \
     services/impl/sqliteextensionmanagerimpl.cpp \
     common/lazytrigger.cpp \
-    parser/ast/sqliteupsert.cpp \
-    common/encodedtextstream.cpp
+    parser/ast/sqliteupsert.cpp
 
 HEADERS += sqlitestudio.h\
     chillout/chillout.h \
@@ -451,8 +445,7 @@ HEADERS += sqlitestudio.h\
     services/sqliteextensionmanager.h \
     services/impl/sqliteextensionmanagerimpl.h \
     common/lazytrigger.h \
-    parser/ast/sqliteupsert.h \
-    common/encodedtextstream.h
+    parser/ast/sqliteupsert.h
 
 unix: {
     target.path = $$LIBDIR

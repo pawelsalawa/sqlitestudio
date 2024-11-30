@@ -222,7 +222,7 @@ void FkComboBox::init()
     comboView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     connect(completer(), QOverload<const QString &>::of(&QCompleter::highlighted),
-        [=](const QString &value)
+        [=, this](const QString &value)
     {
         // #5083 In case of case-sensitive mismatch, we need to sync case, so that next/prev navigation with keybord works correctly.
         setCurrentText(value.left(currentText().length()));

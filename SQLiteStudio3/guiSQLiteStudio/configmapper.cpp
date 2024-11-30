@@ -136,7 +136,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, key, QLineEdit, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, key, QTextEdit, SIGNAL(textChanged()));
     APPLY_NOTIFIER(widget, key, QPlainTextEdit, SIGNAL(textChanged()));
-    APPLY_NOTIFIER(widget, key, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, key, QSpinBox, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, key, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
     APPLY_NOTIFIER(widget, key, FontEdit, SIGNAL(fontChanged(QFont)));
     APPLY_NOTIFIER(widget, key, FileEdit, SIGNAL(fileChanged(QString)));

@@ -106,7 +106,7 @@ bool ConfigImpl::isMassSaving() const
 
 void ConfigImpl::set(const QString &group, const QString &key, const QVariant &value)
 {
-    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeToBytes(value)});
+    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeToBytes(value, dataStreamVersion)});
 }
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
@@ -311,24 +311,24 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
     }
 
     sqlHistoryMutex.lock();
-    runInThread([=]{ asyncAddSqlHistory(sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected); });
+    runInThread([=, this]{ asyncAddSqlHistory(sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected); });
     return sqlHistoryId++;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
     sqlHistoryMutex.lock();
-    runInThread([=]{ asyncUpdateSqlHistory(id, sql, dbName, timeSpentMillis, rowsAffected); });
+    runInThread([=, this]{ asyncUpdateSqlHistory(id, sql, dbName, timeSpentMillis, rowsAffected); });
 }
 
 void ConfigImpl::clearSqlHistory()
 {
-    runInThread([=]{ asyncClearSqlHistory(); });
+    runInThread([=, this]{ asyncClearSqlHistory(); });
 }
 
 void ConfigImpl::deleteSqlHistory(const QList<qint64>& ids)
 {
-    runInThread([=]{ asyncDeleteSqlHistory(ids); });
+    runInThread([=, this]{ asyncDeleteSqlHistory(ids); });
 }
 
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
@@ -341,17 +341,17 @@ QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 
 void ConfigImpl::addCliHistory(const QString& text)
 {
-    runInThread([=]{ asyncAddCliHistory(text); });
+    runInThread([=, this]{ asyncAddCliHistory(text); });
 }
 
 void ConfigImpl::applyCliHistoryLimit()
 {
-    runInThread([=]{ asyncApplyCliHistoryLimit(); });
+    runInThread([=, this]{ asyncApplyCliHistoryLimit(); });
 }
 
 void ConfigImpl::clearCliHistory()
 {
-    runInThread([=]{ asyncClearCliHistory(); });
+    runInThread([=, this]{ asyncClearCliHistory(); });
 }
 
 QStringList ConfigImpl::getCliHistory() const
@@ -367,12 +367,12 @@ QStringList ConfigImpl::getCliHistory() const
 
 void ConfigImpl::addBindParamHistory(const QVector<QPair<QString, QVariant> >& params)
 {
-    runInThread([=]{ asyncAddBindParamHistory(params); });
+    runInThread([=, this]{ asyncAddBindParamHistory(params); });
 }
 
 void ConfigImpl::applyBindParamHistoryLimit()
 {
-    runInThread([=]{ asyncApplyBindParamHistoryLimit(); });
+    runInThread([=, this]{ asyncApplyBindParamHistoryLimit(); });
 }
 
 QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringList& paramNames) const
@@ -427,12 +427,12 @@ QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringL
 
 void ConfigImpl::addPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant> >& columnsPluginsConfig)
 {
-    runInThread([=]{ asyncAddPopulateHistory(database, table, rows, columnsPluginsConfig); });
+    runInThread([=, this]{ asyncAddPopulateHistory(database, table, rows, columnsPluginsConfig); });
 }
 
 void ConfigImpl::applyPopulateHistoryLimit()
 {
-    runInThread([=]{ asyncApplyPopulateHistoryLimit(); });
+    runInThread([=, this]{ asyncApplyPopulateHistoryLimit(); });
 }
 
 QHash<QString, QPair<QString, QVariant>> ConfigImpl::getPopulateHistory(const QString& database, const QString& table, int& rows) const
@@ -484,7 +484,7 @@ QVariant ConfigImpl::getPopulateHistory(const QString& pluginName) const
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
     ddlHistoryMutex.lock();
-    runInThread([=]{ asyncAddDdlHistory(queries, dbName, dbFile); });
+    runInThread([=, this]{ asyncAddDdlHistory(queries, dbName, dbFile); });
 }
 
 QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
@@ -525,12 +525,12 @@ DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 
 void ConfigImpl::clearDdlHistory()
 {
-    runInThread([=]{ asyncClearDdlHistory(); });
+    runInThread([=, this]{ asyncClearDdlHistory(); });
 }
 
 void ConfigImpl::addReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
-    runInThread([=]{ asyncAddReportHistory(isFeatureRequest, title, url); });
+    runInThread([=, this]{ asyncAddReportHistory(isFeatureRequest, title, url); });
 }
 
 QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
@@ -558,12 +558,12 @@ QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
 
 void ConfigImpl::deleteReport(int id)
 {
-    runInThread([=]{ asyncDeleteReport(id); });
+    runInThread([=, this]{ asyncDeleteReport(id); });
 }
 
 void ConfigImpl::clearReportHistory()
 {
-    runInThread([=]{ asyncClearReportHistory(); });
+    runInThread([=, this]{ asyncClearReportHistory(); });
 }
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
@@ -824,7 +824,7 @@ QVariant ConfigImpl::deserializeValue(const QVariant &value) const
         return QVariant();
 
     QByteArray bytes = value.toByteArray();
-    return deserializeFromBytes(bytes);
+    return deserializeFromBytes(bytes, dataStreamVersion);
 }
 
 void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
@@ -993,7 +993,7 @@ void ConfigImpl::asyncAddPopulateHistory(const QString& database, const QString&
 
     for (QHash<QString, QPair<QString, QVariant>>::const_iterator colIt = columnsPluginsConfig.begin(); colIt != columnsPluginsConfig.end(); colIt++)
     {
-        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeToBytes(colIt.value().second)});
+        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeToBytes(colIt.value().second, dataStreamVersion)});
         if (results->isError())
         {
             qWarning() << "Failed to store Populating history entry, due to SQL error:" << db->getErrorText();

@@ -4,6 +4,8 @@
 #include "exportplugin.h"
 #include "genericplugin.h"
 
+class QStringEncoder;
+
 class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
 {
         Q_OBJECT
@@ -51,7 +53,7 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
         Db* db = nullptr;
         QIODevice* output = nullptr;
         const ExportManager::StandardExportConfig* config = nullptr;
-        QTextCodec* codec = nullptr;
+        QStringEncoder* codec = nullptr;
         ExportManager::ExportMode exportMode = ExportManager::UNDEFINED;
 };
 

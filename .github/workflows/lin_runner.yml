@@ -3,7 +3,7 @@ name: "Linux build runner image"
 env:
     freetype_version: "2.13.2"
     icu_version: "74.2"
-    openssl_version: "3.0.14"
+    openssl_version: "3.0.15"
     tcl_version: "8.6.14"
 
 on:
@@ -21,16 +21,16 @@ jobs:
           fail-fast: false
           matrix:
             release:
-              - xenial
-              - bionic
-              #- focal
+              #- xenial
+              #- bionic
+              - focal
             include:
-              - release: xenial
-                container: ubuntu:xenial
-              - release: bionic
-                container: ubuntu:bionic
-              #- release: focal
-              #  container: ubuntu:focal
+              #- release: xenial
+              #  container: ubuntu:xenial
+              #- release: bionic
+              #  container: ubuntu:bionic
+              - release: focal
+                container: ubuntu:focal
         steps:
             - name: Prepare Dockerfile
               run: |

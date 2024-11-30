@@ -221,7 +221,7 @@ void DbAndroidPathDialog::refreshDbList()
     }
 
     updatingDbList = true;
-    runInThread([=]{ asyncDbUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
+    runInThread([=, this]{ asyncDbUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
 }
 
 void DbAndroidPathDialog::refreshAppList()
@@ -245,7 +245,7 @@ void DbAndroidPathDialog::refreshAppList()
     }
 
     updatingAppList = true;
-    runInThread([=]{ asyncAppUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
+    runInThread([=, this]{ asyncAppUpdate(dbUrl.toUrlString(), dbUrl.getMode()); });
 }
 
 void DbAndroidPathDialog::asyncDbUpdate(const QString& connectionUrl, DbAndroidMode enforcedMode)

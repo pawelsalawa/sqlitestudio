@@ -249,6 +249,6 @@ void WidgetCover::initWithInterruptContainer(const QString& interruptButtonText)
     containerLayout->addWidget(busyBar, 0, 0);
     containerLayout->addWidget(cancelButton, 1, 0);
 
-    connect(cancelButton, &QPushButton::clicked, [=]() {cancelButton->setEnabled(false);});
+    connect(cancelButton, &QPushButton::clicked, [=, this]() {cancelButton->setEnabled(false);});
     connect(cancelButton, SIGNAL(clicked()), this, SIGNAL(cancelClicked()));
 }

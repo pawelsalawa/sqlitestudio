@@ -4,7 +4,6 @@
 #include "services/notifymanager.h"
 #include "exportworker.h"
 #include <QThreadPool>
-#include <QTextCodec>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
@@ -202,7 +201,7 @@ void ExportManager::handleClipboardExport()
 {
     if (plugin->getMimeType().isNull())
     {
-        QString str = codecForName(config->codec)->toUnicode(bufferForClipboard->buffer());
+        QString str = textDecoderForName(config->codec)->decode(bufferForClipboard->buffer());
         emit storeInClipboard(str);
     }
     else

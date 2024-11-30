@@ -9,12 +9,14 @@ class Db;
 class API_EXPORT Table
 {
     public:
-        Table();
+        Table() = default;
         Table(const QString& database, const QString& table);
-        Table(const Table& other);
-        virtual ~Table();
+        Table(const Table& other) = default;
+        virtual ~Table() = default;
 
-        int operator ==(const Table& other) const;
+        bool operator ==(const Table& other) const = default;
+        Table& operator=(const Table&) = default;
+        Table& operator=(Table&&) = default;
 
         QString getDatabase() const;
         void setDatabase(const QString& value);
@@ -30,11 +32,13 @@ class API_EXPORT Table
 class API_EXPORT DbAndTable : public Table
 {
 public:
-    DbAndTable();
+    DbAndTable() = default;
     DbAndTable(Db* db, const QString& database, const QString& table);
-    DbAndTable(const DbAndTable& other);
+    DbAndTable(const DbAndTable& other) = default;
 
-    int operator ==(const DbAndTable& other) const;
+    bool operator ==(const DbAndTable& other) const = default;
+    DbAndTable& operator=(const DbAndTable&) = default;
+    DbAndTable& operator=(DbAndTable&&) = default;
 
     Db *getDb() const;
     void setDb(Db *value);
@@ -46,12 +50,14 @@ protected:
 class API_EXPORT AliasedTable : public Table
 {
     public:
-        AliasedTable();
+        AliasedTable() = default;
         AliasedTable(const QString& database, const QString& table, const QString& alias);
-        AliasedTable(const AliasedTable& other);
-        virtual ~AliasedTable();
+        AliasedTable(const AliasedTable& other) = default;
+        virtual ~AliasedTable() = default;
 
-        int operator ==(const AliasedTable& other) const;
+        bool operator ==(const AliasedTable& other) const = default;
+        AliasedTable& operator=(const AliasedTable&) = default;
+        AliasedTable& operator=(AliasedTable&&) = default;
 
         QString getTableAlias() const;
         void setTableAlias(const QString& value);

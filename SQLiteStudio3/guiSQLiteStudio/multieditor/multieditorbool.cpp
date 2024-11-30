@@ -11,7 +11,7 @@ MultiEditorBool::MultiEditorBool(QWidget* parent)
     setLayout(new QVBoxLayout());
     checkBox = new QCheckBox();
     layout()->addWidget(checkBox);
-    connect(checkBox, &QCheckBox::stateChanged, this, &MultiEditorBool::stateChanged);
+    connect(checkBox, &QCheckBox::checkStateChanged, this, &MultiEditorBool::stateChanged);
 }
 
 void MultiEditorBool::staticInit()
@@ -135,9 +135,9 @@ void MultiEditorBool::updateLabel()
     checkBox->setText(getValue().toString());
 }
 
-void MultiEditorBool::stateChanged(int state)
+void MultiEditorBool::stateChanged(Qt::CheckState state)
 {
-    if (readOnly && ((bool)state) != boolValue)
+    if (readOnly && (state == Qt::Checked) != boolValue)
     {
         checkBox->setChecked(boolValue);
         return;

@@ -103,7 +103,7 @@ bool DbAndroid::init()
         showJarMessage();
     }
     else
-        runInThread([=]{ initAdb(); });
+        runInThread([=, this]{ initAdb(); });
     return true;
 }
 

@@ -876,7 +876,10 @@ void AbstractDb::interrupt()
 void AbstractDb::asyncInterrupt()
 {
 #if QT_VERSION >= 0x060000
-    QtConcurrent::run(&AbstractDb::interrupt, this);
+    QThreadPool::globalInstance()->start([this]()
+    {
+        interrupt();
+    });
 #else
     QtConcurrent::run(this, &AbstractDb::interrupt);
 #endif

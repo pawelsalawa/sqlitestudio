@@ -5,7 +5,6 @@
 #include "services/exportmanager.h"
 #include "common/unused.h"
 #include "services/codeformatter.h"
-#include <QTextCodec>
 
 SqlExport::SqlExport()
 {
