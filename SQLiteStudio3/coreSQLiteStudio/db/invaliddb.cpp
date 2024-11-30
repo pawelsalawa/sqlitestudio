@@ -164,18 +164,21 @@ SqlQueryPtr InvalidDb::prepare(const QString& query)
     return SqlQueryPtr();
 }
 
-bool InvalidDb::begin()
+bool InvalidDb::begin(bool noLock)
 {
+    UNUSED(noLock);
     return false;
 }
 
-bool InvalidDb::commit()
+bool InvalidDb::commit(bool noLock)
 {
+    UNUSED(noLock);
     return false;
 }
 
-bool InvalidDb::rollback()
+bool InvalidDb::rollback(bool noLock)
 {
+    UNUSED(noLock);
     return false;
 }
 
@@ -349,6 +352,11 @@ bool InvalidDb::isComplete(const QString& sql) const
 Db* InvalidDb::clone() const
 {
     return new InvalidDb(name, path, connOptions);
+}
+
+bool InvalidDb::isTransactionActive() const
+{
+    return false;
 }
 
 void InvalidDb::interrupt()

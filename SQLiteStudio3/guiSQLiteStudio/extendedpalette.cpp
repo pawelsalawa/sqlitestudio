@@ -31,10 +31,11 @@ bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
     UNUSED(themeName);
     QPalette stdPalette = style->standardPalette();
-    if (stdPalette == lastPalette)
+    QVariant paletteVariant = stdPalette;
+    if (paletteVariant == initializedForPalette)
         return false;
 
-    lastPalette = stdPalette;
+    initializedForPalette = paletteVariant;
     bool isDark = stdPalette.base().color().lightness() < 128;
 
     static const QColor stdStrColor = QColor(Qt::green);

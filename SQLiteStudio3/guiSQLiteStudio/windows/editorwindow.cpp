@@ -486,12 +486,12 @@ void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
 
 void EditorWindow::execOneQuery()
 {
-    execQuery(SINGLE);
+    execQuery(false, SINGLE);
 }
 
 void EditorWindow::execAllQueries()
 {
-    execQuery(ALL);
+    execQuery(false, ALL);
 }
 
 void EditorWindow::explainQuery()

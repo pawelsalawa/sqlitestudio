@@ -66,6 +66,7 @@ class AbstractDb3 : public AbstractDb
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
+        bool isTransactionActive() const;
 
     private:
         class Query : public SqlQuery
@@ -886,6 +887,15 @@ void AbstractDb3<T>::registerDefaultCollationRequestHandler()
         qWarning() << "Could not register default collation request handler. Unknown collations will cause errors.";
 }
 
+template <class T>
+bool AbstractDb3<T>::isTransactionActive() const
+{
+    if (!dbHandle)
+        return false;
+
+    return !T::get_autocommit(dbHandle);
+}
+
 //------------------------------------------------------------------------------------
 // Results
 //------------------------------------------------------------------------------------
@@ -1229,7 +1239,8 @@ int AbstractDb3<T>::Query::fetchNext()
     rowAvailable = false;
     int res;
     int secondsSpent = 0;
-    while ((res = T::step(stmt)) == T::BUSY && secondsSpent < db->getTimeout())
+    bool zeroTimeout = flags.testFlag(Db::Flag::ZERO_TIMEOUT);
+    while ((res = T::step(stmt)) == T::BUSY && !zeroTimeout && secondsSpent < db->getTimeout() && !T::is_interrupted(db->dbHandle))
     {
         QThread::sleep(1);
         if (db->getTimeout() >= 0)
@@ -1244,6 +1255,9 @@ int AbstractDb3<T>::Query::fetchNext()
         case T::DONE:
             // Empty pointer as no more results are available.
             break;
+        case T::INTERRUPT:
+            setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
+            return T::INTERRUPT;
         default:
             setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
             return T::ERROR;

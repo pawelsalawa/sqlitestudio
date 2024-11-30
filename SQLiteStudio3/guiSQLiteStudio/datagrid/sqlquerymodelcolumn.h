@@ -28,6 +28,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
             EXPRESSION,
             SMART_EXECUTION_FAILED,
             DISTINCT_RESULTS,
+            RESULT_INLINE_SUBSELECT,
             COMMON_TABLE_EXPRESSION,
             GENERATED_COLUMN,
             VIEW_NOT_EXPANDED

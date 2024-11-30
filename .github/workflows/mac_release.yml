@@ -1,8 +1,8 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3410200'
-    SQLITE_RELEASE_YEAR: '2023'
+    SQLITE_VERSION: '3470100'
+    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.9'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -353,6 +353,12 @@ jobs:
               run: |
                 mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
                   sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4

@@ -137,20 +137,22 @@ class API_EXPORT Db : public QObject, public Interruptable
          */
         enum class Flag
         {
-            NONE                = 0x0, /**< No flags. This is default. */
-            PRELOAD             = 0x1, /**< Preloads all execution results into the results object. Useful for asynchronous execution. */
-            NO_LOCK             = 0x2, /**<
-                                        * Prevents SQLiteStudio from setting the lock for execution on this base (not the SQLite lock,
-                                        * just a Db internal lock for multi-threading access to the Db::exec()). This should be used
-                                        * only in justified circumstances. That is when the Db call has to be done from within the part
-                                        * of code, where the lock on Db was already set. Never (!) use this to ommit lock from different
-                                        * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
-                                        * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
-                                        */
-            SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query.
-                                        *   Benefit is that it speeds up execution. */
-            SKIP_PARAM_COUNTING = 0x8, /**< During execution with arguments as list the number of bind parameters will not be verified.
-                                        *   This speeds up execution at cost of possible error if bind params in query don't match number of args. */
+            NONE                = 0x00, /**< No flags. This is default. */
+            PRELOAD             = 0x01, /**< Preloads all execution results into the results object. Useful for asynchronous execution. */
+            NO_LOCK             = 0x02, /**<
+                                         * Prevents SQLiteStudio from setting the lock for execution on this base (not the SQLite lock,
+                                         * just a Db internal lock for multi-threading access to the Db::exec()). This should be used
+                                         * only in justified circumstances. That is when the Db call has to be done from within the part
+                                         * of code, where the lock on Db was already set. Never (!) use this to ommit lock from different
+                                         * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
+                                         * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
+                                         */
+            SKIP_DROP_DETECTION = 0x04, /**< Query execution will not notify about any detected objects dropped by the query.
+                                         *   Benefit is that it speeds up execution. */
+            SKIP_PARAM_COUNTING = 0x08, /**< During execution with arguments as list the number of bind parameters will not be verified.
+                                         *   This speeds up execution at cost of possible error if bind params in query don't match number of args. */
+            ZERO_TIMEOUT        = 0x10, /**< By default, if database returns SQLITE_BUSY, the app will wait up until configured timeout and fail then.
+                                         *   With this flag, there will be no waiting for this particular execution, but it will fail fast. */
         };
         Q_DECLARE_FLAGS(Flags, Flag)
 
@@ -453,19 +455,19 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * This method uses basic "BEGIN" statement to begin transaction, therefore recurrent transactions are not supported.
          */
-        virtual bool begin() = 0;
+        virtual bool begin(bool noLock = false) = 0;
 
         /**
          * @brief Commits SQL transaction.
          * @return true on success, or false otherwise.
          */
-        virtual bool commit() = 0;
+        virtual bool commit(bool noLock = false) = 0;
 
         /**
          * @brief Rolls back the transaction.
          * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
          */
-        virtual bool rollback() = 0;
+        virtual bool rollback(bool noLock = false) = 0;
 
         /**
          * @brief Interrupts current execution asynchronously.
@@ -724,6 +726,12 @@ class API_EXPORT Db : public QObject, public Interruptable
          * so ownership, connection/disconnection, deletion, etc. all belongs to the caller of this method.
          */
         virtual Db* clone() const = 0;
+
+        /**
+         * @brief Checkes if there is an ongoing transaction at the moment.
+         * @return true if there is an active transaction at the moment, or false otherwise.
+         */
+        virtual bool isTransactionActive() const = 0;
 
     signals:
         /**

@@ -20,6 +20,7 @@
         static const int BUSY = UppercasePrefix##SQLITE_BUSY; \
         static const int ROW = UppercasePrefix##SQLITE_ROW; \
         static const int DONE = UppercasePrefix##SQLITE_DONE; \
+        static const int INTERRUPT = UppercasePrefix##SQLITE_INTERRUPT; \
         static const int CHECKPOINT_PASSIVE = UppercasePrefix##SQLITE_CHECKPOINT_PASSIVE; \
         static const int CHECKPOINT_FULL = UppercasePrefix##SQLITE_CHECKPOINT_FULL; \
         static const int CHECKPOINT_RESTART = UppercasePrefix##SQLITE_CHECKPOINT_RESTART; \
@@ -34,6 +35,7 @@
         \
         static destructor_type TRANSIENT() {return UppercasePrefix##SQLITE_TRANSIENT;} \
         static void interrupt(handle* arg) {Prefix##sqlite3_interrupt(arg);} \
+        static int is_interrupted(handle* arg) {return Prefix##sqlite3_is_interrupted(arg);} \
         static const void *value_blob(value* arg) {return Prefix##sqlite3_value_blob(arg);} \
         static double value_double(value* arg) {return Prefix##sqlite3_value_double(arg);} \
         static int64 value_int64(value* arg) {return Prefix##sqlite3_value_int64(arg);} \
@@ -79,6 +81,8 @@
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
         static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
+        static int threadsafe() {return Prefix##sqlite3_threadsafe();} \
+        static int get_autocommit(handle* arg) {return Prefix##sqlite3_get_autocommit(arg);} \
         static int wal_checkpoint(handle* arg1, const char* arg2) {return Prefix##sqlite3_wal_checkpoint(arg1, arg2);} \
         static int wal_checkpoint_v2(handle* a1, const char* a2, int a3, int* a4, int* a5) {return Prefix##sqlite3_wal_checkpoint_v2(a1, a2, a3, a4, a5);} \
         static int enable_load_extension(handle* arg1, int arg2) {return Prefix##sqlite3_enable_load_extension(arg1, arg2);} \

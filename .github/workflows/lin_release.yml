@@ -2,8 +2,8 @@ env:
     workflow_name: lin_release
     TARGET_ARCH: 'x86_64'
     TCL_VERSION: '8.6.14'
-    SQLITE_VERSION: '3410200'
-    SQLITE_RELEASE_YEAR: '2023'
+    SQLITE_VERSION: '3470100'
+    SQLITE_RELEASE_YEAR: '2024'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -317,9 +317,9 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cd $PORTABLE_DIR
-                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts
+                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
                 cd "${{ env.Qt5_Dir }}/plugins"
-                cp platforms/libqwayland-generic.so platforms/libqxcb.so "$PORTABLE_DIR/platforms/"
+                cp platforms/libqwayland-*.so platforms/libqxcb.so "$PORTABLE_DIR/platforms/"
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do
                     cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats/"
                 done
@@ -327,6 +327,9 @@ jobs:
                 cp printsupport/libcupsprintersupport.so "$PORTABLE_DIR/printsupport/"
                 cp platformthemes/libqgtk3.so "$PORTABLE_DIR/platformthemes/"
                 cp platforminputcontexts/libcomposeplatforminputcontextplugin.so "$PORTABLE_DIR/platforminputcontexts/"
+                cp wayland-decoration-client/*.so "$PORTABLE_DIR/wayland-decoration-client/"
+                cp wayland-graphics-integration-client/*.so "$PORTABLE_DIR/wayland-graphics-integration-client/"
+                cp wayland-shell-integration/*.so "$PORTABLE_DIR/wayland-shell-integration/"
                 if [ "$QT_VERSION_MAJ" = 6 ]; then
                     for f in qmng qwebp; do
                         cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats"
@@ -367,7 +370,7 @@ jobs:
               run: |
                 set -x
                 [ "$QT_VERSION_MAJ" = 5 ] || QT6_PLUGINS=tls/*.so
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so ${QT6_PLUGINS:-}
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so ${QT6_PLUGINS:-}
                 chrpath -k -r \$ORIGIN          lib/libicu*.*.* lib/libtcl$TCL_VERSION_SHORT.so
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio
@@ -429,6 +432,12 @@ jobs:
                 ls -l
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run \
                     SQLiteStudio-$PACKAGE_VERSION-installer.run
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4

@@ -83,6 +83,8 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         void rememberOldValue();
         void clearOldValue();
 
+        static constexpr int DISPLAY_LEN_LIMIT = 1000;
+
         QMutex valueSettingLock;
 };
 

@@ -62,6 +62,8 @@ SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryEx
             return EditionForbiddenReason::COMMON_TABLE_EXPRESSION;
         case QueryExecutor::ColumnEditionForbiddenReason::VIEW_NOT_EXPANDED:
             return EditionForbiddenReason::VIEW_NOT_EXPANDED;
+        case QueryExecutor::ColumnEditionForbiddenReason::RES_INLINE_SUBSEL:
+            return EditionForbiddenReason::RESULT_INLINE_SUBSELECT;
     }
     return static_cast<EditionForbiddenReason>(-1);
 }
@@ -70,6 +72,8 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
 {
     switch (reason)
     {
+        case SqlQueryModelColumn::EditionForbiddenReason::RESULT_INLINE_SUBSELECT:
+            return QObject::tr("Cannot edit columns that are result of an inline subquery.");
         case EditionForbiddenReason::COMPOUND_SELECT:
             return QObject::tr("Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).")
                     .arg("SELECT", "UNION", "INTERSECT", "EXCEPT");

@@ -32,6 +32,7 @@ class ImportWorker : public QObject, public QRunnable
         bool interrupted = false;
         QMutex interruptMutex;
         bool tableCreated = false;
+        bool shouldSkipTransaction = false;
 
     public slots:
         void interrupt();

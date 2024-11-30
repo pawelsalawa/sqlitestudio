@@ -1,6 +1,8 @@
 env:
-    SQLITE_VERSION: '3410200'
-    SQLITE_RELEASE_YEAR: '2023'
+    QT_VERSION: '5.15.2'
+    SQLITE_VERSION: '3470100'
+    SQLITE_RELEASE_YEAR: '2024'
+    QT_ARCH: 'win32_mingw81'
     PYTHON_VERSION: '3.9'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-icu-75.1-2-any.pkg.tar.zst
@@ -418,6 +420,12 @@ jobs:
                 ls -l
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe \
                     SQLiteStudio-$PACKAGE_VERSION-windows-installer.exe \
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4

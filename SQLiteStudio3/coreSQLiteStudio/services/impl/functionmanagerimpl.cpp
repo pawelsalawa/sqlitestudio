@@ -729,7 +729,7 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
     ImportManager::StandardImportConfig stdConfig;
     stdConfig.inputFileName = args[0].toString();
     stdConfig.ignoreErrors = true;
-    stdConfig.skipTransaction = true;
+    stdConfig.noDbLock = true;
     if (args.size() > 3)
         stdConfig.codec = args[3].toString();
 

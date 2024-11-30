@@ -1,5 +1,19 @@
 # ChangeLog
 
+### 3.4.7
+- CHANGE: #5131 SQLite updated to 3.47.1 (except for SQLCipher, which is still on 3.46.1 at the moment).
+- BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
+- BUGFIX: #5124 Fixed ScriptingPython plugin compilation against Python >= 3.12.
+- BUGFIX: #5134 Improved performance significantly when working with big values (~1MB per cell) in multiple columns/rows of a table data grid view.
+- BUGFIX: #5122 Fixed Linux packages to run properly under Wayland.
+- BUGFIX: #5136 Fixed application hanging at quitting when the database is in WAL journaling mode and there is another client still accessing the database.
+- BUGFIX: #5135 Counting rows in enormous tables (which can take very long time) no longer blocks the application.
+
+### 3.4.6
+- BUGFIX: #5114 Fixed black highlighting for current query on systems, where SQLiteStudio was never configured to use theme different than default.
+- BUGFIX: #5111 Applied fix for compiling with Python 3.11 (thanks to @mehw).
+- BUGFIX: #5115 Fixed smart query executor to work properly if there is an inline subquery in a SELECT result columns.
+
 ### 3.4.5
 - ADDED: #4974 Extension-based collations (like the ICU) can be now registered in databases using Collations Editor window.
 - ADDED: #5041 Added support for column list syntax in CREATE VIEW.
@@ -15,7 +29,7 @@
 - BUGFIX: #4796 Fixed Database Dialog file selection, so user has clear understanding whether new file is to be created, or existing file to open. Also fixes file selection dialog on MacOS when creating new database file.
 - BUGFIX: #4819 Fixed sorting order cached in data view when executing query with less columns than previously.
 - BUGFIX: #4846 Fixed crash when using NOT NULL DEFERRABLE INITIALLY DEFERRED.
-- BIGFIX: #3454 German translation fixes.
+- BUGFIX: #3454 German translation fixes.
 - BUGFIX: #4835 Fixed detecting cell value change (to enable commit button) when erasing cell with BLOB value starting with null byte.
 - BUGFIX: #4842 Fixed querying ROWID column from tables. It no longer causes issues with editing query result data.
 - BUGFIX: #4844 Fixed moving/copying Views from one base to another using drag&drop or copy&paste.
