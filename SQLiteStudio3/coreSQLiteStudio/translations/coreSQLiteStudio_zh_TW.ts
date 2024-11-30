@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="349"/>
-      <location filename="../db/abstractdb.cpp" line="366"/>
+      <location filename="../db/abstractdb.cpp" line="350"/>
+      <location filename="../db/abstractdb.cpp" line="367"/>
       <source>Cannot execute query on closed database.</source>
       <translation>在已關閉的資料庫中, 無法執行查詢</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="661"/>
+      <location filename="../db/abstractdb.cpp" line="707"/>
       <source>Error attaching database %1: %2</source>
       <translation>無法附加資料庫 %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="931"/>
+      <location filename="../db/abstractdb.cpp" line="953"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -418,7 +418,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>ImportWorker</name>
     <message>
-      <location filename="../importworker.cpp" line="25"/>
+      <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
       <translation type="unfinished">No columns provided by the import plugin.</translation>
     </message>
@@ -433,36 +433,36 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="102"/>
+      <location filename="../importworker.cpp" line="101"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
       <translation type="unfinished">Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="107"/>
+      <location filename="../importworker.cpp" line="106"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
       <translation type="unfinished">Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="126"/>
+      <location filename="../importworker.cpp" line="125"/>
       <source>Could not create table to import to: %1</source>
       <translation type="unfinished">Could not create table to import to: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="186"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="185"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Error while importing data: %1</source>
       <translation>載入資料 %1 時發生錯誤。</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>已中斷</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="180"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
     </message>
@@ -774,28 +774,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>無法開啟檔案 &apos;%1&apos; 為了讀取: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="436"/>
+      <location filename="../db/abstractdb3.h" line="437"/>
       <source>Could not open database: %1</source>
       <translation>無法開啟資料庫 %1。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1225"/>
+      <location filename="../db/abstractdb3.h" line="1235"/>
       <source>Result set expired or no row available.</source>
       <translation>結果集已過期或是無有效的資料</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>無法載入extension %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="422"/>
+      <location filename="../db/abstractdb3.h" line="423"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="460"/>
+      <location filename="../db/abstractdb3.h" line="461"/>
       <source>Could not close database: %1</source>
       <translation>無法關閉資料庫 %1</translation>
     </message>
@@ -881,7 +881,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>無法解析資料來源, Column: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="444"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>無法解析table, Column: &apos;%1&apos;.</translation>
     </message>
@@ -990,28 +990,28 @@ view 將保留原始內容</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="196"/>
+      <location filename="../db/queryexecutor.cpp" line="203"/>
       <source>Execution interrupted.</source>
       <translation>執行中斷</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="237"/>
+      <location filename="../db/queryexecutor.cpp" line="244"/>
       <source>Database is not open.</source>
       <translation>資料庫未開啟</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="252"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>儘有單一查詢可被冋時執行</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="598"/>
+      <location filename="../db/queryexecutor.cpp" line="595"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>當執行count(*) 查詢時發生錯誤, 資料分頁功能亦被停用. 詳細錯誤資訊來自於資料庫: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="509"/>
+      <location filename="../db/queryexecutor.cpp" line="514"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio無法從此查詢解析metadata. 結果亦無法編輯</translation>
     </message>
@@ -1111,7 +1111,7 @@ view 將保留原始內容</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="863"/>
+      <location filename="../db/abstractdb3.h" line="864"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="349"/>
-      <location filename="../db/abstractdb.cpp" line="366"/>
+      <location filename="../db/abstractdb.cpp" line="350"/>
+      <location filename="../db/abstractdb.cpp" line="367"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="661"/>
+      <location filename="../db/abstractdb.cpp" line="707"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="931"/>
+      <location filename="../db/abstractdb.cpp" line="953"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
@@ -418,7 +418,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>ImportWorker</name>
     <message>
-      <location filename="../importworker.cpp" line="25"/>
+      <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
       <translation>Nenhuma coluna fornecida pelo plugin de importação.</translation>
     </message>
@@ -433,36 +433,36 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível submeter a transação para dados importados: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="102"/>
+      <location filename="../importworker.cpp" line="101"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
       <translation>Tabela &apos;%1&apos; tem menos colunas que há nos dados a serem importados. Colunas de dados excessivas serão ignoradas.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="107"/>
+      <location filename="../importworker.cpp" line="106"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
       <translation>Tabela &apos;%1&apos; tem mais colunas que há colunas nos dados a serem importados. Algumas colunas na tabela serão deixadas vazias.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="126"/>
+      <location filename="../importworker.cpp" line="125"/>
       <source>Could not create table to import to: %1</source>
       <translation>Não foi possível criar a tabela para importar para: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="186"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="185"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Error while importing data: %1</source>
       <translation>Erro ao importar dados: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Interrompido.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="180"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Não foi possível importar a linha de dados número %1. A linha foi ignorada. Detalhes do problema: %2</translation>
     </message>
@@ -774,28 +774,28 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="436"/>
+      <location filename="../db/abstractdb3.h" line="437"/>
       <source>Could not open database: %1</source>
       <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1225"/>
+      <location filename="../db/abstractdb3.h" line="1235"/>
       <source>Result set expired or no row available.</source>
       <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>Não foi possível carregar a extensão %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="422"/>
+      <location filename="../db/abstractdb3.h" line="423"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation>Não foi possível executar o ponto de verificação do WAL: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="460"/>
+      <location filename="../db/abstractdb3.h" line="461"/>
       <source>Could not close database: %1</source>
       <translation>Não foi possível fechar o banco de dados: %1</translation>
     </message>
@@ -881,7 +881,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível resolver a fonte de dados para a coluna: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="444"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>
@@ -990,28 +990,28 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="196"/>
+      <location filename="../db/queryexecutor.cpp" line="203"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="237"/>
+      <location filename="../db/queryexecutor.cpp" line="244"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="252"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="598"/>
+      <location filename="../db/queryexecutor.cpp" line="595"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="509"/>
+      <location filename="../db/queryexecutor.cpp" line="514"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
@@ -1111,7 +1111,7 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="863"/>
+      <location filename="../db/abstractdb3.h" line="864"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

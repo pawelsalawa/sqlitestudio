@@ -82,7 +82,7 @@
       <translation>Android SQLite sürücüsü yüklenebilir uzantıları desteklemiyor.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>&apos;%1&apos; Android veritabanıyla bağlantı koptu.</translation>
     </message>

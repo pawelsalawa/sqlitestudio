@@ -82,7 +82,7 @@
       <translation>Le pilote Android SQLite ne supporte pas les extensions chargeables.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Connexion à la base de données Android &apos;%1&apos; perdue.</translation>
     </message>

@@ -82,7 +82,7 @@
       <translation>Android SQLite 驅動程式不支援可載入的擴充套件。</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>與 Android 資料庫 &apos;%1&apos; 的連線丟失。</translation>
     </message>

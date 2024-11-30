@@ -82,7 +82,7 @@
       <translation>Sterownik Android SQLite nie obsługuje wczytywanych rozszerzeń.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Połączenie z bazą danych Androida &apos;%1&apos; zostało utracone.</translation>
     </message>

@@ -82,7 +82,7 @@
       <translation>Android SQLite 驱动程序不支持可加载的扩展。</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>与 Android 数据库 &apos;%1&apos; 的连接丢失。</translation>
     </message>

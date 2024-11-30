@@ -82,7 +82,7 @@
       <translation>Der Android SQLite-Treiber unterstützt keine ladbaren Erweiterungen.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Verbindung mit der Android-Datenbank &apos;%1&apos; verloren.</translation>
     </message>

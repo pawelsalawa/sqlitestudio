@@ -82,7 +82,7 @@
       <translation>O driver Android SQLite não suporta extensões carregáveis.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Conexão com banco de dados Android &apos;%1&apos; perdida.</translation>
     </message>

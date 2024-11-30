@@ -82,7 +82,7 @@
       <translation>Драйвер SQLite для Android не поддерживает подгружаемые расширения.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Подключение к базе данных Android &apos;%1&apos; утеряно.</translation>
     </message>
