@@ -2,7 +2,7 @@ env:
     QT_VERSION: '6.8.0'
     SQLITE_VERSION: '3470100'
     SQLITE_RELEASE_YEAR: '2024'
-    QT_ARCH: 'win64_mingw1310'
+    QT_ARCH: 'win64_mingw'
     PYTHON_VERSION: '3.9'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
