@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.8
+- BUGFIX: #5145 Fixed Extensions Manager crashing the app if the percentile extension was loaded before. The percentile SQLite extension became corrupted in SQLite 3.46.x, then it got fixed, but the fix is not included in SQLite 3.47.1 source package.
+
 ### 3.4.7
 - CHANGE: #5131 SQLite updated to 3.47.1 (except for SQLCipher, which is still on 3.46.1 at the moment).
 - BUGFIX: #5119 Fixed very bad performance of import() function executed from SQL Editor.
