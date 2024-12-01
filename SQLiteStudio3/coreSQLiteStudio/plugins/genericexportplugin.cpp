@@ -3,6 +3,7 @@
 #include "services/notifymanager.h"
 #include "common/unused.h"
 #include "config_builder.h"
+#include <QStringEncoder>
 
 bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
 {
