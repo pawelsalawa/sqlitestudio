@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QStringDecoder>
 
 ExportManager::ExportManager(QObject *parent) :
     PluginServiceBase(parent)
