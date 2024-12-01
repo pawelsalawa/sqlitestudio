@@ -1,8 +1,7 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3410200'
-    SQLITE_RELEASE_YEAR: '2023'
-    PYTHON_VERSION: '3.9'
+    SQLITE_VERSION: '3470100'
+    SQLITE_RELEASE_YEAR: '2024'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: Unit tests
@@ -11,8 +10,6 @@ on:
     push:
         branches:
             - master
-            - 3.2
-            - 3.3
             - 3.4
         paths:
             - '**.cpp'
@@ -31,7 +28,12 @@ jobs:
 
         strategy:
             matrix:
-                QT_VERSION: ['5.15.2']
+                QT_VERSION: 
+                    - '6.2.4'
+                    - '6.8.0'
+                PYTHON_VERSION:
+                    - '3.5'
+                    - '3.12'
 
         steps:
             - uses: actions/setup-python@v4
