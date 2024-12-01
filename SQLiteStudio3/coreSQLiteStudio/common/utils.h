@@ -14,6 +14,8 @@
 #include <QDataStream>
 
 class QStringConverter;
+class QStringEncoder;
+class QStringDecoder;
 
 API_EXPORT void initUtils();
 

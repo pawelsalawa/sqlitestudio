@@ -3,8 +3,8 @@
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
 #include "common/compatibility.h"
-#include <QStringConverter>
 #include <QString>
+#include <QStringConverter>
 #include <QSet>
 #include <QVariant>
 #include <QDateTime>
