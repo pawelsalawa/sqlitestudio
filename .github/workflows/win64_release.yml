@@ -63,7 +63,7 @@ jobs:
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
                 echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
-                MINGW_MAKE="${{ env.MINGW_DIR }}/bin/mingw32-make.exe"
+                MINGW_MAKE="${{ env.MINGW_DIR }}/bin/mingw32-make.exe" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v3
@@ -174,7 +174,7 @@ jobs:
                     CONFIG+=portable `
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
                     ..\..\SQLiteStudio3
-                $MINGW_MAKE -j 2
+                ${{ env.MINGW_MAKE }} -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -184,7 +184,7 @@ jobs:
                     CONFIG+=portable `
                     "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
                     ..\..\..\Plugins
-                $MINGW_MAKE -j 1
+                ${{ env.MINGW_MAKE }} -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
