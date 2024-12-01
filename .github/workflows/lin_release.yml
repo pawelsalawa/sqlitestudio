@@ -154,7 +154,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
-                make -j 2
+                make -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -205,7 +205,7 @@ jobs:
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Network.so* lib/
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6PrintSupport.so* lib/
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Qml.so* lib/
-                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6WaylandClient.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Wayland*Client*.so* lib/
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Widgets.so* lib/
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Xml.so* lib/
                 cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Svg.so* lib/
@@ -257,8 +257,7 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                QT6_PLUGINS=tls/*.so
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN          lib/libicu*.*.*
                 chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
@@ -280,7 +279,7 @@ jobs:
               run: |
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
-                strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
+                strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so tls/*.so
                 # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
                   lib/libQt6Core.so.*.*.* \

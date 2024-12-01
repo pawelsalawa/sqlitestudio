@@ -179,7 +179,7 @@ jobs:
                     CONFIG+=portable \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     ../../SQLiteStudio3
-                ${{ env.MINGW_MAKE }} -j 2
+                ${{ env.MINGW_MAKE }} -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
