@@ -233,7 +233,7 @@ jobs:
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
-                cp -P ${{ env.QT_ROOT_DIR }}/plutins/tls/libqopensslbackend.so tls/
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/tls/libqopensslbackend.so tls/
 
             - name: Copy extra Qt dependencies to portable dir
               shell: bash
