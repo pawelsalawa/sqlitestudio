@@ -223,7 +223,7 @@ jobs:
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqwayland-*.so platforms/
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qwebp; do
                     cp -P ${{ env.QT_ROOT_DIR }}/plugins/imageformats/lib$f.so imageformats/lib$f.so
                 done
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
@@ -233,9 +233,6 @@ jobs:
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
-                for f in qmng qwebp; do
-                    cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats"
-                done
                 mkdir tls
                 cp ${{ env.QT_ROOT_DIR }}/tls/libqopensslbackend.so "$PORTABLE_DIR/tls"
 
