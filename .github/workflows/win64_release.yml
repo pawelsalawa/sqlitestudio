@@ -35,10 +35,11 @@ jobs:
               shell: bash
               run: |
                 set -x
-                cat $GITHUB_PATH
-                cat $GITHUB_PATH | grep -v "/mingw64/bin" > tmp_path
-                cat tmp_path
-                mv tmp_path "$GITHUB_PATH"
+                echo $PATH
+                export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | tr '\n' ':')
+                export PATH=${PATH%:}
+                echo $PATH
+                echo $PATH > $GITHUB_PATH
 
             - name: debug
               shell: bash
