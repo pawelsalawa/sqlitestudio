@@ -85,6 +85,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                set -x
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
                 wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
                 unzip sqlite-amalgamation-$SQLITE_VERSION.zip
@@ -103,8 +104,11 @@ jobs:
                     -DSQLITE_ENABLE_RTREE \
                     -DSQLITE_ENABLE_MATH_FUNCTIONS
                 strip libsqlite3.so
+                ls -l
                 sudo cp -P libsqlite3.so* /usr/local/lib/
                 sudo cp *.h /usr/local/include/
+                ls -l /usr/local/lib/libsqlite3*
+                ls -l /usr/local/include/sqlite*
 
             - name: Compile additional SQLite3 extensions
               shell: bash
