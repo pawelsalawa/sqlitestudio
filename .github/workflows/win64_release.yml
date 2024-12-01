@@ -31,7 +31,15 @@ jobs:
         runs-on: windows-2019
 
         steps:
+            - name: fix path
+              shell: bash
+              run: |
+                grep -v "/mingw64/bin" <<< "$PATH" > tmp_path
+                mv tmp_path "$GITHUB_PATH"
+
+        steps:
             - name: debug
               shell: bash
               run: |
                 echo "PATH: $PATH"
+        
