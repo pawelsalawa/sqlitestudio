@@ -220,7 +220,7 @@ jobs:
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
+                mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration tls
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqwayland-*.so platforms/
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qwebp; do
@@ -233,8 +233,7 @@ jobs:
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
                 cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
-                mkdir tls
-                cp ${{ env.QT_ROOT_DIR }}/tls/libqopensslbackend.so "$PORTABLE_DIR/tls"
+                cp -P ${{ env.QT_ROOT_DIR }}/plutins/tls/libqopensslbackend.so tls/
 
             - name: Copy extra Qt dependencies to portable dir
               shell: bash

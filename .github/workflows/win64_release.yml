@@ -3,7 +3,7 @@ env:
     QT_ARCH: 'win64_mingw'
     SQLITE_VERSION: '3470100'
     SQLITE_RELEASE_YEAR: '2024'
-    PYTHON_VERSION: '3.9'
+    PYTHON_VERSION: '3.13'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
     MINGW_DIR: ../Qt/Tools/mingw1310_64
@@ -38,6 +38,11 @@ jobs:
                 path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
 
+            - uses: actions/setup-python@v4
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
               with:
@@ -48,6 +53,7 @@ jobs:
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
                 setup-python: 'false'
+                aqtversion: '>=3.1.19'
                 modules: 'qtimageformats'
 
             - name: Install mingw
@@ -57,11 +63,6 @@ jobs:
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
                 echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
-
-            - uses: actions/setup-python@v4
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
 
             - name: Clone repo
               uses: actions/checkout@v3
