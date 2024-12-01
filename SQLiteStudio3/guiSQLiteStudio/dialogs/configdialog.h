@@ -6,6 +6,7 @@
 #include "common/bihash.h"
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
+#include <QHash>
 
 namespace Ui {
     class ConfigDialog;

@@ -3,6 +3,7 @@
 
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
+#include <QHash>
 
 class PopulateEngine;
 class ConfigMapper;
