@@ -48,6 +48,7 @@ jobs:
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'
+                modules: 'qtimageformats'
 
             - name: Install the InstalBuilder
               shell: bash
