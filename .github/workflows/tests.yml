@@ -30,9 +30,9 @@ jobs:
             matrix:
                 QT_VERSION: 
                     - '6.2.4'
-                    - '6.8.0'
+                    - '6.5.3'
                 PYTHON_VERSION:
-                    - '3.5'
+                    - '3.9'
                     - '3.12'
 
         steps:
