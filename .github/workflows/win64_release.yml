@@ -35,7 +35,8 @@ jobs:
               shell: bash
               run: |
                 set -x
-                grep -v "/mingw64/bin" <<< "$PATH" > tmp_path
+                cat $GITHUB_PATH
+                cat $GITHUB_PATH | grep -v "/mingw64/bin" > tmp_path
                 cat tmp_path
                 mv tmp_path "$GITHUB_PATH"
 
