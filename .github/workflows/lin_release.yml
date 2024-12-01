@@ -46,8 +46,6 @@ jobs:
                 version: ${{ env.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
-                aqtversion: '==3.0.*'
-                py7zrversion: '==0.20.*'
                 setup-python: 'false'
                 extra: '--external 7z'
 
