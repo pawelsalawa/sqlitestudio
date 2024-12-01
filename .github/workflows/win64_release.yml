@@ -194,7 +194,7 @@ jobs:
               shell: bash
               run: |
                 set -x
-                export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | tr '\n' ':')
+                export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | grep -v "/c/hostedtoolcache/windows/Python${{ env.PYTHON_VERSION }}" | tr '\n' ':')
                 export PATH="${PATH%:}:${{ env.MINGW_DIR }}/bin"
                 qmake.exe \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
