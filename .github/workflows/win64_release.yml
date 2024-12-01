@@ -28,9 +28,12 @@ on:
 
 jobs:
     build:
-        runs-on: windows-2022
+        runs-on: windows-2019
 
         steps:
+            - name: Clean up PATH
+              uses: egor-tensin/cleanup-path@v4
+        
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v4
