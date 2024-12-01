@@ -1,6 +1,7 @@
 #include "xmlexport.h"
 #include "services/exportmanager.h"
 #include "common/unused.h"
+#include <QStringEncoder>
 
 const QString XmlExport::docBegin = QStringLiteral("<?xml version=\"1.0\" encoding=\"%1\"?>\n");
 
