@@ -39,7 +39,7 @@ jobs:
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
+              uses: jurplel/install-qt-action@v4
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
