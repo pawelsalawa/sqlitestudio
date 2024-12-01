@@ -309,6 +309,7 @@ void SqliteExtensionEditor::rollback()
     if (model->isValidRowIndex(selectedBefore))
         selectExtension(selectedBefore);
 
+    initStateForAll();
     updateState();
 }
 
@@ -338,7 +339,7 @@ void SqliteExtensionEditor::deleteExtension()
 void SqliteExtensionEditor::updateState()
 {
     bool modified = model->isModified() || currentModified;
-    bool valid = model->isValid() && validateCurrentExtension();
+    bool valid = model->isValid() && (getCurrentExtensionRow() == -1 || validateCurrentExtension());
 
     actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);
