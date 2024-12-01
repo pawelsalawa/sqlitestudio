@@ -15,7 +15,7 @@
       <translation>Ошибка во время присоединения базы данных %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="953"/>
+      <location filename="../db/abstractdb.cpp" line="956"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Не удалось создать полную контрольную точку WAL в базе данных &apos;%1&apos;. Ошибка из движка SQLite: %2</translation>
     </message>
@@ -276,42 +276,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="71"/>
+      <location filename="../services/exportmanager.cpp" line="70"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation>Модуль экспорта %1 не поддерживает экспорт результатов запроса.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="97"/>
+      <location filename="../services/exportmanager.cpp" line="96"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation>Модуль экспорта %1 не поддерживает экспорт таблиц.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="121"/>
+      <location filename="../services/exportmanager.cpp" line="120"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation>Модуль экспорта %1 не поддерживает экспорт баз данных.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="154"/>
+      <location filename="../services/exportmanager.cpp" line="153"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation>Формат экспорта %1 не поддерживается. Поддерживаемые форматы: %2.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="218"/>
+      <location filename="../services/exportmanager.cpp" line="217"/>
       <source>Export to the clipboard was successful.</source>
       <translation>Экспорт в буфер обмена успешно выполнен.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="222"/>
+      <location filename="../services/exportmanager.cpp" line="221"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
       <translation>Экспорт в файл %1 успешно выполнен.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="224"/>
+      <location filename="../services/exportmanager.cpp" line="223"/>
       <source>Export was successful.</source>
       <translation>Экспорт успешно выполнен.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="266"/>
+      <location filename="../services/exportmanager.cpp" line="265"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation>Невозможно выполнить экспорт в файл %1. Не удалось открыть файл для записи.</translation>
     </message>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation>Невозможно инициализировать текстовый кодек для экспорта. Используется кодек по умолчанию: %1</translation>
     </message>
@@ -769,7 +769,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="902"/>
+      <location filename="../common/utils.cpp" line="920"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
@@ -1040,37 +1040,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="57"/>
+      <location filename="../sqlfileexecutor.cpp" line="56"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось начать транзакцию: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="88"/>
+      <location filename="../sqlfileexecutor.cpp" line="87"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>Выполнение запросов из файла отменено. Все выполненные ранее из него запросы откачены.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="104"/>
+      <location filename="../sqlfileexecutor.cpp" line="103"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="151"/>
+      <location filename="../sqlfileexecutor.cpp" line="150"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>Невозможно выполнить SQL-запрос, так как приложению не удалось завершить транзакцию: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="156"/>
+      <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>Завершено выполнение %1 запросов за %2 секунд. %3 запросов не было выполнено из-за ошибок.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="162"/>
+      <location filename="../sqlfileexecutor.cpp" line="161"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>Завершено выполнение %1 запросов за %2 секунд.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="169"/>
+      <location filename="../sqlfileexecutor.cpp" line="168"/>
       <source>Could not execute SQL due to error.</source>
       <translation>Невозможно выполнить SQL-запрос из-за ошибки.</translation>
     </message>

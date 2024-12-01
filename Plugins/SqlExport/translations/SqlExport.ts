@@ -4,42 +4,42 @@
   <context>
     <name>SqlExport</name>
     <message>
-      <location filename="../sqlexport.cpp" line="58"/>
+      <location filename="../sqlexport.cpp" line="57"/>
       <source>-- Results of query:</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="141"/>
+      <location filename="../sqlexport.cpp" line="140"/>
       <source>-- Table: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="195"/>
+      <location filename="../sqlexport.cpp" line="194"/>
       <source>-- Index: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="220"/>
+      <location filename="../sqlexport.cpp" line="219"/>
       <source>-- Trigger: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="245"/>
+      <location filename="../sqlexport.cpp" line="244"/>
       <source>-- View: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="265"/>
+      <location filename="../sqlexport.cpp" line="264"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="269"/>
+      <location filename="../sqlexport.cpp" line="268"/>
       <source>-- Text encoding used: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="339"/>
+      <location filename="../sqlexport.cpp" line="338"/>
       <source>Table name for INSERT statements is mandatory.</source>
       <translation type="unfinished"/>
     </message>
