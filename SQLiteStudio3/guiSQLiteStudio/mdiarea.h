@@ -4,6 +4,7 @@
 #include "mdiwindow.h"
 #include "guiSQLiteStudio_global.h"
 #include <QMdiArea>
+#include <QHash>
 
 class TaskBar;
 class QActionGroup;

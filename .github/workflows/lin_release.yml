@@ -191,62 +191,54 @@ jobs:
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Core.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6DBus.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Concurrent.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Gui.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Network.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6PrintSupport.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Qml.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6WaylandClient.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Widgets.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Xml.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6Svg.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6XcbQpa.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6OpenGL.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6OpenGLWidgets.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libQt6UiTools.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so* lib/
-                cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Core.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6DBus.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Concurrent.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Gui.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Network.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6PrintSupport.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Qml.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6WaylandClient.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Widgets.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Xml.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6Svg.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6XcbQpa.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6OpenGL.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6OpenGLWidgets.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libQt6UiTools.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libicui18n.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libicuuc.so* lib/
+                cp -P ${{ env.QT_ROOT_DIR }}/lib/libicudata.so* lib/
 
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqwayland-*.so platforms/
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforms/libqwayland-*.so platforms/
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do
-                    cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/lib$f.so imageformats/lib$f.so
+                    cp -P ${{ env.QT_ROOT_DIR }}/plugins/imageformats/lib$f.so imageformats/lib$f.so
                 done
-                cp -P ${{ env.Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
-                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
-                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
-                cp -P ${{ env.Qt5_Dir }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
+                cp -P ${{ env.QT_ROOT_DIR }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
                 for f in qmng qwebp; do
                     cp imageformats/lib$f.so "$PORTABLE_DIR/imageformats"
                 done
                 mkdir tls
-                cp ${{ env.Qt5_Dir }}/tls/libqopensslbackend.so "$PORTABLE_DIR/tls"
+                cp ${{ env.QT_ROOT_DIR }}/tls/libqopensslbackend.so "$PORTABLE_DIR/tls"
 
             - name: Copy extra Qt dependencies to portable dir
-              shell: docker-shell {0}
+              shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 libdir=/usr/lib/$TARGET_ARCH-linux-gnu
                 if ldd lib/libQt${QT_VERSION_MAJ}XcbQpa.so | grep -q libxcb-; then
-                    # These are not installed by default on my Xubuntu 16.04:
-                    cp -P $libdir/libxcb-cursor.so* lib/
-                    cp -P $libdir/libxcb-icccm.so* lib/
-                    cp -P $libdir/libxcb-image.so* lib/
-                    cp -P $libdir/libxcb-keysyms.so* lib/
-                    cp -P $libdir/libxcb-randr.so* lib/
-                    cp -P $libdir/libxcb-render-util.so* lib/
-                    cp -P $libdir/libxcb-xinerama.so* lib/
-                    # These are not installed by default on my Xubuntu 22.04:
+                    # These are not installed by default on Xubuntu 22.04:
                     cp -P $libdir/libxcb-xkb.so* lib/
                     cp -P $libdir/libxkbcommon.so* lib/      # libxkbcommon _is_ installed by default but must match the version of
                     cp -P $libdir/libxkbcommon-x11.so* lib/  # libxkbcommon-x11 which is not
