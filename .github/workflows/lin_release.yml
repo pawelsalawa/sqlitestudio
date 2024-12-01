@@ -283,7 +283,7 @@ jobs:
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
                 # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
-                  lib/libQt5Core.so.*.*.* \
+                  lib/libQt6Core.so.*.*.* \
                   lib/libreadline*
 
             - name: Determine SQLiteStudio version
