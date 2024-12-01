@@ -41,7 +41,7 @@ jobs:
               with:
                 python-version: ${{ matrix.PYTHON_VERSION }}
                 architecture: 'x64'
-              
+                
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -105,7 +105,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python${{ matrix.PYTHON_VERSION }}" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
 
             - name: Run tests
