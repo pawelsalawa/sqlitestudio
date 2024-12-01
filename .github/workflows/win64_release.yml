@@ -173,20 +173,22 @@ jobs:
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
+              shell: bash
               run: |
-                qmake.exe `
-                    CONFIG+=portable `
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
+                qmake.exe \
+                    CONFIG+=portable \
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     ..\..\SQLiteStudio3
                 ${{ env.MINGW_MAKE }} -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
+              shell: bash
               run: |
-                qmake.exe `
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
-                    CONFIG+=portable `
-                    "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
+                qmake.exe \
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                    CONFIG+=portable \
+                    "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
                     ..\..\..\Plugins
                 ${{ env.MINGW_MAKE }} -j 1
 
