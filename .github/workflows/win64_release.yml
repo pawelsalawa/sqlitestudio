@@ -34,7 +34,9 @@ jobs:
             - name: fix path
               shell: bash
               run: |
+                set -x
                 grep -v "/mingw64/bin" <<< "$PATH" > tmp_path
+                cat tmp_path
                 mv tmp_path "$GITHUB_PATH"
 
             - name: debug
