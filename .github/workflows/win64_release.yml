@@ -6,7 +6,7 @@ env:
     PYTHON_VERSION: '3.13'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
-    MINGW_DIR: ../Qt/Tools/mingw1310_64
+    MINGW_DIRNAME: mingw1310_64
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw1310/qt.tools.win64_mingw1310/13.1.0-202407240918mingw1310.7z
@@ -62,12 +62,12 @@ jobs:
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
+                echo MINGW_DIR="$(realpath ../Qt/Tools/${{ env.MINGW_DIRNAME }})" >> $GITHUB_ENV
                 
             - name: Mingw paths
               shell: bash
               run: |
-                echo "$(realpath ${{ env.MINGW_DIR }}/bin)" >> $GITHUB_PATH
-                echo MINGW_MAKE="$(realpath ${{ env.MINGW_DIR }}/bin/mingw32-make.exe)" >> $GITHUB_ENV
+                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
 
             - name: Clone repo
               uses: actions/checkout@v3
@@ -88,7 +88,7 @@ jobs:
                 max-size: "24M"
 
             - name: Configure ccache (or not ccache)
-              shell: bash {0}
+              shell: bash
               run: |
                 if [ ${{ inputs.use_ccache || false }} = false ]; then
                     echo GCC_COMMAND="$(which gcc.exe)"
@@ -125,7 +125,6 @@ jobs:
                 cp -f sqlite3ext.h ../include/
 
             - name: Install extension dependencies
-              if: env.QT_FROM_PACKAGES == 0
               shell: bash
               run: |
                 cd ..
@@ -134,8 +133,8 @@ jobs:
                 tee -a $GITHUB_ENV <<EOF_ENV
                 ICU_FLAGS=-I$(pwd)/icu/include -L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
                 ICU_LIBDIR=$(pwd)/icu/bin
-                QT5_LIBDIR=$Qt5_Dir/bin
-                QT5_PLUGINDIR=$Qt5_Dir/plugins
+                QT5_LIBDIR=$QT_ROOT_DIR/bin
+                QT5_PLUGINDIR=$QT_ROOT_DIR/plugins
                 ZLIB_FLAGS=-lzlib1
                 EOF_ENV
 
@@ -175,22 +174,25 @@ jobs:
               working-directory: output/build
               shell: bash
               run: |
+                set -x
                 qmake.exe \
                     CONFIG+=portable \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                    "QMAKE_LFLAGS+=-L${{ env.MINGW_DIR }}/lib" \
                     ../../SQLiteStudio3
-                ${{ env.MINGW_MAKE }} -j 4
+                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 4 VERBOSE=1
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               shell: bash
               run: |
+                set -x
                 qmake.exe \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     CONFIG+=portable \
                     "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
                     ../../../Plugins
-                ${{ env.MINGW_MAKE }} -j 1
+                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 1 VERBOSE=1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
