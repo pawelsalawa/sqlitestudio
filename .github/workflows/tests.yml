@@ -39,7 +39,7 @@ jobs:
         steps:
             - uses: actions/setup-python@v4
               with:
-                python-version: ${{ env.PYTHON_VERSION }}
+                python-version: ${{ matrix.PYTHON_VERSION }}
                 architecture: 'x64'
               
             - name: Qt installation dir
