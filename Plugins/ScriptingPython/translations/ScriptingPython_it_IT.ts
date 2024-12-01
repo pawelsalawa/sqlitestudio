@@ -4,27 +4,27 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../scriptingpython.cpp" line="729"/>
+      <location filename="../scriptingpython.cpp" line="731"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
       <translation>Uso non valido della funzione %1. Atteso %2 argomenti, ma ottenuto %3.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="738"/>
+      <location filename="../scriptingpython.cpp" line="740"/>
       <source>Unknown error from function %1.</source>
       <translation>Errore sconosciuto dalla funzione %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="779"/>
+      <location filename="../scriptingpython.cpp" line="781"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
       <translation>Impossibile calcolare la rappresentazione della stringa dell&apos;oggetto Python passato come argomento alla funzione %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="801"/>
+      <location filename="../scriptingpython.cpp" line="803"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
       <translation>Impossibile trovare il contesto di esecuzione per la funzione %1. Questo è un bug del plugin Python. Si prega di segnalarlo.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="826"/>
+      <location filename="../scriptingpython.cpp" line="828"/>
       <source>Error from Python function %1: %2</source>
       <translation>Errore dalla funzione Python %1: %2</translation>
     </message>

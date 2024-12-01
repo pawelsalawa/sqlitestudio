@@ -15,7 +15,7 @@
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="953"/>
+      <location filename="../db/abstractdb.cpp" line="956"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
@@ -276,42 +276,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="71"/>
+      <location filename="../services/exportmanager.cpp" line="70"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation>导出插件 %1 不支持导出查询结果。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="97"/>
+      <location filename="../services/exportmanager.cpp" line="96"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation>导出插件 %1 不支持导出表。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="121"/>
+      <location filename="../services/exportmanager.cpp" line="120"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation>导出插件 %1 不支持导出数据库。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="154"/>
+      <location filename="../services/exportmanager.cpp" line="153"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation>导出格式 &apos;%1&apos; 不受支持，受支持的格式是：%2。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="218"/>
+      <location filename="../services/exportmanager.cpp" line="217"/>
       <source>Export to the clipboard was successful.</source>
       <translation>成功导出到剪贴板。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="222"/>
+      <location filename="../services/exportmanager.cpp" line="221"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
       <translation>成功导出到文件 &apos;%1&apos;。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="224"/>
+      <location filename="../services/exportmanager.cpp" line="223"/>
       <source>Export was successful.</source>
       <translation>导出成功。</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="266"/>
+      <location filename="../services/exportmanager.cpp" line="265"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation>无法导出到文件 %1。文件无法以写模式打开。</translation>
     </message>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation>无法为导出初始化文本编解码器。使用默认的编解码器：%1</translation>
     </message>
@@ -769,7 +769,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="902"/>
+      <location filename="../common/utils.cpp" line="920"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
@@ -1040,37 +1040,37 @@ The view will remain as it is.</source>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="57"/>
+      <location filename="../sqlfileexecutor.cpp" line="56"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation>应用程序启动事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="88"/>
+      <location filename="../sqlfileexecutor.cpp" line="87"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation>从文件执行已取消。执行的所有查询已回滚。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="104"/>
+      <location filename="../sqlfileexecutor.cpp" line="103"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="151"/>
+      <location filename="../sqlfileexecutor.cpp" line="150"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>应用程序提交事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="156"/>
+      <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。其中 %3 个由于错误未被执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="162"/>
+      <location filename="../sqlfileexecutor.cpp" line="161"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="169"/>
+      <location filename="../sqlfileexecutor.cpp" line="168"/>
       <source>Could not execute SQL due to error.</source>
       <translation>由于错误无法执行 SQL。</translation>
     </message>

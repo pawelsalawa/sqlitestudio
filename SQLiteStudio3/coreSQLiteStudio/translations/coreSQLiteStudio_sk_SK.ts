@@ -15,7 +15,7 @@
       <translation>Chyba pri pripájaní databázy %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="953"/>
+      <location filename="../db/abstractdb.cpp" line="956"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -276,42 +276,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="71"/>
+      <location filename="../services/exportmanager.cpp" line="70"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing query results.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="97"/>
+      <location filename="../services/exportmanager.cpp" line="96"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing tables.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="121"/>
+      <location filename="../services/exportmanager.cpp" line="120"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing databases.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="154"/>
+      <location filename="../services/exportmanager.cpp" line="153"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation type="unfinished">Export format &apos;%1&apos; is not supported. Supported formats are: %2.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="218"/>
+      <location filename="../services/exportmanager.cpp" line="217"/>
       <source>Export to the clipboard was successful.</source>
       <translation>Export do schránky bol úspešný.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="222"/>
+      <location filename="../services/exportmanager.cpp" line="221"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
       <translation>Export do súboru &apos;%1&apos; bol úspešný.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="224"/>
+      <location filename="../services/exportmanager.cpp" line="223"/>
       <source>Export was successful.</source>
       <translation>Export bol úspešný.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="266"/>
+      <location filename="../services/exportmanager.cpp" line="265"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation>Nemôžem exportovať do súboru %1.Súbor nieje možné otvoriť pre zápis.</translation>
     </message>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation type="unfinished">Could not initialize text codec for exporting. Using default codec: %1</translation>
     </message>
@@ -769,7 +769,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="902"/>
+      <location filename="../common/utils.cpp" line="920"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
@@ -1040,37 +1040,37 @@ The view will remain as it is.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="57"/>
+      <location filename="../sqlfileexecutor.cpp" line="56"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="88"/>
+      <location filename="../sqlfileexecutor.cpp" line="87"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="104"/>
+      <location filename="../sqlfileexecutor.cpp" line="103"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="151"/>
+      <location filename="../sqlfileexecutor.cpp" line="150"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="156"/>
+      <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="162"/>
+      <location filename="../sqlfileexecutor.cpp" line="161"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="169"/>
+      <location filename="../sqlfileexecutor.cpp" line="168"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>
