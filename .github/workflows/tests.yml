@@ -30,7 +30,7 @@ jobs:
             matrix:
                 include:
                     - QT_VERSION: '6.2.4'
-                      PYTHON_VERSION: '3.6'
+                      PYTHON_VERSION: '3.9'
                     - QT_VERSION: '6.5.3'
                       PYTHON_VERSION: '3.9'
                     - QT_VERSION: '6.8.0'
