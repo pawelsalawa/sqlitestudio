@@ -70,6 +70,13 @@ jobs:
               run: |
                 cd ..
                 curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                mkdir ext
+                unzip sqlite-src-$SQLITE_VERSION.zip
+
+                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
+                cd sqlite-src-$SQLITE_VERSION/ext
+                rm -f misc/percentile.c
+                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
 
             - name: Prepare ccache
               if: inputs.use_ccache || false
@@ -113,20 +120,12 @@ jobs:
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
-                cd ..
-                mkdir ext
-                unzip sqlite-src-$SQLITE_VERSION.zip
-                cd sqlite-src-$SQLITE_VERSION/ext
+                cd ../sqlite-src-$SQLITE_VERSION/ext
                 FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 for f in compress; do
                     echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so"
                     gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so
                 done
-                
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
-                
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
                     echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
                     gcc misc/$f.c $FLAGS -o ../../ext/$f.so
