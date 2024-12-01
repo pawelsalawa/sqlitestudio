@@ -627,7 +627,25 @@ QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseS
 
 QStringList textCodecNames()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
     QStringList codecs = QStringConverter::availableCodecs();
+#else
+    QStringList codecs;
+    for (QStringConverter::Encoding enc : {
+         QStringConverter::Utf8,
+         QStringConverter::Utf16,
+         QStringConverter::Utf16LE,
+         QStringConverter::Utf16BE,
+         QStringConverter::Utf32,
+         QStringConverter::Utf32LE,
+         QStringConverter::Utf32BE,
+         QStringConverter::Latin1,
+         QStringConverter::System
+    })
+    {
+        codecs << QStringConverter::nameForEncoding(enc);
+    }
+#endif
     QSet<QString> codecSet = QSet<QString>(codecs.begin(), codecs.end());
     QStringList names = QStringList(codecSet.begin(), codecSet.end());
     sSort(names);
