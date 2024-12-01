@@ -37,7 +37,6 @@ jobs:
                 exclude:
                     - QT_VERSION: '6.2.4'
                       PYTHON_VERSION: '3.12'
-                exclude:
                     - QT_VERSION: '6.5.3'
                       PYTHON_VERSION: '3.9'
 
