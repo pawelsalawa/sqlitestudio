@@ -37,7 +37,6 @@ jobs:
                 grep -v "/mingw64/bin" <<< "$PATH" > tmp_path
                 mv tmp_path "$GITHUB_PATH"
 
-        steps:
             - name: debug
               shell: bash
               run: |
