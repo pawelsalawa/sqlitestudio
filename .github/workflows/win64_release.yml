@@ -178,7 +178,7 @@ jobs:
                 qmake.exe \
                     CONFIG+=portable \
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    ..\..\SQLiteStudio3
+                    ../../SQLiteStudio3
                 ${{ env.MINGW_MAKE }} -j 2
 
             - name: Compile Plugins
@@ -189,7 +189,7 @@ jobs:
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
                     CONFIG+=portable \
                     "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
-                    ..\..\..\Plugins
+                    ../../../Plugins
                 ${{ env.MINGW_MAKE }} -j 1
 
             - name: Copy SQLite extensions to output dir
