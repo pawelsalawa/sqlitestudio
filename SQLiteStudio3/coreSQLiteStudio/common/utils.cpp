@@ -5,6 +5,8 @@
 #include "common/compatibility.h"
 #include <QString>
 #include <QStringConverter>
+#include <QStringEncoder>
+#include <QStringDecoder>
 #include <QSet>
 #include <QVariant>
 #include <QDateTime>
