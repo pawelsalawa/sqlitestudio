@@ -174,7 +174,7 @@ jobs:
                     CONFIG+=portable `
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
                     ..\..\SQLiteStudio3
-                mingw32-make.exe -j 2
+                $MINGW_MAKE -j 2
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -184,7 +184,7 @@ jobs:
                     CONFIG+=portable `
                     "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
                     ..\..\..\Plugins
-                mingw32-make.exe -j 1
+                $MINGW_MAKE -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
