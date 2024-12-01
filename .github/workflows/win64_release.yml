@@ -47,7 +47,6 @@ jobs:
                 arch: ${{ env.QT_ARCH }}
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
-                aqtversion: ==4.*.*
                 setup-python: 'false'
                 modules: 'qtimageformats'
 
