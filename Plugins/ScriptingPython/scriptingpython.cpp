@@ -89,7 +89,7 @@ void ScriptingPython::initPython()
     else
         PyImport_AppendInittab("db", pyDbModuleInit);
 #else
-#if PYTHON_VERSION_HEX < 0x03070000
+#if PY_VERSION_HEX < 0x03070000
     PyImport_AppendInittab("db", &pyDbModuleCompatInit);
 #else
     PyImport_AppendInittab("db", &pyDbModuleInit);
