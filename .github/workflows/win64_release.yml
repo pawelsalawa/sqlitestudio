@@ -241,7 +241,6 @@ jobs:
                 cp iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 cp platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
                 cp styles/q*windows*style.dll "$ABSOLUTE_PORTABLE_DIR/styles"
-                cp printsupport/windowsprintersupport.dll "$ABSOLUTE_PORTABLE_DIR/printsupport"
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qjp2 qmng qwebp; do
                     cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
                 done
