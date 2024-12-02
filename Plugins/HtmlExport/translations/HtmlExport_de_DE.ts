@@ -4,120 +4,120 @@
   <context>
     <name>HtmlExport</name>
     <message>
-      <location filename="../htmlexport.cpp" line="45"/>
+      <location filename="../htmlexport.cpp" line="46"/>
       <source>SQL query results</source>
       <translation>SQL Abfragenergebnis</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="77"/>
-      <location filename="../htmlexport.cpp" line="154"/>
+      <location filename="../htmlexport.cpp" line="78"/>
+      <location filename="../htmlexport.cpp" line="155"/>
       <source>no type</source>
       <translation>kein Typ</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="114"/>
-      <location filename="../htmlexport.cpp" line="242"/>
+      <location filename="../htmlexport.cpp" line="115"/>
+      <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
       <translation>Exportierte Tabelle: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="126"/>
-      <location filename="../htmlexport.cpp" line="254"/>
+      <location filename="../htmlexport.cpp" line="127"/>
+      <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
       <translation>Tabelle: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="254"/>
+      <location filename="../htmlexport.cpp" line="255"/>
       <source>virtual</source>
       <translation>virtuell</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="307"/>
+      <location filename="../htmlexport.cpp" line="308"/>
       <source>Exported database: %1</source>
       <translation>Exportierte Datenbank: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="323"/>
+      <location filename="../htmlexport.cpp" line="324"/>
       <source>Index: %1</source>
       <translation>Index: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="329"/>
+      <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
       <translation>Für Tabelle:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="336"/>
+      <location filename="../htmlexport.cpp" line="337"/>
       <source>Unique:</source>
       <translation>Einzigartig:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="337"/>
+      <location filename="../htmlexport.cpp" line="338"/>
       <source>Yes</source>
       <translation>Ja</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="337"/>
+      <location filename="../htmlexport.cpp" line="338"/>
       <source>No</source>
       <translation>Nein</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="343"/>
+      <location filename="../htmlexport.cpp" line="344"/>
       <source>Column</source>
       <translation>Spalte</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="344"/>
+      <location filename="../htmlexport.cpp" line="345"/>
       <source>Collating</source>
       <translation>Sortierung</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="345"/>
+      <location filename="../htmlexport.cpp" line="346"/>
       <source>Sort order</source>
       <translation>Sortierreihenfolge</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="379"/>
+      <location filename="../htmlexport.cpp" line="380"/>
       <source>Trigger: %1</source>
       <translation>Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="385"/>
+      <location filename="../htmlexport.cpp" line="386"/>
       <source>Activated:</source>
       <translation>Aktiviert:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="393"/>
+      <location filename="../htmlexport.cpp" line="394"/>
       <source>Action:</source>
       <translation>Aktion:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="400"/>
+      <location filename="../htmlexport.cpp" line="401"/>
       <source>On view:</source>
       <translation>Auf Ansicht:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="402"/>
+      <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
       <translation>Auf Tabelle:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="413"/>
+      <location filename="../htmlexport.cpp" line="414"/>
       <source>Activate condition:</source>
       <translation>Ausführungsbedingung:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="420"/>
+      <location filename="../htmlexport.cpp" line="421"/>
       <source>Code executed:</source>
       <translation>Code ausgeführt:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="454"/>
+      <location filename="../htmlexport.cpp" line="455"/>
       <source>View: %1</source>
       <translation>View: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="479"/>
+      <location filename="../htmlexport.cpp" line="480"/>
       <source>Document generated by SQLiteStudio v%1 on %2</source>
       <translation>Dokument erstellt von SQLiteStudio v%1 am %2</translation>
     </message>

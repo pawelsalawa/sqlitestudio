@@ -4,42 +4,42 @@
   <context>
     <name>SqlExport</name>
     <message>
-      <location filename="../sqlexport.cpp" line="57"/>
+      <location filename="../sqlexport.cpp" line="58"/>
       <source>-- Results of query:</source>
       <translation>-- Sorgu sonuçları:</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="140"/>
+      <location filename="../sqlexport.cpp" line="141"/>
       <source>-- Table: %1</source>
       <translation>-- Tablo: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="194"/>
+      <location filename="../sqlexport.cpp" line="195"/>
       <source>-- Index: %1</source>
       <translation>-- Indeks: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="219"/>
+      <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Trigger: %1</source>
       <translation>-- Tetikleyici: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="244"/>
+      <location filename="../sqlexport.cpp" line="245"/>
       <source>-- View: %1</source>
       <translation>-- View: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="264"/>
+      <location filename="../sqlexport.cpp" line="265"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
       <translation>-- SQLiteStudio ile üretilen dosya %2 üzerinde v%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="268"/>
+      <location filename="../sqlexport.cpp" line="269"/>
       <source>-- Text encoding used: %1</source>
       <translation>-- Kullanılan metin kodlaması: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="338"/>
+      <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
       <translation>INSERT komutlarında tablo adı zorunludur.</translation>
     </message>
