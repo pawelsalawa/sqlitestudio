@@ -38,6 +38,7 @@ extern PyObject* PyFrame_GetLocals(PyFrameObject*);
     PYAPI_METHOD(Py_IncRef) \
     PYAPI_METHOD(Py_Initialize) \
     PYAPI_METHOD(Py_NewInterpreter) \
+    PYAPI_METHOD(PyThreadState_GetFrame) \
     PYAPI_METHOD(PyBool_FromLong) \
     PYAPI_METHOD(PyByteArray_AsString) \
     PYAPI_METHOD(PyByteArray_Size) \

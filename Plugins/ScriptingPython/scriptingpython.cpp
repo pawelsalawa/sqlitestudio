@@ -216,7 +216,7 @@ QStringList ScriptingPython::discoverLibraries() const
         {"/Library/Frameworks/Python.framework/Versions/"}, {"*"}, {"/Python"}
 #elif defined(Q_OS_UNIX)
         QStringList({"", "/usr", "/usr/local", "/usr/pkg"}) + dirNames(pathEnv),
-        {"/lib/", "/lib64/"}, {"libpython*.so*"}
+        {"/lib/", "/lib64/", "/lib/x86_64-linux-gnu/", "/lib64/x86_64-linux-gnu/", "/lib/x86-linux-gnu/"}, {"libpython*.so*"}
 #elif defined(Q_OS_WINDOWS)
         QStringList({QDir::homePath() + "/AppData/Local/Programs/Python"}) + pathEnv,
         {"", "/bin", "/lib"}, {"*python*.dll"}
