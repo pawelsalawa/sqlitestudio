@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -2054,7 +2054,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="581"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="591"/>
