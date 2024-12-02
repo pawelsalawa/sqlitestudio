@@ -241,7 +241,7 @@ jobs:
                 cp iconengines/qsvgicon.dll "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 cp platforms/qwindows.dll "$ABSOLUTE_PORTABLE_DIR/platforms"
                 cp styles/q*windows*style.dll "$ABSOLUTE_PORTABLE_DIR/styles"
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qjp2 qmng qwebp; do
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qwebp; do
                     cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
                 done
                 cp tls/qopensslbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
