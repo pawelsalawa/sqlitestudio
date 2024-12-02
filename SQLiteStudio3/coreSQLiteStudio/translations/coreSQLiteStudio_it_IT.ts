@@ -276,42 +276,42 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="70"/>
+      <location filename="../services/exportmanager.cpp" line="71"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation>Il plugin di esportazione %1 non supporta l&apos;esplorazione dei risultati delle interrogazioni.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="96"/>
+      <location filename="../services/exportmanager.cpp" line="97"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation>Il plugin di esportazione %1 non supporta l&apos;esportazione di tabelle.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="120"/>
+      <location filename="../services/exportmanager.cpp" line="121"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation>Il plugin di esportazione %1 non supporta l&apos;esportazione di databases.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="153"/>
+      <location filename="../services/exportmanager.cpp" line="154"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation>Il formato di esportazione &apos;%1&apos; non è supportato. I formati supportati sono: %2.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="217"/>
+      <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
       <translation>Esportazione negli appunti riuscita.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="221"/>
+      <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
       <translation>Esportazione nel file &apos;%1&apos; riuscita.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="223"/>
+      <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
       <translation>Esportazione riuscita.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="265"/>
+      <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation>Impossibile esportare nel file %1. Il file non può essere aperto in scrittura.</translation>
     </message>
@@ -402,7 +402,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation>Impossibile inizializzare il codec di testo per l&apos;esportazione. Utilizzando il codec predefinito: %1</translation>
     </message>
@@ -769,7 +769,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="920"/>
+      <location filename="../common/utils.cpp" line="940"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>

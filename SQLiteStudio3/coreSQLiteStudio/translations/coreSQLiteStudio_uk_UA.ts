@@ -276,42 +276,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>ExportManager</name>
     <message>
-      <location filename="../services/exportmanager.cpp" line="70"/>
+      <location filename="../services/exportmanager.cpp" line="71"/>
       <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
       <translation>Модуль експорту %1 не підтримує експорт результатів запиту.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="96"/>
+      <location filename="../services/exportmanager.cpp" line="97"/>
       <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
       <translation>Модуль експорту %1 не підтримує експорт таблиць.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="120"/>
+      <location filename="../services/exportmanager.cpp" line="121"/>
       <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
       <translation>Модуль експорту %1 не підтримує експорт бази даних.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="153"/>
+      <location filename="../services/exportmanager.cpp" line="154"/>
       <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
       <translation>Формат експорту &apos;%1&apos; не підтримується. Підтримуються формати: %2.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="217"/>
+      <location filename="../services/exportmanager.cpp" line="218"/>
       <source>Export to the clipboard was successful.</source>
       <translation>Експорт до буфера обміну пройшов успішно.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="221"/>
+      <location filename="../services/exportmanager.cpp" line="222"/>
       <source>Export to the file &apos;%1&apos; was successful.</source>
       <translation>Експорт у файл &apos;%1&apos; успішно здійснено.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="223"/>
+      <location filename="../services/exportmanager.cpp" line="224"/>
       <source>Export was successful.</source>
       <translation>Видалення пройшло успішно.</translation>
     </message>
     <message>
-      <location filename="../services/exportmanager.cpp" line="265"/>
+      <location filename="../services/exportmanager.cpp" line="266"/>
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation>Не вдалося експортувати до файлу %1. Файл не може бути відкритий для запису.</translation>
     </message>
@@ -402,7 +402,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation>Неможливо ініціалізувати текстовий кодек для експорту. Використовується кодек за замовчуванням: %1</translation>
     </message>
@@ -769,7 +769,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="920"/>
+      <location filename="../common/utils.cpp" line="940"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>

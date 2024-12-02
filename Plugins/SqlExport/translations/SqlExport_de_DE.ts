@@ -4,42 +4,42 @@
   <context>
     <name>SqlExport</name>
     <message>
-      <location filename="../sqlexport.cpp" line="57"/>
+      <location filename="../sqlexport.cpp" line="58"/>
       <source>-- Results of query:</source>
       <translation>-- Ergebnisse der Abfrage:</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="140"/>
+      <location filename="../sqlexport.cpp" line="141"/>
       <source>-- Table: %1</source>
       <translation>-- Tabelle: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="194"/>
+      <location filename="../sqlexport.cpp" line="195"/>
       <source>-- Index: %1</source>
       <translation>-- Index: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="219"/>
+      <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Trigger: %1</source>
       <translation>-- Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="244"/>
+      <location filename="../sqlexport.cpp" line="245"/>
       <source>-- View: %1</source>
       <translation>-- View: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="264"/>
+      <location filename="../sqlexport.cpp" line="265"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
       <translation>-- Datei mit SQLiteStudio v%1 am %2 erstellt</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="268"/>
+      <location filename="../sqlexport.cpp" line="269"/>
       <source>-- Text encoding used: %1</source>
       <translation>-- verwendete Textkodierung: %1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="338"/>
+      <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
       <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
     </message>

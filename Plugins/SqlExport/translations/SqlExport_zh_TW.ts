@@ -4,42 +4,42 @@
   <context>
     <name>SqlExport</name>
     <message>
-      <location filename="../sqlexport.cpp" line="57"/>
+      <location filename="../sqlexport.cpp" line="58"/>
       <source>-- Results of query:</source>
       <translation>-- 查詢的執行結果：</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="140"/>
+      <location filename="../sqlexport.cpp" line="141"/>
       <source>-- Table: %1</source>
       <translation>-- 表：%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="194"/>
+      <location filename="../sqlexport.cpp" line="195"/>
       <source>-- Index: %1</source>
       <translation>-- 索引：%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="219"/>
+      <location filename="../sqlexport.cpp" line="220"/>
       <source>-- Trigger: %1</source>
       <translation>-- 觸發器：%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="244"/>
+      <location filename="../sqlexport.cpp" line="245"/>
       <source>-- View: %1</source>
       <translation>-- 檢視：%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="264"/>
+      <location filename="../sqlexport.cpp" line="265"/>
       <source>-- File generated with SQLiteStudio v%1 on %2</source>
       <translation>-- SQLiteStudio v%1 生成的檔案，%2</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="268"/>
+      <location filename="../sqlexport.cpp" line="269"/>
       <source>-- Text encoding used: %1</source>
       <translation>-- 所用的文字編碼：%1</translation>
     </message>
     <message>
-      <location filename="../sqlexport.cpp" line="338"/>
+      <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
       <translation>INSERT 語句的表名稱是強制性的。</translation>
     </message>
