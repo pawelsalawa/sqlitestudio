@@ -138,8 +138,8 @@ jobs:
                 tee -a $GITHUB_ENV <<EOF_ENV
                 ICU_FLAGS=-I$(pwd)/icu/include -L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
                 ICU_LIBDIR=$(pwd)/icu/bin
-                QT5_LIBDIR=$QT_ROOT_DIR/bin
-                QT5_PLUGINDIR=$QT_ROOT_DIR/plugins
+                QT_LIBDIR=$QT_ROOT_DIR/bin
+                QT_PLUGINDIR=$QT_ROOT_DIR/plugins
                 ZLIB_FLAGS=-lzlib1
                 EOF_ENV
 
@@ -229,11 +229,11 @@ jobs:
             - name: Prepare portable distro (Qt)
               shell: bash
               run: |
-                cd "$QT5_LIBDIR"
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Qml Qt5Svg Qt5Widgets Qt5Xml Qt6OpenGL Qt6OpenGLWidgets Qt6UiTools libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
+                cd "$QT_LIBDIR"
+                for f in Qt6Core Qt6Gui Qt6Network Qt6PrintSupport Qt6Qml Qt6Svg Qt6Widgets Qt6Xml Qt6OpenGL Qt6OpenGLWidgets Qt6UiTools libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "$ABSOLUTE_PORTABLE_DIR"; done
                 cp bin/qt.conf "$ABSOLUTE_PORTABLE_DIR"
                 
-                cd "$QT5_PLUGINDIR"
+                cd "$QT_PLUGINDIR"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/iconengines"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/platforms"
                 mkdir -p "$ABSOLUTE_PORTABLE_DIR/styles"
