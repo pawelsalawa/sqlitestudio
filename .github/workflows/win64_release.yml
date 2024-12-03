@@ -276,6 +276,7 @@ jobs:
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
                 7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
+                ls -l
 
             - name: Install the InstalBuilder
               shell: bash
@@ -297,8 +298,6 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe \
-                    SQLiteStudio-$SQLITESTUDIO_VERSION-windows-x64-installer.exe \
 
             - name: SHA256 checksums
               shell: bash
