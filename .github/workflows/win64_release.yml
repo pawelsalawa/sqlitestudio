@@ -269,13 +269,13 @@ jobs:
                 SQLITESTUDIO_VERSION="$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')"
                 [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=$SQLITESTUDIO_VERSION\_x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}_x64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
-                7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
+                7z a -r sqlitestudio-${{ env.PACKAGE_VERSION }}.zip SQLiteStudio
                 ls -l
 
             - name: Install the InstalBuilder
