@@ -266,16 +266,17 @@ QStringList FunctionsEditorModel::getFunctionNames() const
 
 void FunctionsEditorModel::validateNames()
 {
-    StrHash<QList<int>> counter;
+    QHash<UniqueFunctionName, QList<int>> counter;
 
     int row = 0;
     for (Function*& func : functionList)
     {
         func->valid &= true;
-        counter[func->data.name] << row++;
+        UniqueFunctionName uniqueName = func->toUniqueName();
+        counter[uniqueName] << row++;
     }
 
-    QHashIterator<QString,QList<int>> cntIt = counter.iterator();
+    QHashIterator<UniqueFunctionName, QList<int>> cntIt(counter);
     while (cntIt.hasNext())
     {
         cntIt.next();
@@ -294,11 +295,18 @@ void FunctionsEditorModel::validateNames()
     }
 }
 
-bool FunctionsEditorModel::isAllowedName(int rowToSkip, const QString& nameToValidate)
+bool FunctionsEditorModel::isAllowedName(int rowToSkip, const QString& nameToValidate, const QStringList& argList, bool undefinedArgs)
 {
-    QStringList names = getFunctionNames();
+    QList<UniqueFunctionName> names = getUniqueFunctionNames();
     names.removeAt(rowToSkip);
-    return !names.contains(nameToValidate, Qt::CaseInsensitive);
+
+    UniqueFunctionName validatedName;
+    validatedName.name = nameToValidate.toLower();
+    validatedName.undefArg = undefinedArgs;
+    if (!undefinedArgs)
+        validatedName.arguments = argList;
+
+    return !names.contains(validatedName);
 }
 
 int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
@@ -347,6 +355,15 @@ void FunctionsEditorModel::emitDataChanged(int row)
     emit dataChanged(idx, idx);
 }
 
+QList<FunctionsEditorModel::UniqueFunctionName> FunctionsEditorModel::getUniqueFunctionNames() const
+{
+    QList<UniqueFunctionName> names;
+    for (Function* func : functionList)
+        names << func->toUniqueName();
+
+    return names;
+}
+
 FunctionsEditorModel::Function::Function()
 {
 }
@@ -355,4 +372,30 @@ FunctionsEditorModel::Function::Function(FunctionManager::ScriptFunction* other)
 {
     data = FunctionManager::ScriptFunction(*other);
     originalName = data.name;
+}
+
+FunctionsEditorModel::UniqueFunctionName FunctionsEditorModel::Function::toUniqueName() const
+{
+    UniqueFunctionName uniqName;
+    uniqName.name = data.name.toLower();
+    uniqName.undefArg = data.undefinedArgs;
+    if (!data.undefinedArgs)
+        uniqName.arguments = data.arguments;
+
+    return uniqName;
+}
+
+int FunctionsEditorModel::UniqueFunctionName::argCount() const
+{
+    return undefArg ? -1 : arguments.size();
+}
+
+bool FunctionsEditorModel::UniqueFunctionName::operator==(const UniqueFunctionName &other) const
+{
+    return name == other.name && argCount() == other.argCount();
+}
+
+int qHash(FunctionsEditorModel::UniqueFunctionName fnName)
+{
+    return qHash(fnName.name) ^ fnName.argCount();
 }
