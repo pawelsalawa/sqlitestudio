@@ -37,7 +37,9 @@ class FunctionInfoImpl : public ScriptingPlugin::FunctionInfo
 FunctionInfoImpl::FunctionInfoImpl(FunctionManager::FunctionBase* fn)
 {
     name = fn->name;
-    arguments = fn->arguments;
+    if (!fn->undefinedArgs)
+        arguments = fn->arguments;
+
     undefinedArgs = fn->undefinedArgs;
 }
 

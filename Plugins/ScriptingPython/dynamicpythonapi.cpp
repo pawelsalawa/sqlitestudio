@@ -12,6 +12,14 @@ struct py_compat_frame_head {
     PyObject *f_locals;
 };
 
+struct py_compat_thread_state_head {
+    // PyObject_VAR_HEAD
+    struct _ts *prev;
+    struct _ts *next;
+    PyInterpreterState *interp;
+    PyFrameObject *frame;
+};
+
 // Define all variables
 #define PYAPI_DATA(x)   typeof(DynamicPythonApi::p##x) DynamicPythonApi::p##x = nullptr;
 #define PYAPI_METHOD(x) typeof(DynamicPythonApi::x) DynamicPythonApi::x = nullptr;
@@ -82,6 +90,9 @@ bool DynamicPythonApi::bindSymbols(QLibrary &library)
     });
     PYAPI_METHOD_DEFAULT(PyFrame_GetLocals, [](PyFrameObject *frame) {
         return reinterpret_cast<struct py_compat_frame_head*>(frame)->f_locals;
+    });
+    PYAPI_METHOD_DEFAULT(PyThreadState_GetFrame, [](PyThreadState *tstate) {
+        return reinterpret_cast<struct py_compat_thread_state_head*>(tstate)->frame;
     });
 
 #undef PYAPI_DATA

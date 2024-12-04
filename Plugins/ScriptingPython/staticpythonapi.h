@@ -10,6 +10,9 @@
 #endif
 
 // A couple of compatibility defines for Python SDK before 3.11.
+#if (Py_LIMITED_API && PY_VERSION_HEX < 0x030a0000 || PY_VERSION_HEX < 0x03090000)
+#define PyThreadState_GetFrame(ts) ((ts)->->frame)
+#endif
 #if PY_VERSION_HEX < 0x030b0000
 #define PyFrame_GetGlobals(fr) ((fr)->f_globals)
 #define PyFrame_GetLocals(fr) ((fr)->f_locals)

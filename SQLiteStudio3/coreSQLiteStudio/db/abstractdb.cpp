@@ -109,6 +109,8 @@ void AbstractDb::registerUserFunctions()
         it.remove();
     }
 
+    registeredFunctions.clear();
+
     RegisteredFunction regFn;
     for (FunctionManager::ScriptFunction*& fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
     {
