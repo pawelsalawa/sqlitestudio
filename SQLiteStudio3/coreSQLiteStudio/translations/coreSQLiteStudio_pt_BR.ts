@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="350"/>
-      <location filename="../db/abstractdb.cpp" line="367"/>
+      <location filename="../db/abstractdb.cpp" line="352"/>
+      <location filename="../db/abstractdb.cpp" line="369"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="707"/>
+      <location filename="../db/abstractdb.cpp" line="709"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="956"/>
+      <location filename="../db/abstractdb.cpp" line="958"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
@@ -353,48 +353,48 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="199"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
       <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="292"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>Número inválido de argumentos para a função &apos;%1&apos;. Esperado %2, mas tem %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="404"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Nenhuma função registrada no SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="410"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>A função %1(%2) foi registrada no idioma %3, mas o plugin que suporta essa linguagem não está atualmente carregado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="428"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Expressão regular inválida: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="447"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="480"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="502"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para escrita: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="522"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Erro ao gravar o arquivo %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="540"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Idioma do script não suportado: %1</translation>
     </message>

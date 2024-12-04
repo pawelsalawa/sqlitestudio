@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="350"/>
-      <location filename="../db/abstractdb.cpp" line="367"/>
+      <location filename="../db/abstractdb.cpp" line="352"/>
+      <location filename="../db/abstractdb.cpp" line="369"/>
       <source>Cannot execute query on closed database.</source>
       <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="707"/>
+      <location filename="../db/abstractdb.cpp" line="709"/>
       <source>Error attaching database %1: %2</source>
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="956"/>
+      <location filename="../db/abstractdb.cpp" line="958"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
@@ -353,48 +353,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="199"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
       <translation>无法创建脚本上下文，可能是插件配置不正确</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="292"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>无效的参数个数。对于函数 %1，需要 %2 个，但得到 %3 个。</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="404"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>SQLiteStudio 中没有注册该函数：%1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="410"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>函数 %1(%2) 以 %3 语言注册，但是支持该语言的插件没有被正确加载。</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="428"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>无效的正则表达式模式：%1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="447"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="480"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="502"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="522"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
       <source>Error while writting to file %1: %2</source>
       <translation>写入文件 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="540"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
       <source>Unsupported scripting language: %1</source>
       <translation>不支持的脚本语言：%1</translation>
     </message>
