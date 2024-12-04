@@ -805,10 +805,11 @@ QList<SelectResolver::Column> SelectResolver::sqliteResolveColumns(Db* db, const
     for (const AliasedColumn& queryColumn : queryColumns)
     {
         if (!queryColumn.getDatabase().isNull())
-            column.database = dbNameToAttach.valueByRight(queryColumn.getDatabase(), queryColumn.getDatabase(), Qt::CaseInsensitive);
+            column.originalDatabase = dbNameToAttach.valueByRight(queryColumn.getDatabase(), queryColumn.getDatabase(), Qt::CaseInsensitive);
         else
-            column.database = QString();
+            column.originalDatabase = QString();
 
+        column.database = queryColumn.getDatabase();
         column.displayName = queryColumn.getAlias();
         if (queryColumn.getTable().isNull())
         {
