@@ -55,7 +55,9 @@ jobs:
             - name: Fix Qt for MacOS 13
               shell: bash
               run: |
-                TCFILE=$(find ${{ steps.qt-installation-dir.DIR }}/Qt/${{ env.QT_VERSION }}//mkspecs/features/ -name toolchain.prf -type f -maxdepth 1)
+                ls -l ${{ steps.qt-installation-dir.DIR }}
+                ls -l ${{ steps.qt-installation-dir.DIR }}/Qt
+                TCFILE=$(find ${{ steps.qt-installation-dir.DIR }}/Qt/${{ env.QT_VERSION }}/mkspecs/features/ -name toolchain.prf -type f -maxdepth 1)
                 echo "Updating file: $TCFILE"
                 sed -i 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
                 echo "After update:"
