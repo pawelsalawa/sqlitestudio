@@ -9,22 +9,22 @@
       <translation>偵測到舊的 SQLiteStudio 2.x.x 的設定檔。你想要將舊的設定遷移到當前版本嗎？&lt;a href=&quot;%1&quot;&gt;點選這裡進行遷移&lt;/a&gt;。</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="136"/>
+      <location filename="../configmigration.cpp" line="139"/>
       <source>Bug reports history (%1)</source>
       <translation>錯誤報告歷史 (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="145"/>
+      <location filename="../configmigration.cpp" line="148"/>
       <source>Database list (%1)</source>
       <translation>資料庫清單 (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="154"/>
+      <location filename="../configmigration.cpp" line="157"/>
       <source>Custom SQL functions (%1)</source>
       <translation>自訂 SQL 函式 (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="163"/>
+      <location filename="../configmigration.cpp" line="166"/>
       <source>SQL queries history (%1)</source>
       <translation>SQL 查詢歷史 (%1)</translation>
     </message>

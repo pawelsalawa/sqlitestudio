@@ -1,4 +1,7 @@
 <RCC>
+    <qresource prefix="/forms">
+        <file>scriptingpython.ui</file>
+    </qresource>
     <qresource prefix="/scriptingpython">
         <file>scriptingpython.png</file>
     </qresource>

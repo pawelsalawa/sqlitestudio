@@ -79,7 +79,7 @@
       <translation>要打开的数据库文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="142"/>
+      <location filename="../main.cpp" line="146"/>
       <source>Select configuration directory</source>
       <translation>选择配置目录</translation>
     </message>

@@ -14,12 +14,12 @@
       <translation>Impossible de trouver des données dans le fichier %1.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="168"/>
+      <location filename="../csvimport.cpp" line="172"/>
       <source>Enter the custom separator character.</source>
       <translation>Saisir le caractère séparateur.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="191"/>
+      <location filename="../csvimport.cpp" line="195"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>Fichiers CSV (*.csv);;Fichiers texte (*.txt);;Tous les fichiers (*)</translation>
     </message>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="57"/>
       <source>Custom:</source>
-      <translation>Personalisé :</translation>
+      <translation>Personnalisé :</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si activé, le caractère &amp;quot; sera interprété en tant qu&apos;un guillemet de valeur CSV standard, ce qui fait que la chaîne de caractère sera traitée comme une valeur unique jusqu&apos;au prochain &amp;quot; caractère (de fin). Si désactivé, le caractère &amp;quot; sera traité comme tout autre caractère. Habituellement, vous souhaitez que ça soit activé.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
@@ -69,7 +69,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tableaux en tant que données régulières.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Activez cette option si la première ligne de données de votre fichier CSV représente les noms des colonnes. Vous ne voulez pas que les noms de colonnes soient importés dans les tables en tant que données régulières.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="23"/>

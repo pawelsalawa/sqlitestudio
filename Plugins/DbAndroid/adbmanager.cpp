@@ -418,7 +418,11 @@ void AdbManager::updateDeviceList()
     if (!plugin->isAdbValid())
         return;
 
+#if QT_VERSION >= 0x060000
+    updateDevicesFuture = QtConcurrent::run(&AdbManager::getDevicesInternal, this, true);
+#else
     updateDevicesFuture = QtConcurrent::run(this, &AdbManager::getDevicesInternal, true);
+#endif
 }
 
 void AdbManager::handleNewDeviceList(const QStringList& devices)
@@ -427,7 +431,7 @@ void AdbManager::handleNewDeviceList(const QStringList& devices)
         return;
 
     currentDeviceList = devices;
-    QtConcurrent::run(this, &AdbManager::updateDetails, devices);
+    runInThread([=, this]{ updateDetails(devices); });
 
     emit deviceListChanged(devices);
 }

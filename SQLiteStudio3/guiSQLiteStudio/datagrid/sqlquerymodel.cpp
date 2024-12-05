@@ -81,7 +81,7 @@ void SqlQueryModel::setAsyncMode(bool enabled)
     queryExecutor->setAsyncMode(enabled);
 }
 
-void SqlQueryModel::executeQuery()
+void SqlQueryModel::executeQuery(bool enforcePage0)
 {
     if (queryExecutor->isExecutionInProgress())
     {
@@ -91,7 +91,7 @@ void SqlQueryModel::executeQuery()
 
     queryExecutor->setSkipRowCounting(false);
     queryExecutor->setSortOrder(sortOrder);
-    queryExecutor->setPage(0);
+    queryExecutor->setPage(page > -1 && !enforcePage0 ? page : 0);
     queryExecutor->setForceSimpleMode(simpleExecutionMode);
     reloading = false;
 
@@ -155,6 +155,23 @@ bool SqlQueryModel::isEmptyQuery() const
         return false;
 
     return true;
+}
+
+void SqlQueryModel::restoreFocusedCell()
+{
+    if (!storedFocus.isValid() || getCurrentPage() != storedFocus.forPage || getRowsPerPage() != storedFocus.forRowsPerPage ||
+            queryExecutor->getFilters() != storedFocus.forFilter)
+    {
+        forgetFocusedCell();
+        return;
+    }
+
+    QModelIndex idx = index(storedFocus.row, storedFocus.column);
+    if (idx.isValid())
+    {
+        view->setCurrentIndex(idx);
+        view->scrollTo(idx, QAbstractItemView::EnsureVisible);
+    }
 }
 
 void SqlQueryModel::internalExecutionStopped()
@@ -712,6 +729,21 @@ void SqlQueryModel::detachDependencyTables()
     dbListToDetach.clear();
 }
 
+void SqlQueryModel::rememberFocusedCell()
+{
+    QModelIndex idx = getView()->currentIndex();
+    storedFocus.row = idx.row();
+    storedFocus.column = idx.column();
+    storedFocus.forPage = getCurrentPage();
+    storedFocus.forRowsPerPage = getRowsPerPage();
+    storedFocus.forFilter = queryExecutor->getFilters();
+}
+
+void SqlQueryModel::forgetFocusedCell()
+{
+    storedFocus.reset();
+}
+
 QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& items)
 {
     QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
@@ -720,6 +752,17 @@ QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& i
     BiStrHash attachMap = BiStrHash(attachDependencyTables().toQHash());
     QString sql = generator.generateSelectFromSelect(db, getQuery(), values, attachMap);
     detachDependencyTables();
+
+    return sql;
+}
+
+QString SqlQueryModel::generateSelectFunctionQueryForItems(const QString& function, const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+    QStringList orderedColumns = toOrderedColumnNames(items);
+
+    QueryGenerator generator;
+    QString sql = generator.generateSelectFunction(function, orderedColumns, values);
 
     return sql;
 }
@@ -1178,6 +1221,22 @@ QHash<QString, QVariantList> SqlQueryModel::toValuesGroupedByColumns(const QList
     return values;
 }
 
+QStringList SqlQueryModel::toOrderedColumnNames(const QList<SqlQueryItem*>& items)
+{
+    QStringList cols;
+    int row = -1;
+    QMap<int,QList<SqlQueryItem*>> itemsByRow;
+    for (SqlQueryItem* item : items)
+    {
+        if (row != -1 && item->row() != row)
+            break;
+        row = item->row();
+        cols << item->getColumn()->displayName;
+    }
+
+    return cols;
+}
+
 bool SqlQueryModel::supportsModifyingQueriesInMenu() const
 {
     return false;
@@ -1439,6 +1498,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
         results.clear();
         detachDatabases();
     }
+    restoreFocusedCell();
 }
 
 void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
@@ -1622,7 +1682,11 @@ void SqlQueryModel::storeStep1NumbersFromExecution()
 {
     lastExecutionTime = queryExecutor->getLastExecutionTime();
     page = queryExecutor->getPage();
-    sortOrder = queryExecutor->getSortOrder();
+
+    QueryExecutor::SortList newSortOrder = queryExecutor->getSortOrder();
+    if (!sortOrder.isEmpty() && newSortOrder.isEmpty())
+        notifyWarn(tr("There are less columns in the new query, sort order has been reset."));
+    sortOrder = newSortOrder;
     rowsAffected = queryExecutor->getRowsAffected();
 
     if (!queryExecutor->getSkipRowCounting())
@@ -2293,4 +2357,18 @@ QString SqlQueryModel::SelectCellsQueryBuilder::getTable() const
 QString SqlQueryModel::SelectCellsQueryBuilder::getDatabase() const
 {
     return database;
+}
+
+bool SqlQueryModel::StoredFocus::isValid()
+{
+    return row > -1 && column > -1;
+}
+
+void SqlQueryModel::StoredFocus::reset()
+{
+    row = -1;
+    column = -1;
+    forFilter.clear();
+    forRowsPerPage = -1;
+    forPage = -1;
 }

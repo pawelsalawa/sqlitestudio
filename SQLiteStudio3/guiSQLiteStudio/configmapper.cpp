@@ -111,7 +111,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     QComboBox* cb = dynamic_cast<QComboBox*>(widget);
     if (cb)
     {
-        if (cfgEntry->get().type() == QVariant::Int)
+        if (cfgEntry->get().userType() == QMetaType::Int)
         {
             cb->setCurrentIndex(value.toInt());
             if (cb->currentIndex() != value.toInt())
@@ -136,7 +136,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, key, QLineEdit, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, key, QTextEdit, SIGNAL(textChanged()));
     APPLY_NOTIFIER(widget, key, QPlainTextEdit, SIGNAL(textChanged()));
-    APPLY_NOTIFIER(widget, key, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, key, QSpinBox, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, key, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
     APPLY_NOTIFIER(widget, key, FontEdit, SIGNAL(fontChanged(QFont)));
     APPLY_NOTIFIER(widget, key, FileEdit, SIGNAL(fileChanged(QString)));
@@ -144,7 +144,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, key, ColorButton, SIGNAL(colorChanged(QColor)));
     APPLY_NOTIFIER(widget, key, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
     APPLY_NOTIFIER_COND(widget, key, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
-    if (key->get().type() == QVariant::Int)
+    if (key->get().userType() == QMetaType::Int)
     {
         APPLY_NOTIFIER(widget, key, QComboBox, SIGNAL(currentIndexChanged(int)));
     }
@@ -179,7 +179,7 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
     GET_CFG_VALUE(widget, key, ColorButton, getColor);
     GET_CFG_VALUE_COND_OK(widget, key, ConfigRadioButton, getAssignedValue, isChecked, ok, QVariant());
     GET_CFG_VALUE_COND(widget, key, QGroupBox, isChecked, isCheckable);
-    if (key->get().type() == QVariant::Int)
+    if (key->get().userType() == QMetaType::Int)
     {
         GET_CFG_VALUE(widget, key, QComboBox, currentIndex);
     }
@@ -362,6 +362,7 @@ QString ConfigMapper::getConfigFullKeyForWidget(QWidget* widget)
 void ConfigMapper::handleSpecialWidgets(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
     handleConfigComboBox(widget, allConfigEntries);
+    handleFileEdit(widget, allConfigEntries);
 }
 
 void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
@@ -381,6 +382,26 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
     {
         specialConfigEntryToWidgets.insert(key, widget);
         connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateConfigComboModel(QVariant)));
+    }
+}
+
+void ConfigMapper::handleFileEdit(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
+{
+    FileEdit* fileEdit = dynamic_cast<FileEdit*>(widget);
+    if (!fileEdit)
+        return;
+
+    CfgEntry* key = getEntryForProperty(widget, "modelName", allConfigEntries);
+    if (!key)
+        return;
+
+    QStringList list = key->get().toStringList();
+    fileEdit->setChoicesModel(new QStringListModel(list));
+
+    if (realTimeUpdates)
+    {
+        specialConfigEntryToWidgets.insert(key, widget);
+        connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateFileEditChoicesModel(QVariant)));
     }
 }
 
@@ -440,7 +461,6 @@ void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
 
     saveCommonConfigFromWidget(widget, cfgEntry);
 }
-
 
 bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 {
@@ -553,7 +573,7 @@ void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, Q
 
     CfgEntry* cfg = allConfigEntries[boolDependency];
     QVariant cfgValue = cfg->get();
-    if (cfgValue.userType() != QVariant::Bool)
+    if (cfgValue.userType() != QMetaType::Bool)
     {
         qWarning() << "Config widget" << widget->objectName() << "has bool dependency defined for" << boolDependency << "but that dependency has different type:" << cfgValue.userType();
         return;
@@ -716,6 +736,21 @@ void ConfigMapper::updateConfigComboModel(const QVariant& value)
     ccb->setModel(new QStringListModel(newList));
     if (newList.contains(cText))
         ccb->setCurrentText(cText);
+}
+
+void ConfigMapper::updateFileEditChoicesModel(const QVariant& value)
+{
+    CfgEntry* key = dynamic_cast<CfgEntry*>(sender());
+    if (!specialConfigEntryToWidgets.contains(key))
+        return;
+
+    QWidget* w = specialConfigEntryToWidgets.value(key);
+    FileEdit* fileEdit = dynamic_cast<FileEdit*>(w);
+    if (!w)
+        return;
+
+    QStringList newList = value.toStringList();
+    fileEdit->setChoicesModel(new QStringListModel(newList));
 }
 
 void ConfigMapper::notifiableConfigKeyChanged()

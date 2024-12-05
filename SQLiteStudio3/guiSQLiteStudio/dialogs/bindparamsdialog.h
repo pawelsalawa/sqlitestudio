@@ -2,6 +2,7 @@
 #define BINDPARAMSDIALOG_H
 
 #include <QDialog>
+#include <QHash>
 
 namespace Ui {
     class BindParamsDialog;

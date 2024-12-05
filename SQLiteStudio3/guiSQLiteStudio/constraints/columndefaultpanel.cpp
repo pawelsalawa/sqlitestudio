@@ -139,6 +139,8 @@ void ColumnDefaultPanel::storeConfiguration()
 
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+    else
+        constr->name.clear();
 }
 
 void ColumnDefaultPanel::storeExpr(SqliteCreateTable::Column::Constraint* constr)

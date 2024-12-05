@@ -8,16 +8,17 @@
 #include <QtGlobal>
 #include <QDebug>
 #include <QList>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QDir>
 #include <QFileInfo>
 #include <QDataStream>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDateTime>
 #include <QSysInfo>
 #include <QCoreApplication>
 #include <QStandardPaths>
 #include <QSettings>
-#include <QtConcurrent/QtConcurrentRun>
 #include <QtWidgets/QFileDialog>
 
 static_qstring(DB_FILE_NAME, "settings3");
@@ -105,7 +106,7 @@ bool ConfigImpl::isMassSaving() const
 
 void ConfigImpl::set(const QString &group, const QString &key, const QVariant &value)
 {
-    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeToBytes(value)});
+    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeToBytes(value, dataStreamVersion)});
 }
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
@@ -249,7 +250,11 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 
 void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QVariant parent = QVariant(QVariant::LongLong);
+#else
+    QVariant parent = QVariant(QMetaType::fromType<qlonglong>());
+#endif
     if (parentId > -1)
         parent = parentId;
 
@@ -306,24 +311,24 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
     }
 
     sqlHistoryMutex.lock();
-    QtConcurrent::run(this, &ConfigImpl::asyncAddSqlHistory, sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected);
+    runInThread([=, this]{ asyncAddSqlHistory(sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected); });
     return sqlHistoryId++;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
     sqlHistoryMutex.lock();
-    QtConcurrent::run(this, &ConfigImpl::asyncUpdateSqlHistory, id, sql, dbName, timeSpentMillis, rowsAffected);
+    runInThread([=, this]{ asyncUpdateSqlHistory(id, sql, dbName, timeSpentMillis, rowsAffected); });
 }
 
 void ConfigImpl::clearSqlHistory()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncClearSqlHistory);
+    runInThread([=, this]{ asyncClearSqlHistory(); });
 }
 
 void ConfigImpl::deleteSqlHistory(const QList<qint64>& ids)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncDeleteSqlHistory, ids);
+    runInThread([=, this]{ asyncDeleteSqlHistory(ids); });
 }
 
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
@@ -336,17 +341,17 @@ QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 
 void ConfigImpl::addCliHistory(const QString& text)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncAddCliHistory, text);
+    runInThread([=, this]{ asyncAddCliHistory(text); });
 }
 
 void ConfigImpl::applyCliHistoryLimit()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncApplyCliHistoryLimit);
+    runInThread([=, this]{ asyncApplyCliHistoryLimit(); });
 }
 
 void ConfigImpl::clearCliHistory()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncClearCliHistory);
+    runInThread([=, this]{ asyncClearCliHistory(); });
 }
 
 QStringList ConfigImpl::getCliHistory() const
@@ -362,12 +367,12 @@ QStringList ConfigImpl::getCliHistory() const
 
 void ConfigImpl::addBindParamHistory(const QVector<QPair<QString, QVariant> >& params)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncAddBindParamHistory, params);
+    runInThread([=, this]{ asyncAddBindParamHistory(params); });
 }
 
 void ConfigImpl::applyBindParamHistoryLimit()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncApplyBindParamHistoryLimit);
+    runInThread([=, this]{ asyncApplyBindParamHistoryLimit(); });
 }
 
 QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringList& paramNames) const
@@ -422,12 +427,12 @@ QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringL
 
 void ConfigImpl::addPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant> >& columnsPluginsConfig)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncAddPopulateHistory, database, table, rows, columnsPluginsConfig);
+    runInThread([=, this]{ asyncAddPopulateHistory(database, table, rows, columnsPluginsConfig); });
 }
 
 void ConfigImpl::applyPopulateHistoryLimit()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncApplyPopulateHistoryLimit);
+    runInThread([=, this]{ asyncApplyPopulateHistoryLimit(); });
 }
 
 QHash<QString, QPair<QString, QVariant>> ConfigImpl::getPopulateHistory(const QString& database, const QString& table, int& rows) const
@@ -478,7 +483,8 @@ QVariant ConfigImpl::getPopulateHistory(const QString& pluginName) const
 
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncAddDdlHistory, queries, dbName, dbFile);
+    ddlHistoryMutex.lock();
+    runInThread([=, this]{ asyncAddDdlHistory(queries, dbName, dbFile); });
 }
 
 QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
@@ -502,7 +508,7 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
         entry = DdlHistoryEntryPtr::create();
         entry->dbName = dbName;
         entry->dbFile = dbFile;
-        entry->timestamp = QDateTime::fromTime_t(row->value("timestamp").toUInt());
+        entry->timestamp = QDateTime::fromSecsSinceEpoch(row->value("timestamp").toLongLong());
         entry->queries = row->value("queries").toString();
         entries << entry;
     }
@@ -519,12 +525,12 @@ DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 
 void ConfigImpl::clearDdlHistory()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncClearDdlHistory);
+    runInThread([=, this]{ asyncClearDdlHistory(); });
 }
 
 void ConfigImpl::addReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncAddReportHistory, isFeatureRequest, title, url);
+    runInThread([=, this]{ asyncAddReportHistory(isFeatureRequest, title, url); });
 }
 
 QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
@@ -552,12 +558,12 @@ QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
 
 void ConfigImpl::deleteReport(int id)
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncDeleteReport, id);
+    runInThread([=, this]{ asyncDeleteReport(id); });
 }
 
 void ConfigImpl::clearReportHistory()
 {
-    QtConcurrent::run(this, &ConfigImpl::asyncClearReportHistory);
+    runInThread([=, this]{ asyncClearReportHistory(); });
 }
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
@@ -616,6 +622,12 @@ QString ConfigImpl::getLegacyConfigPath()
 #endif
 }
 
+void ConfigImpl::dropTables(const QList<QString>& tables)
+{
+    for (const QString& table : tables)
+        db->exec("DROP TABLE " + table);
+}
+
 void ConfigImpl::initTables()
 {
     SqlQueryPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
@@ -623,9 +635,7 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("version"))
     {
-        for (const QString& table : tables)
-            db->exec("DROP TABLE "+table);
-
+        dropTables(tables);
         tables.clear();
         db->exec("CREATE TABLE version (version NUMERIC)");
         db->exec("INSERT INTO version VALUES ("+QString::number(SQLITESTUDIO_CONFIG_VERSION)+")");
@@ -682,6 +692,10 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("reports_history"))
         db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
+
+    if (!tables.contains("script_functions"))
+        db->exec("CREATE TABLE script_functions (name TEXT, lang TEXT, code TEXT, \"initCode\" TEXT, \"finalCode\" TEXT, databases TEXT, arguments TEXT,"
+                 " \"type\" INTEGER, \"undefinedArgs\" BOOLEAN, \"allDatabases\" BOOLEAN, deterministic BOOLEAN)");
 }
 
 void ConfigImpl::initDbFile()
@@ -810,7 +824,7 @@ QVariant ConfigImpl::deserializeValue(const QVariant &value) const
         return QVariant();
 
     QByteArray bytes = value.toByteArray();
-    return deserializeFromBytes(bytes);
+    return deserializeFromBytes(bytes, dataStreamVersion);
 }
 
 void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
@@ -979,7 +993,7 @@ void ConfigImpl::asyncAddPopulateHistory(const QString& database, const QString&
 
     for (QHash<QString, QPair<QString, QVariant>>::const_iterator colIt = columnsPluginsConfig.begin(); colIt != columnsPluginsConfig.end(); colIt++)
     {
-        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeToBytes(colIt.value().second)});
+        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeToBytes(colIt.value().second, dataStreamVersion)});
         if (results->isError())
         {
             qWarning() << "Failed to store Populating history entry, due to SQL error:" << db->getErrorText();
@@ -1014,7 +1028,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
     static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
     db->begin();
-    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
+    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toSecsSinceEpoch(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
@@ -1030,6 +1044,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
         }
     }
     db->commit();
+    ddlHistoryMutex.unlock();
 
     emit ddlHistoryRefreshNeeded();
 }
@@ -1043,7 +1058,7 @@ void ConfigImpl::asyncClearDdlHistory()
 void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
     static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
-    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toTime_t(), title, url});
+    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toSecsSinceEpoch(), title, url});
     emit reportsHistoryRefreshNeeded();
 }
 
@@ -1128,6 +1143,29 @@ void ConfigImpl::updateConfigDb()
         {
             // 2->3
             db->exec("ALTER TABLE groups ADD db_expanded INTEGER DEFAULT 0");
+            Q_FALLTHROUGH();
+        }
+        case 3:
+        {
+            // 3->4
+            QVariant oldFuncs = get("Internal", "Functions");
+            if (oldFuncs.isValid() && !oldFuncs.isNull())
+            {
+                for (const QVariant& var : oldFuncs.toList())
+                {
+                    QHash<QString, QVariant> fnHash = var.toHash();
+                    db->exec("INSERT INTO script_functions"
+                             " (name, lang, code, \"initCode\", \"finalCode\", databases, arguments, \"type\", \"undefinedArgs\", \"allDatabases\", deterministic)"
+                             " VALUES (?, REPLACE(?, 'QtScript', 'JavaScript'), ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                             { fnHash["name"].toString(), fnHash["lang"].toString(),
+                               fnHash["code"].toString(), fnHash["initCode"].toString(), fnHash["finalCode"].toString(),
+                               QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["databases"].toList())).toJson(QJsonDocument::Compact)),
+                               QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["arguments"].toList())).toJson(QJsonDocument::Compact)),
+                               fnHash["type"].toInt(), fnHash["undefinedArgs"].toBool(), fnHash["allDatabases"].toBool(),
+                               fnHash["deterministic"].toBool() });
+                }
+            }
+            db->exec("DELETE FROM settings WHERE [group] = 'Internal' AND [key] = 'Functions'");
         }
         // Add cases here for next versions,
         // without a "break" instruction,
@@ -1173,4 +1211,38 @@ void ConfigImpl::refreshDdlHistory()
 {
     if (ddlHistoryModel)
         ddlHistoryModel->refresh();
+}
+
+QList<QHash<QString, QVariant> > ConfigImpl::getScriptFunctions()
+{
+    QList<QHash<QString, QVariant> > list;
+    SqlQueryPtr results = db->exec("SELECT * FROM script_functions");
+    while (results->hasNext())
+    {
+        SqlResultsRowPtr row = results->next();
+        QHash<QString, QVariant> fnHash = row->valueMap();
+        fnHash["databases"] = QJsonDocument::fromJson(row->value("databases").toByteArray()).toVariant();
+        fnHash["arguments"] = QJsonDocument::fromJson(row->value("arguments").toByteArray()).toVariant();
+        list << fnHash;
+    }
+    return list;
+}
+
+void ConfigImpl::setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions)
+{
+    db->begin();
+    db->exec("DELETE FROM script_functions");
+    for (const QHash<QString, QVariant>& fnHash : newFunctions)
+    {
+        db->exec("INSERT INTO script_functions"
+                 " (name, lang, code, \"initCode\", \"finalCode\", databases, arguments,"
+                 "  \"type\", \"undefinedArgs\", \"allDatabases\", deterministic)"
+                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                 {fnHash["name"].toString(), fnHash["lang"].toString(),
+                  fnHash["code"].toString(), fnHash["initCode"].toString(), fnHash["finalCode"].toString(),
+                  QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["databases"].toList())).toJson(QJsonDocument::Compact)),
+                  QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["arguments"].toList())).toJson(QJsonDocument::Compact)),
+                  fnHash["type"], fnHash["undefinedArgs"], fnHash["allDatabases"], fnHash["deterministic"]});
+    }
+    db->commit();
 }

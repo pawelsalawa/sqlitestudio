@@ -184,6 +184,36 @@ QString QueryGenerator::generateSelectFromTableOrView(Db* db, const QString& dat
     return tpl.arg(wrappedCols.join(", "), target, conditionStr);
 }
 
+QString QueryGenerator::generateSelectFunction(const QString& function, const QStringList& columns, const QHash<QString, QVariantList> values)
+{
+    // To make SQLite evaluate every function call just once, we're placing the
+    // function calls in the VALUES clause (making them operate on literal arguments), e.g.:
+    // WITH data ([upper(a)], [upper(b)]) AS (
+    //     VALUES (upper('apple'), upper('banana'))
+    // ) SELECT * from data;
+    static_qstring(tpl, "WITH data (%1) AS (VALUES %2) SELECT * FROM data");
+    static_qstring(functionCallTpl, "%1(\\1)");
+    static_qstring(rowTpl, "(%1)");
+
+    // Group values into rows
+    QStringList valueSets = toValueSets(columns, values, function + "(%1)");
+    QString valueStr = rowTpl.arg(valueSets.join("), ("));
+
+    // Wrap given column names
+    QStringList wrappedCols = wrapObjNamesIfNeeded(columns);
+
+    // Create expressions
+    QRegularExpression re("^(.*)$");
+    QStringList expressions;
+    for (QString col : wrappedCols)
+       expressions << col.replace(re, functionCallTpl.arg(function));
+
+    // Use expressions as column names
+    QStringList resultWrappedCols = wrapObjNamesIfNeeded(expressions);
+
+    return tpl.arg(resultWrappedCols.join(", "), valueStr);
+}
+
 QString QueryGenerator::getAlias(const QString& name, QSet<QString>& usedAliases)
 {
     static_qstring(tpl, "%2%1");
@@ -259,7 +289,8 @@ QString QueryGenerator::toFullObjectName(const QString& database, const QString&
     return tpl.arg(dbName, wrapObjIfNeeded(object));
 }
 
-QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHash<QVariantList> values)
+QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHash<QVariantList> values,
+                                        const QString& format)
 {
     QStringList rows;
     QVariantList rowValues;
@@ -272,7 +303,14 @@ QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHas
             rowValues << values[col][i];
 
         valueList = valueListToSqlList(rowValues);
-        rows << valueList.join(", ");
+        QString row;
+        for (QString value : valueList)
+        {
+            if (row.size() > 0)
+                row.append(", ");
+            row.append(format.isEmpty() ? value : format.arg(value));
+        }
+        rows << row;
     }
 
     return rows;

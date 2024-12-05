@@ -423,13 +423,13 @@ void PdfExport::exportDataRow(const QList<QVariant>& data)
 
     for (const QVariant& value : data)
     {
-        switch (value.type())
+        switch (value.userType())
         {
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
-            case QVariant::Double:
+            case QMetaType::Int:
+            case QMetaType::UInt:
+            case QMetaType::LongLong:
+            case QMetaType::ULongLong:
+            case QMetaType::Double:
                 cell.alignment = Qt::AlignRight;
                 break;
             default:

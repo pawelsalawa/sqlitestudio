@@ -13,7 +13,6 @@
 #include <QSet>
 #include <QDebug>
 #include <QPainter>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QStyle>
 #include <QScreen>
@@ -35,7 +34,7 @@ const QStringList pageSizes = map<QPageSize::PageSizeId, QString>(pageSizeIds, [
 
 const QStringList pageSizesWithDimensions;
 
-QString getDbPath(const QString &startWith)
+QString getDbPath(bool newFileMode, const QString &startWith)
 {
     QString dir = startWith;
     if (dir.isNull())
@@ -48,8 +47,15 @@ QString getDbPath(const QString &startWith)
     });
 
     QFileDialog dialog(nullptr, QObject::tr("Select database file"), dir, QString());
-    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setAcceptMode(newFileMode ? QFileDialog::AcceptSave : QFileDialog::AcceptOpen);
+
+    /* As we don't actually overwrite a selected existing database file, switch off the
+     * overwrite warning.
+     * FIXME: QFileDialog::DontConfirmOverwrite does not work on MacOS native dialogs.
+     * Probably some better UX is needed.
+     */
     dialog.setOption(QFileDialog::DontConfirmOverwrite, true);
+
     dialog.setLabelText(QFileDialog::Accept, QObject::tr("Select"));
     dialog.setLabelText(QFileDialog::FileType, QObject::tr("File type"));
     dialog.setNameFilters(filters);
@@ -95,6 +101,11 @@ void setValidStateTooltip(QWidget* widget, const QString& tip)
 {
     INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::HINT);
     INDICATOR(widget)->setVisible(widget->isEnabled(), tip);
+}
+
+bool isValidStateIndicatorVisible(QWidget* widget)
+{
+    return EXISTS_INDICATOR(widget) && INDICATOR(widget)->isVisible();
 }
 
 QString convertPageSize(QPageSize::PageSizeId size)
@@ -163,7 +174,7 @@ void fixToolbarTooltips(QToolBar* toolbar)
             continue;
 
         QString text = action->text();
-        text = text.replace(QRegExp("\\s?\\(&.\\)$"),""); // issue #4261, for Chinese
+        text = text.replace(QRegularExpression("\\s?\\(&.\\)$"),""); // issue #4261, for Chinese
         text = text.replace("&", ""); // issue #4218
         if (!action->shortcut().isEmpty())
             text += QString(" (%1)").arg(action->shortcut().toString());

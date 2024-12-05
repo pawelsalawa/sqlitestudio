@@ -20,7 +20,11 @@ bool ImmediateTooltip::eventFilter(QObject* obj, QEvent* event)
         case QEvent::Enter:
         {
             QEnterEvent* e = dynamic_cast<QEnterEvent*>(event);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             QToolTip::showText(e->globalPos(), toolTip);
+#else
+            QToolTip::showText(e->globalPosition().toPoint(), toolTip);
+#endif
             break;
         }
         case QEvent::Leave:

@@ -228,6 +228,14 @@
                <string notr="true">formatterPluginsPage</string>
               </property>
              </item>
+             <item>
+              <property name="text">
+               <string>Scripting languages</string>
+              </property>
+              <property name="statusTip">
+               <string notr="true">scriptingPluginsPage</string>
+              </property>
+             </item>
             </item>
            </widget>
           </item>

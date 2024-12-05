@@ -865,6 +865,9 @@ void TableWindow::changesSuccessfullyCommitted()
             }
         }
     }
+
+    if (ui->tabWidget->currentIndex() == getDataTabIdx())
+        ui->dataView->refreshData();
 }
 
 void TableWindow::changesFailedToCommit(int errorCode, const QString& errorText)
@@ -1310,7 +1313,7 @@ void TableWindow::importTable()
     ImportDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::populateTable()
@@ -1318,7 +1321,7 @@ void TableWindow::populateTable()
     PopulateDialog dialog(this);
     dialog.setDbAndTable(db, table);
     if (dialog.exec() == QDialog::Accepted && dataLoaded)
-        ui->dataView->refreshData();
+        ui->dataView->refreshData(false);
 }
 
 void TableWindow::createSimilarTable()
@@ -1336,21 +1339,27 @@ void TableWindow::tabChanged(int newTab)
     {
         if (isModified())
         {
-            int res = QMessageBox::question(this, tr("Uncommitted changes"),
-                                            tr("There are uncommitted structure modifications. You cannot browse or edit data until you have "
-                                               "table structure settled.\n"
-                                               "Do you want to commit the structure, or do you want to go back to the structure tab?"),
-                                            tr("Go back to structure tab"), tr("Commit modifications and browse data."));
+            QMessageBox box(QMessageBox::Question, tr("Uncommitted changes"),
+                            tr("There are uncommitted structure modifications."),
+                            QMessageBox::NoButton, this);
+            box.setInformativeText(tr("You cannot browse or edit data until you have "
+                                      "table structure settled.\n"
+                                      "Do you want to commit the structure, or do you want to go back to the structure tab?"));
+            box.addButton(tr("Go back to structure tab"), QMessageBox::RejectRole);
+            QAbstractButton* commitButton = box.addButton(tr("Commit modifications and browse data"),
+                                                          QMessageBox::ApplyRole);
+            box.exec();
 
-            ui->tabWidget->setCurrentIndex(0);
-            if (res == 1)
+            if (box.clickedButton() == commitButton)
                 commitStructure(true);
+            else
+                focusStructureTab();
 
             return;
         }
 
         if (!dataLoaded)
-            ui->dataView->refreshData();
+            ui->dataView->refreshData(false);
     }
 }
 
@@ -1642,6 +1651,16 @@ void TableWindow::delColumn(const QString& columnName)
         return;
 
     delColumn(colIdx);
+}
+
+void TableWindow::focusStructureTab()
+{
+    ui->tabWidget->setCurrentIndex(getStructureTabIdx());
+}
+
+void TableWindow::focusDataTab()
+{
+    ui->tabWidget->setCurrentIndex(getDataTabIdx());
 }
 
 void TableWindow::updateTabsOrder()

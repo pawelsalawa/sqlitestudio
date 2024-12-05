@@ -2,28 +2,14 @@
 #include "common/ipvalidator.h"
 #include <QStringList>
 
-DbAndroidUrl::DbAndroidUrl()
-{
-}
-
 DbAndroidUrl::DbAndroidUrl(DbAndroidMode enforcedMode) :
     enforcedMode(enforcedMode)
-{
-}
-
-DbAndroidUrl::DbAndroidUrl(const DbAndroidUrl& other) :
-    enforcedMode(other.enforcedMode), host(other.host), device(other.device), port(other.port), dbName(other.dbName), password(other.password),
-    application(other.application)
 {
 }
 
 DbAndroidUrl::DbAndroidUrl(const QString& path, bool obfuscatedPassword)
 {
     parse(path, obfuscatedPassword);
-}
-
-DbAndroidUrl::~DbAndroidUrl()
-{
 }
 
 QString DbAndroidUrl::toUrlString(bool obfuscatedPassword) const

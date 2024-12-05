@@ -20,8 +20,6 @@ void SqlViewModel::setDatabaseAndView(const QString& database, const QString& vi
     this->view = view;
     //setQuery("SELECT * FROM "+getDataSource());
     updateTablesInUse(view);
-
-    SchemaResolver resolver(db);
 }
 
 QString SqlViewModel::getDataSource()

@@ -8,11 +8,14 @@
 class DbAndroidUrl
 {
     public:
-        DbAndroidUrl();
-        DbAndroidUrl(const DbAndroidUrl& other);
+        DbAndroidUrl() = default;
+        DbAndroidUrl(const DbAndroidUrl& other) = default;
         explicit DbAndroidUrl(DbAndroidMode enforcedMode);
         explicit DbAndroidUrl(const QString& path, bool obfuscatedPassword = true);
-        ~DbAndroidUrl();
+        ~DbAndroidUrl() = default;
+
+        DbAndroidUrl& operator=(const DbAndroidUrl&) = default;
+        DbAndroidUrl& operator=(DbAndroidUrl&&) = default;
 
         QString toUrlString(bool obfuscatedPassword = true) const;
         QUrl toUrl(bool obfuscatedPassword = true) const;

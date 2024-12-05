@@ -1,8 +1,7 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3410200'
-    SQLITE_RELEASE_YEAR: '2023'
-    PYTHON_VERSION: '3.9'
+    SQLITE_VERSION: '3470100'
+    SQLITE_RELEASE_YEAR: '2024'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: Unit tests
@@ -11,8 +10,6 @@ on:
     push:
         branches:
             - master
-            - 3.2
-            - 3.3
             - 3.4
         paths:
             - '**.cpp'
@@ -31,26 +28,31 @@ jobs:
 
         strategy:
             matrix:
-                QT_VERSION: ['5.15.2']
+                include:
+                    - QT_VERSION: '6.2.4'
+                      PYTHON_VERSION: '3.9'
+                    - QT_VERSION: '6.5.3'
+                      PYTHON_VERSION: '3.9'
+                    - QT_VERSION: '6.8.0'
+                      PYTHON_VERSION: '3.12'
 
         steps:
             - uses: actions/setup-python@v4
               with:
-                python-version: ${{ env.PYTHON_VERSION }}
+                python-version: ${{ matrix.PYTHON_VERSION }}
                 architecture: 'x64'
-              
+                
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
               
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
+              uses: jurplel/install-qt-action@v4
               with:
                 cache: true
                 version: ${{ matrix.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
-                aqtversion: '==3.0.*'
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
                 extra: '--external 7z'
@@ -103,7 +105,7 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" ../../../Plugins
+                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python${{ matrix.PYTHON_VERSION }}" "LIBS += -L$pythonLocation/lib" ../../../Plugins
                 make -j 1
 
             - name: Run tests

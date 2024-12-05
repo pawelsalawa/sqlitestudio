@@ -331,30 +331,30 @@ QString ScriptingTcl::tclObjToString(Tcl_Obj* obj)
 Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
 {
     Tcl_Obj* obj = nullptr;
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::Bool:
+        case QMetaType::Bool:
             obj = Tcl_NewBooleanObj(value.toBool());
             break;
-        case QVariant::Int:
-        case QVariant::UInt:
+        case QMetaType::Int:
+        case QMetaType::UInt:
             obj = Tcl_NewIntObj(value.toInt());
             break;
-        case QVariant::LongLong:
-        case QVariant::ULongLong:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
             obj = Tcl_NewWideIntObj((Tcl_WideInt)value.toLongLong());
             break;
-        case QVariant::Double:
+        case QMetaType::Double:
             obj = Tcl_NewDoubleObj(value.toDouble());
             break;
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray bytes = value.toByteArray();
             unsigned char* ubytes = reinterpret_cast<unsigned char*>(bytes.data());
             obj = Tcl_NewByteArrayObj(ubytes, bytes.size());
             break;
         }
-        case QVariant::List:
+        case QMetaType::QVariantList:
         {
             QList<QVariant> list = value.toList();
             int listSize = list.size();
@@ -366,7 +366,7 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
             delete[] objList;
             break;
         }
-        case QVariant::StringList:
+        case QMetaType::QStringList:
         {
             QStringList list = value.toStringList();
             int listSize = list.size();
@@ -378,7 +378,7 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
             delete[] objList;
             break;
         }
-        case QVariant::Hash:
+        case QMetaType::QVariantHash:
         {
             QHash<QString, QVariant> hash = value.toHash();
             obj = Tcl_NewDictObj();
@@ -390,7 +390,7 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
             }
             break;
         }
-        case QVariant::Map:
+        case QMetaType::QVariantMap:
         {
             QMap<QString, QVariant> map = value.toMap();
             obj = Tcl_NewDictObj();
@@ -402,7 +402,7 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
             }
             break;
         }
-        case QVariant::String:
+        case QMetaType::QString:
         default:
             obj = stringToTclObj(value.toString());
             break;

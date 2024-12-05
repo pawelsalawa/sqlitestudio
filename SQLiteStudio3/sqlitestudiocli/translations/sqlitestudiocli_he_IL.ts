@@ -111,7 +111,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="10"/>
       <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-      <translation type="unfinished">Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</translation>
+      <translation>לא ניתן לקרוא ל־%1 כשלא מוגדר מסד נתונים עדכני. נא להגדיר את מסד הנתונים הנוכחי באמצעות פקודה %2 או להעביר את שם מסד הנתונים ל־%3.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="21"/>
@@ -131,8 +131,8 @@
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
-      <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-      <translation type="unfinished">Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</translation>
+      <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
+      <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -825,7 +825,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>קובץ SQL</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
@@ -835,7 +835,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>מקודד</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>

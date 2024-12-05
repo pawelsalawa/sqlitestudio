@@ -9,12 +9,13 @@
 #include "services/dbmanager.h"
 #include "dbandroidconnectionfactory.h"
 #include "iconmanager.h"
-#include <QUrl>
+#include "common/utils.h"
 #include <QDebug>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QDesktopServices>
-#include <QtConcurrent/QtConcurrent>
+#include <QPushButton>
+#include <QUrl>
 
 DbAndroid::DbAndroid()
 {
@@ -102,9 +103,7 @@ bool DbAndroid::init()
         showJarMessage();
     }
     else
-    {
-        QtConcurrent::run(this, &DbAndroid::initAdb);
-    }
+        runInThread([=, this]{ initAdb(); });
     return true;
 }
 
@@ -189,7 +188,7 @@ void DbAndroid::showJarMessage()
 void DbAndroid::handleInvalidAdb()
 {
     notifyError(tr("Could not find Android Debug Bridge application. <a href=\"%1\">Click here</a> to point out the location of the ADB application, "
-                   "otherwise the %2 plugin will not support USB cable connections, only the network connection..").arg(SELECT_ADB_URL, getLabel()));
+                   "otherwise the %2 plugin will not support USB cable connections, only the network connection.").arg(SELECT_ADB_URL, getLabel()));
 }
 
 void DbAndroid::statusFieldLinkClicked(const QString& link)
@@ -206,11 +205,14 @@ void DbAndroid::statusFieldLinkClicked(const QString& link)
                 return;
             }
 
-            int res = QMessageBox::warning(MAINWINDOW, tr("Invalid ADB"), tr("The selected ADB is incorrect.\n"
-                                                                             "Would you like to select another one, or leave it unconfigured?"),
-                                           tr("Select another ADB"), tr("Leave unconfigured"));
+            QMessageBox box(QMessageBox::Warning, tr("Invalid ADB"),
+                            tr("The selected ADB is incorrect."), QMessageBox::NoButton, MAINWINDOW);
+            box.setInformativeText(tr("Would you like to select another one, or leave it unconfigured?"));
+            box.setDefaultButton(box.addButton(tr("Select another ADB"), QMessageBox::ResetRole));
+            QAbstractButton* rejectButton = box.addButton(tr("Leave unconfigured"), QMessageBox::RejectRole);
+            box.exec();
 
-            if (res == 1)
+            if (box.clickedButton() == rejectButton)
                 return;
 
             file = askForAdbPath();
@@ -229,7 +231,7 @@ void DbAndroid::deviceListChanged()
 
 void DbAndroid::getJar()
 {
-    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save jar file"));
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save JAR file"));
     if (path.isEmpty())
         return;
 

@@ -8,11 +8,13 @@
 struct API_EXPORT Column : public Table
 {
     public:
-        Column();
+        Column() = default;
         Column(const QString& database, const QString& table, const QString& column);
-        Column(const Column& other);
+        Column(const Column& other) = default;
 
-        int operator ==(const Column& other) const;
+        bool operator ==(const Column& other) const = default;
+        Column& operator=(const Column&) = default;
+        Column& operator=(Column&&) = default;
 
         QString getColumn() const;
         void setColumn(const QString& value);
@@ -28,11 +30,13 @@ struct API_EXPORT Column : public Table
 struct API_EXPORT AliasedColumn : public Column
 {
     public:
-        AliasedColumn();
+        AliasedColumn() = default;
         AliasedColumn(const QString& database, const QString& table, const QString& column, const QString& alias);
-        AliasedColumn(const AliasedColumn& other);
+        AliasedColumn(const AliasedColumn& other) = default;
 
-        int operator ==(const AliasedColumn& other) const;
+        bool operator ==(const AliasedColumn& other) const = default;
+        AliasedColumn& operator=(const AliasedColumn&) = default;
+        AliasedColumn& operator=(AliasedColumn&&) = default;
 
         QString getAlias() const;
         void setAlias(const QString& value);
@@ -41,7 +45,7 @@ struct API_EXPORT AliasedColumn : public Column
         QString alias;
 };
 
-int API_EXPORT qHash(Column column);
-int API_EXPORT qHash(AliasedColumn column);
+API_EXPORT TYPE_OF_QHASH qHash(Column column);
+API_EXPORT TYPE_OF_QHASH qHash(AliasedColumn column);
 
 #endif // COLUMN_H

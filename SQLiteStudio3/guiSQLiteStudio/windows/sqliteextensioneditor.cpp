@@ -123,6 +123,7 @@ void SqliteExtensionEditor::init()
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
 
     probingDb = DBLIST->createInMemDb(true);
+
     if (!probingDb->openQuiet())
         qWarning() << "Could not open in-memory dtabase for Extension manager window. Probing files will be impossible.";
 
@@ -308,6 +309,7 @@ void SqliteExtensionEditor::rollback()
     if (model->isValidRowIndex(selectedBefore))
         selectExtension(selectedBefore);
 
+    initStateForAll();
     updateState();
 }
 
@@ -337,7 +339,7 @@ void SqliteExtensionEditor::deleteExtension()
 void SqliteExtensionEditor::updateState()
 {
     bool modified = model->isModified() || currentModified;
-    bool valid = model->isValid() && validateCurrentExtension();
+    bool valid = model->isValid() && (getCurrentExtensionRow() == -1 || validateCurrentExtension());
 
     actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);

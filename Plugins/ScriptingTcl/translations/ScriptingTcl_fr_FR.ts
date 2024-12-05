@@ -11,17 +11,17 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="451"/>
       <source>Invalid &apos;%1&apos; command syntax. Should be: %2</source>
-      <translation>Syntaxe de commande &apos;%1&apos; invalide. Devrait être&#xa0;: %2</translation>
+      <translation>Syntaxe de commande &apos;%1&apos; invalide. Devrait être: %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="463"/>
       <source>Error from Tcl&apos;s &apos;%1&apos; command: %2</source>
-      <translation>Erreur de TCL &apos;%1&apos; commande : %2</translation>
+      <translation>Erreur de commande TCL &apos;%1&apos;  : %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="594"/>
       <source>Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</source>
-      <translation>Erreur de TCL &apos;%1&apos; commande : %2</translation>
+      <translation>Erreur de commande TCL &apos;s&apos; &apos;%1&apos; : %2</translation>
     </message>
   </context>
 </TS>

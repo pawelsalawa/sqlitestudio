@@ -14,12 +14,12 @@
       <translation>Nemôžem nájsť dáta v súbore %1.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="168"/>
+      <location filename="../csvimport.cpp" line="172"/>
       <source>Enter the custom separator character.</source>
       <translation>Zadajte vlastný oddeľovač.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="191"/>
+      <location filename="../csvimport.cpp" line="195"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>CSV súbory (*.csv);;Textové súbory (*.txt);;Všetky súbory (*)</translation>
     </message>

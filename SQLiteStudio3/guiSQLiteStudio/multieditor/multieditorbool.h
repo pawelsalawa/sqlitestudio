@@ -46,7 +46,11 @@ class GUI_API_EXPORT MultiEditorBool : public MultiEditorWidget
         bool boolValue = false;
 
     private slots:
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
         void stateChanged(int state);
+#else
+        void stateChanged(Qt::CheckState state);
+#endif
 };
 
 class GUI_API_EXPORT MultiEditorBoolPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin

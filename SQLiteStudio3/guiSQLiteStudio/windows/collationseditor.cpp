@@ -105,14 +105,14 @@ void CollationsEditor::init()
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->allDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->selectedDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
+    connect(ui->functionBasedRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
+    connect(ui->extensionBasedRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->langCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateModified()));
 
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
 
-    // Language plugins
-    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
-        ui->langCombo->addItem(plugin->getLanguage());
+    updateLangCombo();
 
     // Syntax highlighting plugins
     for (SyntaxHighlighterPlugin* plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
@@ -130,9 +130,16 @@ int CollationsEditor::getCurrentCollationRow() const
     return idxList.first().row();
 }
 
+CollationManager::CollationType CollationsEditor::getCurrentType() const
+{
+    return ui->extensionBasedRadio->isChecked() ? CollationManager::CollationType::EXTENSION_BASED
+                                                : CollationManager::CollationType::FUNCTION_BASED;
+}
+
 void CollationsEditor::collationDeselected(int row)
 {
     model->setName(row, ui->nameEdit->text());
+    model->setType(row, getCurrentType());
     model->setLang(row, ui->langCombo->currentText());
     model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
     model->setCode(row, ui->codeEdit->toPlainText());
@@ -149,6 +156,9 @@ void CollationsEditor::collationSelected(int row)
     updatesForSelection = true;
     ui->nameEdit->setText(model->getName(row));
     ui->codeEdit->setPlainText(model->getCode(row));
+    ui->functionBasedRadio->setChecked(model->getType(row) == CollationManager::CollationType::FUNCTION_BASED);
+    ui->extensionBasedRadio->setChecked(model->getType(row) == CollationManager::CollationType::EXTENSION_BASED);
+    updateLangCombo();
     ui->langCombo->setCurrentText(model->getLang(row));
 
     // Databases
@@ -238,7 +248,7 @@ void CollationsEditor::newCollation()
 
     CollationManager::CollationPtr coll = CollationManager::CollationPtr::create();
     coll->name = generateUniqueName("collation", model->getCollationNames());
-
+    coll->type = getCurrentType();
     if (ui->langCombo->currentIndex() > -1)
         coll->lang = ui->langCombo->currentText();
 
@@ -287,6 +297,8 @@ void CollationsEditor::updateCurrentCollationState()
     bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
     setValidState(ui->nameEdit, nameOk, tr("Enter a non-empty, unique name of the collation."));
 
+    updateLangCombo();
+
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->codeGroup->setEnabled(langOk);
     ui->databasesGroup->setEnabled(langOk);
@@ -296,7 +308,16 @@ void CollationsEditor::updateCurrentCollationState()
     setValidState(ui->langCombo, langOk, tr("Pick the implementation language."));
 
     bool codeOk = !ui->codeEdit->toPlainText().trimmed().isEmpty();
-    setValidState(ui->codeEdit, codeOk, tr("Enter a non-empty implementation code."));
+    if (ui->extensionBasedRadio->isChecked())
+    {
+        ui->codeGroup->setTitle(tr("Registration code"));
+        setValidState(ui->codeEdit, codeOk, tr("Enter a non-empty registration code."));
+    }
+    else
+    {
+        ui->codeGroup->setTitle(tr("Implementation code"));
+        setValidState(ui->codeEdit, codeOk, tr("Enter a non-empty implementation code."));
+    }
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
@@ -343,6 +364,34 @@ void CollationsEditor::collationSelected(const QItemSelection& selected, const Q
     }
 }
 
+void CollationsEditor::updateLangCombo()
+{
+    QComboBox *combo = ui->langCombo;
+    bool alreadyInternalUpdate = updatesForSelection;
+    updatesForSelection = true;
+    if (ui->extensionBasedRadio->isChecked())
+    {
+        if (combo->isEnabled())
+        {
+            combo->setEnabled(false);
+            combo->clear();
+            combo->addItem("SQL");
+            combo->setCurrentIndex(0);
+        }
+    }
+    else
+    {
+        if (!combo->isEnabled())
+        {
+            combo->clear();
+            for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+                combo->addItem(plugin->getLanguage());
+            combo->setEnabled(true);
+        }
+    }
+    updatesForSelection = alreadyInternalUpdate;
+}
+
 void CollationsEditor::updateModified()
 {
     if (updatesForSelection)
@@ -353,11 +402,12 @@ void CollationsEditor::updateModified()
     {
         bool nameDiff = model->getName(row) != ui->nameEdit->text();
         bool codeDiff = model->getCode(row) != ui->codeEdit->toPlainText();
+        bool typeDiff = model->getType(row) != getCurrentType();
         bool langDiff = model->getLang(row) != ui->langCombo->currentText();
         bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
         bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
 
-        currentModified = (nameDiff || codeDiff || langDiff || allDatabasesDiff || dbDiff);
+        currentModified = (nameDiff || codeDiff || typeDiff || langDiff || allDatabasesDiff || dbDiff);
     }
 
     updateCurrentCollationState();

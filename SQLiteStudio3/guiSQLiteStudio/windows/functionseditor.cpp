@@ -170,9 +170,12 @@ int FunctionsEditor::getCurrentFunctionRow() const
 void FunctionsEditor::functionDeselected(int row)
 {
     model->setName(row, ui->nameEdit->text());
+    model->setUndefinedArgs(row, ui->undefArgsCheck->isChecked());
+    if (!ui->undefArgsCheck->isChecked())
+        model->setArguments(row, getCurrentArgList());
+
     model->setLang(row, ui->langCombo->currentText());
     model->setType(row, getCurrentFunctionType());
-    model->setUndefinedArgs(row, ui->undefArgsCheck->isChecked());
     model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
     model->setCode(row, ui->mainCodeEdit->toPlainText());
     model->setDeterministic(row, ui->deterministicCheck->isChecked());
@@ -188,9 +191,6 @@ void FunctionsEditor::functionDeselected(int row)
         model->setInitCode(row, QString());
         model->setFinalCode(row, QString());
     }
-
-    if (!ui->undefArgsCheck->isChecked())
-        model->setArguments(row, getCurrentArgList());
 
     if (ui->selDatabasesRadio->isChecked())
         model->setDatabases(row, getCurrentDatabases());
@@ -416,8 +416,10 @@ void FunctionsEditor::updateCurrentFunctionState()
     }
 
     QString name = ui->nameEdit->text();
-    bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
-    setValidState(ui->nameEdit, nameOk, tr("Enter a non-empty, unique name of the function."));
+    QStringList argList = getCurrentArgList();
+    bool undefArgs = ui->undefArgsCheck->isChecked();
+    bool nameOk = model->isAllowedName(row, name, argList, undefArgs) && !name.trimmed().isEmpty();
+    setValidState(ui->nameEdit, nameOk, tr("Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs."));
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->initCodeGroup->setEnabled(langOk);
@@ -488,8 +490,8 @@ void FunctionsEditor::updateCurrentFunctionState()
         currentHighlighterLang = lang;
     }
 
-    updateArgsState();
-    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk);
+    bool argsOk = updateArgsState();
+    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk && argsOk);
     updateState();
 }
 
@@ -576,7 +578,7 @@ void FunctionsEditor::moveFunctionArgDown()
     ui->argsList->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
-void FunctionsEditor::updateArgsState()
+bool FunctionsEditor::updateArgsState()
 {
     bool argsEnabled = !ui->undefArgsCheck->isChecked();
     QModelIndexList indexes = ui->argsList->selectionModel()->selectedIndexes();
@@ -596,6 +598,32 @@ void FunctionsEditor::updateArgsState()
     actionMap[ARG_MOVE_UP]->setEnabled(argsEnabled && canMoveUp);
     actionMap[ARG_MOVE_DOWN]->setEnabled(argsEnabled && canMoveDown);
     ui->argsList->setEnabled(argsEnabled);
+
+    if (argsEnabled)
+    {
+        bool argsOk = true;
+        QSet<QString> usedNames;
+        for (int rowIdx = 0; rowIdx < ui->argsList->model()->rowCount(); rowIdx++)
+        {
+            QListWidgetItem* item = ui->argsList->item(rowIdx);
+            QString argName = item->text().toLower();
+            if (argName.isEmpty())
+            {
+                argsOk = false;
+                break;
+            }
+            if (usedNames.contains(argName))
+            {
+                argsOk = false;
+                break;
+            }
+            usedNames << argName;
+        }
+        setValidState(ui->argsList, argsOk, tr("Function argument cannot be empty and it cannot have duplicated name."));
+        return argsOk;
+    }
+    else
+        return true;
 }
 
 void FunctionsEditor::applyFilter(const QString& value)

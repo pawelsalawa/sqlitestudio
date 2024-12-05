@@ -13,6 +13,7 @@
 #include "services/config.h"
 #include "uiutils.h"
 #include "services/codeformatter.h"
+#include "common/dialogsizehandler.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
@@ -83,6 +84,7 @@ void TriggerDialog::init()
 {
     ui->setupUi(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
 
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(updateDdlTab(int)));
     connect(ui->actionColumns, SIGNAL(clicked()), this, SLOT(showColumnsDialog()));

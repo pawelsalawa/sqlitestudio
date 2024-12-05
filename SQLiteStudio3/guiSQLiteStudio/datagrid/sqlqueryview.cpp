@@ -10,6 +10,8 @@
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
+#include "sqlitestudio.h"
+#include "services/functionmanager.h"
 #include "services/notifymanager.h"
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
@@ -47,7 +49,6 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-//    setEditTriggers(QAbstractItemView::AnyKeyPressed);
     setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -186,6 +187,25 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     {
         QMenu* generateQueryMenu = contextMenu->addMenu(ICONS.GENERATE_QUERY, tr("Generate query for selected cells"));
         generateQueryMenu->addAction(actionMap[GENERATE_SELECT]);
+
+        Db* db = getModel()->getDb();
+        if (db && db->isValid())
+        {
+            QList<FunctionManager::ScriptFunction*> functions = FUNCTIONS->getScriptFunctionsForDatabase(db->getName());
+            if (functions.size() > 0)
+            {
+                QStringList fnNames;
+                // Offer functions with undefined arguments or at least 1 defined argument
+                for (FunctionManager::ScriptFunction* fn : functions)
+                    if (fn->undefinedArgs || fn->arguments.size() >= 1)
+                        fnNames << fn->name;
+                fnNames.sort();
+                QMenu* generateSelectFunctionMenu = generateQueryMenu->addMenu("SELECT function(...)");
+                for (const QString& name : fnNames)
+                    generateSelectFunctionMenu->addAction(name, this, SLOT(generateSelectFunction()));
+            }
+        }
+
         if (getModel()->supportsModifyingQueriesInMenu())
         {
             generateQueryMenu->addAction(actionMap[GENERATE_INSERT]);
@@ -303,6 +323,7 @@ void SqlQueryView::itemActivated(const QModelIndex& index)
     if (!editInEditorIfNecessary(item))
         return;
 
+    item->skipInitialFocusSelection();
     edit(getCurrentIndex());
 }
 
@@ -310,7 +331,20 @@ void SqlQueryView::generateSelect()
 {
     QString sql = getModel()->generateSelectQueryForItems(getSelectedItems());
     MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+}
 
+void SqlQueryView::generateSelectFunction()
+{
+    QString function = reinterpret_cast<QAction*>(sender())->text();
+    QString sql = getModel()->generateSelectFunctionQueryForItems(function, getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+    EditorWindow* win = MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+    if (!win)
+        return;
+
+    static_qstring(tpl, "%1(...)");
+    win->getMdiWindow()->rename(tpl.arg(function));
+    win->execute();
 }
 
 void SqlQueryView::generateInsert()
@@ -335,7 +369,13 @@ void SqlQueryView::editCurrent()
 {
     QModelIndex idx = getCurrentIndex();
     if (idx.isValid())
+    {
+        SqlQueryItem* item = getModel()->itemFromIndex(idx);
+        if (item)
+            item->skipInitialFocusSelection();
+
         edit(idx);
+    }
 }
 
 void SqlQueryView::toggleRowsHeightAdjustment(bool enabled)
@@ -547,7 +587,7 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
 
     QString wrappedTable = wrapObjIfNeeded(table);
     QString wrappedColumn = wrapObjIfNeeded(column);
-    QString valueStr = wrapValueIfNeeded(value.toString());
+    QString valueStr = valueToSqlLiteral(value.toString());
     EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(wrappedTable, wrappedColumn, valueStr));
     if (!win)
         return;
@@ -598,7 +638,7 @@ void SqlQueryView::copy(bool withHeader)
         for (SqlQueryItem* item : itemsInRows)
         {
             itemValue = item->getValue();
-            if (itemValue.userType() == QVariant::Double)
+            if (itemValue.userType() == QMetaType::Double)
                 cells << doubleToString(itemValue);
             else
                 cells << itemValue.toString();
@@ -937,9 +977,9 @@ void SqlQueryView::openValueEditor()
     openValueEditor(currentItem);
 }
 
-int qHash(SqlQueryView::Action action)
+TYPE_OF_QHASH qHash(SqlQueryView::Action action)
 {
-    return static_cast<int>(action);
+    return static_cast<TYPE_OF_QHASH>(action);
 }
 
 SqlQueryView::Header::Header(SqlQueryView* parent) :

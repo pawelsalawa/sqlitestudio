@@ -6,6 +6,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
 #include <QPointer>
+#include <QHash>
 
 namespace Ui {
     class ConstraintDialog;

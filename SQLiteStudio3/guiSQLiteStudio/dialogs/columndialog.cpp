@@ -9,11 +9,13 @@
 #include "constraints/constraintpanel.h"
 #include "datatype.h"
 #include "uiutils.h"
+#include "common/dialogsizehandler.h"
 #include <QDebug>
 #include <QCheckBox>
 #include <QMessageBox>
 #include <QDebug>
 #include <QPushButton>
+#include <schemaresolver.h>
 
 ColumnDialog::ColumnDialog(Db* db, QWidget *parent) :
     QDialog(parent),
@@ -33,6 +35,7 @@ void ColumnDialog::init()
     ui->setupUi(this);
     limitDialogWidth(this);
     setWindowIcon(ICONS.COLUMN);
+    DialogSizeHandler::applyFor(this);
 
     ui->scale->setStrict(true, true);
     ui->precision->setStrict(true, true);
@@ -403,7 +406,7 @@ void ColumnDialog::updateTypeValidations()
     setValidState(ui->typeCombo, typeOk, typeErrorMsg);
 
     if (typeOk && integerTypeEnforced)
-        setValidStateTooltip(ui->typeCombo, integerEnforcedMsg);
+    setValidStateTooltip(ui->typeCombo, integerEnforcedMsg);
 
     if (!scaleOk || !precisionOk || !typeOk)
     {
@@ -435,6 +438,43 @@ bool ColumnDialog::hasAutoIncr() const
     }
 
     return false;
+}
+
+void ColumnDialog::validateFkTypeMatch()
+{
+    QString fkTypeWarningMsg = tr("Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.");
+
+    for (SqliteCreateTable::Column::Constraint*& constr : column->getConstraints(SqliteCreateTable::Column::Constraint::FOREIGN_KEY))
+    {
+        if (!constr->foreignKey || constr->foreignKey->indexedColumns.isEmpty() || constr->foreignKey->foreignTable.isNull())
+            continue;
+
+        QString fkTable = constr->foreignKey->foreignTable;
+        QString fkColumn = constr->foreignKey->indexedColumns.first()->name;
+        if (!fkTableTypesCache.contains(fkTable, Qt::CaseInsensitive))
+        {
+            SchemaResolver resolver(db);
+            fkTableTypesCache[fkTable] = resolver.getTableColumnDataTypesByName(fkTable);;
+        }
+
+        StrHash<DataType> fkTypes = fkTableTypesCache.value(fkTable, Qt::CaseInsensitive);
+        if (fkTypes.isEmpty())
+            continue;
+
+        DataType fkType = fkTypes.value(fkColumn, Qt::CaseInsensitive);
+        if (fkType.toString().toLower().trimmed() != ui->typeCombo->currentText().toLower().trimmed())
+        {
+            auto fkButton = getToolButtonForConstraint(constr);
+            if (!fkButton)
+                continue;
+
+            if (isValidStateIndicatorVisible(fkButton))
+                continue;
+
+            setValidStateWarning(fkButton, fkTypeWarningMsg.arg(fkType.toString()));
+            break;
+        }
+    }
 }
 
 void ColumnDialog::moveConstraintUp()
@@ -618,6 +658,7 @@ void ColumnDialog::updateValidations()
         updateConstraint(constr);
 
     updateTypeValidations();
+    validateFkTypeMatch();
 }
 
 void ColumnDialog::updateConstraint(SqliteCreateTable::Column::Constraint* constraint)

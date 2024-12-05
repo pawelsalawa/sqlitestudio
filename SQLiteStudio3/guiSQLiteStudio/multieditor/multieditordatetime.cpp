@@ -60,10 +60,10 @@ void MultiEditorDateTime::setValue(const QVariant& value)
 {
     switch (value.userType())
     {
-        case QVariant::DateTime:
+        case QMetaType::QDateTime:
             dateTimeEdit->setDateTime(value.toDateTime());
             break;
-        case QVariant::Date:
+        case QMetaType::QDate:
             dateTimeEdit->setDate(value.toDate());
             break;
         default:
@@ -80,7 +80,7 @@ QVariant MultiEditorDateTime::getValue()
     if (formatType == STRING)
         return dateTimeEdit->dateTime().toString(originalValueFormat);
     else if (formatType == UNIXTIME)
-        return dateTimeEdit->dateTime().toTime_t();
+        return dateTimeEdit->dateTime().toSecsSinceEpoch();
     else if (formatType == JULIAN_DAY)
         return toJulian(dateTimeEdit->dateTime());
     else
@@ -122,7 +122,7 @@ QDateTime MultiEditorDateTime::fromString(const QString& value)
     uint unixtime = value.toUInt(&ok);
     if (ok)
     {
-        dateTime = QDateTime::fromTime_t(unixtime);
+        dateTime = QDateTime::fromSecsSinceEpoch(unixtime);
         formatType = UNIXTIME;
         return dateTime;
     }

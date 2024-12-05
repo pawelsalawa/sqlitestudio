@@ -25,7 +25,8 @@ void ImportWorker::run()
         return;
     }
 
-    if (!config->skipTransaction && !db->begin())
+    shouldSkipTransaction = config->skipTransaction || db->isTransactionActive();
+    if (!shouldSkipTransaction && !db->begin(config->noDbLock))
     {
         error(tr("Could not start transaction in order to import a data: %1").arg(db->getErrorText()));
         return;
@@ -33,8 +34,8 @@ void ImportWorker::run()
 
     if (!prepareTable())
     {
-        if (!config->skipTransaction)
-            db->rollback();
+        if (!shouldSkipTransaction)
+            db->rollback(config->noDbLock);
 
         return;
     }
@@ -42,17 +43,17 @@ void ImportWorker::run()
     int rowCount = 0;
     if (!importData(rowCount))
     {
-        if (!config->skipTransaction)
-            db->rollback();
+        if (!shouldSkipTransaction)
+            db->rollback(config->noDbLock);
 
         return;
     }
 
-    if (!config->skipTransaction && !db->commit())
+    if (!shouldSkipTransaction && !db->commit(config->noDbLock))
     {
         error(tr("Could not commit transaction for imported data: %1").arg(db->getErrorText()));
-        if (!config->skipTransaction)
-            db->rollback();
+        if (!shouldSkipTransaction)
+            db->rollback(config->noDbLock);
 
         return;
     }
@@ -117,7 +118,7 @@ bool ImportWorker::prepareTable()
             colDefs << (wrapObjIfNeeded(columnsFromPlugin[i]) + " " + columnTypesFromPlugin[i]).trimmed();
 
         static const QString ddl = QStringLiteral("CREATE TABLE %1 (%2)");
-        Db::Flags flags = config->skipTransaction ? Db::Flag::NO_LOCK : Db::Flag::NONE;
+        Db::Flags flags = config->noDbLock ? Db::Flag::NO_LOCK : Db::Flag::NONE;
         SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table), colDefs.join(", ")), flags);
         if (result->isError())
         {
@@ -160,7 +161,11 @@ bool ImportWorker::importData(int& rowCount)
     {
         // Fill up missing values in the line
         for (int i = row.size(); i < colCount; i++)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             row << QVariant(QVariant::String);
+#else
+            row << QVariant(QMetaType::fromType<QString>());
+#endif
 
         // Assign argument values
         query->setArgs(row.mid(0, colCount));

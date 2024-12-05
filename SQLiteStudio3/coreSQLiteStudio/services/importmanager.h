@@ -20,7 +20,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
             /**
              * @brief Text encoding.
              *
-             * Always one of QTextCodec::availableCodecs().
+             * Always one of QStringConverter::availableCodecs().
              * Codec is important for text-based data. For binary data it should irrelevant to the import plugin.
              */
             QString codec;
@@ -39,6 +39,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
 
             bool ignoreErrors = false;
             bool skipTransaction = false;
+            bool noDbLock = false;
         };
 
         enum StandardConfigFlag

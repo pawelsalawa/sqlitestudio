@@ -79,7 +79,7 @@ void MainWindow::init()
     setWindowTitle(QString("SQLiteStudio (%1)").arg(SQLITESTUDIO->getVersionString()));
 
 #ifdef Q_OS_MACX
-    ui->centralWidget->layout()->setMargin(0);
+    ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 #endif
 
     Committable::init(MainWindow::confirmQuit);
@@ -541,8 +541,13 @@ MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
     // Find out the type of stored session
     QByteArray classBytes = winSessionHash["class"].toString().toLatin1();
     char* className = classBytes.data();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     int type = QMetaType::type(className);
     if (type == QMetaType::UnknownType)
+#else
+    QMetaType metaType = QMetaType::fromName(className);
+    if (!metaType.isValid())
+#endif
     {
         qWarning() << "Could not restore window session, because type" << className
                    << "is not known to Qt meta subsystem.";
@@ -550,7 +555,11 @@ MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
     }
 
     // Try to instantiate the object
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     void* object = QMetaType::create(type);
+#else
+    void* object = metaType.create();
+#endif
     if (!object)
     {
         qWarning() << "Could not restore window session, because type" << className
@@ -914,12 +923,11 @@ void MainWindow::updateCornerDocking()
 void MainWindow::messageFromSecondaryInstance(quint32 instanceId, QByteArray message)
 {
     UNUSED(instanceId);
-    QApplication::setActiveWindow(this);
+    activateWindow();
     if (isMinimized())
         showMaximized();
 
     raise();
-    activateWindow();
     QString dbToOpen = deserializeFromBytes(message).toString();
     if (!dbToOpen.isNull())
         openDb(dbToOpen);

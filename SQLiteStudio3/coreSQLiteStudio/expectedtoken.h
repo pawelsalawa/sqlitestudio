@@ -80,7 +80,7 @@ struct API_EXPORT ExpectedToken
      */
     bool needsWrapping() const;
 
-    int operator==(const ExpectedToken& other);
+    int operator==(const ExpectedToken& other) const;
     QString toString() const;
 };
 
@@ -101,7 +101,7 @@ class API_EXPORT ExpectedTokenPtr : public QSharedPointer<ExpectedToken>
 
 int operator==(const ExpectedTokenPtr& ptr1, const ExpectedTokenPtr& ptr2);
 
-int qHash(const ExpectedToken& token);
-int qHash(const ExpectedTokenPtr &ptr);
+TYPE_OF_QHASH qHash(const ExpectedToken& token);
+TYPE_OF_QHASH qHash(const ExpectedTokenPtr &ptr);
 
 #endif // EXPECTEDTOKEN_H

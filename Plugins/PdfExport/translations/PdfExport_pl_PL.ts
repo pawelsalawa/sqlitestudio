@@ -91,7 +91,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="236"/>
       <source>Collation</source>
-      <translation>Zestawienie</translation>
+      <translation>Sekwencja porządkowania</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="236"/>

@@ -33,9 +33,9 @@ class API_EXPORT InvalidDb : public Db
         quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
         quint32 asyncExec(const QString& query, Flags flags);
         SqlQueryPtr prepare(const QString& query);
-        bool begin();
-        bool commit();
-        bool rollback();
+        bool begin(bool noLock = false);
+        bool commit(bool noLock = false);
+        bool rollback(bool noLock = false);
         void asyncInterrupt();
         bool isReadable();
         bool isWritable();
@@ -63,6 +63,7 @@ class API_EXPORT InvalidDb : public Db
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;
         Db* clone() const;
+        bool isTransactionActive() const;
 
     public slots:
         bool open();

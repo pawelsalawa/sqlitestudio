@@ -5,6 +5,7 @@
 #include "common/extactioncontainer.h"
 #include "constraintdialog.h"
 #include "guiSQLiteStudio_global.h"
+#include "common/strhash.h"
 #include <QDialog>
 #include <QPointer>
 
@@ -71,6 +72,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void updateTypeValidations();
         void updateTypeForAutoIncr();
         bool hasAutoIncr() const;
+        void validateFkTypeMatch();
 
         Ui::ColumnDialog *ui = nullptr;
         SqliteCreateTable::ColumnPtr column;
@@ -79,6 +81,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         Db* db = nullptr;
         bool integerTypeEnforced = false;
         QSet<ConstraintDialog::Constraint> disabledConstraints;
+        StrHash<StrHash<DataType>> fkTableTypesCache;
 
     private slots:
         void updateConstraintsToolbarState();

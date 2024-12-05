@@ -60,17 +60,28 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         QList<FunctionManager::ScriptFunction*> generateFunctions() const;
         QStringList getFunctionNames() const;
         void validateNames();
-        bool isAllowedName(int rowToSkip, const QString& nameToValidate);
+        bool isAllowedName(int rowToSkip, const QString& nameToValidate, const QStringList &argList, bool undefinedArgs);
         bool isValidRowIndex(int row) const;
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role) const;
 
     private:
+        struct UniqueFunctionName
+        {
+            QString name;
+            QStringList arguments;
+            bool undefArg;
+
+            int argCount() const;
+            bool operator==(const UniqueFunctionName& other) const;
+        };
+
         struct Function
         {
             Function();
             Function(FunctionManager::ScriptFunction* other);
+            UniqueFunctionName toUniqueName() const;
 
             FunctionManager::ScriptFunction data;
             bool modified = false;
@@ -80,6 +91,9 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
 
         void init();
         void emitDataChanged(int row);
+        QList<UniqueFunctionName> getUniqueFunctionNames() const;
+
+        friend int qHash(FunctionsEditorModel::UniqueFunctionName fnName);
 
         QList<Function*> functionList;
 
@@ -95,5 +109,7 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         QHash<QString,QIcon> langToIcon;
         bool listModified = false;
 };
+
+int qHash(FunctionsEditorModel::UniqueFunctionName fnName);
 
 #endif // FUNCTIONSEDITORMODEL_H

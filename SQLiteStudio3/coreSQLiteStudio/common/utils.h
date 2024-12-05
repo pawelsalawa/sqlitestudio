@@ -13,7 +13,9 @@
 #include <QVariant>
 #include <QDataStream>
 
-class QTextCodec;
+class QStringConverter;
+class QStringEncoder;
+class QStringDecoder;
 
 API_EXPORT void initUtils();
 
@@ -195,7 +197,7 @@ API_EXPORT QString center(const QString& str, int length, const QChar& fillChar)
  *
  * If there are many values with the same, longest length, then the first one is picked.
  */
-API_EXPORT QString longest(const QStringList& strList);
+API_EXPORT const QString& longest(const QStringList& strList);
 
 /**
  * @brief Picks the shortest string from the list.
@@ -204,7 +206,7 @@ API_EXPORT QString longest(const QStringList& strList);
  *
  * If there are many values with the same, shortest length, then the first one is picked.
  */
-API_EXPORT QString shortest(const QStringList& strList);
+API_EXPORT const QString& shortest(const QStringList& strList);
 
 /**
  * @brief Finds the longest common part of all strings.
@@ -259,13 +261,15 @@ API_EXPORT QStringList common(const QStringList& list1, const QStringList& list2
 
 API_EXPORT QStringList textCodecNames();
 API_EXPORT QString defaultCodecName();
-API_EXPORT QTextCodec* defaultCodec();
-API_EXPORT QTextCodec* codecForName(const QString& name);
+API_EXPORT QStringEncoder* defaultTextEncoder();
+API_EXPORT QStringDecoder* defaultTextDecoder();
+API_EXPORT QStringConverter::Encoding textEncodingForName(const QString& name);
+API_EXPORT QStringEncoder* textEncoderForName(const QString& name);
+API_EXPORT QStringDecoder* textDecoderForName(const QString& name);
 API_EXPORT QStringList splitByLines(const QString& str);
 API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT QStringList sharedLibFileFilters();
 API_EXPORT int sum(const QList<int>& integers);
-API_EXPORT QString getOsString();
 API_EXPORT bool validateEmail(const QString& email);
 API_EXPORT bool isHex(const QString& str);
 API_EXPORT bool isHex(const QChar& c);
@@ -353,15 +357,21 @@ void removeDuplicates(QList<T>& list)
     }
 }
 
-API_EXPORT uint qHash(const QVariant& var);
+API_EXPORT TYPE_OF_QHASH qHash(const QVariant& var);
 
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 
 API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes);
 
+API_EXPORT QByteArray serializeToBytes(const QVariant& value, QDataStream::Version version);
+
+API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes, QDataStream::Version version);
+
 API_EXPORT QString readFileContents(const QString& path, QString* err);
 
 API_EXPORT QString toNativePath(const QString& path);
+
+API_EXPORT void runInThread(std::function<void()> func);
 
 Q_DECLARE_METATYPE(QList<int>)
 

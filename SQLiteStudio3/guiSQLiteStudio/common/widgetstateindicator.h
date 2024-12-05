@@ -34,6 +34,7 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         void show(const QString& msg = QString());
         void hide();
         void setVisible(bool visible, const QString& msg = QString());
+        bool isVisible() const;
         void release();
         void info(const QString& msg);
         void warn(const QString& msg);

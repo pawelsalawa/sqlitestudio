@@ -2,7 +2,6 @@
 
 #ifndef _WIN32
 
-#include <execinfo.h>
 #include <errno.h>
 #include <dlfcn.h>
 #include <cxxabi.h>

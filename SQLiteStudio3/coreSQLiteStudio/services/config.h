@@ -12,7 +12,7 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 3;
+const int SQLITESTUDIO_CONFIG_VERSION = 4;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
@@ -29,7 +29,6 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(int,          HistorySize,             100)
     )
     CFG_CATEGORY(Internal,
-        CFG_ENTRY(QVariantList, Functions,               QVariantList())
         CFG_ENTRY(QVariantList, Collations,              QVariantList())
         CFG_ENTRY(QVariantList, Extensions,              QVariantList())
         CFG_ENTRY(QVariantList, CodeSnippets,            QVariantList())
@@ -184,6 +183,9 @@ class API_EXPORT Config : public QObject
         virtual QList<ReportHistoryEntryPtr> getReportHistory() = 0;
         virtual void deleteReport(int id) = 0;
         virtual void clearReportHistory() = 0;
+
+        virtual QList<QHash<QString, QVariant> > getScriptFunctions() = 0;
+        virtual void setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions) = 0;
 
         virtual void begin() = 0;
         virtual void commit() = 0;

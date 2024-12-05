@@ -12,13 +12,13 @@
       <location filename="../htmlexport.cpp" line="78"/>
       <location filename="../htmlexport.cpp" line="155"/>
       <source>no type</source>
-      <translation>Aucun type</translation>
+      <translation>aucun type</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="115"/>
       <location filename="../htmlexport.cpp" line="243"/>
       <source>Exported table: %1</source>
-      <translation>Tableau exporté : %1</translation>
+      <translation>Tables exportées : %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="127"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
       <source>For table:</source>
-      <translation>Pour le tableau :</translation>
+      <translation>Pour la table :</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="337"/>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../htmlexport.ui" line="63"/>
       <source>Row numbers as first column</source>
-      <translation>Numero de ligne dans la première colonne</translation>
+      <translation>Numéro de ligne dans la première colonne</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="73"/>
       <source>Output format</source>
-      <translation>Format d’affichage</translation>
+      <translation>Format de sortie</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="79"/>
@@ -162,12 +162,12 @@
     <message>
       <location filename="../htmlexport.ui" line="108"/>
       <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Lorsqu’il y a des caractères HTML tel que &lt;, &gt; et &amp; ils ne sont pas enlevés des valeurs exportées. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &lt; and &gt; characters).Soyez attentif.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Quand activé, les caractères HTML tel que &amp;lt;, &amp;gt; and &amp; ne sont pas échappé dans les valeurs exportées. Ceci vous permet par exemple d&apos;exporter des documents avec hyper-liens, mais cela peut aussi produire des documents HTML  incorrects (déséquilibre entre les caractères &lt; and &gt;). Soyez attentif.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="111"/>
       <source>Don&apos;t escape HTML characters</source>
-      <translation>N&apos;enlevez pas les caractères HTML</translation>
+      <translation>N&apos;échappez pas les caractères HTML</translation>
     </message>
   </context>
 </TS>

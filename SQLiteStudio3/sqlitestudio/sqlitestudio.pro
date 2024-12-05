@@ -20,7 +20,7 @@ linux {
 }
 TEMPLATE = app
 
-CONFIG   += c++17
+CONFIG  += c++20
 QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += QAPPLICATION_CLASS=QApplication

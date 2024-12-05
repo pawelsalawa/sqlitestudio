@@ -25,7 +25,11 @@ SqlQueryModelColumn::~SqlQueryModelColumn()
 void SqlQueryModelColumn::initMeta()
 {
     qRegisterMetaType<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<SqlQueryModelColumn*>("SqlQueryModelColumn*");
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryExecutor::EditionForbiddenReason reason)
@@ -58,6 +62,8 @@ SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryEx
             return EditionForbiddenReason::COMMON_TABLE_EXPRESSION;
         case QueryExecutor::ColumnEditionForbiddenReason::VIEW_NOT_EXPANDED:
             return EditionForbiddenReason::VIEW_NOT_EXPANDED;
+        case QueryExecutor::ColumnEditionForbiddenReason::RES_INLINE_SUBSEL:
+            return EditionForbiddenReason::RESULT_INLINE_SUBSELECT;
     }
     return static_cast<EditionForbiddenReason>(-1);
 }
@@ -66,6 +72,8 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
 {
     switch (reason)
     {
+        case SqlQueryModelColumn::EditionForbiddenReason::RESULT_INLINE_SUBSELECT:
+            return QObject::tr("Cannot edit columns that are result of an inline subquery.");
         case EditionForbiddenReason::COMPOUND_SELECT:
             return QObject::tr("Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).")
                     .arg("SELECT", "UNION", "INTERSECT", "EXCEPT");
@@ -204,7 +212,7 @@ AliasedTable SqlQueryModelColumn::getAliasedTable() const
     return AliasedTable(database, table, tableAlias);
 }
 
-int qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
+TYPE_OF_QHASH qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
 {
     return static_cast<int>(reason);
 }

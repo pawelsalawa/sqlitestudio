@@ -55,6 +55,7 @@ class GUI_API_EXPORT WidgetCover : public QWidget
         QGridLayout* containerLayout = nullptr;
         QPushButton* cancelButton = nullptr;
         QProgressBar* busyBar = nullptr;
+        bool undetermined = false;
 
     signals:
         void cancelClicked();

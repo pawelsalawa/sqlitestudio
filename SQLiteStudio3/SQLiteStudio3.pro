@@ -4,7 +4,7 @@ REQ_QT_MAJOR = 5
 REQ_QT_MINOR = 12
 REQ_QT_PATCH = 0
 
-lessThan(QT_MAJOR_VERSION, $$REQ_QT_MAJOR)|lessThan(QT_MINOR_VERSION, $$REQ_QT_MINOR)|lessThan(QT_MINOR_VERSION, $$REQ_QT_PATCH) {
+!versionAtLeast(QT_VERSION, $${REQ_QT_MAJOR}.$${REQ_QT_MINOR}.$${REQ_QT_PATCH}) {
     error($$sprintf("Required Qt version is at least %1.%2.%3. This Qt version is %4.%5.%6.", \
         $$REQ_QT_MAJOR, $$REQ_QT_MINOR, $$REQ_QT_PATCH, \
         $$QT_MAJOR_VERSION, $$QT_MINOR_VERSION, $$QT_PATCH_VERSION))

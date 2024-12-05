@@ -25,6 +25,7 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
     static const QString wrnMsg = QStringLiteral("[%1] WARNING:  %2");
     static const QString criMsg = QStringLiteral("[%1] CRITICAL: %2");
     static const QString fatMsg = QStringLiteral("[%1] FATAL:    %2");
+    static const QString infMsg = QStringLiteral("[%1] INFO:     %2");
 
     QString time = QTime::currentTime().toString("HH:mm:ss.zzz");
     switch (type) {
@@ -42,7 +43,7 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
             abort();
 #if QT_VERSION >= 0x050500
         case QtInfoMsg:
-            msgHandlerThreadProxy->debug(fatMsg.arg(time, msg));
+            msgHandlerThreadProxy->debug(infMsg.arg(time, msg));
             break;
 #endif
     }

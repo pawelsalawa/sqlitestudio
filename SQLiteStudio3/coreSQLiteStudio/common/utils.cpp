@@ -3,8 +3,10 @@
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
 #include "common/compatibility.h"
-#include <QTextCodec>
 #include <QString>
+#include <QStringConverter>
+#include <QStringEncoder>
+#include <QStringDecoder>
 #include <QSet>
 #include <QVariant>
 #include <QDateTime>
@@ -16,6 +18,7 @@
 #include <QBitArray>
 #include <QDataStream>
 #include <QRandomGenerator>
+#include <QThreadPool>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -385,34 +388,36 @@ QString center(const QString& str, int length, const QChar& fillChar)
     return result.prepend(fillLeft).append(fillRight);
 }
 
-QString longest(const QStringList& strList)
+const QString& longest(const QStringList& strList)
 {
     int max = 0;
-    QString result;
-    for (const QString str : strList)
+    qsizetype maxIndex = -1;
+    for (qsizetype i = 0; i < strList.size(); i++)
     {
-        if (str.size() > max)
+        int size = strList.at(i).size();
+        if (size > max)
         {
-            result = str;
-            max = str.size();
+            maxIndex = i;
+            max = size;
         }
     }
-    return result;
+    return strList.at(maxIndex);
 }
 
-QString shortest(const QStringList& strList)
+const QString& shortest(const QStringList& strList)
 {
     int max = INT_MAX;
-    QString result;
-    for (const QString str : strList)
+    qsizetype maxIndex = -1;
+    for (qsizetype i = 0; i < strList.size(); i++)
     {
-        if (str.size() < max)
+        int size = strList.at(i).size();
+        if (size < max)
         {
-            result = str;
-            max = str.size();
+            maxIndex = i;
+            max = size;
         }
     }
-    return result;
+    return strList.at(maxIndex);
 }
 
 QString longestCommonPart(const QStringList& strList)
@@ -624,35 +629,59 @@ QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseS
 
 QStringList textCodecNames()
 {
-    QList<QByteArray> codecs = QTextCodec::availableCodecs();
-    QStringList names;
-    QSet<QString> nameSet;
-    for (const QByteArray& codec : codecs)
-        nameSet << QString::fromLatin1(codec.constData());
-
-    names = nameSet.values();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+    QStringList codecs = QStringConverter::availableCodecs();
+#else
+    QStringList codecs;
+    for (QStringConverter::Encoding enc : {
+         QStringConverter::Utf8,
+         QStringConverter::Utf16,
+         QStringConverter::Utf16LE,
+         QStringConverter::Utf16BE,
+         QStringConverter::Utf32,
+         QStringConverter::Utf32LE,
+         QStringConverter::Utf32BE,
+         QStringConverter::Latin1,
+         QStringConverter::System
+    })
+    {
+        codecs << QStringConverter::nameForEncoding(enc);
+    }
+#endif
+    QSet<QString> codecSet = QSet<QString>(codecs.begin(), codecs.end());
+    QStringList names = QStringList(codecSet.begin(), codecSet.end());
     sSort(names);
     return names;
 }
 
-QTextCodec* codecForName(const QString& name)
+QStringEncoder* textEncoderForName(const QString& name)
 {
-    return QTextCodec::codecForName(name.toLatin1());
+    return new QStringEncoder(name.toLatin1());
 }
 
-QTextCodec* defaultCodec()
+QStringDecoder* textDecoderForName(const QString& name)
 {
-    return QTextCodec::codecForLocale();
+    return new QStringDecoder(name.toLatin1());
+}
+
+QStringEncoder* defaultTextEncoder()
+{
+    return new QStringEncoder();
+}
+
+QStringDecoder* defaultTextDecoder()
+{
+    return new QStringDecoder();
 }
 
 QString defaultCodecName()
 {
-    return QString::fromLatin1(QTextCodec::codecForLocale()->name());
+    return QStringConverter::nameForEncoding(QStringConverter::System);
 }
 
 QStringList splitByLines(const QString& str)
 {
-    return str.split(QRegExp("\r?\n"));
+    return str.split(QRegularExpression("\r?\n"));
 }
 
 QString joinLines(const QStringList& lines)
@@ -672,135 +701,6 @@ int sum(const QList<int>& integers)
         res += i;
 
     return res;
-}
-
-QString getOsString()
-{
-#if defined(Q_OS_WIN)
-    QString os = "Windows";
-    switch (QSysInfo::WindowsVersion)
-    {
-        case QSysInfo::WV_XP:
-            os += " XP";
-            break;
-        case QSysInfo::WV_2003:
-            os += " 2003";
-            break;
-        case QSysInfo::WV_VISTA:
-            os += " Vista";
-            break;
-        case QSysInfo::WV_WINDOWS7:
-            os += " 7";
-            break;
-        case QSysInfo::WV_WINDOWS8:
-            os += " 8";
-            break;
-        case QSysInfo::WV_WINDOWS8_1:
-            os += " 8.1";
-            break;
-#if QT_VERSION >= 0x050500
-        case QSysInfo::WV_WINDOWS10:
-            os += " 10";
-        break;
-#endif
-        case QSysInfo::WV_32s:
-        case QSysInfo::WV_95:
-        case QSysInfo::WV_98:
-        case QSysInfo::WV_Me:
-        case QSysInfo::WV_DOS_based:
-        case QSysInfo::WV_NT:
-        case QSysInfo::WV_2000:
-        case QSysInfo::WV_NT_based:
-        case QSysInfo::WV_CE:
-        case QSysInfo::WV_CENET:
-        case QSysInfo::WV_CE_5:
-        case QSysInfo::WV_CE_6:
-        case QSysInfo::WV_CE_based:
-#if QT_VERSION >= 0x050500
-        case QSysInfo::WV_None:
-#endif
-            break;
-    }
-#elif defined(Q_OS_LINUX)
-    QString os = "Linux";
-    utsname uts;
-    if (uname(&uts) != 0)
-    {
-        qWarning() << "Error while calling uname() for OS version. Error code: " << errno;
-    }
-    else
-    {
-        os += " " + QString::fromLatin1(uts.release);
-    }
-#elif defined(Q_OS_OSX)
-    QString os = "MacOS X";
-    switch (QSysInfo::MacintoshVersion)
-    {
-        case QSysInfo::MV_10_4:
-            os += " 10.4 Tiger";
-            break;
-        case QSysInfo::MV_10_5:
-            os += " 10.5 Leopard";
-            break;
-        case QSysInfo::MV_10_6:
-            os += " 10.6 Snow Leopard";
-            break;
-        case QSysInfo::MV_10_7:
-            os += " 10.7 Lion";
-            break;
-        case QSysInfo::MV_10_8:
-            os += " 10.8 Mountain Lion";
-            break;
-        case QSysInfo::MV_10_9:
-            os += " 10.9 Mavericks";
-            break;
-        case QSysInfo::MV_10_10:
-            os += " 10.10 Yosemite";
-            break;
-        case QSysInfo::MV_10_11:
-            os += " 10.11 El Capitan";
-            break;
-        case QSysInfo::MV_10_12:
-            os += " 10.12 Sierra";
-            break;
-        case QSysInfo::MV_9:
-        case QSysInfo::MV_10_0:
-        case QSysInfo::MV_10_1:
-        case QSysInfo::MV_10_2:
-        case QSysInfo::MV_10_3:
-        case QSysInfo::MV_IOS:
-        case QSysInfo::MV_IOS_4_3:
-        case QSysInfo::MV_IOS_5_0:
-        case QSysInfo::MV_IOS_5_1:
-        case QSysInfo::MV_IOS_6_0:
-        case QSysInfo::MV_IOS_6_1:
-        case QSysInfo::MV_IOS_7_0:
-        case QSysInfo::MV_IOS_7_1:
-        case QSysInfo::MV_IOS_8_0:
-        case QSysInfo::MV_IOS_8_1:
-        case QSysInfo::MV_IOS_8_2:
-        case QSysInfo::MV_IOS_8_3:
-        case QSysInfo::MV_IOS_8_4:
-        case QSysInfo::MV_IOS_9_0:
-        case QSysInfo::MV_None:
-        case QSysInfo::MV_Unknown:
-            break;
-    }
-#elif defined(Q_OS_UNIX)
-    QString os = "Unix";
-#else
-    QString os = "Unknown";
-#endif
-
-    os += ", ";
-#ifdef Q_OS_WIN
-    os += (is64BitWindows() ? "64" : "32");
-#else
-    os += QString::number(QSysInfo::WordSize);
-#endif
-    os += "bit";
-
-    return os;
 }
 
 DistributionType getDistributionType()
@@ -967,9 +867,9 @@ QStringList concat(const QList<QStringList>& list)
 QString doubleToString(const QVariant& val)
 {
     QString str = val.toString();
-    if (str.contains("e") || str.midRef(str.indexOf('.') + 1).length() > 14)
+    if (str.contains("e") || str.length() - (str.indexOf('.') + 1) > 14)
     {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
+        str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
         if (str.endsWith("."))
             str += "0";
     }
@@ -1002,19 +902,31 @@ void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& ref
 
 QByteArray serializeToBytes(const QVariant& value)
 {
+    return serializeToBytes(value, QDataStream::Qt_5_15);
+}
+
+QByteArray serializeToBytes(const QVariant& value, QDataStream::Version version)
+{
     QByteArray bytes;
     QDataStream stream(&bytes, QIODevice::WriteOnly);
+    stream.setVersion(version);
     stream << value;
     return bytes;
 }
 
 QVariant deserializeFromBytes(const QByteArray& bytes)
 {
+    return deserializeFromBytes(bytes, QDataStream::Qt_5_15);
+}
+
+QVariant deserializeFromBytes(const QByteArray& bytes, QDataStream::Version version)
+{
     if (bytes.isNull())
         return QVariant();
 
     QVariant deserializedValue;
     QDataStream stream(bytes);
+    stream.setVersion(version);
     stream >> deserializedValue;
     return deserializedValue;
 }
@@ -1031,7 +943,11 @@ QString readFileContents(const QString& path, QString* err)
     }
 
     QTextStream stream(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     stream.setCodec("UTF-8");
+#else
+    // UTF-8 is the default QTextStream encoding in Qt 6
+#endif
     QString contents = stream.readAll();
     file.close();
 
@@ -1039,60 +955,60 @@ QString readFileContents(const QString& path, QString* err)
 }
 
 
-uint qHash(const QVariant& var)
+TYPE_OF_QHASH qHash(const QVariant& var)
 {
     if (!var.isValid() || var.isNull())
         return -1;
 
-    switch (var.type())
+    switch (var.userType())
     {
-        case QVariant::Int:
+        case QMetaType::Int:
             return qHash(var.toInt());
-        case QVariant::UInt:
+        case QMetaType::UInt:
             return qHash(var.toUInt());
-        case QVariant::Bool:
+        case QMetaType::Bool:
             return qHash(var.toUInt());
-        case QVariant::Double:
+        case QMetaType::Double:
             return qHash(var.toUInt());
-        case QVariant::LongLong:
+        case QMetaType::LongLong:
             return qHash(var.toLongLong());
-        case QVariant::ULongLong:
+        case QMetaType::ULongLong:
             return qHash(var.toULongLong());
-        case QVariant::String:
+        case QMetaType::QString:
             return qHash(var.toString());
-        case QVariant::Char:
+        case QMetaType::QChar:
             return qHash(var.toChar());
-        case QVariant::StringList:
+        case QMetaType::QStringList:
             return qHash(var.toString());
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
             return qHash(var.toByteArray());
-        case QVariant::Date:
-        case QVariant::Time:
-        case QVariant::DateTime:
-        case QVariant::Url:
-        case QVariant::Locale:
-        case QVariant::RegExp:
+        case QMetaType::QDate:
+        case QMetaType::QTime:
+        case QMetaType::QDateTime:
+        case QMetaType::QUrl:
+        case QMetaType::QLocale:
+        case QMetaType::QRegularExpression:
             return qHash(var.toString());
-        case QVariant::Hash:
+        case QMetaType::QVariantHash:
             return qHash(var.toHash());
-        case QVariant::Map:
+        case QMetaType::QVariantMap:
             return qHash(var.toMap());
-        case QVariant::List:
+        case QMetaType::QVariantList:
             return qHash(var.toList());
-        case QVariant::BitArray:
+        case QMetaType::QBitArray:
             return qHash(var.toBitArray());
-        case QVariant::Size:
-        case QVariant::SizeF:
-        case QVariant::Rect:
-        case QVariant::LineF:
-        case QVariant::Line:
-        case QVariant::RectF:
-        case QVariant::Point:
-        case QVariant::PointF:
+        case QMetaType::QSize:
+        case QMetaType::QSizeF:
+        case QMetaType::QRect:
+        case QMetaType::QLineF:
+        case QMetaType::QLine:
+        case QMetaType::QRectF:
+        case QMetaType::QPoint:
+        case QMetaType::QPointF:
             // not supported yet
             break;
-        case QVariant::UserType:
-        case QVariant::Invalid:
+        case QMetaType::User:
+        case QMetaType::UnknownType:
         default:
             return -3;
     }
@@ -1127,4 +1043,29 @@ QStringList sharedLibFileFilters()
 #endif
     });
     return filters;
+}
+
+void runInThread(std::function<void()> func)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    class FunctionRunnable : public QRunnable
+    {
+        std::function<void()> func;
+    public:
+        FunctionRunnable(std::function<void()> func) : func(std::move(func)) {}
+        void run() override
+        {
+            func();
+        }
+    };
+    QThreadPool::globalInstance()->start(new FunctionRunnable(func));
+#else
+    QThreadPool::globalInstance()->start(func);
+#endif
+}
+
+QStringConverter::Encoding textEncodingForName(const QString& name)
+{
+    auto encoding = QStringConverter::encodingForName(name.toLatin1().constData());
+    return encoding ? *encoding : QStringConverter::System;
 }

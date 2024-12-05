@@ -38,9 +38,9 @@ QString CliCommandClose::shortHelp() const
 QString CliCommandClose::fullHelp() const
 {
     return tr(
-                "Closes database connection. If the database was already closed, nothing happens. "
-                "If <name> is provided, it should be name of the database to close (as printed by %1 command). "
-                "The the <name> is not provided, then current working database is closed (see help for %2 for details)."
+                "Closes the database connection. If the database was already closed, nothing happens. "
+                "If <name> is provided, it should be the name of the database to close (as printed by the %1 command). "
+                "If <name> is not provided, then the current working database is closed (see help for %2 for details)."
                 ).arg(cmdName("dblist"), cmdName("use"));
 }
 

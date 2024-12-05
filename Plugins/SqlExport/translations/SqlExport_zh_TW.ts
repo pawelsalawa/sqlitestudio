@@ -59,7 +59,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>新增「IF NOT EXISTS」到「CREATE」語句中</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>新增「IF NOT EXISTS」到「CREATE」語句中</translation>
     </message>
   </context>
 </TS>

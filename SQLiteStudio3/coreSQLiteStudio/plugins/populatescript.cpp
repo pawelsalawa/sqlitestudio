@@ -65,6 +65,11 @@ bool PopulateScriptEngine::beforePopulating(Db* db, const QString& table)
     dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(scriptingPlugin);
 
     context = scriptingPlugin->createContext();
+    if (!context)
+    {
+        notifyError(QObject::tr("Could not get evaluation context, probably the %1 scripting plugin is not configured properly").arg(cfg.PopulateScript.Language.get()));
+        return false;
+    }
 
     QString initCode = cfg.PopulateScript.InitCode.get();
     if (!initCode.trimmed().isEmpty())

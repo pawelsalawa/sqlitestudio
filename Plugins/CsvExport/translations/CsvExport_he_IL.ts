@@ -36,7 +36,7 @@
     <message>
       <location filename="../CsvExport.ui" line="61"/>
       <source>Custom:</source>
-      <translation>מותאם:</translation>
+      <translation>מותאם־אישית:</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="82"/>

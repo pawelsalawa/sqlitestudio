@@ -299,7 +299,7 @@ void ViewWindow::initView()
     if (existingView)
     {
         dataModel->setDb(db);
-        dataModel->setQuery(originalCreateView->select->detokenize());
+        dataModel->setQuery(originalCreateView->equivalentSelectTokens().detokenize());
         dataModel->setDatabaseAndView(database, view);
         ui->dbCombo->setDisabled(true);
     }
@@ -613,21 +613,26 @@ void ViewWindow::tabChanged(int tabIdx)
     {
             if (isModified())
             {
-                int res = QMessageBox::question(this, tr("Uncommitted changes"),
-                                                tr("There are uncommitted structure modifications. You cannot browse or edit data until you have "
-                                                   "the view structure settled.\n"
-                                                   "Do you want to commit the structure, or do you want to go back to the structure tab?"),
-                                                tr("Go back to structure tab"), tr("Commit modifications and browse data."));
+                QMessageBox box(QMessageBox::Question, tr("Uncommitted changes"),
+                                tr("There are uncommitted structure modifications."),
+                                QMessageBox::NoButton, this);
+                box.setInformativeText(tr("You cannot browse or edit data until you have "
+                                          "the view structure settled.\n"
+                                          "Do you want to commit the structure, or do you want to go back to the structure tab?"));
+                box.addButton(tr("Go back to structure tab"), QMessageBox::RejectRole);
+                QAbstractButton* commitButton = box.addButton(tr("Commit modifications and browse data"),
+                                                              QMessageBox::ApplyRole);
+                box.exec();
 
-                ui->tabWidget->setCurrentIndex(0);
-                if (res == 1)
+                ui->tabWidget->setCurrentIndex(CFG_UI.General.DataTabAsFirstInViews.get() ? 1 : 0);
+                if (box.clickedButton() == commitButton)
                     commitView(true);
 
                 return;
             }
 
             if (!dataLoaded)
-                ui->dataView->refreshData();
+                ui->dataView->refreshData(false);
 
             return;
     }

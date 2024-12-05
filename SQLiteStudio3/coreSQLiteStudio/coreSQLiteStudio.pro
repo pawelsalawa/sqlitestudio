@@ -54,7 +54,7 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG  += c++17
+CONFIG  += c++20
 QMAKE_CXXFLAGS += -pedantic
 
 SOURCES += sqlitestudio.cpp \
@@ -66,6 +66,7 @@ SOURCES += sqlitestudio.cpp \
     common/compatibility.cpp \
     db/queryexecutorsteps/queryexecutorcolumntype.cpp \
     db/queryexecutorsteps/queryexecutorfilter.cpp \
+    db/queryexecutorsteps/queryexecutorsmarthints.cpp \
     parser/ast/sqlitefilterover.cpp \
     parser/ast/sqlitenulls.cpp \
     parser/ast/sqlitewindowdefinition.cpp \
@@ -245,6 +246,7 @@ HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
     db/queryexecutorsteps/queryexecutorcolumntype.h \
     db/queryexecutorsteps/queryexecutorfilter.h \
+    db/queryexecutorsteps/queryexecutorsmarthints.h \
     db/sqlite3.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \

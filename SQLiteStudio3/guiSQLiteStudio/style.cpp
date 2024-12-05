@@ -33,7 +33,11 @@ void Style::setStyle(QStyle *style, const QString &styleName)
 {
     setBaseStyle(style);
 
+#if QT_VERSION < 0x060000
     QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+#else
+    // Qt 6 does it automatically
+#endif
 
     if (styleName != "qt5ct-style")
     {

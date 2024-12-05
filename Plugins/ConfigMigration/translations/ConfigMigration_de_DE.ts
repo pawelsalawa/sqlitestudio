@@ -9,22 +9,22 @@
       <translation>Eine alte SQLiteStudio 2.x.x Konfiguration wurde erkannt. Möchten Sie die alten Einstellungen in die aktuelle Version migrieren? &lt;a href=&quot;%1&quot;&gt;Klicken Sie hier, um das zu tun&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="136"/>
+      <location filename="../configmigration.cpp" line="139"/>
       <source>Bug reports history (%1)</source>
       <translation>Fehlerprotokollverlauf (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="145"/>
+      <location filename="../configmigration.cpp" line="148"/>
       <source>Database list (%1)</source>
       <translation>Datenbankliste (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="154"/>
+      <location filename="../configmigration.cpp" line="157"/>
       <source>Custom SQL functions (%1)</source>
       <translation>Benutzerdefinierte SQL-Funktionen (%1)</translation>
     </message>
     <message>
-      <location filename="../configmigration.cpp" line="163"/>
+      <location filename="../configmigration.cpp" line="166"/>
       <source>SQL queries history (%1)</source>
       <translation>SQL-Abfragen Verlauf (%1)</translation>
     </message>

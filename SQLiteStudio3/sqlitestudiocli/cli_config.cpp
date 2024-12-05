@@ -37,7 +37,11 @@ QString CliResultsDisplay::mode(CliResultsDisplay::Mode mode)
 void CliResultsDisplay::staticInit()
 {
     qRegisterMetaType<CliResultsDisplay::Mode>();
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<CliResultsDisplay::Mode>();
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 

@@ -25,7 +25,7 @@ ExportWorker::~ExportWorker()
 
 void ExportWorker::run()
 {
-    qDebug() << "ExportWorker thread started. Export mode: " << static_cast<int>(exportMode);
+    //qDebug() << "ExportWorker thread started. Export mode: " << static_cast<int>(exportMode);
     bool res = false;
     switch (exportMode)
     {
@@ -142,6 +142,9 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
+    int rowIdx = 0;
+    emit finishedStep(rowIdx);
+
     SqlResultsRowPtr row;
     while (results->hasNext())
     {
@@ -151,6 +154,9 @@ bool ExportWorker::exportQueryResults()
             logExportFail("exportQueryResultsRow()");
             return false;
         }
+        if (++rowIdx % 10 == 0)
+            emit finishedStep(rowIdx);
+
 
         if (isInterrupted())
         {

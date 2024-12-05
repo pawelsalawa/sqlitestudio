@@ -4,6 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include "services/exportmanager.h"
 #include <QWizard>
+#include <QHash>
 
 namespace Ui {
     class ExportDialog;

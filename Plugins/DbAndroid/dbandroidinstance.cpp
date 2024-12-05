@@ -124,6 +124,17 @@ Db* DbAndroidInstance::clone() const
     return new DbAndroidInstance(plugin, name, path, connOptions);
 }
 
+bool DbAndroidInstance::isTransactionActive() const
+{
+    // FIXME: Since there is no way to detect active transaction by PRAGMA or SQL function,
+    // this plugin cannot just test this state. It could potentially be implemented by tracking BEGIN/END keywords
+    // as first keywords in executed queries, but it will require more work and testing.
+    //
+    // Current consiequence of negleting this is that if user uses import() function enclosed with BEGIN & END,
+    // the query will fail due to already active transaction. In that case user needs to skip the BEGIN & END.
+    return false;
+}
+
 bool DbAndroidInstance::isOpenInternal()
 {
     return (connection && connection->isConnected());

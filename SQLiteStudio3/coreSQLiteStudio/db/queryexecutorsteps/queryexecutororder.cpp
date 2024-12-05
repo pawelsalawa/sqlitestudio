@@ -18,7 +18,11 @@ bool QueryExecutorOrder::exec()
 
     TokenList tokens = getOrderTokens(sortOrder);
     if (tokens.size() == 0)
-        return false;
+    {
+        // happens in cases like #4819
+        queryExecutor->setSortOrder(QueryExecutor::SortList());
+        return true;
+    }
 
     static_qstring(selectTpl, "SELECT * FROM (%1) ORDER BY %2");
     QString newSelect = selectTpl.arg(select->detokenize(), tokens.detokenize());

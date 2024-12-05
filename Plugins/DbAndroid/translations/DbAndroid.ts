@@ -4,49 +4,58 @@
   <context>
     <name>DbAndroid</name>
     <message>
-      <location filename="../dbandroid.cpp" line="39"/>
+      <location filename="../dbandroid.cpp" line="40"/>
       <source>Invalid or incomplete Android Database URL.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="54"/>
+      <location filename="../dbandroid.cpp" line="55"/>
       <source>Android database URL</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="55"/>
+      <location filename="../dbandroid.cpp" line="56"/>
       <source>Select Android database</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="151"/>
+      <location filename="../dbandroid.cpp" line="150"/>
       <source>Select ADB</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="173"/>
+      <location filename="../dbandroid.cpp" line="172"/>
       <source>Using Android Debug Bridge: %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="183"/>
+      <location filename="../dbandroid.cpp" line="182"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="191"/>
-      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
+      <location filename="../dbandroid.cpp" line="190"/>
+      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
+      <source>The selected ADB is incorrect.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="210"/>
+      <source>Would you like to select another one, or leave it unconfigured?</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="234"/>
+      <source>Save JAR file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="208"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../dbandroid.cpp" line="209"/>
-      <source>The selected ADB is incorrect.
-Would you like to select another one, or leave it unconfigured?</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -55,17 +64,12 @@ Would you like to select another one, or leave it unconfigured?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="211"/>
+      <location filename="../dbandroid.cpp" line="212"/>
       <source>Leave unconfigured</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="232"/>
-      <source>Save jar file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../dbandroid.cpp" line="251"/>
+      <location filename="../dbandroid.cpp" line="253"/>
       <source>Get Android connector JAR file</source>
       <translation type="unfinished"/>
     </message>
@@ -78,7 +82,7 @@ Would you like to select another one, or leave it unconfigured?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation type="unfinished"/>
     </message>

@@ -78,7 +78,11 @@ SingleApplicationPrivate::~SingleApplicationPrivate()
 void SingleApplicationPrivate::genBlockServerName( int timeout )
 {
     QCryptographicHash appData( QCryptographicHash::Sha256 );
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
     appData.addData( "SingleApplication", 17 );
+#else
+    appData.addData( QByteArrayView("SingleApplication", 17) );
+#endif
     appData.addData( SingleApplication::app_t::applicationName().toUtf8() );
     appData.addData( SingleApplication::app_t::organizationName().toUtf8() );
     appData.addData( SingleApplication::app_t::organizationDomain().toUtf8() );
@@ -216,7 +220,11 @@ void SingleApplicationPrivate::connectToPrimary( int msecs, ConnectionType conne
         writeStream << blockServerName.toLatin1();
         writeStream << static_cast<quint8>(connectionType);
         writeStream << instanceNumber;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         quint16 checksum = qChecksum(initMsg.constData(), static_cast<quint32>(initMsg.length()));
+#else
+        quint16 checksum = qChecksum(QByteArrayView(initMsg));
+#endif
         writeStream << checksum;
 
         socket->write( initMsg );
@@ -298,7 +306,11 @@ void SingleApplicationPrivate::slotConnectionEstablished()
         checksumStream.setVersion(SINGLE_APP_STREAM_VERSION);
         checksumStream >> msgChecksum;
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         const quint16 actualChecksum = qChecksum(msgBytes.constData(), static_cast<quint32>(msgBytes.length()));
+#else
+        const quint16 actualChecksum = qChecksum(QByteArrayView(msgBytes));
+#endif
 
         if (readStream.status() != QDataStream::Ok || QLatin1String(latin1Name) != blockServerName || msgChecksum != actualChecksum) {
           connectionType = InvalidConnection;

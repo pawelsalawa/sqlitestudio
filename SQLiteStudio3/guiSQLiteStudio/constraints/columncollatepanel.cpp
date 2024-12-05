@@ -102,6 +102,8 @@ void ColumnCollatePanel::storeConfiguration()
 
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+    else
+        constr->name.clear();
 
     constr->collationName = ui->collationCombo->currentText();
 }

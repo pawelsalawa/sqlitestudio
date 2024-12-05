@@ -6,6 +6,7 @@
 #include "common/utils_sql.h"
 #include "common/unused.h"
 #include "services/collationmanager.h"
+#include "services/notifymanager.h"
 #include "sqlitestudio.h"
 #include "db/sqlerrorcodes.h"
 #include "log.h"
@@ -65,6 +66,7 @@ class AbstractDb3 : public AbstractDb
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
+        bool isTransactionActive() const;
 
     private:
         class Query : public SqlQuery
@@ -362,7 +364,7 @@ QList<AliasedColumn> AbstractDb3<T>::columnsForQuery(const QString& query)
         return result;
     }
 
-    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty() && !removeComments(QString::fromUtf8(tail)).trimmed().isEmpty())
         qWarning() << "Executed query left with tailing contents:" << tail << ", while finding columns for query:" << query;
 
 
@@ -556,6 +558,12 @@ bool AbstractDb3<T>::registerCollationInternal(const QString& name)
     if (!dbHandle)
         return false;
 
+    CollationManager::CollationPtr collation = COLLATIONS->getCollation(name);
+    if (collation == nullptr)
+        return false;
+    if (collation->type == CollationManager::CollationType::EXTENSION_BASED)
+        return !(exec(collation->code, Flag::NO_LOCK)->isError());
+
     CollationUserData* userData = new CollationUserData;
     userData->name = name;
 
@@ -622,32 +630,32 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
         return;
     }
 
-    switch (result.type())
+    switch (result.userType())
     {
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray ba = result.toByteArray();
             T::result_blob(context, ba.constData(), ba.size(), T::TRANSIENT());
             break;
         }
-        case QVariant::Int:
-        case QVariant::Bool:
+        case QMetaType::Int:
+        case QMetaType::Bool:
         {
             T::result_int(context, result.toInt());
             break;
         }
-        case QVariant::Double:
+        case QMetaType::Double:
         {
             T::result_double(context, result.toDouble());
             break;
         }
-        case QVariant::UInt:
-        case QVariant::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
         {
             T::result_int64(context, result.toLongLong());
             break;
         }
-        case QVariant::List:
+        case QMetaType::QVariantList:
         {
             QList<QVariant> list = result.toList();
             QStringList strList;
@@ -658,7 +666,7 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
             T::result_text16(context, str.utf16(), str.size() * sizeof(QChar), T::TRANSIENT());
             break;
         }
-        case QVariant::StringList:
+        case QMetaType::QStringList:
         {
             QString str = result.toStringList().join(" ");
             T::result_text16(context, str.utf16(), str.size() * sizeof(QChar), T::TRANSIENT());
@@ -700,7 +708,11 @@ QList<QVariant> AbstractDb3<T>::getArgs(int argCount, typename T::value** args)
                 value = T::value_double(args[i]);
                 break;
             case T::NULL_TYPE:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
                 value = QVariant(QVariant::String);
+#else
+                value = QVariant(QMetaType::fromType<QString>());
+#endif
                 break;
             default:
                 value = QString(
@@ -849,7 +861,7 @@ void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::hand
     if (res != T::OK)
         qWarning() << "Could not register default collation in AbstractDb3<T>::registerDefaultCollation().";
     else
-        qDebug() << "Registered default collation on demand, under name:" << collationName;
+        notifyWarn(tr("Registered default collation on demand, under name: %1").arg(collationName));
 }
 
 template <class T>
@@ -873,6 +885,15 @@ void AbstractDb3<T>::registerDefaultCollationRequestHandler()
     int res = T::collation_needed(dbHandle, defaultCollationUserData, &AbstractDb3<T>::registerDefaultCollation);
     if (res != T::OK)
         qWarning() << "Could not register default collation request handler. Unknown collations will cause errors.";
+}
+
+template <class T>
+bool AbstractDb3<T>::isTransactionActive() const
+{
+    if (!dbHandle)
+        return false;
+
+    return !T::get_autocommit(dbHandle);
 }
 
 //------------------------------------------------------------------------------------
@@ -940,7 +961,7 @@ int AbstractDb3<T>::Query::prepareStmt()
         return res;
     }
 
-    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty() && !removeComments(QString::fromUtf8(tail)).trimmed().isEmpty())
         qWarning() << "Executed query left with tailing contents:" << tail << ", while executing query:" << query;
 
     return T::OK;
@@ -1070,24 +1091,24 @@ int AbstractDb3<T>::Query::bindParam(int paramIdx, const QVariant& value)
         return T::bind_null(stmt, paramIdx);
     }
 
-    switch (value.type())
+    switch (value.userType())
     {
-        case QVariant::ByteArray:
+        case QMetaType::QByteArray:
         {
             QByteArray ba = value.toByteArray();
             return T::bind_blob(stmt, paramIdx, ba.constData(), ba.size(), T::TRANSIENT());
         }
-        case QVariant::Int:
-        case QVariant::Bool:
+        case QMetaType::Int:
+        case QMetaType::Bool:
         {
             return T::bind_int(stmt, paramIdx, value.toInt());
         }
-        case QVariant::Double:
+        case QMetaType::Double:
         {
             return T::bind_double(stmt, paramIdx, value.toDouble());
         }
-        case QVariant::UInt:
-        case QVariant::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
         {
             return T::bind_int64(stmt, paramIdx, value.toLongLong());
         }
@@ -1218,7 +1239,8 @@ int AbstractDb3<T>::Query::fetchNext()
     rowAvailable = false;
     int res;
     int secondsSpent = 0;
-    while ((res = T::step(stmt)) == T::BUSY && secondsSpent < db->getTimeout())
+    bool zeroTimeout = flags.testFlag(Db::Flag::ZERO_TIMEOUT);
+    while ((res = T::step(stmt)) == T::BUSY && !zeroTimeout && secondsSpent < db->getTimeout() && !T::is_interrupted(db->dbHandle))
     {
         QThread::sleep(1);
         if (db->getTimeout() >= 0)
@@ -1233,6 +1255,9 @@ int AbstractDb3<T>::Query::fetchNext()
         case T::DONE:
             // Empty pointer as no more results are available.
             break;
+        case T::INTERRUPT:
+            setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
+            return T::INTERRUPT;
         default:
             setError(res, QString::fromUtf8(T::errmsg(db->dbHandle)));
             return T::ERROR;
@@ -1278,7 +1303,11 @@ int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVaria
                         );
             break;
         case T::NULL_TYPE:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             value = QVariant(QVariant::String);
+#else
+            value = QVariant(QMetaType::fromType<QString>());
+#endif
             break;
         case T::FLOAT:
             value = T::column_double(stmt, col);

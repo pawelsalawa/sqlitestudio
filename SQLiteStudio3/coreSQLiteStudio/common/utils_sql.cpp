@@ -14,6 +14,7 @@ QString invalidIdCharacters = "[](){}\"'@*.,+-=/#$%&|:; \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
+QSet<QString> sqlite3ReservedLiterals = {"true", "false"}; // true/false as column names - #5065
 
 void initUtilsSql()
 {
@@ -58,7 +59,15 @@ bool doesObjectNeedWrapping(const QString& str)
     if (str[0].isDigit())
         return true;
 
+    if (isReservedLiteral(str))
+        return true;
+
     return false;
+}
+
+bool isReservedLiteral(const QString& str)
+{
+    return sqlite3ReservedLiterals.contains(str.toLower());
 }
 
 bool doesObjectNeedWrapping(const QChar& c)
@@ -309,9 +318,9 @@ bool isWrapperChar(const QChar& c)
     return false;
 }
 
-int qHash(NameWrapper wrapper)
+TYPE_OF_QHASH qHash(NameWrapper wrapper)
 {
-    return (uint)wrapper;
+    return (TYPE_OF_QHASH)wrapper;
 }
 
 QString getPrefixDb(const QString& origDbName)
@@ -822,36 +831,37 @@ QStringList valueListToSqlList(const QVariantList& values)
 {
     QStringList argList;
     for (const QVariant& value : values)
-    {
-        if (!value.isValid() || value.isNull())
-        {
-            argList << "NULL";
-            continue;
-        }
+        argList << valueToSqlLiteral(value);
 
-        switch (value.userType())
-        {
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
-                argList << value.toString();
-                break;
-            case QVariant::Double:
-                argList << doubleToString(value);
-                break;
-            case QVariant::Bool:
-                argList << QString::number(value.toInt());
-                break;
-            case QVariant::ByteArray:
-                argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
-                break;
-            default:
-                argList << wrapString(escapeString(value.toString()));
-                break;
-        }
-    }
     return argList;
+}
+
+QString valueToSqlLiteral(const QVariant& value)
+{
+    if (!value.isValid() || value.isNull())
+        return "NULL";
+
+    switch (value.userType())
+    {
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+            return value.toString();
+            break;
+        case QMetaType::Double:
+            return doubleToString(value);
+            break;
+        case QMetaType::Bool:
+            return QString::number(value.toInt());
+            break;
+        case QMetaType::QByteArray:
+            return "X'" + value.toByteArray().toHex().toUpper() + "'";
+            break;
+        default:
+            break;
+    }
+    return wrapString(escapeString(value.toString()));
 }
 
 QStringList wrapStrings(const QStringList& strList)

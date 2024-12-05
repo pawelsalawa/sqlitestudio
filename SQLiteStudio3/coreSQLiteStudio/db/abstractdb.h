@@ -64,9 +64,9 @@ class API_EXPORT AbstractDb : public Db
         quint32 asyncExec(const QString& query, const QList<QVariant>& args, Flags flags = Flag::NONE);
         quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
         quint32 asyncExec(const QString& query, Flags flags = Flag::NONE);
-        bool begin();
-        bool commit();
-        bool rollback();
+        bool begin(bool noLock = false);
+        bool commit(bool noLock = false);
+        bool rollback(bool noLock = false);
         void interrupt();
         void asyncInterrupt();
         bool isReadable();
@@ -209,6 +209,9 @@ class API_EXPORT AbstractDb : public Db
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
         bool isCollationRegistered(const QString& name);
+        bool beginNoLock();
+        bool commitNoLock();
+        bool rollbackNoLock();
 
         /**
          * @brief Registers a collation sequence implementation in the database.
@@ -355,7 +358,7 @@ class API_EXPORT AbstractDb : public Db
             bool builtIn = false;
         };
 
-        friend int qHash(const AbstractDb::RegisteredFunction& fn);
+        friend TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn);
         friend bool operator==(const AbstractDb::RegisteredFunction& fn1, const AbstractDb::RegisteredFunction& fn2);
 
         /**
@@ -504,7 +507,7 @@ class API_EXPORT AbstractDb : public Db
  * @param fn Function to calculate hash for.
  * @return Hash value calculated from all members of DbBase::RegisteredFunction.
  */
-int qHash(const AbstractDb::RegisteredFunction& fn);
+TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn);
 
 /**
  * @brief Simple comparator operator, compares all members.

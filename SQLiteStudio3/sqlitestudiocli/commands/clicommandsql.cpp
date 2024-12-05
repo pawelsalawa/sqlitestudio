@@ -37,7 +37,7 @@ void CliCommandSql::execute()
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SLOT(executionFailed(int,QString)));
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SIGNAL(execComplete()));
 
-    executor->exec([=](SqlQueryPtr results)
+    executor->exec([=, this](SqlQueryPtr results)
     {
         if (results->isError())
             return; // should not happen, since results handler function is called only for successful executions

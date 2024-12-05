@@ -67,9 +67,10 @@ bool AbstractDb::openQuiet()
 
 bool AbstractDb::closeQuiet()
 {
-    QWriteLocker locker(&dbOperLock);
     QWriteLocker connectionLocker(&connectionStateLock);
     interruptExecution();
+
+    QWriteLocker locker(&dbOperLock);
     bool res = closeInternal();
     clearAttaches();
     registeredFunctions.clear();
@@ -107,6 +108,8 @@ void AbstractDb::registerUserFunctions()
 
         it.remove();
     }
+
+    registeredFunctions.clear();
 
     RegisteredFunction regFn;
     for (FunctionManager::ScriptFunction*& fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
@@ -509,6 +512,51 @@ bool AbstractDb::isCollationRegistered(const QString& name)
     return registeredCollations.contains(name);
 }
 
+bool AbstractDb::beginNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("BEGIN;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::commitNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while committing a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::rollbackNoLock()
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
 QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)
 {
     if (!memPtr)
@@ -792,55 +840,31 @@ quint32 AbstractDb::generateAsyncId()
     return asyncId++;
 }
 
-bool AbstractDb::begin()
+bool AbstractDb::begin(bool noLock)
 {
+    if (noLock)
+        return beginNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("BEGIN;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return beginNoLock();
 }
 
-bool AbstractDb::commit()
+bool AbstractDb::commit(bool noLock)
 {
+    if (noLock)
+        return commitNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while committing a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return commitNoLock();
 }
 
-bool AbstractDb::rollback()
+bool AbstractDb::rollback(bool noLock)
 {
+    if (noLock)
+        return rollbackNoLock();
+
     QWriteLocker locker(&dbOperLock);
-
-    if (!isOpenInternal())
-        return false;
-
-    SqlQueryPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
-    if (results->isError())
-    {
-        qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
-        return false;
-    }
-
-    return true;
+    return rollbackNoLock();
 }
 
 void AbstractDb::interrupt()
@@ -853,7 +877,14 @@ void AbstractDb::interrupt()
 
 void AbstractDb::asyncInterrupt()
 {
+#if QT_VERSION >= 0x060000
+    QThreadPool::globalInstance()->start([this]()
+    {
+        interrupt();
+    });
+#else
     QtConcurrent::run(this, &AbstractDb::interrupt);
+#endif
 }
 
 bool AbstractDb::isReadable()
@@ -915,11 +946,19 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
 
 void AbstractDb::flushWal()
 {
-    if (!flushWalInternal())
+    if (flushWalInternal())
+    {
+        if (exec("PRAGMA journal_mode")->getSingleCell().toString() == "wal")
+        {
+            exec("PRAGMA journal_mode = delete;", Flag::ZERO_TIMEOUT);
+            exec("PRAGMA journal_mode = wal;", Flag::ZERO_TIMEOUT);
+        }
+    }
+    else
         notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 
-int qHash(const AbstractDb::RegisteredFunction& fn)
+TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn)
 {
     return qHash(fn.name) ^ fn.argCount ^ fn.type;
 }

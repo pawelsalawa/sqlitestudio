@@ -35,7 +35,11 @@ DbTreeItem::DbTreeItem()
 void DbTreeItem::initMeta()
 {
     qRegisterMetaType<DbTreeItem*>("DbTreeItem*");
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<DbTreeItem*>("DbTreeItem*");
+#else
+    // Qt 6 does it automatically
+#endif
 }
 
 DbTreeItem::Type DbTreeItem::getType() const
@@ -56,6 +60,11 @@ int DbTreeItem::type() const
 DbTreeItem* DbTreeItem::findItem(DbTreeItem::Type type, const QString& name)
 {
     return DbTreeModel::findItem(this, type, name);
+}
+
+DbTreeItem* DbTreeItem::findFirstItem(Type type)
+{
+    return DbTreeModel::findFirstItem(this, type);
 }
 
 QStandardItem* DbTreeItem::clone() const
@@ -293,6 +302,16 @@ void DbTreeItem::setIcon(const Icon& icon)
         QStandardItem::setIcon(icon);
 }
 
+bool DbTreeItem::isSchemaReady() const
+{
+    return data(DataRole::SCHEMA_READY).toBool();
+}
+
+void DbTreeItem::setSchemaReady(bool ready)
+{
+    setData(ready, DataRole::SCHEMA_READY);
+}
+
 void DbTreeItem::init()
 {
     Type type = getType();
@@ -326,7 +345,7 @@ QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
     return in;
 }
 
-int qHash(DbTreeItem::Type type)
+TYPE_OF_QHASH qHash(DbTreeItem::Type type)
 {
-    return static_cast<int>(type);
+    return static_cast<TYPE_OF_QHASH>(type);
 }

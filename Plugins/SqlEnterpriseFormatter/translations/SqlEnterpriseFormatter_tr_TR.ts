@@ -8,7 +8,7 @@
       <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
-      <translation type="unfinished">name</translation>
+      <translation>ad</translation>
     </message>
   </context>
   <context>
@@ -16,12 +16,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="46"/>
       <source>Indentation</source>
-      <translation type="unfinished">Indentation</translation>
+      <translation>Girinti</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
       <source>Line up keywords in multi-line queries</source>
-      <translation type="unfinished">Line up keywords in multi-line queries</translation>
+      <translation>Çok satırlı sorgularda anahtar sözcükleri hizala</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
@@ -36,7 +36,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
       <source>New lines</source>
-      <translation type="unfinished">New lines</translation>
+      <translation>Yeni satırlar</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
@@ -91,23 +91,23 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation type="unfinished">After comma</translation>
+      <translation>Virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation type="unfinished">After comma in expressions</translation>
+      <translation>İfadelerde virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation type="unfinished">After semicolon</translation>
+      <translation>Noktalı virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
       <location filename="../sqlenterpriseformatter.ui" line="512"/>
       <source>Never before semicolon</source>
-      <translation type="unfinished">Never before semicolon</translation>
+      <translation>Asla noktalı virgülden önce değil</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
@@ -117,12 +117,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
       <source>Before comma in lists</source>
-      <translation type="unfinished">Before comma in lists</translation>
+      <translation>Listelerde virgülden önce</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation type="unfinished">After comma in lists</translation>
+      <translation>Listelerde virgülden sonra</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
@@ -172,12 +172,12 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation type="unfinished">Never before comma</translation>
+      <translation>Asla virgülden önce değil</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation type="unfinished">Names</translation>
+      <translation>Adlar</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="620"/>
       <source>Uppercase keywords</source>
-      <translation type="unfinished">Uppercase keywords</translation>
+      <translation>Büyük harfli anahtar sözcükler</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="631"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>Önizleme</translation>
     </message>
   </context>
 </TS>

@@ -4,51 +4,59 @@
   <context>
     <name>DbAndroid</name>
     <message>
-      <location filename="../dbandroid.cpp" line="39"/>
+      <location filename="../dbandroid.cpp" line="40"/>
       <source>Invalid or incomplete Android Database URL.</source>
       <translation>Неверный или неполный URL к базе данных Android.</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="54"/>
+      <location filename="../dbandroid.cpp" line="55"/>
       <source>Android database URL</source>
       <translation>URL к базе данных Android</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="55"/>
+      <location filename="../dbandroid.cpp" line="56"/>
       <source>Select Android database</source>
       <translation>Выберите базу данных Android</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="151"/>
+      <location filename="../dbandroid.cpp" line="150"/>
       <source>Select ADB</source>
       <translation>Выберите ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="173"/>
+      <location filename="../dbandroid.cpp" line="172"/>
       <source>Using Android Debug Bridge: %1</source>
       <translation>Используется Android Debug Bridge: %1</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="183"/>
+      <location filename="../dbandroid.cpp" line="182"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
       <translation>JAR-файл адаптера для Android можно получить в меню Инструменты. Он необходим для 2 из 3 типов подключений, поддерживаемых модулем для Android. Подробности см. в документации к модулю &lt;a href=&quot;%1&quot;&gt;на вики-странице SQLiteStudio.&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="191"/>
-      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
+      <location filename="../dbandroid.cpp" line="190"/>
+      <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
       <translation>Невозможно найти приложение Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь&lt;/a&gt; для указания расположения приложения ADB, иначе модуль %2 не будет поддерживать подключение через USB-кабель, возможно будет только подключение по сети.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
-      <source>Invalid ADB</source>
-      <translation>Некорректный ADB</translation>
+      <source>The selected ADB is incorrect.</source>
+      <translation type="unfinished">The selected ADB is incorrect.</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="209"/>
-      <source>The selected ADB is incorrect.
-Would you like to select another one, or leave it unconfigured?</source>
-      <translation>Выбранный ADB некорректен
-Хотите выбрать другой или оставить ненастроенным?</translation>
+      <location filename="../dbandroid.cpp" line="210"/>
+      <source>Would you like to select another one, or leave it unconfigured?</source>
+      <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="234"/>
+      <source>Save JAR file</source>
+      <translation>Сохранить JAR-файл</translation>
+    </message>
+    <message>
+      <location filename="../dbandroid.cpp" line="208"/>
+      <source>Invalid ADB</source>
+      <translation>Некорректный ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
@@ -56,17 +64,12 @@ Would you like to select another one, or leave it unconfigured?</source>
       <translation>Выбрать другой ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="211"/>
+      <location filename="../dbandroid.cpp" line="212"/>
       <source>Leave unconfigured</source>
       <translation>Оставить ненастроенным</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="232"/>
-      <source>Save jar file</source>
-      <translation>Сохранить JAR-файл</translation>
-    </message>
-    <message>
-      <location filename="../dbandroid.cpp" line="251"/>
+      <location filename="../dbandroid.cpp" line="253"/>
       <source>Get Android connector JAR file</source>
       <translation>Получить JAR-файл адаптера для Android</translation>
     </message>
@@ -79,7 +82,7 @@ Would you like to select another one, or leave it unconfigured?</source>
       <translation>Драйвер SQLite для Android не поддерживает подгружаемые расширения.</translation>
     </message>
     <message>
-      <location filename="../dbandroidinstance.cpp" line="206"/>
+      <location filename="../dbandroidinstance.cpp" line="217"/>
       <source>Connection with Android database &apos;%1&apos; lost.</source>
       <translation>Подключение к базе данных Android &apos;%1&apos; утеряно.</translation>
     </message>

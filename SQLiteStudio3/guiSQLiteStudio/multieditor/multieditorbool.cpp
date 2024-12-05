@@ -11,7 +11,11 @@ MultiEditorBool::MultiEditorBool(QWidget* parent)
     setLayout(new QVBoxLayout());
     checkBox = new QCheckBox();
     layout()->addWidget(checkBox);
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
     connect(checkBox, &QCheckBox::stateChanged, this, &MultiEditorBool::stateChanged);
+#else
+    connect(checkBox, &QCheckBox::checkStateChanged, this, &MultiEditorBool::stateChanged);
+#endif
 }
 
 void MultiEditorBool::staticInit()
@@ -26,11 +30,11 @@ void MultiEditorBool::setValue(const QVariant& value)
 {
     switch (value.userType())
     {
-        case QVariant::Bool:
-        case QVariant::Int:
-        case QVariant::LongLong:
-        case QVariant::UInt:
-        case QVariant::ULongLong:
+        case QMetaType::Bool:
+        case QMetaType::Int:
+        case QMetaType::LongLong:
+        case QMetaType::UInt:
+        case QMetaType::ULongLong:
             boolValue = value.toBool();
             upperCaseValue = false;
             valueFormat = BOOL;
@@ -135,9 +139,15 @@ void MultiEditorBool::updateLabel()
     checkBox->setText(getValue().toString());
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
 void MultiEditorBool::stateChanged(int state)
 {
     if (readOnly && ((bool)state) != boolValue)
+#else
+void MultiEditorBool::stateChanged(Qt::CheckState state)
+{
+    if (readOnly && (state == Qt::Checked) != boolValue)
+#endif
     {
         checkBox->setChecked(boolValue);
         return;

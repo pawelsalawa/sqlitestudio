@@ -145,6 +145,8 @@ void DbDialog::init()
 
     ui->testConnIcon->setVisible(false);
 
+    connect(ui->existingDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateCreateMode()));
+    connect(ui->createDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateCreateMode()));
     connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(fileChanged(QString)));
     connect(ui->nameEdit, SIGNAL(textEdited(QString)), this, SLOT(nameModified(QString)));
     connect(ui->browseOpenButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
@@ -172,7 +174,9 @@ void DbDialog::updateOptions()
 
     customBrowseHandler = nullptr;
     ui->pathGroup->setTitle(tr("File"));
-    ui->browseOpenButton->setToolTip(tr("Select new or existing file on local computer"));
+    ui->existingDatabaseRadio->setChecked(true);
+    ui->createDatabaseRadio->setChecked(false);
+    updateCreateMode();
 
     optionWidgets.clear();
     optionKeyToWidget.clear();
@@ -209,6 +213,10 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
         // This option does not add any editor, but has it's own label for path edit.
         row--;
         ui->pathGroup->setTitle(option.label);
+        ui->existingDatabaseRadio->setChecked(true);
+        ui->createDatabaseRadio->setChecked(false);
+        ui->createDatabaseRadio->setVisible(false);
+        updateCreateMode();
         if (!option.toolTip.isEmpty())
             ui->browseOpenButton->setToolTip(option.toolTip);
 
@@ -567,6 +575,13 @@ bool DbDialog::validate()
         setValidState(ui->fileEdit, false, tr("Enter a database file path."));
         fileState = false;
     }
+    else if (QFileInfo(getPath()).isRelative())
+    {
+        setValidStateWarning(ui->fileEdit,
+            tr("You're using a relative file path, which will be resolved to \"%1\" according to the application's working directory. It's always better to use absolute file path to avoid unexpected database location.")
+                             .arg(QFileInfo(getPath()).absoluteFilePath()));
+        fileState = false;
+    }
 
     if (fileState)
     {
@@ -663,6 +678,19 @@ void DbDialog::fileChanged(const QString &arg1)
     valueForNameGenerationChanged();
     updateType();
     propertyChanged();
+
+    if (!customBrowseHandler)
+    {
+        QString path = getPath();
+        if (!path.isEmpty())
+        {
+            QFileInfo fileInfo(path);
+            bool isFile = fileInfo.exists() && fileInfo.isFile();
+            ui->existingDatabaseRadio->setChecked(isFile);
+            ui->createDatabaseRadio->setChecked(!isFile);
+            updateCreateMode();
+        }
+    }
 }
 
 void DbDialog::browseClicked()
@@ -689,7 +717,7 @@ void DbDialog::browseClicked()
     else
         dir = getFileDialogInitPath();
 
-    QString path = getDbPath(dir);
+    QString path = getDbPath(createMode, dir);
     if (path.isNull())
         return;
 
@@ -726,6 +754,15 @@ void DbDialog::nameModified(const QString &value)
 {
     nameManuallyEdited = !value.isEmpty();
     updateState();
+}
+
+void DbDialog::updateCreateMode()
+{
+    createMode = ui->createDatabaseRadio->isChecked();
+    ui->browseOpenButton->setToolTip(
+        createMode ? tr("Choose a location for the new database file")
+                   : tr("Browse for existing database file on local computer")
+    );
 }
 
 void DbDialog::accept()

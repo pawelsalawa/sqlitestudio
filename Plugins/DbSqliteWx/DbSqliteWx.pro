@@ -27,9 +27,17 @@ isEmpty(WXSQLITE_LIB): {
     HEADERS += wxsqlite3.h
 }
 
-max: {
-    INCLUDEPATH += /usr/local/opt/openssl/include
-    LIBS += -L/usr/local/opt/openssl/lib
+macx: {
+    exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
+        message( "Configuring OpenSSL from MacPorts" )
+        INCLUDEPATH += /opt/local/include/openssl-3
+        LIBS += -L/opt/local/lib/openssl-3
+    } else {
+        message( "Configuring OpenSSL from HomeBrew" )
+        INCLUDEPATH += /usr/local/opt/openssl/include
+        LIBS += -L/usr/local/opt/openssl/lib
+    }
+    LIBS += -framework Security
 }
 !macx: {
     LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
@@ -66,7 +74,11 @@ DEFINES += SQLITE_HAS_CODEC SQLITE_ALLOW_XTHREAD_CONNECT=1 SQLITE_THREADSAFE=1 S
     SQLITE_ENABLE_RTREE=1 \
     SQLITE_ENABLE_MATH_FUNCTIONS=1
 
-QMAKE_CFLAGS += -msse4.1 -msse4.2 -maes
+# We cannot reliably detect the target architecture, assume that host == target
+contains(QMAKE_HOST.arch,x86|x86_64|amd64): {
+    QMAKE_CFLAGS += -msse4.1 -msse4.2 -maes
+}
+
 QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-but-set-variable \
     -Wno-parentheses -Wno-unused-variable -Wno-unknown-pragmas
 

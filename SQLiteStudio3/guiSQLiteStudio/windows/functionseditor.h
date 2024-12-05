@@ -105,7 +105,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         void delFunctionArg();
         void moveFunctionArgUp();
         void moveFunctionArgDown();
-        void updateArgsState();
+        bool updateArgsState();
         void applyFilter(const QString& value);
         void help();
         void changeFont(const QVariant& font);

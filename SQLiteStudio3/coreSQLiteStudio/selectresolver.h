@@ -64,7 +64,9 @@ class API_EXPORT SelectResolver
             FROM_DISTINCT_SELECT = 0x04,
             FROM_GROUPED_SELECT = 0x08,
             FROM_CTE_SELECT = 0x10,
-            FROM_VIEW = 0x20
+            FROM_VIEW = 0x20,
+            FROM_TABLE_VALUED_FN = 0x40,
+            FROM_RES_COL_SUBSELECT = 0x80, // for result columns that are in-line subselects (i.e. subselect that's not in FROM, but in result columns)
         };
 
         /**
@@ -327,10 +329,10 @@ class API_EXPORT SelectResolver
 };
 
 API_EXPORT int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2);
-API_EXPORT uint qHash(const SelectResolver::Table& table);
+API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Table& table);
 
 API_EXPORT int operator==(const SelectResolver::Column& c1, const SelectResolver::Column& c2);
-API_EXPORT uint qHash(const SelectResolver::Column& column);
+API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Column& column);
 
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Column &c);
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Table &c);

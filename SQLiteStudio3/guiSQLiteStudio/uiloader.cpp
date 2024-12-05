@@ -12,8 +12,8 @@
 #include "common/colorbutton.h"
 #include <QComboBox>
 #include <QDebug>
+#include <QFile>
 #include <QMetaProperty>
-#include <QXmlSimpleReader>
 
 #define REGISTER_WIDGET(Class) \
     registerWidgetClass(#Class, [](QWidget* parent, const QString& name) -> QWidget*\
@@ -84,7 +84,8 @@ QWidget* UiLoader::load(const QString& path)
     }
 
     QWidget* w = QUiLoader::load(&file, nullptr);
-    handlePropertiesRecursively(w);
+    if (w)
+        handlePropertiesRecursively(w);
     return w;
 }
 

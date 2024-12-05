@@ -33,7 +33,7 @@ bool CsvImport::beforeImport(const ImportManager::StandardImportConfig& config)
     }
 
     stream = new QTextStream(file);
-    stream->setCodec(config.codec.toLatin1().data());
+    stream->setEncoding(textEncodingForName(config.codec));
 
     if (!extractColumns())
     {
@@ -133,7 +133,11 @@ QList<QVariant> CsvImport::next()
         for (const QString& val : deserializedEntry)
         {
             if (val == nullVal)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
                 values << QVariant(QVariant::String);
+#else
+                values << QVariant(QMetaType::fromType<QString>());
+#endif
             else
                 values << val;
         }

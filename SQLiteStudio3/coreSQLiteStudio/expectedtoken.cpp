@@ -26,7 +26,7 @@ bool ExpectedToken::needsWrapping() const
     return false;
 }
 
-int ExpectedToken::operator==(const ExpectedToken& other)
+int ExpectedToken::operator==(const ExpectedToken& other) const
 {
     return type == other.type && value == other.value && contextInfo == other.contextInfo &&
             label == other.label && prefix == other.prefix;
@@ -62,12 +62,12 @@ int operator==(const ExpectedTokenPtr& ptr1, const ExpectedTokenPtr& ptr2)
     return *ptr1.data() == *ptr2.data();
 }
 
-int qHash(const ExpectedToken& token)
+TYPE_OF_QHASH qHash(const ExpectedToken& token)
 {
     return token.type ^ qHash(token.value + "/" + token.contextInfo + "/" + token.label + "/" + token.prefix);
 }
 
-int qHash(const ExpectedTokenPtr& ptr)
+TYPE_OF_QHASH qHash(const ExpectedTokenPtr& ptr)
 {
     return qHash(*ptr.data());
 }

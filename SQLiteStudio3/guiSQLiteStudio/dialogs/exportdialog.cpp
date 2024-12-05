@@ -16,11 +16,11 @@
 #include "services/notifymanager.h"
 #include "themetuner.h"
 #include "uiconfig.h"
+#include "common/dialogsizehandler.h"
 #include <QClipboard>
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
-#include <QTextCodec>
 #include <QUiLoader>
 #include <QMimeData>
 
@@ -52,6 +52,7 @@ void ExportDialog::init()
     ui->setupUi(this);
     THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());
@@ -61,7 +62,9 @@ void ExportDialog::init()
     widgetCover = new WidgetCover(this);
     widgetCover->initWithInterruptContainer(tr("Cancel"));
     connect(widgetCover, SIGNAL(cancelClicked()), EXPORT_MANAGER, SLOT(interrupt()));
+    connect(EXPORT_MANAGER, SIGNAL(finishedStep(int)), widgetCover, SLOT(setProgress(int)));
     widgetCover->setVisible(false);
+    widgetCover->displayProgress(0, "%v");
 
     initPageOrder();
 
@@ -152,7 +155,7 @@ void ExportDialog::initModePage()
 
 void ExportDialog::initTablePage()
 {
-    ui->tablePage->setValidator([=]() -> bool
+    ui->tablePage->setValidator([=, this]() -> bool
     {
         bool dbOk = ui->exportTableDbNameCombo->currentIndex() > -1;
         bool tableOk = ui->exportTableNameCombo->currentIndex() > -1;
@@ -176,7 +179,7 @@ void ExportDialog::initTablePage()
 
 void ExportDialog::initQueryPage()
 {
-    ui->queryPage->setValidator([=]() -> bool
+    ui->queryPage->setValidator([=, this]() -> bool
     {
         bool queryOk = !ui->queryEdit->toPlainText().trimmed().isEmpty();
         queryOk &= ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
@@ -201,7 +204,7 @@ void ExportDialog::initDbObjectsPage()
     selectableDbListModel->setSourceModel(DBTREE->getModel());
     ui->dbObjectsTree->setModel(selectableDbListModel);
 
-    ui->databaseObjectsPage->setValidator([=]() -> bool
+    ui->databaseObjectsPage->setValidator([=, this]() -> bool
     {
         bool dbOk = ui->dbObjectsDatabaseCombo->currentIndex() > -1;
         bool listOk = selectableDbListModel->getCheckedObjects().size() > 0;
@@ -221,7 +224,7 @@ void ExportDialog::initDbObjectsPage()
 
 void ExportDialog::initFormatPage()
 {
-    ui->formatAndOptionsPage->setValidator([=]() -> bool
+    ui->formatAndOptionsPage->setValidator([=, this]() -> bool
     {
         setValidState(ui->exportFileEdit, true);
         bool outputFileSupported = currentPlugin && currentPlugin->getSupportedModes().testFlag(ExportManager::FILE);
@@ -613,7 +616,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
     pluginOptionsWidget = FORMS->createWidget(formName);
 
     if (pluginOptionsWidget->layout())
-        pluginOptionsWidget->layout()->setMargin(0);
+        pluginOptionsWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     grid->addWidget(pluginOptionsWidget, 1, 0, 1, 2);
     optionsRow++;

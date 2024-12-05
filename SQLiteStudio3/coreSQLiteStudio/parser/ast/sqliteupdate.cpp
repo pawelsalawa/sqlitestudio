@@ -93,7 +93,7 @@ QStringList SqliteUpdate::getColumnsInStatement()
     QStringList columns;
     for (ColumnAndValue& keyValue : keyValueMap)
     {
-        if (keyValue.first.type() == QVariant::StringList)
+        if (keyValue.first.userType() == QMetaType::QStringList)
             columns += keyValue.first.toStringList();
         else
             columns += keyValue.first.toString();
@@ -215,7 +215,7 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         if (!first)
             builder.withOperator(",").withSpace();
 
-        if (keyVal.first.type() == QVariant::StringList)
+        if (keyVal.first.userType() == QMetaType::QStringList)
             builder.withParLeft().withOtherList(keyVal.first.toStringList()).withParRight();
         else
             builder.withOther(keyVal.first.toString());

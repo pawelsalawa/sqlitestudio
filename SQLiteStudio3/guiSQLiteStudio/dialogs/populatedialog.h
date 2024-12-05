@@ -4,6 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
 #include <QVariant>
+#include <QHash>
 
 namespace Ui {
     class PopulateDialog;

@@ -116,7 +116,11 @@ void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
     QTreeView::dragMoveEvent(event);
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     DbTreeItem* dstItem = itemAt(event->pos());
+#else
+    DbTreeItem* dstItem = itemAt(event->position().toPoint());
+#endif
 
     // Depending on where we drop we need a type of item we drop ON,
     // or type of parent item if we drop ABOVE/BELOW. If we drop on empty space,
@@ -254,7 +258,12 @@ QModelIndexList DbTreeView::getSelectedIndexes() const
 
 void DbTreeView::dropEvent(QDropEvent* e)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     lastDropPosition = e->pos();
+#else
+    lastDropPosition = e->position().toPoint();
+#endif
+
     QTreeView::dropEvent(e);
     if (!e->isAccepted() && e->mimeData()->hasUrls() && !dbTree->getModel()->hasDbTreeItem(e->mimeData()))
     {

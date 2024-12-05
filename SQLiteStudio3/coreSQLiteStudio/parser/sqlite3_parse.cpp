@@ -5200,9 +5200,9 @@ static void yy_reduce(
         break;
       case 376: /* minus_num ::= MINUS number */
 {
-                                                if (yymsp[0].minor.yy393->type() == QVariant::Double)
+                                                if (yymsp[0].minor.yy393->userType() == QMetaType::Double)
                                                     *(yymsp[0].minor.yy393) = -(yymsp[0].minor.yy393->toDouble());
-                                                else if (yymsp[0].minor.yy393->type() == QVariant::LongLong)
+                                                else if (yymsp[0].minor.yy393->userType() == QMetaType::LongLong)
                                                 {
                                                     if (parserContext->isCandidateForMaxNegativeNumber())
                                                         *(yymsp[0].minor.yy393) = std::numeric_limits<qint64>::min();

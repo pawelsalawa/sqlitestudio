@@ -264,7 +264,7 @@ bool SqlTableModel::processNullValueAfterInsert(SqlQueryItem* item, QVariant& va
     else
         value = modelColumn->getDefaultConstraint()->defaultValue;
 
-    if (value.userType() == QVariant::String)
+    if (value.userType() == QMetaType::QString)
         value = stripString(value.toString());
 
     return true;
@@ -355,10 +355,10 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
     int i = 0;
     for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
+        item = itemsInRow[i++];
         if (!modelColumn->canEdit())
             continue;
 
-        item = itemsInRow[i++];
         if (item->getValue().isNull())
         {
             if (CFG_UI.General.UseDefaultValueForNull.get() && modelColumn->isDefault())

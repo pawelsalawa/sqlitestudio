@@ -45,7 +45,7 @@ void WidgetStateIndicator::initLabel()
 
     labelParent = new QWidget(windowParent);
     labelParent->setLayout(new QHBoxLayout());
-    labelParent->layout()->setMargin(0);
+    labelParent->layout()->setContentsMargins(0, 0, 0, 0);
     labelParent->layout()->addWidget(label);
     labelParent->setGraphicsEffect(glowEffect);
 }
@@ -155,6 +155,11 @@ void WidgetStateIndicator::setVisible(bool visible, const QString& msg)
         show(msg);
     else
         hide();
+}
+
+bool WidgetStateIndicator::isVisible() const
+{
+    return labelParent->isVisible();
 }
 
 void WidgetStateIndicator::release()
@@ -380,7 +385,11 @@ bool WidgetStateIndicator::eventFilterFromIndicatorLabel(QEvent* ev)
         {
             highlightingEffect->setEnabled(true);
             QEnterEvent* e = dynamic_cast<QEnterEvent*>(ev);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             QToolTip::showText(e->globalPos(), message);
+#else
+            QToolTip::showText(e->globalPosition().toPoint(), message);
+#endif
             break;
         }
         case QEvent::Leave:

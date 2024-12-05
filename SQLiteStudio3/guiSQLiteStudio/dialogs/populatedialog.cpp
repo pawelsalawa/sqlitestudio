@@ -11,6 +11,7 @@
 #include "services/populatemanager.h"
 #include "common/widgetcover.h"
 #include "common/compatibility.h"
+#include "common/dialogsizehandler.h"
 #include <QPushButton>
 #include <QGridLayout>
 #include <QCheckBox>
@@ -45,6 +46,7 @@ void PopulateDialog::init()
 {
     ui->setupUi(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Populate", "populate dialog button"));
 
     plugins = PLUGINS->getLoadedPlugins<PopulatePlugin>();

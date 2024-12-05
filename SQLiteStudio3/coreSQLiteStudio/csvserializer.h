@@ -3,7 +3,6 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "csvformat.h"
-
 #include <QTextStream>
 
 class API_EXPORT CsvSerializer

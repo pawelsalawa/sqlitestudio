@@ -8,7 +8,7 @@
       <location filename="../sqlenterpriseformatter.cpp" line="97"/>
       <source>name</source>
       <comment>example name wrapper</comment>
-      <translation>Nom</translation>
+      <translation>nom</translation>
     </message>
   </context>
   <context>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
       <source>Tab size:</source>
-      <translation>taille d’indentation :</translation>
+      <translation>Taille d’indentation :</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
@@ -96,7 +96,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation>Après la virgule dans l’exoression</translation>
+      <translation>Après la virgule dans l’expression</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
@@ -147,7 +147,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation>aucun espance entre le nom de la fonction SQL et l’ouverture des paranthèses</translation>
+      <translation>Nucun espace entre le nom de la fonction SQL et l’ouverture des paranthèses</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
@@ -157,27 +157,27 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="472"/>
       <source>After dot operator (in path to database object)</source>
-      <translation>Après </translation>
+      <translation>Après l&apos;opérateur point (dans le chemin vers l&apos;objet database)</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="482"/>
       <source>Before mathematical operator</source>
-      <translation>Avant opérateurmathématique</translation>
+      <translation>Avant opérateur mathématique</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="492"/>
       <source>After mathematical operator</source>
-      <translation>Après opérateurmathématique</translation>
+      <translation>Après opérateur mathématique</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="502"/>
       <source>Never before comma</source>
-      <translation>Jamais avant virgule</translation>
+      <translation>Jamais avant une virgule</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="558"/>
       <source>Names</source>
-      <translation>noms</translation>
+      <translation>Noms</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="583"/>

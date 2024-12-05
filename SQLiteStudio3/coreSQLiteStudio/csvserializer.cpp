@@ -3,6 +3,7 @@
 #include <QList>
 #include <QDebug>
 #include <QTime>
+#include <QIODevice>
 
 template <class C>
 bool isCsvSeparator(QList<C>& ahead, const C& theChar, const QStringList& separators)
@@ -231,6 +232,7 @@ QStringList CsvSerializer::deserializeOneEntry(QTextStream& data, const CsvForma
 QList<QList<QByteArray>> CsvSerializer::deserialize(const QByteArray& data, const CsvFormat& format)
 {
     QTextStream stream(data, QIODevice::ReadWrite);
+    stream.setEncoding(QStringConverter::Latin1);
     return typedDeserialize<QByteArray,char>(stream, format);
 }
 
@@ -249,6 +251,6 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
 {
     QString dataString = data;
     QTextStream stream(&dataString, QIODevice::ReadWrite);
+    stream.setEncoding(QStringConverter::Latin1);
     return deserialize(stream, format);
 }
-

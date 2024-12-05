@@ -28,7 +28,6 @@ void SqlDataSourceQueryModel::updateTablesInUse(const QString& inUse)
 
 void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProcessor valueProc)
 {
-//    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
     if (value.isEmpty())
     {
         resetFilter();
@@ -39,14 +38,12 @@ void SqlDataSourceQueryModel::applyFilter(const QString& value, FilterValueProce
     for (SqlQueryModelColumnPtr& column : columns)
         conditions << wrapObjIfNeeded(column->getAliasedName())+" "+valueProc(value);
 
-//    setQuery(sql.arg(getDataSource(), conditions.join(" OR ")));
     queryExecutor->setFilters(conditions.join(" OR "));
-    executeQuery();
+    executeQuery(true);
 }
 
 void SqlDataSourceQueryModel::applyFilter(const QStringList& values, FilterValueProcessor valueProc)
 {
-//    static_qstring(sql, "SELECT * FROM %1 WHERE %2");
     if (values.isEmpty())
     {
         resetFilter();
@@ -69,7 +66,6 @@ void SqlDataSourceQueryModel::applyFilter(const QStringList& values, FilterValue
         conditions << wrapObjIfNeeded(columns[i]->getAliasedName())+" "+valueProc(values[i]);
     }
 
-//    setQuery(sql.arg(getDataSource(), conditions.join(" AND ")));
     queryExecutor->setFilters(conditions.join(" AND "));
     executeQuery();
 }
@@ -139,7 +135,7 @@ void SqlDataSourceQueryModel::resetFilter()
 {
 //    setQuery("SELECT * FROM "+getDataSource());
     queryExecutor->setFilters(QString());
-    executeQuery();
+    executeQuery(true);
 }
 
 QString SqlDataSourceQueryModel::getDatabasePrefix()

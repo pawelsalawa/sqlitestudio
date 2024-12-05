@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation>Nom du tableau pour l&apos;instruction INSERT est obligatoire.</translation>
+      <translation>Le nom de la table pour l&apos;instruction INSERT est obligatoire.</translation>
     </message>
   </context>
   <context>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Genere &quot;DROP IF EXISTS&quot; Déclaration avant &quot;CREATE&quot;déclaration</translation>
+      <translation>Genere une instruction &quot;DROP IF EXISTS&quot; avant l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
@@ -59,7 +59,7 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
+      <translation>Ajouter une instruction &quot;IF NOT EXISTS&quot; à l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
@@ -77,7 +77,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="40"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation>Nom du tableau à utiliser pour l&apos;instruction INSERT :</translation>
+      <translation>Nom de la table à utiliser pour l&apos;instruction INSERT :</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="64"/>
@@ -92,17 +92,17 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation>Génere la déclaration &quot;DROP IF EXISTS&quot; avant la déclaration &quot;CREATE&quot;</translation>
+      <translation>Génere une instruction &quot;DROP IF EXISTS&quot; avant la l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="74"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation>Format DDL seulement déclaration (exclus déclaration &quot;INSERT&quot;)</translation>
+      <translation>Formater seulement les instructions DDL (instructions &quot;INSERT&quot; exclues)</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="84"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation>Ajouter la clause &quot;SI N&apos;EXISTE PAS&quot; à l&apos;instruction &quot;CRÉER&quot;</translation>
+      <translation>Ajouter l&apos;instruction &quot;IF NOT EXISTS&quot; à l&apos;instruction &quot;CREATE&quot;</translation>
     </message>
   </context>
 </TS>

@@ -2,14 +2,13 @@
 #include "services/pluginmanager.h"
 #include "plugins/exportplugin.h"
 #include "services/notifymanager.h"
-#include "db/queryexecutor.h"
 #include "exportworker.h"
 #include <QThreadPool>
-#include <QTextCodec>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QStringDecoder>
 
 ExportManager::ExportManager(QObject *parent) :
     PluginServiceBase(parent)
@@ -194,6 +193,7 @@ ExportWorker* ExportManager::prepareExport()
 
     ExportWorker* worker = new ExportWorker(plugin, config, output);
     connect(worker, SIGNAL(finished(bool,QIODevice*)), this, SLOT(finalizeExport(bool,QIODevice*)));
+    connect(worker, SIGNAL(finishedStep(int)), this, SIGNAL(finishedStep(int)));
     connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
     return worker;
 }
@@ -202,7 +202,7 @@ void ExportManager::handleClipboardExport()
 {
     if (plugin->getMimeType().isNull())
     {
-        QString str = codecForName(config->codec)->toUnicode(bufferForClipboard->buffer());
+        QString str = textDecoderForName(config->codec)->decode(bufferForClipboard->buffer());
         emit storeInClipboard(str);
     }
     else

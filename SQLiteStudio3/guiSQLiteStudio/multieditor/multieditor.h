@@ -116,7 +116,11 @@ class GUI_API_EXPORT MultiEditor : public QWidget
     private slots:
         void configClicked();
         void tabChanged(int idx);
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
         void nullStateChanged(int state);
+#else
+        void nullStateChanged(Qt::CheckState state);
+#endif
         void invalidateValue();
         void setModified();
         void removeTab(int idx);

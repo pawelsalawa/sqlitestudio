@@ -16,4 +16,10 @@
 #   define PATH_LIST_SEPARATOR ":"
 #endif
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#   define TYPE_OF_QHASH uint
+#else
+#   define TYPE_OF_QHASH size_t
+#endif
+
 #endif // CORESQLITESTUDIO_GLOBAL_H

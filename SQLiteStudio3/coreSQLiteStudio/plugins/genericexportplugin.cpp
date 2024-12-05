@@ -3,7 +3,7 @@
 #include "services/notifymanager.h"
 #include "common/unused.h"
 #include "config_builder.h"
-#include <QTextCodec>
+#include <QStringEncoder>
 
 bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
 {
@@ -13,10 +13,10 @@ bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
 
     if (standardOptionsToEnable().testFlag(ExportManager::CODEC))
     {
-        codec = codecForName(this->config->codec);
+        codec = textEncoderForName(this->config->codec);
         if (!codec)
         {
-            codec = defaultCodec();
+            codec = defaultTextEncoder();
             notifyWarn(tr("Could not initialize text codec for exporting. Using default codec: %1").arg(QString::fromLatin1(codec->name())));
         }
     }
@@ -87,7 +87,7 @@ bool GenericExportPlugin::initBeforeExport()
 
 void GenericExportPlugin::write(const QString& str)
 {
-    output->write(codec->fromUnicode(str));
+    output->write(codec->encode(str));
 }
 
 void GenericExportPlugin::writeln(const QString& str)

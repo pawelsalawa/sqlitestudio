@@ -56,7 +56,7 @@ bool RegExpImport::beforeImport(const ImportManager::StandardImportConfig& confi
     }
 
     stream = new QTextStream(file);
-    stream->setCodec(config.codec.toLatin1().data());
+    stream->setEncoding(textEncodingForName(config.codec));
 
 
     static const QString intColTemplate = QStringLiteral("column%1");
@@ -129,7 +129,7 @@ QList<QVariant> RegExpImport::next()
     QList<QVariant> values;
     for (const QVariant& group : groups)
     {
-        if (group.type() == QVariant::Int)
+        if (group.userType() == QMetaType::Int)
             values << match.captured(group.toInt());
         else
             values << match.captured(group.toString());

@@ -143,8 +143,9 @@ void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
     // - this item was already marked as uncommitted
     bool modified = (
                         (
-                                newValue != origValue ||
-                                origValue.isNull() != newValue.isNull()
+                            newValue != origValue ||
+                            origValue.isNull() != newValue.isNull() ||
+                            newValue.typeId() != origValue.typeId()
                         ) &&
                         !loadedFromDb
                     ) ||
@@ -331,6 +332,18 @@ QVariant SqlQueryItem::data(int role) const
             if (value.isNull())
                 return "NULL";
 
+            if (value.metaType() == QMetaType::fromType<QString>())
+            {
+                QString str = value.toString();
+                return str.length() > DISPLAY_LEN_LIMIT ? QVariant(str.left(DISPLAY_LEN_LIMIT) + "...") : value;
+            }
+
+            if (value.metaType() == QMetaType::fromType<QByteArray>())
+            {
+                QByteArray bytes = value.toByteArray();
+                return bytes.size() > DISPLAY_LEN_LIMIT ? QVariant(bytes.left(DISPLAY_LEN_LIMIT) + "...") : value;
+            }
+
             return value;
         }
         case Qt::ForegroundRole:
@@ -376,4 +389,20 @@ QVariant SqlQueryItem::data(int role) const
     }
 
     return QStandardItem::data(role);
+}
+
+void SqlQueryItem::resetInitialFocusSelection()
+{
+    QStandardItem::setData(QVariant(), DataRole::EDIT_SKIP_INITIAL_SELECT);
+
+}
+
+void SqlQueryItem::skipInitialFocusSelection()
+{
+    QStandardItem::setData(true, DataRole::EDIT_SKIP_INITIAL_SELECT);
+}
+
+bool SqlQueryItem::shoulSkipInitialFocusSelection() const
+{
+    return QStandardItem::data(DataRole::EDIT_SKIP_INITIAL_SELECT).toBool();
 }

@@ -211,7 +211,7 @@ QAction* EditorWindow::getAction(EditorWindow::Action action)
     return ExtActionContainer::getAction(action);
 }
 
-QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery, QueryExecMode querySelectionMode)
+QString EditorWindow::getQueryToExecute(QueryExecMode querySelectionMode)
 {
     QString sql;
     if (ui->sqlEdit->textCursor().hasSelection())
@@ -228,9 +228,8 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery, QueryExecMode
         ui->sqlEdit->saveSelection();
         selectCurrentQuery(true);
         sql = ui->sqlEdit->textCursor().selectedText();
+        ui->sqlEdit->restoreSelection();
         fixTextCursorSelectedText(sql);
-        if (!doSelectCurrentQuery)
-            ui->sqlEdit->restoreSelection();
     }
     else
     {
@@ -463,7 +462,7 @@ void EditorWindow::updateShortcutTips()
 
 void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
 {
-    QString sql = getQueryToExecute(true, querySelectionMode);
+    QString sql = getQueryToExecute(querySelectionMode);
     QHash<QString, QVariant> bindParams;
     bool proceed = processBindParams(sql, bindParams);
     if (!proceed)
@@ -474,7 +473,7 @@ void EditorWindow::execQuery(bool explain, QueryExecMode querySelectionMode)
     resultsModel->setQuery(sql);
     resultsModel->setParams(bindParams);
     resultsModel->setQueryCountLimitForSmartMode(queryLimitForSmartExecution);
-    ui->dataView->refreshData();
+    ui->dataView->refreshData(false);
     updateState();
 
     if (resultsDisplayMode == ResultsDisplayMode::SEPARATE_TAB)
@@ -741,7 +740,7 @@ void EditorWindow::createViewFromQuery()
         return;
     }
 
-    QString sql = getQueryToExecute(true);
+    QString sql = getQueryToExecute();
     DbObjectDialogs dialogs(getCurrentDb());
     dialogs.addView(sql);
 }
@@ -770,9 +769,9 @@ void EditorWindow::refreshValidDbObjects()
     ui->sqlEdit->refreshValidObjects();
 }
 
-int qHash(EditorWindow::ActionGroup actionGroup)
+TYPE_OF_QHASH qHash(EditorWindow::ActionGroup actionGroup)
 {
-    return static_cast<int>(actionGroup);
+    return static_cast<TYPE_OF_QHASH>(actionGroup);
 }
 
 

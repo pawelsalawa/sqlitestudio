@@ -2,7 +2,6 @@
 #include <QList>
 #include <QStringList>
 #include <QtTest>
-#include <QTextStream>
 #include "tsvserializer.h"
 #include "csvserializer.h"
 

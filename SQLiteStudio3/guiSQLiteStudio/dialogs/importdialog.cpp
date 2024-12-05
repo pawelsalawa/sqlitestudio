@@ -13,6 +13,7 @@
 #include "themetuner.h"
 #include "iconmanager.h"
 #include "mainwindow.h"
+#include "common/dialogsizehandler.h"
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>
@@ -102,6 +103,7 @@ void ImportDialog::init()
     ui->setupUi(this);
     THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
+    DialogSizeHandler::applyFor(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());
@@ -140,7 +142,7 @@ void ImportDialog::initTablePage()
     connect(ui->dbNameCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshTables()));
     connect(ui->tableNameCombo, SIGNAL(currentTextChanged(QString)), ui->tablePage, SIGNAL(completeChanged()));
 
-    ui->tablePage->setValidator([=]() -> bool
+    ui->tablePage->setValidator([=, this]() -> bool
     {
         bool valid = !ui->tableNameCombo->currentText().isEmpty();
         setValidStateWihtTooltip(ui->tableNameCombo, tr("If you type table name that doesn't exist, it will be created."), valid, tr("Enter the table name"));
@@ -156,7 +158,7 @@ void ImportDialog::initDataSourcePage()
     ui->codecCombo->addItems(textCodecNames());
     ui->codecCombo->setCurrentText(defaultCodecName());
 
-    ui->dsPage->setValidator([=]() -> bool
+    ui->dsPage->setValidator([=, this]() -> bool
     {
         setValidState(ui->dsTypeCombo, true);
         if (!currentPlugin)
@@ -277,7 +279,7 @@ void ImportDialog::updatePluginOptions(int& rows)
     ui->dsPluginOptionsGroup->setVisible(true);
 
     if (pluginOptionsWidget->layout())
-        pluginOptionsWidget->layout()->setMargin(0);
+        pluginOptionsWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     ui->dsPluginOptionsGroup->layout()->addWidget(pluginOptionsWidget);
     rows++;

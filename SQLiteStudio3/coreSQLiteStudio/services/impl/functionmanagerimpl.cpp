@@ -37,7 +37,9 @@ class FunctionInfoImpl : public ScriptingPlugin::FunctionInfo
 FunctionInfoImpl::FunctionInfoImpl(FunctionManager::FunctionBase* fn)
 {
     name = fn->name;
-    arguments = fn->arguments;
+    if (!fn->undefinedArgs)
+        arguments = fn->arguments;
+
     undefinedArgs = fn->undefinedArgs;
 }
 
@@ -191,6 +193,13 @@ void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, D
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
 
     ScriptingPlugin::Context* ctx = plugin->createContext();
+    if (!ctx)
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = tr("Could not create scripting context, probably the plugin is not configured properly");
+        return;
+    }
+
     aggregateStorage["context"] = QVariant::fromValue(ctx);
     FunctionInfoImpl info(func);
 
@@ -338,8 +347,8 @@ void FunctionManagerImpl::refreshFunctionsByKey()
 
 void FunctionManagerImpl::storeInConfig()
 {
-    QVariantList list;
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list;
+    QHash<QString, QVariant> fnHash;
     for (ScriptFunction* func : functions)
     {
         fnHash["name"] = func->name;
@@ -352,21 +361,21 @@ void FunctionManagerImpl::storeInConfig()
         fnHash["type"] = static_cast<int>(func->type);
         fnHash["undefinedArgs"] = func->undefinedArgs;
         fnHash["allDatabases"] = func->allDatabases;
+        fnHash["deterministic"] = func->deterministic;
         list << fnHash;
     }
-    CFG_CORE.Internal.Functions.set(list);
+    CFG->setScriptFunctions(list);
 }
 
 void FunctionManagerImpl::loadFromConfig()
 {
     clearFunctions();
 
-    QVariantList list = CFG_CORE.Internal.Functions.get();
-    QHash<QString,QVariant> fnHash;
+    QList<QHash<QString, QVariant> > list = CFG->getScriptFunctions();
+    QHash<QString, QVariant> fnHash;
     ScriptFunction* func = nullptr;
-    for (const QVariant& var : list)
+    for (const QHash<QString, QVariant>& fnHash : list)
     {
-        fnHash = var.toHash();
         func = new ScriptFunction();
         func->name = fnHash["name"].toString();
         func->lang = updateScriptingQtLang(fnHash["lang"].toString());
@@ -378,6 +387,7 @@ void FunctionManagerImpl::loadFromConfig()
         func->type = static_cast<ScriptFunction::Type>(fnHash["type"].toInt());
         func->undefinedArgs = fnHash["undefinedArgs"].toBool();
         func->allDatabases = fnHash["allDatabases"].toBool();
+        func->deterministic = fnHash["deterministic"].toBool();
         functions << func;
     }
 }
@@ -495,9 +505,9 @@ QVariant FunctionManagerImpl::nativeWriteFile(const QList<QVariant>& args, Db* d
     }
 
     QByteArray data;
-    switch (args[1].type())
+    switch (args[1].userType())
     {
-        case QVariant::String:
+        case QMetaType::QString:
             data = args[1].toString().toLocal8Bit();
             break;
         default:
@@ -721,35 +731,40 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
     ImportManager::StandardImportConfig stdConfig;
     stdConfig.inputFileName = args[0].toString();
     stdConfig.ignoreErrors = true;
-    stdConfig.skipTransaction = true;
+    stdConfig.noDbLock = true;
     if (args.size() > 3)
         stdConfig.codec = args[3].toString();
 
     if (args.size() > 4)
     {
         // Parsing plugin options
-        int idx;
-        QString option;
-        QString value;
-        CfgEntry* cfg;
-        QStringList lines = args[4].toString().split(QRegExp("[\r\n]+"));
+        QStringList lines = args[4].toString().split(QRegularExpression("[\r\n]+"));
         for (const QString& line : lines)
         {
-            idx = line.indexOf("=");
+            int idx = line.indexOf("=");
             if (idx == -1)
             {
                 qDebug() << "Invalid options entry for import() function call:" << line;
                 continue;
             }
-            option = line.left(idx).trimmed();
-            cfg = CfgMain::getEntryByPath(option);
+            QString option = line.left(idx).trimmed();
+            CfgEntry* cfg = CfgMain::getEntryByPath(option);
             if (!cfg)
             {
                 qDebug() << "Invalid option name for import() function call:" << option;
                 continue;
             }
-            value = line.mid(idx + 1);
-            cfg->set(value);
+
+            QVariant varValue = line.mid(idx + 1);
+            QVariant defValue = cfg->getDefaultValue();
+            QMetaType expectedType = defValue.metaType();
+            if (varValue.metaType() != expectedType && !varValue.convert(expectedType))
+            {
+                qDebug() << "Invalid option value for import() function call:" << option << ", invalid value was:" << varValue.toString()
+                         << ", expected value type was:" << defValue.typeName() << ", but given value could not be converted to that type.";
+                continue;
+            }
+            cfg->set(varValue);
         }
     }
 
@@ -839,9 +854,9 @@ QString FunctionManagerImpl::updateScriptingQtLang(const QString& lang) const
     return lang;
 }
 
-int qHash(const FunctionManagerImpl::Key& key)
+TYPE_OF_QHASH qHash(const FunctionManagerImpl::Key& key)
 {
-    return qHash(key.name) ^ key.argCount ^ static_cast<int>(key.type);
+    return qHash(key.name) ^ key.argCount ^ static_cast<TYPE_OF_QHASH>(key.type);
 }
 
 bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2)

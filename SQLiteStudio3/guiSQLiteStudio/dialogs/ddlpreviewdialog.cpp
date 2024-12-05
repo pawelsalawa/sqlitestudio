@@ -4,6 +4,7 @@
 #include "uiconfig.h"
 #include "sqlitestudio.h"
 #include "db/db.h"
+#include "common/dialogsizehandler.h"
 
 DdlPreviewDialog::DdlPreviewDialog(Db* db, QWidget *parent) :
     QDialog(parent),
@@ -11,6 +12,7 @@ DdlPreviewDialog::DdlPreviewDialog(Db* db, QWidget *parent) :
     db(db)
 {
     ui->setupUi(this);
+    DialogSizeHandler::applyFor(this);
 }
 
 DdlPreviewDialog::~DdlPreviewDialog()

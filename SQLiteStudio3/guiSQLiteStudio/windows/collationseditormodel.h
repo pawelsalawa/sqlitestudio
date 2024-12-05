@@ -21,6 +21,8 @@ class GUI_API_EXPORT CollationsEditorModel : public QAbstractListModel
         void setModified(int row, bool modified);
         void setName(int row, const QString& name);
         QString getName(int row) const;
+        void setType(int row, CollationManager::CollationType type);
+        CollationManager::CollationType getType(int row) const;
         void setLang(int row, const QString& lang);
         QString getLang(int row) const;
         void setAllDatabases(int row, bool allDatabases);
