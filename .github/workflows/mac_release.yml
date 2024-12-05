@@ -57,7 +57,7 @@ jobs:
               run: |
                 TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
                 echo "Updating file: $TCFILE"
-                sed -i 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
+                sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
                 echo "After update:"
                 cat $TCFILE
 
