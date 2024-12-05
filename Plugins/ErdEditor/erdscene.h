@@ -26,9 +26,11 @@ class ErdScene : public QGraphicsScene
         void setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn,
                                    int sourceReferenceIdx, SqliteForeignKey* fk);
         void arrangeEntities(int algo);
+        QPointF getPosForNewEntity() const;
 
-        int lastCreatedX = -600;
+        qreal lastCreatedX = 0;
         QList<ErdEntity*> entities;
+
         static constexpr qreal sceneMargin = 200;
 
     public slots:

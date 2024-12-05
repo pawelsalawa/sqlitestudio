@@ -2,6 +2,7 @@
 #include "erdlinearrowitem.h"
 #include "erdcurvyarrowitem.h"
 #include "erdentity.h"
+#include "erdscene.h"
 #include <QDebug>
 #include <QGraphicsScene>
 
@@ -34,7 +35,7 @@ ErdConnection::~ErdConnection()
     delete arrow;
 }
 
-void ErdConnection::addToScene(QGraphicsScene* scene)
+void ErdConnection::addToScene(ErdScene* scene)
 {
     scene->addItem(arrow);
 }

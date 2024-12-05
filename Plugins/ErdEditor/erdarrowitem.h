@@ -34,6 +34,7 @@ class ErdArrowItem : public ErdItem, public QGraphicsPathItem
 
         void refreshArrowHead(qreal yDistance, qreal xDistance);
 
+
         QPainterPath linePath;
         int arrowItemType;
         QPointF startPoint;

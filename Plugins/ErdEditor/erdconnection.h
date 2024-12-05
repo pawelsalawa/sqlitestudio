@@ -6,6 +6,7 @@
 #include "erdarrowitem.h"
 
 class ErdEntity;
+class ErdScene;
 class ErdCurvyArrowItem;
 class QGraphicsScene;
 
@@ -16,7 +17,7 @@ class ErdConnection
         ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow);
         virtual ~ErdConnection();
 
-        void addToScene(QGraphicsScene* scene);
+        void addToScene(ErdScene* scene);
         void updatePosition(const QPointF& endPos);
         void finalizeConnection(ErdEntity* entity, const QPointF& endPos);
         bool isFinalized() const;

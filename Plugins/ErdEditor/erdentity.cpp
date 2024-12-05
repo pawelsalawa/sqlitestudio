@@ -24,6 +24,7 @@ ErdEntity::ErdEntity(QSharedPointer<SqliteCreateTable> tableModel) :
     frame = new QFrame();
     frame->setStyleSheet(".QFrame {border: 1px solid rgba(128, 128, 128, 0.5);}");
     setWidget(frame);
+    setFlag(QGraphicsItem::ItemIsSelectable, true);
 
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
     effect->setBlurRadius(20);
@@ -34,7 +35,7 @@ ErdEntity::ErdEntity(QSharedPointer<SqliteCreateTable> tableModel) :
     layout = new QGridLayout();
     layout->setAlignment(Qt::AlignTop);
     layout->setSizeConstraint(QLayout::SetFixedSize);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     frame->setLayout(layout);
 

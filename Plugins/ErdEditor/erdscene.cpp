@@ -9,7 +9,6 @@
 ErdScene::ErdScene(QObject *parent)
     : QGraphicsScene{parent}
 {
-
 }
 
 void ErdScene::parseSchema(Db* db)
@@ -26,11 +25,11 @@ void ErdScene::parseSchema(Db* db)
             continue;
 
         ErdEntity* entityItem = new ErdEntity(table);
-        entityItem->setPos(lastCreatedX, -200);
+        entityItem->setPos(getPosForNewEntity());
         entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
         addItem(entityItem);
 
-        lastCreatedX += 150;
+        lastCreatedX = entityItem->pos().x();
 
         entitiesByTable[table->table] = entityItem;
         entities << entityItem;
@@ -140,7 +139,6 @@ void ErdScene::refreshSceneRect()
 
 void ErdScene::newTable()
 {
-    // Create the first entity item
     SqliteCreateTable* tableModel = new SqliteCreateTable();
     tableModel->table = "test table " + QString::number(lastCreatedX);
 
@@ -153,13 +151,15 @@ void ErdScene::newTable()
     tableModel->columns << col2;
 
     ErdEntity* entityItem = new ErdEntity(tableModel);
-    entityItem->setPos(lastCreatedX, -200);
+    entityItem->setPos(getPosForNewEntity());
     entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     addItem(entityItem);
 
-    lastCreatedX += 150;
+    lastCreatedX = entityItem->pos().x();
 
     entities << entityItem;
+
+    refreshSceneRect();
 }
 
 void ErdScene::arrangeEntities(int algo)
@@ -168,6 +168,22 @@ void ErdScene::arrangeEntities(int algo)
     planner.arrangeScene(this, static_cast<ErdGraphvizLayoutPlanner::Algo>(algo));
     update();
     refreshSceneRect();
+    lastCreatedX = 0;
+}
+
+QPointF ErdScene::getPosForNewEntity() const
+{
+    qreal posX = lastCreatedX;
+    qreal posY = 0;
+    for (ErdEntity* entity : entities)
+    {
+        QRectF rect = entity->boundingRect();
+        QPointF pos = entity->pos();
+        posX = qMax(posX, pos.x() + rect.width());
+        posY = qMin(posY, pos.y());
+    }
+    posX += 150;
+    return QPointF(posX, posY);
 }
 
 void ErdScene::arrangeEntitiesFdp()

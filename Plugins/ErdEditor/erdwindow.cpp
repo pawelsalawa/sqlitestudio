@@ -10,6 +10,7 @@
 #include "style.h"
 #include <QDebug>
 #include <QMdiSubWindow>
+#include <QActionGroup>
 
 ErdWindow::ErdWindow() :
     ui(new Ui::ErdWindow)
@@ -41,8 +42,7 @@ ErdWindow::~ErdWindow()
 
 void ErdWindow::staticInit()
 {
-    if (!QMetaType::isRegistered(QMetaType::type("ErdWindow")))
-        qRegisterMetaType<ErdWindow>("ErdWindow");
+    qRegisterMetaType<ErdWindow>("ErdWindow");
 }
 
 void ErdWindow::init()
@@ -98,12 +98,12 @@ void ErdWindow::useCurvyLine()
 
 bool ErdWindow::isUncommitted() const
 {
-    return false; // TODO
+    return false;
 }
 
 QString ErdWindow::getQuitUncommittedConfirmMessage() const
 {
-    return ""; // TODO
+    return "";
 }
 
 void ErdWindow::setMdiWindow(MdiWindow* value)

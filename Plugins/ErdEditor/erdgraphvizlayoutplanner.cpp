@@ -47,7 +47,7 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
     }
 
     // Add edges to graph
-    for (ErdConnection* conn : qAsConst(connections))
+    for (ErdConnection* conn : std::as_const(connections))
     {
         Agnode_t* node1 = entityNodes[conn->getStartEntity()];
         Agnode_t* node2 = entityNodes[conn->getEndEntity()];

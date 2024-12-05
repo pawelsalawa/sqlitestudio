@@ -4,6 +4,7 @@
 #include "erdlinearrowitem.h"
 #include "erdscene.h"
 #include "common/unused.h"
+#include "mainwindow.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
@@ -14,6 +15,28 @@ ErdView::ErdView(QWidget* parent) :
     setMouseTracking(true);
     setRenderHints(QPainter::Antialiasing);
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    keyFilter = new KeyPressFilter(this);
+    MAINWINDOW->installEventFilter(keyFilter);
+}
+
+ErdView::~ErdView()
+{
+    MAINWINDOW->removeEventFilter(keyFilter);
+}
+
+void ErdView::setScene(ErdScene* scene)
+{
+    QGraphicsView::setScene(scene);
+}
+
+ErdScene* ErdView::scene() const
+{
+    return qobject_cast<ErdScene*>(QGraphicsView::scene());
+}
+
+bool ErdView::isSpacePressed() const
+{
+    return spaceIsPressed;
 }
 
 void ErdView::mousePressEvent(QMouseEvent* event)
@@ -26,31 +49,48 @@ void ErdView::mousePressEvent(QMouseEvent* event)
 
     clickPos = event->pos();
 
-    QGraphicsItem* item = clickableItemAt(event->pos());
+    QGraphicsItem* item = clickableItemAt(clickPos);
     if (item && item->flags() & QGraphicsItem::ItemIsMovable)
     {
-        selectedItem = item;
-        dragOffset = transform().inverted().map(event->pos() - mapFromScene(item->pos()));
+        if (selectedItems.contains(item))
+        {
+            for (QGraphicsItem* movableItem : selectedMovableItems)
+                dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
+        }
+        else
+        {
+            selectedItems = {item};
+            selectedMovableItems = {item};
+            dragOffset.clear();
+            dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
+        }
     }
     else if (!spaceIsPressed)
+    {
+        selectedItems.clear();
+        selectedMovableItems.clear();
+        dragOffset.clear();
         setDragMode(QGraphicsView::RubberBandDrag);
+    }
 
     QGraphicsView::mousePressEvent(event);
 }
 
 void ErdView::mouseMoveEvent(QMouseEvent* event)
 {
-    if (selectedItem)
+    if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton))
     {
-        selectedItem->setPos(mapToScene(event->pos()) - dragOffset);
-        ErdEntity* entity = dynamic_cast<ErdEntity*>(selectedItem);
-        if (entity)
-            entity->updateConnectionsGeometry();
-
+        for (QGraphicsItem* item : selectedMovableItems)
+        {
+            item->setPos(mapToScene(event->pos()) - dragOffset[item]);
+            ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+            if (entity)
+                entity->updateConnectionsGeometry();
+        }
         dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
     }
-    else if (currentConnection)
-        currentConnection->updatePosition(mapToScene(event->pos()));
+    else if (draftConnection)
+        draftConnection->updatePosition(mapToScene(event->pos()));
 
     clickPos = QPoint();
 
@@ -59,16 +99,19 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
 
 void ErdView::mouseReleaseEvent(QMouseEvent* event)
 {
-    selectedItem = nullptr;
+    dragOffset.clear();
 
     if (!clickPos.isNull() && event->pos() == clickPos)
     {
         clickPos = QPoint();
-        viewClicked(event->pos());
+        viewClicked(event->pos(), event->button());
     }
 
     if (!spaceIsPressed)
+    {
         setDragMode(QGraphicsView::NoDrag);
+        handleSelectionOnMouseEvent(event->pos());
+    }
 
     QGraphicsView::mouseReleaseEvent(event);
 }
@@ -76,37 +119,11 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
 void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     UNUSED(event);
-    if (currentConnection)
+    if (draftConnection)
     {
-        delete currentConnection;
-        currentConnection = nullptr;
+        delete draftConnection;
+        draftConnection = nullptr;
     }
-}
-
-void ErdView::keyPressEvent(QKeyEvent* event)
-{
-    if (event->key() == Qt::Key_Space)
-    {
-        if (event->isAutoRepeat())
-            return;
-
-        spacePressed();
-    }
-
-    QGraphicsView::keyPressEvent(event);
-}
-
-void ErdView::keyReleaseEvent(QKeyEvent* event)
-{
-    if (event->key() == Qt::Key_Space)
-    {
-        if (event->isAutoRepeat())
-            return;
-
-        spaceReleased();
-    }
-
-    QGraphicsView::keyReleaseEvent(event);
 }
 
 void ErdView::focusOutEvent(QFocusEvent* event)
@@ -127,27 +144,43 @@ void ErdView::wheelEvent(QWheelEvent* event)
     scale(ratio, ratio);
 }
 
-void ErdView::viewClicked(const QPoint& pos)
+void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
 {
-    QGraphicsItem* item = clickableItemAt(pos);
-    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-    if (entity)
+    if (button == Qt::LeftButton)
     {
-        int rowIdx = entity->rowIndexAt(mapToScene(pos));
-        if (rowIdx <= 0)
-            return;
-
-        if (currentConnection)
+        QGraphicsItem* item = clickableItemAt(pos);
+        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+        if (entity)
         {
-            ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-            currentConnection->finalizeConnection(entity, mapToScene(pos));
-            currentConnection = nullptr;
+            int rowIdx = entity->rowIndexAt(mapToScene(pos));
+            if (rowIdx <= 0)
+                return;
+
+            if (draftConnection)
+            {
+                ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+                draftConnection->finalizeConnection(entity, mapToScene(pos));
+                draftConnection = nullptr;
+            }
+            else
+            {
+                ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+                draftConnection = new ErdConnection(entity, mapToScene(pos));
+                draftConnection->addToScene(scene());
+            }
+        }
+    }
+    else if (button == Qt::RightButton)
+    {
+        if (draftConnection)
+        {
+            delete draftConnection;
+            draftConnection = nullptr;
         }
         else
         {
-            ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-            currentConnection = new ErdConnection(entity, mapToScene(pos));
-            currentConnection->addToScene(scene());
+            // TODO if clicked on item, show entity/connection/other context menu
+            // TODO if clicked on empty space, show creational menu, having "add this and that, rearrange, select all" entries
         }
     }
 }
@@ -168,16 +201,61 @@ void ErdView::spacePressed()
 {
     spaceIsPressed = true;
     setDragMode(QGraphicsView::ScrollHandDrag);
+    for (QGraphicsItem* item : scene()->items())
+        item->setAcceptedMouseButtons(Qt::NoButton);
 }
 
 void ErdView::spaceReleased()
 {
     spaceIsPressed = false;
     setDragMode(QGraphicsView::NoDrag);
+
+    for (QGraphicsItem* item : scene()->items())
+        item->setAcceptedMouseButtons(Qt::AllButtons);
 }
 
 void ErdView::resetZoom()
 {
     resetTransform();
     zoom = 1.0;
+}
+
+void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
+{
+    QGraphicsItem* item = clickableItemAt(pos);
+    if (selectedItems.contains(item))
+        return; // button relesed over selected item - no deselection
+
+    selectedItems = scene()->selectedItems();
+    selectedMovableItems = filter<QGraphicsItem*>(selectedItems, [](QGraphicsItem* item) -> bool
+    {
+       return item->flags().testFlag(QGraphicsItem::ItemIsMovable);
+    });
+}
+
+ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :
+    QObject(view), view(view)
+{
+}
+
+bool ErdView::KeyPressFilter::eventFilter(QObject* obj, QEvent* event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->isAutoRepeat())
+            return QObject::eventFilter(obj, event);
+
+        if (keyEvent->key() == Qt::Key_Space) {
+            view->spacePressed();
+        }
+    } else if (event->type() == QEvent::KeyRelease) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->isAutoRepeat())
+            return QObject::eventFilter(obj, event);
+
+        if (keyEvent->key() == Qt::Key_Space) {
+            view->spaceReleased();
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
