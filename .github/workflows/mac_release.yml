@@ -25,7 +25,7 @@ on:
 
 jobs:
     build:
-        runs-on: macos-13
+        runs-on: macos-12
 
         steps:
             # - name: Debug
@@ -52,14 +52,14 @@ jobs:
                 setup-python: 'false'
                 extra: '--external 7z'
                 
-            - name: Fix Qt for MacOS 13
-              shell: bash
-              run: |
-                TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
-                echo "Updating file: $TCFILE"
-                sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
-                echo "After update:"
-                cat $TCFILE
+            #- name: Fix Qt for MacOS 13
+            #  shell: bash
+            #  run: |
+            #    TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
+            #    echo "Updating file: $TCFILE"
+             #   sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
+             #   echo "After update:"
+             #   cat $TCFILE
 
             - name: Install the InstalBuilder
               shell: bash
