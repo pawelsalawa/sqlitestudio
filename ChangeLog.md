@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 3.4.9
+- BUGFIX: #5148 Fixed executing queries that refer to tables with database prefix (i.e. dbName.tableName).
+- BUGFIX: #5149 Relaxed recent limitation on requiring Custom SQL Functions to have unique names, so that names can duplicate if input parameters differ.
+
 ### 3.4.8
 - CHANGE: #5146 If user enters a relative file path to the database dialog, a warning will issued to the user pointing out actual resolved path for the relative path entered.
 - BUGFIX: #5145 Fixed Extensions Manager crashing the app if the percentile extension was loaded before. The percentile SQLite extension became corrupted in SQLite 3.46.x, then it got fixed, but the fix is not included in SQLite 3.47.1 source package.

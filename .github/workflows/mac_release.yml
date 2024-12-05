@@ -25,7 +25,7 @@ on:
 
 jobs:
     build:
-        runs-on: ${{ matrix.runner || 'macos-12' }}
+        runs-on: ${{ matrix.runner || 'macos-13' }}
 
         strategy:
           fail-fast: false
