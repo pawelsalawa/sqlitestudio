@@ -29,6 +29,7 @@ jobs:
 
         steps:
             - name: Debug
+              shell: bash
               run: |
                 locate tclsh
                 echo "----"
