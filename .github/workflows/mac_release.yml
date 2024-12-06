@@ -28,17 +28,215 @@ jobs:
         runs-on: macos-13
 
         steps:
-            - name: Debug
-              shell: bash
-              run: |
-                find / -name tclsh
-                echo "----"
-                find / -name libtcl
-                echo "----"
-                find / -name tclConfig.sh
+            #- name: Debug
+              #shell: bash
+              #run: |
+                #find / -name tclsh
+                #echo "----"
+                #find / -name libtcl
+                #echo "----"
+                #find / -name tclConfig.sh
                 # ls -l /usr/local/
                 # ls -l /usr/local/include
                 # ls -l /usr/local/opt/
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
+            - name: Qt installation dir
+              id: qt-installation-dir
+              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v3
+              with:
+                cache: true
+                version: ${{ env.QT_VERSION }}
+                host: 'mac'
+                dir: '${{ steps.qt-installation-dir.DIR }}'
+                aqtversion: '==3.0.*'
+                py7zrversion: '==0.20.*'
+                setup-python: 'false'
+                extra: '--external 7z'
+                
+            - name: Fix Qt for MacOS 13
+              shell: bash
+              run: |
+                TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
+                echo "Updating file: $TCFILE"
+                sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
+                echo "After update:"
+                cat $TCFILE
+
+            - name: Install the InstalBuilder
+              shell: bash
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
+                hdiutil attach ib.dmg
+                /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
+                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
+
+            - uses: actions/setup-python@v4
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name: Clone repo
+              uses: actions/checkout@v3
+              with:
+                ref: ${{ github.event.client_payload.branch }}
+
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: mac_release
+                max-size: "24M"
+
+            - name: Configure ccache
+              if: inputs.use_ccache || false
+              run: |
+                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+
+            - name: Install SQLite3
+              run: |
+                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
+                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
+                cd sqlite-amalgamation-$SQLITE_VERSION
+                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.0.dylib \
+                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+                    -DSQLITE_ENABLE_DBSTAT_VTAB \
+                    -DSQLITE_ENABLE_BYTECODE_VTAB \
+                    -DSQLITE_ENABLE_COLUMN_METADATA \
+                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
+                    -DSQLITE_ENABLE_FTS3 \
+                    -DSQLITE_ENABLE_FTS4 \
+                    -DSQLITE_ENABLE_FTS5 \
+                    -DSQLITE_ENABLE_GEOPOLY \
+                    -DSQLITE_ENABLE_JSON1 \
+                    -DSQLITE_ENABLE_RTREE \
+                    -DSQLITE_ENABLE_MATH_FUNCTIONS
+                sudo cp libsqlite3.0.dylib /usr/local/lib/
+                sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
+                sudo cp *.h /usr/local/include/
+                echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
+
+            - name: Install extension dependencies
+              run: |
+                brew tap-new $USER/local-tap
+                brew extract --version=$ICU_VERSION icu4c $USER/local-tap
+                brew install icu4c@$ICU_VERSION
+                brew install coreutils
+                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
+                    >> $GITHUB_ENV
+
+            - name: Compile additional SQLite3 extensions
+              shell: bash
+              run: |
+                cd ..
+                mkdir ext
+                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                ls -l
+                unzip sqlite-src-$SQLITE_VERSION.zip
+                ls -l
+                cd sqlite-src-$SQLITE_VERSION/ext
+                ls -l
+                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                for f in compress sqlar; do
+                    echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
+                done
+                
+                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
+                rm -f misc/percentile.c
+                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    echo "gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib"
+                    gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
+                done
+                for f in icu; do
+                    echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
+                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
+                done
+                ls -l ../../ext/
+
+            - name: Install Tcl
+              run: |
+                brew install tcl-tk
+                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
+
+            - name: Prepare deps
+              run: |
+                mkdir ../lib ../include
+                cp /usr/local/lib/libsqlite3* ../lib
+                cp /usr/local/include/sqlite3* ../include
+
+            - name: Prepare output dir
+              run: mkdir output output/build output/build/Plugins
+
+            - name: Compile SQLiteStudio3
+              working-directory: output/build
+              run: |
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    ../../SQLiteStudio3
+                make -j 2
+
+            - name: Compile Plugins
+              working-directory: output/build/Plugins
+              run: |
+                qmake \
+                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                    CONFIG+=portable \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    ../../../Plugins
+                make -j 1
+
+            - name: Copy SQLite extensions to output dir
+              shell: bash
+              run: |
+                cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
+
+            - name: Build packages
+              working-directory: output/build
+              run: |
+                make pkg
+
+            - name: Determine SQLiteStudio version
+              working-directory: output/SQLiteStudio
+              run: |
+                echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
+
+            - name: Create installer package
+              shell: bash
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                echo "$IB_LICENSE" > lic.xml
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
+                    --license lic.xml \
+                    --setvars project.outputDirectory=$(pwd) \
+                    --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
+                ls -l
+
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
