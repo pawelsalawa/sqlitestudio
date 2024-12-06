@@ -5,6 +5,7 @@
 #include "erdscene.h"
 #include "common/unused.h"
 #include "mainwindow.h"
+#include "erdeditorplugin.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
@@ -165,7 +166,7 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
             else
             {
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-                draftConnection = new ErdConnection(entity, mapToScene(pos));
+                draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
                 draftConnection->addToScene(scene());
             }
         }

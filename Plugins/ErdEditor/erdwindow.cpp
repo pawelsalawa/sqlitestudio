@@ -1,5 +1,4 @@
 #include "erdwindow.h"
-#include "common/extaction.h"
 #include "icon.h"
 #include "iconmanager.h"
 #include "ui_erdwindow.h"
@@ -8,6 +7,7 @@
 #include "services/dbmanager.h"
 #include "mdiwindow.h"
 #include "style.h"
+#include "erdeditorplugin.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -49,6 +49,8 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
+    arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
+
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
     fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
     neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
@@ -59,7 +61,7 @@ void ErdWindow::init()
     for (auto icon : {windowIcon, fdpIcon, neatoIcon, connectionIcon, lineStraightIcon, lineCurvyIcon})
         icon->load();
 
-    scene = new ErdScene(this);
+    scene = new ErdScene(arrowType, this);
     ui->graphView->setScene(scene);
 
     initActions();
@@ -88,12 +90,20 @@ void ErdWindow::addFk()
 
 void ErdWindow::useStraightLine()
 {
-
+    arrowType = ErdArrowItem::STRAIGHT;
+    applyArrowType();
 }
 
 void ErdWindow::useCurvyLine()
 {
+    arrowType = ErdArrowItem::CURVY;
+    applyArrowType();
+}
 
+void ErdWindow::applyArrowType()
+{
+    CFG_ERD.Erd.ArrowType.set(arrowType);
+    scene->setArrowType(arrowType);
 }
 
 bool ErdWindow::isUncommitted() const
@@ -127,16 +137,27 @@ bool ErdWindow::shouldReuseForArgs(int argCount, ...)
 
 void ErdWindow::createActions()
 {
-    actionMap[ADD_CONNECTION] = new ExtAction(*connectionIcon, tr("Add foreign key"), this);
-    actionMap[LINE_STRAIGHT] = new ExtAction(*lineStraightIcon, tr("Use straight line"), this);
-    actionMap[LINE_CURVY] = new ExtAction(*lineCurvyIcon, tr("Use curvy line"), this);
+    QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
+    lineGroup->setExclusive(true);
+    actionMap[ADD_CONNECTION] = new QAction(*connectionIcon, tr("Add foreign key"), this);
+    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
+    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
+
     actionMap[ADD_CONNECTION]->setCheckable(true);
     actionMap[LINE_STRAIGHT]->setCheckable(true);
     actionMap[LINE_CURVY]->setCheckable(true);
+    switch (arrowType)
+    {
+        case ErdArrowItem::STRAIGHT:
+            actionMap[LINE_STRAIGHT]->setChecked(true);
+            break;
+        case ErdArrowItem::CURVY:
+            actionMap[LINE_CURVY]->setChecked(true);
+            break;
+    }
 
-    QActionGroup* lineGroup = new QActionGroup(this);
-    lineGroup->addAction(actionMap[LINE_STRAIGHT]);
-    lineGroup->addAction(actionMap[LINE_CURVY]);
+    connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
+    connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
 
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
     ui->toolBar->addSeparator();

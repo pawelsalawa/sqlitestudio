@@ -5,7 +5,6 @@
 #include "common/extlineedit.h"
 #include "mainwindow.h"
 #include "common/intvalidator.h"
-#include "common/extaction.h"
 #include "iconmanager.h"
 #include "themetuner.h"
 #include "uiconfig.h"
@@ -321,8 +320,8 @@ void DataView::resizeColumnsInitiallyToContents()
 void DataView::createStaticActions()
 {
     // Tabs position actions
-    staticActions[TABS_ON_TOP] = new ExtAction(ICONS.TABS_ON_TOP, tr("Tabs on top", "data view"), MainWindow::getInstance());
-    staticActions[TABS_AT_BOTTOM] = new ExtAction(ICONS.TABS_AT_BOTTOM, tr("Tabs at bottom", "data view"), MainWindow::getInstance());
+    staticActions[TABS_ON_TOP] = new QAction(ICONS.TABS_ON_TOP, tr("Tabs on top", "data view"), MainWindow::getInstance());
+    staticActions[TABS_AT_BOTTOM] = new QAction(ICONS.TABS_AT_BOTTOM, tr("Tabs at bottom", "data view"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::TABS_POSITION] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::TABS_POSITION]->addAction(staticActions[TABS_ON_TOP]);
@@ -347,9 +346,9 @@ void DataView::createStaticActions()
         staticActions[TABS_AT_BOTTOM]->setChecked(true);
 
     // Insert row positioning
-    staticActions[INSERT_ROW_BEFORE] = new ExtAction(tr("Place new rows above selected row", "data view"), MainWindow::getInstance());
-    staticActions[INSERT_ROW_AFTER] = new ExtAction(tr("Place new rows below selected row", "data view"), MainWindow::getInstance());
-    staticActions[INSERT_ROW_AT_END] = new ExtAction(tr("Place new rows at the end of the data view", "data view"), MainWindow::getInstance());
+    staticActions[INSERT_ROW_BEFORE] = new QAction(tr("Place new rows above selected row", "data view"), MainWindow::getInstance());
+    staticActions[INSERT_ROW_AFTER] = new QAction(tr("Place new rows below selected row", "data view"), MainWindow::getInstance());
+    staticActions[INSERT_ROW_AT_END] = new QAction(tr("Place new rows at the end of the data view", "data view"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING]->addAction(staticActions[INSERT_ROW_BEFORE]);

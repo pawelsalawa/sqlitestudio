@@ -3,6 +3,7 @@
 
 #include "mdichild.h"
 #include "erdeditor_global.h"
+#include "erdarrowitem.h"
 #include <QWidget>
 
 namespace Ui {
@@ -51,6 +52,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 
     private:
         void init();
+        void applyArrowType();
 
         Ui::ErdWindow *ui;
         Db* db = nullptr;
@@ -61,6 +63,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Icon* lineCurvyIcon = nullptr;
         Icon* lineStraightIcon = nullptr;
         ErdScene* scene = nullptr;
+        ErdArrowItem::Type arrowType;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);

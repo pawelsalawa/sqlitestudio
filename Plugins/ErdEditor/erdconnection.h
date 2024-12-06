@@ -13,8 +13,8 @@ class QGraphicsScene;
 class ErdConnection
 {
     public:
-        ErdConnection(ErdEntity* startEntity, const QPointF& endPos);
-        ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow);
+        ErdConnection(ErdEntity* startEntity, const QPointF& endPos, ErdArrowItem::Type arrowType);
+        ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow, ErdArrowItem::Type arrowType);
         virtual ~ErdConnection();
 
         void addToScene(ErdScene* scene);
@@ -24,6 +24,7 @@ class ErdConnection
         void refreshPosition();
         ErdEntity* getStartEntity() const;
         ErdEntity* getEndEntity() const;
+        void setArrowType(ErdArrowItem::Type arrowType);
 
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
@@ -34,6 +35,7 @@ class ErdConnection
         int endEntityRow = -1;
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
+        ErdScene* scene = scene;
 };
 
 #endif // ERDCONNECTION_H

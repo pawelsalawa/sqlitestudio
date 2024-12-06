@@ -1,13 +1,14 @@
 #include "erdscene.h"
 #include "erdentity.h"
+#include "erdwindow.h"
 #include "schemaresolver.h"
 #include "erdlinearrowitem.h"
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
 #include <QApplication>
 
-ErdScene::ErdScene(QObject *parent)
-    : QGraphicsScene{parent}
+ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
+    : QGraphicsScene{parent}, arrowType(arrowType)
 {
 }
 
@@ -46,6 +47,18 @@ void ErdScene::parseSchema(Db* db)
 QList<ErdEntity*> ErdScene::getAllEntities() const
 {
     return entities;
+}
+
+void ErdScene::setArrowType(ErdArrowItem::Type arrowType)
+{
+    this->arrowType = arrowType;
+    for (ErdConnection* connection : getConnections())
+        connection->setArrowType(arrowType);
+}
+
+ErdArrowItem::Type ErdScene::getArrowType() const
+{
+    return arrowType;
 }
 
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable)
@@ -126,7 +139,7 @@ void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable,
                    << fkTable << "while parsing schema for ERD.";
     }
 
-    ErdConnection* conn = new ErdConnection(srcEntity, srcRowIdx + 1, trgEntity, trgRowIdx + 1);
+    ErdConnection* conn = new ErdConnection(srcEntity, srcRowIdx + 1, trgEntity, trgRowIdx + 1, arrowType);
     conn->addToScene(this);
 }
 
@@ -184,6 +197,18 @@ QPointF ErdScene::getPosForNewEntity() const
     }
     posX += 150;
     return QPointF(posX, posY);
+}
+
+QSet<ErdConnection*> ErdScene::getConnections() const
+{
+    QSet<ErdConnection*> connections;
+    for (ErdEntity* entity : entities)
+    {
+        auto list = entity->getConnections();
+        connections += QSet<ErdConnection*>(list.begin(), list.end());
+    }
+
+    return connections;
 }
 
 void ErdScene::arrangeEntitiesFdp()

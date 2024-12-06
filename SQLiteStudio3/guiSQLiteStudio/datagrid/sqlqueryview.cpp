@@ -6,7 +6,6 @@
 #include "tsvserializer.h"
 #include "iconmanager.h"
 #include "common/unused.h"
-#include "common/extaction.h"
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"

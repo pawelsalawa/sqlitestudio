@@ -3,24 +3,26 @@
 #include "erdcurvyarrowitem.h"
 #include "erdentity.h"
 #include "erdscene.h"
+#include "erdeditorplugin.h"
 #include <QDebug>
 #include <QGraphicsScene>
 
-ErdConnection::ErdConnection(ErdEntity* startEntity, const QPointF& endPos) :
+ErdConnection::ErdConnection(ErdEntity* startEntity, const QPointF& endPos, ErdArrowItem::Type arrowType) :
     startEntity(startEntity), volatileEndPosition(endPos)
 {
     startEntityRow = startEntity->rowIndexAt(endPos);
-    arrow = new ErdCurvyArrowItem();
+    arrow = ErdArrowItem::create(arrowType);
     arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
     refreshPosition();
     startEntity->addConnection(this);
 }
 
-ErdConnection::ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow) :
+ErdConnection::ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* endEntity, int endRow, ErdArrowItem::Type arrowType) :
     startEntity(startEntity), endEntity(endEntity), startEntityRow(startRow), endEntityRow(endRow)
 {
-    arrow = new ErdCurvyArrowItem();
+    arrow = ErdArrowItem::create(arrowType);
     refreshPosition();
+    arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, true);
     startEntity->addConnection(this);
     endEntity->addConnection(this);
@@ -37,6 +39,7 @@ ErdConnection::~ErdConnection()
 
 void ErdConnection::addToScene(ErdScene* scene)
 {
+    this->scene = scene;
     scene->addItem(arrow);
 }
 
@@ -100,6 +103,18 @@ QPointF ErdConnection::findThisPosAgainstOther(ErdEntity* thisEntity, int thisRo
 ErdEntity* ErdConnection::getEndEntity() const
 {
     return endEntity;
+}
+
+void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
+{
+    bool selectable = arrow->flags().testFlag(QGraphicsItem::ItemIsSelectable);
+    scene->removeItem(arrow);
+    delete arrow;
+
+    arrow = ErdArrowItem::create(arrowType);
+    arrow->setFlag(QGraphicsItem::ItemIsSelectable, selectable);
+    scene->addItem(arrow);
+    refreshPosition();
 }
 
 ErdEntity* ErdConnection::getStartEntity() const

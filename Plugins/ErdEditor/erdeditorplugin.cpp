@@ -1,9 +1,11 @@
 #include "erdeditorplugin.h"
 #include "common/global.h"
-#include "common/extaction.h"
 #include "mainwindow.h"
 #include "erdwindow.h"
 #include "dbtree/dbtree.h"
+#include <QAction>
+
+CFG_DEFINE(ErdConfig)
 
 bool ErdEditorPlugin::init()
 {
@@ -11,7 +13,7 @@ bool ErdEditorPlugin::init()
     
     ErdWindow::staticInit();
 
-    openErdEditorAction = new ExtAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
+    openErdEditorAction = new QAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
 
     QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);
@@ -24,6 +26,7 @@ bool ErdEditorPlugin::init()
 void ErdEditorPlugin::deinit()
 {
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->removeAction(openErdEditorAction);
+    CFG_DELETE_INSTANCE(ErdConfig);
     SQLS_CLEANUP_RESOURCE(erdeditor);
 }
 

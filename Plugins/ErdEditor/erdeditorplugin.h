@@ -4,8 +4,16 @@
 #include "erdeditor_global.h"
 #include "plugins/genericplugin.h"
 #include "plugins/generalpurposeplugin.h"
+#include "config_builder.h"
+#include "erdarrowitem.h"
 
-class ExtAction;
+CFG_CATEGORIES(ErdConfig,
+     CFG_CATEGORY(Erd,
+         CFG_ENTRY(ErdArrowItem::Type, ArrowType, ErdArrowItem::CURVY)
+     )
+)
+
+class QAction;
 
 class ERDEDITORSHARED_EXPORT ErdEditorPlugin : public GenericPlugin, GeneralPurposePlugin
 {
@@ -17,10 +25,12 @@ class ERDEDITORSHARED_EXPORT ErdEditorPlugin : public GenericPlugin, GeneralPurp
         void deinit();
 
     private:
-        ExtAction* openErdEditorAction = nullptr;
+        QAction* openErdEditorAction = nullptr;
 
     private slots:
         void openEditor();
 };
+
+#define CFG_ERD CFG_INSTANCE(ErdConfig)
 
 #endif // ERDEDITORPLUGIN_H

@@ -1,7 +1,7 @@
-
 #ifndef ERDVIEW_H
 #define ERDVIEW_H
 
+#include "erdarrowitem.h"
 #include <QGraphicsView>
 #include <QPoint>
 #include <QObject>

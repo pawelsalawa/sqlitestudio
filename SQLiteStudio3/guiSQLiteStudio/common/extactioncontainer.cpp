@@ -1,6 +1,5 @@
 #include "extactioncontainer.h"
 #include "iconmanager.h"
-#include "common/extaction.h"
 #include "common/global.h"
 #include <QSignalMapper>
 #include <QToolButton>
@@ -43,13 +42,13 @@ void ExtActionContainer::initActions()
 
 void ExtActionContainer::createAction(int action, const Icon& icon, const QString& text, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
 {
-    QAction* qAction = new ExtAction(icon, text);
+    QAction* qAction = new QAction(icon, text);
     createAction(action, qAction, receiver, slot, container, owner);
 }
 
 void ExtActionContainer::createAction(int action, const QString& text, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
 {
-    QAction* qAction = new ExtAction(text);
+    QAction* qAction = new QAction(text);
     createAction(action, qAction, receiver, slot, container, owner);
 }
 
