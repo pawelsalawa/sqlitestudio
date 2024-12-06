@@ -50,28 +50,35 @@ void ErdView::mousePressEvent(QMouseEvent* event)
 
     clickPos = event->pos();
 
-    QGraphicsItem* item = clickableItemAt(clickPos);
-    if (item && item->flags() & QGraphicsItem::ItemIsMovable)
+    if (event->button() == Qt::LeftButton)
     {
-        if (selectedItems.contains(item))
+        QGraphicsItem* item = clickableItemAt(clickPos);
+        if (item && item->flags() & QGraphicsItem::ItemIsMovable)
         {
-            for (QGraphicsItem* movableItem : selectedMovableItems)
-                dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
+            if (selectedItems.contains(item))
+            {
+                for (QGraphicsItem* movableItem : selectedMovableItems)
+                    dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
+
+                return;
+            }
+            else
+            {
+                selectedItems = {item};
+                selectedMovableItems = {item};
+                dragOffset.clear();
+                dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
+            }
         }
-        else
+        else if (!spaceIsPressed)
         {
-            selectedItems = {item};
-            selectedMovableItems = {item};
-            dragOffset.clear();
-            dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
+            clearSelectedItems();
+            setDragMode(QGraphicsView::RubberBandDrag);
         }
     }
-    else if (!spaceIsPressed)
+    else
     {
-        selectedItems.clear();
-        selectedMovableItems.clear();
-        dragOffset.clear();
-        setDragMode(QGraphicsView::RubberBandDrag);
+        clearSelectedItems();
     }
 
     QGraphicsView::mousePressEvent(event);
@@ -79,6 +86,12 @@ void ErdView::mousePressEvent(QMouseEvent* event)
 
 void ErdView::mouseMoveEvent(QMouseEvent* event)
 {
+    if (spaceIsPressed)
+    {
+        QGraphicsView::mouseMoveEvent(event);
+        return;
+    }
+
     if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton))
     {
         for (QGraphicsItem* item : selectedMovableItems)
@@ -100,6 +113,12 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
 
 void ErdView::mouseReleaseEvent(QMouseEvent* event)
 {
+    if (spaceIsPressed)
+    {
+        QGraphicsView::mouseReleaseEvent(event);
+        return;
+    }
+
     dragOffset.clear();
 
     if (!clickPos.isNull() && event->pos() == clickPos)
@@ -108,11 +127,11 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
         viewClicked(event->pos(), event->button());
     }
 
-    if (!spaceIsPressed)
-    {
+    // if (!spaceIsPressed)
+    // {
         setDragMode(QGraphicsView::NoDrag);
         handleSelectionOnMouseEvent(event->pos());
-    }
+    // }
 
     QGraphicsView::mouseReleaseEvent(event);
 }
@@ -232,6 +251,13 @@ void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
     {
        return item->flags().testFlag(QGraphicsItem::ItemIsMovable);
     });
+}
+
+void ErdView::clearSelectedItems()
+{
+    selectedItems.clear();
+    selectedMovableItems.clear();
+    dragOffset.clear();
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :

@@ -35,7 +35,7 @@ class ErdConnection
         int endEntityRow = -1;
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
-        ErdScene* scene = scene;
+        ErdScene* scene= nullptr;
 };
 
 #endif // ERDCONNECTION_H

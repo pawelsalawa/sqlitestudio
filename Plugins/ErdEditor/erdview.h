@@ -45,6 +45,7 @@ class ErdView : public QGraphicsView
         void spacePressed();
         void spaceReleased();
         void handleSelectionOnMouseEvent(const QPoint& pos);
+        void clearSelectedItems();
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
