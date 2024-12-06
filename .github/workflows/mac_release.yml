@@ -31,8 +31,6 @@ jobs:
             - name: Debug
               shell: bash
               run: |
-                locate tclsh
-                echo "----"
                 find / -name tclsh
                 echo "----"
                 find / -name libtcl
