@@ -3362,7 +3362,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="320"/>
-      <location filename="../windows/functionseditor.cpp" line="437"/>
+      <location filename="../windows/functionseditor.cpp" line="439"/>
       <source>Function implementation code:</source>
       <translation>Kod implementacji funkcji:</translation>
     </message>
@@ -3437,38 +3437,42 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <translation>Agregacyjna</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="420"/>
-      <source>Enter a non-empty, unique name of the function.</source>
-      <translation>Wprowadź niepustą, unikalną nazwę funkcji</translation>
+      <location filename="../windows/functionseditor.cpp" line="422"/>
+      <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="433"/>
+      <source>Enter a non-empty, unique name of the function.</source>
+      <translation type="vanished">Wprowadź niepustą, unikalną nazwę funkcji</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.cpp" line="435"/>
       <source>Pick the implementation language.</source>
       <translation>Wybierz język implementacji.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="437"/>
+      <location filename="../windows/functionseditor.cpp" line="439"/>
       <source>Per step code:</source>
       <translation>Kod pojedynczego kroku:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="443"/>
+      <location filename="../windows/functionseditor.cpp" line="445"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>Wprowadź niepusty kod implementacji.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="516"/>
+      <location filename="../windows/functionseditor.cpp" line="518"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
       <translation>argument</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="620"/>
+      <location filename="../windows/functionseditor.cpp" line="622"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
       <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="668"/>
+      <location filename="../windows/functionseditor.cpp" line="670"/>
       <source>Functions editor window has uncommitted modifications.</source>
       <translation>Okno edytora funkcji ma niezatwierdzone modyfikacje.</translation>
     </message>
