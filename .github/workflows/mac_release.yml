@@ -40,7 +40,8 @@ jobs:
 
             - name: Install Tcl
               run: |
-                brew install tcl-tk@8
+                #brew install tcl-tk@8
+                brew reinstall tcl-tk@8
                 echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
 
             - name: Qt installation dir
