@@ -44,7 +44,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="131"/>
       <source>Global table constraints</source>
-      <translation>Contraintes globales du tableau</translation>
+      <translation>Contraintes globales de table</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="220"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="233"/>
       <source>Indexed table</source>
-      <translation>Tableau indexé</translation>
+      <translation>Table indexée</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="234"/>
