@@ -47,7 +47,6 @@ jobs:
                 
                 find /usr/local -name tclConfig.sh
                 echo "---"
-                ls -l $(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
                 ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
 
             - name: Qt installation dir
