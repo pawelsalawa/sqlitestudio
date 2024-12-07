@@ -156,10 +156,10 @@ jobs:
                 done
                 ls -l ../../ext/
 
-            - name: Install Tcl
-              run: |
-                brew install tcl-tk@8
-                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
+#            - name: Install Tcl
+#              run: |
+#                brew install tcl-tk@8
+#                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
 
             - name: Prepare deps
               run: |
