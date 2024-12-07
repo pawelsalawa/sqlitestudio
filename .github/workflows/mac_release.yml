@@ -38,6 +38,11 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
+            - name: Install Tcl
+              run: |
+                brew install tcl-tk@8
+                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
+
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -155,11 +160,6 @@ jobs:
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
                 done
                 ls -l ../../ext/
-
-#            - name: Install Tcl
-#              run: |
-#                brew install tcl-tk@8
-#                echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
 
             - name: Prepare deps
               run: |
