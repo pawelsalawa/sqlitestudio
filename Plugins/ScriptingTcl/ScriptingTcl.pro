@@ -92,30 +92,34 @@ macx: {
 
     # Find tclConfig.sh
     TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
+    message("Using tclConfig: $$TCL_CONFIG")
 
     # Define other libs required when linking with Tcl
     eval($$system(cat $$TCL_CONFIG | grep TCL_LIBS))
     eval(LIBS += $$TCL_LIBS)
+    message("TCL_LIBS: $$TCL_LIBS")
 
     # Define headers dir
     eval($$system(cat $$TCL_CONFIG | grep TCL_INCLUDE_SPEC))
     INCLUDEPATH += $$replace(TCL_INCLUDE_SPEC, -I/, /)
     DEPENDPATH += $$replace(TCL_INCLUDE_SPEC, -I/, /)
+    message("TCL_INCLUDE_SPEC: $$TCL_INCLUDE_SPEC")
 
     # Find static library
     eval($$system(cat $$TCL_CONFIG | grep TCL_STUB_LIB_PATH))
     STATIC_LIB = $$replace(TCL_STUB_LIB_PATH, tclstub, tcl)
+    message("TCL_STUB_LIB_PATH: $$TCL_STUB_LIB_PATH")
 
     # If found static lib, we link statically
     exists($$STATIC_LIB) {
-        #message("Static linking of libtcl: $$STATIC_LIB")
+        message("Static linking of libtcl: $$STATIC_LIB")
         LIBS += $$STATIC_LIB
     }
 
     # If not found, use dynamic linking flags
     !exists($$STATIC_LIB) {
         eval($$system(cat $$TCL_CONFIG | grep TCL_LIB_SPEC))
-        #message("Dynamic linking of libtcl: $$TCL_LIB_SPEC")
+        message("Dynamic linking of libtcl: $$TCL_LIB_SPEC")
         eval(LIBS += $$TCL_LIB_SPEC)
     }
 }
