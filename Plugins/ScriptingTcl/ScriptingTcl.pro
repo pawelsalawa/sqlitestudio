@@ -91,14 +91,16 @@ macx: {
     message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
 
     # Find tclConfig.sh
-    TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
     !exists($$TCL_CONFIG) {
-        TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
-        message("Looking for $$TCL_CONFIG")
-    }
-    !exists($$TCL_CONFIG) {
-        error("Could not find tclConfig.sh file. You can define its absolute path by qmake parameter: TCL_CONFIG=/path/to/tclConfig.sh")
-    }
+		TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
+		!exists($$TCL_CONFIG) {
+			TCL_CONFIG = $$system(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
+			message("Looking for $$TCL_CONFIG")
+		}
+		!exists($$TCL_CONFIG) {
+			error("Could not find tclConfig.sh file. You can define its absolute path by qmake parameter: TCL_CONFIG=/path/to/tclConfig.sh")
+		}
+	}
     message("Using tclConfig: $$TCL_CONFIG")
 
     # Define other libs required when linking with Tcl
