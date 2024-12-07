@@ -3439,11 +3439,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../windows/functionseditor.cpp" line="422"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Enter a non-empty, unique name of the function.</source>
-      <translation type="vanished">Wprowadź niepustą, unikalną nazwę funkcji</translation>
+      <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="435"/>
