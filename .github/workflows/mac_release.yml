@@ -49,6 +49,9 @@ jobs:
                 ls -l /System/Library/Frameworks/Tcl.framework/Versions/8.5
                 find /System/Library/Frameworks/Tcl.framework -name tclConfig.sh
                 find / -name tclConfig.sh
+                echo "---"
+                ls -l $(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
+                ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
 
             - name: Qt installation dir
               id: qt-installation-dir
