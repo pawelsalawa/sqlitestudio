@@ -42,7 +42,7 @@ jobs:
               run: |
                 set -x
                 #brew install tcl-tk@8
-                brew reinstall tcl-tk@8
+                #brew reinstall tcl-tk@8
                 echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
                 
                 find /usr/local -name tclsh
