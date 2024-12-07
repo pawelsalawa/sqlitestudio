@@ -43,6 +43,13 @@ jobs:
                 #brew install tcl-tk@8
                 brew reinstall tcl-tk@8
                 echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
+                
+                echo "----"
+                ls -l /System/Library/Frameworks/Tcl.framework/Versions
+                echo "----"
+                ls -l /System/Library/Frameworks/Tcl.framework/Versions/8.5
+                echo "----"
+                find /System/Library/Frameworks/Tcl.framework -name tclConfig.sh
 
             - name: Qt installation dir
               id: qt-installation-dir
