@@ -45,10 +45,13 @@ jobs:
                 brew reinstall tcl-tk@8
                 echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
                 
+                ls -l $(which tclsh)
                 find /usr/local -name tclConfig.sh
                 echo "---"
-                #ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
-                find /usr/local/Cellar/tcl-tk@8/8.6.15
+                find $(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)
+                echo "---"
+                find $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)
+                #find /usr/local/Cellar/tcl-tk@8/8.6.15
 
             - name: Qt installation dir
               id: qt-installation-dir
