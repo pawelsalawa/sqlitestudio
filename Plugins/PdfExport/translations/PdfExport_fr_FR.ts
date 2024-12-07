@@ -17,13 +17,13 @@
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="149"/>
       <source>Exported table: %1</source>
-      <translation>Tableau exporté : %1</translation>
+      <translation>Table exportée : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="98"/>
       <location filename="../pdfexport.cpp" line="164"/>
       <source>Table: %1</source>
-      <translation>Tableau : %1</translation>
+      <translation>Table : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="100"/>
@@ -44,7 +44,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="131"/>
       <source>Global table constraints</source>
-      <translation>Contraintes globales du tableau</translation>
+      <translation>Contraintes globales de table</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="220"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="233"/>
       <source>Indexed table</source>
-      <translation>Tableau indexé</translation>
+      <translation>Table indexée</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="234"/>

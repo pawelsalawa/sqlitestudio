@@ -24,7 +24,7 @@
       <location filename="../htmlexport.cpp" line="127"/>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
-      <translation>Tableau : %1</translation>
+      <translation>Table : %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
@@ -99,7 +99,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="403"/>
       <source>On table:</source>
-      <translation>Sur le tableau :</translation>
+      <translation>Sur la table :</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="414"/>
