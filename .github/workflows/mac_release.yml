@@ -45,10 +45,7 @@ jobs:
                 brew reinstall tcl-tk@8
                 echo "PATH=/usr/local/opt/tcl-tk/bin:$PATH" >> $GITHUB_ENV
                 
-                ls -l /System/Library/Frameworks/Tcl.framework/Versions
-                ls -l /System/Library/Frameworks/Tcl.framework/Versions/8.5
-                find /System/Library/Frameworks/Tcl.framework -name tclConfig.sh
-                find / -name tclConfig.sh
+                find /usr/local -name tclConfig.sh
                 echo "---"
                 ls -l $(echo "puts [::tcl::pkgconfig get libdir,runtime]" | tclsh)/tclConfig.sh
                 ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
