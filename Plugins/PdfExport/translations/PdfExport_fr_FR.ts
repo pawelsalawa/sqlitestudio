@@ -17,13 +17,13 @@
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="149"/>
       <source>Exported table: %1</source>
-      <translation>Table exportée : %1</translation>
+      <translation>Tableau exporté : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="98"/>
       <location filename="../pdfexport.cpp" line="164"/>
       <source>Table: %1</source>
-      <translation>Table : %1</translation>
+      <translation>Tableau : %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="100"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="233"/>
       <source>Indexed table</source>
-      <translation>Table indexée</translation>
+      <translation>Tableau indexé</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="234"/>
