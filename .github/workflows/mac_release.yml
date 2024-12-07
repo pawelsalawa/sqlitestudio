@@ -192,7 +192,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-                    "TCL_CONFIG=${{ env.TCL_CONFIG }}"
+                    "TCL_CONFIG=${{ env.TCL_CONFIG }}" \
                     ../../../Plugins
                 make -j 1
 
