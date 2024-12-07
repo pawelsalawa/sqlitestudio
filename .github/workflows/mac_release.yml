@@ -47,7 +47,8 @@ jobs:
                 
                 find /usr/local -name tclConfig.sh
                 echo "---"
-                ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
+                #ls -l $(echo "puts [::tcl::pkgconfig get libdir,install]" | tclsh)/tclConfig.sh
+                find /usr/local/Cellar/tcl-tk@8/8.6.15
 
             - name: Qt installation dir
               id: qt-installation-dir
