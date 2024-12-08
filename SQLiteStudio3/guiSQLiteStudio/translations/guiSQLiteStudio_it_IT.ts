@@ -3439,11 +3439,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../windows/functionseditor.cpp" line="422"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Enter a non-empty, unique name of the function.</source>
-      <translation type="vanished">Inserisci un nome non vuoto e univoco della funzione.</translation>
+      <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="435"/>

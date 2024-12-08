@@ -11,7 +11,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="141"/>
       <source>-- Table: %1</source>
-      <translation>-- Table : %1</translation>
+      <translation>-- Tableau : %1</translation>
     </message>
     <message>
       <location filename="../sqlexport.cpp" line="195"/>

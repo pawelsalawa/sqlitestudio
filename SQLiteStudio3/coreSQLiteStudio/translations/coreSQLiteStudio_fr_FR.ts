@@ -955,7 +955,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
     <message>
       <location filename="../tablemodifier.cpp" line="601"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
-      <translation>Impossible de mettre à jour le déclencheur %1 selon la modification de la table %2.</translation>
+      <translation>Impossible de mettre à jour le déclencheur %1 selon la modification du tableau %2.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="620"/>
