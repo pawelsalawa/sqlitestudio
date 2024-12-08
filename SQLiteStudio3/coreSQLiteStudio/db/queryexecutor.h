@@ -1386,14 +1386,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         qint64 simpleExecutionStartTime;
 
         /**
-         * @brief Asynchronous ID of counting query execution.
-         *
-         * Asynchronous ID returned from Db::asyncExec() for the counting query execution.
-         * See countResults() for details on counting query.
-         */
-        quint32 resultsCountingAsyncId = 0;
-
-        /**
          * @brief Flag indicating results preloading.
          *
          * See Context::preloadResults.
@@ -1496,6 +1488,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool forceSimpleMode = false;
         ChainExecutor* simpleExecutor = nullptr;
         Db* countingDb = nullptr;
+        QStringList countingAttaches;
 
     signals:
         /**

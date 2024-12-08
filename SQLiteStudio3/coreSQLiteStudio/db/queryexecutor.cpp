@@ -32,6 +32,7 @@
 #include <QThreadPool>
 #include <QDebug>
 #include <QtMath>
+#include <dbattacher.h>
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.
 
@@ -297,13 +298,6 @@ void QueryExecutor::execInternal()
     simpleExecution = false;
     interrupted = false;
 
-    if (resultsCountingAsyncId != 0)
-    {
-        resultsCountingAsyncId = 0;
-        db->interrupt();
-        releaseResultsAndCleanup();
-    }
-
     // Reset context
     delete context;
     context = new Context();
@@ -349,6 +343,24 @@ bool QueryExecutor::countResults()
         notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                     .arg("Failed to establish dedicated connection for results counting."));
         return false;
+    }
+
+    // Apply all transparent attaches to the counting DB
+    auto it = context->dbNameToAttach.iterator();
+    while (it.hasNext())
+    {
+        auto entry = it.next();
+        Db* dbToAttach = DBLIST->getByName(entry.key());
+        SqlQueryPtr attachRes = countingDb->exec(QString("ATTACH '%1' AS %2").arg(dbToAttach->getPath(), entry.value()));
+        if (attachRes->isError())
+        {
+            notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+                        .arg("Failed to attach necessary databases for counting."));
+
+            qDebug() << "Error while attaching db for counting:" << attachRes->getErrorText();
+            countingDb->detachAll();
+            return false;
+        }
     }
 
     if (asyncMode)
@@ -596,6 +608,7 @@ bool QueryExecutor::handleRowCountingResults(SqlQueryPtr results)
                     .arg(results->getErrorText()));
     }
 
+    countingDb->detachAll();
     return true;
 }
 
