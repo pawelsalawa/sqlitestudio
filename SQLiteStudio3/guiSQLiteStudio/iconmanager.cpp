@@ -115,7 +115,13 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
     QString path;
     QString name;
     QDir dir(dirPath);
-    for (QFileInfo entry : dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
+    QFileInfoList entryList = dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable);
+    std::ranges::sort(entryList, [](const QFileInfo &e1, const QFileInfo &e2)
+    {
+        return e1.baseName() < e2.baseName();
+    });
+
+    for (QFileInfo entry : entryList)
     {
         if (entry.isDir())
         {
@@ -125,11 +131,29 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
 
         path = entry.absoluteFilePath();
         name = entry.baseName();
-        paths[name] = path;
         if (movie)
+        {
+            paths[name] = path;
             movies[name] = new QMovie(path);
+        }
+        else if (name.contains("@"))
+        {
+            QString realName = name.left(name.indexOf("@"));
+            if (!icons.contains(realName))
+            {
+                qWarning() << "Failed to load additional icon size" << name << "because base size icon" << realName << "was not loaded.";
+                continue;
+            }
+            QIcon* icon = icons[realName];
+            int dim = name.mid(name.indexOf("@") + 1).toInt();
+            QSize size = QSize(dim, dim);
+            icon->addFile(path, size);
+        }
         else
+        {
+            paths[name] = path;
             icons[name] = new QIcon(path);
+        }
 
         if (path.startsWith(":/"))
         {

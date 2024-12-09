@@ -104,6 +104,11 @@ void MainWindow::init()
     insertToolBar(ui->mainToolBar, ui->structureToolbar);
     insertToolBar(ui->structureToolbar, ui->dbToolbar);
 
+    ui->viewToolbar->setIconSize(QSize(24, 24));
+    ui->mainToolBar->setIconSize(QSize(24, 24));
+    ui->structureToolbar->setIconSize(QSize(24, 24));
+    ui->dbToolbar->setIconSize(QSize(24, 24));
+
     formManager = new FormManager();
 
     initMenuBar();

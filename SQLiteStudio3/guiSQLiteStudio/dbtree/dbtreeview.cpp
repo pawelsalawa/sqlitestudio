@@ -19,6 +19,7 @@ DbTreeView::DbTreeView(QWidget *parent) :
     setHeaderHidden(true);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setIconSize(QSize(24, 24));
 
     itemDelegate = new DbTreeItemDelegate();
     setItemDelegate(itemDelegate);
