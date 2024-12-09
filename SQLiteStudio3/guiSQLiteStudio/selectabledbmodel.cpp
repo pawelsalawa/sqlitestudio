@@ -55,9 +55,7 @@ Qt::ItemFlags SelectableDbModel::flags(const QModelIndex& index) const
         return itemFlags;
 
     DbTreeItem::Type type = item->getType();
-    if (item->getDb() && item->getDb()->getVersion() == disabledVersion)
-        itemFlags ^= Qt::ItemIsEnabled;
-    else if (type == DbTreeItem::Type::DB)
+    if (type == DbTreeItem::Type::DB)
         itemFlags |= Qt::ItemIsUserCheckable;
 
     return itemFlags;
@@ -95,15 +93,6 @@ DbTreeItem* SelectableDbModel::getItemForProxyIndex(const QModelIndex& index) co
     QModelIndex srcIdx = mapToSource(index);
     DbTreeItem* item = dynamic_cast<DbTreeItem*>(dynamic_cast<DbTreeModel*>(sourceModel())->itemFromIndex(srcIdx));
     return item;
-}
-int SelectableDbModel::getDisabledVersion() const
-{
-    return disabledVersion;
-}
-
-void SelectableDbModel::setDisabledVersion(int value)
-{
-    disabledVersion = value;
 }
 
 

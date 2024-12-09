@@ -36,7 +36,8 @@
  *     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
  * };
  * @endcode
- */class API_EXPORT BuiltInPlugin : public QObject, public virtual Plugin
+ */
+class API_EXPORT BuiltInPlugin : public QObject, public virtual Plugin
 {
         Q_OBJECT
         Q_INTERFACES(Plugin)

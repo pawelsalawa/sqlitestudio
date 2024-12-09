@@ -103,7 +103,6 @@ void SqliteExtensionEditor::init()
     ui->extensionList->setModel(extensionFilterModel);
 
     dbListModel = new SelectableDbModel(this);
-    dbListModel->setDisabledVersion(2);
     dbListModel->setSourceModel(DBTREE->getModel());
     ui->databaseList->setModel(dbListModel);
     ui->databaseList->expandAll();

@@ -30,7 +30,6 @@ class GUI_API_EXPORT SelectableDbModel : public QSortFilterProxyModel
         DbTreeItem* getItemForProxyIndex(const QModelIndex& index) const;
 
         QStringList checkedDatabases;
-        int disabledVersion = -1;
 };
 
 #endif // SELECTABLEDBMODEL_H
