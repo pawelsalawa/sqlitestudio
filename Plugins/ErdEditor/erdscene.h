@@ -18,10 +18,18 @@ class ErdScene : public QGraphicsScene
     public:
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
 
-        void parseSchema(Db* db);
+        QSet<QString> parseSchema(Db* db);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
+        void applyConfig(const QHash<QString, QVariant>& erdLayout);
+        QHash<QString, QVariant> getConfig();
+
+        static constexpr const char* CFG_KEY_ENTITIES = "entities";
+        static constexpr const char* CFG_KEY_SCENE_RECT = "sceneRect";
+        static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";
+        static constexpr const char* CFG_KEY_POS = "pos";
+        static constexpr const char* CFG_KEY_COLOR = "color";
 
     private:
         void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable);

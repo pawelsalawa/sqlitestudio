@@ -12,11 +12,12 @@ ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
 {
 }
 
-void ErdScene::parseSchema(Db* db)
+QSet<QString> ErdScene::parseSchema(Db* db)
 {
     if (!db)
-        return;
+        return QSet<QString>();
 
+    QSet<QString> tableNames;
     SchemaResolver resolver(db);
     StrHash<SqliteCreateTablePtr> tables = resolver.getAllParsedTables();
     StrHash<ErdEntity*> entitiesByTable;
@@ -24,6 +25,8 @@ void ErdScene::parseSchema(Db* db)
     {
         if (isSystemTable(table->table))
             continue;
+
+        tableNames << table->table.toLower();
 
         ErdEntity* entityItem = new ErdEntity(table);
         entityItem->setPos(getPosForNewEntity());
@@ -41,7 +44,7 @@ void ErdScene::parseSchema(Db* db)
     for (ErdEntity*& entity : entities)
         entity->updateConnectionsGeometry();
 
-    arrangeEntitiesFdp();
+    return tableNames;
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -59,6 +62,47 @@ void ErdScene::setArrowType(ErdArrowItem::Type arrowType)
 ErdArrowItem::Type ErdScene::getArrowType() const
 {
     return arrowType;
+}
+
+void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
+{
+    StrHash<QVariant> cfgEntities = erdConfig[CFG_KEY_ENTITIES].toHash();
+    for (ErdEntity*& entity : entities)
+    {
+        QHash<QString, QVariant> singleEntityConfig = cfgEntities.value(entity->getTableName(), Qt::CaseInsensitive).toHash();
+        if (singleEntityConfig.contains(CFG_KEY_POS))
+        {
+            QPointF pos(singleEntityConfig[CFG_KEY_POS].toPointF());
+            entity->setPos(pos);
+        }
+        // TODO entity color
+    }
+    for (ErdEntity*& entity : entities)
+        entity->updateConnectionsGeometry();
+
+    update();
+
+    QRectF rect = erdConfig[CFG_KEY_SCENE_RECT].toRectF();
+    if (rect.isValid())
+        setSceneRect(rect);
+    else
+        refreshSceneRect();
+}
+
+QHash<QString, QVariant> ErdScene::getConfig()
+{
+    QHash<QString, QVariant> erdConfig;
+    QHash<QString, QVariant> erdEntities;
+    for (ErdEntity*& entity : entities)
+    {
+        QHash<QString, QVariant> singleEntityConfig;
+        singleEntityConfig[CFG_KEY_POS] = entity->pos();
+        // TODO entity color
+        erdEntities[entity->getTableName()] = singleEntityConfig;
+    }
+    erdConfig[CFG_KEY_ENTITIES] = erdEntities;
+    erdConfig[CFG_KEY_SCENE_RECT] = sceneRect();
+    return erdConfig;
 }
 
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable)

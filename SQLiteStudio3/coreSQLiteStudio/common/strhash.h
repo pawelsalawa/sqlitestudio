@@ -117,6 +117,11 @@ class StrHash
             return hash.keys();
         }
 
+        QStringList lowerKeys() const
+        {
+            return lowerCaseHash.keys();
+        }
+
         QHashIterator<QString, T> iterator() const
         {
             return QHashIterator<QString, T>(hash);
@@ -144,6 +149,11 @@ class StrHash
         bool isEmpty() const
         {
             return hash.isEmpty();
+        }
+
+        qsizetype size() const
+        {
+            return hash.size();
         }
 
         QHash<QString, T> toQHash() const

@@ -8,6 +8,7 @@
 #include "mdiwindow.h"
 #include "style.h"
 #include "erdeditorplugin.h"
+#include "services/config.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -68,7 +69,7 @@ void ErdWindow::init()
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
 
-    scene->parseSchema(db);
+    parseAndRestore();
 }
 
 void ErdWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
@@ -187,7 +188,26 @@ QVariant ErdWindow::saveSession()
     if (db)
         sessionValue["db"] = db->getName();
 
+    QHash<QString, QVariant> erdLayout = scene->getConfig();
+    CFG->set(ERD_CFG_GROUP, db->getPath(), erdLayout);
+    CFG->set(ERD_CFG_GROUP, db->getName(), erdLayout);
+
     return sessionValue;
+}
+
+void ErdWindow::parseAndRestore()
+{
+    if (!db)
+        return;
+
+    QSet<QString> tableNames = scene->parseSchema(db);
+    QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
+    if (!tryToApplyConfig(erdConfig, tableNames))
+    {
+        erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
+        if (!tryToApplyConfig(erdConfig, tableNames))
+            scene->arrangeEntitiesFdp();
+    }
 }
 
 bool ErdWindow::restoreSession(const QVariant& sessionValue)
@@ -205,7 +225,30 @@ bool ErdWindow::restoreSession(const QVariant& sessionValue)
         return false;
 
     db = sessionDb;
-    scene->parseSchema(db);
+    parseAndRestore();
+
+    return true;
+}
+
+bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames)
+{
+    if (!value.isValid() || value.isNull() || !value.canConvert<QHash<QString, QVariant>>()) /*value.canConvert(QMetaType(QMetaType::QVariantHash))*/
+        return false;
+
+    QHash<QString, QVariant> erdConfig = value.toHash();
+    StrHash<QVariant> cfgEntities = erdConfig[ErdScene::CFG_KEY_ENTITIES].toHash();
+    int matched = 0;
+    for (QString configTable : cfgEntities.lowerKeys())
+    {
+        if (tableNames.contains(configTable))
+            matched++;
+    }
+
+    if (matched < 2 || ((qreal)matched / erdConfig.size()) < 0.25)
+        return false;
+
+    scene->applyConfig(erdConfig);
+
     return true;
 }
 

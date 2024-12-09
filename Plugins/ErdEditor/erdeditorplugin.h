@@ -8,9 +8,9 @@
 #include "erdarrowitem.h"
 
 CFG_CATEGORIES(ErdConfig,
-     CFG_CATEGORY(Erd,
-         CFG_ENTRY(ErdArrowItem::Type, ArrowType, ErdArrowItem::CURVY)
-     )
+    CFG_CATEGORY(Erd,
+        CFG_ENTRY(ErdArrowItem::Type, ArrowType,    ErdArrowItem::CURVY)
+    )
 )
 
 class QAction;
