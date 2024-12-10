@@ -28,6 +28,7 @@ ErdView::~ErdView()
 void ErdView::setScene(ErdScene* scene)
 {
     QGraphicsView::setScene(scene);
+    connect(scene, &ErdScene::showEntityToUser, this, &ErdView::showItemToUser);
 }
 
 ErdScene* ErdView::scene() const
@@ -127,11 +128,8 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
         viewClicked(event->pos(), event->button());
     }
 
-    // if (!spaceIsPressed)
-    // {
-        setDragMode(QGraphicsView::NoDrag);
-        handleSelectionOnMouseEvent(event->pos());
-    // }
+    setDragMode(QGraphicsView::NoDrag);
+    handleSelectionOnMouseEvent(event->pos());
 
     QGraphicsView::mouseReleaseEvent(event);
 }
@@ -139,11 +137,7 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
 void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     UNUSED(event);
-    if (draftConnection)
-    {
-        delete draftConnection;
-        draftConnection = nullptr;
-    }
+    abortDraftConnection();
 }
 
 void ErdView::focusOutEvent(QFocusEvent* event)
@@ -181,8 +175,9 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection->finalizeConnection(entity, mapToScene(pos));
                 draftConnection = nullptr;
+                emit draftConnectionRemoved();
             }
-            else
+            else if (draftingConnectionMode)
             {
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
@@ -194,8 +189,7 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
     {
         if (draftConnection)
         {
-            delete draftConnection;
-            draftConnection = nullptr;
+            abortDraftConnection();
         }
         else
         {
@@ -238,6 +232,24 @@ void ErdView::resetZoom()
 {
     resetTransform();
     zoom = 1.0;
+}
+
+void ErdView::showItemToUser(QGraphicsItem* item)
+{
+    centerOn(item);
+}
+
+void ErdView::abortDraftConnection()
+{
+    safe_delete(draftConnection);
+    emit draftConnectionRemoved();
+}
+
+void ErdView::setDraftingConnectionMode(bool enabled)
+{
+    draftingConnectionMode = enabled;
+    if (!enabled)
+        abortDraftConnection();
 }
 
 void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)

@@ -1,11 +1,13 @@
 #include "extactioncontainer.h"
 #include "iconmanager.h"
 #include "common/global.h"
+#include "common/unused.h"
 #include <QSignalMapper>
 #include <QToolButton>
 #include <QToolBar>
 #include <QMenu>
 #include <QDebug>
+#include <QEvent>
 
 ExtActionContainer::ClassNameToToolBarAndAction ExtActionContainer::extraActions;
 QList<ExtActionContainer*> ExtActionContainer::instances;
@@ -156,10 +158,13 @@ void ExtActionContainer::refreshShortcuts()
 
 void ExtActionContainer::refreshShortcut(int action)
 {
+    actionMap[action]->removeEventFilter(&keySeqFilter);
+
     QKeySequence seq(shortcuts[action]->get());
     QString txt = seq.toString(QKeySequence::NativeText);
     actionMap[action]->setShortcut(seq);
     actionMap[action]->setToolTip(actionMap[action]->text() + QString(" (%1)").arg(txt));
+    actionMap[action]->installEventFilter(&keySeqFilter);
 }
 
 QAction* ExtActionContainer::getAction(int action)
@@ -288,4 +293,14 @@ ExtActionContainer::ActionDetails::ActionDetails()
 ExtActionContainer::ActionDetails::ActionDetails(ExtActionPrototype* action, int position, bool after) :
     action(action), position(position), after(after)
 {
+}
+
+bool ExtActionContainer::KeySequenceFilter::eventFilter(QObject* watched, QEvent* e)
+{
+    if (e->type() == QEvent::Shortcut)
+    {
+        qobject_cast<QAction*>(watched)->activate(QAction::Trigger);
+        return true;
+    }
+    return QObject::event(e);
 }

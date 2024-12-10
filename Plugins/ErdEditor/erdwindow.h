@@ -12,6 +12,7 @@ namespace Ui {
 
 class ErdScene;
 class ErdEntity;
+class QShortcut;
 
 class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 {
@@ -25,7 +26,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             ARRANGE_NEATO,
             ADD_CONNECTION,
             LINE_STRAIGHT,
-            LINE_CURVY
+            LINE_CURVY,
+            CANCEL_CURRENT
         };
         Q_ENUM(Action)
 
@@ -67,15 +69,16 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Icon* lineStraightIcon = nullptr;
         ErdScene* scene = nullptr;
         ErdArrowItem::Type arrowType;
+        QShortcut* escHotkey = nullptr;
 
         void parseAndRestore();
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
-        void addFk();
         void useStraightLine();
         void useCurvyLine();
+        void cancelCurrentAction();
 };
 
 #endif // ERDWINDOW_H

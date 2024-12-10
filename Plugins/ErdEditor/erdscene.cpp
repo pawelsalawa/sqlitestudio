@@ -33,8 +33,6 @@ QSet<QString> ErdScene::parseSchema(Db* db)
         entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
         addItem(entityItem);
 
-        lastCreatedX = entityItem->pos().x();
-
         entitiesByTable[table->table] = entityItem;
         entities << entityItem;
     }
@@ -197,13 +195,13 @@ void ErdScene::refreshSceneRect()
 void ErdScene::newTable()
 {
     SqliteCreateTable* tableModel = new SqliteCreateTable();
-    tableModel->table = "test table " + QString::number(lastCreatedX);
+    tableModel->table = tr("new_table", "ERD editor");
 
-    SqliteCreateTable::Column* col1 = new SqliteCreateTable::Column("test col", nullptr, {});
+    SqliteCreateTable::Column* col1 = new SqliteCreateTable::Column(tr("column 1", "ERD editor"), nullptr, {});
     col1->setParent(tableModel);
     tableModel->columns << col1;
 
-    SqliteCreateTable::Column* col2 = new SqliteCreateTable::Column("another col", nullptr, {});
+    SqliteCreateTable::Column* col2 = new SqliteCreateTable::Column(tr("column 2", "ERD editor"), nullptr, {});
     col2->setParent(tableModel);
     tableModel->columns << col2;
 
@@ -212,11 +210,10 @@ void ErdScene::newTable()
     entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     addItem(entityItem);
 
-    lastCreatedX = entityItem->pos().x();
-
     entities << entityItem;
 
     refreshSceneRect();
+    emit showEntityToUser(entityItem);
 }
 
 void ErdScene::arrangeEntities(int algo)
@@ -225,13 +222,13 @@ void ErdScene::arrangeEntities(int algo)
     planner.arrangeScene(this, static_cast<ErdGraphvizLayoutPlanner::Algo>(algo));
     update();
     refreshSceneRect();
-    lastCreatedX = 0;
 }
 
 QPointF ErdScene::getPosForNewEntity() const
 {
-    qreal posX = lastCreatedX;
-    qreal posY = 0;
+    QRectF sceneRect = itemsBoundingRect();
+    qreal posX = sceneRect.right();
+    qreal posY = sceneRect.top();
     for (ErdEntity* entity : entities)
     {
         QRectF rect = entity->boundingRect();

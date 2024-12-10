@@ -1,6 +1,5 @@
 #include "erdentity.h"
 #include "iconmanager.h"
-#include "parser/ast/sqlitecreatetable.h"
 #include "erdconnection.h"
 #include "icon.h"
 #include "style.h"
@@ -14,6 +13,8 @@
 #include <QSharedPointer>
 #include <QPen>
 #include <QGraphicsScene>
+#include <QStyleOptionGraphicsItem>
+#include <QPainter>
 
 ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
     ErdEntity(QSharedPointer<SqliteCreateTable>(tableModel))
@@ -97,38 +98,61 @@ QString ErdEntity::getTableName() const
     return tableModel->table;
 }
 
+void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+{
+    int radius = 4;
+    painter->setBrush(brush());
+    painter->setPen(pen());
+    QRectF rect = boundingRect();
+    painter->drawRoundedRect(rect, radius, radius);
+
+    if (isSelected()) {
+        QPen outlinePen;
+        outlinePen.setColor(STYLE->standardPalette().highlight().color());
+        outlinePen.setStyle(Qt::DotLine);
+        outlinePen.setWidth(2);
+        painter->setPen(outlinePen);
+        painter->drawRoundedRect(rect, radius, radius);
+    }
+}
+
 void ErdEntity::rebuild()
 {
     if (!tableModel)
         return;
 
     int colIdx = 0;
-    addTableTitle(tableModel->table);
+    addTableTitle();
     for (SqliteCreateTable::Column*& col : tableModel->columns)
-        addColumn(col->name, (++colIdx == tableModel->columns.size()));
+        addColumn(col, (++colIdx == tableModel->columns.size()));
 
     qreal iconsWd = 0;
     for (Row* row : rows)
         iconsWd = qMax(iconsWd, row->calcIconsWidth());
 
+    qreal nameWd = 0;
+    for (Row* row : rows.mid(1)) // skip header, as it has no distinct name & datatype columns
+        nameWd = qMax(nameWd, row->calcNameWidth());
+
     // Total width calculated afterwards, because text width must be added only after total icon column width is known
     qreal totalWd = 0;
     for (Row* row : rows)
-        totalWd = qMax(totalWd, row->calcWidth(iconsWd));
+        totalWd = qMax(totalWd, row->calcWidth(iconsWd, nameWd));
 
     qreal y = 0;
     for (Row* row : rows)
     {
-        y += row->updateLayout(iconsWd, totalWd, y);
+        y += row->updateLayout(iconsWd, nameWd, totalWd, y);
         row->disableChildSelection();
     }
 
     setRect(0, 0, totalWd, y);
 }
 
-void ErdEntity::addTableTitle(const QString& text)
+void ErdEntity::addTableTitle()
 {
     Row* row = new Row(this);
+    row->isHeader = true;
 
     QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
     iconItem->setPixmap(ICONS.TABLE.toQPixmap());
@@ -136,10 +160,11 @@ void ErdEntity::addTableTitle(const QString& text)
 
     row->text = new QGraphicsSimpleTextItem(row->topRect);
     row->text->setBrush(STYLE->standardPalette().text());
-    row->text->setText(text);
+    row->text->setText(tableModel->table);
 
     auto bold = row->text->font();
     bold.setWeight(QFont::ExtraBold);
+    bold.setPointSizeF(bold.pointSizeF() * 1.4);
     row->text->setFont(bold);
 
     row->bottomLine = new QGraphicsLineItem(row->topRect);
@@ -148,18 +173,64 @@ void ErdEntity::addTableTitle(const QString& text)
     rows << row;
 }
 
-void ErdEntity::addColumn(const QString& text, bool isLast)
+void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
 {
     Row* row = new Row(this);
 
-    //QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
-    //QPixmap icon = ICONS.TABLE.toQPixmap();
-    //iconItem->setPixmap(icon);
-    //row->icons << iconItem;
+    for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
+    {
+        QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
+        Icon* icon = nullptr;
+        switch (constr->type)
+        {
+            case SqliteCreateTable::Column::Constraint::NULL_:
+                break;
+            case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+                break;
+            case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
+                break;
+            case SqliteCreateTable::Column::Constraint::PRIMARY_KEY:
+                icon = &(ICONS.CONSTRAINT_PRIMARY_KEY);
+                break;
+            case SqliteCreateTable::Column::Constraint::NOT_NULL:
+                icon = &(ICONS.CONSTRAINT_NOT_NULL);
+                break;
+            case SqliteCreateTable::Column::Constraint::UNIQUE:
+                icon = &(ICONS.CONSTRAINT_UNIQUE);
+                break;
+            case SqliteCreateTable::Column::Constraint::CHECK:
+                icon = &(ICONS.CONSTRAINT_CHECK);
+                break;
+            case SqliteCreateTable::Column::Constraint::DEFAULT:
+                icon = &(ICONS.CONSTRAINT_DEFAULT);
+                break;
+            case SqliteCreateTable::Column::Constraint::COLLATE:
+            case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
+            case SqliteCreateTable::Column::Constraint::GENERATED:
+                break;
+        }
+
+        if (icon)
+        {
+            iconItem->setPixmap(icon->toQPixmap());
+            row->icons << iconItem;
+        }
+    }
 
     row->text = new QGraphicsSimpleTextItem(row->topRect);
     row->text->setBrush(STYLE->standardPalette().text());
-    row->text->setText(text);
+    row->text->setText(column->name);
+
+    auto bold = row->text->font();
+    bold.setWeight(QFont::Bold);
+    row->text->setFont(bold);
+
+    if (column->type)
+    {
+        row->datatype = new QGraphicsSimpleTextItem(row->topRect);
+        row->datatype->setBrush(STYLE->standardPalette().text());
+        row->datatype->setText(column->type->detokenize().trimmed());
+    }
 
     if (!isLast)
     {
@@ -211,15 +282,31 @@ qreal ErdEntity::Row::calcIconsWidth() const
     return iconsWd + (icons.size() - 1) * ICON_GAP;
 }
 
-qreal ErdEntity::Row::calcWidth(qreal iconColumn) const
+qreal ErdEntity::Row::calcNameWidth() const
+{
+    return text->boundingRect().width();
+}
+
+qreal ErdEntity::Row::calcWidth(qreal iconColumn, qreal nameColumn) const
 {
     qreal wd = CELL_PADDING;
     wd += iconColumn + TEXT_GAP;
-    wd += text->boundingRect().width();
+
+    if (isHeader)
+    {
+        wd += text->boundingRect().width();
+    }
+    else
+    {
+        wd += nameColumn;
+        if (datatype)
+            wd += TEXT_GAP + datatype->boundingRect().width();
+    }
+
     return wd + CELL_PADDING;
 }
 
-qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal globalWidth, qreal globalY)
+qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY)
 {
     // Calculate max height of all items + paddings
     qreal hg = 0;
@@ -227,7 +314,13 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal globalWidth, qreal gl
         hg = qMax(iconItem->boundingRect().height(), hg);
 
     hg = qMax(text->boundingRect().height(), hg);
+    if (datatype)
+        hg = qMax(datatype->boundingRect().height(), hg);
+
     hg += CELL_PADDING * 2;
+
+    if (isHeader)
+        hg += CELL_PADDING * 2;
 
     // Place items starting from left, so icons first.
     // Since we have pre-calculated max width of icons in all rows, we need to align icons to the right here
@@ -251,6 +344,16 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal globalWidth, qreal gl
     qreal textY = hg / 2 - textRect.height() / 2;
     text->setPos(x, textY);
     x += textRect.width();
+
+    // Datatype item
+    if (datatype)
+    {
+        auto datatypeRect = datatype->boundingRect();
+        qreal datatypeY = hg / 2 - datatypeRect.height() / 2;
+        x = CELL_PADDING + iconColumn + TEXT_GAP + nameColumn + TEXT_GAP;
+        datatype->setPos(x, datatypeY);
+        x += datatypeRect.width();
+    }
 
     // Rightpadding
     x += CELL_PADDING;

@@ -12,6 +12,8 @@ class ErdScene;
 
 class ErdView : public QGraphicsView
 {
+    Q_OBJECT
+
     public:
         ErdView(QWidget *parent = nullptr);
         ~ErdView();
@@ -51,13 +53,22 @@ class ErdView : public QGraphicsView
         QList<QGraphicsItem*> selectedMovableItems;
         QHash<QGraphicsItem*, QPoint> dragOffset;
         ErdConnection* draftConnection = nullptr;
+        bool draftingConnectionMode = false;
         QPoint clickPos;
         qreal zoom = 1.0;
         bool spaceIsPressed = false;
         KeyPressFilter* keyFilter = nullptr;
 
+    public slots:
+        void abortDraftConnection();
+        void setDraftingConnectionMode(bool enabled);
+
     private slots:
         void resetZoom();
+        void showItemToUser(QGraphicsItem* item);
+
+    signals:
+        void draftConnectionRemoved();
 };
 
 #endif // ERDVIEW_H

@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
+#include <QShortcut>
 
 ErdWindow::ErdWindow() :
     ui(new Ui::ErdWindow)
@@ -50,6 +51,8 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
+    escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
+
     arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
@@ -68,6 +71,11 @@ void ErdWindow::init()
     initActions();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
+    connect(actionMap[ADD_CONNECTION], SIGNAL(toggled(bool)), ui->graphView, SLOT(setDraftingConnectionMode(bool)));
+    connect(ui->graphView, &ErdView::draftConnectionRemoved, [this]()
+    {
+        actionMap[ADD_CONNECTION]->setChecked(false);
+    });
 
     parseAndRestore();
 }
@@ -84,11 +92,6 @@ void ErdWindow::uiPaletteChanged()
     scene->update();
 }
 
-void ErdWindow::addFk()
-{
-
-}
-
 void ErdWindow::useStraightLine()
 {
     arrowType = ErdArrowItem::STRAIGHT;
@@ -99,6 +102,15 @@ void ErdWindow::useCurvyLine()
 {
     arrowType = ErdArrowItem::CURVY;
     applyArrowType();
+}
+
+void ErdWindow::cancelCurrentAction()
+{
+    if (actionMap[ADD_CONNECTION]->isChecked())
+    {
+        ui->graphView->abortDraftConnection();
+        return;
+    }
 }
 
 void ErdWindow::applyArrowType()
@@ -138,6 +150,9 @@ bool ErdWindow::shouldReuseForArgs(int argCount, ...)
 
 void ErdWindow::createActions()
 {
+    actionMap[CANCEL_CURRENT] = new QAction(tr("Cancels ongoing action"), this);
+    connect(actionMap[CANCEL_CURRENT], &QAction::triggered, this, &ErdWindow::cancelCurrentAction);
+
     QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
     lineGroup->setExclusive(true);
     actionMap[ADD_CONNECTION] = new QAction(*connectionIcon, tr("Add foreign key"), this);
@@ -173,7 +188,6 @@ void ErdWindow::createActions()
 
 void ErdWindow::setupDefShortcuts()
 {
-    // TODO
 }
 
 QToolBar* ErdWindow::getToolBar(int toolbar) const

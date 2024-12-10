@@ -41,7 +41,6 @@ class ErdScene : public QGraphicsScene
         QPointF getPosForNewEntity() const;
         QSet<ErdConnection*> getConnections() const;
 
-        qreal lastCreatedX = 0;
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;
 
@@ -52,6 +51,9 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesNeato();
         void arrangeEntitiesFdp();
         void refreshSceneRect();
+
+    signals:
+        void showEntityToUser(ErdEntity* entity);
 };
 
 #endif // ERDSCENE_H

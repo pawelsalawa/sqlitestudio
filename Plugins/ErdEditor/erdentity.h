@@ -2,6 +2,7 @@
 #define ERDENTITY_H
 
 #include "erditem.h"
+#include "parser/ast/sqlitecreatetable.h"
 #include <QGraphicsRectItem>
 
 class SqliteCreateTable;
@@ -32,6 +33,7 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         void removeConnection(ErdConnection* conn);
         QList<ErdConnection*> getConnections() const;
         QString getTableName() const;
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
     private:
         struct Row
@@ -41,23 +43,26 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
 
             QGraphicsRectItem* topRect = nullptr;
             QGraphicsSimpleTextItem* text = nullptr;
+            QGraphicsSimpleTextItem* datatype = nullptr;
             QGraphicsLineItem* bottomLine = nullptr;
             QList<QGraphicsItem*> icons;
+            bool isHeader = false;
 
-            qreal calcWidth(qreal iconColumn) const;
+            qreal calcWidth(qreal iconColumn, qreal nameColumn) const;
             qreal height() const;
             qreal calcIconsWidth() const;
-            qreal updateLayout(qreal iconColumn, qreal globalWidth, qreal globalY);
+            qreal calcNameWidth() const;
+            qreal updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY);
             void disableChildSelection();
         };
 
         void rebuild();
-        void addColumn(const QString& text, bool isLast);
-        void addTableTitle(const QString& text);
+        void addColumn(SqliteCreateTable::Column* column, bool isLast);
+        void addTableTitle();
 
-        static constexpr qreal CELL_PADDING = 6.0;
-        static constexpr qreal TEXT_GAP = 5.0;
-        static constexpr qreal ICON_GAP = 2.0;
+        static constexpr qreal CELL_PADDING = 7.0;
+        static constexpr qreal TEXT_GAP = 8.0;
+        static constexpr qreal ICON_GAP = 4.0;
 
         QSharedPointer<SqliteCreateTable> tableModel;
         QList<ErdConnection*> connections;
