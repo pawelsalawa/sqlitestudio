@@ -58,11 +58,11 @@ void ErdWindow::init()
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
     fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
     neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
-    connectionIcon = new Icon("ERDEDITOR_CONNECTION", "erdeditor_connection");
     lineStraightIcon = new Icon("ERDEDITOR_LINE_STRAIGHT", "erdeditor_line_straight");
     lineCurvyIcon = new Icon("ERDEDITOR_LINE_CURVY", "erdeditor_line_curvy");
+    lineSquareIcon = new Icon("ERDEDITOR_LINE_SQUARE", "erdeditor_line_square");
 
-    for (auto icon : {windowIcon, fdpIcon, neatoIcon, connectionIcon, lineStraightIcon, lineCurvyIcon})
+    for (auto icon : {windowIcon, fdpIcon, neatoIcon, lineStraightIcon, lineCurvyIcon, lineSquareIcon})
         icon->load();
 
     scene = new ErdScene(arrowType, this);
@@ -101,6 +101,12 @@ void ErdWindow::useStraightLine()
 void ErdWindow::useCurvyLine()
 {
     arrowType = ErdArrowItem::CURVY;
+    applyArrowType();
+}
+
+void ErdWindow::useSquareLine()
+{
+    arrowType = ErdArrowItem::SQUARE;
     applyArrowType();
 }
 
@@ -155,13 +161,15 @@ void ErdWindow::createActions()
 
     QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
     lineGroup->setExclusive(true);
-    actionMap[ADD_CONNECTION] = new QAction(*connectionIcon, tr("Add foreign key"), this);
+    actionMap[ADD_CONNECTION] = new QAction(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add foreign key"), this);
     actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
     actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
+    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
 
     actionMap[ADD_CONNECTION]->setCheckable(true);
     actionMap[LINE_STRAIGHT]->setCheckable(true);
     actionMap[LINE_CURVY]->setCheckable(true);
+    actionMap[LINE_SQUARE]->setCheckable(true);
     switch (arrowType)
     {
         case ErdArrowItem::STRAIGHT:
@@ -170,10 +178,14 @@ void ErdWindow::createActions()
         case ErdArrowItem::CURVY:
             actionMap[LINE_CURVY]->setChecked(true);
             break;
+        case ErdArrowItem::SQUARE:
+            actionMap[LINE_SQUARE]->setChecked(true);
+            break;
     }
 
     connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
+    connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
 
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
     ui->toolBar->addSeparator();
@@ -181,6 +193,7 @@ void ErdWindow::createActions()
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
     ui->toolBar->addAction(actionMap[LINE_CURVY]);
+    ui->toolBar->addAction(actionMap[LINE_SQUARE]);
     ui->toolBar->addSeparator();
     createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);

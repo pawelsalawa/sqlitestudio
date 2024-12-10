@@ -3,6 +3,7 @@
 #include "erdconnection.h"
 #include "icon.h"
 #include "style.h"
+#include "common/unused.h"
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsTextItem>
 #include <QGraphicsLineItem>
@@ -100,6 +101,8 @@ QString ErdEntity::getTableName() const
 
 void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
+    UNUSED(option);
+    UNUSED(widget);
     int radius = 4;
     painter->setBrush(brush());
     painter->setPen(pen());

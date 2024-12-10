@@ -17,6 +17,7 @@ SOURCES += \
     erditem.cpp \
     erdlinearrowitem.cpp \
     erdscene.cpp \
+    erdsquarearrowitem.cpp \
     erdview.cpp \
     erdwindow.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     erditem.h \
     erdlinearrowitem.h \
     erdscene.h \
+    erdsquarearrowitem.h \
     erdview.h \
     erdwindow.h
 

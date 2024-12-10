@@ -17,7 +17,8 @@ class ErdArrowItem : public ErdItem, public QGraphicsPathItem
         enum Type
         {
             STRAIGHT,
-            CURVY
+            CURVY,
+            SQUARE
         };
 
         static ErdArrowItem* create(Type type);

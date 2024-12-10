@@ -27,6 +27,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             ADD_CONNECTION,
             LINE_STRAIGHT,
             LINE_CURVY,
+            LINE_SQUARE,
             CANCEL_CURRENT
         };
         Q_ENUM(Action)
@@ -64,9 +65,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Icon* windowIcon = nullptr;
         Icon* fdpIcon = nullptr;
         Icon* neatoIcon = nullptr;
-        Icon* connectionIcon = nullptr;
         Icon* lineCurvyIcon = nullptr;
         Icon* lineStraightIcon = nullptr;
+        Icon* lineSquareIcon = nullptr;
         ErdScene* scene = nullptr;
         ErdArrowItem::Type arrowType;
         QShortcut* escHotkey = nullptr;
@@ -78,6 +79,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void uiPaletteChanged();
         void useStraightLine();
         void useCurvyLine();
+        void useSquareLine();
         void cancelCurrentAction();
 };
 

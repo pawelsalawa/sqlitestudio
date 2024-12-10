@@ -1,6 +1,7 @@
 #include "erdarrowitem.h"
 #include "erdcurvyarrowitem.h"
 #include "erdlinearrowitem.h"
+#include "erdsquarearrowitem.h"
 #include <QGraphicsDropShadowEffect>
 #include <QPen>
 #include <QtMath>
@@ -40,6 +41,9 @@ ErdArrowItem* ErdArrowItem::create(Type type)
             break;
         case CURVY:
             item = new ErdCurvyArrowItem();
+            break;
+        case SQUARE:
+            item = new ErdSquareArrowItem();
             break;
         default:
             qCritical() << "Unsupported ERD arrow item type:" << static_cast<int>(type);
