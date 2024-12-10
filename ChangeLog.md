@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 3.4.10
+- BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.
+- BIGFIX: Fixed dialog windows positioning, so it's remembered correctly if the dialog is only moved, but not resized.
+
 ### 3.4.9
 - BUGFIX: #5148 Fixed executing queries that refer to tables with database prefix (i.e. dbName.tableName).
 - BUGFIX: #5149 Relaxed recent limitation on requiring Custom SQL Functions to have unique names, so that names can duplicate if input parameters differ.
