@@ -2,6 +2,7 @@
 
 ### 3.4.10
 - BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.
+- BIGFIX: #5162 Fixed crash when enabling STRICT option in Table Window.
 - BIGFIX: Fixed dialog windows positioning, so it's remembered correctly if the dialog is only moved, but not resized.
 
 ### 3.4.9
