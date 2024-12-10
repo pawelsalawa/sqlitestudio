@@ -1085,12 +1085,12 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     QByteArray byteData = data->data(MIMETYPE);
     QDataStream stream(&byteData, QIODevice::ReadOnly);
 
-    qint32 itemCount;
+    qsizetype itemCount;
     stream >> itemCount;
 
     DbTreeItem* item = nullptr;
     QString signature;
-    for (qint32 i = 0; i < itemCount; i++)
+    for (qsizetype i = 0; i < itemCount; i++)
     {
         stream >> signature;
         item = findItemBySignature(signature);
