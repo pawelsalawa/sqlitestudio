@@ -18,7 +18,7 @@ class QAction;
 class ERDEDITORSHARED_EXPORT ErdEditorPlugin : public GenericPlugin, GeneralPurposePlugin
 {
     Q_OBJECT
-    SQLITESTUDIO_PLUGIN("erdeditor.json")
+    SQLITESTUDIO_PLUGIN("ErdEditor.json")
 
     public:
         bool init();

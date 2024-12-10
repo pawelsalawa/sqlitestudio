@@ -40,8 +40,8 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
         QSize size = entity->rect().toRect().size();
         agsafeset(node, const_cast<char*>("fixedsize"), const_cast<char*>("true"), "");
         agsafeset(node, const_cast<char*>("shape"), const_cast<char*>("rectangle"), "");
-        agsafeset(node, const_cast<char*>("width"), QString::number(size.width() / dpi).toLatin1().constData(), "");
-        agsafeset(node, const_cast<char*>("height"), QString::number(size.height() / dpi).toLatin1().constData(), "");
+        agsafeset(node, const_cast<char*>("width"), const_cast<char*>(QString::number(size.width() / dpi).toLatin1().constData()), "");
+        agsafeset(node, const_cast<char*>("height"), const_cast<char*>(QString::number(size.height() / dpi).toLatin1().constData()), "");
         entityNodes[entity] = node;
         entityByName[entity->getTableName()] = entity;
     }
