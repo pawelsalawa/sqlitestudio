@@ -148,7 +148,7 @@ void ErdView::focusOutEvent(QFocusEvent* event)
 
 void ErdView::wheelEvent(QWheelEvent* event)
 {
-    qreal diff = ((qreal)event->angleDelta().y()) / 300;
+    qreal diff = ((qreal)event->angleDelta().y()) / 1500;
     qreal ratio = diff >= 0 ? (1.0 + diff) : (1 / (1.0 - diff));
     zoom *= ratio;
     if (zoom > 1.0) {

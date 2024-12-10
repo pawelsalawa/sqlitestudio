@@ -3,15 +3,18 @@
 #include "mainwindow.h"
 #include "erdwindow.h"
 #include "dbtree/dbtree.h"
+#include "schemaresolver.h"
+#include "services/notifymanager.h"
 #include <QAction>
 
-CFG_DEFINE(ErdConfig)
+ErdEditorPlugin* ErdEditorPlugin::instance = nullptr;
 
 bool ErdEditorPlugin::init()
 {
     SQLS_INIT_RESOURCE(erdeditor);
     
     ErdWindow::staticInit();
+    instance = this;
 
     openErdEditorAction = new QAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
@@ -20,18 +23,54 @@ bool ErdEditorPlugin::init()
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->insertAction(ddlHistoryAction, openErdEditorAction);
     MAINWINDOW->getToolsMenu()->insertAction(ddlHistoryAction, openErdEditorAction);
 
-    return true;
+    return GenericPlugin::init();
 }
 
 void ErdEditorPlugin::deinit()
 {
+    QList<ErdWindow*> windows = MDIAREA->getMdiChilds<ErdWindow>();
+    for (ErdWindow* win : windows)
+        win->getMdiWindow()->close();
+
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->removeAction(openErdEditorAction);
-    CFG_DELETE_INSTANCE(ErdConfig);
     SQLS_CLEANUP_RESOURCE(erdeditor);
+}
+
+QString ErdEditorPlugin::getConfigUiForm() const
+{
+    return "ErdConfig";
+}
+
+CfgMain* ErdEditorPlugin::getMainUiConfig()
+{
+    return &cfg;
+}
+
+void ErdEditorPlugin::configDialogOpen()
+{
+
+}
+
+void ErdEditorPlugin::configDialogClosed()
+{
+
 }
 
 void ErdEditorPlugin::openEditor()
 {
     Db* db = DBTREE->getSelectedOpenDb();
+    if (!db)
+        return;
+
+    SchemaResolver resolver(db);
+    QStringList tables = resolver.getTables();
+    if (tables.length() > CFG_ERD.Erd.MaxTableLimit.get())
+    {
+        NOTIFY_MANAGER->error(
+            tr("ERD editor cannot open because the database contains %1 tables, exceeding the configured limit of %2 tables. You can increase this limit in the settings, but higher values may slow down or freeze the application.")
+                .arg(QString::number(tables.length()), QString::number(CFG_ERD.Erd.MaxTableLimit.get())));
+        return;
+    }
+
     MAINWINDOW->openMdiWindow<ErdWindow>(db);
 }

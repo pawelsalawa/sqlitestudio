@@ -2,6 +2,7 @@
 #include "parser/parser_helper_stubs.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "common/utils_sql.h"
 
 const QRegularExpression SqliteCreateTable::Column::GENERATED_ALWAYS_REGEXP = QRegularExpression("GENERATED\\s+ALWAYS");
 
@@ -504,6 +505,36 @@ QString SqliteCreateTable::Column::Constraint::typeString() const
             break;
     }
     return QString();
+}
+
+QString SqliteCreateTable::Column::Constraint::defaultValueAsString() const
+{
+    if (!id.isNull())
+        return id;
+    else if (!ctime.isNull())
+        return ctime;
+    else if (expr)
+        return expr->detokenize();
+    else if (literalNull)
+        return "NULL";
+    else
+        return valueToSqlLiteral(literalValue);
+}
+
+QString SqliteCreateTable::Column::Constraint::checkExprAsString() const
+{
+    if (!expr)
+        return "";
+
+    return expr->detokenize();
+}
+
+QString SqliteCreateTable::Column::Constraint::generatedExprAsString() const
+{
+    if (!expr)
+        return "";
+
+    return expr->detokenize();
 }
 
 SqliteCreateTable::Constraint::Constraint()

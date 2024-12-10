@@ -40,6 +40,7 @@ OTHER_FILES += \
 LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
+    erdconfig.ui \
     erdwindow.ui
 
 RESOURCES += \

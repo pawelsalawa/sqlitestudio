@@ -181,15 +181,10 @@ void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
     for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
     {
         QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
+        iconItem->setToolTip(constr->detokenize().trimmed());
         Icon* icon = nullptr;
         switch (constr->type)
         {
-            case SqliteCreateTable::Column::Constraint::NULL_:
-                break;
-            case SqliteCreateTable::Column::Constraint::NAME_ONLY:
-                break;
-            case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
-                break;
             case SqliteCreateTable::Column::Constraint::PRIMARY_KEY:
                 icon = &(ICONS.CONSTRAINT_PRIMARY_KEY);
                 break;
@@ -205,9 +200,18 @@ void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
             case SqliteCreateTable::Column::Constraint::DEFAULT:
                 icon = &(ICONS.CONSTRAINT_DEFAULT);
                 break;
-            case SqliteCreateTable::Column::Constraint::COLLATE:
-            case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
             case SqliteCreateTable::Column::Constraint::GENERATED:
+                icon = &(ICONS.CONSTRAINT_GENERATED);
+                break;
+            case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
+                icon = &(ICONS.CONSTRAINT_FOREIGN_KEY);
+                break;
+            case SqliteCreateTable::Column::Constraint::COLLATE:
+                icon = &(ICONS.CONSTRAINT_COLLATION);
+                break;
+            case SqliteCreateTable::Column::Constraint::NULL_:
+            case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+            case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
                 break;
         }
 

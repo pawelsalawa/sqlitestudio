@@ -75,6 +75,9 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         void initColl(const QString& name);
                         void initGeneratedAs(SqliteExpr* expr, bool genKw, const QString& type);
                         QString typeString() const;
+                        QString defaultValueAsString() const;
+                        QString checkExprAsString() const;
+                        QString generatedExprAsString() const;
 
                         Type type;
                         QString name = QString();

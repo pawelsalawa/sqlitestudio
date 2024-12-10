@@ -51,9 +51,9 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
-    escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
-
     arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
+
+    escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
 
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
     fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");

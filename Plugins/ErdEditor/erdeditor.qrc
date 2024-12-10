@@ -7,4 +7,7 @@
         <file>icons/erdeditor_line_curvy.png</file>
         <file>icons/erdeditor_line_straight.png</file>
     </qresource>
+    <qresource prefix="/forms">
+        <file>erdconfig.ui</file>
+    </qresource>
 </RCC>
