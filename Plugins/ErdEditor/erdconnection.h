@@ -24,7 +24,22 @@ class ErdConnection
         void refreshPosition();
         ErdEntity* getStartEntity() const;
         ErdEntity* getEndEntity() const;
+        int getStartEntityRow() const;
+        int getEndEntityRow() const;
         void setArrowType(ErdArrowItem::Type arrowType);
+
+        /**
+         * @brief Sets index of connection in the starting entity.
+         * It's not a row number. It's more of a z-index of arrow relative to other arrows.
+         * The square arrow type uses it to draw different horizontal distances for multiple connections.
+         */
+        void setIndexInStartEntity(int idx);
+
+        /**
+         * @brief Sets index of connection in the ending entity.
+         * More details in the #setIndexInStartEntity();
+         */
+        void setIndexInEndEntity(int idx);
 
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
@@ -35,7 +50,7 @@ class ErdConnection
         int endEntityRow = -1;
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
-        ErdScene* scene= nullptr;
+        ErdScene* scene = nullptr;
 };
 
 #endif // ERDCONNECTION_H

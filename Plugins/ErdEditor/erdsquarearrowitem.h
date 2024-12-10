@@ -16,6 +16,7 @@ class ErdSquareArrowItem : public ErdArrowItem
 
     private:
         static constexpr int INITIAL_GAP = 20;
+        static constexpr int PER_INDEX_SHIFT = 10;
 };
 
 #endif // ERDSQUAREARROWITEM_H

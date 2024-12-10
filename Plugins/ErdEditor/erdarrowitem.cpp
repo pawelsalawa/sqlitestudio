@@ -75,3 +75,13 @@ int ErdArrowItem::type() const
 {
     return arrowItemType;
 }
+
+void ErdArrowItem::setArrowIndexInStartEntity(int idx)
+{
+    arrowIndexInStartEntity = idx;
+}
+
+void ErdArrowItem::setArrowIndexInEndEntity(int idx)
+{
+    arrowIndexInEndEntity = idx;
+}

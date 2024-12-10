@@ -322,12 +322,22 @@ QList<T> map(const QList<S>& list, std::function<T(S)> transformer)
     return result;
 }
 
-template <class S, class T>
-QHash<S, T> toHash(const QList<S>& list, std::function<T(S)> transformer)
+template <class K, class T>
+QHash<K, T> toHash(const QList<T>& list, std::function<K(T)> transformer)
 {
-    QHash<S, T> result;
-    for (const S& el : list)
-        result[el] = transformer(el);
+    QHash<K, T> result;
+    for (const T& el : list)
+        result[transformer(el)] = el;
+
+    return result;
+}
+
+template <class K, class T>
+QHash<K, QList<T>> groupToHash(const QList<T>& list, std::function<K(const T& value)> transformer)
+{
+    QHash<K, QList<T>> result;
+    for (const T& el : list)
+        result[transformer(el)] << el;
 
     return result;
 }

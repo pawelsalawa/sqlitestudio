@@ -32,8 +32,10 @@ void ErdSquareArrowItem::setPoints(const QLineF& line, Side startSide, Side endS
     if (startSide == endSide)
         endSideSign *= -1;
 
-    QPointF startLinePoint = startPoint + QPointF(INITIAL_GAP * startSideSign, 0);
-    QPointF endLinePoint = endPoint + QPointF(-INITIAL_GAP * endSideSign, 0);
+    int startLineLength = INITIAL_GAP + (arrowIndexInStartEntity * PER_INDEX_SHIFT);
+    int endLineLength = INITIAL_GAP + (arrowIndexInEndEntity * PER_INDEX_SHIFT);
+    QPointF startLinePoint = startPoint + QPointF(startLineLength * startSideSign, 0);
+    QPointF endLinePoint = endPoint + QPointF(-endLineLength * endSideSign, 0);
     if ((startLinePoint.x() > endLinePoint.x()) == (endSideSign < 0))
         verticalSign = 0;
 

@@ -27,6 +27,8 @@ class ErdArrowItem : public ErdItem, public QGraphicsPathItem
         QRectF boundingRect() const override;
         bool isClickable() override;
         int type() const override;
+        void setArrowIndexInStartEntity(int idx);
+        void setArrowIndexInEndEntity(int idx);
 
         virtual void setPoints(const QLineF& line, Side startEntitySide, Side endEntitySide) = 0;
 
@@ -34,7 +36,6 @@ class ErdArrowItem : public ErdItem, public QGraphicsPathItem
         ErdArrowItem();
 
         void refreshArrowHead(qreal yDistance, qreal xDistance);
-
 
         QPainterPath linePath;
         int arrowItemType;
@@ -44,6 +45,8 @@ class ErdArrowItem : public ErdItem, public QGraphicsPathItem
         Side endEntitySide;
         QPolygonF arrowHead;
         qreal arrowSize = 10;
+        int arrowIndexInStartEntity = 0;
+        int arrowIndexInEndEntity = 0;
 };
 
 #endif // ERDARROWITEM_H

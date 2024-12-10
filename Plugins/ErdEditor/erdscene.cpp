@@ -110,6 +110,8 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
         setupEntityConnections(entitiesByTable, srcEntity);
         for (SqliteCreateTable::Column*& column : srcEntity->getTableModel()->columns)
             setupEntityConnections(entitiesByTable, srcEntity, column);
+
+        srcEntity->updateConnectionIndexes();
     }
 }
 

@@ -99,6 +99,43 @@ QString ErdEntity::getTableName() const
     return tableModel->table;
 }
 
+void ErdEntity::updateConnectionIndexes()
+{
+    if (rows.size() <= 1)
+        return; // only the table header
+
+    QHash<int, QList<ErdConnection*>> connsByRowIdx = groupToHash<int, ErdConnection*>(connections, [this](ErdConnection* conn) -> bool
+    {
+        if (conn->getStartEntity() == this)
+            return conn->getStartEntityRow();
+        else
+            return conn->getEndEntityRow();
+    });
+
+    QList<ErdConnection*> radialSortedConnections;
+    int minIdx = 1;
+    int maxIdx = rows.size()-1;
+    while (minIdx < maxIdx)
+    {
+        radialSortedConnections += connsByRowIdx[minIdx];
+        minIdx++;
+        if (minIdx < maxIdx)
+        {
+            radialSortedConnections += connsByRowIdx[maxIdx];
+            maxIdx--;
+        }
+    }
+
+    int connectionInEntityIndex = 0;
+    for (ErdConnection* conn : radialSortedConnections)
+    {
+        if (conn->getStartEntity() == this)
+            conn->setIndexInStartEntity(connectionInEntityIndex++);
+        else
+            conn->setIndexInEndEntity(connectionInEntityIndex++);
+    }
+}
+
 void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     UNUSED(option);

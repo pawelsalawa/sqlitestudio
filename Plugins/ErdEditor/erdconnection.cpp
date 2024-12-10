@@ -55,6 +55,8 @@ void ErdConnection::finalizeConnection(ErdEntity* entity, const QPointF& endPos)
     endEntityRow = entity->rowIndexAt(endPos);
     endEntity->addConnection(this);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, true);
+    startEntity->updateConnectionIndexes();
+    endEntity->updateConnectionIndexes();
     refreshPosition();
 }
 
@@ -105,6 +107,16 @@ ErdEntity* ErdConnection::getEndEntity() const
     return endEntity;
 }
 
+int ErdConnection::getStartEntityRow() const
+{
+    return startEntityRow;
+}
+
+int ErdConnection::getEndEntityRow() const
+{
+    return endEntityRow;
+}
+
 void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
 {
     bool selectable = arrow->flags().testFlag(QGraphicsItem::ItemIsSelectable);
@@ -115,6 +127,16 @@ void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, selectable);
     scene->addItem(arrow);
     refreshPosition();
+}
+
+void ErdConnection::setIndexInStartEntity(int idx)
+{
+    arrow->setArrowIndexInStartEntity(idx);
+}
+
+void ErdConnection::setIndexInEndEntity(int idx)
+{
+    arrow->setArrowIndexInEndEntity(idx);
 }
 
 ErdEntity* ErdConnection::getStartEntity() const

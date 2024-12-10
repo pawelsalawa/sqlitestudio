@@ -33,6 +33,7 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         void removeConnection(ErdConnection* conn);
         QList<ErdConnection*> getConnections() const;
         QString getTableName() const;
+        void updateConnectionIndexes();
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
     private:
