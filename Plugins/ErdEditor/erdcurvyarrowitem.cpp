@@ -1,4 +1,5 @@
 #include "erdcurvyarrowitem.h"
+#include "style.h"
 #include <QPen>
 #include <QPalette>
 #include <QPainter>
@@ -67,12 +68,27 @@ void ErdCurvyArrowItem::setPoints(const QLineF& line, Side startSide, Side endSi
 
 void ErdCurvyArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
-    int weight = QGraphicsPathItem::isSelected() ? 3 : 1;
-    QPen myPen = QPen(qApp->palette().text().color(), weight, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen myPen = QPen(STYLE->standardPalette().text().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 
     painter->setPen(myPen);
     painter->drawPath(path());
+
     painter->setBrush(myPen.color());
     painter->drawPolygon(arrowHead);
+
+    if (isSelected())
+    {
+        QPen outlinePen;
+        outlinePen.setColor(STYLE->standardPalette().highlight().color());
+        outlinePen.setStyle(Qt::DotLine);
+        outlinePen.setWidth(3);
+
+        painter->setBrush(Qt::NoBrush);
+        painter->setPen(outlinePen);
+        painter->drawPath(path());
+
+        painter->setBrush(outlinePen.color());
+        painter->drawPolygon(arrowHead);
+    }
 }
 

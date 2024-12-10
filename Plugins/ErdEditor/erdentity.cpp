@@ -106,7 +106,8 @@ void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
     QRectF rect = boundingRect();
     painter->drawRoundedRect(rect, radius, radius);
 
-    if (isSelected()) {
+    if (isSelected())
+    {
         QPen outlinePen;
         outlinePen.setColor(STYLE->standardPalette().highlight().color());
         outlinePen.setStyle(Qt::DotLine);
