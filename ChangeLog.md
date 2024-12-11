@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.10
+- CHANGE: #5160 The taskbar has been improved to make the currently active task more distinct from the others.
 - BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.
 - BIGFIX: #5162 Fixed crash when enabling STRICT option in Table Window.
 - BIGFIX: Fixed dialog windows positioning, so it's remembered correctly if the dialog is only moved, but not resized.
