@@ -3362,7 +3362,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="320"/>
-      <location filename="../windows/functionseditor.cpp" line="437"/>
+      <location filename="../windows/functionseditor.cpp" line="439"/>
       <source>Function implementation code:</source>
       <translation>函式實現程式碼：</translation>
     </message>
@@ -3437,38 +3437,38 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>聚合函式</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="420"/>
-      <source>Enter a non-empty, unique name of the function.</source>
-      <translation>請輸入非空且唯一的函式名稱。</translation>
+      <location filename="../windows/functionseditor.cpp" line="422"/>
+      <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
+      <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="433"/>
+      <location filename="../windows/functionseditor.cpp" line="435"/>
       <source>Pick the implementation language.</source>
       <translation>選擇實現語言。</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="437"/>
+      <location filename="../windows/functionseditor.cpp" line="439"/>
       <source>Per step code:</source>
       <translation>步進程式碼：</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="443"/>
+      <location filename="../windows/functionseditor.cpp" line="445"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>請輸入非空的實現程式碼。</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="516"/>
+      <location filename="../windows/functionseditor.cpp" line="518"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
       <translation>引數</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="620"/>
+      <location filename="../windows/functionseditor.cpp" line="622"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
       <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="668"/>
+      <location filename="../windows/functionseditor.cpp" line="670"/>
       <source>Functions editor window has uncommitted modifications.</source>
       <translation>函式編輯器視窗有未提交的更改。</translation>
     </message>

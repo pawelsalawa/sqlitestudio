@@ -42,7 +42,7 @@ void DialogSizeHandler::applyFor(const QString &key, QObject *parent)
 
 bool DialogSizeHandler::eventFilter(QObject *obj, QEvent *event)
 {
-    if (event->type() == QEvent::Resize)
+    if (event->type() == QEvent::Resize | event->type() == QEvent::Move)
     {
         QWidget* w = qobject_cast<QWidget*>(obj);
         recentGeometry = w->geometry();
