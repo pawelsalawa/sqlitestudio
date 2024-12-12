@@ -1,6 +1,6 @@
 env:
     QT_VERSION: '5.15.2'
-    TCL_VERSION: '8.6'
+    TCL_VERSION: '8.6.15'
     SQLITE_VERSION: '3470100'
     SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.9'
@@ -173,7 +173,52 @@ jobs:
                     brew uninstall tcl-tk r
                 fi
 
-            - name: Install the InstallBuilder
+            #- name: Debug
+              #shell: bash
+              #run: |
+                # brew search tcl-tk
+                # ls -l /usr/local/
+                # ls -l /usr/local/include
+                # ls -l /usr/local/opt/
+                # ls -l /usr/local/opt/openssl/include/
+                # ls -l /usr/local/opt/expat/include
+
+            # 4 commented steps below are merged from 3.4 branch workflows and will probably be used in 3.5, but not yet
+            #- name: Install Tcl
+            #  run: |
+            #    set -x
+            #    #brew install tcl-tk@8
+            #    #brew reinstall tcl-tk@8
+            #    echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
+            #    echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
+            #    
+            #    find /usr/local -name tclsh
+            #    find /usr/local -name tclConfig.sh
+
+            #- name: Qt installation dir
+            #  id: qt-installation-dir
+            #  run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+
+            #- name: Install Qt
+            #  uses: jurplel/install-qt-action@v3
+            #  with:
+            #    cache: true
+            #    version: ${{ env.QT_VERSION }}
+            #    host: 'mac'
+            #    dir: '${{ steps.qt-installation-dir.DIR }}'
+            #    aqtversion: '==3.0.*'
+            #    py7zrversion: '==0.20.*'
+            #    setup-python: 'false'
+            #    extra: '--external 7z'
+                
+            #- name: Fix Qt for MacOS 13
+            #  shell: bash
+            #  run: |
+            #    TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
+            #    echo "Updating file: $TCFILE"
+            #    sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
+
+            - name: Install the InstalBuilder
               shell: bash
               run: |
                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
@@ -324,6 +369,10 @@ jobs:
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
                     ../../../Plugins
                 make -j 1
+
+#               This is how it was for 3.4 branch - probably will be ised in 3.5
+#                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+#                    "TCL_CONFIG=${{ env.TCL_CONFIG }}" \
 
             - name: Copy SQLite extensions to output dir
               shell: bash

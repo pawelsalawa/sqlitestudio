@@ -990,28 +990,29 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="204"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="244"/>
+      <location filename="../db/queryexecutor.cpp" line="245"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="252"/>
+      <location filename="../db/queryexecutor.cpp" line="253"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="595"/>
+      <location filename="../db/queryexecutor.cpp" line="343"/>
+      <location filename="../db/queryexecutor.cpp" line="357"/>
+      <location filename="../db/queryexecutor.cpp" line="607"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="514"/>
+      <location filename="../db/queryexecutor.cpp" line="526"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>

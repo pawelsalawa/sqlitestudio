@@ -161,8 +161,11 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
     SelectResolver::Table destilledTable = table;
-    if (destilledTable.database == "main" && destilledTable.originalDatabase.isNull())
+    if (destilledTable.database.toLower() == "main" && (destilledTable.originalDatabase.isNull() || destilledTable.originalDatabase.toLower() == "main"))
+    {
         destilledTable.database = QString();
+        destilledTable.originalDatabase = QString();
+    }
 
     SelectResolver::Table keyTable = destilledTable;
 

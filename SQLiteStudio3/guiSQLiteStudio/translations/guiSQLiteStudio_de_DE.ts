@@ -6291,7 +6291,7 @@ NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1674"/>
+      <location filename="../windows/tablewindow.cpp" line="1677"/>
       <source>Data</source>
       <translation>Daten</translation>
     </message>
@@ -6677,65 +6677,65 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">Go back to structure tab</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1552"/>
+      <location filename="../windows/tablewindow.cpp" line="1555"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1553"/>
+      <location filename="../windows/tablewindow.cpp" line="1556"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation type="unfinished">Unique</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1554"/>
+      <location filename="../windows/tablewindow.cpp" line="1557"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>Spalten</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1555"/>
+      <location filename="../windows/tablewindow.cpp" line="1558"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>Partieller Indexzustand</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1602"/>
+      <location filename="../windows/tablewindow.cpp" line="1605"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1603"/>
+      <location filename="../windows/tablewindow.cpp" line="1606"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Event</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1604"/>
+      <location filename="../windows/tablewindow.cpp" line="1607"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Condition</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1605"/>
+      <location filename="../windows/tablewindow.cpp" line="1608"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Details</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1716"/>
+      <location filename="../windows/tablewindow.cpp" line="1719"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1718"/>
+      <location filename="../windows/tablewindow.cpp" line="1721"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1720"/>
+      <location filename="../windows/tablewindow.cpp" line="1723"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
     </message>

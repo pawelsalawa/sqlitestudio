@@ -1045,6 +1045,21 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
         for (const SqlResultsRowPtr& row : results->getAll())
             rows << row->valueMap();
 
+        if (!ignoreSystemObjects)
+        {
+            static QHash<QString, QVariant> sqliteMasterRow {
+                {"name", "sqlite_master"},
+                {"type", "table"}
+            };
+
+            static QHash<QString, QVariant> sqliteTempMasterRow {
+                {"name", "sqlite_temp_master"},
+                {"type", "table"}
+            };
+
+            rows << QVariant(sqliteMasterRow) << QVariant(sqliteTempMasterRow);
+        }
+
         if (useCache)
             cache.insert(key, new QVariant(rows));
     }
