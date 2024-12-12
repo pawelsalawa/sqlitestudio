@@ -6294,7 +6294,7 @@ NULL</source>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1674"/>
+      <location filename="../windows/tablewindow.cpp" line="1677"/>
       <source>Data</source>
       <translation>Dados</translation>
     </message>
@@ -6680,65 +6680,65 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation>Voltar à aba de estrutura</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1552"/>
+      <location filename="../windows/tablewindow.cpp" line="1555"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1553"/>
+      <location filename="../windows/tablewindow.cpp" line="1556"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation>Unique</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1554"/>
+      <location filename="../windows/tablewindow.cpp" line="1557"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>Colunas</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1555"/>
+      <location filename="../windows/tablewindow.cpp" line="1558"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>Condição do índice parcial</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1602"/>
+      <location filename="../windows/tablewindow.cpp" line="1605"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1603"/>
+      <location filename="../windows/tablewindow.cpp" line="1606"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation>Evento</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1604"/>
+      <location filename="../windows/tablewindow.cpp" line="1607"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation>Condição</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1605"/>
+      <location filename="../windows/tablewindow.cpp" line="1608"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>Detalhes</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1716"/>
+      <location filename="../windows/tablewindow.cpp" line="1719"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation>Janela de tabela &quot;%1&quot; possui dados e modificações de estrutura não autorizadas.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1718"/>
+      <location filename="../windows/tablewindow.cpp" line="1721"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation>Janela de tabela &quot;%1&quot; tem dados não confirmados.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1720"/>
+      <location filename="../windows/tablewindow.cpp" line="1723"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation>Janela de tabela &quot;%1&quot; tem modificações de estrutura não autorizadas.</translation>
     </message>
