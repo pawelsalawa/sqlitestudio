@@ -55,6 +55,18 @@ QList<QAction*> TaskBar::getTasks() const
 void TaskBar::init()
 {
     setAcceptDrops(true);
+    setStyleSheet(R"(
+        QToolButton:checked {
+            color: white;
+            background-color: #0078D7;
+            border: 2px solid #005A9E;
+            border-radius: 4px;
+        }
+        QToolButton:hover {
+            background-color: #005A9E;
+            color: white;
+        }
+    )");
 }
 
 void TaskBar::mousePressed()

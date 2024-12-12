@@ -1050,7 +1050,7 @@ bool TableWindow::validate(bool skipWarning)
         QStringList nonStrictColumns;
         for (SqliteCreateTable::Column* column : createTable->columns)
         {
-            if (DataType::isStrict(column->type->name))
+            if (DataType::isStrict(column->type ? column->type->name : QString()))
                 continue;
 
             nonStrictColumns << column->name;
@@ -1402,8 +1402,11 @@ void TableWindow::strictChanged()
     {
         for (SqliteCreateTable::Column* column : createTable->columns)
         {
-            column->type->precision = QVariant();
-            column->type->scale = QVariant();
+            if (column->type)
+            {
+                column->type->precision = QVariant();
+                column->type->scale = QVariant();
+            }
         }
     }
 
