@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "services/dbmanager.h"
 #include "common/unused.h"
+#include "uiconfig.h"
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QList>
@@ -19,7 +20,6 @@ DbTreeView::DbTreeView(QWidget *parent) :
     setHeaderHidden(true);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    setIconSize(QSize(24, 24));
 
     itemDelegate = new DbTreeItemDelegate();
     setItemDelegate(itemDelegate);

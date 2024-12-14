@@ -1694,6 +1694,9 @@ void DbTree::changeFontSize(int factor)
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DbTree.set(f);
 
+    QFontMetrics fm(f);
+    ui->treeView->setIconSize(QSize(fm.height(), fm.height()));
+
     f = CFG_UI.Fonts.DbTreeLabel.get();
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DbTreeLabel.set(f);
