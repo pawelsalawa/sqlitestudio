@@ -125,17 +125,21 @@ void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
 
     arrow = ErdArrowItem::create(arrowType);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, selectable);
+    arrow->setArrowIndexInStartEntity(indexInStartEntity);
+    arrow->setArrowIndexInEndEntity(indexInEndEntity);
     scene->addItem(arrow);
     refreshPosition();
 }
 
 void ErdConnection::setIndexInStartEntity(int idx)
 {
+    indexInStartEntity = idx;
     arrow->setArrowIndexInStartEntity(idx);
 }
 
 void ErdConnection::setIndexInEndEntity(int idx)
 {
+    indexInEndEntity = idx;
     arrow->setArrowIndexInEndEntity(idx);
 }
 

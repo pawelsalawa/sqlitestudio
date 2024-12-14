@@ -48,6 +48,8 @@ class ErdConnection
         ErdEntity* endEntity = nullptr;
         int startEntityRow = -1;
         int endEntityRow = -1;
+        int indexInStartEntity = 0;
+        int indexInEndEntity = 0;
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
         ErdScene* scene = nullptr;
