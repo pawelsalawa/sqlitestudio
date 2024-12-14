@@ -178,6 +178,12 @@ class GUI_API_EXPORT ExtActionContainer
     private:
         typedef QPair<int,ActionDetails*> ToolbarAndProto;
 
+        class KeySequenceFilter : public QObject
+        {
+            public:
+                bool eventFilter(QObject* watched, QEvent* e);
+        };
+
         void refreshShortcuts();
         void refreshShortcut(int action);
         void deleteActions();

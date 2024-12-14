@@ -6,7 +6,7 @@
 
 class QStringEncoder;
 
-class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
+class API_EXPORT GenericExportPlugin : public GenericPlugin, public ExportPlugin
 {
         Q_OBJECT
 

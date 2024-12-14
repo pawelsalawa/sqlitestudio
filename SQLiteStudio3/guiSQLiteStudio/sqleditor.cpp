@@ -24,7 +24,6 @@
 #include "dbtree/dbtreemodel.h"
 #include "dbtree/dbtreeview.h"
 #include "common/lazytrigger.h"
-#include "common/extaction.h"
 #include "db/dbsqlite3.h"
 #include "dialogs/dbdialog.h"
 #include <QAction>
@@ -47,7 +46,7 @@ bool SqlEditor::wrapWords = false;
 
 void SqlEditor::createStaticActions()
 {
-    staticActions[WORD_WRAP] = new ExtAction(tr("Wrap words", "sql editor"), MainWindow::getInstance());
+    staticActions[WORD_WRAP] = new QAction(tr("Wrap words", "sql editor"), MainWindow::getInstance());
 
     staticActions[WORD_WRAP]->setCheckable(true);
     staticActions[WORD_WRAP]->setChecked(wrapWords);

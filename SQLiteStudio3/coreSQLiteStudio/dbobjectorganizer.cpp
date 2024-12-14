@@ -194,9 +194,19 @@ bool DbObjectOrganizer::processAll()
         return false;
     }
 
+    if (!setFkEnabled(false))
+        return false;
+
+    bool res = processAllWithFkDisabled();
+    setFkEnabled(true);
+    return res;
+}
+
+bool DbObjectOrganizer::processAllWithFkDisabled()
+{
     // Attaching target db if needed
     AttachGuard attach;
-    if (srcDb->getTypeClassName() == dstDb->getTypeClassName() && !(referencedTables + srcTables).isEmpty())
+    if (useAttachingApproach())
     {
         attach = srcDb->guardedAttach(dstDb, true);
         attachName = attach->getName();
@@ -212,13 +222,6 @@ bool DbObjectOrganizer::processAll()
     {
         // TODO message
         srcDb->rollback();
-        return false;
-    }
-
-    if (!setFkEnabled(false))
-    {
-        srcDb->rollback();
-        dstDb->rollback();
         return false;
     }
 
@@ -244,26 +247,18 @@ bool DbObjectOrganizer::processAll()
         }
     }
 
-    if (!res)
-    {
-        srcDb->rollback();
-        dstDb->rollback();
-        setFkEnabled(true);
-        return false;
-    }
-
-    if (!setFkEnabled(true))
-    {
-        srcDb->rollback();
-        dstDb->rollback();
-        return false;
-    }
-
     if (!dstDb->commit())
     {
         // notifyError(tr("Could not commit transaction in database '%1'.").arg(dstDb->getName())); // TODO this is in another thread, cannot use notifyError
         dstDb->rollback();
         srcDb->rollback();
+        return false;
+    }
+
+    if (!res)
+    {
+        srcDb->rollback();
+        dstDb->rollback();
         return false;
     }
 
@@ -362,7 +357,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 {
     QString ddl;
     QString targetTable = table;
-    if (renamed.contains(table) || !attachName.isNull())
+    if (renamed.contains(table) || useAttachingApproach())
     {
         SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table, SchemaResolver::TABLE);
         SqliteCreateTablePtr createTable = parsedObject.dynamicCast<SqliteCreateTable>();
@@ -377,7 +372,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
             targetTable = renamed[table];
 
         createTable->table = targetTable;
-        if (!attachName.isNull())
+        if (useAttachingApproach())
             createTable->database = attachName;
 
         createTable->rebuildTokens();
@@ -393,7 +388,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 
     SqlQueryPtr result;
 
-    if (attachName.isNull())
+    if (!useAttachingApproach())
         result = dstDb->exec(ddl);
     else
         result = srcDb->exec(ddl); // uses attachName to create object in attached db
@@ -412,7 +407,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 
     srcTable = table;
     bool res;
-    if (attachName.isNull())
+    if (!useAttachingApproach())
     {
         notifyInfo(tr("Database %1 could not be attached to database %2, so the data of table %3 will be copied "
                       "with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.")
@@ -544,7 +539,7 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
         return false;
 
     SqlQueryPtr result;
-    if (attachName.isNull())
+    if (!useAttachingApproach())
         result = dstDb->exec(ddl);
     else
         result = srcDb->exec(ddl); // uses attachName to create object in attached db
@@ -586,7 +581,8 @@ void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
 
 bool DbObjectOrganizer::setFkEnabled(bool enabled)
 {
-    SqlQueryPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
+    Db* theDb = useAttachingApproach() ? srcDb : dstDb;
+    SqlQueryPtr result = theDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
     if (result->isError())
     {
         // notifyError(tr("Error while executing PRAGMA on target database: %1").arg(result->getErrorText())); // TODO this is in another thread, cannot use notifyError
@@ -599,6 +595,14 @@ bool DbObjectOrganizer::isInterrupted()
 {
     QMutexLocker locker(&interruptMutex);
     return interrupted;
+}
+
+bool DbObjectOrganizer::useAttachingApproach() const
+{
+    return !attachName.isNull() || (
+                srcDb->getTypeClassName() == dstDb->getTypeClassName() &&
+                !(referencedTables + srcTables).isEmpty()
+            );
 }
 
 void DbObjectOrganizer::setExecuting(bool executing)
@@ -654,7 +658,7 @@ bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& table
 
 QString DbObjectOrganizer::processSimpleObjectAttachNameAndRename(const QString& objName, const QString& ddl)
 {
-    if (attachName.isNull() && !renamed.contains(objName))
+    if (!useAttachingApproach() && !renamed.contains(objName))
         return ddl;
 
     Parser parser;
@@ -681,7 +685,7 @@ QString DbObjectOrganizer::processSimpleObjectAttachNameAndRename(const QString&
         return QString();
     }
 
-    if (!attachName.isNull())
+    if (useAttachingApproach())
         ddlWithDb->setTargetDatabase(attachName);
 
     if (renamed.contains(objName))

@@ -11,7 +11,6 @@
 #include "mainwindow.h"
 #include "mdiarea.h"
 #include "common/unused.h"
-#include "common/extaction.h"
 #include "uiconfig.h"
 #include "services/config.h"
 #include "parser/lexer.h"
@@ -146,8 +145,8 @@ void EditorWindow::loadTabsMode()
 
 void EditorWindow::createStaticActions()
 {
-    staticActions[RESULTS_IN_TAB] = new ExtAction(ICONS.RESULTS_IN_TAB, tr("Results in the separate tab"), MainWindow::getInstance());
-    staticActions[RESULTS_BELOW] = new ExtAction(ICONS.RESULTS_BELOW, tr("Results below the query"), MainWindow::getInstance());
+    staticActions[RESULTS_IN_TAB] = new QAction(ICONS.RESULTS_IN_TAB, tr("Results in the separate tab"), MainWindow::getInstance());
+    staticActions[RESULTS_BELOW] = new QAction(ICONS.RESULTS_BELOW, tr("Results below the query"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::RESULTS_POSITIONING] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::RESULTS_POSITIONING]->addAction(staticActions[RESULTS_IN_TAB]);
