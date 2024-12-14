@@ -1,19 +1,5 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>img/act_abort.png</file>
-        <file>img/act_clear.png</file>
-        <file>img/act_copy.png</file>
-        <file>img/act_cut.png</file>
-        <file>img/act_del_line.png</file>
-        <file>img/act_delete.png</file>
-        <file>img/act_paste.png</file>
-        <file>img/act_redo.png</file>
-        <file>img/act_select_all.png</file>
-        <file>img/act_undo.png</file>
-        <file>img/apply_filter_re.png</file>
-        <file>img/apply_filter_sql.png</file>
-        <file>img/apply_filter_txt.png</file>
-        <file>img/apply_filter.png</file>
         <file>img/check.png</file>
         <file>img/clear_history.png</file>
         <file>img/clear_lineedit.png</file>
@@ -21,7 +7,6 @@
         <file>img/column_constraint.png</file>
         <file>img/column.png</file>
         <file>img/columns.png</file>
-        <file>img/commit.png</file>
         <file>img/complete.png</file>
         <file>img/completer_blob.png</file>
         <file>img/completer_no_value.png</file>
@@ -55,7 +40,6 @@
         <file>img/fk.png</file>
         <file>img/font_browse.png</file>
         <file>img/format_sql.png</file>
-        <file>img/function.png</file>
         <file>img/help.png</file>
         <file>img/import.png</file>
         <file>img/index.png</file>
@@ -73,7 +57,6 @@
         <file>img/move_down.png</file>
         <file>img/move_up.png</file>
         <file>img/not_null.png</file>
-        <file>img/open_sql_editor.png</file>
         <file>img/open_sql_file.png</file>
         <file>img/open_value_editor.png</file>
         <file>img/page_first.png</file>
@@ -87,7 +70,6 @@
         <file>img/rename_fn_arg.png</file>
         <file>img/results_below.png</file>
         <file>img/results_in_tab.png</file>
-        <file>img/rollback.png</file>
         <file>img/save_sql_file.png</file>
         <file>img/set_null.png</file>
         <file>img/sort_cnt_01.png</file>
@@ -173,8 +155,6 @@
         <file>img/database_export_wizard.svg</file>
         <file>img/database_import_wizard.svg</file>
         <file>img/database_offline.png</file>
-        <file>img/database_online.png</file>
-        <file>img/abort24.png</file>
         <file>img/close.png</file>
         <file>img/go_back.png</file>
         <file>img/reset_autoincrement.png</file>
@@ -210,7 +190,26 @@
         <file>img/code_assistant.png</file>
         <file>img/code_snippet.png</file>
         <file>img/selection_invert.png</file>
-        <file>img/apply_filter_txt_strict.png</file>
         <file>img/restore_default.png</file>
+        <file>img/act_abort.svg</file>
+        <file>img/act_clear.svg</file>
+        <file>img/act_copy.svg</file>
+        <file>img/act_cut.svg</file>
+        <file>img/act_del_line.svg</file>
+        <file>img/act_delete.svg</file>
+        <file>img/act_paste.svg</file>
+        <file>img/act_redo.svg</file>
+        <file>img/act_select_all.svg</file>
+        <file>img/act_undo.svg</file>
+        <file>img/apply_filter.svg</file>
+        <file>img/apply_filter_re.svg</file>
+        <file>img/apply_filter_sql.svg</file>
+        <file>img/apply_filter_txt.svg</file>
+        <file>img/apply_filter_txt_strict.svg</file>
+        <file>img/commit.svg</file>
+        <file>img/database_online.svg</file>
+        <file>img/function.svg</file>
+        <file>img/open_sql_editor.svg</file>
+        <file>img/rollback.svg</file>
     </qresource>
 </RCC>
