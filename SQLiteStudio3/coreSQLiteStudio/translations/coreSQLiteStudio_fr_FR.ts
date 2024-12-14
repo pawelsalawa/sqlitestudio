@@ -990,28 +990,29 @@ La vue restera telle quelle.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="204"/>
       <source>Execution interrupted.</source>
       <translation>Exécution interrompue.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="244"/>
+      <location filename="../db/queryexecutor.cpp" line="245"/>
       <source>Database is not open.</source>
       <translation>La base de données n’est ouverte.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="252"/>
+      <location filename="../db/queryexecutor.cpp" line="253"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Une seule requête peut être exécutée à la fois.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="595"/>
+      <location filename="../db/queryexecutor.cpp" line="343"/>
+      <location filename="../db/queryexecutor.cpp" line="357"/>
+      <location filename="../db/queryexecutor.cpp" line="607"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Une erreur s’est produite à l’exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="514"/>
+      <location filename="../db/queryexecutor.cpp" line="526"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio ne peut extraire des métadonnées d’une requête. Les résultats ne peut être affichés.</translation>
     </message>

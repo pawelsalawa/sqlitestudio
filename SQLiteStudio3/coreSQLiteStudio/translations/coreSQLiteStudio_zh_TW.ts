@@ -990,28 +990,29 @@ view 將保留原始內容</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="204"/>
       <source>Execution interrupted.</source>
       <translation>執行中斷</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="244"/>
+      <location filename="../db/queryexecutor.cpp" line="245"/>
       <source>Database is not open.</source>
       <translation>資料庫未開啟</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="252"/>
+      <location filename="../db/queryexecutor.cpp" line="253"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>儘有單一查詢可被冋時執行</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="595"/>
+      <location filename="../db/queryexecutor.cpp" line="343"/>
+      <location filename="../db/queryexecutor.cpp" line="357"/>
+      <location filename="../db/queryexecutor.cpp" line="607"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>當執行count(*) 查詢時發生錯誤, 資料分頁功能亦被停用. 詳細錯誤資訊來自於資料庫: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="514"/>
+      <location filename="../db/queryexecutor.cpp" line="526"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio無法從此查詢解析metadata. 結果亦無法編輯</translation>
     </message>

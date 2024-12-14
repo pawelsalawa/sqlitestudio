@@ -77,6 +77,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void copyOrMoveObjectsToDb(Db* srcDb, const QSet<QString>& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers, bool move);
         void processPreparation();
         bool processAll();
+        bool processAllWithFkDisabled();
         bool processDbObjects();
         bool processColumns();
         bool resolveNameConflicts();
@@ -97,6 +98,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void dropObject(const QString& name, const QString& type);
         bool setFkEnabled(bool enabled);
         bool isInterrupted();
+        bool useAttachingApproach() const;
         void setExecuting(bool executing);
         void setSrcAndDstDb(Db* srcDb, Db* dstDb);
         bool begin();
