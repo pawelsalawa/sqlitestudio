@@ -1085,7 +1085,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     QByteArray byteData = data->data(MIMETYPE);
     QDataStream stream(&byteData, QIODevice::ReadOnly);
 
-    qint32 itemCount;
+    qsizetype itemCount;
     stream >> itemCount;
 
     DbTreeItem* item = nullptr;
@@ -1164,56 +1164,54 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
     return false;
 }
 
+#include <QCursor>
+#include <QTimer>
 bool DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction)
 {
-    bool copy = false;
-    bool move = false;
-    bool includeData = false;
-    bool includeIndexes = false;
-    bool includeTriggers = false;
-
     if (defaultAction == Qt::CopyAction)
-    {
-        copy = true;
-        includeData = true;
-        includeIndexes = true;
-        includeTriggers = true;
-    }
+        moveOrCopyDbObjects(srcItems, dstItem, false, true, true, true);
     else if (defaultAction == Qt::MoveAction)
-    {
-        move = true;
-        includeData = true;
-        includeIndexes = true;
-        includeTriggers = true;
-    }
+        moveOrCopyDbObjects(srcItems, dstItem, true, true, true, true);
     else
     {
-        QMenu menu;
-        QAction* copyAction = menu.addAction(ICONS.ACT_COPY, tr("Copy"));
-        QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
-        menu.addSeparator();
-        QCheckBox *includeDataCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include data"));
-        QCheckBox *includeIndexesCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include indexes"));
-        QCheckBox *includeTriggersCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include triggers"));
-        menu.addSeparator();
-        menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
+        // This trick is necessary since Qt 6, because mouse release event was posted after the menu was popped up,
+        // therefore "copy" action was immediately triggered as first action in the menu.
+        // By posting this code through QTimer (i.e. through event queue) we make the order of events correct.
+        QPoint pos = treeView->mapToGlobal(treeView->getLastDropPosition());
+        QTimer::singleShot(1, [this, pos, srcItems, dstItem]()
+        {
+            bool copy = false;
+            bool move = false;
+            bool includeData = false;
+            bool includeIndexes = false;
+            bool includeTriggers = false;
 
-        connect(moveAction, &QAction::triggered, [&move]() {move = true;});
-        connect(copyAction, &QAction::triggered, [&copy]() {copy = true;});
+            QMenu menu;
+            QAction* copyAction = menu.addAction(ICONS.ACT_COPY, tr("Copy"));
+            QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
+            menu.addSeparator();
+            QCheckBox *includeDataCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include data"));
+            QCheckBox *includeIndexesCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include indexes"));
+            QCheckBox *includeTriggersCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include triggers"));
+            menu.addSeparator();
+            menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
 
-        menu.exec(treeView->mapToGlobal(treeView->getLastDropPosition()));
+            connect(moveAction, &QAction::triggered, [&move]() {move = true;});
+            connect(copyAction, &QAction::triggered, [&copy]() {copy = true;});
 
-        includeData = includeDataCheck->isChecked();
-        includeIndexes = includeIndexesCheck->isChecked();
-        includeTriggers = includeTriggersCheck->isChecked();
+            menu.exec(pos);
+            if (!copy && !move)
+                return;
+
+            includeData = includeDataCheck->isChecked();
+            includeIndexes = includeIndexesCheck->isChecked();
+            includeTriggers = includeTriggersCheck->isChecked();
+
+            moveOrCopyDbObjects(srcItems, dstItem, move, includeData, includeIndexes, includeTriggers);
+        });
     }
 
-    // The result means: do we want the old item to be removed from the tree?
-    if (!copy && !move)
-        return false;
-
-    moveOrCopyDbObjects(srcItems, dstItem, move, includeData, includeIndexes, includeTriggers);
-    return move;
+    return false;
 }
 
 QCheckBox* DbTreeModel::createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label)

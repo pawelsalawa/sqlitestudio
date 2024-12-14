@@ -103,7 +103,6 @@ SOURCES +=\
     dialogs/columndialog.cpp \
     dialogs/columndialogconstraintsmodel.cpp \
     common/extactioncontainer.cpp \
-    common/extaction.cpp \
     constraints/tableprimarykeypanel.cpp \
     constraints/constraintpanel.cpp \
     constraints/tableforeignkeypanel.cpp \
@@ -264,7 +263,6 @@ HEADERS  += mainwindow.h \
     windows/tableconstraintsmodel.h \
     dialogs/columndialog.h \
     dialogs/columndialogconstraintsmodel.h \
-    common/extaction.h \
     common/extactioncontainer.h \
     constraints/tableprimarykeypanel.h \
     constraints/constraintpanel.h \
