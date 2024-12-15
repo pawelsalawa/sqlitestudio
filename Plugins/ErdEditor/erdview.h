@@ -21,6 +21,10 @@ class ErdView : public QGraphicsView
         void setScene(ErdScene *scene);
         ErdScene *scene() const;
         bool isSpacePressed() const;
+        qreal getZoom() const;
+        void restoreZoom(qreal value);
+
+        void applyZoomRatio(qreal ratio);
 
     protected:
         void mousePressEvent(QMouseEvent* event) override;

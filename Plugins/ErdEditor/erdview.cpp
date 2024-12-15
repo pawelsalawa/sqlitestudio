@@ -146,16 +146,31 @@ void ErdView::focusOutEvent(QFocusEvent* event)
     QGraphicsView::focusOutEvent(event);
 }
 
-void ErdView::wheelEvent(QWheelEvent* event)
+void ErdView::applyZoomRatio(qreal ratio)
 {
-    qreal diff = ((qreal)event->angleDelta().y()) / 1500;
-    qreal ratio = diff >= 0 ? (1.0 + diff) : (1 / (1.0 - diff));
     zoom *= ratio;
     if (zoom > 1.0) {
         resetZoom();
         return;
     }
     scale(ratio, ratio);
+}
+
+void ErdView::wheelEvent(QWheelEvent* event)
+{
+    qreal diff = ((qreal)event->angleDelta().y()) / 1500;
+    qreal ratio = diff >= 0 ? (1.0 + diff) : (1 / (1.0 - diff));
+    applyZoomRatio(ratio);
+}
+
+qreal ErdView::getZoom() const
+{
+    return zoom;
+}
+
+void ErdView::restoreZoom(qreal value)
+{
+    applyZoomRatio(value);
 }
 
 void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)

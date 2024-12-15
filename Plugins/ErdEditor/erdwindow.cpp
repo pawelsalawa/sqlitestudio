@@ -218,6 +218,7 @@ QVariant ErdWindow::saveSession()
         sessionValue["db"] = db->getName();
 
     QHash<QString, QVariant> erdLayout = scene->getConfig();
+    erdLayout[ErdScene::CFG_KEY_ZOOM] = ui->graphView->getZoom();
     CFG->set(ERD_CFG_GROUP, db->getPath(), erdLayout);
     CFG->set(ERD_CFG_GROUP, db->getName(), erdLayout);
 
@@ -275,6 +276,14 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
 
     if (matched < 2 || ((qreal)matched / erdConfig.size()) < 0.25)
         return false;
+
+    QVariant cfgZoom = erdConfig[ErdScene::CFG_KEY_ZOOM];
+    if (!cfgZoom.isNull())
+    {
+        qreal zoom = cfgZoom.toReal();
+        if ((1.0 - zoom) > 0.0001 && zoom > 0.01) // excluding any floating-point micro-differences and excluding too far zoom out
+            ui->graphView->restoreZoom(zoom);
+    }
 
     scene->applyConfig(erdConfig);
     updateArrowTypeButtons();
