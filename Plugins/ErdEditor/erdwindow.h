@@ -55,7 +55,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 
     private:
         void init();
-        void applyArrowType();
+        void applyArrowType(ErdArrowItem::Type arrowType);
+        void updateArrowTypeButtons();
         bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
@@ -69,7 +70,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Icon* lineStraightIcon = nullptr;
         Icon* lineSquareIcon = nullptr;
         ErdScene* scene = nullptr;
-        ErdArrowItem::Type arrowType;
         QShortcut* escHotkey = nullptr;
 
         void parseAndRestore();

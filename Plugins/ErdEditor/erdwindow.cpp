@@ -51,7 +51,7 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
-    arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
+    ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
     escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
 
@@ -94,20 +94,17 @@ void ErdWindow::uiPaletteChanged()
 
 void ErdWindow::useStraightLine()
 {
-    arrowType = ErdArrowItem::STRAIGHT;
-    applyArrowType();
+    applyArrowType(ErdArrowItem::STRAIGHT);
 }
 
 void ErdWindow::useCurvyLine()
 {
-    arrowType = ErdArrowItem::CURVY;
-    applyArrowType();
+    applyArrowType(ErdArrowItem::CURVY);
 }
 
 void ErdWindow::useSquareLine()
 {
-    arrowType = ErdArrowItem::SQUARE;
-    applyArrowType();
+    applyArrowType(ErdArrowItem::SQUARE);
 }
 
 void ErdWindow::cancelCurrentAction()
@@ -119,7 +116,7 @@ void ErdWindow::cancelCurrentAction()
     }
 }
 
-void ErdWindow::applyArrowType()
+void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
 {
     CFG_ERD.Erd.ArrowType.set(arrowType);
     scene->setArrowType(arrowType);
@@ -154,6 +151,22 @@ bool ErdWindow::shouldReuseForArgs(int argCount, ...)
     return argDb == db;
 }
 
+void ErdWindow::updateArrowTypeButtons()
+{
+    switch (scene->getArrowType())
+    {
+        case ErdArrowItem::STRAIGHT:
+            actionMap[LINE_STRAIGHT]->setChecked(true);
+            break;
+        case ErdArrowItem::CURVY:
+            actionMap[LINE_CURVY]->setChecked(true);
+            break;
+        case ErdArrowItem::SQUARE:
+            actionMap[LINE_SQUARE]->setChecked(true);
+            break;
+    }
+}
+
 void ErdWindow::createActions()
 {
     actionMap[CANCEL_CURRENT] = new QAction(tr("Cancels ongoing action"), this);
@@ -170,18 +183,7 @@ void ErdWindow::createActions()
     actionMap[LINE_STRAIGHT]->setCheckable(true);
     actionMap[LINE_CURVY]->setCheckable(true);
     actionMap[LINE_SQUARE]->setCheckable(true);
-    switch (arrowType)
-    {
-        case ErdArrowItem::STRAIGHT:
-            actionMap[LINE_STRAIGHT]->setChecked(true);
-            break;
-        case ErdArrowItem::CURVY:
-            actionMap[LINE_CURVY]->setChecked(true);
-            break;
-        case ErdArrowItem::SQUARE:
-            actionMap[LINE_SQUARE]->setChecked(true);
-            break;
-    }
+    updateArrowTypeButtons();
 
     connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
@@ -259,7 +261,7 @@ bool ErdWindow::restoreSession(const QVariant& sessionValue)
 
 bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames)
 {
-    if (!value.isValid() || value.isNull() || !value.canConvert<QHash<QString, QVariant>>()) /*value.canConvert(QMetaType(QMetaType::QVariantHash))*/
+    if (!value.isValid() || value.isNull() || !value.canConvert<QHash<QString, QVariant>>())
         return false;
 
     QHash<QString, QVariant> erdConfig = value.toHash();
@@ -275,6 +277,7 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
         return false;
 
     scene->applyConfig(erdConfig);
+    updateArrowTypeButtons();
 
     return true;
 }

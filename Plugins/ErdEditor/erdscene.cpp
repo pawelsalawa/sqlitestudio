@@ -52,6 +52,9 @@ QList<ErdEntity*> ErdScene::getAllEntities() const
 
 void ErdScene::setArrowType(ErdArrowItem::Type arrowType)
 {
+    if (this->arrowType == arrowType)
+        return;
+
     this->arrowType = arrowType;
     for (ErdConnection* connection : getConnections())
         connection->setArrowType(arrowType);
@@ -75,8 +78,12 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
         }
         // TODO entity color
     }
-    for (ErdEntity*& entity : entities)
-        entity->updateConnectionsGeometry();
+    QVariant cfgArrowType = erdConfig[ErdScene::CFG_KEY_ARROW_TYPE];
+    if (!cfgArrowType.isNull())
+        setArrowType((ErdArrowItem::Type)cfgArrowType.toInt());
+
+    for (ErdConnection* conn : getConnections())
+        conn->refreshPosition();
 
     update();
 
@@ -100,6 +107,7 @@ QHash<QString, QVariant> ErdScene::getConfig()
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
     erdConfig[CFG_KEY_SCENE_RECT] = sceneRect();
+    erdConfig[CFG_KEY_ARROW_TYPE] = (int)arrowType;
     return erdConfig;
 }
 

@@ -28,6 +28,7 @@ class ErdScene : public QGraphicsScene
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
         static constexpr const char* CFG_KEY_SCENE_RECT = "sceneRect";
         static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";
+        static constexpr const char* CFG_KEY_ARROW_TYPE = "arrowType";
         static constexpr const char* CFG_KEY_POS = "pos";
         static constexpr const char* CFG_KEY_COLOR = "color";
 
