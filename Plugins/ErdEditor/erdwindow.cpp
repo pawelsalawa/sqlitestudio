@@ -236,7 +236,7 @@ void ErdWindow::parseAndRestore()
     {
         erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
         if (!tryToApplyConfig(erdConfig, tableNames))
-            scene->arrangeEntitiesFdp();
+            scene->arrangeEntitiesFdp(true);
     }
 }
 

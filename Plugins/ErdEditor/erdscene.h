@@ -42,6 +42,7 @@ class ErdScene : public QGraphicsScene
         void arrangeEntities(int algo);
         QPointF getPosForNewEntity() const;
         QSet<ErdConnection*> getConnections() const;
+        bool confirmLayoutChange() const;
 
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;
@@ -50,8 +51,8 @@ class ErdScene : public QGraphicsScene
 
     public slots:
         void newTable();
-        void arrangeEntitiesNeato();
-        void arrangeEntitiesFdp();
+        void arrangeEntitiesNeato(bool skipConfirm = false);
+        void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
 
     signals:

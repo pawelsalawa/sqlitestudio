@@ -6,6 +6,7 @@
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
 #include <QApplication>
+#include <QMessageBox>
 
 ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     : QGraphicsScene{parent}, arrowType(arrowType)
@@ -262,12 +263,26 @@ QSet<ErdConnection*> ErdScene::getConnections() const
     return connections;
 }
 
-void ErdScene::arrangeEntitiesFdp()
+bool ErdScene::confirmLayoutChange() const
 {
-    arrangeEntities(ErdGraphvizLayoutPlanner::FDP);
+    QMessageBox::StandardButton res = QMessageBox::question(
+                qobject_cast<QWidget*>(parent()),
+                tr("Arrange entities"),
+                tr("Are you sure you want to automatically arrange the entities on the diagram? "
+                   "This action will overwrite the current layout, and any manual adjustments will be lost.")
+            );
+
+    return res == QMessageBox::Yes;
 }
 
-void ErdScene::arrangeEntitiesNeato()
+void ErdScene::arrangeEntitiesFdp(bool skipConfirm)
 {
-    arrangeEntities(ErdGraphvizLayoutPlanner::NEATO);
+    if (skipConfirm || confirmLayoutChange())
+        arrangeEntities(ErdGraphvizLayoutPlanner::FDP);
+}
+
+void ErdScene::arrangeEntitiesNeato(bool skipConfirm)
+{
+    if (skipConfirm || confirmLayoutChange())
+        arrangeEntities(ErdGraphvizLayoutPlanner::NEATO);
 }
