@@ -42,9 +42,9 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(CODE_SNIPPET,                      "code_snippet")
             DEF_ICON(COLUMN,                            "column")
             DEF_ICON(COLUMN_CONSTRAINT,                 "column_constraint")
-            DEF_ICO2(COLUMN_CONSTRAINT_ADD,             COLUMN_CONSTRAINT, PLUS)
-            DEF_ICO2(COLUMN_CONSTRAINT_DEL,             COLUMN_CONSTRAINT, MINUS)
-            DEF_ICO2(COLUMN_CONSTRAINT_EDIT,            COLUMN_CONSTRAINT, EDIT)
+            DEF_ICON(COLUMN_CONSTRAINT_ADD,             "column_constraint_add")
+            DEF_ICON(COLUMN_CONSTRAINT_DEL,             "column_constraint_del")
+            DEF_ICON(COLUMN_CONSTRAINT_EDIT,            "column_constraint_edit")
             DEF_ICON(COLUMNS,                           "columns")
             DEF_ICON(COMMIT,                            "commit")
             DEF_ICON(COMPLETE,                          "complete")
@@ -77,17 +77,17 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(VACUUM_DB,                         "vacuum_db")
             DEF_ICON(INTEGRITY_CHECK,                   "integrity_check")
             DEF_ICON(DATABASE,                          "database")
-            DEF_ICO2(DATABASE_ADD,                      DATABASE, PLUS)
+            DEF_ICON(DATABASE_ADD,                      "database_add")
             DEF_ICON(DATABASE_CONNECT,                  "database_connect")
-            DEF_ICO2(DATABASE_DEL,                      DATABASE, MINUS)
+            DEF_ICON(DATABASE_DEL,                      "database_del")
             DEF_ICON(DATABASE_DISCONNECT,               "database_disconnect")
-            DEF_ICO2(DATABASE_EDIT,                     DATABASE, EDIT)
+            DEF_ICON(DATABASE_EDIT,                     "database_edit")
             DEF_ICON(DATABASE_EXPORT,                   "database_export")
             DEF_ICON(DATABASE_EXPORT_WIZARD,            "database_export_wizard")
             DEF_ICON(DATABASE_IMPORT_WIZARD,            "database_import_wizard")
             DEF_ICON(DATABASE_OFFLINE,                  "database_offline")
             DEF_ICO2(DATABASE_INVALID,                  DATABASE_OFFLINE, WARNING)
-            DEF_ICON(DATABASE_ONLINE,                   "database_online")
+            DEF_ICO3(DATABASE_ONLINE,                   DATABASE)
             DEF_ICON(DATABASE_RELOAD,                   "database_reload")
             DEF_ICON(DDL_HISTORY,                       "ddl_history")
             DEF_ICON(DELETE,                            "delete")
@@ -260,18 +260,20 @@ class GUI_API_EXPORT IconManager : public QObject
         bool isMovie(const QString& name);
         QMovie* getMovie(const QString& name);
         QIcon* getIcon(const QString& name);
+        bool isSvg(const QString& name) const;
         void init();
         QStringList getIconDirs() const;
 
     private:
         IconManager();
-        void loadRecurently(QString dirPath, const QString& prefix, bool movie);
+        void loadRecurently(QString dirPath, const QString& prefix, bool movie, bool onlyNew);
         void enableRescanning();
 
         static IconManager* instance;
         QHash<QString,QIcon*> icons;
         QHash<QString,QMovie*> movies;
         QHash<QString,QString> paths;
+        QHash<QString,bool> svgs;
         QStringList iconDirs;
         QStringList iconFileExtensions;
         QStringList movieFileExtensions;
@@ -285,6 +287,7 @@ class GUI_API_EXPORT IconManager : public QObject
 
     public slots:
         void rescanResources(const QString& pluginName = QString());
+        void scanForNewResources();
 
     signals:
         void rescannedFor(const QString& pluginName);

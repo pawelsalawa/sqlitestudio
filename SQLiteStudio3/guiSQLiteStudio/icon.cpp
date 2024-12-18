@@ -301,7 +301,7 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
     switch (attr)
     {
         case PLUS:
-            return "plus_small";
+            return "plus";
         case MINUS:
             return "minus_small";
         case EDIT:

@@ -1,12 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file>img/check.png</file>
-        <file>img/clear_history.png</file>
-        <file>img/clear_lineedit.png</file>
         <file>img/collation.png</file>
-        <file>img/column_constraint.png</file>
-        <file>img/column.png</file>
-        <file>img/columns.png</file>
         <file>img/complete.png</file>
         <file>img/completer_blob.png</file>
         <file>img/completer_no_value.png</file>
@@ -20,7 +15,6 @@
         <file>img/database_disconnect.png</file>
         <file>img/database_export.png</file>
         <file>img/database_reload.png</file>
-        <file>img/database.png</file>
         <file>img/ddl_history.png</file>
         <file>img/default.png</file>
         <file>img/delete_row.png</file>
@@ -135,13 +129,11 @@
         <file>img/window_restore.png</file>
         <file>img/integrity_check.png</file>
         <file>img/vacuum_db.png</file>
-        <file>img/bug.png</file>
         <file>img/feature_request.png</file>
         <file>img/user_manual.png</file>
         <file>img/sqlite_docs.png</file>
         <file>img/licenses.png</file>
         <file>img/homepage.png</file>
-        <file>img/bug_list.png</file>
         <file>img/get_update.png</file>
         <file>img/sqlitestudio.svg</file>
         <file>img/sqlitestudio_16.png</file>
@@ -155,10 +147,8 @@
         <file>img/database_export_wizard.svg</file>
         <file>img/database_import_wizard.svg</file>
         <file>img/database_offline.png</file>
-        <file>img/close.png</file>
         <file>img/go_back.png</file>
         <file>img/reset_autoincrement.png</file>
-        <file>img/plus.png</file>
         <file>img/erase_table_data.png</file>
         <file>img/delete.png</file>
         <file>img/tag_hash_add.png</file>
@@ -187,8 +177,6 @@
         <file>img/quit.png</file>
         <file>img/window_close_all_left.png</file>
         <file>img/window_close_all_right.png</file>
-        <file>img/code_assistant.png</file>
-        <file>img/code_snippet.png</file>
         <file>img/selection_invert.png</file>
         <file>img/restore_default.png</file>
         <file>img/act_abort.svg</file>
@@ -207,9 +195,26 @@
         <file>img/apply_filter_txt.svg</file>
         <file>img/apply_filter_txt_strict.svg</file>
         <file>img/commit.svg</file>
-        <file>img/database_online.svg</file>
         <file>img/function.svg</file>
         <file>img/open_sql_editor.svg</file>
         <file>img/rollback.svg</file>
+        <file>img/clear_history.svg</file>
+        <file>img/clear_lineedit.svg</file>
+        <file>img/column.svg</file>
+        <file>img/columns.svg</file>
+        <file>img/bug.svg</file>
+        <file>img/bug_list.svg</file>
+        <file>img/close.svg</file>
+        <file>img/plus.svg</file>
+        <file>img/code_assistant.svg</file>
+        <file>img/code_snippet.svg</file>
+        <file>img/database.svg</file>
+        <file>img/column_constraint.svg</file>
+        <file>img/column_constraint_add.svg</file>
+        <file>img/column_constraint_del.svg</file>
+        <file>img/column_constraint_edit.svg</file>
+        <file>img/database_add.svg</file>
+        <file>img/database_del.svg</file>
+        <file>img/database_edit.svg</file>
     </qresource>
 </RCC>

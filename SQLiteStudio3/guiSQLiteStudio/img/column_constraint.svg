@@ -1,0 +1,1415 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:ooo="http://xml.openoffice.org/svg/export"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.2"
+   width="20mm"
+   height="20mm"
+   viewBox="0 0 2000 2000"
+   preserveAspectRatio="xMidYMid"
+   fill-rule="evenodd"
+   stroke-width="28.222"
+   stroke-linejoin="round"
+   xml:space="preserve"
+   id="svg282"
+   sodipodi:docname="column_constraint.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"><metadata
+   id="metadata286"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="3440"
+   inkscape:window-height="1377"
+   id="namedview284"
+   showgrid="false"
+   inkscape:zoom="13.335"
+   inkscape:cx="37.795276"
+   inkscape:cy="37.795276"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg282" />
+ <defs
+   class="ClipPathGroup"
+   id="defs8">
+  <clipPath
+   id="presentation_clip_path"
+   clipPathUnits="userSpaceOnUse">
+   <rect
+   x="0"
+   y="0"
+   width="2000"
+   height="2000"
+   id="rect2" />
+  </clipPath>
+  <clipPath
+   id="presentation_clip_path_shrink"
+   clipPathUnits="userSpaceOnUse">
+   <rect
+   x="2"
+   y="2"
+   width="1996"
+   height="1996"
+   id="rect5" />
+  </clipPath>
+ <clipPath
+   id="presentation_clip_path-0"
+   clipPathUnits="userSpaceOnUse"><rect
+     x="0"
+     y="0"
+     width="2000"
+     height="2000"
+     id="rect2-6" /></clipPath><linearGradient
+   id="gradient1"
+   x1="1040"
+   y1="0"
+   x2="1227"
+   y2="324"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop53" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop55" /></linearGradient><linearGradient
+   id="gradient2"
+   x1="614"
+   y1="-6"
+   x2="813"
+   y2="338"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop71" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop73" /></linearGradient><linearGradient
+   id="gradient3"
+   x1="1180"
+   y1="-48"
+   x2="1747"
+   y2="934"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop91" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop93" /></linearGradient><linearGradient
+   id="gradient4"
+   x1="446"
+   y1="551"
+   x2="736"
+   y2="1053"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop116" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop118" /></linearGradient><linearGradient
+   id="gradient5"
+   x1="736"
+   y1="229"
+   x2="1049"
+   y2="772"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop134" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop136" /></linearGradient><linearGradient
+   id="gradient6"
+   x1="405"
+   y1="804"
+   x2="542"
+   y2="1042"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop152" /><stop
+     offset="1"
+     style="stop-color:rgb(255,216,206)"
+     id="stop154" /></linearGradient><linearGradient
+   id="gradient7"
+   x1="917"
+   y1="375"
+   x2="1201"
+   y2="867"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop170" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop172" /></linearGradient><linearGradient
+   id="gradient8"
+   x1="1071"
+   y1="519"
+   x2="1337"
+   y2="979"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop188" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop190" /></linearGradient><linearGradient
+   id="gradient9"
+   x1="1224"
+   y1="654"
+   x2="1471"
+   y2="1081"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(255,219,182)"
+     id="stop206" /><stop
+     offset="1"
+     style="stop-color:rgb(255,166,166)"
+     id="stop208" /></linearGradient></defs>
+ <defs
+   class="TextShapeIndex"
+   id="defs12">
+  <g
+   ooo:slide="id1"
+   ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16 id17 id18 id19 id20 id21 id22 id23 id24 id25 id26 id27"
+   id="g10" />
+ </defs>
+ <defs
+   class="EmbeddedBulletChars"
+   id="defs44">
+  <g
+   id="bullet-char-template-57356"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 580,1141 L 1163,571 580,0 -4,571 580,1141 Z"
+   id="path14" />
+  </g>
+  <g
+   id="bullet-char-template-57354"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 8,1128 L 1137,1128 1137,0 8,0 8,1128 Z"
+   id="path17" />
+  </g>
+  <g
+   id="bullet-char-template-10146"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 174,0 L 602,739 174,1481 1456,739 174,0 Z M 1358,739 L 309,1346 659,739 1358,739 Z"
+   id="path20" />
+  </g>
+  <g
+   id="bullet-char-template-10132"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 2015,739 L 1276,0 717,0 1260,543 174,543 174,936 1260,936 717,1481 1274,1481 2015,739 Z"
+   id="path23" />
+  </g>
+  <g
+   id="bullet-char-template-10007"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 0,-2 C -7,14 -16,27 -25,37 L 356,567 C 262,823 215,952 215,954 215,979 228,992 255,992 264,992 276,990 289,987 310,991 331,999 354,1012 L 381,999 492,748 772,1049 836,1024 860,1049 C 881,1039 901,1025 922,1006 886,937 835,863 770,784 769,783 710,716 594,584 L 774,223 C 774,196 753,168 711,139 L 727,119 C 717,90 699,76 672,76 641,76 570,178 457,381 L 164,-76 C 142,-110 111,-127 72,-127 30,-127 9,-110 8,-76 1,-67 -2,-52 -2,-32 -2,-23 -1,-13 0,-2 Z"
+   id="path26" />
+  </g>
+  <g
+   id="bullet-char-template-10004"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 285,-33 C 182,-33 111,30 74,156 52,228 41,333 41,471 41,549 55,616 82,672 116,743 169,778 240,778 293,778 328,747 346,684 L 369,508 C 377,444 397,411 428,410 L 1163,1116 C 1174,1127 1196,1133 1229,1133 1271,1133 1292,1118 1292,1087 L 1292,965 C 1292,929 1282,901 1262,881 L 442,47 C 390,-6 338,-33 285,-33 Z"
+   id="path29" />
+  </g>
+  <g
+   id="bullet-char-template-9679"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 813,0 C 632,0 489,54 383,161 276,268 223,411 223,592 223,773 276,916 383,1023 489,1130 632,1184 813,1184 992,1184 1136,1130 1245,1023 1353,916 1407,772 1407,592 1407,412 1353,268 1245,161 1136,54 992,0 813,0 Z"
+   id="path32" />
+  </g>
+  <g
+   id="bullet-char-template-8226"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 346,457 C 273,457 209,483 155,535 101,586 74,649 74,723 74,796 101,859 155,911 209,963 273,989 346,989 419,989 480,963 531,910 582,859 608,796 608,723 608,648 583,586 532,535 482,483 420,457 346,457 Z"
+   id="path35" />
+  </g>
+  <g
+   id="bullet-char-template-8211"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M -4,459 L 1135,459 1135,606 -4,606 -4,459 Z"
+   id="path38" />
+  </g>
+  <g
+   id="bullet-char-template-61548"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 173,740 C 173,903 231,1043 346,1159 462,1274 601,1332 765,1332 928,1332 1067,1274 1183,1159 1299,1043 1357,903 1357,740 1357,577 1299,437 1183,322 1067,206 928,148 765,148 601,148 462,206 346,322 231,437 173,577 173,740 Z"
+   id="path41" />
+  </g>
+ </defs>
+ <g
+   id="g49">
+  <g
+   id="id2"
+   class="Master_Slide">
+   <g
+   id="bg-id2"
+   class="Background" />
+   <g
+   id="bo-id2"
+   class="BackgroundObjects" />
+  </g>
+ </g>
+ <g
+   class="SlideGroup"
+   id="g280">
+  <g
+   id="g278">
+   <g
+   id="container-id1">
+    <g
+   id="id1"
+   class="Slide"
+   clip-path="url(#presentation_clip_path)">
+     <g
+   class="Page"
+   id="g274">
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g58">
+       <g
+   id="id3">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="99"
+   width="371"
+   height="334"
+   id="rect51" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,412 L 120,412 120,119 450,119 450,412 285,412 Z"
+   id="path53" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,412 L 120,412 120,119 450,119 450,412 285,412 Z"
+   id="path55" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g67">
+       <g
+   id="id4">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="429"
+   y="99"
+   width="518"
+   height="334"
+   id="rect60" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 688,412 L 449,412 449,119 926,119 926,412 688,412 Z"
+   id="path62" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 688,412 L 449,412 449,119 926,119 926,412 688,412 Z"
+   id="path64" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g76">
+       <g
+   id="id5">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="907"
+   y="99"
+   width="515"
+   height="334"
+   id="rect69" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 1164,412 L 927,412 927,119 1401,119 1401,412 1164,412 Z"
+   id="path71" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1164,412 L 927,412 927,119 1401,119 1401,412 1164,412 Z"
+   id="path73" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g85">
+       <g
+   id="id6">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1382"
+   y="99"
+   width="518"
+   height="334"
+   id="rect78" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 1641,412 L 1402,412 1402,119 1879,119 1879,412 1641,412 Z"
+   id="path80" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1641,412 L 1402,412 1402,119 1879,119 1879,412 1641,412 Z"
+   id="path82" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g94">
+       <g
+   id="id7">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="393"
+   width="371"
+   height="334"
+   id="rect87" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,706 L 120,706 120,413 450,413 450,706 285,706 Z"
+   id="path89" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,706 L 120,706 120,413 450,413 450,706 285,706 Z"
+   id="path91" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g103">
+       <g
+   id="id8">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="687"
+   width="371"
+   height="334"
+   id="rect96" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,1000 L 120,1000 120,707 450,707 450,1000 285,1000 Z"
+   id="path98" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,1000 L 120,1000 120,707 450,707 450,1000 285,1000 Z"
+   id="path100" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g112">
+       <g
+   id="id9">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="981"
+   width="371"
+   height="334"
+   id="rect105" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,1294 L 120,1294 120,1001 450,1001 450,1294 285,1294 Z"
+   id="path107" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,1294 L 120,1294 120,1001 450,1001 450,1294 285,1294 Z"
+   id="path109" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g121">
+       <g
+   id="id10">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="1275"
+   width="371"
+   height="334"
+   id="rect114" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,1588 L 120,1588 120,1295 450,1295 450,1588 285,1588 Z"
+   id="path116" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,1588 L 120,1588 120,1295 450,1295 450,1588 285,1588 Z"
+   id="path118" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g130">
+       <g
+   id="id11">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="100"
+   y="1569"
+   width="371"
+   height="334"
+   id="rect123" />
+        <path
+   fill="rgb(114,159,207)"
+   stroke="none"
+   d="M 285,1882 L 120,1882 120,1589 450,1589 450,1882 285,1882 Z"
+   id="path125" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 285,1882 L 120,1882 120,1589 450,1589 450,1882 285,1882 Z"
+   id="path127" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g139">
+       <g
+   id="id12">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="429"
+   y="396"
+   width="518"
+   height="334"
+   id="rect132" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 688,709 L 449,709 449,416 926,416 926,709 688,709 Z"
+   id="path134" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 688,709 L 449,709 449,416 926,416 926,709 688,709 Z"
+   id="path136" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g148">
+       <g
+   id="id13">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="907"
+   y="396"
+   width="515"
+   height="334"
+   id="rect141" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1164,709 L 927,709 927,416 1401,416 1401,709 1164,709 Z"
+   id="path143" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1164,709 L 927,709 927,416 1401,416 1401,709 1164,709 Z"
+   id="path145" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g157">
+       <g
+   id="id14">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1382"
+   y="396"
+   width="518"
+   height="334"
+   id="rect150" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1641,709 L 1402,709 1402,416 1879,416 1879,709 1641,709 Z"
+   id="path152" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1641,709 L 1402,709 1402,416 1879,416 1879,709 1641,709 Z"
+   id="path154" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g166">
+       <g
+   id="id15">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="428"
+   y="690"
+   width="518"
+   height="334"
+   id="rect159" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 687,1003 L 448,1003 448,710 925,710 925,1003 687,1003 Z"
+   id="path161" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 687,1003 L 448,1003 448,710 925,710 925,1003 687,1003 Z"
+   id="path163" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g175">
+       <g
+   id="id16">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="906"
+   y="690"
+   width="515"
+   height="334"
+   id="rect168" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1163,1003 L 926,1003 926,710 1400,710 1400,1003 1163,1003 Z"
+   id="path170" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1163,1003 L 926,1003 926,710 1400,710 1400,1003 1163,1003 Z"
+   id="path172" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g184">
+       <g
+   id="id17">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1381"
+   y="690"
+   width="518"
+   height="334"
+   id="rect177" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1640,1003 L 1401,1003 1401,710 1878,710 1878,1003 1640,1003 Z"
+   id="path179" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1640,1003 L 1401,1003 1401,710 1878,710 1878,1003 1640,1003 Z"
+   id="path181" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g193">
+       <g
+   id="id18">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="428"
+   y="984"
+   width="518"
+   height="334"
+   id="rect186" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 687,1297 L 448,1297 448,1004 925,1004 925,1297 687,1297 Z"
+   id="path188" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 687,1297 L 448,1297 448,1004 925,1004 925,1297 687,1297 Z"
+   id="path190" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g202">
+       <g
+   id="id19">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="906"
+   y="984"
+   width="515"
+   height="334"
+   id="rect195" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1163,1297 L 926,1297 926,1004 1400,1004 1400,1297 1163,1297 Z"
+   id="path197" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1163,1297 L 926,1297 926,1004 1400,1004 1400,1297 1163,1297 Z"
+   id="path199" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g211">
+       <g
+   id="id20">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1381"
+   y="984"
+   width="518"
+   height="334"
+   id="rect204" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1640,1297 L 1401,1297 1401,1004 1878,1004 1878,1297 1640,1297 Z"
+   id="path206" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1640,1297 L 1401,1297 1401,1004 1878,1004 1878,1297 1640,1297 Z"
+   id="path208" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g220">
+       <g
+   id="id21">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="428"
+   y="1275"
+   width="518"
+   height="334"
+   id="rect213" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 687,1588 L 448,1588 448,1295 925,1295 925,1588 687,1588 Z"
+   id="path215" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 687,1588 L 448,1588 448,1295 925,1295 925,1588 687,1588 Z"
+   id="path217" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g229">
+       <g
+   id="id22">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="906"
+   y="1275"
+   width="515"
+   height="334"
+   id="rect222" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1163,1588 L 926,1588 926,1295 1400,1295 1400,1588 1163,1588 Z"
+   id="path224" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1163,1588 L 926,1588 926,1295 1400,1295 1400,1588 1163,1588 Z"
+   id="path226" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g238">
+       <g
+   id="id23">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1381"
+   y="1275"
+   width="518"
+   height="334"
+   id="rect231" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1640,1588 L 1401,1588 1401,1295 1878,1295 1878,1588 1640,1588 Z"
+   id="path233" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1640,1588 L 1401,1588 1401,1295 1878,1295 1878,1588 1640,1588 Z"
+   id="path235" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g247">
+       <g
+   id="id24">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="428"
+   y="1568"
+   width="518"
+   height="334"
+   id="rect240" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 687,1881 L 448,1881 448,1588 925,1588 925,1881 687,1881 Z"
+   id="path242" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 687,1881 L 448,1881 448,1588 925,1588 925,1881 687,1881 Z"
+   id="path244" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g256">
+       <g
+   id="id25">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="906"
+   y="1568"
+   width="515"
+   height="334"
+   id="rect249" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1163,1881 L 926,1881 926,1588 1400,1588 1400,1881 1163,1881 Z"
+   id="path251" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1163,1881 L 926,1881 926,1588 1400,1588 1400,1881 1163,1881 Z"
+   id="path253" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g265">
+       <g
+   id="id26">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="1381"
+   y="1568"
+   width="518"
+   height="334"
+   id="rect258" />
+        <path
+   fill="rgb(238,238,238)"
+   stroke="none"
+   d="M 1640,1881 L 1401,1881 1401,1588 1878,1588 1878,1881 1640,1881 Z"
+   id="path260" />
+        <path
+   fill="none"
+   stroke="rgb(128,128,128)"
+   stroke-width="40"
+   stroke-linejoin="round"
+   stroke-linecap="square"
+   d="M 1640,1881 L 1401,1881 1401,1588 1878,1588 1878,1881 1640,1881 Z"
+   id="path262" />
+       </g>
+      </g>
+      <g
+   class="com.sun.star.drawing.CustomShape"
+   id="g272">
+       <g
+   id="id27">
+        <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="867"
+   y="62"
+   width="587"
+   height="1877"
+   id="rect267" />
+        <path
+   fill="none"
+   stroke="rgb(5,0,255)"
+   stroke-width="75"
+   stroke-linejoin="round"
+   d="M 1160,1900 L 905,1900 905,100 1415,100 1415,1900 1160,1900 Z"
+   id="path269" />
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+<g
+   transform="translate(33.714364,-35)"
+   id="g49-1"><g
+     id="id2-6"
+     class="Master_Slide"><g
+       id="bg-id2-7"
+       class="Background" /><g
+       id="bo-id2-8"
+       class="BackgroundObjects" /></g></g><g
+   transform="translate(33.714364,-35)"
+   class="SlideGroup"
+   id="g253"><g
+     id="g251"><g
+       id="container-id1-5"><g
+         id="id1-8"
+         class="Slide"
+         clip-path="url(#presentation_clip_path-0)"><g
+           class="Page"
+           id="g247-8"><g
+             class="Group"
+             id="g245"><g
+               class="Group"
+               id="g87"><g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g67-6"><g
+                   id="id3-4"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="908"
+                     y="37"
+                     width="451"
+                     height="251"
+                     id="rect51-7" /><g
+                     id="g62"><defs
+                       id="defs58"><linearGradient
+                         id="linearGradient468"
+                         x1="1040"
+                         y1="0"
+                         x2="1227"
+                         y2="324"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop303" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop305" /></linearGradient></defs><path
+                       style="fill:url(#gradient1)"
+                       d="M 1133,262 H 933 V 62 h 400 v 200 z"
+                       id="path60" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="M 1133,262 H 933 V 62 h 400 v 200 z"
+                     id="path64-8" /></g></g><g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g85-5"><g
+                   id="id4-4"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="473"
+                     y="36"
+                     width="481"
+                     height="261"
+                     id="rect69-2" /><g
+                     id="g80"><defs
+                       id="defs76"><linearGradient
+                         id="linearGradient470"
+                         x1="614"
+                         y1="-6"
+                         x2="813"
+                         y2="338"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop316" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop318" /></linearGradient></defs><path
+                       style="fill:url(#gradient2)"
+                       d="m 522,82 145,-1 35,23 43,-43 181,1 2,203 -348,6 -31,-17 -33,-48 -18,-68 4,-39 z"
+                       id="path78" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 522,82 145,-1 35,23 43,-43 181,1 2,203 -348,6 -31,-17 -33,-48 -18,-68 4,-39 z"
+                     id="path82-3" /></g></g></g><g
+               class="com.sun.star.drawing.PolyPolygonShape"
+               id="g105"><g
+                 id="id5-7"><rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="967"
+                   y="35"
+                   width="993"
+                   height="817"
+                   id="rect89" /><g
+                   id="g100"><defs
+                     id="defs96"><linearGradient
+                       id="linearGradient472"
+                       x1="1180"
+                       y1="-48"
+                       x2="1747"
+                       y2="934"
+                       gradientUnits="userSpaceOnUse"><stop
+                         offset="0"
+                         style="stop-color:rgb(255,219,182)"
+                         id="stop330" /><stop
+                         offset="1"
+                         style="stop-color:rgb(255,166,166)"
+                         id="stop332" /></linearGradient></defs><path
+                     style="fill:url(#gradient3)"
+                     d="m 1178,60 h 267 l 361,48 92,50 36,56 V 573 725 H 1756 L 1655,826 H 1542 L 993,277 1098,60 Z"
+                     id="path98-1" /></g><path
+                   fill="none"
+                   stroke="#ff7b59"
+                   stroke-width="50"
+                   stroke-linejoin="round"
+                   d="m 1178,60 h 267 l 361,48 92,50 36,56 V 573 725 H 1756 L 1655,826 H 1542 L 993,277 1098,60 Z"
+                   id="path102" /></g></g><g
+               class="com.sun.star.drawing.LineShape"
+               id="g112-2"><g
+                 id="id6-1"><rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="975"
+                   y="56"
+                   width="140"
+                   height="226"
+                   id="rect107" /><path
+                   fill="none"
+                   stroke="#ffaa95"
+                   stroke-width="60"
+                   stroke-linejoin="round"
+                   d="m 1084,86 -79,165"
+                   id="path109-8" /></g></g><g
+               class="Group"
+               id="g222"><g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g130-7"><g
+                   id="id7-5"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="354"
+                     y="565"
+                     width="476"
+                     height="476"
+                     id="rect114-9" /><g
+                     id="g125"><defs
+                       id="defs121"><linearGradient
+                         id="linearGradient474"
+                         x1="446"
+                         y1="551"
+                         x2="736"
+                         y2="1053"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop347" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop349" /></linearGradient></defs><path
+                       style="fill:url(#gradient4)"
+                       d="M 662,873 520,1014 379,873 662,590 803,732 Z"
+                       id="path123" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="M 662,873 520,1014 379,873 662,590 803,732 Z"
+                     id="path127-7" /></g></g><g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g148-7"><g
+                   id="id8-3"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="637"
+                     y="245"
+                     width="511"
+                     height="512"
+                     id="rect132-8" /><g
+                     id="g143"><defs
+                       id="defs139"><linearGradient
+                         id="linearGradient476"
+                         x1="736"
+                         y1="229"
+                         x2="1049"
+                         y2="772"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop360" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop362" /></linearGradient></defs><path
+                       style="fill:url(#gradient5)"
+                       d="M 963,571 803,730 662,589 980,271 1122,412 Z"
+                       id="path141" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="M 963,571 803,730 662,589 980,271 1122,412 Z"
+                     id="path145-3" /></g></g><g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g166-8"><g
+                   id="id9-3"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="348"
+                     y="797"
+                     width="252"
+                     height="253"
+                     id="rect150-8" /><g
+                     id="g161"><defs
+                       id="defs157"><linearGradient
+                         id="linearGradient478"
+                         x1="405"
+                         y1="804"
+                         x2="542"
+                         y2="1042"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop373" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,216,206)"
+                           id="stop375" /></linearGradient></defs><path
+                       style="fill:url(#gradient6)"
+                       d="m 403,994 -30,-30 6,-64 71,-71 65,-6 58,59 -6,64 -70,71 -65,6 z"
+                       id="path159" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 403,994 -30,-30 6,-64 71,-71 65,-6 58,59 -6,64 -70,71 -65,6 z"
+                     id="path163-0" /></g></g><g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g184-8"><g
+                   id="id10-2"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="829"
+                     y="386"
+                     width="462"
+                     height="471"
+                     id="rect168-9" /><g
+                     id="g179"><defs
+                       id="defs175"><linearGradient
+                         id="linearGradient480"
+                         x1="917"
+                         y1="375"
+                         x2="1201"
+                         y2="867"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop386" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop388" /></linearGradient></defs><path
+                       style="fill:url(#gradient7)"
+                       d="m 1119,412 -265,270 3,56 34,58 53,34 h 48 l 273,-274 z"
+                       id="path177" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1119,412 -265,270 3,56 34,58 53,34 h 48 l 273,-274 z"
+                     id="path181-1" /></g></g><g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g202-4"><g
+                   id="id11-8"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="987"
+                     y="528"
+                     width="436"
+                     height="444"
+                     id="rect186-9" /><g
+                     id="g197"><defs
+                       id="defs193"><linearGradient
+                         id="linearGradient482"
+                         x1="1071"
+                         y1="519"
+                         x2="1337"
+                         y2="979"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop399" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop401" /></linearGradient></defs><path
+                       style="fill:url(#gradient8)"
+                       d="m 1260,553 -248,253 3,53 31,54 49,32 46,-1 255,-256 z"
+                       id="path195" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1260,553 -248,253 3,53 31,54 49,32 46,-1 255,-256 z"
+                     id="path199-5" /></g></g><g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g220-1"><g
+                   id="id12-7"><rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="1144"
+                     y="661"
+                     width="408"
+                     height="415"
+                     id="rect204-6" /><g
+                     id="g215"><defs
+                       id="defs211"><linearGradient
+                         id="RESERVED_FOR_INKSCAPE_DUPLICATE_DEF_000000000"
+                         x1="1224"
+                         y1="654"
+                         x2="1471"
+                         y2="1081"
+                         gradientUnits="userSpaceOnUse"><stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop412" /><stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop414" /></linearGradient></defs><path
+                       style="fill:url(#gradient9)"
+                       d="m 1393,686 -224,229 4,50 31,51 48,32 43,1 231,-232 z"
+                       id="path213" /></g><path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1393,686 -224,229 4,50 31,51 48,32 43,1 231,-232 z"
+                     id="path217-1" /></g></g></g><g
+               class="com.sun.star.drawing.LineShape"
+               id="g229-6"><g
+                 id="id13-7"><rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="973"
+                   y="254"
+                   width="571"
+                   height="580"
+                   id="rect224" /><path
+                   fill="none"
+                   stroke="#ffaa95"
+                   stroke-width="60"
+                   stroke-linejoin="round"
+                   d="m 1003,284 510,519"
+                   id="path226-2" /></g></g><g
+               class="com.sun.star.drawing.LineShape"
+               id="g236"><g
+                 id="id14-6"><rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="649"
+                   y="575"
+                   width="171"
+                   height="171"
+                   id="rect231-7" /><path
+                   fill="none"
+                   stroke="#ffaa95"
+                   stroke-width="60"
+                   stroke-linejoin="round"
+                   d="M 679,605 789,715"
+                   id="path233-3" /></g></g><g
+               class="com.sun.star.drawing.LineShape"
+               id="g243"><g
+                 id="id15-0"><rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="897"
+                   y="54"
+                   width="64"
+                   height="216"
+                   id="rect238" /><path
+                   fill="none"
+                   stroke="#ffaa95"
+                   stroke-width="60"
+                   stroke-linejoin="round"
+                   d="m 927,84 3,155"
+                   id="path240" /></g></g></g></g></g></g></g></g></svg>

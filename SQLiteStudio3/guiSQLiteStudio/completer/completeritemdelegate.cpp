@@ -30,8 +30,8 @@ void CompleterItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem&
 QSize CompleterItemDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     QSize size = QStyledItemDelegate::sizeHint(option, index);
-    if (size.height() < 18)
-        size.setHeight(18); // at least 1 pixel larger than icons
+    int height = qMax(16, option.fontMetrics.height());
+    size.setHeight(height + 2); // at least 1 pixel larger than icons in all directions
 
     return size;
 }
@@ -58,7 +58,9 @@ void CompleterItemDelegate::paintBackground(QPainter* painter, const QStyleOptio
 void CompleterItemDelegate::paintIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
-    QSize iconSize = icon.availableSizes()[0];
+    QList<QSize> sizes = icon.availableSizes();
+    int fontHeight = option.fontMetrics.height();
+    QSize iconSize = sizes.isEmpty() ? QSize(fontHeight, fontHeight) : sizes[0];
 
     QIcon::Mode mode = QIcon::Normal;
     if (!(option.state & QStyle::State_Enabled))
