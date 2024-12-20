@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.11
+- CHANGE: SQLite updated to 3.47.2
 - BUGFIX: #5161 An ultimate fix for dialog windows positioning, so they no longer can appear outside of visible screen.
 
 ### 3.4.10
