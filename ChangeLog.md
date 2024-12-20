@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.11
+- BUGFIX: #5161 An ultimate fix for dialog windows positioning, so they no longer can appear outside of visible screen.
+
 ### 3.4.10
 - CHANGE: #5160 The taskbar has been improved to make the currently active task more distinct from the others.
 - BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.

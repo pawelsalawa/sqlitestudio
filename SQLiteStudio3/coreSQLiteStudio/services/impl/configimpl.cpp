@@ -1124,12 +1124,19 @@ void ConfigImpl::updateConfigDb()
             // 1->2
             db->exec("UPDATE settings SET [key] = 'DataUncommittedError' WHERE [key] = 'DataUncommitedError'");
             db->exec("UPDATE settings SET [key] = 'DataUncommitted' WHERE [key] = 'DataUncommited'");
-            __attribute__((__fallthrough__));
+            [[fallthrough]];
         }
         case 2:
         {
             // 2->3
             db->exec("ALTER TABLE groups ADD db_expanded INTEGER DEFAULT 0");
+            [[fallthrough]];
+        }
+        case 3:
+        {
+            // 3->4
+            db->exec("DELETE FROM settings WHERE [group] = 'DialogDimensions'"); // #5161
+            [[fallthrough]];
         }
         // Add cases here for next versions,
         // without a "break" instruction,
