@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
         <file>img/check.png</file>
-        <file>img/collation.png</file>
         <file>img/complete.png</file>
         <file>img/completer_blob.png</file>
         <file>img/completer_no_value.png</file>
@@ -15,7 +14,6 @@
         <file>img/database_disconnect.png</file>
         <file>img/database_export.png</file>
         <file>img/database_reload.png</file>
-        <file>img/ddl_history.png</file>
         <file>img/default.png</file>
         <file>img/delete_row.png</file>
         <file>img/delete_selected.png</file>
@@ -116,7 +114,6 @@
         <file>img/view.png</file>
         <file>img/views.png</file>
         <file>img/virtual_table.png</file>
-        <file>img/warn_small.png</file>
         <file>img/win_cascade.png</file>
         <file>img/win_tile_horizontal.png</file>
         <file>img/win_tile_vertical.png</file>
@@ -161,7 +158,6 @@
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
         <file>img/save_file.png</file>
-        <file>img/brick.png</file>
         <file>img/brick_add.png</file>
         <file>img/brick_delete.png</file>
         <file>img/brick_error.png</file>
@@ -195,7 +191,6 @@
         <file>img/apply_filter_txt.svg</file>
         <file>img/apply_filter_txt_strict.svg</file>
         <file>img/commit.svg</file>
-        <file>img/function.svg</file>
         <file>img/open_sql_editor.svg</file>
         <file>img/rollback.svg</file>
         <file>img/clear_history.svg</file>
@@ -216,5 +211,13 @@
         <file>img/database_add.svg</file>
         <file>img/database_del.svg</file>
         <file>img/database_edit.svg</file>
+        <file>img/ddl_history.svg</file>
+        <file>img/collations.svg</file>
+        <file>img/functions.svg</file>
+        <file>img/warn_small.svg</file>
+        <file>img/collation.png</file>
+        <file>img/function.png</file>
+        <file>img/brick.svg</file>
+        <file>img/extensions.svg</file>
     </qresource>
 </RCC>

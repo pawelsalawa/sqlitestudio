@@ -47,7 +47,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="QWidget" name="leftWidget" native="true">
          <property name="sizePolicy">
@@ -88,13 +88,13 @@
           <item>
            <widget class="QListView" name="list">
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
             </property>
             <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollPerPixel</enum>
+             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
             </property>
            </widget>
           </item>
@@ -170,7 +170,7 @@
                   </property>
                   <property name="icon">
                    <iconset resource="../icons.qrc">
-                    <normaloff>:/icons/img/clear_lineedit.png</normaloff>:/icons/img/clear_lineedit.png</iconset>
+                    <normaloff>:/icons/img/clear_lineedit.svg</normaloff>:/icons/img/clear_lineedit.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -222,7 +222,7 @@
              <item>
               <widget class="QPlainTextEdit" name="mainCodeEdit">
                <property name="lineWrapMode">
-                <enum>QPlainTextEdit::NoWrap</enum>
+                <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                </property>
               </widget>
              </item>
