@@ -1136,7 +1136,7 @@ void ConfigImpl::updateConfigDb()
         {
             // 3->4
             db->exec("DELETE FROM settings WHERE [group] = 'DialogDimensions'"); // #5161
-            [[fallthrough]];
+            //[[fallthrough]];
         }
         // Add cases here for next versions,
         // without a "break" instruction,
