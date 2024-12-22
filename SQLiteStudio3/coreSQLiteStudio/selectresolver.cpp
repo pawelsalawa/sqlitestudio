@@ -725,7 +725,19 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSourceSubSelect(Sqlit
 
 QList<SelectResolver::Column> SelectResolver::resolveOtherSource(SqliteSelect::Core::JoinSourceOther *otherSrc)
 {
-    return resolveSingleSource(otherSrc->singleSource);
+    QList<SelectResolver::Column> joinedColumns = resolveSingleSource(otherSrc->singleSource);
+    if (!otherSrc->joinConstraint || otherSrc->joinConstraint->expr)
+        return joinedColumns;
+
+    // Skip right-hand (aka "other") source column if it matches any of names listed in USING clause.
+    QSet<QString> usingColumns;
+    for (QString& colName : otherSrc->joinConstraint->columnNames)
+        usingColumns << colName.toLower();
+
+    return filter<SelectResolver::Column>(joinedColumns, [usingColumns](const SelectResolver::Column& col)
+    {
+        return !usingColumns.contains((col.alias.isNull() ? col.column : col.alias).toLower());
+    });
 }
 
 QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *select)
@@ -761,9 +773,15 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
     }
     else
     {
+        static_qstring(colTpl, "%1.%2 AS %3");
+        auto fn = [](const Column& c) {return colTpl.arg(c.table, c.column, c.alias);};
+        QStringList resolverColumns = map<Column, QString>(columnSourcesFromInternal, fn);
+        QStringList sqliteColumns = map<Column, QString>(columnSources, fn);
         qCritical() << "Number of columns resolved by internal SchemaResolver is different than resolved by SQLite API:"
                     << columnSourcesFromInternal.size() << "!=" << columnSources.size()
-                    << ", therefore table alias may be identified incorrectly (from resolver, but not by SQLite API)";
+                    << ", therefore table alias may be identified incorrectly (from resolver, but not by SQLite API)"
+                    << ". Columns were resolved from query:" << query << ". Colums resolved by SchemaResolver:"
+                    << resolverColumns.join(", ") << ", while columns from SQLite:" << sqliteColumns.join(", ");
     }
 
     if (compound)
