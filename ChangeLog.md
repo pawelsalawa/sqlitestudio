@@ -1,5 +1,14 @@
 # ChangeLog
 
+### 3.4.12
+- BIGFIX: #5179 Fixed results returned from query joining the same table twice.
+- BIGFIX: #5179 Fixed smart execution when joining tables with USING clause, so the result metadata is extracted properly and results can be edited.
+
+### 3.4.11
+- CHANGE: SQLite updated to 3.47.2
+- BUGFIX: #5161 An ultimate fix for dialog windows positioning, so they no longer can appear outside of visible screen.
+- BUGFIX: #4882 Fixed Rows Affected counter for huge numbers (over 2 trillion).
+
 ### 3.4.10
 - CHANGE: #5160 The taskbar has been improved to make the currently active task more distinct from the others.
 - BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.

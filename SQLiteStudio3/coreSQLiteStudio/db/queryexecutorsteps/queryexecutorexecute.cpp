@@ -14,7 +14,7 @@
 
 bool QueryExecutorExecute::exec()
 {
-//    qDebug() << "q:" << context->processedQuery;
+    //qDebug() << "q:" << context->processedQuery;
 
     startTime = QDateTime::currentMSecsSinceEpoch();
     return executeQueries();

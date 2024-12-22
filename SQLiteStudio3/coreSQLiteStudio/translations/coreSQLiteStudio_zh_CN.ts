@@ -189,59 +189,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
-      <location filename="../dbobjectorganizer.cpp" line="403"/>
+      <location filename="../dbobjectorganizer.cpp" line="367"/>
+      <location filename="../dbobjectorganizer.cpp" line="398"/>
       <source>Error while creating table in target database: %1</source>
       <translation>在目标数据库中创建表时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
+      <location filename="../dbobjectorganizer.cpp" line="367"/>
       <source>Could not parse table.</source>
       <translation>无法解析表。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="417"/>
+      <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>数据库 %1 无法附加到数据库 %2，因此将使用 SQLiteStudio 做中间人来复制表 %3 的数据。此方法用于大型表格可能会很慢，请耐心等待。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="441"/>
+      <location filename="../dbobjectorganizer.cpp" line="436"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>在从表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="460"/>
-      <location filename="../dbobjectorganizer.cpp" line="467"/>
-      <location filename="../dbobjectorganizer.cpp" line="494"/>
+      <location filename="../dbobjectorganizer.cpp" line="455"/>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
+      <location filename="../dbobjectorganizer.cpp" line="489"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>在向表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="516"/>
+      <location filename="../dbobjectorganizer.cpp" line="511"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>在丢弃源视图 %1:%2 时出错
 已拷贝至数据库 %3 的表格、索引、触发器和视图将被保留。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="518"/>
       <source>Error while creating view in target database: %1</source>
       <translation>在目标数据库中创建视图时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="523"/>
       <source>Error while creating index in target database: %1</source>
       <translation>在目标数据库中创建索引时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="533"/>
+      <location filename="../dbobjectorganizer.cpp" line="528"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>在目标数据库中创建触发器时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="664"/>
-      <location filename="../dbobjectorganizer.cpp" line="671"/>
-      <location filename="../dbobjectorganizer.cpp" line="680"/>
+      <location filename="../dbobjectorganizer.cpp" line="668"/>
+      <location filename="../dbobjectorganizer.cpp" line="675"/>
+      <location filename="../dbobjectorganizer.cpp" line="684"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>无法解析对象 &apos;%1&apos; 用于移动或复制。</translation>
     </message>
