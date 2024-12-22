@@ -1137,17 +1137,22 @@ void ConfigImpl::updateConfigDb()
             // 1->2
             db->exec("UPDATE settings SET [key] = 'DataUncommittedError' WHERE [key] = 'DataUncommitedError'");
             db->exec("UPDATE settings SET [key] = 'DataUncommitted' WHERE [key] = 'DataUncommited'");
-            Q_FALLTHROUGH();
+            [[fallthrough]];
         }
         case 2:
         {
             // 2->3
             db->exec("ALTER TABLE groups ADD db_expanded INTEGER DEFAULT 0");
-            Q_FALLTHROUGH();
+            [[fallthrough]];
         }
         case 3:
         {
             // 3->4
+            db->exec("DELETE FROM settings WHERE [group] = 'DialogDimensions'"); // #5161
+            [[fallthrough]];
+        }
+        case 4:
+        {
             QVariant oldFuncs = get("Internal", "Functions");
             if (oldFuncs.isValid() && !oldFuncs.isNull())
             {

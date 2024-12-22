@@ -61,7 +61,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
             return rowIdColsMap;
 
     }
-    core->rebuildTokens();
+    select->rebuildTokens();
 
     // Getting all tables we need to get ROWID for
     SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);

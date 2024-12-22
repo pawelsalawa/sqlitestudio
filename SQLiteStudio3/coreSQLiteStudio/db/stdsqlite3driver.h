@@ -76,6 +76,7 @@
         static const char *column_origin_name(stmt* arg1, int arg2) {return Prefix##sqlite3_column_origin_name(arg1, arg2);} \
         static int changes(handle* arg) {return Prefix##sqlite3_changes(arg);} \
         static int total_changes(handle* arg) {return Prefix##sqlite3_total_changes(arg);} \
+        static int64 total_changes64(handle* arg) {return Prefix##sqlite3_total_changes(arg);} \
         static int64 last_insert_rowid(handle* arg) {return Prefix##sqlite3_last_insert_rowid(arg);} \
         static int step(stmt* arg) {return Prefix##sqlite3_step(arg);} \
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \

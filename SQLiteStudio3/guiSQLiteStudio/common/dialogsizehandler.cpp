@@ -3,6 +3,8 @@
 #include <QEvent>
 #include <QTimer>
 #include <QWidget>
+#include <QScreen>
+#include <QGuiApplication>
 
 DialogSizeHandler::DialogSizeHandler(QObject *parent) :
     DialogSizeHandler(parent->objectName(), parent)
@@ -18,7 +20,7 @@ DialogSizeHandler::DialogSizeHandler(const QString &key, QObject *parent) :
     connect(saveTimer, SIGNAL(timeout()), this, SLOT(doSave()));
 
     QRect geom = CFG->get(CONFIG_GROUP, configKey).toRect();
-    if (geom.isValid())
+    if (geom.isValid() && qApp->primaryScreen()->geometry().contains(geom))
     {
         QWidget* w = qobject_cast<QWidget*>(parent);
         w->setGeometry(geom);
