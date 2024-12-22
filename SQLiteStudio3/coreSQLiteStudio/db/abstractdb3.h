@@ -1210,14 +1210,14 @@ int AbstractDb3<T>::Query::fetchFirst()
     for (int i = 0; i < colCount; i++)
         colNames << QString::fromUtf8(T::column_name(stmt, i));
 
-    int changesBefore =  T::total_changes(db->dbHandle);
+    qint64 changesBefore =  T::total_changes64(db->dbHandle);
     rowAvailable = true;
     int res = fetchNext();
 
     affected = 0;
     if (res == T::OK)
     {
-        affected =  T::total_changes(db->dbHandle) - changesBefore;
+        affected =  T::total_changes64(db->dbHandle) - changesBefore;
         insertRowId["ROWID"] = T::last_insert_rowid(db->dbHandle);
     }
 

@@ -2,7 +2,7 @@ env:
     TARGET_ARCH: 'x86_64'
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3470100'
+    SQLITE_VERSION: '3470200'
     SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio

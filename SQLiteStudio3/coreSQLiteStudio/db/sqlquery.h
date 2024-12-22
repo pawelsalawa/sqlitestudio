@@ -302,7 +302,7 @@ class API_EXPORT SqlQuery
          */
         QList<SqlResultsRowPtr> preloadedData;
 
-        int affected = 0;
+        qint64 affected = 0;
 
         QString query;
         QVariant queryArgs;

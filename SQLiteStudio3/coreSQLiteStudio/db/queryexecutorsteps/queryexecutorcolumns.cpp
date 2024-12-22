@@ -69,13 +69,15 @@ bool QueryExecutorColumns::exec()
             context->resultColumns << resultColumn; // store it in context for later usage by any step
     }
 
-//    qDebug() << "before: " << context->processedQuery;
+    //qDebug() << "before: " << context->processedQuery;
     // Update query
     select->rebuildTokens();
-    wrapWithAliasedColumns(select.data());
+    // #5179 does not seem to be needed anymore, because query executor alias is applied always in the main column loop above.
+    // Keeping the commented reference here for a while, but to be removed in future (due to end of 2025).
+    //wrapWithAliasedColumns(select.data());
     updateQueries();
 
-//    qDebug() << "after:  " << context->processedQuery;
+    //qDebug() << "after:  " << context->processedQuery;
 
     return true;
 }
@@ -176,11 +178,13 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         }
     }
 
-    selectResultColumn->asKw = true;
     if (!col.alias.isNull())
-        selectResultColumn->alias = col.alias;
-    else
-        selectResultColumn->alias = resultColumn->queryExecutorAlias;
+        selectResultColumn->expr->column = col.alias;
+
+    // #5179 duplicate of the same source table columns (but with different table alias) requires executor alias to be applied
+    // always and immediately here to get proper results.
+    selectResultColumn->asKw = true;
+    selectResultColumn->alias = resultColumn->queryExecutorAlias;
 
     // If this alias was already used we need to use sequential alias
     static_qstring(aliasTpl, "%1:%2");
@@ -210,63 +214,6 @@ bool QueryExecutorColumns::isRowIdColumnAlias(const QString& alias)
             return true;
     }
     return false;
-}
-
-void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
-{
-    // Wrap everything in a surrounding SELECT and given query executor alias to all columns this time
-    TokenList sepTokens;
-    sepTokens << TokenPtr::create(Token::OPERATOR, ",") << TokenPtr::create(Token::SPACE, " ");
-
-    bool first = true;
-    TokenList outerColumns;
-    QStringList columnNamesUsed;
-    QString baseColName;
-    QString colName;
-    static_qstring(colNameTpl, "%1:%2");
-    for (QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
-    {
-        if (!first)
-            outerColumns += sepTokens;
-
-        // If alias was given, we use it. If it was anything but expression, we also use its display name,
-        // because it's explicit column (no matter if from table, or table alias).
-        baseColName = QString();
-        if (!resCol->queryExecutorAlias.isNull())
-            baseColName = resCol->alias;
-        else if (!resCol->expression)
-            baseColName = resCol->column;
-
-        if (!baseColName.isNull())
-        {
-            colName = baseColName;
-            for (int i = 1; columnNamesUsed.contains(colName, Qt::CaseInsensitive); i++)
-                colName = colNameTpl.arg(resCol->column, QString::number(i));
-
-            columnNamesUsed << colName;
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(colName));
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-        }
-        outerColumns << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
-        first = false;
-    }
-
-    for (QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
-    {
-        for (QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
-        {
-            if (!first)
-                outerColumns += sepTokens;
-
-            outerColumns << TokenPtr::create(Token::OTHER, alias);
-            first = false;
-        }
-    }
-
-    //QString t = outerColumns.detokenize(); // keeping it for debug purposes
-    select->tokens = wrapSelect(select->tokens, outerColumns);
 }
 
 bool QueryExecutorColumns::isRowIdColumn(const QString& columnAlias)
