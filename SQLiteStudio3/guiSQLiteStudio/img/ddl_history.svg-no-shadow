@@ -36,13 +36,12 @@
    id="namedview267"
    showgrid="false"
    inkscape:zoom="13.335"
-   inkscape:cx="36.145482"
+   inkscape:cx="37.795276"
    inkscape:cy="37.795276"
    inkscape:window-x="-8"
    inkscape:window-y="-8"
    inkscape:window-maximized="1"
-   inkscape:current-layer="svg265"
-   inkscape:document-rotation="0" />
+   inkscape:current-layer="svg265" />
  <defs
    class="ClipPathGroup"
    id="defs8">
@@ -2413,32 +2412,7 @@
      id="stop1640" /><stop
      offset="1"
      style="stop-color:rgb(179,179,179)"
-     id="stop1642" /></linearGradient><filter
-   style="color-interpolation-filters:sRGB;"
-   inkscape:label="Drop Shadow"
-   id="filter2653"><feFlood
-     flood-opacity="0.635294"
-     flood-color="rgb(0,0,0)"
-     result="flood"
-     id="feFlood2643" /><feComposite
-     in="flood"
-     in2="SourceGraphic"
-     operator="in"
-     result="composite1"
-     id="feComposite2645" /><feGaussianBlur
-     in="composite1"
-     stdDeviation="42.515"
-     result="blur"
-     id="feGaussianBlur2647" /><feOffset
-     dx="-50"
-     dy="-50"
-     result="offset"
-     id="feOffset2649" /><feComposite
-     in="SourceGraphic"
-     in2="offset"
-     operator="over"
-     result="composite2"
-     id="feComposite2651" /></filter></defs>
+     id="stop1642" /></linearGradient></defs>
  <defs
    class="TextShapeIndex"
    id="defs12">
@@ -3176,8 +3150,7 @@
 <g
    class="SlideGroup"
    id="g1664"
-   transform="matrix(0.65844683,0,0,0.65844683,796.28044,709.27566)"
-   style="filter:url(#filter2653)"><g
+   transform="matrix(0.65844683,0,0,0.65844683,796.28044,709.27566)"><g
      id="g1662"><g
        id="container-id1-9"><g
          id="id1-2"
