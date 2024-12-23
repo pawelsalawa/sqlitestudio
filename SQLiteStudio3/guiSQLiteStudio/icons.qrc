@@ -1,21 +1,8 @@
 <RCC>
     <qresource prefix="/icons">
         <file>img/check.png</file>
-        <file>img/complete.png</file>
-        <file>img/completer_blob.png</file>
-        <file>img/completer_no_value.png</file>
-        <file>img/completer_number.png</file>
-        <file>img/completer_operator.png</file>
-        <file>img/completer_other.png</file>
-        <file>img/completer_pragma.png</file>
-        <file>img/completer_string.png</file>
         <file>img/configure.png</file>
-        <file>img/database_connect.png</file>
-        <file>img/database_disconnect.png</file>
-        <file>img/database_export.png</file>
-        <file>img/database_reload.png</file>
         <file>img/default.png</file>
-        <file>img/delete_row.png</file>
         <file>img/delete_selected.png</file>
         <file>img/delete_small.png</file>
         <file>img/denied_small.png</file>
@@ -41,7 +28,6 @@
         <file>img/indicator_info.png</file>
         <file>img/indicator_warn.png</file>
         <file>img/info_small.png</file>
-        <file>img/insert_row.png</file>
         <file>img/insert_rows.png</file>
         <file>img/keyword.png</file>
         <file>img/loading.gif</file>
@@ -58,7 +44,6 @@
         <file>img/pk.png</file>
         <file>img/plus_small.png</file>
         <file>img/question_small.png</file>
-        <file>img/reload.png</file>
         <file>img/rename_fn_arg.png</file>
         <file>img/results_below.png</file>
         <file>img/results_in_tab.png</file>
@@ -141,9 +126,6 @@
         <file>img/config_style.png</file>
         <file>img/plugin.png</file>
         <file>img/config_data_editors.png</file>
-        <file>img/database_export_wizard.svg</file>
-        <file>img/database_import_wizard.svg</file>
-        <file>img/database_offline.png</file>
         <file>img/go_back.png</file>
         <file>img/reset_autoincrement.png</file>
         <file>img/erase_table_data.png</file>
@@ -219,5 +201,21 @@
         <file>img/function.png</file>
         <file>img/brick.svg</file>
         <file>img/extensions.svg</file>
+        <file>img/delete_row.svg</file>
+        <file>img/insert_row.svg</file>
+        <file>img/database_connect.svg</file>
+        <file>img/database_disconnect.svg</file>
+        <file>img/database_export.svg</file>
+        <file>img/database_import.svg</file>
+        <file>img/database_offline.svg</file>
+        <file>img/database_reload.svg</file>
+        <file>img/reload.svg</file>
+        <file>img/complete.svg</file>
+        <file>img/completer_blob.svg</file>
+        <file>img/completer_number.svg</file>
+        <file>img/completer_operator.svg</file>
+        <file>img/completer_pragma.svg</file>
+        <file>img/completer_string.svg</file>
+        <file>img/completer_no_value.svg</file>
     </qresource>
 </RCC>

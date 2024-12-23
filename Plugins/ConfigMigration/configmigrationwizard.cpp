@@ -41,7 +41,6 @@ void ConfigMigrationWizard::accept()
 void ConfigMigrationWizard::init()
 {
     ui->setupUi(this);
-    THEME_TUNER->darkThemeFix(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());
