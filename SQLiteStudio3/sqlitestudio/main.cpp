@@ -42,6 +42,7 @@
 #endif
 
 static bool listPlugins = false;
+static bool doNotLoadPlugins = false;
 
 QString uiHandleCmdLineArgs(bool applyOptions = true)
 {
@@ -58,6 +59,7 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
     QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("Limits SQL query messages to only the given <database>."), QObject::tr("database"));
     QCommandLineOption executorDebugOption("debug-query-executor", QObject::tr("Enables debugging of SQLiteStudio's query executor."));
     QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
+    QCommandLineOption noPluginsOption("no-plugins", QObject::tr("Do not load any plugins (a fail-safe mode)."));
     QCommandLineOption masterConfigOption("master-config", QObject::tr("Points to the master configuration file. Read manual at wiki page for more details."), QObject::tr("SQLiteStudio settings file"));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
@@ -68,6 +70,7 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
     parser.addOption(executorDebugOption);
     parser.addOption(masterConfigOption);
     parser.addOption(listPluginsOption);
+    parser.addOption(noPluginsOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
@@ -85,6 +88,9 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 
         if (parser.isSet(listPluginsOption))
             listPlugins = true;
+
+        if (parser.isSet(noPluginsOption))
+            doNotLoadPlugins = true;
 
         if (parser.isSet(masterConfigOption))
             Config::setMasterConfigFile(parser.value(masterConfigOption));
@@ -147,11 +153,9 @@ int main(int argc, char *argv[])
     });
 
     QString dbToOpen = uiHandleCmdLineArgs();
-
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
-
 
     SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "guiSQLiteStudio", "sqlitestudio"});
     SQLITESTUDIO->init(a.arguments(), true);
@@ -172,7 +176,8 @@ int main(int argc, char *argv[])
 
     QObject::connect(&a, &SingleApplication::receivedMessage, mainWin, &MainWindow::messageFromSecondaryInstance);
 
-    SQLITESTUDIO->initPlugins();
+    if (!doNotLoadPlugins)
+        SQLITESTUDIO->initPlugins();
 
     if (listPlugins)
     {

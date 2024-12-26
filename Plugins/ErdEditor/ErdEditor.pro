@@ -9,6 +9,8 @@ DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
     erdarrowitem.cpp \
+    erdchange.cpp \
+    erdchangeregistry.cpp \
     erdconnection.cpp \
     erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
@@ -18,11 +20,14 @@ SOURCES += \
     erdlinearrowitem.cpp \
     erdscene.cpp \
     erdsquarearrowitem.cpp \
+    erdtablewindow.cpp \
     erdview.cpp \
     erdwindow.cpp
 
 HEADERS += \
     erdarrowitem.h \
+    erdchange.h \
+    erdchangeregistry.h \
     erdconnection.h \
     erdcurvyarrowitem.h \
     erdeditor_global.h \
@@ -33,6 +38,7 @@ HEADERS += \
     erdlinearrowitem.h \
     erdscene.h \
     erdsquarearrowitem.h \
+    erdtablewindow.h \
     erdview.h \
     erdwindow.h
 

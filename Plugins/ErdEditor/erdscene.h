@@ -24,6 +24,7 @@ class ErdScene : public QGraphicsScene
         ErdArrowItem::Type getArrowType() const;
         void applyConfig(const QHash<QString, QVariant>& erdLayout);
         QHash<QString, QVariant> getConfig();
+        void placeNewEntity(ErdEntity* entity);
 
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
         static constexpr const char* CFG_KEY_SCENE_RECT = "sceneRect";
@@ -50,7 +51,6 @@ class ErdScene : public QGraphicsScene
         static constexpr qreal sceneMargin = 200;
 
     public slots:
-        void newTable();
         void arrangeEntitiesNeato(bool skipConfirm = false);
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();

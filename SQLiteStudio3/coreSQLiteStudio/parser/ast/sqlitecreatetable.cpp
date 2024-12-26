@@ -61,7 +61,7 @@ SqliteCreateTable::~SqliteCreateTable()
 {
 }
 
-SqliteStatement*SqliteCreateTable::clone()
+SqliteStatement* SqliteCreateTable::clone()
 {
     return new SqliteCreateTable(*this);
 }

@@ -46,6 +46,23 @@ QSharedPointer<SqliteCreateTable> ErdEntity::getTableModel() const
     return tableModel;
 }
 
+void ErdEntity::setModifiedTableModel(const QSharedPointer<SqliteCreateTable>& originalModel, const QSharedPointer<SqliteCreateTable>& model)
+{
+    oldTableModel = originalModel;
+    tableModel = model;
+    modelUpdated();
+}
+
+QSharedPointer<SqliteCreateTable> ErdEntity::getOldTableModel() const
+{
+    return oldTableModel;
+}
+
+void ErdEntity::setOldTableModel(const QSharedPointer<SqliteCreateTable>& model)
+{
+    oldTableModel = model;
+}
+
 int ErdEntity::rowIndexAt(const QPointF& point)
 {
     QPointF localCoords = mapFromScene(point);
@@ -92,6 +109,11 @@ void ErdEntity::removeConnection(ErdConnection* conn)
 QList<ErdConnection*> ErdEntity::getConnections() const
 {
     return connections;
+}
+
+QString ErdEntity::getPersistedTableName() const
+{
+    return oldTableModel.isNull() ? tableModel->table : oldTableModel->table;
 }
 
 QString ErdEntity::getTableName() const
@@ -212,6 +234,16 @@ void ErdEntity::addTableTitle()
     row->bottomLine->setPen(QPen(STYLE->standardPalette().text().color(), 0.7));
 
     rows << row;
+}
+
+bool ErdEntity::isExistingTable() const
+{
+    return existingTable;
+}
+
+void ErdEntity::setExistingTable(bool newExistingTable)
+{
+    existingTable = newExistingTable;
 }
 
 void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)

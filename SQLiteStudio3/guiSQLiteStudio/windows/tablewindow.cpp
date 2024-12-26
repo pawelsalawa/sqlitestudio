@@ -36,7 +36,6 @@
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
-#include <QDebug>
 #include <QMessageBox>
 #include <tablemodifier.h>
 #include <QProgressBar>
@@ -89,6 +88,18 @@ TableWindow::TableWindow(QWidget *parent, Db* db, const QString& database, const
 {
     init();
     initDbAndTable();
+    applyInitialTab();
+}
+
+TableWindow::TableWindow(QWidget* parent, Db* db, const QString& database, const QString& table, bool existingTable) :
+    MdiChild(parent),
+    db(db),
+    database(database),
+    table(table),
+    ui(new Ui::TableWindow),
+    existingTable(existingTable)
+{
+    init();
     applyInitialTab();
 }
 
@@ -212,7 +223,7 @@ void TableWindow::createActions()
 void TableWindow::createStructureActions()
 {
     createAction(REFRESH_STRUCTURE, ICONS.RELOAD, tr("Refresh structure", "table window"), this, SLOT(refreshStructure()), ui->structureToolBar, ui->structureView);
-    ui->structureToolBar->addSeparator();
+    separatorAfterAction[REFRESH_STRUCTURE] = ui->structureToolBar->addSeparator();
     createAction(COMMIT_STRUCTURE, ICONS.COMMIT, tr("Commit structure changes", "table window"), this, SLOT(commitStructure()), ui->structureToolBar, ui->structureView);
     createAction(ROLLBACK_STRUCTURE, ICONS.ROLLBACK, tr("Rollback structure changes", "table window"), this, SLOT(rollbackStructure()), ui->structureToolBar, ui->structureView);
     createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add column", "table window"), this, SLOT(addColumn()), ui->structureToolBar, ui->structureView);
@@ -220,14 +231,14 @@ void TableWindow::createStructureActions()
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "table window"), this, SLOT(delColumn()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
-    ui->structureToolBar->addSeparator();
+    separatorAfterAction[MOVE_COLUMN_DOWN] = ui->structureToolBar->addSeparator();
     createAction(ADD_INDEX_STRUCT, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->structureToolBar, ui->structureView);
     createAction(ADD_TRIGGER_STRUCT, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->structureToolBar, ui->structureView);
-    ui->structureToolBar->addSeparator();
+    separatorAfterAction[ADD_TRIGGER_STRUCT] = ui->structureToolBar->addSeparator();
     ui->structureToolBar->addAction(actionMap[IMPORT]);
     ui->structureToolBar->addAction(actionMap[EXPORT]);
     ui->structureToolBar->addAction(actionMap[POPULATE]);
-    ui->structureToolBar->addSeparator();
+    separatorAfterAction[POPULATE] = ui->structureToolBar->addSeparator();
     createAction(CREATE_SIMILAR, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
     createAction(RESET_AUTOINCREMENT, ICONS.RESET_AUTOINCREMENT, tr("Reset autoincrement value", "table window"), this, SLOT(resetAutoincrement()), ui->structureToolBar);
 
@@ -237,7 +248,7 @@ void TableWindow::createStructureActions()
     createAction(DEL_TABLE_CONSTRAINT, ICONS.TABLE_COLUMN_DELETE, tr("Delete table constraint", "table window"), this, SLOT(delConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(MOVE_CONSTRAINT_UP, ICONS.MOVE_UP, tr("Move table constraint up", "table window"), this, SLOT(moveConstraintUp()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(MOVE_CONSTRAINT_DOWN, ICONS.MOVE_DOWN, tr("Move table constraint down", "table window"), this, SLOT(moveConstraintDown()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    ui->tableConstraintsToolbar->addSeparator();
+    separatorAfterAction[MOVE_CONSTRAINT_DOWN] = ui->tableConstraintsToolbar->addSeparator();
     createAction(ADD_TABLE_PK, ICONS.CONSTRAINT_PRIMARY_KEY_ADD, tr("Add table primary key", "table window"), this, SLOT(addPk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(ADD_TABLE_FK, ICONS.CONSTRAINT_FOREIGN_KEY_ADD, tr("Add table foreign key", "table window"), this, SLOT(addFk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(ADD_TABLE_UNIQUE, ICONS.CONSTRAINT_UNIQUE_ADD, tr("Add table unique constraint", "table window"), this, SLOT(addUnique()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
@@ -260,7 +271,7 @@ void TableWindow::createDataFormActions()
 void TableWindow::createIndexActions()
 {
     createAction(REFRESH_INDEXES, ICONS.RELOAD, tr("Refresh index list", "table window"), this, SLOT(updateIndexes()), ui->indexToolBar, ui->indexList);
-    ui->indexToolBar->addSeparator();
+    separatorAfterAction[REFRESH_INDEXES] = ui->indexToolBar->addSeparator();
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->indexToolBar, ui->indexList);
     createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit index", "table window"), this, SLOT(editCurrentIndex()), ui->indexToolBar, ui->indexList);
     createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Delete index", "table window"), this, SLOT(delIndex()), ui->indexToolBar, ui->indexList);
@@ -270,7 +281,7 @@ void TableWindow::createIndexActions()
 void TableWindow::createTriggerActions()
 {
     createAction(REFRESH_TRIGGERS, ICONS.RELOAD, tr("Refresh trigger list", "table window"), this, SLOT(updateTriggers()), ui->triggerToolBar, ui->triggerList);
-    ui->triggerToolBar->addSeparator();
+    separatorAfterAction[REFRESH_TRIGGERS] = ui->triggerToolBar->addSeparator();
     createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->triggerToolBar, ui->triggerList);
     createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit trigger", "table window"), this, SLOT(editTrigger()), ui->triggerToolBar, ui->triggerList);
     createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete trigger", "table window"), this, SLOT(delTrigger()), ui->triggerToolBar, ui->triggerList);
@@ -322,8 +333,30 @@ void TableWindow::delColumn(const QModelIndex& idx)
 
 void TableWindow::executeStructureChanges()
 {
-    QStringList sqls;
+    QStringList sqls = generateStructureChangeStatements();
+    if (sqls.isEmpty())
+        return;
 
+    if (!CFG_UI.General.DontShowDdlPreview.get())
+    {
+        DdlPreviewDialog dialog(db, this);
+        dialog.setDdl(sqls);
+        if (dialog.exec() != QDialog::Accepted)
+            return;
+    }
+
+    modifyingThisTable = true;
+    structureExecutor->setDb(db);
+    structureExecutor->setQueries(sqls);
+    structureExecutor->setDisableForeignKeys(true);
+    structureExecutor->setDisableObjectDropsDetection(true);
+    widgetCover->show();
+    structureExecutor->exec();
+}
+
+QStringList TableWindow::generateStructureChangeStatements()
+{
+    QStringList sqls;
     createTable->rebuildTokens();
     if (!existingTable)
     {
@@ -349,27 +382,12 @@ void TableWindow::executeStructureChanges()
                 dialog.addWarning(warn);
 
             if (dialog.exec() != QDialog::Accepted)
-                return;
+                return QStringList();
         }
 
         sqls = tableModifier->generateSqls();
     }
-
-    if (!CFG_UI.General.DontShowDdlPreview.get())
-    {
-        DdlPreviewDialog dialog(db, this);
-        dialog.setDdl(sqls);
-        if (dialog.exec() != QDialog::Accepted)
-            return;
-    }
-
-    modifyingThisTable = true;
-    structureExecutor->setDb(db);
-    structureExecutor->setQueries(sqls);
-    structureExecutor->setDisableForeignKeys(true);
-    structureExecutor->setDisableObjectDropsDetection(true);
-    widgetCover->show();
-    structureExecutor->exec();
+    return sqls;
 }
 
 void TableWindow::updateAfterInit()
@@ -588,25 +606,12 @@ void TableWindow::setupCoverWidget()
 
 void TableWindow::parseDdl()
 {
-    if (existingTable)
-    {
-        SchemaResolver resolver(db);
-        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, table, SchemaResolver::TABLE);
-        if (!parsedObject.dynamicCast<SqliteCreateTable>())
-        {
-            notifyError(tr("Could not process the %1 table correctly. Unable to open a table window.").arg(table));
-            invalid = true;
-            return;
-        }
+    if (!resolveCreateTableStatement())
+        return;
 
-        createTable = parsedObject.dynamicCast<SqliteCreateTable>();
-    }
-    else
-    {
-        createTable = SqliteCreateTablePtr::create();
-        createTable->table = table;
-    }
-    originalCreateTable = SqliteCreateTablePtr::create(*createTable);
+    if (!resolveOriginalCreateTableStatement())
+        return;
+
     structureModel->setCreateTable(createTable.data());
     structureConstraintsModel->setCreateTable(createTable.data());
     constraintTabModel->setCreateTable(createTable.data());
@@ -619,6 +624,35 @@ void TableWindow::parseDdl()
     updateStructureToolbarState();
     updateTableConstraintsToolbarState();
     updateDdlTab();
+}
+
+bool TableWindow::resolveCreateTableStatement()
+{
+    if (existingTable)
+    {
+        SchemaResolver resolver(db);
+        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, table, SchemaResolver::TABLE);
+        if (!parsedObject.dynamicCast<SqliteCreateTable>())
+        {
+            notifyError(tr("Could not process the %1 table correctly. Unable to open a table window.").arg(table));
+            invalid = true;
+            return false;
+        }
+
+        createTable = parsedObject.dynamicCast<SqliteCreateTable>();
+    }
+    else
+    {
+        createTable = SqliteCreateTablePtr::create();
+        createTable->table = table;
+    }
+    return true;
+}
+
+bool TableWindow::resolveOriginalCreateTableStatement()
+{
+    originalCreateTable = SqliteCreateTablePtr::create(*createTable);
+    return true;
 }
 
 void TableWindow::createDbCombo()
@@ -714,6 +748,11 @@ QString TableWindow::getTitleForMdiWindow()
 Db* TableWindow::getDb() const
 {
     return db;
+}
+
+SqliteCreateTablePtr TableWindow::getTableStatement() const
+{
+    return createTable;
 }
 
 QString TableWindow::getTable() const

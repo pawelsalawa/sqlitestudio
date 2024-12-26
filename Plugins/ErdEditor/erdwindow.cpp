@@ -9,10 +9,13 @@
 #include "style.h"
 #include "erdeditorplugin.h"
 #include "services/config.h"
+#include "erdentity.h"
+#include "erdtablewindow.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
 #include <QShortcut>
+#include <QGraphicsOpacityEffect>
 
 ErdWindow::ErdWindow() :
     ui(new Ui::ErdWindow)
@@ -36,6 +39,7 @@ ErdWindow::ErdWindow(const ErdWindow& other) :
 
 ErdWindow::~ErdWindow()
 {
+    disconnect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
     delete ui;
     delete windowIcon;
     delete fdpIcon;
@@ -50,6 +54,15 @@ void ErdWindow::staticInit()
 void ErdWindow::init()
 {
     ui->setupUi(this);
+
+    ui->splitter->setSizes({400, 200});
+    ui->splitter->setStretchFactor(0, 2);
+    ui->splitter->setStretchFactor(1, 1);
+
+    noSideWidgetContents = ui->noContentWidget;
+    QGraphicsOpacityEffect *opacityEffect = new QGraphicsOpacityEffect(noSideWidgetContents);
+    opacityEffect->setOpacity(0.5);
+    noSideWidgetContents->setGraphicsEffect(opacityEffect);
 
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
@@ -71,6 +84,7 @@ void ErdWindow::init()
     initActions();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
+    connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
     connect(actionMap[ADD_CONNECTION], SIGNAL(toggled(bool)), ui->graphView, SLOT(setDraftingConnectionMode(bool)));
     connect(ui->graphView, &ErdView::draftConnectionRemoved, [this]()
     {
@@ -114,6 +128,37 @@ void ErdWindow::cancelCurrentAction()
         ui->graphView->abortDraftConnection();
         return;
     }
+}
+
+void ErdWindow::newTable()
+{
+    SqliteCreateTable* tableModel = new SqliteCreateTable();
+    tableModel->table = tr("table name", "ERD editor");
+
+    ErdEntity* entity = new ErdEntity(tableModel);
+    entity->setExistingTable(false);
+    scene->placeNewEntity(entity);
+
+    selectItem(entity);
+}
+
+void ErdWindow::itemSelectionChanged()
+{
+    QList<QGraphicsItem*> selectedItems = scene->selectedItems();
+    if (selectedItems.size() != 1)
+        clearSidePanel();
+    else
+        showSidePanelPropertiesFor(selectedItems[0]);
+}
+
+void ErdWindow::commitPendingChanges()
+{
+
+}
+
+void ErdWindow::rollbackPendingChanges()
+{
+
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -189,7 +234,10 @@ void ErdWindow::createActions()
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
     connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
 
-    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), scene, SLOT(newTable()), ui->toolBar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(newTable()), ui->toolBar);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(actionMap[ADD_CONNECTION]);
     ui->toolBar->addSeparator();
@@ -237,6 +285,41 @@ void ErdWindow::parseAndRestore()
         erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
         if (!tryToApplyConfig(erdConfig, tableNames))
             scene->arrangeEntitiesFdp(true);
+    }
+}
+
+void ErdWindow::clearSidePanel()
+{
+    if (currentSideWidget)
+    {
+        ui->sidePanel->layout()->removeWidget(currentSideWidget);
+        currentSideWidget->deleteLater();
+        currentSideWidget = nullptr;
+        ui->sidePanel->layout()->addWidget(noSideWidgetContents);
+    }
+}
+
+void ErdWindow::setSidePanelWidget(QWidget* widget)
+{
+    if (currentSideWidget)
+    {
+        ui->sidePanel->layout()->removeWidget(currentSideWidget);
+        currentSideWidget->deleteLater();
+    }
+    else
+        ui->sidePanel->layout()->removeWidget(noSideWidgetContents);
+
+    currentSideWidget = widget;
+    ui->sidePanel->layout()->addWidget(widget);
+}
+
+void ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
+{
+    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    if (entity)
+    {
+        ErdTableWindow* tableMdiChild = new ErdTableWindow(db, entity);
+        setSidePanelWidget(tableMdiChild);
     }
 }
 
@@ -289,6 +372,12 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     updateArrowTypeButtons();
 
     return true;
+}
+
+void ErdWindow::selectItem(QGraphicsItem* item)
+{
+    scene->clearSelection();
+    item->setSelected(true);
 }
 
 Icon* ErdWindow::getIconNameForMdiWindow()

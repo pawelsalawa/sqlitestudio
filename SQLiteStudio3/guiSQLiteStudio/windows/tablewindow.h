@@ -122,6 +122,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
 
         QString getTable() const;
         Db* getDb() const;
+        SqliteCreateTablePtr getTableStatement() const;
         bool handleInitialFocus();
         bool isUncommitted() const;
         QString getQuitUncommittedConfirmMessage() const;
@@ -129,6 +130,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         Db* getAssociatedDb() const;
 
     protected:
+        TableWindow(QWidget *parent, Db* db, const QString& database, const QString& table, bool existingTable);
+
         void changeEvent(QEvent *e);
         QVariant saveSession();
         bool restoreSession(const QVariant& sessionValue);
@@ -139,10 +142,11 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool restoreSessionNextTime();
         QToolBar* getToolBar(int toolbar) const;
 
-    private:
         void init();
         void newTable();
         void parseDdl();
+        virtual bool resolveCreateTableStatement();
+        virtual bool resolveOriginalCreateTableStatement();
         void createDbCombo();
         void initDbAndTable();
         void setupCoverWidget();
@@ -155,7 +159,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void delColumn(const QModelIndex& idx);
         void editConstraint(const QModelIndex& idx);
         void delConstraint(const QModelIndex& idx);
-        void executeStructureChanges();
+        virtual void executeStructureChanges();
+        QStringList generateStructureChangeStatements();
         void updateAfterInit();
         QModelIndex structureCurrentIndex() const;
         void addConstraint(ConstraintDialog::Constraint mode);
@@ -164,7 +169,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         TokenList indexColumnTokens(SqliteCreateIndexPtr index);
         QString getCurrentIndex() const;
         QString getCurrentTrigger() const;
-        void applyInitialTab();
+        virtual void applyInitialTab();
         void resizeStructureViewColumns();
         int getDataTabIdx() const;
         int getStructureTabIdx() const;
@@ -191,8 +196,9 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         CenteredIconItemDelegate* constraintColumnsDelegate = nullptr;
         bool tabsMoving = false;
         DbComboBox* dbCombo = nullptr;
+        QHash<Action, QAction*> separatorAfterAction;
 
-    private slots:
+    protected slots:
         void executionSuccessful();
         void executionFailed(const QString& errorText);
         void dbClosedFinalCleanup();
@@ -200,7 +206,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void checkIfIndexDeleted(const QString& object);
         void checkIfTriggerDeleted(const QString& object);
         void refreshStructure();
-        void commitStructure(bool skipWarning = false);
+        virtual void commitStructure(bool skipWarning = false);
         void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();

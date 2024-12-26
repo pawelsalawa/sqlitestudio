@@ -101,10 +101,14 @@ QHash<QString, QVariant> ErdScene::getConfig()
     QHash<QString, QVariant> erdEntities;
     for (ErdEntity*& entity : entities)
     {
+        if (!entity->isExistingTable())
+            continue;
+
         QHash<QString, QVariant> singleEntityConfig;
         singleEntityConfig[CFG_KEY_POS] = entity->pos();
         // TODO entity color
-        erdEntities[entity->getTableName()] = singleEntityConfig;
+        qDebug() << "Saving position for" << entity->getPersistedTableName();
+        erdEntities[entity->getPersistedTableName()] = singleEntityConfig;
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
     erdConfig[CFG_KEY_SCENE_RECT] = sceneRect();
@@ -203,28 +207,16 @@ void ErdScene::refreshSceneRect()
     setSceneRect(boundingRect);
 }
 
-void ErdScene::newTable()
+void ErdScene::placeNewEntity(ErdEntity* entity)
 {
-    SqliteCreateTable* tableModel = new SqliteCreateTable();
-    tableModel->table = tr("new_table", "ERD editor");
+    entity->setPos(getPosForNewEntity());
+    entity->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
+    addItem(entity);
 
-    SqliteCreateTable::Column* col1 = new SqliteCreateTable::Column(tr("column 1", "ERD editor"), nullptr, {});
-    col1->setParent(tableModel);
-    tableModel->columns << col1;
-
-    SqliteCreateTable::Column* col2 = new SqliteCreateTable::Column(tr("column 2", "ERD editor"), nullptr, {});
-    col2->setParent(tableModel);
-    tableModel->columns << col2;
-
-    ErdEntity* entityItem = new ErdEntity(tableModel);
-    entityItem->setPos(getPosForNewEntity());
-    entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
-    addItem(entityItem);
-
-    entities << entityItem;
+    entities << entity;
 
     refreshSceneRect();
-    emit showEntityToUser(entityItem);
+    emit showEntityToUser(entity);
 }
 
 void ErdScene::arrangeEntities(int algo)

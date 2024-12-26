@@ -13,6 +13,7 @@ namespace Ui {
 class ErdScene;
 class ErdEntity;
 class QShortcut;
+class ErdChangeRegistry;
 
 class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 {
@@ -21,6 +22,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
     public:
         enum Action
         {
+            COMMIT,
+            ROLLBACK,
             NEW_TABLE,
             ARRANGE_FDP,
             ARRANGE_NEATO,
@@ -58,6 +61,11 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void applyArrowType(ErdArrowItem::Type arrowType);
         void updateArrowTypeButtons();
         bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames);
+        void selectItem(QGraphicsItem* item);
+        void parseAndRestore();
+        void clearSidePanel();
+        void setSidePanelWidget(QWidget* widget);
+        void showSidePanelPropertiesFor(QGraphicsItem* item);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
 
@@ -71,8 +79,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Icon* lineSquareIcon = nullptr;
         ErdScene* scene = nullptr;
         QShortcut* escHotkey = nullptr;
-
-        void parseAndRestore();
+        ErdChangeRegistry* changeRegistry = nullptr;
+        QWidget* currentSideWidget = nullptr;
+        QWidget* noSideWidgetContents = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -81,6 +90,10 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void useCurvyLine();
         void useSquareLine();
         void cancelCurrentAction();
+        void newTable();
+        void itemSelectionChanged();
+        void commitPendingChanges();
+        void rollbackPendingChanges();
 };
 
 #endif // ERDWINDOW_H
