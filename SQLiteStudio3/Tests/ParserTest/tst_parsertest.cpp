@@ -51,6 +51,7 @@ class ParserTest : public QObject
         void testBigNum();
         void testSelectWith();
         void testInsertWithDoubleQuoteValues();
+        void testInsertIncompleteOnColumnName();
         void testParseAndRebuildAlias();
         void testRebuildTokensUpdate();
         void testRebuildTokensInsertUpsert();
@@ -467,6 +468,18 @@ void ParserTest::testInsertWithDoubleQuoteValues()
     insert->rebuildTokens();
     QString detokenized = insert->detokenize().replace(" ", "");
     QVERIFY(sql.replace(" ", "") == detokenized);
+}
+
+void ParserTest::testInsertIncompleteOnColumnName()
+{
+    QString sql = "INSERT INTO tabName (";
+    bool res = parser3->parse(sql, true);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    const SqliteInsertPtr insert = parser3->getQueries().first().dynamicCast<SqliteInsert>();
+    QVERIFY(insert->table == "tabName");
+    QVERIFY(insert->columnNames.isEmpty());
 }
 
 void ParserTest::testParseAndRebuildAlias()

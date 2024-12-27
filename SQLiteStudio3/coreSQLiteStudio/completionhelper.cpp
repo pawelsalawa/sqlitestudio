@@ -257,7 +257,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             results += getExpectedToken(ExpectedToken::OTHER, QString(), QString(), tr("Any word"));
             break;
         case Token::STRING:
-            results += getExpectedToken(ExpectedToken::STRING, QString(), QString(), tr("String"));
+            results += getExpectedToken(ExpectedToken::STRING, "''", QString(), tr("String"));
             break;
         case Token::FLOAT:
             results += getExpectedToken(ExpectedToken::NUMBER, QString(), QString(), tr("Number"));
@@ -275,7 +275,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             results += getExpectedToken(ExpectedToken::OPERATOR, ")");
             break;
         case Token::BLOB:
-            results += getExpectedToken(ExpectedToken::BLOB, QString(), QString(), tr("BLOB literal"));
+            results += getExpectedToken(ExpectedToken::BLOB, "X''", QString(), tr("BLOB literal"));
             break;
         case Token::KEYWORD:
             results += getExpectedToken(ExpectedToken::KEYWORD, token->value);
@@ -1070,6 +1070,10 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::EXPR;
     }
+    else if (isInInsertColumns())
+    {
+        context = Context::INSERT_COLUMNS;
+    }
     else if (isInUpdateReturning())
     {
         context = Context::UPDATE_RETURNING;
@@ -1177,6 +1181,29 @@ bool CompletionHelper::isInDeleteReturning()
 bool CompletionHelper::isInInsertReturning()
 {
     return isIn(SqliteQueryType::Insert, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInInsertColumns()
+{
+    if (isIn(SqliteQueryType::Insert, "idlist_opt", QString()))
+        return true;
+
+    if (!parsedQuery)
+        return false;
+
+    if (parsedQuery->queryType != SqliteQueryType::Insert)
+        return false;
+
+    if (parsedQuery->tokensMap.contains("rp_opt"))
+    {
+        TokenList rpTokens = parsedQuery->tokensMap["rp_opt"];
+        if (rpTokens.isEmpty())
+            return parsedQuery->tokensMap["LP"][0]->start <= cursorPosition;
+        else
+            return rpTokens[0]->start >= cursorPosition;
+    }
+
+    return false;
 }
 
 bool CompletionHelper::isIn(SqliteQueryType queryType, const QString &tokenMapKey, const QString &prefixKeyword)

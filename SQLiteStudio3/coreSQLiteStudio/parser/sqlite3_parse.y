@@ -1566,6 +1566,27 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                 objectForTokens = X;
                                             }
 
+
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO fullname(N)
+            LP idlist(I) rp_opt(R).         {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new SqliteInsert(
+                                                        C->replace,
+                                                        C->orConflict,
+                                                        N->name1,
+                                                        N->name2,
+                                                        *(I),
+                                                        W,
+                                                        QList<SqliteResultColumn*>()
+                                                    );
+                                                objectForTokens = X;
+                                                delete N;
+                                                delete I;
+                                                delete C;
+                                                delete R;
+                                            }
+
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO.                           {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
@@ -1963,6 +1984,12 @@ expr(X) ::= exprx(E).                       {X = E;}
 %destructor not_opt {parser_safe_delete($$);}
 not_opt(X) ::= .                            {X = new bool(false);}
 not_opt(X) ::= NOT.                         {X = new bool(true);}
+
+%type rp_opt {bool*}
+%destructor rp_opt {parser_safe_delete($$);}
+rp_opt(X) ::= .                            {X = new bool(false);}
+rp_opt(X) ::= RP.                          {X = new bool(true);}
+
 
 %type likeop {SqliteExpr::LikeOp*}
 %destructor likeop {parser_safe_delete($$);}

@@ -119,6 +119,8 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
         case CompletionHelper::Context::UPDATE_WHERE:
             result = compareColumnsForUpdateCol(token1, token2, &ok);
             break;
+        case CompletionHelper::Context::INSERT_COLUMNS:
+            result = compareColumnsForInsertCol(token1, token2, &ok);
         case CompletionHelper::Context::DELETE_WHERE:
             result = compareColumnsForDeleteCol(token1, token2, &ok);
             break;
@@ -195,7 +197,7 @@ bool CompletionComparer::compareColumnsForUpdateCol(const ExpectedTokenPtr &toke
     if (token1->contextInfo == token2->contextInfo)
         return compareValues(token1->value, token2->value);
 
-    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables);
+    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables, true);
 }
 
 bool CompletionComparer::compareColumnsForDeleteCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
@@ -204,7 +206,16 @@ bool CompletionComparer::compareColumnsForDeleteCol(const ExpectedTokenPtr &toke
     if (token1->contextInfo == token2->contextInfo)
         return compareValues(token1->value, token2->value);
 
-    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables);
+    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables, true);
+}
+
+bool CompletionComparer::compareColumnsForInsertCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
+{
+    *result = true;
+    if (token1->contextInfo == token2->contextInfo)
+        return compareValues(token1->value, token2->value);
+
+    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables, true);
 }
 
 bool CompletionComparer::compareColumnsForCreateTable(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result)
@@ -307,7 +318,7 @@ bool CompletionComparer::compareValues(const ExpectedTokenPtr &token1, const Exp
 
 bool CompletionComparer::compareValues(const QString &token1, const QString &token2, bool handleSystemNames)
 {
-    //qDebug() << "comparing" << token1 << "and" << token2 << "=" << token1.compare(token2, Qt::CaseInsensitive);
+    // qDebug() << "comparing" << token1 << "and" << token2 << "=" << token1.compare(token2, Qt::CaseInsensitive);
     if (handleSystemNames)
     {
         bool firstIsSystem = token1.toLower().startsWith("sqlite_");
