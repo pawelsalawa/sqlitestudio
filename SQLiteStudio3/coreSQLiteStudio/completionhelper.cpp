@@ -1070,6 +1070,10 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::EXPR;
     }
+    else if (isInInsertColumns())
+    {
+        context = Context::INSERT_COLUMNS;
+    }
     else if (isInUpdateReturning())
     {
         context = Context::UPDATE_RETURNING;
@@ -1177,6 +1181,29 @@ bool CompletionHelper::isInDeleteReturning()
 bool CompletionHelper::isInInsertReturning()
 {
     return isIn(SqliteQueryType::Insert, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInInsertColumns()
+{
+    if (isIn(SqliteQueryType::Insert, "idlist_opt", QString()))
+        return true;
+
+    if (!parsedQuery)
+        return false;
+
+    if (parsedQuery->queryType != SqliteQueryType::Insert)
+        return false;
+
+    if (parsedQuery->tokensMap.contains("rp_opt"))
+    {
+        TokenList rpTokens = parsedQuery->tokensMap["rp_opt"];
+        if (rpTokens.isEmpty())
+            return parsedQuery->tokensMap["LP"][0]->start <= cursorPosition;
+        else
+            return rpTokens[0]->start >= cursorPosition;
+    }
+
+    return false;
 }
 
 bool CompletionHelper::isIn(SqliteQueryType queryType, const QString &tokenMapKey, const QString &prefixKeyword)
