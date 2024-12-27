@@ -2054,7 +2054,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="581"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
-      <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
+      <translation>你是&apos;使用相对的文件路径， 根据应用程序&apos;s 工作目录，它们将被解析为 &quot;%1&quot; 。&apos;总是更好地使用绝对文件路径来避免意外的数据库位置。</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="591"/>
@@ -3439,11 +3439,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="422"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>Enter a non-empty, unique name of the function.</source>
-      <translation type="vanished">请输入非空且唯一的函数名称。</translation>
+      <translation>输入唯一的非空函数名称。如果输入参数的数量不同，则允许名称重复。</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="435"/>
@@ -4438,7 +4434,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
-      <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
+      <translation>无法编辑内联子查询的结果列。</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
