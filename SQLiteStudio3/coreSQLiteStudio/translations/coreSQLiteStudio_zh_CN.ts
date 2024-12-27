@@ -129,18 +129,18 @@
     <message>
       <location filename="../completionhelper.cpp" line="260"/>
       <source>String</source>
-      <translation type="unfinished">String</translation>
+      <translation>字符串</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="263"/>
       <location filename="../completionhelper.cpp" line="266"/>
       <source>Number</source>
-      <translation type="unfinished">Number</translation>
+      <translation>编号</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="278"/>
       <source>BLOB literal</source>
-      <translation type="unfinished">BLOB literal</translation>
+      <translation>BLOB 文字</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="438"/>
