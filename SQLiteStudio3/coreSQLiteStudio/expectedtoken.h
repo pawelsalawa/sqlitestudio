@@ -23,15 +23,15 @@ struct API_EXPORT ExpectedToken
         VIEW,
         DATABASE,
         NO_VALUE,
+        STRING,
+        NUMBER,
+        BLOB,
+        OTHER,
         KEYWORD,
         FUNCTION,
         OPERATOR,
         COLLATION,
-        PRAGMA,
-        STRING,
-        NUMBER,
-        BLOB,
-        OTHER
+        PRAGMA
     };
 
     /**

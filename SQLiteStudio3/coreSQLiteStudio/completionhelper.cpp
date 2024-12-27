@@ -257,13 +257,13 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             results += getExpectedToken(ExpectedToken::OTHER, QString(), QString(), tr("Any word"));
             break;
         case Token::STRING:
-            results += getExpectedToken(ExpectedToken::STRING);
+            results += getExpectedToken(ExpectedToken::STRING, QString(), QString(), tr("String"));
             break;
         case Token::FLOAT:
-            results += getExpectedToken(ExpectedToken::NUMBER);
+            results += getExpectedToken(ExpectedToken::NUMBER, QString(), QString(), tr("Number"));
             break;
         case Token::INTEGER:
-            results += getExpectedToken(ExpectedToken::NUMBER);
+            results += getExpectedToken(ExpectedToken::NUMBER, QString(), QString(), tr("Number"));
             break;
         case Token::OPERATOR:
             results += getExpectedToken(ExpectedToken::OPERATOR, token->value);
@@ -275,7 +275,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             results += getExpectedToken(ExpectedToken::OPERATOR, ")");
             break;
         case Token::BLOB:
-            results += getExpectedToken(ExpectedToken::BLOB);
+            results += getExpectedToken(ExpectedToken::BLOB, QString(), QString(), tr("BLOB literal"));
             break;
         case Token::KEYWORD:
             results += getExpectedToken(ExpectedToken::KEYWORD, token->value);

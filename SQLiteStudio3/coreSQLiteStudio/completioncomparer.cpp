@@ -11,6 +11,9 @@ CompletionComparer::CompletionComparer(CompletionHelper *helper)
 
 bool CompletionComparer::operator ()(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)
 {
+    if (token2->type == ExpectedToken::OTHER  || token1->type == ExpectedToken::OTHER)
+        qDebug() << "";
+
     if ((token1->priority > 0 || token2->priority > 0) && token1->priority != token2->priority)
         return token1->priority > token2->priority;
 
