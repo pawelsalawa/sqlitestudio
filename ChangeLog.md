@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.13
+- BUGFIX: Restored missing completer entries: string, number, BLOB literal.
+
 ### 3.4.12
 - BIGFIX: #5179 Fixed results returned from query joining the same table twice.
 - BIGFIX: #5179 Fixed smart execution when joining tables with USING clause, so the result metadata is extracted properly and results can be edited.
