@@ -127,6 +127,22 @@
       <translation type="unfinished"/>
     </message>
     <message>
+      <location filename="../completionhelper.cpp" line="260"/>
+      <source>String</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="266"/>
+      <source>Number</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="278"/>
+      <source>BLOB literal</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation type="unfinished"/>
@@ -810,12 +826,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2527"/>
       <source>Parser stack overflow</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5962"/>
       <source>Syntax error</source>
       <translation type="unfinished"/>
     </message>

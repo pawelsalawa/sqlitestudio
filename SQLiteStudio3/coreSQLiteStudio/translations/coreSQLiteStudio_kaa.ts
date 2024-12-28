@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="349"/>
-      <location filename="../db/abstractdb.cpp" line="366"/>
+      <location filename="../db/abstractdb.cpp" line="352"/>
+      <location filename="../db/abstractdb.cpp" line="369"/>
       <source>Cannot execute query on closed database.</source>
       <translation type="unfinished">Cannot execute query on closed database.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="661"/>
+      <location filename="../db/abstractdb.cpp" line="709"/>
       <source>Error attaching database %1: %2</source>
       <translation type="unfinished">Error attaching database %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="931"/>
+      <location filename="../db/abstractdb.cpp" line="958"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -127,6 +127,22 @@
       <translation type="unfinished">Any word</translation>
     </message>
     <message>
+      <location filename="../completionhelper.cpp" line="260"/>
+      <source>String</source>
+      <translation type="unfinished">String</translation>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="266"/>
+      <source>Number</source>
+      <translation type="unfinished">Number</translation>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="278"/>
+      <source>BLOB literal</source>
+      <translation type="unfinished">BLOB literal</translation>
+    </message>
+    <message>
       <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation type="unfinished">Default database</translation>
@@ -189,59 +205,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
-      <location filename="../dbobjectorganizer.cpp" line="403"/>
+      <location filename="../dbobjectorganizer.cpp" line="367"/>
+      <location filename="../dbobjectorganizer.cpp" line="398"/>
       <source>Error while creating table in target database: %1</source>
       <translation type="unfinished">Error while creating table in target database: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
+      <location filename="../dbobjectorganizer.cpp" line="367"/>
       <source>Could not parse table.</source>
       <translation type="unfinished">Could not parse table.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="417"/>
+      <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="441"/>
+      <location filename="../dbobjectorganizer.cpp" line="436"/>
       <source>Error while copying data for table %1: %2</source>
       <translation type="unfinished">Error while copying data for table %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="460"/>
-      <location filename="../dbobjectorganizer.cpp" line="467"/>
-      <location filename="../dbobjectorganizer.cpp" line="494"/>
+      <location filename="../dbobjectorganizer.cpp" line="455"/>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
+      <location filename="../dbobjectorganizer.cpp" line="489"/>
       <source>Error while copying data to table %1: %2</source>
       <translation type="unfinished">Error while copying data to table %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="516"/>
+      <location filename="../dbobjectorganizer.cpp" line="511"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation type="unfinished">Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="518"/>
       <source>Error while creating view in target database: %1</source>
       <translation type="unfinished">Error while creating view in target database: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="523"/>
       <source>Error while creating index in target database: %1</source>
       <translation type="unfinished">Error while creating index in target database: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="533"/>
+      <location filename="../dbobjectorganizer.cpp" line="528"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation type="unfinished">Error while creating trigger in target database: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="664"/>
-      <location filename="../dbobjectorganizer.cpp" line="671"/>
-      <location filename="../dbobjectorganizer.cpp" line="680"/>
+      <location filename="../dbobjectorganizer.cpp" line="668"/>
+      <location filename="../dbobjectorganizer.cpp" line="675"/>
+      <location filename="../dbobjectorganizer.cpp" line="684"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
     </message>
@@ -353,48 +369,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="197"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="199"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
       <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="290"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="292"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="404"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation type="unfinished">No such function registered in SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="410"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="428"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation type="unfinished">Invalid regular expression pattern: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="447"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="480"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation type="unfinished">Could not open file %1 for reading: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="502"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation type="unfinished">Could not open file %1 for writting: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="522"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
       <source>Error while writting to file %1: %2</source>
       <translation type="unfinished">Error while writting to file %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="540"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
       <source>Unsupported scripting language: %1</source>
       <translation type="unfinished">Unsupported scripting language: %1</translation>
     </message>
@@ -418,7 +434,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>ImportWorker</name>
     <message>
-      <location filename="../importworker.cpp" line="25"/>
+      <location filename="../importworker.cpp" line="24"/>
       <source>No columns provided by the import plugin.</source>
       <translation type="unfinished">No columns provided by the import plugin.</translation>
     </message>
@@ -433,36 +449,36 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not commit transaction for imported data: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="102"/>
+      <location filename="../importworker.cpp" line="101"/>
       <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
       <translation type="unfinished">Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="107"/>
+      <location filename="../importworker.cpp" line="106"/>
       <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
       <translation type="unfinished">Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="126"/>
+      <location filename="../importworker.cpp" line="125"/>
       <source>Could not create table to import to: %1</source>
       <translation type="unfinished">Could not create table to import to: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="186"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="185"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Error while importing data: %1</source>
       <translation type="unfinished">Error while importing data: %1</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="135"/>
-      <location filename="../importworker.cpp" line="193"/>
+      <location filename="../importworker.cpp" line="134"/>
+      <location filename="../importworker.cpp" line="192"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation type="unfinished">Interrupted.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="180"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation type="unfinished">Could not import data row number %1. The row was ignored. Problem details: %2</translation>
     </message>
@@ -769,33 +785,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="902"/>
+      <location filename="../common/utils.cpp" line="940"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="436"/>
+      <location filename="../db/abstractdb3.h" line="437"/>
       <source>Could not open database: %1</source>
       <translation type="unfinished">Could not open database: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1225"/>
+      <location filename="../db/abstractdb3.h" line="1235"/>
       <source>Result set expired or no row available.</source>
       <translation type="unfinished">Result set expired or no row available.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation type="unfinished">Could not load extension %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="422"/>
+      <location filename="../db/abstractdb3.h" line="423"/>
       <source>Could not run WAL checkpoint: %1</source>
       <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="460"/>
+      <location filename="../db/abstractdb3.h" line="461"/>
       <source>Could not close database: %1</source>
       <translation type="unfinished">Could not close database: %1</translation>
     </message>
@@ -881,7 +897,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not resolve data source for column: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="442"/>
+      <location filename="../selectresolver.cpp" line="444"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
@@ -990,28 +1006,29 @@ The view will remain as it is.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="196"/>
+      <location filename="../db/queryexecutor.cpp" line="204"/>
       <source>Execution interrupted.</source>
       <translation type="unfinished">Execution interrupted.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="237"/>
+      <location filename="../db/queryexecutor.cpp" line="245"/>
       <source>Database is not open.</source>
       <translation type="unfinished">Database is not open.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="253"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation type="unfinished">Only one query can be executed simultaneously.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="349"/>
-      <location filename="../db/queryexecutor.cpp" line="598"/>
+      <location filename="../db/queryexecutor.cpp" line="343"/>
+      <location filename="../db/queryexecutor.cpp" line="357"/>
+      <location filename="../db/queryexecutor.cpp" line="607"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="509"/>
+      <location filename="../db/queryexecutor.cpp" line="526"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation type="unfinished">SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</translation>
     </message>
@@ -1040,37 +1057,37 @@ The view will remain as it is.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="57"/>
+      <location filename="../sqlfileexecutor.cpp" line="56"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="88"/>
+      <location filename="../sqlfileexecutor.cpp" line="87"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="104"/>
+      <location filename="../sqlfileexecutor.cpp" line="103"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="151"/>
+      <location filename="../sqlfileexecutor.cpp" line="150"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="156"/>
+      <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="162"/>
+      <location filename="../sqlfileexecutor.cpp" line="161"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="169"/>
+      <location filename="../sqlfileexecutor.cpp" line="168"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>
@@ -1111,7 +1128,7 @@ The view will remain as it is.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="863"/>
+      <location filename="../db/abstractdb3.h" line="864"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

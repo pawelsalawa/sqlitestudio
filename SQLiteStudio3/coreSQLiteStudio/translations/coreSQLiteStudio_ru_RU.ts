@@ -127,6 +127,22 @@
       <translation>Любое слово</translation>
     </message>
     <message>
+      <location filename="../completionhelper.cpp" line="260"/>
+      <source>String</source>
+      <translation type="unfinished">String</translation>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="266"/>
+      <source>Number</source>
+      <translation type="unfinished">Number</translation>
+    </message>
+    <message>
+      <location filename="../completionhelper.cpp" line="278"/>
+      <source>BLOB literal</source>
+      <translation type="unfinished">BLOB literal</translation>
+    </message>
+    <message>
       <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation>База данных по умолчанию</translation>
@@ -811,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2527"/>
       <source>Parser stack overflow</source>
       <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5962"/>
       <source>Syntax error</source>
       <translation>Синтаксическая ошибка</translation>
     </message>

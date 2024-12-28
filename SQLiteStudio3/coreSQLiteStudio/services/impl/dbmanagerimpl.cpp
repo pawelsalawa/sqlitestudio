@@ -247,6 +247,18 @@ QStringList DbManagerImpl::getDbNames()
     return nameToDb.keys();
 }
 
+QStringList DbManagerImpl::getValidDbNames()
+{
+    QReadLocker lock(&listLock);
+    QStringList result;
+    for (Db* db : dbList)
+    {
+        if (db->isValid())
+            result << db->getName();
+    }
+    return result;
+}
+
 Db* DbManagerImpl::getByName(const QString &name, Qt::CaseSensitivity cs)
 {
     QReadLocker lock(&listLock);
