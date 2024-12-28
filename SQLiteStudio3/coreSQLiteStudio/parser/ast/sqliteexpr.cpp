@@ -456,6 +456,9 @@ QStringList SqliteExpr::getTablesInStatement()
 
 QStringList SqliteExpr::getDatabasesInStatement()
 {
+    if (database.isNull() && !table.isNull() && validDbNames.contains(table, Qt::CaseInsensitive))
+        return getStrListFromValue(table); // it's a "db.", not a "db.table."
+
     return getStrListFromValue(database);
 }
 
@@ -494,7 +497,9 @@ TokenList SqliteExpr::getTableTokensInStatement()
 TokenList SqliteExpr::getDatabaseTokensInStatement()
 {
     TokenList list;
-    if (!database.isNull())
+    if (database.isNull() && !table.isNull() && validDbNames.contains(table, Qt::CaseInsensitive))
+        list << tokens[0]; // it's a "db.", not a "db.table."
+    else if (!database.isNull())
         list << tokens[0];
 
     return list;

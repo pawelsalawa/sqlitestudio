@@ -65,6 +65,7 @@ class API_EXPORT CompletionHelper : public QObject
             CREATE_TABLE,
             CREATE_TRIGGER,
             EXPR,
+            INSERT_COLUMNS,
             INSERT_RETURNING,
             UPDATE_RETURNING,
             DELETE_RETURNING
@@ -142,6 +143,7 @@ class API_EXPORT CompletionHelper : public QObject
         bool isInDeleteWhere();
         bool isInCreateTable();
         bool isInCreateTrigger();
+        bool isInInsertColumns();
         bool isInUpdateReturning();
         bool isInDeleteReturning();
         bool isInInsertReturning();

@@ -47,6 +47,11 @@ QStringList DbManagerMock::getDbNames()
     return QStringList();
 }
 
+QStringList DbManagerMock::getValidDbNames()
+{
+    return QStringList();
+}
+
 Db* DbManagerMock::getByName(const QString&, Qt::CaseSensitivity)
 {
     return nullptr;

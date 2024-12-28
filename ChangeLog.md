@@ -1,5 +1,12 @@
 # ChangeLog
 
+### 3.4.13
+- BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
+- BUGFIX: #5184 Fixed completer to show tables from implicitly attached database in case of 'SELECT other_database.'
+- BUGFIX: System tables (sqlite_*) are now pushed further in the competer proposals.
+- BUGFIX: Restored missing completer entries: string, number, BLOB literal.
+- BUGFIX: Fixed Linux installer issue related to the logname command on some Linux distributions.
+
 ### 3.4.12
 - BIGFIX: #5179 Fixed results returned from query joining the same table twice.
 - BIGFIX: #5179 Fixed smart execution when joining tables with USING clause, so the result metadata is extracted properly and results can be edited.

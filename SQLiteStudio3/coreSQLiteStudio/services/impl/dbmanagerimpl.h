@@ -40,6 +40,7 @@ class API_EXPORT DbManagerImpl : public DbManager
         QList<Db*> getValidDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
+        QStringList getValidDbNames();
         Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
         Db* getByPath(const QString& path);
         Db* createInMemDb(bool pureInit = false);

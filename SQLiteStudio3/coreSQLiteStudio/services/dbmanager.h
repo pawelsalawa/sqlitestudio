@@ -107,7 +107,7 @@ class API_EXPORT DbManager : public QObject
 
         /**
          * @brief Gives list of valid databases.
-         * @return List of open databases.
+         * @return List of valid databases.
          */
         virtual QList<Db*> getValidDbList() = 0;
 
@@ -122,6 +122,12 @@ class API_EXPORT DbManager : public QObject
          * @return List of database names that are registered in the application.
          */
         virtual QStringList getDbNames() = 0;
+
+        /**
+         * @brief Gives list of valid database names.
+         * @return List of database names that are registered and valid (no errors) in the application.
+         */
+        virtual QStringList getValidDbNames() = 0;
 
         /**
          * @brief Gives database object by its name.

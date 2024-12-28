@@ -45,6 +45,7 @@ class CompletionComparer
         bool compareColumnsForSelectResCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForUpdateCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForDeleteCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
+        bool compareColumnsForInsertCol(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForCreateTable(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareColumnsForReturning(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result);
         bool compareTables(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
