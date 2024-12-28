@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Incomplete query.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2526"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2527"/>
       <source>Parser stack overflow</source>
       <translation type="unfinished">Parser stack overflow</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5937"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5962"/>
       <source>Syntax error</source>
       <translation>Chyba syntaxe</translation>
     </message>
