@@ -2,6 +2,7 @@
 
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
+- BUGFIX: #5184 Fixed completer to show tables from implicitly attached database in case of 'SELECT other_database.'
 - BUGFIX: System tables (sqlite_*) are now pushed further in the competer proposals.
 - BUGFIX: Restored missing completer entries: string, number, BLOB literal.
 

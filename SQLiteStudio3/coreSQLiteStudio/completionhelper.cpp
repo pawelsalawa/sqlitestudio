@@ -634,6 +634,9 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumns(const QString &prefixTable)
         label = prefixTable+" = "+table;
     }
 
+    if (!dbName.isNull())
+        dbName = translateDatabase(dbName);
+
     // CREATE TRIGGER has a special "old" and "new" keywords as aliases for deleted/inserted/updated rows.
     // They should refer to a table that the trigger is created for.
     QString tableLower = table;
