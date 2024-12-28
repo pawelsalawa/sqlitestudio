@@ -5,6 +5,7 @@
 - BUGFIX: #5184 Fixed completer to show tables from implicitly attached database in case of 'SELECT other_database.'
 - BUGFIX: System tables (sqlite_*) are now pushed further in the competer proposals.
 - BUGFIX: Restored missing completer entries: string, number, BLOB literal.
+- BUGFIX: Fixed Linux installer issue related to the logname command on some Linux distributions.
 
 ### 3.4.12
 - BIGFIX: #5179 Fixed results returned from query joining the same table twice.
