@@ -2,6 +2,7 @@
 #include "../token.h"
 #include "../lexer.h"
 #include "common/unused.h"
+#include "services/dbmanager.h"
 #include <QDebug>
 
 SqliteStatement::SqliteStatement()
@@ -35,6 +36,7 @@ QStringList SqliteStatement::getContextTables(bool checkParent, bool checkChilds
 
 QStringList SqliteStatement::getContextDatabases(bool checkParent, bool checkChilds)
 {
+    prepareDbNames();
     return getContextDatabases(this, checkParent, checkChilds);
 }
 
@@ -50,6 +52,7 @@ TokenList SqliteStatement::getContextTableTokens(bool checkParent, bool checkChi
 
 TokenList SqliteStatement::getContextDatabaseTokens(bool checkParent, bool checkChilds)
 {
+    prepareDbNames();
     return getContextDatabaseTokens(this, checkParent, checkChilds);
 }
 
@@ -125,7 +128,10 @@ QStringList SqliteStatement::getContextDatabases(SqliteStatement *caller, bool c
 {
     QStringList results = getDatabasesInStatement();
     for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
+    {
+        stmt->validDbNames = this->validDbNames;
         results += stmt->getContextDatabases(this, checkParent, checkChilds);
+    }
 
     return results;
 }
@@ -152,7 +158,10 @@ TokenList SqliteStatement::getContextDatabaseTokens(SqliteStatement *caller, boo
 {
     TokenList results = getDatabaseTokensInStatement();
     for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
+    {
+        stmt->validDbNames = this->validDbNames;
         results += stmt->getContextDatabaseTokens(this, checkParent, checkChilds);
+    }
 
     return results;
 }
@@ -234,6 +243,11 @@ QList<SqliteStatement *> SqliteStatement::getContextStatements(SqliteStatement *
     }
 
     return results;
+}
+
+void SqliteStatement::prepareDbNames()
+{
+    validDbNames = DBLIST->getValidDbNames();
 }
 
 TokenList SqliteStatement::extractPrintableTokens(const TokenList &tokens, bool skipMeaningless)

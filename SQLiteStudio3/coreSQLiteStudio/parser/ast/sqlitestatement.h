@@ -333,8 +333,16 @@ class API_EXPORT SqliteStatement : public QObject
          */
         TokenPtr dbTokenForFullObjects;
 
+        /**
+         * @brief List of database names as seen in the side Database List.
+         * It is resoled at top-level statement being queried for databases and then it's propagated down to all child statements.
+         * It helps to identify whether the xyz in "xyz." is a table or a database prefix.
+         */
+        QStringList validDbNames;
+
     private:
         QList<SqliteStatement*> getContextStatements(SqliteStatement* caller, bool checkParent, bool checkChilds);
+        void prepareDbNames();
 };
 
 #endif // SQLITESTATEMENT_H
