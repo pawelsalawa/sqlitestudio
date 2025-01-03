@@ -132,10 +132,6 @@ jobs:
                 #    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll
                 #done
                 
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
-                
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll

@@ -1,7 +1,6 @@
 env:
     QT_VERSION: '5.15.2'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     QT_ARCH: 'win64_mingw81'
     PYTHON_VERSION: '3.9'
     ICU_VER: '72'
@@ -93,26 +92,14 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
+                SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+
                 cd ..
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
-                7z x sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                $GCC_COMMAND sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                cp -f sqlite3.dll ../lib/
-                cp -f sqlite3.h ../include/
-                cp -f sqlite3ext.h ../include/
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-windows-x64-$SQLITE_VERSION.zip --output sqlite3-windows-x64-$SQLITE_VERSION.zip
+                
+                unzip sqlite3-windows-x64-$SQLITE_VERSION.zip sqlite3.dll -d lib
+                unzip sqlite3-windows-x64-$SQLITE_VERSION.zip sqlite3.h sqlite3ext.h -d include
 
             - name: Install extension dependencies
               shell: bash
@@ -126,28 +113,25 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                7z x sqlite-src-$SQLITE_VERSION.zip
-                cd sqlite-src-$SQLITE_VERSION/ext
-                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../../include -L../../lib -lsqlite3"
-                for f in compress sqlar; do
-                    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll"
-                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../../ext/$f.dll
-                done
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                mkdir src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d src
+                cd src
+                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../include -L../lib -lsqlite3"
+                set -x
+                for f in compress sqlar; do
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../ext/$f.dll
+                done
                 
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
                 for f in icu; do
-                    echo "$GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND icu/$f.c -I../../icu/include -L../../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../../ext/$f.dll
+                    $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
                 done
-                ls -l ../../ext/
+                set +x
+                ls -l ../ext/
 
             - name: Prepare output dir
               shell: bash
