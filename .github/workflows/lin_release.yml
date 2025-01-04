@@ -50,6 +50,17 @@ jobs:
                 setup-python: 'false'
                 extra: '--external 7z'
 
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: ../gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: echo "GH_SCRIPTS=$(pwd)/../gh-scripts/scripts" >> $GITHUB_ENV
+
             - name: Install the InstalBuilder
               shell: bash
               run: |
@@ -68,15 +79,21 @@ jobs:
             - name: Pre-download SQLite vanilla sourcecode
               shell: bash
               run: |
-                cd ..
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                mkdir ext
-                unzip sqlite-src-$SQLITE_VERSION.zip
+                # cd ..
+                # curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                # mkdir ext
+                # unzip sqlite-src-$SQLITE_VERSION.zip
 
                 # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                cd sqlite-src-$SQLITE_VERSION/ext
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                # cd sqlite-src-$SQLITE_VERSION/ext
+                # rm -f misc/percentile.c
+                # curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                
+                cd ..
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
+                
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
 
             - name: Prepare ccache
               if: inputs.use_ccache || false
@@ -92,7 +109,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..
@@ -111,20 +128,23 @@ jobs:
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
-                cd ../sqlite-src-$SQLITE_VERSION/ext
+                cd ..
+                mkdir ext
+                
+                cd ext-src
                 FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                set -x
                 for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so"
-                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so
+                    gcc misc/$f.c $FLAGS -lz -o ../ext/$f.so
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
-                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
-                    gcc misc/$f.c $FLAGS -o ../../ext/$f.so
+                    gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
                 for f in icu; do
-                    echo "gcc icu/$f.c $FLAGS $(pkg-config --libs --cflags icu-uc icu-io) -o ../../ext/$f.so"
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../../ext/$f.so
+                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
                 done
+                set +x
+                
                 ls -l ../../ext/
 
             - name: Install Tcl

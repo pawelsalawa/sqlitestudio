@@ -64,6 +64,17 @@ jobs:
                 py7zrversion: '==0.20.*'
                 setup-python: 'false'
                 extra: '--external 7z'
+
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: ../gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: echo "GH_SCRIPTS=$(pwd)/../gh-scripts/scripts" >> $GITHUB_ENV
                 
             - name: Fix Qt for MacOS 13
               shell: bash
@@ -106,7 +117,7 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..
@@ -134,27 +145,29 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 ls -l
-                unzip sqlite-src-$SQLITE_VERSION.zip
+                
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+                cd ext-src
                 ls -l
-                cd sqlite-src-$SQLITE_VERSION/ext
-                ls -l
+                
                 FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                set -x
                 for f in compress sqlar; do
-                    echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
-                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
+                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
                 done
                 
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib"
-                    gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
+                    gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
                 done
                 for f in icu; do
-                    echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
-                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
+                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
-                ls -l ../../ext/
+                set +x
+                ls -l ../ext/
 
             - name: Prepare deps
               run: |

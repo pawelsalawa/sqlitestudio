@@ -60,6 +60,17 @@ jobs:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x86'
 
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: ../gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: echo "GH_SCRIPTS=$(pwd)/../gh-scripts/scripts" >> $GITHUB_ENV
+
             - name: Clone repo
               uses: actions/checkout@v3
               with:
@@ -90,7 +101,7 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
-                SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/github/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..
@@ -114,9 +125,9 @@ jobs:
                 mkdir ext
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 
-                mkdir src
-                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d src
-                cd src
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+                cd ext-src
                 FLAGS="-shared -Os -fpic -DWIN32 -m32 -I../include -L../lib -lsqlite3"
                 set -x
                 for f in compress sqlar; do
