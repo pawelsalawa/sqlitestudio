@@ -94,10 +94,11 @@ jobs:
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..
-                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-windows-x86-$SQLITE_VERSION.zip --output sqlite3-windows-x86-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-windows-x86-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
                 
-                unzip sqlite3-windows-x86-$SQLITE_VERSION.zip sqlite3.dll -d lib
-                unzip sqlite3-windows-x86-$SQLITE_VERSION.zip sqlite3.h sqlite3ext.h -d include
+                unzip $SQLITE3_ZIP sqlite3.dll -d lib
+                unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
 
             - name: Install extension dependencies
               shell: bash
