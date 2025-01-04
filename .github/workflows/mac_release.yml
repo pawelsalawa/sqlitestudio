@@ -70,11 +70,11 @@ jobs:
               with:
                 repository: pawelsalawa/gh-action-scripts
                 ref: main
-                path: ../gh-scripts
+                path: gh-scripts
 
             - name: Setup GH scripts path
               shell: bash
-              run: echo "GH_SCRIPTS=$(pwd)/../gh-scripts/scripts" >> $GITHUB_ENV
+              run: echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 
             - name: Fix Qt for MacOS 13
               shell: bash
