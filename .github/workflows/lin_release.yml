@@ -102,8 +102,8 @@ jobs:
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
                 sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
                 sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
-                sudo ln -s /usr/local/liblibsqlite3.so.0 /usr/local/liblibsqlite3.so
-                sudo ln -s /usr/local/liblibsqlite3.so.0.8.6 /usr/local/liblibsqlite3.so
+                sudo ln -s /usr/local/lib/libsqlite3.so.0 /usr/local/lib/libsqlite3.so
+                sudo ln -s /usr/local/lib/libsqlite3.so.0.8.6 /usr/local/lib/libsqlite3.so
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
