@@ -95,15 +95,15 @@ jobs:
                 SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
-                set -x
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
-                
                 cd ..
                 SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
-                
+
+                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
                 sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
                 sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
+                sudo ln -s /usr/local/liblibsqlite3.so.0 /usr/local/liblibsqlite3.so
+                sudo ln -s /usr/local/liblibsqlite3.so.0.8.6 /usr/local/liblibsqlite3.so
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
