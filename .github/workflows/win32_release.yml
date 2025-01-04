@@ -90,11 +90,14 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
+                SQLITE_DOT_VERSION=$(. scripts/github/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+                
                 cd ..
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-windows-x86-$SQLITE_VERSION.zip --output sqlite3-windows-x86-$SQLITE_VERSION.zip
                 
                 unzip sqlite3-windows-x86-$SQLITE_VERSION.zip sqlite3.dll -d lib
-                unzip sqlite3-windows-x864-$SQLITE_VERSION.zip sqlite3.h sqlite3ext.h -d include
+                unzip sqlite3-windows-x86-$SQLITE_VERSION.zip sqlite3.h sqlite3ext.h -d include
 
             - name: Install extension dependencies
               shell: bash
