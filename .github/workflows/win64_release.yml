@@ -228,12 +228,13 @@ jobs:
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR
                 echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-x64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
-                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
 
             - name: Install the InstalBuilder
               shell: bash
@@ -259,14 +260,14 @@ jobs:
             - name: SHA256 checksums
               shell: bash
               run: |
-                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
                 sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4

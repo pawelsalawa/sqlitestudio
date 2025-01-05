@@ -1,0 +1,69 @@
+env:
+    WORKFLOWS: lin_release.yml mac_release.yml win32_release.yml win64_release.yml
+ 
+name: Prepare version release
+
+on:
+    workflow_dispatch:
+        inputs:
+          RUN_IDS_TO_USE:
+            description: 'Existing RUN IDs to use instead of a fresh build'
+            required: false
+            default: ''
+            type: string
+
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+
+            - name: Set environment variables for scripts
+              run: |
+                echo "REPO=${{ github.repository }}" >> $GITHUB_ENV
+                echo "TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+                chmod +x scripts/*.sh
+                echo "SCRIPTS=$(pwd)/scripts" >> $GITHUB_ENV
+
+            - name: Trigger binary build workflows
+              shell: bash
+              if: inputs.INT_VER == ''
+              run: |
+                run_ids=()
+                inputs='{}'
+                for wname in ${{ env.WORKFLOWS }}
+                do
+                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.event.client_payload.branch }}")
+                    run_ids+=( $run_id )
+                done
+                echo "CHILD_IDS=${run_ids[@]}" >> $GITHUB_ENV
+
+            - name: Wait for workflows to complete
+              shell: bash
+              if: inputs.INT_VER == ''
+              run: |
+                echo "Workflow IDs to wait for: $CHILD_IDS"
+                success=0
+                for runid in $CHILD_IDS
+                do
+                    success=$($SCRIPTS/wait_for_run.sh $runid 5)
+                    if [ $success -eq 1 ]
+                    then
+                        echo "Child build $runid finished successfully."
+                    else
+                        echo "Child build $runid failed."
+                        exit 1
+                    fi
+                done
+                echo "All child workflows finished successfully."
+
+
+            # - name: Download artifacts
+              # shell: bash
+              # if: inputs.INT_VER == ''
+              # run: |

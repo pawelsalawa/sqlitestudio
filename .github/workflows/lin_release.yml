@@ -273,14 +273,16 @@ jobs:
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+              run: |
+                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-x64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}/..
               run: |
-                tar cf sqlitestudio-$SQLITESTUDIO_VERSION.tar SQLiteStudio
-                xz -z sqlitestudio-$SQLITESTUDIO_VERSION.tar
+                tar cf sqlitestudio-$PACKAGE_VERSION.tar SQLiteStudio
+                xz -z sqlitestudio-$PACKAGE_VERSION.tar
                 pwd
                 ls -l
 
@@ -299,14 +301,14 @@ jobs:
             - name: SHA256 checksums
               shell: bash
               run: |
-                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
                 sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4

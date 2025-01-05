@@ -215,6 +215,8 @@ jobs:
               working-directory: output/SQLiteStudio
               run: |
                 echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-x64" >> $GITHUB_ENV
+                mv sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package
               shell: bash
@@ -227,22 +229,23 @@ jobs:
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
                 ls -l
 
             - name: SHA256 checksums
               shell: bash
               run: |
-                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
-                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
