@@ -103,7 +103,7 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
-                SQLITE_DOT_VERSION=$($GH_SCRIPTS/github/convert_int_ver.sh $SQLITE_VERSION)
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..

@@ -76,6 +76,7 @@ jobs:
               run: |
                 mv gh-scripts ..
                 cd ..
+                chmod +x gh-scripts/scripts/*.sh
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 
             - name: Fix Qt for MacOS 13

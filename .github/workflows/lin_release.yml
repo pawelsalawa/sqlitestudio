@@ -61,6 +61,7 @@ jobs:
               run: |
                 mv gh-scripts ..
                 cd ..
+                chmod +x gh-scripts/scripts/*.sh
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
@@ -81,6 +82,9 @@ jobs:
             - name: Pre-download SQLite vanilla sourcecode
               shell: bash
               run: |
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+                
                 cd ..
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 
@@ -101,9 +105,6 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
-                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
-                
                 cd ..
                 SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
