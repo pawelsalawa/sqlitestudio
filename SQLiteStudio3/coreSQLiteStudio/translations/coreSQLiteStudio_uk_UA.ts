@@ -179,25 +179,25 @@
       <translation>База даних %1 не може бути оновлена через помилку: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="365"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="394"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>Файл бази даних не існує.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
       <source>No supporting plugin loaded.</source>
       <translation>Модуль підтримки не завантажений.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
       <source>Database could not be initialized.</source>
       <translation>Неможливо ініціалізувати базу даних.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Не знайдено відповідного драйвера бази даних.</translation>
     </message>

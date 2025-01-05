@@ -179,25 +179,25 @@
       <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="365"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="394"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation type="unfinished">Database file doesn&apos;t exist.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="603"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
       <source>No supporting plugin loaded.</source>
       <translation type="unfinished">No supporting plugin loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="521"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
       <source>Database could not be initialized.</source>
       <translation type="unfinished">Database could not be initialized.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="531"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
       <source>No suitable database driver plugin found.</source>
       <translation type="unfinished">No suitable database driver plugin found.</translation>
     </message>
