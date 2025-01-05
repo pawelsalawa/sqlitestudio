@@ -2,7 +2,6 @@ env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -59,7 +58,10 @@ jobs:
 
             - name: Setup GH scripts path
               shell: bash
-              run: echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+              run: |
+                mv gh-scripts ..
+                cd ..
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
               shell: bash
@@ -79,16 +81,6 @@ jobs:
             - name: Pre-download SQLite vanilla sourcecode
               shell: bash
               run: |
-                # cd ..
-                # curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                # mkdir ext
-                # unzip sqlite-src-$SQLITE_VERSION.zip
-
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                # cd sqlite-src-$SQLITE_VERSION/ext
-                # rm -f misc/percentile.c
-                # curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
-                
                 cd ..
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 

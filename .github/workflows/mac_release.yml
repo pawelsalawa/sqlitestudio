@@ -2,7 +2,6 @@ env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6.16'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.9'
     ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -74,7 +73,10 @@ jobs:
 
             - name: Setup GH scripts path
               shell: bash
-              run: echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+              run: |
+                mv gh-scripts ..
+                cd ..
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 
             - name: Fix Qt for MacOS 13
               shell: bash
