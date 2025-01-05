@@ -138,7 +138,7 @@ jobs:
                 done
                 set +x
                 
-                ls -l ../../ext/
+                ls -l ../ext/
 
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
