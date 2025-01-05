@@ -58,7 +58,10 @@ jobs:
 
             - name: Setup GH scripts path
               shell: bash
-              run: echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+              run: |
+                mv gh-scripts ..
+                cd ..
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
 
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
