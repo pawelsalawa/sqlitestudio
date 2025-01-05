@@ -38,7 +38,7 @@ jobs:
                 inputs='{}'
                 for wname in ${{ env.WORKFLOWS }}
                 do
-                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.event.client_payload.branch }}")
+                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.ref_name }}")
                     run_ids+=( $run_id )
                 done
                 echo "CHILD_IDS=${run_ids[@]}" >> $GITHUB_ENV

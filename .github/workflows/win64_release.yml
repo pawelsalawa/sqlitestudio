@@ -11,6 +11,7 @@ env:
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-windows-x64-installer.exe
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Windows 64-bit release build
 
@@ -79,7 +80,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v3
               with:
-                ref: ${{ github.event.client_payload.branch }}
+                ref: ${{ env.BRANCH_NAME }}
 
             - name: Install dependencies
               shell: bash

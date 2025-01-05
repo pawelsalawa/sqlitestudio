@@ -7,6 +7,7 @@ env:
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.bitrock.com/installbuilder/installbuilder-enterprise-24.3.0-osx-installer.dmg
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: MacOSX release build
 
@@ -104,7 +105,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v3
               with:
-                ref: ${{ github.event.client_payload.branch }}
+                ref: ${{ env.BRANCH_NAME }}
 
             - name: Prepare ccache
               if: inputs.use_ccache || false
