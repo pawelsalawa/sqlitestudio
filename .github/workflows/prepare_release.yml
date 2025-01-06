@@ -32,7 +32,7 @@ jobs:
 
             - name: Trigger binary build workflows
               shell: bash
-              if: inputs.INT_VER == ''
+              if: inputs.RUN_IDS_TO_USE == ''
               run: |
                 run_ids=()
                 inputs='{}'
@@ -45,7 +45,7 @@ jobs:
 
             - name: Wait for workflows to complete
               shell: bash
-              if: inputs.INT_VER == ''
+              if: inputs.RUN_IDS_TO_USE == ''
               run: |
                 echo "Workflow IDs to wait for: $CHILD_IDS"
                 success=0
@@ -62,8 +62,32 @@ jobs:
                 done
                 echo "All child workflows finished successfully."
 
+            - name: Determin final RUN IDs
+              shell: bash
+              run: |
+                if [ "${{ inputs.RUN_IDS_TO_USE }}" == "" ]
+                then
+                    CHILD_IDS="${{ inputs.RUN_IDS_TO_USE }}"
+                    echo "CHILD_IDS=$CHILD_IDS" >> $GITHUB_ENV
+                fi
 
-            # - name: Download artifacts
-              # shell: bash
-              # if: inputs.INT_VER == ''
-              # run: |
+            - name: Download artifacts
+              shell: bash
+              run: |
+                mkdir assets
+                cd assets
+                
+                for runid in ${{ env.CHILD_IDS }}
+                do
+                    resp=$($SCRIPTS/query_run.sh $runid)
+                    workflow_file=$(basename $(echo $resp | jq -r '.path'))
+                    mkdir $workflow_file
+                    cd $workflow_file
+                    
+                    $SCRIPTS/download_artifacts.sh $runid
+                    
+                    cd ..
+                done
+                
+                echo "Downloaded files:"
+                find .
