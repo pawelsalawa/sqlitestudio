@@ -217,6 +217,10 @@ jobs:
               run: |
                 echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-x64" >> $GITHUB_ENV
+                
+            - name: Rename portable package
+              working-directory: output/SQLiteStudio
+              run: |
                 mv sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package

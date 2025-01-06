@@ -51,7 +51,7 @@ jobs:
                 success=0
                 for runid in $CHILD_IDS
                 do
-                    success=$($SCRIPTS/wait_for_run.sh $runid 5)
+                    success=$($SCRIPTS/wait_for_run.sh $runid 50)
                     if [ $success -eq 1 ]
                     then
                         echo "Child build $runid finished successfully."
