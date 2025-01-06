@@ -215,7 +215,8 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
               run: |
-                echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
+                SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-x64" >> $GITHUB_ENV
                 
             - name: Rename portable package

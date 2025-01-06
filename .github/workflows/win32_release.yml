@@ -227,7 +227,8 @@ jobs:
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR
-                echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+                SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-x86" >> $GITHUB_ENV
 
             - name: Assemble portable package
