@@ -79,14 +79,13 @@ jobs:
                 
                 for runid in ${{ env.CHILD_IDS }}
                 do
-                    echo "Querying run $runid"
                     resp=$($SCRIPTS/query_run.sh $runid)
-                    echo "Run details:"
-                    echo "$resp"
+                    
                     workflow_file=$(basename $(echo "$resp" | jq -r '.path'))
-                    echo "WF file: $workflow_file"
-                    mkdir $workflow_file
-                    cd $workflow_file
+                    REL_NAME="${workflow_file%.*}"
+                    
+                    mkdir $REL_NAME
+                    cd $REL_NAME
                     
                     $SCRIPTS/download_artifacts.sh $runid
                     
