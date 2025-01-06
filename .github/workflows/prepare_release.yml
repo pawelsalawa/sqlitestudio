@@ -2,27 +2,28 @@ env:
     RELEASE_META: |
         {
             "lin_release": {
-                "pkg": "Linux x64",
+                "os": "Linux x64",
                 "installer_url": "",
                 "portable_url": ""
             },
             "mac_release": {
-                "pkg": "MacOS X x64",
+                "os": "MacOS X x64",
                 "installer_url": "",
                 "portable_url": ""
             },
             "win32_release": {
-                "pkg": "Windows i386",
+                "os": "Windows i386",
                 "installer_url": "",
                 "portable_url": ""
             },
             "win64_release": {
-                "pkg": "Windows x64",
+                "os": "Windows x64",
                 "installer_url": "",
                 "portable_url": ""
             }
         }
- 
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 name: Prepare version release
 
 on:
@@ -33,6 +34,11 @@ on:
             required: false
             default: ''
             type: string
+          TEST_RUN:
+            description: 'Test run (-test suffix for release)'
+            required: false
+            type: boolean
+            default: false
 
 jobs:
     build:
@@ -100,6 +106,15 @@ jobs:
                     echo "CHILD_IDS=$CHILD_IDS" >> $GITHUB_ENV
                 fi
 
+            - name: Get SQLiteStudio version
+              shell: bash
+              run: |
+                ref="${{ env.BRANCH_NAME }}"
+                url="https://raw.githubusercontent.com/pawelsalawa/sqlitestudio/refs/heads/$ref/SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp"
+                int_ver=$(curl -s -L $url | grep "static const int sqlitestudioVersion" | grep -o "[0-9]*")
+                SQLITESTUDIO_VERSION=$($SCRIPTS/convert_int_ver.sh $int_ver)
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+
             - name: Download artifacts
               shell: bash
               run: |
@@ -128,7 +143,15 @@ jobs:
               shell: bash
               working-directory: assets
               run: |
-                releaseid=$($SCRIPTS/create_draft_release.sh "$SQLITESTUDIO_VERSION" "$SQLITESTUDIO_VERSION release" "")
+                tag_name="$SQLITESTUDIO_VERSION"
+                rel_name="$SQLITESTUDIO_VERSION release"
+                if [ "${{ inputs.TEST_RUN }}" == "true" ]
+                then
+                    tag_name="${tag_name}-test"
+                    rel_name="${rel_name}-test"
+                fi
+                
+                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$rel_name" "")
                 echo "RELEASE_ID: $releaseid"
                 echo "RELEASE_ID=$releaseid" >> $GITHUB_ENV
                 
@@ -167,14 +190,30 @@ jobs:
                 for dir in *
                 do
                     cd $dir
+                    os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].os')
+                    portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
+                    installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
                     
                     for file in *
                     do
                         checksum=$(sha256sum $file | cut -d ' ' -f 1)
-                        | Windows x64 | Portable | [sqlitestudio_x64-3.4.13.zip](https://github.com/pawelsalawa/sqlitestudio/releases/download/3.4.13/sqlitestudio_x64-3.4.13.zip) | `d11e8530fa15d0523675f437cdcd1b37e56b34e7a69dc7caa86875f3392d4309` |
+                        if [ "$file" == *"installer"* ]
+                        then
+                            url=$installer_url
+                            type="Installer"
+                        else
+                            url=$portable_url
+                            type="Portable"
+                        fi
+                        
+                        body_lines+=("| $os | $type | [$file]($url) | $checksum |")
                     done
                     
                     cd ..
                 done                
                 
                 body=$(printf "%s\n" "${lines[@]}")
+                echo "New body:"
+                echo $body
+                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body"
+                
