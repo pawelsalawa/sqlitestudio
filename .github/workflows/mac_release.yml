@@ -229,7 +229,7 @@ jobs:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
