@@ -1,6 +1,29 @@
 env:
-    WORKFLOWS: lin_release.yml mac_release.yml win32_release.yml win64_release.yml
- 
+    RELEASE_META: |
+        {
+            "lin_release": {
+                "os": "Linux x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "mac_release": {
+                "os": "MacOS X x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "win32_release": {
+                "os": "Windows i386",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "win64_release": {
+                "os": "Windows x64",
+                "installer_url": "",
+                "portable_url": ""
+            }
+        }
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 name: Prepare version release
 
 on:
@@ -11,6 +34,11 @@ on:
             required: false
             default: ''
             type: string
+          TEST_RUN:
+            description: 'Test run (-test suffix for release)'
+            required: false
+            type: boolean
+            default: false
 
 jobs:
     build:
@@ -32,26 +60,33 @@ jobs:
 
             - name: Trigger binary build workflows
               shell: bash
-              if: inputs.INT_VER == ''
+              if: inputs.RUN_IDS_TO_USE == ''
               run: |
+                WORKFLOWS=()
+                for key in $(echo ${{ env.RELEASE_META }} | jq -r 'keys[]')
+                do
+                    WORKFLOWS+=($key.yml)
+                done
+                echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
+              
                 run_ids=()
                 inputs='{}'
-                for wname in ${{ env.WORKFLOWS }}
+                for wname in $WORKFLOWS
                 do
-                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.event.client_payload.branch }}")
+                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.ref_name }}")
                     run_ids+=( $run_id )
                 done
                 echo "CHILD_IDS=${run_ids[@]}" >> $GITHUB_ENV
 
             - name: Wait for workflows to complete
               shell: bash
-              if: inputs.INT_VER == ''
+              if: inputs.RUN_IDS_TO_USE == ''
               run: |
                 echo "Workflow IDs to wait for: $CHILD_IDS"
                 success=0
                 for runid in $CHILD_IDS
                 do
-                    success=$($SCRIPTS/wait_for_run.sh $runid 5)
+                    success=$($SCRIPTS/wait_for_run.sh $runid 50)
                     if [ $success -eq 1 ]
                     then
                         echo "Child build $runid finished successfully."
@@ -62,8 +97,123 @@ jobs:
                 done
                 echo "All child workflows finished successfully."
 
+            - name: Determin final RUN IDs
+              shell: bash
+              run: |
+                if [ "${{ inputs.RUN_IDS_TO_USE }}" != "" ]
+                then
+                    CHILD_IDS="${{ inputs.RUN_IDS_TO_USE }}"
+                    echo "CHILD_IDS=$CHILD_IDS" >> $GITHUB_ENV
+                fi
 
-            # - name: Download artifacts
-              # shell: bash
-              # if: inputs.INT_VER == ''
-              # run: |
+            - name: Get SQLiteStudio version
+              shell: bash
+              run: |
+                ref="${{ env.BRANCH_NAME }}"
+                url="https://raw.githubusercontent.com/pawelsalawa/sqlitestudio/refs/heads/$ref/SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp"
+                int_ver=$(curl -s -L $url | grep "static const int sqlitestudioVersion" | grep -o "[0-9]*")
+                SQLITESTUDIO_VERSION=$($SCRIPTS/convert_int_ver.sh $int_ver)
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+
+            - name: Download artifacts
+              shell: bash
+              run: |
+                mkdir assets
+                cd assets
+                
+                for runid in ${{ env.CHILD_IDS }}
+                do
+                    resp=$($SCRIPTS/query_run.sh $runid)
+                    
+                    workflow_file=$(basename $(echo "$resp" | jq -r '.path'))
+                    REL_NAME="${workflow_file%.*}"
+                    
+                    mkdir $REL_NAME
+                    cd $REL_NAME
+                    
+                    $SCRIPTS/download_artifacts.sh $runid
+                    
+                    cd ..
+                done
+                
+                echo "Downloaded files:"
+                find .
+
+            - name: Create a draft release
+              shell: bash
+              working-directory: assets
+              run: |
+                tag_name="$SQLITESTUDIO_VERSION"
+                rel_name="$SQLITESTUDIO_VERSION release"
+                if [ "${{ inputs.TEST_RUN }}" == "true" ]
+                then
+                    tag_name="${tag_name}-test"
+                    rel_name="${rel_name}-test"
+                fi
+                
+                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$rel_name" "")
+                echo "RELEASE_ID: $releaseid"
+                echo "RELEASE_ID=$releaseid" >> $GITHUB_ENV
+                
+            - name: Upload assets
+              shell: bash
+              working-directory: assets
+              run: |
+                NEW_META=$RELEASE_META
+                for dir in *
+                do
+                    cd $dir
+                    
+                    for file in *
+                    do
+                        echo "Uploading $file..."
+                        url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
+                        echo "Download url for $file is: $url"
+                        
+                        NEW_META=$(echo $NEW_META | jq --arg dir "$dir" --arg url "$url" '.[$dir].installer_url = $url')
+                    done
+                    
+                    cd ..
+                done
+                
+                echo "META after uploads:"
+                echo $NEW_META
+                echo "RELEASE_META=$NEW_META" >> $GITHUB_ENV
+                
+            - name: Update release description
+              shell: bash
+              working-directory: assets
+              run: |
+                body_lines=()
+                body_lines+=("| Platform | Package type | File name | SHA256 checksum |")
+                body_lines+=("| --- | --- | --- | --- |")
+                for dir in *
+                do
+                    cd $dir
+                    os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].os')
+                    portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
+                    installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
+                    
+                    for file in *
+                    do
+                        checksum=$(sha256sum $file | cut -d ' ' -f 1)
+                        if [ "$file" == *"installer"* ]
+                        then
+                            url=$installer_url
+                            type="Installer"
+                        else
+                            url=$portable_url
+                            type="Portable"
+                        fi
+                        
+                        body_lines+=("| $os | $type | [$file]($url) | $checksum |")
+                    done
+                    
+                    cd ..
+                done                
+                
+                body=$(printf "%s\n" "${lines[@]}")
+                echo "New body:"
+                echo $body
+                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body"
+                
