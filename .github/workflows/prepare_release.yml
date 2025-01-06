@@ -231,7 +231,5 @@ jobs:
                 done                
                 
                 body=$(printf "%s\n" "${body_lines[@]}")
-                echo "New body:"
-                echo $body
-                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body"
+                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body" >/dev/null
                 
