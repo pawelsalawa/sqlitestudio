@@ -1,5 +1,27 @@
 env:
-    WORKFLOWS: lin_release.yml mac_release.yml win32_release.yml win64_release.yml
+    RELEASE_META: |
+        {
+            "lin_release": {
+                "pkg": "Linux x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "mac_release": {
+                "pkg": "MacOS X x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "win32_release": {
+                "pkg": "Windows i386",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "win64_release": {
+                "pkg": "Windows x64",
+                "installer_url": "",
+                "portable_url": ""
+            }
+        }
  
 name: Prepare version release
 
@@ -34,9 +56,16 @@ jobs:
               shell: bash
               if: inputs.RUN_IDS_TO_USE == ''
               run: |
+                WORKFLOWS=()
+                for key in $(echo ${{ env.RELEASE_META }} | jq -r 'keys[]')
+                do
+                    WORKFLOWS+=($key.yml)
+                done
+                echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
+              
                 run_ids=()
                 inputs='{}'
-                for wname in ${{ env.WORKFLOWS }}
+                for wname in $WORKFLOWS
                 do
                     run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.ref_name }}")
                     run_ids+=( $run_id )
@@ -94,3 +123,58 @@ jobs:
                 
                 echo "Downloaded files:"
                 find .
+
+            - name: Create a draft release
+              shell: bash
+              working-directory: assets
+              run: |
+                releaseid=$($SCRIPTS/create_draft_release.sh "$SQLITESTUDIO_VERSION" "$SQLITESTUDIO_VERSION release" "")
+                echo "RELEASE_ID: $releaseid"
+                echo "RELEASE_ID=$releaseid" >> $GITHUB_ENV
+                
+            - name: Upload assets
+              shell: bash
+              working-directory: assets
+              run: |
+                NEW_META=$RELEASE_META
+                for dir in *
+                do
+                    cd $dir
+                    
+                    for file in *
+                    do
+                        echo "Uploading $file..."
+                        url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
+                        echo "Download url for $file is: $url"
+                        
+                        NEW_META=$(echo $NEW_META | jq --arg dir "$dir" --arg url "$url" '.[$dir].installer_url = $url')
+                    done
+                    
+                    cd ..
+                done
+                
+                echo "META after uploads:"
+                echo $NEW_META
+                echo "RELEASE_META=$NEW_META" >> $GITHUB_ENV
+                
+            - name: Update release description
+              shell: bash
+              working-directory: assets
+              run: |
+                body_lines=()
+                body_lines+=("| Platform | Package type | File name | SHA256 checksum |")
+                body_lines+=("| --- | --- | --- | --- |")
+                for dir in *
+                do
+                    cd $dir
+                    
+                    for file in *
+                    do
+                        checksum=$(sha256sum $file | cut -d ' ' -f 1)
+                        | Windows x64 | Portable | [sqlitestudio_x64-3.4.13.zip](https://github.com/pawelsalawa/sqlitestudio/releases/download/3.4.13/sqlitestudio_x64-3.4.13.zip) | `d11e8530fa15d0523675f437cdcd1b37e56b34e7a69dc7caa86875f3392d4309` |
+                    done
+                    
+                    cd ..
+                done                
+                
+                body=$(printf "%s\n" "${lines[@]}")
