@@ -179,7 +179,8 @@ jobs:
                         echo "Uploading $file..."
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
                         echo "Download url for $file is: $url"
-                        
+
+                        set -x
                         NEW_META=$(
                             echo "$NEW_META" | \
                                 jq -c \
@@ -188,6 +189,7 @@ jobs:
                                    --arg url_type "$url_type" \
                                    '.[$dir].[$url_type] = $url'
                            )
+                        set +x
                     done
                     
                     cd ..
