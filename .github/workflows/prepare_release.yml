@@ -180,7 +180,6 @@ jobs:
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
                         echo "Download url for $file is: $url"
 
-                        set -x
                         NEW_META=$(
                             echo "$NEW_META" | \
                                 jq -c \
@@ -189,14 +188,13 @@ jobs:
                                    --arg url_type "$url_type" \
                                    '.[$dir][$url_type] = $url'
                            )
-                        set +x
                     done
                     
                     cd ..
                 done
                 
                 echo "META after uploads:"
-                echo $NEW_META
+                echo "$NEW_META" | jq '.'
                 echo "RELEASE_META=$NEW_META" >> $GITHUB_ENV
                 
             - name: Update release description
@@ -216,7 +214,7 @@ jobs:
                     for file in *
                     do
                         checksum=$(sha256sum $file | cut -d ' ' -f 1)
-                        if [ "$file" == *"installer"* ]
+                        if [[ "$file" == *"installer"* ]]
                         then
                             url=$installer_url
                             type="Installer"
