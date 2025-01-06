@@ -178,7 +178,7 @@ jobs:
                         echo "Download url for $file is: $url"
                         
                         NEW_META=$(
-                            echo $NEW_META | \
+                            echo "$NEW_META" | \
                                 jq --arg dir "$dir" \
                                    --arg url "$url" \
                                    --arg url_type "$url_type" \
