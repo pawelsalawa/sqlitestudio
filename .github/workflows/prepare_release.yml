@@ -159,7 +159,7 @@ jobs:
               shell: bash
               working-directory: assets
               run: |
-                NEW_META=$RELEASE_META
+                NEW_META=$(echo "$RELEASE_META" | jq -c '.')
                 for dir in *
                 do
                     cd $dir
