@@ -65,7 +65,7 @@ jobs:
             - name: Determin final RUN IDs
               shell: bash
               run: |
-                if [ "${{ inputs.RUN_IDS_TO_USE }}" == "" ]
+                if [ "${{ inputs.RUN_IDS_TO_USE }}" != "" ]
                 then
                     CHILD_IDS="${{ inputs.RUN_IDS_TO_USE }}"
                     echo "CHILD_IDS=$CHILD_IDS" >> $GITHUB_ENV
