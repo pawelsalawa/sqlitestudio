@@ -229,7 +229,7 @@ jobs:
                     cd ..
                 done                
                 
-                body=$(printf "%s\n" "${lines[@]}")
+                body=$(printf "%s\n" "${body_lines[@]}")
                 echo "New body:"
                 echo $body
                 $SCRIPTS/update_release_body.sh $RELEASE_ID "$body"
