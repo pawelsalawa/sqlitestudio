@@ -169,7 +169,7 @@ jobs:
                         unzip $file
                         file="${file%.*}"
                     
-                        if [ "$file" == *"installer"* ]
+                        if [[ "$file" == *"installer"* ]]
                         then
                             url_type=installer_url
                         else
@@ -187,7 +187,7 @@ jobs:
                                    --arg dir "$dir" \
                                    --arg url "$url" \
                                    --arg url_type "$url_type" \
-                                   '.[$dir].[$url_type] = $url'
+                                   '.[$dir][$url_type] = $url'
                            )
                         set +x
                     done
