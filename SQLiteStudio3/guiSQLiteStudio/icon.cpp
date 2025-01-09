@@ -5,6 +5,8 @@
 #include <QMovie>
 #include <QDebug>
 #include <QBuffer>
+#include <QGuiApplication>
+#include <QScreen>
 
 QHash<QString,Icon*> Icon::instances;
 
@@ -159,7 +161,14 @@ Icon* Icon::toIconPtr()
 
 QPixmap Icon::toQPixmap() const
 {
-    return toQIconPtr()->pixmap(16, 16);
+    qreal dpiRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
+    return toQIconPtr()->pixmap(QSize(16, 16), dpiRatio);
+}
+
+QPixmap Icon::toQPixmap(int pixSize) const
+{
+    qreal dpiRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
+    return toQIconPtr()->pixmap(QSize(pixSize, pixSize), dpiRatio);
 }
 
 QMovie* Icon::toQMoviePtr() const
@@ -301,7 +310,7 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
     switch (attr)
     {
         case PLUS:
-            return "plus";
+            return "plus_small";
         case MINUS:
             return "minus_small";
         case EDIT:

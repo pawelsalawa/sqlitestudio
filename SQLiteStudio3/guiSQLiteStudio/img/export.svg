@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg4073"
+   sodipodi:docname="export.svg"
+   inkscape:export-filename="/home/roger/mis-dibujos/open/meeting_point_bn.png"
+   viewBox="0 0 179.85 179.85"
+   sodipodi:version="0.32"
+   inkscape:export-xdpi="90"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-ydpi="90"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <defs
+     id="defs14">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient857">
+      <stop
+         style="stop-color:#92a0ff;stop-opacity:1"
+         offset="0"
+         id="stop853" />
+      <stop
+         style="stop-color:#e8ebff;stop-opacity:1"
+         offset="1"
+         id="stop855" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient857"
+       id="linearGradient859"
+       x1="205.35681"
+       y1="307.09927"
+       x2="238.57108"
+       y2="142.97752"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="38"
+     pagecolor="#ffffff"
+     inkscape:window-height="778"
+     inkscape:zoom="1.979899"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="133.61162"
+     inkscape:cy="140.66968"
+     inkscape:window-width="640"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="mm"
+     inkscape:document-rotation="0" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(-70.073,-53.864)">
+    <g
+       id="g3997"
+       style="fill:url(#linearGradient859);fill-opacity:1"
+       transform="matrix(0.70711,-0.70711,0.70711,0.70711,-159.87,142.12)">
+      <path
+         id="path3459"
+         style="display:inline;opacity:0.9864;fill:url(#linearGradient859);fill-opacity:1;stroke:#8e78ff;stroke-width:6.67084;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 292.95344,197.3812 v 15 h -30 v 30 h 30 v 15 l 30,-30 z" />
+      <path
+         id="path3464"
+         style="display:inline;opacity:0.9864;fill:url(#linearGradient859);fill-opacity:1;stroke:#8e78ff;stroke-width:6.67084;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 157.04585,257.35981 v -15 h 30 v -30 h -30 v -15 l -30,30 z" />
+      <path
+         id="path3466"
+         style="opacity:0.9864;fill:url(#linearGradient859);fill-opacity:1;stroke:#8e78ff;stroke-width:6.67084;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 194.99964,159.40602 h 15 v 30 h 30 v -30 h 15 l -30,-30 z" />
+      <path
+         id="path3468"
+         style="opacity:0.9864;fill:url(#linearGradient859);fill-opacity:1;stroke:#8e78ff;stroke-width:6.67084;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 254.99965,295.31361 h -15 v -30 h -30 v 30 h -15 l 30,30 z" />
+    </g>
+  </g>
+  <metadata
+     id="metadata11">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2009-10-15T20:42:10</dc:date>
+        <dc:description>Simple meeting point symbol in black and white.</dc:description>
+        <dc:source>https://openclipart.org/detail/27812/meeting-point-symbol-by-rg1024-27812</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>rg1024</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>meeting</rdf:li>
+            <rdf:li>point</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

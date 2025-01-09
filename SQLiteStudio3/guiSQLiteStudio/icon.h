@@ -59,6 +59,7 @@ class GUI_API_EXPORT Icon
         QIcon toQIcon() const;
         Icon* toIconPtr();
         QPixmap toQPixmap() const;
+        QPixmap toQPixmap(int pixSize) const;
         QMovie* toQMoviePtr() const;
         QVariant toQVariant() const;
         QIcon* with(Attributes attr);

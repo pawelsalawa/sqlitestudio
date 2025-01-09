@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:x="adobe:ns:meta/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="640"
+   height="640"
+   viewBox="0 0 640 640"
+   version="1.1"
+   id="svg28"
+   sodipodi:docname="attr_info_shadow.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3440"
+     inkscape:window-height="1377"
+     id="namedview30"
+     showgrid="false"
+     inkscape:zoom="1.575"
+     inkscape:cx="306.03175"
+     inkscape:cy="320"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg28"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata2">
+<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>    <x:xmpmeta
+       x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+      <metadata>
+        <rdf:RDF>
+          <rdf:Description
+             rdf:about="" />
+          <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type
+               rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+            <dc:title></dc:title>
+          </cc:Work>
+        </rdf:RDF>
+      </metadata>
+    </x:xmpmeta>
+<?xpacket end="w"?>  </metadata>
+  <defs
+     id="defs20">
+    <style
+       id="style4">
+      .cls-1 {
+        fill: #226122;
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #0ec00e;
+        filter: url(#filter-2);
+      }
+    </style>
+    <filter
+       id="filter"
+       x="6"
+       y="6"
+       width="628"
+       height="628"
+       filterUnits="userSpaceOnUse">
+      <feFlood
+         result="flood"
+         flood-color="#3a74b4"
+         id="feFlood6" />
+      <feComposite
+         result="composite"
+         operator="in"
+         in2="SourceGraphic"
+         id="feComposite8" />
+      <feBlend
+         result="blend"
+         in2="SourceGraphic"
+         id="feBlend10" />
+    </filter>
+    <filter
+       id="filter-2"
+       x="35"
+       y="39"
+       width="562"
+       height="562"
+       filterUnits="userSpaceOnUse">
+      <feFlood
+         result="flood"
+         flood-color="#55a6ff"
+         id="feFlood13" />
+      <feComposite
+         result="composite"
+         operator="in"
+         in2="SourceGraphic"
+         id="feComposite15" />
+      <feBlend
+         result="blend"
+         in2="SourceGraphic"
+         id="feBlend17" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter932">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood922" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite924" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="16.1677"
+         result="blur"
+         id="feGaussianBlur926" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset928" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite930" />
+    </filter>
+  </defs>
+  <g
+     id="g848"
+     style="filter:url(#filter932)">
+    <circle
+       style="display:inline;fill:#3773b3;fill-opacity:1"
+       id="circle22"
+       r="314"
+       cy="320"
+       cx="320"
+       class="cls-1" />
+    <circle
+       r="290"
+       cy="320"
+       cx="317"
+       class="cls-2"
+       data-name="Ellipse 1 Kopie"
+       id="Ellipse_1_Kopie" />
+    <circle
+       style="display:inline;fill:#54a5fe;fill-opacity:1"
+       r="281"
+       cy="320"
+       cx="316"
+       class="cls-3"
+       data-name="Ellipse 1 Kopie 2"
+       id="Ellipse_1_Kopie_2" />
+    <rect
+       ry="30"
+       rx="30"
+       height="272"
+       width="84"
+       y="253"
+       x="278"
+       class="cls-2"
+       data-name="Abgerundetes Rechteck 1"
+       id="Abgerundetes_Rechteck_1" />
+    <rect
+       ry="30"
+       rx="30"
+       height="78"
+       width="84"
+       y="135"
+       x="278"
+       class="cls-2"
+       data-name="Abgerundetes Rechteck 1 Kopie"
+       id="Abgerundetes_Rechteck_1_Kopie" />
+  </g>
+</svg>

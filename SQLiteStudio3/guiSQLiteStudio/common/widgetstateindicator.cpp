@@ -223,19 +223,19 @@ void WidgetStateIndicator::updateMode()
     switch (mode)
     {
         case Mode::ERROR:
-            label->setPixmap(ICONS.INDICATOR_ERROR);
+            label->setPixmap(ICONS.INDICATOR_ERROR.toQPixmap(12));
             glowEffect->setColor(Qt::red);
             break;
         case Mode::WARNING:
-            label->setPixmap(ICONS.INDICATOR_WARN);
+            label->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
             glowEffect->setColor(Qt::darkYellow);
             break;
         case Mode::INFO:
-            label->setPixmap(ICONS.INDICATOR_INFO);
+            label->setPixmap(ICONS.INDICATOR_INFO.toQPixmap(12));
             glowEffect->setColor(Qt::blue);
             break;
         case Mode::HINT:
-            label->setPixmap(ICONS.INDICATOR_HINT);
+            label->setPixmap(ICONS.INDICATOR_HINT.toQPixmap(12));
             glowEffect->setColor(Qt::darkCyan);
             break;
     }

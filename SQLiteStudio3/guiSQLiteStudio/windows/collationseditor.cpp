@@ -47,7 +47,7 @@ bool CollationsEditor::restoreSession(const QVariant& sessionValue)
 
 Icon* CollationsEditor::getIconNameForMdiWindow()
 {
-    return ICONS.CONSTRAINT_COLLATION;
+    return ICONS.COLLATIONS_EDITOR;
 }
 
 QString CollationsEditor::getTitleForMdiWindow()

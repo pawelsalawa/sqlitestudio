@@ -58,7 +58,7 @@ bool SqliteExtensionEditor::restoreSession(const QVariant& sessionValue)
 
 Icon*SqliteExtensionEditor::getIconNameForMdiWindow()
 {
-    return ICONS.EXTENSION;
+    return ICONS.EXTENSION_EDITOR;
 }
 
 QString SqliteExtensionEditor::getTitleForMdiWindow()
