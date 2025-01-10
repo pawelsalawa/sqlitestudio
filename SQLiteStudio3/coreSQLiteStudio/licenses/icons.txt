@@ -1,0 +1,3 @@
+Various licensed icons used
+
+- Bucket icon from veucss (https://veu-css.web.app/) - MIT License

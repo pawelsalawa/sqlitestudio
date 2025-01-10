@@ -3,7 +3,6 @@
 #include "common/utils_sql.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
-#include "common/compatibility.h"
 #include <QDebug>
 #include <QThreadPool>
 

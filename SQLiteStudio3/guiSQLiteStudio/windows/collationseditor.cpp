@@ -1,7 +1,6 @@
 #include "collationseditor.h"
 #include "ui_collationseditor.h"
 #include "common/unused.h"
-#include "common/compatibility.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"

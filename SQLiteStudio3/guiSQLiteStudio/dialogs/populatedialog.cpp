@@ -10,8 +10,8 @@
 #include "uiutils.h"
 #include "services/populatemanager.h"
 #include "common/widgetcover.h"
-#include "common/compatibility.h"
 #include "common/dialogsizehandler.h"
+#include "iconmanager.h"
 #include <QPushButton>
 #include <QGridLayout>
 #include <QCheckBox>
@@ -45,6 +45,7 @@ void PopulateDialog::setDbAndTable(Db* db, const QString& table)
 void PopulateDialog::init()
 {
     ui->setupUi(this);
+    setWindowIcon(ICONS.TABLE_POPULATE);
     limitDialogWidth(this);
     DialogSizeHandler::applyFor(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Populate", "populate dialog button"));
@@ -166,10 +167,10 @@ void PopulateDialog::refreshColumns()
     QString table = ui->tableCombo->currentText();
 
     buttonMapper = new QSignalMapper(this);
-    connect(buttonMapper, SIGNAL(mapped(int)), this, SLOT(configurePlugin(int)));
+    connect(buttonMapper, SIGNAL(mappedInt(int)), this, SLOT(configurePlugin(int)));
 
     checkMapper = new QSignalMapper(this);
-    connect(checkMapper, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
+    connect(checkMapper, SIGNAL(mappedInt(int)), this, SLOT(updateColumnState(int)));
 
     SchemaResolver resolver(db);
     QStringList columns = resolver.getTableColumns(table);

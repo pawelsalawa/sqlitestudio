@@ -1,8 +1,0 @@
-{
-    "type":        "GeneralPurposePlugin",
-    "title":       "Configuration migration",
-    "description": "Performs migration from SQLiteStudio 2.1.x configuration to version 3.0.0.",
-    "version":     10003,
-    "author":      "SalSoft",
-    "gui":         true
-}

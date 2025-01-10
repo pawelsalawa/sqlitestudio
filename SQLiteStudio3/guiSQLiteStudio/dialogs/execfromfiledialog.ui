@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>203</height>
+    <height>216</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
         </property>
         <property name="icon">
          <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/directory_open.png</normaloff>:/icons/img/directory_open.png</iconset>
+          <normaloff>:/icons/img/directory_open.svg</normaloff>:/icons/img/directory_open.svg</iconset>
         </property>
        </widget>
       </item>
@@ -76,10 +76,10 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

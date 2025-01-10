@@ -23,7 +23,6 @@
 #include "translations.h"
 #include "plugins/uiconfiguredplugin.h"
 #include "dbtree/dbtree.h"
-#include "common/compatibility.h"
 #include "windows/editorwindow.h"
 #include "syntaxhighlighterplugin.h"
 #include "sqleditor.h"

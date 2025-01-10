@@ -14,7 +14,6 @@
 #include "dialogs/versionconvertsummarydialog.h"
 #include "db/invaliddb.h"
 #include "services/notifymanager.h"
-#include "common/compatibility.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>

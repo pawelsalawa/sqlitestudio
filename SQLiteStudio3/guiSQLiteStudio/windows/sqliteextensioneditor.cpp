@@ -10,7 +10,6 @@
 #include "db/db.h"
 #include "services/dbmanager.h"
 #include "common/lazytrigger.h"
-#include "common/compatibility.h"
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>

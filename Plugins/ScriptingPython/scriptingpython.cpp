@@ -346,7 +346,7 @@ QString ScriptingPython::getErrorMessage(ScriptingPlugin::Context* context) cons
 
 QString ScriptingPython::getIconPath() const
 {
-    return ":/scriptingpython/scriptingpython.png";
+    return ":/scriptingpython/scriptingpython.svg";
 }
 
 QVariant ScriptingPython::evaluate(ScriptingPlugin::Context* context, const QString& code, const FunctionInfo& funcInfo, const QList<QVariant>& args, Db* db, bool locking)

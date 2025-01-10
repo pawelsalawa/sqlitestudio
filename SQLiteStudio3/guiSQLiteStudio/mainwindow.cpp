@@ -35,7 +35,6 @@
 #include "themetuner.h"
 #include "style.h"
 #include "services/codeformatter.h"
-#include "common/compatibility.h"
 #include "windows/codesnippeteditor.h"
 #include "uiutils.h"
 #include <QMdiSubWindow>
@@ -270,7 +269,7 @@ void MainWindow::createActions()
     createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL &editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTIONS_EDITOR, tr("Open SQL &functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
-    createAction(OPEN_SNIPPETS_EDITOR, ICONS.CODE_SNIPPET, tr("Open code &snippets editor"), this, SLOT(openCodeSnippetsEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_SNIPPETS_EDITOR, ICONS.CODE_SNIPPETS, tr("Open code &snippets editor"), this, SLOT(openCodeSnippetsEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.COLLATIONS_EDITOR, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION_EDITOR, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);

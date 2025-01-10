@@ -181,8 +181,6 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    IconManager::getInstance()->scanForNewResources();
-
     if (!LanguageDialog::didAskForDefaultLanguage() && !SQLITESTUDIO->getConfig()->isInMemory())
     {
         LanguageDialog::askedForDefaultLanguage();

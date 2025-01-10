@@ -9,7 +9,6 @@
 #include "services/notifymanager.h"
 #include "services/sqliteextensionmanager.h"
 #include "parser/lexer.h"
-#include "common/compatibility.h"
 #include <QDebug>
 #include <QTime>
 #include <QWriteLocker>

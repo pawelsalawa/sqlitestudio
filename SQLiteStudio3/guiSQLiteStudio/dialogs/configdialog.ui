@@ -80,8 +80,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>22</width>
-              <height>22</height>
+              <width>18</width>
+              <height>18</height>
              </size>
             </property>
             <property name="verticalScrollMode">
@@ -151,7 +151,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_font.png</normaloff>:/icons/img/config_font.png</iconset>
+                <normaloff>:/icons/img/config_font.svg</normaloff>:/icons/img/config_font.svg</iconset>
               </property>
              </item>
              <item>
@@ -175,8 +175,8 @@
               <string notr="true">databaseListPage</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>:/icons/img/database_online.png</normaloff>:/icons/img/database_online.png</iconset>
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/config_dblist.svg</normaloff>:/icons/img/config_dblist.svg</iconset>
              </property>
             </item>
             <item>
@@ -199,8 +199,8 @@
               <string notr="true">dataBrowsingPage</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>:/icons/img/table.png</normaloff>:/icons/img/table.png</iconset>
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/table.svg</normaloff>:/icons/img/table.svg</iconset>
              </property>
              <item>
               <property name="text">
@@ -211,7 +211,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_data_editors.png</normaloff>:/icons/img/config_data_editors.png</iconset>
+                <normaloff>:/icons/img/config_data_editors.svg</normaloff>:/icons/img/config_data_editors.svg</iconset>
               </property>
              </item>
             </item>
@@ -224,7 +224,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/plugin.png</normaloff>:/icons/img/plugin.png</iconset>
+               <normaloff>:/icons/img/plugin.svg</normaloff>:/icons/img/plugin.svg</iconset>
              </property>
              <item>
               <property name="text">
@@ -255,7 +255,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1588,8 +1588,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>364</width>
-                <height>283</height>
+                <width>692</width>
+                <height>530</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1654,7 +1654,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="../icons.qrc">
-                      <normaloff>:/icons/img/dock_layout_vertical.png</normaloff>:/icons/img/dock_layout_vertical.png</iconset>
+                      <normaloff>:/icons/img/dock_layout_vertical.svg</normaloff>:/icons/img/dock_layout_vertical.svg</iconset>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -1674,7 +1674,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="../icons.qrc">
-                      <normaloff>:/icons/img/dock_layout_horizontal.png</normaloff>:/icons/img/dock_layout_horizontal.png</iconset>
+                      <normaloff>:/icons/img/dock_layout_horizontal.svg</normaloff>:/icons/img/dock_layout_horizontal.svg</iconset>
                     </property>
                     <property name="cfg" stdset="0">
                      <string notr="true">General.DockLayout</string>

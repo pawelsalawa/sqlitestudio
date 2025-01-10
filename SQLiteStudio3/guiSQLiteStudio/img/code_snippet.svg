@@ -6,7 +6,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.2"
@@ -18,12 +17,12 @@
    stroke-width="28.222"
    stroke-linejoin="round"
    xml:space="preserve"
-   id="svg122"
-   sodipodi:docname="code_snippet.svg"
+   id="svg130"
+   sodipodi:docname="code_snippet1.svg"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"><metadata
-   id="metadata126"><rdf:RDF><cc:Work
+   id="metadata134"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
    borderopacity="1"
@@ -34,23 +33,15 @@
    inkscape:pageshadow="2"
    inkscape:window-width="640"
    inkscape:window-height="480"
-   id="namedview124"
+   id="namedview132"
    showgrid="false"
    inkscape:zoom="13.335"
-   inkscape:cx="29.621297"
+   inkscape:cx="30.708661"
    inkscape:cy="37.795276"
-   inkscape:current-layer="id7" />
+   inkscape:current-layer="g122" />
  <defs
    class="ClipPathGroup"
-   id="defs8"><linearGradient
-   inkscape:collect="always"
-   id="linearGradient955"><stop
-     style="stop-color:#5d91c8;stop-opacity:1"
-     offset="0"
-     id="stop951" /><stop
-     style="stop-color:#abc6e2;stop-opacity:1"
-     offset="1"
-     id="stop953" /></linearGradient>
+   id="defs8">
   <clipPath
    id="presentation_clip_path"
    clipPathUnits="userSpaceOnUse">
@@ -71,21 +62,13 @@
    height="1996"
    id="rect5" />
   </clipPath>
- <linearGradient
-   inkscape:collect="always"
-   xlink:href="#linearGradient955"
-   id="linearGradient957"
-   x1="676.19049"
-   y1="211.50795"
-   x2="1089.6825"
-   y2="1586.5079"
-   gradientUnits="userSpaceOnUse" /></defs>
+ </defs>
  <defs
    class="TextShapeIndex"
    id="defs12">
   <g
    ooo:slide="id1"
-   ooo:id-list="id3 id4 id5 id6 id7 id8 id9"
+   ooo:id-list="id3 id4 id5 id6 id7"
    id="g10" />
  </defs>
  <defs
@@ -177,9 +160,9 @@
  </g>
  <g
    class="SlideGroup"
-   id="g120">
+   id="g128">
   <g
-   id="g118">
+   id="g126">
    <g
    id="container-id1">
     <g
@@ -188,205 +171,153 @@
    clip-path="url(#presentation_clip_path)">
      <g
    class="Page"
-   id="g114">
+   id="g122">
       <g
    class="com.sun.star.drawing.PolyPolygonShape"
-   id="g58">
+   id="g67">
        <g
    id="id3">
         <rect
    class="BoundingBox"
    stroke="none"
    fill="none"
-   x="175"
-   y="1524"
-   width="301"
-   height="352"
+   x="1250"
+   y="1158"
+   width="351"
+   height="602"
    id="rect51" />
-        <path
-   fill="#729fcf"
-   stroke="none"
-   d="M 450,1850 200,1650 v -100 l 250,200 z"
-   id="path53" />
+        <g
+   id="g62">
+         <defs
+   id="defs58">
+          <linearGradient
+   id="gradient1"
+   x1="1212"
+   y1="1245"
+   x2="1638"
+   y2="1671"
+   gradientUnits="userSpaceOnUse">
+           <stop
+   offset="0"
+   style="stop-color:rgb(232,242,161)"
+   id="stop53" />
+           <stop
+   offset="1"
+   style="stop-color:rgb(18,118,34)"
+   id="stop55" />
+          </linearGradient>
+         </defs>
+         <path
+   style="fill:url(#gradient1)"
+   d="m 1275,1183 v 100 l 200,200 v 250 l 100,-300 z"
+   id="path60" />
+        </g>
         <path
    fill="none"
-   stroke="#3465a4"
+   stroke="#1e6a39"
    stroke-width="50"
    stroke-linejoin="round"
-   d="M 450,1850 200,1650 v -100 l 250,200 z"
-   id="path55" />
+   d="m 1275,1183 v 100 l 200,200 v 250 l 100,-300 z"
+   id="path64" />
        </g>
       </g>
       <g
    class="com.sun.star.drawing.CustomShape"
-   id="g67">
+   id="g85">
        <g
    id="id4">
         <rect
    class="BoundingBox"
    stroke="none"
    fill="none"
-   x="425"
-   y="325"
-   width="1401"
-   height="1551"
-   id="rect60" />
-        <path
-   fill="#729fcf"
-   stroke="none"
-   d="M 1125,1850 H 450 V 350 h 1350 v 1500 z"
-   id="path62" />
+   x="237"
+   y="63"
+   width="1551"
+   height="1851"
+   id="rect69" />
+        <g
+   id="g80">
+         <defs
+   id="defs76">
+          <linearGradient
+   id="gradient2"
+   x1="435"
+   y1="-12"
+   x2="1590"
+   y2="1988"
+   gradientUnits="userSpaceOnUse">
+           <stop
+   offset="0"
+   style="stop-color:rgb(238,238,238)"
+   id="stop71" />
+           <stop
+   offset="1"
+   style="stop-color:rgb(204,204,204)"
+   id="stop73" />
+          </linearGradient>
+         </defs>
+         <path
+   style="fill:url(#gradient2)"
+   d="M 1012,1888 H 262 V 88 h 1500 v 1800 z"
+   id="path78" />
+        </g>
         <path
    fill="none"
-   stroke="#3465a4"
+   stroke="#666666"
    stroke-width="50"
    stroke-linejoin="round"
-   d="M 1125,1850 H 450 V 350 h 1350 v 1500 z"
-   id="path64" />
-       </g>
-      </g>
-      <g
-   class="com.sun.star.drawing.PolyPolygonShape"
-   id="g76">
-       <g
-   id="id5">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="195"
-   y="1595"
-   width="1561"
-   height="211"
-   id="rect69" />
-        <path
-   fill="#ffffff"
-   stroke="none"
-   d="m 1500,1600 250,200 H 450 L 200,1600 Z"
-   id="path71" />
-        <path
-   fill="none"
-   stroke="#999999"
-   stroke-width="10"
-   stroke-linejoin="round"
-   d="m 1500,1600 250,200 H 450 L 200,1600 Z"
-   id="path73" />
-       </g>
-      </g>
-      <g
-   class="com.sun.star.drawing.PolyPolygonShape"
-   id="g85">
-       <g
-   id="id6">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="1494"
-   y="195"
-   width="262"
-   height="1611"
-   id="rect78" />
-        <path
-   fill="#ffffff"
-   stroke="none"
-   d="m 1500,1600 250,200 V 400 L 1500,200 Z"
-   id="path80" />
-        <path
-   fill="none"
-   stroke="#999999"
-   stroke-width="10"
-   stroke-linejoin="round"
-   d="m 1500,1600 250,200 V 400 L 1500,200 Z"
+   d="M 1012,1888 H 262 V 88 h 1500 v 1800 z"
    id="path82" />
        </g>
       </g>
-      <g
+      
+      
+      
+     <g
+   transform="translate(130.88891,97.111082)"
    class="com.sun.star.drawing.CustomShape"
-   id="g94">
-       <g
-   id="id7">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="175"
-   y="125"
-   width="1401"
-   height="1551"
-   id="rect87" />
-        <path
-   fill="#729fcf"
-   stroke="none"
-   d="M 875,1650 H 200 V 150 h 1350 v 1500 z"
-   id="path89"
-   style="fill-opacity:1;fill:url(#linearGradient957)" />
-        <path
-   fill="none"
-   stroke="#3465a4"
-   stroke-width="50"
-   stroke-linejoin="round"
-   d="M 875,1650 H 200 V 150 h 1350 v 1500 z"
-   id="path91" />
-       </g>
-      </g>
-      <g
+   id="g103"><g
+     id="id8"><rect
+       class="BoundingBox"
+       stroke="none"
+       fill="none"
+       x="324"
+       y="507"
+       width="486"
+       height="764"
+       id="rect96" /><path
+       fill="#4d4d4d"
+       stroke="none"
+       d="m 791,702 -338,187 338,185 v 164 L 342,965 V 810 L 791,539 Z"
+       id="path98" /><path
+       fill="none"
+       stroke="#4d4d4d"
+       stroke-width="35"
+       stroke-linejoin="miter"
+       d="m 791,702 -338,187 338,185 v 164 L 342,965 V 810 L 791,539 Z"
+       id="path100" /></g></g><g
+   transform="translate(130.88891,97.111082)"
    class="com.sun.star.drawing.CustomShape"
-   id="g103">
-       <g
-   id="id8">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="324"
-   y="507"
-   width="486"
-   height="764"
-   id="rect96" />
-        <path
-   fill="#4d4d4d"
-   stroke="none"
-   d="m 791,702 -338,187 338,185 v 164 L 342,965 V 810 L 791,539 Z"
-   id="path98" />
-        <path
-   fill="none"
-   stroke="#4d4d4d"
-   stroke-width="35"
-   stroke-linejoin="miter"
-   d="m 791,702 -338,187 338,185 v 164 L 342,965 V 810 L 791,539 Z"
-   id="path100" />
-       </g>
-      </g>
-      <g
-   class="com.sun.star.drawing.CustomShape"
-   id="g112">
-       <g
-   id="id9">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="956"
-   y="507"
-   width="486"
-   height="764"
-   id="rect105" />
-        <path
-   fill="#4d4d4d"
-   stroke="none"
-   d="M 974,702 V 539 l 449,271 v 155 l -449,273 v -164 l 338,-185 z"
-   id="path107" />
-        <path
-   fill="none"
-   stroke="#4d4d4d"
-   stroke-width="35"
-   stroke-linejoin="miter"
-   d="M 974,702 V 539 l 449,271 v 155 l -449,273 v -164 l 338,-185 z"
-   id="path109" />
-       </g>
-      </g>
-     </g>
+   id="g112"><g
+     id="id9"><rect
+       class="BoundingBox"
+       stroke="none"
+       fill="none"
+       x="956"
+       y="507"
+       width="486"
+       height="764"
+       id="rect105" /><path
+       fill="#4d4d4d"
+       stroke="none"
+       d="M 974,702 V 539 l 449,271 v 155 l -449,273 v -164 l 338,-185 z"
+       id="path107" /><path
+       fill="none"
+       stroke="#4d4d4d"
+       stroke-width="35"
+       stroke-linejoin="miter"
+       d="M 974,702 V 539 l 449,271 v 155 l -449,273 v -164 l 338,-185 z"
+       id="path109" /></g></g></g>
     </g>
    </g>
   </g>

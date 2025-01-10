@@ -3,6 +3,7 @@
 #include "services/pluginmanager.h"
 #include "common/unused.h"
 #include "common/global.h"
+#include "common/utils.h"
 #include <QApplication>
 #include <QDir>
 #include <QString>
@@ -49,17 +50,10 @@ void IconManager::init()
     movieFileExtensions << "*.gif" << "*.GIF" << "*.mng" << "*.MNG";
 
     for (QString& dirPath : iconDirs)
-    {
-        loadRecurently(dirPath, "", false, false);
-        loadRecurently(dirPath, "", true, false);
-    }
+        loadRecurently(dirPath, "", false);
 
     Icon::loadAll();
-
-    if (PLUGINS->arePluginsInitiallyLoaded())
-        enableRescanning();
-    else
-        connect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+    enableRescanning();
 }
 
 QStringList IconManager::getIconDirs() const
@@ -72,29 +66,25 @@ void IconManager::rescanResources(const QString& pluginName)
     if (!pluginName.isNull() && PLUGINS->isBuiltIn(pluginName))
         return;
 
-    for (const QString& name : resourceMovies)
+    QStringList pluginMovies = pluginResourceMovies[pluginName];
+    pluginResourceMovies.remove(pluginName);
+    for (const QString& name : pluginMovies)
     {
-        delete movies[name];
+        movies[name]->deleteLater();
         movies.remove(name);
     }
 
-    for (const QString& name : resourceIcons)
+    QStringList pluginIcons = pluginResourceIcons[pluginName];
+    pluginResourceIcons.remove(pluginName);
+    for (const QString& name : pluginIcons)
+    {
+        delete icons[name];
         icons.remove(name);
+    }
 
-    resourceMovies.clear();
-    resourceIcons.clear();
-    loadRecurently(":/icons", "", true, false);
-    loadRecurently(":/icons", "", false, false);
+    loadRecurently(":/icons", "", true);
 
-    Icon::reloadAll();
     emit rescannedFor(pluginName);
-}
-
-void IconManager::scanForNewResources()
-{
-    loadRecurently(":/icons", "", true, true);
-    loadRecurently(":/icons", "", false, true);
-    Icon::loadAll();
 }
 
 void IconManager::rescanResources(Plugin* plugin, PluginType* pluginType)
@@ -109,11 +99,10 @@ void IconManager::pluginsAboutToMassUnload()
     disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
 }
 
-void IconManager::pluginsInitiallyLoaded()
+void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool onlyNew)
 {
-    Icon::reloadAll();
-    enableRescanning();
-    disconnect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+    loadRecurently(dirPath, prefix, true, onlyNew);
+    loadRecurently(dirPath, prefix, false, onlyNew);
 }
 
 void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie, bool onlyNew)

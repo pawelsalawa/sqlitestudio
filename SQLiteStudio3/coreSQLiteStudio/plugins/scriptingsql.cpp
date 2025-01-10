@@ -133,7 +133,7 @@ QString ScriptingSql::getErrorMessage(ScriptingPlugin::Context* context) const
 
 QString ScriptingSql::getIconPath() const
 {
-    return ":/images/plugins/scriptingsql.png";
+    return ":/images/plugins/scriptingsql.svg";
 }
 
 bool ScriptingSql::init()

@@ -4,6 +4,7 @@
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "icon.h"
+#include "iconmanager.h"
 #include <QDebug>
 
 #define SETTER(X, Y) \
@@ -318,7 +319,12 @@ int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
 QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || !isValidRowIndex(index.row()))
+    {
+        if (role == Qt::DecorationRole)
+            return ICONS.FUNCTION_ERROR;
+
         return QVariant();
+    }
 
     if (role == Qt::DisplayRole)
     {
@@ -327,13 +333,10 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
     }
 
     if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data.lang))
-    {
-        QIcon icon = langToIcon[functionList[index.row()]->data.lang];
-        if (!functionList[index.row()]->valid)
-            icon = Icon::merge(icon, Icon::ERROR);
+        return functionList[index.row()]->valid ? langToIcon[functionList[index.row()]->data.lang] : ICONS.FUNCTION_ERROR;
 
-        return icon;
-    }
+    if (role == Qt::DecorationRole)
+        return ICONS.LIST_ITEM_OTHER;
 
     return QVariant();
 }

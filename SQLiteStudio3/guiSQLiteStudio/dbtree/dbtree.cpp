@@ -25,7 +25,6 @@
 #include "querygenerator.h"
 #include "dialogs/execfromfiledialog.h"
 #include "dialogs/fileexecerrorsdialog.h"
-#include "common/compatibility.h"
 #include "sqlfileexecutor.h"
 #include "common/mouseshortcut.h"
 #include <QApplication>

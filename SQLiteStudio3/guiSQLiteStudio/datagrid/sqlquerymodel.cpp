@@ -12,7 +12,6 @@
 #include "services/dbmanager.h"
 #include "querygenerator.h"
 #include "parser/lexer.h"
-#include "common/compatibility.h"
 #include "mainwindow.h"
 #include "iconmanager.h"
 #include <QHeaderView>
@@ -1805,52 +1804,52 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     view->setFocus();
 }
 
-Icon& SqlQueryModel::getIconForIdx(int idx) const
+Icon& SqlQueryModel::getIconForIdx(int idx, bool desc) const
 {
     switch (idx)
     {
         case 0:
-            return ICONS.SORT_COUNT_01;
+            return desc ? ICONS.SORT_COUNT_01_ASC : ICONS.SORT_COUNT_01_DESC;
         case 1:
-            return ICONS.SORT_COUNT_02;
+            return desc ? ICONS.SORT_COUNT_02_ASC : ICONS.SORT_COUNT_02_DESC;
         case 2:
-            return ICONS.SORT_COUNT_03;
+            return desc ? ICONS.SORT_COUNT_03_ASC : ICONS.SORT_COUNT_03_DESC;
         case 3:
-            return ICONS.SORT_COUNT_04;
+            return desc ? ICONS.SORT_COUNT_04_ASC : ICONS.SORT_COUNT_04_DESC;
         case 4:
-            return ICONS.SORT_COUNT_05;
+            return desc ? ICONS.SORT_COUNT_05_ASC : ICONS.SORT_COUNT_05_DESC;
         case 5:
-            return ICONS.SORT_COUNT_06;
+            return desc ? ICONS.SORT_COUNT_06_ASC : ICONS.SORT_COUNT_06_DESC;
         case 6:
-            return ICONS.SORT_COUNT_07;
+            return desc ? ICONS.SORT_COUNT_07_ASC : ICONS.SORT_COUNT_07_DESC;
         case 7:
-            return ICONS.SORT_COUNT_08;
+            return desc ? ICONS.SORT_COUNT_08_ASC : ICONS.SORT_COUNT_08_DESC;
         case 8:
-            return ICONS.SORT_COUNT_09;
+            return desc ? ICONS.SORT_COUNT_09_ASC : ICONS.SORT_COUNT_09_DESC;
         case 9:
-            return ICONS.SORT_COUNT_10;
+            return desc ? ICONS.SORT_COUNT_10_ASC : ICONS.SORT_COUNT_10_DESC;
         case 10:
-            return ICONS.SORT_COUNT_11;
+            return desc ? ICONS.SORT_COUNT_11_ASC : ICONS.SORT_COUNT_11_DESC;
         case 11:
-            return ICONS.SORT_COUNT_12;
+            return desc ? ICONS.SORT_COUNT_12_ASC : ICONS.SORT_COUNT_12_DESC;
         case 12:
-            return ICONS.SORT_COUNT_13;
+            return desc ? ICONS.SORT_COUNT_13_ASC : ICONS.SORT_COUNT_13_DESC;
         case 13:
-            return ICONS.SORT_COUNT_14;
+            return desc ? ICONS.SORT_COUNT_14_ASC : ICONS.SORT_COUNT_14_DESC;
         case 14:
-            return ICONS.SORT_COUNT_15;
+            return desc ? ICONS.SORT_COUNT_15_ASC : ICONS.SORT_COUNT_15_DESC;
         case 15:
-            return ICONS.SORT_COUNT_16;
+            return desc ? ICONS.SORT_COUNT_16_ASC : ICONS.SORT_COUNT_16_DESC;
         case 16:
-            return ICONS.SORT_COUNT_17;
+            return desc ? ICONS.SORT_COUNT_17_ASC : ICONS.SORT_COUNT_17_DESC;
         case 17:
-            return ICONS.SORT_COUNT_18;
+            return desc ? ICONS.SORT_COUNT_18_ASC : ICONS.SORT_COUNT_18_DESC;
         case 18:
-            return ICONS.SORT_COUNT_19;
+            return desc ? ICONS.SORT_COUNT_19_ASC : ICONS.SORT_COUNT_19_DESC;
         case 19:
-            return ICONS.SORT_COUNT_20;
+            return desc ? ICONS.SORT_COUNT_20_ASC : ICONS.SORT_COUNT_20_DESC;
     }
-    return ICONS.SORT_COUNT_20_PLUS;
+    return desc ? ICONS.SORT_COUNT_20_PLUS_ASC : ICONS.SORT_COUNT_20_PLUS_DESC;
 }
 
 void SqlQueryModel::detachDatabases()
@@ -2168,7 +2167,7 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
             if (sort.column == section)
             {
                 bool desc = sort.order == QueryExecutor::Sort::DESC;
-                return *(getIconForIdx(idx).with(desc ? Icon::SORT_DESC : Icon::SORT_ASC));
+                return *(getIconForIdx(idx, desc).toQIconPtr());
             }
             idx++;
         }

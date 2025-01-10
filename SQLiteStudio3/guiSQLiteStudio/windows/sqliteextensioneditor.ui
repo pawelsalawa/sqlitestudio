@@ -47,7 +47,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="QWidget" name="leftWidget" native="true">
          <property name="sizePolicy">
@@ -130,7 +130,7 @@
                </property>
                <property name="icon">
                 <iconset resource="../icons.qrc">
-                 <normaloff>:/icons/img/directory_open.png</normaloff>:/icons/img/directory_open.png</iconset>
+                 <normaloff>:/icons/img/directory_open.svg</normaloff>:/icons/img/directory_open.svg</iconset>
                </property>
               </widget>
              </item>

@@ -12,7 +12,6 @@
 #include "dbattacher.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
-#include "common/compatibility.h"
 #include "services/dbmanager.h"
 #include "db/dbsqlite3.h"
 #include <QStringList>

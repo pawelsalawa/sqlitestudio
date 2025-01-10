@@ -1,11 +1,13 @@
 #include "multieditordialog.h"
 #include "multieditor.h"
+#include "iconmanager.h"
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
 MultiEditorDialog::MultiEditorDialog(QWidget *parent) :
     QDialog(parent)
 {
+    setWindowIcon(ICONS.OPEN_VALUE_EDITOR);
     multiEditor = new MultiEditor();
 
     QVBoxLayout* vbox = new QVBoxLayout();

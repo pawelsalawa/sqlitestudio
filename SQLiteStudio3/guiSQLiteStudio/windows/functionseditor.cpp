@@ -2,7 +2,6 @@
 #include "ui_functionseditor.h"
 #include "common/unused.h"
 #include "common/utils.h"
-#include "common/compatibility.h"
 #include "uiutils.h"
 #include "functionseditormodel.h"
 #include "services/pluginmanager.h"
@@ -386,6 +385,9 @@ void FunctionsEditor::updateModified()
 
         currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff ||
                            initCodeDiff || finalCodeDiff || deterministicDiff);
+
+        if (langDiff)
+            model->setLang(row, ui->langCombo->currentText());
     }
 
     updateCurrentFunctionState();

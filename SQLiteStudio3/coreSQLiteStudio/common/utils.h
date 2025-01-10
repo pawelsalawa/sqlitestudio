@@ -173,6 +173,42 @@ QSet<T> concat(const QSet<QSet<T>>& list)
 
 API_EXPORT QStringList concat(const QList<QStringList>& list);
 
+template <class T>
+inline QSet<T> toSet(const QList<T>& list)
+{
+    return QSet<T>(list.begin(), list.end());
+}
+
+API_EXPORT QSet<QString> toSet(const QStringList& list);
+
+template <class T>
+inline QList<T> toList(const QSet<T>& set)
+{
+    return QList<T>(set.begin(), set.end());
+}
+
+API_EXPORT QStringList toList(const QSet<QString>& set);
+
+template <class K, class V>
+inline void unite(QHash<K, V>& h1, const QHash<K, V>& h2)
+{
+    h1.insert(h2);
+}
+
+template <class T>
+void sSort(T& collection)
+{
+    std::sort(collection.begin(), collection.end());
+}
+
+template <class T, class C>
+void sSort(T& collection, C cmp)
+{
+    std::sort(collection.begin(), collection.end(), cmp);
+}
+
+API_EXPORT void strSort(QStringList& collection, Qt::CaseSensitivity cs);
+
 /**
  * @brief Appends or prepends characters to the string to make it of specified length.
  * @param str Input string to work with.

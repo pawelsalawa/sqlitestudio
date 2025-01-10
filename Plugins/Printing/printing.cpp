@@ -32,9 +32,10 @@ bool Printing::init()
     printingConfig->exportTableTriggers = false;
     printingConfig->codec = defaultCodecName();
 
-    printDataAction = new ExtActionPrototype(QIcon(":/icons/printer.png"), tr("Print data"), this);
+    QIcon printerIcon(":/icons/printer.svg");
+    printDataAction = new ExtActionPrototype(printerIcon, tr("Print data"), this);
     separatorAction = new ExtActionPrototype(this);
-    printQueryAction = new ExtActionPrototype(QIcon(":/icons/printer.png"), tr("Print query"), this);
+    printQueryAction = new ExtActionPrototype(printerIcon, tr("Print query"), this);
 
     connect(printDataAction, SIGNAL(triggered(ExtActionContainer*,int)), this, SLOT(dataPrintRequested(ExtActionContainer*)));
     connect(printQueryAction, SIGNAL(triggered(ExtActionContainer*,int)), this, SLOT(queryPrintRequested(ExtActionContainer*)));
