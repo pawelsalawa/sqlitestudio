@@ -1709,7 +1709,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     filterItemsWithParentInList(items);
 
     // Warning user about items to be deleted
-    static const QString itemTmp = "<img src=\"%1\"/> %2";
+    static_qstring(itemTmp, R"(<img src="%1" width="16" height="16"/> %2)");
 
     QStringList toDelete;
     QStringList databasesToRemove;
