@@ -2,7 +2,6 @@
 #include "common/global.h"
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
-#include "common/compatibility.h"
 #include <QString>
 #include <QStringConverter>
 #include <QStringEncoder>
@@ -943,11 +942,6 @@ QString readFileContents(const QString& path, QString* err)
     }
 
     QTextStream stream(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    stream.setCodec("UTF-8");
-#else
-    // UTF-8 is the default QTextStream encoding in Qt 6
-#endif
     QString contents = stream.readAll();
     file.close();
 
@@ -1047,25 +1041,29 @@ QStringList sharedLibFileFilters()
 
 void runInThread(std::function<void()> func)
 {
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    class FunctionRunnable : public QRunnable
-    {
-        std::function<void()> func;
-    public:
-        FunctionRunnable(std::function<void()> func) : func(std::move(func)) {}
-        void run() override
-        {
-            func();
-        }
-    };
-    QThreadPool::globalInstance()->start(new FunctionRunnable(func));
-#else
     QThreadPool::globalInstance()->start(func);
-#endif
 }
 
 QStringConverter::Encoding textEncodingForName(const QString& name)
 {
     auto encoding = QStringConverter::encodingForName(name.toLatin1().constData());
     return encoding ? *encoding : QStringConverter::System;
+}
+
+QSet<QString> toSet(const QStringList& list)
+{
+    return toSet<QString>(list);
+}
+
+QStringList toList(const QSet<QString>& set)
+{
+    return QStringList(set.begin(), set.end());
+}
+
+void strSort(QStringList& collection, Qt::CaseSensitivity cs)
+{
+    std::stable_sort(collection.begin(), collection.end(), [cs](const QString& v1, const QString& v2) -> bool
+    {
+        return v1.compare(v2, cs) < 0;
+    });
 }

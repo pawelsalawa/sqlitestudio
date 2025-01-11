@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--part of the rodentia icon theme by sixsixfive released under CC0 (https://creativecommons.org/publicdomain/zero/1.0/) on openclipart-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
+ <defs id="0">
+  <linearGradient id="3">
+   <stop id="O" stop-color="#2e3436"/>
+   <stop id="P" offset="1" stop-color="#2e3436" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="4">
+   <stop id="Q" stop-color="#fff" stop-opacity="0.4"/>
+   <stop id="R" offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="5">
+   <stop id="S" stop-color="#c4a000"/>
+   <stop id="T" offset="1" stop-color="#9c8100"/>
+  </linearGradient>
+  <linearGradient id="6">
+   <stop id="U" stop-color="#fff"/>
+   <stop id="V" offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="7">
+   <stop id="W" stop-color="#fff" stop-opacity="0.8"/>
+   <stop id="X" offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="8">
+   <stop id="Y" stop-color="#fce94f"/>
+   <stop id="Z" offset="1" stop-color="#edd400"/>
+  </linearGradient>
+  <linearGradient id="9">
+   <stop id="a" stop-color="#2e3436"/>
+   <stop id="b" offset="1" stop-color="#555753"/>
+  </linearGradient>
+  <filter color-interpolation-filters="sRGB" id="A">
+   <feGaussianBlur stdDeviation="0.755" id="c"/>
+  </filter>
+  <radialGradient cx="35.488" cy="26.2" r="23" id="B" xlink:href="#9" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.0434444,-1.4643692,1.4020098,0.9990096,-62.776231,34.470805)"/>
+  <linearGradient y1="1.781" x2="0" y2="41.75" id="C" xlink:href="#4" gradientUnits="userSpaceOnUse"/>
+  <linearGradient y1="10.144" x2="0" y2="42.775" id="D" xlink:href="#8" gradientUnits="userSpaceOnUse"/>
+  <linearGradient y1="10.144" x2="0" y2="42.775" id="E" xlink:href="#5" gradientUnits="userSpaceOnUse"/>
+  <linearGradient y1="11.188" x2="0" y2="41.75" id="F" xlink:href="#7" gradientUnits="userSpaceOnUse"/>
+  <linearGradient x1="7.935" y1="-28.25" x2="20.05" y2="36.1" id="G" xlink:href="#6" gradientUnits="userSpaceOnUse"/>
+  <radialGradient cx="24.919" cy="48.2" r="25.941" id="H" xlink:href="#3" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1,0,0,0.1062992,0,43.080183)"/>
+ </defs>
+ <path d="m 50.860289,48.204258 a 25.94079,2.7574856 0 1 1 -51.8815807,0 25.94079,2.7574856 0 1 1 51.8815807,0 z" transform="matrix(0.9652959,0,0,0.8148148,-0.05468968,4.2286171)" id="1" fill="url(#H)"/>
+ <g transform="matrix(0.9574469,0,0,0.9574469,1.0212744,3.1660267)" id="2">
+  <path d="m 1.5,1.2452202 0,41.0294108 45,0 0,-34.5135739 -18.834842,0 -5.497737,-6.5158369 -20.667421,0 z" id="I" fill="url(#B)" stroke="#2e3436" stroke-linejoin="round" stroke-linecap="square"/>
+  <path d="m 2.53125,2.28125 0,38.96875 42.9375,0 0,-32.46875 -17.8125,0 A 1.0266953,1.0266953 0 0 1 26.875,8.40625 l -5.1875,-6.125 -19.15625,0 z" id="J" opacity="0.8" fill="none" stroke="url(#C)" stroke-linejoin="round" stroke-linecap="square"/>
+  <path d="m 18.65625,11.1875 -2.875,6.34375 a 0.54138149,0.54138149 0 0 1 -0.5,0.3125 l -13.75,0 0.5,23.90625 43.9375,0 0.5,-30.5625 -27.8125,0 z" transform="translate(0,-1.7)" id="K" filter="url(#A)"/>
+  <path d="m 18.310273,10.643608 -3.037735,6.654088 -14.272535,0 0.4999972,24.976935 44.9999998,0 0.499997,-31.631023 -28.689724,0 z" id="L" fill="url(#D)" stroke="url(#E)" stroke-linejoin="round" stroke-linecap="square"/>
+  <path d="m 18.96875,11.6875 -2.75,6.0625 a 1.0266953,1.0266953 0 0 1 -0.9375,0.59375 l -13.21875,0 L 2.5,41.25 l 43,0 0.4375,-29.5625 -26.96875,0 z" id="M" opacity="0.8" fill="none" stroke="url(#F)" stroke-linejoin="round" stroke-linecap="square"/>
+  <path d="m 18.65625,11.15625 -2.90625,6.375 c -0.08919,0.176066 -0.271425,0.285406 -0.46875,0.28125 l -13.78125,0 0.3125,15.34375 c 12.189878,-5.184653 30.416986,-10.313955 44.53125,-12.75 l 0.15625,-9.25 -27.84375,0 z" id="N" opacity="0.8" fill="url(#G)"/>
+ </g>
+</svg>

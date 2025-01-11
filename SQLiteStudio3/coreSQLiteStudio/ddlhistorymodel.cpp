@@ -1,6 +1,6 @@
 #include "ddlhistorymodel.h"
 #include "querymodel.h"
-#include "common/compatibility.h"
+#include "common/utils.h"
 #include <QSet>
 #include <QDebug>
 

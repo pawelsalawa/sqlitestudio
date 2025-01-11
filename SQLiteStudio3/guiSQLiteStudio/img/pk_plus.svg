@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:ooo="http://xml.openoffice.org/svg/export"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.2"
+   width="20mm"
+   height="20mm"
+   viewBox="0 0 2000 2000"
+   preserveAspectRatio="xMidYMid"
+   fill-rule="evenodd"
+   stroke-width="28.222"
+   stroke-linejoin="round"
+   xml:space="preserve"
+   id="svg88"
+   sodipodi:docname="pk_plus.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"><metadata
+   id="metadata92"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="3440"
+   inkscape:window-height="1377"
+   id="namedview90"
+   showgrid="false"
+   inkscape:zoom="13.335"
+   inkscape:cx="37.795276"
+   inkscape:cy="37.795276"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg88" />
+ <defs
+   class="ClipPathGroup"
+   id="defs8">
+  <clipPath
+   id="presentation_clip_path"
+   clipPathUnits="userSpaceOnUse">
+   <rect
+   x="0"
+   y="0"
+   width="2000"
+   height="2000"
+   id="rect2" />
+  </clipPath>
+  <clipPath
+   id="presentation_clip_path_shrink"
+   clipPathUnits="userSpaceOnUse">
+   <rect
+   x="2"
+   y="2"
+   width="1996"
+   height="1996"
+   id="rect5" />
+  </clipPath>
+ <filter
+   style="color-interpolation-filters:sRGB"
+   inkscape:label="Drop Shadow"
+   id="filter993"><feFlood
+     flood-opacity="1"
+     flood-color="rgb(0,0,0)"
+     result="flood"
+     id="feFlood983" /><feComposite
+     in="flood"
+     in2="SourceGraphic"
+     operator="in"
+     result="composite1"
+     id="feComposite985" /><feGaussianBlur
+     in="composite1"
+     stdDeviation="47.3054"
+     result="blur"
+     id="feGaussianBlur987" /><feOffset
+     dx="0"
+     dy="0"
+     result="offset"
+     id="feOffset989" /><feComposite
+     in="SourceGraphic"
+     in2="offset"
+     operator="over"
+     result="composite2"
+     id="feComposite991" /></filter><clipPath
+   id="presentation_clip_path-6"
+   clipPathUnits="userSpaceOnUse"><rect
+     x="0"
+     y="0"
+     width="2000"
+     height="2000"
+     id="rect2-2" /></clipPath><linearGradient
+   id="gradient1-9"
+   x1="1086"
+   y1="857"
+   x2="1735"
+   y2="1982"
+   gradientUnits="userSpaceOnUse"><stop
+     offset="0"
+     style="stop-color:rgb(119,188,101)"
+     id="stop53-0" /><stop
+     offset="1"
+     style="stop-color:rgb(18,118,34)"
+     id="stop55-1" /></linearGradient></defs>
+ <defs
+   class="TextShapeIndex"
+   id="defs12">
+  <g
+   ooo:slide="id1"
+   ooo:id-list="id3 id4"
+   id="g10" />
+ </defs>
+ <defs
+   class="EmbeddedBulletChars"
+   id="defs44">
+  <g
+   id="bullet-char-template-57356"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 580,1141 L 1163,571 580,0 -4,571 580,1141 Z"
+   id="path14" />
+  </g>
+  <g
+   id="bullet-char-template-57354"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 8,1128 L 1137,1128 1137,0 8,0 8,1128 Z"
+   id="path17" />
+  </g>
+  <g
+   id="bullet-char-template-10146"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 174,0 L 602,739 174,1481 1456,739 174,0 Z M 1358,739 L 309,1346 659,739 1358,739 Z"
+   id="path20" />
+  </g>
+  <g
+   id="bullet-char-template-10132"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 2015,739 L 1276,0 717,0 1260,543 174,543 174,936 1260,936 717,1481 1274,1481 2015,739 Z"
+   id="path23" />
+  </g>
+  <g
+   id="bullet-char-template-10007"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 0,-2 C -7,14 -16,27 -25,37 L 356,567 C 262,823 215,952 215,954 215,979 228,992 255,992 264,992 276,990 289,987 310,991 331,999 354,1012 L 381,999 492,748 772,1049 836,1024 860,1049 C 881,1039 901,1025 922,1006 886,937 835,863 770,784 769,783 710,716 594,584 L 774,223 C 774,196 753,168 711,139 L 727,119 C 717,90 699,76 672,76 641,76 570,178 457,381 L 164,-76 C 142,-110 111,-127 72,-127 30,-127 9,-110 8,-76 1,-67 -2,-52 -2,-32 -2,-23 -1,-13 0,-2 Z"
+   id="path26" />
+  </g>
+  <g
+   id="bullet-char-template-10004"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 285,-33 C 182,-33 111,30 74,156 52,228 41,333 41,471 41,549 55,616 82,672 116,743 169,778 240,778 293,778 328,747 346,684 L 369,508 C 377,444 397,411 428,410 L 1163,1116 C 1174,1127 1196,1133 1229,1133 1271,1133 1292,1118 1292,1087 L 1292,965 C 1292,929 1282,901 1262,881 L 442,47 C 390,-6 338,-33 285,-33 Z"
+   id="path29" />
+  </g>
+  <g
+   id="bullet-char-template-9679"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 813,0 C 632,0 489,54 383,161 276,268 223,411 223,592 223,773 276,916 383,1023 489,1130 632,1184 813,1184 992,1184 1136,1130 1245,1023 1353,916 1407,772 1407,592 1407,412 1353,268 1245,161 1136,54 992,0 813,0 Z"
+   id="path32" />
+  </g>
+  <g
+   id="bullet-char-template-8226"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 346,457 C 273,457 209,483 155,535 101,586 74,649 74,723 74,796 101,859 155,911 209,963 273,989 346,989 419,989 480,963 531,910 582,859 608,796 608,723 608,648 583,586 532,535 482,483 420,457 346,457 Z"
+   id="path35" />
+  </g>
+  <g
+   id="bullet-char-template-8211"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M -4,459 L 1135,459 1135,606 -4,606 -4,459 Z"
+   id="path38" />
+  </g>
+  <g
+   id="bullet-char-template-61548"
+   transform="scale(0.00048828125,-0.00048828125)">
+   <path
+   d="M 173,740 C 173,903 231,1043 346,1159 462,1274 601,1332 765,1332 928,1332 1067,1274 1183,1159 1299,1043 1357,903 1357,740 1357,577 1299,437 1183,322 1067,206 928,148 765,148 601,148 462,206 346,322 231,437 173,577 173,740 Z"
+   id="path41" />
+  </g>
+ </defs>
+ <g
+   id="g49">
+  <g
+   id="id2"
+   class="Master_Slide">
+   <g
+   id="bg-id2"
+   class="Background" />
+   <g
+   id="bo-id2"
+   class="BackgroundObjects" />
+  </g>
+ </g>
+ <g
+   class="SlideGroup"
+   id="g86">
+  <g
+   id="g84">
+   <g
+   id="container-id1">
+    <g
+   id="id1"
+   class="Slide"
+   clip-path="url(#presentation_clip_path)">
+     <g
+   class="Page"
+   id="g80">
+      <g
+   class="Group"
+   id="g78">
+       <g
+   class="com.sun.star.drawing.PolyPolygonShape"
+   id="g69">
+        <g
+   id="id3">
+         <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="450"
+   y="21"
+   width="1102"
+   height="1973"
+   id="rect51" />
+         <g
+   id="g62">
+          <defs
+   id="defs58">
+           <linearGradient
+   id="gradient1"
+   x1="454"
+   y1="59"
+   x2="1549"
+   y2="1955"
+   gradientUnits="userSpaceOnUse">
+            <stop
+   offset="0"
+   style="stop-color:rgb(255,233,148)"
+   id="stop53" />
+            <stop
+   offset="1"
+   style="stop-color:rgb(255,151,47)"
+   id="stop55" />
+           </linearGradient>
+          </defs>
+          <path
+   style="fill:url(#gradient1)"
+   d="M 1106,1128 L 1211,1180 1211,1338 1106,1390 1211,1495 1211,1548 1106,1653 1211,1758 1211,1810 1001,1968 791,1810 791,1031 782,1027 758,1015 735,1003 713,989 691,974 670,958 650,941 631,923 614,904 596,884 580,864 565,842 551,820 538,797 526,774 516,750 506,725 498,700 491,675 485,649 481,624 478,597 476,571 476,567 476,545 477,545 477,541 479,514 482,488 488,462 494,436 501,410 510,385 520,361 531,337 543,314 557,291 572,269 587,248 604,228 622,208 641,189 661,171 681,155 703,139 725,125 747,111 771,100 795,88 819,79 845,70 870,63 896,57 922,52 948,49 975,47 1001,46 1027,47 1053,49 1080,52 1106,57 1132,63 1157,70 1183,79 1207,88 1231,100 1255,111 1277,125 1299,139 1321,155 1341,171 1361,189 1380,208 1398,228 1415,248 1430,269 1445,291 1459,314 1471,337 1482,361 1492,385 1501,410 1508,436 1514,462 1520,488 1523,514 1525,541 1525,550 1526,550 1526,558 1526,567 1525,567 1525,576 1523,603 1520,629 1515,654 1509,680 1503,705 1494,731 1484,755 1473,779 1462,802 1448,824 1435,846 1419,868 1402,888 1385,908 1366,927 1348,945 1328,962 1307,977 1284,992 1262,1006 1239,1018 1215,1030 1191,1039 1166,1049 1141,1056 1115,1062 1106,1064 1106,1128 Z M 1001,550 L 1328,550 1328,535 1325,519 1322,503 1318,487 1314,470 1309,454 1302,440 1295,425 1288,410 1279,396 1270,382 1260,368 1250,356 1238,343 1227,332 1214,321 1202,311 1188,301 1174,292 1160,283 1145,276 1130,269 1114,262 1099,257 1083,253 1067,249 1050,247 1035,244 1018,242 1001,242 984,242 967,244 952,247 935,249 919,253 903,257 888,262 872,269 857,276 842,283 828,292 814,301 800,311 788,321 775,332 764,343 752,356 742,368 732,382 723,396 714,410 707,425 700,440 693,454 688,470 684,487 680,503 677,519 674,535 674,547 1001,550 Z"
+   id="path60" />
+         </g>
+         <path
+   fill="none"
+   stroke="rgb(141,40,30)"
+   stroke-width="50"
+   stroke-linejoin="round"
+   d="M 1106,1128 L 1211,1180 1211,1338 1106,1390 1211,1495 1211,1548 1106,1653 1211,1758 1211,1810 1001,1968 791,1810 791,1031 782,1027 758,1015 735,1003 713,989 691,974 670,958 650,941 631,923 614,904 596,884 580,864 565,842 551,820 538,797 526,774 516,750 506,725 498,700 491,675 485,649 481,624 478,597 476,571 476,567 476,545 477,545 477,541 479,514 482,488 488,462 494,436 501,410 510,385 520,361 531,337 543,314 557,291 572,269 587,248 604,228 622,208 641,189 661,171 681,155 703,139 725,125 747,111 771,100 795,88 819,79 845,70 870,63 896,57 922,52 948,49 975,47 1001,46 1027,47 1053,49 1080,52 1106,57 1132,63 1157,70 1183,79 1207,88 1231,100 1255,111 1277,125 1299,139 1321,155 1341,171 1361,189 1380,208 1398,228 1415,248 1430,269 1445,291 1459,314 1471,337 1482,361 1492,385 1501,410 1508,436 1514,462 1520,488 1523,514 1525,541 1525,550 1526,550 1526,558 1526,567 1525,567 1525,576 1523,603 1520,629 1515,654 1509,680 1503,705 1494,731 1484,755 1473,779 1462,802 1448,824 1435,846 1419,868 1402,888 1385,908 1366,927 1348,945 1328,962 1307,977 1284,992 1262,1006 1239,1018 1215,1030 1191,1039 1166,1049 1141,1056 1115,1062 1106,1064 1106,1128 Z"
+   id="path64" />
+         <path
+   fill="none"
+   stroke="rgb(141,40,30)"
+   stroke-width="50"
+   stroke-linejoin="round"
+   d="M 1001,550 L 1328,550 1328,535 1325,519 1322,503 1318,487 1314,470 1309,454 1302,440 1295,425 1288,410 1279,396 1270,382 1260,368 1250,356 1238,343 1227,332 1214,321 1202,311 1188,301 1174,292 1160,283 1145,276 1130,269 1114,262 1099,257 1083,253 1067,249 1050,247 1035,244 1018,242 1001,242 984,242 967,244 952,247 935,249 919,253 903,257 888,262 872,269 857,276 842,283 828,292 814,301 800,311 788,321 775,332 764,343 752,356 742,368 732,382 723,396 714,410 707,425 700,440 693,454 688,470 684,487 680,503 677,519 674,535 674,547 1001,550 Z"
+   id="path66" />
+        </g>
+       </g>
+       <g
+   class="com.sun.star.drawing.LineShape"
+   id="g76">
+        <g
+   id="id4">
+         <rect
+   class="BoundingBox"
+   stroke="none"
+   fill="none"
+   x="908"
+   y="1024"
+   width="52"
+   height="787"
+   id="rect71" />
+         <path
+   fill="none"
+   stroke="rgb(184,92,0)"
+   stroke-width="50"
+   stroke-linejoin="round"
+   d="M 934,1050 L 934,1785"
+   id="path73" />
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+<g
+   transform="translate(20,25)"
+   class="SlideGroup"
+   id="g82"
+   style="filter:url(#filter993)"><g
+     id="g80-3"><g
+       id="container-id1-7"><g
+         id="id1-9"
+         class="Slide"
+         clip-path="url(#presentation_clip_path-6)"><g
+           class="Page"
+           id="g76-5"><g
+             class="com.sun.star.drawing.CustomShape"
+             id="g67"><g
+               id="id3-0"><rect
+                 class="BoundingBox"
+                 stroke="none"
+                 fill="none"
+                 x="910"
+                 y="919"
+                 width="1003"
+                 height="1003"
+                 id="rect51-2" /><g
+                 id="g62-7"><defs
+                   id="defs58-6"><linearGradient
+                     id="RESERVED_FOR_INKSCAPE_DUPLICATE_DEF_000000000"
+                     x1="1086"
+                     y1="857"
+                     x2="1735"
+                     y2="1982"
+                     gradientUnits="userSpaceOnUse"><stop
+                       offset="0"
+                       style="stop-color:rgb(119,188,101)"
+                       id="stop1179" /><stop
+                       offset="1"
+                       style="stop-color:rgb(18,118,34)"
+                       id="stop1181" /></linearGradient></defs><path
+                   style="fill:url(#gradient1-9)"
+                   d="m 1886,1420 -1,31 -3,31 -5,30 -7,31 -9,29 -11,29 -13,29 -15,27 -16,27 -18,25 -20,24 -21,23 -23,21 -24,20 -25,18 -27,16 -27,15 -29,13 -29,11 -29,9 -31,7 -30,5 -31,3 -31,1 -32,-1 -31,-3 -30,-5 -31,-7 -29,-9 -29,-11 -29,-13 -27,-15 -27,-16 -25,-18 -24,-20 -23,-21 -21,-23 -20,-24 -18,-25 -16,-27 -15,-27 -13,-29 -11,-29 -9,-29 -7,-31 -5,-30 -3,-31 -1,-31 1,-32 3,-31 5,-30 7,-31 9,-29 11,-29 13,-29 15,-27 16,-27 18,-25 20,-24 21,-23 23,-21 24,-20 25,-18 27,-16 27,-15 29,-13 29,-11 29,-9 31,-7 30,-5 31,-3 31,-1 32,1 31,3 30,5 31,7 29,9 29,11 29,13 27,15 27,16 25,18 24,20 23,21 21,23 20,24 18,25 16,27 15,27 13,29 11,29 9,29 7,31 5,30 3,31 1,31 z"
+                   id="path60-6" /></g><path
+                 fill="none"
+                 stroke="#224b12"
+                 stroke-width="50"
+                 stroke-linejoin="round"
+                 d="m 1886,1420 c 0,83 -22,165 -64,237 -41,73 -101,133 -174,174 -72,42 -154,64 -237,64 -84,0 -166,-22 -238,-64 -73,-41 -133,-101 -174,-174 -42,-72 -64,-154 -64,-237 0,-84 22,-166 64,-238 41,-73 101,-133 174,-174 72,-42 154,-64 237,-64 84,0 166,22 238,64 73,41 133,101 174,174 42,72 64,154 64,237 z"
+                 id="path64-8" /></g></g><g
+             class="com.sun.star.drawing.CustomShape"
+             id="g74"><g
+               id="id4-4"><rect
+                 class="BoundingBox"
+                 stroke="none"
+                 fill="none"
+                 x="1082"
+                 y="1093"
+                 width="652"
+                 height="653"
+                 id="rect69" /><path
+                 fill="#eeeeee"
+                 stroke="none"
+                 d="m 1336,1094 h 142 v 254 h 255 v 142 h -255 v 255 h -142 v -255 h -254 v -142 h 254 z"
+                 id="path71" /></g></g></g></g></g></g></g></svg>

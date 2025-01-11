@@ -152,7 +152,6 @@ int main(int argc, char *argv[])
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
 
-
     SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "guiSQLiteStudio", "sqlitestudio"});
     SQLITESTUDIO->init(a.arguments(), true);
     IconManager::getInstance()->init();
@@ -181,8 +180,6 @@ int main(int argc, char *argv[])
 
         return 0;
     }
-
-    IconManager::getInstance()->rescanResources();
 
     if (!LanguageDialog::didAskForDefaultLanguage() && !SQLITESTUDIO->getConfig()->isInMemory())
     {

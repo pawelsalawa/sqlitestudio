@@ -3,6 +3,7 @@
 #include "services/pluginmanager.h"
 #include "common/unused.h"
 #include "common/global.h"
+#include "common/utils.h"
 #include <QApplication>
 #include <QDir>
 #include <QString>
@@ -49,17 +50,10 @@ void IconManager::init()
     movieFileExtensions << "*.gif" << "*.GIF" << "*.mng" << "*.MNG";
 
     for (QString& dirPath : iconDirs)
-    {
         loadRecurently(dirPath, "", false);
-        loadRecurently(dirPath, "", true);
-    }
 
     Icon::loadAll();
-
-    if (PLUGINS->arePluginsInitiallyLoaded())
-        enableRescanning();
-    else
-        connect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+    enableRescanning();
 }
 
 QStringList IconManager::getIconDirs() const
@@ -72,21 +66,24 @@ void IconManager::rescanResources(const QString& pluginName)
     if (!pluginName.isNull() && PLUGINS->isBuiltIn(pluginName))
         return;
 
-    for (const QString& name : resourceMovies)
+    QStringList pluginMovies = pluginResourceMovies[pluginName];
+    pluginResourceMovies.remove(pluginName);
+    for (const QString& name : pluginMovies)
     {
-        delete movies[name];
+        movies[name]->deleteLater();
         movies.remove(name);
     }
 
-    for (const QString& name : resourceIcons)
+    QStringList pluginIcons = pluginResourceIcons[pluginName];
+    pluginResourceIcons.remove(pluginName);
+    for (const QString& name : pluginIcons)
+    {
+        delete icons[name];
         icons.remove(name);
+    }
 
-    resourceMovies.clear();
-    resourceIcons.clear();
     loadRecurently(":/icons", "", true);
-    loadRecurently(":/icons", "", false);
 
-    Icon::reloadAll();
     emit rescannedFor(pluginName);
 }
 
@@ -102,34 +99,64 @@ void IconManager::pluginsAboutToMassUnload()
     disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
 }
 
-void IconManager::pluginsInitiallyLoaded()
+void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool onlyNew)
 {
-    Icon::reloadAll();
-    enableRescanning();
-    disconnect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+    loadRecurently(dirPath, prefix, true, onlyNew);
+    loadRecurently(dirPath, prefix, false, onlyNew);
 }
 
-void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie)
+void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie, bool onlyNew)
 {
     QStringList extensions = movie ? movieFileExtensions : iconFileExtensions;
-    QString path;
-    QString name;
     QDir dir(dirPath);
-    for (QFileInfo entry : dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
+    QFileInfoList entryList = dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable);
+    std::ranges::sort(entryList, [](const QFileInfo &e1, const QFileInfo &e2)
+    {
+        return e1.baseName() < e2.baseName();
+    });
+
+    for (QFileInfo entry : entryList)
     {
         if (entry.isDir())
         {
-            loadRecurently(entry.absoluteFilePath(), prefix+entry.fileName()+"_", movie);
+            loadRecurently(entry.absoluteFilePath(), prefix+entry.fileName()+"_", movie, onlyNew);
             continue;
         }
 
-        path = entry.absoluteFilePath();
-        name = entry.baseName();
-        paths[name] = path;
+        QString path = entry.absoluteFilePath();
+        QString name = entry.baseName();
+        QString realName = name.contains("@") ? name.left(name.indexOf("@")) : name;
+        if (icons.contains(realName))
+        {
+            if (!onlyNew)
+                qWarning() << "Skipping icon" << name << "because it's already loaded, even though app is now loading all icons.";
+
+            continue;
+        }
+
         if (movie)
+        {
+            paths[name] = path;
             movies[name] = new QMovie(path);
+        }
+        else if (realName != name)
+        {
+            if (!icons.contains(realName))
+            {
+                qWarning() << "Failed to load additional icon size" << name << "because base size icon" << realName << "was not loaded.";
+                continue;
+            }
+            QIcon* icon = icons[realName];
+            int dim = name.mid(name.indexOf("@") + 1).toInt();
+            QSize size = QSize(dim, dim);
+            icon->addFile(path, size);
+        }
         else
+        {
+            paths[name] = path;
             icons[name] = new QIcon(path);
+            svgs[name] = entry.fileName().toLower().endsWith(".svg");
+        }
 
         if (path.startsWith(":/"))
         {
@@ -162,6 +189,11 @@ QIcon* IconManager::getIcon(const QString& name)
         qCritical() << "Icon missing:" << name;
 
     return icons[name];
+}
+
+bool IconManager::isSvg(const QString& name) const
+{
+    return svgs[name];
 }
 
 bool IconManager::isMovie(const QString& name)

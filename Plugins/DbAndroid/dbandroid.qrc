@@ -3,9 +3,6 @@
         <file>SQLiteStudioRemote.jar</file>
     </qresource>
     <qresource prefix="/icons">
-        <file>android.png</file>
+        <file>android.svg</file>
     </qresource>
 </RCC>
-
-
-

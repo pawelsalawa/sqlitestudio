@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--part of the rodentia icon theme by sixsixfive released under CC0 (https://creativecommons.org/publicdomain/zero/1.0/) on openclipart-->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg28"
+   sodipodi:docname="execute_query.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <metadata
+     id="metadata32">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview30"
+     showgrid="false"
+     inkscape:zoom="10.5"
+     inkscape:cx="1.9240667"
+     inkscape:cy="25.004497"
+     inkscape:current-layer="svg28" />
+  <defs
+     id="0">
+    <linearGradient
+       id="3">
+      <stop
+         id="C"
+         stop-color="#fff" />
+      <stop
+         id="D"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <linearGradient
+       id="4">
+      <stop
+         id="E"
+         stop-color="#fff"
+         stop-opacity="0.8" />
+      <stop
+         id="F"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="5">
+      <feGaussianBlur
+         stdDeviation="0.45938"
+         id="G" />
+    </filter>
+    <linearGradient
+       y1="7.281"
+       x2="0"
+       y2="42.13"
+       id="6"
+       xlink:href="#4"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="16.813"
+       y1="-14.242"
+       x2="32.16"
+       y2="30.848"
+       id="7"
+       xlink:href="#3"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-0.493791,-0.6957189)" />
+    <linearGradient
+       x1="16.813"
+       y1="-14.242"
+       x2="32.16"
+       y2="30.848"
+       id="8"
+       xlink:href="#3"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-14.292791,-0.6957189)" />
+    <linearGradient
+       id="9">
+      <stop
+         id="H"
+         stop-color="#2e3436"
+         stop-opacity="0.5" />
+      <stop
+         id="I"
+         offset="1"
+         stop-color="#2e3436"
+         stop-opacity="0.015" />
+    </linearGradient>
+    <radialGradient
+       cx="24.431"
+       cy="52.28"
+       r="21.578"
+       id="A"
+       xlink:href="#9"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.2975207,0,36.725592)" />
+  </defs>
+  <g
+     id="1"
+     transform="matrix(1.0074152,0,0,1.0074152,7.0263559,-0.13034632)">
+    <g
+       id="B">
+      <path
+         d="M 16.813,13.8125 V 24 34.1875 L 18.09425,33.375 33.188,24 18.09425,14.625 Z"
+         transform="matrix(1.0771109,0,0,1.0309863,-2.5591559,-0.7436712)"
+         id="M"
+         fill="#2e3436"
+         filter="url(#5)" />
+      <path
+         d="M 32.17817,24.000002 17.1005,14.617284 2.022831,5.2345678 V 24.000001 l -1e-6,18.765431 15.07767,-9.382715 z"
+         id="N"
+         fill="#729fcf"
+         stroke="#204a87"
+         stroke-linejoin="round" />
+      <path
+         d="M 17.34375,7.78125 V 24.6875 41.625 L 30.875,33.21875 44.53125,24.6875 30.875,16.1875 Z"
+         transform="translate(-14.292791,-0.6957189)"
+         id="O"
+         opacity="0.8"
+         fill="none"
+         stroke="url(#6)"
+         style="stroke:url(#6)" />
+      <path
+         d="m 2.519709,6.1792811 v 17.8124999 4.6875 c 7.690959,-3.103859 15.984785,-5.423638 24.5,-7.28125 l -10.1875,-6.34375 z"
+         id="P"
+         opacity="0.6"
+         fill="url(#8)"
+         style="fill:url(#8)" />
+    </g>
+  </g>
+</svg>

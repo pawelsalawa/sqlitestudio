@@ -14,7 +14,6 @@
 #include "dialogs/versionconvertsummarydialog.h"
 #include "db/invaliddb.h"
 #include "services/notifymanager.h"
-#include "common/compatibility.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>
@@ -25,10 +24,10 @@
 #include <QWidgetAction>
 #include <QClipboard>
 
-const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
-const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
-const QString DbTreeModel::toolTipRowTmp = "<tr><td></td><td>%1</td><td align=\"right\">%2</td></tr>";
-const QString DbTreeModel::toolTipIconRowTmp = "<tr><td><img src=\"%1\"/></td><td>%2</td><td align=\"right\">%3</td></tr>";
+const QString DbTreeModel::toolTipTableTmp = R"(<table>%1</table>)";
+const QString DbTreeModel::toolTipHdrRowTmp = R"(<tr><th><img src="%1" width="16" height="16"/></th><th colspan=2>%2</th></tr>)";
+const QString DbTreeModel::toolTipRowTmp = R"(<tr><td></td><td>%1</td><td align="right">%2</td></tr>)";
+const QString DbTreeModel::toolTipIconRowTmp = R"(<tr><td><img src="%1" width="16" height="16"/></td><td>%2</td><td align="right">%3</td></tr>)";
 
 DbTreeModel::DbTreeModel()
 {

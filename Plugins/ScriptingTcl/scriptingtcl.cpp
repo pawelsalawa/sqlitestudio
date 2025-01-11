@@ -103,7 +103,7 @@ QString ScriptingTcl::getErrorMessage(ScriptingPlugin::Context* context) const
 
 QString ScriptingTcl::getIconPath() const
 {
-    return ":/scriptingtcl/scriptingtcl.png";
+    return ":/scriptingtcl/scriptingtcl.svg";
 }
 
 QVariant ScriptingTcl::evaluate(ScriptingPlugin::Context* context, const QString& code, const FunctionInfo& funcInfo,

@@ -121,6 +121,7 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
             break;
         case CompletionHelper::Context::INSERT_COLUMNS:
             result = compareColumnsForInsertCol(token1, token2, &ok);
+            break;
         case CompletionHelper::Context::DELETE_WHERE:
             result = compareColumnsForDeleteCol(token1, token2, &ok);
             break;

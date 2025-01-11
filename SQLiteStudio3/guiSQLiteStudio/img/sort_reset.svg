@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg1"
+   sodipodi:docname="sort_reset.svg"
+   viewBox="0 0 60 60"
+   sodipodi:version="0.32"
+   version="1.0"
+   y="0"
+   x="0"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <defs
+     id="defs15">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient955">
+      <stop
+         style="stop-color:#1b75ff;stop-opacity:1"
+         offset="0"
+         id="stop951" />
+      <stop
+         style="stop-color:#cccfff;stop-opacity:1"
+         offset="1"
+         id="stop953" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient955"
+       id="linearGradient957"
+       x1="13.542772"
+       y1="11.699723"
+       x2="12.535074"
+       y2="4.6591353"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1002173,0,0,2.1725312,-2.7487372,5.5688876)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3440"
+     pagecolor="#ffffff"
+     inkscape:zoom="13.893067"
+     inkscape:window-x="-8"
+     borderopacity="1.0"
+     inkscape:cx="32.87831"
+     inkscape:cy="28.069841"
+     inkscape:window-y="-8"
+     inkscape:window-height="1377"
+     inkscape:pageopacity="0.0"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2011-01-31T02:01:26</dc:date>
+        <dc:description>Originally uploaded by Danny Allen for OCAL 0.18 this icon is part of the flat theme</dc:description>
+        <dc:source>https://openclipart.org/detail/112327/ftdata-by-anonymous</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>flat</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>theme</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="rect855"
+     style="fill:url(#linearGradient957);fill-opacity:1;stroke:none;stroke-width:5.59514;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 30.179688 5.7167969 L 21.052734 15.363281 L 2.1738281 15.363281 L 2.1738281 44.050781 L 20.927734 44.050781 L 30.179688 53.830078 L 39.693359 44.050781 L 58.058594 44.050781 L 58.058594 15.363281 L 39.564453 15.363281 L 30.179688 5.7167969 z " />
+  <path
+     id="rect863"
+     style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#4846ff;stroke-width:2.86278;stroke-linejoin:round;stroke-opacity:1"
+     d="M 30.179688 5.7167969 L 21.052734 15.363281 L 4.375 15.363281 C 3.1547401 15.363281 2.1738281 16.346146 2.1738281 17.566406 L 2.1738281 41.847656 C 2.1738281 43.067916 3.1547401 44.050781 4.375 44.050781 L 20.927734 44.050781 L 30.179688 53.830078 L 39.693359 44.050781 L 55.855469 44.050781 C 57.075729 44.050781 58.058594 43.067916 58.058594 41.847656 L 58.058594 17.566406 C 58.058594 16.346146 57.075729 15.363281 55.855469 15.363281 L 39.564453 15.363281 L 30.179688 5.7167969 z " />
+  <g
+     transform="matrix(0.92113606,0,0,0.85759347,8.0019915,8.718586)"
+     id="g859"
+     style="opacity:1">
+    <path
+       id="path855"
+       d="M 15.521382,34.768044 32.96594,14.813478 v 0"
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path855-0"
+       d="M 32.96594,34.768043 15.521382,14.813478 v 0"
+       style="display:inline;opacity:1;fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>

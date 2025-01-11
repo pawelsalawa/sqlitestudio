@@ -1,7 +1,6 @@
 #include "errorsconfirmdialog.h"
 #include "ui_errorsconfirmdialog.h"
 #include "iconmanager.h"
-#include "common/compatibility.h"
 
 ErrorsConfirmDialog::ErrorsConfirmDialog(QWidget *parent) :
     QDialog(parent),

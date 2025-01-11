@@ -5,7 +5,6 @@
 #include "common/utils_sql.h"
 #include "common/utils.h"
 #include "db/sqlresultsrow.h"
-#include "common/compatibility.h"
 #include <QMutexLocker>
 #include <QDebug>
 

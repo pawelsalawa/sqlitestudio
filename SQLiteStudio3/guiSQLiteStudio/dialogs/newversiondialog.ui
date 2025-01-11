@@ -25,7 +25,7 @@
       <string>New version is available!</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -41,7 +41,7 @@
       <string notr="true">0.0.0</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -52,7 +52,7 @@
      </property>
      <property name="icon">
       <iconset resource="../icons.qrc">
-       <normaloff>:/icons/img/get_update.png</normaloff>:/icons/img/get_update.png</iconset>
+       <normaloff>:/icons/img/get_update.svg</normaloff>:/icons/img/get_update.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -72,7 +72,7 @@
      </property>
      <property name="icon">
       <iconset resource="../icons.qrc">
-       <normaloff>:/icons/img/sqlitestudio.svg</normaloff>:/icons/img/sqlitestudio.svg</iconset>
+       <normaloff>:/icons/img/homepage.svg</normaloff>:/icons/img/homepage.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -91,8 +91,8 @@
       <string>Not now.</string>
      </property>
      <property name="icon">
-      <iconset resource="../icons.qrc">
-       <normaloff>:/icons/img/abort24.png</normaloff>:/icons/img/abort24.png</iconset>
+      <iconset>
+       <normaloff>../img/act_abort.svg</normaloff>../img/act_abort.svg</iconset>
      </property>
      <property name="iconSize">
       <size>

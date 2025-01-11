@@ -394,7 +394,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void rollbackInternal(const QList<SqlQueryItem*>& items);
         void reloadInternal();
         void addNewRowInternal(int rowIdx);
-        Icon& getIconForIdx(int idx) const;
+        Icon& getIconForIdx(int idx, bool desc) const;
         void detachDatabases();
         QString getDatabaseForCommit(const QString& database);
         void recalculateRowsAndPages(int rowsDelta);

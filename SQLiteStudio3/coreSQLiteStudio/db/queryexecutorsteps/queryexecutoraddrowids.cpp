@@ -3,7 +3,6 @@
 #include "selectresolver.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "schemaresolver.h"
-#include "common/compatibility.h"
 #include <QDebug>
 
 bool QueryExecutorAddRowIds::exec()

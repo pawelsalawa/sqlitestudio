@@ -9,7 +9,6 @@
 #include "common/utils_sql.h"
 #include "parser/ast/sqlitewindowdefinition.h"
 #include "parser/ast/sqlitefilterover.h"
-#include "common/compatibility.h"
 #include <QString>
 #include <QtTest>
 

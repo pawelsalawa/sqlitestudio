@@ -47,11 +47,7 @@ void CompleterWindow::init()
     connect(ui->list, SIGNAL(right()), this, SIGNAL(rightPressed()));
     connect(modeChangeShortcut, SIGNAL(activated()), this, SLOT(modeChangeRequested()));
     connect(ui->snippets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(snippetDoubleClicked(QListWidgetItem*)));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     connect(snippetSignalMapper, SIGNAL(mappedInt(int)), this, SLOT(snippetHotkeyPressed(int)));
-#else
-    connect(snippetSignalMapper, SIGNAL(mapped(int)), this, SLOT(snippetHotkeyPressed(int)));
-#endif
     reset();
 }
 

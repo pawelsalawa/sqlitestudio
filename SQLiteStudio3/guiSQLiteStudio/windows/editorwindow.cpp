@@ -391,7 +391,6 @@ void EditorWindow::createActions()
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FIND));
-    ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::REPLACE));
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);

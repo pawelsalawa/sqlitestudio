@@ -10,7 +10,6 @@
 #include "db/db.h"
 #include "services/dbmanager.h"
 #include "common/lazytrigger.h"
-#include "common/compatibility.h"
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
@@ -58,7 +57,7 @@ bool SqliteExtensionEditor::restoreSession(const QVariant& sessionValue)
 
 Icon*SqliteExtensionEditor::getIconNameForMdiWindow()
 {
-    return ICONS.EXTENSION;
+    return ICONS.EXTENSION_EDITOR;
 }
 
 QString SqliteExtensionEditor::getTitleForMdiWindow()

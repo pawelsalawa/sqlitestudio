@@ -51,39 +51,6 @@ QString ThemeTuner::getDefaultCss(const QString& themeName) const
     return css;
 }
 
-void ThemeTuner::darkThemeFix(QWizard* wizard)
-{
-    QString themeName = STYLE->name();
-    if (qwizardThemeTuneRequired.contains(themeName))
-        wizard->setWizardStyle(QWizard::ClassicStyle);
-}
-
-void ThemeTuner::registerQWizardThemeTuneRequired(const QString& styleName)
-{
-    if (MAINWINDOW->isClosingApp())
-        return;
-
-    getInstance()->registerQWizardThemeTuneRequiredInternal(styleName);
-}
-
-void ThemeTuner::registerQWizardThemeTuneRequiredInternal(const QString& styleName)
-{
-    qwizardThemeTuneRequired << styleName;
-}
-
-void ThemeTuner::deregisterQWizardThemeTuneRequired(const QString& styleName)
-{
-    if (MAINWINDOW->isClosingApp())
-        return;
-
-    getInstance()->deregisterQWizardThemeTuneRequiredInternal(styleName);
-}
-
-void ThemeTuner::deregisterQWizardThemeTuneRequiredInternal(const QString& styleName)
-{
-    qwizardThemeTuneRequired.removeOne(styleName);
-}
-
 ThemeTuner* ThemeTuner::getInstance()
 {
     if (!instance)

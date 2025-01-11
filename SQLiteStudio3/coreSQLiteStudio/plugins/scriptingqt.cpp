@@ -214,7 +214,7 @@ QString ScriptingQt::getErrorMessage(ScriptingPlugin::Context* context) const
 
 QString ScriptingQt::getIconPath() const
 {
-    return ":/images/plugins/scriptingqt.png";
+    return ":/images/plugins/scriptingqt.svg";
 }
 
 bool ScriptingQt::init()

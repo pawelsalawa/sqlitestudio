@@ -1,7 +1,6 @@
 #include "collationseditor.h"
 #include "ui_collationseditor.h"
 #include "common/unused.h"
-#include "common/compatibility.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
@@ -47,7 +46,7 @@ bool CollationsEditor::restoreSession(const QVariant& sessionValue)
 
 Icon* CollationsEditor::getIconNameForMdiWindow()
 {
-    return ICONS.CONSTRAINT_COLLATION;
+    return ICONS.COLLATIONS_EDITOR;
 }
 
 QString CollationsEditor::getTitleForMdiWindow()

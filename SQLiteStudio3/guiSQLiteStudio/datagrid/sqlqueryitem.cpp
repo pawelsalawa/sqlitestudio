@@ -205,11 +205,29 @@ QVariant SqlQueryItem::adjustVariantType(const QVariant& value)
 QString SqlQueryItem::getToolTip() const
 {
     static const QString tableTmp = "<table>%1</table>";
-    static const QString rowTmp = "<tr><td colspan=2 style=\"white-space: pre\">%1</td><td style=\"align: right\"><b>%2</b></td></tr>";
-    static const QString hdrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><th colspan=2 style=\"align: center\">%2 %3</th></tr>";
-    static const QString constrRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
+    static const QString rowTmp = R"(
+        <tr>
+            <td colspan=2 style="white-space: pre">%1</td>
+            <td style="align: right"><b>%2</b></td>
+        </tr>)";
+    static const QString hdrRowTmp = R"(
+        <tr>
+            <th width=16><img src="%1" width="16" height="16"/></th>
+            <th colspan=2 style="align: center">%2 %3</th>
+        </tr>)";
+    static const QString constrRowTmp = R"(
+        <tr>
+            <td width=16><img src="%1" width="16" height="16"/></td>
+            <td style="white-space: pre"><b>%2</b></td>
+            <td>%3</td>
+        </tr>)";
     static const QString emptyRow = "<tr><td colspan=3></td></tr>";
-    static const QString topErrorRowTmp = "<tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr>";
+    static const QString topErrorRowTmp = R"(
+        <tr>
+            <td width=16><img src="%1" width="16" height="16"/></td>
+            <td style="white-space: pre"><b>%2</b></td>
+            <td>%3</td>
+        </tr>)";
 
     if (!index().isValid())
         return QString();

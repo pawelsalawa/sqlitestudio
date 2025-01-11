@@ -25,7 +25,6 @@
 #include "querygenerator.h"
 #include "dialogs/execfromfiledialog.h"
 #include "dialogs/fileexecerrorsdialog.h"
-#include "common/compatibility.h"
 #include "sqlfileexecutor.h"
 #include "common/mouseshortcut.h"
 #include <QApplication>
@@ -1694,6 +1693,9 @@ void DbTree::changeFontSize(int factor)
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DbTree.set(f);
 
+    QFontMetrics fm(f);
+    ui->treeView->setIconSize(QSize(fm.height(), fm.height()));
+
     f = CFG_UI.Fonts.DbTreeLabel.get();
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DbTreeLabel.set(f);
@@ -1707,7 +1709,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     filterItemsWithParentInList(items);
 
     // Warning user about items to be deleted
-    static const QString itemTmp = "<img src=\"%1\"/> %2";
+    static_qstring(itemTmp, R"(<img src="%1" width="16" height="16"/> %2)");
 
     QStringList toDelete;
     QStringList databasesToRemove;

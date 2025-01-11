@@ -63,7 +63,6 @@ SOURCES += sqlitestudio.cpp \
     chillout/posix/posixcrashhandler.cpp \
     chillout/windows/StackWalker.cpp \
     chillout/windows/windowscrashhandler.cpp \
-    common/compatibility.cpp \
     db/queryexecutorsteps/queryexecutorcolumntype.cpp \
     db/queryexecutorsteps/queryexecutorfilter.cpp \
     db/queryexecutorsteps/queryexecutorsmarthints.cpp \
@@ -242,7 +241,6 @@ HEADERS += sqlitestudio.h\
     chillout/posix/posixcrashhandler.h \
     chillout/windows/StackWalker.h \
     chillout/windows/windowscrashhandler.h \
-    common/compatibility.h \
         coreSQLiteStudio_global.h \
     db/queryexecutorsteps/queryexecutorcolumntype.h \
     db/queryexecutorsteps/queryexecutorfilter.h \
@@ -479,5 +477,6 @@ RESOURCES += \
     coreSQLiteStudio.qrc
 
 DISTFILES += \
+    licenses/icons.txt \
     licenses/icu.txt \
     licenses/mit.txt

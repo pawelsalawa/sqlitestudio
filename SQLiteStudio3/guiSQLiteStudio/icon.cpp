@@ -5,6 +5,8 @@
 #include <QMovie>
 #include <QDebug>
 #include <QBuffer>
+#include <QGuiApplication>
+#include <QScreen>
 
 QHash<QString,Icon*> Icon::instances;
 
@@ -17,7 +19,7 @@ Icon::Icon(const QString& name, const QString& fileName) :
 }
 
 Icon::Icon(const Icon& other) :
-    loaded(other.loaded), movie(other.movie), name(other.name), attr(other.attr), filePath(other.filePath), copyFrom(other.copyFrom),
+    loaded(other.loaded), movie(other.movie), name(other.name), filePath(other.filePath), copyFrom(other.copyFrom),
     aliased(other.aliased), movieHandle(other.movieHandle), iconHandle(other.iconHandle)
 {
     instances[name] = this;
@@ -31,11 +33,6 @@ Icon::Icon(const QString& name) :
 
 Icon::~Icon()
 {
-    for (QIcon* icon : dynamicallyAttributed.values())
-        delete icon;
-
-    dynamicallyAttributed.clear();
-
     safe_delete(iconHandle);
     safe_delete(movieHandle);
 }
@@ -64,7 +61,7 @@ void Icon::load()
             return;
         }
 
-        iconHandle = new QIcon(mergeAttribute(icon, attr));
+        iconHandle = new QIcon(*icon);
     }
     else
     {
@@ -159,7 +156,14 @@ Icon* Icon::toIconPtr()
 
 QPixmap Icon::toQPixmap() const
 {
-    return toQIconPtr()->pixmap(16, 16);
+    qreal dpiRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
+    return toQIconPtr()->pixmap(QSize(16, 16), dpiRatio);
+}
+
+QPixmap Icon::toQPixmap(int pixSize) const
+{
+    qreal dpiRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
+    return toQIconPtr()->pixmap(QSize(pixSize, pixSize), dpiRatio);
 }
 
 QMovie* Icon::toQMoviePtr() const
@@ -187,28 +191,6 @@ QVariant Icon::toQVariant() const
     return QVariant::fromValue<QIcon>(operator QIcon());
 }
 
-QIcon* Icon::with(Icon::Attributes attr)
-{
-    if (dynamicallyAttributed.contains(attr))
-        return dynamicallyAttributed[attr];
-
-    if (aliased)
-        return aliased->with(attr);
-
-    if (!loaded)
-    {
-        qCritical() << "Referring to a icon that was not yet loaded:" << name;
-        return nullptr;
-    }
-
-    if (movieHandle)
-        return nullptr; // this is a movie
-
-    QIcon* merged = new QIcon(mergeAttribute(iconHandle, attr));
-    dynamicallyAttributed[attr] = merged;
-    return merged;
-}
-
 Icon::operator Icon*()
 {
     return this;
@@ -217,11 +199,6 @@ Icon::operator Icon*()
 void Icon::init()
 {
     qRegisterMetaType<const Icon*>();
-#if QT_VERSION < 0x060000
-    qRegisterMetaTypeStreamOperators<const Icon*>();
-#else
-    // Qt 6 does it automatically
-#endif
 }
 
 QString Icon::getFileName() const
@@ -258,16 +235,6 @@ bool Icon::isMovie() const
     return movieHandle != nullptr;
 }
 
-Icon& Icon::createFrom(const QString& name, Icon* copy, Icon::Attributes attr)
-{
-    Icon* newIcon = new Icon(name);
-    newIcon->copyFrom = copy;
-    newIcon->attr = attr;
-    newIcon->name = name;
-
-    return *newIcon;
-}
-
 Icon& Icon::aliasOf(const QString& name, Icon* other)
 {
     Icon* newIcon = new Icon(name);
@@ -276,81 +243,10 @@ Icon& Icon::aliasOf(const QString& name, Icon* other)
     return *newIcon;
 }
 
-QIcon Icon::merge(const QIcon& icon, Icon::Attributes attr)
-{
-    return mergeAttribute(&icon, attr);
-}
-
 void Icon::loadAll()
 {
     for (Icon* icon : instances.values())
         icon->load();
-}
-
-void Icon::reloadAll()
-{
-    for (Icon* icon : instances.values())
-    {
-        icon->loaded = false;
-        icon->load();
-    }
-}
-
-QString Icon::getIconNameForAttribute(Icon::Attributes attr)
-{
-    switch (attr)
-    {
-        case PLUS:
-            return "plus_small";
-        case MINUS:
-            return "minus_small";
-        case EDIT:
-            return "edit_small";
-        case DELETE:
-            return "delete_small";
-        case DENIED:
-            return "denied_small";
-        case INFO:
-            return "info_small";
-        case WARNING:
-            return "warn_small";
-        case QUESTION:
-            return "question_small";
-        case ERROR:
-            return "error_small";
-        case SORT_ASC:
-            return "sort_ind_asc";
-        case SORT_DESC:
-            return "sort_ind_desc";
-        case DISK:
-            return "disk_small";
-        case LIGHTENING:
-            return "lightning_small";
-        default:
-            qWarning() << "Unhandled icon attribute:" << attr;
-    }
-    return QString();
-}
-
-QIcon Icon::mergeAttribute(const QIcon* icon, Icon::Attributes attr)
-{
-    QString attribName = getIconNameForAttribute(attr);
-    QIcon* attrIcon = IconManager::getInstance()->getIcon(attribName);
-    if (!attrIcon)
-    {
-        qWarning() << "No attribute icon for attribute:" << attribName;
-        return *icon;
-    }
-
-    // Merge icons
-    QPixmap attrPixmap = attrIcon->pixmap(16, 16);
-    QPixmap newPixmap = icon->pixmap(16, 16);
-
-    QPainter painter(&newPixmap);
-    painter.drawPixmap(0, 0, attrPixmap);
-
-    // Create new icon
-    return QIcon(newPixmap);
 }
 
 Icon::operator QVariant() const

@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "services/dbmanager.h"
 #include "common/unused.h"
+#include "uiconfig.h"
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QList>
