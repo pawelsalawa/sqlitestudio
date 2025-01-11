@@ -2213,9 +2213,9 @@ plus_num(X) ::= number(N).                  {X = N;}
 %type minus_num {QVariant*}
 %destructor minus_num {parser_safe_delete($$);}
 minus_num(X) ::= MINUS number(N).           {
-                                                if (N->type() == QVariant::Double)
+                                                if (N->userType() == QMetaType::Double)
                                                     *(N) = -(N->toDouble());
-                                                else if (N->type() == QVariant::LongLong)
+                                                else if (N->userType() == QMetaType::LongLong)
                                                 {
                                                     if (parserContext->isCandidateForMaxNegativeNumber())
                                                         *(N) = std::numeric_limits<qint64>::min();
