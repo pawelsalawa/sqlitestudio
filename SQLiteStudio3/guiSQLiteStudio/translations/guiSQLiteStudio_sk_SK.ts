@@ -250,67 +250,67 @@
       <translation>Implementačný jazyk:</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="55"/>
+      <location filename="../windows/collationseditor.cpp" line="54"/>
       <source>Collations editor</source>
       <translation>Editor porovnávaní</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="60"/>
+      <location filename="../windows/collationseditor.cpp" line="59"/>
       <source>Commit all collation changes</source>
       <translation>Potvrdiť všetky zmeny v porovnávaní</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="61"/>
+      <location filename="../windows/collationseditor.cpp" line="60"/>
       <source>Rollback all collation changes</source>
       <translation>Vrátiť späť všetky zmeny v porovnávaní</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="63"/>
+      <location filename="../windows/collationseditor.cpp" line="62"/>
       <source>Create new collation</source>
       <translation>Vytvoriť nové porovnávanie</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="64"/>
+      <location filename="../windows/collationseditor.cpp" line="63"/>
       <source>Delete selected collation</source>
       <translation>Vymazať vybrané porovnávanie</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="66"/>
+      <location filename="../windows/collationseditor.cpp" line="65"/>
       <source>Editing collations manual</source>
       <translation>Manuál úpravy porovnávaní</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="298"/>
+      <location filename="../windows/collationseditor.cpp" line="297"/>
       <source>Enter a non-empty, unique name of the collation.</source>
       <translation>Zadajte jedinečný názov porovnávania.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="308"/>
+      <location filename="../windows/collationseditor.cpp" line="307"/>
       <source>Pick the implementation language.</source>
       <translation>Vyberte implementačný jazyk.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="313"/>
+      <location filename="../windows/collationseditor.cpp" line="312"/>
       <source>Registration code</source>
       <translation type="unfinished">Registration code</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="314"/>
+      <location filename="../windows/collationseditor.cpp" line="313"/>
       <source>Enter a non-empty registration code.</source>
       <translation type="unfinished">Enter a non-empty registration code.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="318"/>
+      <location filename="../windows/collationseditor.cpp" line="317"/>
       <source>Implementation code</source>
       <translation type="unfinished">Implementation code</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="319"/>
+      <location filename="../windows/collationseditor.cpp" line="318"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>Zadajte implementačný kód.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="442"/>
+      <location filename="../windows/collationseditor.cpp" line="441"/>
       <source>Collations editor window has uncommitted modifications.</source>
       <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
     </message>
@@ -770,91 +770,91 @@
   <context>
     <name>CompleterWindow</name>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="211"/>
+      <location filename="../completer/completerwindow.cpp" line="207"/>
       <source>Column: %1</source>
       <comment>completer statusbar</comment>
       <translation>Stĺpec: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="213"/>
+      <location filename="../completer/completerwindow.cpp" line="209"/>
       <source>Table: %1</source>
       <comment>completer statusbar</comment>
       <translation>Tabuľka: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="215"/>
+      <location filename="../completer/completerwindow.cpp" line="211"/>
       <source>Index: %1</source>
       <comment>completer statusbar</comment>
       <translation type="unfinished">Index: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="217"/>
+      <location filename="../completer/completerwindow.cpp" line="213"/>
       <source>Trigger: %1</source>
       <comment>completer statusbar</comment>
       <translation>Spúšťač: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="219"/>
+      <location filename="../completer/completerwindow.cpp" line="215"/>
       <source>View: %1</source>
       <comment>completer statusbar</comment>
       <translation>Pohľad: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="221"/>
+      <location filename="../completer/completerwindow.cpp" line="217"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
       <translation>Databáza: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="233"/>
+      <location filename="../completer/completerwindow.cpp" line="229"/>
       <source>Keyword: %1</source>
       <comment>completer statusbar</comment>
       <translation>Kľúčové slovo: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="235"/>
+      <location filename="../completer/completerwindow.cpp" line="231"/>
       <source>Function: %1</source>
       <comment>completer statusbar</comment>
       <translation>Funkcia: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="237"/>
+      <location filename="../completer/completerwindow.cpp" line="233"/>
       <source>Operator: %1</source>
       <comment>completer statusbar</comment>
       <translation>Operátor: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="239"/>
+      <location filename="../completer/completerwindow.cpp" line="235"/>
       <source>String</source>
       <comment>completer statusbar</comment>
       <translation>Reťazec</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="241"/>
+      <location filename="../completer/completerwindow.cpp" line="237"/>
       <source>Number</source>
       <comment>completer statusbar</comment>
       <translation>Číslo</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="243"/>
+      <location filename="../completer/completerwindow.cpp" line="239"/>
       <source>Binary data</source>
       <comment>completer statusbar</comment>
       <translation>Binárne dáta</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="245"/>
+      <location filename="../completer/completerwindow.cpp" line="241"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
       <translation>Porovnávanie: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="247"/>
+      <location filename="../completer/completerwindow.cpp" line="243"/>
       <source>Pragma function: %1</source>
       <comment>completer statusbar</comment>
       <translation>Pragma funkcia : %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="290"/>
+      <location filename="../completer/completerwindow.cpp" line="286"/>
       <source>Insert a code snippet</source>
       <translation type="unfinished">Insert a code snippet</translation>
     </message>
@@ -863,7 +863,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="2075"/>
+      <location filename="../dialogs/configdialog.ui" line="2081"/>
       <source>Configuration</source>
       <translation>Konfigurácia</translation>
     </message>
@@ -873,760 +873,760 @@
       <translation>Hľadať</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="94"/>
+      <location filename="../dialogs/configdialog.ui" line="100"/>
       <source>General</source>
       <translation>Všeobecné</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="106"/>
+      <location filename="../dialogs/configdialog.ui" line="112"/>
       <source>Keyboard shortcuts</source>
       <translation>Klávesové skratky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="118"/>
+      <location filename="../dialogs/configdialog.ui" line="124"/>
       <source>Look &amp; feel</source>
       <translation>Vzhľad</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="129"/>
+      <location filename="../dialogs/configdialog.ui" line="135"/>
       <source>Style</source>
       <translation>Štýl</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="141"/>
+      <location filename="../dialogs/configdialog.ui" line="147"/>
       <source>Fonts</source>
       <translation>Fonty</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="153"/>
+      <location filename="../dialogs/configdialog.ui" line="159"/>
       <source>Code colors</source>
       <translation type="unfinished">Code colors</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="166"/>
-      <location filename="../dialogs/configdialog.ui" line="259"/>
+      <location filename="../dialogs/configdialog.ui" line="172"/>
+      <location filename="../dialogs/configdialog.ui" line="265"/>
       <source>Database list</source>
       <translation>Zoznam databáz</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="178"/>
+      <location filename="../dialogs/configdialog.ui" line="184"/>
       <source>Code assistant</source>
       <translation type="unfinished">Code assistant</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="190"/>
+      <location filename="../dialogs/configdialog.ui" line="196"/>
       <source>Data browsing</source>
       <translation>Prezeranie dát</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="201"/>
+      <location filename="../dialogs/configdialog.ui" line="207"/>
       <source>Data editors</source>
       <translation>Editory dát</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="214"/>
+      <location filename="../dialogs/configdialog.ui" line="220"/>
       <source>Plugins</source>
       <translation>Pluginy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="225"/>
+      <location filename="../dialogs/configdialog.ui" line="231"/>
       <source>Code formatters</source>
       <translation>Formát kódu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="233"/>
+      <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Scripting languages</source>
       <translation type="unfinished">Scripting languages</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="265"/>
+      <location filename="../dialogs/configdialog.ui" line="271"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
       <translation type="unfinished">If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="268"/>
+      <location filename="../dialogs/configdialog.ui" line="274"/>
       <source>Sort table columns alphabetically</source>
       <translation>Zoradiť stĺpce tabuľky abecedne</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="278"/>
+      <location filename="../dialogs/configdialog.ui" line="284"/>
       <source>Expand tables node when connected to a database</source>
       <translation>Rozbaliť zoznam tabuliek po pripojení k databáze</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="288"/>
+      <location filename="../dialogs/configdialog.ui" line="294"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
       <translation type="unfinished">&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="291"/>
+      <location filename="../dialogs/configdialog.ui" line="297"/>
       <source>Display additional labels on the list</source>
       <translation>Zobraziť doplnkové popisky v zozname</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="306"/>
+      <location filename="../dialogs/configdialog.ui" line="312"/>
       <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
       <translation type="unfinished">For regular tables labels will show number of columns, indexes and triggers for each of tables.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="309"/>
+      <location filename="../dialogs/configdialog.ui" line="315"/>
       <source>Display labels for regular tables</source>
       <translation>Zobraziť popisky pre regulárne tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="319"/>
+      <location filename="../dialogs/configdialog.ui" line="325"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
       <translation type="unfinished">Virtual tables will be marked with a &apos;virtual&apos; label.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="322"/>
+      <location filename="../dialogs/configdialog.ui" line="328"/>
       <source>Display labels for virtual tables</source>
       <translation>Zobraziť popisky pre virtuálne tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="335"/>
+      <location filename="../dialogs/configdialog.ui" line="341"/>
       <source>Expand views node when connected to a database</source>
       <translation>Rozbaliť zoznam pohľadov po pripojení k databáze</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="345"/>
+      <location filename="../dialogs/configdialog.ui" line="351"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
       <translation type="unfinished">If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="348"/>
+      <location filename="../dialogs/configdialog.ui" line="354"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
       <translation>Zoradiť objekty (tabuľky, indexy, spúšťače a pohľady) abecedne</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="358"/>
+      <location filename="../dialogs/configdialog.ui" line="364"/>
       <source>Display system tables and indexes on the list</source>
       <translation>Zobraziť systémové tabuľky a indexy v zozname</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="371"/>
+      <location filename="../dialogs/configdialog.ui" line="377"/>
       <source>Database dialog window</source>
       <translation>Databázové dialógové okno</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="377"/>
+      <location filename="../dialogs/configdialog.ui" line="383"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Označením tejto možnosti sa vypne voľba &quot;Zapamätať si databázu&quot; v okne pridávania novej databázy&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="380"/>
+      <location filename="../dialogs/configdialog.ui" line="386"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
       <translation>Nepamätať si databázu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="390"/>
+      <location filename="../dialogs/configdialog.ui" line="396"/>
       <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="393"/>
+      <location filename="../dialogs/configdialog.ui" line="399"/>
       <source>Try to bypass dialog completly when dropping database file onto the list</source>
       <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="438"/>
+      <location filename="../dialogs/configdialog.ui" line="444"/>
       <source>Data browsing and editing</source>
       <translation>Prezeranie a úprava dát</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="444"/>
-      <location filename="../dialogs/configdialog.ui" line="464"/>
+      <location filename="../dialogs/configdialog.ui" line="450"/>
+      <location filename="../dialogs/configdialog.ui" line="470"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="467"/>
+      <location filename="../dialogs/configdialog.ui" line="473"/>
       <source>Number of memorized table populating configurations</source>
       <translation type="unfinished">Number of memorized table populating configurations</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="561"/>
+      <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>Data column width</source>
       <translation type="unfinished">Data column width</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="567"/>
+      <location filename="../dialogs/configdialog.ui" line="573"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="570"/>
+      <location filename="../dialogs/configdialog.ui" line="576"/>
       <source>Enlarge column when entering value longer than current width</source>
       <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="586"/>
+      <location filename="../dialogs/configdialog.ui" line="592"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="457"/>
+      <location filename="../dialogs/configdialog.ui" line="463"/>
       <source>Number of data rows per page:</source>
       <translation>Počet data riadkov na stranu:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="487"/>
+      <location filename="../dialogs/configdialog.ui" line="493"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="490"/>
+      <location filename="../dialogs/configdialog.ui" line="496"/>
       <source>Show column and row details tooltip in data view</source>
       <translation type="unfinished">Show column and row details tooltip in data view</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="532"/>
+      <location filename="../dialogs/configdialog.ui" line="538"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="535"/>
+      <location filename="../dialogs/configdialog.ui" line="541"/>
       <source>Keep NULL value when entering empty value</source>
       <translation type="unfinished">Keep NULL value when entering empty value</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="500"/>
+      <location filename="../dialogs/configdialog.ui" line="506"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="503"/>
+      <location filename="../dialogs/configdialog.ui" line="509"/>
       <source>Use DEFAULT value (if defined), when committing NULL value</source>
       <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="474"/>
+      <location filename="../dialogs/configdialog.ui" line="480"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="477"/>
+      <location filename="../dialogs/configdialog.ui" line="483"/>
       <source>Limit number of rows for in case of dozens of columns</source>
       <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="631"/>
+      <location filename="../dialogs/configdialog.ui" line="637"/>
       <source>Inserting new row in data grid</source>
       <translation type="unfinished">Inserting new row in data grid</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="637"/>
+      <location filename="../dialogs/configdialog.ui" line="643"/>
       <source>Before currently selected row</source>
       <translation type="unfinished">Before currently selected row</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="653"/>
+      <location filename="../dialogs/configdialog.ui" line="659"/>
       <source>After currently selected row</source>
       <translation type="unfinished">After currently selected row</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="666"/>
+      <location filename="../dialogs/configdialog.ui" line="672"/>
       <source>At the end of data view</source>
       <translation type="unfinished">At the end of data view</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="682"/>
+      <location filename="../dialogs/configdialog.ui" line="688"/>
       <source>Table windows</source>
       <translation>Okná tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="688"/>
+      <location filename="../dialogs/configdialog.ui" line="694"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="691"/>
+      <location filename="../dialogs/configdialog.ui" line="697"/>
       <source>Open Table Windows with the data tab for start</source>
       <translation>Zobraziť dáta po otvorení tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="701"/>
+      <location filename="../dialogs/configdialog.ui" line="707"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="704"/>
+      <location filename="../dialogs/configdialog.ui" line="710"/>
       <source>Place data tab as first tab in a Table Window</source>
       <translation type="unfinished">Place data tab as first tab in a Table Window</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="717"/>
+      <location filename="../dialogs/configdialog.ui" line="723"/>
       <source>View windows</source>
       <translation>Okná pohľadov</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="723"/>
+      <location filename="../dialogs/configdialog.ui" line="729"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="726"/>
+      <location filename="../dialogs/configdialog.ui" line="732"/>
       <source>Open View Windows with the data tab for start</source>
       <translation>Zobraziť dáta po otvorení pohľadu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="736"/>
+      <location filename="../dialogs/configdialog.ui" line="742"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="739"/>
+      <location filename="../dialogs/configdialog.ui" line="745"/>
       <source>Place data tab as first tab in a View Window</source>
       <translation type="unfinished">Place data tab as first tab in a View Window</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="783"/>
+      <location filename="../dialogs/configdialog.ui" line="789"/>
       <source>Data types</source>
       <translation>Datové typy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="821"/>
+      <location filename="../dialogs/configdialog.ui" line="827"/>
       <source>Available editors:</source>
       <translation>Dostupné editory:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="837"/>
+      <location filename="../dialogs/configdialog.ui" line="843"/>
       <source>Editors selected for this data type:</source>
       <translation type="unfinished">Editors selected for this data type:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="873"/>
+      <location filename="../dialogs/configdialog.ui" line="879"/>
       <source>Schema editing</source>
       <translation>Úprava schémy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="885"/>
+      <location filename="../dialogs/configdialog.ui" line="891"/>
       <source>Number of DDL changes kept in history.</source>
       <translation>Počet DDL zmien uchovávaných v histórii.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="898"/>
+      <location filename="../dialogs/configdialog.ui" line="904"/>
       <source>DDL history size:</source>
       <translation>Veľkosť DDL histórie:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="905"/>
+      <location filename="../dialogs/configdialog.ui" line="911"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="918"/>
+      <location filename="../dialogs/configdialog.ui" line="924"/>
       <source>SQL queries</source>
       <translation>SQL dotazy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="930"/>
-      <location filename="../dialogs/configdialog.ui" line="979"/>
+      <location filename="../dialogs/configdialog.ui" line="936"/>
+      <location filename="../dialogs/configdialog.ui" line="985"/>
       <source>Number of queries kept in the history.</source>
       <translation>Počet dotazov uchovávaných v histórii.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="966"/>
+      <location filename="../dialogs/configdialog.ui" line="972"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="982"/>
+      <location filename="../dialogs/configdialog.ui" line="988"/>
       <source>History size:</source>
       <translation>Veľkosť SQL histórie:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="943"/>
-      <location filename="../dialogs/configdialog.ui" line="953"/>
+      <location filename="../dialogs/configdialog.ui" line="949"/>
+      <location filename="../dialogs/configdialog.ui" line="959"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="969"/>
+      <location filename="../dialogs/configdialog.ui" line="975"/>
       <source>Execute only the query under the cursor</source>
       <translation>Vykonať len dotaz, na ktorom stojí kurzor</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="946"/>
+      <location filename="../dialogs/configdialog.ui" line="952"/>
       <source>Number of memorized query parameters</source>
       <translation type="unfinished">Number of memorized query parameters</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="545"/>
+      <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="548"/>
+      <location filename="../dialogs/configdialog.ui" line="554"/>
       <source>Use scientific notation for real numbers in the grid view</source>
       <translation type="unfinished">Use scientific notation for real numbers in the grid view</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="605"/>
+      <location filename="../dialogs/configdialog.ui" line="611"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="608"/>
+      <location filename="../dialogs/configdialog.ui" line="614"/>
       <source>Limit automatic data column width to (in pixels):</source>
       <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="615"/>
+      <location filename="../dialogs/configdialog.ui" line="621"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="618"/>
+      <location filename="../dialogs/configdialog.ui" line="624"/>
       <source>Keep at least the width to show complete column name</source>
       <translation type="unfinished">Keep at least the width to show complete column name</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="989"/>
+      <location filename="../dialogs/configdialog.ui" line="995"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="992"/>
+      <location filename="../dialogs/configdialog.ui" line="998"/>
       <source>Wrap lines in SQL editor</source>
       <translation type="unfinished">Wrap lines in SQL editor</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1002"/>
+      <location filename="../dialogs/configdialog.ui" line="1008"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1005"/>
+      <location filename="../dialogs/configdialog.ui" line="1011"/>
       <source>Highlight current query</source>
       <translation type="unfinished">Highlight current query</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1018"/>
+      <location filename="../dialogs/configdialog.ui" line="1024"/>
       <source>Updates</source>
       <translation>Aktualizácie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1024"/>
+      <location filename="../dialogs/configdialog.ui" line="1030"/>
       <source>Automatically check for updates at startup</source>
       <translation>Kontrolovať aktualizácie pri štarte</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1037"/>
+      <location filename="../dialogs/configdialog.ui" line="1043"/>
       <source>Session</source>
       <translation>Sedenie</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1043"/>
+      <location filename="../dialogs/configdialog.ui" line="1049"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation>Obnoviť posledné sedenie (aktívne okná) pri štarte</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1053"/>
+      <location filename="../dialogs/configdialog.ui" line="1059"/>
       <source>Allow multiple instances of the application at the same time</source>
       <translation type="unfinished">Allow multiple instances of the application at the same time</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1066"/>
+      <location filename="../dialogs/configdialog.ui" line="1072"/>
       <source>Status Field</source>
       <translation type="unfinished">Status Field</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1072"/>
+      <location filename="../dialogs/configdialog.ui" line="1078"/>
       <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1075"/>
+      <location filename="../dialogs/configdialog.ui" line="1081"/>
       <source>Always open Status panel when new message is printed</source>
       <translation type="unfinished">Always open Status panel when new message is printed</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1130"/>
+      <location filename="../dialogs/configdialog.ui" line="1136"/>
       <source>Code syntax colors</source>
       <translation type="unfinished">Code syntax colors</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1136"/>
+      <location filename="../dialogs/configdialog.ui" line="1142"/>
       <source>Keyword foreground</source>
       <translation type="unfinished">Keyword foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1226"/>
+      <location filename="../dialogs/configdialog.ui" line="1232"/>
       <source>Regular foreground</source>
       <translation type="unfinished">Regular foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1343"/>
+      <location filename="../dialogs/configdialog.ui" line="1349"/>
       <source>String foreground</source>
       <translation type="unfinished">String foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1236"/>
+      <location filename="../dialogs/configdialog.ui" line="1242"/>
       <source>Comment foreground</source>
       <translation type="unfinished">Comment foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1288"/>
+      <location filename="../dialogs/configdialog.ui" line="1294"/>
       <source>Valid objects foreground</source>
       <translation type="unfinished">Valid objects foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1415"/>
+      <location filename="../dialogs/configdialog.ui" line="1421"/>
       <source>Current query background</source>
       <translation type="unfinished">Current query background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1379"/>
+      <location filename="../dialogs/configdialog.ui" line="1385"/>
       <source>Bind parameter foreground</source>
       <translation type="unfinished">Bind parameter foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1405"/>
+      <location filename="../dialogs/configdialog.ui" line="1411"/>
       <source>Current line background</source>
       <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1425"/>
+      <location filename="../dialogs/configdialog.ui" line="1431"/>
       <source>Matched parenthesis background</source>
       <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1320"/>
+      <location filename="../dialogs/configdialog.ui" line="1326"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1262"/>
+      <location filename="../dialogs/configdialog.ui" line="1268"/>
       <source>Number foreground</source>
       <translation type="unfinished">Number foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1333"/>
+      <location filename="../dialogs/configdialog.ui" line="1339"/>
       <source>BLOB value foreground</source>
       <translation type="unfinished">BLOB value foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1435"/>
+      <location filename="../dialogs/configdialog.ui" line="1441"/>
       <source>Matched parenthesis foreground</source>
       <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1472"/>
+      <location filename="../dialogs/configdialog.ui" line="1478"/>
       <source>Reset to defaults</source>
       <translation type="unfinished">Reset to defaults</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1498"/>
+      <location filename="../dialogs/configdialog.ui" line="1504"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>Filtrovať podľa názvu alebo klávesovej skratky</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1539"/>
+      <location filename="../dialogs/configdialog.ui" line="1545"/>
       <source>Action</source>
       <translation>Akcia</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1544"/>
+      <location filename="../dialogs/configdialog.ui" line="1550"/>
       <source>Key combination</source>
       <translation>Klávesová skratka</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1593"/>
-      <location filename="../dialogs/configdialog.ui" line="2065"/>
+      <location filename="../dialogs/configdialog.ui" line="1599"/>
+      <location filename="../dialogs/configdialog.ui" line="2071"/>
       <source>Language</source>
       <translation>Jazyk</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1599"/>
+      <location filename="../dialogs/configdialog.ui" line="1605"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1616"/>
+      <location filename="../dialogs/configdialog.ui" line="1622"/>
       <source>Compact layout</source>
       <translation type="unfinished">Compact layout</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1622"/>
+      <location filename="../dialogs/configdialog.ui" line="1628"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1625"/>
+      <location filename="../dialogs/configdialog.ui" line="1631"/>
       <source>Use compact layout</source>
       <translation type="unfinished">Use compact layout</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1641"/>
+      <location filename="../dialogs/configdialog.ui" line="1647"/>
       <source>Main window dock areas</source>
       <translation type="unfinished">Main window dock areas</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1647"/>
+      <location filename="../dialogs/configdialog.ui" line="1653"/>
       <source>Left and right areas occupy corners</source>
       <translation type="unfinished">Left and right areas occupy corners</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1667"/>
+      <location filename="../dialogs/configdialog.ui" line="1673"/>
       <source>Top and bottom areas occupy corners</source>
       <translation type="unfinished">Top and bottom areas occupy corners</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1789"/>
+      <location filename="../dialogs/configdialog.ui" line="1795"/>
       <source>Hide built-in plugins</source>
       <translation>Nezobrazovať interné pluginy</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1818"/>
+      <location filename="../dialogs/configdialog.ui" line="1824"/>
       <source>Current style:</source>
       <translation>Aktuálny štýl:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1835"/>
+      <location filename="../dialogs/configdialog.ui" line="1841"/>
       <source>Preview</source>
       <translation>Náhľad</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1845"/>
+      <location filename="../dialogs/configdialog.ui" line="1851"/>
       <source>Enabled</source>
       <translation>Zapnutý</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2021"/>
+      <location filename="../dialogs/configdialog.ui" line="2027"/>
       <source>Disabled</source>
       <translation>Vypnutý</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2070"/>
+      <location filename="../dialogs/configdialog.ui" line="2076"/>
       <source>Active formatter plugin</source>
       <translation>Aktívny formátovací plugin</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2108"/>
+      <location filename="../dialogs/configdialog.ui" line="2114"/>
       <source>SQL editor font</source>
       <translation>Písmo SQL editora</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2124"/>
+      <location filename="../dialogs/configdialog.ui" line="2130"/>
       <source>Database list font</source>
       <translation>Font zoznamu databáz</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2140"/>
+      <location filename="../dialogs/configdialog.ui" line="2146"/>
       <source>Database list additional label font</source>
       <translation>Font doplnkového popisku</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2156"/>
+      <location filename="../dialogs/configdialog.ui" line="2162"/>
       <source>Data view font</source>
       <translation>Font dát</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2172"/>
+      <location filename="../dialogs/configdialog.ui" line="2178"/>
       <source>Status field font</source>
       <translation>Font status okna</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2209"/>
+      <location filename="../dialogs/configdialog.ui" line="2215"/>
       <source>Code assistant settings</source>
       <translation type="unfinished">Code assistant settings</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2215"/>
+      <location filename="../dialogs/configdialog.ui" line="2221"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2218"/>
+      <location filename="../dialogs/configdialog.ui" line="2224"/>
       <source>Automatically trigger the assistant after a dot is typed after an object name</source>
       <translation type="unfinished">Automatically trigger the assistant after a dot is typed after an object name</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="901"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Popis:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="903"/>
+      <location filename="../dialogs/configdialog.cpp" line="902"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Kategória:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="903"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Verzia:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="905"/>
+      <location filename="../dialogs/configdialog.cpp" line="904"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Autor:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="907"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Interný názov:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="908"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Závislosti:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="909"/>
+      <location filename="../dialogs/configdialog.cpp" line="908"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Konflikty:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="913"/>
+      <location filename="../dialogs/configdialog.cpp" line="912"/>
       <source>Plugin details</source>
       <translation>Detaily pluginu</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1481"/>
+      <location filename="../dialogs/configdialog.cpp" line="1480"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Pluginy sú načítané/uvoľnené okamžite pri zaškrtnutí/odškrtnutí ale midifikovaný zoznam pluginov načítaných pri štarte nieje uložený až kým nepotvrdíte celý konfiguračný dialóg.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1545"/>
+      <location filename="../dialogs/configdialog.cpp" line="1544"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (interný)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1558"/>
+      <location filename="../dialogs/configdialog.cpp" line="1557"/>
       <source>Details</source>
       <translation>Detaily</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1570"/>
+      <location filename="../dialogs/configdialog.cpp" line="1569"/>
       <source>No plugins in this category.</source>
       <translation type="unfinished">No plugins in this category.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1672"/>
+      <location filename="../dialogs/configdialog.cpp" line="1671"/>
       <source>Add new data type</source>
       <translation>Pridať nový datový typ</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1676"/>
+      <location filename="../dialogs/configdialog.cpp" line="1675"/>
       <source>Rename selected data type</source>
       <translation>Premenovať vybraný datový typ</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1680"/>
+      <location filename="../dialogs/configdialog.cpp" line="1679"/>
       <source>Delete selected data type</source>
       <translation>Vymazať vybraný datový typ</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1684"/>
+      <location filename="../dialogs/configdialog.cpp" line="1683"/>
       <source>Help for configuring data type editors</source>
       <translation type="unfinished">Help for configuring data type editors</translation>
     </message>
@@ -2161,368 +2161,368 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
       <translation>Filtrovať podľa názvu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="130"/>
+      <location filename="../dbtree/dbtree.cpp" line="129"/>
       <source>Copy</source>
       <translation>Kopírovať</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="131"/>
+      <location filename="../dbtree/dbtree.cpp" line="130"/>
       <source>Paste</source>
       <translation>Vložiť</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="132"/>
+      <location filename="../dbtree/dbtree.cpp" line="131"/>
       <source>Select all</source>
       <translation>Vybrať všetko</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="133"/>
+      <location filename="../dbtree/dbtree.cpp" line="132"/>
       <source>Create a group</source>
       <translation>Vytvoriť skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="134"/>
+      <location filename="../dbtree/dbtree.cpp" line="133"/>
       <source>Delete the group</source>
       <translation>Vymazať skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="135"/>
+      <location filename="../dbtree/dbtree.cpp" line="134"/>
       <source>Rename the group</source>
       <translation>Premenovať skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="136"/>
+      <location filename="../dbtree/dbtree.cpp" line="135"/>
       <source>&amp;Add a database</source>
       <translation type="unfinished">&amp;Add a database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="137"/>
+      <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>&amp;Edit the database</source>
       <translation type="unfinished">&amp;Edit the database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="138"/>
+      <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>&amp;Remove the database</source>
       <translation type="unfinished">&amp;Remove the database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="139"/>
+      <location filename="../dbtree/dbtree.cpp" line="138"/>
       <source>&amp;Connect to the database</source>
       <translation type="unfinished">&amp;Connect to the database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="140"/>
+      <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>&amp;Disconnect from the database</source>
       <translation type="unfinished">&amp;Disconnect from the database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="141"/>
+      <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>Import</source>
       <translation>Importovať</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="142"/>
+      <location filename="../dbtree/dbtree.cpp" line="141"/>
       <source>&amp;Export the database</source>
       <translation type="unfinished">&amp;Export the database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="143"/>
+      <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>Vac&amp;uum</source>
       <translation type="unfinished">Vac&amp;uum</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="144"/>
+      <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Integrity check</source>
       <translation type="unfinished">&amp;Integrity check</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="145"/>
+      <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>Create a &amp;table</source>
       <translation type="unfinished">Create a &amp;table</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="146"/>
+      <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Edit the t&amp;able</source>
       <translation type="unfinished">Edit the t&amp;able</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="147"/>
+      <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>Delete the ta&amp;ble</source>
       <translation type="unfinished">Delete the ta&amp;ble</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="148"/>
+      <location filename="../dbtree/dbtree.cpp" line="147"/>
       <source>Export the table</source>
       <translation>Exportovať tabuľku</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="149"/>
+      <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>Import into the table</source>
       <translation>Importovať do tabuľky</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="150"/>
+      <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Populate table</source>
       <translation>Naplniť tabuľku</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="151"/>
+      <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>Create similar table</source>
       <translation>Vytvoriť rovnakú tabuľku</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="152"/>
+      <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Reset autoincrement sequence</source>
       <translation>Resetovať sekvenciu autoinkrementu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="153"/>
+      <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Create an &amp;index</source>
       <translation type="unfinished">Create an &amp;index</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="154"/>
+      <location filename="../dbtree/dbtree.cpp" line="153"/>
       <source>Edit the i&amp;ndex</source>
       <translation type="unfinished">Edit the i&amp;ndex</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="155"/>
+      <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Delete the in&amp;dex</source>
       <translation type="unfinished">Delete the in&amp;dex</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="156"/>
+      <location filename="../dbtree/dbtree.cpp" line="155"/>
       <source>Create a trig&amp;ger</source>
       <translation type="unfinished">Create a trig&amp;ger</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="157"/>
+      <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Edit the trigg&amp;er</source>
       <translation type="unfinished">Edit the trigg&amp;er</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="158"/>
+      <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Delete the trigge&amp;r</source>
       <translation type="unfinished">Delete the trigge&amp;r</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="159"/>
+      <location filename="../dbtree/dbtree.cpp" line="158"/>
       <source>Create a &amp;view</source>
       <translation type="unfinished">Create a &amp;view</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="160"/>
+      <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Edit the v&amp;iew</source>
       <translation type="unfinished">Edit the v&amp;iew</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="161"/>
+      <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Delete the vi&amp;ew</source>
       <translation type="unfinished">Delete the vi&amp;ew</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="162"/>
+      <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Add a column</source>
       <translation>Pridať stĺpec</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="163"/>
+      <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Edit the column</source>
       <translation>Upraviť stĺpec</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="164"/>
+      <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Delete the column</source>
       <translation>Vymazať stĺpec</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="165"/>
+      <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Delete selected items</source>
       <translation>Vymazať vybrané položky</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="166"/>
+      <location filename="../dbtree/dbtree.cpp" line="165"/>
       <source>Clear filter</source>
       <translation>Zrušiť filter</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="167"/>
+      <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>&amp;Refresh all database schemas</source>
       <translation type="unfinished">&amp;Refresh all database schemas</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="168"/>
+      <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>Re&amp;fresh selected database schema</source>
       <translation type="unfinished">Re&amp;fresh selected database schema</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="169"/>
-      <location filename="../dbtree/dbtree.cpp" line="1590"/>
+      <location filename="../dbtree/dbtree.cpp" line="168"/>
+      <location filename="../dbtree/dbtree.cpp" line="1589"/>
       <source>Erase table data</source>
       <translation>Vymazať dáta z tabuľky</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="174"/>
+      <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>Open file&apos;s directory</source>
       <translation type="unfinished">Open file&apos;s directory</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="175"/>
+      <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Execute SQL from file</source>
       <translation type="unfinished">Execute SQL from file</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="176"/>
+      <location filename="../dbtree/dbtree.cpp" line="175"/>
       <source>Increase font size</source>
       <comment>database list</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="177"/>
+      <location filename="../dbtree/dbtree.cpp" line="176"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="358"/>
-      <location filename="../dbtree/dbtree.cpp" line="363"/>
+      <location filename="../dbtree/dbtree.cpp" line="357"/>
+      <location filename="../dbtree/dbtree.cpp" line="362"/>
       <source>Database</source>
       <translation>Databáza</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="373"/>
+      <location filename="../dbtree/dbtree.cpp" line="372"/>
       <source>Grouping</source>
       <translation>Zoskupovanie</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="378"/>
+      <location filename="../dbtree/dbtree.cpp" line="377"/>
       <source>Generate query for table</source>
       <translation type="unfinished">Generate query for table</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1106"/>
-      <location filename="../dbtree/dbtree.cpp" line="1109"/>
+      <location filename="../dbtree/dbtree.cpp" line="1105"/>
+      <location filename="../dbtree/dbtree.cpp" line="1108"/>
       <source>Create group</source>
       <translation>Vytvoriť skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1106"/>
+      <location filename="../dbtree/dbtree.cpp" line="1105"/>
       <source>Group name</source>
       <translation>Názov skupiny</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1109"/>
+      <location filename="../dbtree/dbtree.cpp" line="1108"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation>Položka s názvom %1 už existuje v skupine %2.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1127"/>
+      <location filename="../dbtree/dbtree.cpp" line="1126"/>
       <source>Delete group</source>
       <translation>Vymazať skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1128"/>
+      <location filename="../dbtree/dbtree.cpp" line="1127"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation>Ste si istý, že chcete vymazať skupinu %1?
 Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1191"/>
+      <location filename="../dbtree/dbtree.cpp" line="1190"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation type="unfinished">Are you sure you want to remove database &apos;%1&apos; from the list?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1199"/>
+      <location filename="../dbtree/dbtree.cpp" line="1198"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation type="unfinished">Are you sure you want to remove following databases from the list:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1201"/>
+      <location filename="../dbtree/dbtree.cpp" line="1200"/>
       <source>Remove database</source>
       <translation type="unfinished">Remove database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1241"/>
-      <location filename="../dbtree/dbtree.cpp" line="1446"/>
+      <location filename="../dbtree/dbtree.cpp" line="1240"/>
+      <location filename="../dbtree/dbtree.cpp" line="1445"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1261"/>
-      <location filename="../dbtree/dbtree.cpp" line="1421"/>
+      <location filename="../dbtree/dbtree.cpp" line="1260"/>
+      <location filename="../dbtree/dbtree.cpp" line="1420"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1511"/>
+      <location filename="../dbtree/dbtree.cpp" line="1510"/>
       <source>Vacuum (%1)</source>
       <translation type="unfinished">Vacuum (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1525"/>
+      <location filename="../dbtree/dbtree.cpp" line="1524"/>
       <source>Integrity check (%1)</source>
       <translation>Kontrola integrity (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1561"/>
+      <location filename="../dbtree/dbtree.cpp" line="1560"/>
       <source>Reset autoincrement</source>
       <translation>Resetovať autoinkrement</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1561"/>
+      <location filename="../dbtree/dbtree.cpp" line="1560"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>Ste si istý, že chcete zresetovať hodnotu autoinkrementu pre tabuľku %1 ?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1568"/>
+      <location filename="../dbtree/dbtree.cpp" line="1567"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>Vyskytla sa chyba pri pokuse o zresetovanie hodnoty autoinkrementu pre tebuľku &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1570"/>
+      <location filename="../dbtree/dbtree.cpp" line="1569"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1590"/>
+      <location filename="../dbtree/dbtree.cpp" line="1589"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1602"/>
+      <location filename="../dbtree/dbtree.cpp" line="1601"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation>Vyskytla sa chyba pri pokuse vymazať dáta z tabuľky &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1606"/>
+      <location filename="../dbtree/dbtree.cpp" line="1605"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation>Všetky dáta z tabuľky &apos;%1&apos; boli vymazané.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1731"/>
+      <location filename="../dbtree/dbtree.cpp" line="1733"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>Nasledujúce objekty budú odstránené: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1734"/>
+      <location filename="../dbtree/dbtree.cpp" line="1736"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>Nasledujúce databázy budú odstránené zo zoznamu: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1737"/>
+      <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation type="unfinished">Remainig objects from deleted group will be moved in place where the group used to be.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1739"/>
+      <location filename="../dbtree/dbtree.cpp" line="1741"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1741"/>
+      <location filename="../dbtree/dbtree.cpp" line="1743"/>
       <source>Delete objects</source>
       <translation>Odstránenie objektov</translation>
     </message>
@@ -2557,136 +2557,136 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
   <context>
     <name>DbTreeModel</name>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="429"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
       <translation>Databáza: %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="429"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
       <translation type="unfinished">URI:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="434"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
       <translation>Verzia:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="437"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="436"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
       <translation>Veľkosť súboru:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="440"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="439"/>
       <source>Encoding:</source>
       <comment>dbtree tooltip</comment>
       <translation>Kódovanie:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="445"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="444"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
       <translation type="unfinished">Error:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="456"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="455"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
       <translation>Tabuľka : %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="479"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="478"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Stĺpce (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="481"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Indexy (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="485"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="484"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Spúšťače (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
       <source>Copy</source>
       <translation>Kopírovať</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1191"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
       <source>Move</source>
       <translation type="unfinished">Move</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1193"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1192"/>
       <source>Include data</source>
       <translation type="unfinished">Include data</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1194"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1193"/>
       <source>Include indexes</source>
       <translation type="unfinished">Include indexes</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1195"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1194"/>
       <source>Include triggers</source>
       <translation type="unfinished">Include triggers</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1197"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1196"/>
       <source>Abort</source>
       <translation>Zrušiť</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1256"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1255"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1303"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1302"/>
       <source>Referenced tables</source>
       <translation type="unfinished">Referenced tables</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1304"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1303"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation type="unfinished">Do you want to include following referenced tables as well:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1313"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1312"/>
       <source>Name conflict</source>
       <translation type="unfinished">Name conflict</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1314"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1313"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation type="unfinished">Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1327"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1326"/>
       <source>SQL statements conversion</source>
       <translation type="unfinished">SQL statements conversion</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1334"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1336"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
     </message>
@@ -2817,92 +2817,92 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Vytvoriť pohľad z dotazu</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="398"/>
+      <location filename="../windows/editorwindow.cpp" line="397"/>
       <source>Previous database</source>
       <translation>Predchádzajúca databáza</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="399"/>
+      <location filename="../windows/editorwindow.cpp" line="398"/>
       <source>Next database</source>
       <translation>Nasledujúca databáza</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="402"/>
+      <location filename="../windows/editorwindow.cpp" line="401"/>
       <source>Show next tab</source>
       <comment>sql editor</comment>
       <translation>Zobraziť nasledujúcu záložku</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="403"/>
+      <location filename="../windows/editorwindow.cpp" line="402"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
       <translation>Zobraziť predchádzajúcu záložku</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="404"/>
+      <location filename="../windows/editorwindow.cpp" line="403"/>
       <source>Focus results below</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Focus results below</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="405"/>
+      <location filename="../windows/editorwindow.cpp" line="404"/>
       <source>Focus SQL editor above</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Focus SQL editor above</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="406"/>
+      <location filename="../windows/editorwindow.cpp" line="405"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Delete selected SQL history entries</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="407"/>
+      <location filename="../windows/editorwindow.cpp" line="406"/>
       <source>Execute single query under cursor</source>
       <translation type="unfinished">Execute single query under cursor</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="408"/>
+      <location filename="../windows/editorwindow.cpp" line="407"/>
       <source>Execute all queries in editor</source>
       <translation type="unfinished">Execute all queries in editor</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="458"/>
+      <location filename="../windows/editorwindow.cpp" line="457"/>
       <source>Active database (%1/%2)</source>
       <translation>Aktívna databáza (%1/%2)</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="574"/>
+      <location filename="../windows/editorwindow.cpp" line="573"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
       <translation>Dotaz trval %1 sekúnd. Počet dotknutých riadkov: %2</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="578"/>
+      <location filename="../windows/editorwindow.cpp" line="577"/>
       <source>Query finished in %1 second(s).</source>
       <translation>Dotaz trval %1 sekúnd.</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="692"/>
+      <location filename="../windows/editorwindow.cpp" line="691"/>
       <source>Clear execution history</source>
       <translation>Vymazať históriu dotazov</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="692"/>
+      <location filename="../windows/editorwindow.cpp" line="691"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
       <translation>Ste si istý, že chete vymazať celú históriu SQL dotazov? Túto operáciu nieje možné vrátiť späť.</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="717"/>
+      <location filename="../windows/editorwindow.cpp" line="716"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="738"/>
+      <location filename="../windows/editorwindow.cpp" line="737"/>
       <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
       <translation>Nebola vybraná žiadna databáza v SQL editore. Nemôžem vytvoriť view pre neznámu databázu.</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="784"/>
+      <location filename="../windows/editorwindow.cpp" line="783"/>
       <source>Editor window &quot;%1&quot; has uncommitted data.</source>
       <translation type="unfinished">Editor window &quot;%1&quot; has uncommitted data.</translation>
     </message>
@@ -2991,205 +2991,205 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Export</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="21"/>
+      <location filename="../dialogs/exportdialog.ui" line="24"/>
       <source>What do you want to export?</source>
       <translation>Čo chcete exportovať?</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="36"/>
+      <location filename="../dialogs/exportdialog.ui" line="39"/>
       <source>A database</source>
       <translation>Databáza</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="46"/>
+      <location filename="../dialogs/exportdialog.ui" line="49"/>
       <source>A single table</source>
       <translation>Jednotlivá tabuľka</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="53"/>
+      <location filename="../dialogs/exportdialog.ui" line="56"/>
       <source>Query results</source>
       <translation>Výsledky dotazu</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="65"/>
+      <location filename="../dialogs/exportdialog.ui" line="68"/>
       <source>Table to export</source>
       <translation>Tabuľka na export</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="100"/>
+      <location filename="../dialogs/exportdialog.ui" line="103"/>
       <source>Database</source>
       <translation>Databáza</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="107"/>
+      <location filename="../dialogs/exportdialog.ui" line="110"/>
       <source>Table</source>
       <translation>Tabuľka</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="124"/>
+      <location filename="../dialogs/exportdialog.ui" line="127"/>
       <source>Options</source>
       <translation>Voľby</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="130"/>
+      <location filename="../dialogs/exportdialog.ui" line="133"/>
       <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
       <translation>Ak táto voľba nebude označená, tak sa vyexportuje len DDL tabuľky(príkaz CREATE TABLE).</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="133"/>
+      <location filename="../dialogs/exportdialog.ui" line="136"/>
       <source>Export table data</source>
       <translation>Exportovať dáta tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="143"/>
+      <location filename="../dialogs/exportdialog.ui" line="146"/>
       <source>Export table indexes</source>
       <translation>Exportovať indexy tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="153"/>
+      <location filename="../dialogs/exportdialog.ui" line="156"/>
       <source>Export table triggers</source>
       <translation>Exportovať spúšťače tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="175"/>
+      <location filename="../dialogs/exportdialog.ui" line="178"/>
       <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
       <translation>Poznámka. Niektoré exportné formáty nemusia podporovať export indexov a spúšťačov.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="189"/>
+      <location filename="../dialogs/exportdialog.ui" line="192"/>
       <source>Select database objects to export</source>
       <translation>Vyberte databázové objekty, ktoré chcete exportovať</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="202"/>
+      <location filename="../dialogs/exportdialog.ui" line="205"/>
       <source>Export data from tables</source>
       <translation>Exportovať dáta z tabuliek</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="212"/>
+      <location filename="../dialogs/exportdialog.ui" line="215"/>
       <source>Select all</source>
       <translation>Vybrať všetko</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="219"/>
+      <location filename="../dialogs/exportdialog.ui" line="222"/>
       <source>Deselect all</source>
       <translation>Zrušiť výber</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="229"/>
-      <location filename="../dialogs/exportdialog.ui" line="249"/>
+      <location filename="../dialogs/exportdialog.ui" line="232"/>
+      <location filename="../dialogs/exportdialog.ui" line="252"/>
       <source>Database:</source>
       <translation>Databáza:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="237"/>
+      <location filename="../dialogs/exportdialog.ui" line="240"/>
       <source>Query to export results for</source>
       <translation>Dotaz pre export výsledkov pre</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="256"/>
+      <location filename="../dialogs/exportdialog.ui" line="259"/>
       <source>Query to be executed for results:</source>
       <translation>Dotaz, ktorý bude vykonaný pre získanie dát:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="264"/>
+      <location filename="../dialogs/exportdialog.ui" line="267"/>
       <source>Export format and options</source>
       <translation>Formát exportu a možnosti</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="318"/>
+      <location filename="../dialogs/exportdialog.ui" line="321"/>
       <source>Export format</source>
       <translation>Formát exportu</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="330"/>
+      <location filename="../dialogs/exportdialog.ui" line="333"/>
       <source>Output</source>
       <translation>Výstup</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="336"/>
+      <location filename="../dialogs/exportdialog.ui" line="339"/>
       <source>Exported file path</source>
       <translation>Cesta k výstupnému súboru</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="343"/>
+      <location filename="../dialogs/exportdialog.ui" line="346"/>
       <source>Clipboard</source>
       <translation>Schránka</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="357"/>
+      <location filename="../dialogs/exportdialog.ui" line="360"/>
       <source>File</source>
       <translation>Súbor</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="382"/>
+      <location filename="../dialogs/exportdialog.ui" line="385"/>
       <source>Exported text encoding:</source>
       <translation>Kódovanie vyexportovaného textu:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="398"/>
+      <location filename="../dialogs/exportdialog.ui" line="401"/>
       <source>Export format options</source>
       <translation>Možnosti formátu exportu</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="63"/>
+      <location filename="../dialogs/exportdialog.cpp" line="61"/>
       <source>Cancel</source>
       <translation>Zrušiť</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="163"/>
-      <location filename="../dialogs/exportdialog.cpp" line="188"/>
-      <location filename="../dialogs/exportdialog.cpp" line="212"/>
+      <location filename="../dialogs/exportdialog.cpp" line="161"/>
+      <location filename="../dialogs/exportdialog.cpp" line="186"/>
+      <location filename="../dialogs/exportdialog.cpp" line="210"/>
       <source>Select database to export.</source>
       <translation>Vyberte databázu, ktorú chcete exportovať.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="164"/>
+      <location filename="../dialogs/exportdialog.cpp" line="162"/>
       <source>Select table to export.</source>
       <translation>Vyberte tabuľku, ktorú chcete exportovať.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="189"/>
+      <location filename="../dialogs/exportdialog.cpp" line="187"/>
       <source>Enter valid query to export.</source>
       <translation>Zadajte platný dotaz pre export.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="213"/>
+      <location filename="../dialogs/exportdialog.cpp" line="211"/>
       <source>Select at least one object to export.</source>
       <translation>Vyberte aspoň jeden objekt pre export.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="236"/>
+      <location filename="../dialogs/exportdialog.cpp" line="234"/>
       <source>You must provide a file name to export to.</source>
       <translation>Musíte zadať názov súboru, do ktorého sa budú exportovať dáta.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="243"/>
+      <location filename="../dialogs/exportdialog.cpp" line="241"/>
       <source>Path you provided is an existing directory. You cannot overwrite it.</source>
       <translation>Cesta, ktorú ste zadali je existujúci adresár. Nemôžte ho prepísať.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="249"/>
+      <location filename="../dialogs/exportdialog.cpp" line="247"/>
       <source>The directory &apos;%1&apos; does not exist.</source>
       <translation>Adresár %1 neexistuje.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="255"/>
+      <location filename="../dialogs/exportdialog.cpp" line="253"/>
       <source>The file &apos;%1&apos; exists and will be overwritten.</source>
       <translation>Súbor %1 už existuje a bude prepísaný.</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="435"/>
+      <location filename="../dialogs/exportdialog.cpp" line="433"/>
       <source>All files (*)</source>
       <translation>Všetky súbory (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="438"/>
+      <location filename="../dialogs/exportdialog.cpp" line="436"/>
       <source>Pick file to export to</source>
       <translation>Výber súboru do ktorého sa budú exportovať dáta</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="786"/>
+      <location filename="../dialogs/exportdialog.cpp" line="784"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>Počas exportu sa vyskytla interná chyba. Toto je chyba v programe. Prosím nahláste ju.</translation>
     </message>
@@ -3311,164 +3311,164 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Filter functions</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="157"/>
+      <location filename="../windows/functionseditor.ui" line="163"/>
       <source>Input arguments</source>
       <translation type="unfinished">Input arguments</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="163"/>
+      <location filename="../windows/functionseditor.ui" line="169"/>
       <source>Undefined</source>
       <translation type="unfinished">Undefined</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="205"/>
+      <location filename="../windows/functionseditor.ui" line="211"/>
       <source>Databases</source>
       <translation>Databázy</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="211"/>
+      <location filename="../windows/functionseditor.ui" line="217"/>
       <source>Register in all databases</source>
       <translation>Registrovať vo všetkých databázach</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="218"/>
+      <location filename="../windows/functionseditor.ui" line="224"/>
       <source>Register in following databases:</source>
       <translation>Registrovať v nasledujúcich databázach:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="253"/>
+      <location filename="../windows/functionseditor.ui" line="259"/>
       <source>Type:</source>
       <translation>Typ:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="266"/>
+      <location filename="../windows/functionseditor.ui" line="272"/>
       <source>Function name:</source>
       <translation type="unfinished">Function name:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="276"/>
+      <location filename="../windows/functionseditor.ui" line="282"/>
       <source>Implementation language:</source>
       <translation>Implementačný jazyk:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="283"/>
+      <location filename="../windows/functionseditor.ui" line="289"/>
       <source>Deterministic</source>
       <translation type="unfinished">Deterministic</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="300"/>
+      <location filename="../windows/functionseditor.ui" line="306"/>
       <source>Initialization code:</source>
       <translation type="unfinished">Initialization code:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="320"/>
-      <location filename="../windows/functionseditor.cpp" line="439"/>
+      <location filename="../windows/functionseditor.ui" line="326"/>
+      <location filename="../windows/functionseditor.cpp" line="441"/>
       <source>Function implementation code:</source>
       <translation type="unfinished">Function implementation code:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.ui" line="340"/>
+      <location filename="../windows/functionseditor.ui" line="346"/>
       <source>Final step implementation code:</source>
       <translation type="unfinished">Final step implementation code:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="56"/>
+      <location filename="../windows/functionseditor.cpp" line="55"/>
       <source>SQL functions editor</source>
       <translation type="unfinished">SQL functions editor</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="61"/>
+      <location filename="../windows/functionseditor.cpp" line="60"/>
       <source>Commit all function changes</source>
       <translation type="unfinished">Commit all function changes</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="62"/>
+      <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Rollback all function changes</source>
       <translation type="unfinished">Rollback all function changes</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="64"/>
+      <location filename="../windows/functionseditor.cpp" line="63"/>
       <source>Create new function</source>
       <translation type="unfinished">Create new function</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="65"/>
+      <location filename="../windows/functionseditor.cpp" line="64"/>
       <source>Delete selected function</source>
       <translation type="unfinished">Delete selected function</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="67"/>
+      <location filename="../windows/functionseditor.cpp" line="66"/>
       <source>Custom SQL functions manual</source>
       <translation type="unfinished">Custom SQL functions manual</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="70"/>
+      <location filename="../windows/functionseditor.cpp" line="69"/>
       <source>Add function argument</source>
       <translation type="unfinished">Add function argument</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="71"/>
+      <location filename="../windows/functionseditor.cpp" line="70"/>
       <source>Rename function argument</source>
       <translation type="unfinished">Rename function argument</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="72"/>
+      <location filename="../windows/functionseditor.cpp" line="71"/>
       <source>Delete function argument</source>
       <translation type="unfinished">Delete function argument</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="74"/>
+      <location filename="../windows/functionseditor.cpp" line="73"/>
       <source>Move function argument up</source>
       <translation type="unfinished">Move function argument up</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="75"/>
+      <location filename="../windows/functionseditor.cpp" line="74"/>
       <source>Move function argument down</source>
       <translation type="unfinished">Move function argument down</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="116"/>
+      <location filename="../windows/functionseditor.cpp" line="115"/>
       <source>Scalar</source>
       <translation type="unfinished">Scalar</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="117"/>
+      <location filename="../windows/functionseditor.cpp" line="116"/>
       <source>Aggregate</source>
       <translation type="unfinished">Aggregate</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="422"/>
+      <location filename="../windows/functionseditor.cpp" line="424"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
       <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="435"/>
+      <location filename="../windows/functionseditor.cpp" line="437"/>
       <source>Pick the implementation language.</source>
       <translation>Vyberte implementačný jazyk.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="439"/>
+      <location filename="../windows/functionseditor.cpp" line="441"/>
       <source>Per step code:</source>
       <translation type="unfinished">Per step code:</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="445"/>
+      <location filename="../windows/functionseditor.cpp" line="447"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>Zadajte implementačný kód.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="518"/>
+      <location filename="../windows/functionseditor.cpp" line="520"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
       <translation type="unfinished">argument</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="622"/>
+      <location filename="../windows/functionseditor.cpp" line="624"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
       <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="670"/>
+      <location filename="../windows/functionseditor.cpp" line="672"/>
       <source>Functions editor window has uncommitted modifications.</source>
       <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
     </message>
@@ -3481,97 +3481,97 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Import dát</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="21"/>
+      <location filename="../dialogs/importdialog.ui" line="24"/>
       <source>Table to import to</source>
       <translation>Tabuľka na import</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="36"/>
+      <location filename="../dialogs/importdialog.ui" line="39"/>
       <source>Table</source>
       <translation>Tabuľka</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="43"/>
+      <location filename="../dialogs/importdialog.ui" line="46"/>
       <source>Database</source>
       <translation>Databáza</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="84"/>
+      <location filename="../dialogs/importdialog.ui" line="87"/>
       <source>Data source to import from</source>
       <translation>Dátový zdroj na import</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="129"/>
+      <location filename="../dialogs/importdialog.ui" line="132"/>
       <source>Data source type</source>
       <translation>Typ dátového zdroja</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="141"/>
+      <location filename="../dialogs/importdialog.ui" line="144"/>
       <source>Options</source>
       <translation>Voľby</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="175"/>
+      <location filename="../dialogs/importdialog.ui" line="178"/>
       <source>Text encoding:</source>
       <translation>Kódovanie textu:</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="182"/>
+      <location filename="../dialogs/importdialog.ui" line="185"/>
       <source>Input file:</source>
       <translation>Vstupný súbor:</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="192"/>
+      <location filename="../dialogs/importdialog.ui" line="195"/>
       <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="195"/>
+      <location filename="../dialogs/importdialog.ui" line="198"/>
       <source>Ignore errors</source>
       <translation>Ignorovať chyby</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="205"/>
+      <location filename="../dialogs/importdialog.ui" line="208"/>
       <source>Data source options</source>
       <translation>Nastavenia dátového zdroja</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="117"/>
+      <location filename="../dialogs/importdialog.cpp" line="115"/>
       <source>Cancel</source>
       <translation>Zrušiť</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="148"/>
+      <location filename="../dialogs/importdialog.cpp" line="146"/>
       <source>If you type table name that doesn&apos;t exist, it will be created.</source>
       <translation>Ak zadáte názov neexistujúcej tabuľky, tak bude vytvorená.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="148"/>
+      <location filename="../dialogs/importdialog.cpp" line="146"/>
       <source>Enter the table name</source>
       <translation>Zadajte názov tabuľky</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="166"/>
+      <location filename="../dialogs/importdialog.cpp" line="164"/>
       <source>Select import plugin.</source>
       <translation>Vyberte importný plugin.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="175"/>
+      <location filename="../dialogs/importdialog.cpp" line="173"/>
       <source>You must provide a file to import from.</source>
       <translation>Musíte zadať súbor, z ktorého sa budú importovať dáta.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="182"/>
+      <location filename="../dialogs/importdialog.cpp" line="180"/>
       <source>The file &apos;%1&apos; does not exist.</source>
       <translation>Súbor %1 neexistuje.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="188"/>
+      <location filename="../dialogs/importdialog.cpp" line="186"/>
       <source>Path you provided is a directory. A regular file is required.</source>
       <translation>Cesta, ktorú ste zadali je adresár. Prosím zadajte celú cestu.</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.cpp" line="368"/>
+      <location filename="../dialogs/importdialog.cpp" line="366"/>
       <source>Pick file to import from</source>
       <translation>Výber súboru, z ktorého sa budú importovať dáta</translation>
     </message>
@@ -3650,61 +3650,61 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="72"/>
+      <location filename="../dialogs/indexdialog.cpp" line="73"/>
       <source>Tried to open index dialog for closed or inexisting database.</source>
       <translation type="unfinished">Tried to open index dialog for closed or inexisting database.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="142"/>
+      <location filename="../dialogs/indexdialog.cpp" line="143"/>
       <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
       <translation type="unfinished">Could not process index %1 correctly. Unable to open an index dialog.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="196"/>
+      <location filename="../dialogs/indexdialog.cpp" line="197"/>
       <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
       <translation type="unfinished">Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="197"/>
+      <location filename="../dialogs/indexdialog.cpp" line="198"/>
       <source>Pick the table for the index.</source>
       <translation type="unfinished">Pick the table for the index.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="198"/>
+      <location filename="../dialogs/indexdialog.cpp" line="199"/>
       <source>Select at least one column.</source>
       <translation>Vyberte minimálne jeden stĺpec.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="199"/>
+      <location filename="../dialogs/indexdialog.cpp" line="200"/>
       <source>Enter a valid condition.</source>
       <translation>Zadajte platnú podmienku.</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="271"/>
+      <location filename="../dialogs/indexdialog.cpp" line="272"/>
       <source>default</source>
       <comment>index dialog</comment>
       <translation type="unfinished">default</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="275"/>
+      <location filename="../dialogs/indexdialog.cpp" line="276"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
       <translation>Zoradiť</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="770"/>
-      <location filename="../dialogs/indexdialog.cpp" line="783"/>
+      <location filename="../dialogs/indexdialog.cpp" line="771"/>
+      <location filename="../dialogs/indexdialog.cpp" line="784"/>
       <source>Error</source>
       <comment>index dialog</comment>
       <translation>Chyba</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="771"/>
+      <location filename="../dialogs/indexdialog.cpp" line="772"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
       <translation>Nemôžem vytvoriť jedinečný index, pretože hodnoty vo vybraných stĺpcoch nie sú jedinečné. Chcete spustiť dotaz SELECT na zobrazenie problematických hodnôt?</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="783"/>
+      <location filename="../dialogs/indexdialog.cpp" line="784"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation type="unfinished">An error occurred while executing SQL statements:
@@ -3795,298 +3795,298 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Lišta pohľadov</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="111"/>
+      <location filename="../mainwindow.cpp" line="115"/>
       <source>Configuration widgets</source>
       <translation type="unfinished">Configuration widgets</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="112"/>
+      <location filename="../mainwindow.cpp" line="116"/>
       <source>Syntax highlighting engines</source>
       <translation type="unfinished">Syntax highlighting engines</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="113"/>
+      <location filename="../mainwindow.cpp" line="117"/>
       <source>Data editors</source>
       <translation>Editory dát</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="125"/>
+      <location filename="../mainwindow.cpp" line="129"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
       <translation type="unfinished">Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="127"/>
+      <location filename="../mainwindow.cpp" line="131"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
       <translation>Beží v ladiacom móde. Ladiace správy sú vypisované na štandardný výstup.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="220"/>
+      <location filename="../mainwindow.cpp" line="224"/>
       <source>You need to restart application to make the language change take effect.</source>
       <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="265"/>
+      <location filename="../mainwindow.cpp" line="269"/>
       <source>Open SQL &amp;editor</source>
       <translation type="unfinished">Open SQL &amp;editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="266"/>
+      <location filename="../mainwindow.cpp" line="270"/>
       <source>Open DDL &amp;history</source>
       <translation type="unfinished">Open DDL &amp;history</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="267"/>
+      <location filename="../mainwindow.cpp" line="271"/>
       <source>Open SQL &amp;functions editor</source>
       <translation type="unfinished">Open SQL &amp;functions editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="268"/>
+      <location filename="../mainwindow.cpp" line="272"/>
       <source>Open code &amp;snippets editor</source>
       <translation type="unfinished">Open code &amp;snippets editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="269"/>
+      <location filename="../mainwindow.cpp" line="273"/>
       <source>Open &amp;collations editor</source>
       <translation type="unfinished">Open &amp;collations editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="270"/>
+      <location filename="../mainwindow.cpp" line="274"/>
       <source>Open ex&amp;tension manager</source>
       <translation type="unfinished">Open ex&amp;tension manager</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="271"/>
+      <location filename="../mainwindow.cpp" line="275"/>
       <source>&amp;Import</source>
       <translation type="unfinished">&amp;Import</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="272"/>
+      <location filename="../mainwindow.cpp" line="276"/>
       <source>E&amp;xport</source>
       <translation type="unfinished">E&amp;xport</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="274"/>
+      <location filename="../mainwindow.cpp" line="278"/>
       <source>Open confi&amp;guration dialog</source>
       <translation type="unfinished">Open confi&amp;guration dialog</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="276"/>
+      <location filename="../mainwindow.cpp" line="280"/>
       <source>&amp;Tile windows</source>
       <translation type="unfinished">&amp;Tile windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="277"/>
+      <location filename="../mainwindow.cpp" line="281"/>
       <source>Tile windows &amp;horizontally</source>
       <translation type="unfinished">Tile windows &amp;horizontally</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="278"/>
+      <location filename="../mainwindow.cpp" line="282"/>
       <source>Tile windows &amp;vertically</source>
       <translation type="unfinished">Tile windows &amp;vertically</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="279"/>
+      <location filename="../mainwindow.cpp" line="283"/>
       <source>&amp;Cascade windows</source>
       <translation type="unfinished">&amp;Cascade windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="280"/>
+      <location filename="../mainwindow.cpp" line="284"/>
       <source>Next window</source>
       <translation>Nasledujúce okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="281"/>
+      <location filename="../mainwindow.cpp" line="285"/>
       <source>Previous window</source>
       <translation>Predchádzajúce okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="282"/>
+      <location filename="../mainwindow.cpp" line="286"/>
       <source>Hide status field</source>
       <translation type="unfinished">Hide status field</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="286"/>
+      <location filename="../mainwindow.cpp" line="290"/>
       <source>Close &amp;all windows</source>
       <translation type="unfinished">Close &amp;all windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="289"/>
+      <location filename="../mainwindow.cpp" line="293"/>
       <source>Re&amp;store recently closed window</source>
       <translation type="unfinished">Re&amp;store recently closed window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="284"/>
+      <location filename="../mainwindow.cpp" line="288"/>
       <source>Close current &amp;window</source>
       <translation type="unfinished">Close current &amp;window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="285"/>
+      <location filename="../mainwindow.cpp" line="289"/>
       <source>Close &amp;other windows</source>
       <translation type="unfinished">Close &amp;other windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="287"/>
+      <location filename="../mainwindow.cpp" line="291"/>
       <source>Close windows on the &amp;left</source>
       <translation type="unfinished">Close windows on the &amp;left</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="288"/>
+      <location filename="../mainwindow.cpp" line="292"/>
       <source>Close windows on the &amp;right</source>
       <translation type="unfinished">Close windows on the &amp;right</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="290"/>
+      <location filename="../mainwindow.cpp" line="294"/>
       <source>Re&amp;name selected window</source>
       <translation type="unfinished">Re&amp;name selected window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="292"/>
+      <location filename="../mainwindow.cpp" line="296"/>
       <source>Open Debug Console</source>
       <translation>Otvoriť ladiacu konzolu</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="293"/>
+      <location filename="../mainwindow.cpp" line="297"/>
       <source>Open CSS Console</source>
       <translation>Otvoriť CSS konzolu</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="294"/>
+      <location filename="../mainwindow.cpp" line="298"/>
       <source>Report a &amp;bug</source>
       <translation type="unfinished">Report a &amp;bug</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="295"/>
+      <location filename="../mainwindow.cpp" line="299"/>
       <source>D&amp;onate</source>
       <translation type="unfinished">D&amp;onate</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="296"/>
+      <location filename="../mainwindow.cpp" line="300"/>
       <source>Propose a new &amp;feature</source>
       <translation type="unfinished">Propose a new &amp;feature</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="297"/>
+      <location filename="../mainwindow.cpp" line="301"/>
       <source>&amp;About</source>
       <translation type="unfinished">&amp;About</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="298"/>
+      <location filename="../mainwindow.cpp" line="302"/>
       <source>&amp;Licenses</source>
       <translation type="unfinished">&amp;Licenses</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="299"/>
+      <location filename="../mainwindow.cpp" line="303"/>
       <source>Open home &amp;page</source>
       <translation type="unfinished">Open home &amp;page</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="300"/>
+      <location filename="../mainwindow.cpp" line="304"/>
       <source>User &amp;Manual</source>
       <translation type="unfinished">User &amp;Manual</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="301"/>
+      <location filename="../mainwindow.cpp" line="305"/>
       <source>SQLite &amp;documentation</source>
       <translation type="unfinished">SQLite &amp;documentation</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="302"/>
+      <location filename="../mainwindow.cpp" line="306"/>
       <source>Bugs and feature &amp;requests</source>
       <translation type="unfinished">Bugs and feature &amp;requests</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="303"/>
+      <location filename="../mainwindow.cpp" line="307"/>
       <source>Quit</source>
       <translation type="unfinished">Quit</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="305"/>
+      <location filename="../mainwindow.cpp" line="309"/>
       <source>Check for &amp;updates</source>
       <translation type="unfinished">Check for &amp;updates</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="327"/>
+      <location filename="../mainwindow.cpp" line="331"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
       <translation type="unfinished">&amp;Database</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="350"/>
+      <location filename="../mainwindow.cpp" line="354"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
       <translation type="unfinished">&amp;Structure</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="371"/>
+      <location filename="../mainwindow.cpp" line="375"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
       <translation type="unfinished">&amp;View</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="375"/>
+      <location filename="../mainwindow.cpp" line="379"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
       <translation>Lišta okien</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="398"/>
+      <location filename="../mainwindow.cpp" line="402"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
       <translation type="unfinished">&amp;Tools</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="414"/>
+      <location filename="../mainwindow.cpp" line="418"/>
       <source>&amp;Help</source>
       <translation type="unfinished">&amp;Help</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="595"/>
+      <location filename="../mainwindow.cpp" line="599"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>Nemôžem nastaviť štýl: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="726"/>
+      <location filename="../mainwindow.cpp" line="730"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="742"/>
+      <location filename="../mainwindow.cpp" line="746"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="785"/>
+      <location filename="../mainwindow.cpp" line="789"/>
       <source>Rename window</source>
       <translation>Premenovať okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="785"/>
+      <location filename="../mainwindow.cpp" line="789"/>
       <source>Enter new name for the window:</source>
       <translation>Zadajte nový názov pre okno:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="888"/>
+      <location filename="../mainwindow.cpp" line="892"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Nové aktualizácie sú dostupné. &lt;a href=&quot;%1&quot;&gt;Kliknite sem pre zobrazenie detailov&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="896"/>
+      <location filename="../mainwindow.cpp" line="900"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Niesú dostupné žiadne aktualizácie. Používate aktuálnu verziu.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1025"/>
+      <location filename="../mainwindow.cpp" line="1029"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Databáza prebratá z príkazového riadka (%1) už je v zozname pod názvom: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1032"/>
+      <location filename="../mainwindow.cpp" line="1036"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Databáza prebratá z príkazového riadka (%1) bola dočasne pridaná do zoznamu pod názvom: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1037"/>
+      <location filename="../mainwindow.cpp" line="1041"/>
       <source>Could not add database %1 to list.</source>
       <translation>Nemôžem pridať databázu %1 do zoznamu.</translation>
     </message>
@@ -4112,39 +4112,39 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>MultiEditor</name>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="64"/>
+      <location filename="../multieditor/multieditor.cpp" line="63"/>
       <source>Null value</source>
       <comment>multieditor</comment>
       <translation>Hodnota null</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="83"/>
+      <location filename="../multieditor/multieditor.cpp" line="82"/>
       <source>Configure editors for this data type</source>
       <translation type="unfinished">Configure editors for this data type</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="96"/>
+      <location filename="../multieditor/multieditor.cpp" line="95"/>
       <source>Open another tab</source>
       <translation type="unfinished">Open another tab</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="303"/>
+      <location filename="../multieditor/multieditor.cpp" line="302"/>
       <source>Foreign Key</source>
       <translation>Cudzí klúč</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="350"/>
+      <location filename="../multieditor/multieditor.cpp" line="349"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%2&apos; data type.</source>
       <translation>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type. {1&apos;?} {2&apos;?} {1&apos; or 2&apos;?}</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="444"/>
+      <location filename="../multieditor/multieditor.cpp" line="443"/>
       <source>Deleted</source>
       <comment>multieditor</comment>
       <translation type="unfinished">Deleted</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="446"/>
+      <location filename="../multieditor/multieditor.cpp" line="445"/>
       <source>Read only</source>
       <comment>multieditor</comment>
       <translation>Iba na čítanie</translation>
@@ -4394,38 +4394,38 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Počet riadkov na naplnenie:</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="50"/>
+      <location filename="../dialogs/populatedialog.cpp" line="51"/>
       <source>Populate</source>
       <comment>populate dialog button</comment>
       <translation>Naplniť</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="65"/>
+      <location filename="../dialogs/populatedialog.cpp" line="66"/>
       <source>Abort</source>
       <translation>Zrušiť</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="200"/>
+      <location filename="../dialogs/populatedialog.cpp" line="201"/>
       <source>Configure</source>
       <translation>Konfigurovať</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="307"/>
+      <location filename="../dialogs/populatedialog.cpp" line="308"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
       <translation type="unfinished">Populating configuration for this column is invalid or incomplete.</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="338"/>
+      <location filename="../dialogs/populatedialog.cpp" line="339"/>
       <source>Select database with table to populate</source>
       <translation>Vyberte databázu s tabuľkou na naplnenie</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="339"/>
+      <location filename="../dialogs/populatedialog.cpp" line="340"/>
       <source>Select table to populate</source>
       <translation>Vyberte tabuľku na naplnenie</translation>
     </message>
     <message>
-      <location filename="../dialogs/populatedialog.cpp" line="340"/>
+      <location filename="../dialogs/populatedialog.cpp" line="341"/>
       <source>You have to select at least one column.</source>
       <translation>Musíte vybrať minimálne jeden stĺpec.</translation>
     </message>
@@ -5433,9 +5433,14 @@ nájsť ďalší</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="174"/>
+      <source>Find or replace</source>
+      <comment>sql editor</comment>
+      <translation type="unfinished">Nájsť alebo nahradiť</translation>
+    </message>
+    <message>
       <source>Find</source>
       <comment>sql editor</comment>
-      <translation>Nájsť</translation>
+      <translation type="vanished">Nájsť</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>
@@ -5528,31 +5533,31 @@ nájsť ďalší</translation>
   <context>
     <name>SqlQueryItem</name>
     <message>
-      <location filename="../datagrid/sqlqueryitem.cpp" line="224"/>
+      <location filename="../datagrid/sqlqueryitem.cpp" line="242"/>
       <source>Committing error:</source>
       <comment>data view tooltip</comment>
       <translation type="unfinished">Committing error:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitem.cpp" line="228"/>
+      <location filename="../datagrid/sqlqueryitem.cpp" line="246"/>
       <source>Column:</source>
       <comment>data view tooltip</comment>
       <translation>Stĺpec:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitem.cpp" line="229"/>
+      <location filename="../datagrid/sqlqueryitem.cpp" line="247"/>
       <source>Data type:</source>
       <comment>data view</comment>
       <translation>Datový typ:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitem.cpp" line="232"/>
+      <location filename="../datagrid/sqlqueryitem.cpp" line="250"/>
       <source>Table:</source>
       <comment>data view tooltip</comment>
       <translation>Tabuľka:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitem.cpp" line="262"/>
+      <location filename="../datagrid/sqlqueryitem.cpp" line="280"/>
       <source>Constraints:</source>
       <comment>data view tooltip</comment>
       <translation>Obmedzenia:</translation>
@@ -5593,99 +5598,99 @@ nájsť ďalší</translation>
   <context>
     <name>SqlQueryModel</name>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="685"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="87"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="684"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Nemôže byť spustených viacero dotazov súčasne.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="105"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="104"/>
       <source>Cannot execute query on undefined or invalid database.</source>
       <translation type="unfinished">Cannot execute query on undefined or invalid database.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="112"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="111"/>
       <source>Cannot execute empty query.</source>
       <translation type="unfinished">Cannot execute empty query.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="119"/>
       <source>Uncommitted data</source>
       <translation type="unfinished">Uncommitted data</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
       <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
       <translation type="unfinished">There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="560"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="559"/>
       <source>Cannot commit the data for a cell that refers to the already closed database.</source>
       <translation>Nemôžem potrdiť dáta bunky, ktorá odkazuje na už uzatvorenú databázu.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="568"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="567"/>
       <source>Could not begin transaction on the database. Details: %1</source>
       <translation>Nemôžem začať tranzakciu na databáze. Detaily: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="613"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="612"/>
       <source>An error occurred while committing the transaction: %1</source>
       <translation type="unfinished">An error occurred while committing the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="646"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="645"/>
       <source>An error occurred while rolling back the transaction: %1</source>
       <translation>Vyskytla sa chyba počas vracania späť tranzakcie: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="866"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="865"/>
       <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
       <translation>Nastal pokus o potvrdenie zmien v bunke, ktorú nieje možné upravovať (napriek tomu bola upravená a čaká na potvrdenie)! Toto je chyba. Prosím nahláste ju.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="891"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="890"/>
       <source>An error occurred while committing the data: %1</source>
       <translation type="unfinished">An error occurred while committing the data: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1025"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1024"/>
       <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
       <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1465"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1524"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1523"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>Vyskytla sa chyba počas vykonávania SQL dotazu na databáze &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1521"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1520"/>
       <source>Error while loading query results: %1</source>
       <translation>Vyskytla sa chyba počas načítavania výsledkov dotazu: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1688"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1687"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2007"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
       <source>Insert multiple rows</source>
       <translation>Vložiť viacero riadkov</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2007"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
       <source>Number of rows to insert:</source>
       <translation>Počet vkládaných riadkov:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2062"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2061"/>
       <source>Delete rows</source>
       <translation type="unfinished">Delete rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2063"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2062"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
@@ -5944,77 +5949,77 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation>Registrovať v nasledujúcich databázach:</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="45"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
       <source>Extension manager window has uncommitted modifications.</source>
       <translation type="unfinished">Extension manager window has uncommitted modifications.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="66"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="65"/>
       <source>Extension manager</source>
       <translation type="unfinished">Extension manager</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
       <source>Commit all extension changes</source>
       <translation type="unfinished">Commit all extension changes</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="72"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
       <source>Rollback all extension changes</source>
       <translation type="unfinished">Rollback all extension changes</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
       <source>Add new extension</source>
       <translation type="unfinished">Add new extension</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="75"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
       <source>Remove selected extension</source>
       <translation type="unfinished">Remove selected extension</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="77"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="76"/>
       <source>Editing extensions manual</source>
       <translation type="unfinished">Editing extensions manual</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="248"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="247"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation type="unfinished">File with given path does not exist or is not readable.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="254"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="253"/>
       <source>Unable to load extension: %1</source>
       <translation type="unfinished">Unable to load extension: %1</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="369"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="368"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation type="unfinished">Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="438"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="437"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation type="unfinished">Dynamic link libraries (*.dll);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="440"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="439"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation type="unfinished">Shared objects (*.so);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="442"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="441"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation type="unfinished">Dynamic libraries (*.dylib);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="444"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="443"/>
       <source>All files (*)</source>
       <translation>Všetky súbory (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="446"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="445"/>
       <source>Open file</source>
       <translation>Otvoriť súbor</translation>
     </message>
@@ -6837,33 +6842,33 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="153"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="154"/>
       <source>On view:</source>
       <translation type="unfinished">On view:</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="177"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="178"/>
       <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
       <translation type="unfinished">Could not process trigger %1 correctly. Unable to open a trigger dialog.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="348"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="349"/>
       <source>Enter a valid condition.</source>
       <translation>Zadajte platnú podmienku.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="349"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="350"/>
       <source>Enter a valid trigger code.</source>
       <translation>Zadajte validný kód spúšťača.</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="427"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="428"/>
       <source>Error</source>
       <comment>trigger dialog</comment>
       <translation>Chyba</translation>
     </message>
     <message>
-      <location filename="../dialogs/triggerdialog.cpp" line="427"/>
+      <location filename="../dialogs/triggerdialog.cpp" line="428"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation type="unfinished">An error occurred while executing SQL statements:

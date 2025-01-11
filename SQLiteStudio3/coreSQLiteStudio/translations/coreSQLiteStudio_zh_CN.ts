@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="352"/>
-      <location filename="../db/abstractdb.cpp" line="369"/>
+      <location filename="../db/abstractdb.cpp" line="351"/>
+      <location filename="../db/abstractdb.cpp" line="368"/>
       <source>Cannot execute query on closed database.</source>
       <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="709"/>
+      <location filename="../db/abstractdb.cpp" line="708"/>
       <source>Error attaching database %1: %2</source>
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="958"/>
+      <location filename="../db/abstractdb.cpp" line="957"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
@@ -62,93 +62,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="159"/>
+      <location filename="../completionhelper.cpp" line="158"/>
       <source>New row reference</source>
       <translation>新的行引用</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="166"/>
+      <location filename="../completionhelper.cpp" line="165"/>
       <source>Old row reference</source>
       <translation>旧的行引用</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="171"/>
+      <location filename="../completionhelper.cpp" line="170"/>
       <source>New table name</source>
       <translation>新的表名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="174"/>
+      <location filename="../completionhelper.cpp" line="173"/>
       <source>New index name</source>
       <translation>新的索引名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="177"/>
+      <location filename="../completionhelper.cpp" line="176"/>
       <source>New view name</source>
       <translation>新的视图名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="180"/>
+      <location filename="../completionhelper.cpp" line="179"/>
       <source>New trigger name</source>
       <translation>新的触发器名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="183"/>
+      <location filename="../completionhelper.cpp" line="182"/>
       <source>Table or column alias</source>
       <translation>表或列别名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="186"/>
+      <location filename="../completionhelper.cpp" line="185"/>
       <source>transaction name</source>
       <translation>事务名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="189"/>
+      <location filename="../completionhelper.cpp" line="188"/>
       <source>New column name</source>
       <translation>新列名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="192"/>
+      <location filename="../completionhelper.cpp" line="191"/>
       <source>Column data type</source>
       <translation>列数据类型</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="195"/>
+      <location filename="../completionhelper.cpp" line="194"/>
       <source>Constraint name</source>
       <translation>约束名</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="207"/>
       <source>Error message</source>
       <translation>错误信息</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="257"/>
+      <location filename="../completionhelper.cpp" line="256"/>
       <source>Any word</source>
       <translation>任意单词</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="259"/>
       <source>String</source>
       <translation>字符串</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
-      <location filename="../completionhelper.cpp" line="266"/>
+      <location filename="../completionhelper.cpp" line="262"/>
+      <location filename="../completionhelper.cpp" line="265"/>
       <source>Number</source>
       <translation>编号</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="278"/>
+      <location filename="../completionhelper.cpp" line="277"/>
       <source>BLOB literal</source>
       <translation>BLOB 文字</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="437"/>
       <source>Default database</source>
       <translation>默认数据库</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="439"/>
+      <location filename="../completionhelper.cpp" line="438"/>
       <source>Temporary objects database</source>
       <translation>临时对象数据库</translation>
     </message>
@@ -205,59 +205,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="367"/>
-      <location filename="../dbobjectorganizer.cpp" line="398"/>
+      <location filename="../dbobjectorganizer.cpp" line="366"/>
+      <location filename="../dbobjectorganizer.cpp" line="397"/>
       <source>Error while creating table in target database: %1</source>
       <translation>在目标数据库中创建表时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="367"/>
+      <location filename="../dbobjectorganizer.cpp" line="366"/>
       <source>Could not parse table.</source>
       <translation>无法解析表。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="412"/>
+      <location filename="../dbobjectorganizer.cpp" line="411"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>数据库 %1 无法附加到数据库 %2，因此将使用 SQLiteStudio 做中间人来复制表 %3 的数据。此方法用于大型表格可能会很慢，请耐心等待。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="436"/>
+      <location filename="../dbobjectorganizer.cpp" line="435"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>在从表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="455"/>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <location filename="../dbobjectorganizer.cpp" line="489"/>
+      <location filename="../dbobjectorganizer.cpp" line="454"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="488"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>在向表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="511"/>
+      <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>在丢弃源视图 %1:%2 时出错
 已拷贝至数据库 %3 的表格、索引、触发器和视图将被保留。</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="518"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while creating view in target database: %1</source>
       <translation>在目标数据库中创建视图时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="522"/>
       <source>Error while creating index in target database: %1</source>
       <translation>在目标数据库中创建索引时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="527"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>在目标数据库中创建触发器时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="668"/>
-      <location filename="../dbobjectorganizer.cpp" line="675"/>
-      <location filename="../dbobjectorganizer.cpp" line="684"/>
+      <location filename="../dbobjectorganizer.cpp" line="667"/>
+      <location filename="../dbobjectorganizer.cpp" line="674"/>
+      <location filename="../dbobjectorganizer.cpp" line="683"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>无法解析对象 &apos;%1&apos; 用于移动或复制。</translation>
     </message>
@@ -335,33 +335,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>ExportWorker</name>
     <message>
-      <location filename="../exportworker.cpp" line="123"/>
+      <location filename="../exportworker.cpp" line="122"/>
       <source>Error while exporting query results: %1</source>
       <translation>导出查询结果时发生错误：%1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="209"/>
+      <location filename="../exportworker.cpp" line="208"/>
       <source>Error while counting data column width to export from query results: %1</source>
       <translation>计算从查询结果来导出数据的列宽度时出错：%1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="353"/>
-      <location filename="../exportworker.cpp" line="411"/>
+      <location filename="../exportworker.cpp" line="352"/>
+      <location filename="../exportworker.cpp" line="410"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>无法为导出解析 %1。因此它将不会被包含在导出输出中。</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="615"/>
+      <location filename="../exportworker.cpp" line="614"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>从表 %1读取数据并导出时出错：%2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="623"/>
+      <location filename="../exportworker.cpp" line="622"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>计算从 %1: %2 表导出数据的数量时出错</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="639"/>
+      <location filename="../exportworker.cpp" line="638"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>计算从 %1: %2 表导出数据的列宽度时出错</translation>
     </message>
@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="940"/>
+      <location filename="../common/utils.cpp" line="939"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>不完整的查询。</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2527"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
       <source>Parser stack overflow</source>
       <translation>解析堆栈溢出</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5962"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
       <source>Syntax error</source>
       <translation>语法错误</translation>
     </message>

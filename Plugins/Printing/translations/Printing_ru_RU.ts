@@ -4,27 +4,27 @@
   <context>
     <name>Printing</name>
     <message>
-      <location filename="../printing.cpp" line="35"/>
+      <location filename="../printing.cpp" line="36"/>
       <source>Print data</source>
       <translation>Печать данных</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="37"/>
+      <location filename="../printing.cpp" line="38"/>
       <source>Print query</source>
       <translation>Печать запроса</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="74"/>
+      <location filename="../printing.cpp" line="75"/>
       <source>No data to print.</source>
       <translation>Нет данных для печати.</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="82"/>
+      <location filename="../printing.cpp" line="83"/>
       <source>Printing data.</source>
       <translation>Печать данных.</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="108"/>
+      <location filename="../printing.cpp" line="109"/>
       <source>Printing query.</source>
       <translation>Печать запроса.</translation>
     </message>

@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="352"/>
-      <location filename="../db/abstractdb.cpp" line="369"/>
+      <location filename="../db/abstractdb.cpp" line="351"/>
+      <location filename="../db/abstractdb.cpp" line="368"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Não é possível executar a consulta com o banco de dados fechado.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="709"/>
+      <location filename="../db/abstractdb.cpp" line="708"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="958"/>
+      <location filename="../db/abstractdb.cpp" line="957"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
@@ -62,93 +62,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="159"/>
+      <location filename="../completionhelper.cpp" line="158"/>
       <source>New row reference</source>
       <translation>Nova referência de linha</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="166"/>
+      <location filename="../completionhelper.cpp" line="165"/>
       <source>Old row reference</source>
       <translation>Referência de linha antiga</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="171"/>
+      <location filename="../completionhelper.cpp" line="170"/>
       <source>New table name</source>
       <translation>Nome da nova tabela</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="174"/>
+      <location filename="../completionhelper.cpp" line="173"/>
       <source>New index name</source>
       <translation>Nome do novo índice</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="177"/>
+      <location filename="../completionhelper.cpp" line="176"/>
       <source>New view name</source>
       <translation>Nome da nova visualização</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="180"/>
+      <location filename="../completionhelper.cpp" line="179"/>
       <source>New trigger name</source>
       <translation>Nome da nova trigger</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="183"/>
+      <location filename="../completionhelper.cpp" line="182"/>
       <source>Table or column alias</source>
       <translation>Apelido da tabela ou coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="186"/>
+      <location filename="../completionhelper.cpp" line="185"/>
       <source>transaction name</source>
       <translation>nome da transação</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="189"/>
+      <location filename="../completionhelper.cpp" line="188"/>
       <source>New column name</source>
       <translation>Nome da nova coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="192"/>
+      <location filename="../completionhelper.cpp" line="191"/>
       <source>Column data type</source>
       <translation>Tipo de dados de coluna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="195"/>
+      <location filename="../completionhelper.cpp" line="194"/>
       <source>Constraint name</source>
       <translation>Nome da constraint</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="207"/>
       <source>Error message</source>
       <translation>Mensagem de Erro</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="257"/>
+      <location filename="../completionhelper.cpp" line="256"/>
       <source>Any word</source>
       <translation>Qualquer palavra</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="259"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
-      <location filename="../completionhelper.cpp" line="266"/>
+      <location filename="../completionhelper.cpp" line="262"/>
+      <location filename="../completionhelper.cpp" line="265"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="278"/>
+      <location filename="../completionhelper.cpp" line="277"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="437"/>
       <source>Default database</source>
       <translation>Banco de dados padrão</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="439"/>
+      <location filename="../completionhelper.cpp" line="438"/>
       <source>Temporary objects database</source>
       <translation>Banco de dados de objetos temporários</translation>
     </message>
@@ -205,59 +205,59 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="367"/>
-      <location filename="../dbobjectorganizer.cpp" line="398"/>
+      <location filename="../dbobjectorganizer.cpp" line="366"/>
+      <location filename="../dbobjectorganizer.cpp" line="397"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Erro ao criar tabela no banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="367"/>
+      <location filename="../dbobjectorganizer.cpp" line="366"/>
       <source>Could not parse table.</source>
       <translation>Não foi possível analisar a tabela.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="412"/>
+      <location filename="../dbobjectorganizer.cpp" line="411"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este método pode ser lento para grande tabelas, por favor seja paciente. </translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="436"/>
+      <location filename="../dbobjectorganizer.cpp" line="435"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Erro ao copiar dados da tabela %1:%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="455"/>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <location filename="../dbobjectorganizer.cpp" line="489"/>
+      <location filename="../dbobjectorganizer.cpp" line="454"/>
+      <location filename="../dbobjectorganizer.cpp" line="461"/>
+      <location filename="../dbobjectorganizer.cpp" line="488"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Erro ao copiar dados para a tabela %1:%2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="511"/>
+      <location filename="../dbobjectorganizer.cpp" line="510"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Erro ao soltar a visão da fonte %1: %2
 Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 permanecerão.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="518"/>
+      <location filename="../dbobjectorganizer.cpp" line="517"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Erro ao criar a visualização no banco de dados destino: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="522"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Erro ao criar o índice no banco de dados destino: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="527"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Erro ao criar gatilho no banco de dados de destino: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="668"/>
-      <location filename="../dbobjectorganizer.cpp" line="675"/>
-      <location filename="../dbobjectorganizer.cpp" line="684"/>
+      <location filename="../dbobjectorganizer.cpp" line="667"/>
+      <location filename="../dbobjectorganizer.cpp" line="674"/>
+      <location filename="../dbobjectorganizer.cpp" line="683"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>Não foi possível analisar o objeto &apos;%1&apos; para mover ou copiar.</translation>
     </message>
@@ -335,33 +335,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>ExportWorker</name>
     <message>
-      <location filename="../exportworker.cpp" line="123"/>
+      <location filename="../exportworker.cpp" line="122"/>
       <source>Error while exporting query results: %1</source>
       <translation>Erro ao exportar os resultados da consulta: %1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="209"/>
+      <location filename="../exportworker.cpp" line="208"/>
       <source>Error while counting data column width to export from query results: %1</source>
       <translation>Erro ao contar a largura da coluna de dados para exportar dos resultados da consulta: %1</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="353"/>
-      <location filename="../exportworker.cpp" line="411"/>
+      <location filename="../exportworker.cpp" line="352"/>
+      <location filename="../exportworker.cpp" line="410"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>Não foi possível analisar %1 para exportá-lo. Ele será excluído da saída de exportação.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="615"/>
+      <location filename="../exportworker.cpp" line="614"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>Erro ao ler os dados para exportar da tabela %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="623"/>
+      <location filename="../exportworker.cpp" line="622"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>Erro ao contar os dados a serem exportados da tabela %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="639"/>
+      <location filename="../exportworker.cpp" line="638"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>Erro ao contar a largura da coluna de dados para exportar da tabela %1: %2</translation>
     </message>
@@ -785,7 +785,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="940"/>
+      <location filename="../common/utils.cpp" line="939"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2527"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5962"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>

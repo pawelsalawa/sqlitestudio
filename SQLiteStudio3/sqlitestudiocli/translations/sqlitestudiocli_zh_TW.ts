@@ -562,7 +562,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
   <context>
     <name>CliCommandSql</name>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="19"/>
+      <location filename="../commands/clicommandsql.cpp" line="18"/>
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
@@ -571,39 +571,39 @@ Call %2 to see list of all databases.</source>
 呼叫 %2 查閱資料庫清單。</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="30"/>
+      <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
       <translation>資料庫沒有開啟。</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="65"/>
+      <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
       <translation>執行 SQL 查詢</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="70"/>
+      <location filename="../commands/clicommandsql.cpp" line="69"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
       <translation>您每次在命令列提示符中輸入 SQL 查詢時會執行此命令。它負責在當前操作的資料庫(詳見 %1)上執行查詢。專門執行此命令沒有任何意義。您可以在命令列提示符中直接輸入 SQL 查詢，無需新增命令字首。</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="86"/>
+      <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
       <translation>sql</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="135"/>
-      <location filename="../commands/clicommandsql.cpp" line="177"/>
+      <location filename="../commands/clicommandsql.cpp" line="134"/>
+      <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
       <translation>在 %1 模式下有太多列需要顯示。</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="254"/>
+      <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
       <translation>行 %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="404"/>
+      <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
       <translation>查詢執行錯誤：%1</translation>
     </message>

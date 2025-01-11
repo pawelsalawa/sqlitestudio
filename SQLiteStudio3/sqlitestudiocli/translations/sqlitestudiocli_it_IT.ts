@@ -562,7 +562,7 @@ La modalità ROW è consigliata se si ha bisogno di vedere i valori interi e non
   <context>
     <name>CliCommandSql</name>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="19"/>
+      <location filename="../commands/clicommandsql.cpp" line="18"/>
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
@@ -571,39 +571,39 @@ Esegui il comando %1 per impostare il database di lavoro.
 Esegui %2 per vedere l&apos;elenco di tutti i database.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="30"/>
+      <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
       <translation>Il database non è aperto.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="65"/>
+      <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
       <translation>esegue query SQL</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="70"/>
+      <location filename="../commands/clicommandsql.cpp" line="69"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
       <translation>Questo comando viene eseguito ogni volta che si inserisce la query SQL nel prompt dei comandi. Esegue la query nel database corrente di lavoro (consultare la guida per %1 per i dettagli). Non ha senso eseguire questo comando esplicitamente. Invece basta digitare la query SQL nel prompt dei comandi, senza alcun prefisso dei comandi.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="86"/>
+      <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
       <translation>sql</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="135"/>
-      <location filename="../commands/clicommandsql.cpp" line="177"/>
+      <location filename="../commands/clicommandsql.cpp" line="134"/>
+      <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
       <translation>Troppe colonne da visualizzare in modalità %1.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="254"/>
+      <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
       <translation>Riga %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="404"/>
+      <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
       <translation>Errore di esecuzione query: %1</translation>
     </message>
