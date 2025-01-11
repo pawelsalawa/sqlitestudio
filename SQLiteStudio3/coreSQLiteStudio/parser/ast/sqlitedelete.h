@@ -15,9 +15,9 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         SqliteDelete();
         SqliteDelete(const SqliteDelete& other);
         SqliteDelete(const QString& name1, const QString& name2, const QString& indexedByName, SqliteExpr* where, SqliteWith* with,
-                     const QList<SqliteResultColumn*>& returning);
+                     const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit);
         SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where, SqliteWith* with,
-                     const QList<SqliteResultColumn*>& returning);
+                     const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit);
         ~SqliteDelete();
 
         SqliteStatement* clone();
@@ -32,7 +32,7 @@ class API_EXPORT SqliteDelete : public SqliteQuery
 
     private:
         void init(const QString& name1, const QString& name2, SqliteExpr* where, SqliteWith* with,
-                  const QList<SqliteResultColumn*>& returning);
+                  const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit);
 
     public:
         QString database = QString();
@@ -43,6 +43,8 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;
         QList<SqliteResultColumn*> returning;
+        QList<SqliteOrderBy*> orderBy;
+        SqliteLimit* limit = nullptr;
 };
 
 typedef QSharedPointer<SqliteDelete> SqliteDeletePtr;

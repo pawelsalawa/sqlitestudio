@@ -35,7 +35,8 @@ SqliteUpdate::~SqliteUpdate()
 }
 
 SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
-                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
+                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with,
+                           const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -71,6 +72,14 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     this->returning = returning;
     for (SqliteResultColumn*& retCol : this->returning)
         retCol->setParent(this);
+
+    this->orderBy = orderBy;
+    for (SqliteOrderBy*& order : this->orderBy)
+        order->setParent(this);
+
+    this->limit = limit;
+    if (limit)
+        limit->setParent(this);
 }
 
 SqliteStatement*SqliteUpdate::clone()
@@ -236,6 +245,12 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         for (SqliteResultColumn*& retCol : returning)
             builder.withSpace().withStatement(retCol);
     }
+
+    if (orderBy.size() > 0)
+        builder.withSpace().withKeyword("ORDER").withSpace().withKeyword("BY").withStatementList(orderBy);
+
+    if (limit)
+        builder.withStatement(limit);
 
     builder.withOperator(";");
 

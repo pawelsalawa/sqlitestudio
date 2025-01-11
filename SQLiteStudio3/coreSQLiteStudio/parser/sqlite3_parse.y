@@ -910,12 +910,12 @@ oneselect(X) ::= SELECT distinct(D)
                                                 objectForTokens = X;
                                             }
 oneselect(X) ::= SELECT distinct(D)
-				selcollist(L) from(F)
-				where_opt(W) groupby_opt(G)
-				having_opt(H)
-				window_clause(WF)
+                selcollist(L) from(F)
+                where_opt(W) groupby_opt(G)
+                having_opt(H)
+                window_clause(WF)
                 orderby_opt(O)
-				limit_opt(LI). 				{
+                limit_opt(LI). 	            {
                                                 X = new SqliteSelect::Core(
                                                         *(D),
                                                         *(L),
@@ -923,7 +923,7 @@ oneselect(X) ::= SELECT distinct(D)
                                                         W,
                                                         *(G),
                                                         H,
-														*(WF),
+                                                        *(WF),
                                                         *(O),
                                                         LI
                                                     );
@@ -931,13 +931,13 @@ oneselect(X) ::= SELECT distinct(D)
                                                 delete D;
                                                 delete G;
                                                 delete O;
-												delete WF;
+                                                delete WF;
                                                 objectForTokens = X;
-											}
+                                            }
 
 %type values {ParserExprNestedList*}
 %destructor values {parser_safe_delete($$);}
-values(X) ::= VALUES LP nexprlist(E) RP. {
+values(X) ::= VALUES LP nexprlist(E) RP.    {
                                                 X = new ParserExprNestedList();
                                                 X->append(*(E));
                                                 delete E;
@@ -1295,11 +1295,6 @@ limit_opt(X) ::= LIMIT expr(E1) COMMA
 
 /////////////////////////// The DELETE statement /////////////////////////////
 
-//%ifdef SQLITE_ENABLE_UPDATE_DELETE_LIMIT
-//cmd ::= DELETE FROM fullname indexed_opt where_opt
-//        orderby_opt(O) limit_opt.
-//%endif
-//%ifndef SQLITE_ENABLE_UPDATE_DELETE_LIMIT
 cmd(X) ::= delete_stmt(S).                  {
                                                 X = S;
                                                 objectForTokens = X;
@@ -1311,7 +1306,9 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                    fullname(N)
                    indexed_opt(I)
                    where_opt(W)
-                   returning(R).            {
+                   returning(R)
+                   orderby_opt(O)
+                   limit_opt(LI).           {
                                                 if (I)
                                                 {
                                                     if (!I->indexedBy.isNull())
@@ -1322,7 +1319,9 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                                 I->indexedBy,
                                                                 W,
                                                                 WI,
-                                                                *(R)
+                                                                *(R),
+                                                                *(O),
+                                                                LI
                                                             );
                                                     }
                                                     else
@@ -1333,7 +1332,9 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                                 I->notIndexedKw,
                                                                 W,
                                                                 WI,
-                                                                *(R)
+                                                                *(R),
+                                                                *(O),
+                                                                LI
                                                             );
                                                     }
                                                     delete I;
@@ -1346,15 +1347,17 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                             false,
                                                             W,
                                                             WI,
-                                                            *(R)
+                                                            *(R),
+                                                            *(O),
+                                                            LI
                                                         );
                                                 }
                                                 delete N;
                                                 delete R;
+                                                delete O;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
-//%endif
 
 delete_stmt(X) ::= with(W) DELETE FROM.     {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
@@ -1404,7 +1407,8 @@ cmd(X) ::= update_stmt(S).                  {
 update_stmt(X) ::= with(WI) UPDATE orconf(C)
             fullname(N) indexed_opt(I) SET
             setlist(L) from(F)
-            where_opt(W) returning(R). 		{
+            where_opt(W) returning(R)
+            orderby_opt(O) limit_opt(LI).   {
                                                 X = new SqliteUpdate(
                                                         *(C),
                                                         N->name1,
@@ -1415,12 +1419,15 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
 														F,
                                                         W,
                                                         WI,
-                                                        *(R)
+                                                        *(R),
+                                                        *(O),
+                                                        LI
                                                     );
                                                 delete C;
                                                 delete N;
                                                 delete L;
                                                 delete R;
+                                                delete O;
                                                 if (I)
                                                     delete I;
                                                 // since it's used in trigger:

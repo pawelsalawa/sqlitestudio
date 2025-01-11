@@ -60,5 +60,12 @@ void FormatUpdate::formatInternal()
         withNewLine().withLinedUpKeyword("RETURNING");
         withStatementList(upd->returning, "returningColumns");
     }
+
+    if (upd->orderBy.size() > 0)
+        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(upd->orderBy, "order");
+
+    if (upd->limit)
+        withNewLine().withLinedUpKeyword("LIMIT").withStatement(upd->limit, "limit");
+
     withSemicolon();
 }

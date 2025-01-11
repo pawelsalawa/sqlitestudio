@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.14
+- ADDED: #5190 Added support for optional ORDER BY and LIMIT clauses in UPDATE and DELETE statements.
+
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
 - BUGFIX: #5184 Fixed completer to show tables from implicitly attached database in case of 'SELECT other_database.'

@@ -36,5 +36,11 @@ void FormatDelete::formatInternal()
         withStatementList(del->returning, "returningColumns");
     }
 
+    if (del->orderBy.size() > 0)
+        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(del->orderBy, "order");
+
+    if (del->limit)
+        withNewLine().withLinedUpKeyword("LIMIT").withStatement(del->limit, "limit");
+
     withSemicolon();
 }
