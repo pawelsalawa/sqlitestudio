@@ -5432,12 +5432,7 @@ find next</source>
       <location filename="../sqleditor.cpp" line="174"/>
       <source>Find or replace</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Найти и заменить</translation>
-    </message>
-    <message>
-      <source>Find</source>
-      <comment>sql editor</comment>
-      <translation type="vanished">Найти</translation>
+      <translation>Найти и заменить</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>

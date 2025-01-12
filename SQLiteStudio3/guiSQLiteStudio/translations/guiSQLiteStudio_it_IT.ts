@@ -5435,12 +5435,7 @@ trova il prossimo</translation>
       <location filename="../sqleditor.cpp" line="174"/>
       <source>Find or replace</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Trova o sostituisci</translation>
-    </message>
-    <message>
-      <source>Find</source>
-      <comment>sql editor</comment>
-      <translation type="vanished">Trova</translation>
+      <translation>Trova o sostituisci</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>
