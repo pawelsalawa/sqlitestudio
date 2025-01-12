@@ -5433,12 +5433,7 @@ recherche suivant</translation>
       <location filename="../sqleditor.cpp" line="174"/>
       <source>Find or replace</source>
       <comment>sql editor</comment>
-      <translation type="unfinished">Chercher et remplacer</translation>
-    </message>
-    <message>
-      <source>Find</source>
-      <comment>sql editor</comment>
-      <translation type="vanished">Chercher</translation>
+      <translation>Chercher et remplacer</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>
