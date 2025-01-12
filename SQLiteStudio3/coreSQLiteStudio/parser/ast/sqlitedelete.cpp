@@ -75,8 +75,8 @@ TokenList SqliteDelete::getTableTokensInStatement()
 
 TokenList SqliteDelete::getDatabaseTokensInStatement()
 {
-    if (tokensMap.contains("fullname"))
-        return getDbTokenListFromFullname();
+    if (tokensMap.contains("xfullname"))
+        return getDbTokenListFromFullname("xfullname");
 
     if (tokensMap.contains("nm"))
         return extractPrintableTokens(tokensMap["nm"]);
@@ -87,11 +87,11 @@ TokenList SqliteDelete::getDatabaseTokensInStatement()
 QList<SqliteStatement::FullObject> SqliteDelete::getFullObjectsInStatement()
 {
     QList<FullObject> result;
-    if (!tokensMap.contains("fullname"))
+    if (!tokensMap.contains("xfullname"))
         return result;
 
     // Table object
-    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE);
+    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE, "xfullname");
 
     if (fullObj.isValid())
         result << fullObj;

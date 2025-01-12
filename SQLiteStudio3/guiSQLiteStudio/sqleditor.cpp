@@ -998,14 +998,12 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QList<SqliteStatement::FullObject> fullObjects;
-    QString dbName;
     for (const SqliteQueryPtr& query : queryParser->getQueries())
     {
-        fullObjects = query->getContextFullObjects();
+        QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
         for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
-            dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
+            QString dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
             if (!objectsInNamedDb.contains(dbName, Qt::CaseInsensitive))
                 continue;
 

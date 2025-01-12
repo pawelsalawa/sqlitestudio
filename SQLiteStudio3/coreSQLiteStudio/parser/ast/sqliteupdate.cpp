@@ -171,16 +171,16 @@ TokenList SqliteUpdate::getColumnTokensInStatement()
 
 TokenList SqliteUpdate::getTableTokensInStatement()
 {
-    if (tokensMap.contains("fullname"))
-        return getObjectTokenListFromFullname();
+    if (tokensMap.contains("xfullname"))
+        return getObjectTokenListFromFullname("xfullname");
 
     return TokenList();
 }
 
 TokenList SqliteUpdate::getDatabaseTokensInStatement()
 {
-    if (tokensMap.contains("fullname"))
-        return getDbTokenListFromFullname();
+    if (tokensMap.contains("xfullname"))
+        return getDbTokenListFromFullname("xfullname");
 
     if (tokensMap.contains("nm"))
         return extractPrintableTokens(tokensMap["nm"]);
@@ -191,11 +191,11 @@ TokenList SqliteUpdate::getDatabaseTokensInStatement()
 QList<SqliteStatement::FullObject> SqliteUpdate::getFullObjectsInStatement()
 {
     QList<FullObject> result;
-    if (!tokensMap.contains("fullname"))
+    if (!tokensMap.contains("xfullname"))
         return result;
 
     // Table object
-    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE);
+    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE, "xfullname");
 
     if (fullObj.isValid())
         result << fullObj;
