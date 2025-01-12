@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteDropTrigger : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteDropTrigger();
         SqliteDropTrigger(const SqliteDropTrigger& other);

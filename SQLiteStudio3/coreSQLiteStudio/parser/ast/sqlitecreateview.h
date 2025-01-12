@@ -11,6 +11,8 @@ class SqliteIndexedColumn;
 
 class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbContext
 {
+    Q_OBJECT
+
     public:
         SqliteCreateView();
         SqliteCreateView(const SqliteCreateView& other);

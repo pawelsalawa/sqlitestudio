@@ -8,6 +8,8 @@
 
 class API_EXPORT SqlitePragma : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqlitePragma();
         SqlitePragma(const SqlitePragma& other);

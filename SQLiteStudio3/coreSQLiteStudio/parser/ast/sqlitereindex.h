@@ -7,6 +7,8 @@
 
 class API_EXPORT SqliteReindex : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteReindex();
         SqliteReindex(const SqliteReindex& other);

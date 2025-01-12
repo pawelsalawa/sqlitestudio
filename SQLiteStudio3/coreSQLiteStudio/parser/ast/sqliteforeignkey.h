@@ -10,6 +10,8 @@
 
 class API_EXPORT SqliteForeignKey : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         class API_EXPORT Condition : public SqliteStatement
         {

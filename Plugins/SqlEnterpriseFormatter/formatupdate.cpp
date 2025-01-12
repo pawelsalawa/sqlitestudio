@@ -23,6 +23,8 @@ void FormatUpdate::formatInternal()
         withId(upd->database).withIdDot();
 
     withId(upd->table);
+    if (!upd->tableAlias.isNull())
+        withKeyword("AS").withId(upd->tableAlias);
 
     if (upd->indexedByKw)
         withKeyword("INDEXED").withKeyword("BY").withId(upd->indexedBy);

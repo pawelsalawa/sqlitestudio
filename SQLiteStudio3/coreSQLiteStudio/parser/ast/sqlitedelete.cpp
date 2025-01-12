@@ -19,18 +19,18 @@ SqliteDelete::SqliteDelete(const SqliteDelete& other) :
     DEEP_COPY_COLLECTION(SqliteResultColumn, returning);
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& indexedByName, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& alias, const QString& indexedByName, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
     : SqliteDelete()
 {
-    init(name1, name2, where, with, returning, orderBy, limit);
+    init(name1, name2, alias, where, with, returning, orderBy, limit);
     this->indexedBy = indexedByName;
     this->indexedByKw = true;
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, bool notIndexedKw, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& alias, bool notIndexedKw, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
     : SqliteDelete()
 {
-    init(name1, name2, where, with, returning, orderBy, limit);
+    init(name1, name2, alias, where, with, returning, orderBy, limit);
     this->notIndexedKw = notIndexedKw;
 }
 
@@ -41,6 +41,21 @@ SqliteDelete::~SqliteDelete()
 SqliteStatement* SqliteDelete::clone()
 {
     return new SqliteDelete(*this);
+}
+
+QString SqliteDelete::getTable() const
+{
+    return table;
+}
+
+QString SqliteDelete::getDatabase() const
+{
+    return database;
+}
+
+QString SqliteDelete::getTableAlias() const
+{
+    return tableAlias;
 }
 
 QStringList SqliteDelete::getTablesInStatement()
@@ -92,7 +107,7 @@ QList<SqliteStatement::FullObject> SqliteDelete::getFullObjectsInStatement()
     return result;
 }
 
-void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning,
+void SqliteDelete::init(const QString &name1, const QString &name2, const QString& alias, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning,
                         const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
 {
     this->where = where;
@@ -111,6 +126,7 @@ void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *
     else
         table = name1;
 
+    this->tableAlias = alias;
     this->returning = returning;
     for (SqliteResultColumn*& retCol : this->returning)
         retCol->setParent(this);
@@ -136,6 +152,8 @@ TokenList SqliteDelete::rebuildTokensFromContents()
         builder.withOther(database).withOperator(".");
 
     builder.withOther(table);
+    if (!tableAlias.isNull())
+        builder.withKeyword("AS").withSpace().withOther(tableAlias).withSpace();
 
     if (indexedByKw)
         builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy);

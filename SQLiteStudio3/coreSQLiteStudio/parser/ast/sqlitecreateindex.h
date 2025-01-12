@@ -14,6 +14,8 @@ class SqliteIndexedColumn;
 
 class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelatedDdl, public SqliteDdlWithDbContext
 {
+    Q_OBJECT
+
     public:
         SqliteCreateIndex();
         SqliteCreateIndex(const SqliteCreateIndex& other);

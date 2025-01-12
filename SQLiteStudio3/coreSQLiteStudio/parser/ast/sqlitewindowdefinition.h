@@ -14,6 +14,8 @@ class SqliteOrderBy;
  */
 class API_EXPORT SqliteWindowDefinition : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         class API_EXPORT Window : public SqliteStatement
         {

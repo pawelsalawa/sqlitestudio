@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteAlterTable : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         enum class Command
         {

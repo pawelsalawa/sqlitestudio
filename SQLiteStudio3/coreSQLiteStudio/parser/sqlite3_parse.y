@@ -1165,12 +1165,64 @@ dbnm(X) ::= DOT nm(N).                      {X = N;}
 
 %type fullname {ParserFullName*}
 %destructor fullname {parser_safe_delete($$);}
-fullname(X) ::= nm(N1) dbnm(N2).            {
+fullname(X) ::= nm(N1).                     {
+                                                X = new ParserFullName();
+                                                X->name1 = *(N1);
+                                                delete N1;
+                                            }
+
+fullname(X) ::= nm(N1) DOT nm(N2).          {
                                                 X = new ParserFullName();
                                                 X->name1 = *(N1);
                                                 X->name2 = *(N2);
                                                 delete N1;
                                                 delete N2;
+                                            }
+
+%type xfullname {ParserXFullName*}
+%destructor xfullname {parser_safe_delete($$);}
+xfullname(X) ::= nm(N1).                    {
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                delete N1;
+                                            }
+xfullname(X) ::= nm(N1) DOT nm(N2).         {
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                X->name2 = *(N2);
+                                                delete N1;
+                                                delete N2;
+                                            }
+xfullname(X) ::= nm(N1) DOT nm(N2) AS nm(A).{
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                X->name2 = *(N2);
+                                                X->alias = *(A);
+                                                delete N1;
+                                                delete N2;
+                                                delete A;
+                                            }
+xfullname(X) ::= nm(N1) AS nm(A).           {
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                X->alias = *(A);
+                                                delete N1;
+                                                delete A;
+                                            }
+xfullname(X) ::= nm(N1) DOT nm(N2) AS
+                ID_ALIAS.                   {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                X->name2 = *(N2);
+                                                delete N1;
+                                                delete N2;
+                                            }
+xfullname(X) ::= nm(N1) AS ID_ALIAS.        {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new ParserXFullName();
+                                                X->name1 = *(N1);
+                                                delete N1;
                                             }
 
 %type joinop {SqliteSelect::Core::JoinOp*}
@@ -1303,7 +1355,7 @@ cmd(X) ::= delete_stmt(S).                  {
 %type delete_stmt {SqliteQuery*}
 %destructor delete_stmt {parser_safe_delete($$);}
 delete_stmt(X) ::= with(WI) DELETE FROM
-                   fullname(N)
+                   xfullname(N)
                    indexed_opt(I)
                    where_opt(W)
                    returning(R)
@@ -1316,6 +1368,7 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                         X = new SqliteDelete(
                                                                 N->name1,
                                                                 N->name2,
+                                                                N->alias,
                                                                 I->indexedBy,
                                                                 W,
                                                                 WI,
@@ -1329,6 +1382,7 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                         X = new SqliteDelete(
                                                                 N->name1,
                                                                 N->name2,
+                                                                N->alias,
                                                                 I->notIndexedKw,
                                                                 W,
                                                                 WI,
@@ -1344,6 +1398,7 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                     X = new SqliteDelete(
                                                             N->name1,
                                                             N->name2,
+                                                            N->alias,
                                                             false,
                                                             W,
                                                             WI,
@@ -1405,7 +1460,7 @@ cmd(X) ::= update_stmt(S).                  {
 %type update_stmt {SqliteQuery*}
 %destructor update_stmt {parser_safe_delete($$);}
 update_stmt(X) ::= with(WI) UPDATE orconf(C)
-            fullname(N) indexed_opt(I) SET
+            xfullname(N) indexed_opt(I) SET
             setlist(L) from(F)
             where_opt(W) returning(R)
             orderby_opt(O) limit_opt(LI).   {
@@ -1413,10 +1468,11 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                                         *(C),
                                                         N->name1,
                                                         N->name2,
+                                                        N->alias,
                                                         I ? I->notIndexedKw : false,
                                                         I ? I->indexedBy : QString(),
                                                         *(L),
-														F,
+                                                        F,
                                                         W,
                                                         WI,
                                                         *(R),
@@ -1531,7 +1587,7 @@ cmd(X) ::= insert_stmt(S).                  {
 %destructor insert_stmt {parser_safe_delete($$);}
 
 insert_stmt(X) ::= with(W) insert_cmd(C)
-            INTO fullname(N)
+            INTO xfullname(N)
             idlist_opt(I) select(S)
             upsert(U) returning(R).         {
                                                 X = new SqliteInsert(
@@ -1539,6 +1595,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
+                                                        N->alias,
                                                         *(I),
                                                         S,
                                                         W,
@@ -1553,7 +1610,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                 objectForTokens = X;
                                             }
 insert_stmt(X) ::= with(W) insert_cmd(C)
-            INTO fullname(N)
+            INTO xfullname(N)
             idlist_opt(I) DEFAULT
             VALUES returning(R).            {
                                                 X = new SqliteInsert(
@@ -1561,6 +1618,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
+                                                        N->alias,
                                                         *(I),
                                                         W,
                                                         *(R)
@@ -1575,7 +1633,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
 
 
 insert_stmt(X) ::= with(W) insert_cmd(C)
-            INTO fullname(N)
+            INTO xfullname(N)
             LP idlist(I) rp_opt(R).         {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                                 X = new SqliteInsert(
@@ -1583,6 +1641,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
+                                                        N->alias,
                                                         *(I),
                                                         W,
                                                         QList<SqliteResultColumn*>()

@@ -34,7 +34,7 @@ SqliteUpdate::~SqliteUpdate()
 {
 }
 
-SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
+SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QString& alias, bool notIndexedKw, const QString &indexedBy,
                            const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with,
                            const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
     : SqliteUpdate()
@@ -49,6 +49,7 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     else
         table = name1;
 
+    this->tableAlias = alias;
     this->indexedBy = indexedBy;
     this->indexedByKw = !(indexedBy.isNull());
     this->notIndexedKw = notIndexedKw;
@@ -82,7 +83,7 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
         limit->setParent(this);
 }
 
-SqliteStatement*SqliteUpdate::clone()
+SqliteStatement* SqliteUpdate::clone()
 {
     return new SqliteUpdate(*this);
 }
@@ -95,6 +96,21 @@ SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
             return keyValue.second;
     }
     return nullptr;
+}
+
+QString SqliteUpdate::getTable() const
+{
+    return table;
+}
+
+QString SqliteUpdate::getDatabase() const
+{
+    return database;
+}
+
+QString SqliteUpdate::getTableAlias() const
+{
+    return tableAlias;
 }
 
 QStringList SqliteUpdate::getColumnsInStatement()
@@ -210,6 +226,8 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         builder.withOther(database).withOperator(".");
 
     builder.withOther(table).withSpace();
+    if (!tableAlias.isNull())
+        builder.withKeyword("AS").withSpace().withOther(tableAlias).withSpace();
 
     if (indexedByKw)
         builder.withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy).withSpace();

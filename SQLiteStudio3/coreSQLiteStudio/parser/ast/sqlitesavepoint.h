@@ -7,6 +7,8 @@
 
 class API_EXPORT SqliteSavepoint : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteSavepoint();
         SqliteSavepoint(const SqliteSavepoint& other);

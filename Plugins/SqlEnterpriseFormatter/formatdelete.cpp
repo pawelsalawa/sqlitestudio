@@ -21,6 +21,8 @@ void FormatDelete::formatInternal()
         withId(del->database).withIdDot();
 
     withId(del->table);
+    if (!del->tableAlias.isNull())
+        withKeyword("AS").withId(del->tableAlias);
 
     if (del->indexedByKw)
         withKeyword("INDEXED").withKeyword("BY").withId(del->indexedBy);

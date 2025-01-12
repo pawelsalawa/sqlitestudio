@@ -6,6 +6,8 @@
 
 class SqliteFilterOver : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         class Over : public SqliteStatement
         {

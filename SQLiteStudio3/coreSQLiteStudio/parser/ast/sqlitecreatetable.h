@@ -19,6 +19,8 @@ struct ParserStubCreateTableOption;
 
 class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbContext
 {
+    Q_OBJECT
+
     public:
         class API_EXPORT Column : public SqliteStatement
         {

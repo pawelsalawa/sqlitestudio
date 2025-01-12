@@ -7,6 +7,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteDetach : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteDetach();
         SqliteDetach(const SqliteDetach& other);

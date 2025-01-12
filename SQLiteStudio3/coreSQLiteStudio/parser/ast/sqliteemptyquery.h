@@ -5,6 +5,8 @@
 
 class API_EXPORT SqliteEmptyQuery : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteEmptyQuery();
         SqliteEmptyQuery(const SqliteEmptyQuery& other);
