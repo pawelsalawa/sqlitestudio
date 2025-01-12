@@ -4,6 +4,7 @@
 - ADDED: #5190 Added support for optional ORDER BY and LIMIT clauses in UPDATE and DELETE statements.
 - ADDED: #5190 Added support for AS clause in INSERT, UPDATE and DELETE statements.
 - BUGFIX: #5190 Improved code assistant suggestions for UPDATE to pripritize more relevant columns.
+- BUGFIX: #5207 Fixed SQL parser to avoid marking INDEXED BY as syntax error.
 
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.

@@ -138,7 +138,7 @@ struct ParserStubAlias
 struct ParserIndexedBy
 {
     explicit ParserIndexedBy(const QString& name);
-    explicit ParserIndexedBy(bool indexedBy);
+    explicit ParserIndexedBy(bool notIndexed);
 
     bool notIndexedKw = false;
     QString indexedBy = QString();

@@ -90,7 +90,7 @@ int sqlite3ParserFallback(int iToken) {
 %fallback ID
   ABORT ACTION AFTER ALWAYS ANALYZE ASC ATTACH BEFORE BEGIN BY CASCADE CAST COLUMNKW
   CONFLICT CURRENT DATABASE DEFERRED DESC DETACH DO EACH END EXCLUDE EXCLUSIVE EXPLAIN FAIL FIRST FOLLOWING FOR
-  GENERATED GROUPS IGNORE IMMEDIATE INDEXED INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
+  GENERATED GROUPS IGNORE IMMEDIATE INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
   QUERY KEY OF OFFSET PARTITION PRAGMA PRECEDING RAISE RANGE RECURSIVE RELEASE REPLACE RESTRICT ROW ROWS ROLLBACK
   SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHOUT
   REINDEX RENAME CTIME_KW IF FILTER
@@ -377,13 +377,33 @@ columnid ::= ID_COL_NEW.                    {}
 // keywords.  Any non-standard keyword can also be an identifier.
 %type id {QString*}
 %destructor id {parser_safe_delete($$);}
-id(X) ::= ID(T).                    		{
+// Why would INDEXED be defined individually like this? I don't know.
+// It was like this in the original SQLite grammar, but it doesn't
+// make any sense, since we have a fallback mechanism for such things.
+// Anyway, this makes "INDEXED" appear in weird places of completion
+// suggestions, so I remove it for now. Will see how it works.
+//
+// Update 2025-01-12:
+// INDEXED was removed from %fallback for ID.
+// Instead it is defined individually here. The reason is to make
+// the parser handle correctly: SELECT * FROM t1 INDEXED BY i1;
+// Instead the simple definition of id(X) (below) got commented now.
+// The issue was reported in #5207.
+id(X) ::= ID(T)|INDEXED(T).                    {
                                                 X = new QString(
                                                     stripObjName(
                                                         T->value
                                                     )
                                                 );
                                             }
+
+//id(X) ::= ID(T).                            {
+//                                                X = new QString(
+//                                                    stripObjName(
+//                                                        T->value
+//                                                    )
+//                                                );
+//                                            }
 
 %type id_opt {QString*}
 %destructor id_opt {parser_safe_delete($$);}
@@ -393,13 +413,6 @@ id_opt(X) ::= id(T).                        {
 id_opt(X) ::= .                             {
                                                 X = new QString();
                                             }
-
-// Why would INDEXED be defined individually like this? I don't know.
-// It was like this in the original SQLite grammar, but it doesn't
-// make any sense, since we have a fallback mechanism for such things.
-// Anyway, this makes "INDEXED" appear in weird places of completion
-// suggestions, so I remove it for now. Will see how it works.
-// id(X) ::= INDEXED(T).                       {X = new QString(T->value);}
 
 // And "ids" is an identifer-or-string.
 %type ids {QString*}
@@ -1264,14 +1277,17 @@ joinop ::= ID_JOIN_OPTS.                    {}
 // recognizes and interprets this as a special case.
 %type indexed_opt {ParserIndexedBy*}
 %destructor indexed_opt {parser_safe_delete($$);}
+%type indexed_by {ParserIndexedBy*}
+%destructor indexed_by {parser_safe_delete($$);}
 indexed_opt(X) ::= .                        {X = nullptr;}
-indexed_opt(X) ::= INDEXED BY nm(N).        {
+indexed_opt(X) ::= indexed_by(I).           {X = I;}
+indexed_by(X) ::= INDEXED BY nm(N).         {
                                                 X = new ParserIndexedBy(*(N));
                                                 delete N;
                                             }
-indexed_opt(X) ::= NOT INDEXED.             {X = new ParserIndexedBy(true);}
+indexed_by(X) ::= NOT INDEXED.              {X = new ParserIndexedBy(true);}
 
-indexed_opt ::= INDEXED BY ID_IDX.          {}
+indexed_by ::= INDEXED BY ID_IDX.           {parserContext->minorErrorBeforeNextToken("Syntax error");}
 
 %type orderby_opt {ParserOrderByList*}
 %destructor orderby_opt {parser_safe_delete($$);}
@@ -1822,17 +1838,19 @@ exprx(X) ::= CAST LP expr(E) AS typetoken(T)
                                                 X->initCast(E, T);
                                                 objectForTokens = X;
                                             }
-exprx(X) ::= ID(I) LP distinct(D)
+exprx(X) ::= id(I) LP distinct(D)
             exprlist(L) RP.                 {
                                                 X = new SqliteExpr();
-                                                X->initFunction(stripObjName(I->value), *(D), *(L));
+                                                X->initFunction(stripObjName(*(I)), *(D), *(L));
+                                                delete I;
                                                 delete D;
                                                 delete L;
                                                 objectForTokens = X;
                                             }
-exprx(X) ::= ID(I) LP STAR RP.              {
+exprx(X) ::= id(I) LP STAR RP.              {
                                                 X = new SqliteExpr();
-                                                X->initFunction(stripObjName(I->value), true);
+                                                X->initFunction(stripObjName(*(I)), true);
+                                                delete I;
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= expr(E1) AND(O) expr(E2).      {
@@ -2022,20 +2040,22 @@ exprx(X) ::= RAISE LP raisetype(R) COMMA
                                                 delete N;
                                                 objectForTokens = X;
                                             }
-exprx(X) ::= ID(I) LP distinct(D)
-			exprlist(E) RP filter_over(F).  {
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(E) RP filter_over(F).  {
                                                 X = new SqliteExpr();
-                                                X->initWindowFunction(stripObjName(I->value), *(D), *(E), F);
+                                                X->initWindowFunction(stripObjName(*(I)), *(D), *(E), F);
+                                                delete I;
                                                 delete D;
                                                 delete E;
                                                 objectForTokens = X;
-											}
-exprx(X) ::= ID(I) LP STAR RP
-			filter_over(F). 				{
+                                            }
+exprx(X) ::= id(I) LP STAR RP
+            filter_over(F).                 {
                                                 X = new SqliteExpr();
-                                                X->initWindowFunction(stripObjName(I->value), F);
+                                                X->initWindowFunction(stripObjName(*(I)), F);
+                                                delete I;
                                                 objectForTokens = X;
-											}
+                                            }
 
 %type expr {SqliteExpr*}
 %destructor expr {parser_safe_delete($$);}
