@@ -10,6 +10,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIndexedColumn
 {
+    Q_OBJECT
+
     public:
         SqliteOrderBy();
         SqliteOrderBy(const SqliteOrderBy& other);

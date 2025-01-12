@@ -3,13 +3,13 @@ env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-linux-x64-installer.run
     LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build
 
@@ -50,6 +50,21 @@ jobs:
                 extra: '--external 7z'
                 modules: 'qtimageformats'
 
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: |
+                mv gh-scripts ..
+                cd ..
+                chmod +x gh-scripts/scripts/*.sh
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+
             - name: Install the InstalBuilder
               shell: bash
               run: |
@@ -63,20 +78,19 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v3
               with:
-                ref: ${{ github.event.client_payload.branch }}
+                ref: ${{ env.BRANCH_NAME }}
 
             - name: Pre-download SQLite vanilla sourcecode
               shell: bash
               run: |
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+                
                 cd ..
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                mkdir ext
-                unzip sqlite-src-$SQLITE_VERSION.zip
-
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                cd sqlite-src-$SQLITE_VERSION/ext
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
+                
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
 
             - name: Prepare ccache
               if: inputs.use_ccache || false
@@ -92,49 +106,40 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                set -x
+                cd ..
+                SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                strip libsqlite3.so
-                ls -l
-                sudo cp -P libsqlite3.so* /usr/local/lib/
-                sudo cp *.h /usr/local/include/
+                sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
+                sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
+                sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0
+                sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0.8.6
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
+
 
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
-                cd ../sqlite-src-$SQLITE_VERSION/ext
+                cd ..
+                mkdir ext
+                
+                cd ext-src
                 FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                set -x
                 for f in compress; do
-                    echo "gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so"
-                    gcc misc/$f.c $FLAGS -lz -o ../../ext/$f.so
+                    gcc misc/$f.c $FLAGS -lz -o ../ext/$f.so
                 done
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
-                    echo "gcc misc/$f.c $FLAGS -o ../../ext/$f.so"
-                    gcc misc/$f.c $FLAGS -o ../../ext/$f.so
+                    gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
                 for f in icu; do
-                    echo "gcc icu/$f.c $FLAGS $(pkg-config --libs --cflags icu-uc icu-io) -o ../../ext/$f.so"
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../../ext/$f.so
+                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
                 done
-                ls -l ../../ext/
+                set +x
+                
+                ls -l ../ext/
 
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
@@ -287,14 +292,17 @@ jobs:
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: echo "SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')" >> $GITHUB_ENV
+              run: |
+                SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-x64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}/..
               run: |
-                tar cf sqlitestudio-$SQLITESTUDIO_VERSION.tar SQLiteStudio
-                xz -z sqlitestudio-$SQLITESTUDIO_VERSION.tar
+                tar cf sqlitestudio-$PACKAGE_VERSION.tar SQLiteStudio
+                xz -z sqlitestudio-$PACKAGE_VERSION.tar
                 pwd
                 ls -l
 
@@ -313,14 +321,14 @@ jobs:
             - name: SHA256 checksums
               shell: bash
               run: |
-                sha256sum output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
                 sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.tar.xz
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4

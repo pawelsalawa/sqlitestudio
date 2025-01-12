@@ -68,6 +68,7 @@ class ParserTest : public QObject
         void testBlobLiteral();
         void testBigDec();
         void testQuotedFunction();
+        void testIndexedSelect();
 };
 
 ParserTest::ParserTest()
@@ -797,6 +798,15 @@ void ParserTest::testQuotedFunction()
 
     QVERIFY(e->mode == SqliteExpr::Mode::FUNCTION);
     QCOMPARE(e->function, "abs");
+}
+
+void ParserTest::testIndexedSelect()
+{
+    QString sql = "select * from a1 indexed by i1";
+    // parser3->setLemonDebug(true);
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getQueries().size() > 0);
 }
 
 

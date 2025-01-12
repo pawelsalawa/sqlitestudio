@@ -8,6 +8,8 @@
 
 class API_EXPORT SqliteIndexedColumn : public SqliteStatement, public SqliteExtendedIndexedColumn
 {
+    Q_OBJECT
+
     public:
         SqliteIndexedColumn();
         SqliteIndexedColumn(const SqliteIndexedColumn& other);

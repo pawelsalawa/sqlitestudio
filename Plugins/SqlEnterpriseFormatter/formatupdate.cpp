@@ -23,6 +23,8 @@ void FormatUpdate::formatInternal()
         withId(upd->database).withIdDot();
 
     withId(upd->table);
+    if (!upd->tableAlias.isNull())
+        withKeyword("AS").withId(upd->tableAlias);
 
     if (upd->indexedByKw)
         withKeyword("INDEXED").withKeyword("BY").withId(upd->indexedBy);
@@ -60,5 +62,12 @@ void FormatUpdate::formatInternal()
         withNewLine().withLinedUpKeyword("RETURNING");
         withStatementList(upd->returning, "returningColumns");
     }
+
+    if (upd->orderBy.size() > 0)
+        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(upd->orderBy, "order");
+
+    if (upd->limit)
+        withNewLine().withLinedUpKeyword("LIMIT").withStatement(upd->limit, "limit");
+
     withSemicolon();
 }

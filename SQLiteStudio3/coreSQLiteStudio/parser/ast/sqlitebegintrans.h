@@ -7,6 +7,8 @@
 
 class API_EXPORT SqliteBeginTrans : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         enum class Type
         {

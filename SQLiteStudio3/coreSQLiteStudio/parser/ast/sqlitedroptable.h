@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteDropTable : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteDropTable();
         SqliteDropTable(const SqliteDropTable& other);

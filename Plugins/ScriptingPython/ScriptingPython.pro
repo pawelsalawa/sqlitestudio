@@ -44,6 +44,7 @@ dynamic_python {
 }
 
 win32: {
+    LIBS += -lpython$$replace(PYTHON_VERSION, \., ) -L$$PWD/../../../lib/python
     INCLUDEPATH += $$PWD/../../../include/python
 }
 

@@ -159,25 +159,43 @@ jobs:
               shell: bash
               working-directory: assets
               run: |
-                NEW_META=$RELEASE_META
+                NEW_META=$(echo "$RELEASE_META" | jq -c '.')
                 for dir in *
                 do
                     cd $dir
                     
                     for file in *
                     do
+                        unzip $file
+                        rm -f $file
+                        file="${file%.*}"
+                    
+                        if [[ "$file" == *"installer"* ]]
+                        then
+                            url_type=installer_url
+                        else
+                            url_type=portable_url
+                        fi
+
                         echo "Uploading $file..."
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
                         echo "Download url for $file is: $url"
-                        
-                        NEW_META=$(echo $NEW_META | jq --arg dir "$dir" --arg url "$url" '.[$dir].installer_url = $url')
+
+                        NEW_META=$(
+                            echo "$NEW_META" | \
+                                jq -c \
+                                   --arg dir "$dir" \
+                                   --arg url "$url" \
+                                   --arg url_type "$url_type" \
+                                   '.[$dir][$url_type] = $url'
+                           )
                     done
                     
                     cd ..
                 done
                 
                 echo "META after uploads:"
-                echo $NEW_META
+                echo "$NEW_META" | jq '.'
                 echo "RELEASE_META=$NEW_META" >> $GITHUB_ENV
                 
             - name: Update release description
@@ -197,7 +215,7 @@ jobs:
                     for file in *
                     do
                         checksum=$(sha256sum $file | cut -d ' ' -f 1)
-                        if [ "$file" == *"installer"* ]
+                        if [[ "$file" == *"installer"* ]]
                         then
                             url=$installer_url
                             type="Installer"
@@ -212,8 +230,6 @@ jobs:
                     cd ..
                 done                
                 
-                body=$(printf "%s\n" "${lines[@]}")
-                echo "New body:"
-                echo $body
-                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body"
+                body=$(printf "%s\n" "${body_lines[@]}")
+                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body" >/dev/null
                 

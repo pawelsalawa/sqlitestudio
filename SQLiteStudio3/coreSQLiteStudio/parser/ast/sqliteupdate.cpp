@@ -34,8 +34,9 @@ SqliteUpdate::~SqliteUpdate()
 {
 }
 
-SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
-                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with, const QList<SqliteResultColumn*>& returning)
+SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QString& alias, bool notIndexedKw, const QString &indexedBy,
+                           const QList<ColumnAndValue>& values, SqliteSelect::Core::JoinSource* from, SqliteExpr *where, SqliteWith* with,
+                           const QList<SqliteResultColumn*>& returning, const QList<SqliteOrderBy*>& orderBy, SqliteLimit* limit)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -48,6 +49,7 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     else
         table = name1;
 
+    this->tableAlias = alias;
     this->indexedBy = indexedBy;
     this->indexedByKw = !(indexedBy.isNull());
     this->notIndexedKw = notIndexedKw;
@@ -71,9 +73,17 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     this->returning = returning;
     for (SqliteResultColumn*& retCol : this->returning)
         retCol->setParent(this);
+
+    this->orderBy = orderBy;
+    for (SqliteOrderBy*& order : this->orderBy)
+        order->setParent(this);
+
+    this->limit = limit;
+    if (limit)
+        limit->setParent(this);
 }
 
-SqliteStatement*SqliteUpdate::clone()
+SqliteStatement* SqliteUpdate::clone()
 {
     return new SqliteUpdate(*this);
 }
@@ -86,6 +96,21 @@ SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
             return keyValue.second;
     }
     return nullptr;
+}
+
+QString SqliteUpdate::getTable() const
+{
+    return table;
+}
+
+QString SqliteUpdate::getDatabase() const
+{
+    return database;
+}
+
+QString SqliteUpdate::getTableAlias() const
+{
+    return tableAlias;
 }
 
 QStringList SqliteUpdate::getColumnsInStatement()
@@ -201,6 +226,8 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         builder.withOther(database).withOperator(".");
 
     builder.withOther(table).withSpace();
+    if (!tableAlias.isNull())
+        builder.withKeyword("AS").withSpace().withOther(tableAlias).withSpace();
 
     if (indexedByKw)
         builder.withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy).withSpace();
@@ -236,6 +263,12 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         for (SqliteResultColumn*& retCol : returning)
             builder.withSpace().withStatement(retCol);
     }
+
+    if (orderBy.size() > 0)
+        builder.withSpace().withKeyword("ORDER").withSpace().withKeyword("BY").withStatementList(orderBy);
+
+    if (limit)
+        builder.withStatement(limit);
 
     builder.withOperator(";");
 

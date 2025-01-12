@@ -7,6 +7,8 @@
 
 class API_EXPORT SqliteColumnType : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         SqliteColumnType();
         SqliteColumnType(const SqliteColumnType& other);

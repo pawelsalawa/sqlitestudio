@@ -135,9 +135,11 @@ class API_EXPORT CompletionHelper : public QObject
         void extractAvailableColumnsAndTables(const QString& database, const QString& table);
         bool extractSelectCore();
         SqliteSelect::Core* extractSelectCore(SqliteQueryPtr query);
-        void extractTableAliasMap();
+        void extractSelectTableAliasMap();
         void extractCreateTableColumns();
         void detectSelectContext();
+        void extractTableAliasMapFromOtherQueries();
+        void extractUpdateFromColumnsAndTables();
         bool isInUpdateColumn();
         bool isInUpdateWhere();
         bool isInDeleteWhere();

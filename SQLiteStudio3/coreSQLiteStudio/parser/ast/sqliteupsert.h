@@ -10,6 +10,8 @@ class SqliteOrderBy;
 
 class SqliteUpsert : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         typedef QPair<QVariant,SqliteExpr*> ColumnAndValue;
 

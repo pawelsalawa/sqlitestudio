@@ -2,12 +2,12 @@ env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6.16'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.9'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-osx-installer.dmg
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: MacOSX release build
 
@@ -210,6 +210,21 @@ jobs:
             #    py7zrversion: '==0.20.*'
             #    setup-python: 'false'
             #    extra: '--external 7z'
+
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: |
+                mv gh-scripts ..
+                cd ..
+                chmod +x gh-scripts/scripts/*.sh
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 
             #- name: Fix Qt for MacOS 13
             #  shell: bash
@@ -231,7 +246,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v4
               with:
-                ref: ${{ github.event.client_payload.branch }}
+                ref: ${{ env.BRANCH_NAME }}
 
             - name: Restore distfiles packages cache
               id: cache-distfiles
@@ -286,59 +301,49 @@ jobs:
 
             - name: Install SQLite3
               run: |
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc sqlite3.c ${{ matrix.cflags }} -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.0.dylib \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                sudo mkdir -p /usr/local/lib /usr/local/include  # not there on macOS 14 runner
-                sudo cp libsqlite3.0.dylib /usr/local/lib/
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+                
+                cd ..
+                SQLITE3_ZIP=sqlite3-macos-x64-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+                
+                sudo unzip $SQLITE3_ZIP libsqlite3.0.dylib -d /usr/local/lib
+                sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
                 sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
-                sudo cp *.h /usr/local/include/
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
+                ls -l /usr/local/lib/libsqlite3*
+                ls -l /usr/local/include/sqlite*
 
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
+                
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 ls -l
-                unzip sqlite-src-$SQLITE_VERSION.zip -x '*.test'
+                
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+                cd ext-src
                 ls -l
-                cd sqlite-src-$SQLITE_VERSION/ext
-                ls -l
-                FLAGS="${{ matrix.cflags }} -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                
+                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                set -x
                 for f in compress sqlar; do
-                    echo "gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib"
-                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../../ext/$f.dylib
+                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
                 done
                 
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
-                
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib"
-                    gcc misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dylib
+                    gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
                 done
                 for f in icu; do
                     ICU_FLAGS="-I/opt/local/include -L/opt/local/lib -licuio -licui18n -licuuc -licudata"
-                    echo "gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib"
-                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../../ext/$f.dylib
+                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
-                ls -l ../../ext/
+                set +x
+                ls -l ../ext/
 
             - name: Prepare deps
               run: |
@@ -387,7 +392,14 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
               run: |
-                echo "SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')" >> $GITHUB_ENV
+                SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-x64" >> $GITHUB_ENV
+                
+            - name: Rename portable package
+              working-directory: output/SQLiteStudio
+              run: |
+                mv sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package
               shell: bash
@@ -395,36 +407,37 @@ jobs:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
-                    -mountpoint /Volumes/SQLiteStudio
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
                 ls -l
 
-            - name: Rename package
-              run: |
-                mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
-                  sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
+            # 4 steps below need closer review and fix for 3.5.0
+            # - name: Rename package
+              # run: |
+                # mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
+                  # sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
 
-            - name: SHA256 checksums
-              shell: bash
-              run: |
-                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+            # - name: SHA256 checksums
+              # shell: bash
+              # run: |
+                # sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                # sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
 
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
-                path: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
+            # - name: Upload package artifact
+              # uses: actions/upload-artifact@v4
+              # with:
+                # name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                # path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
-            - name: Upload installer artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
+            # - name: Upload installer artifact
+              # uses: actions/upload-artifact@v4
+              # with:
+                # name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
+                # path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
 
     build-universal:
         runs-on: macos-12  # Don't use newer versions yet, https://github.com/actions/runner-images/issues/7522

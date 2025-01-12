@@ -2,7 +2,6 @@ env:
     QT_VERSION: '6.8.0'
     QT_ARCH: 'win64_mingw'
     SQLITE_VERSION: '3470200'
-    SQLITE_RELEASE_YEAR: '2024'
     PYTHON_VERSION: '3.13'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
@@ -11,6 +10,7 @@ env:
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw1310/qt.tools.win64_mingw1310/13.1.0-202407240918mingw1310.7z
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-windows-x64-installer.exe
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Windows 64-bit release build
 
@@ -61,6 +61,20 @@ jobs:
                 aqtversion: '>=3.1.19'
                 modules: 'qtimageformats'
 
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: |
+                mv gh-scripts ..
+                cd ..
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
@@ -77,7 +91,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v3
               with:
-                ref: ${{ github.event.client_payload.branch }}
+                ref: ${{ env.BRANCH_NAME }}
 
             - name: Install dependencies
               shell: bash
@@ -106,28 +120,15 @@ jobs:
             - name: Install SQLite3
               shell: bash
               run: |
-                set -x
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+
                 cd ..
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip --output sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                $GCC_COMMAND sqlite3.c -Os -fpic -DWIN64 -m64 -I. -shared -o sqlite3.dll \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                mkdir -p ../lib ../include
-                cp -f sqlite3.dll ../lib/
-                cp -f sqlite3.h ../include/
-                cp -f sqlite3ext.h ../include/
+                SQLITE3_ZIP=sqlite3-windows-x64-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+                
+                unzip $SQLITE3_ZIP sqlite3.dll -d lib
+                unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
 
             - name: Install extension dependencies
               shell: bash
@@ -146,28 +147,25 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                curl -L http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-src-$SQLITE_VERSION.zip --output sqlite-src-$SQLITE_VERSION.zip
-                unzip sqlite-src-$SQLITE_VERSION.zip
-                cd sqlite-src-$SQLITE_VERSION/ext
-                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../../include -L../../lib -lsqlite3"
-                for f in compress sqlar; do
-                    echo "$GCC_COMMAND misc/$f.c -Imisc $ZLIB_FLAGS $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND misc/$f.c -Imisc $ZLIB_FLAGS $FLAGS -o ../../ext/$f.dll
-                done
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
                 
-                # Bugfix for #5145. The percentile extension was fixed, but the fix is not included in SQLite 3.47.1 source package.
-                rm -f misc/percentile.c
-                curl -L https://sqlite.org/src/raw/82531c62cd015b9cdca95ad6bb10c3a907ceb570d21ebd4fb7d634c809cfb089?at=percentile.c --output misc/percentile.c
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+                cd ext-src
+                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../include -L../lib -lsqlite3"
+                set -x
+                for f in compress sqlar; do
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../ext/$f.dll
+                done
                 
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    echo "$GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../../ext/$f.dll
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
                 for f in icu; do
-                    echo "$GCC_COMMAND icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.dll"
-                    $GCC_COMMAND icu/$f.c $ICU_FLAGS $FLAGS -o ../../ext/$f.dll
+                    $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
                 done
-                ls -l ../../ext/
+                set +x
+                ls -l ../ext/
 
             - name: Prepare output dir
               shell: bash
@@ -269,13 +267,13 @@ jobs:
                 SQLITESTUDIO_VERSION="$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')"
                 [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}_x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-x64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
-                7z a -r sqlitestudio-${{ env.PACKAGE_VERSION }}.zip SQLiteStudio
+                7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
                 ls -l
 
             - name: Install the InstalBuilder

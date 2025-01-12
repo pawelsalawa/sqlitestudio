@@ -10,6 +10,8 @@
  */
 class API_EXPORT SqliteQuery : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         SqliteQuery();
         SqliteQuery(const SqliteQuery& other);

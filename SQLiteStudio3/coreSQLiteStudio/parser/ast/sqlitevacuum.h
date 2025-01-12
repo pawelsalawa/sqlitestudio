@@ -9,6 +9,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteVacuum : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteVacuum();
         SqliteVacuum(const SqliteVacuum& other);

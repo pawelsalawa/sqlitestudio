@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteAnalyze : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteAnalyze();
         SqliteAnalyze(const SqliteAnalyze& other);

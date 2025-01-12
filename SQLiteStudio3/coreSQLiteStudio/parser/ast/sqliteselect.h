@@ -17,6 +17,8 @@ class SqliteWindowDefinition;
  */
 class API_EXPORT SqliteSelect : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         enum class CompoundOperator
         {

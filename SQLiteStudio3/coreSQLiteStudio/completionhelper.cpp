@@ -1040,14 +1040,23 @@ void CompletionHelper::extractPreviousIdTokens(const TokenList &parsedTokens)
 
 void CompletionHelper::extractQueryAdditionalInfo()
 {
+    // Even if we're in a SELECT, it might be just a child part of INSERT INTO x SELECT ...
+    // or it may be UPDATE x SET y FROM other source.
+    // Because of that we extract all INSERT/DELETE/UPDATE aliases no matter if cursor is in the selectCore or not.
+    extractTableAliasMapFromOtherQueries();
+
+    extractUpdateFromColumnsAndTables();
+
     if (extractSelectCore())
     {
         extractSelectAvailableColumnsAndTables();
-        extractTableAliasMap();
+        extractSelectTableAliasMap();
         removeDuplicates(parentSelectAvailableColumns);
         detectSelectContext();
+        return;
     }
-    else if (isInUpdateColumn())
+
+    if (isInUpdateColumn())
     {
         context = Context::UPDATE_COLUMN;
     }
@@ -1108,6 +1117,44 @@ void CompletionHelper::detectSelectContext()
         {
             context = contexts[i-2];
             break;
+        }
+    }
+}
+
+void CompletionHelper::extractTableAliasMapFromOtherQueries()
+{
+    if (!parsedQuery)
+        return;
+
+    SqliteQueryWithAliasedTablePtr queryWithAliasedTable = parsedQuery.dynamicCast<SqliteQueryWithAliasedTable>();
+    if (!queryWithAliasedTable)
+        return;
+
+    QString database = queryWithAliasedTable->getDatabase();
+    QString table = queryWithAliasedTable->getTable();
+    QString alias = queryWithAliasedTable->getTableAlias();
+    if (!alias.isNull() && !tableToAlias[table].contains(alias))
+    {
+        tableToAlias[table] += alias;
+        aliasToTable[alias] = Table(database, table);
+    }
+}
+
+void CompletionHelper::extractUpdateFromColumnsAndTables()
+{
+    if (!parsedQuery)
+        return;
+
+    SqliteUpdatePtr update = parsedQuery.objectCast<SqliteUpdate>();
+    if (!update || !update->from)
+        return;
+
+    for (const SelectResolver::Table& table : selectResolver->resolveTables(update->from))
+    {
+        if (!table.tableAlias.isNull() && !tableToAlias[table.table].contains(table.tableAlias))
+        {
+            tableToAlias[table.table] += table.tableAlias;
+            aliasToTable[table.tableAlias] = Table(table.database, table.table);
         }
     }
 }
@@ -1513,7 +1560,7 @@ void CompletionHelper::extractAvailableColumnsAndTables(const QString& database,
     }
 }
 
-void CompletionHelper::extractTableAliasMap()
+void CompletionHelper::extractSelectTableAliasMap()
 {
     for (SelectResolver::Column& column : selectAvailableColumns)
     {

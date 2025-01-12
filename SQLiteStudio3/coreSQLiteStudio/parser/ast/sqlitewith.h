@@ -6,10 +6,12 @@
 
 class SqliteSelect;
 
-class SqliteWith : public SqliteStatement
+class API_EXPORT SqliteWith : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
-        class CommonTableExpression : public SqliteStatement
+        class API_EXPORT CommonTableExpression : public SqliteStatement
         {
             public:
                 enum AsMode {

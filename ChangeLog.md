@@ -7,6 +7,13 @@
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 
+### 3.4.14
+- ADDED: #5190 Added support for optional ORDER BY and LIMIT clauses in UPDATE and DELETE statements.
+- ADDED: #5190 Added support for AS clause in INSERT, UPDATE and DELETE statements.
+- CHANGE: #5187 Backported compilation improvement for ScriptingPython to allow Python version selection through qmake parameter.
+- BUGFIX: #5190 Improved code assistant suggestions for UPDATE to pripritize more relevant columns.
+- BUGFIX: #5207 Fixed SQL parser to avoid marking INDEXED BY as syntax error.
+
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
 - BUGFIX: #5184 Fixed completer to show tables from implicitly attached database in case of 'SELECT other_database.'

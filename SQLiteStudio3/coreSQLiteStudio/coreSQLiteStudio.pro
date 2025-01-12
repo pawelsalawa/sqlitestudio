@@ -248,6 +248,7 @@ HEADERS += sqlitestudio.h\
     db/sqlite3.h \
     parser/ast/sqlitefilterover.h \
     parser/ast/sqlitenulls.h \
+    parser/ast/sqlitequerywithaliasedtable.h \
     parser/ast/sqlitewindowdefinition.h \
     returncode.h \
     services/codesnippetmanager.h \
