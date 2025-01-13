@@ -106,6 +106,18 @@ void SqliteStatement::processPostParsing()
         stmt->processPostParsing();
 }
 
+bool SqliteStatement::visit(Visitor& visitor)
+{
+    for (SqliteStatement* stmt : getContextStatements(this, false, true))
+    {
+        bool res = stmt->visit(visitor);
+        if (!res)
+            return false;
+    }
+
+    return visitor(this);
+}
+
 QStringList SqliteStatement::getContextColumns(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     QStringList results = getColumnsInStatement();
@@ -223,13 +235,16 @@ void SqliteStatement::evaluatePostParsing()
 {
 }
 
-QList<SqliteStatement *> SqliteStatement::getContextStatements(SqliteStatement *caller, bool checkParent, bool checkChilds)
+QList<SqliteStatement*> SqliteStatement::getContextStatements(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
-    QList<SqliteStatement *> results;
+    QList<SqliteStatement*> results;
 
-    SqliteStatement* stmt = parentStatement();
-    if (checkParent && stmt && stmt != caller)
-        results += stmt;
+    if (checkParent)
+    {
+        SqliteStatement* stmt = parentStatement();
+        if (stmt && stmt != caller)
+            results += stmt;
+    }
 
     if (checkChilds)
     {

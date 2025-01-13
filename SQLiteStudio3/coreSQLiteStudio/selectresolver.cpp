@@ -26,6 +26,11 @@ SelectResolver::~SelectResolver()
     safe_delete(schemaResolver);
 }
 
+QList<SelectResolver::Column> SelectResolver::resolveStarColumns(SqliteSelect::Core::ResultColumn* resCol)
+{
+    return resolveStarAndReturn(resCol);
+}
+
 QList<SelectResolver::Column> SelectResolver::resolveColumnsFromFirstCore()
 {
     if (!parseOriginalQuery())
@@ -318,7 +323,15 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
-    bool foundAtLeastOne = false;
+    QList<SelectResolver::Column> columns = resolveStarAndReturn(resCol);
+    currentCoreResults += columns;
+    if (columns.isEmpty())
+        errors << QObject::tr("Could not resolve data source for column: %1").arg(resCol->detokenize());
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect::Core::ResultColumn* resCol)
+{
+    QList<SelectResolver::Column> results;
     for (SelectResolver::Column column : qAsConst(currentCoreSourceColumns))
     {
         if (!resCol->table.isNull())
@@ -364,12 +377,9 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
                 column.displayName = column.column;
         }
 
-        currentCoreResults << column;
-        foundAtLeastOne = true;
+        results << column;
     }
-
-    if (!foundAtLeastOne)
-        errors << QObject::tr("Could not resolve data source for column: %1").arg(resCol->detokenize());
+    return results;
 }
 
 void SelectResolver::resolveExpr(SqliteSelect::Core::ResultColumn *resCol)

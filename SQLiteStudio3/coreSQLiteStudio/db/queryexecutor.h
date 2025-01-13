@@ -690,8 +690,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             FIRST,                      /**< As first step */
             AFTER_ATTACHES,             /**< After transparent attaching is applied (detected tables are defined to be attached first). */
             AFTER_REPLACED_VIEWS,       /**< After referenced views have been replaced with subqueries */
-            AFTER_ROW_IDS,              /**< After ROWID columns have been added to result columns */
             AFTER_REPLACED_COLUMNS,     /**< After all columns have been explicitly listed in result list, together with unique alias names */
+            AFTER_ROW_IDS,              /**< After ROWID columns have been added to result columns */
             AFTER_ORDER,                /**< After order clause was applied/modified */
             AFTER_DISTINCT_WRAP,        /**< After wrapping SELECT was added in case of DISTINCT or GROUP BY clauses were used */
             AFTER_COLUMN_TYPES,         /**< After typeof() result meta columns were added */

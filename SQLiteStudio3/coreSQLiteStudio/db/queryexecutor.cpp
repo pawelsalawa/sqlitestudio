@@ -5,21 +5,21 @@
 #include "db/sqlerrorcodes.h"
 #include "db/dbsqlite3.h"
 #include "services/notifymanager.h"
-#include "queryexecutorsteps/queryexecutoraddrowids.h"
-#include "queryexecutorsteps/queryexecutorcolumns.h"
-#include "queryexecutorsteps/queryexecutorparsequery.h"
-#include "queryexecutorsteps/queryexecutorattaches.h"
-#include "queryexecutorsteps/queryexecutorcountresults.h"
-#include "queryexecutorsteps/queryexecutorexecute.h"
-#include "queryexecutorsteps/queryexecutorlimit.h"
-#include "queryexecutorsteps/queryexecutororder.h"
-#include "queryexecutorsteps/queryexecutorwrapdistinctresults.h"
-#include "queryexecutorsteps/queryexecutordatasources.h"
-#include "queryexecutorsteps/queryexecutorexplainmode.h"
-#include "queryexecutorsteps/queryexecutorreplaceviews.h"
-#include "queryexecutorsteps/queryexecutordetectschemaalter.h"
-#include "queryexecutorsteps/queryexecutorvaluesmode.h"
-#include "queryexecutorsteps/queryexecutorcolumntype.h"
+#include "db/queryexecutorsteps/queryexecutoraddrowids.h"
+#include "db/queryexecutorsteps/queryexecutorcolumns.h"
+#include "db/queryexecutorsteps/queryexecutorparsequery.h"
+#include "db/queryexecutorsteps/queryexecutorattaches.h"
+#include "db/queryexecutorsteps/queryexecutorcountresults.h"
+#include "db/queryexecutorsteps/queryexecutorexecute.h"
+#include "db/queryexecutorsteps/queryexecutorlimit.h"
+#include "db/queryexecutorsteps/queryexecutororder.h"
+#include "db/queryexecutorsteps/queryexecutorwrapdistinctresults.h"
+#include "db/queryexecutorsteps/queryexecutordatasources.h"
+#include "db/queryexecutorsteps/queryexecutorexplainmode.h"
+#include "db/queryexecutorsteps/queryexecutorreplaceviews.h"
+#include "db/queryexecutorsteps/queryexecutordetectschemaalter.h"
+#include "db/queryexecutorsteps/queryexecutorvaluesmode.h"
+#include "db/queryexecutorsteps/queryexecutorcolumntype.h"
 #include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include "common/unused.h"
 #include "chainexecutor.h"
@@ -96,17 +96,17 @@ void QueryExecutor::setupExecutionChain()
     executionChain.append(additionalStatelessSteps[AFTER_COLUMN_FILTERS]);
     executionChain.append(createSteps(AFTER_COLUMN_FILTERS));
 
-    executionChain << new QueryExecutorAddRowIds()
-                   << new QueryExecutorParseQuery("after AddRowIds");
-
-    executionChain.append(additionalStatelessSteps[AFTER_ROW_IDS]);
-    executionChain.append(createSteps(AFTER_ROW_IDS));
-
     executionChain << new QueryExecutorColumns()
                    << new QueryExecutorParseQuery("after Columns");
 
     executionChain.append(additionalStatelessSteps[AFTER_REPLACED_COLUMNS]);
     executionChain.append(createSteps(AFTER_REPLACED_COLUMNS));
+
+    executionChain << new QueryExecutorAddRowIds()
+                   << new QueryExecutorParseQuery("after AddRowIds");
+
+    executionChain.append(additionalStatelessSteps[AFTER_ROW_IDS]);
+    executionChain.append(createSteps(AFTER_ROW_IDS));
 
     executionChain << new QueryExecutorOrder();
 
