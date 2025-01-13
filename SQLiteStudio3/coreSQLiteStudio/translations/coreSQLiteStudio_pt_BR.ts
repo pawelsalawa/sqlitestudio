@@ -827,12 +827,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>

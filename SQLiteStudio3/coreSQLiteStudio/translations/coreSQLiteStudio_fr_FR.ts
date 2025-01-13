@@ -827,12 +827,12 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Requête imcomplète.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
       <source>Parser stack overflow</source>
       <translation>Analyse dépassement pile</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
       <source>Syntax error</source>
       <translation>Erreur de syntaxe</translation>
     </message>

@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
       <source>Parser stack overflow</source>
       <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
       <source>Syntax error</source>
       <translation>Синтаксическая ошибка</translation>
     </message>

@@ -827,12 +827,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Unvollständige Abfrage.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
       <source>Parser stack overflow</source>
       <translation>Stacküberlauf bei Verarbeitung</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
       <source>Syntax error</source>
       <translation>Syntaxfehler</translation>
     </message>

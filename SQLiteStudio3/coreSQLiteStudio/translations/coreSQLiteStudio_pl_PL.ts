@@ -827,12 +827,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2519"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
       <source>Parser stack overflow</source>
       <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="5954"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
       <source>Syntax error</source>
       <translation>Błąd składni</translation>
     </message>
