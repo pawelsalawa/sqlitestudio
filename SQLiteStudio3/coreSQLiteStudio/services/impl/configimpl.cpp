@@ -1117,6 +1117,7 @@ void ConfigImpl::updateConfigDb()
 {
     SqlQueryPtr result = db->exec("SELECT version FROM version LIMIT 1");
     int dbVersion = result->getSingleCell().toInt();
+
     if (dbVersion >= SQLITESTUDIO_CONFIG_VERSION)
         return;
 
@@ -1162,6 +1163,14 @@ void ConfigImpl::updateConfigDb()
                 }
             }
             db->exec("DELETE FROM settings WHERE [group] = 'Internal' AND [key] = 'Functions'");
+            [[fallthrough]];
+        }
+        case 5:
+        {
+            QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", Qt::SkipEmptyParts);
+            loadedPlugins.removeIf([](auto el) {return el.startsWith("ConfigMigration");});
+            loadedPlugins << "ConfigMigration=0";
+            CFG_CORE.General.LoadedPlugins.set(loadedPlugins.join(","));
         }
         // Add cases here for next versions,
         // without a "break" instruction,

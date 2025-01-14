@@ -43,6 +43,7 @@ namespace Debug {
 
     void posixSignalHandler( int signum, siginfo_t* si, void* ucontext ) {
         (void)si;
+        (void)signum;
         (void)ucontext;
 
         auto &handler = PosixCrashHandler::getInstance();
