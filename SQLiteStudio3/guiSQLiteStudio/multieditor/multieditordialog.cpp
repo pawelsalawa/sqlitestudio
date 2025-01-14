@@ -1,11 +1,13 @@
 #include "multieditordialog.h"
 #include "multieditor.h"
+#include "common/dialogsizehandler.h"
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
 MultiEditorDialog::MultiEditorDialog(QWidget *parent) :
     QDialog(parent)
 {
+    DialogSizeHandler::applyFor(this);
     multiEditor = new MultiEditor();
 
     QVBoxLayout* vbox = new QVBoxLayout();

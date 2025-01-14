@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QScreen>
 #include <QGuiApplication>
+#include <QDebug>
 
 DialogSizeHandler::DialogSizeHandler(QObject *parent) :
     DialogSizeHandler(parent->objectName(), parent)
@@ -33,7 +34,11 @@ DialogSizeHandler::~DialogSizeHandler()
 
 void DialogSizeHandler::applyFor(QObject *parent)
 {
-    applyFor(parent->objectName(), parent);
+    QString key = parent->objectName();
+    if (key.isEmpty())
+        key = parent->metaObject()->className();
+
+    applyFor(key, parent);
 }
 
 void DialogSizeHandler::applyFor(const QString &key, QObject *parent)
