@@ -21,17 +21,12 @@ class GUI_API_EXPORT ThemeTuner : public QObject
         void manageCompactLayout(QWidget* w);
         void manageCompactLayout(QList<QWidget*> wList);
         QString getDefaultCss(const QString& themeName = QString()) const;
-        void darkThemeFix(QWizard* wizard);
 
-        static void registerQWizardThemeTuneRequired(const QString& styleName);
-        static void deregisterQWizardThemeTuneRequired(const QString& styleName);
         static ThemeTuner* getInstance();
         static void cleanUp();
 
     private:
         ThemeTuner(QObject* parent = 0);
-        void registerQWizardThemeTuneRequiredInternal(const QString& styleName);
-        void deregisterQWizardThemeTuneRequiredInternal(const QString& styleName);
 
         void init();
         void tuneCss(const QString& themeName);

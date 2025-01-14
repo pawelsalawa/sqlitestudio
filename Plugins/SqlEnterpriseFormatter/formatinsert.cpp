@@ -31,6 +31,8 @@ void FormatInsert::formatInternal()
         withId(insert->database);
 
     withId(insert->table);
+    if (!insert->tableAlias.isNull())
+        withKeyword("AS").withId(insert->tableAlias);
 
     if (insert->defaultValuesKw)
     {

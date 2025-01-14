@@ -54,7 +54,7 @@ bool CodeSnippetEditor::restoreSession(const QVariant& sessionValue)
 
 Icon* CodeSnippetEditor::getIconNameForMdiWindow()
 {
-    return ICONS.CODE_SNIPPET;
+    return ICONS.CODE_SNIPPETS;
 }
 
 QString CodeSnippetEditor::getTitleForMdiWindow()

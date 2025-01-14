@@ -13,11 +13,8 @@
   <property name="floating">
    <bool>false</bool>
   </property>
-  <property name="features">
-   <set>QDockWidget::AllDockWidgetFeatures</set>
-  </property>
   <property name="allowedAreas">
-   <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   <set>Qt::DockWidgetArea::LeftDockWidgetArea|Qt::DockWidgetArea::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
    <string>Databases</string>
@@ -45,10 +42,10 @@
        <bool>true</bool>
       </property>
       <property name="dragDropMode">
-       <enum>QAbstractItemView::InternalMove</enum>
+       <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
       </property>
       <property name="defaultDropAction">
-       <enum>Qt::CopyAction</enum>
+       <enum>Qt::DropAction::CopyAction</enum>
       </property>
      </widget>
     </item>

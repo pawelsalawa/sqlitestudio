@@ -85,6 +85,7 @@ void TriggerDialog::init()
     ui->setupUi(this);
     limitDialogWidth(this);
     DialogSizeHandler::applyFor(this);
+    setWindowIcon(ICONS.TRIGGER);
 
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(updateDdlTab(int)));
     connect(ui->actionColumns, SIGNAL(clicked()), this, SLOT(showColumnsDialog()));

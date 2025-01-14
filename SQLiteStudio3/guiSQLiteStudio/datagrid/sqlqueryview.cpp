@@ -835,11 +835,7 @@ void SqlQueryView::paste()
     {
         for (const QString& cell : cells)
         {
-#if QT_VERSION >= 0x050A00
             if ((cell.front().isSpace() || cell.back().isSpace()) && !trimOnPasteAsked)
-#else
-            if ((cell.at(0).isSpace() || cell.at(cell.size() - 1).isSpace()) && !trimOnPasteAsked)
-#endif
             {
                 QMessageBox::StandardButton trimChoice;
                 trimChoice = QMessageBox::question(this, tr("Trim pasted text?"),
@@ -976,9 +972,9 @@ void SqlQueryView::openValueEditor()
     openValueEditor(currentItem);
 }
 
-TYPE_OF_QHASH qHash(SqlQueryView::Action action)
+size_t qHash(SqlQueryView::Action action)
 {
-    return static_cast<TYPE_OF_QHASH>(action);
+    return static_cast<size_t>(action);
 }
 
 SqlQueryView::Header::Header(SqlQueryView* parent) :

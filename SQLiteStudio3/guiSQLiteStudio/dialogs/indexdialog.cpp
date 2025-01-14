@@ -66,6 +66,7 @@ void IndexDialog::init()
     ui->setupUi(this);
     limitDialogWidth(this);
     DialogSizeHandler::applyFor(this);
+    setWindowIcon(ICONS.INDEX);
     if (!db || !db->isOpen())
     {
         qCritical() << "Created IndexDialog for null or closed database.";
@@ -94,7 +95,7 @@ void IndexDialog::init()
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
 
     columnStateSignalMapping = new QSignalMapper(this);
-    connect(columnStateSignalMapping, SIGNAL(mapped(QString)), this, SLOT(updateColumnState(QString)));
+    connect(columnStateSignalMapping, SIGNAL(mappedString(QString)), this, SLOT(updateColumnState(QString)));
 
     SchemaResolver resolver(db);
     ui->tableCombo->addItem(QString());

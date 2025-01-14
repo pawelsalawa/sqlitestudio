@@ -185,6 +185,6 @@ class GUI_API_EXPORT SqliteHighlighterPlugin : public BuiltInPlugin, public Synt
         QHash<SqliteSyntaxHighlighter::State,QTextCharFormat> formats;
 };
 
-GUI_API_EXPORT TYPE_OF_QHASH qHash(SqliteSyntaxHighlighter::State state);
+GUI_API_EXPORT size_t qHash(SqliteSyntaxHighlighter::State state);
 
 #endif // SQLITESYNTAXHIGHLIGHTER_H

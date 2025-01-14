@@ -9,7 +9,6 @@
 #include "services/notifymanager.h"
 #include "services/sqliteextensionmanager.h"
 #include "parser/lexer.h"
-#include "common/compatibility.h"
 #include <QDebug>
 #include <QTime>
 #include <QWriteLocker>
@@ -877,14 +876,7 @@ void AbstractDb::interrupt()
 
 void AbstractDb::asyncInterrupt()
 {
-#if QT_VERSION >= 0x060000
-    QThreadPool::globalInstance()->start([this]()
-    {
-        interrupt();
-    });
-#else
-    QtConcurrent::run(this, &AbstractDb::interrupt);
-#endif
+    QThreadPool::globalInstance()->start([this]() {interrupt();});
 }
 
 bool AbstractDb::isReadable()
@@ -958,7 +950,7 @@ void AbstractDb::flushWal()
         notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 
-TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn)
+size_t qHash(const AbstractDb::RegisteredFunction& fn)
 {
     return qHash(fn.name) ^ fn.argCount ^ fn.type;
 }

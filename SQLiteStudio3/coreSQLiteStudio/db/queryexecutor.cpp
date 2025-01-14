@@ -5,21 +5,21 @@
 #include "db/sqlerrorcodes.h"
 #include "db/dbsqlite3.h"
 #include "services/notifymanager.h"
-#include "queryexecutorsteps/queryexecutoraddrowids.h"
-#include "queryexecutorsteps/queryexecutorcolumns.h"
-#include "queryexecutorsteps/queryexecutorparsequery.h"
-#include "queryexecutorsteps/queryexecutorattaches.h"
-#include "queryexecutorsteps/queryexecutorcountresults.h"
-#include "queryexecutorsteps/queryexecutorexecute.h"
-#include "queryexecutorsteps/queryexecutorlimit.h"
-#include "queryexecutorsteps/queryexecutororder.h"
-#include "queryexecutorsteps/queryexecutorwrapdistinctresults.h"
-#include "queryexecutorsteps/queryexecutordatasources.h"
-#include "queryexecutorsteps/queryexecutorexplainmode.h"
-#include "queryexecutorsteps/queryexecutorreplaceviews.h"
-#include "queryexecutorsteps/queryexecutordetectschemaalter.h"
-#include "queryexecutorsteps/queryexecutorvaluesmode.h"
-#include "queryexecutorsteps/queryexecutorcolumntype.h"
+#include "db/queryexecutorsteps/queryexecutoraddrowids.h"
+#include "db/queryexecutorsteps/queryexecutorcolumns.h"
+#include "db/queryexecutorsteps/queryexecutorparsequery.h"
+#include "db/queryexecutorsteps/queryexecutorattaches.h"
+#include "db/queryexecutorsteps/queryexecutorcountresults.h"
+#include "db/queryexecutorsteps/queryexecutorexecute.h"
+#include "db/queryexecutorsteps/queryexecutorlimit.h"
+#include "db/queryexecutorsteps/queryexecutororder.h"
+#include "db/queryexecutorsteps/queryexecutorwrapdistinctresults.h"
+#include "db/queryexecutorsteps/queryexecutordatasources.h"
+#include "db/queryexecutorsteps/queryexecutorexplainmode.h"
+#include "db/queryexecutorsteps/queryexecutorreplaceviews.h"
+#include "db/queryexecutorsteps/queryexecutordetectschemaalter.h"
+#include "db/queryexecutorsteps/queryexecutorvaluesmode.h"
+#include "db/queryexecutorsteps/queryexecutorcolumntype.h"
 #include "db/queryexecutorsteps/queryexecutorsmarthints.h"
 #include "common/unused.h"
 #include "chainexecutor.h"
@@ -168,7 +168,8 @@ void QueryExecutor::executeChain()
 
         logExecutorStep(currentStep);
         result = currentStep->exec();
-        logExecutorAfterStep(context->processedQuery);
+        if (!qobject_cast<QueryExecutorParseQuery*>(currentStep))
+            logExecutorAfterStep(context->processedQuery);
 
         if (!result)
         {
@@ -910,14 +911,14 @@ QString QueryExecutor::getOriginalQuery() const
     return originalQuery;
 }
 
-TYPE_OF_QHASH qHash(QueryExecutor::EditionForbiddenReason reason)
+size_t qHash(QueryExecutor::EditionForbiddenReason reason)
 {
-    return static_cast<TYPE_OF_QHASH>(reason);
+    return static_cast<size_t>(reason);
 }
 
-TYPE_OF_QHASH qHash(QueryExecutor::ColumnEditionForbiddenReason reason)
+size_t qHash(QueryExecutor::ColumnEditionForbiddenReason reason)
 {
-    return static_cast<TYPE_OF_QHASH>(reason);
+    return static_cast<size_t>(reason);
 }
 
 int QueryExecutor::getDataLengthLimit() const
@@ -1017,7 +1018,7 @@ int operator==(const QueryExecutor::SourceTable& t1, const QueryExecutor::Source
     return t1.database == t2.database && t1.table == t2.table && t1.alias == t2.alias;
 }
 
-TYPE_OF_QHASH qHash(QueryExecutor::SourceTable sourceTable)
+size_t qHash(QueryExecutor::SourceTable sourceTable)
 {
     return qHash(sourceTable.database + "." + sourceTable.table + "/" + sourceTable.alias);
 }

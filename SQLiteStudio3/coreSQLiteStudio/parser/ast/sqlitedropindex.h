@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteDropIndex : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteDropIndex();
         SqliteDropIndex(const SqliteDropIndex& other);

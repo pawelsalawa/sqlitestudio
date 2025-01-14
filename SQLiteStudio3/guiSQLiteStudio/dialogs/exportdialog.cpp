@@ -50,13 +50,11 @@ ExportDialog::~ExportDialog()
 void ExportDialog::init()
 {
     ui->setupUi(this);
-    THEME_TUNER->darkThemeFix(this);
     limitDialogWidth(this);
     DialogSizeHandler::applyFor(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());
-    setPixmap(QWizard::BackgroundPixmap, addOpacity(ICONS.DATABASE_EXPORT_WIZARD.toQIcon().pixmap(800, 800), 0.3));
 #endif
 
     widgetCover = new WidgetCover(this);
@@ -194,7 +192,7 @@ void ExportDialog::initQueryPage()
 
     connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), ui->queryPage, SIGNAL(completeChanged()));
     connect(ui->queryEdit, SIGNAL(textChanged()), ui->queryPage, SIGNAL(completeChanged()));
-    connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateQueryEditDb()));
+    connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateQueryEditDb()));
     connect(this, SIGNAL(queryPageCompleteChanged()), ui->queryPage, SIGNAL(completeChanged()));
 }
 
@@ -215,8 +213,8 @@ void ExportDialog::initDbObjectsPage()
         return listOk;
     });
 
-    connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateDbObjTree()));
-    connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(QString)), ui->databaseObjectsPage, SIGNAL(completeChanged()));
+    connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateDbObjTree()));
+    connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(int)), ui->databaseObjectsPage, SIGNAL(completeChanged()));
     connect(selectableDbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->databaseObjectsPage, SIGNAL(completeChanged()));
     connect(ui->objectsSelectAllButton, SIGNAL(clicked()), this, SLOT(dbObjectsSelectAll()));
     connect(ui->objectsDeselectAllButton, SIGNAL(clicked()), this, SLOT(dbObjectsDeselectAll()));

@@ -178,6 +178,6 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void refreshValidDbObjects();
 };
 
-GUI_API_EXPORT TYPE_OF_QHASH qHash(EditorWindow::ActionGroup action);
+GUI_API_EXPORT size_t qHash(EditorWindow::ActionGroup action);
 
 #endif // EDITOR_H

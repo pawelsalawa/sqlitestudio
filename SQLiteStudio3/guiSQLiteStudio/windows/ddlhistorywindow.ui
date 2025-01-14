@@ -59,14 +59,14 @@
         </property>
         <property name="icon">
          <iconset resource="../icons.qrc">
-          <normaloff>:/icons/img/act_clear.png</normaloff>:/icons/img/act_clear.png</iconset>
+          <normaloff>:/icons/img/act_clear.svg</normaloff>:/icons/img/act_clear.svg</iconset>
         </property>
        </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -82,7 +82,7 @@
    <item>
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <widget class="QTableView" name="tableView">
       <property name="sizePolicy">
@@ -92,22 +92,22 @@
        </sizepolicy>
       </property>
       <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
       <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
+       <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
       </property>
       <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
+       <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
       </property>
       <property name="verticalScrollMode">
-       <enum>QAbstractItemView::ScrollPerPixel</enum>
+       <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
       </property>
       <property name="horizontalScrollMode">
-       <enum>QAbstractItemView::ScrollPerPixel</enum>
+       <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
       </property>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>

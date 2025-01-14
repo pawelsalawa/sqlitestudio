@@ -260,11 +260,7 @@ QVariant CodeSnippetEditorModel::data(const QModelIndex& index, int role) const
 
     if (role == Qt::DecorationRole)
     {
-        QIcon icon = ICONS.CODE_SNIPPET;
-        if (!snippetList[index.row()]->valid)
-            icon = Icon::merge(icon, Icon::ERROR);
-
-        return icon;
+        return snippetList[index.row()]->valid ? ICONS.CODE_SNIPPET : ICONS.CODE_SNIPPET_ERROR;
     }
 
     return QVariant();

@@ -250,11 +250,7 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 
 void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QVariant parent = QVariant(QVariant::LongLong);
-#else
     QVariant parent = QVariant(QMetaType::fromType<qlonglong>());
-#endif
     if (parentId > -1)
         parent = parentId;
 
@@ -1082,12 +1078,7 @@ void ConfigImpl::mergeMasterConfig()
     if (masterConfigFile.isEmpty())
         return;
 
-#if QT_VERSION >= 0x050500
-    qInfo()
-#else
-    qDebug()
-#endif
-        << "Updating settings from master configuration file: " << masterConfigFile;
+    qInfo() << "Updating settings from master configuration file: " << masterConfigFile;
 
     Db* masterDb = new DbSqlite3("SQLiteStudio master settings", masterConfigFile, {{DB_PURE_INIT, true}});
     if (!masterDb->open())
@@ -1126,6 +1117,7 @@ void ConfigImpl::updateConfigDb()
 {
     SqlQueryPtr result = db->exec("SELECT version FROM version LIMIT 1");
     int dbVersion = result->getSingleCell().toInt();
+
     if (dbVersion >= SQLITESTUDIO_CONFIG_VERSION)
         return;
 
@@ -1171,6 +1163,14 @@ void ConfigImpl::updateConfigDb()
                 }
             }
             db->exec("DELETE FROM settings WHERE [group] = 'Internal' AND [key] = 'Functions'");
+            [[fallthrough]];
+        }
+        case 5:
+        {
+            QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", Qt::SkipEmptyParts);
+            loadedPlugins.removeIf([](auto el) {return el.startsWith("ConfigMigration");});
+            loadedPlugins << "ConfigMigration=0";
+            CFG_CORE.General.LoadedPlugins.set(loadedPlugins.join(","));
         }
         // Add cases here for next versions,
         // without a "break" instruction,

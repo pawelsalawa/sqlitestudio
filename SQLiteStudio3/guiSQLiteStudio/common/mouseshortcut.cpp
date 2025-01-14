@@ -50,11 +50,7 @@ bool MouseShortcut::eventFilter(QObject* object, QEvent* event)
     if ((event->type() == QEvent::MouseButtonPress && type == SingleClick && attributesMatch(event)) ||
         (event->type() == QEvent::MouseButtonDblClick && type == DoubleClick && attributesMatch(event)))
     {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        emit activated(dynamic_cast<QMouseEvent*>(event)->globalPos());
-#else
         emit activated(dynamic_cast<QMouseEvent*>(event)->globalPosition().toPoint());
-#endif
         return true;
     }
 

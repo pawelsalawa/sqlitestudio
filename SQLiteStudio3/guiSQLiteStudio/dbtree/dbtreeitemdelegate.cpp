@@ -19,7 +19,7 @@ QSize DbTreeItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QMo
 
     QFont f = CFG_UI.Fonts.DbTree.get();
     QFontMetrics fm(f);
-    size.setHeight(qMax(18, fm.height()));
+    size.setHeight(qMax(16, fm.height()));
     return size;
 }
 

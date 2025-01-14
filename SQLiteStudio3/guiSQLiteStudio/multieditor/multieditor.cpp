@@ -15,7 +15,6 @@
 #include "uiconfig.h"
 #include "dialogs/configdialog.h"
 #include "themetuner.h"
-#include "common/compatibility.h"
 #include "datagrid/sqlquerymodelcolumn.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>

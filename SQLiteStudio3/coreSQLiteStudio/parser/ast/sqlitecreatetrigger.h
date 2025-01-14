@@ -12,6 +12,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRelatedDdl, public SqliteDdlWithDbContext
 {
+    Q_OBJECT
+
     public:
         enum class Time
         {

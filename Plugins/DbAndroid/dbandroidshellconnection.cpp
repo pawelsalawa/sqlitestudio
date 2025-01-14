@@ -129,13 +129,7 @@ QStringList DbAndroidShellConnection::getDbList()
     }
 
     QStringList finalList;
-    for (const QString& dbName : out.trimmed().split("\n",
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-                                                    Qt::SkipEmptyParts
-#else
-                                                    QString::SkipEmptyParts
-#endif
-                                                     ))
+    for (const QString& dbName : out.trimmed().split("\n", Qt::SkipEmptyParts))
     {
         if (dbName.trimmed().endsWith("-journal"))
             continue;
@@ -154,13 +148,7 @@ QStringList DbAndroidShellConnection::getAppList()
         return QStringList();
 
     QStringList appList;
-    for (const QString& line : out.trimmed().split("\n",
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-                                                  Qt::SkipEmptyParts
-#else
-                                                  QString::SkipEmptyParts
-#endif
-                                                   ))
+    for (const QString& line : out.trimmed().split("\n", Qt::SkipEmptyParts))
     {
         if (!line.startsWith("package:"))
             continue; // some other message

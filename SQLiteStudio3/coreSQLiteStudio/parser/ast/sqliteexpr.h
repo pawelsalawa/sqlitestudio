@@ -13,6 +13,8 @@ class SqliteRaise;
 
 class API_EXPORT SqliteExpr : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         enum class Mode
         {

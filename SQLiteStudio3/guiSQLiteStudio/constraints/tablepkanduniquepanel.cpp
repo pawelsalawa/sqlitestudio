@@ -48,7 +48,7 @@ void TablePrimaryKeyAndUniquePanel::init()
     ui->conflictComboBox->addItems(getConflictAlgorithms());
 
     columnSignalMapping = new QSignalMapper(this);
-    connect(columnSignalMapping, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
+    connect(columnSignalMapping, SIGNAL(mappedInt(int)), this, SLOT(updateColumnState(int)));
 
     connect(ui->namedCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateState()));
     connect(ui->conflictCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateState()));

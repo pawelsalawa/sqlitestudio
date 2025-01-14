@@ -391,7 +391,6 @@ void EditorWindow::createActions()
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FIND));
-    ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::REPLACE));
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);
@@ -768,9 +767,9 @@ void EditorWindow::refreshValidDbObjects()
     ui->sqlEdit->refreshValidObjects();
 }
 
-TYPE_OF_QHASH qHash(EditorWindow::ActionGroup actionGroup)
+size_t qHash(EditorWindow::ActionGroup actionGroup)
 {
-    return static_cast<TYPE_OF_QHASH>(actionGroup);
+    return static_cast<size_t>(actionGroup);
 }
 
 

@@ -124,6 +124,13 @@ class API_EXPORT SelectResolver
         QList<Column> resolveColumnsFromFirstCore();
         QList<QList<Column>> resolveColumns();
 
+        /**
+         * @brief Provides list of columns, which would be put in place of a star operator in SELECT result columns.
+         * Must be called only after other resolve() method was called on SqliteSelect or SqliteSelect::Core,
+         * which collected all join source columns.
+         */
+        QList<Column> resolveStarColumns(SqliteSelect::Core::ResultColumn* resCol);
+
         QList<Column> resolve(SqliteSelect::Core* selectCore);
         QList<QList<Column>> resolve(SqliteSelect* select);
 
@@ -227,6 +234,7 @@ class API_EXPORT SelectResolver
         Column translateTokenToColumn(SqliteSelect* select, TokenPtr token);
         void resolve(SqliteSelect::Core::ResultColumn* resCol);
         void resolveStar(SqliteSelect::Core::ResultColumn* resCol);
+        QList<Column> resolveStarAndReturn(SqliteSelect::Core::ResultColumn* resCol);
         void resolveExpr(SqliteSelect::Core::ResultColumn* resCol);
         void resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol);
         Column resolveRowIdColumn(SqliteExpr* expr);
@@ -329,10 +337,10 @@ class API_EXPORT SelectResolver
 };
 
 API_EXPORT int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2);
-API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Table& table);
+API_EXPORT size_t qHash(const SelectResolver::Table& table);
 
 API_EXPORT int operator==(const SelectResolver::Column& c1, const SelectResolver::Column& c2);
-API_EXPORT TYPE_OF_QHASH qHash(const SelectResolver::Column& column);
+API_EXPORT size_t qHash(const SelectResolver::Column& column);
 
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Column &c);
 API_EXPORT QDebug operator<<(QDebug debug, const SelectResolver::Table &c);

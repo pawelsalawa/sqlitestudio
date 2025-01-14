@@ -518,7 +518,7 @@ bool TableStructureModel::isColumnGenerate(SqliteCreateTable::Column* column) co
 
 QString TableStructureModel::getToolTip(int row, Columns modelColumn) const
 {
-    static const QString tooltipTpl = "<table><tr><td width=16><img src=\"%1\"/></td><td style=\"white-space: pre\"><b>%2</b></td><td>%3</td></tr></table>";
+    static_qstring(tooltipTpl, R"(<table><tr><td width=16><img src="%1" width="16" height="16"/></td><td style="white-space: pre"><b>%2</b></td><td>%3</td></tr></table>)");
 
     if (row >= createTable->columns.size())
         return QString();

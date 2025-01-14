@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteRollback : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteRollback();
         SqliteRollback(const SqliteRollback& other);

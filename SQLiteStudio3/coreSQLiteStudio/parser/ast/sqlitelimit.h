@@ -7,6 +7,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteLimit : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         SqliteLimit();
         SqliteLimit(const SqliteLimit& other);

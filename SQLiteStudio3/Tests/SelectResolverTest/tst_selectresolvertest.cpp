@@ -7,6 +7,7 @@
 #include "dbsqlite3mock.h"
 #include "mocks.h"
 #include "parser/parser.h"
+#include "sqlfileexecutor.h"
 #include <QString>
 #include <QtTest>
 #include <QSet>
@@ -19,10 +20,13 @@ class SelectResolverTest : public QObject
         SelectResolverTest();
 
     private:
+        void loadSchema(const QString& schemaFile);
         Db* db = nullptr;
 
     private Q_SLOTS:
         void initTestCase();
+        void init();
+        void cleanup();
         void cleanupTestCase();
         void testTableHash();
         void testColumnHash();
@@ -39,6 +43,12 @@ class SelectResolverTest : public QObject
 
 SelectResolverTest::SelectResolverTest()
 {
+}
+
+void SelectResolverTest::loadSchema(const QString &schemaFile)
+{
+    SqlFileExecutor fileExecutor;
+    fileExecutor.execSqlFromFile(db, ":/schemas/" + schemaFile, false, defaultCodecName(), false);
 }
 
 void SelectResolverTest::testTableHash()
@@ -410,20 +420,29 @@ void SelectResolverTest::initTestCase()
     Lexer::staticInit();
     initMocks();
 
+    //SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
+}
+
+void SelectResolverTest::init()
+{
+    qDebug() << "creating db";
     db = new DbSqlite3Mock("testdb");
     db->open();
     db->exec("CREATE TABLE test (col1, col2, col3);");
     db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
     db->exec("CREATE TABLE test2 (col1);");
     db->exec("CREATE TABLE Trip (TripID INTEGER PRIMARY KEY ASC);");
-    //SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
 }
 
-void SelectResolverTest::cleanupTestCase()
+void SelectResolverTest::cleanup()
 {
     db->close();
     delete db;
     db = nullptr;
+}
+
+void SelectResolverTest::cleanupTestCase()
+{
 }
 
 QTEST_APPLESS_MAIN(SelectResolverTest)

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2580"
+   sodipodi:docname="apply_filter_sql.svg"
+   inkscape:export-filename="/Users/lmproulx/Desktop/isotype/En cours/entonnoir.png"
+   viewBox="0 0 449 452.09"
+   sodipodi:version="0.32"
+   inkscape:export-xdpi="300"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-ydpi="300"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <defs
+     id="defs15">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient855">
+      <stop
+         style="stop-color:#949494;stop-opacity:1"
+         offset="0"
+         id="stop851" />
+      <stop
+         style="stop-color:#dedede;stop-opacity:1"
+         offset="1"
+         id="stop853" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient847">
+      <stop
+         style="stop-color:#dddddd;stop-opacity:1"
+         offset="0"
+         id="stop843" />
+      <stop
+         style="stop-color:#939393;stop-opacity:1"
+         offset="1"
+         id="stop845" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient847"
+       id="linearGradient849"
+       x1="297.72769"
+       y1="339.7475"
+       x2="389.66678"
+       y2="340.62616"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient855"
+       id="linearGradient857"
+       x1="237.97774"
+       y1="262.45535"
+       x2="459.40234"
+       y2="262.45535"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1035"
+       id="linearGradient869"
+       x1="454.75684"
+       y1="443.76093"
+       x2="395.17294"
+       y2="364.68719"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4904356,0,0,1.4904355,-206.89305,-205.06296)" />
+    <linearGradient
+       id="linearGradient1035"
+       inkscape:collect="always">
+      <stop
+         id="stop1031"
+         offset="0"
+         style="stop-color:#808080;stop-opacity:1" />
+      <stop
+         id="stop1033"
+         offset="1"
+         style="stop-color:#d9d9d9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1035"
+       id="linearGradient1071"
+       x1="454.75684"
+       y1="443.76093"
+       x2="395.17294"
+       y2="364.68719"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4904356,0,0,1.4904355,-210.17963,-207.24348)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="34"
+     pagecolor="#ffffff"
+     inkscape:window-height="811"
+     inkscape:zoom="0.7"
+     inkscape:window-x="42"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g2637"
+     inkscape:cx="498.55958"
+     inkscape:cy="189.77802"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1130"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:document-rotation="0" />
+  <g
+     id="g2637"
+     transform="matrix(1.6258171,0,0,1.6258171,-341.78757,-320.99561)">
+    <path
+       id="path4393"
+       sodipodi:nodetypes="ccccccc"
+       style="fill:url(#linearGradient849);fill-opacity:1;stroke:#6f6f6f;stroke-width:4.9206;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 238.87,264.68 84.16,100.74 3.83,41.44 c 11.66,6.06 24.47,7.5 39.52,0 l 3.83,-43.99 87.98,-98.83 c -60.78,13.28 -158.54,14.57 -219.32,0.64 z" />
+    <path
+       id="path4395"
+       sodipodi:nodetypes="ccc"
+       style="fill:url(#linearGradient857);fill-opacity:1;stroke:#6d6d6d;stroke-width:4.9206;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 238.87,264.68 c 97.22,17.91 163.33,11.85 219.64,-0.64 -75.44,-23.1 -148.3,-16.89 -219.64,0.64 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:176.011px;line-height:1.25;font-family:Bungee;-inkscape-font-specification:'Bungee Bold';fill:url(#linearGradient869);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075337;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723"
+       x="368.35699"
+       y="459.82443"
+       id="text861"
+       transform="scale(0.99449765,1.0055328)"><tspan
+         sodipodi:role="line"
+         id="tspan859"
+         x="368.35699"
+         y="459.82443"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:176.011px;font-family:Bungee;-inkscape-font-specification:'Bungee Bold';fill:url(#linearGradient869);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075337;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723">S</tspan></text>
+  </g>
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title />
+        <dc:date>2010-02-02T00:34:18</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/29161/funnel-/-entonnoir-by-lmproulx-29161</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>lmproulx</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>diagram</rdf:li>
+            <rdf:li>funnel</rdf:li>
+            <rdf:li>graphic organizer</rdf:li>
+            <rdf:li>line art</rdf:li>
+            <rdf:li>unchecked</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

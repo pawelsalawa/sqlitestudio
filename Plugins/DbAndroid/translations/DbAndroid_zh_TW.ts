@@ -19,57 +19,57 @@
       <translation>選擇 Android 資料庫</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="150"/>
+      <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
       <translation>選擇 ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="172"/>
+      <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
       <translation>使用 Android 除錯橋 (ADB)：%1</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="182"/>
+      <location filename="../dbandroid.cpp" line="183"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
       <translation>您可以從工具選單取得 Android 聯結器 JAR 檔案。Android 外掛支援的 3 種連線方式有 2 個需要它。更多細節見 SQLiteStudio wiki 頁面上的&lt;a href=&quot;%1&quot;&gt;外掛文件&lt;/a&gt;。</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="190"/>
+      <location filename="../dbandroid.cpp" line="198"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
       <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="209"/>
+      <location filename="../dbandroid.cpp" line="217"/>
       <source>The selected ADB is incorrect.</source>
       <translation type="unfinished">The selected ADB is incorrect.</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="210"/>
+      <location filename="../dbandroid.cpp" line="218"/>
       <source>Would you like to select another one, or leave it unconfigured?</source>
       <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="234"/>
+      <location filename="../dbandroid.cpp" line="242"/>
       <source>Save JAR file</source>
       <translation type="unfinished">Save JAR file</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="208"/>
+      <location filename="../dbandroid.cpp" line="216"/>
       <source>Invalid ADB</source>
       <translation>無效的 ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="211"/>
+      <location filename="../dbandroid.cpp" line="219"/>
       <source>Select another ADB</source>
       <translation>選擇其他 ADB</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="212"/>
+      <location filename="../dbandroid.cpp" line="220"/>
       <source>Leave unconfigured</source>
       <translation>不做設定檔</translation>
     </message>
     <message>
-      <location filename="../dbandroid.cpp" line="253"/>
+      <location filename="../dbandroid.cpp" line="192"/>
       <source>Get Android connector JAR file</source>
       <translation>獲取 Android 聯結器 JAR 檔案</translation>
     </message>

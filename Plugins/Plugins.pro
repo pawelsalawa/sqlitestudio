@@ -16,7 +16,6 @@ SUBDIRS += \
     RegExpImport \
     Printing \
     SqlEnterpriseFormatter \
-    ConfigMigration \
     ScriptingTcl \
     ScriptingPython \
     DbAndroid \

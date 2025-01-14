@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>printer.png</file>
+        <file>printer.svg</file>
     </qresource>
 </RCC>

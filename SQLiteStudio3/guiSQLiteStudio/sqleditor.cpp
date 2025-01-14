@@ -171,10 +171,10 @@ void SqlEditor::createActions()
     createAction(MOVE_BLOCK_UP, tr("Move block up", "sql editor"), this, SLOT(moveBlockUp()), this);
     createAction(COPY_BLOCK_DOWN, tr("Copy block down", "sql editor"), this, SLOT(copyBlockDown()), this);
     createAction(COPY_BLOCK_UP, tr("Copy up down", "sql editor"), this, SLOT(copyBlockUp()), this);
-    createAction(FIND, ICONS.SEARCH, tr("Find", "sql editor"), this, SLOT(find()), this);
+    createAction(FIND, ICONS.SEARCH, tr("Find or replace", "sql editor"), this, SLOT(find()), this);
     createAction(FIND_NEXT, tr("Find next", "sql editor"), this, SLOT(findNext()), this);
     createAction(FIND_PREV, tr("Find previous", "sql editor"), this, SLOT(findPrevious()), this);
-    createAction(REPLACE, ICONS.SEARCH_AND_REPLACE, tr("Replace", "sql editor"), this, SLOT(replace()), this);
+    createAction(REPLACE, ICONS.SEARCH, tr("Replace", "sql editor"), this, SLOT(replace()), this);
     createAction(TOGGLE_COMMENT, tr("Toggle comment", "sql editor"), this, SLOT(toggleComment()), this);
     createAction(INCR_FONT_SIZE, tr("Increase font size", "sql editor"), this, SLOT(incrFontSize()), this);
     createAction(DECR_FONT_SIZE, tr("Decrease font size", "sql editor"), this, SLOT(decrFontSize()), this);
@@ -292,11 +292,6 @@ void SqlEditor::saveToFile(const QString &fileName)
     }
 
     QTextStream stream(&file);
-#if QT_VERSION < 0x060000
-    stream.setCodec("UTF-8");
-#else
-    // The stream is UTF-8 by default in Qt 6
-#endif
     stream << toPlainText();
     stream.flush();
     file.close();
@@ -1001,14 +996,12 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QList<SqliteStatement::FullObject> fullObjects;
-    QString dbName;
     for (const SqliteQueryPtr& query : queryParser->getQueries())
     {
-        fullObjects = query->getContextFullObjects();
+        QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
         for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
-            dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
+            QString dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
             if (!objectsInNamedDb.contains(dbName, Qt::CaseInsensitive))
                 continue;
 

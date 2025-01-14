@@ -107,7 +107,6 @@ QHash<QString, QVariant> ErdScene::getConfig()
         QHash<QString, QVariant> singleEntityConfig;
         singleEntityConfig[CFG_KEY_POS] = entity->pos();
         // TODO entity color
-        qDebug() << "Saving position for" << entity->getPersistedTableName();
         erdEntities[entity->getPersistedTableName()] = singleEntityConfig;
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;

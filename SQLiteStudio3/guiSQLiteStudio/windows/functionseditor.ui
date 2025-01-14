@@ -47,7 +47,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="QWidget" name="leftWidget" native="true">
          <property name="sizePolicy">
@@ -88,13 +88,19 @@
           <item>
            <widget class="QListView" name="list">
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
             </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
             <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollPerPixel</enum>
+             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
             </property>
            </widget>
           </item>
@@ -123,7 +129,7 @@
           <item>
            <widget class="QSplitter" name="splitter_2">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <widget class="QWidget" name="topWidget" native="true">
              <property name="sizePolicy">
@@ -170,7 +176,7 @@
                     <bool>true</bool>
                    </property>
                    <property name="dragDropMode">
-                    <enum>QAbstractItemView::InternalMove</enum>
+                    <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
                    </property>
                   </widget>
                  </item>
@@ -180,7 +186,7 @@
                  <item row="0" column="1">
                   <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -222,7 +228,7 @@
                  <item>
                   <widget class="QTreeView" name="databasesList">
                    <property name="editTriggers">
-                    <set>QAbstractItemView::NoEditTriggers</set>
+                    <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                    </property>
                    <attribute name="headerVisible">
                     <bool>false</bool>
@@ -303,7 +309,7 @@
               <item>
                <widget class="QPlainTextEdit" name="initCodeEdit">
                 <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::NoWrap</enum>
+                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                 </property>
                </widget>
               </item>
@@ -323,7 +329,7 @@
               <item>
                <widget class="QPlainTextEdit" name="mainCodeEdit">
                 <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::NoWrap</enum>
+                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                 </property>
                </widget>
               </item>
@@ -343,7 +349,7 @@
               <item>
                <widget class="QPlainTextEdit" name="finalCodeEdit">
                 <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::NoWrap</enum>
+                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                 </property>
                </widget>
               </item>

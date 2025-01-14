@@ -26,6 +26,11 @@ SelectResolver::~SelectResolver()
     safe_delete(schemaResolver);
 }
 
+QList<SelectResolver::Column> SelectResolver::resolveStarColumns(SqliteSelect::Core::ResultColumn* resCol)
+{
+    return resolveStarAndReturn(resCol);
+}
+
 QList<SelectResolver::Column> SelectResolver::resolveColumnsFromFirstCore()
 {
     if (!parseOriginalQuery())
@@ -318,7 +323,15 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
-    bool foundAtLeastOne = false;
+    QList<SelectResolver::Column> columns = resolveStarAndReturn(resCol);
+    currentCoreResults += columns;
+    if (columns.isEmpty())
+        errors << QObject::tr("Could not resolve data source for column: %1").arg(resCol->detokenize());
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect::Core::ResultColumn* resCol)
+{
+    QList<SelectResolver::Column> results;
     for (SelectResolver::Column column : std::as_const(currentCoreSourceColumns))
     {
         if (!resCol->table.isNull())
@@ -364,12 +377,9 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
                 column.displayName = column.column;
         }
 
-        currentCoreResults << column;
-        foundAtLeastOne = true;
+        results << column;
     }
-
-    if (!foundAtLeastOne)
-        errors << QObject::tr("Could not resolve data source for column: %1").arg(resCol->detokenize());
+    return results;
 }
 
 void SelectResolver::resolveExpr(SqliteSelect::Core::ResultColumn *resCol)
@@ -430,6 +440,7 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
         col.originalDatabase = resolveDatabase(matched.database);
         col.table = matched.table;
         col.tableAlias = matched.tableAlias;
+        col.oldTableAliases = matched.oldTableAliases;
         col.flags = matched.flags;
     }
     else if (matched.type == Column::OTHER)
@@ -944,7 +955,7 @@ int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2)
            t1.oldTableAliases.join(",").compare(t2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
 
-TYPE_OF_QHASH qHash(const SelectResolver::Table& table)
+size_t qHash(const SelectResolver::Table& table)
 {
     return qHash(table.database.toLower() + "." + table.table.toLower() + "/" + table.tableAlias.toLower() + "/" +
                  table.oldTableAliases.join(","));
@@ -970,7 +981,7 @@ int operator ==(const SelectResolver::Column &c1, const SelectResolver::Column &
            c1.oldTableAliases.join(",").compare(c2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
 
-TYPE_OF_QHASH qHash(const SelectResolver::Column &column)
+size_t qHash(const SelectResolver::Column &column)
 {
     return qHash(column.database.toLower() + "." + column.table.toLower() + "." + column.column.toLower() + "/" +
                  column.tableAlias.toLower() + "/" + column.oldTableAliases.join(","));

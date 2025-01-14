@@ -90,7 +90,7 @@ void TableForeignKeyPanel::init()
     ui->columnsScrollContents->setLayout(columnsLayout);
 
     columnSignalMapping = new QSignalMapper(this);
-    connect(columnSignalMapping, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
+    connect(columnSignalMapping, SIGNAL(mappedInt(int)), this, SLOT(updateColumnState(int)));
 
     connect(ui->namedCheckBox, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SIGNAL(updateValidation()));

@@ -57,7 +57,7 @@ class QueryExecutorReplaceViews : public QueryExecutorStep
             int operator==(const View& other) const;
         };
 
-        friend TYPE_OF_QHASH qHash(const View& view);
+        friend size_t qHash(const View& view);
 
         /**
          * @brief Provides all views existing in the database.
@@ -115,6 +115,6 @@ class QueryExecutorReplaceViews : public QueryExecutorStep
         QHash<View,SqliteCreateViewPtr> viewStatements;
 };
 
-TYPE_OF_QHASH qHash(const QueryExecutorReplaceViews::View& view);
+size_t qHash(const QueryExecutorReplaceViews::View& view);
 
 #endif // QUERYEXECUTORREPLACEVIEWS_H

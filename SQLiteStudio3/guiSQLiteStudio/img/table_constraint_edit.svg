@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg1"
+   sodipodi:docname="table_constraint_edit.svg"
+   viewBox="0 0 60 60"
+   sodipodi:version="0.32"
+   version="1.0"
+   y="0"
+   x="0"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <defs
+     id="defs15">
+    <linearGradient
+       id="linearGradient963"
+       inkscape:collect="always">
+      <stop
+         id="stop959"
+         offset="0"
+         style="stop-color:#cccccc;stop-opacity:1" />
+      <stop
+         id="stop961"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient955">
+      <stop
+         style="stop-color:#80b3ff;stop-opacity:1"
+         offset="0"
+         id="stop951" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="1"
+         id="stop953" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient963"
+       id="linearGradient949"
+       x1="53.418774"
+       y1="51.151878"
+       x2="6.8990498"
+       y2="20.345148"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient955"
+       id="linearGradient957"
+       x1="13.686729"
+       y1="16.005047"
+       x2="4.4734998"
+       y2="4.508357"
+       gradientUnits="userSpaceOnUse" />
+    <clipPath
+       id="presentation_clip_path"
+       clipPathUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="2000"
+         height="2000"
+         id="rect2" />
+    </clipPath>
+    <linearGradient
+       id="gradient1"
+       x1="1040"
+       y1="0"
+       x2="1227"
+       y2="324"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop53" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop55" />
+    </linearGradient>
+    <linearGradient
+       id="gradient2"
+       x1="614"
+       y1="-6"
+       x2="813"
+       y2="338"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop71" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop73" />
+    </linearGradient>
+    <linearGradient
+       id="gradient3"
+       x1="1180"
+       y1="-48"
+       x2="1747"
+       y2="934"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop91" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop93" />
+    </linearGradient>
+    <linearGradient
+       id="gradient4"
+       x1="446"
+       y1="551"
+       x2="736"
+       y2="1053"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop116" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop118" />
+    </linearGradient>
+    <linearGradient
+       id="gradient5"
+       x1="736"
+       y1="229"
+       x2="1049"
+       y2="772"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop134" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop136" />
+    </linearGradient>
+    <linearGradient
+       id="gradient6"
+       x1="405"
+       y1="804"
+       x2="542"
+       y2="1042"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop152" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,216,206)"
+         id="stop154" />
+    </linearGradient>
+    <linearGradient
+       id="gradient7"
+       x1="917"
+       y1="375"
+       x2="1201"
+       y2="867"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop170" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop172" />
+    </linearGradient>
+    <linearGradient
+       id="gradient8"
+       x1="1071"
+       y1="519"
+       x2="1337"
+       y2="979"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop188" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop190" />
+    </linearGradient>
+    <linearGradient
+       id="gradient9"
+       x1="1224"
+       y1="654"
+       x2="1471"
+       y2="1081"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,219,182)"
+         id="stop206" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,166,166)"
+         id="stop208" />
+    </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter1197">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood1187" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite1189" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="59.8802"
+         result="blur"
+         id="feGaussianBlur1191" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset1193" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite1195" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter993">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood983" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite985" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="47.3054"
+         result="blur"
+         id="feGaussianBlur987" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset989" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite991" />
+    </filter>
+    <clipPath
+       id="presentation_clip_path-2"
+       clipPathUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="2000"
+         height="2000"
+         id="rect2-8" />
+    </clipPath>
+    <linearGradient
+       id="gradient1-3"
+       x1="1086"
+       y1="857"
+       x2="1735"
+       y2="1982"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(119,188,101)"
+         id="stop53-7" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(18,118,34)"
+         id="stop55-8" />
+    </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter923">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood913" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite915" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="47.3054"
+         result="blur"
+         id="feGaussianBlur917" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset919" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite921" />
+    </filter>
+    <clipPath
+       id="presentation_clip_path-5"
+       clipPathUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="2000"
+         height="2000"
+         id="rect2-3" />
+    </clipPath>
+    <linearGradient
+       id="gradient1-1"
+       x1="1086"
+       y1="857"
+       x2="1735"
+       y2="1982"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,109,109)"
+         id="stop53-1" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(241,13,12)"
+         id="stop55-0" />
+    </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter984">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood974" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite976" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="55.6886"
+         result="blur"
+         id="feGaussianBlur978" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset980" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite982" />
+    </filter>
+    <clipPath
+       id="presentation_clip_path-0"
+       clipPathUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="2000"
+         height="2000"
+         id="rect2-6" />
+    </clipPath>
+    <linearGradient
+       id="gradient1-7"
+       x1="1593"
+       y1="541"
+       x2="1963"
+       y2="911"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,109,109)"
+         id="stop53-5" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(167,7,75)"
+         id="stop55-1" />
+    </linearGradient>
+    <linearGradient
+       id="gradient2-1"
+       x1="562"
+       y1="1565"
+       x2="938"
+       y2="1941"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(255,255,215)"
+         id="stop80" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(255,182,108)"
+         id="stop82" />
+    </linearGradient>
+    <linearGradient
+       id="gradient3-8"
+       x1="1428"
+       y1="704"
+       x2="1798"
+       y2="1074"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(221,221,221)"
+         id="stop119" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(128,128,128)"
+         id="stop121" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3440"
+     pagecolor="#ffffff"
+     inkscape:zoom="6.9465337"
+     inkscape:window-x="-8"
+     borderopacity="1.0"
+     inkscape:cx="54.936894"
+     inkscape:cy="14.706293"
+     inkscape:window-y="-8"
+     inkscape:window-height="1377"
+     inkscape:pageopacity="0.0"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2011-01-31T02:01:26</dc:date>
+        <dc:description>Originally uploaded by Danny Allen for OCAL 0.18 this icon is part of the flat theme</dc:description>
+        <dc:source>https://openclipart.org/detail/112327/ftdata-by-anonymous</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>flat</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>theme</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     style="fill:url(#linearGradient949);fill-opacity:1;stroke:none;stroke-width:3.619;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect896"
+     width="50.794998"
+     height="37.22332"
+     x="4.4734998"
+     y="17.712681" />
+  <rect
+     style="fill:url(#linearGradient957);fill-opacity:1;stroke:none;stroke-width:3.619;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect855"
+     width="50.794998"
+     height="13.204324"
+     x="4.4734998"
+     y="4.508357" />
+  <rect
+     id="rect863"
+     style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#7271ff;stroke-width:3.61863;stroke-linejoin:round;stroke-opacity:1"
+     rx="2.0020001"
+     height="50.427643"
+     width="50.794998"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)"
+     y="4.508357"
+     x="4.4734998" />
+  <path
+     id="path866"
+     style="fill:none;stroke:#6e70ff;stroke-width:2.5;stroke-opacity:1"
+     d="m 4.9619,42.365 h 50.306"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)" />
+  <path
+     id="path867"
+     style="fill:none;stroke:#6e70ff;stroke-width:2.5;stroke-opacity:1"
+     d="m 4.53003,17.712681 h 50.306"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)" />
+  <path
+     id="path868"
+     style="fill:none;stroke:#6e70ff;stroke-width:2.88994;stroke-opacity:1"
+     d="M 21.809425,5.1478112 V 53.77113"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)" />
+  <path
+     id="path867-3"
+     style="fill:none;stroke:#6e70ff;stroke-width:2.5;stroke-opacity:1"
+     d="M 4.3581215,30.102342 H 54.664122"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)" />
+  <path
+     id="path868-1"
+     style="fill:none;stroke:#6e70ff;stroke-width:2.88994;stroke-opacity:1"
+     d="M 38.580393,5.7752888 V 54.398607"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)" />
+  <g
+     transform="matrix(0.03084316,0,0,0.03084316,-2.8602867,1.2164043)"
+     class="SlideGroup"
+     id="g253"
+     style="filter:url(#filter1197)">
+    <g
+       id="g251">
+      <g
+         id="container-id1">
+        <g
+           id="id1"
+           class="Slide"
+           clip-path="url(#presentation_clip_path)">
+          <g
+             class="Page"
+             id="g247">
+            <g
+               class="Group"
+               id="g245">
+              <g
+                 class="Group"
+                 id="g87">
+                <g
+                   class="com.sun.star.drawing.CustomShape"
+                   id="g67">
+                  <g
+                     id="id3">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="908"
+                       y="37"
+                       width="451"
+                       height="251"
+                       id="rect51" />
+                    <g
+                       id="g62">
+                      <defs
+                         id="defs58">
+                        <linearGradient
+                           id="linearGradient1021"
+                           x1="1040"
+                           y1="0"
+                           x2="1227"
+                           y2="324"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1122" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1124" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient1)"
+                         d="M 1133,262 H 933 V 62 h 400 v 200 z"
+                         id="path60" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="M 1133,262 H 933 V 62 h 400 v 200 z"
+                       id="path64" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.PolyPolygonShape"
+                   id="g85">
+                  <g
+                     id="id4">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="473"
+                       y="36"
+                       width="481"
+                       height="261"
+                       id="rect69" />
+                    <g
+                       id="g80">
+                      <defs
+                         id="defs76">
+                        <linearGradient
+                           id="linearGradient1023"
+                           x1="614"
+                           y1="-6"
+                           x2="813"
+                           y2="338"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1135" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1137" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient2)"
+                         d="m 522,82 145,-1 35,23 43,-43 181,1 2,203 -348,6 -31,-17 -33,-48 -18,-68 4,-39 z"
+                         id="path78" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="m 522,82 145,-1 35,23 43,-43 181,1 2,203 -348,6 -31,-17 -33,-48 -18,-68 4,-39 z"
+                       id="path82" />
+                  </g>
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g105">
+                <g
+                   id="id5">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="967"
+                     y="35"
+                     width="993"
+                     height="817"
+                     id="rect89" />
+                  <g
+                     id="g100">
+                    <defs
+                       id="defs96">
+                      <linearGradient
+                         id="linearGradient1025"
+                         x1="1180"
+                         y1="-48"
+                         x2="1747"
+                         y2="934"
+                         gradientUnits="userSpaceOnUse">
+                        <stop
+                           offset="0"
+                           style="stop-color:rgb(255,219,182)"
+                           id="stop1149" />
+                        <stop
+                           offset="1"
+                           style="stop-color:rgb(255,166,166)"
+                           id="stop1151" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                       style="fill:url(#gradient3)"
+                       d="m 1178,60 h 267 l 361,48 92,50 36,56 V 573 725 H 1756 L 1655,826 H 1542 L 993,277 1098,60 Z"
+                       id="path98" />
+                  </g>
+                  <path
+                     fill="none"
+                     stroke="#ff7b59"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1178,60 h 267 l 361,48 92,50 36,56 V 573 725 H 1756 L 1655,826 H 1542 L 993,277 1098,60 Z"
+                     id="path102" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g112">
+                <g
+                   id="id6">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="975"
+                     y="56"
+                     width="140"
+                     height="226"
+                     id="rect107" />
+                  <path
+                     fill="none"
+                     stroke="#ffaa95"
+                     stroke-width="60"
+                     stroke-linejoin="round"
+                     d="m 1084,86 -79,165"
+                     id="path109" />
+                </g>
+              </g>
+              <g
+                 class="Group"
+                 id="g222">
+                <g
+                   class="com.sun.star.drawing.CustomShape"
+                   id="g130">
+                  <g
+                     id="id7">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="354"
+                       y="565"
+                       width="476"
+                       height="476"
+                       id="rect114" />
+                    <g
+                       id="g125">
+                      <defs
+                         id="defs121">
+                        <linearGradient
+                           id="linearGradient1027"
+                           x1="446"
+                           y1="551"
+                           x2="736"
+                           y2="1053"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1166" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1168" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient4)"
+                         d="M 662,873 520,1014 379,873 662,590 803,732 Z"
+                         id="path123" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="M 662,873 520,1014 379,873 662,590 803,732 Z"
+                       id="path127" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.CustomShape"
+                   id="g148">
+                  <g
+                     id="id8">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="637"
+                       y="245"
+                       width="511"
+                       height="512"
+                       id="rect132" />
+                    <g
+                       id="g143">
+                      <defs
+                         id="defs139">
+                        <linearGradient
+                           id="linearGradient1029"
+                           x1="736"
+                           y1="229"
+                           x2="1049"
+                           y2="772"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1179" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1181" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient5)"
+                         d="M 963,571 803,730 662,589 980,271 1122,412 Z"
+                         id="path141" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="M 963,571 803,730 662,589 980,271 1122,412 Z"
+                       id="path145" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.PolyPolygonShape"
+                   id="g166">
+                  <g
+                     id="id9">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="348"
+                       y="797"
+                       width="252"
+                       height="253"
+                       id="rect150" />
+                    <g
+                       id="g161">
+                      <defs
+                         id="defs157">
+                        <linearGradient
+                           id="linearGradient1031"
+                           x1="405"
+                           y1="804"
+                           x2="542"
+                           y2="1042"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1192" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,216,206)"
+                             id="stop1194" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient6)"
+                         d="m 403,994 -30,-30 6,-64 71,-71 65,-6 58,59 -6,64 -70,71 -65,6 z"
+                         id="path159" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="m 403,994 -30,-30 6,-64 71,-71 65,-6 58,59 -6,64 -70,71 -65,6 z"
+                       id="path163" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.PolyPolygonShape"
+                   id="g184">
+                  <g
+                     id="id10">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="829"
+                       y="386"
+                       width="462"
+                       height="471"
+                       id="rect168" />
+                    <g
+                       id="g179">
+                      <defs
+                         id="defs175">
+                        <linearGradient
+                           id="linearGradient1033"
+                           x1="917"
+                           y1="375"
+                           x2="1201"
+                           y2="867"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1205" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1207" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient7)"
+                         d="m 1119,412 -265,270 3,56 34,58 53,34 h 48 l 273,-274 z"
+                         id="path177" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="m 1119,412 -265,270 3,56 34,58 53,34 h 48 l 273,-274 z"
+                       id="path181" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.PolyPolygonShape"
+                   id="g202">
+                  <g
+                     id="id11">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="987"
+                       y="528"
+                       width="436"
+                       height="444"
+                       id="rect186" />
+                    <g
+                       id="g197">
+                      <defs
+                         id="defs193">
+                        <linearGradient
+                           id="linearGradient1035"
+                           x1="1071"
+                           y1="519"
+                           x2="1337"
+                           y2="979"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1218" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1220" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient8)"
+                         d="m 1260,553 -248,253 3,53 31,54 49,32 46,-1 255,-256 z"
+                         id="path195" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="m 1260,553 -248,253 3,53 31,54 49,32 46,-1 255,-256 z"
+                       id="path199" />
+                  </g>
+                </g>
+                <g
+                   class="com.sun.star.drawing.PolyPolygonShape"
+                   id="g220">
+                  <g
+                     id="id12">
+                    <rect
+                       class="BoundingBox"
+                       stroke="none"
+                       fill="none"
+                       x="1144"
+                       y="661"
+                       width="408"
+                       height="415"
+                       id="rect204" />
+                    <g
+                       id="g215">
+                      <defs
+                         id="defs211">
+                        <linearGradient
+                           id="RESERVED_FOR_INKSCAPE_DUPLICATE_DEF_000000000"
+                           x1="1224"
+                           y1="654"
+                           x2="1471"
+                           y2="1081"
+                           gradientUnits="userSpaceOnUse">
+                          <stop
+                             offset="0"
+                             style="stop-color:rgb(255,219,182)"
+                             id="stop1231" />
+                          <stop
+                             offset="1"
+                             style="stop-color:rgb(255,166,166)"
+                             id="stop1233" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                         style="fill:url(#gradient9)"
+                         d="m 1393,686 -224,229 4,50 31,51 48,32 43,1 231,-232 z"
+                         id="path213" />
+                    </g>
+                    <path
+                       fill="none"
+                       stroke="#ff7b59"
+                       stroke-width="50"
+                       stroke-linejoin="round"
+                       d="m 1393,686 -224,229 4,50 31,51 48,32 43,1 231,-232 z"
+                       id="path217" />
+                  </g>
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g229">
+                <g
+                   id="id13">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="973"
+                     y="254"
+                     width="571"
+                     height="580"
+                     id="rect224" />
+                  <path
+                     fill="none"
+                     stroke="#ffaa95"
+                     stroke-width="60"
+                     stroke-linejoin="round"
+                     d="m 1003,284 510,519"
+                     id="path226" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g236">
+                <g
+                   id="id14">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="649"
+                     y="575"
+                     width="171"
+                     height="171"
+                     id="rect231" />
+                  <path
+                     fill="none"
+                     stroke="#ffaa95"
+                     stroke-width="60"
+                     stroke-linejoin="round"
+                     d="M 679,605 789,715"
+                     id="path233" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g243">
+                <g
+                   id="id15">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="897"
+                     y="54"
+                     width="64"
+                     height="216"
+                     id="rect238" />
+                  <path
+                     fill="none"
+                     stroke="#ffaa95"
+                     stroke-width="60"
+                     stroke-linejoin="round"
+                     d="m 927,84 3,155"
+                     id="path240" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g
+     transform="matrix(0.03042493,0,0,0.03042493,-3.7174967,-2.2714672)"
+     class="SlideGroup"
+     id="g143-7"
+     style="filter:url(#filter984)">
+    <g
+       id="g141">
+      <g
+         id="container-id1-0">
+        <g
+           id="id1-1"
+           class="Slide"
+           clip-path="url(#presentation_clip_path-0)">
+          <g
+             class="Page"
+             id="g137">
+            <g
+               class="Group"
+               id="g135">
+              <g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g67-6">
+                <g
+                   id="id3-3">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="1568"
+                     y="517"
+                     width="422"
+                     height="420"
+                     id="rect51-9" />
+                  <g
+                     id="g62-5">
+                    <defs
+                       id="defs58-9">
+                      <linearGradient
+                         id="linearGradient1563"
+                         x1="1593"
+                         y1="541"
+                         x2="1963"
+                         y2="911"
+                         gradientUnits="userSpaceOnUse">
+                        <stop
+                           offset="0"
+                           style="stop-color:rgb(255,109,109)"
+                           id="stop945" />
+                        <stop
+                           offset="1"
+                           style="stop-color:rgb(167,7,75)"
+                           id="stop947" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                       style="fill:url(#gradient1-7)"
+                       d="m 1881,829 -81,81 -207,-205 164,-163 206,205 z"
+                       id="path60-7" />
+                  </g>
+                  <path
+                     fill="none"
+                     stroke="#861141"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1881,829 -81,81 -207,-205 164,-163 206,205 z"
+                     id="path64-7" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g76">
+                <g
+                   id="id4-1">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="708"
+                     y="843"
+                     width="954"
+                     height="955"
+                     id="rect69-8" />
+                  <path
+                     fill="#ffffa6"
+                     stroke="none"
+                     d="m 1287,1422 -349,349 -205,-205 697,-697 205,205 z"
+                     id="path71" />
+                  <path
+                     fill="none"
+                     stroke="#7b3d00"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1287,1422 -349,349 -205,-205 697,-697 205,205 z"
+                     id="path73" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g94">
+                <g
+                   id="id5-9">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="538"
+                     y="1540"
+                     width="427"
+                     height="427"
+                     id="rect78" />
+                  <g
+                     id="g89">
+                    <defs
+                       id="defs85">
+                      <linearGradient
+                         id="linearGradient1565"
+                         x1="562"
+                         y1="1565"
+                         x2="938"
+                         y2="1941"
+                         gradientUnits="userSpaceOnUse">
+                        <stop
+                           offset="0"
+                           style="stop-color:rgb(255,255,215)"
+                           id="stop963" />
+                        <stop
+                           offset="1"
+                           style="stop-color:rgb(255,182,108)"
+                           id="stop965" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                       style="fill:url(#gradient2-1)"
+                       d="m 734,1565 170,171 34,34 -375,171 z"
+                       id="path87" />
+                  </g>
+                  <path
+                     fill="none"
+                     stroke="#7b3d00"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 734,1565 170,171 34,34 -375,171 z"
+                     id="path91" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.PolyPolygonShape"
+                 id="g101">
+                <g
+                   id="id6-1">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="510"
+                     y="1825"
+                     width="171"
+                     height="171"
+                     id="rect96" />
+                  <path
+                     fill="#666666"
+                     stroke="none"
+                     d="m 587,1826 77,77 16,15 -170,77 z"
+                     id="path98-9" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g108">
+                <g
+                   id="id7-2">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="856"
+                     y="955"
+                     width="797"
+                     height="798"
+                     id="rect103" />
+                  <path
+                     fill="none"
+                     stroke="#ff972f"
+                     stroke-width="100"
+                     stroke-linejoin="round"
+                     d="m 906,1702 696,-696"
+                     id="path105" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.LineShape"
+                 id="g115">
+                <g
+                   id="id8-4">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="801"
+                     y="901"
+                     width="798"
+                     height="797"
+                     id="rect110" />
+                  <path
+                     fill="none"
+                     stroke="#ffb66c"
+                     stroke-width="100"
+                     stroke-linejoin="round"
+                     d="M 852,1647 1547,951"
+                     id="path112" />
+                </g>
+              </g>
+              <g
+                 class="com.sun.star.drawing.CustomShape"
+                 id="g133">
+                <g
+                   id="id9-7">
+                  <rect
+                     class="BoundingBox"
+                     stroke="none"
+                     fill="none"
+                     x="1405"
+                     y="679"
+                     width="419"
+                     height="421"
+                     id="rect117" />
+                  <g
+                     id="g128">
+                    <defs
+                       id="defs124">
+                      <linearGradient
+                         id="linearGradient1607"
+                         x1="1428"
+                         y1="704"
+                         x2="1798"
+                         y2="1074"
+                         gradientUnits="userSpaceOnUse">
+                        <stop
+                           offset="0"
+                           style="stop-color:rgb(221,221,221)"
+                           id="stop988" />
+                        <stop
+                           offset="1"
+                           style="stop-color:rgb(128,128,128)"
+                           id="stop990" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                       style="fill:url(#gradient3-8)"
+                       d="m 1716,992 -82,82 -204,-206 163,-164 204,206 z"
+                       id="path126" />
+                  </g>
+                  <path
+                     fill="none"
+                     stroke="#333333"
+                     stroke-width="50"
+                     stroke-linejoin="round"
+                     d="m 1716,992 -82,82 -204,-206 163,-164 204,206 z"
+                     id="path130" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

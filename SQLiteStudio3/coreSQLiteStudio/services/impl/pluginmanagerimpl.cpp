@@ -336,13 +336,7 @@ bool PluginManagerImpl::initPlugin(Plugin* plugin)
 
 bool PluginManagerImpl::shouldAutoLoad(const QString& pluginName)
 {
-    QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",",
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-                                                                           Qt::SkipEmptyParts
-#else
-                                                                           QString::SkipEmptyParts
-#endif
-                                                                           );
+    QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", Qt::SkipEmptyParts);
     QStringList pair;
     for (const QString& loadedPlugin : loadedPlugins)
     {

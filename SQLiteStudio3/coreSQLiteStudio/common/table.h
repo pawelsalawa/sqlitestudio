@@ -66,8 +66,8 @@ class API_EXPORT AliasedTable : public Table
         QString tableAlias;
 };
 
-API_EXPORT TYPE_OF_QHASH qHash(Table table);
-API_EXPORT TYPE_OF_QHASH qHash(AliasedTable table);
+API_EXPORT size_t qHash(Table table);
+API_EXPORT size_t qHash(AliasedTable table);
 
 
 #endif // TABLE_H

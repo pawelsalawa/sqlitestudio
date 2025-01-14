@@ -88,11 +88,7 @@ void MultiEditorImage::notifyAboutUnload()
 void MultiEditorImage::scale(double factor)
 {
     currentZoom *= factor;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     imgLabel->resize(currentZoom * imgLabel->pixmap(Qt::ReturnByValue).size());
-#else
-    imgLabel->resize(currentZoom * imgLabel->pixmap()->size());
-#endif
     zoomInAct->setEnabled(currentZoom < 10.0);
     zoomOutAct->setEnabled(currentZoom > 0.1);
 }
@@ -139,11 +135,7 @@ void MultiEditorImage::saveFile()
     setFileDialogInitPathByFile(fileName);
 
     QPixmap thePixmap =
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
         imgLabel->pixmap(Qt::ReturnByValue);
-#else
-        *(imgLabel->pixmap());
-#endif
 
     imgLabel->resize(currentZoom * thePixmap.size());
     if (!format.isEmpty() && !fileName.endsWith(format, Qt::CaseInsensitive) && !thePixmap.isNull())

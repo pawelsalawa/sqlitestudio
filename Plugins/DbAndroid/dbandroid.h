@@ -43,6 +43,7 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
         void initAdb();
         QString askForAdbPath();
         void showJarMessage();
+        void createJarAction();
 
         AdbManager* adbManager = nullptr;
         DbAndroidConnectionFactory* connectionFactory = nullptr;

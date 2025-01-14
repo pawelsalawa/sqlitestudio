@@ -12,7 +12,6 @@
 #include "services/dbmanager.h"
 #include "querygenerator.h"
 #include "parser/lexer.h"
-#include "common/compatibility.h"
 #include "mainwindow.h"
 #include "iconmanager.h"
 #include <QHeaderView>
@@ -1008,7 +1007,7 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
         if (!row)
             break;
 
-        rowList << loadRow(row, results);
+        rowList << loadRow(row);
 
         if ((rowIdx % 50) == 0)
         {
@@ -1034,48 +1033,50 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
     return true;
 }
 
-QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row, SqlQueryPtr results)
+QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
 {
-    QStringList columnNames = results->getColumnNames();
     BiStrHash typeColumnToResColumn = queryExecutor->getTypeColumns();
 
     QList<QStandardItem*> itemList;
-    SqlQueryItem* item = nullptr;
-    RowId rowId;
     int colIdx = 0;
-    for (const QVariant& value : row->valueList().mid(0, resultColumnCount))
+    for (SqlQueryModelColumnPtr& column : columns)
     {
-        item = new SqlQueryItem();
-        rowId = getRowIdValue(row, colIdx);
-        updateItem(item, value, colIdx, rowId, row, columnNames, typeColumnToResColumn);
+        SqlQueryItem* item = new SqlQueryItem();
+        RowId rowId = getRowIdValue(row, column);
+        QVariant value = !column->queryExecutorAlias.isNull() ?
+                    row->value(column->queryExecutorAlias) : // smart execution results
+                    row->value(colIdx); // simple execution results
+
+        updateItem(item, value, column, rowId, row, typeColumnToResColumn);
         itemList << item;
         colIdx++;
     }
-
     return itemList;
 }
 
-RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, int columnIdx)
+RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, const SqlQueryModelColumnPtr& column)
 {
     RowId rowId;
-    AliasedTable table = tablesForColumns[columnIdx];
+    if (column->editionForbiddenReason.size() > 0)
+        return rowId;
+
+    AliasedTable table = AliasedTable(column->database, column->table, column->tableAlias);
     QHash<QString,QString> rowIdColumns = tableToRowIdColumn[table];
     QHashIterator<QString,QString> it(rowIdColumns);
-    QString col;
     while (it.hasNext())
     {
         // Check if the result row contains QueryExecutor's column alias for this RowId column
-        col = it.next().key();
+        QString col = it.next().key();
         if (row->contains(col))
         {
             // It does, do let's put the actual column name into the RowId and assign the RowId value to it.
             // Using the actucal column name as a key will let create a proper query for updates, etc, later on.
             rowId[it.value()] = row->value(col);
         }
-        else if (columnEditionStatus[columnIdx])
+        else
         {
             qCritical() << "No row ID column for cell that is editable. Asked for row ID column named:" << col
-                        << "in table" << tablesForColumns[columnIdx].getTable();
+                        << "in table" << column->table;
             return RowId();
         }
     }
@@ -1083,19 +1084,13 @@ RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, int columnIdx)
 }
 
 
-void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, SqlResultsRowPtr row,
-                               const QStringList& columnNames, const BiStrHash& typeColumnToResColumn)
+void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, const SqlQueryModelColumnPtr& column, const RowId& rowId,
+                               SqlResultsRowPtr row, const BiStrHash& typeColumnToResColumn)
 {
-    if (columnIndex >= columnNames.size())
+    QString colName = column->queryExecutorAlias;
+    if (colName.isNull() || typeColumnToResColumn.isEmpty() || !typeColumnToResColumn.containsRight(colName))
     {
-        updateItem(item, value, columnIndex, rowId);
-        return;
-    }
-
-    QString colName = columnNames[columnIndex];
-    if (typeColumnToResColumn.isEmpty() || !typeColumnToResColumn.containsRight(colName))
-    {
-        updateItem(item, value, columnIndex, rowId);
+        updateItem(item, value, column, rowId);
         return;
     }
 
@@ -1107,29 +1102,27 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     {
         case SqliteDataType::INTEGER:
         case SqliteDataType::REAL:
-            updateItem(item, value, columnIndex, rowId, Qt::AlignRight);
+            updateItem(item, value, column, rowId, Qt::AlignRight);
             break;
         case SqliteDataType::_NULL:
         case SqliteDataType::TEXT:
         case SqliteDataType::BLOB:
-            updateItem(item, value, columnIndex, rowId, Qt::AlignLeft);
+            updateItem(item, value, column, rowId, Qt::AlignLeft);
             break;
         case SqliteDataType::UNKNOWN:
-            updateItem(item, value, columnIndex, rowId);
+            updateItem(item, value, column, rowId);
             break;
     }
 }
 
-void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId)
+void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, const SqlQueryModelColumnPtr& column, const RowId& rowId)
 {
-    SqlQueryModelColumnPtr column = columns[columnIndex];
     Qt::Alignment alignment = findValueAlignment(value, column.data());
-    updateItem(item, value, columnIndex, rowId, alignment);
+    updateItem(item, value, column, rowId, alignment);
 }
 
-void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId, Qt::Alignment alignment)
+void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, const SqlQueryModelColumnPtr& column, const RowId& rowId, Qt::Alignment alignment)
 {
-    SqlQueryModelColumnPtr column = columns[columnIndex];
     item->setJustInsertedWithOutRowId(false);
     item->setValue(value, true);
     item->setColumn(column.data());
@@ -1271,11 +1264,6 @@ bool SqlQueryModel::readColumns()
     // Reading column details (datatype, constraints)
     readColumnDetails();
 
-    // Preparing other usful information about columns
-    resultColumnCount = queryExecutor->getResultColumns().size();
-    tablesForColumns = getTablesForColumns();
-    columnEditionStatus = getColumnEditionEnabledList();
-
     // Rows limit to avoid out of memory problems
     columnRatioBasedRowLimit = -1;
     int rowsPerPage = getRowsPerPage();
@@ -1412,32 +1400,6 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
 
     return results;
 
-}
-
-QList<AliasedTable> SqlQueryModel::getTablesForColumns()
-{
-    QList<AliasedTable> columnTables;
-    AliasedTable table;
-    for (SqlQueryModelColumnPtr column : columns)
-    {
-        if (column->editionForbiddenReason.size() > 0)
-        {
-            columnTables << AliasedTable();
-            continue;
-        }
-        table = AliasedTable(column->database, column->table, column->tableAlias);
-        columnTables << table;
-    }
-    return columnTables;
-}
-
-QList<bool> SqlQueryModel::getColumnEditionEnabledList()
-{
-    QList<bool> columnEditionEnabled;
-    for (SqlQueryModelColumnPtr column : columns)
-        columnEditionEnabled << (column->editionForbiddenReason.size() == 0);
-
-    return columnEditionEnabled;
 }
 
 void SqlQueryModel::updateColumnsHeader()
@@ -1805,52 +1767,52 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     view->setFocus();
 }
 
-Icon& SqlQueryModel::getIconForIdx(int idx) const
+Icon& SqlQueryModel::getIconForIdx(int idx, bool desc) const
 {
     switch (idx)
     {
         case 0:
-            return ICONS.SORT_COUNT_01;
+            return desc ? ICONS.SORT_COUNT_01_ASC : ICONS.SORT_COUNT_01_DESC;
         case 1:
-            return ICONS.SORT_COUNT_02;
+            return desc ? ICONS.SORT_COUNT_02_ASC : ICONS.SORT_COUNT_02_DESC;
         case 2:
-            return ICONS.SORT_COUNT_03;
+            return desc ? ICONS.SORT_COUNT_03_ASC : ICONS.SORT_COUNT_03_DESC;
         case 3:
-            return ICONS.SORT_COUNT_04;
+            return desc ? ICONS.SORT_COUNT_04_ASC : ICONS.SORT_COUNT_04_DESC;
         case 4:
-            return ICONS.SORT_COUNT_05;
+            return desc ? ICONS.SORT_COUNT_05_ASC : ICONS.SORT_COUNT_05_DESC;
         case 5:
-            return ICONS.SORT_COUNT_06;
+            return desc ? ICONS.SORT_COUNT_06_ASC : ICONS.SORT_COUNT_06_DESC;
         case 6:
-            return ICONS.SORT_COUNT_07;
+            return desc ? ICONS.SORT_COUNT_07_ASC : ICONS.SORT_COUNT_07_DESC;
         case 7:
-            return ICONS.SORT_COUNT_08;
+            return desc ? ICONS.SORT_COUNT_08_ASC : ICONS.SORT_COUNT_08_DESC;
         case 8:
-            return ICONS.SORT_COUNT_09;
+            return desc ? ICONS.SORT_COUNT_09_ASC : ICONS.SORT_COUNT_09_DESC;
         case 9:
-            return ICONS.SORT_COUNT_10;
+            return desc ? ICONS.SORT_COUNT_10_ASC : ICONS.SORT_COUNT_10_DESC;
         case 10:
-            return ICONS.SORT_COUNT_11;
+            return desc ? ICONS.SORT_COUNT_11_ASC : ICONS.SORT_COUNT_11_DESC;
         case 11:
-            return ICONS.SORT_COUNT_12;
+            return desc ? ICONS.SORT_COUNT_12_ASC : ICONS.SORT_COUNT_12_DESC;
         case 12:
-            return ICONS.SORT_COUNT_13;
+            return desc ? ICONS.SORT_COUNT_13_ASC : ICONS.SORT_COUNT_13_DESC;
         case 13:
-            return ICONS.SORT_COUNT_14;
+            return desc ? ICONS.SORT_COUNT_14_ASC : ICONS.SORT_COUNT_14_DESC;
         case 14:
-            return ICONS.SORT_COUNT_15;
+            return desc ? ICONS.SORT_COUNT_15_ASC : ICONS.SORT_COUNT_15_DESC;
         case 15:
-            return ICONS.SORT_COUNT_16;
+            return desc ? ICONS.SORT_COUNT_16_ASC : ICONS.SORT_COUNT_16_DESC;
         case 16:
-            return ICONS.SORT_COUNT_17;
+            return desc ? ICONS.SORT_COUNT_17_ASC : ICONS.SORT_COUNT_17_DESC;
         case 17:
-            return ICONS.SORT_COUNT_18;
+            return desc ? ICONS.SORT_COUNT_18_ASC : ICONS.SORT_COUNT_18_DESC;
         case 18:
-            return ICONS.SORT_COUNT_19;
+            return desc ? ICONS.SORT_COUNT_19_ASC : ICONS.SORT_COUNT_19_DESC;
         case 19:
-            return ICONS.SORT_COUNT_20;
+            return desc ? ICONS.SORT_COUNT_20_ASC : ICONS.SORT_COUNT_20_DESC;
     }
-    return ICONS.SORT_COUNT_20_PLUS;
+    return desc ? ICONS.SORT_COUNT_20_PLUS_ASC : ICONS.SORT_COUNT_20_PLUS_DESC;
 }
 
 void SqlQueryModel::detachDatabases()
@@ -1932,7 +1894,7 @@ void SqlQueryModel::insertCustomRow(const QList<QVariant> &values, int insertion
     for (const QVariant& value : values)
     {
         cellItem = new SqlQueryItem();
-        updateItem(cellItem, value, colIdx++, RowId());
+        updateItem(cellItem, value, columns[colIdx++], RowId());
         row << cellItem;
     }
     insertRow(insertionIndex, row);
@@ -2168,7 +2130,7 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
             if (sort.column == section)
             {
                 bool desc = sort.order == QueryExecutor::Sort::DESC;
-                return *(getIconForIdx(idx).with(desc ? Icon::SORT_DESC : Icon::SORT_ASC));
+                return *(getIconForIdx(idx, desc).toQIconPtr());
             }
             idx++;
         }

@@ -1,7 +1,6 @@
 #include "selectabledbobjmodel.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtreemodel.h"
-#include "common/compatibility.h"
 #include <QDebug>
 #include <QTreeView>
 

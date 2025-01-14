@@ -8,16 +8,16 @@
         <file>plugins/populatescript.ui</file>
     </qresource>
     <qresource prefix="/images">
-        <file>plugins/scriptingsql.png</file>
-        <file>plugins/scriptingqt.png</file>
+        <file>plugins/scriptingqt.svg</file>
+        <file>plugins/scriptingsql.svg</file>
     </qresource>
     <qresource prefix="/docs">
-        <file>licenses/fugue_icons.txt</file>
         <file>licenses/sqlitestudio_license.txt</file>
         <file>licenses/lgpl.txt</file>
         <file>licenses/diff_match.txt</file>
         <file>licenses/gpl.txt</file>
         <file>licenses/mit.txt</file>
         <file>licenses/icu.txt</file>
+        <file>licenses/icons.txt</file>
     </qresource>
 </RCC>

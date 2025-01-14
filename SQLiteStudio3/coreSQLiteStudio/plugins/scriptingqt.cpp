@@ -214,7 +214,7 @@ QString ScriptingQt::getErrorMessage(ScriptingPlugin::Context* context) const
 
 QString ScriptingQt::getIconPath() const
 {
-    return ":/images/plugins/scriptingqt.png";
+    return ":/images/plugins/scriptingqt.svg";
 }
 
 bool ScriptingQt::init()
@@ -232,11 +232,7 @@ void ScriptingQt::deinit()
     QMutexLocker locker(managedMainContextsMutex);
     for (ContextQt*& ctx : managedMainContexts)
     {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         ctx->engine->setInterrupted(true);
-#else
-        // FIXME No way to cleanly interrupt QJSEngine before Qt 5.14
-#endif
         delete ctx;
     }
 

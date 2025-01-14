@@ -8,7 +8,6 @@
 #include "common/unused.h"
 #include "cli_config.h"
 #include "cliutils.h"
-#include "common/compatibility.h"
 #include <QList>
 #include <QDebug>
 

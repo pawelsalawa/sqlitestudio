@@ -14,7 +14,7 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     ui->structureToolBar->removeAction(separatorAfterAction[REFRESH_STRUCTURE]);
 
     QString commitText = tr("Apply changes to diagram entity", "ERD editor");
-    QString cancelText = tr("Cancel changes", "ERD editor");
+    QString cancelText = tr("Abort changes", "ERD editor");
     actionMap[COMMIT_STRUCTURE]->setText(commitText);
     actionMap[COMMIT_STRUCTURE]->setToolTip(commitText);
     actionMap[ROLLBACK_STRUCTURE]->setText(cancelText);

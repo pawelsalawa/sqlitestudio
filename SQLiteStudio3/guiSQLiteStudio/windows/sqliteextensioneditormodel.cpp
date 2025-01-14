@@ -206,13 +206,7 @@ QVariant SqliteExtensionEditorModel::data(const QModelIndex& index, int role) co
         return getName(index.row());
 
     if (role == Qt::DecorationRole)
-    {
-        QIcon icon = ICONS.EXTENSION;
-        if (!isValid(index.row()))
-            icon = Icon::merge(icon, Icon::ERROR);
-
-        return icon;
-    }
+        return isValid(index.row()) ? ICONS.EXTENSION : ICONS.EXTENSION_ERROR;
 
     return QVariant();
 }

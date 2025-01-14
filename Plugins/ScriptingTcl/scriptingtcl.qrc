@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/scriptingtcl">
-        <file>scriptingtcl.png</file>
+        <file>scriptingtcl.svg</file>
     </qresource>
 </RCC>

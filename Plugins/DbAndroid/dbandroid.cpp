@@ -104,6 +104,7 @@ bool DbAndroid::init()
     }
     else
         runInThread([=, this]{ initAdb(); });
+
     return true;
 }
 
@@ -185,6 +186,13 @@ void DbAndroid::showJarMessage()
     }
 }
 
+void DbAndroid::createJarAction()
+{
+    QIcon* i = ICONMANAGER->getIcon("android");
+    jarAction = MAINWINDOW->getToolsMenu()->addAction(*(i), tr("Get Android connector JAR file"));
+    connect(jarAction, SIGNAL(triggered()), this, SLOT(getJar()));
+}
+
 void DbAndroid::handleInvalidAdb()
 {
     notifyError(tr("Could not find Android Debug Bridge application. <a href=\"%1\">Click here</a> to point out the location of the ADB application, "
@@ -249,9 +257,7 @@ void DbAndroid::createJarAction(const QString& pluginName)
     if (pluginName != "" && pluginName != getName())
         return;
 
-    QIcon* i = ICONMANAGER->getIcon("android");
-    jarAction = MAINWINDOW->getToolsMenu()->addAction(*(i), tr("Get Android connector JAR file"));
-    connect(jarAction, SIGNAL(triggered()), this, SLOT(getJar()));
+    createJarAction();
 }
 
 AdbManager* DbAndroid::getAdbManager() const

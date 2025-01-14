@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--part of the rodentia icon theme by sixsixfive released under CC0 (https://creativecommons.org/publicdomain/zero/1.0/) on openclipart-->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="not_null_add.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview22"
+     showgrid="false"
+     inkscape:zoom="7.4246212"
+     inkscape:cx="6.4011892"
+     inkscape:cy="19.427575"
+     inkscape:current-layer="svg20" />
+  <defs
+     id="0">
+    <linearGradient
+       id="6">
+      <stop
+         id="C"
+         stop-color="#fff" />
+      <stop
+         id="D"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <linearGradient
+       id="7">
+      <stop
+         id="E"
+         stop-color="#fff"
+         stop-opacity="0.8" />
+      <stop
+         id="F"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <linearGradient
+       id="8">
+      <stop
+         id="G"
+         stop-color="#2e3436"
+         stop-opacity="0.5" />
+      <stop
+         id="H"
+         offset="1"
+         stop-color="#2e3436"
+         stop-opacity="0.015" />
+    </linearGradient>
+    <radialGradient
+       cx="24.431"
+       cy="52.28"
+       r="21.578"
+       id="9"
+       xlink:href="#8"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.2975207,0,36.725592)" />
+    <linearGradient
+       y1="4.076"
+       x2="0"
+       y2="36.737"
+       id="A"
+       xlink:href="#7"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="1.586"
+       y1="-16.371"
+       x2="24.733"
+       y2="27.934"
+       id="B"
+       xlink:href="#6"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter993">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood983" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite985" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="47.3054"
+         result="blur"
+         id="feGaussianBlur987" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset989" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite991" />
+    </filter>
+    <clipPath
+       id="presentation_clip_path"
+       clipPathUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="2000"
+         height="2000"
+         id="rect2" />
+    </clipPath>
+    <linearGradient
+       id="gradient1"
+       x1="1086"
+       y1="857"
+       x2="1735"
+       y2="1982"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         style="stop-color:rgb(119,188,101)"
+         id="stop53" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(18,118,34)"
+         id="stop55" />
+    </linearGradient>
+  </defs>
+  <path
+     d="m -12.902802,20.406656 a 14.923724,17.48874 0 1 1 -29.847449,0 14.923725,17.48874 0 1 1 29.847449,0 z"
+     transform="matrix(1.2859056,0,0,1.0973061,59.782286,1.6076516)"
+     id="2"
+     fill="#7c0000" />
+  <path
+     d="m 24.03125,6.03125 c -9.685009,0 -17.7615698,7.939886 -17.7615711,17.968387 0,10.028501 8.0765631,17.96839 17.7615711,17.968388 9.685009,0 17.721387,-7.937253 17.721387,-17.968388 0,-10.031134 -8.036378,-17.968387 -17.721387,-17.968387 z"
+     id="3"
+     fill="#cc0000"
+     style="stroke-width:1.18787" />
+  <path
+     d="m -27.8125,4.53125 c -7.209936,0 -13.312499,6.965945 -13.3125,15.875 0,8.909055 6.102566,15.875002 13.3125,15.875 7.210042,0 13.28125,-6.96234 13.28125,-15.875 0,-8.91266 -6.071208,-15.875 -13.28125,-15.875 z"
+     transform="matrix(1.2859056,0,0,1.0973061,59.782286,1.6076516)"
+     id="4"
+     opacity="0.8"
+     fill="none"
+     stroke="url(#A)"
+     stroke-width="0.842" />
+  <path
+     d="M 24.03125,6.03125 C 14.346242,6.0312498 6.2500013,13.971499 6.25,24 c 0,0.0106 -1.8e-5,0.02066 0,0.03125 11.069064,-4.32648 22.427835,-6.570935 33.40625,-8.5 -3.000395,-5.6852283 -8.908826,-9.5 -15.625,-9.5 z"
+     id="5"
+     opacity="0.6"
+     fill="url(#B)" />
+  <g
+     id="g859"
+     style="opacity:0.92628205">
+    <ellipse
+       ry="9.4276609"
+       rx="9.6190805"
+       cy="24.315729"
+       cx="24.103088"
+       id="path853"
+       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path855"
+       d="M 15.521382,34.768044 32.96594,14.813478 v 0"
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     transform="matrix(0.02291212,0,0,0.02291212,2.1978815,2.029544)"
+     class="SlideGroup"
+     id="g82"
+     style="filter:url(#filter993)">
+    <g
+       id="g80">
+      <g
+         id="container-id1">
+        <g
+           id="id1"
+           class="Slide"
+           clip-path="url(#presentation_clip_path)">
+          <g
+             class="Page"
+             id="g76">
+            <g
+               class="com.sun.star.drawing.CustomShape"
+               id="g67">
+              <g
+                 id="id3">
+                <rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="910"
+                   y="919"
+                   width="1003"
+                   height="1003"
+                   id="rect51" />
+                <g
+                   id="g62">
+                  <defs
+                     id="defs58">
+                    <linearGradient
+                       id="RESERVED_FOR_INKSCAPE_DUPLICATE_DEF_000000000"
+                       x1="1086"
+                       y1="857"
+                       x2="1735"
+                       y2="1982"
+                       gradientUnits="userSpaceOnUse">
+                      <stop
+                         offset="0"
+                         style="stop-color:rgb(119,188,101)"
+                         id="stop905" />
+                      <stop
+                         offset="1"
+                         style="stop-color:rgb(18,118,34)"
+                         id="stop907" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                     style="fill:url(#gradient1)"
+                     d="m 1886,1420 -1,31 -3,31 -5,30 -7,31 -9,29 -11,29 -13,29 -15,27 -16,27 -18,25 -20,24 -21,23 -23,21 -24,20 -25,18 -27,16 -27,15 -29,13 -29,11 -29,9 -31,7 -30,5 -31,3 -31,1 -32,-1 -31,-3 -30,-5 -31,-7 -29,-9 -29,-11 -29,-13 -27,-15 -27,-16 -25,-18 -24,-20 -23,-21 -21,-23 -20,-24 -18,-25 -16,-27 -15,-27 -13,-29 -11,-29 -9,-29 -7,-31 -5,-30 -3,-31 -1,-31 1,-32 3,-31 5,-30 7,-31 9,-29 11,-29 13,-29 15,-27 16,-27 18,-25 20,-24 21,-23 23,-21 24,-20 25,-18 27,-16 27,-15 29,-13 29,-11 29,-9 31,-7 30,-5 31,-3 31,-1 32,1 31,3 30,5 31,7 29,9 29,11 29,13 27,15 27,16 25,18 24,20 23,21 21,23 20,24 18,25 16,27 15,27 13,29 11,29 9,29 7,31 5,30 3,31 1,31 z"
+                     id="path60" />
+                </g>
+                <path
+                   fill="none"
+                   stroke="#224b12"
+                   stroke-width="50"
+                   stroke-linejoin="round"
+                   d="m 1886,1420 c 0,83 -22,165 -64,237 -41,73 -101,133 -174,174 -72,42 -154,64 -237,64 -84,0 -166,-22 -238,-64 -73,-41 -133,-101 -174,-174 -42,-72 -64,-154 -64,-237 0,-84 22,-166 64,-238 41,-73 101,-133 174,-174 72,-42 154,-64 237,-64 84,0 166,22 238,64 73,41 133,101 174,174 42,72 64,154 64,237 z"
+                   id="path64" />
+              </g>
+            </g>
+            <g
+               class="com.sun.star.drawing.CustomShape"
+               id="g74">
+              <g
+                 id="id4">
+                <rect
+                   class="BoundingBox"
+                   stroke="none"
+                   fill="none"
+                   x="1082"
+                   y="1093"
+                   width="652"
+                   height="653"
+                   id="rect69" />
+                <path
+                   fill="#eeeeee"
+                   stroke="none"
+                   d="m 1336,1094 h 142 v 254 h 255 v 142 h -255 v 255 h -142 v -255 h -254 v -142 h 254 z"
+                   id="path71" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

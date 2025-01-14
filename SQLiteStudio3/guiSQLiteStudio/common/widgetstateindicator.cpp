@@ -84,15 +84,9 @@ void WidgetStateIndicator::initPositionMode()
 
 void WidgetStateIndicator::finalInit()
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     QPixmap pixmap = label->pixmap(Qt::ReturnByValue);
     label->setFixedSize(pixmap.size());
     labelParent->setFixedSize(pixmap.size());
-#else
-    const QPixmap* pixmap = label->pixmap();
-    label->setFixedSize(pixmap->size());
-    labelParent->setFixedSize(pixmap->size());
-#endif
     widgetVisible = widget->isVisible();
     labelParent->setVisible(false);
 }
@@ -223,19 +217,19 @@ void WidgetStateIndicator::updateMode()
     switch (mode)
     {
         case Mode::ERROR:
-            label->setPixmap(ICONS.INDICATOR_ERROR);
+            label->setPixmap(ICONS.INDICATOR_ERROR.toQPixmap(12));
             glowEffect->setColor(Qt::red);
             break;
         case Mode::WARNING:
-            label->setPixmap(ICONS.INDICATOR_WARN);
+            label->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
             glowEffect->setColor(Qt::darkYellow);
             break;
         case Mode::INFO:
-            label->setPixmap(ICONS.INDICATOR_INFO);
+            label->setPixmap(ICONS.INDICATOR_INFO.toQPixmap(12));
             glowEffect->setColor(Qt::blue);
             break;
         case Mode::HINT:
-            label->setPixmap(ICONS.INDICATOR_HINT);
+            label->setPixmap(ICONS.INDICATOR_HINT.toQPixmap(12));
             glowEffect->setColor(Qt::darkCyan);
             break;
     }
@@ -385,11 +379,7 @@ bool WidgetStateIndicator::eventFilterFromIndicatorLabel(QEvent* ev)
         {
             highlightingEffect->setEnabled(true);
             QEnterEvent* e = dynamic_cast<QEnterEvent*>(ev);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-            QToolTip::showText(e->globalPos(), message);
-#else
             QToolTip::showText(e->globalPosition().toPoint(), message);
-#endif
             break;
         }
         case QEvent::Leave:

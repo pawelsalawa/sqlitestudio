@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QWidget" name="mainWidget" native="true">
      <property name="contextMenuPolicy">
-      <enum>Qt::PreventContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <property name="leftMargin">
@@ -35,7 +35,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="QWidget" name="categoriesWidget" native="true">
          <property name="sizePolicy">
@@ -78,8 +78,14 @@
               <height>0</height>
              </size>
             </property>
+            <property name="iconSize">
+             <size>
+              <width>18</width>
+              <height>18</height>
+             </size>
+            </property>
             <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollPerPixel</enum>
+             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
             </property>
             <attribute name="headerVisible">
              <bool>false</bool>
@@ -98,7 +104,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/config_general.png</normaloff>:/icons/img/config_general.png</iconset>
+               <normaloff>:/icons/img/config_general.svg</normaloff>:/icons/img/config_general.svg</iconset>
              </property>
             </item>
             <item>
@@ -110,7 +116,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/keyboard.png</normaloff>:/icons/img/keyboard.png</iconset>
+               <normaloff>:/icons/img/config_keys.svg</normaloff>:/icons/img/config_keys.svg</iconset>
              </property>
             </item>
             <item>
@@ -122,7 +128,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/config_look_and_feel.png</normaloff>:/icons/img/config_look_and_feel.png</iconset>
+               <normaloff>:/icons/img/config_look_and_feel.svg</normaloff>:/icons/img/config_look_and_feel.svg</iconset>
              </property>
              <item>
               <property name="text">
@@ -133,7 +139,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_style.png</normaloff>:/icons/img/config_style.png</iconset>
+                <normaloff>:/icons/img/config_style.svg</normaloff>:/icons/img/config_style.svg</iconset>
               </property>
              </item>
              <item>
@@ -145,7 +151,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_font.png</normaloff>:/icons/img/config_font.png</iconset>
+                <normaloff>:/icons/img/config_font.svg</normaloff>:/icons/img/config_font.svg</iconset>
               </property>
              </item>
              <item>
@@ -157,7 +163,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_colors.png</normaloff>:/icons/img/config_colors.png</iconset>
+                <normaloff>:/icons/img/config_colors.svg</normaloff>:/icons/img/config_colors.svg</iconset>
               </property>
              </item>
             </item>
@@ -170,7 +176,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/database_online.png</normaloff>:/icons/img/database_online.png</iconset>
+               <normaloff>:/icons/img/config_dblist.svg</normaloff>:/icons/img/config_dblist.svg</iconset>
              </property>
             </item>
             <item>
@@ -182,7 +188,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/code_assistant.png</normaloff>:/icons/img/code_assistant.png</iconset>
+               <normaloff>:/icons/img/config_code_assistant.svg</normaloff>:/icons/img/config_code_assistant.svg</iconset>
              </property>
             </item>
             <item>
@@ -194,7 +200,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/table.png</normaloff>:/icons/img/table.png</iconset>
+               <normaloff>:/icons/img/table.svg</normaloff>:/icons/img/table.svg</iconset>
              </property>
              <item>
               <property name="text">
@@ -205,7 +211,7 @@
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
-                <normaloff>:/icons/img/config_data_editors.png</normaloff>:/icons/img/config_data_editors.png</iconset>
+                <normaloff>:/icons/img/config_data_editors.svg</normaloff>:/icons/img/config_data_editors.svg</iconset>
               </property>
              </item>
             </item>
@@ -218,7 +224,7 @@
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/plugin.png</normaloff>:/icons/img/plugin.png</iconset>
+               <normaloff>:/icons/img/plugin.svg</normaloff>:/icons/img/plugin.svg</iconset>
              </property>
              <item>
               <property name="text">
@@ -249,7 +255,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -403,7 +409,7 @@
            <item>
             <spacer name="verticalSpacer_4">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -749,7 +755,7 @@
                <item>
                 <spacer name="verticalSpacer_6">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -770,7 +776,7 @@
            <item>
             <widget class="QSplitter" name="splitter_2">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <widget class="QGroupBox" name="dataEditorsTypesGroup">
               <property name="sizePolicy">
@@ -1085,7 +1091,7 @@
            <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1108,7 +1114,7 @@
            <item row="2" column="0" colspan="3">
             <spacer name="codeColorsSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1445,10 +1451,10 @@
            <item row="1" column="0" colspan="3">
             <widget class="QFrame" name="frame">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
+              <enum>QFrame::Shadow::Raised</enum>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="spacing">
@@ -1466,7 +1472,7 @@
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item alignment="Qt::AlignRight">
+              <item alignment="Qt::AlignmentFlag::AlignRight">
                <widget class="QPushButton" name="codeColorsResetBtn">
                 <property name="text">
                  <string>Reset to defaults</string>
@@ -1502,16 +1508,16 @@
            <item>
             <widget class="QTreeWidget" name="shortcutsTable">
              <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
+              <enum>Qt::FocusPolicy::NoFocus</enum>
              </property>
              <property name="editTriggers">
-              <set>QAbstractItemView::NoEditTriggers</set>
+              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
              </property>
              <property name="selectionMode">
-              <enum>QAbstractItemView::NoSelection</enum>
+              <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
              </property>
              <property name="indentation">
               <number>0</number>
@@ -1582,8 +1588,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>364</width>
-                <height>283</height>
+                <width>692</width>
+                <height>530</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1648,7 +1654,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="../icons.qrc">
-                      <normaloff>:/icons/img/dock_layout_vertical.png</normaloff>:/icons/img/dock_layout_vertical.png</iconset>
+                      <normaloff>:/icons/img/dock_layout_vertical.svg</normaloff>:/icons/img/dock_layout_vertical.svg</iconset>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -1668,7 +1674,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="../icons.qrc">
-                      <normaloff>:/icons/img/dock_layout_horizontal.png</normaloff>:/icons/img/dock_layout_horizontal.png</iconset>
+                      <normaloff>:/icons/img/dock_layout_horizontal.svg</normaloff>:/icons/img/dock_layout_horizontal.svg</iconset>
                     </property>
                     <property name="cfg" stdset="0">
                      <string notr="true">General.DockLayout</string>
@@ -1684,7 +1690,7 @@
                <item>
                 <spacer name="verticalSpacer_5">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -1711,19 +1717,19 @@
            <item row="1" column="0" colspan="2">
             <widget class="QTreeWidget" name="pluginsList">
              <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
+              <enum>Qt::FocusPolicy::NoFocus</enum>
              </property>
              <property name="editTriggers">
-              <set>QAbstractItemView::NoEditTriggers</set>
+              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
              </property>
              <property name="selectionMode">
-              <enum>QAbstractItemView::NoSelection</enum>
+              <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
              </property>
              <property name="verticalScrollMode">
-              <enum>QAbstractItemView::ScrollPerPixel</enum>
+              <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
              </property>
              <property name="indentation">
               <number>0</number>
@@ -1773,7 +1779,7 @@
               <item>
                <spacer name="horizontalSpacer">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1880,14 +1886,14 @@
                         <number>50</number>
                        </property>
                        <property name="orientation">
-                        <enum>Qt::Vertical</enum>
+                        <enum>Qt::Orientation::Vertical</enum>
                        </property>
                       </widget>
                      </item>
                      <item row="0" column="2" rowspan="4">
                       <widget class="QScrollBar" name="previewVerticalScrollBar">
                        <property name="orientation">
-                        <enum>Qt::Vertical</enum>
+                        <enum>Qt::Orientation::Vertical</enum>
                        </property>
                       </widget>
                      </item>
@@ -1910,7 +1916,7 @@
                         <number>0</number>
                        </property>
                        <property name="alignment">
-                        <set>Qt::AlignCenter</set>
+                        <set>Qt::AlignmentFlag::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -2049,7 +2055,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <bool>true</bool>
              </property>
              <property name="verticalScrollMode">
-              <enum>QAbstractItemView::ScrollPerPixel</enum>
+              <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
              </property>
              <property name="rootIsDecorated">
               <bool>false</bool>
@@ -2084,7 +2090,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QScrollArea" name="fontsScrollArea">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -2185,7 +2191,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <spacer name="verticalSpacer_2">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2225,7 +2231,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item row="1" column="0">
                <spacer name="codeAssistantSpacer">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -2249,10 +2255,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <item row="4" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

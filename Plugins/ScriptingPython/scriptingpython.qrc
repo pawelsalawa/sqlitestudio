@@ -3,6 +3,6 @@
         <file>scriptingpython.ui</file>
     </qresource>
     <qresource prefix="/scriptingpython">
-        <file>scriptingpython.png</file>
+        <file>scriptingpython.svg</file>
     </qresource>
 </RCC>

@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteCommitTrans : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteCommitTrans();
         SqliteCommitTrans(bool transactionKw, const QString &name, bool endKw);

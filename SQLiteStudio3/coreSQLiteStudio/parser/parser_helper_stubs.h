@@ -25,12 +25,22 @@
  */
 
 /**
- * @brief Stores 'dbnm' grammar rule.
+ * @brief Stores 'dbnm' grammar rule. (nm1.nm2)
  */
 struct ParserFullName
 {
     QString name1 = QString();
     QString name2 = QString();
+};
+
+/**
+ * @brief Stores 'xfullname' grammar rule. (nm1.nm2 AS alias)
+ */
+struct ParserXFullName
+{
+    QString name1 = QString();
+    QString name2 = QString();
+    QString alias = QString();
 };
 
 /**
@@ -128,7 +138,7 @@ struct ParserStubAlias
 struct ParserIndexedBy
 {
     explicit ParserIndexedBy(const QString& name);
-    explicit ParserIndexedBy(bool indexedBy);
+    explicit ParserIndexedBy(bool notIndexed);
 
     bool notIndexedKw = false;
     QString indexedBy = QString();

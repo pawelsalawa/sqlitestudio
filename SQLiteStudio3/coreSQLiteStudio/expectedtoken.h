@@ -101,7 +101,7 @@ class API_EXPORT ExpectedTokenPtr : public QSharedPointer<ExpectedToken>
 
 int operator==(const ExpectedTokenPtr& ptr1, const ExpectedTokenPtr& ptr2);
 
-TYPE_OF_QHASH qHash(const ExpectedToken& token);
-TYPE_OF_QHASH qHash(const ExpectedTokenPtr &ptr);
+size_t qHash(const ExpectedToken& token);
+size_t qHash(const ExpectedTokenPtr &ptr);
 
 #endif // EXPECTEDTOKEN_H

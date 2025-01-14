@@ -224,6 +224,6 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void togglePerColumnFiltering();
 };
 
-TYPE_OF_QHASH qHash(DataView::ActionGroup action);
+size_t qHash(DataView::ActionGroup action);
 
 #endif // DATAVIEW_H

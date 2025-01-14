@@ -7,6 +7,8 @@ class SqliteExpr;
 
 class API_EXPORT SqliteAttach : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteAttach();
         SqliteAttach(const SqliteAttach& other);

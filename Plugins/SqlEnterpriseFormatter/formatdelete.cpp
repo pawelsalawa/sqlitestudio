@@ -21,6 +21,8 @@ void FormatDelete::formatInternal()
         withId(del->database).withIdDot();
 
     withId(del->table);
+    if (!del->tableAlias.isNull())
+        withKeyword("AS").withId(del->tableAlias);
 
     if (del->indexedByKw)
         withKeyword("INDEXED").withKeyword("BY").withId(del->indexedBy);
@@ -35,6 +37,12 @@ void FormatDelete::formatInternal()
         withNewLine().withLinedUpKeyword("RETURNING");
         withStatementList(del->returning, "returningColumns");
     }
+
+    if (del->orderBy.size() > 0)
+        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(del->orderBy, "order");
+
+    if (del->limit)
+        withNewLine().withLinedUpKeyword("LIMIT").withStatement(del->limit, "limit");
 
     withSemicolon();
 }

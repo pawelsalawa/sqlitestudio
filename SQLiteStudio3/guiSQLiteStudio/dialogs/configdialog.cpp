@@ -23,7 +23,6 @@
 #include "translations.h"
 #include "plugins/uiconfiguredplugin.h"
 #include "dbtree/dbtree.h"
-#include "common/compatibility.h"
 #include "windows/editorwindow.h"
 #include "syntaxhighlighterplugin.h"
 #include "sqleditor.h"
@@ -1692,6 +1691,7 @@ void ConfigDialog::initDataEditors()
     connect(ui->dataEditorsSelectedTabs->tabBar(), SIGNAL(tabMoved(int,int)), this, SLOT(dataEditorTabsOrderChanged(int,int)));
 
     ui->dataEditorsTypesList->setCurrentRow(0, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->dataEditorsTypesGroup->setMinimumWidth(ui->dataEditorsTypesToolbar->sizeHint().width());
     updateDataTypeListState();
 }
 

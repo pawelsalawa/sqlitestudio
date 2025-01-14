@@ -8,6 +8,8 @@
 
 class API_EXPORT SqliteCreateVirtualTable : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteCreateVirtualTable();
         SqliteCreateVirtualTable(const SqliteCreateVirtualTable& other);

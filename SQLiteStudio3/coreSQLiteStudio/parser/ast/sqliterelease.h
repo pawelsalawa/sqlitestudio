@@ -7,6 +7,8 @@
 
 class API_EXPORT SqliteRelease : public SqliteQuery
 {
+    Q_OBJECT
+
     public:
         SqliteRelease();
         SqliteRelease(const SqliteRelease& other);

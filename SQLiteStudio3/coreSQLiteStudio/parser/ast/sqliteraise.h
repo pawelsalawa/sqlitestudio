@@ -6,6 +6,8 @@
 
 class API_EXPORT SqliteRaise : public SqliteStatement
 {
+    Q_OBJECT
+
     public:
         enum class Type
         {

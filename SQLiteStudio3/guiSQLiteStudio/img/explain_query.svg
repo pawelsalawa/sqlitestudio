@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:docname="explain_query.svg"
+   inkscape:export-filename="C:\Documents and Settings\mm81002\Desktop\Flowchart.svg.png"
+   viewBox="0 0 330 330"
+   sodipodi:version="0.32"
+   inkscape:export-xdpi="72"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-ydpi="72"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   width="330"
+   height="330">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3134">
+      <stop
+         id="stop3136"
+         style="stop-color:#ffffff"
+         offset="0" />
+      <stop
+         id="stop3138"
+         style="stop-color:#5454dd"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter3348"
+       height="1.647"
+       width="1.3735"
+       y="-0.32352"
+       x="-0.18673"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur3350"
+         stdDeviation="11.710506"
+         inkscape:collect="always" />
+    </filter>
+    <linearGradient
+       id="linearGradient3378"
+       y2="352.39001"
+       xlink:href="#linearGradient3134"
+       gradientUnits="userSpaceOnUse"
+       x2="202.53999"
+       y1="265.39001"
+       x1="202.53999"
+       inkscape:collect="always" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3134"
+       id="linearGradient857"
+       gradientUnits="userSpaceOnUse"
+       x1="202.53999"
+       y1="265.39001"
+       x2="202.53999"
+       y2="352.39001" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     guidetolerance="10"
+     pagecolor="#ffffff"
+     gridtolerance="10000"
+     inkscape:window-height="719"
+     width="200px"
+     inkscape:zoom="1.5344591"
+     objecttolerance="10"
+     height="705px"
+     borderopacity="1.0"
+     inkscape:current-layer="g877"
+     inkscape:cx="342.07037"
+     inkscape:cy="256.36753"
+     inkscape:window-y="29"
+     inkscape:window-x="1046"
+     inkscape:window-width="950"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:document-rotation="0"
+     showgrid="false" />
+  <g
+     id="g877"
+     transform="matrix(1.0689309,0,0,1.0689309,-5.916499,-2.8767788)">
+    <rect
+       x="144.57121"
+       y="107.0881"
+       inkscape:export-xdpi="72"
+       width="39.950001"
+       height="28.219"
+       inkscape:export-filename="Z:\MMU_Development\Assets\images\PNG\flowchart-graphic.png"
+       inkscape:export-ydpi="72"
+       style="fill:#ff0000;stroke:#ffffff;stroke-width:2.1517;stroke-linejoin:round"
+       id="rect3601" />
+    <path
+       inkscape:export-xdpi="72"
+       inkscape:export-filename="Z:\MMU_Development\Assets\images\PNG\flowchart-graphic.png"
+       sodipodi:nodetypes="cccccccc"
+       inkscape:export-ydpi="72"
+       d="m 145.9069,221.95043 h 36.8559 v 24.21121 h 31.41241 l -49.13095,37.72005 -50.12991,-37.72005 h 30.99255 z"
+       style="fill:#ff0000;stroke:#ffffff;stroke-width:2.74678;stroke-linejoin:round"
+       id="rect3404" />
+    <g
+       transform="translate(-38.423847,-130.64192)"
+       inkscape:export-filename="Z:\MMU_Development\Assets\images\PNG\flowchart-graphic.png"
+       inkscape:export-xdpi="72"
+       inkscape:export-ydpi="72"
+       id="g3396">
+      <rect
+         x="125.62"
+         y="274.45999"
+         width="150.50999"
+         height="86.873001"
+         ry="15.152"
+         style="opacity:0.46823;fill:#000000;filter:url(#filter3348)"
+         id="rect3398" />
+      <rect
+         x="127.28"
+         y="265.45001"
+         width="150.50999"
+         height="86.873001"
+         ry="15.152"
+         style="fill:url(#linearGradient3378);stroke:#ffffff;stroke-width:3;stroke-linejoin:round"
+         id="rect3400" />
+    </g>
+    <g
+       transform="translate(-38.423847,-244.73192)"
+       inkscape:export-filename="Z:\MMU_Development\Assets\images\PNG\flowchart-graphic.png"
+       inkscape:export-xdpi="72"
+       inkscape:export-ydpi="72"
+       id="g3388">
+      <rect
+         x="125.62"
+         y="274.45999"
+         width="150.50999"
+         height="86.873001"
+         ry="15.152"
+         style="opacity:0.46823;fill:#000000;filter:url(#filter3348)"
+         id="rect3390" />
+      <rect
+         x="127.28"
+         y="265.45001"
+         width="150.50999"
+         height="86.873001"
+         ry="15.152"
+         style="fill:url(#linearGradient857);stroke:#ffffff;stroke-width:3;stroke-linejoin:round"
+         id="rect3392" />
+    </g>
+  </g>
+  <metadata
+     id="metadata31">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2007-10-08T19:49:00</dc:date>
+        <dc:description>A graphic to represent a process.  Loosely based on a generic flowchart.</dc:description>
+        <dc:source>https://openclipart.org/detail/6728/flow-chart-graphic-by-farmeral</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Farmeral</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>chart</rdf:li>
+            <rdf:li>flow</rdf:li>
+            <rdf:li>inkscape</rdf:li>
+            <rdf:li>process</rdf:li>
+            <rdf:li>steps</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

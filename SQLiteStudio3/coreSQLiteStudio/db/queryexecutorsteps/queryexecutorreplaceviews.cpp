@@ -144,7 +144,7 @@ bool QueryExecutorReplaceViews::usesAnyView(SqliteSelect* select, const QStringL
     return false;
 }
 
-TYPE_OF_QHASH qHash(const QueryExecutorReplaceViews::View& view)
+size_t qHash(const QueryExecutorReplaceViews::View& view)
 {
     return qHash(view.database + "." + view.view);
 }

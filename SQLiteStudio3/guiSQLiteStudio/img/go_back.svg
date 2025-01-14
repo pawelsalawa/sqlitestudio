@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   viewBox="0 0 60 60"
+   version="1.0"
+   sodipodi:docname="go_back.svg"
+   width="60"
+   height="60"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview24"
+     showgrid="false"
+     inkscape:zoom="8.9095455"
+     inkscape:cx="-10.480207"
+     inkscape:cy="39.737007"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient2520"
+       y2="42.612999"
+       gradientUnits="userSpaceOnUse"
+       x2="44.702"
+       gradientTransform="rotate(90,28.09615,35.53085)"
+       y1="34.687"
+       x1="5.0679998">
+      <stop
+         id="stop2129"
+         stop-color="#1b611f"
+         offset="0" />
+      <stop
+         id="stop2131"
+         stop-color="#103f14"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2522"
+       y2="62.810001"
+       gradientUnits="userSpaceOnUse"
+       x2="16.504"
+       gradientTransform="rotate(90,28.09615,35.53085)"
+       y1="15.406"
+       x1="32.382">
+      <stop
+         id="stop1354"
+         stop-color="#179907"
+         offset="0" />
+      <stop
+         id="stop1356"
+         stop-color="#0f7402"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2524"
+       y2="62.973999"
+       gradientUnits="userSpaceOnUse"
+       x2="20.353001"
+       gradientTransform="rotate(90,28.0123,35.6287)"
+       y1="16.25"
+       x1="28.414">
+      <stop
+         id="stop1408"
+         stop-color="#56d760"
+         stop-opacity=".58863"
+         offset="0" />
+      <stop
+         id="stop1410"
+         stop-color="#18b01f"
+         stop-opacity=".39216"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2526"
+       y2="59.484001"
+       gradientUnits="userSpaceOnUse"
+       x2="23.254999"
+       gradientTransform="rotate(90,28.2874,35.4156)"
+       y1="16.125"
+       x1="23.254999">
+      <stop
+         id="stop1418"
+         stop-color="#3ec549"
+         stop-opacity=".50836"
+         offset="0" />
+      <stop
+         id="stop1420"
+         stop-color="#4fe756"
+         stop-opacity=".11706"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <g
+     id="layer1">
+    <g
+       id="g2514"
+       transform="translate(4.5999813,-1.9997517)">
+      <path
+         id="path1388"
+         d="M 32.471,18.591 H 18.408 c -0.049,-1 0,-5 0,-5 -0.009,-0.447 -0.117,-0.83 -0.531,-1 -0.414,-0.17 -0.867,-0.093 -1.188,0.219 l -16,16 c -0.42138,0.435 -0.42138,1.127 4.3e-4,1.562 l 16,16 c 0.321,0.312 0.774,0.42 1.188,0.25 0.414,-0.169 0.522,-0.584 0.531,-1.031 v -5 h 7.938 c 2.281,-0.156 3.281,0.844 3.281,3.844 v 6.062 c 0,0 0,1 1,1 6,0 12,-0.062 18,-0.062 1,0 1,-1 1,-1 v -12.5 c 0,-14.5 -8,-19.5 -17.156,-19.344 z"
+         fill="url(#linearGradient2520)"
+         style="fill:url(#linearGradient2520)" />
+      <path
+         id="path2147"
+         fill="url(#linearGradient2522)"
+         d="m 48.221,37.872 c 0,-7.003 -1.917,-11.445 -4.75,-14.187 -2.834,-2.743 -6.705,-3.887 -11.032,-3.813 H 18.346 c -0.719,0.001 -1.311,-0.563 -1.344,-1.281 -0.05,-1.031 -0.012,-3.439 0,-4.313 l -15.25,15.25 15.25,15.282 v -4.282 c 0,-0.742 0.602,-1.343 1.344,-1.343 h 7.843 c 0.032,-0.002 0.062,10e-4 0.094,0 1.318,-0.073 2.637,0.211 3.5,1.187 0.884,1 1.125,2.351 1.125,4 v 5.719 c 5.762,-0.002 11.533,-0.06 17.313,-0.063 z"
+         style="fill:url(#linearGradient2522)" />
+      <path
+         id="path1412"
+         fill="url(#linearGradient2524)"
+         d="m 47.391,38.054 c 0,-6.849 -1.857,-11.036 -4.5,-13.594 -2.642,-2.557 -6.268,-3.633 -10.438,-3.562 H 18.359 c -1.161,0.001 -2.133,-0.934 -2.187,-2.094 -0.029,-0.594 -0.007,-1.421 0,-2.313 L 2.953,29.71 16.172,42.96 v -2.25 c 0,-1.198 0.989,-2.187 2.187,-2.187 h 7.782 c 0.068,-0.005 0.045,-0.001 0.062,0 0.018,0 0.096,-0.002 0.063,0 1.469,-0.082 3.064,0.233 4.156,1.468 1.083,1.226 1.344,2.831 1.344,4.563 v 4.875 c 5.197,-0.007 10.405,-0.056 15.625,-0.063 z"
+         style="fill:url(#linearGradient2524)" />
+      <path
+         id="path4351"
+         d="M 47.365,39.79 C 47.631,33.35 46.772,28.109 43.013,24.544 40.331,22 37.509,20.901 32.391,20.972 H 18.297 c -1.13,10e-4 -2.073,-0.903 -2.125,-2.031 -0.031,-0.624 -0.012,-1.545 0,-2.438 l -13.214,13.214 9.793,9.794 c 1.932,-7.883 9.08,-13.39 17.952,-13.39 7.152,0 12.298,2.105 16.662,13.669 z"
+         fill="url(#linearGradient2526)"
+         style="fill:url(#linearGradient2526)" />
+    </g>
+  </g>
+  <metadata
+     id="metadata21">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>arrow_go_left</dc:title>
+        <dc:date>2008-05-26T11:32:36</dc:date>
+        <dc:description>arrow, arrow, clip art, clipart, icon, icon, image, media, png, public domain, svg, </dc:description>
+        <dc:source>http://openclipart.org/detail/16963/arrow_go_left-by-jean_victor_balin</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>jean_victor_balin</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>arrow</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

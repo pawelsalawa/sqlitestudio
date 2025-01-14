@@ -1549,7 +1549,7 @@ SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, bool skipSyste
 {
 }
 
-TYPE_OF_QHASH qHash(const SchemaResolver::ObjectCacheKey& key)
+size_t qHash(const SchemaResolver::ObjectCacheKey& key)
 {
     return qHash(key.type) ^ qHash(key.db) ^ qHash(key.value1) ^ qHash(key.value2) ^ qHash(key.value3) ^ qHash(key.skipSystemObj);
 }
