@@ -17,3 +17,6 @@ TEMPLATE = app
 
 SOURCES += tst_selectresolvertest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+RESOURCES += \
+    schemas.qrc

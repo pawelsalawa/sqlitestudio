@@ -96,17 +96,17 @@ void QueryExecutor::setupExecutionChain()
     executionChain.append(additionalStatelessSteps[AFTER_COLUMN_FILTERS]);
     executionChain.append(createSteps(AFTER_COLUMN_FILTERS));
 
-    executionChain << new QueryExecutorColumns()
-                   << new QueryExecutorParseQuery("after Columns");
-
-    executionChain.append(additionalStatelessSteps[AFTER_REPLACED_COLUMNS]);
-    executionChain.append(createSteps(AFTER_REPLACED_COLUMNS));
-
     executionChain << new QueryExecutorAddRowIds()
                    << new QueryExecutorParseQuery("after AddRowIds");
 
     executionChain.append(additionalStatelessSteps[AFTER_ROW_IDS]);
     executionChain.append(createSteps(AFTER_ROW_IDS));
+
+    executionChain << new QueryExecutorColumns()
+                   << new QueryExecutorParseQuery("after Columns");
+
+    executionChain.append(additionalStatelessSteps[AFTER_REPLACED_COLUMNS]);
+    executionChain.append(createSteps(AFTER_REPLACED_COLUMNS));
 
     executionChain << new QueryExecutorOrder();
 
@@ -168,7 +168,8 @@ void QueryExecutor::executeChain()
 
         logExecutorStep(currentStep);
         result = currentStep->exec();
-        logExecutorAfterStep(context->processedQuery);
+        if (!qobject_cast<QueryExecutorParseQuery*>(currentStep))
+            logExecutorAfterStep(context->processedQuery);
 
         if (!result)
         {

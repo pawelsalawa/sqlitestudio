@@ -183,6 +183,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         DataType dataType;
         QSet<EditionForbiddenReason> editionForbiddenReason;
         QList<Constraint*> constraints;
+        QString queryExecutorAlias;
 
     private:
         template <class T>

@@ -440,6 +440,7 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
         col.originalDatabase = resolveDatabase(matched.database);
         col.table = matched.table;
         col.tableAlias = matched.tableAlias;
+        col.oldTableAliases = matched.oldTableAliases;
         col.flags = matched.flags;
     }
     else if (matched.type == Column::OTHER)

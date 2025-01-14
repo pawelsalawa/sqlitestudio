@@ -12,6 +12,8 @@ SqlQueryModelColumn::SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& r
     database = resultColumn->database.isEmpty() ? "main": resultColumn->database;
     for (QueryExecutor::ColumnEditionForbiddenReason reason : resultColumn->editionForbiddenReasons)
         editionForbiddenReason << SqlQueryModelColumn::convert(reason);
+
+    queryExecutorAlias = resultColumn->queryExecutorAlias;
 }
 
 SqlQueryModelColumn::~SqlQueryModelColumn()

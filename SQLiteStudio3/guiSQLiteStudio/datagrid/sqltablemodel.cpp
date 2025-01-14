@@ -218,7 +218,7 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
     int colIdx = 0;
     for (SqlQueryItem* itemToUpdate : itemsInRow)
     {
-        updateItem(itemToUpdate, values[itemToUpdate], colIdx, rowId);
+        updateItem(itemToUpdate, values[itemToUpdate], modelColumns[colIdx], rowId);
 
         if (isWithOutRowIdTable && rowId.isEmpty())
             itemToUpdate->setJustInsertedWithOutRowId(true);

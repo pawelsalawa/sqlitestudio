@@ -6,6 +6,8 @@
 - CHANGE: #5187 Backported compilation improvement for ScriptingPython to allow Python version selection through qmake parameter.
 - BUGFIX: #5190 Improved code assistant suggestions for UPDATE to pripritize more relevant columns.
 - BUGFIX: #5207 Fixed SQL parser to avoid marking INDEXED BY as syntax error.
+- BUGFIX: #5189 Fixed execution of SELECT queries that use subselects with a STAR operator for result columns (in these subselects), so they return correct results.
+- BUGFIX: Fixed execution of complex SELECT queries with subselects, that join multiple tables, some with aliases, some without aliases. Results from such queries would not be editable at all. Now they execute properly using the Smart Execution method.
 
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
