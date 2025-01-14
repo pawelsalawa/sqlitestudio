@@ -27,7 +27,7 @@ void Table::setDatabase(const QString& value)
     database = value.isEmpty() ? "main" : value;
 }
 
-TYPE_OF_QHASH qHash(Table table)
+size_t qHash(Table table)
 {
     return qHash(table.getDatabase() + "." + table.getTable());
 }
@@ -48,7 +48,7 @@ void AliasedTable::setTableAlias(const QString& value)
     tableAlias = value;
 }
 
-TYPE_OF_QHASH qHash(AliasedTable table)
+size_t qHash(AliasedTable table)
 {
     return qHash(table.getDatabase() + "." + table.getTable() + " " + table.getTableAlias());
 }

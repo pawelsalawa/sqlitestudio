@@ -278,7 +278,7 @@ struct API_EXPORT Token
  * @param token Token that the hash code is calculated for.
  * @return Unique integer value for the token.
  */
-TYPE_OF_QHASH qHash(const TokenPtr& token);
+size_t qHash(const TokenPtr& token);
 
 struct TolerantToken;
 /**

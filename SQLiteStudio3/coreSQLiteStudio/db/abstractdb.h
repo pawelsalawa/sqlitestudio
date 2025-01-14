@@ -358,7 +358,7 @@ class API_EXPORT AbstractDb : public Db
             bool builtIn = false;
         };
 
-        friend TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn);
+        friend size_t qHash(const AbstractDb::RegisteredFunction& fn);
         friend bool operator==(const AbstractDb::RegisteredFunction& fn1, const AbstractDb::RegisteredFunction& fn2);
 
         /**
@@ -507,7 +507,7 @@ class API_EXPORT AbstractDb : public Db
  * @param fn Function to calculate hash for.
  * @return Hash value calculated from all members of DbBase::RegisteredFunction.
  */
-TYPE_OF_QHASH qHash(const AbstractDb::RegisteredFunction& fn);
+size_t qHash(const AbstractDb::RegisteredFunction& fn);
 
 /**
  * @brief Simple comparator operator, compares all members.

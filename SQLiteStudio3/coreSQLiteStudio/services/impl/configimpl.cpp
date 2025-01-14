@@ -250,11 +250,7 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 
 void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QVariant parent = QVariant(QVariant::LongLong);
-#else
     QVariant parent = QVariant(QMetaType::fromType<qlonglong>());
-#endif
     if (parentId > -1)
         parent = parentId;
 
@@ -1082,12 +1078,7 @@ void ConfigImpl::mergeMasterConfig()
     if (masterConfigFile.isEmpty())
         return;
 
-#if QT_VERSION >= 0x050500
-    qInfo()
-#else
-    qDebug()
-#endif
-        << "Updating settings from master configuration file: " << masterConfigFile;
+    qInfo() << "Updating settings from master configuration file: " << masterConfigFile;
 
     Db* masterDb = new DbSqlite3("SQLiteStudio master settings", masterConfigFile, {{DB_PURE_INIT, true}});
     if (!masterDb->open())

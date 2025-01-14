@@ -227,11 +227,7 @@ void TaskBar::dragEnterEvent(QDragEnterEvent *event)
     if (!event->mimeData()->hasFormat(mimeDataId))
         return;
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    dragTaskTo(dragStartTask, event->pos());
-#else
     dragTaskTo(dragStartTask, event->position().toPoint());
-#endif
     event->acceptProposedAction();
 }
 
@@ -240,11 +236,7 @@ void TaskBar::dragMoveEvent(QDragMoveEvent* event)
     if (!event->mimeData()->hasFormat(mimeDataId))
         return;
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    dragTaskTo(dragStartTask, event->pos());
-#else
     dragTaskTo(dragStartTask, event->position().toPoint());
-#endif
     event->acceptProposedAction();
 }
 

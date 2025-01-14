@@ -854,9 +854,9 @@ QString FunctionManagerImpl::updateScriptingQtLang(const QString& lang) const
     return lang;
 }
 
-TYPE_OF_QHASH qHash(const FunctionManagerImpl::Key& key)
+size_t qHash(const FunctionManagerImpl::Key& key)
 {
-    return qHash(key.name) ^ key.argCount ^ static_cast<TYPE_OF_QHASH>(key.type);
+    return qHash(key.name) ^ key.argCount ^ static_cast<size_t>(key.type);
 }
 
 bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2)

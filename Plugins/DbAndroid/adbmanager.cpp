@@ -148,13 +148,7 @@ QString AdbManager::findAdb()
         return "adb.exe";
 
     static_qstring(winAdbPath, "/../Android/sdk/platform-tools/adb.exe");
-    for (const QString& path : QStandardPaths::standardLocations(
-#if QT_VERSION >= 0x050400
-             QStandardPaths::AppLocalDataLocation
-#else
-             QStandardPaths::GenericDataLocation
-#endif
-             ))
+    for (const QString& path : QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation))
     {
         fullPath = QDir::cleanPath(path + winAdbPath);
         if (testAdb(fullPath, true))
@@ -418,11 +412,7 @@ void AdbManager::updateDeviceList()
     if (!plugin->isAdbValid())
         return;
 
-#if QT_VERSION >= 0x060000
     updateDevicesFuture = QtConcurrent::run(&AdbManager::getDevicesInternal, this, true);
-#else
-    updateDevicesFuture = QtConcurrent::run(this, &AdbManager::getDevicesInternal, true);
-#endif
 }
 
 void AdbManager::handleNewDeviceList(const QStringList& devices)

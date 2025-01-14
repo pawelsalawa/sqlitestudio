@@ -1931,7 +1931,7 @@ void DbTree::setupDefShortcuts()
     BIND_SHORTCUTS(DbTree, Action);
 }
 
-TYPE_OF_QHASH qHash(DbTree::Action action)
+size_t qHash(DbTree::Action action)
 {
-    return static_cast<TYPE_OF_QHASH>(action);
+    return static_cast<size_t>(action);
 }

@@ -14,11 +14,9 @@ void cliMessageHandler(QtMsgType type, const QMessageLogContext &context, const 
 
     QString txt;
     switch (type) {
-#if QT_VERSION >= 0x050500
         case QtInfoMsg:
             txt = QString("Info: %1").arg(msg);
             break;
-#endif
         case QtDebugMsg:
             txt = QString("Debug: %1").arg(msg);
             break;

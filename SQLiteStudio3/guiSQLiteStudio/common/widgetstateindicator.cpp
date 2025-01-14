@@ -84,15 +84,9 @@ void WidgetStateIndicator::initPositionMode()
 
 void WidgetStateIndicator::finalInit()
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     QPixmap pixmap = label->pixmap(Qt::ReturnByValue);
     label->setFixedSize(pixmap.size());
     labelParent->setFixedSize(pixmap.size());
-#else
-    const QPixmap* pixmap = label->pixmap();
-    label->setFixedSize(pixmap->size());
-    labelParent->setFixedSize(pixmap->size());
-#endif
     widgetVisible = widget->isVisible();
     labelParent->setVisible(false);
 }
@@ -385,11 +379,7 @@ bool WidgetStateIndicator::eventFilterFromIndicatorLabel(QEvent* ev)
         {
             highlightingEffect->setEnabled(true);
             QEnterEvent* e = dynamic_cast<QEnterEvent*>(ev);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-            QToolTip::showText(e->globalPos(), message);
-#else
             QToolTip::showText(e->globalPosition().toPoint(), message);
-#endif
             break;
         }
         case QEvent::Leave:

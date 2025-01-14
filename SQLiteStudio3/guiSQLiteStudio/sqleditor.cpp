@@ -292,11 +292,6 @@ void SqlEditor::saveToFile(const QString &fileName)
     }
 
     QTextStream stream(&file);
-#if QT_VERSION < 0x060000
-    stream.setCodec("UTF-8");
-#else
-    // The stream is UTF-8 by default in Qt 6
-#endif
     stream << toPlainText();
     stream.flush();
     file.close();
@@ -1001,14 +996,12 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QList<SqliteStatement::FullObject> fullObjects;
-    QString dbName;
     for (const SqliteQueryPtr& query : queryParser->getQueries())
     {
-        fullObjects = query->getContextFullObjects();
+        QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
         for (SqliteStatement::FullObject& fullObj : fullObjects)
         {
-            dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
+            QString dbName = fullObj.database ? stripObjName(fullObj.database->value) : "main";
             if (!objectsInNamedDb.contains(dbName, Qt::CaseInsensitive))
                 continue;
 

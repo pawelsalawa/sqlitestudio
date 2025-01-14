@@ -204,6 +204,8 @@ class API_EXPORT SqliteStatement : public QObject
             TokenPtr object;
         };
 
+        typedef std::function<bool(SqliteStatement*)> Visitor;
+
         SqliteStatement();
         SqliteStatement(const SqliteStatement& other);
         virtual ~SqliteStatement();
@@ -257,6 +259,8 @@ class API_EXPORT SqliteStatement : public QObject
 
             return results;
         }
+
+        bool visit(Visitor& visitor);
 
         /**
          * @brief Ordered list of all tokens for this statement.

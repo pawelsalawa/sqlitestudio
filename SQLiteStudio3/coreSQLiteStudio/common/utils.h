@@ -358,11 +358,21 @@ QList<T> map(const QList<S>& list, std::function<T(S)> transformer)
     return result;
 }
 
-template <class S, class T>
-QHash<S, T> toHash(const QList<S>& list, std::function<T(S)> transformer)
+template <class K, class V>
+QHash<K, V> toHash(const QList<V>& list, std::function<K(V)> transformer)
 {
-    QHash<S, T> result;
-    for (const S& el : list)
+    QHash<K, V> result;
+    for (const V& el : list)
+        result[el] = transformer(el);
+
+    return result;
+}
+
+template <class K, class V>
+QHash<K, V> toHash(const QSet<V>& list, std::function<K(V)> transformer)
+{
+    QHash<K, V> result;
+    for (const V& el : list)
         result[el] = transformer(el);
 
     return result;
@@ -393,7 +403,7 @@ void removeDuplicates(QList<T>& list)
     }
 }
 
-API_EXPORT TYPE_OF_QHASH qHash(const QVariant& var);
+API_EXPORT size_t qHash(const QVariant& var);
 
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 

@@ -504,13 +504,7 @@ void DataView::updateTabsMode()
 void DataView::setActionIcon(QAction *action, const QIcon &icon, QToolBar *toolbar)
 {
     action->setIcon(icon);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    // In Qt 6, setting the action icon is not enough, use brute force
-    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(action));
-    button->setIcon(icon);
-#else
     Q_UNUSED(toolbar);
-#endif
 }
 
 void DataView::filterModeSelected()
@@ -1126,7 +1120,7 @@ SqlQueryView* DataView::getGridView() const
     return gridView;
 }
 
-TYPE_OF_QHASH qHash(DataView::ActionGroup action)
+size_t qHash(DataView::ActionGroup action)
 {
-    return static_cast<TYPE_OF_QHASH>(action);
+    return static_cast<size_t>(action);
 }

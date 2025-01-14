@@ -247,7 +247,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void sessionValueChanged();
 };
 
-TYPE_OF_QHASH qHash(DbTree::Action action);
+size_t qHash(DbTree::Action action);
 
 #define DBTREE MainWindow::getInstance()->getDbTree()
 

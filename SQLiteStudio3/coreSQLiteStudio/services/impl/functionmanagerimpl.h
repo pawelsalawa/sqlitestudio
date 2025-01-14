@@ -43,7 +43,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
             FunctionBase::Type type;
         };
 
-        friend TYPE_OF_QHASH qHash(const FunctionManagerImpl::Key& key);
+        friend size_t qHash(const FunctionManagerImpl::Key& key);
         friend bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2);
 
         void init();
@@ -95,7 +95,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QHash<Key,NativeFunction*> nativeFunctionsByKey;
 };
 
-TYPE_OF_QHASH qHash(const FunctionManagerImpl::Key& key);
+size_t qHash(const FunctionManagerImpl::Key& key);
 bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2);
 
 #endif // FUNCTIONMANAGERIMPL_H

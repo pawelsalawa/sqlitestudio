@@ -767,9 +767,9 @@ void EditorWindow::refreshValidDbObjects()
     ui->sqlEdit->refreshValidObjects();
 }
 
-TYPE_OF_QHASH qHash(EditorWindow::ActionGroup actionGroup)
+size_t qHash(EditorWindow::ActionGroup actionGroup)
 {
-    return static_cast<TYPE_OF_QHASH>(actionGroup);
+    return static_cast<size_t>(actionGroup);
 }
 
 

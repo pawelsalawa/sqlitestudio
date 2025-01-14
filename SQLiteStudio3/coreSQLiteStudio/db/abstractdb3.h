@@ -708,11 +708,7 @@ QList<QVariant> AbstractDb3<T>::getArgs(int argCount, typename T::value** args)
                 value = T::value_double(args[i]);
                 break;
             case T::NULL_TYPE:
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-                value = QVariant(QVariant::String);
-#else
                 value = QVariant(QMetaType::fromType<QString>());
-#endif
                 break;
             default:
                 value = QString(
@@ -1303,11 +1299,7 @@ int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVaria
                         );
             break;
         case T::NULL_TYPE:
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-            value = QVariant(QVariant::String);
-#else
             value = QVariant(QMetaType::fromType<QString>());
-#endif
             break;
         case T::FLOAT:
             value = T::column_double(stmt, col);

@@ -182,6 +182,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void scrolledBy(int dx, int dy);
 };
 
-GUI_API_EXPORT TYPE_OF_QHASH qHash(SqlQueryView::Action action);
+GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);
 
 #endif // SQLQUERYVIEW_H

@@ -134,8 +134,8 @@ TokenList SqliteInsert::getTableTokensInStatement()
 
 TokenList SqliteInsert::getDatabaseTokensInStatement()
 {
-    if (tokensMap.contains("fullname"))
-        return getDbTokenListFromFullname();
+    if (tokensMap.contains("xfullname"))
+        return getDbTokenListFromFullname("xfullname");
 
     if (tokensMap.contains("nm"))
         return extractPrintableTokens(tokensMap["nm"]);
@@ -146,11 +146,11 @@ TokenList SqliteInsert::getDatabaseTokensInStatement()
 QList<SqliteStatement::FullObject> SqliteInsert::getFullObjectsInStatement()
 {
     QList<FullObject> result;
-    if (!tokensMap.contains("fullname"))
+    if (!tokensMap.contains("xfullname"))
         return result;
 
     // Table object
-    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE);
+    FullObject fullObj = getFullObjectFromFullname(FullObject::TABLE, "xfullname");
 
     if (fullObj.isValid())
         result << fullObj;
