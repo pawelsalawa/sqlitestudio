@@ -338,8 +338,8 @@ O dispositivo Android recusou a exclusão ou era impossível.</translation>
       <translation>Não é possível obter lista de bancos de dados para aplicação %1. Detalhes: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>Não foi possível executar a consulta no banco de dados &apos;%1&apos;: %2</translation>
     </message>

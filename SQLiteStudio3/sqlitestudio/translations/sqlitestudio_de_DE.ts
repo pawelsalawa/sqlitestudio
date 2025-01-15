@@ -79,7 +79,7 @@
       <translation>Zu öffnende Datenbankdatei</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="146"/>
+      <location filename="../main.cpp" line="136"/>
       <source>Select configuration directory</source>
       <translation>Konfigurationsverzeichnis auswählen</translation>
     </message>

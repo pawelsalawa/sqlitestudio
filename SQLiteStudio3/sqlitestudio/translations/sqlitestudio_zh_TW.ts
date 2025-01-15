@@ -79,7 +79,7 @@
       <translation>要開啟的資料庫檔案</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="146"/>
+      <location filename="../main.cpp" line="136"/>
       <source>Select configuration directory</source>
       <translation>選擇設定檔目錄</translation>
     </message>

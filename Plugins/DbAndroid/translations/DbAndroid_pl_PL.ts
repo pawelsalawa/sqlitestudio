@@ -338,8 +338,8 @@ Urządzenie z systemem Android odmówiło usunięcia lub było to niemożliwe.</
       <translation>Nie można pobrać listy baz danych dla aplikacji %1. Szczegóły: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>Nie można wykonać zapytania w bazie danych &apos;%1&apos;: %2</translation>
     </message>

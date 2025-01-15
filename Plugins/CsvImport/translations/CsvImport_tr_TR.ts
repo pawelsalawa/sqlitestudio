@@ -14,12 +14,12 @@
       <translation>%1 dosyasında veri bulunamadı.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="172"/>
+      <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
       <translation>Özel ayraç karakterini girin.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="195"/>
+      <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>CSV dosyaları (*.csv);;Text dosyaları (*.txt);;Bütün dosyalar (*)</translation>
     </message>
