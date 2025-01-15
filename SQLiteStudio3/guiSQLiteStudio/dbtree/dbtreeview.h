@@ -22,9 +22,11 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
         DbTree* getDbTree() const;
 
         DbTreeItem *currentItem();
+        void setCurrentItem(DbTreeItem* item);
         DbTreeItem *currentDbItem();
         DbTreeItem *itemAt(const QPoint& pos);
-        QList<DbTreeItem *> selectionItems();
+        QList<DbTreeItem*> selectionItems();
+        void selectItems(const QList<DbTreeItem*>& items);
         DbTreeModel *model() const;
         DbTreeItem *getItemForAction(bool onlySelected = false) const;
         QPoint getLastDropPosition() const;
@@ -44,6 +46,7 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
         bool handleTriggerDoubleClick(DbTreeItem* item);
         bool handleViewDoubleClick(DbTreeItem* item);
         bool handleColumnDoubleClick(DbTreeItem* item);
+        void expandToMakeVisible(DbTreeItem* item);
 
         QMenu* contextMenu = nullptr;
         DbTree* dbTree = nullptr;

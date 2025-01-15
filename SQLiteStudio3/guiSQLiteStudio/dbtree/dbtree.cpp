@@ -646,12 +646,18 @@ void DbTree::initDndTypes()
 QVariant DbTree::saveSession()
 {
     treeModel->storeGroups();
-    return QVariant();
+
+    QHash<QString, QVariant> session;
+    session["selectionState"] = treeModel->collectSelectionState();
+    return session;
 }
 
 void DbTree::restoreSession(const QVariant& sessionValue)
 {
-    UNUSED(sessionValue);
+    QHash<QString, QVariant> session = sessionValue.toHash();
+    QHash<QString, QVariant> selectionState = session["selectionState"].toHash();
+    if (!selectionState.isEmpty())
+        treeModel->restoreSelectionState(selectionState);
 }
 
 DbTreeModel* DbTree::getModel() const
@@ -659,7 +665,7 @@ DbTreeModel* DbTree::getModel() const
     return treeModel;
 }
 
-DbTreeView*DbTree::getView() const
+DbTreeView* DbTree::getView() const
 {
     return ui->treeView;
 }
