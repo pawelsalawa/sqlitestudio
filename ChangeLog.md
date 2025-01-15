@@ -9,6 +9,7 @@
 - BUGFIX: #5189 Fixed execution of SELECT queries that use subselects with a STAR operator for result columns (in these subselects), so they return correct results.
 - BUGFIX: Fixed execution of complex SELECT queries with subselects, that join multiple tables, some with aliases, some without aliases. Results from such queries would not be editable at all. Now they execute properly using the Smart Execution method.
 - BUGFIX: #4987 MultiEditor dialog (i.e. hex editor dialog) now remembers size that user sets for it.
+- BUGFIX: #5191 Fixed Enterprise Formatter in case when it's configured to avoid whitespaces before binary operator and the AND keyword appears in formatted query.
 
 ### 3.4.13
 - BUGFIX: #5183 Fixed completer proposals in the column names of the INSERT INTO statement.
