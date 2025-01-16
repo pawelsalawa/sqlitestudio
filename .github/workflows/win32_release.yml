@@ -78,6 +78,7 @@ jobs:
                 mv gh-scripts ..
                 cd ..
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v3

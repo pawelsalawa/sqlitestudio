@@ -68,6 +68,7 @@ jobs:
                 mv gh-scripts ..
                 cd ..
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'

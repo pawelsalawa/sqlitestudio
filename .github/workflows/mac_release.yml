@@ -84,6 +84,7 @@ jobs:
                 cd ..
                 chmod +x gh-scripts/scripts/*.sh
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
                 
             - name: Fix Qt for MacOS 13
               shell: bash

@@ -62,6 +62,7 @@ jobs:
                 echo "TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
                 chmod +x scripts/*.sh
                 echo "SCRIPTS=$(pwd)/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Trigger binary build workflows
               shell: bash
