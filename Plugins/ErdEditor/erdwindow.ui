@@ -107,7 +107,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the spacebar and drag with the mouse to scroll the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Changes to the diagram remain pending until you commit or roll them back using the toolbar buttons in the top-left corner.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the spacebar and drag with the mouse to scroll the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Use Ctrl+F to search for an entity by its name or the name of its column.&lt;/p&gt;&lt;p&gt;- Changes to the diagram remain pending until you commit or roll them back using the toolbar buttons in the top-left corner.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>

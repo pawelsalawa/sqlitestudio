@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/erdeditor.png</file>
-        <file>icons/erdlayout_fdp.png</file>
-        <file>icons/erdlayout_neato.png</file>
-        <file>icons/erdeditor_line_curvy.png</file>
-        <file>icons/erdeditor_line_straight.png</file>
-        <file>icons/erdeditor_line_square.png</file>
+        <file>icons/erdeditor.svg</file>
+        <file>icons/erdeditor_line_square.svg</file>
+        <file>icons/erdeditor_line_curvy.svg</file>
+        <file>icons/erdeditor_line_straight.svg</file>
+        <file>icons/erdlayout_fdp.svg</file>
+        <file>icons/erdlayout_naeto.svg</file>
     </qresource>
     <qresource prefix="/forms">
         <file>erdconfig.ui</file>

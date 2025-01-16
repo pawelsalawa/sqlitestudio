@@ -55,6 +55,8 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
+    ui->bottomLabel->setText(ui->bottomLabel->text().replace("Ctrl+F", "Cmd+F"));
+
     ui->splitter->setSizes({400, 200});
     ui->splitter->setStretchFactor(0, 2);
     ui->splitter->setStretchFactor(1, 1);

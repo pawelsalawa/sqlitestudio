@@ -16,7 +16,7 @@ bool ErdEditorPlugin::init()
     ErdWindow::staticInit();
     instance = this;
 
-    openErdEditorAction = new QAction(QIcon(":/icons/erdeditor.png"), tr("Open ERD editor"), this);
+    openErdEditorAction = new QAction(QIcon(":/icons/erdeditor.svg"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
 
     QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);

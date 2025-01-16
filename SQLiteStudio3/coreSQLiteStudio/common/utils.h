@@ -388,6 +388,26 @@ QHash<K, V> toHash(const QSet<V>& list, std::function<K(V)> transformer)
     return result;
 }
 
+template <class K, class V>
+QHash<K, QList<V>> groupToHash(const QList<V>& list, std::function<K(V)> transformer)
+{
+    QHash<K, QList<V>> result;
+    for (const V& el : list)
+        result[transformer(el)] << el;
+
+    return result;
+}
+
+template <class K, class V>
+QHash<K, QSet<V>> groupToHash(const QSet<V>& list, std::function<K(V)> transformer)
+{
+    QHash<K, QSet<V>> result;
+    for (const V& el : list)
+        result[transformer(el)] << el;
+
+    return result;
+}
+
 template <class T>
 void removeDuplicates(QList<T>& list)
 {
