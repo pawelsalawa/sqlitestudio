@@ -2357,7 +2357,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Erase table data</source>
       <translation>Vymazať dáta z tabuľky</translation>
     </message>
@@ -2400,129 +2400,129 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
       <translation type="unfinished">Generate query for table</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Create group</source>
       <translation>Vytvoriť skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
       <source>Group name</source>
       <translation>Názov skupiny</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation>Položka s názvom %1 už existuje v skupine %2.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1126"/>
+      <location filename="../dbtree/dbtree.cpp" line="1132"/>
       <source>Delete group</source>
       <translation>Vymazať skupinu</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1127"/>
+      <location filename="../dbtree/dbtree.cpp" line="1133"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation>Ste si istý, že chcete vymazať skupinu %1?
 Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1190"/>
+      <location filename="../dbtree/dbtree.cpp" line="1196"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation type="unfinished">Are you sure you want to remove database &apos;%1&apos; from the list?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1198"/>
+      <location filename="../dbtree/dbtree.cpp" line="1204"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation type="unfinished">Are you sure you want to remove following databases from the list:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1200"/>
+      <location filename="../dbtree/dbtree.cpp" line="1206"/>
       <source>Remove database</source>
       <translation type="unfinished">Remove database</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1240"/>
-      <location filename="../dbtree/dbtree.cpp" line="1445"/>
+      <location filename="../dbtree/dbtree.cpp" line="1246"/>
+      <location filename="../dbtree/dbtree.cpp" line="1451"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1260"/>
-      <location filename="../dbtree/dbtree.cpp" line="1420"/>
+      <location filename="../dbtree/dbtree.cpp" line="1266"/>
+      <location filename="../dbtree/dbtree.cpp" line="1426"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1510"/>
+      <location filename="../dbtree/dbtree.cpp" line="1516"/>
       <source>Vacuum (%1)</source>
       <translation type="unfinished">Vacuum (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1524"/>
+      <location filename="../dbtree/dbtree.cpp" line="1530"/>
       <source>Integrity check (%1)</source>
       <translation>Kontrola integrity (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Reset autoincrement</source>
       <translation>Resetovať autoinkrement</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>Ste si istý, že chcete zresetovať hodnotu autoinkrementu pre tabuľku %1 ?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1567"/>
+      <location filename="../dbtree/dbtree.cpp" line="1573"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>Vyskytla sa chyba pri pokuse o zresetovanie hodnoty autoinkrementu pre tebuľku &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1569"/>
+      <location filename="../dbtree/dbtree.cpp" line="1575"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1601"/>
+      <location filename="../dbtree/dbtree.cpp" line="1607"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation>Vyskytla sa chyba pri pokuse vymazať dáta z tabuľky &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1605"/>
+      <location filename="../dbtree/dbtree.cpp" line="1611"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation>Všetky dáta z tabuľky &apos;%1&apos; boli vymazané.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1733"/>
+      <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>Nasledujúce objekty budú odstránené: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1736"/>
+      <location filename="../dbtree/dbtree.cpp" line="1742"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>Nasledujúce databázy budú odstránené zo zoznamu: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1739"/>
+      <location filename="../dbtree/dbtree.cpp" line="1745"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation type="unfinished">Remainig objects from deleted group will be moved in place where the group used to be.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1741"/>
+      <location filename="../dbtree/dbtree.cpp" line="1747"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1743"/>
+      <location filename="../dbtree/dbtree.cpp" line="1749"/>
       <source>Delete objects</source>
       <translation>Odstránenie objektov</translation>
     </message>
@@ -2617,76 +2617,76 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
       <translation>Spúšťače (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1225"/>
       <source>Copy</source>
       <translation>Kopírovať</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1226"/>
       <source>Move</source>
       <translation type="unfinished">Move</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1192"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
       <source>Include data</source>
       <translation type="unfinished">Include data</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1193"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
       <source>Include indexes</source>
       <translation type="unfinished">Include indexes</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1194"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1230"/>
       <source>Include triggers</source>
       <translation type="unfinished">Include triggers</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1196"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
       <source>Abort</source>
       <translation>Zrušiť</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1255"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1291"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1302"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1356"/>
       <source>Referenced tables</source>
       <translation type="unfinished">Referenced tables</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1303"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1357"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation type="unfinished">Do you want to include following referenced tables as well:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1312"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1366"/>
       <source>Name conflict</source>
       <translation type="unfinished">Name conflict</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1313"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1367"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation type="unfinished">Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1326"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1380"/>
       <source>SQL statements conversion</source>
       <translation type="unfinished">SQL statements conversion</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1334"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1388"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1389"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
     </message>
