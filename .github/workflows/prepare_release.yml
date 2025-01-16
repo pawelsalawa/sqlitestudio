@@ -192,7 +192,7 @@ jobs:
 
                         echo "Uploading $file..."
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
-                        url=$(echo $url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
+                        #url=$(echo $url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
                         echo "Download url for $file is: $url"
 
                         NEW_META=$(
