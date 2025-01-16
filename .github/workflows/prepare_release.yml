@@ -39,6 +39,11 @@ on:
             required: false
             type: boolean
             default: false
+          DEBUG:
+            description: 'Enable workflow debug messages'
+            required: false
+            type: boolean
+            default: false
 
 jobs:
     build:
@@ -66,7 +71,13 @@ jobs:
                 echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
               
                 run_ids=()
-                inputs='{}'
+                
+                inputs="{}"
+                if [ "${DEBUG}" = "true" ]
+                then
+                    inputs=$(echo $inputs | jq -c '.DEBUG = "true"')
+                fi
+                
                 for wname in $WORKFLOWS
                 do
                     run_id=$($SCRIPTS/run_workflow.sh $wname "$inputs" "${{ github.ref_name }}")
