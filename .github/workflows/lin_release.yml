@@ -69,6 +69,7 @@ jobs:
                 cd ..
                 chmod +x gh-scripts/scripts/*.sh
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Install the InstalBuilder
               shell: bash

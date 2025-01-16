@@ -92,8 +92,8 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool dropUrls(const QList<QUrl>& urls);
         bool quickAddDroppedDb(const QString& filePath);
         void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers);
-        QHash<QString, DbTreeItem*> getAllItemsWithSignatures() const;
-        DbTreeItem* findDeepestExistingItemBySignature(const QString& signature, const QHash<QString, DbTreeItem*>& allItemsWithSignatures) const;
+        QHash<QStringList, DbTreeItem*> getAllItemsWithSignatures() const;
+        DbTreeItem* findDeepestExistingItemBySignature(QStringList signature, const QHash<QStringList, DbTreeItem*>& allItemsWithSignatures) const;
 
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);
