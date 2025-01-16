@@ -36,8 +36,7 @@
 - BUGFIX: #5148 Fixed counting of tables in queries transparently attaching other databases.
 - BIGFIX: #5162 Fixed crash when enabling STRICT option in Table Window.
 - BIGFIX: Fixed dialog windows positioning, so it's remembered correctly if the dialog is only moved, but not resized.
-- BIGFIX: System tables are again being presented o
-n the database list if the app is configured to do so.
+- BIGFIX: System tables are again being presented on the database list if the app is configured to do so.
 
 ### 3.4.9
 - BUGFIX: #5148 Fixed executing queries that refer to tables with database prefix (i.e. dbName.tableName).
