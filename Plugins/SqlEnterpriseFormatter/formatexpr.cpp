@@ -6,6 +6,7 @@
 #include "parser/ast/sqliteraise.h"
 #include "parser/ast/sqlitefilterover.h"
 #include "sqlenterpriseformatter.h"
+#include "common/utils_sql.h"
 
 QRegularExpression FormatExpr::WORD_ONLY_RE = QRegularExpression("^[a-zA-Z]+$");
 
@@ -68,7 +69,11 @@ void FormatExpr::formatInternal()
 
             // Operator can be a keyword
             QString opStr = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->binaryOp.toUpper() : expr->binaryOp.toLower();
-            withStatement(expr->expr1, "binaryOp1").withOperator(opStr);
+            withStatement(expr->expr1, "binaryOp1");
+            if (WORD_ONLY_RE.match(opStr).hasMatch())
+                withKeyword(opStr);
+            else
+                withOperator(opStr);
 
             if (multiLine)
                 withNewLine().withIncrIndent("binaryOp1");

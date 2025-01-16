@@ -39,6 +39,11 @@ on:
             required: false
             type: boolean
             default: false
+          DEBUG:
+            description: 'Enable workflow debug messages'
+            required: false
+            type: boolean
+            default: false
 
 jobs:
     build:
@@ -62,18 +67,20 @@ jobs:
               shell: bash
               if: inputs.RUN_IDS_TO_USE == ''
               run: |
-                WORKFLOWS=()
-                for key in $(echo ${{ env.RELEASE_META }} | jq -r 'keys[]')
-                do
-                    WORKFLOWS+=($key.yml)
-                done
+                WORKFLOWS=($(echo "$RELEASE_META" | jq -r 'keys[]'))
                 echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
               
                 run_ids=()
-                inputs='{}'
+                
+                inputs="{}"
+                if [ "${DEBUG}" = "true" ]
+                then
+                    inputs=$(echo $inputs | jq -c '.DEBUG = "true"')
+                fi
+                
                 for wname in $WORKFLOWS
                 do
-                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.ref_name }}")
+                    run_id=$($SCRIPTS/run_workflow.sh $wname "$inputs" "${{ github.ref_name }}")
                     run_ids+=( $run_id )
                 done
                 echo "CHILD_IDS=${run_ids[@]}" >> $GITHUB_ENV

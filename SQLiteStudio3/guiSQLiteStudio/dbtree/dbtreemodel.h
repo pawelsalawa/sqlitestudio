@@ -53,6 +53,8 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool hasDbTreeItem(const QMimeData* data);
         QList<DbTreeItem*> getDragItems(const QMimeData* data);
         QList<DbTreeItem*> getItemsForIndexes(const QModelIndexList& indexes) const;
+        QHash<QString, QVariant> collectSelectionState();
+        void restoreSelectionState(const QHash<QString, QVariant>& selectionState);
 
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
@@ -90,6 +92,8 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool dropUrls(const QList<QUrl>& urls);
         bool quickAddDroppedDb(const QString& filePath);
         void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers);
+        QHash<QString, DbTreeItem*> getAllItemsWithSignatures() const;
+        DbTreeItem* findDeepestExistingItemBySignature(const QString& signature, const QHash<QString, DbTreeItem*>& allItemsWithSignatures) const;
 
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);

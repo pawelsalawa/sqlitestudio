@@ -47,6 +47,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         QString getIndex() const;
         QString getTrigger() const;
         QString getView() const;
+        void setData(const QVariant& value, int role);
 
         /**
          * @brief parentItem
@@ -64,6 +65,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         QList<DbTreeItem*> getPathToParentItem(Type type, const QString& name);
         DbTreeItem* findParentItem(Type type);
         DbTreeItem* findParentItem(Type type, const QString& name);
+        QString pathSignature() const;
+        QStringList pathSignatureParts() const;
         QString signature() const;
 
         Type getType() const;
@@ -94,16 +97,19 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
 
         DbTreeItem(Type type, const QString& nodeName, QObject* parent = 0);
 
+        void pathSignatureParts(QStringList& parts) const;
         void init();
         void getPathToRoot(QList<DbTreeItem*>& path);
         void getPathToParentItem(QList<DbTreeItem*>& path, Type type);
         void getPathToParentItem(QList<DbTreeItem*>& path, Type type, const QString& name);
         const DbTreeItem* getParentItem(Type type) const;
+        void updateSignatureValue();
+
+        QString signatureValueOfThis;
 
     signals:
 
     public slots:
-
 };
 
 GUI_API_EXPORT QDataStream &operator<<(QDataStream &out, const DbTreeItem* item);

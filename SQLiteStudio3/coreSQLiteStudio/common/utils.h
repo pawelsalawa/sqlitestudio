@@ -358,12 +358,22 @@ QList<T> map(const QList<S>& list, std::function<T(S)> transformer)
     return result;
 }
 
+template <class S, class T>
+QSet<T> map(const QSet<S>& set, std::function<T(S)> transformer)
+{
+    QSet<T> result;
+    for (const S& el : set)
+        result << transformer(el);
+
+    return result;
+}
+
 template <class K, class V>
 QHash<K, V> toHash(const QList<V>& list, std::function<K(V)> transformer)
 {
     QHash<K, V> result;
     for (const V& el : list)
-        result[el] = transformer(el);
+        result[transformer(el)] = el;
 
     return result;
 }
@@ -373,17 +383,7 @@ QHash<K, V> toHash(const QSet<V>& list, std::function<K(V)> transformer)
 {
     QHash<K, V> result;
     for (const V& el : list)
-        result[el] = transformer(el);
-
-    return result;
-}
-
-template <class S, class T>
-QSet<T> map(const QSet<S>& set, std::function<T(S)> transformer)
-{
-    QSet<T> result;
-    for (const S& el : set)
-        result << transformer(el);
+        result[transformer(el)] = el;
 
     return result;
 }
