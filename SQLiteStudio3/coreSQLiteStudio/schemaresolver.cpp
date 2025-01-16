@@ -1418,27 +1418,51 @@ SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QSt
     return virtualTableAsRegularTable(database, table);
 }
 
-QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& table)
+QStringList SchemaResolver::getRowIdTableColumns(const QString& table)
 {
-    return getWithoutRowIdTableColumns("main", table);
+    return getRowIdTableColumns("main", table);
 }
 
-QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& database, const QString& table)
+QStringList SchemaResolver::getRowIdTableColumns(const QString& database, const QString& table)
 {
+    SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list(%2);")
+                                        .arg(database, wrapObjIfNeeded(table)));
+    if (results->isError())
+    {
+        qWarning() << "Could not get rowId column list using PRAGMA for db.table:" << database << "." << table << " (step 1), error was:" << results->getErrorText();
+        return QStringList();
+    }
+
+    if (!results->hasNext())
+    {
+        qWarning() << "Could not get rowId column list using PRAGMA for db.table:" << database << "." << table << " (step 1), no row was returned.";
+        return QStringList();
+    }
+
+    SqlResultsRowPtr row = results->next();
+    int withoutRowId = row->value("wr").toInt();
+    if (!withoutRowId)
+        return QStringList{"ROWID"};
+
+    // WITHOUT ROWID table
+    results = db->exec(QString("PRAGMA %1.table_info(%2);")
+                                            .arg(database, wrapObjIfNeeded(table)));
+
+    if (results->isError())
+    {
+        qWarning() << "Could not get rowId column list using PRAGMA for db.table:" << database << "." << table << " (step 2), error was:" << results->getErrorText();
+        return QStringList();
+    }
+
     QStringList columns;
-
-    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
-    if (!query)
-        return columns;
-
-    SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
-    if (!createTable)
-        return columns;
-
-    if (!createTable->withOutRowId)
-        return columns; // it's not WITHOUT ROWID table
-
-    return createTable->getPrimaryKeyColumns();
+    while (results->hasNext())
+    {
+        row = results->next();
+        int pk = row->value("pk").toInt();
+        if (pk)
+            columns << row->value("name").toString();
+    }
+    return columns;
 }
 
 QString SchemaResolver::getSqliteMasterDdl(bool temp)

@@ -1321,29 +1321,32 @@ void SqlQueryModel::readColumnDetails()
 QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
 {
     QHash<AliasedTable, TableDetails> results;
-    SqliteQueryPtr query;
-    SqliteCreateTablePtr createTable;
     SchemaResolver resolver(getDb());
-    QString database;
-    AliasedTable table;
-    QString columnName;
-
     for (const QueryExecutor::SourceTablePtr& srcTable : queryExecutor->getSourceTables())
     {
-        database = srcTable->database.isEmpty() ? "main" : srcTable->database;
+        QString database = srcTable->database.isEmpty() ? "main" : srcTable->database;
 
-        query = resolver.getParsedObject(database, srcTable->table, SchemaResolver::TABLE);
-        if (!query || !query.dynamicCast<SqliteCreateTable>())
+        SqliteQueryPtr query = resolver.getParsedObject(database, srcTable->table, SchemaResolver::TABLE);
+        if (!query)
         {
             qWarning() << "Could not get parsed table while reading table details in SqlQueryModel. Queried table was:"
                        << database + "." + srcTable->table;
             continue;
         }
-        createTable = query.dynamicCast<SqliteCreateTable>();
+        SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
+        if (!createTable && resolver.isVirtualTable(database, srcTable->table))
+            createTable = resolver.resolveVirtualTableAsRegularTable(database, srcTable->table);
+
+        if (!createTable)
+        {
+            qWarning() << "Could not get parsed table while reading table details in SqlQueryModel. Neither as regular nor virtual table. Queried table was:"
+                       << database + "." + srcTable->table;
+            continue;
+        }
 
         // Table details
         TableDetails tableDetails;
-        table = {database, srcTable->table, srcTable->alias};
+        AliasedTable table = {database, srcTable->table, srcTable->alias};
 
         // Table constraints
         for (SqliteCreateTable::Constraint* tableConstr : createTable->constraints)
@@ -1354,7 +1357,7 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
         {
             // Column details
             TableDetails::ColumnDetails columnDetails;
-            columnName = stripObjName(columnStmt->name);
+            QString columnName = stripObjName(columnStmt->name);
 
             // Column type
             if (columnStmt->type)
