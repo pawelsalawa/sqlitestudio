@@ -73,6 +73,7 @@ jobs:
                 do
                     WORKFLOWS+=("$key.yml")
                 done
+                echo "Workflows to trigger: ${WORKFLOWS[@]}"
                 echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
               
                 run_ids=()
@@ -83,7 +84,7 @@ jobs:
                     inputs=$(echo $inputs | jq -c '.DEBUG = "true"')
                 fi
                 
-                for wname in $WORKFLOWS
+                for wname in ${WORKFLOWS[@]}
                 do
                     run_id=$($SCRIPTS/run_workflow.sh $wname "$inputs" "${{ github.ref_name }}")
                     run_ids+=( $run_id )
