@@ -68,7 +68,11 @@ jobs:
               shell: bash
               if: inputs.RUN_IDS_TO_USE == ''
               run: |
-                WORKFLOWS=($(echo "$RELEASE_META" | jq -r 'keys[]'))
+                WORKFLOWS=()
+                for key in $(echo "$RELEASE_META" | jq -r 'keys[]')
+                do
+                    WORKFLOWS+=("$key.yml")
+                done
                 echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
               
                 run_ids=()
