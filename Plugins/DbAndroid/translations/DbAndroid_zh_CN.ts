@@ -338,8 +338,8 @@ Android 设备拒绝或无法完成删除。</translation>
       <translation>无法获取应用程序 %1 的数据库列表。详细信息：%2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 上执行查询：%2</translation>
     </message>

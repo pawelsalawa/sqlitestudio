@@ -337,8 +337,8 @@ Android device refused deletion, or it was impossible.</translation>
       <translation type="unfinished">Cannot get list of databases for application %1. Details: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation type="unfinished">Could not execute query on database &apos;%1&apos;: %2</translation>
     </message>

@@ -1869,13 +1869,13 @@
       <translation type="unfinished">Show form view of results</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1006"/>
+      <location filename="../dataview.cpp" line="1000"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>Filtrar por texto (si contiene)</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1007"/>
+      <location filename="../dataview.cpp" line="1001"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter strictly by text (if equals)</translation>
@@ -1911,47 +1911,47 @@
       <translation type="unfinished">Place new rows at the end of the data view</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="675"/>
+      <location filename="../dataview.cpp" line="669"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation type="unfinished">Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="686"/>
+      <location filename="../dataview.cpp" line="680"/>
       <source>Row: %1</source>
       <translation>Fila: %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="975"/>
+      <location filename="../dataview.cpp" line="969"/>
       <source>Filter</source>
       <translation>Filtro</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="978"/>
+      <location filename="../dataview.cpp" line="972"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1008"/>
+      <location filename="../dataview.cpp" line="1002"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter by the Regular Expression</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1009"/>
+      <location filename="../dataview.cpp" line="1003"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation type="unfinished">Filter by SQL expression</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1028"/>
+      <location filename="../dataview.cpp" line="1022"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation type="unfinished">Show filter inputs per column</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1032"/>
+      <location filename="../dataview.cpp" line="1026"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>Aplicar filtro</translation>
@@ -2151,12 +2151,12 @@ Browsing other pages will be possible after the row counting is done.</translati
   <context>
     <name>DbTree</name>
     <message>
-      <location filename="../dbtree/dbtree.ui" line="23"/>
+      <location filename="../dbtree/dbtree.ui" line="20"/>
       <source>Databases</source>
       <translation>Bases de datos</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.ui" line="73"/>
+      <location filename="../dbtree/dbtree.ui" line="70"/>
       <source>Filter by name</source>
       <translation>Filtrar por nombre</translation>
     </message>
@@ -2357,7 +2357,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Erase table data</source>
       <translation>Borrar los datos de la tabla</translation>
     </message>
@@ -2400,129 +2400,129 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation>Generar consulta para tabla</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Create group</source>
       <translation>Crear grupo</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
       <source>Group name</source>
       <translation>Nombre del grupo</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation>La entrada con el nombre %1 ya existe en el grupo %2.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1126"/>
+      <location filename="../dbtree/dbtree.cpp" line="1132"/>
       <source>Delete group</source>
       <translation>Eliminar grupo</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1127"/>
+      <location filename="../dbtree/dbtree.cpp" line="1133"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation>¿Está seguro que desea eliminar el grupo %1?
 Todos los objetos de este grupo se moverán al grupo superior.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1190"/>
+      <location filename="../dbtree/dbtree.cpp" line="1196"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation>¿Está seguro que desea eliminar la base de datos &apos;%1&apos; de la lista?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1198"/>
+      <location filename="../dbtree/dbtree.cpp" line="1204"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation>¿Está seguro que desea eliminar las siguientes bases de datos de la lista:
 %1?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1200"/>
+      <location filename="../dbtree/dbtree.cpp" line="1206"/>
       <source>Remove database</source>
       <translation>Eliminar base de datos</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1240"/>
-      <location filename="../dbtree/dbtree.cpp" line="1445"/>
+      <location filename="../dbtree/dbtree.cpp" line="1246"/>
+      <location filename="../dbtree/dbtree.cpp" line="1451"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1260"/>
-      <location filename="../dbtree/dbtree.cpp" line="1420"/>
+      <location filename="../dbtree/dbtree.cpp" line="1266"/>
+      <location filename="../dbtree/dbtree.cpp" line="1426"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1510"/>
+      <location filename="../dbtree/dbtree.cpp" line="1516"/>
       <source>Vacuum (%1)</source>
       <translation type="unfinished">Vacuum (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1524"/>
+      <location filename="../dbtree/dbtree.cpp" line="1530"/>
       <source>Integrity check (%1)</source>
       <translation>Comprobación de integridad (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Reset autoincrement</source>
       <translation type="unfinished">Reset autoincrement</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation type="unfinished">Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1567"/>
+      <location filename="../dbtree/dbtree.cpp" line="1573"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1569"/>
+      <location filename="../dbtree/dbtree.cpp" line="1575"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1601"/>
+      <location filename="../dbtree/dbtree.cpp" line="1607"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to delete data from table &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1605"/>
+      <location filename="../dbtree/dbtree.cpp" line="1611"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation type="unfinished">All data has been deleted for table &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1733"/>
+      <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>Following objects will be deleted: %1.</source>
       <translation type="unfinished">Following objects will be deleted: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1736"/>
+      <location filename="../dbtree/dbtree.cpp" line="1742"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation type="unfinished">Following databases will be removed from list: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1739"/>
+      <location filename="../dbtree/dbtree.cpp" line="1745"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation type="unfinished">Remainig objects from deleted group will be moved in place where the group used to be.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1741"/>
+      <location filename="../dbtree/dbtree.cpp" line="1747"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation type="unfinished">%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1743"/>
+      <location filename="../dbtree/dbtree.cpp" line="1749"/>
       <source>Delete objects</source>
       <translation>Eliminar objetos</translation>
     </message>
@@ -2617,76 +2617,76 @@ Todos los objetos de este grupo se moverán al grupo superior.</translation>
       <translation type="unfinished">Triggers (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1225"/>
       <source>Copy</source>
       <translation>Copiar</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1226"/>
       <source>Move</source>
       <translation>Mover</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1192"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
       <source>Include data</source>
       <translation type="unfinished">Include data</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1193"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
       <source>Include indexes</source>
       <translation type="unfinished">Include indexes</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1194"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1230"/>
       <source>Include triggers</source>
       <translation type="unfinished">Include triggers</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1196"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
       <source>Abort</source>
       <translation>Abortar</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1255"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1291"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1302"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1356"/>
       <source>Referenced tables</source>
       <translation type="unfinished">Referenced tables</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1303"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1357"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation type="unfinished">Do you want to include following referenced tables as well:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1312"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1366"/>
       <source>Name conflict</source>
       <translation>Conflicto de nombre</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1313"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1367"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation type="unfinished">Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1326"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1380"/>
       <source>SQL statements conversion</source>
       <translation type="unfinished">SQL statements conversion</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1334"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1388"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1389"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
     </message>
@@ -4040,53 +4040,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>&amp;Ayuda</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="599"/>
+      <location filename="../mainwindow.cpp" line="590"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>No se pudo establecer el estilo: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="730"/>
+      <location filename="../mainwindow.cpp" line="721"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="746"/>
+      <location filename="../mainwindow.cpp" line="737"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="789"/>
+      <location filename="../mainwindow.cpp" line="780"/>
       <source>Rename window</source>
       <translation>Renombrar ventana</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="789"/>
+      <location filename="../mainwindow.cpp" line="780"/>
       <source>Enter new name for the window:</source>
       <translation>Introduzca un nuevo nombre para la ventana:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="892"/>
+      <location filename="../mainwindow.cpp" line="883"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Hay nuevas actualizaciones disponibles. &lt;a href=&quot;%1&quot;&gt;Haga clic aquí para más detalles&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="900"/>
+      <location filename="../mainwindow.cpp" line="891"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1029"/>
+      <location filename="../mainwindow.cpp" line="1020"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1036"/>
+      <location filename="../mainwindow.cpp" line="1027"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1041"/>
+      <location filename="../mainwindow.cpp" line="1032"/>
       <source>Could not add database %1 to list.</source>
       <translation type="unfinished">Could not add database %1 to list.</translation>
     </message>
@@ -4433,83 +4433,83 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
       <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation type="unfinished">Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation type="unfinished">The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation type="unfinished">Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="82"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation type="unfinished">Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="84"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation type="unfinished">Cannot edit results of query other than %1.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="86"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation type="unfinished">Cannot edit columns that are result of aggregated %1 statements.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="91"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="88"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation type="unfinished">Cannot edit columns that are result of %1 statement.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="93"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="90"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation type="unfinished">Cannot edit columns that are result of common table expression statement (%1).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="95"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="92"/>
       <source>Cannot edit table generated columns.</source>
       <translation type="unfinished">Cannot edit table generated columns.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="97"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="94"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
       <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="428"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="469"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="487"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="523"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="425"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="466"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="484"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="520"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation type="unfinished">on conflict: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="453"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="450"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation type="unfinished">references table %1, column %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="520"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="517"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation type="unfinished">condition: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="540"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="537"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation type="unfinished">collation name: %1</translation>
@@ -4592,12 +4592,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="652"/>
+      <location filename="../dataview.cpp" line="646"/>
       <source>Total pages available: %1</source>
       <translation type="unfinished">Total pages available: %1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="662"/>
+      <location filename="../dataview.cpp" line="656"/>
       <source>Total rows loaded: %1</source>
       <translation type="unfinished">Total rows loaded: %1</translation>
     </message>
@@ -5479,48 +5479,48 @@ find next</translation>
       <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="304"/>
+      <location filename="../sqleditor.cpp" line="299"/>
       <source>Saved SQL contents to file: %1</source>
       <translation type="unfinished">Saved SQL contents to file: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="525"/>
+      <location filename="../sqleditor.cpp" line="520"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation type="unfinished">Syntax completion can be used only when a valid database is set for the SQL editor.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1152"/>
+      <location filename="../sqleditor.cpp" line="1145"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation type="unfinished">Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1187"/>
+      <location filename="../sqleditor.cpp" line="1180"/>
       <source>Save to file</source>
       <translation type="unfinished">Save to file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1202"/>
+      <location filename="../sqleditor.cpp" line="1195"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1203"/>
-      <location filename="../sqleditor.cpp" line="1220"/>
+      <location filename="../sqleditor.cpp" line="1196"/>
+      <location filename="../sqleditor.cpp" line="1213"/>
       <source>Open file</source>
       <translation type="unfinished">Open file</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1221"/>
+      <location filename="../sqleditor.cpp" line="1214"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
       <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1231"/>
+      <location filename="../sqleditor.cpp" line="1224"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1440"/>
+      <location filename="../sqleditor.cpp" line="1433"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation type="unfinished">Reached the end of document. Hit the find again to restart the search.</translation>
     </message>
@@ -5654,38 +5654,38 @@ find next</translation>
       <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1523"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1427"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1486"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation type="unfinished">Error while executing SQL query on database &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1520"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1483"/>
       <source>Error while loading query results: %1</source>
       <translation type="unfinished">Error while loading query results: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1687"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1650"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
       <source>Insert multiple rows</source>
       <translation>Insertar varias filas</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
       <source>Number of rows to insert:</source>
       <translation>Número de filas a insertar:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2061"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2024"/>
       <source>Delete rows</source>
       <translation>Borrar filas</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2062"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2025"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
@@ -5868,27 +5868,27 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation>Fila referenciada (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="845"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="841"/>
       <source>Trim pasted text?</source>
       <translation type="unfinished">Trim pasted text?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="846"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="842"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="854"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="850"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="855"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="851"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="963"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="959"/>
       <source>Edit value</source>
       <translation type="unfinished">Edit value</translation>
     </message>

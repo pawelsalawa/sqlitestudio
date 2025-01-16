@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -135,7 +135,7 @@
              <x>0</x>
              <y>0</y>
              <width>576</width>
-             <height>420</height>
+             <height>392</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -367,7 +367,7 @@
              <x>0</x>
              <y>0</y>
              <width>576</width>
-             <height>390</height>
+             <height>364</height>
             </rect>
            </property>
            <property name="styleSheet">

@@ -79,7 +79,7 @@
       <translation>開くデータベースファイル</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="146"/>
+      <location filename="../main.cpp" line="136"/>
       <source>Select configuration directory</source>
       <translation>設定ファイルの保存先を選択してください</translation>
     </message>

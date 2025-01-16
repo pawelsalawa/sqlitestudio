@@ -14,12 +14,12 @@
       <translation>在文件 %1 中未找到任何数据。</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="172"/>
+      <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
       <translation>设置自定义分隔符。</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="195"/>
+      <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>CSV 文件 (*.csv);;文本文件 (*.txt);;所有文件 (*)</translation>
     </message>

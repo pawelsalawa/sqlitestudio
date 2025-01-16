@@ -338,8 +338,8 @@ Il dispositivo Android ha rifiutato la cancellazione, o era impossibile.</transl
       <translation>Impossibile ottenere l&apos;elenco dei database per l&apos;applicazione %1. Dettagli: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>Impossibile eseguire la query nel database &apos;%1&apos;: %2</translation>
     </message>

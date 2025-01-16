@@ -1869,13 +1869,13 @@
       <translation>显示结果的表格视图</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1006"/>
+      <location filename="../dataview.cpp" line="1000"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
       <translation>按文本筛选（如果包含）</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1007"/>
+      <location filename="../dataview.cpp" line="1001"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
       <translation>严格按文本筛选（如果相等）</translation>
@@ -1911,47 +1911,47 @@
       <translation>放置新行于数据视图末尾</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="675"/>
+      <location filename="../dataview.cpp" line="669"/>
       <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
       <translation>正在统计总行数。
 请在此操作完成后再浏览其他页面。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="686"/>
+      <location filename="../dataview.cpp" line="680"/>
       <source>Row: %1</source>
       <translation>行：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="975"/>
+      <location filename="../dataview.cpp" line="969"/>
       <source>Filter</source>
       <translation>筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="978"/>
+      <location filename="../dataview.cpp" line="972"/>
       <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
       <translation>按回车键或点击工具栏上的“应用筛选”按钮来应用新值。</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1008"/>
+      <location filename="../dataview.cpp" line="1002"/>
       <source>Filter by the Regular Expression</source>
       <comment>data view</comment>
       <translation>以正则表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1009"/>
+      <location filename="../dataview.cpp" line="1003"/>
       <source>Filter by SQL expression</source>
       <comment>data view</comment>
       <translation>以 SQL 表达式筛选</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1028"/>
+      <location filename="../dataview.cpp" line="1022"/>
       <source>Show filter inputs per column</source>
       <comment>data view</comment>
       <translation>在每个列上展示筛选器输入框</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="1032"/>
+      <location filename="../dataview.cpp" line="1026"/>
       <source>Apply filter</source>
       <comment>data view</comment>
       <translation>应用筛选器</translation>
@@ -2151,12 +2151,12 @@ Browsing other pages will be possible after the row counting is done.</source>
   <context>
     <name>DbTree</name>
     <message>
-      <location filename="../dbtree/dbtree.ui" line="23"/>
+      <location filename="../dbtree/dbtree.ui" line="20"/>
       <source>Databases</source>
       <translation>数据库</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.ui" line="73"/>
+      <location filename="../dbtree/dbtree.ui" line="70"/>
       <source>Filter by name</source>
       <translation>按名称过滤</translation>
     </message>
@@ -2357,7 +2357,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Erase table data</source>
       <translation>擦除表数据</translation>
     </message>
@@ -2400,129 +2400,129 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>生成对表的查询</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Create group</source>
       <translation>创建分组</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1105"/>
+      <location filename="../dbtree/dbtree.cpp" line="1111"/>
       <source>Group name</source>
       <translation>分组名</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1108"/>
+      <location filename="../dbtree/dbtree.cpp" line="1114"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation>名称 %1 在分组 %2 中已存在。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1126"/>
+      <location filename="../dbtree/dbtree.cpp" line="1132"/>
       <source>Delete group</source>
       <translation>删除分组</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1127"/>
+      <location filename="../dbtree/dbtree.cpp" line="1133"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation>确认删除组 %1 吗？
 删除后该组下的全部内容将被移动到其所属的父分组中。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1190"/>
+      <location filename="../dbtree/dbtree.cpp" line="1196"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation>确定要移除数据库 %1 吗？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1198"/>
+      <location filename="../dbtree/dbtree.cpp" line="1204"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation>确定要从列表中移除下列数据库吗：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1200"/>
+      <location filename="../dbtree/dbtree.cpp" line="1206"/>
       <source>Remove database</source>
       <translation>移除数据库</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1240"/>
-      <location filename="../dbtree/dbtree.cpp" line="1445"/>
+      <location filename="../dbtree/dbtree.cpp" line="1246"/>
+      <location filename="../dbtree/dbtree.cpp" line="1451"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>无法导入，没有加载导入插件。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1260"/>
-      <location filename="../dbtree/dbtree.cpp" line="1420"/>
+      <location filename="../dbtree/dbtree.cpp" line="1266"/>
+      <location filename="../dbtree/dbtree.cpp" line="1426"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>无法导出，没有加载导出插件。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1510"/>
+      <location filename="../dbtree/dbtree.cpp" line="1516"/>
       <source>Vacuum (%1)</source>
       <translation>释放空闲占用（VACUUM）(%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1524"/>
+      <location filename="../dbtree/dbtree.cpp" line="1530"/>
       <source>Integrity check (%1)</source>
       <translation>完整性检查（%1）</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Reset autoincrement</source>
       <translation>重置自动递增</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1560"/>
+      <location filename="../dbtree/dbtree.cpp" line="1566"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>您确定要重置表“%1”的自动递增值吗？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1567"/>
+      <location filename="../dbtree/dbtree.cpp" line="1573"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>重置表“%1”的自动递增值时出错：%2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1569"/>
+      <location filename="../dbtree/dbtree.cpp" line="1575"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation>成功重置表“%1”的自动递增值。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1589"/>
+      <location filename="../dbtree/dbtree.cpp" line="1595"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation>您确定要删除表 %1 的所有数据吗？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1601"/>
+      <location filename="../dbtree/dbtree.cpp" line="1607"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation>删除表“%1”中的数据时出错：%2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1605"/>
+      <location filename="../dbtree/dbtree.cpp" line="1611"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation>表“%1”中的全部数据已被删除。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1733"/>
+      <location filename="../dbtree/dbtree.cpp" line="1739"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>下列对象将被删除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1736"/>
+      <location filename="../dbtree/dbtree.cpp" line="1742"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>下列数据库将从列表中移除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1739"/>
+      <location filename="../dbtree/dbtree.cpp" line="1745"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation>已删除分组中的剩余对象将被移开。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1741"/>
+      <location filename="../dbtree/dbtree.cpp" line="1747"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;确定继续？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1743"/>
+      <location filename="../dbtree/dbtree.cpp" line="1749"/>
       <source>Delete objects</source>
       <translation>删除对象</translation>
     </message>
@@ -2617,76 +2617,76 @@ All objects from this group will be moved to parent group.</source>
       <translation>触发器（%1）</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1225"/>
       <source>Copy</source>
       <translation>复制</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1190"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1226"/>
       <source>Move</source>
       <translation>移动</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1192"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
       <source>Include data</source>
       <translation>包含数据</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1193"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
       <source>Include indexes</source>
       <translation>包含索引</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1194"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1230"/>
       <source>Include triggers</source>
       <translation>包含触发器</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1196"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
       <source>Abort</source>
       <translation>中止</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1255"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1291"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation>无法自动添加拖放的数据库文件 &apos;%1&apos;。需要手动设置。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1302"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1356"/>
       <source>Referenced tables</source>
       <translation>引用的表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1303"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1357"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation>是否要包含以下引用的表：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1312"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1366"/>
       <source>Name conflict</source>
       <translation>名称冲突</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1313"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1367"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>下列对象已存在于目标数据库。
 请输入一个新的不重复的名称，或按下 &apos;%1&apos; 中止操作：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1326"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1380"/>
       <source>SQL statements conversion</source>
       <translation>SQL 语句转换</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1334"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1388"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation>将 SQL 语句转换为目标 SQLite 版本时发生以下错误：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1389"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation>是否忽略错误并继续？</translation>
     </message>
@@ -4039,53 +4039,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="599"/>
+      <location filename="../mainwindow.cpp" line="590"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>未能设置风格：%1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="730"/>
+      <location filename="../mainwindow.cpp" line="721"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>无法导出，没有加载导出插件。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="746"/>
+      <location filename="../mainwindow.cpp" line="737"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>无法导入，没有加载导入插件。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="789"/>
+      <location filename="../mainwindow.cpp" line="780"/>
       <source>Rename window</source>
       <translation>重命名窗口</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="789"/>
+      <location filename="../mainwindow.cpp" line="780"/>
       <source>Enter new name for the window:</source>
       <translation>请输入窗口的新名称：</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="892"/>
+      <location filename="../mainwindow.cpp" line="883"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;点此查看更新详情&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="900"/>
+      <location filename="../mainwindow.cpp" line="891"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1029"/>
+      <location filename="../mainwindow.cpp" line="1020"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>命令行参数传递的数据库（%1）已在列表中，名为：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1036"/>
+      <location filename="../mainwindow.cpp" line="1027"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>命令行参数传递的数据库（%1）已临时添加到列表中，名为：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1041"/>
+      <location filename="../mainwindow.cpp" line="1032"/>
       <source>Could not add database %1 to list.</source>
       <translation>未能将数据 %1 添加到列表</translation>
     </message>
@@ -4432,83 +4432,83 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
       <translation>无法编辑内联子查询的结果列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
       <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
       <translation>无法编辑列，它是复合 %1 语句（包含 %2、%3 或 %4 关键字）的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
       <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
       <translation>查询执行机制提取 ROWID 的属性时遇到问题。这可能是软件中的 bug，您可以报告该问题。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="83"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
       <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
       <translation>请求的列是一个 SQL 表达式的结果，而非普通的列。不能编辑这些列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="85"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="82"/>
       <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
       <translation>请求的列属于受限制的 SQLite 表。这些表不能被直接编辑。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="87"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="84"/>
       <source>Cannot edit results of query other than %1.</source>
       <translation>无法编辑 %1 以外的查询结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="89"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="86"/>
       <source>Cannot edit columns that are result of aggregated %1 statements.</source>
       <translation>无法编辑列，它是聚合的 %1 语句的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="91"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="88"/>
       <source>Cannot edit columns that are result of %1 statement.</source>
       <translation>无法编辑列，它是 %1 语句的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="93"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="90"/>
       <source>Cannot edit columns that are result of common table expression statement (%1).</source>
       <translation>无法编辑列，它是通用表生成语句 %1 的结果。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="95"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="92"/>
       <source>Cannot edit table generated columns.</source>
       <translation>无法编辑表生成的列。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="97"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="94"/>
       <source>Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</source>
       <translation>无法编辑此列，因为它是在另一个多级视图上执行查询的视图结果（即查询另一个视图的视图）。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="428"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="469"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="487"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="523"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="425"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="466"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="484"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="520"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>当冲突时：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="453"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="450"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>引用表 %1，列 %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="520"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="517"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>字符序：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="540"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="537"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>字符序名称：%1</translation>
@@ -4591,12 +4591,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>减小字号</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="652"/>
+      <location filename="../dataview.cpp" line="646"/>
       <source>Total pages available: %1</source>
       <translation>总计可用页数：%1</translation>
     </message>
     <message>
-      <location filename="../dataview.cpp" line="662"/>
+      <location filename="../dataview.cpp" line="656"/>
       <source>Total rows loaded: %1</source>
       <translation>已加载行数：%1</translation>
     </message>
@@ -5477,48 +5477,48 @@ find next</source>
       <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="304"/>
+      <location filename="../sqleditor.cpp" line="299"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>保存 SQL 内容至文件：%1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="525"/>
+      <location filename="../sqleditor.cpp" line="520"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>SQL 编辑器的语法补全功能仅当存在有效数据库时可用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1152"/>
+      <location filename="../sqleditor.cpp" line="1145"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>SQL 编辑器有大量内容，因此错误检测和现有对象的高亮显示功能被暂时禁用。</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1187"/>
+      <location filename="../sqleditor.cpp" line="1180"/>
       <source>Save to file</source>
       <translation>保存到文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1202"/>
+      <location filename="../sqleditor.cpp" line="1195"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL文件 (*.sql);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1203"/>
-      <location filename="../sqleditor.cpp" line="1220"/>
+      <location filename="../sqleditor.cpp" line="1196"/>
+      <location filename="../sqleditor.cpp" line="1213"/>
       <source>Open file</source>
       <translation>打开文件</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1221"/>
+      <location filename="../sqleditor.cpp" line="1214"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
       <translation>此文件非常大（超过 %1 MB）。您确定要将其加载到 SQL 查询编辑器中吗？</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1231"/>
+      <location filename="../sqleditor.cpp" line="1224"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1440"/>
+      <location filename="../sqleditor.cpp" line="1433"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>已到文档底部。再次点击查找将从头开始搜索。</translation>
     </message>
@@ -5652,38 +5652,38 @@ find next</source>
       <translation>数据视图中，已因列数（%2）将每页行数减小（%1）。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1464"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1523"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1427"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1486"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation>在数据库“%1”执行 SQL 查询时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1520"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1483"/>
       <source>Error while loading query results: %1</source>
       <translation>在加载查询结果时出错：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1687"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1650"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation>新查询中的列较少，排序顺序已重置。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
       <source>Insert multiple rows</source>
       <translation>插入多行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2006"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
       <source>Number of rows to insert:</source>
       <translation>要插入的行数：</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2061"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2024"/>
       <source>Delete rows</source>
       <translation>删除行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2062"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2025"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>您即将删除未提交的新插入的行。行数：%1
@@ -5866,27 +5866,27 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>引用的行（%1）</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="845"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="841"/>
       <source>Trim pasted text?</source>
       <translation>移除粘贴文本两端的空白？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="846"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="842"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>粘贴的文本两端含有空白符号。自动移除？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="854"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="850"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>将 &quot;NULL&quot; 粘贴为空值？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="855"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="851"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>粘贴的文本包含 &quot;NULL&quot; 字符。要将它们视为空值吗？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="963"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="959"/>
       <source>Edit value</source>
       <translation>编辑值</translation>
     </message>

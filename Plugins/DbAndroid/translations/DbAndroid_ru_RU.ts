@@ -338,8 +338,8 @@ Android device refused deletion, or it was impossible.</source>
       <translation>Невозможно получить список баз данных для приложения %1. Подробности: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>Невозможно выполнить запрос к базе данных &apos;%1&apos;: %2</translation>
     </message>

@@ -338,8 +338,8 @@ L&apos;appareil Android a refusé la suppression ou c&apos;était impossible.</t
       <translation>Impossible d&apos;obtenir la liste des bases de données pour l&apos;application %1. Détails&#xa0;: %2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>Impossible d&apos;exécuter la requête sur la base de données &apos;%1&apos;: %2</translation>
     </message>

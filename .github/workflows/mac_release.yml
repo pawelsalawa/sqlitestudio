@@ -18,6 +18,11 @@ on:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
             type: boolean
+          DEBUG:
+            description: 'Enable workflow debug messages'
+            required: false
+            type: boolean
+            default: false
     schedule:
         - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
@@ -225,6 +230,7 @@ jobs:
                 cd ..
                 chmod +x gh-scripts/scripts/*.sh
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
                 
             #- name: Fix Qt for MacOS 13
             #  shell: bash

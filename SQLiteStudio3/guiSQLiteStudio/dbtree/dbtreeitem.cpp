@@ -129,6 +129,13 @@ QString DbTreeItem::getView() const
     return item->text();
 }
 
+void DbTreeItem::setData(const QVariant& value, int role)
+{
+    QStandardItem::setData(value, role);
+    if (role == Qt::DisplayRole || role == DataRole::TYPE)
+        updateSignatureValue();
+}
+
 QStandardItem *DbTreeItem::parentItem() const
 {
     if (!QStandardItem::parent())
@@ -198,14 +205,29 @@ void DbTreeItem::getPathToRoot(QList<DbTreeItem *> &path)
         parentDbTreeItem()->getPathToRoot(path);
 }
 
+QString DbTreeItem::pathSignature() const
+{
+    return pathSignatureParts().join("_");
+}
+
+QStringList DbTreeItem::pathSignatureParts() const
+{
+    QStringList parts;
+    pathSignatureParts(parts);
+    return parts;
+}
+
+void DbTreeItem::pathSignatureParts(QStringList& parts) const
+{
+    if (parentDbTreeItem())
+        parentDbTreeItem()->pathSignatureParts(parts);
+
+    parts += signature();
+}
+
 QString DbTreeItem::signature() const
 {
-    QString sig;
-    if (parentDbTreeItem())
-        sig += parentDbTreeItem()->signature() + "_";
-
-    sig += QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64());
-    return sig;
+    return data(static_cast<int>(Type::SIGNATURE_OF_THIS)).toString();
 }
 
 void DbTreeItem::getPathToParentItem(QList<DbTreeItem*>& path, DbTreeItem::Type type)
@@ -238,6 +260,11 @@ const DbTreeItem* DbTreeItem::getParentItem(DbTreeItem::Type type) const
         return parent->getParentItem(type);
 
     return nullptr;
+}
+
+void DbTreeItem::updateSignatureValue()
+{
+    setData(QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64()), static_cast<int>(Type::SIGNATURE_OF_THIS));
 }
 
 Db* DbTreeItem::getDb() const
@@ -328,13 +355,13 @@ void DbTreeItem::init()
 
 QDataStream &operator <<(QDataStream &out, const DbTreeItem *item)
 {
-    out << item->signature();
+    out << item->pathSignatureParts();
     return out;
 }
 
 QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
 {
-    QString signature;
+    QStringList signature;
     in >> signature;
     item = DBTREE->getModel()->findItemBySignature(signature);
     return in;

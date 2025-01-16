@@ -14,12 +14,12 @@
       <translation>Impossibile trovare alcun dato nel file %1.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="172"/>
+      <location filename="../csvimport.cpp" line="168"/>
       <source>Enter the custom separator character.</source>
       <translation>Inserisci il carattere del separatore personalizzato.</translation>
     </message>
     <message>
-      <location filename="../csvimport.cpp" line="195"/>
+      <location filename="../csvimport.cpp" line="191"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation>File CSV (*.csv);;File di testo (*.txt);;Tutti i file (*)</translation>
     </message>

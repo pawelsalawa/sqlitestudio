@@ -2,6 +2,7 @@
 #include "parser/ast/sqliteselect.h"
 #include "selectresolver.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include "parser/ast/sqlitecreatevirtualtable.h"
 #include "schemaresolver.h"
 #include <QDebug>
 
@@ -111,48 +112,15 @@ QList<SqliteSelect*> QueryExecutorAddRowIds::getSubSelects(SqliteSelect::Core* c
 
 QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResolver::Table& table)
 {
-    QHash<QString,QString> colNames;
-
     SchemaResolver resolver(db);
-    SqliteQueryPtr query = resolver.getParsedObject(table.database, table.table, SchemaResolver::TABLE);
-    SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
-    if (!createTable)
-    {
-        qCritical() << "No CREATE TABLE object after parsing and casting in QueryExecutorAddRowIds::getNextColNames(). Cannot provide ROWID columns.";
-        return colNames;
-    }
+    QStringList rowIdCols = table.database.isNull() ?
+                                resolver.getRowIdTableColumns(table.table) :
+                                resolver.getRowIdTableColumns(table.database, table.table);
 
-    if (!createTable->withOutRowId)
-    {
-        // It's a regular ROWID table
-        colNames[getNextColName()] = "ROWID";
-        return colNames;
-    }
+    QHash<QString,QString> colNames;
+    for (const QString& colName : rowIdCols)
+        colNames[getNextColName()] = colName;
 
-    SqliteStatement* primaryKey = createTable->getPrimaryKey();
-    if (!primaryKey)
-    {
-        qCritical() << "WITHOUT ROWID table, but could not find    // Co PRIMARY KEY in QueryExecutorAddRowIds::getNextColNames().";
-        return colNames;
-    }
-
-    SqliteCreateTable::Column::Constraint* columnConstr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(primaryKey);
-    if (columnConstr)
-    {
-        colNames[getNextColName()] = dynamic_cast<SqliteCreateTable::Column*>(columnConstr->parentStatement())->name;
-        return colNames;
-    }
-
-    SqliteCreateTable::Constraint* tableConstr = dynamic_cast<SqliteCreateTable::Constraint*>(primaryKey);
-    if (tableConstr)
-    {
-        for (SqliteIndexedColumn*& idxCol : tableConstr->indexedColumns)
-            colNames[getNextColName()] = idxCol->name;
-
-        return colNames;
-    }
-
-    qCritical() << "PRIMARY KEY that is neither table or column constraint. Should never happen (QueryExecutorAddRowIds::getNextColNames()).";
     return colNames;
 }
 

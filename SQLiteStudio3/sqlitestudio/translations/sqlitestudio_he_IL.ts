@@ -79,7 +79,7 @@
       <translation>קובץ מסד נתונים לפתיחה</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="146"/>
+      <location filename="../main.cpp" line="136"/>
       <source>Select configuration directory</source>
       <translation>בחירת מחיצת תצור</translation>
     </message>

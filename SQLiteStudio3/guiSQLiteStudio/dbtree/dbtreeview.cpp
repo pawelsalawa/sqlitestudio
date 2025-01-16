@@ -46,6 +46,12 @@ DbTreeItem *DbTreeView::currentItem()
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(currentIndex()));
 }
 
+void DbTreeView::setCurrentItem(DbTreeItem* item)
+{
+    expandToMakeVisible(item);
+    setCurrentIndex(item->index());
+}
+
 DbTreeItem* DbTreeView::currentDbItem()
 {
     DbTreeItem* item = currentItem();
@@ -68,6 +74,16 @@ QList<DbTreeItem *> DbTreeView::selectionItems()
         items += dynamic_cast<DbTreeItem*>(model()->itemFromIndex(modIdx));
 
     return items;
+}
+
+void DbTreeView::selectItems(const QList<DbTreeItem*>& items)
+{
+    selectionModel()->clearSelection();
+    for (DbTreeItem* item : items)
+    {
+        expandToMakeVisible(item);
+        selectionModel()->select(item->index(), QItemSelectionModel::Select);
+    }
 }
 
 DbTreeModel *DbTreeView::model() const
@@ -193,6 +209,7 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::COLUMN:
             return handleColumnDoubleClick(item);
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
@@ -237,6 +254,16 @@ bool DbTreeView::handleColumnDoubleClick(DbTreeItem *item)
 {
     dbTree->editColumn(item);
     return false;
+}
+
+void DbTreeView::expandToMakeVisible(DbTreeItem* item)
+{
+    DbTreeItem* parentItem = item->parentDbTreeItem();
+    while (parentItem)
+    {
+        expand(parentItem->index());
+        parentItem = parentItem->parentDbTreeItem();
+    }
 }
 
 QPoint DbTreeView::getLastDropPosition() const

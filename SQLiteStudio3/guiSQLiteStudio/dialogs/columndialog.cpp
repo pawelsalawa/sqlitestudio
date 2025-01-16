@@ -10,12 +10,12 @@
 #include "datatype.h"
 #include "uiutils.h"
 #include "common/dialogsizehandler.h"
+#include "schemaresolver.h"
 #include <QDebug>
 #include <QCheckBox>
 #include <QMessageBox>
 #include <QDebug>
 #include <QPushButton>
-#include <schemaresolver.h>
 
 ColumnDialog::ColumnDialog(Db* db, QWidget *parent) :
     QDialog(parent),

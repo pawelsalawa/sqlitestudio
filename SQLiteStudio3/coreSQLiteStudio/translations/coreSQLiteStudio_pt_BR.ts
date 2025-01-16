@@ -15,7 +15,7 @@
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="957"/>
+      <location filename="../db/abstractdb.cpp" line="950"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
     </message>
@@ -156,12 +156,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="881"/>
+      <location filename="../services/impl/configimpl.cpp" line="877"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível iniciar a transação do banco de dados para excluir o histórico do SQL. Portanto, ela não será excluída.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="888"/>
+      <location filename="../services/impl/configimpl.cpp" line="884"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Não foi possível submeter a transação do banco de dados para excluir o histórico do SQL. Portanto, não será excluída.</translation>
     </message>
@@ -465,20 +465,20 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="185"/>
-      <location filename="../importworker.cpp" line="192"/>
+      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="188"/>
       <source>Error while importing data: %1</source>
       <translation>Erro ao importar dados: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="192"/>
+      <location filename="../importworker.cpp" line="188"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Interrompido.</translation>
     </message>
     <message>
-      <location filename="../importworker.cpp" line="180"/>
+      <location filename="../importworker.cpp" line="176"/>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Não foi possível importar a linha de dados número %1. A linha foi ignorada. Detalhes do problema: %2</translation>
     </message>
@@ -486,33 +486,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="546"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="540"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="557"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="551"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque sua dependência não foi carregada: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="566"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Não foi possível carregar o plugin %1. Detalhes do erro: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="582"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="576"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Não é possível carregar o plugin %1 (erro durante a inicialização do plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="743"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="744"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="738"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>max: %1</translation>
@@ -795,7 +795,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1235"/>
+      <location filename="../db/abstractdb3.h" line="1231"/>
       <source>Result set expired or no row available.</source>
       <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
@@ -827,12 +827,12 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2571"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6101"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>
@@ -892,17 +892,17 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Código de implementação não pode ser vazio.</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="372"/>
+      <location filename="../selectresolver.cpp" line="329"/>
       <source>Could not resolve data source for column: %1</source>
       <translation>Não foi possível resolver a fonte de dados para a coluna: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="444"/>
+      <location filename="../selectresolver.cpp" line="455"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="761"/>
+      <location filename="../services/impl/configimpl.cpp" line="757"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Não foi possível inicializar o arquivo de configuração. Quaisquer alterações de configuração e histórico de consultas serão perdidos após a reinicialização do aplicativo. Não foi possível criar um arquivo nos seguintes locais: %1.</translation>
     </message>
@@ -1006,29 +1006,29 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="204"/>
+      <location filename="../db/queryexecutor.cpp" line="205"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="246"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="253"/>
+      <location filename="../db/queryexecutor.cpp" line="254"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="343"/>
-      <location filename="../db/queryexecutor.cpp" line="357"/>
-      <location filename="../db/queryexecutor.cpp" line="607"/>
+      <location filename="../db/queryexecutor.cpp" line="344"/>
+      <location filename="../db/queryexecutor.cpp" line="358"/>
+      <location filename="../db/queryexecutor.cpp" line="608"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="526"/>
+      <location filename="../db/queryexecutor.cpp" line="527"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
@@ -1128,7 +1128,7 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="864"/>
+      <location filename="../db/abstractdb3.h" line="860"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

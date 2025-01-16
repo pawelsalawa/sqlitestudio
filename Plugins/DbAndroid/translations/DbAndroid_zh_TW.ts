@@ -338,8 +338,8 @@ Android 裝置拒絕或無法完成刪除。</translation>
       <translation>無法獲取應用程式 %1 的資料庫清單。詳細資訊：%2</translation>
     </message>
     <message>
-      <location filename="../dbandroidshellconnection.cpp" line="219"/>
-      <location filename="../dbandroidshellconnection.cpp" line="226"/>
+      <location filename="../dbandroidshellconnection.cpp" line="207"/>
+      <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
       <translation>無法在資料庫 &apos;%1&apos; 上執行查詢：%2</translation>
     </message>

@@ -1,13 +1,8 @@
 env:
     RELEASE_META: |
         {
-            "lin_release": {
-                "os": "Linux x64",
-                "installer_url": "",
-                "portable_url": ""
-            },
-            "mac_release": {
-                "os": "MacOS X x64",
+            "win64_release": {
+                "os": "Windows x64",
                 "installer_url": "",
                 "portable_url": ""
             },
@@ -16,8 +11,13 @@ env:
                 "installer_url": "",
                 "portable_url": ""
             },
-            "win64_release": {
-                "os": "Windows x64",
+            "mac_release": {
+                "os": "MacOS X x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "lin_release": {
+                "os": "Linux x64",
                 "installer_url": "",
                 "portable_url": ""
             }
@@ -39,6 +39,11 @@ on:
             required: false
             type: boolean
             default: false
+          DEBUG:
+            description: 'Enable workflow debug messages'
+            required: false
+            type: boolean
+            default: false
 
 jobs:
     build:
@@ -57,23 +62,31 @@ jobs:
                 echo "TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
                 chmod +x scripts/*.sh
                 echo "SCRIPTS=$(pwd)/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Trigger binary build workflows
               shell: bash
               if: inputs.RUN_IDS_TO_USE == ''
               run: |
                 WORKFLOWS=()
-                for key in $(echo ${{ env.RELEASE_META }} | jq -r 'keys[]')
+                for key in $(echo "$RELEASE_META" | jq -r 'keys[]')
                 do
-                    WORKFLOWS+=($key.yml)
+                    WORKFLOWS+=("$key.yml")
                 done
+                echo "Workflows to trigger: ${WORKFLOWS[@]}"
                 echo "WORKFLOWS=${WORKFLOWS[@]}" >> $GITHUB_ENV
               
                 run_ids=()
-                inputs='{}'
-                for wname in $WORKFLOWS
+                
+                inputs="{}"
+                if [ "${DEBUG}" = "true" ]
+                then
+                    inputs=$(echo $inputs | jq -c '.DEBUG = "true"')
+                fi
+                
+                for wname in ${WORKFLOWS[@]}
                 do
-                    run_id=$($SCRIPTS/run_workflow.sh $wname $inputs "${{ github.ref_name }}")
+                    run_id=$($SCRIPTS/run_workflow.sh $wname "$inputs" "${{ github.ref_name }}")
                     run_ids+=( $run_id )
                 done
                 echo "CHILD_IDS=${run_ids[@]}" >> $GITHUB_ENV
@@ -150,8 +163,9 @@ jobs:
                     tag_name="${tag_name}-test"
                     rel_name="${rel_name}-test"
                 fi
+                echo "TAG_NAME=$tag_name" >> $GITHUB_ENV
                 
-                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$rel_name" "")
+                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$BRANCH_NAME" "$rel_name" "")
                 echo "RELEASE_ID: $releaseid"
                 echo "RELEASE_ID=$releaseid" >> $GITHUB_ENV
                 
@@ -179,6 +193,7 @@ jobs:
 
                         echo "Uploading $file..."
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
+                        url=$(echo $url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
                         echo "Download url for $file is: $url"
 
                         NEW_META=$(
@@ -224,12 +239,12 @@ jobs:
                             type="Portable"
                         fi
                         
-                        body_lines+=("| $os | $type | [$file]($url) | $checksum |")
+                        body_lines+=("| $os | $type | [$file]($url) | \`$checksum\` |")
                     done
                     
                     cd ..
                 done                
                 
                 body=$(printf "%s\n" "${body_lines[@]}")
-                $SCRIPTS/update_release_body.sh $RELEASE_ID "$body" >/dev/null
+                $SCRIPTS/update_release_body.sh $RELEASE_ID "$TAG_NAME" "$body" >/dev/null
                 

@@ -496,6 +496,9 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
     QHash<QString, bool> expandedState;
     collectExpandedState(expandedState, item);
 
+    // Remember selection state
+    QHash<QString, QVariant> selectionState = collectSelectionState();
+
     // Delete child nodes
     while (item->rowCount() > 0)
         item->removeRow(0);
@@ -535,6 +538,7 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
     refreshSchemaBuild(item, tableItems, viewItems);
     populateChildItemsWithDb(item, db);
     restoreExpandedState(expandedState, item);
+    restoreSelectionState(selectionState);
 }
 
 void DbTreeModel::collectExpandedState(QHash<QString, bool> &state, QStandardItem *parentItem)
@@ -544,7 +548,7 @@ void DbTreeModel::collectExpandedState(QHash<QString, bool> &state, QStandardIte
 
     DbTreeItem* dbTreeItem = dynamic_cast<DbTreeItem*>(parentItem);
     if (dbTreeItem)
-        state[dbTreeItem->signature()] = treeView->isExpanded(dbTreeItem->index());
+        state[dbTreeItem->pathSignature()] = treeView->isExpanded(dbTreeItem->index());
 
     for (int i = 0; i < parentItem->rowCount(); i++)
         collectExpandedState(state, parentItem->child(i));
@@ -733,7 +737,7 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
 void DbTreeModel::restoreExpandedState(const QHash<QString, bool>& expandedState, QStandardItem* parentItem)
 {
     DbTreeItem* parentDbTreeItem = dynamic_cast<DbTreeItem*>(parentItem);
-    QString sig = parentDbTreeItem->signature();
+    QString sig = parentDbTreeItem->pathSignature();
     if (expandedState.contains(sig) && expandedState[sig])
         treeView->expand(parentItem->index());
 
@@ -867,14 +871,13 @@ DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type)
     return findFirstItem(root(), type);
 }
 
-DbTreeItem *DbTreeModel::findItemBySignature(const QString &signature)
+DbTreeItem *DbTreeModel::findItemBySignature(const QStringList &signature)
 {
-    QStringList parts = signature.split("_");
     QStringList pair;
     DbTreeItem* currItem = nullptr;
     DbTreeItem::Type type;
     QString name;
-    for (const QString& part : parts)
+    for (const QString& part : signature)
     {
         pair = part.split(".");
         type = static_cast<DbTreeItem::Type>(pair.first().toInt());
@@ -1009,11 +1012,12 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QStringList textList;
 
     DbTreeItem* item = nullptr;
-    stream << indexes.size();
+    qint32 indexesSize = indexes.size();
+    stream << indexesSize;
     for (const QModelIndex& idx : indexes)
     {
         item = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
-        stream << item->signature();
+        stream << item->pathSignatureParts();
 
         textList << item->text();
         if (item->getType() == DbTreeItem::Type::DB)
@@ -1088,8 +1092,8 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     stream >> itemCount;
 
     DbTreeItem* item = nullptr;
-    QString signature;
-    for (qsizetype i = 0; i < itemCount; i++)
+    QStringList signature;
+    for (qint32 i = 0; i < itemCount; i++)
     {
         stream >> signature;
         item = findItemBySignature(signature);
@@ -1110,6 +1114,38 @@ QList<DbTreeItem*> DbTreeModel::getItemsForIndexes(const QModelIndexList& indexe
     }
 
     return items;
+}
+
+QHash<QString, QVariant> DbTreeModel::collectSelectionState()
+{
+    DbTreeItem* activeItem = treeView->currentItem();
+    QStringList currentItem = activeItem ? activeItem->pathSignatureParts() : QStringList();
+    QList<QVariant> selectedItems = map<DbTreeItem*, QVariant>(treeView->selectionItems(), [](auto item) {return item->pathSignatureParts();});
+
+    QHash<QString, QVariant> selectionState;
+    selectionState["currentItem"] = currentItem;
+    selectionState["selectedItems"] = selectedItems;
+    return selectionState;
+}
+
+void DbTreeModel::restoreSelectionState(const QHash<QString, QVariant>& selectionState)
+{
+    QHash<QStringList, DbTreeItem*> allItemMap = getAllItemsWithSignatures();
+
+    // Current/Active
+    QStringList currentSig = selectionState["currentItem"].toStringList();
+    DbTreeItem* currentItem = findDeepestExistingItemBySignature(currentSig, allItemMap);
+    if (currentItem)
+        treeView->setCurrentItem(currentItem);
+
+    // Selected items
+    QList<QStringList> selectedSignatures = map<QVariant, QStringList>(selectionState["selectedItems"].toList(), [](const QVariant& v) {return v.toStringList();});
+    QList<DbTreeItem*> selectedItems = map<QStringList, DbTreeItem*>(selectedSignatures, [&allItemMap, this](const QStringList& sig)
+    {
+        return findDeepestExistingItemBySignature(sig, allItemMap);
+    });
+    selectedItems = filter<DbTreeItem*>(selectedItems, [](DbTreeItem* item) {return !!item;});
+    treeView->selectItems(selectedItems);
 }
 
 void DbTreeModel::staticInit()
@@ -1157,6 +1193,7 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
@@ -1295,6 +1332,23 @@ void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTree
         dbOrganizer->moveObjectsToDb(srcDb, srcNames, dstDb, includeData, includeIndexes, includeTriggers);
     else
         dbOrganizer->copyObjectsToDb(srcDb, srcNames, dstDb, includeData, includeIndexes, includeTriggers);
+}
+
+QHash<QStringList, DbTreeItem*> DbTreeModel::getAllItemsWithSignatures() const
+{
+    QList<DbTreeItem*> allItems = getAllItemsAsFlatList();
+    return toHash<QStringList, DbTreeItem*>(allItems, [](DbTreeItem* item) {return item->pathSignatureParts();});
+}
+
+DbTreeItem* DbTreeModel::findDeepestExistingItemBySignature(QStringList signature, const QHash<QStringList, DbTreeItem*>& allItemsWithSignatures) const
+{
+    DbTreeItem* item = allItemsWithSignatures[signature];
+    while (!item && !signature.isEmpty())
+    {
+        signature.removeLast();
+        item = allItemsWithSignatures[signature];
+    }
+    return item;
 }
 
 bool DbTreeModel::confirmReferencedTables(const QStringList& tables)
