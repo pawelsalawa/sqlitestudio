@@ -1,13 +1,8 @@
 env:
     RELEASE_META: |
         {
-            "lin_release": {
-                "os": "Linux x64",
-                "installer_url": "",
-                "portable_url": ""
-            },
-            "mac_release": {
-                "os": "MacOS X x64",
+            "win64_release": {
+                "os": "Windows x64",
                 "installer_url": "",
                 "portable_url": ""
             },
@@ -16,8 +11,13 @@ env:
                 "installer_url": "",
                 "portable_url": ""
             },
-            "win64_release": {
-                "os": "Windows x64",
+            "mac_release": {
+                "os": "MacOS X x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "lin_release": {
+                "os": "Linux x64",
                 "installer_url": "",
                 "portable_url": ""
             }
@@ -225,6 +225,9 @@ jobs:
                     portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
                     installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
                     
+                    portable_url=$(echo $portable_url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
+                    installer_url=$(echo $installer_url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
+                    
                     for file in *
                     do
                         checksum=$(sha256sum $file | cut -d ' ' -f 1)
@@ -237,7 +240,7 @@ jobs:
                             type="Portable"
                         fi
                         
-                        body_lines+=("| $os | $type | [$file]($url) | $checksum |")
+                        body_lines+=("| $os | $type | [$file]($url) | `$checksum` |")
                     done
                     
                     cd ..
