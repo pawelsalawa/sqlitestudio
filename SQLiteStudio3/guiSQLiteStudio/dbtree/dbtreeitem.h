@@ -27,6 +27,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
             COLUMNS = 1010,
             COLUMN = 1011,
             VIRTUAL_TABLE = 1012,
+            // Technical properties below
+            SIGNATURE_OF_THIS = 9998,
             ITEM_PROTOTYPE = 9999
         };
 
@@ -104,8 +106,6 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         void getPathToParentItem(QList<DbTreeItem*>& path, Type type, const QString& name);
         const DbTreeItem* getParentItem(Type type) const;
         void updateSignatureValue();
-
-        QString signatureValueOfThis;
 
     signals:
 

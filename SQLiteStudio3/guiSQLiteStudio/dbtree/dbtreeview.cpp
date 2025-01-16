@@ -208,6 +208,7 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::COLUMN:
             return handleColumnDoubleClick(item);
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 

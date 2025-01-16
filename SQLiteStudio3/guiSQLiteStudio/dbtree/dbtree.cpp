@@ -221,6 +221,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             switch (dbTreeItem->getType())
             {
                 case DbTreeItem::Type::ITEM_PROTOTYPE:
+                case DbTreeItem::Type::SIGNATURE_OF_THIS:
                     break;
                 case DbTreeItem::Type::DIR:
                     // It's handled outside of "item with db", above
@@ -317,10 +318,11 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     break;
                 case DbTreeItem::Type::COLUMNS:
                 case DbTreeItem::Type::INDEXES:
-                case DbTreeItem::Type::ITEM_PROTOTYPE:
                 case DbTreeItem::Type::TABLES:
                 case DbTreeItem::Type::TRIGGERS:
                 case DbTreeItem::Type::VIEWS:
+                case DbTreeItem::Type::ITEM_PROTOTYPE:
+                case DbTreeItem::Type::SIGNATURE_OF_THIS:
                     break;
             }
 
@@ -575,6 +577,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::ITEM_PROTOTYPE:
+            case DbTreeItem::Type::SIGNATURE_OF_THIS:
                 break;
         }
 
@@ -884,6 +887,7 @@ void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
             case DbTreeItem::Type::VIEWS:
             case DbTreeItem::Type::COLUMNS:
             case DbTreeItem::Type::ITEM_PROTOTYPE:
+            case DbTreeItem::Type::SIGNATURE_OF_THIS:
                 it.remove();
                 break;
             case DbTreeItem::Type::DIR:
@@ -948,6 +952,7 @@ void DbTree::deleteItem(DbTreeItem* item)
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             return;
     }
 

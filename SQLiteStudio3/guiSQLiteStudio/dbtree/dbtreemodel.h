@@ -28,7 +28,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         DbTreeItem* findItem(DbTreeItem::Type type, const QString &name);
         DbTreeItem* findItem(DbTreeItem::Type type, Db* db);
         DbTreeItem* findFirstItemOfType(DbTreeItem::Type type);
-        DbTreeItem* findItemBySignature(const QString& signature);
+        DbTreeItem* findItemBySignature(const QStringList &signature);
         QList<DbTreeItem*> findItems(DbTreeItem::Type type);
         void move(QStandardItem* itemToMove, QStandardItem* newParentItem, int newRow = -1);
         void move(QStandardItem* itemToMove, int newRow);

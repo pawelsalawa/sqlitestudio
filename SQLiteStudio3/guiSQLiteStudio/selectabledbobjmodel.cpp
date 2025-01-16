@@ -57,6 +57,7 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& idx) const
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
@@ -136,6 +137,7 @@ bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcPa
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             return false;
     }
     return false;

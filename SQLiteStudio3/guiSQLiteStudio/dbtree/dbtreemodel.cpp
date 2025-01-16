@@ -872,14 +872,13 @@ DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type)
     return findFirstItem(root(), type);
 }
 
-DbTreeItem *DbTreeModel::findItemBySignature(const QString &signature)
+DbTreeItem *DbTreeModel::findItemBySignature(const QStringList &signature)
 {
-    QStringList parts = signature.split("_");
     QStringList pair;
     DbTreeItem* currItem = nullptr;
     DbTreeItem::Type type;
     QString name;
-    for (const QString& part : parts)
+    for (const QString& part : signature)
     {
         pair = part.split(".");
         type = static_cast<DbTreeItem::Type>(pair.first().toInt());
@@ -1014,11 +1013,12 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QStringList textList;
 
     DbTreeItem* item = nullptr;
-    stream << reinterpret_cast<qint32>(indexes.size());
+    qint32 indexesSize = indexes.size();
+    stream << indexesSize;
     for (const QModelIndex& idx : indexes)
     {
         item = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
-        stream << item->pathSignature();
+        stream << item->pathSignatureParts();
 
         textList << item->text();
         if (item->getType() == DbTreeItem::Type::DB)
@@ -1093,7 +1093,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     stream >> itemCount;
 
     DbTreeItem* item = nullptr;
-    QString signature;
+    QStringList signature;
     for (qint32 i = 0; i < itemCount; i++)
     {
         stream >> signature;
@@ -1194,6 +1194,7 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
