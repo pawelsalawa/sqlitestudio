@@ -7,6 +7,10 @@
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 
+### 3.4.15
+- BUGFIX: #5218 Fixed Drag&Drop of items in the database list - a bug that was introduced in 3.4.14.
+- BUGFIX: #5216 Fixed Query Executor to use Smart Execution Method when there is a Virtual Table mentioned in the query, therefore enabling all advanced features of the Query Executor.
+
 ### 3.4.14
 - ADDED: #5190 Added support for optional ORDER BY and LIMIT clauses in UPDATE and DELETE statements.
 - ADDED: #5190 Added support for AS clause in INSERT, UPDATE and DELETE statements.

@@ -132,7 +132,7 @@ QString DbTreeItem::getView() const
 void DbTreeItem::setData(const QVariant& value, int role)
 {
     QStandardItem::setData(value, role);
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole || role == DataRole::TYPE)
         updateSignatureValue();
 }
 
@@ -227,7 +227,7 @@ void DbTreeItem::pathSignatureParts(QStringList& parts) const
 
 QString DbTreeItem::signature() const
 {
-    return signatureValueOfThis;
+    return data(static_cast<int>(Type::SIGNATURE_OF_THIS)).toString();
 }
 
 void DbTreeItem::getPathToParentItem(QList<DbTreeItem*>& path, DbTreeItem::Type type)
@@ -264,7 +264,7 @@ const DbTreeItem* DbTreeItem::getParentItem(DbTreeItem::Type type) const
 
 void DbTreeItem::updateSignatureValue()
 {
-    signatureValueOfThis = QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64());
+    setData(QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64()), static_cast<int>(Type::SIGNATURE_OF_THIS));
 }
 
 Db* DbTreeItem::getDb() const
@@ -355,13 +355,13 @@ void DbTreeItem::init()
 
 QDataStream &operator <<(QDataStream &out, const DbTreeItem *item)
 {
-    out << item->pathSignature();
+    out << item->pathSignatureParts();
     return out;
 }
 
 QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
 {
-    QString signature;
+    QStringList signature;
     in >> signature;
     item = DBTREE->getModel()->findItemBySignature(signature);
     return in;

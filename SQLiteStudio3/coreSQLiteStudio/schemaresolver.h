@@ -132,8 +132,8 @@ class API_EXPORT SchemaResolver
         SqliteCreateTablePtr resolveVirtualTableAsRegularTable(const QString& table);
         SqliteCreateTablePtr resolveVirtualTableAsRegularTable(const QString& database, const QString& table);
 
-        QStringList getWithoutRowIdTableColumns(const QString& table);
-        QStringList getWithoutRowIdTableColumns(const QString& database, const QString& table);
+        QStringList getRowIdTableColumns(const QString& table);
+        QStringList getRowIdTableColumns(const QString& database, const QString& table);
 
         /**
          * @brief getTableColumns Get column names for a table.
