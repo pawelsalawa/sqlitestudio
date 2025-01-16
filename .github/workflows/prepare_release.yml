@@ -164,7 +164,7 @@ jobs:
                     rel_name="${rel_name}-test"
                 fi
                 
-                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$rel_name" "")
+                releaseid=$($SCRIPTS/create_draft_release.sh "$tag_name" "$BRANCH_NAME" "$rel_name" "")
                 echo "RELEASE_ID: $releaseid"
                 echo "RELEASE_ID=$releaseid" >> $GITHUB_ENV
                 
