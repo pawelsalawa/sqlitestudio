@@ -22,12 +22,12 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
 
     // Init diagram
     GVC_t* gvc = gvContext();
-    Agraph_t* graph = agopen(const_cast<char*>("ERD"), Agdirected, nullptr);
-    agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.5"), "");
+    Agraph_t* graph = AGOPEN("ERD", Agdirected, nullptr);
+    AGSAFESET(graph, "sep", "0.5", "");
     if (algo == NEATO)
     {
-        agsafeset(graph, const_cast<char*>("sep"), const_cast<char*>("0.3"), "");
-        agsafeset(graph, const_cast<char*>("overlap"), const_cast<char*>("scalexy"), "");
+        AGSAFESET(graph, "sep", "0.3", "");
+        AGSAFESET(graph, "overlap", "scalexy", "");
     }
 
     // Add nodes to graph
@@ -38,10 +38,10 @@ void ErdGraphvizLayoutPlanner::arrangeScene(ErdScene* scene, Algo algo)
     {
         Agnode_t* node = agnode(graph, const_cast<char*>(entity->getTableName().toStdString().c_str()), 1);
         QSize size = entity->rect().toRect().size();
-        agsafeset(node, const_cast<char*>("fixedsize"), const_cast<char*>("true"), "");
-        agsafeset(node, const_cast<char*>("shape"), const_cast<char*>("rectangle"), "");
-        agsafeset(node, const_cast<char*>("width"), const_cast<char*>(QString::number(size.width() / dpi).toLatin1().constData()), "");
-        agsafeset(node, const_cast<char*>("height"), const_cast<char*>(QString::number(size.height() / dpi).toLatin1().constData()), "");
+        AGSAFESET(node, "fixedsize", "true", "");
+        AGSAFESET(node, "shape", "rectangle", "");
+        AGSAFESET(node, "width", QString::number(size.width() / dpi).toLatin1().constData(), "");
+        AGSAFESET(node, "height", QString::number(size.height() / dpi).toLatin1().constData(), "");
         entityNodes[entity] = node;
         entityByName[entity->getTableName()] = entity;
     }
