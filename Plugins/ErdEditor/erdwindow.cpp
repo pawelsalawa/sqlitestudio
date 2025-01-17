@@ -55,7 +55,9 @@ void ErdWindow::init()
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MACOS
     ui->bottomLabel->setText(ui->bottomLabel->text().replace("Ctrl+F", "Cmd+F"));
+#endif
 
     ui->splitter->setSizes({400, 200});
     ui->splitter->setStretchFactor(0, 2);
