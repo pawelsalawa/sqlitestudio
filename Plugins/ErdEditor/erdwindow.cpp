@@ -11,6 +11,8 @@
 #include "services/config.h"
 #include "erdentity.h"
 #include "erdtablewindow.h"
+#include "db/sqlquery.h"
+#include "db/sqlresultsrow.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -277,12 +279,51 @@ QVariant ErdWindow::saveSession()
     return sessionValue;
 }
 
+bool ErdWindow::initMemDb()
+{
+    if (memDb)
+    {
+        memDb->closeQuiet();
+        delete memDb;
+    }
+
+    memDb = DBLIST->createInMemDb();
+    memDb->setName(db->getName()); // same name as original, so that all functions/collations/extensions are loaded when open
+    if (!memDb->openQuiet())
+    {
+        qCritical() << "Failed to open in-memory database required for ERD editor! Db error:" << memDb->getErrorText();
+        return false;
+    }
+
+    // Now copy schema to memdb
+    // Order must be: tables, views, triggers, other. It's because they can be created "on" tables" and "on views".
+    SqlQueryPtr tableResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'");
+    SqlQueryPtr viewResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'view' AND name NOT LIKE 'sqlite_%'");
+    SqlQueryPtr triggerResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'trigger' AND name NOT LIKE 'sqlite_%'");
+    SqlQueryPtr indexResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'index' AND name NOT LIKE 'sqlite_%'");
+
+    QStringList ddls;
+    for (const SqlQueryPtr& results : {tableResults, viewResults, triggerResults, indexResults})
+    {
+        for (SqlResultsRowPtr& row : results->getAll())
+            ddls << row->value("sql").toString();
+    }
+
+    for (const QString& ddl : ddls)
+        memDb->exec(ddl);
+
+    return true;
+}
+
 void ErdWindow::parseAndRestore()
 {
     if (!db)
         return;
 
-    QSet<QString> tableNames = scene->parseSchema(db);
+    if (!initMemDb())
+        return;
+
+    QSet<QString> tableNames = scene->parseSchema(memDb);
     QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
     if (!tryToApplyConfig(erdConfig, tableNames))
     {

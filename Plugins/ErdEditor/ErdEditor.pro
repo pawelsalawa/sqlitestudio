@@ -10,6 +10,8 @@ DEFINES += ERDEDITOR_LIBRARY
 SOURCES += \
     erdarrowitem.cpp \
     erdchange.cpp \
+    erdchangeentity.cpp \
+    erdchangelayout.cpp \
     erdchangeregistry.cpp \
     erdconnection.cpp \
     erdcurvyarrowitem.cpp \
@@ -27,6 +29,8 @@ SOURCES += \
 HEADERS += \
     erdarrowitem.h \
     erdchange.h \
+    erdchangeentity.h \
+    erdchangelayout.h \
     erdchangeregistry.h \
     erdconnection.h \
     erdcurvyarrowitem.h \

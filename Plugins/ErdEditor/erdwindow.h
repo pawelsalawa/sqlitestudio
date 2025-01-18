@@ -71,6 +71,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 
         Ui::ErdWindow *ui;
         Db* db = nullptr;
+        Db* memDb = nullptr; // a volatile copy of the db, excluding data, just schema - for immediate modifications
         Icon* windowIcon = nullptr;
         Icon* fdpIcon = nullptr;
         Icon* neatoIcon = nullptr;
@@ -82,6 +83,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         ErdChangeRegistry* changeRegistry = nullptr;
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
+
+        bool initMemDb();
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
