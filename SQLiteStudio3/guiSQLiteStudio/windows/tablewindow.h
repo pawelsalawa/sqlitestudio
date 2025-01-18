@@ -161,6 +161,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void delConstraint(const QModelIndex& idx);
         virtual void executeStructureChanges();
         QStringList generateStructureChangeStatements();
+        QString updateWindowAfterStructureChanged();
         void updateAfterInit();
         QModelIndex structureCurrentIndex() const;
         void addConstraint(ConstraintDialog::Constraint mode);
@@ -198,7 +199,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         DbComboBox* dbCombo = nullptr;
         QHash<Action, QAction*> separatorAfterAction;
 
-    protected slots:
+     protected slots:
         void executionSuccessful();
         void executionFailed(const QString& errorText);
         void dbClosedFinalCleanup();
@@ -207,7 +208,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void checkIfTriggerDeleted(const QString& object);
         void refreshStructure();
         virtual void commitStructure(bool skipWarning = false);
-        void changesSuccessfullyCommitted();
+        virtual void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();
         void resetAutoincrement();

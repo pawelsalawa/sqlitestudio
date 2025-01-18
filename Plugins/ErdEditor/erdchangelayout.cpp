@@ -6,7 +6,7 @@ ErdChangeLayout::ErdChangeLayout() :
 {
 }
 
-QString ErdChangeLayout::toDdl() const
+QStringList ErdChangeLayout::toDdl()
 {
-    return QString();
+    return QStringList();
 }

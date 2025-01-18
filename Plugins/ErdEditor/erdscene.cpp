@@ -107,7 +107,7 @@ QHash<QString, QVariant> ErdScene::getConfig()
         QHash<QString, QVariant> singleEntityConfig;
         singleEntityConfig[CFG_KEY_POS] = entity->pos();
         // TODO entity color
-        erdEntities[entity->getPersistedTableName()] = singleEntityConfig;
+        erdEntities[entity->getTableName()] = singleEntityConfig;
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
     erdConfig[CFG_KEY_SCENE_RECT] = sceneRect();
@@ -204,6 +204,11 @@ void ErdScene::refreshSceneRect()
     QRectF boundingRect = itemsBoundingRect();
     boundingRect.adjust(-sceneMargin, -sceneMargin, sceneMargin, sceneMargin);
     setSceneRect(boundingRect);
+}
+
+void ErdScene::handleEntityModified(ErdEntity* entity)
+{
+
 }
 
 void ErdScene::placeNewEntity(ErdEntity* entity)

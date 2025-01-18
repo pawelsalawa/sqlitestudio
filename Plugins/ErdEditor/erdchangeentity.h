@@ -2,25 +2,27 @@
 #define ERDCHANGEENTITY_H
 
 #include "erdchange.h"
-#include "parser/ast/sqlitecreatetable.h"
+#include <QSharedPointer>
 
 class Db;
 class TableModifier;
 class ErdEntity;
+class SqliteCreateTable;
 
 class ErdChangeEntity : public ErdChange
 {
     public:
-        ErdChangeEntity(ErdEntity* entity, Db* db, SqliteCreateTablePtr before, SqliteCreateTablePtr after);
+        ErdChangeEntity(ErdEntity* entity, Db* db, const QSharedPointer<SqliteCreateTable>& before, const QSharedPointer<SqliteCreateTable>& after);
 
-        QString toDdl() const;
+        QStringList toDdl();
 
     private:
         ErdEntity* entity = nullptr;
         Db* db = nullptr;
-        SqliteCreateTablePtr before;
-        SqliteCreateTablePtr after;
+        QSharedPointer<SqliteCreateTable> before;
+        QSharedPointer<SqliteCreateTable> after;
         TableModifier* tableModifier = nullptr;
+        bool existingTable = false;
 };
 
 #endif // ERDCHANGEENTITY_H

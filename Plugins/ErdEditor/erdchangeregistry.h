@@ -12,6 +12,9 @@ class ErdChangeRegistry : public QObject
     public:
         explicit ErdChangeRegistry(QObject *parent = nullptr);
 
+        void compact();
+        void addChange(ErdChange* change);
+
     private:
         static constexpr int UNDO_LIMIT = 1000;
 

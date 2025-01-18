@@ -1,7 +1,7 @@
 #ifndef ERDCHANGE_H
 #define ERDCHANGE_H
 
-#include <QString>
+#include <QStringList>
 
 class ErdChange
 {
@@ -14,7 +14,7 @@ class ErdChange
 
         ErdChange() = delete;
 
-        virtual QString toDdl() const = 0;
+        virtual QStringList toDdl() = 0;
 
         Category getCategory() const;
 

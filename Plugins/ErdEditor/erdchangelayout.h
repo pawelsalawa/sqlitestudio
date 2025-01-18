@@ -9,7 +9,7 @@ class ErdChangeLayout : public ErdChange
     public:
         ErdChangeLayout();
 
-        QString toDdl() const;
+        QStringList toDdl();
 };
 
 #endif // ERDCHANGELAYOUT_H

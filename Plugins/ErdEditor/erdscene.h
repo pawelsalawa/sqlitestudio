@@ -54,6 +54,7 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesNeato(bool skipConfirm = false);
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
+        void handleEntityModified(ErdEntity* entity);
 
     signals:
         void showEntityToUser(ErdEntity* entity);

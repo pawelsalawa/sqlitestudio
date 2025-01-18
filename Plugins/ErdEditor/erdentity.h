@@ -21,12 +21,10 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
 {
     public:
         ErdEntity(SqliteCreateTable* tableModel);
-        ErdEntity(QSharedPointer<SqliteCreateTable> tableModel);
+        ErdEntity(const QSharedPointer<SqliteCreateTable>& tableModel);
 
         QSharedPointer<SqliteCreateTable> getTableModel() const;
-        void setModifiedTableModel(const QSharedPointer<SqliteCreateTable>& originalModel, const QSharedPointer<SqliteCreateTable>& model);
-        QSharedPointer<SqliteCreateTable> getOldTableModel() const;
-        void setOldTableModel(const QSharedPointer<SqliteCreateTable>& model);
+        void setTableModel(const QSharedPointer<SqliteCreateTable>& tableModel);
         void modelUpdated();
         int rowIndexAt(const QPointF& point);
         QRectF rowRect(int rowIndex);
@@ -35,7 +33,6 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         void addConnection(ErdConnection* conn);
         void removeConnection(ErdConnection* conn);
         QList<ErdConnection*> getConnections() const;
-        QString getPersistedTableName() const;
         QString getTableName() const;
         void updateConnectionIndexes();
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
@@ -72,7 +69,6 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         static constexpr qreal ICON_GAP = 4.0;
 
         QSharedPointer<SqliteCreateTable> tableModel;
-        QSharedPointer<SqliteCreateTable> oldTableModel;
         QList<ErdConnection*> connections;
         QList<Row*> rows;
         bool existingTable = true;

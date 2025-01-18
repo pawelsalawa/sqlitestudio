@@ -12,6 +12,7 @@ namespace Ui {
 
 class ErdScene;
 class ErdEntity;
+class ErdChange;
 class QShortcut;
 class ErdChangeRegistry;
 
@@ -98,6 +99,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void itemSelectionChanged();
         void commitPendingChanges();
         void rollbackPendingChanges();
+        void handleCreatedChange(ErdChange* change);
 };
 
 #endif // ERDWINDOW_H

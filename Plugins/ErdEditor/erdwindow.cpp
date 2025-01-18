@@ -11,6 +11,8 @@
 #include "services/config.h"
 #include "erdentity.h"
 #include "erdtablewindow.h"
+#include "erdchange.h"
+#include "erdchangeregistry.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
 #include <QDebug>
@@ -179,6 +181,12 @@ void ErdWindow::commitPendingChanges()
 void ErdWindow::rollbackPendingChanges()
 {
 
+}
+
+void ErdWindow::handleCreatedChange(ErdChange* change)
+{
+    changeRegistry->addChange(change);
+    qDebug() << "Added change";
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -378,6 +386,8 @@ void ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
     if (entity)
     {
         ErdTableWindow* tableMdiChild = new ErdTableWindow(db, entity);
+        connect(tableMdiChild, &ErdTableWindow::entityModified, scene, &ErdScene::handleEntityModified);
+        connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
         setSidePanelWidget(tableMdiChild);
     }
 }

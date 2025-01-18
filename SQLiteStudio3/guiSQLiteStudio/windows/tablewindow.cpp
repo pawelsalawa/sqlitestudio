@@ -846,15 +846,8 @@ void TableWindow::commitStructure(bool skipWarning)
     executeStructureChanges();
 }
 
-void TableWindow::changesSuccessfullyCommitted()
+QString TableWindow::updateWindowAfterStructureChanged()
 {
-    modifyingThisTable = false;
-
-    QStringList sqls = structureExecutor->getQueries();
-    CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
-
-    widgetCover->hide();
-
     originalCreateTable = createTable;
     structureModel->setCreateTable(createTable.data());
     structureConstraintsModel->setCreateTable(createTable.data());
@@ -868,7 +861,19 @@ void TableWindow::changesSuccessfullyCommitted()
     updateStructureCommitState();
     updateNewTableState();
     updateWindowTitle();
+    return oldTable;
+}
 
+void TableWindow::changesSuccessfullyCommitted()
+{
+    modifyingThisTable = false;
+
+    QStringList sqls = structureExecutor->getQueries();
+    CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
+
+    widgetCover->hide();
+
+    QString oldTable = updateWindowAfterStructureChanged();
     emit sessionValueChanged();
 
     NotifyManager* notifyManager = NotifyManager::getInstance();

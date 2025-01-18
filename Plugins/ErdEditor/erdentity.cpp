@@ -22,7 +22,7 @@ ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
 {
 }
 
-ErdEntity::ErdEntity(QSharedPointer<SqliteCreateTable> tableModel) :
+ErdEntity::ErdEntity(const QSharedPointer<SqliteCreateTable>& tableModel) :
     QGraphicsRectItem(), tableModel(tableModel)
 {
     setZValue(10);
@@ -46,21 +46,9 @@ QSharedPointer<SqliteCreateTable> ErdEntity::getTableModel() const
     return tableModel;
 }
 
-void ErdEntity::setModifiedTableModel(const QSharedPointer<SqliteCreateTable>& originalModel, const QSharedPointer<SqliteCreateTable>& model)
+void ErdEntity::setTableModel(const QSharedPointer<SqliteCreateTable>& tableModel)
 {
-    oldTableModel = originalModel;
-    tableModel = model;
-    modelUpdated();
-}
-
-QSharedPointer<SqliteCreateTable> ErdEntity::getOldTableModel() const
-{
-    return oldTableModel;
-}
-
-void ErdEntity::setOldTableModel(const QSharedPointer<SqliteCreateTable>& model)
-{
-    oldTableModel = model;
+    this->tableModel = tableModel;
 }
 
 int ErdEntity::rowIndexAt(const QPointF& point)
@@ -109,11 +97,6 @@ void ErdEntity::removeConnection(ErdConnection* conn)
 QList<ErdConnection*> ErdEntity::getConnections() const
 {
     return connections;
-}
-
-QString ErdEntity::getPersistedTableName() const
-{
-    return oldTableModel.isNull() ? tableModel->table : oldTableModel->table;
 }
 
 QString ErdEntity::getTableName() const

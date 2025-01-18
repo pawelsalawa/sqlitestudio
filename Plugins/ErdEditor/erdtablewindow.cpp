@@ -1,6 +1,7 @@
 #include "erdtablewindow.h"
 #include "erdentity.h"
 #include "ui_tablewindow.h"
+#include "erdchangeentity.h"
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),
@@ -38,21 +39,27 @@ bool ErdTableWindow::resolveCreateTableStatement()
     return true;
 }
 
-bool ErdTableWindow::resolveOriginalCreateTableStatement()
-{
-    if (entity->getOldTableModel().isNull())
-        return TableWindow::resolveOriginalCreateTableStatement();
-
-    originalCreateTable = entity->getOldTableModel();
-    return true;
-}
-
 void ErdTableWindow::applyInitialTab()
 {
     ui->tabWidget->setCurrentIndex(getStructureTabIdx());
 }
 
+void ErdTableWindow::changesSuccessfullyCommitted()
+{
+    modifyingThisTable = false;
+    updateWindowAfterStructureChanged();
+    emit entityModified(entity);
+}
+
 void ErdTableWindow::executeStructureChanges()
 {
-    entity->setModifiedTableModel(originalCreateTable, createTable);
+    ErdChangeEntity* change = new ErdChangeEntity(entity, db, originalCreateTable, createTable);
+    emit changeCreated(change);
+
+    structureExecutor->setAsync(false);
+    structureExecutor->setDb(db);
+    structureExecutor->setQueries(change->toDdl());
+    structureExecutor->setDisableForeignKeys(true);
+    structureExecutor->setDisableObjectDropsDetection(true);
+    structureExecutor->exec();
 }

@@ -5,6 +5,7 @@
 #include <QObject>
 
 class ErdEntity;
+class ErdChange;
 
 class ErdTableWindow : public TableWindow
 {
@@ -16,13 +17,17 @@ class ErdTableWindow : public TableWindow
 
     protected:
         bool resolveCreateTableStatement();
-        bool resolveOriginalCreateTableStatement();
         void applyInitialTab();
 
     private:
         ErdEntity* entity = nullptr;
 
     signals:
+        void entityModified(ErdEntity* entity);
+        void changeCreated(ErdChange* change);
+
+    public slots:
+        void changesSuccessfullyCommitted();
 
     protected slots:
         void executeStructureChanges();
