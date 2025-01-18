@@ -19,6 +19,13 @@
 #include <QShortcut>
 #include <QGraphicsOpacityEffect>
 
+Icon* ErdWindow::windowIcon = nullptr;
+Icon* ErdWindow::fdpIcon = nullptr;
+Icon* ErdWindow::neatoIcon = nullptr;
+Icon* ErdWindow::lineCurvyIcon = nullptr;
+Icon* ErdWindow::lineStraightIcon = nullptr;
+Icon* ErdWindow::lineSquareIcon = nullptr;
+
 ErdWindow::ErdWindow() :
     ui(new Ui::ErdWindow)
 {
@@ -43,19 +50,36 @@ ErdWindow::~ErdWindow()
 {
     disconnect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
     delete ui;
-    delete windowIcon;
-    delete fdpIcon;
-    delete neatoIcon;
 }
 
 void ErdWindow::staticInit()
 {
     qRegisterMetaType<ErdWindow>("ErdWindow");
+
+    windowIcon = new Icon("ERD_EDITOR", "erdeditor");
+    fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
+    neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
+    lineStraightIcon = new Icon("ERDEDITOR_LINE_STRAIGHT", "erdeditor_line_straight");
+    lineCurvyIcon = new Icon("ERDEDITOR_LINE_CURVY", "erdeditor_line_curvy");
+    lineSquareIcon = new Icon("ERDEDITOR_LINE_SQUARE", "erdeditor_line_square");
+}
+
+void ErdWindow::staticCleanup()
+{
+    delete lineStraightIcon;
+    delete lineCurvyIcon;
+    delete lineSquareIcon;
+    delete windowIcon;
+    delete fdpIcon;
+    delete neatoIcon;
 }
 
 void ErdWindow::init()
 {
     ui->setupUi(this);
+
+    for (auto icon : {windowIcon, fdpIcon, neatoIcon, lineStraightIcon, lineCurvyIcon, lineSquareIcon})
+        icon->load();
 
 #ifdef Q_OS_MACOS
     ui->bottomLabel->setText(ui->bottomLabel->text().replace("Ctrl+F", "Cmd+F"));
@@ -73,16 +97,6 @@ void ErdWindow::init()
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
     escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
-
-    windowIcon = new Icon("ERD_EDITOR", "erdeditor");
-    fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
-    neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
-    lineStraightIcon = new Icon("ERDEDITOR_LINE_STRAIGHT", "erdeditor_line_straight");
-    lineCurvyIcon = new Icon("ERDEDITOR_LINE_CURVY", "erdeditor_line_curvy");
-    lineSquareIcon = new Icon("ERDEDITOR_LINE_SQUARE", "erdeditor_line_square");
-
-    for (auto icon : {windowIcon, fdpIcon, neatoIcon, lineStraightIcon, lineCurvyIcon, lineSquareIcon})
-        icon->load();
 
     scene = new ErdScene(arrowType, this);
     ui->graphView->setScene(scene);

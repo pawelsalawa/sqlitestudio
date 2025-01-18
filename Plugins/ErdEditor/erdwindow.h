@@ -41,6 +41,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         ~ErdWindow();
 
         static void staticInit();
+        static void staticCleanup();
 
         bool isUncommitted() const override;
         QString getQuitUncommittedConfirmMessage() const override;
@@ -68,16 +69,16 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void showSidePanelPropertiesFor(QGraphicsItem* item);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
+        static Icon* windowIcon;
+        static Icon* fdpIcon;
+        static Icon* neatoIcon;
+        static Icon* lineCurvyIcon;
+        static Icon* lineStraightIcon;
+        static Icon* lineSquareIcon;
 
         Ui::ErdWindow *ui;
         Db* db = nullptr;
         Db* memDb = nullptr; // a volatile copy of the db, excluding data, just schema - for immediate modifications
-        Icon* windowIcon = nullptr;
-        Icon* fdpIcon = nullptr;
-        Icon* neatoIcon = nullptr;
-        Icon* lineCurvyIcon = nullptr;
-        Icon* lineStraightIcon = nullptr;
-        Icon* lineSquareIcon = nullptr;
         ErdScene* scene = nullptr;
         QShortcut* escHotkey = nullptr;
         ErdChangeRegistry* changeRegistry = nullptr;

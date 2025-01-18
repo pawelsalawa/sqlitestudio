@@ -33,6 +33,7 @@ void ErdEditorPlugin::deinit()
         win->getMdiWindow()->close();
 
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->removeAction(openErdEditorAction);
+    ErdWindow::staticCleanup();
     SQLS_CLEANUP_RESOURCE(erdeditor);
 }
 
