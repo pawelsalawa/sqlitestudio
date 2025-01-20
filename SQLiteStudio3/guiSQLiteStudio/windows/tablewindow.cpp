@@ -502,12 +502,17 @@ void TableWindow::executionFailed(const QString& errorText)
     notifyError(tr("Could not load data for table %1. Error details: %2").arg(table).arg(errorText));
 }
 
+void TableWindow::defineCurrentContextDb()
+{
+    ui->dbCombo->setCurrentDb(db);
+}
+
 void TableWindow::initDbAndTable()
 {
     for (int colIdx = 2; colIdx < 9; colIdx++)
         ui->structureView->setItemDelegateForColumn(colIdx, constraintColumnsDelegate);
 
-    ui->dbCombo->setCurrentDb(db);
+    defineCurrentContextDb();
     if (existingTable)
     {
         dataModel->setDb(db);

@@ -44,17 +44,21 @@ void ErdTableWindow::applyInitialTab()
     ui->tabWidget->setCurrentIndex(getStructureTabIdx());
 }
 
+void ErdTableWindow::defineCurrentContextDb()
+{
+    // No-op, as we use in-memory db for this window and it's not on the dropdown list.
+    // The dropdown list is hidden anyway.
+}
+
 void ErdTableWindow::changesSuccessfullyCommitted()
 {
     modifyingThisTable = false;
     updateWindowAfterStructureChanged();
-    emit entityModified(entity);
 }
 
 void ErdTableWindow::executeStructureChanges()
 {
     ErdChangeEntity* change = new ErdChangeEntity(entity, db, originalCreateTable, createTable);
-    emit changeCreated(change);
 
     structureExecutor->setAsync(false);
     structureExecutor->setDb(db);
@@ -62,4 +66,6 @@ void ErdTableWindow::executeStructureChanges()
     structureExecutor->setDisableForeignKeys(true);
     structureExecutor->setDisableObjectDropsDetection(true);
     structureExecutor->exec();
+
+    emit changeCreated(change);
 }

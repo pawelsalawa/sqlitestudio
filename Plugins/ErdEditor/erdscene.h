@@ -8,6 +8,7 @@
 #include <QSet>
 
 class ErdEntity;
+class ErdChange;
 class ErdConnection;
 class Db;
 
@@ -19,6 +20,7 @@ class ErdScene : public QGraphicsScene
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
 
         QSet<QString> parseSchema(Db* db);
+        void refreshSchema(Db* db, const QStringList &forTables);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
@@ -27,10 +29,8 @@ class ErdScene : public QGraphicsScene
         void placeNewEntity(ErdEntity* entity);
 
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
-        static constexpr const char* CFG_KEY_SCENE_RECT = "sceneRect";
         static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";
         static constexpr const char* CFG_KEY_ARROW_TYPE = "arrowType";
-        static constexpr const char* CFG_KEY_ZOOM = "zoom";
         static constexpr const char* CFG_KEY_POS = "pos";
         static constexpr const char* CFG_KEY_COLOR = "color";
 
@@ -44,6 +44,8 @@ class ErdScene : public QGraphicsScene
         QPointF getPosForNewEntity() const;
         QSet<ErdConnection*> getConnections() const;
         bool confirmLayoutChange() const;
+        StrHash<ErdEntity*> collectEntitiesByTable() const;
+        void refreshConnections(const QList<ErdEntity*>& forEntities = {});
 
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;
@@ -54,7 +56,6 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesNeato(bool skipConfirm = false);
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
-        void handleEntityModified(ErdEntity* entity);
 
     signals:
         void showEntityToUser(ErdEntity* entity);

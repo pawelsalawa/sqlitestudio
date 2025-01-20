@@ -18,12 +18,12 @@ class ErdTableWindow : public TableWindow
     protected:
         bool resolveCreateTableStatement();
         void applyInitialTab();
+        void defineCurrentContextDb();
 
     private:
         ErdEntity* entity = nullptr;
 
     signals:
-        void entityModified(ErdEntity* entity);
         void changeCreated(ErdChange* change);
 
     public slots:

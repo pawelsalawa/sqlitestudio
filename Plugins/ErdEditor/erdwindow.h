@@ -68,6 +68,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void clearSidePanel();
         void setSidePanelWidget(QWidget* widget);
         void showSidePanelPropertiesFor(QGraphicsItem* item);
+        bool initMemDb();
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static Icon* windowIcon;
@@ -85,10 +86,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         ErdChangeRegistry* changeRegistry = nullptr;
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
-
-        bool initMemDb();
-
-    private slots:
+        
+private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
         void useStraightLine();

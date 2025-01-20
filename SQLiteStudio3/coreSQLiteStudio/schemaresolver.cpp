@@ -1140,6 +1140,46 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     return details;
 }
 
+SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &name)
+{
+    return getParsedTable("main", name);
+}
+
+SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &database, const QString &name)
+{
+    return getParsedObject(database, name, TABLE).objectCast<SqliteCreateTable>();
+}
+
+SqliteCreateIndexPtr SchemaResolver::getParsedIndex(const QString &name)
+{
+    return getParsedIndex("main", name);
+}
+
+SqliteCreateIndexPtr SchemaResolver::getParsedIndex(const QString &database, const QString &name)
+{
+    return getParsedObject(database, name, INDEX).objectCast<SqliteCreateIndex>();
+}
+
+SqliteCreateTriggerPtr SchemaResolver::getParsedTrigger(const QString &name)
+{
+    return getParsedTrigger("main", name);
+}
+
+SqliteCreateTriggerPtr SchemaResolver::getParsedTrigger(const QString &database, const QString &name)
+{
+    return getParsedObject(database, name, TRIGGER).objectCast<SqliteCreateTrigger>();
+}
+
+SqliteCreateViewPtr SchemaResolver::getParsedView(const QString &name)
+{
+    return getParsedView("main", name);
+}
+
+SqliteCreateViewPtr SchemaResolver::getParsedView(const QString &database, const QString &name)
+{
+    return getParsedObject(database, name, VIEW).objectCast<SqliteCreateView>();
+}
+
 QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
     static_qstring(idxForTableTpl, "SELECT sql, name FROM %1.sqlite_master WHERE type = 'index' AND lower(tbl_name) = lower(?);");

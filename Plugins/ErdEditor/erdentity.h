@@ -32,6 +32,7 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         void updateConnectionsGeometry();
         void addConnection(ErdConnection* conn);
         void removeConnection(ErdConnection* conn);
+        void clearConnections();
         QList<ErdConnection*> getConnections() const;
         QString getTableName() const;
         void updateConnectionIndexes();

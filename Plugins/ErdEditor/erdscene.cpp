@@ -5,6 +5,8 @@
 #include "erdlinearrowitem.h"
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
+#include "erdchangeentity.h"
+#include "tablemodifier.h"
 #include <QApplication>
 #include <QMessageBox>
 
@@ -44,6 +46,24 @@ QSet<QString> ErdScene::parseSchema(Db* db)
         entity->updateConnectionsGeometry();
 
     return tableNames;
+}
+
+void ErdScene::refreshSchema(Db *db, const QStringList& modifiedTables)
+{
+    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
+
+    SchemaResolver resolver(db);
+    for (const QString& tableName : modifiedTables)
+    {
+        ErdEntity* entity = entitiesByTable[tableName];
+        entity->clearConnections();
+
+        SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
+        entity->setTableModel(createTable);
+        entity->modelUpdated();
+
+        setupEntityConnections(entitiesByTable, entity);
+    }
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -87,12 +107,7 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
         conn->refreshPosition();
 
     update();
-
-    QRectF rect = erdConfig[CFG_KEY_SCENE_RECT].toRectF();
-    if (rect.isValid())
-        setSceneRect(rect);
-    else
-        refreshSceneRect();
+    refreshSceneRect();
 }
 
 QHash<QString, QVariant> ErdScene::getConfig()
@@ -110,7 +125,6 @@ QHash<QString, QVariant> ErdScene::getConfig()
         erdEntities[entity->getTableName()] = singleEntityConfig;
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
-    erdConfig[CFG_KEY_SCENE_RECT] = sceneRect();
     erdConfig[CFG_KEY_ARROW_TYPE] = (int)arrowType;
     return erdConfig;
 }
@@ -118,18 +132,14 @@ QHash<QString, QVariant> ErdScene::getConfig()
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable)
 {
     for (ErdEntity*& srcEntity : entities)
-    {
         setupEntityConnections(entitiesByTable, srcEntity);
-        for (SqliteCreateTable::Column*& column : srcEntity->getTableModel()->columns)
-            setupEntityConnections(entitiesByTable, srcEntity, column);
-
-        srcEntity->updateConnectionIndexes();
-    }
 }
 
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity)
 {
     auto tableModel = srcEntity->getTableModel();
+
+    // Table-level FKs
     auto constraints = tableModel->getConstraints(SqliteCreateTable::Constraint::FOREIGN_KEY);
     for (auto constr : constraints)
     {
@@ -145,6 +155,13 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
                 );
         }
     }
+
+    // Column-level FKs
+    for (SqliteCreateTable::Column*& column : srcEntity->getTableModel()->columns)
+        setupEntityConnections(entitiesByTable, srcEntity, column);
+
+    // Regenerate connection indexes for connection types that make use of it (i.e. square lines connection)
+    srcEntity->updateConnectionIndexes();
 }
 
 void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn)
@@ -206,11 +223,6 @@ void ErdScene::refreshSceneRect()
     setSceneRect(boundingRect);
 }
 
-void ErdScene::handleEntityModified(ErdEntity* entity)
-{
-
-}
-
 void ErdScene::placeNewEntity(ErdEntity* entity)
 {
     entity->setPos(getPosForNewEntity());
@@ -269,6 +281,15 @@ bool ErdScene::confirmLayoutChange() const
             );
 
     return res == QMessageBox::Yes;
+}
+
+StrHash<ErdEntity*> ErdScene::collectEntitiesByTable() const
+{
+    StrHash<ErdEntity*> hash;
+    for (ErdEntity* entity : entities)
+        hash[entity->getTableName()] = entity;
+
+    return hash;
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

@@ -15,6 +15,8 @@ class ErdChangeEntity : public ErdChange
         ErdChangeEntity(ErdEntity* entity, Db* db, const QSharedPointer<SqliteCreateTable>& before, const QSharedPointer<SqliteCreateTable>& after);
 
         QStringList toDdl();
+        TableModifier *getTableModifier() const;
+        ErdEntity *getEntity() const;
 
     private:
         ErdEntity* entity = nullptr;

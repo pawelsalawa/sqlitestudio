@@ -13,8 +13,10 @@
 #include "erdtablewindow.h"
 #include "erdchange.h"
 #include "erdchangeregistry.h"
+#include "erdchangeentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
+#include "tablemodifier.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -113,6 +115,8 @@ void ErdWindow::init()
         actionMap[ADD_CONNECTION]->setChecked(false);
     });
 
+    changeRegistry = new ErdChangeRegistry(this);
+
     parseAndRestore();
 }
 
@@ -186,7 +190,18 @@ void ErdWindow::rollbackPendingChanges()
 void ErdWindow::handleCreatedChange(ErdChange* change)
 {
     changeRegistry->addChange(change);
-    qDebug() << "Added change";
+
+    ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
+    if (!entityChange)
+        return;
+
+    ErdEntity* entity = entityChange->getEntity();
+
+    TableModifier* tableModifier = entityChange->getTableModifier();
+    QStringList modifiedTables = {entity->getTableName()};
+    modifiedTables += tableModifier->getModifiedTables();
+
+    scene->refreshSchema(memDb, modifiedTables);
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -293,10 +308,12 @@ QVariant ErdWindow::saveSession()
     if (db)
         sessionValue["db"] = db->getName();
 
-    QHash<QString, QVariant> erdLayout = scene->getConfig();
-    erdLayout[ErdScene::CFG_KEY_ZOOM] = ui->graphView->getZoom();
-    CFG->set(ERD_CFG_GROUP, db->getPath(), erdLayout);
-    CFG->set(ERD_CFG_GROUP, db->getName(), erdLayout);
+    QHash<QString, QVariant> erdConfig;
+    erdConfig.insert(scene->getConfig());
+    erdConfig.insert(ui->graphView->getConfig());
+
+    CFG->set(ERD_CFG_GROUP, db->getPath(), erdConfig);
+    CFG->set(ERD_CFG_GROUP, db->getName(), erdConfig);
 
     return sessionValue;
 }
@@ -385,8 +402,7 @@ void ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
     ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
     if (entity)
     {
-        ErdTableWindow* tableMdiChild = new ErdTableWindow(db, entity);
-        connect(tableMdiChild, &ErdTableWindow::entityModified, scene, &ErdScene::handleEntityModified);
+        ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
         connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
         setSidePanelWidget(tableMdiChild);
     }
@@ -429,15 +445,8 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     if (matched < 2 || ((qreal)matched / erdConfig.size()) < 0.25)
         return false;
 
-    QVariant cfgZoom = erdConfig[ErdScene::CFG_KEY_ZOOM];
-    if (!cfgZoom.isNull())
-    {
-        qreal zoom = cfgZoom.toReal();
-        if ((1.0 - zoom) > 0.0001 && zoom > 0.01) // excluding any floating-point micro-differences and excluding too far zoom out
-            ui->graphView->restoreZoom(zoom);
-    }
-
     scene->applyConfig(erdConfig);
+    ui->graphView->applyConfig(erdConfig);
     updateArrowTypeButtons();
 
     return true;

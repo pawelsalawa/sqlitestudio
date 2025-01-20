@@ -7,7 +7,7 @@
 ErdChangeEntity::ErdChangeEntity(ErdEntity* entity, Db* db,
                                  const QSharedPointer<SqliteCreateTable>& before,
                                  const QSharedPointer<SqliteCreateTable>& after) :
-    ErdChange(Category::DDL), entity(entity), db(db), before(before), after(after)
+    ErdChange(Category::ENTITY), entity(entity), db(db), before(before), after(after)
 {
     existingTable = entity->isExistingTable();
 }
@@ -26,4 +26,14 @@ QStringList ErdChangeEntity::toDdl()
         tableModifier->alterTable(after);
         return tableModifier->generateSqls();
     }
+}
+
+TableModifier* ErdChangeEntity::getTableModifier() const
+{
+    return tableModifier;
+}
+
+ErdEntity* ErdChangeEntity::getEntity() const
+{
+    return entity;
 }

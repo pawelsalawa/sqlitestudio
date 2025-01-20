@@ -175,6 +175,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         int getDataTabIdx() const;
         int getStructureTabIdx() const;
         bool hasAnyPkDefined() const;
+        virtual void defineCurrentContextDb();
 
         int newTableWindowNum = 1;
 
@@ -198,8 +199,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool tabsMoving = false;
         DbComboBox* dbCombo = nullptr;
         QHash<Action, QAction*> separatorAfterAction;
-
-     protected slots:
+        
+    protected slots:
         void executionSuccessful();
         void executionFailed(const QString& errorText);
         void dbClosedFinalCleanup();

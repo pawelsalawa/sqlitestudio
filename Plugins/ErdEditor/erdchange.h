@@ -9,7 +9,7 @@ class ErdChange
         enum class Category
         {
             LAYOUT,
-            DDL
+            ENTITY
         };
 
         ErdChange() = delete;

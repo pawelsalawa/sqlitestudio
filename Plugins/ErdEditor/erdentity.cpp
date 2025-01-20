@@ -94,6 +94,15 @@ void ErdEntity::removeConnection(ErdConnection* conn)
     connections.removeOne(conn);
 }
 
+void ErdEntity::clearConnections()
+{
+    for (ErdConnection*& conn : connections)
+        delete conn;
+
+    if (!connections.isEmpty())
+        qCritical() << "Connections of entity is not empty after clearing! Current count is:" << connections.size();
+}
+
 QList<ErdConnection*> ErdEntity::getConnections() const
 {
     return connections;

@@ -168,9 +168,27 @@ qreal ErdView::getZoom() const
     return zoom;
 }
 
-void ErdView::restoreZoom(qreal value)
+void ErdView::applyConfig(const QHash<QString, QVariant> &erdConfig)
 {
-    applyZoomRatio(value);
+    QVariant cfgZoom = erdConfig[CFG_KEY_ZOOM];
+    if (!cfgZoom.isNull())
+    {
+        qreal zoom = cfgZoom.toReal();
+        if ((1.0 - zoom) > 0.0001 && zoom > 0.01) // excluding any floating-point micro-differences and excluding too far zoom out
+            applyZoomRatio(zoom);
+    }
+
+    QPointF centerPoint = erdConfig[CFG_KEY_CENTER_POINT].toPointF();
+    if (!centerPoint.isNull())
+        centerOn(centerPoint);
+}
+
+QHash<QString, QVariant> ErdView::getConfig()
+{
+    QHash<QString, QVariant> erdConfig;
+    erdConfig[CFG_KEY_CENTER_POINT] = mapToScene(viewport()->rect().center());
+    erdConfig[CFG_KEY_ZOOM] = getZoom();
+    return erdConfig;
 }
 
 void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)

@@ -22,9 +22,12 @@ class ErdView : public QGraphicsView
         ErdScene *scene() const;
         bool isSpacePressed() const;
         qreal getZoom() const;
-        void restoreZoom(qreal value);
-
+        void applyConfig(const QHash<QString, QVariant>& erdConfig);
+        QHash<QString, QVariant> getConfig();
         void applyZoomRatio(qreal ratio);
+
+        static constexpr const char* CFG_KEY_ZOOM = "zoom";
+        static constexpr const char* CFG_KEY_CENTER_POINT = "centerPoint";
 
     protected:
         void mousePressEvent(QMouseEvent* event) override;
