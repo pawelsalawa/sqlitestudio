@@ -9,6 +9,7 @@
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QTimer>
 
 ErdView::ErdView(QWidget* parent) :
     QGraphicsView(parent)
@@ -163,6 +164,19 @@ void ErdView::wheelEvent(QWheelEvent* event)
     applyZoomRatio(ratio);
 }
 
+bool ErdView::event(QEvent* event)
+{
+    if (event->type() == QEvent::Resize)
+    {
+        bool res = QGraphicsView::event(event);
+        if (!centerPointRestored && !centerPoint.isNull())
+            centerOn(centerPoint);
+
+        return res;
+    }
+    return QGraphicsView::event(event);
+}
+
 qreal ErdView::getZoom() const
 {
     return zoom;
@@ -178,9 +192,14 @@ void ErdView::applyConfig(const QHash<QString, QVariant> &erdConfig)
             applyZoomRatio(zoom);
     }
 
-    QPointF centerPoint = erdConfig[CFG_KEY_CENTER_POINT].toPointF();
+    centerPoint = erdConfig[CFG_KEY_CENTER_POINT].toPointF();
     if (!centerPoint.isNull())
+    {
         centerOn(centerPoint);
+        QTimer::singleShot(0, [this]() {
+            centerPointRestored = true;
+        });
+    }
 }
 
 QHash<QString, QVariant> ErdView::getConfig()

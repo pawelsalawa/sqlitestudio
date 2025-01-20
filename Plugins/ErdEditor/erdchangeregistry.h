@@ -14,12 +14,23 @@ class ErdChangeRegistry : public QObject
 
         void compact();
         void addChange(ErdChange* change);
+        int getPandingChangesCount() const;
+        QList<ErdChange*> getEffectiveChanges() const;
+        ErdChange* undo();
+        ErdChange* redo();
+        ErdChange* peekUndo() const;
+        ErdChange* peekRedo() const;
 
     private:
         static constexpr int UNDO_LIMIT = 1000;
 
+        void notifyChangesUpdated();
+
         QList<ErdChange*> changes;
         int currentIndex = -1; // points last element, until undo is done
+
+    signals:
+        void effectiveChangeCountUpdated(int count);
 
 };
 

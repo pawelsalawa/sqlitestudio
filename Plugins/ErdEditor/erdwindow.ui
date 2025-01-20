@@ -48,7 +48,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QSplitter" name="splitter">
+       <widget class="CustomSplitter" name="splitter">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
@@ -137,6 +137,12 @@
    <class>ErdView</class>
    <extends>QGraphicsView</extends>
    <header>erdview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CustomSplitter</class>
+   <extends>QSplitter</extends>
+   <header>common/customsplitter.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

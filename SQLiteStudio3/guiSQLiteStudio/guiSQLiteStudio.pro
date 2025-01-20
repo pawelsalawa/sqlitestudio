@@ -32,6 +32,7 @@ QMAKE_CXXFLAGS += -pedantic
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
 SOURCES +=\
+    common/customsplitter.cpp \
     common/dbcombobox.cpp \
     common/dialogsizehandler.cpp \
     common/immediatetooltip.cpp \
@@ -193,6 +194,7 @@ SOURCES +=\
     dialogs/fileexecerrorsdialog.cpp
 
 HEADERS  += mainwindow.h \
+    common/customsplitter.h \
     common/dbcombobox.h \
     common/dialogsizehandler.h \
     common/immediatetooltip.h \

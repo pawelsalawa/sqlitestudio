@@ -23,6 +23,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
     public:
         enum Action
         {
+            RELOAD,
             COMMIT,
             ROLLBACK,
             NEW_TABLE,
@@ -71,6 +72,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         bool initMemDb();
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
+        static constexpr const char* CFG_KEY_SPLITTER = "splitter";
         static Icon* windowIcon;
         static Icon* fdpIcon;
         static Icon* neatoIcon;
@@ -87,7 +89,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
         
-private slots:
+    private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
         void useStraightLine();
@@ -96,9 +98,12 @@ private slots:
         void cancelCurrentAction();
         void newTable();
         void itemSelectionChanged();
+        void reloadSchema();
         void commitPendingChanges();
         void rollbackPendingChanges();
         void handleCreatedChange(ErdChange* change);
+        void updateState();
+        void updateToolbarState(int effectiveChangeCount);
 };
 
 #endif // ERDWINDOW_H

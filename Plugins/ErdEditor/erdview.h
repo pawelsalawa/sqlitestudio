@@ -36,6 +36,7 @@ class ErdView : public QGraphicsView
         void mouseDoubleClickEvent(QMouseEvent* event) override;
         void focusOutEvent(QFocusEvent *event) override;
         void wheelEvent(QWheelEvent *event) override;
+        bool event(QEvent *event) override;
 
     private:
         class KeyPressFilter : public QObject {
@@ -65,6 +66,8 @@ class ErdView : public QGraphicsView
         qreal zoom = 1.0;
         bool spaceIsPressed = false;
         KeyPressFilter* keyFilter = nullptr;
+        bool centerPointRestored = false;
+        QPointF centerPoint;
 
     public slots:
         void abortDraftConnection();

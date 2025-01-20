@@ -116,8 +116,10 @@ void ErdWindow::init()
     });
 
     changeRegistry = new ErdChangeRegistry(this);
+    connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);
 
     parseAndRestore();
+    updateState();
 }
 
 void ErdWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
@@ -177,6 +179,11 @@ void ErdWindow::itemSelectionChanged()
         showSidePanelPropertiesFor(selectedItems[0]);
 }
 
+void ErdWindow::reloadSchema()
+{
+
+}
+
 void ErdWindow::commitPendingChanges()
 {
 
@@ -202,6 +209,18 @@ void ErdWindow::handleCreatedChange(ErdChange* change)
     modifiedTables += tableModifier->getModifiedTables();
 
     scene->refreshSchema(memDb, modifiedTables);
+}
+
+void ErdWindow::updateState()
+{
+    updateToolbarState(changeRegistry->getPandingChangesCount());
+}
+
+void ErdWindow::updateToolbarState(int effectiveChangeCount)
+{
+    bool hasPendingChanges = effectiveChangeCount > 0;
+    actionMap[COMMIT]->setEnabled(hasPendingChanges);
+    actionMap[ROLLBACK]->setEnabled(hasPendingChanges);
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -277,6 +296,7 @@ void ErdWindow::createActions()
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
     connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
 
+    createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
     ui->toolBar->addSeparator();
@@ -311,6 +331,7 @@ QVariant ErdWindow::saveSession()
     QHash<QString, QVariant> erdConfig;
     erdConfig.insert(scene->getConfig());
     erdConfig.insert(ui->graphView->getConfig());
+    erdConfig[CFG_KEY_SPLITTER] = ui->splitter->saveState();
 
     CFG->set(ERD_CFG_GROUP, db->getPath(), erdConfig);
     CFG->set(ERD_CFG_GROUP, db->getName(), erdConfig);
@@ -434,6 +455,8 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
         return false;
 
     QHash<QString, QVariant> erdConfig = value.toHash();
+
+    // Is it applicable config for this db?
     StrHash<QVariant> cfgEntities = erdConfig[ErdScene::CFG_KEY_ENTITIES].toHash();
     int matched = 0;
     for (QString configTable : cfgEntities.lowerKeys())
@@ -445,6 +468,8 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     if (matched < 2 || ((qreal)matched / erdConfig.size()) < 0.25)
         return false;
 
+    // Config is applicable.
+    ui->splitter->restoreState(erdConfig[CFG_KEY_SPLITTER].toByteArray());
     scene->applyConfig(erdConfig);
     ui->graphView->applyConfig(erdConfig);
     updateArrowTypeButtons();
