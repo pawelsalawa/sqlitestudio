@@ -4,6 +4,7 @@
 #include "icon.h"
 #include "style.h"
 #include "common/unused.h"
+#include "common/global.h"
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsTextItem>
 #include <QGraphicsLineItem>
@@ -18,11 +19,11 @@
 #include <QPainter>
 
 ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
-    ErdEntity(QSharedPointer<SqliteCreateTable>(tableModel))
+    ErdEntity(SqliteCreateTablePtr(tableModel))
 {
 }
 
-ErdEntity::ErdEntity(const QSharedPointer<SqliteCreateTable>& tableModel) :
+ErdEntity::ErdEntity(const SqliteCreateTablePtr& tableModel) :
     QGraphicsRectItem(), tableModel(tableModel)
 {
     setZValue(10);
@@ -41,14 +42,24 @@ ErdEntity::ErdEntity(const QSharedPointer<SqliteCreateTable>& tableModel) :
     rebuild();
 }
 
-QSharedPointer<SqliteCreateTable> ErdEntity::getTableModel() const
+SqliteCreateTablePtr ErdEntity::getTableModel() const
 {
     return tableModel;
 }
 
-void ErdEntity::setTableModel(const QSharedPointer<SqliteCreateTable>& tableModel)
+void ErdEntity::setTableModel(const SqliteCreateTablePtr& tableModel)
 {
     this->tableModel = tableModel;
+}
+
+SqliteCreateTablePtr ErdEntity::getPendingTableModel() const
+{
+    return pendingTableModel;
+}
+
+void ErdEntity::setPendingTableModel(const SqliteCreateTablePtr& tableModel)
+{
+    this->pendingTableModel = tableModel;
 }
 
 int ErdEntity::rowIndexAt(const QPointF& point)
@@ -111,6 +122,11 @@ QList<ErdConnection*> ErdEntity::getConnections() const
 QString ErdEntity::getTableName() const
 {
     return tableModel->table;
+}
+
+QString ErdEntity::getTableNameForEditing() const
+{
+    return pendingTableModel.isNull() ? getTableName() : pendingTableModel->table;
 }
 
 void ErdEntity::updateConnectionIndexes()
@@ -202,6 +218,14 @@ void ErdEntity::rebuild()
     }
 
     setRect(0, 0, totalWd, y);
+
+    if (!pendingTableModel.isNull())
+    {
+        cornerIcon = new QGraphicsPixmapItem(this);
+        cornerIcon->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
+        cornerIcon->setToolTip(QObject::tr("This table was modified, but the changes were neither accepted nor discarded."));
+        cornerIcon->setPos(-6, -6);
+    }
 }
 
 void ErdEntity::addTableTitle()
@@ -312,6 +336,13 @@ void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
 
 void ErdEntity::modelUpdated()
 {
+    if (cornerIcon)
+    {
+        scene()->removeItem(cornerIcon);
+        delete cornerIcon;
+        cornerIcon = nullptr;
+    }
+
     for (Row* row : rows)
     {
         scene()->removeItem(row->topRect);

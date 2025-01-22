@@ -60,6 +60,7 @@ void ErdScene::refreshSchema(Db *db, const QStringList& modifiedTables)
 
         SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
         entity->setTableModel(createTable);
+        entity->setPendingTableModel(SqliteCreateTablePtr());
         entity->modelUpdated();
 
         setupEntityConnections(entitiesByTable, entity);

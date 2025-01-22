@@ -375,6 +375,15 @@ bool ErdWindow::initMemDb()
     return true;
 }
 
+void ErdWindow::storePendingEntityModifications(QWidget* sidePanelWidget)
+{
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(sidePanelWidget);
+    if (!tableWin)
+        return;
+
+    tableWin->storePendingTableModel();
+}
+
 void ErdWindow::parseAndRestore()
 {
     if (!db)
@@ -395,19 +404,21 @@ void ErdWindow::parseAndRestore()
 
 void ErdWindow::clearSidePanel()
 {
-    if (currentSideWidget)
-    {
-        ui->sidePanel->layout()->removeWidget(currentSideWidget);
-        currentSideWidget->deleteLater();
-        currentSideWidget = nullptr;
-        ui->sidePanel->layout()->addWidget(noSideWidgetContents);
-    }
+    if (!currentSideWidget)
+        return
+
+    storePendingEntityModifications(currentSideWidget);
+    ui->sidePanel->layout()->removeWidget(currentSideWidget);
+    currentSideWidget->deleteLater();
+    currentSideWidget = nullptr;
+    ui->sidePanel->layout()->addWidget(noSideWidgetContents);
 }
 
 void ErdWindow::setSidePanelWidget(QWidget* widget)
 {
     if (currentSideWidget)
     {
+        storePendingEntityModifications(currentSideWidget);
         ui->sidePanel->layout()->removeWidget(currentSideWidget);
         currentSideWidget->deleteLater();
     }

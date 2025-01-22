@@ -142,7 +142,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool restoreSessionNextTime();
         QToolBar* getToolBar(int toolbar) const;
 
-        void init();
+        virtual void init();
         void newTable();
         void parseDdl();
         virtual bool resolveCreateTableStatement();
@@ -211,7 +211,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         virtual void commitStructure(bool skipWarning = false);
         virtual void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
-        void rollbackStructure();
+        virtual void rollbackStructure();
         void resetAutoincrement();
         void editColumn();
         void delColumn();

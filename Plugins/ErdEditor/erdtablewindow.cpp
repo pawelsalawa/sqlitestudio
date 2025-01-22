@@ -4,7 +4,7 @@
 #include "erdchangeentity.h"
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
-    : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),
+    : TableWindow(parent, db, QString(), entity->getTableNameForEditing(), entity->isExistingTable()),
       entity(entity)
 {
     ui->dbCombo->setEnabled(false);
@@ -27,6 +27,7 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
         ui->structureToolBar->removeAction(act);
 
     initDbAndTable();
+    updateAfterInit();
 }
 
 ErdTableWindow::~ErdTableWindow()
@@ -35,7 +36,16 @@ ErdTableWindow::~ErdTableWindow()
 
 bool ErdTableWindow::resolveCreateTableStatement()
 {
-    createTable = entity->getTableModel();
+    createTable = entity->getPendingTableModel().isNull() ?
+                SqliteCreateTablePtr::create(*entity->getTableModel()) :
+                entity->getPendingTableModel();
+
+    return true;
+}
+
+bool ErdTableWindow::resolveOriginalCreateTableStatement()
+{
+    originalCreateTable = SqliteCreateTablePtr::create(*entity->getTableModel());
     return true;
 }
 
@@ -54,6 +64,22 @@ void ErdTableWindow::changesSuccessfullyCommitted()
 {
     modifyingThisTable = false;
     updateWindowAfterStructureChanged();
+}
+
+void ErdTableWindow::storePendingTableModel()
+{
+    if (!isModified())
+        return;
+
+    entity->setPendingTableModel(createTable);
+    entity->modelUpdated();
+}
+
+void ErdTableWindow::rollbackStructure()
+{
+    TableWindow::rollbackStructure();
+    entity->setPendingTableModel(SqliteCreateTablePtr());
+    entity->modelUpdated();
 }
 
 void ErdTableWindow::executeStructureChanges()

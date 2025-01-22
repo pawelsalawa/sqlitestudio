@@ -17,6 +17,7 @@ class ErdTableWindow : public TableWindow
 
     protected:
         bool resolveCreateTableStatement();
+        bool resolveOriginalCreateTableStatement();
         void applyInitialTab();
         void defineCurrentContextDb();
 
@@ -28,6 +29,8 @@ class ErdTableWindow : public TableWindow
 
     public slots:
         void changesSuccessfullyCommitted();
+        void storePendingTableModel();
+        void rollbackStructure();
 
     protected slots:
         void executeStructureChanges();

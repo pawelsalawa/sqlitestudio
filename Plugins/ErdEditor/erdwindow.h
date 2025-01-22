@@ -70,6 +70,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void setSidePanelWidget(QWidget* widget);
         void showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
+        void storePendingEntityModifications(QWidget* sidePanelWidget);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
