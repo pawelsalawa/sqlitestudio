@@ -15,6 +15,7 @@ class ErdEntity;
 class ErdChange;
 class QShortcut;
 class ErdChangeRegistry;
+class QGraphicsOpacityEffect;
 
 class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
 {
@@ -89,6 +90,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         ErdChangeRegistry* changeRegistry = nullptr;
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
+        QGraphicsOpacityEffect* noSideWidgetEffect = nullptr;
         
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);

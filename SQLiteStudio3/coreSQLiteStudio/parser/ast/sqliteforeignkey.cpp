@@ -85,6 +85,11 @@ SqliteStatement*SqliteForeignKey::clone()
     return new SqliteForeignKey(*this);
 }
 
+QStringList SqliteForeignKey::getColumnNames() const
+{
+    return map<SqliteIndexedColumn*, QString>(indexedColumns, [](SqliteIndexedColumn* idxCol) {return idxCol->getColumnName();});
+}
+
 QStringList SqliteForeignKey::getTablesInStatement()
 {
     return getStrListFromValue(foreignTable);

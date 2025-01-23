@@ -27,6 +27,7 @@ class ErdScene : public QGraphicsScene
         void applyConfig(const QHash<QString, QVariant>& erdLayout);
         QHash<QString, QVariant> getConfig();
         void placeNewEntity(ErdEntity* entity);
+        ErdConnection* getConnectionForArrow(ErdArrowItem* arrow);
 
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
         static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";

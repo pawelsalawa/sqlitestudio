@@ -14,6 +14,7 @@ SOURCES += \
     erdchangelayout.cpp \
     erdchangeregistry.cpp \
     erdconnection.cpp \
+    erdconnectionpanel.cpp \
     erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
     erdentity.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     erdchangelayout.h \
     erdchangeregistry.h \
     erdconnection.h \
+    erdconnectionpanel.h \
     erdcurvyarrowitem.h \
     erdeditor_global.h \
     erdeditorplugin.h \
@@ -53,6 +55,7 @@ LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
     erdconfig.ui \
+    erdconnectionpanel.ui \
     erdwindow.ui
 
 RESOURCES += \

@@ -50,7 +50,7 @@ class ErdView : public QGraphicsView
                 ErdView* view = nullptr;
         };
 
-        void viewClicked(const QPoint& pos, Qt::MouseButton button);
+        bool viewClicked(const QPoint& pos, Qt::MouseButton button);
         QGraphicsItem* clickableItemAt(const QPoint& pos);
         void spacePressed();
         void spaceReleased();

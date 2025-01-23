@@ -58,6 +58,7 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
         ~SqliteForeignKey();
 
         SqliteStatement* clone();
+        QStringList getColumnNames() const;
 
         QString foreignTable = QString();
         QList<SqliteIndexedColumn*> indexedColumns;

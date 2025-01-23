@@ -16,6 +16,7 @@
 #include "erdchangeentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
+#include "erdconnectionpanel.h"
 #include "tablemodifier.h"
 #include <QDebug>
 #include <QMdiSubWindow>
@@ -94,9 +95,9 @@ void ErdWindow::init()
     ui->splitter->setStretchFactor(1, 1);
 
     noSideWidgetContents = ui->noContentWidget;
-    QGraphicsOpacityEffect *opacityEffect = new QGraphicsOpacityEffect(noSideWidgetContents);
-    opacityEffect->setOpacity(0.5);
-    noSideWidgetContents->setGraphicsEffect(opacityEffect);
+    noSideWidgetEffect = new QGraphicsOpacityEffect(noSideWidgetContents);
+    noSideWidgetEffect->setOpacity(0.5);
+    noSideWidgetContents->setGraphicsEffect(noSideWidgetEffect);
 
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
@@ -411,6 +412,7 @@ void ErdWindow::clearSidePanel()
     ui->sidePanel->layout()->removeWidget(currentSideWidget);
     currentSideWidget->deleteLater();
     currentSideWidget = nullptr;
+    noSideWidgetContents->setVisible(true);
     ui->sidePanel->layout()->addWidget(noSideWidgetContents);
 }
 
@@ -423,7 +425,10 @@ void ErdWindow::setSidePanelWidget(QWidget* widget)
         currentSideWidget->deleteLater();
     }
     else
+    {
         ui->sidePanel->layout()->removeWidget(noSideWidgetContents);
+        noSideWidgetContents->setVisible(false);
+    }
 
     currentSideWidget = widget;
     ui->sidePanel->layout()->addWidget(widget);
@@ -432,11 +437,25 @@ void ErdWindow::setSidePanelWidget(QWidget* widget)
 void ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
 {
     ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    ErdArrowItem* arrow = dynamic_cast<ErdArrowItem*>(item);
     if (entity)
     {
         ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
         connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
         setSidePanelWidget(tableMdiChild);
+    }
+    else if (arrow)
+    {
+        ErdConnection* connection = scene->getConnectionForArrow(arrow);
+        if (!connection)
+        {
+            qCritical() << "No ErdConnection for ErdArrowItem!";
+            return;
+        }
+
+        ErdConnectionPanel* panel = new ErdConnectionPanel(memDb, connection);
+        connect(panel, &ErdConnectionPanel::changeCreated, this, &ErdWindow::handleCreatedChange);
+        setSidePanelWidget(panel);
     }
 }
 

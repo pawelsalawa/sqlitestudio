@@ -26,7 +26,7 @@
       <item>
        <widget class="QLabel" name="fkTableLabel">
         <property name="text">
-         <string>Foreign table:</string>
+         <string>Referenced table:</string>
         </property>
        </widget>
       </item>
@@ -49,12 +49,11 @@
           <widget class="QLabel" name="colHdrLocal">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
            <property name="text">
-            <string>Local column</string>
+            <string>Referencing column</string>
            </property>
           </widget>
          </item>
@@ -62,12 +61,11 @@
           <widget class="QLabel" name="colHdrForeign">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
            <property name="text">
-            <string>Foreign column</string>
+            <string>Referenced column</string>
            </property>
           </widget>
          </item>
@@ -77,10 +75,10 @@
       <item>
        <widget class="QScrollArea" name="columnsArea">
         <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+         <enum>QFrame::Shape::NoFrame</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
+         <enum>QFrame::Shadow::Plain</enum>
         </property>
         <property name="widgetResizable">
          <bool>true</bool>
@@ -91,7 +89,7 @@
            <x>0</x>
            <y>0</y>
            <width>358</width>
-           <height>30</height>
+           <height>25</height>
           </rect>
          </property>
         </widget>

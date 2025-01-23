@@ -66,10 +66,13 @@ void ErdView::mousePressEvent(QMouseEvent* event)
             }
             else
             {
-                selectedItems = {item};
-                selectedMovableItems = {item};
                 dragOffset.clear();
                 dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
+                if (draftingConnectionMode)
+                    return;
+
+                selectedItems = {item};
+                selectedMovableItems = {item};
             }
         }
         else if (!spaceIsPressed)
@@ -126,7 +129,8 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
     if (!clickPos.isNull() && event->pos() == clickPos)
     {
         clickPos = QPoint();
-        viewClicked(event->pos(), event->button());
+        if (viewClicked(event->pos(), event->button()))
+            return;
     }
 
     setDragMode(QGraphicsView::NoDrag);
@@ -210,7 +214,7 @@ QHash<QString, QVariant> ErdView::getConfig()
     return erdConfig;
 }
 
-void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
+bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
 {
     if (button == Qt::LeftButton)
     {
@@ -220,13 +224,14 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
         {
             int rowIdx = entity->rowIndexAt(mapToScene(pos));
             if (rowIdx <= 0)
-                return;
+                return false;
 
             if (draftConnection)
             {
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection->finalizeConnection(entity, mapToScene(pos));
                 draftConnection = nullptr;
+                draftingConnectionMode = false;
                 emit draftConnectionRemoved();
             }
             else if (draftingConnectionMode)
@@ -234,8 +239,11 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
                 draftConnection->addToScene(scene());
+                draftConnection->select();
             }
+            return true;
         }
+        return false;
     }
     else if (button == Qt::RightButton)
     {
@@ -249,6 +257,7 @@ void ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
             // TODO if clicked on empty space, show creational menu, having "add this and that, rearrange, select all" entries
         }
     }
+    return false;
 }
 
 QGraphicsItem* ErdView::clickableItemAt(const QPoint& pos)

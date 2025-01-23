@@ -236,6 +236,19 @@ void ErdScene::placeNewEntity(ErdEntity* entity)
     emit showEntityToUser(entity);
 }
 
+ErdConnection* ErdScene::getConnectionForArrow(ErdArrowItem* arrow)
+{
+    if (!arrow)
+        return nullptr;
+
+    for (ErdConnection* conn : getConnections())
+    {
+        if (conn->isOwnerOf(arrow))
+            return conn;
+    }
+    return nullptr;
+}
+
 void ErdScene::arrangeEntities(int algo)
 {
     ErdGraphvizLayoutPlanner planner;

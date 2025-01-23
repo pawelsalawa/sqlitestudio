@@ -27,6 +27,8 @@ class ErdConnection
         int getStartEntityRow() const;
         int getEndEntityRow() const;
         void setArrowType(ErdArrowItem::Type arrowType);
+        void select();
+        bool isOwnerOf(ErdArrowItem* arrow);
 
         /**
          * @brief Sets index of connection in the starting entity.
