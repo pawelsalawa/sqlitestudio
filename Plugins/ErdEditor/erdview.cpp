@@ -233,6 +233,7 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
                 draftConnection = nullptr;
                 draftingConnectionMode = false;
                 emit draftConnectionRemoved();
+                return true;
             }
             else if (draftingConnectionMode)
             {
@@ -240,8 +241,8 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
                 draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
                 draftConnection->addToScene(scene());
                 draftConnection->select();
+                return true;
             }
-            return true;
         }
         return false;
     }

@@ -15,9 +15,10 @@ class ErdTableWindow : public TableWindow
         ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent = nullptr);
         ~ErdTableWindow();
 
+        QString getQuitUncommittedConfirmMessage() const;
+
     protected:
         bool resolveCreateTableStatement();
-        bool resolveOriginalCreateTableStatement();
         void applyInitialTab();
         void defineCurrentContextDb();
 
@@ -29,7 +30,7 @@ class ErdTableWindow : public TableWindow
 
     public slots:
         void changesSuccessfullyCommitted();
-        void storePendingTableModel();
+        bool commitStructure(bool skipWarning = false);
         void rollbackStructure();
 
     protected slots:

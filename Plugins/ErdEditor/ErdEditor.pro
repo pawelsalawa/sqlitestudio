@@ -12,7 +12,9 @@ SOURCES += \
     erdchange.cpp \
     erdchangeentity.cpp \
     erdchangelayout.cpp \
+    erdchangenewentity.cpp \
     erdchangeregistry.cpp \
+    erdcolumnfkpanel.cpp \
     erdconnection.cpp \
     erdconnectionpanel.cpp \
     erdcurvyarrowitem.cpp \
@@ -23,6 +25,7 @@ SOURCES += \
     erdlinearrowitem.cpp \
     erdscene.cpp \
     erdsquarearrowitem.cpp \
+    erdtablefkpanel.cpp \
     erdtablewindow.cpp \
     erdview.cpp \
     erdwindow.cpp
@@ -32,7 +35,9 @@ HEADERS += \
     erdchange.h \
     erdchangeentity.h \
     erdchangelayout.h \
+    erdchangenewentity.h \
     erdchangeregistry.h \
+    erdcolumnfkpanel.h \
     erdconnection.h \
     erdconnectionpanel.h \
     erdcurvyarrowitem.h \
@@ -44,6 +49,7 @@ HEADERS += \
     erdlinearrowitem.h \
     erdscene.h \
     erdsquarearrowitem.h \
+    erdtablefkpanel.h \
     erdtablewindow.h \
     erdview.h \
     erdwindow.h

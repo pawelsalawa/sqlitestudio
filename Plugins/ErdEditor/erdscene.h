@@ -4,11 +4,14 @@
 #include "common/strhash.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "erdarrowitem.h"
+#include "schemaresolver.h"
 #include <QGraphicsScene>
 #include <QSet>
 
 class ErdEntity;
 class ErdChange;
+class ErdChangeEntity;
+class ErdChangeNewEntity;
 class ErdConnection;
 class Db;
 
@@ -20,7 +23,8 @@ class ErdScene : public QGraphicsScene
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
 
         QSet<QString> parseSchema(Db* db);
-        void refreshSchema(Db* db, const QStringList &forTables);
+        void refreshSchema(Db* db, ErdChangeEntity* entityChange);
+        void refreshSchema(Db* db, ErdChangeNewEntity* newEntityChange);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
@@ -47,6 +51,7 @@ class ErdScene : public QGraphicsScene
         bool confirmLayoutChange() const;
         StrHash<ErdEntity*> collectEntitiesByTable() const;
         void refreshConnections(const QList<ErdEntity*>& forEntities = {});
+        void refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName);
 
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;

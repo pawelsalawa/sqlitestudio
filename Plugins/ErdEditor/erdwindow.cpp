@@ -16,6 +16,7 @@
 #include "erdchangeentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
+#include "erdchangenewentity.h"
 #include "erdconnectionpanel.h"
 #include "tablemodifier.h"
 #include <QDebug>
@@ -23,6 +24,7 @@
 #include <QActionGroup>
 #include <QShortcut>
 #include <QGraphicsOpacityEffect>
+#include <QToolButton>
 
 Icon* ErdWindow::windowIcon = nullptr;
 Icon* ErdWindow::fdpIcon = nullptr;
@@ -53,7 +55,7 @@ ErdWindow::ErdWindow(const ErdWindow& other) :
 
 ErdWindow::~ErdWindow()
 {
-    disconnect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
+    disconnect(scene, &QGraphicsScene::focusItemChanged, this, &ErdWindow::itemFocusChanged);
     delete ui;
 }
 
@@ -109,7 +111,7 @@ void ErdWindow::init()
     initActions();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
-    connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
+    connect(scene, &QGraphicsScene::focusItemChanged, this, &ErdWindow::itemFocusChanged);
     connect(actionMap[ADD_CONNECTION], SIGNAL(toggled(bool)), ui->graphView, SLOT(setDraftingConnectionMode(bool)));
     connect(ui->graphView, &ErdView::draftConnectionRemoved, [this]()
     {
@@ -168,16 +170,28 @@ void ErdWindow::newTable()
     entity->setExistingTable(false);
     scene->placeNewEntity(entity);
 
-    selectItem(entity);
+    focusItem(entity);
 }
 
-void ErdWindow::itemSelectionChanged()
+void ErdWindow::itemFocusChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason)
 {
-    QList<QGraphicsItem*> selectedItems = scene->selectedItems();
-    if (selectedItems.size() != 1)
+    qDebug() << "focus changed" << oldFocusItem << newFocusItem << reason;
+    if (reason == Qt::OtherFocusReason)
+        return;
+
+    bool successfullyChangedSelection = newFocusItem ?
+        showSidePanelPropertiesFor(newFocusItem) :
         clearSidePanel();
-    else
-        showSidePanelPropertiesFor(selectedItems[0]);
+
+    if (!successfullyChangedSelection && oldFocusItem)
+    {
+        scene->setFocusItem(oldFocusItem);
+        // QTimer::singleShot(1, [this, oldFocusItem]()
+        // {
+        //     scene->clearSelection();
+        //     oldFocusItem->setSelected(true);
+        // });
+    }
 }
 
 void ErdWindow::reloadSchema()
@@ -200,16 +214,12 @@ void ErdWindow::handleCreatedChange(ErdChange* change)
     changeRegistry->addChange(change);
 
     ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
-    if (!entityChange)
-        return;
+    if (entityChange)
+        scene->refreshSchema(memDb, entityChange);
 
-    ErdEntity* entity = entityChange->getEntity();
-
-    TableModifier* tableModifier = entityChange->getTableModifier();
-    QStringList modifiedTables = {entity->getTableName()};
-    modifiedTables += tableModifier->getModifiedTables();
-
-    scene->refreshSchema(memDb, modifiedTables);
+    ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
+    if (newEntityChange)
+        scene->refreshSchema(memDb, newEntityChange);
 }
 
 void ErdWindow::updateState()
@@ -222,6 +232,7 @@ void ErdWindow::updateToolbarState(int effectiveChangeCount)
     bool hasPendingChanges = effectiveChangeCount > 0;
     actionMap[COMMIT]->setEnabled(hasPendingChanges);
     actionMap[ROLLBACK]->setEnabled(hasPendingChanges);
+    changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, effectiveChangeCount));
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -300,6 +311,16 @@ void ErdWindow::createActions()
     createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
+
+    ui->toolBar->addSeparator();
+    changeCountLabel = new QToolButton(this);
+    QFont bold = changeCountLabel->font();
+    bold.setBold(true);
+    changeCountLabel->setFont(bold);
+    changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
+    changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
+    ui->toolBar->addWidget(changeCountLabel);
+
     ui->toolBar->addSeparator();
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(newTable()), ui->toolBar);
     ui->toolBar->addSeparator();
@@ -340,6 +361,100 @@ QVariant ErdWindow::saveSession()
     return sessionValue;
 }
 
+
+
+bool ErdWindow::storeEntityModifications(QWidget* sidePanelWidget)
+{
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(sidePanelWidget);
+    if (tableWin)
+    {
+        if (!tableWin->commitStructure())
+            return false;
+    }
+    return true;
+}
+
+void ErdWindow::parseAndRestore()
+{
+    if (!db)
+        return;
+
+    if (!initMemDb())
+        return;
+
+    QSet<QString> tableNames = scene->parseSchema(memDb);
+    QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
+    if (!tryToApplyConfig(erdConfig, tableNames))
+    {
+        erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
+        if (!tryToApplyConfig(erdConfig, tableNames))
+            scene->arrangeEntitiesFdp(true);
+    }
+}
+
+bool ErdWindow::clearSidePanel()
+{
+    if (!currentSideWidget)
+        return true;
+
+    if (!storeEntityModifications(currentSideWidget))
+        return false;
+
+    ui->sidePanel->layout()->removeWidget(currentSideWidget);
+    currentSideWidget->deleteLater();
+    currentSideWidget = nullptr;
+    noSideWidgetContents->setVisible(true);
+    ui->sidePanel->layout()->addWidget(noSideWidgetContents);
+    return true;
+}
+
+bool ErdWindow::setSidePanelWidget(QWidget* widget)
+{
+    if (currentSideWidget)
+    {
+        if (!storeEntityModifications(currentSideWidget))
+            return false;
+
+        ui->sidePanel->layout()->removeWidget(currentSideWidget);
+        currentSideWidget->deleteLater();
+    }
+    else
+    {
+        ui->sidePanel->layout()->removeWidget(noSideWidgetContents);
+        noSideWidgetContents->setVisible(false);
+    }
+
+    currentSideWidget = widget;
+    ui->sidePanel->layout()->addWidget(widget);
+    return true;
+}
+
+bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
+{
+    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    ErdArrowItem* arrow = dynamic_cast<ErdArrowItem*>(item);
+    if (entity)
+    {
+        ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
+        connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
+        return setSidePanelWidget(tableMdiChild);
+    }
+    else if (arrow)
+    {
+        ErdConnection* connection = scene->getConnectionForArrow(arrow);
+        if (!connection)
+        {
+            qCritical() << "No ErdConnection for ErdArrowItem!";
+            return false;
+        }
+
+        ErdConnectionPanel* panel = new ErdConnectionPanel(memDb, connection);
+        connect(panel, &ErdConnectionPanel::changeCreated, this, &ErdWindow::handleCreatedChange);
+        return setSidePanelWidget(panel);
+    }
+    return true;
+}
+
 bool ErdWindow::initMemDb()
 {
     if (memDb)
@@ -374,89 +489,6 @@ bool ErdWindow::initMemDb()
         memDb->exec(ddl);
 
     return true;
-}
-
-void ErdWindow::storePendingEntityModifications(QWidget* sidePanelWidget)
-{
-    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(sidePanelWidget);
-    if (!tableWin)
-        return;
-
-    tableWin->storePendingTableModel();
-}
-
-void ErdWindow::parseAndRestore()
-{
-    if (!db)
-        return;
-
-    if (!initMemDb())
-        return;
-
-    QSet<QString> tableNames = scene->parseSchema(memDb);
-    QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
-    if (!tryToApplyConfig(erdConfig, tableNames))
-    {
-        erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
-        if (!tryToApplyConfig(erdConfig, tableNames))
-            scene->arrangeEntitiesFdp(true);
-    }
-}
-
-void ErdWindow::clearSidePanel()
-{
-    if (!currentSideWidget)
-        return
-
-    storePendingEntityModifications(currentSideWidget);
-    ui->sidePanel->layout()->removeWidget(currentSideWidget);
-    currentSideWidget->deleteLater();
-    currentSideWidget = nullptr;
-    noSideWidgetContents->setVisible(true);
-    ui->sidePanel->layout()->addWidget(noSideWidgetContents);
-}
-
-void ErdWindow::setSidePanelWidget(QWidget* widget)
-{
-    if (currentSideWidget)
-    {
-        storePendingEntityModifications(currentSideWidget);
-        ui->sidePanel->layout()->removeWidget(currentSideWidget);
-        currentSideWidget->deleteLater();
-    }
-    else
-    {
-        ui->sidePanel->layout()->removeWidget(noSideWidgetContents);
-        noSideWidgetContents->setVisible(false);
-    }
-
-    currentSideWidget = widget;
-    ui->sidePanel->layout()->addWidget(widget);
-}
-
-void ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
-{
-    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-    ErdArrowItem* arrow = dynamic_cast<ErdArrowItem*>(item);
-    if (entity)
-    {
-        ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
-        connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
-        setSidePanelWidget(tableMdiChild);
-    }
-    else if (arrow)
-    {
-        ErdConnection* connection = scene->getConnectionForArrow(arrow);
-        if (!connection)
-        {
-            qCritical() << "No ErdConnection for ErdArrowItem!";
-            return;
-        }
-
-        ErdConnectionPanel* panel = new ErdConnectionPanel(memDb, connection);
-        connect(panel, &ErdConnectionPanel::changeCreated, this, &ErdWindow::handleCreatedChange);
-        setSidePanelWidget(panel);
-    }
 }
 
 bool ErdWindow::restoreSession(const QVariant& sessionValue)
@@ -507,9 +539,10 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     return true;
 }
 
-void ErdWindow::selectItem(QGraphicsItem* item)
+void ErdWindow::focusItem(QGraphicsItem* item)
 {
     scene->clearSelection();
+    scene->setFocusItem(item, Qt::MouseFocusReason);
     item->setSelected(true);
 }
 

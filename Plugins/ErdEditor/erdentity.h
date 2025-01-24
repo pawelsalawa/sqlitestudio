@@ -24,8 +24,6 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
 
         SqliteCreateTablePtr getTableModel() const;
         void setTableModel(const SqliteCreateTablePtr& tableModel);
-        SqliteCreateTablePtr getPendingTableModel() const;
-        void setPendingTableModel(const SqliteCreateTablePtr& tableModel);
         void modelUpdated();
         int rowIndexAt(const QPointF& point);
         QRectF rowRect(int rowIndex);
@@ -36,7 +34,6 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
         void clearConnections();
         QList<ErdConnection*> getConnections() const;
         QString getTableName() const;
-        QString getTableNameForEditing() const;
         void updateConnectionIndexes();
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
         bool isExistingTable() const;
@@ -60,19 +57,19 @@ class ErdEntity : public QGraphicsRectItem, public ErdItem
             qreal calcIconsWidth() const;
             qreal calcNameWidth() const;
             qreal updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY);
-            void disableChildSelection();
         };
 
         void rebuild();
         void addColumn(SqliteCreateTable::Column* column, bool isLast);
         void addTableTitle();
+        void disableChildSelection(QGraphicsItem* parent);
+        void enableChildFocusing(QGraphicsItem* parent);
 
         static constexpr qreal CELL_PADDING = 7.0;
         static constexpr qreal TEXT_GAP = 8.0;
         static constexpr qreal ICON_GAP = 4.0;
 
         SqliteCreateTablePtr tableModel;
-        SqliteCreateTablePtr pendingTableModel;
         QList<ErdConnection*> connections;
         QList<Row*> rows;
         QGraphicsPixmapItem* cornerIcon = nullptr;

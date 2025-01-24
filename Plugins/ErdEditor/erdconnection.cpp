@@ -14,6 +14,7 @@ ErdConnection::ErdConnection(ErdEntity* startEntity, const QPointF& endPos, ErdA
     arrow = ErdArrowItem::create(arrowType);
     arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, true);
+    arrow->setFlag(QGraphicsItem::ItemIsFocusable, true);
     refreshPosition();
     startEntity->addConnection(this);
 }
@@ -25,6 +26,7 @@ ErdConnection::ErdConnection(ErdEntity* startEntity, int startRow, ErdEntity* en
     refreshPosition();
     arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, true);
+    arrow->setFlag(QGraphicsItem::ItemIsFocusable, true);
     startEntity->addConnection(this);
     endEntity->addConnection(this);
 }
@@ -125,6 +127,7 @@ void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
     arrow = ErdArrowItem::create(arrowType);
     arrow->setFlag(QGraphicsItem::ItemIsSelectable, true);
     arrow->setFlag(QGraphicsItem::ItemIsMovable, false);
+    arrow->setFlag(QGraphicsItem::ItemIsFocusable, true);
     arrow->setArrowIndexInStartEntity(indexInStartEntity);
     arrow->setArrowIndexInEndEntity(indexInEndEntity);
     scene->addItem(arrow);
@@ -134,6 +137,7 @@ void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
 void ErdConnection::select()
 {
     arrow->setSelected(true);
+    arrow->setFocus();
 }
 
 bool ErdConnection::isOwnerOf(ErdArrowItem* arrow)

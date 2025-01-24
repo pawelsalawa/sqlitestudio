@@ -31,7 +31,6 @@ class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
         void constraintAvailable();
         void storeConfiguration();
 
-    private:
         void init();
         void buildColumns();
         void buildColumn(SqliteCreateTable::Column* column, int row);
@@ -50,7 +49,7 @@ class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
         QSignalMapper* columnSignalMapping = nullptr;
         StrHash<StrHash<DataType>> fkTableTypesCache;
 
-    private slots:
+    protected slots:
         void updateState();
         void updateColumnState(int rowIdx, bool tableSelected);
         void updateColumnState(int rowIdx);

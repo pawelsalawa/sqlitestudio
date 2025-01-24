@@ -6,10 +6,13 @@
 #include "erdarrowitem.h"
 #include <QWidget>
 
+
+
 namespace Ui {
     class ErdWindow;
 }
 
+class QToolButton;
 class ErdScene;
 class ErdEntity;
 class ErdChange;
@@ -65,16 +68,26 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void applyArrowType(ErdArrowItem::Type arrowType);
         void updateArrowTypeButtons();
         bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames);
-        void selectItem(QGraphicsItem* item);
+        void focusItem(QGraphicsItem* item);
         void parseAndRestore();
-        void clearSidePanel();
-        void setSidePanelWidget(QWidget* widget);
-        void showSidePanelPropertiesFor(QGraphicsItem* item);
+        /**
+         * @return true if panel clear operation was successful and view is allowed to deselect item.
+         */
+        bool clearSidePanel();
+        /**
+         * @return true if panel replacement operation was successful and view is allowed to change item selection.
+         */
+        bool setSidePanelWidget(QWidget* widget);
+        /**
+         * @return true if panel replacement operation was successful and view is allowed to change item selection.
+         */
+        bool showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
-        void storePendingEntityModifications(QWidget* sidePanelWidget);
+        bool storeEntityModifications(QWidget* sidePanelWidget);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
+        static constexpr const char* CHANGE_COUNT_DIGITS = "%04d";
         static Icon* windowIcon;
         static Icon* fdpIcon;
         static Icon* neatoIcon;
@@ -91,6 +104,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
         QGraphicsOpacityEffect* noSideWidgetEffect = nullptr;
+        QToolButton* changeCountLabel = nullptr;
         
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -100,7 +114,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void useSquareLine();
         void cancelCurrentAction();
         void newTable();
-        void itemSelectionChanged();
+        void itemFocusChanged(QGraphicsItem* newFocusItem, QGraphicsItem* oldFocusItem, Qt::FocusReason reason);
         void reloadSchema();
         void commitPendingChanges();
         void rollbackPendingChanges();

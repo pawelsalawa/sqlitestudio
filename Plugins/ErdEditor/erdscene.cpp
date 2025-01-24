@@ -7,6 +7,7 @@
 #include "erdgraphvizlayoutplanner.h"
 #include "erdchangeentity.h"
 #include "tablemodifier.h"
+#include "erdchangenewentity.h"
 #include <QApplication>
 #include <QMessageBox>
 
@@ -33,7 +34,6 @@ QSet<QString> ErdScene::parseSchema(Db* db)
 
         ErdEntity* entityItem = new ErdEntity(table);
         entityItem->setPos(getPosForNewEntity());
-        entityItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
         addItem(entityItem);
 
         entitiesByTable[table->table] = entityItem;
@@ -48,23 +48,48 @@ QSet<QString> ErdScene::parseSchema(Db* db)
     return tableNames;
 }
 
-void ErdScene::refreshSchema(Db *db, const QStringList& modifiedTables)
+void ErdScene::refreshSchema(Db *db, ErdChangeEntity* entityChange)
+{
+    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
+
+    typedef QPair<QString, QString> OldNewName;
+    QList<OldNewName> modifiedTables = {
+        OldNewName(entityChange->getTableNameBefore(), entityChange->getTableNameAfter())
+    };
+    for (const QString& tableName : entityChange->getTableModifier()->getModifiedTables())
+        modifiedTables << OldNewName(tableName, tableName);
+
+    SchemaResolver resolver(db);
+    for (const OldNewName& oldNewTableName : modifiedTables)
+    {
+        ErdEntity* entity = entitiesByTable[oldNewTableName.first];
+        refreshEntityFromTableName(resolver, entitiesByTable, entity, oldNewTableName.second);
+    }
+}
+
+void ErdScene::refreshSchema(Db* db, ErdChangeNewEntity* newEntityChange)
 {
     StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
 
     SchemaResolver resolver(db);
-    for (const QString& tableName : modifiedTables)
-    {
-        ErdEntity* entity = entitiesByTable[tableName];
-        entity->clearConnections();
+    refreshEntityFromTableName(resolver, entitiesByTable, newEntityChange->getEntity(), newEntityChange->getTableName());
+}
 
-        SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
-        entity->setTableModel(createTable);
-        entity->setPendingTableModel(SqliteCreateTablePtr());
-        entity->modelUpdated();
+void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName)
+{
+    entity->clearConnections();
 
-        setupEntityConnections(entitiesByTable, entity);
-    }
+    QString oldTableName = entity->getTableName();
+
+    SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
+    entity->setTableModel(createTable);
+    entity->setExistingTable(true);
+    entity->modelUpdated();
+
+    entitiesByTable.remove(oldTableName);
+    entitiesByTable.insert(tableName, entity);
+
+    setupEntityConnections(entitiesByTable, entity);
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -227,7 +252,6 @@ void ErdScene::refreshSceneRect()
 void ErdScene::placeNewEntity(ErdEntity* entity)
 {
     entity->setPos(getPosForNewEntity());
-    entity->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     addItem(entity);
 
     entities << entity;

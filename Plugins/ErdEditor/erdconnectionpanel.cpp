@@ -4,8 +4,8 @@
 #include "erdentity.h"
 #include "erdchangeentity.h"
 #include "erdconnection.h"
-#include "constraints/columnforeignkeypanel.h"
-#include "constraints/tableforeignkeypanel.h"
+#include "erdcolumnfkpanel.h"
+#include "erdtablefkpanel.h"
 #include <QDebug>
 
 ErdConnectionPanel::ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent) :
@@ -29,7 +29,7 @@ void ErdConnectionPanel::init()
     ErdEntity* parentEntity = connection->getEndEntity();
     ui->childTableName->setText(childEntity->getTableName());
 
-    ColumnForeignKeyPanel* fkPanel = new ColumnForeignKeyPanel();
+    ErdColumnFkPanel* fkPanel = new ErdColumnFkPanel();
     ui->fkPanelContainer->layout()->addWidget(fkPanel);
 
     SqliteCreateTable* childCreateTable = childEntity->getTableModel().data();

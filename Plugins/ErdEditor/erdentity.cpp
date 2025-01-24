@@ -32,6 +32,8 @@ ErdEntity::ErdEntity(const SqliteCreateTablePtr& tableModel) :
     setBrush(STYLE->standardPalette().window());
 
     setFlag(QGraphicsItem::ItemIsSelectable, true);
+    setFlag(QGraphicsItem::ItemIsFocusable, true);
+    setFlag(QGraphicsItem::ItemIsMovable, true);
 
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
     effect->setBlurRadius(20);
@@ -50,16 +52,6 @@ SqliteCreateTablePtr ErdEntity::getTableModel() const
 void ErdEntity::setTableModel(const SqliteCreateTablePtr& tableModel)
 {
     this->tableModel = tableModel;
-}
-
-SqliteCreateTablePtr ErdEntity::getPendingTableModel() const
-{
-    return pendingTableModel;
-}
-
-void ErdEntity::setPendingTableModel(const SqliteCreateTablePtr& tableModel)
-{
-    this->pendingTableModel = tableModel;
 }
 
 int ErdEntity::rowIndexAt(const QPointF& point)
@@ -122,11 +114,6 @@ QList<ErdConnection*> ErdEntity::getConnections() const
 QString ErdEntity::getTableName() const
 {
     return tableModel->table;
-}
-
-QString ErdEntity::getTableNameForEditing() const
-{
-    return pendingTableModel.isNull() ? getTableName() : pendingTableModel->table;
 }
 
 void ErdEntity::updateConnectionIndexes()
@@ -212,20 +199,18 @@ void ErdEntity::rebuild()
 
     qreal y = 0;
     for (Row* row : rows)
-    {
         y += row->updateLayout(iconsWd, nameWd, totalWd, y);
-        row->disableChildSelection();
-    }
+
+    disableChildSelection(this);
+    // enableChildFocusing(this);
+    setFlag(QGraphicsItem::ItemIsFocusable, true);
 
     setRect(0, 0, totalWd, y);
 
-    if (!pendingTableModel.isNull())
-    {
-        cornerIcon = new QGraphicsPixmapItem(this);
-        cornerIcon->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
-        cornerIcon->setToolTip(QObject::tr("This table was modified, but the changes were neither accepted nor discarded."));
-        cornerIcon->setPos(-6, -6);
-    }
+    // cornerIcon = new QGraphicsPixmapItem(this);
+    // cornerIcon->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
+    // cornerIcon->setToolTip(QObject::tr(""));
+    // cornerIcon->setPos(-6, -6);
 }
 
 void ErdEntity::addTableTitle()
@@ -469,13 +454,20 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal nameColumn, qreal glo
     return hg;
 }
 
-void ErdEntity::Row::disableChildSelection()
+void ErdEntity::disableChildSelection(QGraphicsItem* parent)
 {
-    topRect->setFlag(QGraphicsItem::ItemIsSelectable, false);
-    text->setFlag(QGraphicsItem::ItemIsSelectable, false);
-    for (QGraphicsItem* iconItem : icons)
-        iconItem->setFlag(QGraphicsItem::ItemIsSelectable, false);
+    for (QGraphicsItem* child : parent->childItems())
+    {
+        child->setFlag(QGraphicsItem::ItemIsSelectable, false);
+        disableChildSelection(child);
+    }
+}
 
-    if (bottomLine)
-        bottomLine->setFlag(QGraphicsItem::ItemIsSelectable, false);
+void ErdEntity::enableChildFocusing(QGraphicsItem* parent)
+{
+    for (QGraphicsItem* child : parent->childItems())
+    {
+        child->setFlag(QGraphicsItem::ItemIsFocusable, true);
+        enableChildFocusing(child);
+    }
 }

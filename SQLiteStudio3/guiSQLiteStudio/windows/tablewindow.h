@@ -208,7 +208,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void checkIfIndexDeleted(const QString& object);
         void checkIfTriggerDeleted(const QString& object);
         void refreshStructure();
-        virtual void commitStructure(bool skipWarning = false);
+        virtual bool commitStructure(bool skipWarning = false);
         virtual void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         virtual void rollbackStructure();

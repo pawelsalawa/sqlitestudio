@@ -29,7 +29,6 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         void constraintAvailable();
         void storeConfiguration();
 
-    private:
         void init();
         void readConstraint();
         void readTables();
@@ -40,7 +39,7 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         Ui::ColumnForeignKeyPanel *ui = nullptr;
         QStringListModel fkColumnsModel;
 
-    private slots:
+    protected slots:
         void updateState();
         void updateFkColumns();
 };

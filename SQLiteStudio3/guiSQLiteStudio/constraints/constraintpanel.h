@@ -15,10 +15,10 @@ class GUI_API_EXPORT ConstraintPanel : public QWidget
         explicit ConstraintPanel(QWidget *parent = 0);
         virtual ~ConstraintPanel();
 
-        void setConstraint(SqliteStatement* stmt);
-        void setCreateTableStmt(SqliteCreateTable* stmt);
-        void setColumnStmt(SqliteCreateTable::Column* stmt);
-        void storeDefinition();
+        virtual void setConstraint(SqliteStatement* stmt);
+        virtual void setCreateTableStmt(SqliteCreateTable* stmt);
+        virtual void setColumnStmt(SqliteCreateTable::Column* stmt);
+        virtual void storeDefinition();
         virtual void setDb(Db* value);
 
         /**

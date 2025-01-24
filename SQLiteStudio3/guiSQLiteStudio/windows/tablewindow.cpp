@@ -836,19 +836,20 @@ void TableWindow::refreshStructure()
     updateTriggers();
 }
 
-void TableWindow::commitStructure(bool skipWarning)
+bool TableWindow::commitStructure(bool skipWarning)
 {
     if (!isModified())
     {
         qWarning() << "Called TableWindow::commitStructure(), but isModified() returned false.";
         updateStructureCommitState();
-        return;
+        return false;
     }
 
     if (!validate(skipWarning))
-        return;
+        return false;
 
     executeStructureChanges();
+    return true;
 }
 
 QString TableWindow::updateWindowAfterStructureChanged()

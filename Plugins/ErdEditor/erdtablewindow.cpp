@@ -2,9 +2,10 @@
 #include "erdentity.h"
 #include "ui_tablewindow.h"
 #include "erdchangeentity.h"
+#include "erdchangenewentity.h"
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
-    : TableWindow(parent, db, QString(), entity->getTableNameForEditing(), entity->isExistingTable()),
+    : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),
       entity(entity)
 {
     ui->dbCombo->setEnabled(false);
@@ -34,18 +35,15 @@ ErdTableWindow::~ErdTableWindow()
 {
 }
 
-bool ErdTableWindow::resolveCreateTableStatement()
+QString ErdTableWindow::getQuitUncommittedConfirmMessage() const
 {
-    createTable = entity->getPendingTableModel().isNull() ?
-                SqliteCreateTablePtr::create(*entity->getTableModel()) :
-                entity->getPendingTableModel();
-
-    return true;
+    // TODO
+    return "";
 }
 
-bool ErdTableWindow::resolveOriginalCreateTableStatement()
+bool ErdTableWindow::resolveCreateTableStatement()
 {
-    originalCreateTable = SqliteCreateTablePtr::create(*entity->getTableModel());
+    createTable = SqliteCreateTablePtr::create(*entity->getTableModel());
     return true;
 }
 
@@ -66,25 +64,25 @@ void ErdTableWindow::changesSuccessfullyCommitted()
     updateWindowAfterStructureChanged();
 }
 
-void ErdTableWindow::storePendingTableModel()
+bool ErdTableWindow::commitStructure(bool skipWarning)
 {
     if (!isModified())
-        return;
+        return true;
 
-    entity->setPendingTableModel(createTable);
-    entity->modelUpdated();
+    return TableWindow::commitStructure(skipWarning);
 }
 
 void ErdTableWindow::rollbackStructure()
 {
     TableWindow::rollbackStructure();
-    entity->setPendingTableModel(SqliteCreateTablePtr());
     entity->modelUpdated();
 }
 
 void ErdTableWindow::executeStructureChanges()
 {
-    ErdChangeEntity* change = new ErdChangeEntity(entity, db, originalCreateTable, createTable);
+    ErdChange* change = entity->isExistingTable() ?
+                static_cast<ErdChange*>(new ErdChangeEntity(entity, db, originalCreateTable, createTable)) :
+                static_cast<ErdChange*>(new ErdChangeNewEntity(entity, db, createTable));
 
     structureExecutor->setAsync(false);
     structureExecutor->setDb(db);
