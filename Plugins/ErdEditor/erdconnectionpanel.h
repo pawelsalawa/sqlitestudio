@@ -20,6 +20,8 @@ class ErdConnectionPanel : public QWidget
         ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent = nullptr);
         ~ErdConnectionPanel();
 
+        QString getStartEntityTable() const;
+
     private:
         void init();
 

@@ -23,6 +23,11 @@ ErdConnectionPanel::~ErdConnectionPanel()
     delete ui;
 }
 
+QString ErdConnectionPanel::getStartEntityTable() const
+{
+    return connection->getStartEntity()->getTableName();
+}
+
 void ErdConnectionPanel::init()
 {
     ErdEntity* childEntity = connection->getStartEntity();

@@ -83,7 +83,10 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
+        bool storeCurrentSidePanelModifications();
+        bool handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName);
         bool storeEntityModifications(QWidget* sidePanelWidget);
+        QString getCurrentSidePanelModificationsEntity() const;
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -105,6 +108,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QWidget* noSideWidgetContents = nullptr;
         QGraphicsOpacityEffect* noSideWidgetEffect = nullptr;
         QToolButton* changeCountLabel = nullptr;
+        QList<QGraphicsItem*> previouslySelectedItems;
+        bool ignoreSelectionChangeEvents = false;
         
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -114,7 +119,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void useSquareLine();
         void cancelCurrentAction();
         void newTable();
-        void itemFocusChanged(QGraphicsItem* newFocusItem, QGraphicsItem* oldFocusItem, Qt::FocusReason reason);
+        void itemSelectionChanged();
         void reloadSchema();
         void commitPendingChanges();
         void rollbackPendingChanges();

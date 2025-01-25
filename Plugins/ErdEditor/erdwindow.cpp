@@ -25,6 +25,7 @@
 #include <QShortcut>
 #include <QGraphicsOpacityEffect>
 #include <QToolButton>
+#include <QMessageBox>
 
 Icon* ErdWindow::windowIcon = nullptr;
 Icon* ErdWindow::fdpIcon = nullptr;
@@ -55,7 +56,7 @@ ErdWindow::ErdWindow(const ErdWindow& other) :
 
 ErdWindow::~ErdWindow()
 {
-    disconnect(scene, &QGraphicsScene::focusItemChanged, this, &ErdWindow::itemFocusChanged);
+    disconnect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
     delete ui;
 }
 
@@ -111,8 +112,14 @@ void ErdWindow::init()
     initActions();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
-    connect(scene, &QGraphicsScene::focusItemChanged, this, &ErdWindow::itemFocusChanged);
-    connect(actionMap[ADD_CONNECTION], SIGNAL(toggled(bool)), ui->graphView, SLOT(setDraftingConnectionMode(bool)));
+    connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
+    connect(actionMap[ADD_CONNECTION], &QAction::toggled, [this](bool enabled)
+    {
+        if (enabled && !storeCurrentSidePanelModifications())
+            return;
+
+        ui->graphView->setDraftingConnectionMode(enabled);
+    });
     connect(ui->graphView, &ErdView::draftConnectionRemoved, [this]()
     {
         actionMap[ADD_CONNECTION]->setChecked(false);
@@ -163,6 +170,9 @@ void ErdWindow::cancelCurrentAction()
 
 void ErdWindow::newTable()
 {
+    if (!storeCurrentSidePanelModifications())
+        return;
+
     SqliteCreateTable* tableModel = new SqliteCreateTable();
     tableModel->table = tr("table name", "ERD editor");
 
@@ -173,25 +183,21 @@ void ErdWindow::newTable()
     focusItem(entity);
 }
 
-void ErdWindow::itemFocusChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason)
+void ErdWindow::itemSelectionChanged()
 {
-    qDebug() << "focus changed" << oldFocusItem << newFocusItem << reason;
-    if (reason == Qt::OtherFocusReason)
+    if (ignoreSelectionChangeEvents)
         return;
 
-    bool successfullyChangedSelection = newFocusItem ?
-        showSidePanelPropertiesFor(newFocusItem) :
+    QString sidePanelEntityName = getCurrentSidePanelModificationsEntity();
+    QList<QGraphicsItem*> selItems = scene->selectedItems();
+    bool successfullyStoredChanges = selItems.size() == 1 ?
+        showSidePanelPropertiesFor(selItems[0]) :
         clearSidePanel();
 
-    if (!successfullyChangedSelection && oldFocusItem)
-    {
-        scene->setFocusItem(oldFocusItem);
-        // QTimer::singleShot(1, [this, oldFocusItem]()
-        // {
-        //     scene->clearSelection();
-        //     oldFocusItem->setSelected(true);
-        // });
-    }
+    if (!handleSidePanelModificationsResult(successfullyStoredChanges, sidePanelEntityName))
+        return;
+
+    previouslySelectedItems = selItems;
 }
 
 void ErdWindow::reloadSchema()
@@ -374,6 +380,23 @@ bool ErdWindow::storeEntityModifications(QWidget* sidePanelWidget)
     return true;
 }
 
+QString ErdWindow::getCurrentSidePanelModificationsEntity() const
+{
+    if (!currentSideWidget)
+        return QString();
+
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (tableWin)
+        return tableWin->getTable();
+
+    ErdConnectionPanel* connectionPanel = qobject_cast<ErdConnectionPanel*>(currentSideWidget);
+    if (connectionPanel)
+        return connectionPanel->getStartEntityTable();
+
+    return QString();
+
+}
+
 void ErdWindow::parseAndRestore()
 {
     if (!db)
@@ -488,6 +511,36 @@ bool ErdWindow::initMemDb()
     for (const QString& ddl : ddls)
         memDb->exec(ddl);
 
+    return true;
+}
+
+bool ErdWindow::storeCurrentSidePanelModifications()
+{
+    QString sidePanelEntityName = getCurrentSidePanelModificationsEntity();
+    bool successfullyStoredChanges = clearSidePanel();
+    return handleSidePanelModificationsResult(successfullyStoredChanges, sidePanelEntityName);
+}
+
+bool ErdWindow::handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName)
+{
+    if (!sidePanelEntityName.isNull() && !successfullyStored)
+    {
+        QMessageBox::critical(this,
+              tr("Entity modification failed"),
+              tr("There was a problem applying changes to the entity '%1'. Check the messages panel for details. "
+                 "Please either roll back the changes in the side panel or fix them. "
+                 "You cannot continue editing the diagram until this issue is resolved.")
+                              .arg(sidePanelEntityName)
+            );
+
+        ignoreSelectionChangeEvents = true;
+        scene->clearSelection();
+        for (QGraphicsItem* item : previouslySelectedItems)
+            item->setSelected(true);
+
+        ignoreSelectionChangeEvents = false;
+        return false;
+    }
     return true;
 }
 
