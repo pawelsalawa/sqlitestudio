@@ -8,6 +8,7 @@
 #include "erdchangeentity.h"
 #include "tablemodifier.h"
 #include "erdchangenewentity.h"
+#include "erdview.h"
 #include <QApplication>
 #include <QMessageBox>
 
@@ -247,6 +248,36 @@ void ErdScene::refreshSceneRect()
     QRectF boundingRect = itemsBoundingRect();
     boundingRect.adjust(-sceneMargin, -sceneMargin, sceneMargin, sceneMargin);
     setSceneRect(boundingRect);
+}
+
+void ErdScene::removeEntityFromScene(ErdEntity* entity)
+{
+    removeItem(entity);
+    entities.removeOne(entity);
+
+    // The line below is necessary to avoid app crash after deleting the entity object.
+    // Apparently without it Qt does not update the items in the internal tree of nodes
+    // and because of that the deferred repaint event causes crash.
+    // At least that's what it looks like from debugging (crash happens in the Qt's internal BSP Tree).
+    refreshSceneRect();
+
+    delete entity;
+}
+
+void ErdScene::removeEntityFromSceneByName(const QString& tableName)
+{
+    QString lowerName = tableName.toLower();
+    ErdEntity* entity = findFirst<ErdEntity>(entities, [&lowerName](ErdEntity* e)
+    {
+        return (e->getTableName().toLower() == lowerName);
+    });
+
+    if (!entity)
+    {
+        qWarning() << "Requested to remoe entity" << tableName << "from scene, but no such entity was found!";
+        return;
+    }
+    removeEntityFromScene(entity);
 }
 
 void ErdScene::placeNewEntity(ErdEntity* entity)

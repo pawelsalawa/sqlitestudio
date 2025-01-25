@@ -63,8 +63,17 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
 
+        /**
+         * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
+         * Any connections to/from this entity are ignored. This should be a final step
+         * of entity remove - once there are no other object dependencies to this entity item.
+         */
+        void removeEntityFromScene(ErdEntity* entity);
+        void removeEntityFromSceneByName(const QString& tableName);
+
     signals:
         void showEntityToUser(ErdEntity* entity);
+        void requiresImmediateViewUpdate();
 };
 
 #endif // ERDSCENE_H

@@ -27,6 +27,7 @@ class ErdTableWindow : public TableWindow
 
     signals:
         void changeCreated(ErdChange* change);
+        void editedEntityShouldBeDeleted(ErdEntity* entity);
 
     public slots:
         void changesSuccessfullyCommitted();

@@ -367,14 +367,12 @@ QVariant ErdWindow::saveSession()
     return sessionValue;
 }
 
-
-
 bool ErdWindow::storeEntityModifications(QWidget* sidePanelWidget)
 {
     ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(sidePanelWidget);
     if (tableWin)
     {
-        if (!tableWin->commitStructure())
+        if (!tableWin->commitStructure(true))
             return false;
     }
     return true;
@@ -460,6 +458,7 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
     {
         ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
         connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
+        connect(tableMdiChild, &ErdTableWindow::editedEntityShouldBeDeleted, scene, &ErdScene::removeEntityFromScene);
         return setSidePanelWidget(tableMdiChild);
     }
     else if (arrow)

@@ -24,7 +24,7 @@ ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
 }
 
 ErdEntity::ErdEntity(const SqliteCreateTablePtr& tableModel) :
-    QGraphicsRectItem(), tableModel(tableModel)
+    QObject(), QGraphicsRectItem(), tableModel(tableModel)
 {
     setZValue(10);
 

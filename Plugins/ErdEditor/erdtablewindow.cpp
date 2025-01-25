@@ -69,6 +69,12 @@ bool ErdTableWindow::commitStructure(bool skipWarning)
     if (!isModified())
         return true;
 
+    if (skipWarning && createTable->columns.isEmpty() && !entity->isExistingTable())
+    {
+        emit editedEntityShouldBeDeleted(entity);
+        return true;
+    }
+
     return TableWindow::commitStructure(skipWarning);
 }
 

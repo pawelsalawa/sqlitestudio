@@ -16,8 +16,10 @@ class QGraphicsTextItem;
 class QGraphicsLineItem;
 class QGraphicsItem;
 
-class ErdEntity : public QGraphicsRectItem, public ErdItem
+class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
 {
+        Q_OBJECT
+
     public:
         ErdEntity(SqliteCreateTable* tableModel);
         ErdEntity(const SqliteCreateTablePtr& tableModel);
