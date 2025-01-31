@@ -28,6 +28,10 @@ win32: {
         THE_DEST ~= s,/,\\,g
         QMAKE_POST_LINK += "$$QMAKE_COPY $$THE_FILE $$THE_DEST $$escape_expand(\\n\\t);"
     }
+
+    equals(QMAKE_CXX, clang++) {
+        QMAKE_CXXFLAGS += -D_LIBCPP_ENABLE_CXX17_REMOVED_UNEXPECTED_FUNCTIONS
+    }
 }
 
 linux: {
