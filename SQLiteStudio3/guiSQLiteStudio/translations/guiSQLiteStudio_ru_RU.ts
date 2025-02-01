@@ -232,17 +232,17 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Collation type:</source>
-      <translation type="unfinished">Collation type:</translation>
+      <translation>Тип сравнения:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="217"/>
       <source>Function-based</source>
-      <translation type="unfinished">Function-based</translation>
+      <translation>На основе функции</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="224"/>
       <source>Extension-based</source>
-      <translation type="unfinished">Extension-based</translation>
+      <translation>На основе расширения</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="233"/>
@@ -292,17 +292,17 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="312"/>
       <source>Registration code</source>
-      <translation type="unfinished">Registration code</translation>
+      <translation>Код для регистрации</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="313"/>
       <source>Enter a non-empty registration code.</source>
-      <translation type="unfinished">Enter a non-empty registration code.</translation>
+      <translation>Введите непустой код для регистрации.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="317"/>
       <source>Implementation code</source>
-      <translation type="unfinished">Implementation code</translation>
+      <translation>Код реализации</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="318"/>
@@ -596,7 +596,7 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="445"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
-      <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
+      <translation>Тип привязываемого столбца (%1) отличается от указанного в этом столбце. Могут возникнуть проблемы при вставке или обновлении данных.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="700"/>
@@ -936,7 +936,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Scripting languages</source>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Скриптовые языки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="271"/>
@@ -2054,7 +2054,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="581"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
-      <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
+      <translation>Указан относительный путь к файлу, который будет преобразован в &quot;%1&quot; в соответствии с текущим рабочим каталогом программы. Лучше всегда указывать абсолютный путь к файлу, чтобы устранить неопределённость в расположении базы данных.</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="591"/>
@@ -3437,7 +3437,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="424"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
-      <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
+      <translation>Введите уникальное, непустое имя функции. Если количество входных параметров различается, допустимы дублирующиеся имена.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="437"/>
@@ -3463,7 +3463,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="624"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
-      <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
+      <translation>Аргумент функции не может быть пустым и не может иметь повторяющееся имя.</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="672"/>
@@ -4433,7 +4433,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
       <source>Cannot edit columns that are result of an inline subquery.</source>
-      <translation type="unfinished">Cannot edit columns that are result of an inline subquery.</translation>
+      <translation>Невозможно редактировать столбцы, являющиеся результатом встраиваемого подзапроса.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
@@ -5509,7 +5509,7 @@ find next</source>
     <message>
       <location filename="../sqleditor.cpp" line="1214"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
-      <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
+      <translation>Это огромный файл (более %1 MB). Вы уверены, что хотите загрузить его в редактор запросов SQL?</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1224"/>
@@ -6126,7 +6126,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="416"/>
       <source>Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</source>
-      <translation type="unfinished">Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</translation>
+      <translation>Тип привязываемого столбца (%1) отличается от указанного в локальном столбце (%2). Могут возникнуть проблемы при вставке или обновлении данных.</translation>
     </message>
   </context>
   <context>
@@ -6658,19 +6658,19 @@ Are you sure you want to create a table with blank name?</source>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1343"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1345"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
+Подтвердить структуру таблицы или вернуться на вкладку структуры?</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1349"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Подтвердить изменения и перейти к данным</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="1348"/>
@@ -7065,19 +7065,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="617"/>
       <source>There are uncommitted structure modifications.</source>
-      <translation type="unfinished">There are uncommitted structure modifications.</translation>
+      <translation>Имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="619"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-      <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
+      <translation>Невозможно просматривать или редактировать данные, пока структура представления не подтверждена.
+Подтвердить структуру представления или вернуться на вкладку структуры?</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="623"/>
       <source>Commit modifications and browse data</source>
-      <translation type="unfinished">Commit modifications and browse data</translation>
+      <translation>Подтвердить изменения и перейти к данным</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="622"/>

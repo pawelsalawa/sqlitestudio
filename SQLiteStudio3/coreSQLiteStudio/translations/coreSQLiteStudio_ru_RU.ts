@@ -129,18 +129,18 @@
     <message>
       <location filename="../completionhelper.cpp" line="259"/>
       <source>String</source>
-      <translation type="unfinished">String</translation>
+      <translation>Строка</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="262"/>
       <location filename="../completionhelper.cpp" line="265"/>
       <source>Number</source>
-      <translation type="unfinished">Number</translation>
+      <translation>Число</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="277"/>
       <source>BLOB literal</source>
-      <translation type="unfinished">BLOB literal</translation>
+      <translation>Значение BLOB</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="437"/>
@@ -371,7 +371,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="199"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+      <translation>Не удалось создать контекст для скрипта, вероятно плагин настроен неправильно</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="292"/>
@@ -869,7 +869,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+      <translation>Не удалось получить контекст для исполнения, вероятно скриптовый плагин %1 настроен неправильно</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
@@ -1038,7 +1038,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
       <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-      <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+      <translation>Столбец %1 в таблице %2 является ссылкой на столбец %3 в таблице %4, но эти столбцы имеют разные типы данных: %5 и %6. Могут возникнуть проблемы при сравнении значения внешнего ключа.</translation>
     </message>
   </context>
   <context>
@@ -1130,7 +1130,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="860"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>Зарегистрировано сравнение по требованию, использующееся по умолчанию, под именем: %1</translation>
     </message>
   </context>
   <context>
