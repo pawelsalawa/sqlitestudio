@@ -694,6 +694,8 @@ void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
     for (QStandardItem* triggerItem : triggerItems)
         triggersItem->appendRow(triggerItem);
 
+    populateChildItemsWithDb(triggersItem, db);
+
     viewItem->setSchemaReady(true);
 }
 

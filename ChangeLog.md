@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.16
+- BUGFIX: #5247 Fixed crash when opening a View's Trigger and enabled trigger-related entries in context menu for a View's Trigger.
+
 ### 3.4.15
 - BUGFIX: #5218 Fixed Drag&Drop of items in the database list - a bug that was introduced in 3.4.14.
 - BUGFIX: #5216 Fixed Query Executor to use Smart Execution Method when there is a Virtual Table mentioned in the query, therefore enabling all advanced features of the Query Executor.
