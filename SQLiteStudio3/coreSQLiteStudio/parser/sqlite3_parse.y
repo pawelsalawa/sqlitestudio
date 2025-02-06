@@ -90,7 +90,7 @@ int sqlite3ParserFallback(int iToken) {
 %fallback ID
   ABORT ACTION AFTER ALWAYS ANALYZE ASC ATTACH BEFORE BEGIN BY CASCADE CAST COLUMNKW
   CONFLICT CURRENT DATABASE DEFERRED DESC DETACH DO EACH END EXCLUDE EXCLUSIVE EXPLAIN FAIL FIRST FOLLOWING FOR
-  GENERATED GROUPS IGNORE IMMEDIATE INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
+  GROUPS IGNORE IMMEDIATE INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
   QUERY KEY OF OFFSET PARTITION PRAGMA PRECEDING RAISE RANGE RECURSIVE RELEASE REPLACE RESTRICT ROW ROWS ROLLBACK
   SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHOUT
   REINDEX RENAME CTIME_KW IF FILTER
@@ -389,7 +389,17 @@ columnid ::= ID_COL_NEW.                    {}
 // the parser handle correctly: SELECT * FROM t1 INDEXED BY i1;
 // Instead the simple definition of id(X) (below) got commented now.
 // The issue was reported in #5207.
-id(X) ::= ID(T)|INDEXED(T).                    {
+//
+// Update 2024-02-06:
+// GENERATED was removed from %fallback for ID and added here.
+// This time it is to parse properly CREATE TABLE column definition:
+// CRATE TABLE name (
+//   col REAL GENERATED ALWAYS AS (1)
+// );
+// The problem here was that GENERATED was accepted as ID and appended
+// to typename(X), instead of being used for constraint.
+// This problem was reported in #5234.
+id(X) ::= ID(T)|INDEXED(T)|GENERATED(T).    {
                                                 X = new QString(
                                                     stripObjName(
                                                         T->value
@@ -583,17 +593,17 @@ ccons(X) ::= COLLATE ids(I).                {
                                                 delete I;
                                                 objectForTokens = X;
                                             }
-ccons(X) ::= gen_always(A) AS
-				LP expr(E) RP id_opt(T).    {
+ccons(X) ::= gen_always(A) AS LP expr(E) RP
+                                id_opt(T).  {
                                                 if (!T->isNull() && T->toLower() != "stored" && T->toLower() != "virtual")
                                                     parserContext->errorAtToken(QString("Invalid generated column type: %1").arg(*(T)));
 
                                                 X = new SqliteCreateTable::Column::Constraint();
-												X->initGeneratedAs(E, *(A), *(T));
-												delete A;
-												delete T;
-												objectForTokens = X;
-											}
+                                                X->initGeneratedAs(E, *(A), *(T));
+                                                delete A;
+                                                delete T;
+                                                objectForTokens = X;
+                                            }
 
 ccons ::= CONSTRAINT ID_CONSTR.             {}
 ccons ::= COLLATE ID_COLLATE.               {}
@@ -632,8 +642,8 @@ tnm(X) ::= nm(N).							{
 
 %type gen_always {bool*}
 %destructor gen_always {parser_safe_delete($$);}
-gen_always(X) ::= GENERATED ALWAYS.			{X = new bool(true);}
-gen_always(X) ::= .							{X = new bool(false);}
+gen_always(X) ::= GENERATED ALWAYS.         {X = new bool(true);}
+gen_always(X) ::= .                         {X = new bool(false);}
 
 // The optional AUTOINCREMENT keyword
 %type autoinc {bool*}

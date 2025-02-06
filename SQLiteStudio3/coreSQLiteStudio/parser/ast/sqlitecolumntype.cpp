@@ -12,22 +12,22 @@ SqliteColumnType::SqliteColumnType(const SqliteColumnType& other) :
 {
 }
 
-SqliteColumnType::SqliteColumnType(const QString &name)
+SqliteColumnType::SqliteColumnType(const QString &name) :
+    SqliteColumnType()
 {
     this->name = name;
 }
 
-SqliteColumnType::SqliteColumnType(const QString &name, const QVariant& scale)
+SqliteColumnType::SqliteColumnType(const QString &name, const QVariant& scale) :
+    SqliteColumnType(name)
 {
-    this->name = name;
     this->scale = scale;
 }
 
-SqliteColumnType::SqliteColumnType(const QString &name, const QVariant& scale, const QVariant& precision)
+SqliteColumnType::SqliteColumnType(const QString &name, const QVariant& scale, const QVariant& precision) :
+    SqliteColumnType(name, scale)
 {
-    this->name = name;
     this->precision = precision;
-    this->scale = scale;
 }
 
 SqliteStatement* SqliteColumnType::clone()
