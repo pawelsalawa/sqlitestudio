@@ -2,6 +2,7 @@
 
 ### 3.4.16
 - BUGFIX: #5247 Fixed crash when opening a View's Trigger and enabled trigger-related entries in context menu for a View's Trigger.
+- BUGFIX: #5233 Fixed result column name when using [] quoting operator for column alias name.
 
 ### 3.4.15
 - BUGFIX: #5218 Fixed Drag&Drop of items in the database list - a bug that was introduced in 3.4.14.

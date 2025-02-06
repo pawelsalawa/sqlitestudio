@@ -417,14 +417,15 @@ id_opt(X) ::= .                             {
 // And "ids" is an identifer-or-string.
 %type ids {QString*}
 %destructor ids {parser_safe_delete($$);}
-ids(X) ::= ID|STRING(T).                    {X = new QString(T->value);}
+ids(X) ::= ID(T).                           {X = new QString(stripObjName(T->value));}
+ids(X) ::= STRING(T).                       {X = new QString(stripString(T->value));}
 
 // The name of a column or table can be any of the following:
 %type nm {QString*}
 %destructor nm {parser_safe_delete($$);}
 nm(X) ::= id(N).                            {X = N;}
 nm(X) ::= STRING(N).                        {X = new QString(stripString(N->value));}
-nm(X) ::= JOIN_KW(N).                       {X = new QString(N->value);}
+nm(X) ::= JOIN_KW(N).                       {X = new QString(stripObjName(N->value));}
 
 // A typetoken is really one or more tokens that form a type name such
 // as can be found after the column name in a CREATE TABLE statement.
