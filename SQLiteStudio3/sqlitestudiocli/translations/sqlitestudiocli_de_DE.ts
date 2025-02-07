@@ -6,32 +6,32 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Aktuelle Datenbank: %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation type="unfinished">No current working database is set.</translation>
+      <translation>Es ist keine aktuelle Arbeitsdatenbank festgelegt.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>%1 für Hilfe eingeben</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="254"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-      <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
+      <translation>Die Datenbank, die mittels Programmparameter übergeben wurde (%1), war bereits in der Liste unter dem Namen %2 vorhanden.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="262"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Die Datenbank %1 konnte nicht hinzugefügt werden.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="289"/>
       <source>closed</source>
-      <translation type="unfinished">closed</translation>
+      <translation>geschlossen</translation>
     </message>
   </context>
   <context>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../commands/clicommand.cpp" line="107"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>Verwendung: %1%2</translation>
     </message>
   </context>
   <context>
@@ -47,17 +47,17 @@
     <message>
       <location filename="../commands/clicommandadd.cpp" line="9"/>
       <source>Could not add database %1 to list.</source>
-      <translation type="unfinished">Could not add database %1 to list.</translation>
+      <translation>Die Datenbank %1 konnte nicht zur Liste hinzugefügt werden.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="14"/>
       <source>Database added: %1</source>
-      <translation type="unfinished">Database added: %1</translation>
+      <translation>Datenbank hinzugefügt: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="19"/>
       <source>adds new database to the list</source>
-      <translation type="unfinished">adds new database to the list</translation>
+      <translation>fügt neue Datenbank zur Liste hinzu</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="24"/>
@@ -68,13 +68,13 @@
       <location filename="../commands/clicommandadd.cpp" line="34"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>name</translation>
     </message>
     <message>
       <location filename="../commands/clicommandadd.cpp" line="35"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>pfad</translation>
     </message>
   </context>
   <context>
@@ -82,17 +82,17 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="10"/>
       <source>Changed directory to: %1</source>
-      <translation type="unfinished">Changed directory to: %1</translation>
+      <translation>Verzeichnis geändert zu: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="12"/>
       <source>Could not change directory to: %1</source>
-      <translation type="unfinished">Could not change directory to: %1</translation>
+      <translation>Verzeichnis konnte nicht geändert werden: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="17"/>
       <source>changes current working directory</source>
-      <translation type="unfinished">changes current working directory</translation>
+      <translation>ändert aktuelles Arbeitsverzeichnis</translation>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
@@ -103,7 +103,7 @@
       <location filename="../commands/clicommandcd.cpp" line="33"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>pfad</translation>
     </message>
   </context>
   <context>
@@ -117,17 +117,17 @@
       <location filename="../commands/clicommandclose.cpp" line="21"/>
       <location filename="../commands/clicommandclose.cpp" line="29"/>
       <source>Connection to database %1 closed.</source>
-      <translation type="unfinished">Connection to database %1 closed.</translation>
+      <translation>Verbindung zur Datenbank %1 geschlossen.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="24"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>Keine Datenbank mit diesem Namen: %1. Verwenden Sie %2, um eine Liste bekannter Datenbanken zu sehen.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="35"/>
       <source>closes given (or current) database</source>
-      <translation type="unfinished">closes given (or current) database</translation>
+      <translation>schließt die angegebene (oder aktuelle) Datenbank</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -138,7 +138,7 @@
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>name</translation>
     </message>
   </context>
   <context>
@@ -146,51 +146,51 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="12"/>
       <source>No current working database defined.</source>
-      <translation type="unfinished">No current working database defined.</translation>
+      <translation>Es ist keine aktuelle Arbeitsdatenbank festgelegt.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation type="unfinished">Databases:</translation>
+      <translation>Datenbanken:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
       <location filename="../commands/clicommanddblist.cpp" line="34"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Name</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Open</translation>
+      <translation>Geöffnet</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Closed</translation>
+      <translation>Geschlossen</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="32"/>
       <location filename="../commands/clicommanddblist.cpp" line="36"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Connection</translation>
+      <translation>Verbindung</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="38"/>
       <location filename="../commands/clicommanddblist.cpp" line="45"/>
       <source>Database file path</source>
-      <translation type="unfinished">Database file path</translation>
+      <translation>Datenbank-Dateipfad</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation type="unfinished">prints list of registered databases</translation>
+      <translation>druckt die Liste der registrierten Datenbanken aus</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
@@ -212,47 +212,47 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Die Datenbank ist nicht geöffnet.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>Tabelle mit Namen %1 nicht gefunden: </translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>zeigt Details über die Tabelle</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>table</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tabelle: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Spaltenname</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Datentyp</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Bedingungen</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="105"/>
       <source>Virtual table: %1</source>
-      <translation type="unfinished">Virtual table: %1</translation>
+      <translation>Virtuelle Tabelle: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
@@ -270,7 +270,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="33"/>
       <source>lists directories and files in current working directory</source>
-      <translation type="unfinished">lists directories and files in current working directory</translation>
+      <translation>listet Verzeichnisse und Dateien im aktuellen Arbeitsverzeichnis auf</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddir.cpp" line="38"/>
@@ -284,7 +284,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommanddir.cpp" line="49"/>
       <source>pattern</source>
-      <translation type="unfinished">pattern</translation>
+      <translation>muster</translation>
     </message>
   </context>
   <context>
@@ -292,12 +292,12 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandexit.cpp" line="12"/>
       <source>quits the application</source>
-      <translation type="unfinished">quits the application</translation>
+      <translation>Anwendung beenden</translation>
     </message>
     <message>
       <location filename="../commands/clicommandexit.cpp" line="17"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-      <translation type="unfinished">Quits the application. Settings are stored in configuration file and will be restored on next startup.</translation>
+      <translation>Beendet die Anwendung. Die Einstellungen werden in der Konfigurationsdatei gespeichert und beim nächsten Start wiederhergestellt.</translation>
     </message>
   </context>
   <context>
@@ -589,23 +589,23 @@ Call %2 to see list of all databases.</translation>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
       <location filename="../commands/clicommandsql.cpp" line="176"/>
       <source>Too many columns to display in %1 mode.</source>
-      <translation type="unfinished">Too many columns to display in %1 mode.</translation>
+      <translation>Zu viele Spalten zum Anzeigen im %1 Modus.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Zeile: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
       <source>Query execution error: %1</source>
-      <translation type="unfinished">Query execution error: %1</translation>
+      <translation>Abfrage-Ausführungsfehler: %1</translation>
     </message>
   </context>
   <context>
@@ -613,7 +613,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="15"/>
       <source>No such database: %1. Use %2 to see list of known databases.</source>
-      <translation type="unfinished">No such database: %1. Use %2 to see list of known databases.</translation>
+      <translation>Keine Datenbank mit diesem Namen: %1. Verwenden Sie %2, um eine Liste bekannter Datenbanken zu sehen.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="25"/>
@@ -623,23 +623,23 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="32"/>
       <source>Database %1 is closed.</source>
-      <translation type="unfinished">Database %1 is closed.</translation>
+      <translation>Datenbank %1 ist geschlossen.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="45"/>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Datenbank</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="47"/>
       <source>Table</source>
-      <translation type="unfinished">Table</translation>
+      <translation>Tabelle</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="61"/>
       <source>prints list of tables in the database</source>
-      <translation type="unfinished">prints list of tables in the database</translation>
+      <translation>gibt eine Liste der Tabellen in der Datenbank aus</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtables.cpp" line="66"/>
@@ -652,7 +652,7 @@ When the -s option is given, then system tables are also listed.</translation>
       <location filename="../commands/clicommandtables.cpp" line="77"/>
       <source>database</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">database</translation>
+      <translation>datenbank</translation>
     </message>
   </context>
   <context>
@@ -660,33 +660,33 @@ When the -s option is given, then system tables are also listed.</translation>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="12"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-      <translation type="unfinished">No current working database is selected. Use %1 to define one and then run %2.</translation>
+      <translation>Es ist keine aktuelle Datenbank ausgewählt. Verwenden Sie %1, um eine zu definieren und dann %2 auszuführen.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="54"/>
       <source>Tables</source>
-      <translation type="unfinished">Tables</translation>
+      <translation>Tabellen</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="58"/>
       <source>Views</source>
-      <translation type="unfinished">Views</translation>
+      <translation>Ansichten</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="83"/>
       <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
+      <translation>Spalten</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="88"/>
       <source>Indexes</source>
-      <translation type="unfinished">Indexes</translation>
+      <translation>Indizes</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="92"/>
       <location filename="../commands/clicommandtree.cpp" line="113"/>
       <source>Triggers</source>
-      <translation type="unfinished">Triggers</translation>
+      <translation>Triggers</translation>
     </message>
     <message>
       <location filename="../commands/clicommandtree.cpp" line="132"/>
@@ -710,18 +710,18 @@ The database argument is optional and if provided, then only given database will
     <message>
       <location filename="../commands/clicommanduse.cpp" line="13"/>
       <source>No current database selected.</source>
-      <translation type="unfinished">No current database selected.</translation>
+      <translation>Keine aktuelle Datenbank ausgewählt.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="16"/>
       <location filename="../commands/clicommanduse.cpp" line="30"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Aktuelle Datenbank: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="23"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Keine Datenbank mit dem Namen: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="35"/>
@@ -757,7 +757,7 @@ The default database can be selected in various ways:
       <location filename="../commands/clicommanduse.cpp" line="63"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>name</translation>
     </message>
   </context>
   <context>
@@ -765,12 +765,12 @@ The default database can be selected in various ways:
     <message>
       <location filename="../clicommandsyntax.cpp" line="155"/>
       <source>Insufficient number of arguments.</source>
-      <translation type="unfinished">Insufficient number of arguments.</translation>
+      <translation>Unzureichende Anzahl von Argumenten.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="325"/>
       <source>Too many arguments.</source>
-      <translation type="unfinished">Too many arguments.</translation>
+      <translation>Zu viele Argumente.</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="347"/>
@@ -783,19 +783,19 @@ Expected one of: %2</translation>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>Unbekannte Option: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>
       <source>Option %1 requires an argument.</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Option %1 requires an argument.</translation>
+      <translation>Option %1 erfordert ein Argument.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
       <source>string</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">string</translation>
+      <translation>zeichenkette</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="28"/>
@@ -825,7 +825,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="39"/>
       <source>SQL file</source>
-      <translation type="unfinished">SQL file</translation>
+      <translation>SQL-Datei</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="40"/>
@@ -835,7 +835,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="43"/>
       <source>codec</source>
-      <translation type="unfinished">codec</translation>
+      <translation>codec</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="44"/>
@@ -850,12 +850,12 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>datei</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Datenbankdatei zum Öffnen</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="78"/>
