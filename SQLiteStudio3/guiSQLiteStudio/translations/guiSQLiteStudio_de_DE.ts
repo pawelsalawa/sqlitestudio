@@ -41,7 +41,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="187"/>
       <source>SQLite extension directories</source>
-      <translation type="unfinished">SQLite extension directories</translation>
+      <translation>SQLite-Erweiterungsverzeichnisse</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="140"/>
@@ -99,7 +99,7 @@
     <message>
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
       <source>Please provide values for query parameters</source>
-      <translation type="unfinished">Please provide values for query parameters</translation>
+      <translation>Bitte geben Sie Werte für Abfrageparameter ein</translation>
     </message>
   </context>
   <context>
@@ -107,7 +107,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="81"/>
       <source>Filter snippets</source>
-      <translation type="unfinished">Filter snippets</translation>
+      <translation>Schnipsel filtern</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation type="unfinished">Snippet name</translation>
+      <translation>Schnipsel-Name</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -134,7 +134,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
       <source>Snippet code</source>
-      <translation type="unfinished">Snippet code</translation>
+      <translation>Schnipsel-Code</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="41"/>
@@ -144,7 +144,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="62"/>
       <source>Code Snippets editor</source>
-      <translation type="unfinished">Code Snippets editor</translation>
+      <translation>Code-Schnipsel-Editor</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="67"/>
@@ -159,37 +159,37 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="70"/>
       <source>Create new snippet</source>
-      <translation type="unfinished">Create new snippet</translation>
+      <translation>Schnipsel erstellen</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Delete selected snippet</source>
-      <translation type="unfinished">Delete selected snippet</translation>
+      <translation>Ausgewählten Schnipsel löschen</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Move the snippet up</source>
-      <translation type="unfinished">Move the snippet up</translation>
+      <translation>Schipsel nach oben verschieben</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Move the snippet down</source>
-      <translation type="unfinished">Move the snippet down</translation>
+      <translation>Schnipsel nach unten verschieben</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
       <source>Code snippets manual</source>
-      <translation type="unfinished">Code snippets manual</translation>
+      <translation>Code-Schnipsel-Handbuch</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="280"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
+      <translation>Geben Sie einen einzigartigen Namen für den Schnipsel ein.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="283"/>
       <source>Enter a non-empty snippet content.</source>
-      <translation type="unfinished">Enter a non-empty snippet content.</translation>
+      <translation>Geben Sie Ihren Schnipsel-Inhalt ein.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="287"/>
@@ -549,7 +549,7 @@
       <location filename="../dialogs/columndialog.cpp" line="99"/>
       <source>Add a generated value constraint</source>
       <comment>column dialog</comment>
-      <translation type="unfinished">Add a generated value constraint</translation>
+      <translation>Generierte Wertebedingung hinzufügen</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="100"/>
@@ -678,7 +678,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="20"/>
       <source>Generating code:</source>
-      <translation type="unfinished">Generating code:</translation>
+      <translation>Generierter Code:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
@@ -693,7 +693,7 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
       <source>Named constraint:</source>
-      <translation type="unfinished">Named constraint:</translation>
+      <translation>Benannte Bedingung:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
@@ -856,7 +856,7 @@
     <message>
       <location filename="../completer/completerwindow.cpp" line="286"/>
       <source>Insert a code snippet</source>
-      <translation type="unfinished">Insert a code snippet</translation>
+      <translation>Füge einen Code-Schnipsel ein</translation>
     </message>
   </context>
   <context>
@@ -865,7 +865,7 @@
       <location filename="../dialogs/configdialog.ui" line="14"/>
       <location filename="../dialogs/configdialog.ui" line="2081"/>
       <source>Configuration</source>
-      <translation>Konfiguration</translation>
+      <translation>Einstellungen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="63"/>
@@ -900,7 +900,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="159"/>
       <source>Code colors</source>
-      <translation type="unfinished">Code colors</translation>
+      <translation>Code-Farben</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="172"/>
@@ -911,7 +911,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="184"/>
       <source>Code assistant</source>
-      <translation type="unfinished">Code assistant</translation>
+      <translation>Code-Assistent</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="196"/>
@@ -936,7 +936,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Scripting languages</source>
-      <translation type="unfinished">Scripting languages</translation>
+      <translation>Skriptsprachen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="271"/>
@@ -1598,7 +1598,7 @@
       <location filename="../dialogs/configdialog.cpp" line="1544"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
-      <translation>%1 (eingebaut)</translation>
+      <translation>%1 (integriert)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1557"/>
@@ -3966,7 +3966,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../mainwindow.cpp" line="301"/>
       <source>&amp;About</source>
-      <translation type="unfinished">&amp;About</translation>
+      <translation>&amp;Über SQLiteStudio</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="302"/>
@@ -4411,7 +4411,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="308"/>
       <source>Populating configuration for this column is invalid or incomplete.</source>
-      <translation>Die Konfigurationsauffüllung für diese Spalte ist ungültig oder unvollständig.</translation>
+      <translation>Die Konfiguration für diese Spalte ist ungültig oder unvollständig.</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.cpp" line="339"/>
@@ -4582,13 +4582,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="37"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Schriftgröße verringern</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="646"/>
@@ -4807,7 +4807,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../mainwindow.h" line="56"/>
       <source>Open configuration dialog</source>
-      <translation>Konfigurationsdialog öffnen</translation>
+      <translation>Einstellungen öffnen</translation>
     </message>
     <message>
       <location filename="../mainwindow.h" line="57"/>
@@ -5735,12 +5735,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit</source>
-      <translation type="unfinished">Commit</translation>
+      <translation>Commit</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Rollback</source>
-      <translation type="unfinished">Rollback</translation>
+      <translation>Rollback</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
@@ -5791,19 +5791,19 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Decrease font size</translation>
+      <translation>Schriftgröße verringern</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
-      <translation type="unfinished">Invert selection</translation>
+      <translation>Auswahl umkehren</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
@@ -5828,7 +5828,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
       <source>Cannot paste data. Details: %1</source>
-      <translation type="unfinished">Cannot paste data. Details: %1</translation>
+      <translation>Daten können nicht eingefügt werden. Details: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
@@ -5858,7 +5858,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="571"/>
       <source>table &apos;%1&apos;</source>
-      <translation type="unfinished">table &apos;%1&apos;</translation>
+      <translation>Tabelle &apos;%1&apos;</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="594"/>
@@ -5868,7 +5868,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="841"/>
       <source>Trim pasted text?</source>
-      <translation type="unfinished">Trim pasted text?</translation>
+      <translation>Überflüssige Leerzeichen im Text entfernen?</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="842"/>
@@ -6835,7 +6835,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="154"/>
       <source>On view:</source>
-      <translation type="unfinished">On view:</translation>
+      <translation>Auf Ansicht:</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="178"/>
@@ -6904,7 +6904,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.ui" line="123"/>
       <source>Output column names</source>
-      <translation type="unfinished">Output column names</translation>
+      <translation>Spaltennamen ausgeben</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
