@@ -54,17 +54,17 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>Trennzeichen:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="108"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, the &amp;quot; character will be interpreted as standard CSV value quotation mark, causing the string to be treated as single value until the next (ending) &amp;quot; character. If disabled, the &amp;quot; will be treated as any other character. Usually you want this to be enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Falls aktiviert, wird das Kaufmanns-Und als Standard CSV-Wert Anführungszeichen interpretiert bis zum nächsten Kaufmanns-Und als Einzelwert behandelt. Falls deaktiviert, wird das Kaufmanns-Und wie jedes andere Zeichen behandelt. Normalerweise soll das aktiviert sein.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="111"/>
       <source>Interpret &quot; as a value quotation mark</source>
-      <translation type="unfinished">Interpret &quot; as a value quotation mark</translation>
+      <translation>&quot; als Wertanführungszeichen interpretieren</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="20"/>
