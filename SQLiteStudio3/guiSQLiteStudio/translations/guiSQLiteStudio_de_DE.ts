@@ -1767,7 +1767,7 @@
       <location filename="../windows/constrainttabmodel.cpp" line="153"/>
       <source>Scope</source>
       <comment>table constraints</comment>
-      <translation>Bereich</translation>
+      <translation>Gültigkeitsbereich</translation>
     </message>
     <message>
       <location filename="../windows/constrainttabmodel.cpp" line="155"/>
@@ -2238,7 +2238,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>Create a &amp;table</source>
-      <translation>Erstellt eine Tabelle</translation>
+      <translation>Tabelle erstellen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
@@ -5064,7 +5064,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/tablewindow.h" line="36"/>
       <source>Add new column</source>
-      <translation>Neue Spalte zufügen</translation>
+      <translation>Spalte hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="37"/>
@@ -5089,7 +5089,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/tablewindow.h" line="41"/>
       <source>Add new table constraint</source>
-      <translation>Neue Tabellenbedingung zufügen</translation>
+      <translation>Bedingung hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="42"/>
@@ -5109,7 +5109,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/tablewindow.h" line="45"/>
       <source>Add new index</source>
-      <translation>Neuen Index zufügen</translation>
+      <translation>Index hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="46"/>
@@ -5130,7 +5130,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <location filename="../windows/tablewindow.h" line="49"/>
       <location filename="../windows/viewwindow.h" line="28"/>
       <source>Add new trigger</source>
-      <translation>Neuen Trigger zufügen</translation>
+      <translation>Trigger hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.h" line="50"/>
@@ -6398,7 +6398,7 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="235"/>
       <source>Add table constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table constraint</translation>
+      <translation>Bedingung hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="236"/>
@@ -6440,13 +6440,13 @@ NULL</translation>
       <location filename="../windows/tablewindow.cpp" line="243"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table unique constraint</translation>
+      <translation>Einzigartige Bedingung hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="244"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
-      <translation type="unfinished">Add table check constraint</translation>
+      <translation>Prüfungsbedingung hinzufügen</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="262"/>
