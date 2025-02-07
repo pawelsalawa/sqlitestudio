@@ -4649,7 +4649,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="35"/>
       <source>Add database</source>
-      <translation type="unfinished">Add database</translation>
+      <translation>Thêm cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
@@ -4960,7 +4960,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="44"/>
       <source>All SQLite databases</source>
-      <translation type="unfinished">All SQLite databases</translation>
+      <translation>Tất cả cơ sở dữ liệu SQLite</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="46"/>
@@ -4970,7 +4970,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../uiutils.cpp" line="49"/>
       <source>Select database file</source>
-      <translation type="unfinished">Select database file</translation>
+      <translation>Chọn tệp cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../uiutils.cpp" line="59"/>
@@ -5931,7 +5931,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="163"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../windows/sqliteextensioneditor.ui" line="169"/>
@@ -6535,7 +6535,7 @@ Would you like to proceed?</translation>
     <message>
       <location filename="../windows/tablewindow.cpp" line="627"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="659"/>
@@ -6956,7 +6956,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
       <location filename="../windows/viewwindow.cpp" line="279"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="334"/>
