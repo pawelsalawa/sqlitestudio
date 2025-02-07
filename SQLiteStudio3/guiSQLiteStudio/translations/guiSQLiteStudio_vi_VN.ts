@@ -207,7 +207,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="138"/>
@@ -803,7 +803,7 @@
       <location filename="../completer/completerwindow.cpp" line="217"/>
       <source>Database: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Database: %1</translation>
+      <translation>Cơ sở dữ liệu: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="229"/>
@@ -906,7 +906,7 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="265"/>
       <source>Database list</source>
-      <translation type="unfinished">Database list</translation>
+      <translation>Danh sách cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="184"/>
@@ -1962,7 +1962,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="23"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="29"/>
@@ -1988,7 +1988,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dialogs/dbdialog.ui" line="61"/>
       <source>Create a new database file</source>
-      <translation type="unfinished">Create a new database file</translation>
+      <translation>Tạo cơ sở dữ liệu mới</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="89"/>
@@ -2153,7 +2153,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.ui" line="20"/>
       <source>Databases</source>
-      <translation type="unfinished">Databases</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.ui" line="70"/>
@@ -2193,17 +2193,17 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="135"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Thêm cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>&amp;Chỉnh sửa cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Xóa cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="138"/>
@@ -2387,7 +2387,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbtree/dbtree.cpp" line="359"/>
       <location filename="../dbtree/dbtree.cpp" line="364"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="374"/>
@@ -2442,7 +2442,7 @@ All objects from this group will be moved to parent group.</translation>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1211"/>
       <source>Remove database</source>
-      <translation type="unfinished">Remove database</translation>
+      <translation>Xóa cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1251"/>
@@ -3493,7 +3493,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/importdialog.ui" line="46"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="87"/>
@@ -4008,7 +4008,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="331"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
-      <translation type="unfinished">&amp;Database</translation>
+      <translation>&amp;Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="354"/>
@@ -4376,7 +4376,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/populatedialog.ui" line="26"/>
       <source>Database</source>
-      <translation type="unfinished">Database</translation>
+      <translation>Cơ sở dữ liệu</translation>
     </message>
     <message>
       <location filename="../dialogs/populatedialog.ui" line="44"/>
