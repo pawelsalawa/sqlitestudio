@@ -1129,7 +1129,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="860"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>Registrierte Standardsortierfolge bei Bedarf, unter dem Namen: %1</translation>
     </message>
   </context>
   <context>
