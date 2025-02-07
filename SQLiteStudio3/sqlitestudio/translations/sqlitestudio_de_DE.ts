@@ -51,7 +51,7 @@
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation>Aktiviert das Debuggen des SQLiteStudio&apos;s Abfragenausführers.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
@@ -61,7 +61,7 @@
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Zeigt auf die Hauptkonfigurationsdatei. Lesen Sie das Handbuch im Wiki für mehr Details.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
