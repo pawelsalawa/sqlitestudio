@@ -305,7 +305,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</transla
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="16"/>
       <source>shows this help message</source>
-      <translation type="unfinished">shows this help message</translation>
+      <translation>zeigt diese Hilfe-Nachricht</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="21"/>
@@ -326,27 +326,27 @@ You can always execute any command with exactly single &apos;--help&apos; option
       <location filename="../commands/clicommandhelp.cpp" line="33"/>
       <source>command</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">command</translation>
+      <translation>befehl</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="42"/>
       <source>No such command: %1</source>
-      <translation type="unfinished">No such command: %1</translation>
+      <translation>Kein Befehl mit diesem Namen: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="43"/>
       <source>Type &apos;%1&apos; for list of available commands.</source>
-      <translation type="unfinished">Type &apos;%1&apos; for list of available commands.</translation>
+      <translation>Schreiben Sie &apos;%1&apos; für eine Liste der verfügbaren Befehle.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="52"/>
       <source>Usage: %1%2</source>
-      <translation type="unfinished">Usage: %1%2</translation>
+      <translation>Verwendung: %1%2</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhelp.cpp" line="62"/>
       <source>Aliases: %1</source>
-      <translation type="unfinished">Aliases: %1</translation>
+      <translation>Alias: %1</translation>
     </message>
   </context>
   <context>
@@ -354,7 +354,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="23"/>
       <source>Current history limit is set to: %1</source>
-      <translation type="unfinished">Current history limit is set to: %1</translation>
+      <translation>Aktuelles Verlaufslimit auf %1 gesetzt</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="39"/>
@@ -377,22 +377,22 @@ Use -ql or --querylimit option to see the current limit value.</translation>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="59"/>
       <source>number</source>
-      <translation type="unfinished">number</translation>
+      <translation>nummer</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="66"/>
       <source>Console history erased.</source>
-      <translation type="unfinished">Console history erased.</translation>
+      <translation>Verlauf der Konsole gelöscht.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="75"/>
       <source>Invalid number: %1</source>
-      <translation type="unfinished">Invalid number: %1</translation>
+      <translation>Ungültige Zahl: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandhistory.cpp" line="80"/>
       <source>History limit set to %1</source>
-      <translation type="unfinished">History limit set to %1</translation>
+      <translation>Verlaufslimit auf %1 gesetzt</translation>
     </message>
   </context>
   <context>
@@ -492,7 +492,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>öffnet die Datenbankverbindung</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
@@ -503,13 +503,13 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>name</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="83"/>
       <source>path</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">path</translation>
+      <translation>pfad</translation>
     </message>
   </context>
   <context>
@@ -517,7 +517,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="13"/>
       <source>prints the current working directory</source>
-      <translation type="unfinished">prints the current working directory</translation>
+      <translation>gibt das aktuelle Arbeitsverzeichnis aus</translation>
     </message>
     <message>
       <location filename="../commands/clicommandpwd.cpp" line="18"/>
@@ -530,12 +530,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="12"/>
       <source>No such database: %1</source>
-      <translation type="unfinished">No such database: %1</translation>
+      <translation>Keine Datenbank mit dem Namen: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="20"/>
       <source>Database removed: %1</source>
-      <translation type="unfinished">Database removed: %1</translation>
+      <translation>Datenbank entfernt: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="26"/>
@@ -545,7 +545,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>entfernt die Datenbank von der Liste</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -556,7 +556,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
       <location filename="../commands/clicommandremove.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>name</translation>
     </message>
   </context>
   <context>
@@ -573,12 +573,12 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="29"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Die Datenbank ist nicht geöffnet.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="64"/>
       <source>executes SQL query</source>
-      <translation type="unfinished">executes SQL query</translation>
+      <translation>führt SQL Abfrage aus</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="69"/>
@@ -860,7 +860,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="78"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-      <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+      <translation>Ungültiger Codec: %1. Verwenden Sie -cl Option, um verfügbare Codecs anzuzeigen.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="108"/>
@@ -870,7 +870,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="114"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-      <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+      <translation>Die angegebene Datenbank konnte für die Ausführung der SQL-Datei nicht geöffnet werden. Sie können versuchen, die -d Option zu benutzen, um mehr Details zu erfahren.</translation>
     </message>
   </context>
 </TS>
