@@ -830,7 +830,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="40"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-      <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+      <translation>Zeichencodierung, die beim Lesen der SQL-Datei verwendet werden soll (-e Option). Verwenden Sie -cl, um verfügbare Codecs aufzulisten. Standard ist %1.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="43"/>
@@ -840,7 +840,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="44"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
-      <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+      <translation>Listet verfügbare Codecs auf, die mit -c Option verwendet werden können und wird beendet.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="46"/>
@@ -865,7 +865,7 @@ Expected one of: %2</translation>
     <message>
       <location filename="../main.cpp" line="108"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
-      <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+      <translation>Beim Ausführen einer SQL-Datei ist das Datenbankdateiargument erforderlich.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="114"/>
