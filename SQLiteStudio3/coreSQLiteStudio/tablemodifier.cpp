@@ -335,7 +335,7 @@ bool TableModifier::handleColumnTokens(TokenList& columnsToUpdate)
         TokenPtr token = it.next();
 
         // If column was modified, assign new name
-        lowerName = token->value.toLower();
+        lowerName = stripObjName(token->value).toLower();
         if (tableColMap.contains(lowerName))
         {
             token->value = tableColMap[lowerName];
@@ -346,7 +346,7 @@ bool TableModifier::handleColumnTokens(TokenList& columnsToUpdate)
         // It wasn't modified, but it's not on existing columns list?
         // In case of SELECT it's complicated to remove that token from anywhere
         // in the statement. Replacing it with NULL is a kind of compromise.
-        if (indexOf(existingColumns, token->value, Qt::CaseInsensitive) == -1)
+        if (indexOf(existingColumns, lowerName, Qt::CaseInsensitive) == -1)
         {
             token->value = "NULL";
             modified = true;

@@ -7,6 +7,7 @@
 - BUGFIX: #5226 Fixed SQL formatter for INSERT statement when database prefix is used, so the dot is not removed after database name.
 - BUGFIX: #5234 Fixed SQL formatter for GENERATED ALWAYS column in CREATE TABLE statement, so it doesn't quote type name.
 - BUGFIX: #5245 Enterprise SQL formatter preview is no longer resetting vertical scroll when updating preview contents.
+- BUGFIX: #5254 Fixed handling Views that reference columns with spaces in their name, when commits table modifications.
 
 ### 3.4.15
 - BUGFIX: #5218 Fixed Drag&Drop of items in the database list - a bug that was introduced in 3.4.14.
