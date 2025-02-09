@@ -1105,7 +1105,7 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     }
     else
     {
-        SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database)), dbFlags);
+        SqlQueryPtr results = db->exec(QString("SELECT name, type, sql, tbl_name FROM %1.sqlite_master").arg(getPrefixDb(database)), dbFlags);
         if (results->isError())
         {
             qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
@@ -1129,12 +1129,14 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     {
         row = rowVariant.toHash();
         type = row["type"].toString();
+        detail.name = row["name"].toString();
         detail.type = stringToObjectType(type);
         if (detail.type == ANY)
             qCritical() << "Unhlandled db object type:" << type;
 
         detail.ddl = row["sql"].toString();
-        details[row["name"].toString()] = detail;
+        detail.refObject = row["tbl_name"].toString();
+        details[detail.name] = detail;
     }
 
     return details;

@@ -28,8 +28,8 @@ bool Printing::init()
 
     printingConfig = new ExportManager::StandardExportConfig();
     printingConfig->exportData = true;
-    printingConfig->exportTableIndexes = false;
-    printingConfig->exportTableTriggers = false;
+    printingConfig->exportIndexes = false;
+    printingConfig->exportTriggers = false;
     printingConfig->codec = defaultCodecName();
 
     printDataAction = new ExtActionPrototype(QIcon(":/icons/printer.png"), tr("Print data"), this);
