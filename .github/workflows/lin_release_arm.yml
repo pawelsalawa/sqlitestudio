@@ -56,7 +56,7 @@ jobs:
                 # extra: '--external 7z'
             - name: Install Qt
               shell: bash
-              run: sudo apt install qttools5-dev qttools5-dev-tools
+              run: sudo apt install qttools5-dev qttools5-dev-tools qtdeclarative5-dev
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
