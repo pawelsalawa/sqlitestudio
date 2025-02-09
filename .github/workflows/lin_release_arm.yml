@@ -43,17 +43,20 @@ jobs:
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
+            # - name: Install Qt
+              # uses: jurplel/install-qt-action@v3
+              # with:
+                # cache: true
+                # version: ${{ env.QT_VERSION }}
+                # host: 'linux'
+                # dir: '${{ steps.qt-installation-dir.DIR }}'
+                # aqtversion: '==3.0.*'
+                # py7zrversion: '==0.20.*'
+                # setup-python: 'false'
+                # extra: '--external 7z'
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
-              with:
-                cache: true
-                version: ${{ env.QT_VERSION }}
-                host: 'linux'
-                dir: '${{ steps.qt-installation-dir.DIR }}'
-                aqtversion: '==3.0.*'
-                py7zrversion: '==0.20.*'
-                setup-python: 'false'
-                extra: '--external 7z'
+              shell: bash
+              run: apt install qttools5-dev qttools5-dev-tools
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
