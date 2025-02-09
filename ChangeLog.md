@@ -3,6 +3,8 @@
 ### 3.4.16
 - ADDED: #5231 Added safe-mode command line option to bypass issues caused by corrupted session.
 - CHANGE: #5248 Database Export dialog has now Export Indexes and Export Triggers options, just like the Single Table Export dialog.
+- CHANGE: SQLite updated to 3.49.0.
+- CHANGE: Config options for WxSQLite plugin extended to support AEGIS and Ascon-128 ciphers.
 - BUGFIX: #5247 Fixed crash when opening a View's Trigger and enabled trigger-related entries in context menu for a View's Trigger.
 - BUGFIX: #5233 Fixed result column name when using [] quoting operator for column alias name.
 - BUGFIX: #5226 Fixed SQL formatter for INSERT statement when database prefix is used, so the dot is not removed after database name.

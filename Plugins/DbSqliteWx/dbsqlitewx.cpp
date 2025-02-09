@@ -18,7 +18,9 @@ QList<DbPluginOption> DbSqliteWx::getOptionsList() const
         {"wxSQLite3: AES 256 Bit", "aes256cbc"},
         {"sqleet: ChaCha20-Poly1305", "chacha20"},
         {"SQLCipher: AES 256 Bit", "sqlcipher"},
-        {"System.Data.SQLite: RC4", "rc4"}
+        {"System.Data.SQLite: RC4", "rc4"},
+        {"Ascon-128 v1.2", "ascon128"},
+        {"AEGIS", "aegis"},
     };
     static_qstring(defaultCipher, "aes256cbc");
 
