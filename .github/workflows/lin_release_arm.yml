@@ -222,42 +222,42 @@ jobs:
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Core.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5DBus.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Gui.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Network.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Qml.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5WaylandClient.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Widgets.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Xml.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5Svg.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libQt5XcbQpa.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libicui18n.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libicuuc.so* lib/
-                cp -P ${{ Qt5_Dir }}/lib/libicudata.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Core.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5DBus.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Concurrent.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Gui.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Network.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5PrintSupport.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Qml.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5WaylandClient.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Widgets.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Xml.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5Svg.so* lib/
+                cp -P $Qt5_Dir/lib/libQt5XcbQpa.so* lib/
+                cp -P $Qt5_Dir/lib/libicui18n.so* lib/
+                cp -P $Qt5_Dir/lib/libicuuc.so* lib/
+                cp -P $Qt5_Dir/lib/libicudata.so* lib/
 
             - name: Copy Qt plugins to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes platforminputcontexts wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration
-                cp -P ${{ Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
-                cp -P ${{ Qt5_Dir }}/plugins/platforms/libqwayland-*.so platforms/
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqjpeg.so imageformats/libqjpeg.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqsvg.so imageformats/libqsvg.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqtga.so imageformats/libqtga.so
-                cp -P ${{ Qt5_Dir }}/plugins/imageformats/libqtiff.so imageformats/libqtiff.so
-                cp -P ${{ Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
-                cp -P ${{ Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
-                cp -P ${{ Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
-                cp -P ${{ Qt5_Dir }}/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
-                cp -P ${{ Qt5_Dir }}/plugins/wayland-decoration-client/*.so wayland-decoration-client/
-                cp -P ${{ Qt5_Dir }}/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
-                cp -P ${{ Qt5_Dir }}/plugins/wayland-shell-integration/*.so wayland-shell-integration/
+                cp -P $Qt5_Dir/plugins/platforms/libqxcb.so platforms/libqxcb.so
+                cp -P $Qt5_Dir/plugins/platforms/libqwayland-*.so platforms/
+                cp -P $Qt5_Dir/plugins/imageformats/libqgif.so imageformats/libqgif.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqicns.so imageformats/libqicns.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqico.so imageformats/libqico.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqjpeg.so imageformats/libqjpeg.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqsvg.so imageformats/libqsvg.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqtga.so imageformats/libqtga.so
+                cp -P $Qt5_Dir/plugins/imageformats/libqtiff.so imageformats/libqtiff.so
+                cp -P $Qt5_Dir/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
+                cp -P $Qt5_Dir/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
+                cp -P $Qt5_Dir/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
+                cp -P $Qt5_Dir/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so platforminputcontexts/libcomposeplatforminputcontextplugin.so
+                cp -P $Qt5_Dir/plugins/wayland-decoration-client/*.so wayland-decoration-client/
+                cp -P $Qt5_Dir/plugins/wayland-graphics-integration-client/*.so wayland-graphics-integration-client/
+                cp -P $Qt5_Dir/plugins/wayland-shell-integration/*.so wayland-shell-integration/
              
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
