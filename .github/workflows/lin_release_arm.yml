@@ -65,7 +65,7 @@ jobs:
                 echo "Looking for libqsvg.so"
                 find /usr -name libqsvg.so
                 
-                # echo "Qt5_Dir="
+                echo "Qt5_Dir=/usr" >>$GITHUB_ENV
                 exit 1
 
             - name: Clone GH scripts
