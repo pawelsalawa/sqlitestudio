@@ -6,27 +6,27 @@
     <message>
       <location filename="../scriptingpython.cpp" line="731"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation type="unfinished">Invalid use of %1 function. Expected %2 arguments, but got %3.</translation>
+      <translation>Ungültige Verwendung der Funktion &apos;%1&apos;. %2 Argumente erwartet, aber %3 erhalten.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="740"/>
       <source>Unknown error from function %1.</source>
-      <translation type="unfinished">Unknown error from function %1.</translation>
+      <translation>Unbekannter Fehler von Funktion &apos;%1&apos;.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="781"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation type="unfinished">Could not calculate string representation of the Python object passed as argument to the function %1.</translation>
+      <translation>Konnte die Zeichenkettenrepräsentation des Python-Objekts nicht berechnen, das als Argument an die Funktion &apos;%1&apos; übergeben wurde.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="803"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation type="unfinished">Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</translation>
+      <translation>Konnte den Ausführungskontext für Funktion &apos;%1&apos; nicht finden. Das ist ein Fehler vom Python-Plugin. Bitte melde das.</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="828"/>
       <source>Error from Python function %1: %2</source>
-      <translation type="unfinished">Error from Python function %1: %2</translation>
+      <translation>Fehler von Python-Funktion &apos;%1&apos;: %2</translation>
     </message>
   </context>
   <context>
@@ -34,17 +34,17 @@
     <message>
       <location filename="../scriptingpython.ui" line="20"/>
       <source>Python library path</source>
-      <translation type="unfinished">Python library path</translation>
+      <translation>Python-Bibliothekspfad</translation>
     </message>
     <message>
       <location filename="../scriptingpython.ui" line="29"/>
       <source>Choose a Python library file</source>
-      <translation type="unfinished">Choose a Python library file</translation>
+      <translation>Python-Bibliotheksdatei auswählen</translation>
     </message>
     <message>
       <location filename="../scriptingpython.cpp" line="369"/>
       <source>The plugin is not configured properly.</source>
-      <translation type="unfinished">The plugin is not configured properly.</translation>
+      <translation>Das Plugin ist nicht richtig konfiguriert.</translation>
     </message>
   </context>
 </TS>

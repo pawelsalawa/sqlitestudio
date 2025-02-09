@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlexport.cpp" line="339"/>
       <source>Table name for INSERT statements is mandatory.</source>
-      <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
+      <translation>Tabellenname für INSERT-Anweisungen ist erforderlich.</translation>
     </message>
   </context>
   <context>
@@ -49,17 +49,17 @@
     <message>
       <location filename="../SqlExportCommon.ui" line="30"/>
       <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+      <translation>Generiere &quot;DROP IF EXISTS&quot; Anweisung für &quot;CREATE&quot; Anweisung</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="40"/>
       <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-      <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
+      <translation>Formatiert nur DDL-Anweisungen (schließt &quot;INSERT&quot; Anweisungen aus)</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="50"/>
       <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-      <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+      <translation>Fügt &quot;IF NOT EXISTS&quot; Klausel zu &quot;CREATE&quot; Anweisung hinzu</translation>
     </message>
     <message>
       <location filename="../SqlExportCommon.ui" line="20"/>
@@ -77,7 +77,7 @@
     <message>
       <location filename="../SqlExportQuery.ui" line="40"/>
       <source>Table name to use for INSERT statements:</source>
-      <translation type="unfinished">Table name to use for INSERT statements:</translation>
+      <translation>Tabellenname für INSERT Anweisungen:</translation>
     </message>
     <message>
       <location filename="../SqlExportQuery.ui" line="64"/>
