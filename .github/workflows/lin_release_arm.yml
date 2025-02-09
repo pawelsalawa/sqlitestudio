@@ -10,7 +10,7 @@ env:
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_arm64.deb
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
-name: Linux release build
+name: Linux ARM64 release build
 
 on:
     workflow_dispatch:
@@ -164,7 +164,6 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
-                    NO_SSE_FLAGS=1 \
                     ../../SQLiteStudio3
                 make -j 2
 
@@ -174,7 +173,6 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
-                    NO_SSE_FLAGS=1 \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     ../../../Plugins
                 make -j 1
