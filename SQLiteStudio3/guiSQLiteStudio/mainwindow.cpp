@@ -53,6 +53,7 @@
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
+bool MainWindow::safeModeEnabled = false;
 
 MainWindow::MainWindow() :
     QMainWindow(),
@@ -472,6 +473,12 @@ void MainWindow::saveSession(MdiWindow* currWindow)
 
 void MainWindow::restoreSession()
 {
+    if (safeModeEnabled)
+    {
+        qInfo() << "Safe-Mode active. Skipping last saved session.";
+        return;
+    }
+
     QHash<QString,QVariant> sessionValue = CFG_UI.General.Session.get();
     if (sessionValue.size() == 0)
     {
@@ -1060,6 +1067,16 @@ MainWindow *MainWindow::getInstance()
         instance = new MainWindow();
 
     return instance;
+}
+
+void MainWindow::setSafeMode(bool enabled)
+{
+    safeModeEnabled = enabled;
+}
+
+bool MainWindow::isSafeMode()
+{
+    return safeModeEnabled;
 }
 
 bool MainWindow::eventFilter(QObject* obj, QEvent* e)
