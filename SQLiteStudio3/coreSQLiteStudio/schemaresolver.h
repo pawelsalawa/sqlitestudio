@@ -36,8 +36,10 @@ class API_EXPORT SchemaResolver
 
         struct ObjectDetails
         {
+            QString name;
             ObjectType type;
             QString ddl;
+            QString refObject; // referenced object, i.e. parent table/view for index or trigger
         };
 
         struct TableListItem

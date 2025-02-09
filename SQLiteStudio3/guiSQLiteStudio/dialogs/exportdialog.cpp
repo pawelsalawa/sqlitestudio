@@ -632,8 +632,8 @@ void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &std
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FILE, stdConfig.outputFileName);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CLIP, stdConfig.intoClipboard);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, stdConfig.exportData);
-    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, stdConfig.exportTableIndexes);
-    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, stdConfig.exportTableTriggers);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, stdConfig.exportIndexes);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, stdConfig.exportTriggers);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FORMAT, currentPlugin->getFormatName());
     CFG->commit();
 }
@@ -641,13 +641,20 @@ void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &std
 void ExportDialog::readStdConfigForFirstPage()
 {
     bool exportData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, true).toBool();
+    bool exportIndexes = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool();
+    bool exportTriggers = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool();
     if (exportMode == ExportManager::DATABASE)
+    {
         ui->exportDbDataCheck->setChecked(exportData);
+        ui->exportDbIndexCheck->setChecked(exportIndexes);
+        ui->exportDbTriggerCheck->setChecked(exportTriggers);
+    }
     else if (exportMode == ExportManager::TABLE)
+    {
         ui->exportTableDataCheck->setChecked(exportData);
-
-    ui->exportTableIndexesCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool());
-    ui->exportTableTriggersCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool());
+        ui->exportTableIndexesCheck->setChecked(exportIndexes);
+        ui->exportTableTriggersCheck->setChecked(exportTriggers);
+    }
 }
 
 void ExportDialog::readStdConfigForLastPage()
@@ -750,14 +757,21 @@ ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
         stdConfig.outputFileName = ui->exportFileEdit->text();
 
     if (exportMode == ExportManager::DATABASE)
+    {
         stdConfig.exportData = ui->exportDbDataCheck->isChecked();
+        stdConfig.exportIndexes = ui->exportDbIndexCheck->isChecked();
+        stdConfig.exportTriggers = ui->exportDbTriggerCheck->isChecked();
+    }
     else if (exportMode == ExportManager::TABLE)
+    {
         stdConfig.exportData = ui->exportTableDataCheck->isChecked();
+        stdConfig.exportIndexes = ui->exportTableIndexesCheck->isChecked();
+        stdConfig.exportTriggers = ui->exportTableTriggersCheck->isChecked();
+    }
     else
+    {
         stdConfig.exportData = false;
-
-    stdConfig.exportTableIndexes = ui->exportTableIndexesCheck->isChecked();
-    stdConfig.exportTableTriggers = ui->exportTableTriggersCheck->isChecked();
+    }
 
     if (ui->encodingCombo->isVisible() && ui->encodingCombo->currentIndex() > -1)
         stdConfig.codec = ui->encodingCombo->currentText();

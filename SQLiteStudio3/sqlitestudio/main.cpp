@@ -50,15 +50,17 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
     parser.addHelpOption();
     parser.addVersionOption();
 
+    QCommandLineOption safeModeOption({"X", "safe-mode"}, QObject::tr("Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session."));
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("Enables debug messages in console (accessible with F12)."));
-    QCommandLineOption debugStdOutOption("debug-stdout", QObject::tr("Redirects debug messages into standard output (forces debug mode)."));
-    QCommandLineOption debugFileOption("debug-file", QObject::tr("Redirects debug messages into given file (forces debug mode)."), QObject::tr("log file"));
+    QCommandLineOption debugStdOutOption({"do", "debug-stdout"}, QObject::tr("Redirects debug messages into standard output (forces debug mode)."));
+    QCommandLineOption debugFileOption({"df", "debug-file"}, QObject::tr("Redirects debug messages into given file (forces debug mode)."), QObject::tr("log file"));
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
     QCommandLineOption sqlDebugOption("debug-sql", QObject::tr("Enables debugging of every single SQL query being sent to any database."));
     QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("Limits SQL query messages to only the given <database>."), QObject::tr("database"));
     QCommandLineOption executorDebugOption("debug-query-executor", QObject::tr("Enables debugging of SQLiteStudio's query executor."));
     QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
-    QCommandLineOption masterConfigOption("master-config", QObject::tr("Points to the master configuration file. Read manual at wiki page for more details."), QObject::tr("SQLiteStudio settings file"));
+    QCommandLineOption masterConfigOption("master-config", QObject::tr("Points to the master configuration file. Read manual at wiki page for more details."), QObject::tr("settings file"));
+    parser.addOption(safeModeOption);
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
     parser.addOption(debugFileOption);
@@ -88,6 +90,9 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 
         if (parser.isSet(masterConfigOption))
             Config::setMasterConfigFile(parser.value(masterConfigOption));
+
+        if (parser.isSet(safeModeOption))
+            MainWindow::setSafeMode(true);
     }
 
     QStringList args = parser.positionalArguments();

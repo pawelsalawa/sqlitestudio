@@ -1,7 +1,6 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3470100'
-    SQLITE_RELEASE_YEAR: '2024'
+    SQLITE_VERSION: '3490000'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: Unit tests
@@ -57,6 +56,22 @@ jobs:
                 setup-python: 'false'
                 extra: '--external 7z'
 
+            - name: Clone GH scripts
+              uses: actions/checkout@v3
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: gh-scripts
+
+            - name: Setup GH scripts path
+              shell: bash
+              run: |
+                mv gh-scripts ..
+                cd ..
+                chmod +x gh-scripts/scripts/*.sh
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
+
             - name: Clone repo
               uses: actions/checkout@v3
               with:
@@ -64,26 +79,18 @@ jobs:
 
             - name: Install SQLite3
               run: |
+                cd ..
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-amalgamation-$SQLITE_VERSION.zip
-                unzip sqlite-amalgamation-$SQLITE_VERSION.zip
-                cd sqlite-amalgamation-$SQLITE_VERSION
-                gcc sqlite3.c -lpthread -ldl -lm -Os -fpic -shared -o libsqlite3.so \
-                    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
-                    -DSQLITE_ENABLE_DBSTAT_VTAB \
-                    -DSQLITE_ENABLE_BYTECODE_VTAB \
-                    -DSQLITE_ENABLE_COLUMN_METADATA \
-                    -DSQLITE_ENABLE_EXPLAIN_COMMENTS \
-                    -DSQLITE_ENABLE_FTS3 \
-                    -DSQLITE_ENABLE_FTS4 \
-                    -DSQLITE_ENABLE_FTS5 \
-                    -DSQLITE_ENABLE_GEOPOLY \
-                    -DSQLITE_ENABLE_JSON1 \
-                    -DSQLITE_ENABLE_RTREE \
-                    -DSQLITE_ENABLE_MATH_FUNCTIONS
-                strip libsqlite3.so
-                sudo cp -P libsqlite3.so* /usr/local/lib/
-                sudo cp *.h /usr/local/include/
+                sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
+                sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
+                sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0
+                sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0.8.6
+                ls -l /usr/local/lib/libsqlite3*
+                ls -l /usr/local/include/sqlite*
 
             - name: Install Tcl
               run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev

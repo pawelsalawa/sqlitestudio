@@ -1,12 +1,12 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6.16'
-    SQLITE_VERSION: '3470200'
+    SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.9'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-osx-installer.dmg
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: MacOSX release build

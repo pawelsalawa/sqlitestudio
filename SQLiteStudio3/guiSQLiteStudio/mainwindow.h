@@ -115,6 +115,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         };
 
         static MainWindow* getInstance();
+        static void setSafeMode(bool enabled);
+        static bool isSafeMode();
 
         MdiArea* getMdiArea() const;
         DbTree* getDbTree() const;
@@ -170,6 +172,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         static bool confirmQuit(const QList<Committable*>& instances);
 
         static MainWindow* instance;
+        static bool safeModeEnabled;
         static constexpr int closedWindowsStackSize = 20;
         static_char* openUpdatesUrl = "open_updates://";
         static constexpr int saveSessionDelayMs = 500;

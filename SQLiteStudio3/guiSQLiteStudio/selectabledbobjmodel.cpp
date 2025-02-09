@@ -37,13 +37,9 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& idx) const
     {
         case DbTreeItem::Type::TABLE:
         case DbTreeItem::Type::VIRTUAL_TABLE:
-        case DbTreeItem::Type::INDEX:
-        case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::DB:
         case DbTreeItem::Type::TABLES:
-        case DbTreeItem::Type::INDEXES:
-        case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::VIEWS:
         {
             flags |= Qt::ItemIsUserCheckable;
@@ -53,6 +49,10 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& idx) const
             break;
         }
         case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::INDEX:
+        case DbTreeItem::Type::TRIGGER:
+        case DbTreeItem::Type::INDEXES:
+        case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
@@ -122,19 +122,19 @@ bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcPa
     {
         case DbTreeItem::Type::TABLE:
         case DbTreeItem::Type::VIRTUAL_TABLE:
-        case DbTreeItem::Type::INDEX:
-        case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::DB:
             return true;
         case DbTreeItem::Type::TABLES:
-        case DbTreeItem::Type::INDEXES:
-        case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::VIEWS:
             return item->rowCount() > 0;
         case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
+        case DbTreeItem::Type::INDEXES:
+        case DbTreeItem::Type::TRIGGERS:
+        case DbTreeItem::Type::INDEX:
+        case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
         case DbTreeItem::Type::SIGNATURE_OF_THIS:
             return false;
@@ -229,8 +229,6 @@ bool SelectableDbObjModel::isObject(DbTreeItem* item) const
     switch (item->getType())
     {
         case DbTreeItem::Type::TABLE:
-        case DbTreeItem::Type::INDEX:
-        case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::VIRTUAL_TABLE:
             return true;

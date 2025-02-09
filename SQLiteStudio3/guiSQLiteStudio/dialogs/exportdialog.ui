@@ -192,6 +192,13 @@
     <string>Select database objects to export</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
+    <item row="2" column="0">
+     <widget class="QPushButton" name="objectsSelectAllButton">
+      <property name="text">
+       <string>Select all</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0" colspan="2">
      <widget class="QTreeView" name="dbObjectsTree">
       <attribute name="headerVisible">
@@ -199,20 +206,10 @@
       </attribute>
      </widget>
     </item>
-    <item row="3" column="0" colspan="2">
-     <widget class="QCheckBox" name="exportDbDataCheck">
+    <item row="0" column="0">
+     <widget class="QLabel" name="dbObjectsDatabaseLabel">
       <property name="text">
-       <string>Export data from tables</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="objectsSelectAllButton">
-      <property name="text">
-       <string>Select all</string>
+       <string>Database:</string>
       </property>
      </widget>
     </item>
@@ -226,10 +223,27 @@
     <item row="0" column="1">
      <widget class="QComboBox" name="dbObjectsDatabaseCombo"/>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="dbObjectsDatabaseLabel">
+    <item row="4" column="0">
+     <widget class="QCheckBox" name="exportDbTriggerCheck">
       <property name="text">
-       <string>Database:</string>
+       <string>Export table indexes</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QCheckBox" name="exportDbDataCheck">
+      <property name="text">
+       <string>Export data from tables</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QCheckBox" name="exportDbIndexCheck">
+      <property name="text">
+       <string>Export table and view triggers</string>
       </property>
      </widget>
     </item>
@@ -292,8 +306,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>228</width>
-         <height>253</height>
+         <width>578</width>
+         <height>381</height>
         </rect>
        </property>
        <property name="styleSheet">
