@@ -5,9 +5,9 @@ env:
     PYTHON_VERSION: '3.9'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
-    LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-arm64-installer.run
+    LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
+    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_arm64.deb
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build
@@ -31,13 +31,13 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04-arm
 
         steps:
             - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+                architecture: 'arm64'
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -113,10 +113,10 @@ jobs:
             - name: Install SQLite3
               run: |
                 cd ..
-                SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-linux-arm-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/x86_64-linux-gnu/libsqlite*
+                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/aarch64-linux-gnu/libsqlite*
                 sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
                 sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
                 sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0
@@ -164,6 +164,7 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
+                    NO_SSE_FLAGS=1 \
                     ../../SQLiteStudio3
                 make -j 2
 
@@ -173,6 +174,7 @@ jobs:
                 qmake \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
+                    NO_SSE_FLAGS=1 \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     ../../../Plugins
                 make -j 1
@@ -203,8 +205,8 @@ jobs:
               run: |
                 wget ${{ env.LIBSSL_DIR_URL }}${{ env.LIBSSL_DEB }}
                 dpkg-deb -xv ${{ env.LIBSSL_DEB }} .
-                cp ./usr/lib/x86_64-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
-                cp ./usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                cp ./usr/lib/aarch64-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                cp ./usr/lib/aarch64-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -283,7 +285,7 @@ jobs:
               run: |
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-arm" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
@@ -310,7 +312,7 @@ jobs:
               shell: bash
               run: |
                 sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -321,5 +323,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
