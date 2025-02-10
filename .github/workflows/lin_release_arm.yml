@@ -47,7 +47,8 @@ jobs:
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
-                host: 'linux_arm64'
+                host: 'linux'
+                arch: 'linux_arm64'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'

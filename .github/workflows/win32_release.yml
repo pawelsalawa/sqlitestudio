@@ -14,5 +14,5 @@ jobs:
             - name: Notify and quit
               shell: bash
               run: |
-                echo "Windows 32 bit is deprecated for SQLiteStudio 4, as Windows 32 bit is no longer supported by Qt 6."
+                echo "Windows 32 bit is deprecated for SQLiteStudio 4, as Windows 32 bit is no longer supported by Qt 6. It is kept only to have ability to run it for SQLiteStudio 3.4."
                 exit 1
