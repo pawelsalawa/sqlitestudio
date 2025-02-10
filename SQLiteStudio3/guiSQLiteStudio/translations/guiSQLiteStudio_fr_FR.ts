@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -3085,7 +3085,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Export table and view triggers</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>

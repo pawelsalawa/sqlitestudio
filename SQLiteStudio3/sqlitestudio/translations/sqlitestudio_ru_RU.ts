@@ -11,7 +11,7 @@
     <message>
       <location filename="../main.cpp" line="53"/>
       <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="54"/>
@@ -71,11 +71,7 @@
     <message>
       <location filename="../main.cpp" line="62"/>
       <source>settings file</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>SQLiteStudio settings file</source>
-      <translation type="vanished">Файл настроек SQLiteStudio</translation>
+      <translation type="unfinished">settings file</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="74"/>
