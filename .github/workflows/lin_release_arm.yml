@@ -44,7 +44,7 @@ jobs:
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v4
+              uses: jdpurcell/install-qt-action@v4
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
