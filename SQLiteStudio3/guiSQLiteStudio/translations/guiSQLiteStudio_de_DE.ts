@@ -3084,7 +3084,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Export table and view triggers</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
