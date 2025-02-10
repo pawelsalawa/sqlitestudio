@@ -3085,7 +3085,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Export table and view triggers</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
