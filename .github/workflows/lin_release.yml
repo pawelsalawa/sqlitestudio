@@ -1,6 +1,6 @@
 env:
     TARGET_ARCH: 'x86_64'
-    QT_VERSION: '6.5.3'
+    QT_VERSION: '6.8.2'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.13'
@@ -30,7 +30,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
 
         steps:
             - uses: actions/setup-python@v4
