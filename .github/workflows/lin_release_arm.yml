@@ -27,8 +27,6 @@ on:
             default: false
     schedule:
         - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
-    repository_dispatch:
-        types: [lin_release]
 
 jobs:
     build:
@@ -49,7 +47,7 @@ jobs:
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
-                host: 'linux'
+                host: 'linux_arm64'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'

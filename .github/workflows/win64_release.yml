@@ -28,8 +28,6 @@ on:
             default: false
     schedule:
         - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
-    repository_dispatch:
-        types: [win64_release]
 
 jobs:
     build:
