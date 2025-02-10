@@ -3086,7 +3086,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Export table and view triggers</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
