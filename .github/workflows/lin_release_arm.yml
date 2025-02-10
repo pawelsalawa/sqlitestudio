@@ -1,6 +1,7 @@
 env:
     TARGET_ARCH: 'aarch64'
-    QT_VERSION: '6.5.3'
+    QT_VERSION: '6.8.2'
+    QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.13'
@@ -47,8 +48,8 @@ jobs:
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
-                host: 'linux'
-                arch: 'linux_arm64'
+                host: 'linux_arm64'
+                arch: '${{ env.QT_ARCH }}'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'
