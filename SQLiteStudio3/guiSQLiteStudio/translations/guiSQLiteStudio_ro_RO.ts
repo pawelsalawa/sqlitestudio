@@ -3085,7 +3085,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Export table and view triggers</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
@@ -5442,11 +5442,6 @@ find next</translation>
       <source>Find or replace</source>
       <comment>sql editor</comment>
       <translation type="unfinished">Find or replace</translation>
-    </message>
-    <message>
-      <source>Find</source>
-      <comment>sql editor</comment>
-      <translation type="obsolete">Find</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="175"/>
