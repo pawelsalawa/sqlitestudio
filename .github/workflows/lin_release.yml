@@ -326,7 +326,7 @@ jobs:
               shell: bash
               run: |
                 sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
+                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -337,5 +337,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-x64-installer.run
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run

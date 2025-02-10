@@ -301,7 +301,7 @@ jobs:
               run: |
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-arm" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-arm64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
@@ -328,7 +328,7 @@ jobs:
               shell: bash
               run: |
                 sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.tar.xz
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
+                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -339,5 +339,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-linux-arm-installer.run
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
