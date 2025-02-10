@@ -346,22 +346,22 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     </message>
     <message>
       <location filename="../exportworker.cpp" line="352"/>
-      <location filename="../exportworker.cpp" line="410"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>Nie udało się przeanalizować %1 w celu wyeksportowania. Element ten zostanie pominięty w wynikach eksportu.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="614"/>
+      <location filename="../exportworker.cpp" line="628"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>Błąd podczas odczytu danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="622"/>
+      <location filename="../exportworker.cpp" line="636"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>Błąd podczas liczenia danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="638"/>
+      <location filename="../exportworker.cpp" line="652"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>Błąd podczas obliczania szerokości kolumn danych do eksportu z tabeli %1: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
       <source>Parser stack overflow</source>
       <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
       <source>Syntax error</source>
       <translation>Błąd składni</translation>
     </message>

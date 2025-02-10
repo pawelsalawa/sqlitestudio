@@ -346,22 +346,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="352"/>
-      <location filename="../exportworker.cpp" line="410"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>无法为导出解析 %1。因此它将不会被包含在导出输出中。</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="614"/>
+      <location filename="../exportworker.cpp" line="628"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>从表 %1读取数据并导出时出错：%2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="622"/>
+      <location filename="../exportworker.cpp" line="636"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>计算从 %1: %2 表导出数据的数量时出错</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="638"/>
+      <location filename="../exportworker.cpp" line="652"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>计算从 %1: %2 表导出数据的列宽度时出错</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>不完整的查询。</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
       <source>Parser stack overflow</source>
       <translation>解析堆栈溢出</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
       <source>Syntax error</source>
       <translation>语法错误</translation>
     </message>
