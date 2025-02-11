@@ -286,6 +286,17 @@ jobs:
               with:
                 ref: ${{ env.BRANCH_NAME }}
 
+            - uses: actions/setup-python@v4
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'arm64'
+                
+            - name: Verify Python arch
+              shell: bash
+              run: |
+                echo "python arch:"
+                lipo -archs $(which python)
+
             # - name: Restore distfiles packages cache
               # id: cache-distfiles
               # uses: actions/cache/restore@v4
