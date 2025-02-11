@@ -123,12 +123,12 @@
     <message>
       <location filename="../pdfexport.cpp" line="270"/>
       <source>Activation time</source>
-      <translation/>
+      <translation type="unfinished">Activation time</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="273"/>
       <source>For action</source>
-      <translation>For action</translation>
+      <translation type="unfinished">For action</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="277"/>
