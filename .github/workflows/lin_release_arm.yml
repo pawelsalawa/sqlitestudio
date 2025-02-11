@@ -1,6 +1,6 @@
 env:
     TARGET_ARCH: 'aarch64'
-    QT_VERSION: '6.8.2'
+    QT_VERSION: '6.7.3'
     QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3490000'
@@ -31,7 +31,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-24.04-arm
+        runs-on: ubuntu-2.04-arm
 
         steps:
             - uses: actions/setup-python@v4
