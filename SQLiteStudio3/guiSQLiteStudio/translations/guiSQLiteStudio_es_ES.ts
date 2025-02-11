@@ -3385,12 +3385,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="60"/>
       <source>Commit all function changes</source>
-      <translation type="unfinished">Commit all function changes</translation>
+      <translation>;</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Rollback all function changes</source>
-      <translation type="unfinished">Rollback all function changes</translation>
+      <translation/>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="63"/>
