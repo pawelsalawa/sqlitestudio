@@ -291,11 +291,11 @@ jobs:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'arm64'
                 
-            - name: Verify Python arch
-              shell: bash
-              run: |
-                echo "python arch:"
-                lipo -archs $(which python)
+            # - name: Verify Python arch
+              # shell: bash
+              # run: |
+                # echo "python arch:"
+                # lipo -archs $(which python)
 
             # - name: Restore distfiles packages cache
               # id: cache-distfiles
@@ -363,6 +363,21 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
+
+            - name: Install MacPorts
+            - uses: melusina-org/setup-macports@v1
+
+            - name: Install extension dependencies
+              run: |
+                # brew tap-new $USER/local-tap
+                # brew extract --version=$ICU_VERSION icu4c $USER/local-tap
+                # brew install icu4c@$ICU_VERSION
+                brew install coreutils
+                sudo port install icu
+                sudo port contents icu
+                exit 1
+                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
+                    >> $GITHUB_ENV
 
             - name: Configure universal binaries compilation flags
               shell: bash
