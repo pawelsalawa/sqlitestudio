@@ -79,6 +79,18 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${installdir}</destination>
+                    <name>linuxplatformarm64</name>
+                    <platforms>linux-arm64</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <allowWildcards>1</allowWildcards>
+                            <origin>${bin_prefix}/*</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
                     <name>programfileswindows64</name>
                     <platforms>windows-x64</platforms>
                     <distributionFileList>
@@ -187,9 +199,9 @@
             </ruleList>
         </setInstallerVariable>
         <setInstallerVariableFromScriptOutput>
-            <name>running_user</name>
             <exec>/bin/sh</exec>
-            <execArgs>-c 'logname 2>/dev/null || basename "$HOME"'</execArgs>
+            <execArgs>-c 'logname 2&gt;/dev/null || basename "$HOME"'</execArgs>
+            <name>running_user</name>
             <ruleList>
                 <platformTest type="linux"/>
             </ruleList>
@@ -277,10 +289,10 @@ MimeType=application/vnd.sqlite3
     <disableSplashScreen>1</disableSplashScreen>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
+    <productDisplayIcon>${installdir}\appicon.ico</productDisplayIcon>
     <vendor>sqlitestudio.pl</vendor>
+    <windowsARPRegistryPrefix>${project.fullName}</windowsARPRegistryPrefix>
     <windowsExecutableIcon>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_opt.ico</windowsExecutableIcon>
-	<windowsARPRegistryPrefix>${project.fullName}</windowsARPRegistryPrefix>
-	<productDisplayIcon>${installdir}\appicon.ico</productDisplayIcon>
     <finalPageActionList>
         <runProgram>
             <program>${installdir}/SQLiteStudio.exe</program>
@@ -296,17 +308,17 @@ MimeType=application/vnd.sqlite3
             <progressText>Launch ${project.fullName} now.</progressText>
             <ruleList>
                 <platformTest type="linux"/>
-				<compareText logic="equals" text="${install_for}" value="local"/>
+                <compareText logic="equals" text="${install_for}" value="local"/>
             </ruleList>
         </runProgram>
         <runProgram>
             <program>${installdir}/sqlitestudio</program>
             <programArguments>&amp;</programArguments>
-			<runAs>${running_user}</runAs>
             <progressText>Launch ${project.fullName} now.</progressText>
+            <runAs>${running_user}</runAs>
             <ruleList>
                 <platformTest type="linux"/>
-				<compareText logic="equals" text="${install_for}" value="all"/>
+                <compareText logic="equals" text="${install_for}" value="all"/>
             </ruleList>
         </runProgram>
         <runProgram>
@@ -415,3 +427,4 @@ MimeType=application/vnd.sqlite3
         </directoryParameter>
     </parameterList>
 </project>
+
