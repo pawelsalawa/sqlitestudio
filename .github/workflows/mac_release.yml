@@ -365,7 +365,7 @@ jobs:
                 ls -l /usr/local/include/sqlite*
 
             - name: Install MacPorts
-            - uses: melusina-org/setup-macports@v1
+              uses: melusina-org/setup-macports@v1
 
             - name: Install extension dependencies
               run: |
