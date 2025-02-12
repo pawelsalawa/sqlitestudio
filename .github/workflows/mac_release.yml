@@ -232,6 +232,8 @@ jobs:
                 #echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
                 #echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
                 sudo port install tcl +universal
+                sudo port contents tcl
+                exit 1
                 
                 #find /usr/local -name tclsh
                 #find /usr/local -name tclConfig.sh
@@ -372,8 +374,6 @@ jobs:
               run: |
                 brew install coreutils
                 sudo port install icu +universal
-                lipo -archs /opt/local/lib/libicuio.dylib
-                exit 1
 
             - name: Configure universal binaries compilation flags
               shell: bash
