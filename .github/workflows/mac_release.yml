@@ -233,9 +233,15 @@ jobs:
                 echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
                 sudo port install tcl +universal
                 
+                echo "Tcl arch:"
+                lipo /usr/local/Cellar/tcl-tk@8/8.6.16/lib/libtcl8.6.dylib
+                
+                echo "Tcl files:"
+                find /usr/local/Cellar/tcl-tk@8/
+                
                 #find /usr/local -name tclsh
                 #find /usr/local -name tclConfig.sh
-                #exit 1
+                exit 1
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -423,7 +429,6 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_CXXFLAGS+="$CFLAGS" \
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
@@ -434,7 +439,6 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_CXXFLAGS+="$CFLAGS" \
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
