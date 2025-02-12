@@ -221,16 +221,20 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
+            - name: Install MacPorts
+              uses: melusina-org/setup-macports@v1
+
             - name: Install Tcl
               run: |
-                set -x
+                #set -x
                 #brew install tcl-tk@8
                 #brew reinstall tcl-tk@8
-                echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
-                echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
+                #echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
+                #echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
+                sudo port install tcl +universal
                 
-                find /usr/local -name tclsh
-                find /usr/local -name tclConfig.sh
+                #find /usr/local -name tclsh
+                #find /usr/local -name tclConfig.sh
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -364,20 +368,12 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
-            - name: Install MacPorts
-              uses: melusina-org/setup-macports@v1
-
             - name: Install extension dependencies
               run: |
-                # brew tap-new $USER/local-tap
-                # brew extract --version=$ICU_VERSION icu4c $USER/local-tap
-                # brew install icu4c@$ICU_VERSION
                 brew install coreutils
-                sudo port install icu
-                sudo port contents icu
+                sudo port install icu +universal
+                lipo -archs /opt/local/lib/libicuio.dylib
                 exit 1
-                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
-                    >> $GITHUB_ENV
 
             - name: Configure universal binaries compilation flags
               shell: bash
