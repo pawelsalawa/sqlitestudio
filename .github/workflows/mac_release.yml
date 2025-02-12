@@ -373,10 +373,11 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
-            - name: Install extension dependencies
+            - name: Install dependencies
               run: |
                 brew install coreutils
                 sudo port install icu +universal
+                sudo port install openssl +universal
 
             - name: Configure universal binaries compilation flags
               shell: bash
@@ -439,7 +440,8 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION /opt/local/include" \
+                    "LIBS += -L$pythonLocation/lib -L/opt/local/lib" \
                     "TCL_CONFIG=$TCL_CONFIG" \
                     ../../../Plugins
                 make -j 1
