@@ -205,20 +205,6 @@ jobs:
                 # runner_binary_compatibility: darwin_21.x86_64
 
         steps:
-            - name: Uninstall unwanted Homebrew packages and their dependents
-              run: |
-                if brew list tcl-tk 2>/dev/null; then
-                    brew uninstall tcl-tk r
-                fi
-                
-                echo "Openssl list"
-                brew list openssl
-                if brew list openssl 2>/dev/null; then
-                    echo "uninstalling openssl"
-                    brew uninstall openssl r
-                fi
-                exit 1
-
             #- name: Debug
               #shell: bash
               #run: |
@@ -232,8 +218,29 @@ jobs:
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
 
+            - name: Install coreutils
+              run: |
+                brew install coreutils
+
+            - name: Install ICU
+              run: |
+                sudo port install icu +universal
+
+            - name: Install OpenSSL
+              run: |
+                if brew list openssl 2>/dev/null; then
+                    echo "uninstalling OpenSSL"
+                    brew uninstall --ignore-dependencies openssl r
+                fi
+                
+                sudo port install openssl3 +universal
+
             - name: Install Tcl
               run: |
+                if brew list tcl-tk 2>/dev/null; then
+                    brew uninstall tcl-tk r
+                fi
+                
                 sudo port install tcl +universal
                 
                 echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
@@ -380,21 +387,6 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
-
-            - name: Install dependencies
-              run: |
-                brew install coreutils
-                sudo port install icu +universal
-                sudo port install openssl3 +universal
-                
-                echo "libcryptpo:"
-                find /opt/local/lib -name libcrypto.dylib -print0 | while IFS= read -r -d '' FILE; do
-                    echo "lipo for: $FILE"
-                    lipo -archs "$FILE"
-                    echo "nm for: $FILE"
-                    nm -g $FILE
-                done
-                exit 1
 
             - name: Configure universal binaries compilation flags
               shell: bash
