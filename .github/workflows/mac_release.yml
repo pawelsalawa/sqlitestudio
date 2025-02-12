@@ -439,13 +439,10 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
+                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "TCL_CONFIG=$TCL_CONFIG"
                     ../../../Plugins
                 make -j 1
-
-#               This is how it was for 3.4 branch - probably will be ised in 3.5
-#                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-#                    "TCL_CONFIG=${{ env.TCL_CONFIG }}" \
 
             - name: Copy SQLite extensions to output dir
               shell: bash
