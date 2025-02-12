@@ -440,7 +440,7 @@ jobs:
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-                    "TCL_CONFIG=$TCL_CONFIG"
+                    "TCL_CONFIG=$TCL_CONFIG" \
                     ../../../Plugins
                 make -j 1
 
