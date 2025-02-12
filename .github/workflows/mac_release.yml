@@ -229,8 +229,7 @@ jobs:
             - name: Install OpenSSL
               run: |
                 if brew list openssl 2>/dev/null; then
-                    echo "uninstalling OpenSSL"
-                    brew uninstall --ignore-dependencies openssl r
+                    brew uninstall --ignore-dependencies openssl
                 fi
                 
                 sudo port install openssl3 +universal
