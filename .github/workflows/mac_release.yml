@@ -226,15 +226,6 @@ jobs:
               run: |
                 sudo port install icu +universal
 
-            - name: Install OpenSSL
-              run: |
-                if brew list openssl 2>/dev/null; then
-                    brew uninstall --ignore-dependencies openssl
-                fi
-                
-                sudo port install openssl3 +universal
-                echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
-
             - name: Install Tcl
               run: |
                 if brew list tcl-tk 2>/dev/null; then
@@ -422,6 +413,16 @@ jobs:
                 done
                 set +x
                 ls -l ../ext/
+
+            # This is done only at this stage, so that curl is not affected by this
+            - name: Install OpenSSL
+              run: |
+                if brew list openssl 2>/dev/null; then
+                    brew uninstall --ignore-dependencies openssl
+                fi
+                
+                sudo port install openssl3 +universal
+                echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
 
             - name: Prepare deps
               run: |
