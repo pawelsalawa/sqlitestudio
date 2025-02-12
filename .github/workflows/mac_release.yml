@@ -234,7 +234,7 @@ jobs:
                 sudo port install tcl +universal
                 
                 echo "Tcl arch:"
-                lipo /usr/local/Cellar/tcl-tk@8/8.6.16/lib/libtcl8.6.dylib
+                lipo -archs /usr/local/Cellar/tcl-tk@8/8.6.16/lib/libtcl8.6.dylib
                 
                 echo "Tcl files:"
                 find /usr/local/Cellar/tcl-tk@8/
