@@ -377,14 +377,13 @@ jobs:
               run: |
                 brew install coreutils
                 sudo port install icu +universal
-                sudo port install openssl +universal
+                sudo port install openssl3 @3.3.1_1+universal
                 
                 echo "libcryptpo:"
                 find /opt/local/lib/openssl-3 -name libcrypto.dylib -print0 | while IFS= read -r -d '' FILE; do
                     echo "Wykonywanie lipo dla: $FILE"
                     lipo -archs "$FILE"
                 done
-                exit 1
 
             - name: Configure universal binaries compilation flags
               shell: bash
