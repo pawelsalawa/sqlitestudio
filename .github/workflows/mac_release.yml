@@ -229,25 +229,25 @@ jobs:
                 #set -x
                 #brew install tcl-tk@8
                 #brew reinstall tcl-tk@8
-                echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
-                echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
+                echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
+                echo "TCL_CONFIG=/opt/local/lib/tclConfig.sh" >> $GITHUB_ENV
                 sudo port install tcl +universal
-                sudo port contents tcl
                 
-                echo "Tcl arch:"
-                lipo -archs /usr/local/Cellar/tcl-tk@8/8.6.16/lib/libtcl8.6.dylib
-                echo "Tcl bin arch:"
-                lipo -archs /usr/local/Cellar/tcl-tk@8/8.6.16/bin/tclsh
+                echo "Tcl arch 1:"
+                ls -l /opt/local/lib/libtcl8.6.dylib
+                lipo -archs /opt/local/lib/libtcl8.6.dylib
+                echo "Tcl arch 2:"
+                ls -l /opt/local/libexec/macports/lib/libtcl8.6.dylib
+                lipo -archs /opt/local/libexec/macports/lib/libtcl8.6.dylib
+                echo "Tcl bin arch 1:"
+                ls -l /opt/local/bin/tclsh
+                lipo -archs /opt/local/bin/tclsh
+                echo "Tcl bin arch 2:"
+                ls -l /opt/local/var/macports/software/tcl/tcl-8.6.16_0+corefoundation+threads+universal.darwin_22.arm64-x86_64/opt/local/bin/tclsh
+                lipo -archs /opt/local/var/macports/software/tcl/tcl-8.6.16_0+corefoundation+threads+universal.darwin_22.arm64-x86_64/opt/local/bin/tclsh
                 
-                echo "Tcl files:"
-                find /usr/local/Cellar/tcl-tk@8 -name libtcl8.6.dylib
-                find /usr/local/Cellar/tcl-tk@8 -name tclsh
-                find /usr/local/Cellar/tcl-tk@8 -name tclConfig.sh
-                
-                echo "OptTcl files:"
-                find /opt/local -name libtcl8.6.dylib
-                find /opt/local -name tclsh
-                find /opt/local -name tclConfig.sh
+                echo "tclConfig:"
+                ls -l /opt/local/lib/tclConfig.sh
                 
                 #find /usr/local -name tclsh
                 #find /usr/local -name tclConfig.sh
