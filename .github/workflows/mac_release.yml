@@ -232,11 +232,10 @@ jobs:
                 #echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
                 #echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
                 sudo port install tcl +universal
-                sudo port contents tcl
-                exit 1
                 
-                #find /usr/local -name tclsh
-                #find /usr/local -name tclConfig.sh
+                find /usr/local -name tclsh
+                find /usr/local -name tclConfig.sh
+                exit 1
 
             - name: Qt installation dir
               id: qt-installation-dir
