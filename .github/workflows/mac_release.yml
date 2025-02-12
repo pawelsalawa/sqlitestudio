@@ -233,7 +233,7 @@ jobs:
                 fi
                 
                 sudo port install openssl3 +universal
-                echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH"
+                echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
 
             - name: Install Tcl
               run: |
