@@ -232,12 +232,22 @@ jobs:
                 echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
                 echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
                 sudo port install tcl +universal
+                sudo port contents tcl
                 
                 echo "Tcl arch:"
                 lipo -archs /usr/local/Cellar/tcl-tk@8/8.6.16/lib/libtcl8.6.dylib
+                echo "Tcl bin arch:"
+                lipo -archs /usr/local/Cellar/tcl-tk@8/8.6.16/bin/tclsh
                 
                 echo "Tcl files:"
-                find /usr/local/Cellar/tcl-tk@8/
+                find /usr/local/Cellar/tcl-tk@8 -name libtcl8.6.dylib
+                find /usr/local/Cellar/tcl-tk@8 -name tclsh
+                find /usr/local/Cellar/tcl-tk@8 -name tclConfig.sh
+                
+                echo "OptTcl files:"
+                find /opt/local -name libtcl8.6.dylib
+                find /opt/local -name tclsh
+                find /opt/local -name tclConfig.sh
                 
                 #find /usr/local -name tclsh
                 #find /usr/local -name tclConfig.sh
