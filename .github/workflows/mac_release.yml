@@ -426,6 +426,7 @@ jobs:
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_CXXFLAGS+="$CFLAGS" \
+                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
                     CONFIG+=portable \
                     ../../SQLiteStudio3
                 make -j 2
@@ -436,6 +437,7 @@ jobs:
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_CXXFLAGS+="$CFLAGS" \
+                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
                     ../../../Plugins
