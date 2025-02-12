@@ -422,7 +422,7 @@ jobs:
               working-directory: output/build
               run: |
                 which qmake
-                lipo $(which qmake)
+                lipo -archs $(which qmake)
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     QMAKE_CXXFLAGS+="$CFLAGS" \
