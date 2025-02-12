@@ -210,6 +210,14 @@ jobs:
                 if brew list tcl-tk 2>/dev/null; then
                     brew uninstall tcl-tk r
                 fi
+                
+                echo "Openssl list"
+                brew list openssl
+                if brew list openssl 2>/dev/null; then
+                    echo "uninstalling openssl"
+                    brew uninstall openssl r
+                fi
+                exit 1
 
             #- name: Debug
               #shell: bash
