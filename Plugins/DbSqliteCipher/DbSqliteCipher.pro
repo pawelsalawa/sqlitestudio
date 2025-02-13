@@ -29,7 +29,8 @@ macx: {
     exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
         message( "Configuring OpenSSL from MacPorts" )
         INCLUDEPATH += /opt/local/include/openssl-3
-        LIBS += -L/opt/local/lib/openssl-3
+        #LIBS += -L/opt/local/lib/openssl-3
+        LIBS += /opt/local/libexec/openssl3/lib/libcrypto.a
     } else {
         message( "Configuring OpenSSL from HomeBrew" )
         INCLUDEPATH += /usr/local/opt/openssl/include
