@@ -218,6 +218,11 @@ jobs:
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
 
+            - name: debug MacPorts
+              run: |
+                find /opt/local -name "macports.conf"
+                exit 1
+
             - name: Install coreutils
               run: |
                 brew install coreutils
