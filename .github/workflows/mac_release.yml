@@ -425,13 +425,13 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
                 
                 echo "Crypto:"
-                find "$DIR" -name "libcrypto.dylib" -print0 | while IFS= read -r -d '' FILE; do
+                find / -name "libcrypto.dylib" -print0 | while IFS= read -r -d '' FILE; do
                     echo "Arch for: $FILE"
                     lipo -archs "$FILE"
                 done
                 
                 echo "Crypto static:"
-                find "$DIR" -name "libcrypto.a" -print0 | while IFS= read -r -d '' FILE; do
+                find / -name "libcrypto.a" -print0 | while IFS= read -r -d '' FILE; do
                     echo "Arch for: $FILE"
                     lipo -archs "$FILE"
                 done
