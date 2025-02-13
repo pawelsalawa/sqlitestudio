@@ -30,6 +30,7 @@ macx: {
         message( "Configuring OpenSSL from MacPorts" )
         INCLUDEPATH += /opt/local/include/openssl-3
         #LIBS += -L/opt/local/lib/openssl-3
+        QMAKE_LFLAGS += -v
         LIBS += /opt/local/libexec/openssl3/lib/libcrypto.a
     } else {
         message( "Configuring OpenSSL from HomeBrew" )

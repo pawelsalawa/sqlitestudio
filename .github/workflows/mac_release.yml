@@ -218,10 +218,14 @@ jobs:
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
 
-            - name: debug MacPorts
+            - name: Reconfigure MacPorts
               run: |
-                find /opt/local -name "macports.conf"
-                exit 1
+                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 10.14/' "$MACPORTS_CONF"
+                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
+                    echo "macosx_deployment_target 10.14" | sudo tee -a "$MACPORTS_CONF"
+                fi
+                sudo port selfupdate
 
             - name: Install coreutils
               run: |
