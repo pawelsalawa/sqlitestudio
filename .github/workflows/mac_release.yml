@@ -423,30 +423,6 @@ jobs:
                 set +x
                 ls -l ../ext/
 
-            # This is done only at this stage, so that curl is not affected by this
-            - name: Install OpenSSL
-              run: |
-                #if brew list openssl 2>/dev/null; then
-                #    brew uninstall --ignore-dependencies openssl
-                #fi
-                
-                sudo port install openssl3 +universal
-                echo "DYLD_LIBRARY_PATH=/opt/local/lib/openssl-3:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
-                
-                # echo "Crypto:"
-                # find / -name "libcrypto.dylib" -print0 | while IFS= read -r -d '' FILE; do
-                    # echo "Arch for: $FILE"
-                    # lipo -archs "$FILE"
-                # done
-                
-                # echo "Crypto static:"
-                # find / -name "libcrypto.a" -print0 | while IFS= read -r -d '' FILE; do
-                    # echo "Arch for: $FILE"
-                    # lipo -archs "$FILE"
-                # done
-
-                # exit 1
-
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
