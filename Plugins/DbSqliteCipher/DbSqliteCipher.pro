@@ -35,7 +35,7 @@ macx: {
     } else {
         message( "Configuring OpenSSL from HomeBrew" )
         INCLUDEPATH += /usr/local/opt/openssl/include
-        LIBS += -L/usr/local/opt/openssl/lib
+        LIBS += -L/usr/local/opt/openssl/lib -lcrypto
     }
 }
 win32: {
@@ -49,7 +49,7 @@ win32: {
     }
 }
 
-!win32:isEmpty(SQLCIPHER_LIB) {
+!win32:!macx:isEmpty(SQLCIPHER_LIB) {
     LIBS += -lcrypto
 }
 
