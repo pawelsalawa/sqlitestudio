@@ -18,7 +18,6 @@ SUBDIRS += \
     ScriptingTcl \
     ScriptingPython \
     DbAndroid \
-    DbSqliteCipher \
     DbSqliteWx \
     MultiEditorImage \
 	PythonSyntaxHighlighter
