@@ -469,9 +469,9 @@ jobs:
               working-directory: output/SQLiteStudio
               run: |
                 echo "Listing architecture for files."
-                find "$DIR" -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
+                find SQLiteStudio.app -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
                     echo "Arch for: $FILE"
-                    lipo "$FILE"
+                    lipo -archs "$FILE"
                 done
 
                 echo "Arch for: SQLiteStudio.app/Contents/MacOS/sqlitestudiocli"
