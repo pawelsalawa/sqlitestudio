@@ -468,6 +468,9 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
               run: |
+                echo "All files in boundle:"
+                find SQLiteStudio.app
+                
                 echo "Listing architecture for files."
                 find SQLiteStudio.app -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
                     echo "Arch for: $FILE"
@@ -475,7 +478,7 @@ jobs:
                 done
 
                 echo "Arch for: SQLiteStudio.app/Contents/MacOS/sqlitestudiocli"
-                lipo SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+                lipo -archs SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
                 
                 SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
