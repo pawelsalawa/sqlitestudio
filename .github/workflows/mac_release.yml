@@ -490,21 +490,23 @@ jobs:
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package
-              working-directory: output/SQLiteStudio
               shell: bash
               env:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                # hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                echo "Volumes:"
+                ls -l /Volumes
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
-                ls -l
+                echo "Installer file before renaming:"
+                ls -l *.dmg
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg ../../SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-                cd ../../
-                ls -l
+                echo "Installer file after renaming:"
+                ls -l *.dmg
 
             - name: SHA256 checksums
               shell: bash
