@@ -4,15 +4,12 @@ set -e
 
 printUsage() {
     echo "$0 [-q]... <sqlitestudio build output directory> <qmake path> [dmg|dist|dist_full]"
-    echo "$0 -u <sqlitestudio.x86_64.dmg> <sqlitestudio.arm64.dmg> <sqlitestudio.universal.dmg>"
 }
 
 quiet=0
-universalize=0
 while getopts qu _flag; do
     case "$_flag" in
         q) : $(( quiet += 1 )) ;;
-        u) : $(( universalize += 1 )) ;;
         *) printUsage; exit 1 ;;
     esac
 done
@@ -107,36 +104,6 @@ EOF
     run hdiutil convert "$_rw_image" -format ULFO -o "$_volname.dmg"
     run rm "$_rw_image"
 }
-
-universalize() {
-    _mountpoint1=/Volumes/sqlitestudio-arch1
-    _mountpoint2=/Volumes/sqlitestudio-arch2
-    _device1="$(hdiutil_attach "$1" "$_mountpoint1")"
-    _device2="$(hdiutil_attach "$2" "$_mountpoint2")"
-    rm -fr _universalized
-    cp -RP "$_mountpoint1" _universalized
-    find "$_mountpoint1" -type f \( -perm +u+x -or -name '*.dylib' \) | while read -r _name1; do
-        case "$(file -b "$_name1")" in Mach-O*)
-            _relative_name="${_name1#"$_mountpoint1/"}"
-            run lipo "$_name1" "$_mountpoint2/$_relative_name" -create -output "_universalized/$_relative_name"
-            ;;
-        esac
-    done
-    run hdiutil detach "$_device1"
-    run hdiutil detach "$_device2"
-    cd _universalized
-    codesign_app "SQLiteStudio.app"
-    # shellcheck disable=SC2086
-    pretty_dmg "SQLiteStudio.app" "universal_out" "$BACKGROUND_IMG" $BACKGROUND_RGB
-    cd ..
-    mv "_universalized/universal_out.dmg" "$3"
-    rm -fr _universalized
-}
-
-if [ "$universalize" -gt 0 ] && [ -f "$1" ] && [ -f "$2" ] && [ -n "$3" ]; then
-    universalize "$@"
-    exit
-fi
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   printUsage

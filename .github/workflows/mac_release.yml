@@ -487,20 +487,23 @@ jobs:
             - name: Rename portable package
               working-directory: output/SQLiteStudio
               run: |
-                mv sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package
+              working-directory: output/SQLiteStudio
               shell: bash
               env:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
               run: |
                 echo "$IB_LICENSE" > lic.xml
-                hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                # hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+                ls -l
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg ../../SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+                cd ../../
                 ls -l
 
             - name: SHA256 checksums
