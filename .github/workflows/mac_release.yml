@@ -303,7 +303,6 @@ jobs:
                 /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
-                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v4
@@ -483,6 +482,7 @@ jobs:
                 SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-universal" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio-${SQLITESTUDIO_VERSION}" >> $GITHUB_ENV
                 
             - name: Rename portable package
               working-directory: output/SQLiteStudio
