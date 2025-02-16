@@ -504,7 +504,7 @@ jobs:
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
                 echo "Installer file before renaming:"
                 ls -l *.dmg
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg ../../SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
                 echo "Installer file after renaming:"
                 ls -l *.dmg
 
