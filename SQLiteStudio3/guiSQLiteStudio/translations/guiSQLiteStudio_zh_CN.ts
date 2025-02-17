@@ -3085,7 +3085,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished">Export table and view triggers</translation>
+      <translation>导出表和视图触发器</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
