@@ -28,23 +28,23 @@ isEmpty(WXSQLITE_LIB): {
 }
 
 macx: {
-    exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
-        message( "Configuring OpenSSL from MacPorts" )
-        INCLUDEPATH += /opt/local/include/openssl-3
-        LIBS += -L/opt/local/lib/openssl-3
-    } else {
-        message( "Configuring OpenSSL from HomeBrew" )
-        INCLUDEPATH += /usr/local/opt/openssl/include
-        LIBS += -L/usr/local/opt/openssl/lib
-    }
+    # exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
+    #     message( "Configuring OpenSSL from MacPorts" )
+    #     INCLUDEPATH += /opt/local/include/openssl-3
+    #     LIBS += -L/opt/local/lib/openssl-3
+    # } else {
+    #     message( "Configuring OpenSSL from HomeBrew" )
+    #     INCLUDEPATH += /usr/local/opt/openssl/include
+    #     LIBS += -L/usr/local/opt/openssl/lib
+    # }
     LIBS += -framework Security
 }
 !macx: {
-    LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
+    # LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
 }
 win32: {
-    INCLUDEPATH += $${PWD}/../deps/include/$${PLATFORM}/
-    DEPENDPATH += $${PWD}/../deps/include/$${PLATFORM}/
+    # INCLUDEPATH += $${PWD}/../deps/include/$${PLATFORM}/
+    # DEPENDPATH += $${PWD}/../deps/include/$${PLATFORM}/
     LIBS += -lcoreSQLiteStudio
 }
 
@@ -57,6 +57,8 @@ unix: {
 }
 win32: {
     DEFINES += SQLITE_OS_WIN=1
+    # This one is to be removed after SQLiteStudio 3.4 (as mingw is updated and it's probably fixed there - to be checked if the plugin compiles without it)
+    QMAKE_CFLAGS += -fno-asynchronous-unwind-tables
 }
 DEFINES += SQLITE_HAS_CODEC SQLITE_ALLOW_XTHREAD_CONNECT=1 SQLITE_THREADSAFE=1 SQLITE_TEMP_STORE=2 CODEC_TYPE=CODEC_TYPE_AES256 \
     SQLITE_CORE USE_DYNAMIC_SQLITE3_LOAD=0 \

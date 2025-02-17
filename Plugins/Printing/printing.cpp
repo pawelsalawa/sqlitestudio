@@ -28,8 +28,8 @@ bool Printing::init()
 
     printingConfig = new ExportManager::StandardExportConfig();
     printingConfig->exportData = true;
-    printingConfig->exportTableIndexes = false;
-    printingConfig->exportTableTriggers = false;
+    printingConfig->exportIndexes = false;
+    printingConfig->exportTriggers = false;
     printingConfig->codec = defaultCodecName();
 
     QIcon printerIcon(":/icons/printer.svg");

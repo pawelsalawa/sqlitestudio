@@ -4,37 +4,37 @@
   <context>
     <name>DbSqliteWx</name>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="30"/>
+      <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Password (key)</source>
       <translation>Password (chiave)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="31"/>
+      <location filename="../dbsqlitewx.cpp" line="33"/>
       <source>Leave empty to create or connect to decrypted database.</source>
       <translation>Lasciare vuoto per creare o connettersi al database decriptato.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="32"/>
+      <location filename="../dbsqlitewx.cpp" line="34"/>
       <source>Encryption password</source>
       <translation>Password di crittografia</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="38"/>
+      <location filename="../dbsqlitewx.cpp" line="40"/>
       <source>Cipher</source>
       <translation>Cifratura</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="39"/>
+      <location filename="../dbsqlitewx.cpp" line="41"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
       <translation>La cifratura determina l&apos;algoritmo di crittografia utilizzato per crittografare il database.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="47"/>
+      <location filename="../dbsqlitewx.cpp" line="49"/>
       <source>Cipher configuration (optional)</source>
       <translation>Configurazione di Cifratura (opzionale)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="48"/>
+      <location filename="../dbsqlitewx.cpp" line="50"/>
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>

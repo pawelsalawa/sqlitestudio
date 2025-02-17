@@ -1,7 +1,7 @@
 env:
-    QT_VERSION: '6.8.0'
+    QT_VERSION: '6.8.2'
     QT_ARCH: 'win64_mingw'
-    SQLITE_VERSION: '3470200'
+    SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.13'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
@@ -9,7 +9,7 @@ env:
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw1310/qt.tools.win64_mingw1310/13.1.0-202407240918mingw1310.7z
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-windows-x64-installer.exe
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-windows-x64-installer.exe
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Windows 64-bit release build
@@ -28,8 +28,6 @@ on:
             default: false
     schedule:
         - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
-    repository_dispatch:
-        types: [win64_release]
 
 jobs:
     build:
@@ -48,7 +46,7 @@ jobs:
                 path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
 
-            - uses: actions/setup-python@v4
+            - uses: actions/setup-python@v5
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'
@@ -307,7 +305,7 @@ jobs:
               shell: bash
               run: |
                 sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -318,5 +316,5 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe

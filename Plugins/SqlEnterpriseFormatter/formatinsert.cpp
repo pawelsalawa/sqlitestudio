@@ -28,7 +28,7 @@ void FormatInsert::formatInternal()
     withKeyword("INTO");
 
     if (!insert->database.isNull())
-        withId(insert->database);
+        withId(insert->database).withIdDot();
 
     withId(insert->table);
     if (!insert->tableAlias.isNull())

@@ -1,11 +1,24 @@
 # ChangeLog
 
-### 3.5.0
+### 4.0.0
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
+- ADDED: #5237 ARM64 code compatibility.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
+
+### 3.4.16
+- ADDED: #5231 Added safe-mode command line option to bypass issues caused by corrupted session.
+- CHANGE: #5248 Database Export dialog has now Export Indexes and Export Triggers options, just like the Single Table Export dialog.
+- CHANGE: SQLite updated to 3.49.0.
+- CHANGE: Config options for WxSQLite plugin extended to support AEGIS and Ascon-128 ciphers.
+- BUGFIX: #5247 Fixed crash when opening a View's Trigger and enabled trigger-related entries in context menu for a View's Trigger.
+- BUGFIX: #5233 Fixed result column name when using [] quoting operator for column alias name.
+- BUGFIX: #5226 Fixed SQL formatter for INSERT statement when database prefix is used, so the dot is not removed after database name.
+- BUGFIX: #5234 Fixed SQL formatter for GENERATED ALWAYS column in CREATE TABLE statement, so it doesn't quote type name.
+- BUGFIX: #5245 Enterprise SQL formatter preview is no longer resetting vertical scroll when updating preview contents.
+- BUGFIX: #5254 Fixed handling Views that reference columns with spaces in their name, when commits table modifications.
 
 ### 3.4.15
 - BUGFIX: #5218 Fixed Drag&Drop of items in the database list - a bug that was introduced in 3.4.14.

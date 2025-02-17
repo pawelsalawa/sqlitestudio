@@ -29,11 +29,13 @@ macx: {
     exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
         message( "Configuring OpenSSL from MacPorts" )
         INCLUDEPATH += /opt/local/include/openssl-3
-        LIBS += -L/opt/local/lib/openssl-3
+        #LIBS += -L/opt/local/lib/openssl-3
+        QMAKE_LFLAGS += -v
+        LIBS += /opt/local/libexec/openssl3/lib/libcrypto.a
     } else {
         message( "Configuring OpenSSL from HomeBrew" )
         INCLUDEPATH += /usr/local/opt/openssl/include
-        LIBS += -L/usr/local/opt/openssl/lib
+        LIBS += -L/usr/local/opt/openssl/lib -lcrypto
     }
 }
 win32: {
@@ -47,7 +49,7 @@ win32: {
     }
 }
 
-!win32:isEmpty(SQLCIPHER_LIB) {
+!win32:!macx:isEmpty(SQLCIPHER_LIB) {
     LIBS += -lcrypto
 }
 

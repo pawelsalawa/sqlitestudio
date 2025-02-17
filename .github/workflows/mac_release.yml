@@ -1,12 +1,12 @@
 env:
-    QT_VERSION: '5.15.2'
+    QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.16'
-    SQLITE_VERSION: '3470200'
+    SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.9'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.3.0-osx-installer.dmg
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-osx-installer.dmg
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: MacOSX release build
@@ -25,159 +25,12 @@ on:
             default: false
     schedule:
         - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
-    repository_dispatch:
-        types: [mac_release]
 
 jobs:
     build:
-        runs-on: ${{ matrix.runner || 'macos-13' }}
-
-        strategy:
-          fail-fast: false
-          matrix:
-            binary_compatibility:
-              - "darwin_16.x86_64"  # macOS 10.12, the earliest version supported by QT 5.13
-              - "darwin_17.x86_64"  # macOS 10.13, the earliest version supported by QT 5.15
-              - "darwin_18.x86_64"  # macOS 10.14, the earliest version supported by QT 6.4
-              #- "darwin_20.x86_64"  # macOS 11, the earliest version supported by QT 6.5
-              #- "darwin_20.arm64"  # macOS 11, the earliest ARM64 version; temporarily no upstream binary packages
-              - "darwin_21.arm64"  # macOS 12, the earliest ARM64 version we have MacPorts binary packages for
-            qt_version:
-              - "5.13.2"
-              - "5.15.12"
-              - "6.4.3"
-            exclude:
-              - binary_compatibility: "darwin_16.x86_64"
-                qt_version: "5.15.12"
-              - binary_compatibility: "darwin_16.x86_64"
-                qt_version: "6.4.3"
-              - binary_compatibility: "darwin_17.x86_64"
-                qt_version: "5.13.2"
-              - binary_compatibility: "darwin_17.x86_64"
-                qt_version: "6.4.3"
-              - binary_compatibility: "darwin_18.x86_64"
-                qt_version: "5.13.2"
-              - binary_compatibility: "darwin_18.x86_64"
-                qt_version: "5.15.12"
-              - binary_compatibility: "darwin_21.arm64"
-                qt_version: "5.13.2"
-            include:
-              # this list is meant to be synchronized with mac_deps.yml
-              - common_pkgs:
-                  - brotli 1.1.0_0
-                  - dbus 1.14.10_1
-                  - double-conversion 3.3.0_0
-                  - freetype 2.13.2_0
-                  - gettext-runtime 0.22.5_0
-                  - giflib 4.2.3_1
-                  - glib2 2.78.4_1+x11
-                  - graphite2 1.3.14_0
-                  - harfbuzz 8.5.0_0
-                  - icu 74.2_0
-                  - jasper 4.2.4_0
-                  - lcms2 2.16_0
-                  - lerc 4.0.0_1
-                  - lz4 1.10.0_0
-                  - libdeflate 1.20_0
-                  - libedit 20240517-3.1_0
-                  - libffi 3.4.6_1
-                  - libiconv 1.17_0
-                  - libjpeg-turbo 3.0.3_0
-                  - libmng 2.0.3_1
-                  - libpng 1.6.43_0
-                  - ncurses 6.5_0
-                  - openssl3 3.3.1_1
-                  - pcre 8.45_0
-                  - pcre2 10.44_0
-                  - python39 3.9.19_0+lto+optimizations
-                  - tcl 8.6.14_0+corefoundation+threads
-                  - tiff 4.6.0_0
-                  - webp 1.4.0_0
-                  - xz 5.4.7_0
-                  - zlib 1.3.1_0
-                  - zstd 1.5.6_0
-                host_pkgs:
-                  - ccache 4.10.2_0+doc
-                  - hiredis 1.2.0_0
-              - binary_compatibility: darwin_21.arm64
-                qt_version: "5.15.12"
-                cflags: -arch arm64 -mmacosx-version-min=11
-                dmg_postfix: "-macos11.arm64"
-                pkgs:
-                  - qt5-qtbase 5.15.12_1+openssl
-                  - qt5-qtdeclarative 5.15.12_0
-                  - qt5-qtimageformats 5.15.12_0
-                  - qt5-qtscript 5.15.12_0
-                  - qt5-qtsvg 5.15.12_0
-                  - qt5-qttools 5.15.12_0
-                runner: macos-14
-                runner_binary_compatibility: darwin_23.arm64
-              - binary_compatibility: darwin_21.arm64
-                qt_version: "6.4.3"
-                cflags: -arch arm64 -mmacosx-version-min=11
-                dmg_postfix: "-macos11.arm64-qt6"
-                pkgs:
-                  - libb2 0.98.1_1
-                  - md4c 0.4.8_0
-                  - qt6-qtbase 6.4.3_6+openssl
-                  - qt6-qtdeclarative 6.4.3_0
-                  - qt6-qtimageformats 6.4.3_0
-                  - qt6-qtsvg 6.4.3_1
-                  - qt6-qttools 6.4.3_1
-                  - qt6-qt5compat 6.4.3_2
-                runner: macos-14
-                runner_binary_compatibility: darwin_23.arm64
-              - binary_compatibility: darwin_18.x86_64
-                qt_version: "6.4.3"
-                cflags: -mmacosx-version-min=10.14
-                dmg_postfix: "-macos10.14-qt6"
-                pkgs:
-                  - libb2 0.98.1_1
-                  - md4c 0.4.8_0
-                  - qt6-qtbase 6.4.3_6+openssl
-                  - qt6-qtdeclarative 6.4.3_0
-                  - qt6-qtimageformats 6.4.3_0
-                  - qt6-qtsvg 6.4.3_1
-                  - qt6-qttools 6.4.3_1
-                  - qt6-qt5compat 6.4.3_2
-                runner_binary_compatibility: darwin_21.x86_64
-              - binary_compatibility: darwin_17.x86_64
-                qt_version: "5.15.12"
-                cflags: -arch x86_64 -mmacosx-version-min=10.13
-                add_variants: ""
-                dmg_postfix: "-macos10.13"
-                pkgs:
-                  - qt5-qtbase 5.15.12_1+openssl
-                  - qt5-qtdeclarative 5.15.12_0
-                  - qt5-qtimageformats 5.15.12_0
-                  - qt5-qtscript 5.15.12_0
-                  - qt5-qtsvg 5.15.12_0
-                  - qt5-qttools 5.15.12_0
-                qmake_flags: ""
-                runner_binary_compatibility: darwin_21.x86_64
-              - binary_compatibility: darwin_16.x86_64
-                qt_version: "5.13.2"
-                cflags: -arch x86_64 -mmacosx-version-min=10.12
-                add_variants: ""
-                dmg_postfix: "-macos10.12"
-                pkgs:
-                  - legacy-support 1.2.4_0
-                  - qt513-qtbase 5.13.2_10+openssl
-                  - qt513-qtdeclarative 5.13.2_0
-                  - qt513-qtimageformats 5.13.2_3
-                  - qt513-qtscript 5.13.2_0
-                  - qt513-qtsvg 5.13.2_0
-                  - qt513-qttools 5.13.2_0
-                qmake_flags: ""
-                runner_binary_compatibility: darwin_21.x86_64
+        runs-on: macos-13
 
         steps:
-            - name: Uninstall unwanted Homebrew packages and their dependents
-              run: |
-                if brew list tcl-tk 2>/dev/null; then
-                    brew uninstall tcl-tk r
-                fi
-
             #- name: Debug
               #shell: bash
               #run: |
@@ -188,33 +41,63 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
-            # 4 commented steps below are merged from 3.4 branch workflows and will probably be used in 3.5, but not yet
-            #- name: Install Tcl
-            #  run: |
-            #    set -x
-            #    #brew install tcl-tk@8
-            #    #brew reinstall tcl-tk@8
-            #    echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
-            #    echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
-            #    
-            #    find /usr/local -name tclsh
-            #    find /usr/local -name tclConfig.sh
+            - name: Install MacPorts
+              uses: melusina-org/setup-macports@v1
 
-            #- name: Qt installation dir
-            #  id: qt-installation-dir
-            #  run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+            - name: Reconfigure MacPorts
+              run: |
+                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 10.14/' "$MACPORTS_CONF"
+                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
+                    echo "macosx_deployment_target 10.14" | sudo tee -a "$MACPORTS_CONF"
+                fi
+                sudo port selfupdate
 
-            #- name: Install Qt
-            #  uses: jurplel/install-qt-action@v3
-            #  with:
-            #    cache: true
-            #    version: ${{ env.QT_VERSION }}
-            #    host: 'mac'
-            #    dir: '${{ steps.qt-installation-dir.DIR }}'
-            #    aqtversion: '==3.0.*'
-            #    py7zrversion: '==0.20.*'
-            #    setup-python: 'false'
-            #    extra: '--external 7z'
+            - name: Install coreutils
+              run: |
+                brew install coreutils
+
+            - name: Install ICU
+              run: |
+                sudo port install icu +universal
+
+            - name: Install Tcl
+              run: |
+                if brew list tcl-tk 2>/dev/null; then
+                    brew uninstall tcl-tk r
+                fi
+                
+                sudo port install tcl +universal
+                
+                echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
+                echo "TCL_CONFIG=/opt/local/lib/tclConfig.sh" >> $GITHUB_ENV
+                
+                echo "Tcl arch 1:"
+                ls -l /opt/local/lib/libtcl8.6.dylib
+                lipo -archs /opt/local/lib/libtcl8.6.dylib
+                echo "Tcl bin arch:"
+                ls -l /opt/local/bin/tclsh
+                lipo -archs /opt/local/bin/tclsh
+                
+                echo "tclConfig:"
+                ls -l /opt/local/lib/tclConfig.sh
+                cat /opt/local/lib/tclConfig.sh
+
+            - name: Qt installation dir
+              id: qt-installation-dir
+              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v3
+              with:
+                cache: true
+                version: ${{ env.QT_VERSION }}
+                host: 'mac'
+                dir: '${{ steps.qt-installation-dir.DIR }}'
+                aqtversion: '==3.0.*'
+                py7zrversion: '==0.20.*'
+                setup-python: 'false'
+                extra: '--external 7z'
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
@@ -232,13 +115,6 @@ jobs:
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
                 
-            #- name: Fix Qt for MacOS 13
-            #  shell: bash
-            #  run: |
-            #    TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
-            #    echo "Updating file: $TCFILE"
-            #    sed -i '' 's/if(!darwin:clang)|intel_icc/if(!darwin:clang)|intel_icc|darwin/' $TCFILE
-
             - name: Install the InstalBuilder
               shell: bash
               run: |
@@ -247,51 +123,22 @@ jobs:
                 /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
-                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v4
               with:
                 ref: ${{ env.BRANCH_NAME }}
 
-            - name: Restore distfiles packages cache
-              id: cache-distfiles
-              uses: actions/cache/restore@v4
+            - uses: actions/setup-python@v4
               with:
-                path: distfiles
-                key: distfiles-${{ matrix.binary_compatibility }}--${{ github.sha }}
-                restore-keys: distfiles-${{ matrix.binary_compatibility }}--
-
-            - name: Install MacPorts packages
-              run: |
-                mkdir macports
-                install_binpkg() {
-                    _compat="$1"; shift
-                    while [ -n "$1" ]; do
-                        local _postfix="$(echo "$2${{ matrix.add_variants}}" | sed 's/+x11+universal/+universal+x11/')"
-                        _pkg="distfiles/$1-$_postfix.$_compat.tbz2"
-                        echo "Installing $_pkg"
-                        tar -C macports -xjf "$_pkg"
-                        shift 2
-                    done
-                }
-                install_binpkg ${{ matrix.runner_binary_compatibility }} ${{ join(matrix.host_pkgs, ' ') }}
-                install_binpkg ${{ matrix.binary_compatibility }} ${{ join(matrix.common_pkgs, ' ') }} ${{ join(matrix.pkgs, ' ') }}
-
-            - name: Configure MacPorts packages
-              run: |
-                sudo ln -s $(pwd)/macports/opt/local /opt/
-                case "${{ join(matrix.pkgs, ' ') }}" in
-                  *qt6*) echo "PATH=/opt/local/libexec/qt6/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV ;;
-                  *)     echo "PATH=/opt/local/libexec/qt5/bin:/opt/local/bin:$PATH" >> $GITHUB_ENV ;;
-                esac
-                echo "pythonLocation=/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION" >> $GITHUB_ENV
-
-                if [ ${{ matrix.binary_compatibility }} = "darwin_16.x86_64" ]; then
-                    # QtImageFormats 5.13 binary is linked to an older version of libtiff
-                    sudo install_name_tool -change /opt/local/lib/libtiff.5.dylib /opt/local/lib/libtiff.6.dylib \
-                        /opt/local/libexec/qt5/plugins/imageformats/libqtiff.dylib
-                fi
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'arm64'
+                
+            # - name: Verify Python arch
+              # shell: bash
+              # run: |
+                # echo "python arch:"
+                # lipo -archs $(which python)
 
             - name: Prepare ccache
               if: inputs.use_ccache || false
@@ -311,7 +158,7 @@ jobs:
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
                 
                 cd ..
-                SQLITE3_ZIP=sqlite3-macos-x64-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-macos-universal-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
                 
                 sudo unzip $SQLITE3_ZIP libsqlite3.0.dylib -d /usr/local/lib
@@ -320,6 +167,11 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
+
+            - name: Configure universal binaries compilation flags
+              shell: bash
+              run: |
+                echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64 -mmacosx-version-min=10.14" >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -335,7 +187,7 @@ jobs:
                 cd ext-src
                 ls -l
                 
-                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                FLAGS="$CFLAGS -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 set -x
                 for f in compress sqlar; do
                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
@@ -365,7 +217,7 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_CXXFLAGS+="${{ matrix.cflags }}" \
+                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
                 make -j 2
@@ -375,15 +227,13 @@ jobs:
               run: |
                 qmake ${{ matrix.qmake_flags }} \
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_CXXFLAGS+="${{ matrix.cflags }}" \
+                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
+                    "LIBS += -L$pythonLocation/lib" \
+                    "TCL_CONFIG=$TCL_CONFIG" \
                     ../../../Plugins
                 make -j 1
-
-#               This is how it was for 3.4 branch - probably will be ised in 3.5
-#                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-#                    "TCL_CONFIG=${{ env.TCL_CONFIG }}" \
 
             - name: Copy SQLite extensions to output dir
               shell: bash
@@ -398,14 +248,27 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
               run: |
+                echo "All files in boundle:"
+                find SQLiteStudio.app
+                
+                echo "Listing architecture for files."
+                find SQLiteStudio.app -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
+                    echo "Arch for: $FILE"
+                    lipo -archs "$FILE"
+                done
+
+                echo "Arch for: SQLiteStudio.app/Contents/MacOS/sqlitestudiocli"
+                lipo -archs SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+                
                 SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-universal" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio-${SQLITESTUDIO_VERSION}" >> $GITHUB_ENV
                 
             - name: Rename portable package
               working-directory: output/SQLiteStudio
               run: |
-                mv sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
             - name: Create installer package
               shell: bash
@@ -414,63 +277,32 @@ jobs:
               run: |
                 echo "$IB_LICENSE" > lic.xml
                 hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                echo "Volumes:"
+                ls -l /Volumes
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
                     --license lic.xml \
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
-                ls -l
+                echo "Installer file before renaming:"
+                ls -l *.dmg
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+                echo "Installer file after renaming:"
+                ls -l *.dmg
 
-            # 4 steps below need closer review and fix for 3.5.0
-            # - name: Rename package
-              # run: |
-                # mv output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg \
-                  # sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}${{ matrix.dmg_postfix }}.dmg
-
-            # - name: SHA256 checksums
-              # shell: bash
-              # run: |
-                # sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-                # sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-macos-x64-installer.dmg
-
-            # - name: Upload package artifact
-              # uses: actions/upload-artifact@v4
-              # with:
-                # name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-                # path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-
-            # - name: Upload installer artifact
-              # uses: actions/upload-artifact@v4
-              # with:
-                # name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer${{ matrix.dmg_postfix }}.dmg
-                # path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg
-
-    build-universal:
-        runs-on: macos-12  # Don't use newer versions yet, https://github.com/actions/runner-images/issues/7522
-        needs: build
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                ref: ${{ github.event.client_payload.branch }}
-
-            - uses: actions/download-artifact@v4
-              with:
-                pattern: sqlitestudio-[0-9].[0-9].[0-9]-macos10.13.dmg
-                merge-multiple: true
-
-            - uses: actions/download-artifact@v4
-              with:
-                pattern: sqlitestudio-[0-9].[0-9].[0-9]-macos11.arm64.dmg
-                merge-multiple: true
-
-            - run: |
-                set -x
-                _prefix="$(echo sqlitestudio-[0-9].[0-9].[0-9]-macos11.arm64.dmg | sed 's/11.arm64.dmg$//')"
-                SQLiteStudio3/create_macosx_bundle.sh -u "${_prefix}10.13.dmg" "${_prefix}11.arm64.dmg" "${_prefix}-universal.dmg"
-                echo "PACKAGE_NAME=${_prefix}-universal.dmg" >> $GITHUB_ENV
+            - name: SHA256 checksums
+              shell: bash
+              run: |
+                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.PACKAGE_NAME }}
-                path: ${{ env.PACKAGE_NAME }}
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg

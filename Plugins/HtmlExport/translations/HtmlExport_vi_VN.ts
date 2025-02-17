@@ -6,7 +6,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="46"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>Kết quả truy vấn SQL</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="78"/>
@@ -54,17 +54,17 @@
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>Đúng</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>Không</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="344"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Cột</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Sắp xếp thứ tự</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="380"/>

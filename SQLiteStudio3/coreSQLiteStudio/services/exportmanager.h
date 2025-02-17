@@ -131,18 +131,18 @@ class API_EXPORT ExportManager : public PluginServiceBase
             bool exportData = true;
 
             /**
-             * @brief When exporting only a table, this indicates if indexes related to that table should also be exported.
+             * @brief Indicates if table indexes should also be exported.
              *
              * Default is true.
              */
-            bool exportTableIndexes = true;
+            bool exportIndexes = true;
 
             /**
-             * @brief When exporting only a table, this indicates if triggers related to that table should also be exported.
+             * @brief Indicates if table and view triggers should also be exported.
              *
              * Default is true.
              */
-            bool exportTableTriggers = true;
+            bool exportTriggers = true;
         };
 
         /**

@@ -4,37 +4,37 @@
   <context>
     <name>DbSqliteWx</name>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="30"/>
+      <location filename="../dbsqlitewx.cpp" line="32"/>
       <source>Password (key)</source>
       <translation>密码（密钥）</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="31"/>
+      <location filename="../dbsqlitewx.cpp" line="33"/>
       <source>Leave empty to create or connect to decrypted database.</source>
       <translation>留空则创建或连接到已解密的数据库。</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="32"/>
+      <location filename="../dbsqlitewx.cpp" line="34"/>
       <source>Encryption password</source>
       <translation>加密密码</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="38"/>
+      <location filename="../dbsqlitewx.cpp" line="40"/>
       <source>Cipher</source>
       <translation>加密算法</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="39"/>
+      <location filename="../dbsqlitewx.cpp" line="41"/>
       <source>Cipher determines encryption algorithm used to encrypt the database.</source>
       <translation>用来加密该数据库的加密算法。</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="47"/>
+      <location filename="../dbsqlitewx.cpp" line="49"/>
       <source>Cipher configuration (optional)</source>
       <translation>加密算法配置（可选）</translation>
     </message>
     <message>
-      <location filename="../dbsqlitewx.cpp" line="48"/>
+      <location filename="../dbsqlitewx.cpp" line="50"/>
       <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>

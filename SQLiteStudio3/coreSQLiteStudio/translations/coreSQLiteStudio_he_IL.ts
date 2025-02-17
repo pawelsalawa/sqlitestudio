@@ -346,22 +346,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="352"/>
-      <location filename="../exportworker.cpp" line="410"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation type="unfinished">Could not parse %1 in order to export it. It will be excluded from the export output.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="614"/>
+      <location filename="../exportworker.cpp" line="628"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>שגיאה בעת קריאת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="622"/>
+      <location filename="../exportworker.cpp" line="636"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>שגיאה בעת ספירת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="638"/>
+      <location filename="../exportworker.cpp" line="652"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>שגיאה בעת אימוד רוחב עמודת נתונים ליצוא מטבלה %1: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>שאילתה חלקית.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
       <source>Parser stack overflow</source>
       <translation>הצפת מערום מנתח</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
       <source>Syntax error</source>
       <translation>שגיאת תחביר</translation>
     </message>

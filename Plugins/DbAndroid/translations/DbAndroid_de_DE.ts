@@ -36,22 +36,22 @@
     <message>
       <location filename="../dbandroid.cpp" line="198"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</source>
-      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection.</translation>
+      <translation>Android Debug Bridge App konnte nicht gefunden werden. &lt;a href=&quot;%1&quot;&gt;Klicken Sie hier&lt;/a&gt;, um den Standort der ADB-Anwendung auszuwählen. Anderenfalls unterstützt das %2 Plugin keine USB-Verbindungen, sondern nur Netzwerkverbindungen.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="217"/>
       <source>The selected ADB is incorrect.</source>
-      <translation type="unfinished">The selected ADB is incorrect.</translation>
+      <translation>Der ausgewählte ADB ist falsch.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="218"/>
       <source>Would you like to select another one, or leave it unconfigured?</source>
-      <translation type="unfinished">Would you like to select another one, or leave it unconfigured?</translation>
+      <translation>Möchten Sie ein anderes auswählen oder es nicht konfigurieren lassen?</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="242"/>
       <source>Save JAR file</source>
-      <translation type="unfinished">Save JAR file</translation>
+      <translation>JAR-Datei speichern</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="216"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="175"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Verbindung zum Gerät &apos;%1&apos; nicht möglich, weil es für Ihren Computer nicht sichtbar ist.</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="182"/>
@@ -305,7 +305,7 @@ Android-Gerät hat das Löschen verweigert, oder es war unmöglich.</translation
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible from your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible from your computer.</translation>
+      <translation>Verbindung zum Gerät &apos;%1&apos; nicht möglich, weil es für Ihren Computer nicht sichtbar ist.</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>

@@ -105,6 +105,10 @@ namespace Debug {
         // 33 C0                xor         eax,eax
         // C3                   ret
         unsigned char szExecute[] = { 0x33, 0xC0, 0xC3 };
+#elif _M_ARM64
+        // 20 00 80 D2          mov         x0,#1
+        // C0 03 5F D6          ret
+        unsigned char szExecute[] = { 0x00, 0x00, 0x80, 0xD2, 0xC0, 0x03, 0x5F, 0xD6 };        
 #else
 #error "The following code only works for x86 and x64!"
 #endif

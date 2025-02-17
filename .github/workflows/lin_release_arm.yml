@@ -1,17 +1,18 @@
 env:
-    TARGET_ARCH: 'x86_64'
+    TARGET_ARCH: 'aarch64'
     QT_VERSION: '6.7.3'
+    QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
-    LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-arm64-installer.run
+    LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
+    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_arm64.deb
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
-name: Linux release build
+name: Linux ARM64 release build
 
 on:
     workflow_dispatch:
@@ -30,24 +31,25 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-22.04-arm
 
         steps:
             - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+                architecture: 'arm64'
 
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v4
+              uses: jdpurcell/install-qt-action@v4
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
-                host: 'linux'
+                host: 'linux_arm64'
+                arch: '${{ env.QT_ARCH }}'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'
@@ -111,7 +113,7 @@ jobs:
             - name: Install SQLite3
               run: |
                 cd ..
-                SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-linux-arm-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/$TARGET_ARCH-linux-gnu/libsqlite*
@@ -292,7 +294,7 @@ jobs:
               run: |
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-arm64" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash

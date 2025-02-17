@@ -4,15 +4,12 @@ set -e
 
 printUsage() {
     echo "$0 [-q]... <sqlitestudio build output directory> <qmake path> [dmg|dist|dist_full]"
-    echo "$0 -u <sqlitestudio.x86_64.dmg> <sqlitestudio.arm64.dmg> <sqlitestudio.universal.dmg>"
 }
 
 quiet=0
-universalize=0
 while getopts qu _flag; do
     case "$_flag" in
         q) : $(( quiet += 1 )) ;;
-        u) : $(( universalize += 1 )) ;;
         *) printUsage; exit 1 ;;
     esac
 done
@@ -107,36 +104,6 @@ EOF
     run hdiutil convert "$_rw_image" -format ULFO -o "$_volname.dmg"
     run rm "$_rw_image"
 }
-
-universalize() {
-    _mountpoint1=/Volumes/sqlitestudio-arch1
-    _mountpoint2=/Volumes/sqlitestudio-arch2
-    _device1="$(hdiutil_attach "$1" "$_mountpoint1")"
-    _device2="$(hdiutil_attach "$2" "$_mountpoint2")"
-    rm -fr _universalized
-    cp -RP "$_mountpoint1" _universalized
-    find "$_mountpoint1" -type f \( -perm +u+x -or -name '*.dylib' \) | while read -r _name1; do
-        case "$(file -b "$_name1")" in Mach-O*)
-            _relative_name="${_name1#"$_mountpoint1/"}"
-            run lipo "$_name1" "$_mountpoint2/$_relative_name" -create -output "_universalized/$_relative_name"
-            ;;
-        esac
-    done
-    run hdiutil detach "$_device1"
-    run hdiutil detach "$_device2"
-    cd _universalized
-    codesign_app "SQLiteStudio.app"
-    # shellcheck disable=SC2086
-    pretty_dmg "SQLiteStudio.app" "universal_out" "$BACKGROUND_IMG" $BACKGROUND_RGB
-    cd ..
-    mv "_universalized/universal_out.dmg" "$3"
-    rm -fr _universalized
-}
-
-if [ "$universalize" -gt 0 ] && [ -f "$1" ] && [ -f "$2" ] && [ -n "$3" ]; then
-    universalize "$@"
-    exit
-fi
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   printUsage
@@ -304,30 +271,6 @@ assert_no_dylib_problems() {
     [ -z "$_problems" ] || abort 'Unresolved local/ library references:' $_problems
 }
 
-thin_app() {
-    # Given a path, thin all universal binaries there to ARM64-only and
-    # codesign them with an ad-hoc signature
-    find "$1" -type f -perm +111 -size +2100c | grep -Ev '\.py$|install-sh$|makesetup$|fetch_macholib$' \
-    | while read -r _binary; do
-        case "$(lipo -archs "$_binary")" in
-            x86_64) run rm "$_binary" ;;
-            *64" "*64)
-                run lipo -thin arm64 "$_binary" -output "$_binary.arm64"
-                run mv "$_binary.arm64" "$_binary"
-                ;;
-        esac
-    done
-    codesign_app "$1"
-}
-
-thin_dmg() (
-    thin_app "$1"
-    cd "$(dirname "$1")"
-    # shellcheck disable=SC2086
-    pretty_dmg "$(basename "$1")" "$2" "$BACKGROUND_IMG" $BACKGROUND_RGB
-    mv "$2.dmg" "../$2-arm64.dmg"
-)
-
 deploy_qt() {
     run "$qt_deploy_bin" "$@" -verbose=$((2 - quiet))
 }
@@ -362,7 +305,7 @@ elif [ "$3" = "dist" ]; then
         esac
     done
 
-    case "$BUILD_ARCHS" in arm64) codesign_app "SQLiteStudio.app" ;; esac
+    codesign_app "SQLiteStudio.app"
 
     assert_no_dylib_problems SQLiteStudio.app
 
@@ -373,14 +316,6 @@ elif [ "$3" = "dist" ]; then
     # shellcheck disable=SC2086
     pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$BACKGROUND_IMG" $BACKGROUND_RGB
 
-    case "$BUILD_ARCHS" in *64" "*64)
-        info "Universal build detected. Making an ARM64-only image"
-        mkdir -p thinned
-        cp -RPc "SQLiteStudio.app" thinned/
-        thin_dmg "thinned/SQLiteStudio.app" "SQLiteStudio-$VERSION"
-        ;;
-    esac
-
     if [ "$python_from_macports" = "yes" ]; then
         info "MacPorts Python detected. Making an image with bundled Python"
 
@@ -390,7 +325,7 @@ elif [ "$3" = "dist" ]; then
             -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
             "$python_plugin_lib"
 
-        case "$BUILD_ARCHS" in arm64) codesign_app "SQLiteStudio.app" ;; esac
+        codesign_app "SQLiteStudio.app"
 
         assert_no_dylib_problems SQLiteStudio.app
 
@@ -401,16 +336,6 @@ elif [ "$3" = "dist" ]; then
         run install_name_tool \
             -change "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" "libpython$PYTHON_VERSION.dylib" \
             "$python_plugin_lib"
-
-        case "$BUILD_ARCHS" in *64" "*64)
-            info "Universal build detected. Making an ARM64-only image with Python"
-            embed_python_framework /opt/local/Library/Frameworks/Python.framework "$PYTHON_VERSION" thinned/SQLiteStudio.app
-            run install_name_tool \
-                -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
-                "thinned/$python_plugin_lib"
-            thin_dmg "thinned/SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION"
-            ;;
-        esac
     fi
     rm -fr thinned
     ls -l -- *.dmg

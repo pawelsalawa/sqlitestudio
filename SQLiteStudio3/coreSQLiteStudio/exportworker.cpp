@@ -285,24 +285,6 @@ bool ExportWorker::exportDatabase()
         return false;
     }
 
-    if (!plugin->beforeExportTriggers())
-    {
-        logExportFail("beforeExportTriggers()");
-        return false;
-    }
-
-    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
-    {
-        logExportFail("exportDatabaseObjects()");
-        return false;
-    }
-
-    if (!plugin->afterExportTriggers())
-    {
-        logExportFail("afterExportTriggers()");
-        return false;
-    }
-
     if (!plugin->beforeExportViews())
     {
         logExportFail("beforeExportViews()");
@@ -318,6 +300,24 @@ bool ExportWorker::exportDatabase()
     if (!plugin->afterExportViews())
     {
         logExportFail("afterExportViews()");
+        return false;
+    }
+
+    if (!plugin->beforeExportTriggers())
+    {
+        logExportFail("beforeExportTriggers()");
+        return false;
+    }
+
+    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
+    {
+        logExportFail("exportDatabaseObjects()");
+        return false;
+    }
+
+    if (!plugin->afterExportTriggers())
+    {
+        logExportFail("afterExportTriggers()");
         return false;
     }
 
@@ -402,6 +402,7 @@ bool ExportWorker::exportTable()
     }
 
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     QString ddl = resolver.getObjectDdl(database, table, SchemaResolver::TABLE);
 
     if (!parser->parse(ddl) || parser->getQueries().size() < 1)
@@ -424,7 +425,7 @@ bool ExportWorker::exportTable()
         return false;
     }
 
-    if (config->exportTableIndexes)
+    if (config->exportIndexes)
     {
         if (!plugin->beforeExportIndexes())
         {
@@ -449,7 +450,7 @@ bool ExportWorker::exportTable()
         }
     }
 
-    if (config->exportTableTriggers)
+    if (config->exportTriggers)
     {
         if (!plugin->beforeExportTriggers())
         {
@@ -551,11 +552,24 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
 QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* errorMessage)
 {
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
     StrHash<SchemaResolver::ObjectDetails> allDetails = resolver.getAllObjectDetails();
 
+    // First, let's collect indexes and triggers associated with tables/views included in objectListToExport
+    for (const SchemaResolver::ObjectDetails& objDetails : allDetails.values())
+    {
+        if (!objectListToExport.contains(objDetails.refObject, Qt::CaseInsensitive))
+            continue; // not referencing any object marked for export
+
+        if (config->exportIndexes && objDetails.type == SchemaResolver::INDEX)
+            objectListToExport << objDetails.name;
+
+        if (config->exportTriggers && objDetails.type == SchemaResolver::TRIGGER)
+            objectListToExport << objDetails.name;
+    }
+
+    // Now let's build export object list from what we have -> all tables/views marked by user + their indexes and triggers
     QList<ExportManager::ExportObjectPtr> objectsToExport;
-    ExportManager::ExportObjectPtr exportObj;
-    SchemaResolver::ObjectDetails details;
     for (const QString& objName : objectListToExport)
     {
         if (!allDetails.contains(objName))
@@ -563,9 +577,9 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
             qWarning() << "Object requested for export, but not on list of db object details:" << objName;
             continue;
         }
-        details = allDetails[objName];
+        SchemaResolver::ObjectDetails details = allDetails[objName];
 
-        exportObj = ExportManager::ExportObjectPtr::create();
+        ExportManager::ExportObjectPtr exportObj = ExportManager::ExportObjectPtr::create();
         if (details.type == SchemaResolver::TABLE)
         {
             exportObj->type = ExportManager::ExportObject::TABLE;

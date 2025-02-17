@@ -129,13 +129,13 @@
     <message>
       <location filename="../completionhelper.cpp" line="259"/>
       <source>String</source>
-      <translation type="unfinished">String</translation>
+      <translation>Zeichenkette</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="262"/>
       <location filename="../completionhelper.cpp" line="265"/>
       <source>Number</source>
-      <translation type="unfinished">Number</translation>
+      <translation>Nummer</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="277"/>
@@ -346,22 +346,22 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     </message>
     <message>
       <location filename="../exportworker.cpp" line="352"/>
-      <location filename="../exportworker.cpp" line="410"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>%1 konnte zum Exportieren nicht korrekt verarbeitet werden. Diese Daten werden nicht exportiert.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="614"/>
+      <location filename="../exportworker.cpp" line="628"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>Fehler beim Lesen der zu exportierenden Daten aus der Tabelle %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="622"/>
+      <location filename="../exportworker.cpp" line="636"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>Fehler beim Ermitteln der zu exportierenden Daten aus der Tabelle %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="638"/>
+      <location filename="../exportworker.cpp" line="652"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>Fehler beim Ermitteln der Spaltenbreite für den Export aus Tabelle %1: %2</translation>
     </message>
@@ -787,7 +787,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../common/utils.cpp" line="939"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="437"/>
@@ -808,7 +808,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../db/abstractdb3.h" line="423"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation type="unfinished">Could not run WAL checkpoint: %1</translation>
+      <translation>WAL-Checkpoint konnte nicht ausgeführt werden: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="461"/>
@@ -827,12 +827,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Unvollständige Abfrage.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
       <source>Parser stack overflow</source>
       <translation>Stacküberlauf bei Verarbeitung</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
       <source>Syntax error</source>
       <translation>Syntaxfehler</translation>
     </message>
@@ -869,7 +869,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-      <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+      <translation>Konnte Bewertungskontext nicht abrufen, wahrscheinlich ist das %1 Skript-Plugin nicht richtig konfiguriert</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="84"/>
@@ -899,12 +899,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../selectresolver.cpp" line="455"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
-      <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
+      <translation>Tabelle für Spalte &apos;%1&apos; konnte nicht aufgelöst werden.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="757"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Die Konfigurationsdatei konnte nicht initialisiert werden. Alle Konfigurationsänderungen und der Abfrageverlauf gehen nach dem Neustart der Anwendung verloren. Datei kann nicht an folgenden Orten erstellt werden: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="347"/>
@@ -1037,7 +1037,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
       <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-      <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+      <translation>Spalte %1 in Tabelle %2 bezieht sich auf Spalte %3 in Tabelle %4, aber diese Spalten haben unterschiedliche Datentypen: %5 vs. %6. Dies kann zu Problemen im Zusammenhang mit Fremdschlüssel führen.</translation>
     </message>
   </context>
   <context>
@@ -1045,7 +1045,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
       <source>No database available in current context, while called JavaScript&apos;s %1 command.</source>
-      <translation type="unfinished">No database available in current context, while called JavaScript&apos;s %1 command.</translation>
+      <translation>Keine Datenbank verfügbar für den derzeitigen Kontext, während der Javascript Befehl %1 aufgerufen wurde.</translation>
     </message>
     <message>
       <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
@@ -1058,32 +1058,32 @@ The view will remain as it is.</source>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="56"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+      <translation>SQL konnte nicht ausgeführt werden, weil das Anfangen der Transaktion fehlgeschlagen ist: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="87"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-      <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+      <translation>Ausführung aus Datei abgebrochen. Alle bisher ausgeführten Abfragen wurden zurückgesetzt.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="103"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
+      <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="150"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-      <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+      <translation>SQL konnte nicht ausgeführt werden, weil das Beenden der Transaktion fehlgeschlagen ist: %1</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="155"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+      <translation>Ausführung von %1 Abfrage(n) in %2 Sekunde(n) abgeschlossen. %3 wurde(n) aufgrund von Fehlern nicht ausgeführt.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="161"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Ausführung von %1 Abfrage(n) in %2 Sekunde(n) abgeschlossen.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="168"/>
@@ -1129,7 +1129,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="860"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>Registrierte Standardsortierfolge bei Bedarf, unter dem Namen: %1</translation>
     </message>
   </context>
   <context>

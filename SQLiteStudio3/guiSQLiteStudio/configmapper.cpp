@@ -3,6 +3,7 @@
 #include "services/config.h"
 #include "services/pluginmanager.h"
 #include "customconfigwidgetplugin.h"
+#include "sqlview.h"
 #include "common/colorbutton.h"
 #include "common/fontedit.h"
 #include <QLineEdit>
@@ -96,6 +97,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
 {
     APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
     APPLY_CFG(widget, value, QLineEdit, setText, QString);
+    APPLY_CFG(widget, value, SqlView, setContents, QString);
     APPLY_CFG(widget, value, QTextEdit, setPlainText, QString);
     APPLY_CFG(widget, value, QPlainTextEdit, setPlainText, QString);
     APPLY_CFG(widget, value, QSpinBox, setValue, int);

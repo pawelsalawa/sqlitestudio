@@ -2357,7 +2357,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="168"/>
-      <location filename="../dbtree/dbtree.cpp" line="1595"/>
+      <location filename="../dbtree/dbtree.cpp" line="1600"/>
       <source>Erase table data</source>
       <translation>מחיקת נתוני טבלה</translation>
     </message>
@@ -2384,145 +2384,145 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="357"/>
-      <location filename="../dbtree/dbtree.cpp" line="362"/>
+      <location filename="../dbtree/dbtree.cpp" line="359"/>
+      <location filename="../dbtree/dbtree.cpp" line="364"/>
       <source>Database</source>
       <translation>מסד נתונים</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="372"/>
+      <location filename="../dbtree/dbtree.cpp" line="374"/>
       <source>Grouping</source>
       <translation>קיבוץ</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="377"/>
+      <location filename="../dbtree/dbtree.cpp" line="379"/>
       <source>Generate query for table</source>
       <translation type="unfinished">Generate query for table</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1111"/>
-      <location filename="../dbtree/dbtree.cpp" line="1114"/>
+      <location filename="../dbtree/dbtree.cpp" line="1116"/>
+      <location filename="../dbtree/dbtree.cpp" line="1119"/>
       <source>Create group</source>
       <translation>מחיקת קבוצה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1111"/>
+      <location filename="../dbtree/dbtree.cpp" line="1116"/>
       <source>Group name</source>
       <translation>שם קבוצה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1114"/>
+      <location filename="../dbtree/dbtree.cpp" line="1119"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation type="unfinished">Entry with name %1 already exists in group %2.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1132"/>
+      <location filename="../dbtree/dbtree.cpp" line="1137"/>
       <source>Delete group</source>
       <translation>מחיקת קבוצה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1133"/>
+      <location filename="../dbtree/dbtree.cpp" line="1138"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation type="unfinished">Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1196"/>
+      <location filename="../dbtree/dbtree.cpp" line="1201"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation>האם להסיר מסד נתונים &apos;%1&apos; מהרשימה?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1204"/>
+      <location filename="../dbtree/dbtree.cpp" line="1209"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation>האם להסיר את מסדי הנתונים הבאים מהרשימה:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1206"/>
+      <location filename="../dbtree/dbtree.cpp" line="1211"/>
       <source>Remove database</source>
       <translation>הסרת מסד נתונים</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1246"/>
-      <location filename="../dbtree/dbtree.cpp" line="1451"/>
+      <location filename="../dbtree/dbtree.cpp" line="1251"/>
+      <location filename="../dbtree/dbtree.cpp" line="1456"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1266"/>
-      <location filename="../dbtree/dbtree.cpp" line="1426"/>
+      <location filename="../dbtree/dbtree.cpp" line="1271"/>
+      <location filename="../dbtree/dbtree.cpp" line="1431"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1516"/>
+      <location filename="../dbtree/dbtree.cpp" line="1521"/>
       <source>Vacuum (%1)</source>
       <translation>ואקום (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1530"/>
+      <location filename="../dbtree/dbtree.cpp" line="1535"/>
       <source>Integrity check (%1)</source>
       <translation>בדיקת כלילות (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1566"/>
+      <location filename="../dbtree/dbtree.cpp" line="1571"/>
       <source>Reset autoincrement</source>
       <translation type="unfinished">Reset autoincrement</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1566"/>
+      <location filename="../dbtree/dbtree.cpp" line="1571"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation type="unfinished">Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1573"/>
+      <location filename="../dbtree/dbtree.cpp" line="1578"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1575"/>
+      <location filename="../dbtree/dbtree.cpp" line="1580"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1595"/>
+      <location filename="../dbtree/dbtree.cpp" line="1600"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation>האם למחוק את כל הנתונים מטבלה או טבלאות: %1?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1607"/>
+      <location filename="../dbtree/dbtree.cpp" line="1612"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to delete data from table &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1611"/>
+      <location filename="../dbtree/dbtree.cpp" line="1616"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation type="unfinished">All data has been deleted for table &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1739"/>
+      <location filename="../dbtree/dbtree.cpp" line="1744"/>
       <source>Following objects will be deleted: %1.</source>
       <translation type="unfinished">Following objects will be deleted: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1742"/>
+      <location filename="../dbtree/dbtree.cpp" line="1747"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation type="unfinished">Following databases will be removed from list: %1.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1745"/>
+      <location filename="../dbtree/dbtree.cpp" line="1750"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation type="unfinished">Remainig objects from deleted group will be moved in place where the group used to be.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1747"/>
+      <location filename="../dbtree/dbtree.cpp" line="1752"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;האם להמשיך?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1749"/>
+      <location filename="../dbtree/dbtree.cpp" line="1754"/>
       <source>Delete objects</source>
       <translation type="unfinished">Delete objects</translation>
     </message>
@@ -2530,25 +2530,25 @@ All objects from this group will be moved to parent group.</translation>
   <context>
     <name>DbTreeItemDelegate</name>
     <message>
-      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
+      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="93"/>
       <source>error</source>
       <comment>dbtree labels</comment>
       <translation>שגיאה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
+      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="110"/>
       <source>(system table)</source>
       <comment>database tree label</comment>
       <translation>(טבלת מערכת)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
+      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="128"/>
       <source>(virtual)</source>
       <comment>virtual table label</comment>
       <translation>(מְדֻמֶּה)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
+      <location filename="../dbtree/dbtreeitemdelegate.cpp" line="140"/>
       <source>(system index)</source>
       <comment>database tree label</comment>
       <translation>(מפתח מערכת)</translation>
@@ -2617,76 +2617,76 @@ All objects from this group will be moved to parent group.</translation>
       <translation>מַזְנֵקים ( %1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1225"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
       <source>Copy</source>
       <translation>העתקה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1226"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
       <source>Move</source>
       <translation>העברה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1231"/>
       <source>Include data</source>
       <translation>הכללת נתונים</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
       <source>Include indexes</source>
       <translation>הכללת מפתחים</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1230"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1233"/>
       <source>Include triggers</source>
       <translation>לכלולל מזנקים</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1235"/>
       <source>Abort</source>
       <translation>נטישה</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1291"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1294"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation type="unfinished">Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1356"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1358"/>
       <source>Referenced tables</source>
       <translation type="unfinished">Referenced tables</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1357"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1359"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation type="unfinished">Do you want to include following referenced tables as well:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1366"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1368"/>
       <source>Name conflict</source>
       <translation>התנגשות שמות</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1367"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1369"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation type="unfinished">Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1380"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1382"/>
       <source>SQL statements conversion</source>
       <translation type="unfinished">SQL statements conversion</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1388"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1390"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation type="unfinished">Following error occurred while converting SQL statements to the target SQLite version:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1389"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1391"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation type="unfinished">Would you like to ignore those errors and proceed?</translation>
     </message>
@@ -3042,6 +3042,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="146"/>
+      <location filename="../dialogs/exportdialog.ui" line="229"/>
       <source>Export table indexes</source>
       <translation type="unfinished">Export table indexes</translation>
     </message>
@@ -3061,73 +3062,78 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Select database objects to export</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="205"/>
+      <location filename="../dialogs/exportdialog.ui" line="236"/>
       <source>Export data from tables</source>
       <translation type="unfinished">Export data from tables</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="215"/>
+      <location filename="../dialogs/exportdialog.ui" line="198"/>
       <source>Select all</source>
       <translation>בחירת הכול</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="222"/>
+      <location filename="../dialogs/exportdialog.ui" line="219"/>
       <source>Deselect all</source>
       <translation>ביטול בחירת הכול</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="232"/>
-      <location filename="../dialogs/exportdialog.ui" line="252"/>
+      <location filename="../dialogs/exportdialog.ui" line="212"/>
+      <location filename="../dialogs/exportdialog.ui" line="266"/>
       <source>Database:</source>
       <translation>מסד נתונים:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="240"/>
+      <location filename="../dialogs/exportdialog.ui" line="246"/>
+      <source>Export table and view triggers</source>
+      <translation type="unfinished">Export table and view triggers</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/exportdialog.ui" line="254"/>
       <source>Query to export results for</source>
       <translation type="unfinished">Query to export results for</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="259"/>
+      <location filename="../dialogs/exportdialog.ui" line="273"/>
       <source>Query to be executed for results:</source>
       <translation type="unfinished">Query to be executed for results:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="267"/>
+      <location filename="../dialogs/exportdialog.ui" line="281"/>
       <source>Export format and options</source>
       <translation type="unfinished">Export format and options</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="321"/>
+      <location filename="../dialogs/exportdialog.ui" line="335"/>
       <source>Export format</source>
       <translation>מבנה ייצוא</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="333"/>
+      <location filename="../dialogs/exportdialog.ui" line="347"/>
       <source>Output</source>
       <translation>פלט</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="339"/>
+      <location filename="../dialogs/exportdialog.ui" line="353"/>
       <source>Exported file path</source>
       <translation type="unfinished">Exported file path</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="346"/>
+      <location filename="../dialogs/exportdialog.ui" line="360"/>
       <source>Clipboard</source>
       <translation>לוח גזירים</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="360"/>
+      <location filename="../dialogs/exportdialog.ui" line="374"/>
       <source>File</source>
       <translation>קובץ</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="385"/>
+      <location filename="../dialogs/exportdialog.ui" line="399"/>
       <source>Exported text encoding:</source>
       <translation type="unfinished">Exported text encoding:</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.ui" line="401"/>
+      <location filename="../dialogs/exportdialog.ui" line="415"/>
       <source>Export format options</source>
       <translation type="unfinished">Export format options</translation>
     </message>
@@ -3189,7 +3195,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Pick file to export to</translation>
     </message>
     <message>
-      <location filename="../dialogs/exportdialog.cpp" line="784"/>
+      <location filename="../dialogs/exportdialog.cpp" line="798"/>
       <source>Internal error during export. This is a bug. Please report it.</source>
       <translation>שגיאה פנימית במהלך ייצוא. זהו תקל. נא לדווח על כך.</translation>
     </message>
@@ -3795,298 +3801,298 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>הצגת סרגל־כלים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="115"/>
+      <location filename="../mainwindow.cpp" line="116"/>
       <source>Configuration widgets</source>
       <translation type="unfinished">Configuration widgets</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="116"/>
+      <location filename="../mainwindow.cpp" line="117"/>
       <source>Syntax highlighting engines</source>
       <translation type="unfinished">Syntax highlighting engines</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="117"/>
+      <location filename="../mainwindow.cpp" line="118"/>
       <source>Data editors</source>
       <translation>עורכי נתונים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="129"/>
+      <location filename="../mainwindow.cpp" line="130"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
       <translation>ריצה במצב ניפוי־תקלים. לחיצה על %1, או מתפריט &apos;עזרה / פתיחת עמדת־הפעלת ניפוי־תקלים&apos;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="131"/>
+      <location filename="../mainwindow.cpp" line="132"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
       <translation>ריצה במצב ניפוי־תקלים. הודעות ניפוי־תקלים מודפסות על הפלט התיקני.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="224"/>
+      <location filename="../mainwindow.cpp" line="225"/>
       <source>You need to restart application to make the language change take effect.</source>
       <translation type="unfinished">You need to restart application to make the language change take effect.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="269"/>
+      <location filename="../mainwindow.cpp" line="270"/>
       <source>Open SQL &amp;editor</source>
       <translation>פתיחת &amp;עורך SQL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="270"/>
+      <location filename="../mainwindow.cpp" line="271"/>
       <source>Open DDL &amp;history</source>
       <translation>פתיחת הי&amp;סטורית DDL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="271"/>
+      <location filename="../mainwindow.cpp" line="272"/>
       <source>Open SQL &amp;functions editor</source>
       <translation type="unfinished">Open SQL &amp;functions editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="272"/>
+      <location filename="../mainwindow.cpp" line="273"/>
       <source>Open code &amp;snippets editor</source>
       <translation type="unfinished">Open code &amp;snippets editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="273"/>
+      <location filename="../mainwindow.cpp" line="274"/>
       <source>Open &amp;collations editor</source>
       <translation type="unfinished">Open &amp;collations editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="274"/>
+      <location filename="../mainwindow.cpp" line="275"/>
       <source>Open ex&amp;tension manager</source>
       <translation type="unfinished">Open ex&amp;tension manager</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="275"/>
+      <location filename="../mainwindow.cpp" line="276"/>
       <source>&amp;Import</source>
       <translation>&amp;ייבוא</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="276"/>
+      <location filename="../mainwindow.cpp" line="277"/>
       <source>E&amp;xport</source>
       <translation>י&amp;צוא</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="278"/>
+      <location filename="../mainwindow.cpp" line="279"/>
       <source>Open confi&amp;guration dialog</source>
       <translation type="unfinished">Open confi&amp;guration dialog</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="280"/>
+      <location filename="../mainwindow.cpp" line="281"/>
       <source>&amp;Tile windows</source>
       <translation>&amp;חלונות אריח</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="281"/>
+      <location filename="../mainwindow.cpp" line="282"/>
       <source>Tile windows &amp;horizontally</source>
       <translation type="unfinished">Tile windows &amp;horizontally</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="282"/>
+      <location filename="../mainwindow.cpp" line="283"/>
       <source>Tile windows &amp;vertically</source>
       <translation type="unfinished">Tile windows &amp;vertically</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="283"/>
+      <location filename="../mainwindow.cpp" line="284"/>
       <source>&amp;Cascade windows</source>
       <translation type="unfinished">&amp;Cascade windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="284"/>
+      <location filename="../mainwindow.cpp" line="285"/>
       <source>Next window</source>
       <translation>חלון הבא</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="285"/>
+      <location filename="../mainwindow.cpp" line="286"/>
       <source>Previous window</source>
       <translation type="unfinished">Previous window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="286"/>
+      <location filename="../mainwindow.cpp" line="287"/>
       <source>Hide status field</source>
       <translation>הסתרת שדה מצב</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="290"/>
+      <location filename="../mainwindow.cpp" line="291"/>
       <source>Close &amp;all windows</source>
       <translation>סגירת כל ה&amp;חלונות</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="293"/>
+      <location filename="../mainwindow.cpp" line="294"/>
       <source>Re&amp;store recently closed window</source>
       <translation type="unfinished">Re&amp;store recently closed window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="288"/>
+      <location filename="../mainwindow.cpp" line="289"/>
       <source>Close current &amp;window</source>
       <translation type="unfinished">Close current &amp;window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="289"/>
+      <location filename="../mainwindow.cpp" line="290"/>
       <source>Close &amp;other windows</source>
       <translation type="unfinished">Close &amp;other windows</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="291"/>
+      <location filename="../mainwindow.cpp" line="292"/>
       <source>Close windows on the &amp;left</source>
       <translation type="unfinished">Close windows on the &amp;left</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="292"/>
+      <location filename="../mainwindow.cpp" line="293"/>
       <source>Close windows on the &amp;right</source>
       <translation type="unfinished">Close windows on the &amp;right</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="294"/>
+      <location filename="../mainwindow.cpp" line="295"/>
       <source>Re&amp;name selected window</source>
       <translation type="unfinished">Re&amp;name selected window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="296"/>
+      <location filename="../mainwindow.cpp" line="297"/>
       <source>Open Debug Console</source>
       <translation>פתיחת עמדת הפעלת ניפוי תקלים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="297"/>
+      <location filename="../mainwindow.cpp" line="298"/>
       <source>Open CSS Console</source>
       <translation type="unfinished">Open CSS Console</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="298"/>
+      <location filename="../mainwindow.cpp" line="299"/>
       <source>Report a &amp;bug</source>
       <translation>דיווח על תקל</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="299"/>
+      <location filename="../mainwindow.cpp" line="300"/>
       <source>D&amp;onate</source>
       <translation>ת&amp;רומה</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="300"/>
+      <location filename="../mainwindow.cpp" line="301"/>
       <source>Propose a new &amp;feature</source>
       <translation type="unfinished">Propose a new &amp;feature</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="301"/>
+      <location filename="../mainwindow.cpp" line="302"/>
       <source>&amp;About</source>
       <translation>על &amp;אודות</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="302"/>
+      <location filename="../mainwindow.cpp" line="303"/>
       <source>&amp;Licenses</source>
       <translation>&amp;רישיונות</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="303"/>
+      <location filename="../mainwindow.cpp" line="304"/>
       <source>Open home &amp;page</source>
       <translation>פתיחת עמוד הבית</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="304"/>
+      <location filename="../mainwindow.cpp" line="305"/>
       <source>User &amp;Manual</source>
       <translation>&amp;מדריך למשתמש</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="305"/>
+      <location filename="../mainwindow.cpp" line="306"/>
       <source>SQLite &amp;documentation</source>
       <translation type="unfinished">SQLite &amp;documentation</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="306"/>
+      <location filename="../mainwindow.cpp" line="307"/>
       <source>Bugs and feature &amp;requests</source>
       <translation>דיווח על תקלים ובקשות לתכונות חדשות</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="307"/>
+      <location filename="../mainwindow.cpp" line="308"/>
       <source>Quit</source>
       <translation>יציאה</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="309"/>
+      <location filename="../mainwindow.cpp" line="310"/>
       <source>Check for &amp;updates</source>
       <translation>בדיקת זמינות &amp;עדכונים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="331"/>
+      <location filename="../mainwindow.cpp" line="332"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
       <translation>&amp;מסד נתונים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="354"/>
+      <location filename="../mainwindow.cpp" line="355"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
       <translation>&amp;מִבְנֶה</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="375"/>
+      <location filename="../mainwindow.cpp" line="376"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
       <translation>&amp;מצג</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="379"/>
+      <location filename="../mainwindow.cpp" line="380"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
       <translation>רשימת חלונות</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="402"/>
+      <location filename="../mainwindow.cpp" line="403"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
       <translation>&amp;כלים</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="418"/>
+      <location filename="../mainwindow.cpp" line="419"/>
       <source>&amp;Help</source>
       <translation>&amp;עזרה</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="590"/>
+      <location filename="../mainwindow.cpp" line="597"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation type="unfinished">Could not set style: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="721"/>
+      <location filename="../mainwindow.cpp" line="728"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="737"/>
+      <location filename="../mainwindow.cpp" line="744"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="780"/>
+      <location filename="../mainwindow.cpp" line="787"/>
       <source>Rename window</source>
       <translation type="unfinished">Rename window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="780"/>
+      <location filename="../mainwindow.cpp" line="787"/>
       <source>Enter new name for the window:</source>
       <translation type="unfinished">Enter new name for the window:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="883"/>
+      <location filename="../mainwindow.cpp" line="890"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation type="unfinished">New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="891"/>
+      <location filename="../mainwindow.cpp" line="898"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1020"/>
+      <location filename="../mainwindow.cpp" line="1027"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1027"/>
+      <location filename="../mainwindow.cpp" line="1034"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1032"/>
+      <location filename="../mainwindow.cpp" line="1039"/>
       <source>Could not add database %1 to list.</source>
       <translation type="unfinished">Could not add database %1 to list.</translation>
     </message>
@@ -5652,38 +5658,38 @@ find next</source>
       <translation type="unfinished">Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1427"/>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1486"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1430"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1489"/>
       <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
       <translation type="unfinished">Error while executing SQL query on database &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1483"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1486"/>
       <source>Error while loading query results: %1</source>
       <translation type="unfinished">Error while loading query results: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1650"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1653"/>
       <source>There are less columns in the new query, sort order has been reset.</source>
       <translation type="unfinished">There are less columns in the new query, sort order has been reset.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Insert multiple rows</source>
       <translation>הכנסת שורות מרובות</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="1969"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="1972"/>
       <source>Number of rows to insert:</source>
       <translation type="unfinished">Number of rows to insert:</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2024"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2027"/>
       <source>Delete rows</source>
       <translation>מחיקת שורות</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodel.cpp" line="2025"/>
+      <location filename="../datagrid/sqlquerymodel.cpp" line="2028"/>
       <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation type="unfinished">You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1

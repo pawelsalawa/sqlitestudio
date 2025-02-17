@@ -346,22 +346,22 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     </message>
     <message>
       <location filename="../exportworker.cpp" line="352"/>
-      <location filename="../exportworker.cpp" line="410"/>
+      <location filename="../exportworker.cpp" line="411"/>
       <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
       <translation>Impossibile analizzare %1 per esportarlo. Sarà escluso dall&apos;output di esportazione.</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="614"/>
+      <location filename="../exportworker.cpp" line="628"/>
       <source>Error while reading data to export from table %1: %2</source>
       <translation>Errore durante la lettura dei dati da esportare dalla tabella %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="622"/>
+      <location filename="../exportworker.cpp" line="636"/>
       <source>Error while counting data to export from table %1: %2</source>
       <translation>Errore durante il conteggio dei dati da esportare dalla tabella %1: %2</translation>
     </message>
     <message>
-      <location filename="../exportworker.cpp" line="638"/>
+      <location filename="../exportworker.cpp" line="652"/>
       <source>Error while counting data column width to export from table %1: %2</source>
       <translation>Errore durante il conteggio della larghezza della colonna dei dati da esportare dalla tabella %1: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Query incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2574"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6104"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
       <source>Syntax error</source>
       <translation>Errore di sintassi</translation>
     </message>
