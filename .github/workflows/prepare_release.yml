@@ -12,12 +12,17 @@ env:
                 "portable_url": ""
             },
             "mac_release": {
-                "os": "MacOS X x64",
+                "os": "MacOS X universal (x64 & ARM64)",
                 "installer_url": "",
                 "portable_url": ""
             },
             "lin_release": {
                 "os": "Linux x64",
+                "installer_url": "",
+                "portable_url": ""
+            },
+            "lin_release_arm": {
+                "os": "Linux ARM64",
                 "installer_url": "",
                 "portable_url": ""
             }
