@@ -1,6 +1,6 @@
 env:
     TARGET_ARCH: 'x86_64'
-    QT_VERSION: '6.8.2'
+    QT_VERSION: '6.7.3'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.13'
@@ -30,7 +30,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-24.04
+        runs-on: ubuntu-22.04
 
         steps:
             - uses: actions/setup-python@v4
@@ -189,13 +189,6 @@ jobs:
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
               run: cp -P /usr/local/lib/libsqlite3.so* lib/
-
-            - name: Copy SQLCipher's libcrypto to portable dir
-              working-directory: ${{ env.PORTABLE_DIR }}
-              run: |
-                LIBCRYPTO=$(ldd plugins/libDbSqliteCipher.so | grep crypto | awk '{print $3}')
-                REAL_LIBCRYPTO=$(readlink -e $LIBCRYPTO)
-                cp -P $REAL_LIBCRYPTO lib/$(basename -- $LIBCRYPTO)
 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
