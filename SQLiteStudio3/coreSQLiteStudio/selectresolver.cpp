@@ -780,6 +780,8 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
             col.tableAlias = intCol.tableAlias;
             col.oldTableAliases = intCol.oldTableAliases;
             col.flags = intCol.flags;
+            if (col.table.toLower() == "sqlite_master" && intCol.table.toLower() == "sqlite_schema")
+                col.table = intCol.table; // SQLite reports sqlite_master even if sqlite_schema was used.
         }
     }
     else

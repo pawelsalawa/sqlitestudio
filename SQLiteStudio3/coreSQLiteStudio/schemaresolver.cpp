@@ -1420,7 +1420,7 @@ bool SchemaResolver::isVirtualTable(const QString& table)
 
 SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& table)
 {
-    return resolveVirtualTableAsRegularTable("maine", table);
+    return resolveVirtualTableAsRegularTable("main", table);
 }
 
 SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& database, const QString& table)
@@ -1435,6 +1435,10 @@ QStringList SchemaResolver::getRowIdTableColumns(const QString& table)
 
 QStringList SchemaResolver::getRowIdTableColumns(const QString& database, const QString& table)
 {
+    QString lowerTable = table.toLower();
+    if (lowerTable == "sqlite_master" || lowerTable == "sqlite_schema")
+        return QStringList{"ROWID"};
+
     SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list(%2);")
                                         .arg(database, wrapObjIfNeeded(table)));
     if (results->isError())
