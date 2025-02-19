@@ -5,6 +5,7 @@
 - BUGFIX: #5386 Fixed vertical scroll position when refreshing grid data view.
 - BUGFIX: #5348 Fix name-based filtering in Functions/Collations editors and repair Implementation Language dropdown in Collations Editor.
 - BUGFIX: #5348 Fix name-based filtering in Code Snippet/SQLite Extension editors.
+- BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.

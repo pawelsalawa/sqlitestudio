@@ -88,7 +88,7 @@ void SqlEditor::init()
     initActions();
     setupMenu();
 
-    objectsInNamedDbWatcher = new QFutureWatcher<QHash<QString,QStringList>>(this);
+    objectsInNamedDbWatcher = new QFutureWatcher<AsyncObjectsRefreshResults>(this);
     connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
 
     textLocator = new SearchTextLocator(document(), this);
@@ -605,10 +605,10 @@ void SqlEditor::refreshValidObjects()
         return;
 
     Db* dbClone = db->clone();
-    QFuture<QHash<QString,QStringList>> objectsInNamedDbFuture = QtConcurrent::run([dbClone]()
+    QFuture<AsyncObjectsRefreshResults> objectsInNamedDbFuture = QtConcurrent::run([dbClone]()
     {
         dbClone->openQuiet();
-        QHash<QString,QStringList> objectsByDbName;
+        StrHash<QStringList> objectsByDbName;
         SchemaResolver resolver(dbClone);
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
@@ -618,9 +618,7 @@ void SqlEditor::refreshValidObjects()
             objects = resolver.getAllObjects(dbName);
             objectsByDbName[dbName] << objects;
         }
-        dbClone->closeQuiet();
-        delete dbClone;
-        return objectsByDbName;
+        return AsyncObjectsRefreshResults(objectsByDbName, dbClone);
     });
     objectsInNamedDbWatcher->setFuture(objectsInNamedDbFuture);
 }
@@ -958,7 +956,14 @@ void SqlEditor::parseContents()
 
 void SqlEditor::scheduleQueryParserForSchemaRefresh()
 {
-    objectsInNamedDb = objectsInNamedDbWatcher->future().result();
+    AsyncObjectsRefreshResults futureResults = objectsInNamedDbWatcher->future().result();
+    objectsInNamedDb = futureResults.first;
+
+    // Cleanup cloned db in the main thread, so that SQLite extensions are cleaned up in the same thread, avoiding possible non-thread-safe extensions.
+    Db* dbClone = futureResults.second;
+    dbClone->closeQuiet();
+    delete dbClone;
+
     scheduleQueryParser(true, true);
 }
 

@@ -389,7 +389,7 @@ QString longest(const QStringList& strList)
 {
     int max = 0;
     QString result;
-    for (const QString str : strList)
+    for (const QString& str : strList)
     {
         if (str.size() > max)
         {
@@ -404,7 +404,7 @@ QString shortest(const QStringList& strList)
 {
     int max = INT_MAX;
     QString result;
-    for (const QString str : strList)
+    for (const QString& str : strList)
     {
         if (str.size() < max)
         {
@@ -450,7 +450,7 @@ QStringList applyMargin(const QString& str, int margin)
 
             while ((line + word).length() > margin)
             {
-                line += word.left(margin);
+                line += word.leftRef(margin);
                 lines << line;
                 word = word.mid(margin);
             }
@@ -627,7 +627,7 @@ QStringList textCodecNames()
     QList<QByteArray> codecs = QTextCodec::availableCodecs();
     QStringList names;
     QSet<QString> nameSet;
-    for (const QByteArray& codec : codecs)
+    for (QByteArray& codec : codecs)
         nameSet << QString::fromLatin1(codec.constData());
 
     names = nameSet.values();
@@ -885,7 +885,7 @@ bool copyRecursively(const QString& src, const QString& dst)
 
         QDir sourceDir(src);
         QStringList fileNames = sourceDir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             const QString newSrcFilePath = src + QLatin1Char('/') + fileName;
             const QString newTgtFilePath = dst + QLatin1Char('/') + fileName;
@@ -929,7 +929,7 @@ bool isWritableRecursively(const QString& dir)
     if (fi.isDir())
     {
         QStringList fileNames = QDir(dir).entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             if (!isWritableRecursively(dir + QLatin1Char('/') + fileName))
                 return false;
@@ -1025,7 +1025,7 @@ QString readFileContents(const QString& path, QString* err)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         if (err)
-            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path).arg(file.errorString());
+            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path, file.errorString());
 
         return QString();
     }
