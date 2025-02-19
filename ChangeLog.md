@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 3.4.17
+- BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.
+
 ### 3.4.16
 - ADDED: #5231 Added safe-mode command line option to bypass issues caused by corrupted session.
 - CHANGE: #5248 Database Export dialog has now Export Indexes and Export Triggers options, just like the Single Table Export dialog.
