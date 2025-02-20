@@ -239,6 +239,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void fontSizeChangeRequested(int delta);
         void incrFontSize();
         void decrFontSize();
+        void resetFilterValueAfterInterrupting();
 
     signals:
         void updateFileExecProgress(int value);

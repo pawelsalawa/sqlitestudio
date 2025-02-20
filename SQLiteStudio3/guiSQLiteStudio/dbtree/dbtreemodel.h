@@ -65,13 +65,21 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         static const constexpr char* MIMETYPE = "application/x-sqlitestudio-dbtreeitem";
 
     private:
+        class ItemFiltering : public Interruptable
+        {
+            public:
+                virtual ~ItemFiltering() {}
+                void interrupt() {interrupted = true;}
+                bool interrupted = false;
+        };
+
         void readGroups(QList<Db*> dbList);
         QList<Config::DbGroupPtr> childsToConfig(QStandardItem* item);
         void restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbList = nullptr, QStandardItem *parent = nullptr);
-        bool applyFilter(QStandardItem* parentItem, const QString& filter);
+        void applyFilter(QStandardItem* parentItem, const QString& filter);
+        bool applyFilterRecursively(QStandardItem* parentItem, const QString& filter);
         void refreshSchema(Db* db, QStandardItem* item);
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
-        QStandardItem* refreshSchemaDb(Db* db);
         QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QSet<QString>& virtualTables, bool sort);
         QList<QStandardItem*> refreshSchemaTableColumns(const QStringList& columns);
         QList<QStandardItem*> refreshSchemaIndexes(const QStringList& indexes, bool sort);
@@ -111,6 +119,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         QList<Interruptable*> interruptables;
         bool ignoreDbLoadedSignal = false;
         QString currentFilter;
+        ItemFiltering* filteringInProgress = nullptr;
 
     private slots:
         void expanded(const QModelIndex &index);
@@ -138,6 +147,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
 
     signals:
         void updateItemHidden(DbTreeItem* item);
+        void filteringInterrupted();
 };
 
 #endif // DBTREEMODEL_H

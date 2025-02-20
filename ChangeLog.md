@@ -2,6 +2,7 @@
 
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.
+- BUGFIX: #5263 Fixed database list filter field as it stopped filtering by column names after bugfix #4980.
 - BUGFIX: Fixed warning when execuing SELECT on sqlite_schema.
 
 ### 3.4.16

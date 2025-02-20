@@ -24,6 +24,7 @@
 #include <QCheckBox>
 #include <QWidgetAction>
 #include <QClipboard>
+#include <QElapsedTimer>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -130,27 +131,63 @@ QStringList DbTreeModel::getGroupFor(QStandardItem *item)
 void DbTreeModel::applyFilter(const QString &filter)
 {
     applyFilter(root(), filter);
-    currentFilter = filter;
 }
 
-bool DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
+void DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
+{
+    if (filteringInProgress) // already processing the (possibly interrupted) filtering - ssubsequent call is possible after filter edit field is cleared
+        return;
+
+    filteringInProgress = new ItemFiltering();
+    interruptableStarted(filteringInProgress);
+
+    applyFilterRecursively(parentItem, filter);
+    currentFilter = filter;
+
+    if (filteringInProgress->interrupted)
+    {
+        applyFilterRecursively(parentItem, "");
+        currentFilter = "";
+        emit filteringInterrupted();
+    }
+    interruptableFinished(filteringInProgress);
+
+    safe_delete(filteringInProgress);
+}
+
+bool DbTreeModel::applyFilterRecursively(QStandardItem *parentItem, const QString &filter)
 {
     bool empty = filter.isEmpty();
-    bool visibilityForParent = false;
-    DbTreeItem* item = nullptr;
-    QModelIndex index;
-    bool subFilterResult;
-    bool matched;
+    bool visibilityForParent = filteringInProgress->interrupted; // if interrupted, this is true by default, otherwise it's false at start and calculated later
     for (int i = 0; i < parentItem->rowCount(); i++)
     {
-         item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
-         index = item->index();
-         subFilterResult = applyFilter(item, filter);
-         matched = empty || subFilterResult || item->text().contains(filter, Qt::CaseInsensitive);
-         treeView->setRowHidden(index.row(), index.parent(), !matched);
+        DbTreeItem* item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
+        if (filteringInProgress->interrupted)
+        {
+            applyFilterRecursively(item, filter);
+            QModelIndex index = item->index();
+            treeView->setRowHidden(index.row(), index.parent(), false);
+            continue;
+        }
 
-         if (matched)
-             visibilityForParent = true;
+        if (!filter.isEmpty())
+        {
+            if (item->getType() == DbTreeItem::Type::TABLE)
+                loadTableSchema(item);
+            else if (item->getType() == DbTreeItem::Type::VIEW)
+                loadViewSchema(item);
+        }
+
+        QModelIndex index = item->index();
+        bool subFilterResult = applyFilterRecursively(item, filter);
+        bool matched = empty || subFilterResult || item->text().contains(filter, Qt::CaseInsensitive);
+        treeView->setRowHidden(index.row(), index.parent(), !matched);
+
+        if (matched)
+            visibilityForParent = true;
+
+        if (i % 10 == 9)
+            qApp->processEvents();
     }
     return visibilityForParent;
 }
@@ -348,7 +385,8 @@ void DbTreeModel::dbRemoved(QStandardItem* item)
 
 void DbTreeModel::interrupt()
 {
-    dbOrganizer->interrupt();
+    for (Interruptable* i : interruptables)
+        i->interrupt();
 }
 
 void DbTreeModel::refreshSchema(Db* db)

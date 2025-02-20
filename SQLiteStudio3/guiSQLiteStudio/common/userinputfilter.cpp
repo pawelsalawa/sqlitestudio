@@ -4,12 +4,16 @@
 #include <QTimer>
 #include <QLineEdit>
 
-UserInputFilter::UserInputFilter(QLineEdit* lineEdit, QObject* filterHandler, const char* handlerSlot) :
+UserInputFilter::UserInputFilter(QLineEdit* lineEdit, QObject* filterHandler, const char* handlerSlot, bool onlyEdited) :
     QObject(lineEdit),
     lineEdit(lineEdit)
 {
     trigger = new LazyTrigger(200, this);
-    connect(lineEdit, SIGNAL(textChanged(QString)), this, SLOT(filterModified()));
+    if (onlyEdited)
+        connect(lineEdit, SIGNAL(textEdited(QString)), this, SLOT(filterModified()));
+    else
+        connect(lineEdit, SIGNAL(textChanged(QString)), this, SLOT(filterModified()));
+
     connect(trigger, SIGNAL(triggered()), this, SLOT(applyFilter()));
     connect(this, SIGNAL(applyFilter(QString)), filterHandler, handlerSlot);
 }
