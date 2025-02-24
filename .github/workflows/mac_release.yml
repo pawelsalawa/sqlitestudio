@@ -71,6 +71,7 @@ jobs:
                 
                 echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
                 echo "TCL_CONFIG=/opt/local/lib/tclConfig.sh" >> $GITHUB_ENV
+                echo "TCL_VERSION_MAJ=$(echo 'puts $tcl_version' | /opt/local/bin/tclsh)" >> $GITHUB_ENV
                 
                 echo "Tcl arch 1:"
                 ls -l /opt/local/lib/libtcl8.6.dylib

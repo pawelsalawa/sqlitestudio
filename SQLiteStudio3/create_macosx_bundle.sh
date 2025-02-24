@@ -172,8 +172,6 @@ install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteS
 libdir=$(cd ../../../lib/ && pwd)
 debug "lib:" "$(ls -l "$libdir")"
 
-debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
-
 embed_libsqlite3() {
     cp -RPf "$libdir/libsqlite3.0.dylib" "$1/Contents/Frameworks"
     libsqlite3_in_bundle="$1/Contents/Frameworks/libsqlite3.0.dylib"
@@ -186,9 +184,26 @@ embed_libsqlite3() {
           "$libsqlite3_in_bundle"
     fi
 }
-embed_libsqlite3 SQLiteStudio.app
 
+embed_libtcl() {
+    libtcl_name="libtcl$TCL_VERSION_MAJ.dylib"
+    cp -RPf "/opt/local/lib/$libtcl_name" "$1/Contents/Frameworks"
+    libtcl_in_bundle="$1/Contents/Frameworks/$libtcl_name"
+    run otool -L "$libtcl_in_bundle"
+#    if otool -L "$libtcl_in_bundle" | grep -q /opt/local; then
+#        info "MacPorts $libtcl_name detected! Fixing dylib references"
+#        run install_name_tool \
+#          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
+#          -id "@executable_path/../Frameworks/libsqlite3.0.dylib" \
+#          "$libtcl_in_bundle"
+#    fi
+}
+
+debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
+embed_libsqlite3 SQLiteStudio.app
 debug "in frameworks - 2:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
+embed_libtcl SQLiteStudio.app
+debug "in frameworks - 3:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 
 # Plugin paths
 fixPluginPaths() {
