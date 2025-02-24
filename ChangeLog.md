@@ -1,6 +1,5 @@
 # ChangeLog
 
-<<<<<<< HEAD
 ### 4.0.0
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #5237 ARM64 code compatibility.
@@ -8,12 +7,11 @@
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
-=======
+
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.
 - BUGFIX: #5263 Fixed database list filter field as it stopped filtering by column names after bugfix #4980.
 - BUGFIX: Fixed warning when execuing SELECT on sqlite_schema.
->>>>>>> origin/3.4
 
 ### 3.4.16
 - ADDED: #5231 Added safe-mode command line option to bypass issues caused by corrupted session.
