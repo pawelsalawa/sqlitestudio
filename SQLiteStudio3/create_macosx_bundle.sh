@@ -22,9 +22,9 @@ BACKGROUND_IMG=""  # TODO
 BACKGROUND_RGB="56 168 243"
 
 abort() { printf "ERROR: %s\n" "$@"; exit 1; }
-debug() { [ "$quiet" -gt 0 ] || printf "DEBUG: %s\n" "$@"; }
-info() { [ "$quiet" -gt 1 ] || printf "INFO: %s\n" "$@"; }
-run() { [ "$quiet" -gt 2 ] || { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; }; "$@"; }
+debug() { [ "$quiet" -gt 2 ] && printf "DEBUG: %s\n" "$@"; }
+info() { [ "$quiet" -gt 1 ] && printf "INFO: %s\n" "$@"; }
+run() { [ "$quiet" -gt 0 ] && { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; }; "$@"; }
 
 codesign_app() {
     cat > entitlements.plist <<'EOF'
