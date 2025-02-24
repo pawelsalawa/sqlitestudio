@@ -21,10 +21,10 @@ PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
 BACKGROUND_IMG=""  # TODO
 BACKGROUND_RGB="56 168 243"
 
-abort() { printf "ERROR: %s\n" "$@"; exit 1; }
-debug() { [ "$quiet" -gt 2 ] && printf "DEBUG: %s\n" "$@"; }
-info() { [ "$quiet" -gt 1 ] && printf "INFO: %s\n" "$@"; }
-run() { [ "$quiet" -gt 0 ] && { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; }; "$@"; }
+abort() { echo "ERROR: $@"; exit 1; }
+debug() { [ "$quiet" -gt 2 ] && echo "DEBUG: $@"; }
+info() { [ "$quiet" -gt 1 ] && echo "INFO: $@"; }
+run() { [ "$quiet" -gt 0 ] && { printf 'RUN: '; echo "'$@'"; }; "$@"; }
 
 codesign_app() {
     cat > entitlements.plist <<'EOF'
