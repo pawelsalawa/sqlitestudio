@@ -246,9 +246,17 @@ jobs:
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qwebp; do
                     cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
                 done
-                cp tls/qopensslbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
+                cp tls/qschannelbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
+                
+            - name: Prepare portable distro (Qt)
+              shell: bash
+              run: |
+                cd "$ABSOLUTE_PORTABLE_DIR"
+                rm -f libssl*.dll
+                rm -f libcrypto*.dll
+                rm -f libeay*.dll
 
-            - name: Prepare portable distro (Deps)
+            - name: Remove deprecated dependencies (left from 3.4 branch)
               shell: bash
               run: |
                 cd ../lib
