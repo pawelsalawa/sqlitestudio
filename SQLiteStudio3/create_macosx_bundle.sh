@@ -15,6 +15,8 @@ while getopts qu _flag; do
 done
 shift $(( OPTIND - 1 ))
 
+echo "Verbosity level: $quiet"
+
 PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
 BACKGROUND_IMG=""  # TODO
 BACKGROUND_RGB="56 168 243"
