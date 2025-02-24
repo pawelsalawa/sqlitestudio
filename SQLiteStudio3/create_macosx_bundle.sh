@@ -302,6 +302,9 @@ elif [ "$3" = "dist" ]; then
 
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
+    
+    # Same for Tcl
+    embed_libtcl SQLiteStudio.app
 
     # Fix python dependencies in the image if linked to a Python library
     python_plugin_lib="SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib"
