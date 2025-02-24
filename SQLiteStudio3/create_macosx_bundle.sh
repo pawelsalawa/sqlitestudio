@@ -190,13 +190,13 @@ embed_libtcl() {
     cp -RPf "/opt/local/lib/$libtcl_name" "$1/Contents/Frameworks"
     libtcl_in_bundle="$1/Contents/Frameworks/$libtcl_name"
     run otool -L "$libtcl_in_bundle"
-#    if otool -L "$libtcl_in_bundle" | grep -q /opt/local; then
-#        info "MacPorts $libtcl_name detected! Fixing dylib references"
-#        run install_name_tool \
-#          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
-#          -id "@executable_path/../Frameworks/libsqlite3.0.dylib" \
-#          "$libtcl_in_bundle"
-#    fi
+    if otool -L "$libtcl_in_bundle" | grep -q /opt/local; then
+       info "MacPorts $libtcl_name detected! Fixing dylib references"
+        run install_name_tool \
+          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
+          -id "@executable_path/../Frameworks/$libtcl_name" \
+          "$libtcl_in_bundle"
+    fi
 }
 
 debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
