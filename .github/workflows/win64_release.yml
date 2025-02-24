@@ -248,18 +248,13 @@ jobs:
                 done
                 cp tls/qschannelbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
                 
-            - name: Prepare portable distro (Qt)
-              shell: bash
-              run: |
-                cd "$ABSOLUTE_PORTABLE_DIR"
-                rm -f libssl*.dll
-                rm -f libcrypto*.dll
-                rm -f libeay*.dll
-
-            - name: Remove deprecated dependencies (left from 3.4 branch)
+            - name: Prepare portable distro (Deps)
               shell: bash
               run: |
                 cd ../lib
+                rm -f libssl*.dll
+                rm -f libcrypto*.dll
+                rm -f libeay*.dll
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
                 cd "$ICU_LIBDIR"
                 cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
