@@ -54,6 +54,7 @@ jobs:
                 setup-python: 'false'
                 extra: '--external 7z'
                 modules: 'qtimageformats'
+                aqtversion: '==3.1.21'
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
