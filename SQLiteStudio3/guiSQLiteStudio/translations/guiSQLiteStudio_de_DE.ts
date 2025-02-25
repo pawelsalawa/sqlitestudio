@@ -4505,7 +4505,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="446"/>
       <source>references table %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">references table %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="448"/>
