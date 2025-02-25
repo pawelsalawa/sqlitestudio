@@ -4506,7 +4506,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="446"/>
       <source>references table %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">references table %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="448"/>

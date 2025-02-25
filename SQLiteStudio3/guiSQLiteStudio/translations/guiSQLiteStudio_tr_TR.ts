@@ -4505,7 +4505,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="446"/>
       <source>references table %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">references table %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="448"/>
