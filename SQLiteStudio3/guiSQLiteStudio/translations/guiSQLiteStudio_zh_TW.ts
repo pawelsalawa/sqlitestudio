@@ -2161,368 +2161,368 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>按名稱過濾</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="129"/>
+      <location filename="../dbtree/dbtree.cpp" line="130"/>
       <source>Copy</source>
       <translation>複製</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="130"/>
+      <location filename="../dbtree/dbtree.cpp" line="131"/>
       <source>Paste</source>
       <translation>貼上</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="131"/>
+      <location filename="../dbtree/dbtree.cpp" line="132"/>
       <source>Select all</source>
       <translation>全選</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="132"/>
+      <location filename="../dbtree/dbtree.cpp" line="133"/>
       <source>Create a group</source>
       <translation>建立分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="133"/>
+      <location filename="../dbtree/dbtree.cpp" line="134"/>
       <source>Delete the group</source>
       <translation>刪除分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="134"/>
+      <location filename="../dbtree/dbtree.cpp" line="135"/>
       <source>Rename the group</source>
       <translation>重新命名分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="135"/>
+      <location filename="../dbtree/dbtree.cpp" line="136"/>
       <source>&amp;Add a database</source>
       <translation>新增資料庫(&amp;A)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="136"/>
+      <location filename="../dbtree/dbtree.cpp" line="137"/>
       <source>&amp;Edit the database</source>
       <translation>編輯資料庫(&amp;E)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="137"/>
+      <location filename="../dbtree/dbtree.cpp" line="138"/>
       <source>&amp;Remove the database</source>
       <translation>移除資料庫(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="138"/>
+      <location filename="../dbtree/dbtree.cpp" line="139"/>
       <source>&amp;Connect to the database</source>
       <translation>連線到資料庫(&amp;C)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="139"/>
+      <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>&amp;Disconnect from the database</source>
       <translation>斷開資料庫連線(&amp;D)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="140"/>
+      <location filename="../dbtree/dbtree.cpp" line="141"/>
       <source>Import</source>
       <translation>匯入</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="141"/>
+      <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Export the database</source>
       <translation>匯出資料庫(&amp;E)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="142"/>
+      <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>Vac&amp;uum</source>
       <translation>釋放空閒佔用 (VACUUM) (&amp;U)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="143"/>
+      <location filename="../dbtree/dbtree.cpp" line="144"/>
       <source>&amp;Integrity check</source>
       <translation>檢查完整性(&amp;I)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="144"/>
+      <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Create a &amp;table</source>
       <translation>新建表(&amp;T)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="145"/>
+      <location filename="../dbtree/dbtree.cpp" line="146"/>
       <source>Edit the t&amp;able</source>
       <translation>編輯表(&amp;A)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="146"/>
+      <location filename="../dbtree/dbtree.cpp" line="147"/>
       <source>Delete the ta&amp;ble</source>
       <translation>刪除表(&amp;B)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="147"/>
+      <location filename="../dbtree/dbtree.cpp" line="148"/>
       <source>Export the table</source>
       <translation>匯出表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="148"/>
+      <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>Import into the table</source>
       <translation>匯入到表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="149"/>
+      <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>Populate table</source>
       <translation>填充表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="150"/>
+      <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Create similar table</source>
       <translation>建立相似的表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="151"/>
+      <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Reset autoincrement sequence</source>
       <translation>重置自動遞增序列</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="152"/>
+      <location filename="../dbtree/dbtree.cpp" line="153"/>
       <source>Create an &amp;index</source>
       <translation>建立索引(&amp;I)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="153"/>
+      <location filename="../dbtree/dbtree.cpp" line="154"/>
       <source>Edit the i&amp;ndex</source>
       <translation>編輯索引(&amp;N)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="154"/>
+      <location filename="../dbtree/dbtree.cpp" line="155"/>
       <source>Delete the in&amp;dex</source>
       <translation>刪除索引(&amp;D)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="155"/>
+      <location filename="../dbtree/dbtree.cpp" line="156"/>
       <source>Create a trig&amp;ger</source>
       <translation>建立觸發器(&amp;G)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="156"/>
+      <location filename="../dbtree/dbtree.cpp" line="157"/>
       <source>Edit the trigg&amp;er</source>
       <translation>編輯觸發器(&amp;E)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="157"/>
+      <location filename="../dbtree/dbtree.cpp" line="158"/>
       <source>Delete the trigge&amp;r</source>
       <translation>刪除觸發器(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="158"/>
+      <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create a &amp;view</source>
       <translation>建立檢視(&amp;V)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="159"/>
+      <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Edit the v&amp;iew</source>
       <translation>編輯檢視(&amp;I)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="160"/>
+      <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Delete the vi&amp;ew</source>
       <translation>刪除檢視(&amp;E)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="161"/>
+      <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Add a column</source>
       <translation>新增欄位</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="162"/>
+      <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Edit the column</source>
       <translation>編輯欄位</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="163"/>
+      <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Delete the column</source>
       <translation>刪除欄位</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="164"/>
+      <location filename="../dbtree/dbtree.cpp" line="165"/>
       <source>Delete selected items</source>
       <translation>刪除已選專案</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="165"/>
+      <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>Clear filter</source>
       <translation>清除過濾器</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="166"/>
+      <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>&amp;Refresh all database schemas</source>
       <translation>重新整理全部資料庫結構(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="167"/>
+      <location filename="../dbtree/dbtree.cpp" line="168"/>
       <source>Re&amp;fresh selected database schema</source>
       <translation>重新整理已選資料庫結構(&amp;F)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="168"/>
-      <location filename="../dbtree/dbtree.cpp" line="1600"/>
+      <location filename="../dbtree/dbtree.cpp" line="169"/>
+      <location filename="../dbtree/dbtree.cpp" line="1601"/>
       <source>Erase table data</source>
       <translation>擦除表資料</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="173"/>
+      <location filename="../dbtree/dbtree.cpp" line="174"/>
       <source>Open file&apos;s directory</source>
       <translation>開啟檔案所在目錄</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="174"/>
+      <location filename="../dbtree/dbtree.cpp" line="175"/>
       <source>Execute SQL from file</source>
       <translation>從檔案執行 SQL</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="175"/>
+      <location filename="../dbtree/dbtree.cpp" line="176"/>
       <source>Increase font size</source>
       <comment>database list</comment>
       <translation>提升字型大小</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="176"/>
+      <location filename="../dbtree/dbtree.cpp" line="177"/>
       <source>Decrease font size</source>
       <comment>database list</comment>
       <translation>降低字型大小</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="359"/>
-      <location filename="../dbtree/dbtree.cpp" line="364"/>
+      <location filename="../dbtree/dbtree.cpp" line="360"/>
+      <location filename="../dbtree/dbtree.cpp" line="365"/>
       <source>Database</source>
       <translation>資料庫</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="374"/>
+      <location filename="../dbtree/dbtree.cpp" line="375"/>
       <source>Grouping</source>
       <translation>分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="379"/>
+      <location filename="../dbtree/dbtree.cpp" line="380"/>
       <source>Generate query for table</source>
       <translation>生成對錶的查詢</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1116"/>
-      <location filename="../dbtree/dbtree.cpp" line="1119"/>
+      <location filename="../dbtree/dbtree.cpp" line="1117"/>
+      <location filename="../dbtree/dbtree.cpp" line="1120"/>
       <source>Create group</source>
       <translation>建立分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1116"/>
+      <location filename="../dbtree/dbtree.cpp" line="1117"/>
       <source>Group name</source>
       <translation>分組名</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1119"/>
+      <location filename="../dbtree/dbtree.cpp" line="1120"/>
       <source>Entry with name %1 already exists in group %2.</source>
       <translation>名稱 %1 在分組 %2 中已存在。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1137"/>
+      <location filename="../dbtree/dbtree.cpp" line="1138"/>
       <source>Delete group</source>
       <translation>刪除分組</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1138"/>
+      <location filename="../dbtree/dbtree.cpp" line="1139"/>
       <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
       <translation>確認刪除組 %1 嗎？
 刪除後該組下的全部內容將被移動到其所屬的父分組中。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1201"/>
+      <location filename="../dbtree/dbtree.cpp" line="1202"/>
       <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
       <translation>確定要移除資料庫 %1 嗎？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1209"/>
+      <location filename="../dbtree/dbtree.cpp" line="1210"/>
       <source>Are you sure you want to remove following databases from the list:
 %1</source>
       <translation>確定要從清單中移除下列資料庫嗎：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1211"/>
+      <location filename="../dbtree/dbtree.cpp" line="1212"/>
       <source>Remove database</source>
       <translation>移除資料庫</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1251"/>
-      <location filename="../dbtree/dbtree.cpp" line="1456"/>
+      <location filename="../dbtree/dbtree.cpp" line="1252"/>
+      <location filename="../dbtree/dbtree.cpp" line="1457"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1271"/>
-      <location filename="../dbtree/dbtree.cpp" line="1431"/>
+      <location filename="../dbtree/dbtree.cpp" line="1272"/>
+      <location filename="../dbtree/dbtree.cpp" line="1432"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1521"/>
+      <location filename="../dbtree/dbtree.cpp" line="1522"/>
       <source>Vacuum (%1)</source>
       <translation>釋放空閒佔用 (VACUUM) (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1535"/>
+      <location filename="../dbtree/dbtree.cpp" line="1536"/>
       <source>Integrity check (%1)</source>
       <translation>完整性檢查 (%1)</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1571"/>
+      <location filename="../dbtree/dbtree.cpp" line="1572"/>
       <source>Reset autoincrement</source>
       <translation>重置自動遞增</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1571"/>
+      <location filename="../dbtree/dbtree.cpp" line="1572"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>您確定要重置表“%1”的自動遞增值嗎？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1578"/>
+      <location filename="../dbtree/dbtree.cpp" line="1579"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>重置表“%1”的自動遞增值時出錯：%2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1580"/>
+      <location filename="../dbtree/dbtree.cpp" line="1581"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation>成功重置表“%1”的自動遞增值。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1600"/>
+      <location filename="../dbtree/dbtree.cpp" line="1601"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
       <translation>您確定要刪除表 %1 的所有資料嗎？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1612"/>
+      <location filename="../dbtree/dbtree.cpp" line="1613"/>
       <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
       <translation>刪除表“%1”中的資料時出錯：%2</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1616"/>
+      <location filename="../dbtree/dbtree.cpp" line="1617"/>
       <source>All data has been deleted for table &apos;%1&apos;.</source>
       <translation>表“%1”中的全部資料已被刪除。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1744"/>
+      <location filename="../dbtree/dbtree.cpp" line="1745"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>下列物件將被刪除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1747"/>
+      <location filename="../dbtree/dbtree.cpp" line="1748"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>下列資料庫將從清單中移除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1750"/>
+      <location filename="../dbtree/dbtree.cpp" line="1751"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation>已刪除分組中的剩餘物件將被移開。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1752"/>
+      <location filename="../dbtree/dbtree.cpp" line="1753"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;確定繼續？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1754"/>
+      <location filename="../dbtree/dbtree.cpp" line="1755"/>
       <source>Delete objects</source>
       <translation>刪除物件</translation>
     </message>
@@ -2557,136 +2557,136 @@ All objects from this group will be moved to parent group.</source>
   <context>
     <name>DbTreeModel</name>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="466"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
       <translation>資料庫：%1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="429"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="467"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
       <translation>網址：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
       <translation>版本：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="436"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
       <translation>檔案大小：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="439"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
       <source>Encoding:</source>
       <comment>dbtree tooltip</comment>
       <translation>編碼：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="444"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
       <translation>錯誤：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="455"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
       <translation>表：%1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="478"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="516"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>列 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="481"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="519"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>索引 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="484"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="522"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>觸發器 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1228"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1266"/>
       <source>Copy</source>
       <translation>複製</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1229"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1267"/>
       <source>Move</source>
       <translation>移動</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1231"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
       <source>Include data</source>
       <translation>包含資料</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1232"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1270"/>
       <source>Include indexes</source>
       <translation>包含索引</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1233"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1271"/>
       <source>Include triggers</source>
       <translation>包含觸發器</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1235"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1273"/>
       <source>Abort</source>
       <translation>中止</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1294"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1332"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation>無法自動新增拖放的資料庫檔案 &apos;%1&apos;。需要手動設定。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1358"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1396"/>
       <source>Referenced tables</source>
       <translation>引用的表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1359"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1397"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation>是否要包含以下引用的表：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1368"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1406"/>
       <source>Name conflict</source>
       <translation>名稱衝突</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1369"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1407"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>下列物件已存在於目標資料庫。
 請輸入一個新的不重複的名稱，或按下 &apos;%1&apos; 中止操作：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1382"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1420"/>
       <source>SQL statements conversion</source>
       <translation>SQL 語句轉換</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1390"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1428"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation>將 SQL 語句轉換為目標 SQLite 版本時發生以下錯誤：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1391"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1429"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation>是否忽略錯誤並繼續？</translation>
     </message>
@@ -4493,28 +4493,34 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Cannot edit columns that are result of a view if the executed query reads from any multilevel views (i.e. a view that queries another view).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="425"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="466"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="484"/>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="520"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="420"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="464"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="482"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="518"/>
       <source>on conflict: %1</source>
       <comment>data view tooltip</comment>
       <translation>當衝突時：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="450"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="446"/>
+      <source>references table %1</source>
+      <comment>data view tooltip</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="448"/>
       <source>references table %1, column %2</source>
       <comment>data view tooltip</comment>
       <translation>引用表 %1，列 %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="517"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="515"/>
       <source>condition: %1</source>
       <comment>data view tooltip</comment>
       <translation>字元序：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="537"/>
+      <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="535"/>
       <source>collation name: %1</source>
       <comment>data view tooltip</comment>
       <translation>字元序名稱：%1</translation>
