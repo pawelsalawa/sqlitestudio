@@ -1598,15 +1598,20 @@ QString SchemaResolver::normalizeCaseObjectNameByQuery(const QString& query, con
 
 QStringList SchemaResolver::getObjectDdlsReferencingTableOrView(const QString& database, const QString& table, ObjectType type)
 {
-    static_qstring(trigForTableTpl, "SELECT sql FROM %1.sqlite_master WHERE type = '%3' AND (tbl_name = '%2' OR lower(tbl_name) = lower('%2'));"); // non-lower variant for cyrlic alphabet
+    static_qstring(trigForTableTpl, "SELECT name, sql FROM %1.sqlite_master WHERE type = '%3' AND (tbl_name = '%2' OR lower(tbl_name) = lower('%2'));"); // non-lower variant for cyrlic alphabet
 
-    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(table), objectTypeToString(type));
+    QString typeStr = objectTypeToString(type);
+    QString query = trigForTableTpl.arg(wrapObjName(database), escapeString(table), typeStr);
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList ddls;
     for (SqlResultsRowPtr row : results->getAll())
     {
-        QString ddl = row->value(0).toString();
+        QString objName = row->value("name").toString();
+        if (isFilteredOut(objName, typeStr))
+            continue;
+
+        QString ddl = row->value("sql").toString();
         if (!ddl.trimmed().endsWith(";"))
             ddl += ";";
 
