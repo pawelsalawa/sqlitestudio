@@ -96,7 +96,7 @@ void DbTree::init()
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
 
-    new UserInputFilter(ui->nameFilter, treeModel, SLOT(applyFilter(QString)));
+    new UserInputFilter(ui->nameFilter, treeModel, SLOT(applyFilter(QString)), true);
 
     ui->treeView->setDbTree(this);
     ui->treeView->setModel(treeModel);
@@ -118,6 +118,7 @@ void DbTree::init()
     connect(treeModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
     connect(treeModel, SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SIGNAL(sessionValueChanged()));
     connect(treeModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
+    connect(treeModel, &DbTreeModel::filteringInterrupted, this, &DbTree::resetFilterValueAfterInterrupting);
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SIGNAL(sessionValueChanged()));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SIGNAL(sessionValueChanged()));
 
@@ -1831,6 +1832,11 @@ void DbTree::incrFontSize()
 void DbTree::decrFontSize()
 {
     changeFontSize(-1);
+}
+
+void DbTree::resetFilterValueAfterInterrupting()
+{
+    ui->nameFilter->clear();
 }
 
 void DbTree::dbConnected(Db* db)

@@ -219,7 +219,7 @@ class API_EXPORT SchemaResolver
         StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
 
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
-        static QString getSqliteMasterDdl(bool temp = false);
+        static QString getSqliteMasterDdl(bool schema, bool temp = false);
         static ObjectType objectTypeFromQueryType(const SqliteQueryType& queryType);
 
         QStringList getCollations();

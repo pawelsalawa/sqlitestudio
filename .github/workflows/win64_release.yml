@@ -60,8 +60,8 @@ jobs:
                 arch: ${{ env.QT_ARCH }}
                 # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
                 dir: 'D:/'
-                setup-python: 'false'
-                aqtversion: '>=3.1.19'
+                #setup-python: 'false'
+                aqtversion: '==3.1.21'
                 modules: 'qtimageformats'
 
             - name: Clone GH scripts
@@ -246,12 +246,15 @@ jobs:
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp qwebp; do
                     cp imageformats/$f.dll "$ABSOLUTE_PORTABLE_DIR/imageformats"
                 done
-                cp tls/qopensslbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
-
+                cp tls/qschannelbackend.dll "$ABSOLUTE_PORTABLE_DIR/tls"
+                
             - name: Prepare portable distro (Deps)
               shell: bash
               run: |
                 cd ../lib
+                rm -f libssl*.dll
+                rm -f libcrypto*.dll
+                rm -f libeay*.dll
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
                 cd "$ICU_LIBDIR"
                 cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"

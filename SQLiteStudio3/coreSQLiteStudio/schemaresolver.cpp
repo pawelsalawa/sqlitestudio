@@ -12,8 +12,12 @@
 
 const char* sqliteMasterDdl =
     "CREATE TABLE sqlite_master (type text, name text, tbl_name text, rootpage integer, sql text)";
+const char* sqliteSchemaDdl =
+    "CREATE TABLE sqlite_schema (type text, name text, tbl_name text, rootpage integer, sql text)";
 const char* sqliteTempMasterDdl =
     "CREATE TABLE sqlite_temp_master (type text, name text, tbl_name text, rootpage integer, sql text)";
+const char* sqliteTempSchemaDdl =
+    "CREATE TABLE sqlite_temp_schema (type text, name text, tbl_name text, rootpage integer, sql text)";
 
 ExpiringCache<SchemaResolver::ObjectCacheKey,QVariant> SchemaResolver::cache;
 ExpiringCache<QString, QString> SchemaResolver::autoIndexDdlCache;
@@ -351,16 +355,20 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // In case of sqlite_master or sqlite_temp_master we have static definitions
     QString lowerName = name.toLower();
     if (lowerName == "sqlite_master")
-        return getSqliteMasterDdl(false);
+        return getSqliteMasterDdl(false, false);
+    else if (lowerName == "sqlite_schema")
+        return getSqliteMasterDdl(true, false);
     else if (lowerName == "sqlite_temp_master")
-        return getSqliteMasterDdl(true);
+        return getSqliteMasterDdl(false, true);
+    else if (lowerName == "sqlite_temp_schema")
+        return getSqliteMasterDdl(true, true);
     else if (lowerName.startsWith("sqlite_autoindex_"))
         return getSqliteAutoIndexDdl(dbName, name);
 
     // Standalone or temp table?
-    QString targetTable = "sqlite_master";
+    QString targetTable = "sqlite_schema";
     if (database.toLower() == "temp")
-        targetTable = "sqlite_temp_master";
+        targetTable = "sqlite_temp_schema";
 
     // Cache
     QString typeStr = objectTypeToString(type);
@@ -1452,7 +1460,7 @@ bool SchemaResolver::isVirtualTable(const QString& table)
 
 SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& table)
 {
-    return resolveVirtualTableAsRegularTable("maine", table);
+    return resolveVirtualTableAsRegularTable("main", table);
 }
 
 SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& database, const QString& table)
@@ -1467,6 +1475,10 @@ QStringList SchemaResolver::getRowIdTableColumns(const QString& table)
 
 QStringList SchemaResolver::getRowIdTableColumns(const QString& database, const QString& table)
 {
+    QString lowerTable = table.toLower();
+    if (lowerTable == "sqlite_master" || lowerTable == "sqlite_schema")
+        return QStringList{"ROWID"};
+
     SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list(%2);")
                                         .arg(database, wrapObjIfNeeded(table)));
     if (results->isError())
@@ -1507,12 +1519,12 @@ QStringList SchemaResolver::getRowIdTableColumns(const QString& database, const 
     return columns;
 }
 
-QString SchemaResolver::getSqliteMasterDdl(bool temp)
+QString SchemaResolver::getSqliteMasterDdl(bool schema, bool temp)
 {
     if (temp)
-        return sqliteTempMasterDdl;
+        return schema ? sqliteTempSchemaDdl : sqliteTempMasterDdl;
 
-    return sqliteMasterDdl;
+    return schema ? sqliteSchemaDdl : sqliteMasterDdl;
 }
 
 QStringList SchemaResolver::getCollations()

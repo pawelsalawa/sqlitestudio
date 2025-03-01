@@ -40,7 +40,8 @@ macx: {
     bundle.commands = sh \"$$PWD/create_macosx_bundle.sh\" \"$$PWD/../$$OUTPUT_DIR_NAME\" \"$$QMAKE_QMAKE\"
     dmg.commands = sh \"$$PWD/create_macosx_bundle.sh\" \"$$PWD/../$$OUTPUT_DIR_NAME\" \"$$QMAKE_QMAKE\" dmg
     pkg.commands = sh \"$$PWD/create_macosx_bundle.sh\" \"$$PWD/../$$OUTPUT_DIR_NAME\" \"$$QMAKE_QMAKE\" dist
-    QMAKE_EXTRA_TARGETS += bundle dmg pkg
+    pkg_verbose.commands = sh \"$$PWD/create_macosx_bundle.sh\" -qqq \"$$PWD/../$$OUTPUT_DIR_NAME\" \"$$QMAKE_QMAKE\" dist
+    QMAKE_EXTRA_TARGETS += bundle dmg pkg pkg_verbose
 }
 
 OTHER_FILES += \

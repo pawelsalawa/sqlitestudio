@@ -15,14 +15,16 @@ while getopts qu _flag; do
 done
 shift $(( OPTIND - 1 ))
 
+echo "Verbosity level: $quiet"
+
 PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
 BACKGROUND_IMG=""  # TODO
 BACKGROUND_RGB="56 168 243"
 
-abort() { printf "ERROR: %s\n" "$@" 1>&2; exit 1; }
-debug() { [ "$quiet" -gt 0 ] || printf "DEBUG: %s\n" "$@" 1>&2; }
-info() { [ "$quiet" -gt 1 ] || printf "INFO: %s\n" "$@" 1>&2; }
-run() { [ "$quiet" -gt 2 ] || { printf 'RUN: '; printf "'%s' " "$@"; printf '\n'; } 1>&2; "$@"; }
+abort() { echo "ERROR: $@"; exit 1; }
+debug() { [ "$quiet" -gt 2 ] && echo "DEBUG: $@"; }
+info() { [ "$quiet" -gt 1 ] && echo "INFO: $@"; }
+run() { [ "$quiet" -gt 0 ] && { printf 'RUN: '; echo "'$@'"; }; "$@"; }
 
 codesign_app() {
     cat > entitlements.plist <<'EOF'
@@ -170,8 +172,6 @@ install_name_tool -change libsqlite3.0.dylib "@rpath/libsqlite3.0.dylib" SQLiteS
 libdir=$(cd ../../../lib/ && pwd)
 debug "lib:" "$(ls -l "$libdir")"
 
-debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
-
 embed_libsqlite3() {
     cp -RPf "$libdir/libsqlite3.0.dylib" "$1/Contents/Frameworks"
     libsqlite3_in_bundle="$1/Contents/Frameworks/libsqlite3.0.dylib"
@@ -184,9 +184,26 @@ embed_libsqlite3() {
           "$libsqlite3_in_bundle"
     fi
 }
-embed_libsqlite3 SQLiteStudio.app
 
+embed_libtcl() {
+    libtcl_name="libtcl$TCL_VERSION_MAJ.dylib"
+    cp -RPf "/opt/local/lib/$libtcl_name" "$1/Contents/Frameworks"
+    libtcl_in_bundle="$1/Contents/Frameworks/$libtcl_name"
+    run otool -L "$libtcl_in_bundle"
+    if otool -L "$libtcl_in_bundle" | grep -q /opt/local; then
+       info "MacPorts $libtcl_name detected! Fixing dylib references"
+        run install_name_tool \
+          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
+          -id "@executable_path/../Frameworks/$libtcl_name" \
+          "$libtcl_in_bundle"
+    fi
+}
+
+debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
+embed_libsqlite3 SQLiteStudio.app
 debug "in frameworks - 2:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
+embed_libtcl SQLiteStudio.app
+debug "in frameworks - 3:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 
 # Plugin paths
 fixPluginPaths() {
@@ -285,6 +302,9 @@ elif [ "$3" = "dist" ]; then
 
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
+    
+    # Same for Tcl
+    embed_libtcl SQLiteStudio.app
 
     # Fix python dependencies in the image if linked to a Python library
     python_plugin_lib="SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib"

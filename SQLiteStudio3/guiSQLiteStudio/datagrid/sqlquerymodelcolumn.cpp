@@ -372,15 +372,10 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteC
         }
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
         {
-            if (columnConstraint->foreignKey->indexedColumns.size() == 0)
-            {
-                qWarning() << "No foreign column defined for FK column constraint while creating SqlQueryModelColumn::Constraint.";
-                return nullptr;
-            }
-
             ConstraintFk* fk = new ConstraintFk();
             fk->foreignTable = columnConstraint->foreignKey->foreignTable;
-            fk->foreignColumn = columnConstraint->foreignKey->indexedColumns.first()->name;
+            if (columnConstraint->foreignKey->indexedColumns.size() > 0)
+                fk->foreignColumn = columnConstraint->foreignKey->indexedColumns.first()->name;
 
             constr = fk;
             constr->type = Type::FOREIGN_KEY;
@@ -447,7 +442,10 @@ QString SqlQueryModelColumn::ConstraintFk::getTypeString() const
 
 QString SqlQueryModelColumn::ConstraintFk::getDetails() const
 {
-    return "("+QObject::tr("references table %1, column %2", "data view tooltip").arg(foreignTable).arg(foreignColumn)+")";
+    if (foreignColumn.isNull())
+        return "("+QObject::tr("references table %1", "data view tooltip").arg(foreignTable)+")";
+    else
+        return "("+QObject::tr("references table %1, column %2", "data view tooltip").arg(foreignTable, foreignColumn)+")";
 }
 
 Icon* SqlQueryModelColumn::ConstraintFk::getIcon() const

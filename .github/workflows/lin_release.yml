@@ -8,7 +8,7 @@ env:
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
     LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb
+    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build

@@ -48,6 +48,12 @@ void DbObjectOrganizer::moveObjectsToDb(Db* srcDb, const QStringList& objNames, 
 void DbObjectOrganizer::interrupt()
 {
     QMutexLocker locker(&interruptMutex);
+    if (interrupted)
+        return;
+
+    if (!isExecuting())
+        return;
+
     interrupted = true;
     srcDb->interrupt();
     dstDb->interrupt();
