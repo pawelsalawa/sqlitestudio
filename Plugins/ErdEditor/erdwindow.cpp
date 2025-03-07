@@ -17,6 +17,7 @@
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
 #include "erdchangenewentity.h"
+#include "erdconnection.h"
 #include "erdconnectionpanel.h"
 #include "tablemodifier.h"
 #include <QDebug>
@@ -468,6 +469,15 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
         {
             qCritical() << "No ErdConnection for ErdArrowItem!";
             return false;
+        }
+
+        if (connection->isCompoundConnection())
+        {
+            ignoreSelectionChangeEvents = true;
+            for (ErdConnection* assocConn : connection->getAssociatedConnections())
+                assocConn->select(false);
+
+            ignoreSelectionChangeEvents = false;
         }
 
         ErdConnectionPanel* panel = new ErdConnectionPanel(memDb, connection);

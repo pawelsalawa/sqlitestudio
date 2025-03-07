@@ -134,15 +134,31 @@ void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
     refreshPosition();
 }
 
-void ErdConnection::select()
+void ErdConnection::select(bool changeFocusToo)
 {
     arrow->setSelected(true);
-    arrow->setFocus();
+    if (changeFocusToo)
+        arrow->setFocus();
 }
 
 bool ErdConnection::isOwnerOf(ErdArrowItem* arrow)
 {
     return arrow == this->arrow;
+}
+
+bool ErdConnection::isCompoundConnection() const
+{
+    return !associatedConnections.isEmpty();
+}
+
+QList<ErdConnection*> ErdConnection::getAssociatedConnections() const
+{
+    return associatedConnections;
+}
+
+void ErdConnection::setAssociatedConnections(const QList<ErdConnection*>& connections)
+{
+    associatedConnections = connections;
 }
 
 void ErdConnection::setIndexInStartEntity(int idx)

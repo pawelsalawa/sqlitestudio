@@ -43,7 +43,7 @@ class ErdScene : public QGraphicsScene
         void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable);
         void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity);
         void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn);
-        void setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn,
+        ErdConnection* setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn,
                                    int sourceReferenceIdx, SqliteForeignKey* fk);
         void arrangeEntities(int algo);
         QPointF getPosForNewEntity() const;

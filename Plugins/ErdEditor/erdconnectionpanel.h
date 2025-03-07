@@ -24,6 +24,8 @@ class ErdConnectionPanel : public QWidget
 
     private:
         void init();
+        void initColumnLevelFk();
+        void initTableLevelFk();
 
         Ui::ErdConnectionPanel *ui;
         Db* db = nullptr;

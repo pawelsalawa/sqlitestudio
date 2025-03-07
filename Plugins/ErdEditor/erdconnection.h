@@ -27,8 +27,11 @@ class ErdConnection
         int getStartEntityRow() const;
         int getEndEntityRow() const;
         void setArrowType(ErdArrowItem::Type arrowType);
-        void select();
+        void select(bool changeFocusToo = true);
         bool isOwnerOf(ErdArrowItem* arrow);
+        bool isCompoundConnection() const;
+        QList<ErdConnection*> getAssociatedConnections() const;
+        void setAssociatedConnections(const QList<ErdConnection*>& connections);
 
         /**
          * @brief Sets index of connection in the starting entity.
@@ -55,6 +58,7 @@ class ErdConnection
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
         ErdScene* scene = nullptr;
+        QList<ErdConnection*> associatedConnections;
 };
 
 #endif // ERDCONNECTION_H

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="topLevelLayout">
    <item>
     <widget class="QToolBar" name="toolBar">
      <property name="sizePolicy">
@@ -136,7 +136,7 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
+    <spacer name="bottomSpacer">
      <property name="orientation">
       <enum>Qt::Orientation::Vertical</enum>
      </property>

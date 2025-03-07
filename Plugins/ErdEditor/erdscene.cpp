@@ -168,19 +168,31 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
 
     // Table-level FKs
     auto constraints = tableModel->getConstraints(SqliteCreateTable::Constraint::FOREIGN_KEY);
+    QList<ErdConnection*> tableLevelFks;
     for (auto constr : constraints)
     {
         int srcColNum = 0;
         for (SqliteIndexedColumn*& idxCol : constr->indexedColumns)
         {
-            setupEntityConnection(
+            ErdConnection* conn = setupEntityConnection(
                 entitiesByTable,
                 srcEntity,
                 idxCol->name,
                 srcColNum++,
                 constr->foreignKey
                 );
+
+            if (conn)
+                tableLevelFks << conn;
         }
+    }
+
+    // Make table-level FK connections aware of other connections that make the compound FK.
+    for (ErdConnection* tableFk : tableLevelFks)
+    {
+        QList<ErdConnection*> associatedConnections = tableLevelFks;
+        associatedConnections.removeOne(tableFk);
+        tableFk->setAssociatedConnections(associatedConnections);
     }
 
     // Column-level FKs
@@ -206,14 +218,14 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
     }
 }
 
-void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn, int sourceReferenceIdx, SqliteForeignKey* fk)
+ErdConnection* ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn, int sourceReferenceIdx, SqliteForeignKey* fk)
 {
     auto tableModel = srcEntity->getTableModel();
     QString fkTable = fk->foreignTable;
     if (!entitiesByTable.contains(fkTable, Qt::CaseInsensitive))
     {
         qWarning() << "Foreign table" << fkTable << "is not known while parsing db schema for ERD.";
-        return;
+        return nullptr;
     }
 
     ErdEntity* trgEntity = entitiesByTable.value(fkTable, Qt::CaseInsensitive);
@@ -221,7 +233,7 @@ void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable,
     if (sourceReferenceIdx >= fk->indexedColumns.size())
     {
         qWarning() << "More source columns than foreign columns in FK, while parsing schema for ERD. Table:" << tableModel->table;
-        return;
+        return nullptr;
     }
 
     int srcRowIdx = tableModel->getColumnIndex(srcColumn);
@@ -241,6 +253,7 @@ void ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable,
 
     ErdConnection* conn = new ErdConnection(srcEntity, srcRowIdx + 1, trgEntity, trgRowIdx + 1, arrowType);
     conn->addToScene(this);
+    return conn;
 }
 
 void ErdScene::refreshSceneRect()
