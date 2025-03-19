@@ -11,7 +11,7 @@
     <message>
       <location filename="../main.cpp" line="53"/>
       <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
-      <translation type="unfinished">Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</translation>
+      <translation>Запуск приложения в безопасном режиме без восстановления предыдущей сессии. Используется для решения проблем, вызванных повреждённой сессией.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="54"/>
@@ -71,7 +71,7 @@
     <message>
       <location filename="../main.cpp" line="62"/>
       <source>settings file</source>
-      <translation type="unfinished">settings file</translation>
+      <translation>файл настроек</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="74"/>
