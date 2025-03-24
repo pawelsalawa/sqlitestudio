@@ -57,9 +57,36 @@ jobs:
               run: |
                 brew install coreutils
 
+            #- name: Install ICU
+            #  run: |
+            #    sudo port install icu +universal
+
             - name: Install ICU
+              id: install_icu
               run: |
-                sudo port install icu +universal
+                  set -e
+                  if ! sudo port install icu +universal; then
+                    echo "Installation failed. Collecting logs..."
+                    LOGFILE=$(find /opt/local/var/macports/logs -name main.log | grep icu | head -n 1)
+                    echo "Logfile: $LOGFILE"
+                    mkdir -p logs
+                    cp "$LOGFILE" logs/icu-main.log
+                    # Zgłoś log do artefaktów
+                    echo "##[set-output name=log_found;]true"
+                  else
+                    echo "##[set-output name=log_found;]false"
+                  fi
+        
+            - name: Upload MacPorts log if install failed
+              if: steps.install_icu.outputs.log_found == 'true'
+              uses: actions/upload-artifact@v4
+              with:
+                name: icu-install-log
+                path: logs/icu-main.log
+        
+            - name: Fail the job if install failed
+              if: steps.install_icu.outputs.log_found == 'true'
+              run: exit 1
 
             - name: Install Tcl
               run: |
