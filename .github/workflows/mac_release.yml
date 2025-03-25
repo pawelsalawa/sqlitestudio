@@ -40,6 +40,12 @@ jobs:
                 # ls -l /usr/local/opt/
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
+            - name: Clean MacPorts cache
+              run: |
+                echo "Find cache:"
+                find ~/.macports
+                echo "Delete cache:"
+                rm -rf ~/.macports
 
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
@@ -77,7 +83,6 @@ jobs:
               id: install_icu
               run: |
                   set -e
-                  rm -rf /opt/local/var/macports/software/icu
                   if ! sudo port install icu +universal; then
                     echo "Installation failed. Collecting logs..."
                     LOGFILE=$(find /opt/local/var/macports/logs -name main.log | grep icu | head -n 1)
