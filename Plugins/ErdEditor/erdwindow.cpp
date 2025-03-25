@@ -471,10 +471,16 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
             return false;
         }
 
+        if (!connection->isFinalized())
+        {
+            qDebug() << "Skipping selection action on connection, as it's not finalized connection.";
+            return false;
+        }
+
         if (connection->isCompoundConnection())
         {
             ignoreSelectionChangeEvents = true;
-            for (ErdConnection* assocConn : connection->getAssociatedConnections())
+            for (ErdConnection*& assocConn : connection->getAssociatedConnections())
                 assocConn->select(false);
 
             ignoreSelectionChangeEvents = false;
@@ -517,7 +523,7 @@ bool ErdWindow::initMemDb()
             ddls << row->value("sql").toString();
     }
 
-    for (const QString& ddl : ddls)
+    for (QString& ddl : ddls)
         memDb->exec(ddl);
 
     return true;
@@ -544,7 +550,7 @@ bool ErdWindow::handleSidePanelModificationsResult(bool successfullyStored, cons
 
         ignoreSelectionChangeEvents = true;
         scene->clearSelection();
-        for (QGraphicsItem* item : previouslySelectedItems)
+        for (QGraphicsItem*& item : previouslySelectedItems)
             item->setSelected(true);
 
         ignoreSelectionChangeEvents = false;

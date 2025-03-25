@@ -230,6 +230,7 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
             {
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection->finalizeConnection(entity, mapToScene(pos));
+                draftConnection->select();
                 draftConnection = nullptr;
                 draftingConnectionMode = false;
                 emit draftConnectionRemoved();
@@ -240,7 +241,6 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
                 ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
                 draftConnection->addToScene(scene());
-                draftConnection->select();
                 return true;
             }
         }
