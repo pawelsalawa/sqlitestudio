@@ -41,22 +41,8 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
-            - name: Pre-debug ICU installation 1
-              run: |
-                echo "Find icu dir:"
-                find /opt/local/var/macports/software/icu
-                echo "List all:"
-                ls -l /opt/local/var/macports/software
-
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
-
-            - name: Pre-debug ICU installation 2
-              run: |
-                echo "Find icu dir:"
-                find /opt/local/var/macports/software/icu
-                echo "List all:"
-                ls -l /opt/local/var/macports/software
 
             - name: Reconfigure MacPorts
               run: |
@@ -72,12 +58,12 @@ jobs:
                 fi
                 sudo port selfupdate
 
-            - name: Pre-debug ICU installation 3
-              run: |
-                echo "Find icu dir:"
-                find /opt/local/var/macports/software/icu
-                echo "List all:"
-                ls -l /opt/local/var/macports/software
+            #- name: Pre-debug ICU installation
+            #  run: |
+            #    echo "Find icu dir:"
+            #    find /opt/local/var/macports/software/icu
+            #    echo "List all:"
+            #    ls -l /opt/local/var/macports/software
 
             - name: Install coreutils
               run: |
@@ -91,6 +77,7 @@ jobs:
               id: install_icu
               run: |
                   set -e
+                  rm -rf /opt/local/var/macports/software/icu
                   if ! sudo port install icu +universal; then
                     echo "Installation failed. Collecting logs..."
                     LOGFILE=$(find /opt/local/var/macports/logs -name main.log | grep icu | head -n 1)
