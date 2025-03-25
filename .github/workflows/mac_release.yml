@@ -61,9 +61,17 @@ jobs:
             #  run: |
             #    sudo port install icu +universal
 
+            - name: Pre-debug ICU installation
+              run: |
+                echo "List verified:"
+                ls -l /opt/local/var/macports/incoming/verified
+                echo "Find icu dir:"
+                find /opt/local/var/macports/software/icu
+
             - name: Install ICU
               id: install_icu
               run: |
+                  /opt/local/var/macports/incoming/verified
                   set -e
                   if ! sudo port install icu +universal; then
                     echo "Installation failed. Collecting logs..."
