@@ -63,10 +63,10 @@ jobs:
 
             - name: Pre-debug ICU installation
               run: |
-                echo "List verified:"
-                ls -l /opt/local/var/macports/incoming/verified
                 echo "Find icu dir:"
                 find /opt/local/var/macports/software/icu
+                echo "List all:"
+                ls -l /opt/local/var/macports/software
 
             - name: Install ICU
               id: install_icu
