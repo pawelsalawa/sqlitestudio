@@ -46,6 +46,11 @@ jobs:
 
             - name: Reconfigure MacPorts
               run: |
+                echo "Find icu dir:"
+                find /opt/local/var/macports/software/icu
+                echo "List all:"
+                ls -l /opt/local/var/macports/software
+
                 MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
                 sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 13.0/' "$MACPORTS_CONF"
                 if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
