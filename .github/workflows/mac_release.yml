@@ -40,23 +40,12 @@ jobs:
                 # ls -l /usr/local/opt/
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
-            - name: Clean MacPorts cache
-              run: |
-                echo "Find cache:"
-                find ~/.macports
-                echo "Delete cache:"
-                rm -rf ~/.macports
 
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
 
             - name: Reconfigure MacPorts
               run: |
-                echo "Find icu dir:"
-                find /opt/local/var/macports/software/icu
-                echo "List all:"
-                ls -l /opt/local/var/macports/software
-
                 MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
                 sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 13.0/' "$MACPORTS_CONF"
                 if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
@@ -64,48 +53,14 @@ jobs:
                 fi
                 sudo port selfupdate
 
-            #- name: Pre-debug ICU installation
-            #  run: |
-            #    echo "Find icu dir:"
-            #    find /opt/local/var/macports/software/icu
-            #    echo "List all:"
-            #    ls -l /opt/local/var/macports/software
-
             - name: Install coreutils
               run: |
                 brew install coreutils
 
-            #- name: Install ICU
-            #  run: |
-            #    sudo port install icu +universal
-
             - name: Install ICU
-              id: install_icu
               run: |
-                  set -e
-                  if ! sudo port install icu +universal; then
-                    echo "Installation failed. Collecting logs..."
-                    LOGFILE=$(find /opt/local/var/macports/logs -name main.log | grep icu | head -n 1)
-                    echo "Logfile: $LOGFILE"
-                    mkdir -p logs
-                    cp "$LOGFILE" logs/icu-main.log
-                    # Zgłoś log do artefaktów
-                    echo "##[set-output name=log_found;]true"
-                  else
-                    echo "##[set-output name=log_found;]false"
-                  fi
+                sudo port install icu +universal
         
-            - name: Upload MacPorts log if install failed
-              if: steps.install_icu.outputs.log_found == 'true'
-              uses: actions/upload-artifact@v4
-              with:
-                name: icu-install-log
-                path: logs/icu-main.log
-        
-            - name: Fail the job if install failed
-              if: steps.install_icu.outputs.log_found == 'true'
-              run: exit 1
-
             - name: Install Tcl
               run: |
                 if brew list tcl-tk 2>/dev/null; then
