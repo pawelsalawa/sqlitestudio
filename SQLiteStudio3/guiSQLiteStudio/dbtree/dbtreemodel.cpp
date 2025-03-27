@@ -1128,7 +1128,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     QByteArray byteData = data->data(MIMETYPE);
     QDataStream stream(&byteData, QIODevice::ReadOnly);
 
-    qsizetype itemCount;
+    qint32 itemCount;
     stream >> itemCount;
 
     DbTreeItem* item = nullptr;
