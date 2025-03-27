@@ -47,9 +47,9 @@ jobs:
             - name: Reconfigure MacPorts
               run: |
                 MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
-                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 10.14/' "$MACPORTS_CONF"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 13.0/' "$MACPORTS_CONF"
                 if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
-                    echo "macosx_deployment_target 10.14" | sudo tee -a "$MACPORTS_CONF"
+                    echo "macosx_deployment_target 13.0" | sudo tee -a "$MACPORTS_CONF"
                 fi
                 sudo port selfupdate
 
@@ -60,7 +60,7 @@ jobs:
             - name: Install ICU
               run: |
                 sudo port install icu +universal
-
+        
             - name: Install Tcl
               run: |
                 if brew list tcl-tk 2>/dev/null; then
