@@ -3083,7 +3083,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/exportdialog.ui" line="246"/>
       <source>Export table and view triggers</source>
-      <translation type="unfinished">Export table and view triggers</translation>
+      <translation>Экспортировать триггеры таблиц и представлений</translation>
     </message>
     <message>
       <location filename="../dialogs/exportdialog.ui" line="254"/>
@@ -4504,7 +4504,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="446"/>
       <source>references table %1</source>
       <comment>data view tooltip</comment>
-      <translation type="unfinished">references table %1</translation>
+      <translation>ссылается на таблицу %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="448"/>
