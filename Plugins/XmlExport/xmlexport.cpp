@@ -99,7 +99,7 @@ bool XmlExport::exportQueryResultsRow(SqlResultsRowPtr row)
     int i = 0;
     for (const QVariant& value : row->valueList())
     {
-        if (value.isNull())
+        if (isNull(value))
             writeln(nullTpl.arg(i));
         else
             writeln(rowTpl.arg(i).arg(escape(value.toString())));

@@ -201,7 +201,7 @@ bool HtmlExport::exportDataRow(SqlResultsRowPtr data)
         else
             align = "left";
 
-        if (value.isNull())
+        if (isNull(value))
         {
             cellValue = "<i>NULL</i>";
             cellStyle = " class=\"null\"";

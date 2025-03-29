@@ -101,7 +101,7 @@ SqliteStatement* SqliteExpr::clone()
 void SqliteExpr::initLiteral(const QVariant &value)
 {
     mode = SqliteExpr::Mode::LITERAL_VALUE;
-    if (value.isNull())
+    if (isNull(value))
         initNull();
 
     literalValue = value;

@@ -235,7 +235,7 @@ void ColumnDefaultPanel::readConstraint()
         ui->exprEdit->setPlainText(constr->expr->detokenize());
         currentMode = Mode::EXPR;
     }
-    else if (!constr->literalValue.isNull())
+    else if (!isNull(constr->literalValue))
     {
         ui->exprEdit->setPlainText(constr->literalValue.toString());
         currentMode = Mode::LITERAL;

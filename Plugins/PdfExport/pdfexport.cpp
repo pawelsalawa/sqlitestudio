@@ -437,7 +437,7 @@ void PdfExport::exportDataRow(const QList<QVariant>& data)
                 break;
         }
 
-        if (value.isNull())
+        if (isNull(value))
         {
             cell.alignment = Qt::AlignCenter;
             cell.isNull = true;

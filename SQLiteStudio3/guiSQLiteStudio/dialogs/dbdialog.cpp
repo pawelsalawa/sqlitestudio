@@ -314,13 +314,13 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
         {
             QSpinBox* sb = new QSpinBox(this);
             editor = sb;
-            if (!opt.minValue.isNull())
+            if (!isNull(opt.minValue))
                 sb->setMinimum(opt.minValue.toInt());
 
-            if (!opt.maxValue.isNull())
+            if (!isNull(opt.maxValue))
                 sb->setMaximum(opt.maxValue.toInt());
 
-            if (!opt.defaultValue.isNull())
+            if (!isNull(opt.defaultValue))
                 sb->setValue(opt.defaultValue.toInt());
 
             connect(sb, SIGNAL(valueChanged(int)), this, SLOT(propertyChanged()));
@@ -339,7 +339,7 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
         {
             QCheckBox* cb = new QCheckBox(this);
             editor = cb;
-            if (!opt.defaultValue.isNull())
+            if (!isNull(opt.defaultValue))
                 cb->setChecked(opt.defaultValue.toBool());
 
             connect(cb, SIGNAL(stateChanged(int)), this, SLOT(propertyChanged()));
@@ -349,13 +349,13 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
         {
             QDoubleSpinBox* sb = new QDoubleSpinBox(this);
             editor = sb;
-            if (!opt.minValue.isNull())
+            if (!isNull(opt.minValue))
                 sb->setMinimum(opt.minValue.toDouble());
 
-            if (!opt.maxValue.isNull())
+            if (!isNull(opt.maxValue))
                 sb->setMaximum(opt.maxValue.toDouble());
 
-            if (!opt.defaultValue.isNull())
+            if (!isNull(opt.defaultValue))
                 sb->setValue(opt.defaultValue.toDouble());
 
             connect(sb, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));

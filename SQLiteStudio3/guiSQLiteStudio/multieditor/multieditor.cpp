@@ -228,7 +228,7 @@ void MultiEditor::showTab(int idx)
 
 void MultiEditor::setValue(const QVariant& value)
 {
-    nullCheck->setChecked(!value.isValid() || value.isNull());
+    nullCheck->setChecked(isNull(value));
     valueBeforeNull = value;
     updateVisibility();
     updateValue(value);

@@ -137,7 +137,7 @@ StatementTokenBuilder& StatementTokenBuilder::withTokens(TokenList tokens)
 
 StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& value)
 {
-    if (value.isNull())
+    if (isNull(value))
         return *this;
 
     if (value.userType() == QMetaType::QString)

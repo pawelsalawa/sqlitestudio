@@ -88,7 +88,7 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
 
     // Current value column (will be 1 for row which matches current cell value)
     QString currValueColName = generateUniqueName("curr", usedNames);
-    QString currValueExpr = currentValue.isNull() ?
+    QString currValueExpr = isNull(currentValue) ?
                                 currNullValueTpl.arg(firstSrcCol, currValueColName) :
                                 currValueTpl.arg(firstSrcCol, valueToSqlLiteral(currentValue), currValueColName);
 
@@ -146,7 +146,7 @@ QVariant FkComboBox::getValue(bool* manualValueUsed, bool* ok) const
     }
 
     // Regardless if its preselected value or custom value, we need to honor empty=null setting
-    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && sourceValue.isNull() && cbText.isEmpty())
+    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && isNull(sourceValue) && cbText.isEmpty())
     {
         ok && (*ok = false);
         return QVariant();
@@ -277,7 +277,7 @@ void FkComboBox::fkDataAboutToLoad()
     beforeLoadValue = currentText();
 
     // Not editable combo needs to keep track of initially pre-loading value by using source value
-    if (!isEditable() && beforeLoadValue.isNull() && !sourceValue.isNull())
+    if (!isEditable() && beforeLoadValue.isNull() && !isNull(sourceValue))
         beforeLoadValue = sourceValue.toString();
 }
 

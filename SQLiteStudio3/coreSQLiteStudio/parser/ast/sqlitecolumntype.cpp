@@ -37,12 +37,12 @@ SqliteStatement* SqliteColumnType::clone()
 
 bool SqliteColumnType::isPrecisionDouble()
 {
-    return !precision.isNull() && precision.toString().indexOf(".") > -1;
+    return !isNull(precision) && precision.toString().indexOf(".") > -1;
 }
 
 bool SqliteColumnType::isScaleDouble()
 {
-    return !scale.isNull() && scale.toString().indexOf(".") > -1;
+    return !isNull(scale) && scale.toString().indexOf(".") > -1;
 }
 
 TokenList SqliteColumnType::rebuildTokensFromContents()
@@ -53,7 +53,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
 
     TokenList resultTokens = Lexer::tokenize(name);
 
-    if (!scale.isNull())
+    if (!isNull(scale))
     {
         builder.withSpace().withParLeft();
         if (scale.userType() == QMetaType::Int)
@@ -65,7 +65,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
         else
             builder.withOther(scale.toString());
 
-        if (!precision.isNull())
+        if (!isNull(precision))
         {
             builder.withOperator(",").withSpace();
             if (precision.userType() == QMetaType::Int)

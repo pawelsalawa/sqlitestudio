@@ -144,7 +144,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
     bool modified = (
                         (
                             newValue != origValue ||
-                            origValue.isNull() != newValue.isNull() ||
+                            isNull(origValue) != isNull(newValue) ||
                             newValue.typeId() != origValue.typeId()
                         ) &&
                         !loadedFromDb
@@ -347,7 +347,7 @@ QVariant SqlQueryItem::data(int role) const
                 return "";
 
             QVariant value = getValue();
-            if (value.isNull())
+            if (isNull(value))
                 return "NULL";
 
             if (value.metaType() == QMetaType::fromType<QString>())
@@ -367,7 +367,7 @@ QVariant SqlQueryItem::data(int role) const
         case Qt::ForegroundRole:
         {
             QVariant value = getValue();
-            if (value.isNull())
+            if (isNull(value))
                 return QApplication::style()->standardPalette().dark();
 
             break;
@@ -382,7 +382,7 @@ QVariant SqlQueryItem::data(int role) const
         case Qt::TextAlignmentRole:
         {
             QVariant value = getValue();
-            if (value.isNull() || isDeletedRow())
+            if (isNull(value) || isDeletedRow())
                 return Qt::AlignCenter;
 
             break;
@@ -392,7 +392,7 @@ QVariant SqlQueryItem::data(int role) const
             QFont font = CFG_UI.Fonts.DataView.get();
 
             QVariant value = getValue();
-            if (value.isNull() || isDeletedRow())
+            if (isNull(value) || isDeletedRow())
                 font.setItalic(true);
 
             return font;

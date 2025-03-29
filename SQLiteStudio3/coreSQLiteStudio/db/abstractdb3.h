@@ -624,7 +624,7 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
     }
 
     // Code below is a modified code from Qt (its SQLite plugin).
-    if (result.isNull())
+    if (isNull(result))
     {
         T::result_null(context);
         return;
@@ -659,7 +659,7 @@ void AbstractDb3<T>::storeResult(typename T::context* context, const QVariant& r
         {
             QList<QVariant> list = result.toList();
             QStringList strList;
-            for (const QVariant& v : list)
+            for (QVariant& v : list)
                 strList << v.toString();
 
             QString str = strList.join(" ");
@@ -1082,10 +1082,8 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
 template <class T>
 int AbstractDb3<T>::Query::bindParam(int paramIdx, const QVariant& value)
 {
-    if (value.isNull())
-    {
+    if (isNull(value))
         return T::bind_null(stmt, paramIdx);
-    }
 
     switch (value.userType())
     {

@@ -419,6 +419,8 @@ API_EXPORT QString toNativePath(const QString& path);
 
 API_EXPORT void runInThread(std::function<void()> func);
 
+API_EXPORT bool isNull(const QVariant& v);
+
 Q_DECLARE_METATYPE(QList<int>)
 
 #endif // UTILS_H

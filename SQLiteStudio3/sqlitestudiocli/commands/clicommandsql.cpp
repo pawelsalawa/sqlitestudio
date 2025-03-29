@@ -391,7 +391,7 @@ void CliCommandSql::printColumnDataRow(const QList<int>& widths, const SqlResult
 
 QString CliCommandSql::getValueString(const QVariant& value)
 {
-    if (value.isValid() && !value.isNull())
+    if (!isNull(value))
         return value.toString();
 
     return CFG_CLI.Console.NullValue.get();

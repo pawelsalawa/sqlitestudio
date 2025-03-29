@@ -231,7 +231,7 @@ bool SqlTableModel::processNullValueAfterInsert(SqlQueryItem* item, QVariant& va
                                                 QHash<SqlQueryModelColumnPtr, SqlQueryItem*>& columnsToReadFromDb, RowId rowId, Parser& parser)
 {
 //    qDebug() << "Item is for column" << item->getColumn()->column << ", column iterated:" << modelColumn->column;
-    if (!item->getValue().isNull())
+    if (!isNull(item->getValue()))
         return false;
 
     // If this is the PK AUTOINCR column we use RowId as value, because it was skipped when setting values to items
@@ -359,7 +359,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
         if (!modelColumn->canEdit())
             continue;
 
-        if (item->getValue().isNull())
+        if (isNull(item->getValue()))
         {
             if (CFG_UI.General.UseDefaultValueForNull.get() && modelColumn->isDefault())
                 continue;
@@ -402,7 +402,7 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
             SqlQueryPtr results = db->exec("SELECT max("+colName+") FROM "+tableName);
             qint64 rowid = 0;
             QVariant cellValue = results->getSingleCell();
-            if (!cellValue.isNull())
+            if (!isNull(cellValue))
                 rowid = cellValue.toLongLong();
 
             colNameList << wrapObjIfNeeded(modelColumn->column);
