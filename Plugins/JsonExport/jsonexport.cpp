@@ -338,7 +338,7 @@ QString JsonExport::escapeString(const QString& str)
 
 QString JsonExport::formatValue(const QVariant& val)
 {
-    if (val.isNull())
+    if (isNull(val))
         return "null";
 
     switch (val.userType())

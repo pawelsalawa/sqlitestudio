@@ -123,7 +123,7 @@ bool CfgEntry::isPersistable() const
 bool CfgEntry::isPersisted() const
 {
     if (persistable)
-        return !CFG->get(parent->toString(), name).isNull();
+        return !isNull(CFG->get(parent->toString(), name));
 
     return false;
 }

@@ -14,7 +14,7 @@ void FormatColumnType::formatInternal()
 
     withId(cfg->SqlEnterpriseFormatter.UppercaseDataTypes.get() ? colType->name.toUpper() : colType->name.toLower());
 
-    if (!colType->scale.isNull())
+    if (!isNull(colType->scale))
     {
         withParExprLeft();
         if (colType->scale.userType() == QMetaType::Int)
@@ -26,7 +26,7 @@ void FormatColumnType::formatInternal()
         else
             withId(colType->scale.toString());
 
-        if (!colType->precision.isNull())
+        if (!isNull(colType->precision))
         {
             withCommaOper();
             if (colType->precision.userType() == QMetaType::Int)

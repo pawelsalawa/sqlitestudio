@@ -1,4 +1,5 @@
 #include "datatype.h"
+#include "common/utils.h"
 #include <QMetaEnum>
 #include <QRegularExpression>
 
@@ -132,9 +133,9 @@ QString DataType::toString() const
 QString DataType::toFullTypeString() const
 {
     QString str = typeStr;
-    if (!precision.isNull())
+    if (!::isNull(precision))
     {
-        if (!scale.isNull())
+        if (!::isNull(scale))
             str += " ("+scale.toString()+", "+precision.toString()+")";
         else
             str += " ("+scale.toString()+")";

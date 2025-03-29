@@ -68,7 +68,7 @@ QVariant ParserTermOrLiteral::toLiteral() const
 
 bool ParserTermOrLiteral::isName() const
 {
-    return !value.isNull() && value.userType() == QMetaType::QString;
+    return !isNull(value) && value.userType() == QMetaType::QString;
 }
 
 bool ParserTermOrLiteral::isLiteral() const

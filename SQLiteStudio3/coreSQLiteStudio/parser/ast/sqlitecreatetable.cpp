@@ -372,7 +372,7 @@ void SqliteCreateTable::Column::Constraint::initDefTerm(const QVariant &value, b
         else if (value.userType() == QMetaType::LongLong)
             literalValue = -(value.toLongLong());
     }
-    else if (value.isNull())
+    else if (isNull(value))
     {
         literalValue = value;
         literalNull = true;

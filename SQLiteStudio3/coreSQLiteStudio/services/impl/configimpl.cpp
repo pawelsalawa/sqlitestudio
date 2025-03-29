@@ -118,7 +118,7 @@ QVariant ConfigImpl::get(const QString &group, const QString &key)
 QVariant ConfigImpl::get(const QString &group, const QString &key, const QVariant &defaultValue)
 {
     QVariant value = get(group, key);
-    if (!value.isValid() || value.isNull())
+    if (isNull(value))
         return defaultValue;
 
     return value;
@@ -258,7 +258,7 @@ void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId
                                     {group->name, group->order, parent, group->open, group->referencedDbName, group->dbExpanded});
 
     qint64 newParentId = results->getRegularInsertRowId();
-    for (const DbGroupPtr& childGroup : group->childs)
+    for (DbGroupPtr& childGroup : group->childs)
         storeGroup(childGroup, newParentId);
 }
 
@@ -391,7 +391,7 @@ QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringL
 
     // Got an exact match? Extract values and return.
     QVariant exactMatch = results->getSingleCell();
-    if (!exactMatch.isNull())
+    if (!isNull(exactMatch))
     {
         results = db->exec(paramsByIdQuery, {exactMatch.toLongLong()});
         if (results->isError())
@@ -1146,9 +1146,9 @@ void ConfigImpl::updateConfigDb()
         case 4:
         {
             QVariant oldFuncs = get("Internal", "Functions");
-            if (oldFuncs.isValid() && !oldFuncs.isNull())
+            if (!isNull(oldFuncs))
             {
-                for (const QVariant& var : oldFuncs.toList())
+                for (QVariant& var : oldFuncs.toList())
                 {
                     QHash<QString, QVariant> fnHash = var.toHash();
                     db->exec("INSERT INTO script_functions"

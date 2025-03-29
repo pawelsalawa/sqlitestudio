@@ -395,7 +395,7 @@ QVariant TableStructureModel::getColumnGenerate(int row) const
 QVariant TableStructureModel::getColumnDefaultValue(int row) const
 {
     QVariant value = getColumnDefault(row);
-    if (value.isNull())
+    if (isNull(value))
         return "NULL";
 
     return value;
@@ -404,7 +404,7 @@ QVariant TableStructureModel::getColumnDefaultValue(int row) const
 QVariant TableStructureModel::getColumnDefaultFont(int row) const
 {
     QVariant value = getColumnDefault(row);
-    if (value.isNull())
+    if (isNull(value))
     {
         QFont font;
         font.setItalic(true);
@@ -416,7 +416,7 @@ QVariant TableStructureModel::getColumnDefaultFont(int row) const
 QVariant TableStructureModel::getColumnDefaultColor(int row) const
 {
     QVariant value = getColumnDefault(row);
-    if (value.isNull())
+    if (isNull(value))
         return QApplication::style()->standardPalette().dark().color();
 
     return QVariant();
@@ -430,7 +430,7 @@ QVariant TableStructureModel::getColumnDefault(int row) const
 
     if (!constr->id.isNull())
         return constr->id;
-    else if (!constr->literalValue.isNull())
+    else if (!isNull(constr->literalValue))
         return constr->literalValue;
     else if (!constr->ctime.isNull())
         return constr->ctime;

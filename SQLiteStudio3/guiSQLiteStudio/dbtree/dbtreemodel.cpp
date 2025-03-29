@@ -200,12 +200,12 @@ void DbTreeModel::storeGroups()
 void DbTreeModel::readGroups(QList<Db*> dbList)
 {
     QList<Config::DbGroupPtr> groups = CFG->getGroups();
-    for (const Config::DbGroupPtr& group : groups)
+    for (Config::DbGroupPtr& group : groups)
         restoreGroup(group, &dbList);
 
     // Add rest of databases, not mentioned in groups
     Config::DbGroupPtr group;
-    for (Db* db : dbList)
+    for (Db*& db : dbList)
     {
         group = Config::DbGroupPtr::create();
         group->referencedDbName = db->getName();

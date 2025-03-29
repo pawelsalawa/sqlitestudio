@@ -1,5 +1,6 @@
 #include "numericspinbox.h"
 #include "common/unused.h"
+#include "common/utils.h"
 #include <QLineEdit>
 #include <QVariant>
 #include <QDebug>
@@ -114,10 +115,10 @@ QVariant NumericSpinBox::getFixedVariant(const QVariant& value)
 {
     if (allowEmpty)
     {
-        if (value.userType() == QMetaType::QString && value.toString().isEmpty() && !value.isNull())
+        if (value.userType() == QMetaType::QString && value.toString().isEmpty() && !isNull(value))
             return "";
 
-        if (value.isNull())
+        if (isNull(value))
             return QString();
     }
 
@@ -154,7 +155,7 @@ QVariant NumericSpinBox::getValue() const
 void NumericSpinBox::setValue(const QVariant& newValue, bool nullAsZero)
 {
     setValueInternal(newValue);
-    if (!nullAsZero && newValue.isNull())
+    if (!nullAsZero && isNull(newValue))
         value = newValue;
 
     updateText();

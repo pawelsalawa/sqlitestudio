@@ -113,7 +113,7 @@ bool CsvExport::exportTableRow(SqlResultsRowPtr data)
     QStringList valList;
     QString nl = cfg.CsvExport.NullValueString.get();
     for (const QVariant& val : data->valueList())
-        valList << (val.isNull() ? nl : val.toString());
+        valList << (isNull(val) ? nl : val.toString());
 
     writeln(CsvSerializer::serialize(valList, format));
     return true;

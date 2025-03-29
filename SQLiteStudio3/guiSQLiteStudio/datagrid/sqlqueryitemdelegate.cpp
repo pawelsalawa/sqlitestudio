@@ -178,7 +178,7 @@ void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractI
 {
     QString value = editor->text();
 
-    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && value.isEmpty())
+    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && isNull(model->data(index, Qt::EditRole)) && value.isEmpty())
         return;
 
     const SqlQueryModel* queryModel = dynamic_cast<const SqlQueryModel*>(model);

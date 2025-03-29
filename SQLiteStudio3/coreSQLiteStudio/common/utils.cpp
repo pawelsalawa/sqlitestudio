@@ -1,7 +1,10 @@
 #include "common/utils.h"
+#include "QtGui/qwindowdefs.h"
 #include "common/global.h"
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
+#include <QJsonDocument>
+#include <QLine>
 #include <QString>
 #include <QStringConverter>
 #include <QStringEncoder>
@@ -9,6 +12,8 @@
 #include <QSet>
 #include <QVariant>
 #include <QDateTime>
+#include <QRect>
+#include <QSize>
 #include <QSysInfo>
 #include <QDebug>
 #include <QRegularExpression>
@@ -951,7 +956,7 @@ QString readFileContents(const QString& path, QString* err)
 
 size_t qHash(const QVariant& var)
 {
-    if (!var.isValid() || var.isNull())
+    if (isNull(var))
         return -1;
 
     switch (var.userType())
@@ -1066,4 +1071,55 @@ void strSort(QStringList& collection, Qt::CaseSensitivity cs)
     {
         return v1.compare(v2, cs) < 0;
     });
+}
+
+bool isNull(const QVariant &v)
+{
+    // This method is necessary in Qt 6, because it breaks backward compatibility
+    // regarding QVariant::isNull(), where it will return false for QVariant(QString()),
+    // as it is interpreted as non-null variant containing null string (https://bugreports.qt.io/browse/QTBUG-135330).
+    if (v.isNull() || !v.isValid())
+        return true;
+
+    switch (v.userType())
+    {
+        case QMetaType::QBitArray:
+            return v.toBitArray().isNull();
+        case QMetaType::QByteArray:
+            return v.toByteArray().isNull();
+        case QMetaType::QChar:
+            return v.toChar().isNull();
+        case QMetaType::QDate:
+            return v.toDate().isNull();
+        case QMetaType::QDateTime:
+            return v.toDateTime().isNull();
+        case QMetaType::QJsonArray:
+            return v.toJsonDocument().isNull();
+        case QMetaType::QJsonObject:
+            return v.toJsonValue().isNull();
+        case QMetaType::QLine:
+            return v.toLine().isNull();
+        case QMetaType::QLineF:
+            return v.toLineF().isNull();
+        case QMetaType::QPoint:
+            return v.toPoint().isNull();
+        case QMetaType::QPointF:
+            return v.toPointF().isNull();
+        case QMetaType::QRect:
+            return v.toRect().isNull();
+        case QMetaType::QRectF:
+            return v.toRectF().isNull();
+        case QMetaType::QSize:
+            return v.toSize().isNull();
+        case QMetaType::QSizeF:
+            return v.toSizeF().isNull();
+        case QMetaType::QString:
+            return v.toString().isNull();
+        case QMetaType::QTime:
+            return v.toTime().isNull();
+        case QMetaType::QUuid:
+            return v.toUuid().isNull();
+        default:
+            return false;
+    }
 }

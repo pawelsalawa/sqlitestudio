@@ -838,7 +838,7 @@ QStringList valueListToSqlList(const QVariantList& values)
 
 QString valueToSqlLiteral(const QVariant& value)
 {
-    if (!value.isValid() || value.isNull())
+    if (isNull(value))
         return "NULL";
 
     switch (value.userType())

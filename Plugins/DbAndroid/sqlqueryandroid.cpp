@@ -110,7 +110,7 @@ bool SqlQueryAndroid::execInternal(const QHash<QString, QVariant>& args)
 
 QString SqlQueryAndroid::convertArg(const QVariant& value)
 {
-    if (value.isNull() || !value.isValid())
+    if (isNull(value))
         return "NULL";
 
     switch (value.userType())

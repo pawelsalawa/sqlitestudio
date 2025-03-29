@@ -670,7 +670,7 @@ QString SchemaResolver::getSqliteAutoIndexDdl(const QString& database, const QSt
     QString table;
     QString dbName = getPrefixDb(database);
     QVariant masterRes = db->exec(masterQuery.arg(dbName), {index}, dbFlags)->getSingleCell();
-    if (masterRes.isNull())
+    if (isNull(masterRes))
     {
         // Not lucky. We need to find out the table.
         StrHash<QString> indexesWithTables = getIndexesWithTables(database);

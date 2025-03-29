@@ -351,7 +351,7 @@ FormatStatement& FormatStatement::withNewLine()
 
 FormatStatement& FormatStatement::withLiteral(const QVariant& value)
 {
-    if (value.isNull())
+    if (isNull(value))
         return *this;
 
     if (value.userType() == QMetaType::QString)
@@ -794,7 +794,7 @@ QString FormatStatement::detokenize()
             }
             case FormatToken::INCR_INDENT:
             {
-                if (!token->value.isNull())
+                if (!isNull(token->value))
                     incrIndent(token->value.toString());
                 else
                     incrIndent();
