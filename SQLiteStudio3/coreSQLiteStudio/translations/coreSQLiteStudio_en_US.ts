@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="939"/>
+      <location filename="../common/utils.cpp" line="944"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
@@ -795,7 +795,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not open database: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1231"/>
+      <location filename="../db/abstractdb3.h" line="1229"/>
       <source>Result set expired or no row available.</source>
       <translation type="unfinished">Result set expired or no row available.</translation>
     </message>

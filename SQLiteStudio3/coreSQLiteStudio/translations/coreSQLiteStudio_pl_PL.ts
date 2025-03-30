@@ -785,7 +785,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="939"/>
+      <location filename="../common/utils.cpp" line="944"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
@@ -795,7 +795,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Nie udało się otworzyć bazy danych: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1231"/>
+      <location filename="../db/abstractdb3.h" line="1229"/>
       <source>Result set expired or no row available.</source>
       <translation>Wyniki zapytania są nieaktualne, lub nie ma dostępnych wierszy.</translation>
     </message>
