@@ -5,11 +5,11 @@
 #include "erdentity.h"
 
 ErdChangeEntity::ErdChangeEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after) :
-    ErdChange(Category::ENTITY_CHANGE), entity(entity), db(db), before(before), after(after)
+    ErdChange(Category::ENTITY_CHANGE, true), entity(entity), db(db), before(before), after(after)
 {
 }
 
-QStringList ErdChangeEntity::toDdl()
+QStringList ErdChangeEntity::getChangeDdl()
 {
     after->rebuildTokens();
     tableModifier = new TableModifier(db, before->database, before->table);

@@ -13,11 +13,13 @@ class ErdChangeEntity : public ErdChange
     public:
         ErdChangeEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after);
 
-        QStringList toDdl();
         TableModifier *getTableModifier() const;
         ErdEntity *getEntity() const;
         QString getTableNameBefore() const;
         QString getTableNameAfter() const;
+
+    protected:
+        QStringList getChangeDdl();
 
     private:
         ErdEntity* entity = nullptr;

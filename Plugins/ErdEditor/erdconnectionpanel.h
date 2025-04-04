@@ -2,6 +2,7 @@
 #define ERDCONNECTIONPANEL_H
 
 #include <QWidget>
+#include "common/extactioncontainer.h"
 
 namespace Ui {
     class ErdConnectionPanel;
@@ -12,15 +13,32 @@ class Db;
 class ErdEntity;
 class ErdConnection;
 
-class ErdConnectionPanel : public QWidget
+class GUI_API_EXPORT ErdConnectionPanel : public QWidget, public ExtActionContainer
 {
         Q_OBJECT
 
     public:
+        enum Action
+        {
+            COMMIT,
+            ROLLBACK
+        };
+        Q_ENUM(Action)
+
+        enum ToolBar
+        {
+            TOOLBAR_MAIN
+        };
+
         ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent = nullptr);
         ~ErdConnectionPanel();
 
         QString getStartEntityTable() const;
+
+    protected:
+        void createActions();
+        void setupDefShortcuts();
+        QToolBar *getToolBar(int toolbar) const;
 
     private:
         void init();

@@ -6,6 +6,7 @@
 #include "erdconnection.h"
 #include "erdcolumnfkpanel.h"
 #include "erdtablefkpanel.h"
+#include "common/unused.h"
 #include <QDebug>
 
 ErdConnectionPanel::ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent) :
@@ -28,8 +29,25 @@ QString ErdConnectionPanel::getStartEntityTable() const
     return connection->getStartEntity()->getTableName();
 }
 
+void ErdConnectionPanel::createActions()
+{
+
+}
+
+void ErdConnectionPanel::setupDefShortcuts()
+{
+}
+
+QToolBar *ErdConnectionPanel::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return ui->toolBar;
+}
+
 void ErdConnectionPanel::init()
 {
+
+
     if (connection->isCompoundConnection())
     {
         initTableLevelFk();

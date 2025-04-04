@@ -50,7 +50,7 @@ void PluginManagerImpl::deinit()
     emit aboutToQuit();
 
     // Plugin containers and their plugins
-    for (PluginContainer*& container : pluginContainer.values())
+    for (PluginContainer*& container : pluginContainer)
     {
         if (container->builtIn)
         {
@@ -61,7 +61,7 @@ void PluginManagerImpl::deinit()
             unload(container->name);
     }
 
-    for (PluginContainer*& container : pluginContainer.values())
+    for (PluginContainer*& container : pluginContainer)
         delete container;
 
     pluginContainer.clear();

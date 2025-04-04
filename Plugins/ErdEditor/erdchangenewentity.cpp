@@ -2,11 +2,11 @@
 #include "erdentity.h"
 
 ErdChangeNewEntity::ErdChangeNewEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& createTable) :
-    ErdChange(Category::ENTITY_NEW), entity(entity), db(db), createTable(createTable)
+    ErdChange(Category::ENTITY_NEW, true), entity(entity), db(db), createTable(createTable)
 {
 }
 
-QStringList ErdChangeNewEntity::toDdl()
+QStringList ErdChangeNewEntity::getChangeDdl()
 {
     createTable->rebuildTokens();
     return {createTable->detokenize()};

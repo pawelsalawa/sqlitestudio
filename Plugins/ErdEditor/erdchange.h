@@ -15,14 +15,26 @@ class ErdChange
 
         ErdChange() = delete;
 
-        virtual QStringList toDdl() = 0;
+        /**
+         * @param skipSaveoints Pass true if committing all changes to actual database, as there is no need to keep savepoint marks in that case.
+         */
+        QStringList toDdl(bool skipSaveoints = false);
+
+        /**
+         * @return Savepoint rollback statement according to this change transactionId.
+         */
+        QStringList getUndoDdl();
 
         Category getCategory() const;
+        QString getTransactionId() const;
 
     protected:
-        ErdChange(Category category);
+        ErdChange(Category category, bool generateTransactionId = false);
+
+        virtual QStringList getChangeDdl() = 0;
 
         Category category;
+        QString transactionId;
 };
 
 #endif // ERDCHANGE_H
