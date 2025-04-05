@@ -2856,7 +2856,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
+      <source>Following errors occurred:</source>
       <translation>發生了以下錯誤：</translation>
     </message>
     <message>

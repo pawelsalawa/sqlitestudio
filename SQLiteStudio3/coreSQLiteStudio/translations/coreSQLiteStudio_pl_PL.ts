@@ -997,7 +997,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="347"/>
       <location filename="../db/queryexecutor.cpp" line="596"/>
-      <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
+      <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
     </message>
     <message>

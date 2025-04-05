@@ -30,7 +30,7 @@ typedef QHash<QString,QVariant> RowId;
  * or Db::prepare() calls.
  * It uses incremental reading for accessing data, so it only reads as much data
  * as you ask it to. It can tell you how many rows and how many columns are available
- * in the results. It also provides information about errors that occured during query execution.
+ * in the results. It also provides information about errors that occurred during query execution.
  *
  * Typical workflow looks like this:
  * @code

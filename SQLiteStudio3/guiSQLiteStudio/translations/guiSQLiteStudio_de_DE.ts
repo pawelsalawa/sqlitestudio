@@ -2855,7 +2855,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
+      <source>Following errors occurred:</source>
       <translation>Folgende Fehler sind aufgetreten:</translation>
     </message>
     <message>

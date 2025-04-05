@@ -997,7 +997,7 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../db/queryexecutor.cpp" line="347"/>
       <location filename="../db/queryexecutor.cpp" line="596"/>
-      <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
+      <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>當執行count(*) 查詢時發生錯誤, 資料分頁功能亦被停用. 詳細錯誤資訊來自於資料庫: %1</translation>
     </message>
     <message>

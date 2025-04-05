@@ -2855,7 +2855,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
+      <source>Following errors occurred:</source>
       <translation>Les erreurs suivantes sont arrivées :</translation>
     </message>
     <message>

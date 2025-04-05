@@ -293,7 +293,7 @@ void ViewWindow::initView()
     parseDdl();
 
     if (!createView)
-        return; // error occured while parsing ddl, window will be closed
+        return; // error occurred while parsing ddl, window will be closed
 
     ui->dbCombo->setCurrentDb(db);
     if (existingView)

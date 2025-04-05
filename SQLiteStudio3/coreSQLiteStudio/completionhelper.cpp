@@ -560,7 +560,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix()
             columnList[column] += table;
 
     // Now, for each column the expected token is created.
-    // If a column occured in more tables, then multiple expected tokens
+    // If a column occurred in more tables, then multiple expected tokens
     // are created to reflect all possible tables.
     QHashIterator<QString,QStringList> it(columnList);
     while (it.hasNext())
