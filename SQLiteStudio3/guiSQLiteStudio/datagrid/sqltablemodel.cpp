@@ -267,6 +267,9 @@ bool SqlTableModel::processNullValueAfterInsert(SqlQueryItem* item, QVariant& va
     if (value.userType() == QVariant::String)
         value = stripString(value.toString());
 
+    if (value.userType() == QVariant::Bool)
+        value = value.toBool() ? 1 : 0; // SQLite treats true/false as 1/0 and if inserted true/false, it will become 1/0.
+
     return true;
 }
 

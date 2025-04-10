@@ -912,3 +912,14 @@ QByteArray blobFromLiteral(const QString& value)
     QString hex = value.mid(2, value.length() - 3);
     return QByteArray::fromHex(hex.toLatin1());
 }
+
+QVariant idToBool(const QString &id)
+{
+    QString lower = id.toLower();
+    if (lower == "true")
+        return true;
+    else if (lower == "false")
+        return false;
+    else
+        return QVariant();
+}

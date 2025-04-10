@@ -545,8 +545,15 @@ void SqliteExpr::initId(const QString& table, const QString& column)
 
 void SqliteExpr::initId(const QString& column)
 {
-    mode = SqliteExpr::Mode::ID;
-    this->column = column;
+    QVariant value = idToBool(column);
+    if (value.isValid())
+    {
+        mode = SqliteExpr::Mode::LITERAL_VALUE;
+        this->literalValue = value;
+    } else {
+        mode = SqliteExpr::Mode::ID;
+        this->column = column;
+    }
 }
 
 TokenList SqliteExpr::rebuildTokensFromContents()

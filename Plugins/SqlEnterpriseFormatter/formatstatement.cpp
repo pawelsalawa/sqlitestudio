@@ -359,6 +359,12 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
         return *this;
     }
 
+    if (value.userType() == QVariant::Bool)
+    {
+        withId(value.toBool() ? "true" : "false", false);
+        return *this;
+    }
+
     if (value.userType() == QVariant::ByteArray)
     {
         static_qstring(blobLiteral, "X'%1'");
