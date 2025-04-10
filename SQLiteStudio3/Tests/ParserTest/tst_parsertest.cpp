@@ -69,6 +69,7 @@ class ParserTest : public QObject
         void testBigDec();
         void testQuotedFunction();
         void testIndexedSelect();
+        void testTrueFalseLiterals1();
 };
 
 ParserTest::ParserTest()
@@ -807,6 +808,41 @@ void ParserTest::testIndexedSelect()
     bool res = parser3->parse(sql);
     QVERIFY(res);
     QVERIFY(parser3->getQueries().size() > 0);
+}
+
+void ParserTest::testTrueFalseLiterals1()
+{
+    QString sql = "SELECT 1 = true, 0 = false;";
+    // parser3->setLemonDebug(true);
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    SqliteQueryPtr query = parser3->getQueries().first();
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+
+    QList<SqliteSelect::Core::ResultColumn*> resCols = select->coreSelects.first()->resultColumns;
+    QVERIFY(resCols.size() == 2);
+
+    SqliteExpr* firstRight = resCols.first()->expr->expr2;
+    QVERIFY(firstRight->literalValue.userType() == QVariant::Bool);
+    QVERIFY(firstRight->literalValue.toBool());
+    QVERIFY(firstRight->tokens.first()->value == "true");
+
+    SqliteExpr* secondRight = resCols[1]->expr->expr2;
+    QVERIFY(secondRight->literalValue.userType() == QVariant::Bool);
+    QVERIFY(!secondRight->literalValue.toBool());
+    QVERIFY(secondRight->tokens.first()->value == "false");
+
+    select->rebuildTokens();
+
+    SqliteExpr* firstRightAfter = resCols.first()->expr->expr2;
+    QVERIFY(firstRightAfter->literalValue.userType() == QVariant::Bool);
+    QVERIFY(firstRightAfter->literalValue.toBool());
+    QVERIFY(firstRightAfter->tokens.first()->value == "true");
+
+    SqliteExpr* secondRightAfter = resCols[1]->expr->expr2;
+    QVERIFY(secondRightAfter->literalValue.userType() == QVariant::Bool);
+    QVERIFY(!secondRightAfter->literalValue.toBool());
+    QVERIFY(secondRightAfter->tokens.first()->value == "false");
 }
 
 

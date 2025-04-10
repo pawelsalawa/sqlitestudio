@@ -785,7 +785,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="939"/>
+      <location filename="../common/utils.cpp" line="944"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
@@ -795,7 +795,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Impossibile aprire il database: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1231"/>
+      <location filename="../db/abstractdb3.h" line="1229"/>
       <source>Result set expired or no row available.</source>
       <translation>Risultato impostato scaduto o nessuna riga disponibile.</translation>
     </message>

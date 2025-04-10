@@ -17,9 +17,17 @@ void FormatPragma::formatInternal()
     withId(pragma->pragmaName);
 
     if (pragma->equalsOp)
-        withOperator("=").withLiteral(pragma->value);
+        withOperator("=");
     else if (pragma->parenthesis)
-        withParExprLeft().withLiteral(pragma->value).withParExprRight();
+        withParExprLeft();
+
+    if (pragma->value.userType() == QVariant::Bool)
+        withId(pragma->getBoolLiteralValue(), false);
+    else
+        withLiteral(pragma->value);
+
+    if (pragma->parenthesis)
+        withParExprRight();
 
     withSemicolon();
 }

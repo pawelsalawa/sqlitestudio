@@ -359,7 +359,11 @@ void SqliteCreateTable::Column::Constraint::initDefNameOnly(const QString &name)
 void SqliteCreateTable::Column::Constraint::initDefId(const QString &id)
 {
     this->type = SqliteCreateTable::Column::Constraint::DEFAULT;
-    this->id = id;
+    QVariant boolValue = idToBool(id);
+    if (boolValue.isValid())
+        literalValue = boolValue;
+    else
+        this->id = id;
 }
 
 void SqliteCreateTable::Column::Constraint::initDefTerm(const QVariant &value, bool minus)
@@ -376,6 +380,11 @@ void SqliteCreateTable::Column::Constraint::initDefTerm(const QVariant &value, b
     {
         literalValue = value;
         literalNull = true;
+    }
+    else if (value.userType() == QVariant::String)
+    {
+        QVariant boolValue = idToBool(value.toString());
+        literalValue = boolValue.isValid() ? boolValue : value;
     }
     else
         literalValue = value;
@@ -890,6 +899,8 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
                 builder.withParLeft().withStatement(expr).withParRight();
             else if (literalNull)
                 builder.withKeyword("NULL");
+            else if (literalValue.userType() == QVariant::Bool)
+                builder.withOther(literalValue.toBool() ? "true" : "false", false);
             else
                 builder.withLiteralValue(literalValue);
 

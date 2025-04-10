@@ -2917,7 +2917,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
+      <source>Following errors occurred:</source>
       <translation>Ocorreu o seguinte erro:</translation>
     </message>
     <message>

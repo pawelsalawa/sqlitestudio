@@ -20,6 +20,7 @@ class API_EXPORT SqlitePragma : public SqliteQuery
                      bool equals);
 
         SqliteStatement* clone();
+        QString getBoolLiteralValue() const;
 
     protected:
         QStringList getDatabasesInStatement();
@@ -29,6 +30,7 @@ class API_EXPORT SqlitePragma : public SqliteQuery
 
     private:
         void initName(const QString& name1, const QString& name2);
+        bool handleBoolValue(const QVariant& value);
 
     public:
         QString database = QString();
@@ -36,6 +38,8 @@ class API_EXPORT SqlitePragma : public SqliteQuery
         QVariant value = QVariant();
         bool equalsOp = false;
         bool parenthesis = false;
+        bool yesNoKw = false;
+        bool onOffKw = false;
 };
 
 typedef QSharedPointer<SqlitePragma> SqlitePragmaPtr;

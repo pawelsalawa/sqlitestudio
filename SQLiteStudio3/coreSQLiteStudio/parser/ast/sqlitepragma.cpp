@@ -23,7 +23,9 @@ SqlitePragma::SqlitePragma(const QString &name1, const QString &name2, const QVa
     : SqlitePragma()
 {
     initName(name1, name2);
-    this->value = value;
+    if (!handleBoolValue(value))
+        this->value = value;
+
     if (equals)
         equalsOp = true;
     else
@@ -34,7 +36,9 @@ SqlitePragma::SqlitePragma(const QString &name1, const QString &name2, const QSt
     : SqlitePragma()
 {
     initName(name1, name2);
-    this->value = value;
+    if (!handleBoolValue(value))
+        this->value = value;
+
     if (equals)
         equalsOp = true;
     else
@@ -44,6 +48,16 @@ SqlitePragma::SqlitePragma(const QString &name1, const QString &name2, const QSt
 SqliteStatement*SqlitePragma::clone()
 {
     return new SqlitePragma(*this);
+}
+
+QString SqlitePragma::getBoolLiteralValue() const
+{
+    if (onOffKw)
+        return value.toBool() ? "on" : "off";
+    else if (yesNoKw)
+        return value.toBool() ? "yes" : "no";
+    else
+        return value.toBool() ? "true" : "false";
 }
 
 QStringList SqlitePragma::getDatabasesInStatement()
@@ -87,6 +101,39 @@ void SqlitePragma::initName(const QString &name1, const QString &name2)
         pragmaName = name1;
 }
 
+bool SqlitePragma::handleBoolValue(const QVariant &value)
+{
+    QString lower = value.toString().toLower();
+    if (lower == "true")
+        this->value = true;
+    else if (lower == "false")
+        this->value = false;
+    else if (lower == "on")
+    {
+        this->value = true;
+        this->onOffKw = true;
+    }
+    else if (lower == "off")
+    {
+        this->value = false;
+        this->onOffKw = true;
+    }
+    else if (lower == "yes")
+    {
+        this->value = true;
+        this->yesNoKw = true;
+    }
+    else if (lower == "no")
+    {
+        this->value = false;
+        this->yesNoKw = true;
+    }
+    else
+        return false;
+
+    return true;
+}
+
 TokenList SqlitePragma::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
@@ -99,9 +146,17 @@ TokenList SqlitePragma::rebuildTokensFromContents()
     builder.withOther(pragmaName);
 
     if (equalsOp)
-        builder.withSpace().withOperator("=").withSpace().withLiteralValue(value);
+        builder.withSpace().withOperator("=").withSpace();
     else if (parenthesis)
-        builder.withParLeft().withLiteralValue(value).withParRight();
+        builder.withParLeft();
+
+    if (value.userType() == QVariant::Bool)
+        builder.withOther(getBoolLiteralValue(), false);
+    else
+        builder.withLiteralValue(value);
+
+    if (parenthesis)
+        builder.withParRight();
 
     builder.withOperator(";");
 

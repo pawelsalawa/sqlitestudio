@@ -360,6 +360,12 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
         return *this;
     }
 
+    if (value.userType() == QMetaType::Bool)
+    {
+        withId(value.toBool() ? "true" : "false", false);
+        return *this;
+    }
+
     if (value.userType() == QMetaType::QByteArray)
     {
         static_qstring(blobLiteral, "X'%1'");

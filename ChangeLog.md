@@ -8,6 +8,9 @@
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 
+### 3.4.18
+- BUGFIX: #5308 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
+
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.
 - BUGFIX: #5263 Fixed database list filter field as it stopped filtering by column names after bugfix #4980.
@@ -1321,7 +1324,7 @@
 - BUGFIX: Fixed opening tables from SQL editor links (control+click) with different case size.
 - BUGFIX: Fixed error with "_colItem(query)" reported on comp.lang.tcl group.
 - BUGFIX: Fixed problem with inserting first row to empty table using Form View.
-- BUGFIX: The progressbar dialog won't stay any longer after critical error occured, so user was unable to report the bug.
+- BUGFIX: The progressbar dialog won't stay any longer after critical error occurred, so user was unable to report the bug.
 - BUGFIX: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3659
 - BUGFIX: Fixed viewing data from View in SQlite 2.
 - BUGFIX: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3662
@@ -1592,7 +1595,7 @@
 - REMOVED: Removed date() function while there is standard SQLite date() function.
 - BUGFIX: 'View data preview' window is now properly stored in session so it's title is restored in next session.
 - BUGFIX: 'View data preview' can not be opened in two separate windows now, so it will not cause problems with doubled tasks on taskbar anymore.
-- BUGFIX: Another little bug with 'REFERENCES' in table edition dialog - occured when column reference was wrapped with white-spaces.
+- BUGFIX: Another little bug with 'REFERENCES' in table edition dialog - occurred when column reference was wrapped with white-spaces.
 - BUGFIX: Detection of 'REFERENCES' constraints in table browsing window on Constraints tab. It used to detect more constraints than there was.
 - BUGFIX: Handling table global constraints in table browsing window on Constraints tab.
 - BUGFIX: Fixed (finally?) problem with UTF-8 data in database.
@@ -1647,5 +1650,5 @@
 - BUGFIX: Fixed execution of multiple SQL statements that are creating some SQLite objects (it tried to create some of them twice).
 - BUGFIX: DDL formatting in table window fixed.
 - BUGFIX: Fixed critical error while exporting some data as a XML.
-- BUGFIX: Fixed critical error while some error occured when trying to create trigger.
+- BUGFIX: Fixed critical error while some error occurred when trying to create trigger.
 - BUGFIX: Fixed critical errors while customizing toolbar.

@@ -192,7 +192,7 @@ class API_EXPORT SchemaResolver
         /**
          * @brief Parses given object's DDL.
          * @param name Name of the object in the database.
-         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occured.
+         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occurred.
          *
          * Returned query has to be deleted outside!
          */
@@ -202,7 +202,7 @@ class API_EXPORT SchemaResolver
          * @brief Parses given object's DDL.
          * @param database Database that the object is in (the attach name of the database).
          * @param name Name of the object in the database.
-         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occured.
+         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occurred.
          * @overload
          */
         SqliteQueryPtr getParsedObject(const QString& database, const QString& name, ObjectType type);
