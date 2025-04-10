@@ -2915,8 +2915,8 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
-      <translation>Şu hatalar gerçekleşti:</translation>
+      <source>Following errors occurred:</source>
+      <translation type="unfinished">Following errors occurred:</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
