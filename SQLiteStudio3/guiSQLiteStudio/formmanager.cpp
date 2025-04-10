@@ -54,7 +54,7 @@ QWidget* FormManager::createWidgetByFullPath(const QString& path)
     QWidget* widget = uiLoader->load(path);
     if (!widget)
     {
-        qCritical() << "Error occured while loading ui file:" << path << ". Error message: "
+        qCritical() << "Error occurred while loading ui file:" << path << ". Error message: "
                     << uiLoader->errorString();
         return nullptr;
     }

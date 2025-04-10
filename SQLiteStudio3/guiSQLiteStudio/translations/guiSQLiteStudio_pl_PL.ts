@@ -2916,7 +2916,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
-      <source>Following errors occured:</source>
+      <source>Following errors occurred:</source>
       <translation>Wystąpiły następujące błędy:</translation>
     </message>
     <message>

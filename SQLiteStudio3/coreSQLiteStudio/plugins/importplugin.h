@@ -110,7 +110,7 @@ class ImportPlugin : virtual public Plugin
 
         /**
          * @brief Called when the UI expects any configuration options to be re-validated.
-         * @return true when validation was successful, or false if any error occured.
+         * @return true when validation was successful, or false if any error occurred.
          *
          * When user interacts with the UI in a way that it doesn't change the config values,
          * but it still requires some options to be re-validated, this method is called.

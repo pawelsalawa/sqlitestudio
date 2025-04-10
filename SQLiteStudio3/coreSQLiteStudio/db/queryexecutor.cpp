@@ -341,7 +341,7 @@ bool QueryExecutor::countResults()
 
     if (!countingDb->isOpen() && !countingDb->openQuiet())
     {
-        notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+        notifyError(tr("An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                     .arg("Failed to establish dedicated connection for results counting."));
         return false;
     }
@@ -355,7 +355,7 @@ bool QueryExecutor::countResults()
         SqlQueryPtr attachRes = countingDb->exec(QString("ATTACH '%1' AS %2").arg(dbToAttach->getPath(), entry.value()));
         if (attachRes->isError())
         {
-            notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+            notifyError(tr("An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                         .arg("Failed to attach necessary databases for counting."));
 
             qDebug() << "Error while attaching db for counting:" << attachRes->getErrorText();
@@ -605,7 +605,7 @@ bool QueryExecutor::handleRowCountingResults(SqlQueryPtr results)
 
     if (results->isError() && results->getErrorCode() != Sqlite3::INTERRUPT)
     {
-        notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+        notifyError(tr("An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                     .arg(results->getErrorText()));
     }
 

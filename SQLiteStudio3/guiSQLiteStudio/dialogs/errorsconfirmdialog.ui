@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="topLabel">
      <property name="text">
-      <string>Following errors occured:</string>
+      <string>Following errors occurred:</string>
      </property>
     </widget>
    </item>
