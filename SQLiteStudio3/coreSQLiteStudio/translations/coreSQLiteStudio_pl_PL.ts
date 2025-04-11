@@ -1024,8 +1024,12 @@ Widok pozostanie nienaruszony.</translation>
       <location filename="../db/queryexecutor.cpp" line="344"/>
       <location filename="../db/queryexecutor.cpp" line="358"/>
       <location filename="../db/queryexecutor.cpp" line="608"/>
+      <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation>Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
+      <translation type="vanished">Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="527"/>
