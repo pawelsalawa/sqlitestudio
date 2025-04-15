@@ -2308,7 +2308,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Create a &amp;view</source>
-      <translation type="unfinished">Create a &amp;view</translation>
+      <translation>Crear una &amp;view</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
