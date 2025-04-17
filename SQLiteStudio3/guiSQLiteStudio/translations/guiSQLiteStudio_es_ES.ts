@@ -2392,7 +2392,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbtree/dbtree.cpp" line="375"/>
       <source>Grouping</source>
-      <translation type="unfinished">Grouping</translation>
+      <translation>Agrupar</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="380"/>
@@ -2780,7 +2780,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/editorwindow.cpp" line="182"/>
       <location filename="../windows/editorwindow.cpp" line="184"/>
       <source>SQL editor %1</source>
-      <translation type="unfinished">SQL editor %1</translation>
+      <translation>Editor SQL %1</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="80"/>
@@ -3695,7 +3695,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/indexdialog.cpp" line="276"/>
       <source>Sort order</source>
       <comment>table constraints</comment>
-      <translation type="unfinished">Sort order</translation>
+      <translation>Ordenar por</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="771"/>
@@ -3868,7 +3868,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="277"/>
       <source>E&amp;xport</source>
-      <translation type="unfinished">E&amp;xport</translation>
+      <translation>E&amp;xportar</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="279"/>
@@ -4595,7 +4595,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Increase font size</source>
       <comment>data view</comment>
-      <translation type="unfinished">Increase font size</translation>
+      <translation>Aumentar tamaño de fuente</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.h" line="37"/>
