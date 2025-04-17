@@ -600,7 +600,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Fila %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
