@@ -1329,7 +1329,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1072"/>
       <source>Status Field</source>
-      <translation>Campo de Estado</translation>
+      <translation>Campo de estado</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1078"/>
@@ -3390,7 +3390,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../windows/functionseditor.cpp" line="61"/>
       <source>Rollback all function changes</source>
-      <translation/>
+      <translation>Revertir todos los cambios de función</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="63"/>
