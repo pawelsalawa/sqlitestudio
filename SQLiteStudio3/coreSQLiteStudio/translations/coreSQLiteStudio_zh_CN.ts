@@ -1025,7 +1025,7 @@ The view will remain as it is.</source>
       <location filename="../db/queryexecutor.cpp" line="358"/>
       <location filename="../db/queryexecutor.cpp" line="608"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>执行 count(*) 查询时发生错误，因此数据分页将被禁用。来自数据库的错误详细信息：%1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="527"/>
