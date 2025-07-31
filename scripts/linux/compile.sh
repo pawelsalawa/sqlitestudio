@@ -36,15 +36,14 @@ else
 fi
 
 if [ -d $parent_dir/output ]; then
-	read -p "Directory $parent_dir/output already exists. The script will delete and recreate it. Is that okay? (y/N) : " yn
+	read -p "Directory $parent_dir/output already exists. Should it be deleted? (y/N) : " yn
 	case $yn in
 	    [Yy]* ) rm -rf $parent_dir/output ;;
-	    * ) echo "Aborted."; exit;;
 	esac
 fi
 
 cd $parent_dir
-mkdir output output/build output/build/Plugins
+mkdir -p output output/build output/build/Plugins
 
 cd output/build
 $QMAKE CONFIG+=portable ../../SQLiteStudio3

@@ -23,6 +23,10 @@ dynamic_python {
     DEFINES += PYTHON_DYNAMIC_BINDING
     SOURCES += dynamicpythonapi.cpp
     HEADERS += dynamicpythonapi.h
+    linux : {
+        CONFIG += link_pkgconfig
+        PKGCONFIG += python3
+    }
 }
 
 !dynamic_python {
