@@ -30,7 +30,7 @@ on:
 
 jobs:
     build:
-        runs-on: macos-13
+        runs-on: macos-14
 
         steps:
             #- name: Debug
@@ -86,7 +86,7 @@ jobs:
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
                 
-            - name: Fix Qt for MacOS 13
+            - name: Fix Qt for MacOS 14
               shell: bash
               run: |
                 TCFILE=$(find $Qt5_DIR/mkspecs/features -name toolchain.prf -type f -maxdepth 1)
