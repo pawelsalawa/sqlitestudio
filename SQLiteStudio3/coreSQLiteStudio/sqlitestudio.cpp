@@ -42,7 +42,7 @@
 
 DEFINE_SINGLETON(SQLiteStudio)
 
-static const int sqlitestudioVersion = 30417;
+static const int sqlitestudioVersion = 30418;
 
 SQLiteStudio::SQLiteStudio()
 {

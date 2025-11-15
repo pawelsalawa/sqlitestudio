@@ -132,6 +132,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool simpleBrowserMode = false;
         bool ignoreColumnWidthChanges = false;
         int beforeExecutionHorizontalPosition = -1;
+        int beforeExecutionVerticalPosition = -1;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);

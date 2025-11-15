@@ -738,15 +738,21 @@ void SqlQueryView::updateFont()
 void SqlQueryView::executionStarted()
 {
     beforeExecutionHorizontalPosition = horizontalScrollBar()->sliderPosition();
+    beforeExecutionVerticalPosition = verticalScrollBar()->sliderPosition();
     widgetCover->show();
 }
 
 void SqlQueryView::executionEnded()
 {
-    if (beforeExecutionHorizontalPosition > -1)
+    if (beforeExecutionHorizontalPosition > -1 || beforeExecutionVerticalPosition > -1)
     {
-        horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
-        emit scrolledBy(beforeExecutionHorizontalPosition, 0);
+        if (beforeExecutionHorizontalPosition > -1)
+            horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
+
+        if (beforeExecutionVerticalPosition > -1)
+            verticalScrollBar()->setSliderPosition(beforeExecutionVerticalPosition);
+
+        emit scrolledBy(beforeExecutionHorizontalPosition > -1 ? beforeExecutionHorizontalPosition : 0, beforeExecutionVerticalPosition > -1 ? beforeExecutionVerticalPosition : 0);
     }
 
     widgetCover->hide();
