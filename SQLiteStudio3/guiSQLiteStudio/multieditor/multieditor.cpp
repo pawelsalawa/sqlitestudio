@@ -444,6 +444,9 @@ void MultiEditor::updateLabel()
 
 QVariant MultiEditor::getValueOmmitNull() const
 {
+    if (!tabs->currentWidget())
+        return QVariant(QString());
+
     return dynamic_cast<MultiEditorWidget*>(tabs->currentWidget())->getValue();
 }
 
