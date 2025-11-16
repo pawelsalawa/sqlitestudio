@@ -62,11 +62,12 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
     private:
         void init();
         int getCurrentCollationRow() const;
+        QModelIndex collRowToSrc(const QModelIndex& idx) const;
         CollationManager::CollationType getCurrentType() const;
-        void collationDeselected(int row);
-        void collationSelected(int row);
+        void collationDeselected(int srcRow);
+        void collationSelected(int srcRow);
         void clearEdits();
-        void selectCollation(int row);
+        void selectCollation(int srcRow);
         QStringList getCurrentDatabases() const;
         void setFont(const QFont& font);
         void updateLangCombo();

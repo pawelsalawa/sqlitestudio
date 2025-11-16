@@ -68,11 +68,12 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
     private:
         void init();
         int getCurrentFunctionRow() const;
-        void functionDeselected(int row);
-        void functionSelected(int row);
+        void functionDeselected(int srcRow);
+        void functionSelected(int srcRow);
         void clearEdits();
-        void selectFunction(int row);
+        void selectFunction(int srcRow);
         void setFont(const QFont& font);
+        QModelIndex fnRowToSrc(const QModelIndex& idx) const;
         QModelIndex getSelectedArg() const;
         QStringList getCurrentArgList() const;
         QStringList getCurrentDatabases() const;

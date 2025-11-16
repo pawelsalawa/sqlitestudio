@@ -1,8 +1,9 @@
 # ChangeLog
 
 ### 3.4.18
-- BUGFIX: #5308 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
+- BUGFIX: #5308 #5358 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
 - BUGFIX: #5386 Fixed vertical scroll position when refreshing grid data view.
+- BUGFIX: #5348 Fix name-based filtering in Functions/Collations editors and repair Implementation Language dropdown in Collations Editor.
 
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.
