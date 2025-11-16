@@ -124,6 +124,8 @@ void MultiEditor::tabChanged(int idx)
 {
     int prevTab = currentTab;
     currentTab = idx;
+    if (idx < 0)
+        return;
 
     MultiEditorWidget* newEditor = editors[idx];
     newEditor->setFocus();

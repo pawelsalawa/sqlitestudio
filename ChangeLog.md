@@ -6,6 +6,7 @@
 - BUGFIX: #5348 Fix name-based filtering in Functions/Collations editors and repair Implementation Language dropdown in Collations Editor.
 - BUGFIX: #5348 Fix name-based filtering in Code Snippet/SQLite Extension editors.
 - BUGFIX: #5355 Fixed SQL Enterprise formatter for CASE-WHEN-THEN-END statement.
+- BUGFIX: #5288 Fixed crash when closing all tabs in the Bind Parameter and Value Editor dialogs.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
