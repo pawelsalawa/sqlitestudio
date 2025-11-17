@@ -381,7 +381,7 @@ bool CompletionHelper::validatePreviousIdForGetObjects(QString* dbName)
     if (previousId)
     {
         localDbName = previousId->value;
-        QStringList databases = schemaResolver->getDatabases().values();
+        QStringList databases = nativePathToAttachName.rightValues();
         databases += DBLIST->getDbNames();
         if (!databases.contains(localDbName, Qt::CaseInsensitive))
             return false; // if db is not on the set, then getObjects() would return empty list anyway;
@@ -438,14 +438,8 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
     results += getExpectedToken(ExpectedToken::DATABASE, "main", "main", tr("Default database"));
     results += getExpectedToken(ExpectedToken::DATABASE, "temp", "temp", tr("Temporary objects database"));
 
-    QSet<QString> databases = schemaResolver->getDatabases();
-    for (QString dbName : databases)
-    {
-        if (dbAttacher->getDbNameToAttach().containsRight(dbName, Qt::CaseInsensitive))
-            continue;
-
-        results += getExpectedToken(ExpectedToken::DATABASE, dbName);
-    }
+    for (QString& attName : nativePathToAttachName.rightValues())
+        results += getExpectedToken(ExpectedToken::DATABASE, attName);
 
     for (Db* otherDb : DBLIST->getValidDbList())
         results += getExpectedToken(ExpectedToken::DATABASE, otherDb->getName());
@@ -786,6 +780,7 @@ TokenPtr CompletionHelper::getPreviousDbOrTable(const TokenList &parsedTokens)
 
 void CompletionHelper::attachDatabases()
 {
+    nativePathToAttachName = dbAttacher->getNativePathToAttachName();
     if (!parsedQuery)
         return;
 
@@ -806,6 +801,9 @@ void CompletionHelper::detachDatabases()
 
 QString CompletionHelper::translateDatabase(const QString& dbName)
 {
+    if (nativePathToAttachName.containsRight(dbName, Qt::CaseInsensitive))
+        return dbName;
+
     if (!dbAttacher->getDbNameToAttach().containsLeft(dbName, Qt::CaseInsensitive))
         return dbName;
 

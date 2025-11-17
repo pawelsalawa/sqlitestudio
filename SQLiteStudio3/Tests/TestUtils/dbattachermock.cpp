@@ -24,6 +24,11 @@ BiStrHash DbAttacherMock::getDbNameToAttach() const
     return BiStrHash();
 }
 
+BiStrHash DbAttacherMock::getNativePathToAttachName() const
+{
+    return BiStrHash();
+}
+
 QString DbAttacherMock::getQuery() const
 {
     return QString();

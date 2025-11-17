@@ -551,13 +551,20 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             SqlQueryPtr executionResults;
 
             /**
-             * @brief Currently attached databases.
+             * @brief Databases currently attached with DbAttacher.
              *
              * This is a cross-context information about currently attached databases.
              * As QueryExecutorAttaches step does attaching, other steps may need information
              * about attached databases. It's a map of orginal_db_name_used to attached_name.
              */
             BiStrHash dbNameToAttach;
+
+            /**
+             * @brief Databases pre-attached by user with ATTACH statements.
+             *
+             * Counting query needs to attach same databases as the primary query executed.
+             */
+            BiStrHash nativeDbPathToAttachName;
 
             /**
              * @brief Sequence used by executor steps to generate column names.
@@ -772,6 +779,17 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * If query is being executed in async mode, the true result (sucess/fail) will be known from later, not from this method.
          */
         bool countResults();
+
+        /**
+         * @brief Handles all db attaching to reflect primary connection state in counting connection.
+         * @return false if something failed (in which case all partial attachments are revoked).
+         */
+        bool attachDbsForCountingResults();
+
+        /**
+         * @brief Cleans up attached databases made for results counting.
+         */
+        void detachAllDbsForCountingResults();
 
         /**
          * @brief Gets time of how long it took to execute query.

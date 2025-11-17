@@ -7,6 +7,7 @@
 - BUGFIX: #5348 Fix name-based filtering in Code Snippet/SQLite Extension editors.
 - BUGFIX: #5355 Fixed SQL Enterprise formatter for CASE-WHEN-THEN-END statement.
 - BUGFIX: #5288 Fixed crash when closing all tabs in the Bind Parameter and Value Editor dialogs.
+- BUGFIX: #5305 Fixed result counting and syntax assistant in case of manually - by a user - attached databases (using explicit ATTACH statement).
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17

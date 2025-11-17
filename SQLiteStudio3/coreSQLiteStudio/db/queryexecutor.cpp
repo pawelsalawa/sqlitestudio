@@ -347,22 +347,8 @@ bool QueryExecutor::countResults()
     }
 
     // Apply all transparent attaches to the counting DB
-    auto it = context->dbNameToAttach.iterator();
-    while (it.hasNext())
-    {
-        auto entry = it.next();
-        Db* dbToAttach = DBLIST->getByName(entry.key());
-        SqlQueryPtr attachRes = countingDb->exec(QString("ATTACH '%1' AS %2").arg(dbToAttach->getPath(), entry.value()));
-        if (attachRes->isError())
-        {
-            notifyError(tr("An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
-                        .arg("Failed to attach necessary databases for counting."));
-
-            qDebug() << "Error while attaching db for counting:" << attachRes->getErrorText();
-            countingDb->detachAll();
-            return false;
-        }
-    }
+    if (!attachDbsForCountingResults())
+        return false;
 
     if (asyncMode)
     {
@@ -378,6 +364,62 @@ bool QueryExecutor::countResults()
         handleRowCountingResults(results);
     }
     return true;
+}
+
+bool QueryExecutor::attachDbsForCountingResults()
+{
+    countingAttaches.clear();
+
+    QHash<QString, QString> attachNameToPath;
+
+    auto it = context->dbNameToAttach.iterator();
+    while (it.hasNext())
+    {
+        auto entry = it.next();
+        Db* dbToAttach = DBLIST->getByName(entry.key());
+        attachNameToPath[entry.value()] = dbToAttach->getPath();
+    }
+
+    it = context->nativeDbPathToAttachName.iterator();
+    while (it.hasNext())
+    {
+        auto entry = it.next();
+        attachNameToPath[entry.value()] = it.key();
+    }
+
+    bool success = true;
+    it = QHashIterator<QString,QString>(attachNameToPath);
+    while (it.hasNext())
+    {
+        auto entry = it.next();
+        SqlQueryPtr attachRes = countingDb->exec(QString("ATTACH '%1' AS %2").arg(entry.value(), entry.key()));
+        if (attachRes->isError())
+        {
+            notifyError(tr("An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+                            .arg("Failed to attach necessary databases for counting."));
+
+            qDebug() << "Error while attaching db for counting:" << attachRes->getErrorText();
+            success = false;
+            break;
+        }
+        countingAttaches << entry.key();
+    }
+
+    if (!success)
+        detachAllDbsForCountingResults();
+
+    return success;
+}
+
+void QueryExecutor::detachAllDbsForCountingResults()
+{
+    for (QString& attName : countingAttaches)
+    {
+        SqlQueryPtr detachRes = countingDb->exec(QString("DETACH %1").arg(attName));
+        if (detachRes->isError())
+            qDebug() << "Error while detaching db in results counting:" << detachRes->getErrorText();
+    }
+    countingAttaches.clear();
 }
 
 qint64 QueryExecutor::getLastExecutionTime() const
@@ -547,7 +589,7 @@ bool QueryExecutor::simpleExecIsSelect()
     // Go through all tokens and find which one appears first (exclude contents indise parenthesis,
     // cause there will always be a SELECT for Common Table Expression).
     int depth = 0;
-    for (const TokenPtr& token : tokens)
+    for (TokenPtr& token : tokens)
     {
         switch (token->type)
         {
@@ -609,7 +651,7 @@ bool QueryExecutor::handleRowCountingResults(SqlQueryPtr results)
                     .arg(results->getErrorText()));
     }
 
-    countingDb->detachAll();
+    detachAllDbsForCountingResults();
     return true;
 }
 
