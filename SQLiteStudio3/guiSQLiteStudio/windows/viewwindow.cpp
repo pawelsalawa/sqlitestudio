@@ -259,8 +259,10 @@ void ViewWindow::init()
     updateTabsOrder();
     createDbCombo();
 
-    updateFont();
     refreshTriggers();
+    ui->triggersList->sortByColumn(0, Qt::AscendingOrder);
+
+    updateFont();
     updateQueryToolbarStatus();
     updateTriggersState();
     updateColumnButtons();
@@ -911,6 +913,7 @@ void ViewWindow::refreshTriggers()
     SchemaResolver resolver(db);
     QList<SqliteCreateTriggerPtr> triggers = resolver.getParsedTriggersForView(database, view);
 
+    ui->triggersList->setSortingEnabled(false);
     ui->triggersList->setColumnCount(4);
     ui->triggersList->setRowCount(triggers.size());
     ui->triggersList->horizontalHeader()->setMaximumSectionSize(200);
@@ -947,6 +950,10 @@ void ViewWindow::refreshTriggers()
     }
 
     ui->triggersList->resizeColumnsToContents();
+    ui->triggersList->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
+    ui->triggersList->selectionModel()->clearSelection();
+    ui->triggersList->selectionModel()->clearCurrentIndex();
+    ui->triggersList->setSortingEnabled(true);
     updateTriggersState();
 }
 
