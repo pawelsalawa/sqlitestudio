@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <QMetaType>
 
-QString invalidIdCharacters = "[](){}\"'@*.,+-=/#$%&|:; \t\n<>";
+QString invalidIdCharacters = "[](){}\"'`@*.,+-=/#?%&|:;~ \t\n<>";
 QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
