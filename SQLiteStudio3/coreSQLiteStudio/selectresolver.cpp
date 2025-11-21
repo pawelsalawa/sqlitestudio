@@ -331,8 +331,9 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 
 QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect::Core::ResultColumn* resCol)
 {
+    QStringList displayNamesAlreadyAdded;
     QList<SelectResolver::Column> results;
-    for (SelectResolver::Column column : qAsConst(currentCoreSourceColumns))
+    for (SelectResolver::Column column : currentCoreSourceColumns) // intentionally not a reference - we want to create copies
     {
         if (!resCol->table.isNull())
         {
@@ -367,7 +368,6 @@ QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect:
                 continue;
             }
         }
-
         // If source column name is aliased, use it
         if (column.displayName.isNull())
         {
@@ -377,6 +377,13 @@ QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect:
                 column.displayName = column.column;
         }
 
+        if (resCol->table.isNull() && column.joinedWithUsingClause && displayNamesAlreadyAdded.contains(column.displayName, Qt::CaseInsensitive))
+        {
+            // #5314 If duplicated column names from USING join, then only one column should get returned
+            continue;
+        }
+
+        displayNamesAlreadyAdded << column.displayName;
         results << column;
     }
     return results;
@@ -740,15 +747,11 @@ QList<SelectResolver::Column> SelectResolver::resolveOtherSource(SqliteSelect::C
     if (!otherSrc->joinConstraint || otherSrc->joinConstraint->expr)
         return joinedColumns;
 
-    // Skip right-hand (aka "other") source column if it matches any of names listed in USING clause.
-    QSet<QString> usingColumns;
-    for (QString& colName : otherSrc->joinConstraint->columnNames)
-        usingColumns << colName.toLower();
+    // JOINing with a USING clause. Marking for later processing if needed.
+    for (SelectResolver::Column& col : joinedColumns)
+        col.joinedWithUsingClause = true;
 
-    return filter<SelectResolver::Column>(joinedColumns, [usingColumns](const SelectResolver::Column& col)
-    {
-        return !usingColumns.contains((col.alias.isNull() ? col.column : col.alias).toLower());
-    });
+    return joinedColumns;
 }
 
 QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *select)

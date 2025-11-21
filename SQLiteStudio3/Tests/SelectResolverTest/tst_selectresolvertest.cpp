@@ -39,6 +39,7 @@ class SelectResolverTest : public QObject
         void testSubselect();
         void testSubselectWithAlias();
         void testIssue4607();
+        void testJoinUsing();
 };
 
 SelectResolverTest::SelectResolverTest()
@@ -412,6 +413,28 @@ void SelectResolverTest::testIssue4607()
     QVERIFY(coreColumns[3].table == "Trip");
     QVERIFY(coreColumns[3].tableAlias.isNull());
     QVERIFY(coreColumns[3].flags == 0);
+}
+
+void SelectResolverTest::testJoinUsing()
+{
+    QString sql = "select *"
+                  "  from test t1"
+                  "  join test2 t2"
+                  " using (col1)"
+                  " where t1.col1 = 1 and t2.col1 = 1";
+
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    if (resolver.hasErrors()) {
+        for (const QString& err : resolver.getErrors())
+            qWarning() << err;
+    }
+    QVERIFY(!resolver.hasErrors());
+    QVERIFY(columns.first().size() == 3);
 }
 
 void SelectResolverTest::initTestCase()
