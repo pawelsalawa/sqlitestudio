@@ -11,6 +11,7 @@
 - BUGFIX: #5311 Trigger list and Index list in Table Window are now sortable and initially sorted by name. Editing them does not change their order (unless it reflects current sortig order).
 - BUGFIX: #5333 Fixed handling dollar sign in object names.
 - BUGFIX: #5314 Fixed proper handling od the USING clause in queries with JOINs.
+- BUGFIX: #5319 Fixed query results for count(ALL column).
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17

@@ -595,7 +595,7 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
             else if (allKw)
-                builder.withKeyword("DISTINCT");
+                builder.withKeyword("ALL");
 
             if (star)
                 builder.withOperator("*").withParRight();
@@ -608,7 +608,7 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
             else if (allKw)
-                builder.withKeyword("DISTINCT");
+                builder.withKeyword("ALL");
 
             if (star)
                 builder.withOperator("*").withParRight();

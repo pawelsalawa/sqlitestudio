@@ -126,7 +126,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         SqliteSelect* select = nullptr;
         SqliteFilterOver* filterOver = nullptr;
         bool distinctKw = false;
-        bool allKw = false; // alias for DISTINCT as for sqlite3 grammar
+        bool allKw = false; // alias for non-DISTINCT as for sqlite3 grammar
         bool star = false;
         bool notKw = false;
         LikeOp like = LikeOp::null;
