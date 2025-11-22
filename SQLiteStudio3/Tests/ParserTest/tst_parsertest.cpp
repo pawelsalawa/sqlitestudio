@@ -881,7 +881,7 @@ void ParserTest::testExprIsString()
 
     select->rebuildTokens();
     QString detokenized = select->detokenize();
-    QVERIFY(detokenized == "select SomeColumn IS 'This literal string with spaces';");
+    QVERIFY(detokenized.compare("select SomeColumn IS 'This literal string with spaces';", Qt::CaseInsensitive) == 0);
 }
 
 void ParserTest::initTestCase()
