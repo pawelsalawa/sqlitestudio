@@ -72,6 +72,7 @@ class ParserTest : public QObject
         void testIndexedSelect();
         void testTrueFalseLiterals1();
         void testDollarInName();
+        void testExprIsString();
 };
 
 ParserTest::ParserTest()
@@ -862,6 +863,25 @@ void ParserTest::testDollarInName()
     SqliteExpr* col = resCols.first()->expr;
     QVERIFY(col->mode == SqliteExpr::Mode::ID);
     QVERIFY(col->column == "v$test");
+}
+
+void ParserTest::testExprIsString()
+{
+    QString sql = "select SomeColumn IS 'This literal string with spaces';";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    SqliteQueryPtr query = parser3->getQueries().first();
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+
+    QList<SqliteSelect::Core::ResultColumn*> resCols = select->coreSelects.first()->resultColumns;
+    QVERIFY(resCols.size() == 1);
+
+    SqliteExpr* col = resCols.first()->expr;
+    QVERIFY(col->mode == SqliteExpr::Mode::IS);
+
+    select->rebuildTokens();
+    QString detokenized = select->detokenize();
+    QVERIFY(detokenized == "select SomeColumn IS 'This literal string with spaces';");
 }
 
 void ParserTest::initTestCase()

@@ -1773,21 +1773,21 @@ exprx(X) ::= LP nexprlist(L) RP.            {
                                             }
 exprx(X) ::= tnm(N1).                       {
                                                 X = new SqliteExpr();
-												if (N1->isLiteral())
-													X->initLiteral(N1->toLiteral());
-												else
-													X->initId(N1->toName());
-													//parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
+                                                if (N1->isLiteral())
+                                                    X->initLiteral(N1->toLiteral());
+                                                else
+                                                    X->initId(N1->toName());
+                                                    //parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
 
                                                 delete N1;
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= tnm(N1) DOT nm(N2).            {
                                                 X = new SqliteExpr();
-												if (N1->isName())
-													X->initId(N1->toName(), *(N2));
-												else
-													parserContext->errorAtToken("Syntax error <expected name>", -3);
+                                                if (N1->isName())
+                                                    X->initId(N1->toName(), *(N2));
+                                                else
+                                                    parserContext->errorAtToken("Syntax error <expected name>", -3);
 
                                                 delete N1;
                                                 delete N2;

@@ -45,8 +45,8 @@ void FormatExpr::formatInternal()
             if (!expr->table.isNull())
                 withId(expr->table).withIdDot();
 
-            if (expr->possibleDoubleQuotedString)
-                withStringOrId(expr->column);
+            if (expr->possibleDoubleQuotedString || expr->originallySingleQuoteString)
+                withStringOrId(expr->column, expr->originallySingleQuoteString ? FormatToken::SINGLE_QUOTE_STRING : FormatToken::Flag::NO_FLAG);
             else
                 withId(expr->column);
             break;

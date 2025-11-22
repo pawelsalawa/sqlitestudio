@@ -133,6 +133,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         NotNull notNull = NotNull::null;
         SqliteRaise* raiseFunction = nullptr;
         bool possibleDoubleQuotedString = false;
+        bool originallySingleQuoteString = false;
 
     protected:
         QStringList getColumnsInStatement();

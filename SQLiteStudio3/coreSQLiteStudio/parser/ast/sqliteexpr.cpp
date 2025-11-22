@@ -404,6 +404,8 @@ void SqliteExpr::detectDoubleQuotes(bool recursively)
         QString val = tokens.first()->value;
         if (val[0] == '"' && val[0] == val[val.length() - 1])
             possibleDoubleQuotedString = true;
+        else if (val[0] == '\'' && val[0] == val[val.length() - 1])
+            originallySingleQuoteString = true;
     }
 
     for (SqliteStatement* stmt : childStatements())
@@ -682,8 +684,8 @@ TokenList SqliteExpr::rebuildId()
     if (!table.isNull())
         builder.withOther(table).withOperator(".");
 
-    if (table.isNull() && possibleDoubleQuotedString)
-        builder.withStringPossiblyOther(column);
+    if (table.isNull() && (possibleDoubleQuotedString || originallySingleQuoteString))
+        builder.withStringPossiblyOther(column, originallySingleQuoteString);
     else
         builder.withOther(column);
 
