@@ -15,6 +15,8 @@
 - BUGFIX: #5363 Fixed crash when closing View window while data was still being read from database.
 - BUGFIX: #5363 Fixed crash when closing View window while data was still being read from database.
 - BUGFIX: #5318 Fixed consuming some of UTF-8 spacing characters (U+00A0, U+2029, U+2028) by Form View text input.
+- BUGFIX: #5339 Changed per-column filter inputs, so they always apply modified values when user finishes editing value (moves focus elwhere).
+- BUGFIX: #5381 Fixed per-column filter when it was enabled after SQL filtering mode was set.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
