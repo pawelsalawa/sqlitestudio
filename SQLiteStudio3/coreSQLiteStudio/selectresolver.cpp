@@ -654,7 +654,7 @@ QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Co
 
     SqliteWith::CommonTableExpression* cte = cteList.value(joinSrc->table, Qt::CaseInsensitive);
     QString selectQuery = cte->detokenize();
-    QString theQuery = cteSelectTpl.arg(selectQuery, cte->table);
+    QString theQuery = cteSelectTpl.arg(selectQuery, wrapObjIfNeeded(cte->table));
     QList<Column> columnSources = sqliteResolveColumns(theQuery);
 
     for (Column& column : columnSources)
