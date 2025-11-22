@@ -947,7 +947,7 @@ void DataView::recreateFilterInputs()
     if (!model->features().testFlag(SqlQueryModel::FILTERING))
         return;
 
-    qApp->processEvents();
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     for (ExtLineEdit*& edit : filterInputs)
         delete edit;
@@ -984,7 +984,7 @@ void DataView::recreateFilterInputs()
         perColumnAreaParent->setFixedHeight(hg);
     }
 
-    qApp->processEvents();
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     syncFilterScrollPosition();
 }
@@ -1030,6 +1030,11 @@ void DataView::createFilteringActions()
 
     gridView->getHeaderContextMenu()->addSeparator();
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
+}
+
+bool DataView::isTotalPagesAvailable() const
+{
+    return totalPagesAvailable;
 }
 
 

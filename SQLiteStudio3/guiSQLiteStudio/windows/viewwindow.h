@@ -80,6 +80,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         bool isUncommitted() const;
         QString getQuitUncommittedConfirmMessage() const;
         Db* getAssociatedDb() const;
+        bool isWindowClosingBlocked() const;
 
         static void staticInit();
         static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_QUERY);

@@ -90,6 +90,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         static void insertActionAfter(ExtActionPrototype* action, Action afterAction, ToolBar toolbar = TOOLBAR_GRID);
         static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_GRID);
 
+        bool isTotalPagesAvailable() const;
+
     protected:
         void createActions();
         void setupDefShortcuts();

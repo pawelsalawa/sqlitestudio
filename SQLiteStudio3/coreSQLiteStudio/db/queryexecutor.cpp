@@ -326,6 +326,23 @@ void QueryExecutor::interrupt()
     QMutexLocker lock(&interruptionMutex);
     interrupted = true;
     db->asyncInterrupt();
+    if (countingDb)
+        countingDb->asyncInterrupt();
+}
+
+void QueryExecutor::interruptSync()
+{
+    if (!db)
+    {
+        qWarning() << "Called interrupt() on empty db in QueryExecutor.";
+        return;
+    }
+
+    QMutexLocker lock(&interruptionMutex);
+    interrupted = true;
+    db->interrupt();
+    if (countingDb)
+        countingDb->interrupt();
 }
 
 bool QueryExecutor::countResults()
@@ -338,6 +355,9 @@ bool QueryExecutor::countResults()
 
     if (!countingDb)
         return false; // no db defined, so no countingDb defined
+
+    if (isInterrupted())
+        return false;
 
     if (!countingDb->isOpen() && !countingDb->openQuiet())
     {

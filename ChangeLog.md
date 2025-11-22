@@ -12,6 +12,7 @@
 - BUGFIX: #5333 Fixed handling dollar sign in object names.
 - BUGFIX: #5314 Fixed proper handling od the USING clause in queries with JOINs.
 - BUGFIX: #5319 Fixed query results for count(ALL column).
+- BUGFIX: #5363 Fixed crash when closing View window while data was still being read from database.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17

@@ -399,6 +399,12 @@ Db* ViewWindow::getAssociatedDb() const
     return db;
 }
 
+bool ViewWindow::isWindowClosingBlocked() const
+{
+    auto r = structureExecutor->isExecuting() || dataModel->isExecutionInProgress() || !dataModel->isAllDataLoaded();
+    return r;
+}
+
 void ViewWindow::staticInit()
 {
     qRegisterMetaType<ViewWindow>("ViewWindow");

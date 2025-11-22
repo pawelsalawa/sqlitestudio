@@ -1749,6 +1749,11 @@ Db* TableWindow::getAssociatedDb() const
     return db;
 }
 
+bool TableWindow::isWindowClosingBlocked() const
+{
+    return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() || !dataModel->isAllDataLoaded();
+}
+
 void TableWindow::updateFont()
 {
     QFont f = CFG_UI.Fonts.DataView.get();

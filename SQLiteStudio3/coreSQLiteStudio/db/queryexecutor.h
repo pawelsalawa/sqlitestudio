@@ -766,6 +766,13 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void interrupt();
 
         /**
+         * @brief Interrupts current execution synchronously, waiting to return.
+         *
+         * Calls Db::interrupt() internally.
+         */
+        void interruptSync();
+
+        /**
          * @brief Executes counting query.
          * @return true if counting query is executed (in async mode) or was executed correctly (in sync mode), false on error.
          *
