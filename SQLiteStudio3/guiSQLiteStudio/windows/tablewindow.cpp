@@ -1751,7 +1751,8 @@ Db* TableWindow::getAssociatedDb() const
 
 bool TableWindow::isWindowClosingBlocked() const
 {
-    return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() || !dataModel->isAllDataLoaded();
+    return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() ||
+        (ui->tabWidget->currentIndex() == getDataTabIdx() && !ui->dataView->getNavigationState());
 }
 
 void TableWindow::updateFont()

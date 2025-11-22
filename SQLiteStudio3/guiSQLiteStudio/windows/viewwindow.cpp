@@ -401,8 +401,8 @@ Db* ViewWindow::getAssociatedDb() const
 
 bool ViewWindow::isWindowClosingBlocked() const
 {
-    auto r = structureExecutor->isExecuting() || dataModel->isExecutionInProgress() || !dataModel->isAllDataLoaded();
-    return r;
+    return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() ||
+           (ui->tabWidget->currentIndex() == getDataTabIdx() && !ui->dataView->getNavigationState());
 }
 
 void ViewWindow::staticInit()

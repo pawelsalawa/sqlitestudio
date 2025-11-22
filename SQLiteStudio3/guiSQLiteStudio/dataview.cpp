@@ -1039,11 +1039,10 @@ void DataView::createFilteringActions()
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
 }
 
-bool DataView::isTotalPagesAvailable() const
+bool DataView::getNavigationState() const
 {
-    return totalPagesAvailable;
+    return navigationState;
 }
-
 
 void DataView::columnsHeaderDoubleClicked(int columnIdx)
 {
