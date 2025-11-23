@@ -18,6 +18,7 @@
 - BUGFIX: #5381 Fixed per-column filter when it was enabled after SQL filtering mode was set.
 - BUGFIX: #5342 Fixed broken filtering in View data, when the View's source table name requires quoting (i.e. has whitespaces, etc.).
 - BUGFIX: #5347 Fixed SQL formatter to keep single-quote wrapper around string literals.
+- BUGFIX: #5370 Fixed cell inline editor context menu actions for Copy, Cut and Delete.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
