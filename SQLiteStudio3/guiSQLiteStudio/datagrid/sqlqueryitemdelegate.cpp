@@ -47,6 +47,7 @@ void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 
 QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
+    qDebug() << "create editor";
     UNUSED(option);
     if (!index.isValid())
         return nullptr;
