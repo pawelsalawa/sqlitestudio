@@ -40,10 +40,23 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
     QString col;
     QString firstSrcCol;
     QStringList usedNames;
+    QHash<QString, int> implicitFkColumnIdxByTable;
+    QHash<QString, QStringList> implicitFkColumnsByTable;
     for (SqlQueryModelColumn::ConstraintFk*& fk : fkList)
     {
-        col = wrapObjIfNeeded(fk->foreignColumn);
         src = wrapObjIfNeeded(fk->foreignTable);
+        if (!fk->foreignColumn.isNull())
+        {
+            col = wrapObjIfNeeded(fk->foreignColumn);
+        }
+        else
+        {
+            // FK is using shorthand syntax (i.e. "REFERENCES parent" without explicit columns)
+            col = resolveImplicitColumn(db, columnModel, fk, implicitFkColumnIdxByTable, implicitFkColumnsByTable);
+            if (col.isNull())
+                continue;
+        }
+
         if (i == 0)
         {
             fullSrcCol = src + "." + col;
@@ -100,6 +113,46 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
         );
 }
 
+QString FkComboBox::resolveImplicitColumn(Db* db,
+                                          SqlQueryModelColumn *columnModel,
+                                          SqlQueryModelColumn::ConstraintFk*& fk,
+                                          QHash<QString, int> &implicitFkColumnIdxByTable,
+                                          QHash<QString, QStringList> &implicitFkColumnsByTable)
+{
+    QString lowerTabName = fk->foreignTable.toLower();
+    QStringList implicitCols = implicitFkColumnsByTable[lowerTabName];
+    if (implicitCols.isEmpty())
+    {
+        SchemaResolver resolver(db);
+        implicitCols = resolver.getTablePrimaryKeyColumns(fk->foreignTable);
+        if (implicitCols.isEmpty())
+        {
+            qCritical() << "Unable to resolve implicit FK columns for FK on:" << columnModel->table
+                        << "." << columnModel->column
+                        << "and FK to table" << fk->foreignTable;
+            return QString();
+        }
+        else
+        {
+            implicitFkColumnsByTable[lowerTabName] = implicitCols;
+        }
+    }
+
+    int implicitIdx = implicitFkColumnIdxByTable[lowerTabName];
+    if (implicitIdx >= implicitCols.size())
+    {
+        qCritical() << "Unable to resolve implicit FK columns for FK on:" << columnModel->table
+                    << "." << columnModel->column
+                    << "and FK to table" << fk->foreignTable
+                    << "because implicitIdx =" << implicitIdx
+                    << "which is greater or equal to total implicit columns:" << implicitCols;
+        return QString();
+    }
+
+    implicitFkColumnIdxByTable[lowerTabName] = implicitIdx + 1;
+    return implicitCols[implicitIdx];
+
+}
 void FkComboBox::init(Db* db, SqlQueryModelColumn* columnModel)
 {
     this->columnModel = columnModel;

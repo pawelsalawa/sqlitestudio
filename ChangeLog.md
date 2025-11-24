@@ -19,6 +19,7 @@
 - BUGFIX: #5342 Fixed broken filtering in View data, when the View's source table name requires quoting (i.e. has whitespaces, etc.).
 - BUGFIX: #5347 Fixed SQL formatter to keep single-quote wrapper around string literals.
 - BUGFIX: #5370 Fixed cell inline editor context menu actions for Copy, Cut and Delete.
+- BUGFIX: #5379 Shorthand form of foreign key constraint now works correctly in cell inline editor.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
