@@ -783,7 +783,9 @@ void SqlQueryView::executionEnded()
 
 void SqlQueryView::setCurrentRow(int row)
 {
-    setCurrentIndex(model()->index(row, 0));
+    auto idx = model()->index(row, 0);
+    setCurrentIndex(idx);
+    scrollTo(idx);
 }
 
 void SqlQueryView::copy()

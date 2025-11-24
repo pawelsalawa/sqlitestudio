@@ -22,6 +22,7 @@
 - BUGFIX: #5364 Fixed triggering inline cell editor with polish characters.
 - BUGFIX: #5379 Shorthand form of foreign key constraint now works correctly in cell inline editor.
 - BUGFIX: #5378 Default hotkey to toggle Rows Height Adjusting is changed from Alt+H to Ctrl+Alt+H to avoid hoteky conflict with the Help menu hotkey
+- BUGFIX: #5373 Make sure to always scroll data view to a newly inserted row, wherever in the data grid it is.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17

@@ -1748,7 +1748,7 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     if (rowIdx == 0) // when adding first row, we need to update header
         updateColumnHeaderLabels();
 
-    view->selectionModel()->clear();;
+    view->selectionModel()->clear();
     view->setCurrentRow(rowIdx);
     view->setFocus();
 }
