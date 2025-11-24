@@ -21,6 +21,7 @@
 - BUGFIX: #5370 Fixed cell inline editor context menu actions for Copy, Cut and Delete.
 - BUGFIX: #5364 Fixed triggering inline cell editor with polish characters.
 - BUGFIX: #5379 Shorthand form of foreign key constraint now works correctly in cell inline editor.
+- BUGFIX: #5378 Default hotkey to toggle Rows Height Adjusting is changed from Alt+H to Ctrl+Alt+H to avoid hoteky conflict with the Help menu hotkey
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
