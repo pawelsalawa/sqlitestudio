@@ -93,6 +93,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
     protected:
         void scrollContentsBy(int dx, int dy);
+        void keyPressEvent(QKeyEvent *e);
 
     private:
         class Header : public QHeaderView
