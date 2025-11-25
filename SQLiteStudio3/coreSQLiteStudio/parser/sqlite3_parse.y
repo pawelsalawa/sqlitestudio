@@ -1958,6 +1958,7 @@ exprx(X) ::= expr(E1) IS DISTINCT FROM
 exprx(X) ::= NOT(O) expr(E).                {
                                                 X = new SqliteExpr();
                                                 X->initUnaryOp(E, O->value);
+                                                objectForTokens = X;
                                             }
 exprx(X) ::= BITNOT(O) expr(E).             {
                                                 X = new SqliteExpr();

@@ -4971,11 +4971,11 @@ static void yy_reduce(
       case 294: /* exprx ::= tnm */
 {
                                                 yygotominor.yy252 = new SqliteExpr();
-												if (yymsp[0].minor.yy350->isLiteral())
-													yygotominor.yy252->initLiteral(yymsp[0].minor.yy350->toLiteral());
-												else
-													yygotominor.yy252->initId(yymsp[0].minor.yy350->toName());
-													//parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
+                                                if (yymsp[0].minor.yy350->isLiteral())
+                                                    yygotominor.yy252->initLiteral(yymsp[0].minor.yy350->toLiteral());
+                                                else
+                                                    yygotominor.yy252->initId(yymsp[0].minor.yy350->toName());
+                                                    //parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
 
                                                 delete yymsp[0].minor.yy350;
                                                 objectForTokens = yygotominor.yy252;
@@ -4984,10 +4984,10 @@ static void yy_reduce(
       case 295: /* exprx ::= tnm DOT nm */
 {
                                                 yygotominor.yy252 = new SqliteExpr();
-												if (yymsp[-2].minor.yy350->isName())
-													yygotominor.yy252->initId(yymsp[-2].minor.yy350->toName(), *(yymsp[0].minor.yy259));
-												else
-													parserContext->errorAtToken("Syntax error <expected name>", -3);
+                                                if (yymsp[-2].minor.yy350->isName())
+                                                    yygotominor.yy252->initId(yymsp[-2].minor.yy350->toName(), *(yymsp[0].minor.yy259));
+                                                else
+                                                    parserContext->errorAtToken("Syntax error <expected name>", -3);
 
                                                 delete yymsp[-2].minor.yy350;
                                                 delete yymsp[0].minor.yy259;
@@ -5148,12 +5148,7 @@ static void yy_reduce(
                                             }
         break;
       case 319: /* exprx ::= NOT expr */
-{
-                                                yygotominor.yy252 = new SqliteExpr();
-                                                yygotominor.yy252->initUnaryOp(yymsp[0].minor.yy252, yymsp[-1].minor.yy0->value);
-                                            }
-        break;
-      case 320: /* exprx ::= BITNOT expr */
+      case 320: /* exprx ::= BITNOT expr */ yytestcase(yyruleno==320);
       case 322: /* exprx ::= PLUS expr */ yytestcase(yyruleno==322);
 {
                                                 yygotominor.yy252 = new SqliteExpr();
