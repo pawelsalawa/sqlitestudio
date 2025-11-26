@@ -25,6 +25,7 @@
 - BUGFIX: #5373 Make sure to always scroll data view to a newly inserted row, wherever in the data grid it is.
 - BUGFIX: #5395 Fixed SQL From File executor to handle properly temporar FK disabling.
 - BUGFIX: #5395 Fixed loading trigger condition if it starts with the NOT keyword.
+- BUGFIX: #5398 Fixed Smart Executor for queries, where two joined, unaliased tables return column of the same name, but different case-wise.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
