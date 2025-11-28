@@ -1369,7 +1369,7 @@ void CompletionHelper::initFunctions(Db* db)
                      << "abs(X)" << "changes()" << "char(X1,X2,...,XN)" << "coalesce(X,Y,...)"
                      << "glob(X,Y)" << "ifnull(X,Y)" << "instr(X,Y)" << "hex(X)" << "iif(X,Y,Z)"
                      << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "like(X,Y,Z)"
-                     << "load_extension(X,Y)" << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
+                     << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
                      << "max(X,Y,...)" << "min(X,Y,...)" << "nullif(X,Y)" << "quote(X)"
                      << "random()" << "randomblob(N)" << "hex(randomblob(16))"
                      << "lower(hex(randomblob(16)))" << "replace(X,Y,Z)" << "round(X)"
@@ -1416,6 +1416,7 @@ void CompletionHelper::initFunctions(Db* db)
     static_qstring(funTpl, "%1(%2)");
     static const QStringList argSymbols = {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"};
     static const int argSymbolCnt = argSymbols.size();
+    static const QStringList overriddenNativeFunctions = {"load_extension"};
 
     SqlQueryPtr res = db->exec("PRAGMA function_list;");
     while (res->hasNext())
@@ -1423,6 +1424,9 @@ void CompletionHelper::initFunctions(Db* db)
         SqlResultsRowPtr row = res->next();
         QVariant nargsVar = row->value("narg");
         QString fnName = row->value("name").toString();
+        if (overriddenNativeFunctions.contains(fnName.toLower()))
+            continue;
+
         QString sig = sigTpl.arg(fnName, nargsVar.toString());
         if (!handledSignatures.contains(sig))
         {

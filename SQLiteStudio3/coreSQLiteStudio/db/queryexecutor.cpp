@@ -370,6 +370,10 @@ bool QueryExecutor::countResults()
     if (!attachDbsForCountingResults())
         return false;
 
+    // Load all manually loaded extensions to counting DB
+    if (!loadManualExtensionsForCountingResults())
+        return false;
+
     if (asyncMode)
     {
         // Start asynchronous results counting query
@@ -431,6 +435,17 @@ bool QueryExecutor::attachDbsForCountingResults()
     return success;
 }
 
+bool QueryExecutor::loadManualExtensionsForCountingResults()
+{
+    for (Db::LoadedExtension& ext : db->getManuallyLoadedExtensions())
+    {
+        if (!countingDb->loadExtension(ext.path, ext.init))
+            return false;
+    }
+
+    return true;
+}
+
 void QueryExecutor::detachAllDbsForCountingResults()
 {
     for (QString& attName : countingAttaches)
@@ -441,6 +456,13 @@ void QueryExecutor::detachAllDbsForCountingResults()
     }
     countingAttaches.clear();
 }
+
+void QueryExecutor::clearManualExtensionsForCountingResults()
+{
+    if (!db->getManuallyLoadedExtensions().isEmpty())
+        countingDb->closeQuiet();
+}
+
 
 qint64 QueryExecutor::getLastExecutionTime() const
 {

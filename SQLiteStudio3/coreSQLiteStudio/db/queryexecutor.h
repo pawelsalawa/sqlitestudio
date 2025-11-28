@@ -794,9 +794,20 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool attachDbsForCountingResults();
 
         /**
+         * @brief Handles all manually loaded SQLite exteions to reflect primary connection state in counting connection.
+         * @return false if something failed (in which case counting db connections is closed to clear anything that was loaded).
+         */
+        bool loadManualExtensionsForCountingResults();
+
+        /**
          * @brief Cleans up attached databases made for results counting.
          */
         void detachAllDbsForCountingResults();
+
+        /**
+         * @brief If any manuallu loaded extensions were loaded to counting db, its connection will be closed by this function to clean up.
+         */
+        void clearManualExtensionsForCountingResults();
 
         /**
          * @brief Gets time of how long it took to execute query.

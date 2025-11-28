@@ -157,6 +157,15 @@ class API_EXPORT Db : public QObject, public Interruptable
         Q_DECLARE_FLAGS(Flags, Flag)
 
         /**
+         * @brief Basic structure representing single SQLite extension loaded with load_extension() SQL function.
+         */
+        struct LoadedExtension
+        {
+            QString path;
+            QString init;
+        };
+
+        /**
          * @brief Function to handle SQL query results.
          *
          * The function has to accept single results object and return nothing.
@@ -719,6 +728,14 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool loadExtension(const QString& filePath, const QString& initFunc = QString()) = 0;
 
         /**
+         * @brief Same as loadExtension(), but called from load_extension() SQL function to keep track of manually loaded extensions.
+         * @param filePath Absolute path to the extension file (dll/so/dylib).
+         * @param initFunc Optional entry point function. If empty, SQLite's default will be used.
+         * @return true on success, or false on failure.
+         */
+        virtual bool loadExtensionManually(const QString& filePath, const QString& initFunc = QString()) = 0;
+
+        /**
          * @brief Creates instance of same (derived) class with same construction parameters passed.
          * @return Created instance.
          *
@@ -732,6 +749,11 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @return true if there is an active transaction at the moment, or false otherwise.
          */
         virtual bool isTransactionActive() const = 0;
+
+        /**
+         * @brief Provides list of extensions loaded with load_extension() SQL function in this database.
+         */
+        virtual QList<LoadedExtension> getManuallyLoadedExtensions() const = 0;
 
     signals:
         /**

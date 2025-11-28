@@ -88,6 +88,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         static QVariant nativeImportFormats(const QList<QVariant>& args, Db* db, bool& ok);
         static QVariant nativeImportOptions(const QList<QVariant>& args, Db* db, bool& ok);
         static QVariant nativeCharsets(const QList<QVariant>& args, Db* db, bool& ok);
+        static QVariant nativeLoadExtension(const QList<QVariant>& args, Db* db, bool& ok);
 
         QList<ScriptFunction*> functions;
         QHash<Key,ScriptFunction*> functionsByKey;

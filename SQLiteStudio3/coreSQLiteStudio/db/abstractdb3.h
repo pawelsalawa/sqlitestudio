@@ -441,7 +441,7 @@ bool AbstractDb3<T>::openInternal()
         return false;
     }
     dbHandle = handle;
-    T::enable_load_extension(dbHandle, 1);
+    T::db_config(dbHandle, T::DBCONFIG_ENABLE_LOAD_EXTENSION, 1, NULL);
     return true;
 }
 
