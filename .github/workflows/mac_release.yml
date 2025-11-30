@@ -54,6 +54,11 @@ jobs:
                 find /usr/local -name tclsh
                 find /usr/local -name tclConfig.sh
 
+            - uses: actions/setup-python@v6
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -99,11 +104,6 @@ jobs:
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
-
-            - uses: actions/setup-python@v6
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
 
             - name: Clone repo
               uses: actions/checkout@v3
