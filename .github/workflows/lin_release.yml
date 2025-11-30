@@ -141,7 +141,7 @@ jobs:
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
                 for f in icu; do
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                    gcc icu/$f.c -L${{ env.Qt5_Dir }}/lib $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
                 done
                 set +x
                 

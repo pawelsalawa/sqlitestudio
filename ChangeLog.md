@@ -30,6 +30,7 @@
 - BUGFIX: #5406 Tracking calls to load_extension() SQL function and loading the same extensions in the Results Counting connection.
 - BUGFIX: #5411 Data View sorting is reset upon modifying table structure.
 - BUGFIX: #5410 Fixed AST token rebuilding for joined data sources being functions.
+- BUGFIX: #5412 Fixed GitHub action for Linux x64 to link against same ICU library as shipped with the binary package.
 - BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
