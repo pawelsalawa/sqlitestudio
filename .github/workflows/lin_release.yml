@@ -140,12 +140,20 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
-                echo "ICU flags: $(pkg-config --libs --cflags icu-uc icu-io)"
-                echo "ICU libs in Qt:"
-                ls -l ${{ env.Qt5_Dir }}/lib/libicu*
-                echo "--------"
+                #echo "ICU flags: $(pkg-config --libs --cflags icu-uc icu-io)"
+                #echo "ICU libs in Qt:"
+                #ls -l ${{ env.Qt5_Dir }}/lib/libicu*
+                #echo "--------"
+                echo "ldd data:"
+                ldd ${{ env.Qt5_Dir }}/lib/libicudata.so
+                echo "ldd io:"
+                ldd ${{ env.Qt5_Dir }}/lib/libicuio.so
+                echo "ldd i18n:"
+                ldd ${{ env.Qt5_Dir }}/lib/libicui18n.so
+                echo "ldd uc:"
+                ldd ${{ env.Qt5_Dir }}/lib/libicuuc.so
                 for f in icu; do
-                    gcc icu/$f.c -L${{ env.Qt5_Dir }}/lib $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
                 done
                 set +x
                 
