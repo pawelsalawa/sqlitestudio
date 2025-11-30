@@ -870,6 +870,7 @@ void TableWindow::changesSuccessfullyCommitted()
         }
     }
 
+    ui->dataView->resetSorting();
     if (ui->tabWidget->currentIndex() == getDataTabIdx())
         ui->dataView->refreshData();
 }

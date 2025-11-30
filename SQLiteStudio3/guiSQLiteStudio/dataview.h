@@ -182,6 +182,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
 
     public slots:
         void refreshData(bool keepFocus = true);
+        void resetSorting();
 
     private slots:
         void dataLoadingEnded(bool successful);

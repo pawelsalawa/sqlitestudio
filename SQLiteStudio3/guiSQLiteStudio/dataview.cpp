@@ -725,6 +725,11 @@ void DataView::refreshData(bool keepFocus)
     model->executeQuery(!keepFocus);
 }
 
+void DataView::resetSorting()
+{
+    model->setSortOrder(QueryExecutor::SortList());
+}
+
 void DataView::insertRow()
 {
     if (!model->features().testFlag(SqlQueryModel::INSERT_ROW))
