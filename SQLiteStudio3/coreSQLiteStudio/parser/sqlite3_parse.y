@@ -92,7 +92,7 @@ int sqlite3ParserFallback(int iToken) {
   CONFLICT CURRENT DATABASE DEFERRED DESC DETACH DO EACH END EXCLUDE EXCLUSIVE EXPLAIN FAIL FIRST FOLLOWING FOR
   GROUPS IGNORE IMMEDIATE INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
   QUERY KEY OF OFFSET PARTITION PRAGMA PRECEDING RAISE RANGE RECURSIVE RELEASE REPLACE RESTRICT ROW ROWS ROLLBACK
-  SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHOUT
+  SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHIN WITHOUT
   REINDEX RENAME CTIME_KW IF FILTER
   .
 %wildcard ANY.
@@ -1858,6 +1858,17 @@ exprx(X) ::= id(I) LP distinct(D)
                                                 delete L;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) ORDER BY sortlist(O)
+            RP.                             {
+                                                X = new SqliteExpr();
+                                                X->initFunction(stripObjName(*(I)), *(D), *(L), *(O));
+                                                delete I;
+                                                delete D;
+                                                delete L;
+                                                delete O;
+                                                objectForTokens = X;
+                                            }
 exprx(X) ::= id(I) LP STAR RP.              {
                                                 X = new SqliteExpr();
                                                 X->initFunction(stripObjName(*(I)), true);
@@ -2046,10 +2057,9 @@ exprx(X) ::= RAISE LP IGNORE(R) RP.         {
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= RAISE LP raisetype(R) COMMA
-                        nm(N) RP.           {
+                        expr(E) RP.         {
                                                 X = new SqliteExpr();
-                                                X->initRaise(R->value, *(N));
-                                                delete N;
+                                                X->initRaise(R->value, E);
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= id(I) LP distinct(D)
@@ -2061,11 +2071,32 @@ exprx(X) ::= id(I) LP distinct(D)
                                                 delete E;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) ORDER BY sortlist(O)
+            RP filter_over(F).              {
+                                                X = new SqliteExpr();
+                                                X->initWindowFunction(stripObjName(*(I)), *(D), *(L), *(O), F);
+                                                delete I;
+                                                delete D;
+                                                delete L;
+                                                delete O;
+                                                objectForTokens = X;
+                                            }
 exprx(X) ::= id(I) LP STAR RP
             filter_over(F).                 {
                                                 X = new SqliteExpr();
                                                 X->initWindowFunction(stripObjName(*(I)), F);
                                                 delete I;
+                                                objectForTokens = X;
+                                            }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) RP WITHIN GROUP LP
+            ORDER BY expr(E) RP.            {
+                                                X = new SqliteExpr();
+                                                X->initOrderedSetAggregate(stripObjName(*(I)), *(D), *(L), E);
+                                                delete I;
+                                                delete D;
+                                                delete L;
                                                 objectForTokens = X;
                                             }
 

@@ -99,7 +99,13 @@ void FormatExpr::formatInternal()
             if (expr->star)
                 withOperator("*").withParFuncRight();
             else
-                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+            {
+                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA);
+                if (!expr->sortColumns.isEmpty())
+                    withKeyword("ORDER").withKeyword("BY").withStatementList(expr->sortColumns);
+
+                withParFuncRight();
+            }
 
             break;
         }
@@ -114,11 +120,30 @@ void FormatExpr::formatInternal()
             if (expr->star)
                 withOperator("*").withParFuncRight();
             else
-                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+            {
+                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA);
+                if (!expr->sortColumns.isEmpty())
+                    withKeyword("ORDER").withKeyword("BY").withStatementList(expr->sortColumns);
+
+                withParFuncRight();
+            }
 
             if (expr->filterOver)
                 withStatement(expr->filterOver);
 
+            break;
+        }
+        case SqliteExpr::Mode::ORDERED_SET_AGGREGATE:
+        {
+            withId(expr->function).withParFuncLeft();
+            if (expr->distinctKw)
+                withKeyword("DISTINCT");
+            else if (expr->allKw)
+                withKeyword("ALL");
+
+            withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+            withKeyword("WITHIN").withKeyword("GROUP");
+            withParFuncLeft().withKeyword("ORDER").withKeyword("BY").withStatement(expr->expr1, "orderByExpr1").withParFuncRight();
             break;
         }
         case SqliteExpr::Mode::SUB_EXPR:

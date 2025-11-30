@@ -10,6 +10,7 @@ class SqliteFilterOver;
 class SqliteSelect;
 class SqliteColumnType;
 class SqliteRaise;
+class SqliteOrderBy;
 
 class API_EXPORT SqliteExpr : public SqliteStatement
 {
@@ -42,7 +43,8 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             CASE,
             SUB_SELECT,
             RAISE,
-            WINDOW_FUNCTION
+            WINDOW_FUNCTION,
+            ORDERED_SET_AGGREGATE
         };
 
         enum class NotNull
@@ -84,9 +86,13 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initCollate(SqliteExpr* expr, const QString& value);
         void initCast(SqliteExpr* expr, SqliteColumnType* type);
         void initFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList);
+        void initFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList, const QList<SqliteOrderBy*>& columns);
         void initFunction(const QString& fnName, bool star = false);
         void initWindowFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList, SqliteFilterOver* filterOver);
+        void initWindowFunction(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList,
+                                const QList<SqliteOrderBy*>& columns, SqliteFilterOver* filterOver);
         void initWindowFunction(const QString& fnName, SqliteFilterOver* filterOver);
+        void initOrderedSetAggregate(const QString& fnName, int distinct, const QList<SqliteExpr*>& exprList, SqliteExpr* expr);
         void initBinOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2);
         void initUnaryOp(SqliteExpr* expr, const QString& op);
         void initPtrOp(SqliteExpr* expr1, const QString& op, SqliteExpr* expr2);
@@ -101,7 +107,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initExists(SqliteSelect* select);
         void initSubSelect(SqliteSelect* select);
         void initCase(SqliteExpr* expr1, const QList<SqliteExpr*>& exprList, SqliteExpr* expr2);
-        void initRaise(const QString& type, const QString& text = QString());
+        void initRaise(const QString& type, SqliteExpr* expr = nullptr);
         void detectDoubleQuotes(bool recursively = true);
         bool replace(SqliteExpr* toBeReplaced, SqliteExpr* replaceWith);
 
@@ -134,6 +140,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         SqliteRaise* raiseFunction = nullptr;
         bool possibleDoubleQuotedString = false;
         bool originallySingleQuoteString = false;
+        QList<SqliteOrderBy*> sortColumns;
 
     protected:
         QStringList getColumnsInStatement();
