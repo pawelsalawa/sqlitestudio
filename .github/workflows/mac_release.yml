@@ -100,7 +100,7 @@ jobs:
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
 
-            - uses: actions/setup-python@v4
+            - uses: actions/setup-python@v6
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'
