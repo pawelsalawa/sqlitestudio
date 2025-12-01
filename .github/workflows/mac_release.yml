@@ -1,7 +1,7 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6.16'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510100'
     PYTHON_VERSION: '3.11'
     #ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -30,19 +30,9 @@ on:
 
 jobs:
     build:
-        runs-on: macos-14
+        runs-on: macos-15-intel
 
         steps:
-            #- name: Debug
-              #shell: bash
-              #run: |
-                # brew search tcl-tk
-                # ls -l /usr/local/
-                # ls -l /usr/local/include
-                # ls -l /usr/local/opt/
-                # ls -l /usr/local/opt/openssl/include/
-                # ls -l /usr/local/opt/expat/include
-
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
 
@@ -58,17 +48,6 @@ jobs:
             - name: Install coreutils
               run: |
                 brew install coreutils
-
-#             - name: Install Tcl
-#               run: |
-#                 set -x
-#                 #brew install tcl-tk@8
-#                 #brew reinstall tcl-tk@8
-#                 echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
-#                 echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
-#
-#                 find /usr/local -name tclsh
-#                 find /usr/local -name tclConfig.sh
 
             - name: Install Tcl
               run: |
@@ -177,15 +156,6 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
-            # - name: Install extension dependencies
-            #   run: |
-            #     brew tap-new $USER/local-tap
-            #     brew extract --version=$ICU_VERSION icu4c $USER/local-tap
-            #     brew install icu4c@$ICU_VERSION
-            #     brew install coreutils
-            #     echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
-            #         >> $GITHUB_ENV
-
             - name: Compile additional SQLite3 extensions
               shell: bash
               run: |
@@ -241,6 +211,7 @@ jobs:
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
                     "TCL_CONFIG=${{ env.TCL_CONFIG }}" \
+                    "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
                     ../../../Plugins
                 make -j 1
 

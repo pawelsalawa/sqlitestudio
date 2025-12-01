@@ -1,10 +1,10 @@
 env:
     QT_VERSION: '5.15.2'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510100'
     QT_ARCH: 'win64_mingw81'
-    PYTHON_VERSION: '3.9'
-    ICU_VER: '72'
-    ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-72.1-1-any.pkg.tar.zst
+    PYTHON_VERSION: '3.11'
+    #ICU_VER: '72'
+    #ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-72.1-1-any.pkg.tar.zst
     MINGW_DIR: ../Qt/Tools/mingw810_64
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
@@ -123,12 +123,12 @@ jobs:
                 unzip $SQLITE3_ZIP sqlite3.dll -d lib
                 unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
 
-            - name: Install extension dependencies
-              shell: bash
-              run: |
-                cd ..
-                curl -L "$ICU_URL" | tar -xf - --zstd
-                mv mingw64 icu
+            # - name: Install extension dependencies
+            #   shell: bash
+            #   run: |
+            #     cd ..
+            #     curl -L "$ICU_URL" | tar -xf - --zstd
+            #     mv mingw64 icu
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -149,9 +149,9 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
-                for f in icu; do
-                    $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
-                done
+                # for f in icu; do
+                #     $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
+                # done
                 set +x
                 ls -l ../ext/
 
@@ -175,6 +175,7 @@ jobs:
                     "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
                     CONFIG+=portable `
                     "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" `
+                    "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" `
                     ..\..\..\Plugins
                 mingw32-make.exe -j 1
 
@@ -221,8 +222,8 @@ jobs:
               run: |
                 cd ../lib
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
-                cd ../icu/bin
-                cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
+                # cd ../icu/bin
+                # cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
 
             - name: Prepare portable distro (Resources)
               shell: bash

@@ -1,8 +1,8 @@
 env:
     QT_VERSION: '5.15.2'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3490000'
-    PYTHON_VERSION: '3.9'
+    SQLITE_VERSION: '3510100'
+    PYTHON_VERSION: '3.11'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
@@ -174,6 +174,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
                     ../../../Plugins
                 make -j 1
 
