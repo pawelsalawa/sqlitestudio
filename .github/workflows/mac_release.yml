@@ -76,7 +76,7 @@ jobs:
                     brew uninstall tcl-tk r
                 fi
 
-                sudo port install tcl
+                sudo port install tcl +universal
 
                 echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
                 echo "TCL_CONFIG=/opt/local/lib/tclConfig.sh" >> $GITHUB_ENV
@@ -93,11 +93,6 @@ jobs:
                 ls -l /opt/local/lib/tclConfig.sh
                 cat /opt/local/lib/tclConfig.sh
 
-            - uses: actions/setup-python@v6
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
-
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -110,6 +105,11 @@ jobs:
                 host: 'mac'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 extra: '--external 7z'
+
+            - uses: actions/setup-python@v6
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
