@@ -3,7 +3,6 @@ env:
     TCL_VERSION: '8.6.16'
     SQLITE_VERSION: '3510100'
     PYTHON_VERSION: '3.11'
-    #ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-osx-installer.dmg
@@ -39,15 +38,22 @@ jobs:
             - name: Reconfigure MacPorts
               run: |
                 MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
-                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 14.0/' "$MACPORTS_CONF"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 11.0/' "$MACPORTS_CONF"
                 if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
-                    echo "macosx_deployment_target 14.0" | sudo tee -a "$MACPORTS_CONF"
+                    echo "macosx_deployment_target 11.0" | sudo tee -a "$MACPORTS_CONF"
                 fi
                 sudo port selfupdate
 
             - name: Install coreutils
               run: |
                 brew install coreutils
+
+            - name: Initial config
+              run: |
+                echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV
+                echo "CFLAGS=-arch x86_64" >> $GITHUB_ENV
+                echo "CXXFLAGS=-arch x86_64" >> $GITHUB_ENV
+                echo "LDFLAGS=-arch x86_64" >> $GITHUB_ENV
 
             - name: Install Tcl
               run: |
@@ -155,6 +161,7 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
+                lipo -archs /usr/local/lib/libsqlite3.0.dylib
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -170,7 +177,7 @@ jobs:
                 cd ext-src
                 ls -l
                 
-                FLAGS="-ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                FLAGS="-arch x86_64 -ldl -Os -fpic -shared -Wl,-undefined,dynamic_lookup -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 set -x
                 for f in compress sqlar; do
                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
