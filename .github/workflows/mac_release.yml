@@ -43,16 +43,55 @@ jobs:
                 # ls -l /usr/local/opt/openssl/include/
                 # ls -l /usr/local/opt/expat/include
 
+            - name: Install MacPorts
+              uses: melusina-org/setup-macports@v1
+
+            - name: Reconfigure MacPorts
+              run: |
+                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 14.0/' "$MACPORTS_CONF"
+                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
+                    echo "macosx_deployment_target 14.0" | sudo tee -a "$MACPORTS_CONF"
+                fi
+                sudo port selfupdate
+
+            - name: Install coreutils
+              run: |
+                brew install coreutils
+
+#             - name: Install Tcl
+#               run: |
+#                 set -x
+#                 #brew install tcl-tk@8
+#                 #brew reinstall tcl-tk@8
+#                 echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
+#                 echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
+#
+#                 find /usr/local -name tclsh
+#                 find /usr/local -name tclConfig.sh
+
             - name: Install Tcl
               run: |
-                set -x
-                #brew install tcl-tk@8
-                #brew reinstall tcl-tk@8
-                echo "PATH=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/bin:$PATH" >> $GITHUB_ENV
-                echo "TCL_CONFIG=/usr/local/Cellar/tcl-tk@8/${{ env.TCL_VERSION }}/lib/tclConfig.sh" >> $GITHUB_ENV
-                
-                find /usr/local -name tclsh
-                find /usr/local -name tclConfig.sh
+                if brew list tcl-tk 2>/dev/null; then
+                    brew uninstall tcl-tk r
+                fi
+
+                sudo port install tcl
+
+                echo "PATH=/opt/local/bin:$PATH" >> $GITHUB_ENV
+                echo "TCL_CONFIG=/opt/local/lib/tclConfig.sh" >> $GITHUB_ENV
+                echo "TCL_VERSION_MAJ=$(echo 'puts $tcl_version' | /opt/local/bin/tclsh)" >> $GITHUB_ENV
+
+                echo "Tcl arch 1:"
+                ls -l /opt/local/lib/libtcl8.6.dylib
+                lipo -archs /opt/local/lib/libtcl8.6.dylib
+                echo "Tcl bin arch:"
+                ls -l /opt/local/bin/tclsh
+                lipo -archs /opt/local/bin/tclsh
+
+                echo "tclConfig:"
+                ls -l /opt/local/lib/tclConfig.sh
+                cat /opt/local/lib/tclConfig.sh
 
             - uses: actions/setup-python@v6
               with:
