@@ -3,7 +3,7 @@ env:
     TCL_VERSION: '8.6.16'
     SQLITE_VERSION: '3490000'
     PYTHON_VERSION: '3.11'
-    ICU_VERSION: '72.1'
+    #ICU_VERSION: '72.1'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-osx-installer.dmg
@@ -138,14 +138,14 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
-            - name: Install extension dependencies
-              run: |
-                brew tap-new $USER/local-tap
-                brew extract --version=$ICU_VERSION icu4c $USER/local-tap
-                brew install icu4c@$ICU_VERSION
-                brew install coreutils
-                echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
-                    >> $GITHUB_ENV
+            # - name: Install extension dependencies
+            #   run: |
+            #     brew tap-new $USER/local-tap
+            #     brew extract --version=$ICU_VERSION icu4c $USER/local-tap
+            #     brew install icu4c@$ICU_VERSION
+            #     brew install coreutils
+            #     echo ICU_FLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/icu4c@$ICU_VERSION/lib/pkgconfig" pkg-config --libs --cflags icu-uc icu-io)" \
+            #         >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -170,9 +170,9 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
                 done
-                for f in icu; do
-                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
-                done
+                # for f in icu; do
+                #     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
+                # done
                 set +x
                 ls -l ../ext/
 
