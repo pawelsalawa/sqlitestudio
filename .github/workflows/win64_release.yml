@@ -5,8 +5,7 @@ env:
     PYTHON_VERSION: '3.11'
     #ICU_VER: '72'
     #ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-72.1-1-any.pkg.tar.zst
-    MINGW_DIR: ../Qt/Tools/mingw810_64
-    QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
+    MINGW_DIRNAME: mingw810_64
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
