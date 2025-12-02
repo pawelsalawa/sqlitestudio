@@ -22,9 +22,8 @@ SOURCES += dbsqlitecipher.cpp \
 
 HEADERS += dbsqlitecipher.h \
     dbsqlitecipher_global.h \
-    dbsqlitecipherinstance.h \
-    sqlcipher.h \
-    sqlite_cfg.h
+    dbsqlitecipherinstance.h
+    sqlcipher.h
 
 macx: {
     exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
@@ -60,8 +59,7 @@ unix: {
 win32: {
     DEFINES += SQLITE_OS_WIN=1
 }
-DEFINES += SQLITE_HAS_CODEC BUILD_sqlite NDEBUG SQLITE_THREADSAFE=1 SQLITE_TEMP_STORE=2 \
-    SQLITE_EXTRA_INIT=sqlcipher_extra_init SQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown _HAVE_SQLITE_CONFIG_H \
+DEFINES += SQLITE_HAS_CODEC SQLCIPHER_CRYPTO_OPENSSL BUILD_sqlite NDEBUG SQLITE_ALLOW_XTHREAD_CONNECT=1 SQLITE_THREADSAFE=1 SQLITE_TEMP_STORE=2 \
     SQLITE_ENABLE_UPDATE_DELETE_LIMIT=1 \
     SQLITE_ENABLE_DBSTAT_VTAB=1 \
     SQLITE_ENABLE_BYTECODE_VTAB=1 \
@@ -75,6 +73,7 @@ DEFINES += SQLITE_HAS_CODEC BUILD_sqlite NDEBUG SQLITE_THREADSAFE=1 SQLITE_TEMP_
     SQLITE_ENABLE_JSON1=1 \
     SQLITE_ENABLE_RTREE=1 \
     SQLITE_ENABLE_MATH_FUNCTIONS=1
+
 
 OTHER_FILES += \
     dbsqlitecipher.json \

@@ -1,7 +1,7 @@
 # ChangeLog
 
 ### 3.4.18
-- CHANGE: #5407 SQLite updated to 3.51.1 (except for SQLCipher, which is up to 3.50.4). Updated syntax files, AST and formatter to support syntax updates.
+- CHANGE: #5407 SQLite updated to 3.51.1 (except for SQLCipher, which stays at 3.46.1 due to conflicting OpenSSL requirements against Qt 5). Updated syntax files, AST and formatter to support syntax updates.
 - CHANGE: ICU SQLite extension removed from binary packages. Maintaining ICU dependencies in GitHub workflows became an issue, while building SQLiteStudio is primary focus.
 - BUGFIX: #5308 #5358 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
 - BUGFIX: #5386 Fixed vertical scroll position when refreshing grid data view.

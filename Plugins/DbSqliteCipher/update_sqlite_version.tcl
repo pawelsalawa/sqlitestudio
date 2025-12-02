@@ -5,13 +5,11 @@
 # Download page:
 # https://github.com/sqlcipher/sqlcipher/releases
 
-set CIPHER_VER 4.11.0
-set THE_URL "https://codeload.github.com/sqlcipher/sqlcipher/zip/refs/tags/v${CIPHER_VER}"
-#set THE_URL "https://codeload.github.com/sqlcipher/sqlcipher/zip/v${CIPHER_VER}"
+set THE_URL "https://codeload.github.com/sqlcipher/sqlcipher/zip/v4.6.1"
 
 proc process {} {
 	if {[catch {
-		#wget $::THE_URL sqlite.zip
+		wget $::THE_URL sqlite.zip
 		puts "Decompressing to 'sqlite' directory."
 		exec 7z x -osqlite sqlite.zip
 		
@@ -19,9 +17,8 @@ proc process {} {
 		
 		puts "Running ./configure and make to generate sqlite3.c"
 		cd $dir
-		catch {exec ./configure --all --with-tempstore=yes --disable-tcl}
-		catch {exec make sqlite3.h}
-		catch {exec make sqlite3.c}
+		catch {exec ./configure --enable-fts5 --enable-json1 --enable-update-limit --enable-geopoly --enable-rtree --enable-session --enable-gcov --disable-tcl}
+		catch {exec make}
 		cd ../..
 		
 		copy $dir/sqlite3.c
