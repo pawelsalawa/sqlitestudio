@@ -37,6 +37,14 @@ jobs:
 
             - name: Reconfigure MacPorts
               run: |
+                sudo dscl . -create /Users/macports
+                sudo dscl . -create /Users/macports UserShell /usr/bin/false
+                sudo dscl . -create /Users/macports UniqueID 555
+                sudo dscl . -create /Users/macports PrimaryGroupID 20
+                sudo dscl . -create /Users/macports NFSHomeDirectory /opt/local/var/macports/home
+                sudo mkdir -p /opt/local/var/macports/home
+                sudo chown macports:staff /opt/local/var/macports/home
+
                 MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
                 sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 11.0/' "$MACPORTS_CONF"
                 if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
