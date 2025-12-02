@@ -77,6 +77,11 @@ jobs:
                 7z x -o"../Qt" ../mingw.7z
                 echo MINGW_DIR="$(realpath ../Qt/Tools/${{ env.MINGW_DIRNAME }})" >> $GITHUB_ENV
 
+            - name: Mingw paths
+              shell: bash
+              run: |
+                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
+
             - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
