@@ -76,7 +76,7 @@ jobs:
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
-                echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
+                echo MINGW_DIR="$(realpath ../Qt/Tools/${{ env.MINGW_DIRNAME }})" >> $GITHUB_ENV
 
             - uses: actions/setup-python@v4
               with:
