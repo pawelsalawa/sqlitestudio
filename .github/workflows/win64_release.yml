@@ -9,7 +9,7 @@ env:
     QT_BIN_DIR: ../Qt/5.15.2/mingw81_64/bin
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw1310/qt.tools.win64_mingw1310/13.1.0-202407240918mingw1310.7z
+    MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-windows-x64-installer.exe
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
@@ -105,9 +105,11 @@ jobs:
               shell: bash
               run: |
                 if [ ${{ inputs.use_ccache || false }} = false ]; then
-                    printf 'GCC_COMMAND=gcc.exe\nGXX_COMMAND=g++.exe\n'
+                    echo GCC_COMMAND="$(which gcc.exe)"
+                    echo GXX_COMMAND="$(which g++.exe)"
                 else
-                    printf 'GCC_COMMAND=ccache.exe gcc.exe\nGXX_COMMAND=ccache.exe g++.exe\n'
+                    echo GCC_COMMAND="$CCACHE_COMMAND gcc.exe"
+                    echo GXX_COMMAND="$CCACHE_COMMAND g++.exe"
                 fi >> $GITHUB_ENV
 
             - name: Install SQLite3
@@ -161,12 +163,18 @@ jobs:
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
+              shell: bash
               run: |
-                qmake.exe `
-                    CONFIG+=portable `
-                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" `
-                    ..\..\SQLiteStudio3
-                mingw32-make.exe -j 2
+                set -x
+                # Exclude pre-installed mingw from PATH to avoid symbol conflicts at final linking
+                export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | tr '\n' ':')
+                export PATH="${PATH%:}:${{ env.MINGW_DIR }}/bin"
+                qmake.exe \
+                    CONFIG+=portable \
+                    "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
+                    "QMAKE_LFLAGS+=-L${{ env.MINGW_DIR }}/lib" \
+                    ../../SQLiteStudio3
+                ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 4 VERBOSE=1
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
