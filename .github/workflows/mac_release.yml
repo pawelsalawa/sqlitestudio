@@ -214,6 +214,7 @@ jobs:
                 mkdir ../lib ../include
                 cp /usr/local/lib/libsqlite3* ../lib
                 cp /usr/local/include/sqlite3* ../include
+                cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
