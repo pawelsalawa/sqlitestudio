@@ -104,6 +104,15 @@ jobs:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'
 
+            - name: Debug 1
+              run: |
+                echo "Python:"
+                find ${{ env.Python3_ROOT_DIR }} -name libpython
+                echo "---"
+                echo "Crypto:"
+                find / -name libcrypto
+                echo "---"
+
             - name: Clone GH scripts
               uses: actions/checkout@v3
               with:
@@ -239,12 +248,6 @@ jobs:
               working-directory: output/build
               run: |
                 make pkg
-
-            - name: Setup tmate session
-              uses: mxschmitt/action-tmate@v3
-              with:
-                print_ssh_keys: true
-                ssh-key: ${{ secrets.TMATE_SSH_KEY }}
 
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
