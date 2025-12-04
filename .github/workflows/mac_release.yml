@@ -107,7 +107,7 @@ jobs:
             - name: Debug 1
               run: |
                 echo "Python:"
-                ls -alR ${{ env.Python3_ROOT_DIR }}/lib
+                ls -alR /Library/Frameworks/Python.framework/Versions/3.11/lib
                 echo "---"
                 echo "Crypto:"
                 ls -alR /usr/local/opt/openssl/lib
