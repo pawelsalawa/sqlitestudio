@@ -107,10 +107,10 @@ jobs:
             - name: Debug 1
               run: |
                 echo "Python:"
-                find ${{ env.Python3_ROOT_DIR }}
+                ls -alR ${{ env.Python3_ROOT_DIR }}/lib
                 echo "---"
                 echo "Crypto:"
-                find /usr/local/opt/openssl/lib
+                ls -alR /usr/local/opt/openssl/lib
                 echo "---"
 
             - name: Clone GH scripts
