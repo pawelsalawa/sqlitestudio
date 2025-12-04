@@ -216,7 +216,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
-                make -j 2
+                make -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -242,6 +242,9 @@ jobs:
 
             - name: Setup tmate session
               uses: mxschmitt/action-tmate@v3
+              with:
+                print_ssh_keys: true
+                ssh-key: ${{ secrets.TMATE_SSH_KEY }}
 
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
