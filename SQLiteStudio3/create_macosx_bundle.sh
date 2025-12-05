@@ -93,6 +93,33 @@ function fixPluginPaths() {
 }
 fixPluginPaths SQLiteStudio.app/Contents/PlugIns
 
+fixPluginLibPath() {
+    local PLUGIN="$1"
+    local LIBNAME="$2"
+
+    if [ -z "$PLUGIN" ] || [ -z "$LIBNAME" ]; then
+        echo "Usage: fixPluginLibPath <plugin.dylib> <libname.dylib>"
+        return 1
+    fi
+
+    # Znalezienie aktualnego wpisu z otool -L
+    local OLD
+    OLD=$(otool -L "$PLUGIN" | awk -v lib="$LIBNAME" '$1 ~ lib {print $1; exit}')
+
+    if [ -z "$OLD" ]; then
+        echo "WARNING: Library $LIBNAME not found in $PLUGIN"
+        return 0
+    fi
+
+    # Nowa ścieżka
+    local NEW="@rpath/$LIBNAME"
+
+    echo "Fixing $PLUGIN: $OLD → $NEW"
+    install_name_tool -change "$OLD" "$NEW" "$PLUGIN"
+}
+fixPluginLibPath SQLiteStudio.app/Contents/PlugIns/libDbSqliteCipher.dylib libcrypto.3.dylib
+fixPluginLibPath SQLiteStudio.app/Contents/PlugIns/libScriptingTcl.dylib libtcl8.6.dylib
+
 function replaceInfo() {
 	cdir=`pwd`
     echo Replacing Info.plist
